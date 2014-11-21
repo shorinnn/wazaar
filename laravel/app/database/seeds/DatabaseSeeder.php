@@ -11,7 +11,30 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
-		// $this->call('UserTableSeeder');
+		 $this->call('RoleTableSeeder');
 	}
+
+}
+
+class RoleTableSeeder extends Seeder {
+
+    public function run()
+    {
+        $admin = new Role;
+        $admin->name = 'Admin';
+        $admin->save();
+        
+        $student = new Role;
+        $student->name = 'Student';
+        $student->save();
+        
+        $teacher = new Role;
+        $teacher->name = 'Teacher';
+        $teacher->save();
+        
+        $affiliate = new Role;
+        $affiliate->name = 'Affiliate';
+        $affiliate->save();
+    }
 
 }
