@@ -31,6 +31,8 @@ class UsersController extends Controller
         $user = $repo->signup(Input::all());
 
         if ($user->id) {
+            $studentRole = Role::where('name','=','Student')->first();
+            $user->attachRole( $studentRole );
             if (Config::get('confide::signup_email')) {
                 Mail::queueOn(
                     Config::get('confide::email_queue'),
