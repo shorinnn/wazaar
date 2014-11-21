@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://wazaar.dev',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return array(
 	|
 	*/
 
-	'key' => 'Y9EoEGcrj00VT3A66lBHAUBRKOSQu2RF',
+	'key' => 'de7f294d3600e9886bc9ffd12d2948e5',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
