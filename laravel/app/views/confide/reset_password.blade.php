@@ -1,4 +1,4 @@
-<form method="POST" action="{{{ action('UsersController@resetPassword') }}}" accept-charset="UTF-8">
+<form method="POST" action="{{{ action('UsersController@doResetPassword') }}}" accept-charset="UTF-8">
     <input type="hidden" name="token" value="{{{ $token }}}">
     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
 

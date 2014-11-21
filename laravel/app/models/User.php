@@ -12,6 +12,6 @@ class User extends Ardent implements ConfideUserInterface
     use HasRole;
     
     public function save(array $rules = Array(), array $customMessages = Array(), array $options = Array(), Closure $beforeSave = NULL, Closure $afterSave = NULL){
-        $this->confideSave();
+        return $this->confideSave();
     }
 }

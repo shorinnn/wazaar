@@ -8,7 +8,8 @@
 		"laravel/framework": "4.2.*",
                 "laravelbook/ardent": "2.*",
                 "zizaco/confide": "~4.0@dev",
-                "zizaco/entrust": "1.2.*@dev"
+                "zizaco/entrust": "1.2.*@dev",
+                "guzzlehttp/guzzle": "~4"
 	},
 	"autoload": {
 		"classmap": [
