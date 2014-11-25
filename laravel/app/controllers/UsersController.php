@@ -97,6 +97,95 @@ class UsersController extends Controller
                 ->with('error', $err_msg);
         }
     }
+    
+    public function loginWithGoogle() {
+
+        // get data from input
+        $code = Input::get( 'code' );
+
+        // get google service
+        $googleService = OAuth::consumer( 'Google' );
+
+        // check if code is valid
+
+        // if code is provided get user data and sign in
+        if ( !empty( $code ) ) {
+
+            // This was a callback request from google, get the token
+            $token = $googleService->requestAccessToken( $code );
+
+            // Send a request with it
+            $result = json_decode( $googleService->request( 'https://www.googleapis.com/oauth2/v1/userinfo' ), true );
+
+            $message = 'Your unique Google user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
+            echo $message. "<br/>";
+
+            //Var_dump
+            //display whole array().
+            dd($result);
+
+        }
+        // if not ask for permission first
+        else {
+            // get googleService authorization
+            $url = $googleService->getAuthorizationUri();
+
+            // return to google login url
+            return Redirect::to( (string)$url );
+        }
+    }
+    
+    /**
+     * Login user with facebook
+     *
+     * @return void
+     */
+
+    public function loginWithFacebook() {
+        // get data from input
+        $code = Input::get( 'code' );
+        // get fb service
+        $fb = OAuth::consumer( 'Facebook' );
+        // if code is provided get user data and sign in
+        if ( !empty( $code ) ) {
+            // This was a callback request from facebook, get the token
+            $token = $fb->requestAccessToken( $code );
+            // Send a request with it
+            $result = json_decode( $fb->request( '/me' ), true );
+            // See if we need to register this user
+//            $repo = App::make('UserRepository');
+//            $user = $repo::where('facebook_login_id',$result['id'])->first();
+//            if($user==null){// create user
+//                $info['email'] = $result['email'];
+//                $info['username'] = $result['email'];
+//                $info['password'] = md5(uniqid(mt_rand(), true));
+//                $info['password_confirmation'] = $info['password'];
+//                $user = $repo->signup($info);
+//                $user->first_name = $result['first_name'];
+//                $user->last_name = $result['last_name'];
+//                $user->facebook_login_id = $result['id'];
+//                $user->facebook_profile_id = $result['id'];
+//                $user->confirmed = 1;
+//            }
+//            else{// login
+//                
+//                
+//            }
+            $message = 'Your unique facebook user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
+            echo $message. "<br/>";
+            //echo '<img src="https://graph.facebook.com/'.$result['id'].'/picture">';
+            echo '<img src="https://graph.facebook.com/'.$result['id'].'/picture?type=large">';
+            dd($result);
+
+        }
+        // if not ask for permission first
+        else {
+            // get fb authorization
+            $url = $fb->getAuthorizationUri();
+            // return to facebook login url
+             return Redirect::to( (string)$url );
+        }
+    }
 
     /**
      * Attempt to confirm account with code

@@ -9,7 +9,8 @@
                 "laravelbook/ardent": "2.*",
                 "zizaco/confide": "~4.0@dev",
                 "zizaco/entrust": "1.2.*@dev",
-                "guzzlehttp/guzzle": "~4"
+                "guzzlehttp/guzzle": "~4",
+                "artdarek/oauth-4-laravel": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

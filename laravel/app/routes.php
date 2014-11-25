@@ -21,6 +21,8 @@ Route::get('/', function()
 Route::get('register', 'UsersController@create');
 Route::post('users', 'UsersController@store');
 Route::get('login', 'UsersController@login');
+Route::get('loginWithFacebook', 'UsersController@loginWithFacebook');
+Route::get('loginWithGoogle', 'UsersController@loginWithGoogle');
 Route::post('login', 'UsersController@doLogin');
 Route::get('account_confirmation/{code}', 'UsersController@confirm');
 Route::get('forgot_password', 'UsersController@forgotPassword');
