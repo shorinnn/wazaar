@@ -38,6 +38,58 @@ class UserRepository
 
         return $user;
     }
+    
+    /**
+     * Signup a new account with FB Credentials
+     * @return  User User object that may or may not be saved successfully. Check the id to make sure.
+     */
+    public function signupWithFacebook($input)
+    {
+        $user = new User;
+
+        $user->username = alphanum("$input[first_name] $input[last_name]");
+        $user->email    = $input['email'];
+        $user->password = md5(uniqid(mt_rand(), true));
+        $user->password_confirmation = $user->password;
+        $user->confirmed = 1;
+        $user->first_name = $input['first_name'];
+        $user->last_name = $input['last_name'];
+        $user->facebook_login_id = $input['id'];
+        $user->facebook_profile_id = $input['link'];
+        
+        // Generate a random confirmation code
+        $user->confirmation_code     = md5(uniqid(mt_rand(), true));
+
+        // Save if valid. Password field will be hashed before save
+        $this->save($user);
+        return $user;
+    }
+    
+    /**
+     * Signup a new account with Google Credentials
+     * @return  User User object that may or may not be saved successfully. Check the id to make sure.
+     */
+    public function signupWithGoogle($input)
+    {
+        $user = new User;
+
+        $user->username = alphanum("$input[given_name] $input[family_name]");
+        $user->email    = $input['email'];
+        $user->password = md5(uniqid(mt_rand(), true));
+        $user->password_confirmation = $user->password;
+        $user->confirmed = 1;
+        $user->first_name = $input['given_name'];
+        $user->last_name = $input['family_name'];
+        $user->google_plus_login_id = $input['id'];
+        $user->google_plus_profile_id = $input['link'];
+        
+        // Generate a random confirmation code
+        $user->confirmation_code     = md5(uniqid(mt_rand(), true));
+
+        // Save if valid. Password field will be hashed before save
+        $this->save($user);
+        return $user;
+    }
 
     /**
      * Attempts to login with the given credentials.

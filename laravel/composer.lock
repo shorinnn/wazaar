@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ce8954301d89401a8d21013651b90e6c",
+    "hash": "dd7d94acda0888bcb0d2fcde20cd8c09",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
