@@ -1,0 +1,125 @@
+/* Wazaar App Custom Styles */
+/************ Default browser reset styles **************/
+
+body {
+	font: 16px Calibri, Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+
+
+form {
+    color: #333333;
+    font-size: 12px;
+}
+
+.clear{
+	clear: both;
+}
+
+.cl{
+	display: block;
+	clear: both;
+}
+
+.right{
+	float: right;
+}
+
+.left{
+	float: left;
+}
+
+.block{
+	display: block;
+}
+
+a, input::-moz-focus-inner {
+   outline: none;
+   border: 0;
+}
+
+a:hover{
+	outline: none;
+}
+
+ul{
+	list-style-type: none;
+}
+
+/************** Page contents styles *****************/
+
+/************** Header Section *******************/
+.top-search-section{
+	min-height: 900px;
+	background: -moz-radial-gradient(center, #143d5b, #163248, #182430);
+	background: -webkit-radial-gradient(center, #143d5b, #163248, #182430);
+	background: -ms-radial-gradient(center, #143d5b, #163248, #182430);
+	background: -o-radial-gradient(center, #143d5b, #163248, #182430);
+	background: radial-gradient(center, #143d5b, #163248, #182430);
+}
+
+.top-search-section .register-buttons{
+	padding-top: 18px;
+	width: 190px;
+	float: right;
+	margin-right: 98px;
+}
+
+.top-search-section .register-buttons a{
+	display: inline-block;
+	width: 92px;
+	border-radius: 4px;
+	height: 32px;
+	background: #0099ff;
+}
+
+/************ Parallax Background Image **************/
+.parallax-bckgrd-img{
+	min-height: 850px;
+	border: solid 1px #ccc;
+}
+
+/********** Introductory message ************/
+.introductory-message > div{
+	border: solid 1px #ccc;
+	min-height: 269px;
+	margin: 90px 0;
+}
+
+/**************** Page Nav Menu ****************/
+
+.main-nav{
+	min-height: 48px;
+}
+
+/************** Services Section ******************/
+
+.services{
+	border: solid 1px #ccc;
+	min-height: 450px;
+}
+
+.services .row{
+	height: 450px;
+	border: solid 1px #ccc;
+}
+
+
+.services .row > div{
+	border: solid 1px #ccc;
+	height: 100%;
+}
+
+/************* Page Footer **************/
+.page-footer{
+	background: #ececec;
+	padding-top: 29px;
+	min-height: 125px;
+}
+
+.page-footer .row > div{
+	border: solid 1px #ccc;
+	min-height: 97px;
+}
