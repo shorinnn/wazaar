@@ -38,6 +38,128 @@ class UserRepository
 
         return $user;
     }
+    
+    /**
+     * Signup a new account with FB Credentials
+     * @return  User User object that may or may not be saved successfully. Check the id to make sure.
+     */
+    public function signupWithFacebook($input)
+    {
+        $user = new User;
+
+        $user->username = "FB$input[id]";
+        $user->email    = $input['email'];
+        $user->password = md5(uniqid(mt_rand(), true));
+        $user->password_confirmation = $user->password;
+        $user->confirmed = 1;
+        $user->first_name = $input['first_name'];
+        $user->last_name = $input['last_name'];
+        $user->facebook_login_id = $input['id'];
+        $user->facebook_profile_id = $input['link'];
+        
+        // Generate a random confirmation code
+        $user->confirmation_code     = md5(uniqid(mt_rand(), true));
+
+        // Save if valid. Password field will be hashed before save
+        $this->save($user);
+        return $user;
+    }
+    
+    /**
+     * Link an existing Email account with a Facebook Profile
+     * @param string $password The password for the existing account
+     * @param int $user_id The existing user ID
+     * @param int $facebook_id The Facebook profile ID
+     * @param string $facebook_profile The Facebook profile public link
+     */
+    public function linkFacebook($input, $user_id, $facebook_id, $facebook_profile){
+        $user = User::find($user_id);
+        $input['email'] = $user->email;
+        if($this->login($input)){
+            // link the account
+            Auth::user()->confirmed = 1;
+            Auth::user()->facebook_login_id = $facebook_id;
+            Auth::user()->facebook_profile_id = $facebook_profile;
+            Auth::user()->save();
+            return true;
+        }
+        else{
+            // see if password failed, but visitor used social confirmation code
+            if($user->social_confirmation == $input['password']){
+                Auth::login($user);
+                $user->confirmed = 1;
+                $user->facebook_login_id = $facebook_id;
+                $user->facebook_profile_id = $facebook_profile;
+                $user->save();
+                return true;                
+            }
+            else{
+                // verification failed
+                return false;
+            }
+        }
+    }
+    
+    /**
+     * Signup a new account with Google Credentials
+     * @return  User User object that may or may not be saved successfully. Check the id to make sure.
+     */
+    public function signupWithGoogle($input)
+    {
+        $user = new User;
+
+        $user->username = "G$input[id]";
+        $user->email    = $input['email'];
+        $user->password = md5(uniqid(mt_rand(), true));
+        $user->password_confirmation = $user->password;
+        $user->confirmed = 1;
+        $user->first_name = $input['given_name'];
+        $user->last_name = $input['family_name'];
+        $user->google_plus_login_id = $input['id'];
+        $user->google_plus_profile_id = $input['link'];
+        
+        // Generate a random confirmation code
+        $user->confirmation_code     = md5(uniqid(mt_rand(), true));
+
+        // Save if valid. Password field will be hashed before save
+        $this->save($user);
+        return $user;
+    }
+    
+    /**
+     * Link an existing Email account with a Google Profile
+     * @param string $password The password for the existing account
+     * @param int $user_id The existing user ID
+     * @param int $google_id The Google profile ID
+     * @param string $google_profile The Google profile public link
+     */
+    public function linkGooglePlus($input, $user_id, $google_id, $google_profile){
+        $user = User::find($user_id);
+        $input['email'] = $user->email;
+        if($this->login($input)){
+            // link the account
+            Auth::user()->confirmed = 1;
+            Auth::user()->google_plus_login_id = $google_id;
+            Auth::user()->google_plus_profile_id = $google_profile;
+            Auth::user()->save();
+            return true;
+        }
+        else{
+            // see if password failed, but visitor used social confirmation code
+            if($user->social_confirmation == $input['password']){
+                Auth::login($user);
+                $user->confirmed = 1;
+                $user->google_plus_login_id = $google_id;
+                $user->google_plus_profile_id = $google_profile;
+                $user->save();
+                return true;                
+            }
+            else{
+                // verification failed
+                return false;
+            }
+        }
+    }
 
     /**
      * Attempts to login with the given credentials.
@@ -51,7 +173,6 @@ class UserRepository
         if (! isset($input['password'])) {
             $input['password'] = null;
         }
-
         return Confide::logAttempt($input, Config::get('confide::signup_confirm'));
     }
 
