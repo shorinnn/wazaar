@@ -172,7 +172,7 @@ class UserRepository
         $s3 = AWS::get('s3');
         $result = $s3->putObject(array(
             'ACL'    => 'public-read',
-            'Bucket' => 'wazaar',
+            'Bucket' => $_ENV['AWS_BUCKET'],
             'ContentType' => $mime,
             'Key'    => 'profile_pictures/'.$key.$extension,
             'Body'   => $file
