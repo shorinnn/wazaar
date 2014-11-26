@@ -1,7 +1,4 @@
 <?php
-
-
-
 /**
  * Class UserRepository
  *
@@ -10,6 +7,13 @@
  */
 class UserRepository
 {
+    public function find($id){
+        return User::find($id);
+    }
+    
+    public function where($prop, $val){
+        return User::where($prop, $val);
+    }
     /**
      * Signup a new account with the given parameters
      *

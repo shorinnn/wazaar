@@ -9,6 +9,9 @@
  */
 class UsersController extends Controller
 {
+    public function __construct(UserRepository $users){
+        $this->users = $users;
+    }
 
     /**
      * Displays the form for account creation
@@ -27,8 +30,8 @@ class UsersController extends Controller
      */
     public function store()
     {
-        $repo = App::make('UserRepository');
-        $user = $repo->signup(Input::all());
+        
+        $user = $this->users->signup(Input::all());
 
         if ($user->id) {
             $studentRole = Role::where('name','=','Student')->first();
@@ -40,7 +43,7 @@ class UsersController extends Controller
                     compact('user'),
                     function ($message) use ($user) {
                         $message
-                            ->to($user->email, $user->username)
+                            ->to($user->email, $user->usersname)
                             ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
                     }
                 );
@@ -62,8 +65,7 @@ class UsersController extends Controller
      * @return  Illuminate\Http\Response
      */
     public function login()
-    {
-        
+    {        
         if (Confide::user()) {
             return Redirect::to('/');
         } else {
@@ -78,15 +80,15 @@ class UsersController extends Controller
      */
     public function doLogin()
     {
-        $repo = App::make('UserRepository');
+        
         $input = Input::all();
 
-        if ($repo->login($input)) {
+        if ($this->users->login($input)) {
             return Redirect::intended('/');
         } else {
-            if ($repo->isThrottled($input)) {
+            if ($this->users->isThrottled($input)) {
                 $err_msg = Lang::get('confide::confide.alerts.too_many_attempts');
-            } elseif ($repo->existsButNotConfirmed($input)) {
+            } elseif ($this->users->existsButNotConfirmed($input)) {
                 $err_msg = Lang::get('confide::confide.alerts.not_confirmed');
             } else {
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
@@ -99,28 +101,23 @@ class UsersController extends Controller
     }
     
     public function loginWithGoogle() {
-
         // get data from input
         $code = Input::get( 'code' );
-
         // get google service
         $googleService = OAuth::consumer( 'Google' );
-
         // check if code is valid
-
         // if code is provided get user data and sign in
         if ( !empty( $code ) ) {
-
             // This was a callback request from google, get the token
             $token = $googleService->requestAccessToken( $code );
-
             // Send a request with it
             $result = json_decode( $googleService->request( 'https://www.googleapis.com/oauth2/v1/userinfo' ), true );
             // See if we need to register this user
-            $user = User::where('google_plus_login_id',$result['id'])->first();
+            
+                $user = $this->users->where('google_plus_login_id',$result['id'])->first();
             if($user == null){
                  // see if email is aready in the system
-                if($user = User::where('email', $result['email'])->first()){
+                if($user = $this->users->where('email', $result['email'])->first()){
                     Session::set('uid', $user->id);
                     Session::set('gid', $result['id']);
                     Session::set('glink', $result['link']);
@@ -128,8 +125,8 @@ class UsersController extends Controller
                 }
                 else{
                     // create user
-                    $repo = App::make('UserRepository');
-                    $user = $repo->signupWithGoogle($result);
+                    
+                    $user = $this->users->signupWithGoogle($result);
 
                     if(!$user->id){ 
                         // cannot create user
@@ -141,7 +138,7 @@ class UsersController extends Controller
                     else{
                         $studentRole = Role::where('name','=','Student')->first();
                         $user->attachRole( $studentRole );
-                        $repo->save_social_picture($user, "G$result[id]", "$result[picture]?sz=150");
+                        $this->users->save_social_picture($user, "G$result[id]", "$result[picture]?sz=150");
                         //user created
                         Auth::login($user);
                         return Redirect::to('/');
@@ -176,8 +173,8 @@ class UsersController extends Controller
      * Perform FB link action
      */
     public function doLinkGooglePlus(){
-        $repo = App::make('UserRepository');
-        if( $repo->linkGooglePlus(Input::all(), Session::get('uid'), Session::get('gid'), Session::get('glink')) ){
+        
+        if( $this->users->linkGooglePlus(Input::all(), Session::get('uid'), Session::get('gid'), Session::get('glink')) ){
             Session::flash('success', trans('acl.google_linked'));
             return Redirect::to('/');
         }
@@ -187,7 +184,8 @@ class UsersController extends Controller
     }
     
     public function confirmationCode(){
-        $user = User::find(Session::get('uid'));
+        
+        $user = $this->users->find(Session::get('uid'));
         $code = $string = str_random(4);
         $user->social_confirmation = $code;
         $user->save();
@@ -216,10 +214,11 @@ class UsersController extends Controller
             // Send a request with it
             $result = json_decode( $fb->request( '/me' ), true );
             // See if we need to register this user
-            $user = User::where('facebook_login_id',$result['id'])->first();
+            
+            $user = $this->users->where('facebook_login_id',$result['id'])->first();
             if($user == null){
                 // see if email is aready in the system
-                if($user = User::where('email', $result['email'])->first()){
+                if($user = $this->users->where('email', $result['email'])->first()){
                     Session::set('uid', $user->id);
                     Session::set('fbid', $result['id']);
                     Session::set('fblink', $result['link']);
@@ -227,9 +226,7 @@ class UsersController extends Controller
                 }
                 else{
                     // create user
-                    $repo = App::make('UserRepository');
-                    $user = $repo->signupWithFacebook($result);
-
+                    $user = $this->users->signupWithFacebook($result);
                     if(!$user->id){ 
                         // cannot create user
                         $error = $user->errors()->all(':message');
@@ -240,7 +237,7 @@ class UsersController extends Controller
                     else{
                         $studentRole = Role::where('name','=','Student')->first();
                         $user->attachRole( $studentRole );
-                        $repo->save_social_picture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
+                        $this->users->save_social_picture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
                         //user created
                         Auth::login($user);
                         return Redirect::to('/');
@@ -276,8 +273,8 @@ class UsersController extends Controller
      * Perform FB link action
      */
     public function doLinkFacebook(){
-        $repo = App::make('UserRepository');
-        if( $repo->linkFacebook(Input::all(), Session::get('uid'), Session::get('fbid'), Session::get('fblink')) ){
+        
+        if( $this->users->linkFacebook(Input::all(), Session::get('uid'), Session::get('fbid'), Session::get('fblink')) ){
             Session::flash('success', trans('acl.facebook_linked'));
             return Redirect::to('/');
         }
@@ -355,7 +352,7 @@ class UsersController extends Controller
      */
     public function doResetPassword()
     {
-        $repo = App::make('UserRepository');
+        
         $input = array(
             'token'                 =>Input::get('token'),
             'password'              =>Input::get('password'),
@@ -363,7 +360,7 @@ class UsersController extends Controller
         );
 
         // By passing an array with the token, password and confirmation
-        if ($repo->resetPassword($input)) {
+        if ($this->users->resetPassword($input)) {
             $notice_msg = Lang::get('confide::confide.alerts.password_reset');
             return Redirect::action('UsersController@login')
                 ->with('notice', $notice_msg);
