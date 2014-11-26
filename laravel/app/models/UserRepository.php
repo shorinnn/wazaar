@@ -47,7 +47,7 @@ class UserRepository
     {
         $user = new User;
 
-        $user->username = alphanum("$input[first_name] $input[last_name]");
+        $user->username = "FB$input[id]";
         $user->email    = $input['email'];
         $user->password = md5(uniqid(mt_rand(), true));
         $user->password_confirmation = $user->password;
@@ -108,7 +108,7 @@ class UserRepository
     {
         $user = new User;
 
-        $user->username = alphanum("$input[given_name] $input[family_name]");
+        $user->username = "G$input[id]";
         $user->email    = $input['email'];
         $user->password = md5(uniqid(mt_rand(), true));
         $user->password_confirmation = $user->password;
