@@ -160,6 +160,23 @@ class UserRepository
             }
         }
     }
+    
+    public function save_social_picture($user,  $key, $picture){
+        $file = file_get_contents($picture);
+        $mime = mimetype($file);
+        $extension = mime_to_extension($mime);
+        $s3 = AWS::get('s3');
+        $result = $s3->putObject(array(
+            'ACL'    => 'public-read',
+            'Bucket' => 'wazaar',
+            'ContentType' => $mime,
+            'Key'    => 'profile_pictures/'.$key.$extension,
+            'Body'   => $file
+        ));
+        
+        $user->photo =  $result->get('ObjectURL');
+        $user->save();
+    }
 
     /**
      * Attempts to login with the given credentials.
