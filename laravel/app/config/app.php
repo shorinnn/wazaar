@@ -124,6 +124,7 @@ return array(
                 'Zizaco\Confide\ServiceProvider',
                 'Zizaco\Entrust\EntrustServiceProvider',
                 'Artdarek\OAuth\OAuthServiceProvider',
+                'Aws\Laravel\AwsServiceProvider',
 
 	),
 
@@ -194,6 +195,7 @@ return array(
                 'Confide'           => 'Zizaco\Confide\Facade',
                 'Entrust'           => 'Zizaco\Entrust\EntrustFacade',
                 'OAuth'             => 'Artdarek\OAuth\Facade\OAuth',
+                'AWS'               => 'Aws\Laravel\AwsFacade',
 
 	),
 

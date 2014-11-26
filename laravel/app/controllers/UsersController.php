@@ -63,6 +63,14 @@ class UsersController extends Controller
      */
     public function login()
     {
+        $s3 = AWS::get('s3');
+        $result = $s3->putObject(array(
+            'ACL'    => 'public-read',
+            'Bucket' => 'wazaar',
+            'Key'    => 'chicken.jpg',
+            'Body'   => file_get_contents('https://scontent-a-fra.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/10616306_837627469594158_6410025244346703697_n.jpg?oh=fb707f1eb4b0b8dbb2f20f89facbd207&oe=55161E7E', 'r+')
+        ));
+        dd($result);
         if (Confide::user()) {
             return Redirect::to('/');
         } else {
