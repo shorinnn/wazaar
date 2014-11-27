@@ -18,8 +18,8 @@
 |
 */
 
-//require __DIR__.'/../bootstrap/autoload.php';
-require '/opt/repos/wazaar/laravel/bootstrap/autoload.php';
+if('wazaar.app'===$_SERVER['SERVER_NAME']) require __DIR__.'/../bootstrap/autoload.php';
+else require '/opt/repos/wazaar/laravel/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +32,8 @@ require '/opt/repos/wazaar/laravel/bootstrap/autoload.php';
 | the responses back to the browser and delight these users.
 |
 */
-
-//$app = require_once __DIR__.'/../bootstrap/start.php';
-$app = require_once '/opt/repos/wazaar/laravel/bootstrap/start.php';
+if('wazaar.app'===$_SERVER['SERVER_NAME']) $app = require_once __DIR__.'/../bootstrap/start.php';
+else $app = require_once '/opt/repos/wazaar/laravel/bootstrap/start.php';
 
 /*
 |--------------------------------------------------------------------------
