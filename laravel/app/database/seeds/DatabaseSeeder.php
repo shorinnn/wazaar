@@ -54,14 +54,15 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'BSVdwS8y3Xvv';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        if(! $user->save()) {
-          Log::info('Unable to create user '.$user->username, (array)$user->errors());
-        } else {
-          Log::info('Created user "'.$user->username.'" <'.$user->email.'>');
-        }
-        
-        
-
+        $user->save();
+        $user = new User;
+        $user->username = 'wazaarStudent';
+        $user->email = 'wazaarStudent@mailinator.com';
+        $user->password = 'pass';
+        $user->password_confirmation = 'pass';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->save();
     }
 }
     
@@ -73,6 +74,9 @@ class AssignedRoleTableSeeder extends Seeder {
         $user = User::where('username', '=', 'superadmin')->first();
         $adminRole = Role::where('name','=','Admin')->first();
         $user->attachRole( $adminRole );
+        $user = User::where('username', '=', 'wazaarStudent')->first();
+        $studentRole = Role::where('name','=','Student')->first();
+        $user->attachRole( $studentRole );
 
     }
 

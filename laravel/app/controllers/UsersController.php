@@ -114,7 +114,7 @@ class UsersController extends Controller
             $result = json_decode( $googleService->request( 'https://www.googleapis.com/oauth2/v1/userinfo' ), true );
             // See if we need to register this user
             
-                $user = $this->users->where('google_plus_login_id',$result['id'])->first();
+            $user = $this->users->where('google_plus_login_id',$result['id'])->first();
             if($user == null){
                  // see if email is aready in the system
                 if($user = $this->users->where('email', $result['email'])->first()){
@@ -326,7 +326,7 @@ class UsersController extends Controller
                 ->with('notice', $notice_msg);
         } else {
             $error_msg = Lang::get('confide::confide.alerts.wrong_password_forgot');
-            return Redirect::action('UsersController@doForgotPassword')
+            return Redirect::action('UsersController@forgotPassword')
                 ->withInput()
                 ->with('error', $error_msg);
         }
