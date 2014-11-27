@@ -18,7 +18,8 @@
 |
 */
 
-require __DIR__.'/../bootstrap/autoload.php';
+//require __DIR__.'/../bootstrap/autoload.php';
+require '/opt/repos/wazaar/laravel/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,8 @@ require __DIR__.'/../bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../bootstrap/start.php';
+//$app = require_once __DIR__.'/../bootstrap/start.php';
+$app = require_once '/opt/repos/wazaar/laravel/bootstrap/start.php';
 
 /*
 |--------------------------------------------------------------------------
