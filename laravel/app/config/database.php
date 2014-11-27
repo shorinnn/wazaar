@@ -54,11 +54,11 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => '54.172.154.186',
 			'database'  => 'wazaar',
-			'username'  => 'wazaar_rds',
-			'password'  => 'wazaarrds2014',
-			'charset'   => 'wazaarrds2014',
+			'username'  => 'admin',
+			'password'  => 'AnU7A1\6A06l.9T',
+			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),
