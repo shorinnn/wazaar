@@ -49,7 +49,6 @@ class UsersControllerTest extends TestCase {
 
     public function test_forgotten_password_no_user_submit() {
         $crawler = $this->client->request('GET', 'forgot-password');
-        $this->assertResponseOk();
         $form = $crawler->selectButton('Continue')->form();
         $crawler = $this->goutte->submit($form);
         $this->assertCount(1, $crawler->filter('div:contains("User not found")'));
@@ -62,6 +61,19 @@ class UsersControllerTest extends TestCase {
         $form['email'] = 'wazaarStudent@mailinator.com';
         $crawler = $this->goutte->submit($form);
         $this->assertCount(1, $crawler->filter('div:contains("The information regarding")'));      
+    }
+    
+    public function test_register(){
+        $crawler = $this->client->request('GET', 'register');
+        $this->assertResponseOk();
+        $form = $crawler->selectButton('Create new account')->form();
+        $form['username'] = 'new_student';
+        $form['email'] = 'new_student@mailinator.com';
+        $form['password'] = 'pass';
+        $form['password_confirmation'] = 'pass';
+        $crawler = $this->goutte->submit($form);
+        dd( $crawler->html());
+        $this->assertTrue(Auth::check());
     }
 
 }
