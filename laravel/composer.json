@@ -14,7 +14,8 @@
                 "aws/aws-sdk-php-laravel": "1.*",
 		"phpunit/phpunit": "4.0.*",
 		"mockery/mockery": "0.9.*",
-		"fabpot/goutte": "~2.0"
+		"fabpot/goutte": "~2.0",
+		"codeception/codeception": "*"
 	},
 	"autoload": {
 		"classmap": [

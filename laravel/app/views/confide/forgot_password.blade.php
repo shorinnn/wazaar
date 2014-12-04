@@ -5,7 +5,7 @@
 @if (Session::get('notice'))
     <div class="alert">{{{ Session::get('notice') }}}</div>
 @endif
-<form method="POST" action="{{ action('UsersController@forgotPassword') }}" accept-charset="UTF-8">
+<form method="POST" action="{{ action('UsersController@forgotPassword') }}" accept-charset="UTF-8" id="forgot-form">
     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
 
     <div class="form-group">
@@ -17,6 +17,4 @@
             </span>
         </div>
     </div>
-
-    
 </form>

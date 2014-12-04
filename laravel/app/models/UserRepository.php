@@ -38,8 +38,9 @@ class UserRepository
         $user->confirmation_code     = md5(uniqid(mt_rand(), true));
 
         // Save if valid. Password field will be hashed before save
-        $this->save($user);
-        $this->attachRoles($user, array_get($input, 'teacher'));
+        if($this->save($user)){
+            $this->attachRoles($user, array_get($input, 'teacher'));
+        }
         return $user;
     }
     

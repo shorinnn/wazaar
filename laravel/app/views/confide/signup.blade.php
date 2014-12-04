@@ -9,7 +9,7 @@
 @if (Session::get('notice'))
     <div class="alert">{{ Session::get('notice') }}</div>
 @endif
-<form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8">
+<form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8" id="register-form">
     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
     <fieldset>
         <div class="form-group">
