@@ -11,12 +11,7 @@
 |
 */
 // Site routes
-Route::get('homepage', 'SiteController@index');
-Route::get('/', function()
-{
-	return View::make('hello');
-});
-//
+Route::get('/', 'SiteController@index');
 
 // Confide routes
 Route::get('register', 'UsersController@create');
