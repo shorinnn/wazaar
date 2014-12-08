@@ -332,3 +332,14 @@ function mime_to_extension($mime){
     if(key_exists($mime, $definitive)) return $definitive[$mime];
     return false;    
 }
+
+function format_errors(Array $errors, $start='<br />', $end=''){
+    if($end=='')    return implode($start, $errors);
+    else{
+        $return = [];
+        foreach($errors as $err){
+            $return[] = $start.$err.$end;
+        }
+        return $return;
+    }
+}

@@ -27,7 +27,7 @@ class MembersController extends \BaseController {
 	public function show($id)
 	{
             $user = User::find($id);
-		return "showing $id";
+            return View::make('administration.members.show')->with(compact('user'));
 	}
 
 
@@ -40,6 +40,7 @@ class MembersController extends \BaseController {
 	public function edit($id)
 	{
             $user = User::find($id);
+            return View::make('administration.members.edit')->with(compact('user'));
 	}
 
 
@@ -51,7 +52,13 @@ class MembersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$user = User::find($id);
+            $user = User::find($id);
+            if($user->update(Input::except('_method', '_token'))){
+                return Redirect::back()->withSuccess( trans('crud/errors.object_updated', ['object'=>'User'] ));
+            }
+            else{
+                    return Redirect::back()->withError( trans('crud/errors.cannot_update_object',['object'=>'User']).': '.format_errors($user->errors()->all()));
+            }
 	}
 
 
@@ -65,10 +72,10 @@ class MembersController extends \BaseController {
 	{
             $user = User::find($id);
             if($user->delete($id)){
-                return Redirect::back()->withSuccess('User deleted');
+                return Redirect::back()->withSuccess( trans('crud/errors.object_deleted',['object'=>'User']));
             }
             else{
-                return Redirect::back()->withError('Cannot delete user');
+                return Redirect::back()->withError( trans('crud/errors.cannot_delete_object',['object'=>'User']).': '.format_errors($user->errors()->all()));
             }
 	}
 
