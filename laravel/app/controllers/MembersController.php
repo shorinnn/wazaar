@@ -26,6 +26,7 @@ class MembersController extends \BaseController {
 	 */
 	public function show($id)
 	{
+            // try new deploy script
             $user = User::find($id);
 		return "showing $id";
 	}
