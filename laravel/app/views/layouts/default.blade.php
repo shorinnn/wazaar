@@ -64,7 +64,9 @@
                 </div>
             </div>
         </header>
+        
         @yield('content')
+        
         <footer>
           <section class="footer-container">
             <div class="container">
