@@ -2544,7 +2544,6 @@
             "description": "Symfony Filesystem Component",
             "homepage": "http://symfony.com",
             "time": "2014-12-02 20:19:20"
-        },
         {
             "name": "symfony/finder",
             "version": "v2.5.8",
