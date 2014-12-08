@@ -56,8 +56,24 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
-        $user->username = 'wazaarStudent';
-        $user->email = 'wazaarStudent@mailinator.com';
+        $user->username = 'student';
+        $user->email = 'student@mailinator.com';
+        $user->password = 'pass';
+        $user->password_confirmation = 'pass';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->save();
+        $user = new User;
+        $user->username = 'teacher';
+        $user->email = 'teacher@mailinator.com';
+        $user->password = 'pass';
+        $user->password_confirmation = 'pass';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->save();
+        $user = new User;
+        $user->username = 'affiliate';
+        $user->email = 'affiliate@mailinator.com';
         $user->password = 'pass';
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
@@ -74,9 +90,17 @@ class AssignedRoleTableSeeder extends Seeder {
         $user = User::where('username', '=', 'superadmin')->first();
         $adminRole = Role::where('name','=','Admin')->first();
         $user->attachRole( $adminRole );
-        $user = User::where('username', '=', 'wazaarStudent')->first();
+        $user = User::where('username', '=', 'student')->first();
         $studentRole = Role::where('name','=','Student')->first();
         $user->attachRole( $studentRole );
+        $user = User::where('username', '=', 'teacher')->first();
+        $teacherRole = Role::where('name','=','Teacher')->first();
+        $user->attachRole( $studentRole );
+        $user->attachRole( $teacherRole );
+        $user = User::where('username', '=', 'affiliate')->first();
+        $affiliateRole = Role::where('name','=','Affiliate')->first();
+        $user->attachRole( $studentRole );
+        $user->attachRole( $affiliateRole );
 
     }
 

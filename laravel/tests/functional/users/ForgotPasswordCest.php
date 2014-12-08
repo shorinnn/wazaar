@@ -8,24 +8,40 @@ class ForgotPasswordCest{
         $this->users = new UserRepository();
     }
 
-    public function pageHasEmailInput(FunctionalTester $I) {
+    public function seeEmailInput(FunctionalTester $I) {
         $I->amOnPage('/forgot-password');
         $I->seeNumberOfElements('input[name=email]', 1);
     }
 
-    public function submitNoUserHasErrors(FunctionalTester $I) {
+    public function getErrorsIfFieldsNotFilled(FunctionalTester $I) {
         $I->amOnPage('/forgot-password');
         $I->seeNumberOfElements('input[name=email]', 1);
         $I->submitForm('#forgot-form', ['email' => '']);
         $I->see('User not found');
     }
 
-    public function submitUserSuccessfully(FunctionalTester $I) {
-        $user = $this->users->find(2);
-        $oldSocial = $user->social_confirmation;
+    public function succedeIfUserExists(FunctionalTester $I) {
         $I->amOnPage('/forgot-password');
         $I->seeNumberOfElements('input[name=email]', 1);
-        $I->submitForm('#forgot-form', ['email' => 'wazaarStudent@mailinator.com']);
+        $I->submitForm('#forgot-form', ['email' => 'student@mailinator.com']);
         $I->see('The information regarding');
+    }
+    
+    public function redirectToHomeIfAuthenticatedVisits(FunctionalTester $I){
+        $user = $this->users->find(1);
+        Auth::login($user);
+        $I->seeAuthentication();
+        $I->amOnPage('/forgot-password');
+        $I->seeCurrentUrlEquals('');
+    }
+    
+    public function redirectToHomeIfAuthenticatedSubmits(FunctionalTester $I){
+        $I->amOnPage('/forgot-password');
+        $user = $this->users->find(1);
+        Auth::login($user);
+        $I->seeAuthentication();
+        $I->seeNumberOfElements('input[name=email]', 1);
+        $I->submitForm('#forgot-form', ['email' => 'student@mailinator.com']);
+        $I->seeCurrentUrlEquals('');
     }
 }

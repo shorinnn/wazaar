@@ -36,3 +36,12 @@ Route::post('forgot-password', 'UsersController@doForgotPassword');
 Route::get('reset-password/{token}', 'UsersController@resetPassword');
 Route::post('reset-password', 'UsersController@doResetPassword');
 Route::get('logout', 'UsersController@logout');
+
+// Profile routes
+Route::get('become-teacher', 'ProfileController@becomeTeacher');
+
+// Admin Controller
+Route::group(array('prefix'=>'administration'),function(){
+    Route::resource('members', 'MembersController');
+});
+

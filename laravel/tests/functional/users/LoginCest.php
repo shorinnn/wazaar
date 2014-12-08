@@ -7,24 +7,25 @@ class LoginCest{
         $I->haveEnabledFilters();
     }
   
-    public function unauthenticatedSeesEmailInput(FunctionalTester $I) {
+    public function seeEmailInputIfUnauthenticated(FunctionalTester $I) {
         $I->amOnPage('/login');
         $I->seeNumberOfElements('input[name=email]', 1);
     }
     
-    public function authenticationFails(FunctionalTester $I) {
+    public function failAuthentication(FunctionalTester $I) {
         $I->amOnPage('/login');
-        $I->submitForm('form', ['email' => 'wazaarStudent@mailinator.com', 'password' => 'bad_pass']);
+        $I->submitForm('form', ['email' => 'student@mailinator.com', 'password' => 'bad_pass']);
         $I->dontSeeAuthentication();
     }
     
-    public function userUnauthenticatesAndRedirected(FunctionalTester $I) {
+    public function authenticateAndRedirectToHome(FunctionalTester $I) {
         $I->amOnPage('/login');
-        $I->submitForm('form', ['email' => 'wazaarStudent@mailinator.com', 'password' => 'pass']);
+        $I->submitForm('form', ['email' => 'student@mailinator.com', 'password' => 'pass']);
         $I->seeAuthentication();
+        $I->seeCurrentUrlEquals('');
     }
 
-    public function authenticatedUserRedirectedToHomepage(FunctionalTester $I) {
+    public function redirectToHomeIfAuthenticated(FunctionalTester $I) {
         $user = User::find(1);
         Auth::login($user);
         $I->seeAuthentication();

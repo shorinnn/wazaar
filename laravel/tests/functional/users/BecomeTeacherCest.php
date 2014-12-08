@@ -1,31 +1,50 @@
 <?php 
 use \FunctionalTester;
 
-class ForgotPasswordCest{
+class BecomeTeacherCest{
     
     public function _before(FunctionalTester $I){
         $I->haveEnabledFilters();
-        $this->users = new UserRepository();
+        $this->users = new UserRepository();    
     }
 
-    public function pageHasEmailInput(FunctionalTester $I) {
-        $I->amOnPage('/forgot-password');
-        $I->seeNumberOfElements('input[name=email]', 1);
-    }
+    
 
-    public function submitNoUserHasErrors(FunctionalTester $I) {
-        $I->amOnPage('/forgot-password');
-        $I->seeNumberOfElements('input[name=email]', 1);
-        $I->submitForm('#forgot-form', ['email' => '']);
-        $I->see('User not found');
+    public function failBecomingTeacherUnauthenticated(FunctionalTester $I){
+        $I->dontSeeAuthentication();
+        $I->amOnPage('/become-teacher');
+        $I->seeCurrentUrlEquals('/login');
     }
-
-    public function submitUserSuccessfully(FunctionalTester $I) {
+    
+    public function becomeTeacher(FunctionalTester $I){
         $user = $this->users->find(2);
-        $oldSocial = $user->social_confirmation;
-        $I->amOnPage('/forgot-password');
-        $I->seeNumberOfElements('input[name=email]', 1);
-        $I->submitForm('#forgot-form', ['email' => 'wazaarStudent@mailinator.com']);
-        $I->see('The information regarding');
+        Auth::login($user);
+        $I->seeAuthentication();
+        $I->amOnPage('/become-teacher');
+        $I->see('congrats');
+        $user = $this->users->find(2);
+        $I->assertEquals(2, $user->roles()->count());
     }
+    
+    public function failBecomingTeacherAgain(FunctionalTester $I){
+        $user = $this->users->find(2);
+        Auth::login($user);
+        $I->seeAuthentication();
+        $I->assertEquals(1, $user->roles()->count());
+        $I->amOnPage('/become-teacher');
+        $I->see('congrats');
+        $user = $I->refreshAuthenticatedUser($user);
+        $I->assertEquals(2, $user->roles()->count());
+        $user = $I->refreshAuthenticatedUser($user);
+        $I->assertTrue($user->hasRole('Teacher'));
+        
+        $I->amOnPage('/become-teacher');
+        $user = $I->refreshAuthenticatedUser($user);
+        $I->amOnPage('/become-teacher');
+        $user = $I->refreshAuthenticatedUser($user);
+        $I->assertEquals(2, $user->roles()->count());
+        $I->see('Cannot');        
+    }
+    
+    
 }

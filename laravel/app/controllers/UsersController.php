@@ -11,6 +11,7 @@ class UsersController extends Controller
 {
     public function __construct(UserRepository $users){
         $this->users = $users;
+        $this->beforeFilter('guest', array('only' => array('create', 'login' ,'forgotPassword', 'doForgotPassword')));
     }
 
     /**
@@ -33,7 +34,6 @@ class UsersController extends Controller
      */
     public function store()
     {
-        
         $user = $this->users->signup(Input::all());
 
         if ($user->id) {
@@ -67,11 +67,7 @@ class UsersController extends Controller
      */
     public function login()
     {        
-        if (Confide::user()) {
-            return Redirect::to('/');
-        } else {
             return View::make(Config::get('confide::login_form'));
-        }
     }
 
     /**

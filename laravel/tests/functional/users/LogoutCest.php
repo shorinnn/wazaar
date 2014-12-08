@@ -7,14 +7,14 @@ class LogoutCest{
         $I->haveEnabledFilters();
     }
   
-    public function unauthenticatedRedirectedToIndex(FunctionalTester $I) {
+    public function redirectToHomeIfUnauthenticated(FunctionalTester $I) {
         $I->dontSeeAuthentication();
         $I->amOnPage('/logout');
         $I->dontSeeAuthentication();
         $I->seeCurrentUrlEquals('');
     }
     
-    public function authenticatedUserIsLoggedOut(FunctionalTester $I){
+    public function logOutAndGoToHome(FunctionalTester $I){
         $user = User::find(1);
         Auth::login($user);
         $I->seeAuthentication();

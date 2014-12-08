@@ -6,7 +6,7 @@
  * the Database.
  */
 class UserRepository
-{
+{   
     public function find($id){
         return User::find($id);
     }
@@ -289,4 +289,28 @@ class UserRepository
     {
         return $instance->save();
     }
+    
+    /**
+     * Attach a role to the user
+     * @param string $role The role name
+     * @param User $user The user object
+     * @return boolean True on success, false on failure
+     */
+    public function become($role, User $user){
+        // usable roles
+        if(!in_array($role, ['Student', 'Teacher', 'Affiliate'])) return false;
+        
+        try{
+            $role = Role::where('name', $role)->first();
+        }
+        catch(Exception $e){ 
+            throw $e;
+        }
+        
+        if( $user->hasRole($role->name) ) return false;
+
+        $user->attachRole($role);
+        return true;
+    }
+    
 }
