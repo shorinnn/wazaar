@@ -23,16 +23,16 @@
                     class="img-responsive" alt=""></a>
                     <ul>
                     	<li>
-                        	<a href="#">{{trans('homepage.dashboard')}}</a>
+                        	<a href="#">{{trans('site/homepage.dashboard')}}</a>
                         </li>
                     	<li>
-                        	<a href="#">{{trans('homepage.store')}}</a>
+                        	<a href="#">{{trans('site/homepage.store')}}</a>
                         </li>
                     	<li>
-                        	<a href="#">{{trans('homepage.learn')}}</a>
+                        	<a href="#">{{trans('site/homepage.learn')}}</a>
                         </li>
                     	<li>
-                        	<a href="#">{{trans('homepage.expert')}}</a>
+                        	<a href="#">{{trans('site/homepage.expert')}}</a>
                         </li>
                     </ul>
                 </div>
@@ -46,13 +46,13 @@
         					</button>
                             <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
                             	<li>
-                                	<a class="profile-button" href="#">{{trans('homepage.profile')}}</a>
+                                	<a class="profile-button" href="#">{{trans('site/homepage.profile')}}</a>
                                 </li>
                             	<li>
-                                	<a class="courses-button" href="#">{{trans('homepage.courses')}}</a>
+                                	<a class="courses-button" href="#">{{trans('site/homepage.courses')}}</a>
                                 </li>
                             	<li>
-                                	<a class="settings-button" href="#">{{trans('homepage.settings')}}</a>
+                                	<a class="settings-button" href="#">{{trans('site/homepage.settings')}}</a>
                                 </li>
                             </ul>
                         </li>
@@ -68,7 +68,7 @@
         	<div class="container">
             	<div class="row">
                 	<div class="col-md-12">
-                    	<p class="lead">{{trans('homepage.what-do-you-want-to-learn')}}</p>
+                    	<p class="lead">{{trans('site/homepage.what-do-you-want-to-learn')}}</p>
                         <div class="course-search-form">
                         	<form>
                             	<input type="search" placeholder="E.g. Javascript, online business, etc ..." name="course-search">
@@ -85,16 +85,16 @@
         	<div class="container">
             	<div class="row">
                 	<div class="col-md-12 progress-bar-contents">
-                    	<p class="lead">{{trans('homepage.your-progress')}}</p>
+                    	<p class="lead">{{trans('site/homepage.your-progress')}}</p>
                         <div class="clearfix">
                         	<div class="course-title">
                             	<em>A1</em>
                                 <a href="#">Javascript Crash Course I</a>
                             </div>
                             <div class="deadline-date">
-                            	<em>{{trans('homepage.deadline-date')}}</em>
+                            	<em>{{trans('site/homepage.deadline-date')}}</em>
                                 <p>23h 43m 52s</p>
-                                <a href="#">{{trans('homepage.continue-course')}}</a>
+                                <a href="#">{{trans('site/homepage.continue-course')}}</a>
                             </div>
                         </div>
                         <div class="progress">
@@ -109,7 +109,7 @@
         <section class="alert-message container">
         	<div class="row">
             	<div class="col-md-12">
-                	<p>{{trans('homepage.finish-course-alert')}}</p>
+                	<p>{{trans('site/homepage.finish-course-alert')}}</p>
                 </div>
             </div>
         </section>
@@ -125,18 +125,18 @@
                     </div><!--navbar-header ends-->
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">{{trans('nav-menu.it-and-tech')}}</a></li>
-                            <li><a href="#">{{trans('nav-menu.business')}}</a></li>
-                            <li><a href="#">{{trans('nav-menu.investments')}}</a></li>
-                            <li><a href="#">{{trans('nav-menu.music')}}</a></li>
-                            <li><a href="#">{{trans('nav-menu.beauty')}}</a></li>
-                            <li><a href="#">{{trans('nav-menu.health')}}</a></li>
-                            <li><a href="#">{{trans('nav-menu.it-and-tech')}}</a></li>
-                            <li><a href="#">{{trans('nav-menu.business')}}</a></li>
-                            <li><a href="#">{{trans('nav-menu.investments')}}</a></li>
-                            <li><a href="#">{{trans('nav-menu.music')}}</a></li>
-                            <li><a href="#">{{trans('nav-menu.beauty')}}</a></li>
-                            <li><a href="#">{{trans('nav-menu.health')}}</a></li>
+                            <li class="active"><a href="#">{{trans('site/nav-menu.it-and-tech')}}</a></li>
+                            <li><a href="#">{{trans('site/nav-menu.business')}}</a></li>
+                            <li><a href="#">{{trans('site/nav-menu.investments')}}</a></li>
+                            <li><a href="#">{{trans('site/nav-menu.music')}}</a></li>
+                            <li><a href="#">{{trans('site/nav-menu.beauty')}}</a></li>
+                            <li><a href="#">{{trans('site/nav-menu.health')}}</a></li>
+                            <li><a href="#">{{trans('site/nav-menu.it-and-tech')}}</a></li>
+                            <li><a href="#">{{trans('site/nav-menu.business')}}</a></li>
+                            <li><a href="#">{{trans('site/nav-menu.investments')}}</a></li>
+                            <li><a href="#">{{trans('site/nav-menu.music')}}</a></li>
+                            <li><a href="#">{{trans('site/nav-menu.beauty')}}</a></li>
+                            <li><a href="#">{{trans('site/nav-menu.health')}}</a></li>
                         </ul>
                     </div><!--nav-collapse ends--> 
                 </div><!--navbar-default ends-->
@@ -148,8 +148,8 @@
             	<div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="category-heading">         
                     <div class="clearfix">
-                        <p class="lead">{{trans('homepage.it-and-technology')}}<small>Programming, Javascript, C++, etc...</small></p>
-                        <a href="#">{{trans('homepage.view-all')}}</a>
+                        <p class="lead">{{trans('site/homepage.it-and-technology')}}<small>Programming, Javascript, C++, etc...</small></p>
+                        <a href="#">{{trans('site/homepage.view-all')}}</a>
                     </div>
                 </div>
                 <div class="object big-box">
@@ -158,11 +158,11 @@
                 	</div>
                     <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image1.jpg" alt="" 
                     class="hidden-sm hidden-xs img-responsive">
-                    <div><div class="level">{{trans('homepage.beginner')}}</div><h2>App development</h2>
+                    <div><div class="level">{{trans('site/homepage.beginner')}}</div><h2>App development</h2>
                         <p>Create your very first application in 2 weeks! You get a beginner award after completing the course.</p>
                         <div class="next_">
                         <div class="learn-more">
-                          <a href="#">{{trans('homepage.learn-more')}}</a>
+                          <a href="#">{{trans('site/homepage.learn-more')}}</a>
                         </div>
                         <div class="students-attending">
                           1233 Students
@@ -177,14 +177,14 @@
                 <div class="object small-box small-box-one">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><div class="new-tag">NEW</div>
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><div class="new-tag">NEW</div>
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image2.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -196,13 +196,13 @@
                 <div class="object small-box small-box-two">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image3.jpg" 
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image3.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -214,14 +214,14 @@
                 <div class="object small-box small-box-three">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div>
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div>
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image4.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -247,11 +247,11 @@
                 	</div>
                     <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image1.jpg" alt="" 
                     class="hidden-sm hidden-xs img-responsive">
-                    <div><div class="level">{{trans('homepage.beginner')}}</div><h2>App development</h2>
+                    <div><div class="level">{{trans('site/homepage.beginner')}}</div><h2>App development</h2>
                         <p>Create your very first application in 2 weeks! You get a beginner award after completing the course.</p>
                         <div class="next_">
                         <div class="learn-more">
-                          <a href="#">{{trans('homepage.learn-more')}}</a>
+                          <a href="#">{{trans('site/homepage.learn-more')}}</a>
                         </div>
                         <div class="students-attending">
                           1233 Students
@@ -266,14 +266,14 @@
                 <div class="object small-box small-box-one">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><div class="new-tag">NEW</div>
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><div class="new-tag">NEW</div>
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image2.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -285,13 +285,13 @@
                 <div class="object small-box small-box-two">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image3.jpg" 
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image3.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -303,13 +303,13 @@
                 <div class="object small-box small-box-three">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image4.jpg" 
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image4.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -335,11 +335,11 @@
                 	</div>
                     <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image1.jpg" alt="" 
                     class="hidden-sm hidden-xs img-responsive">
-                    <div><div class="level">{{trans('homepage.beginner')}}</div><h2>App development</h2>
+                    <div><div class="level">{{trans('site/homepage.beginner')}}</div><h2>App development</h2>
                         <p>Create your very first application in 2 weeks! You get a beginner award after completing the course.</p>
                         <div class="next_">
                         <div class="learn-more">
-                          <a href="#">{{trans('homepage.learn-more')}}</a>
+                          <a href="#">{{trans('site/homepage.learn-more')}}</a>
                         </div>
                         <div class="students-attending">
                           1233 Students
@@ -354,14 +354,14 @@
                 <div class="object small-box small-box-one">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><div class="new-tag">NEW</div>
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><div class="new-tag">NEW</div>
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image2.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -373,13 +373,13 @@
                 <div class="object small-box small-box-two">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image3.jpg" 
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image3.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -391,13 +391,13 @@
                 <div class="object small-box small-box-three">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image4.jpg" 
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image4.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -423,11 +423,11 @@
                 	</div>
                     <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image1.jpg" alt="" 
                     class="hidden-sm hidden-xs img-responsive">
-                    <div><div class="level">{{trans('homepage.beginner')}}</div><h2>App development</h2>
+                    <div><div class="level">{{trans('site/homepage.beginner')}}</div><h2>App development</h2>
                         <p>Create your very first application in 2 weeks! You get a beginner award after completing the course.</p>
                         <div class="next_">
                         <div class="learn-more">
-                          <a href="#">{{trans('homepage.learn-more')}}</a>
+                          <a href="#">{{trans('site/homepage.learn-more')}}</a>
                         </div>
                         <div class="students-attending">
                           1233 Students
@@ -442,14 +442,14 @@
                 <div class="object small-box small-box-one">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><div class="new-tag">NEW</div>
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><div class="new-tag">NEW</div>
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image2.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -461,13 +461,13 @@
                 <div class="object small-box small-box-two">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image3.jpg" 
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image3.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -479,13 +479,13 @@
                 <div class="object small-box small-box-three">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image4.jpg" 
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image4.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -511,11 +511,11 @@
                 	</div>
                     <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image1.jpg" alt="" 
                     class="hidden-sm hidden-xs img-responsive">
-                    <div><div class="level">{{trans('homepage.beginner')}}</div><h2>App development</h2>
+                    <div><div class="level">{{trans('site/homepage.beginner')}}</div><h2>App development</h2>
                         <p>Create your very first application in 2 weeks! You get a beginner award after completing the course.</p>
                         <div class="next_">
                         <div class="learn-more">
-                          <a href="#">{{trans('homepage.learn-more')}}</a>
+                          <a href="#">{{trans('site/homepage.learn-more')}}</a>
                         </div>
                         <div class="students-attending">
                           1233 Students
@@ -530,14 +530,14 @@
                 <div class="object small-box small-box-one">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><div class="new-tag">NEW</div>
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><div class="new-tag">NEW</div>
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image2.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -549,13 +549,13 @@
                 <div class="object small-box small-box-two">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image3.jpg" 
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image3.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -567,13 +567,13 @@
                 <div class="object small-box small-box-three">
                   <div class="price-tag">
                     300,000 &yen;
-                  </div><div class="level">{{trans('homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image4.jpg" 
+                  </div><div class="level">{{trans('site/homepage.beginner')}}</div><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image4.jpg" 
                   class="img-responsive" alt="">
                   <h2>Javascript Primer</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid sed do eiusmod tempor incid</p>
                   <div class="next_">
                     <div class="learn-more">
-                      <a href="#">{{trans('homepage.learn-more')}}</a>
+                      <a href="#">{{trans('site/homepage.learn-more')}}</a>
                     </div>
                     <div class="students-attending">
                       1233 Students
@@ -590,7 +590,7 @@
                 <div class="col-xs-12">
                   <h1>BECOME</h1>
                   <h2>AN INSTRUCTOR</h2>
-                  <button><span>{{trans('homepage.get-started')}}</span></button>
+                  <button><span>{{trans('site/homepage.get-started')}}</span></button>
                 </div>
               </div>
           </div>
@@ -603,12 +603,12 @@
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/footer-logo.png" alt="Wazaar" />
                 </div>
                 <div class="col-md-4 col-sm-12 second-col">
-                  <strong>{{trans('footer.phone')}}:</strong> 000 000 000 000<br/>
-                  <strong>{{trans('footer.mail')}}:</strong> info@wazaar.com
+                  <strong>{{trans('site/footer.phone')}}:</strong> 000 000 000 000<br/>
+                  <strong>{{trans('site/footer.mail')}}:</strong> info@wazaar.com
                 </div>
                 <div class="col-md-4 col-sm-12 third-col">
                   <strong>Wazaar</strong><br/>
-                  {{trans('footer.all-rights-reserved')}}<br/>
+                  {{trans('site/footer.all-rights-reserved')}}<br/>
                   &copy; 2014
                 </div>              
               </div>
