@@ -16,11 +16,14 @@ class UsersController extends Controller
     /**
      * Displays the form for account creation
      *
+     * @param mixed $teacher_account If not 0, sign up for a teacher account
      * @return  Illuminate\Http\Response
      */
-    public function create()
+    public function create($teacher_account = 0)
     {
-        return View::make(Config::get('confide::signup_form'));
+        $teacher = $teacher_account===0 ? 0 : 1;
+        if(Input::old('teacher')) $teacher = Input::old('teacher');
+        return View::make(Config::get('confide::signup_form'))->withTeacher($teacher);
     }
 
     /**
@@ -34,8 +37,6 @@ class UsersController extends Controller
         $user = $this->users->signup(Input::all());
 
         if ($user->id) {
-            $studentRole = Role::where('name','=','Student')->first();
-            $user->attachRole( $studentRole );
             if (Config::get('confide::signup_email')) {
                 Mail::queueOn(
                     Config::get('confide::email_queue'),
@@ -136,9 +137,7 @@ class UsersController extends Controller
                             ->with('error', $error);
                     }
                     else{
-                        $studentRole = Role::where('name','=','Student')->first();
-                        $user->attachRole( $studentRole );
-                        $this->users->save_social_picture($user, "G$result[id]", "$result[picture]?sz=150");
+                        $this->users->saveSocialPicture($user, "G$result[id]", "$result[picture]?sz=150");
                         //user created
                         Auth::login($user);
                         return Redirect::to('/');
@@ -235,9 +234,7 @@ class UsersController extends Controller
                             ->with('error', $error);
                     }
                     else{
-                        $studentRole = Role::where('name','=','Student')->first();
-                        $user->attachRole( $studentRole );
-                        $this->users->save_social_picture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
+                        $this->users->saveSocialPicture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
                         //user created
                         Auth::login($user);
                         return Redirect::to('/');

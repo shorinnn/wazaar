@@ -19,6 +19,7 @@ Route::get('/', function()
 
 // Confide routes
 Route::get('register', 'UsersController@create');
+Route::get('register/{teacher_account}', 'UsersController@create');
 Route::post('users', 'UsersController@store');
 Route::get('login', 'UsersController@login');
 Route::get('login-with-facebook', 'UsersController@loginWithFacebook');

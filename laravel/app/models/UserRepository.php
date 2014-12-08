@@ -38,9 +38,27 @@ class UserRepository
         $user->confirmation_code     = md5(uniqid(mt_rand(), true));
 
         // Save if valid. Password field will be hashed before save
-        $this->save($user);
-
+        if($this->save($user)){
+            $this->attachRoles($user, array_get($input, 'teacher'));
+        }
         return $user;
+    }
+    
+    /**
+     * Attaches roles after user registration
+     * 
+     * @param User $user The user object
+     * @param int $teacher Flag, 0 for no teacher role, 1 otherwise
+     */
+    public function attachRoles($user, $teacher=0){
+        // assign the default student role
+        $studentRole = Role::where('name','=','Student')->first();
+        $user->attachRole( $studentRole );
+        // user signs up for a teacher account
+        if($teacher){
+            $teacherRole = Role::where('name','=','Teacher')->first();
+            $user->attachRole( $teacherRole );
+        }
     }
     
     /**
@@ -66,6 +84,7 @@ class UserRepository
 
         // Save if valid. Password field will be hashed before save
         $this->save($user);
+        $this->attachRoles($user);
         return $user;
     }
     
@@ -127,6 +146,7 @@ class UserRepository
 
         // Save if valid. Password field will be hashed before save
         $this->save($user);
+        $this->attachRoles($user);
         return $user;
     }
     
@@ -165,7 +185,7 @@ class UserRepository
         }
     }
     
-    public function save_social_picture($user,  $key, $picture){
+    public function saveSocialPicture($user, $key, $picture){
         $file = file_get_contents($picture);
         $mime = mimetype($file);
         $extension = mime_to_extension($mime);
