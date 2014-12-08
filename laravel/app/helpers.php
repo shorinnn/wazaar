@@ -343,3 +343,12 @@ function format_errors(Array $errors, $start='<br />', $end=''){
         return $return;
     }
 }
+
+/**
+ * Alternative to Input::except() which fails in codeception
+ * @param array $exclude Request params to exclude
+ * @return array The resulting array
+ */
+function input_except(array $exclude){
+    return array_except(Input::all(), (array) $exclude);
+}

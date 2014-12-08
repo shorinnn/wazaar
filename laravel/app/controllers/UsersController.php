@@ -314,7 +314,7 @@ class UsersController extends Controller
     public function doForgotPassword()
     {
         if (Confide::forgotPassword(Input::get('email'))) {
-            $notice_msg = Lang::get('confide::confide.alerts.password_forgot').App::environment();
+            $notice_msg = Lang::get('confide::confide.alerts.password_forgot');
             return Redirect::action('UsersController@login')
                 ->with('notice', $notice_msg);
         } else {

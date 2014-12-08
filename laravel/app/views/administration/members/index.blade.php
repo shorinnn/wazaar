@@ -14,7 +14,7 @@
     <td>{{link_to_action('MembersController@show', trans('crud/labels.view'), $member->id)}}</td>
     <td>{{link_to_action('MembersController@edit', trans('crud/labels.edit'), $member->id)}} </td>
     <td>
-        {{ Form::open(array('action' => array('MembersController@destroy', $member->id), 'method' => 'delete')) }}
+        {{ Form::open(array('action' => array('MembersController@destroy', $member->id), 'method' => 'delete', 'id'=>'member-form-'.$member->id)) }}
         <button type="submit" >{{trans('crud/labels.delete')}}</button>
         {{ Form::close() }}
     </td>
