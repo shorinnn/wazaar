@@ -1,7 +1,7 @@
 <?php 
 use \FunctionalTester;
 
-class MembersTeacherCest{
+class MembersCest{
     
     public function _before(FunctionalTester $I){
         $I->haveEnabledFilters();
