@@ -56,6 +56,15 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
+        $user->username = 'WazaarAffiliator';
+        $user->email = 'wazaarAffiliator@wazaar.jp';
+        $user->password = 'random';
+        $user->password_confirmation = 'random';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->save();
+        $user = new User;
+        $user->ltc_affiliator_id = 2;
         $user->username = 'student';
         $user->email = 'student@mailinator.com';
         $user->first_name = 'Student';
@@ -66,6 +75,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
+        $user->ltc_affiliator_id = 2;
         $user->username = 'teacher';
         $user->email = 'teacher@mailinator.com';
         $user->first_name = 'Teacher';
@@ -76,6 +86,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
+        $user->ltc_affiliator_id = 2;
         $user->username = 'affiliate';
         $user->email = 'affiliate@mailinator.com';
         $user->first_name = 'Affiliate';
@@ -86,6 +97,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
+        $user->ltc_affiliator_id = 2;
         $user->username = 'mac';
         $user->email = 'mac@mailinator.com';
         $user->first_name = 'Mac';
@@ -96,6 +108,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
+        $user->ltc_affiliator_id = 2;
         $user->username = 'jeremy';
         $user->email = 'jeremy@mailinator.com';
         $user->first_name = 'Jeremy';
@@ -106,6 +119,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
+        $user->ltc_affiliator_id = 2;
         $user->username = 'martin';
         $user->email = 'martin@mailinator.com';
         $user->first_name = 'Martin';
@@ -116,6 +130,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
+        $user->ltc_affiliator_id = 2;
         $user->username = 'sorin';
         $user->email = 'sorin@mailinator.com';
         $user->first_name = 'Sorin';
@@ -154,6 +169,9 @@ class AssignedRoleTableSeeder extends Seeder {
         $user->attachRole( $teacherRole );
         $user = User::where('username', '=', 'affiliate')->first();
         $affiliateRole = Role::where('name','=','Affiliate')->first();
+        $user->attachRole( $studentRole );
+        $user->attachRole( $affiliateRole );
+        $user = User::where('username', '=', 'wazaarAffiliator')->first();
         $user->attachRole( $studentRole );
         $user->attachRole( $affiliateRole );
 

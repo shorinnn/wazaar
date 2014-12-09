@@ -42,6 +42,5 @@ Route::group(array('prefix'=>'administration'),function(){
 });
 
 // Courses Controller
-Route::get('courses/category/{category}', 'CoursesController@category');
 Route::get('courses/{slug}/{affiliate}', 'CoursesController@show');
 Route::resource('courses', 'CoursesController');

@@ -11,7 +11,7 @@ class CoursesController extends \BaseController {
             Return View::make('courses.category')->with(compact('category'));
         }
         
-        public function show($slug, $affiliate = ''){
+        public function show($slug){
             Return View::make('courses.show')->with(compact('slug'));
         }
 
