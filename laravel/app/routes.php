@@ -41,3 +41,6 @@ Route::group(array('prefix'=>'administration'),function(){
     Route::resource('members', 'MembersController');
 });
 
+// Courses Controller
+Route::get('courses/category/{category}', 'CoursesController@category');
+Route::resource('courses', 'CoursesController');
