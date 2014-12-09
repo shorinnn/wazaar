@@ -1,11 +1,14 @@
+@extends('layouts.default')
+@section('content')	
+    
 @if (Session::get('success'))
-    <div class="alert">{{{ Session::get('success') }}}</div>
+    <div class="alert alert-success">{{{ Session::get('success') }}}</div>
 @endif
 @if (Session::get('error'))
-    <div class="alert">{{{ Session::get('error') }}}</div>
+    <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
 @endif
 
-<table>
+<table class="table">
 @foreach($members as $member)
 <tr>
     <td>
@@ -15,10 +18,12 @@
     <td>{{link_to_action('MembersController@edit', trans('crud/labels.edit'), $member->id)}} </td>
     <td>
         {{ Form::open(array('action' => array('MembersController@destroy', $member->id), 'method' => 'delete', 'id'=>'member-form-'.$member->id)) }}
-        <button type="submit" >{{trans('crud/labels.delete')}}</button>
+        <button class="btn btn-default" type="submit" >{{trans('crud/labels.delete')}}</button>
         {{ Form::close() }}
     </td>
     <br />
 @endforeach
 </table>
 {{$members->links()}}
+
+@stop
