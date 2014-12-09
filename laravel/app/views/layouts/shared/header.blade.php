@@ -21,7 +21,7 @@
     <div class="top-profile-info">
         <span class="profile-level">12</span>
         <ul class="profile-name">
-            <li>
+            <li class="activate-dropdown">
                 <button aria-expanded="false" data-toggle="dropdown" 
                         class="btn btn-default dropdown-toggle" type="button" 
                         id="btnGroupDrop1">Ryan
