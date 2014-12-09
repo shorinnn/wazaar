@@ -23,7 +23,7 @@
     <td>{{link_to_action('MembersController@edit', trans('crud/labels.edit'), $member->id)}} </td>
     <td>
         {{ Form::open(array('action' => array('MembersController@destroy', $member->id), 'method' => 'delete', 'id'=>'member-form-'.$member->id)) }}
-        <button class="btn btn-danger" type="submit" >{{trans('crud/labels.delete')}}</button>
+        <button class="btn btn-danger delete-button" type="submit" >{{trans('crud/labels.delete')}}</button>
         {{ Form::close() }}
     </td>
     <br />
