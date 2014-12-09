@@ -25,8 +25,9 @@ class UserRepository
     {
         $user = new User;
 
-        $user->username = array_get($input, 'username');
+//        $user->username = array_get($input, 'username');
         $user->email    = array_get($input, 'email');
+        $user->username = 'U'.uniqid();
         $user->password = array_get($input, 'password');
 
         // The password confirmation will be removed from model

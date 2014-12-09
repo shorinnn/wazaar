@@ -1,3 +1,6 @@
+@extends('layouts.default')
+@section('content')	
+
 {{trans('acl.fb_email_already_registered')}}
 @if (Session::get('error'))
     <div class="alert alert-error alert-danger">{{{ Session::get('error') }}}</div>
@@ -32,3 +35,4 @@
     </div>
     </fieldset>
 </form>
+@stop

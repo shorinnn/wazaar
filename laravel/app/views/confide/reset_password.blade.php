@@ -1,4 +1,6 @@
-<form method="POST" action="{{{ action('UsersController@doResetPassword') }}}" accept-charset="UTF-8">
+    @extends('layouts.default')
+    @section('content')	
+    <form method="POST" action="{{{ action('UsersController@doResetPassword') }}}" accept-charset="UTF-8">
     <input type="hidden" name="token" value="{{{ $token }}}">
     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
 
@@ -23,3 +25,4 @@
         <button type="submit" class="btn btn-primary">{{{ Lang::get('confide::confide.forgot.submit') }}}</button>
     </div>
 </form>
+@stop

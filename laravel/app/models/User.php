@@ -6,11 +6,13 @@ use Zizaco\Entrust\HasRole;
 
 class User extends Ardent implements ConfideUserInterface
 {
-    protected $fillable = ['first_name', 'last_name', 'email'];
     use ConfideUser{
         save as confideSave;
     }
     use HasRole;
+    
+    protected $fillable = ['first_name', 'last_name', 'email', 'username'];
+    
     
     public function save(array $rules = Array(), array $customMessages = Array(), array $options = Array(), Closure $beforeSave = NULL, Closure $afterSave = NULL){
         return $this->confideSave();

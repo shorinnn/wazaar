@@ -1,4 +1,6 @@
-<form id='login-form' role="form" method="POST" action="{{{ action('UsersController@login') }}}" accept-charset="UTF-8">
+    @extends('layouts.default')
+    @section('content')	
+    <form id='login-form' role="form" method="POST" action="{{{ action('UsersController@login') }}}" accept-charset="UTF-8">
     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
     <fieldset>
         <div class="form-group">
@@ -32,3 +34,4 @@
         </div>
     </fieldset>
 </form>
+@stop
