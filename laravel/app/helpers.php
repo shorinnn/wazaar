@@ -352,3 +352,8 @@ function format_errors(Array $errors, $start='<br />', $end=''){
 function input_except(array $exclude){
     return array_except(Input::all(), (array) $exclude);
 }
+
+function username(){
+    if(trim(Auth::user()->first_name)=='') return Auth::user()->email;
+    else return Auth::user()->first_name;
+}

@@ -15,6 +15,11 @@
 <tr><td>{{trans('general.user')}}</td><td>{{ $user->email }}</td></tr>
 <tr><td>{{trans('general.first_name')}}</td><td>{{ $user->first_name }}</td></tr>
 <tr><td>{{trans('general.last_name')}}</td><td>{{ $user->last_name }}</td></tr>
+<tr><td>{{trans('general.groups')}}</td><td>
+    @foreach($user->roles as $role)
+        <span class="label label-info">{{$role->name}}</span>
+    @endforeach
+    </td></tr>
 <tr><td>{{trans('general.registered')}}</td><td>{{ $user->created_at }} {{ $user->created_at->diffForHumans() }}</td></tr>
 </table>
 

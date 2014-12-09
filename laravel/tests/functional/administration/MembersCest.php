@@ -72,7 +72,7 @@ class MembersTeacherCest{
         $I->amOnPage('/administration/members');
         $I->seeCurrentUrlEquals('/administration/members');
         $I->click('View');
-        $I->see('Registered:');
+        $I->see('Registered');
     }
     
     public function editUser(FunctionalTester $I){

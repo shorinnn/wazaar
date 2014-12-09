@@ -16,6 +16,11 @@
 <tr><td>{{trans('general.user')}}</td><td>{{ Form::text('email') }}</td></tr>
 <tr><td>{{trans('general.first_name')}}</td><td>{{ Form::text('first_name') }}</td></tr>
 <tr><td>{{trans('general.last_name')}}</td><td>{{ Form::text('last_name') }}</td></tr>
+<tr><td>{{trans('general.groups')}}</td><td>
+    @foreach($user->roles as $role)
+        <span class="label label-info">{{$role->name}}</span>
+    @endforeach
+    </td></tr>
 <tr><td>{{trans('general.registered')}}</td><td>{{ $user->created_at }} {{ $user->created_at->diffForHumans() }}</td></tr>
 <tr><td colspan="2">{{ Form::submit( trans('crud/labels.update'), ['class' => 'btn btn-default'] ) }}</td></tr>
 {{ Form::close() }}

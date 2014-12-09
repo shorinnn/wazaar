@@ -23,8 +23,8 @@
         <ul class="profile-name">
             <li>
                 <button aria-expanded="false" data-toggle="dropdown" 
-                        class="btn btn-default dropdown-toggle" type="button" 
-                        id="btnGroupDrop1">Ryan
+                        class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
+                    {{ username() }}
                 </button>
                 <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
                     <li>
