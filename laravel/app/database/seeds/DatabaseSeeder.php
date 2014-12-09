@@ -85,6 +85,46 @@ class UserTableSeeder extends Seeder {
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
         $user->save();
+        $user = new User;
+        $user->username = 'mac';
+        $user->email = 'mac@mailinator.com';
+        $user->first_name = 'Mac';
+        $user->last_name = 'Max';
+        $user->password = 'pass';
+        $user->password_confirmation = 'pass';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->save();
+        $user = new User;
+        $user->username = 'jeremy';
+        $user->email = 'jeremy@mailinator.com';
+        $user->first_name = 'Jeremy';
+        $user->last_name = 'Jerome';
+        $user->password = 'pass';
+        $user->password_confirmation = 'pass';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->save();
+        $user = new User;
+        $user->username = 'martin';
+        $user->email = 'martin@mailinator.com';
+        $user->first_name = 'Martin';
+        $user->last_name = 'Matthew';
+        $user->password = 'pass';
+        $user->password_confirmation = 'pass';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->save();
+        $user = new User;
+        $user->username = 'sorin';
+        $user->email = 'sorin@mailinator.com';
+        $user->first_name = 'Sorin';
+        $user->last_name = 'Ryan';
+        $user->password = 'pass';
+        $user->password_confirmation = 'pass';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->save();
     }
 }
     
@@ -99,6 +139,15 @@ class AssignedRoleTableSeeder extends Seeder {
         $user = User::where('username', '=', 'student')->first();
         $studentRole = Role::where('name','=','Student')->first();
         $user->attachRole( $studentRole );
+        $user = User::where('username', '=', 'mac')->first();
+        $user->attachRole( $studentRole );
+        $user = User::where('username', '=', 'jeremy')->first();
+        $user->attachRole( $studentRole );
+        $user = User::where('username', '=', 'martin')->first();
+        $user->attachRole( $studentRole );
+        $user = User::where('username', '=', 'sorin')->first();
+        $user->attachRole( $studentRole );
+        
         $user = User::where('username', '=', 'teacher')->first();
         $teacherRole = Role::where('name','=','Teacher')->first();
         $user->attachRole( $studentRole );

@@ -27,6 +27,9 @@ class MembersController extends \BaseController {
 	public function show($id)
 	{
             $user = User::find($id);
+            if($user==null){
+                return Redirect::action('MembersController@index')->withError( trans('crud/errors.object_doesnt_exist', ['object' => 'User' ]) );
+            }
             return View::make('administration.members.show')->with(compact('user'));
 	}
 
@@ -40,6 +43,9 @@ class MembersController extends \BaseController {
 	public function edit($id)
 	{
             $user = User::find($id);
+            if($user==null){
+                return Redirect::action('MembersController@index')->withError( trans('crud/errors.object_doesnt_exist', ['object' => 'User' ]) );
+            }
             return View::make('administration.members.edit')->with(compact('user'));
 	}
 
