@@ -116,6 +116,7 @@ class UserCest{
         $this->users->become('Affiliate', $student);
         $student = User::where('username','student')->first();
         $I->assertTrue($student->hasRole('Affiliate'));
+        $I->assertEquals($student->affiliate_id, $student->id);
     }
     
     public function makeStudentAffiliateOnlyOnce(UnitTester $I){
@@ -142,6 +143,38 @@ class UserCest{
         $I->assertFalse($student->hasRole('Wahala'));
     }
     
+    public function changeAffiliateID(UnitTester $I){
+        $student = User::where('username','affiliate')->first();
+        $I->assertTrue($student->id > 0);
+        $student->affiliate_id = 'Updated5';
+        $student->save();
+        $student = User::where('username','affiliate')->first();
+        $I->assertEquals('Updated5', $student->affiliate_id);
+    }
+    
+    public function failReusingAffiliateID(UnitTester $I){
+        $student = User::where('username','affiliate')->first();
+        $I->assertTrue($student->id > 0);
+        $student->affiliate_id = '2';
+        $student->save();
+        $student = User::where('username','affiliate')->first();
+        $I->assertNotEquals('2', $student->affiliate_id);
+    }
+    
+    public function registerUserAffilitedByNooneDefaultsToWazaar(UnitTester $I){
+        User::unguard();
+        $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 'password_confirmation' => 'pass'];
+        $user = $this->users->signup($data);
+        $I->assertEquals($user->ltc_affiliator_id, 2);
+    }
+    
+    public function registerUserAffilitedByAffiliator5(UnitTester $I){
+        User::unguard();
+        $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 'password_confirmation' => 'pass'];
+        $affiliator = User::where('username', 'affiliate')->first();
+        $user = $this->users->signup($data, $affiliator->affiliate_id);
+        $I->assertEquals($user->ltc_affiliator_id, $affiliator->affiliate_id);
+    }
     
     
 }

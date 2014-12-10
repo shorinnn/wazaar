@@ -17,11 +17,12 @@ class UserRepository
     /**
      * Signup a new account with the given parameters
      *
-     * @param  array $input Array containing 'username', 'email' and 'password'.
+     * @param array $input Array containing 'username', 'email' and 'password'.
+     * @param string|null $ltc_cookie The Life Time Commission Affiliate ID or null if none
      *
      * @return  User User object that may or may not be saved successfully. Check the id to make sure.
      */
-    public function signup($input)
+    public function signup($input, $ltc_cookie=null)
     {
         $user = new User;
 
@@ -42,7 +43,27 @@ class UserRepository
         if($this->save($user)){
             $this->attachRoles($user, array_get($input, 'teacher'));
         }
+        $this->save_ltc($user, $ltc_cookie);
         return $user;
+    }
+    
+    /**
+     * Save the life time commission affiliate
+     * @param User $user the user registered
+     * @param string|null $ltc The affiliate id or NULL
+     */
+    public function save_ltc($user, $ltc=null){
+        if($ltc==null){// no affiliate ID, Wazzar is LTC
+            $ltc_affiliator = LTCAffiliator::find(2);
+        }
+        else{// affiliate ID exists
+            $ltc_affiliator = LTCAffiliator::where('affiliate_id', $ltc)->first();
+            if($ltc_affiliator==null){// invalid affiliate ID, default to Wazaar
+                $ltc_affiliator = LTCAffiliator::find(2);
+            }            
+        }
+        $user->ltcAffiliator()->associate($ltc_affiliator);
+        $user->save();
     }
     
     /**
@@ -311,6 +332,9 @@ class UserRepository
         if( $user->hasRole($role->name) ) return false;
 
         $user->attachRole($role);
+        // default the affiliate ID to the user ID
+        $user->affiliate_id = $user->id;
+        $user->save();
         return true;
     }
     

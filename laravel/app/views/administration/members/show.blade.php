@@ -13,6 +13,9 @@
 
 <table class="table">
 <tr><td>{{trans('general.user')}}</td><td>{{ $user->email }}</td></tr>
+@if($user->hasRole('Affiliate'))
+    <tr><td>{{trans('general.affiliate_id')}}</td><td>{{ $user->affiliate_id }}</td></tr>
+@endif
 <tr><td>{{trans('general.first_name')}}</td><td>{{ $user->first_name }}</td></tr>
 <tr><td>{{trans('general.last_name')}}</td><td>{{ $user->last_name }}</td></tr>
 <tr><td>{{trans('general.groups')}}</td><td>

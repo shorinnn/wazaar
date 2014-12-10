@@ -57,6 +57,7 @@ class UserTableSeeder extends Seeder {
         $user->save();
         $user = new User;
         $user->username = 'WazaarAffiliator';
+        $user->affiliate_id = '2';
         $user->email = 'wazaarAffiliator@wazaar.jp';
         $user->password = 'random';
         $user->password_confirmation = 'random';
@@ -86,6 +87,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
+        $user->affiliate_id = '5';
         $user->ltc_affiliator_id = 2;
         $user->username = 'affiliate';
         $user->email = 'affiliate@mailinator.com';

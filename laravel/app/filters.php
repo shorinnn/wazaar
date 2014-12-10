@@ -13,7 +13,9 @@
 
 App::before(function($request)
 {
-    
+    if(Input::has('aid')){
+        Cookie::queue('ltc', Input::get('aid'), 60*60*30);
+    }
 });
 
 

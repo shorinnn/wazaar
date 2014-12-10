@@ -59,7 +59,7 @@ class MembersController extends \BaseController {
 	public function update($id)
 	{
             $user = User::find($id);
-            if($user->update( input_except(['_method', '_token'] ))){
+           if( $user->update( input_except(['_method', '_token'] ) ) ){
                 return Redirect::back()->withSuccess( trans('crud/errors.object_updated', ['object'=>'User'] ));
             }
             else{

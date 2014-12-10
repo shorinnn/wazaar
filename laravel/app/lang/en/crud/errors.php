@@ -6,4 +6,5 @@ return array(
     'object_deleted' => ':object Deleted',
     'cannot_delete_object' => 'Cannot delete :object',
     'object_doesnt_exist' => ":object doesn't exist",
+    'attr_taken' => ":attr is taken",
 );

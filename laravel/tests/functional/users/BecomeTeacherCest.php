@@ -17,17 +17,17 @@ class BecomeTeacherCest{
     }
     
     public function becomeTeacher(FunctionalTester $I){
-        $user = $this->users->find(2);
+        $user =  User::where('username','student')->first();
         Auth::login($user);
         $I->seeAuthentication();
         $I->amOnPage('/become-teacher');
         $I->see('congrats');
-        $user = $this->users->find(2);
+        $user = User::where('username','student')->first();
         $I->assertEquals(2, $user->roles()->count());
     }
     
     public function failBecomingTeacherAgain(FunctionalTester $I){
-        $user = $this->users->find(2);
+        $user =  User::where('username','student')->first();
         Auth::login($user);
         $I->seeAuthentication();
         $I->assertEquals(1, $user->roles()->count());

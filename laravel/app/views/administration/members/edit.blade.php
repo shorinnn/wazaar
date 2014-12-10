@@ -14,6 +14,9 @@
 <table class="table">
 {{ Form::model($user, ['action' => ['MembersController@update', $user->id], 'method' => 'PUT', 'id' =>'edit-form'])}}
 <tr><td>{{trans('general.user')}}</td><td>{{ Form::text('email') }}</td></tr>
+@if($user->hasRole('Affiliate'))
+    <tr><td>{{trans('general.affiliate_id')}}</td><td>{{ Form::text('affiliate_id') }}</td></tr>
+@endif
 <tr><td>{{trans('general.first_name')}}</td><td>{{ Form::text('first_name') }}</td></tr>
 <tr><td>{{trans('general.last_name')}}</td><td>{{ Form::text('last_name') }}</td></tr>
 <tr><td>{{trans('general.groups')}}</td><td>

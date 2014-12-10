@@ -9,13 +9,12 @@ class User extends Ardent implements ConfideUserInterface
     use ConfideUser{
         save as confideSave;
     }
+
     use HasRole;
-    
-    protected $fillable = ['first_name', 'last_name', 'email', 'username'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'username', 'affiliate_id'];
     
     public static $relationsData = array(
-        'ltcAffiliator' => array(self::BELONGS_TO, 'User', 'table' => 'users', 'foreignKey' => 'ltc_affiliator_id'),
-        'ltcAffiliated' => array(self::HAS_MANY, 'User', 'table' => 'users', 'foreignKey' => 'ltc_affiliator_id'),
+        'ltcAffiliator' => array(self::BELONGS_TO, 'LTCAffiliator', 'table' => 'users', 'foreignKey' => 'ltc_affiliator_id'),
   );
     
     
@@ -30,6 +29,18 @@ class User extends Ardent implements ConfideUserInterface
     public function beforeDelete(){
         if(Auth::user()->id == $this->id){
             $this->errors()->add(0, trans('validation.cannot_self_delete') );
+            return false;
+        }
+    }
+    
+    /**
+     * Ardent updateUniques does not work with confide user
+     * @return boolean
+     */
+    public function beforeSave(){
+        if(trim($this->affiliate_id)!='' &&  User::where('affiliate_id', $this->affiliate_id)->first() != null 
+                && User::where('affiliate_id', $this->affiliate_id)->first()->id != $this->id ){
+            $this->errors()->add(0, trans('crud/errors.attr_taken', ['attr' => 'Affiliate ID']) );
             return false;
         }
     }

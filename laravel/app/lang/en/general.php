@@ -7,4 +7,5 @@ return array(
     'last_name' => 'Last name',
     'registered' => 'Registered',
     'groups' => 'Groups',
+    'affiliate_id' => 'Affiliate ID',
 );

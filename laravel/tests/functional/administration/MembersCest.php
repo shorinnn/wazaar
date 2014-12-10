@@ -6,12 +6,6 @@ class MembersCest{
     public function _before(FunctionalTester $I){
         $I->haveEnabledFilters();
     }
-
-    public function redirectIfUnauthenticated(FunctionalTester $I){
-        $I->dontSeeAuthentication();
-        $I->amOnPage('/administration/members');
-        $I->seeCurrentUrlEquals('');
-    }
     
     public function failDeletingSelf(FunctionalTester $I){
         $user = User::find(1);
@@ -21,9 +15,15 @@ class MembersCest{
         $I->click('#member-form-1 button');
         $I->see('Cannot delete');
     }
-    
+
+    public function redirectIfUnauthenticated(FunctionalTester $I){
+        $I->dontSeeAuthentication();
+        $I->amOnPage('/administration/members');
+        $I->seeCurrentUrlEquals('');
+    }
+        
     public function redirectIfStudentOnly(FunctionalTester $I){
-        $user = User::find(2);
+        $user = User::where('username', 'student')->first();
         $I->amLoggedAs($user);
         $I->seeAuthentication();
         $I->amOnPage('/administration/members');
@@ -31,7 +31,7 @@ class MembersCest{
     }
     
     public function redirectIfTeacherOnly(FunctionalTester $I){
-        $user = User::find(3);
+        $user = User::where('username', 'teacher')->first();
         $I->amLoggedAs($user);
         $I->seeAuthentication();
         $I->amOnPage('/administration/members');
@@ -39,7 +39,7 @@ class MembersCest{
     }
     
     public function redirectIfAffiliateOnly(FunctionalTester $I){
-        $user = User::find(4);
+        $user = User::where('username', 'affiliate')->first();
         $I->amLoggedAs($user);
         $I->seeAuthentication();
         $I->amOnPage('/administration/members');
@@ -105,8 +105,9 @@ class MembersCest{
     public function updateUserDetails(FunctionalTester $I){
         $user = User::find(1);
         $I->amLoggedAs($user);
-        $I->amOnPage('/administration/members/2/edit');
-        $I->seeCurrentUrlEquals('/administration/members/2/edit');
+        $student = User::where('username','student')->first();
+        $I->amOnPage("/administration/members/$student->id/edit");
+        $I->seeCurrentUrlEquals("/administration/members/$student->id/edit");
         $I->seeInField('email', 'student@mailinator.com');
         $I->seeInField('first_name', 'Student');
         $I->submitForm('#edit-form', ['email' => 'studentUPDATED@mailinator.com']);
@@ -116,8 +117,9 @@ class MembersCest{
     public function failUpdatingDetails(FunctionalTester $I){
         $user = User::find(1);
         $I->amLoggedAs($user);
-        $I->amOnPage('/administration/members/2/edit');
-        $I->seeCurrentUrlEquals('/administration/members/2/edit');
+        $student = User::where('username','student')->first();
+        $I->amOnPage("/administration/members/$student->id/edit");
+        $I->seeCurrentUrlEquals("/administration/members/$student->id/edit");
         $I->seeInField('email', 'student@mailinator.com');
         $I->seeInField('first_name', 'Student');
         $I->submitForm('#edit-form', ['email' => 'studentUPDATED@mailinatorFAIL']);

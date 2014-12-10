@@ -34,7 +34,7 @@ class UsersController extends Controller
      */
     public function store()
     {
-        $user = $this->users->signup(Input::all());
+        $user = $this->users->signup(Input::all(), Cookie::get('ltc'));
 
         if ($user->id) {
             if (Config::get('confide::signup_email')) {
