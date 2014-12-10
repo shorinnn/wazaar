@@ -93,53 +93,53 @@ class UserCest{
     }
     
     public function makeStudentTeacher(UnitTester $I){
-        $student = $this->users->find(2);
+        $student = User::where('username','student')->first();
         $I->assertTrue($student->id > 0);
         $this->users->become('Teacher', $student);
-        $student = $this->users->find(2);
+        $student = User::where('username','student')->first();
         $I->assertTrue($student->hasRole('Teacher'));
     }
     
     public function makeStudentTeacherOnlyOnce(UnitTester $I){
-        $student = $this->users->find(2);
+        $student = User::where('username','student')->first();
         $I->assertTrue($student->id > 0);
         $this->users->become('Teacher', $student);
-        $student = $this->users->find(2);
+        $student = User::where('username','student')->first();
         $this->users->become('Teacher', $student);
-        $student = $this->users->find(2);
+        $student = User::where('username','student')->first();
         $I->assertEquals(2, $student->roles()->count());
     }
     
     public function makeStudentAffiliate(UnitTester $I){
-        $student = $this->users->find(2);
+        $student = User::where('username','student')->first();
         $I->assertTrue($student->id > 0);
         $this->users->become('Affiliate', $student);
-        $student = $this->users->find(2);
+        $student = User::where('username','student')->first();
         $I->assertTrue($student->hasRole('Affiliate'));
     }
     
     public function makeStudentAffiliateOnlyOnce(UnitTester $I){
-        $student = $this->users->find(2);
+        $student = User::where('username','student')->first();
         $I->assertTrue($student->id > 0);
         $this->users->become('Affiliate', $student);
-        $student = $this->users->find(2);
+        $student = User::where('username','student')->first();
         $this->users->become('Affiliate', $student);
-        $student = $this->users->find(2);
+        $student = User::where('username','student')->first();
         $I->assertEquals(2, $student->roles()->count());
     }
     
     public function failBecomingAdmin(UnitTester $I){
-        $student = $this->users->find(2);
+        $student = User::where('username','student')->first();
         $I->assertTrue($student->id > 0);
         $this->users->become('Admin', $student);
         $I->assertFalse($student->hasRole('Admin'));
     }
     
     public function failBecomingInvalidRole(UnitTester $I){
-        $student = $this->users->find(2);
+        $student = User::where('username','student')->first();
         $I->assertTrue($student->id > 0);
         $this->users->become('Wahalla', $student);
-        $I->assertFalse($student->hasRole('Wahalla'));
+        $I->assertFalse($student->hasRole('Wahala'));
     }
     
     
