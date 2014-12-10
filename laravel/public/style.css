@@ -1251,6 +1251,17 @@ header .activate-dropdown:hover ul{
 	color: #fff;
 }
 
+#login-form .form-group button:hover,
+#register-form .form-group button:hover{
+	background-image: -moz-linear-gradient(left, #82cc43, #62cc6c, #7fcc47);
+	background-image: -webkit-linear-gradient(left, #82cc43, #62cc6c, #7fcc47);
+	background-image: -o-linear-gradient(left, #82cc43, #62cc6c, #7fcc47);
+	background-image: -ms-linear-gradient(left, #82cc43, #62cc6c, #7fcc47);
+	background-image: linear-gradient(left, #82cc43, #62cc6c, #7fcc47);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#82cc43', endColorstr='#7fcc47'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#82cc43', endColorstr='#7fcc47')"; /* IE8 */
+}
+
 #login-form .forgot-password{
 	width: 312px;
 	font-size: 13px;
