@@ -10,6 +10,7 @@ class UserCest{
     private function setupDatabase() {
         Artisan::call('migrate:refresh');
         Artisan::call('db:seed');
+        User::boot();
     }
     
     public function assignStudentOnly(UnitTester $I){
@@ -156,7 +157,7 @@ class UserCest{
         $student = User::where('username','affiliate')->first();
         $I->assertTrue($student->id > 0);
         $student->affiliate_id = '2';
-        $student->save();
+        $I->assertFalse( $student->save() );
         $student = User::where('username','affiliate')->first();
         $I->assertNotEquals('2', $student->affiliate_id);
     }

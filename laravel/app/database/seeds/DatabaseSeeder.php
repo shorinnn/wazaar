@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder {
 		 $this->call('RoleTableSeeder');
 		 $this->call('UserTableSeeder');
 		 $this->call('AssignedRoleTableSeeder');
+		 $this->call('CourseCategorySeeder');
+		 $this->call('CoursesSeeder');
 	}
 
 }
@@ -177,6 +179,51 @@ class AssignedRoleTableSeeder extends Seeder {
         $user->attachRole( $studentRole );
         $user->attachRole( $affiliateRole );
 
+    }
+
+}
+
+
+class CourseCategorySeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('course_categories')->delete();
+        CourseCategory::unguard();
+        CourseCategory::create( ['name' => 'IT & Technology', 'slug' => 'it-and-technology', 
+                                 'description' => 'Programming, Javascript, C++, etc...', 'courses_count' => 0 ]);
+        CourseCategory::create( ['name' => 'Business', 'slug' => 'business', 
+                                 'description' => 'Beez Kneez', 'courses_count' => 0 ]);
+        CourseCategory::create( ['name' => 'Investments', 'slug' => 'investments', 
+                                 'description' => 'Mo money', 'courses_count' => 0 ]);
+        CourseCategory::create( ['name' => 'Music', 'slug' => 'music', 
+                                 'description' => 'Tokyo Square, nom sayin', 'courses_count' => 0 ]);
+        CourseCategory::create( ['name' => 'Beauty', 'slug' => 'beauty', 
+                                 'description' => 'Stop being ugly', 'courses_count' => 0 ]);
+        CourseCategory::create( ['name' => 'Health', 'slug' => 'health', 
+                                 'description' => 'Fat it up bro!', 'courses_count' => 0 ]);
+       
+    }
+
+}
+
+class CoursesSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('courses')->delete();
+        Course::unguard();
+        Course::create( ['name' => 'App Development', 'slug' => 'app-development', 'course_category_id' => 1,
+                                 'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
+                                 'student_count' => 0 ]);
+        Course::create( ['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'course_category_id' => 1,
+                                 'description' => 'JS - the best language around.', 
+                                 'student_count' => 0 ]);
+        Course::create( ['name' => 'PHP Primer', 'slug' => 'php-primer', 'course_category_id' => 1,
+                                 'description' => 'PHP - the best language around.', 
+                                 'student_count' => 0 ]);
+  
+       
     }
 
 }

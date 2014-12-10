@@ -22,6 +22,10 @@ class User extends Ardent implements ConfideUserInterface
         return $this->confideSave();
     }
     
+    public function purchase(Course $course){
+        
+    }
+    
     /**
      * Admin cannot delete self
      * @return boolean

@@ -12,14 +12,16 @@
                 	</div>
                     <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image1.jpg" alt="" 
                     class="hidden-sm hidden-xs img-responsive">
-                    <div><div class="level">{{trans('site/homepage.beginner')}}</div><h2>Details Page For {{$slug}} course</h2>
-                        <p>Create your very first application in 2 weeks! You get a beginner award after completing the course.</p>
+                    <div><div class="level">{{trans('site/homepage.beginner')}}</div><h2>Details Page For {{$course->name}} course</h2>
+                        <p>{{$course->description }}</p>
                         <div class="next_">
                         <div class="learn-more">
-                          <a href="#">{{trans('site/homepage.learn-more')}}</a>
+                            {{ Form::open(['action' => ["CoursesController@purchase", $course->slug]]) }}
+                            <input type='submit' class='btn btn-primary' value='Buy' />
+                            {{Form::close()}}
                         </div>
                         <div class="students-attending">
-                          1233 Students
+                          {{ $course->student_count }} Students
                         </div>            
                       </div>
                   </div>
