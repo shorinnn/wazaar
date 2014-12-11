@@ -15,7 +15,7 @@ class CreateCourePurchasesTable extends Migration {
 		Schema::create('course_purchases', function ($table) {
                     $table->bigIncrements('id');
                     $table->bigInteger('course_id');
-                    $table->bigInteger('user_id');
+                    $table->bigInteger('student_id');
                     $table->bigInteger('ltc_affiliator_id');
                     $table->bigInteger('product_affiliator_id');
                     $table->timestamps();

@@ -14,12 +14,8 @@ class User extends Ardent implements ConfideUserInterface
     use HasRole;
     protected $fillable = ['first_name', 'last_name', 'email', 'username', 'affiliate_id'];
     
-    public static $relationsData = array(
-        'ltcAffiliator' => array(self::BELONGS_TO, 'LTCAffiliator', 'table' => 'users', 'foreignKey' => 'ltc_affiliator_id'),
-        'purchases' => array(self::HAS_MANY, 'CoursePurchase'),
-        'productAffiliators' =>  array(self::HAS_MANY, 'CoursePurchase', 'table' => 'users', 'foreignKey' => 'user_id', 
-            'otherKey' => 'product_affiliator_id'),
-  );
+    
+    
     
     
     public function save(array $rules = Array(), array $customMessages = Array(), array $options = Array(), Closure $beforeSave = NULL, Closure $afterSave = NULL){
@@ -27,7 +23,7 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     public function purchase(Course $course){
-        
+        // todo move to student class
     }
     
     /**
@@ -52,4 +48,5 @@ class User extends Ardent implements ConfideUserInterface
             return false;
         }
     }
+    
 }

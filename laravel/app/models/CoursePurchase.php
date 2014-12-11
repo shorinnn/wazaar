@@ -7,7 +7,7 @@ class CoursePurchase extends Ardent{
         'course' => array(self::BELONGS_TO, 'Course'),
         'student' => array(self::BELONGS_TO, 'User', 'table' => 'users', 'foreignKey' => 'user_id'),
         'ltcAffiliator' => array(self::BELONGS_TO, 'LTCAffiliator', 'table' => 'users', 'foreignKey' => 'ltc_affiliator_id'),
-        'productAffiliator' => array(self::BELONGS_TO, 'User', 'table' => 'course_purchases', 'otherKey' => 'product_affiliator_id' ,'foreignKey' => 'id'),
+        'productAffiliator' => array(self::BELONGS_TO, 'ProductAffiliator', 'table' => 'course_purchases', 'foreignKey' => 'product_affiliator_id'),
     );
 
 }
