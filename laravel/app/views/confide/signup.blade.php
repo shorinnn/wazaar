@@ -10,13 +10,6 @@
         </div>
     </div>
 </section>
-@if (Session::get('error'))
-    <div class="alert alert-error alert-danger">
-        @if (is_array(Session::get('error')))
-            {{ head(Session::get('error')) }}
-        @endif
-    </div>
-@endif
 
 @if (Session::get('notice'))
     <div class="alert">{{ Session::get('notice') }}</div>
@@ -33,18 +26,28 @@
 <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8" id="register-form">
     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
     <fieldset>
-        <div class="form-group">
+        <div class="form-group email-input-container">
             <label for="email">{{{ Lang::get('confide::confide.e_mail') }}} <small>{{ Lang::get('confide::confide.signup.confirmation_required') }}</small></label>
             <input class="form-control" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
+	        <p class="clearfix character-tip"><em class="left">Almost there!</em> <span class="block right">8 to 20 characters</span></p>
         </div>
-        <p class="clearfix"><em class="left">Almost there!</em> <span class="block right">8 to 20 characters</span></p>
+        @if (Session::get('error'))
+            <div class="alert alert-error alert-danger">
+            	<span>ERROR</span>
+                @if (is_array(Session::get('error')))
+                    {{ head(Session::get('error')) }}
+                @endif
+            </div>
+        @endif
         <div class="form-group">
             <label for="password">{{{ Lang::get('confide::confide.password') }}}</label>
             <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password') }}}" type="password" name="password" id="password">
+	        <p class="clearfix character-tip"><span class="block">At least 8 characters</span></p>
         </div>
         <div class="form-group">
             <label for="password_confirmation">{{{ Lang::get('confide::confide.password_confirmation') }}}</label>
             <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password_confirmation') }}}" type="password" name="password_confirmation" id="password_confirmation">
+	        <p class="clearfix character-tip"><span class="block">Type in the password again</span></p>
         </div>
         <input class="form-control" type="hidden" name="teacher" id="teacher" value="{{{ $teacher }}}">
 
