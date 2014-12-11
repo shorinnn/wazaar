@@ -19,6 +19,7 @@ class BecomeInstructorCest{
     public function becomeInstructor(FunctionalTester $I){
         $user =  User::where('username','student')->first();
         Auth::login($user);
+        $I->assertEquals(1, $user->roles()->count());
         $I->seeAuthentication();
         $I->amOnPage('/become-instructor');
         $I->see('congrats');

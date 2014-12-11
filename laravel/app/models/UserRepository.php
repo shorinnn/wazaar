@@ -24,7 +24,7 @@ class UserRepository
      */
     public function signup($input, $ltc_cookie=null)
     {
-        $user = new User;
+        $user = new Student;
 
 //        $user->username = array_get($input, 'username');
         $user->email    = array_get($input, 'email');
@@ -92,7 +92,7 @@ class UserRepository
      */
     public function signupWithFacebook($input, $ltc_cookie=null)
     {
-        $user = new User;
+        $user = new Student;
 
         $user->username = "FB$input[id]";
         $user->email    = $input['email'];
@@ -157,7 +157,7 @@ class UserRepository
      */
     public function signupWithGoogle($input, $ltc_cookie=null)
     {
-        $user = new User;
+        $user = new Student;
 
         $user->username = "G$input[id]";
         $user->email    = $input['email'];
