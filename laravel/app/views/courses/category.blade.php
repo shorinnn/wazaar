@@ -19,8 +19,8 @@
               <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="object small-box small-box-one">
                   <div class="price-tag">
-                    300,000 ¥
-                  </div><div class="level">Beginner</div><div class="new-tag">NEW</div>
+                    ¥ {{ number_format($course->price, 2) }}
+                  </div><div class="level">{{ trans("courses/general.$course->difficulty_level") }}</div><div class="new-tag">NEW</div>
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image2.jpg" class="img-responsive" alt="">
                   <h2>{{ $course->name }}</h2>
                   <p>{{ $course->description }}</p>

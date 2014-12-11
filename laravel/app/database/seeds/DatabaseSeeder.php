@@ -213,15 +213,13 @@ class CoursesSeeder extends Seeder {
     {
         DB::table('courses')->delete();
         Course::unguard();
-        Course::create( ['name' => 'App Development', 'slug' => 'app-development', 'course_category_id' => 1,
+        Course::create( ['name' => 'App Development', 'slug' => 'app-development', 'course_category_id' => 1, 'price' => 300000, 'difficulty_level' => 'Beginner',
                                  'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
                                  'student_count' => 0 ]);
-        Course::create( ['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'course_category_id' => 1,
-                                 'description' => 'JS - the best language around.', 
-                                 'student_count' => 0 ]);
-        Course::create( ['name' => 'PHP Primer', 'slug' => 'php-primer', 'course_category_id' => 1,
-                                 'description' => 'PHP - the best language around.', 
-                                 'student_count' => 0 ]);
+        Course::create( ['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'course_category_id' => 1, 'price' => 185000.99, 
+                        'difficulty_level' => 'Intermmediate', 'description' => 'JS - the best language around.', 'student_count' => 0 ]);
+        Course::create( ['name' => 'PHP Primer', 'slug' => 'php-primer', 'course_category_id' => 1,  'price' => 99.99, 'difficulty_level' => 'Expert',
+                                 'description' => 'PHP - the best language around.', 'student_count' => 0 ]);
   
        
     }

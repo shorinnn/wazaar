@@ -18,6 +18,8 @@ class CreateCoursesTable extends Migration {
                     $table->string('name');
                     $table->string('slug')->unique();
                     $table->text('description');
+                    $table->double('price', 15, 2);
+                    $table->enum('difficulty_level', ['Beginner', 'Intermmediate', 'Expert']);
                     $table->integer('student_count');
                     $table->timestamps();
                 });

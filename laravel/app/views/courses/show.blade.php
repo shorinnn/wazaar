@@ -8,16 +8,18 @@
                
                 <div class="object big-box">
                 	<div class="price-tag">
-                    300,000 &yen; SALE
+                     ¥ {{ number_format($course->price, 2) }} {{trans('courses/general.sale')}}
                 	</div>
                     <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image1.jpg" alt="" 
                     class="hidden-sm hidden-xs img-responsive">
-                    <div><div class="level">{{trans('site/homepage.beginner')}}</div><h2>Details Page For {{$course->name}} course</h2>
+                    <div>
+                        <div class="level"> {{ trans("courses/general.$course->difficulty_level") }} </div>
+                        <h2>{{$course->name}}</h2>
                         <p>{{$course->description }}</p>
                         <div class="next_">
                         <div class="learn-more">
                             {{ Form::open(['action' => ["CoursesController@purchase", $course->slug]]) }}
-                            <input type='submit' class='btn btn-primary' value='Buy' />
+                            <input type='submit' class='btn btn-primary' value='{{ trans("courses/general.purchase") }}' />
                             {{Form::close()}}
                         </div>
                         <div class="students-attending">
