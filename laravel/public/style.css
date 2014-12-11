@@ -1132,27 +1132,58 @@ header .activate-dropdown:hover ul{
 	text-align: center;
 	border-radius: 20px;
 	background: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/fb-and-google-icons.png) no-repeat;
+	position: relative;
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
 }
 
+.social-button:active,
+.social-button:focus,
 .social-button:hover{
 	color: #fff;
 	text-decoration: none;
+	outline: none;
 }
 
 .social-button.fb-button{
 	background-color: #3b5998;
 	background-position: 20px 9px;
 	margin-top: 53px;
+	border:solid 1px #35528e;
+	-webkit-box-shadow: 0px 5px 0px #203e7c;
+    -moz-box-shadow: 0px 5px 0px #203e7c;
+    box-shadow: 0px 5px 0px #203e7c;
+}
+
+.social-button.fb-button:focus,
+.social-button.fb-button:active{
+    -webkit-box-shadow: 0px 1px 0px #203e7c;
+    -moz-box-shadow: 0px 1px 0px #203e7c;
+    box-shadow: 0px 1px 0px #203e7c;
+    top:7px;
 }
 
 .social-button.fb-button:hover{
 	background-color: #4576c2;
 }
 
-.social-button.google-button{
+.social-button.google-button{	
 	background-color: #e95141;
 	background-position: 20px -52px;
 	margin-top: 20px;
+	border:solid 1px #D94E3B;
+	-webkit-box-shadow: 0px 5px 0px #84261a;
+    -moz-box-shadow: 0px 5px 0px #84261a;
+    box-shadow: 0px 5px 0px #84261a;
+}
+
+.social-button.google-button:focus,
+.social-button.google-button:active{
+    -webkit-box-shadow: 0px 1px 0px #84261a;
+    -moz-box-shadow: 0px 1px 0px #84261a;
+    box-shadow: 0px 1px 0px #84261a;
+    top:7px;
 }
 
 .social-button.google-button:hover{
@@ -1204,26 +1235,29 @@ header .activate-dropdown:hover ul{
 	display: none;
 }
 
-#login-form .form-group + p,
-#register-form .form-group + p{
-	padding: 0 20px;
-	font-size: 13px;
-	color: #b0bec1;
-	margin: 0 auto 10px;
-	width: 312px;
-}
-
-#login-form .form-group + p em,
-#register-form .form-group + p em{
-	font-style: normal;
-}
-
 #login-form #email,
 #register-form #email{
 	border-color: #92cc2e;
 	color: #99cf3b;
-	text-indent: 77px;
-	background: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/fb-and-google-icons.png) no-repeat 19px -114px; 
+	text-indent: 45px;
+}
+
+.form-group.email-input-container::before {
+	background: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/fb-and-google-icons.png) no-repeat 19px -116px; 
+    content: "";
+    display: block;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    width: 47px;
+    z-index: 99;
+}
+
+
+.form-group.email-input-container{
+    margin: 0 auto 10px;
+    position: relative;
+    width: 312px;
 }
 
 #login-form #password,
@@ -1249,6 +1283,25 @@ header .activate-dropdown:hover ul{
 	background: #92cc2e;
 	font-size: 13px;
 	color: #fff;
+	position: relative;
+	border: solid 1px #87bc2b;
+	-webkit-box-shadow: 0px 5px 0px #689814;
+    -moz-box-shadow: 0px 5px 0px #689814;
+    box-shadow: 0px 5px 0px #689814;
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+}
+
+#login-form .form-group button:focus,
+#register-form .form-group button:focus,
+#login-form .form-group button:active,
+#register-form .form-group button:active{
+    -webkit-box-shadow: 0px 1px 0px #689814;
+    -moz-box-shadow: 0px 1px 0px #689814;
+    box-shadow: 0px 1px 0px #689814;
+    top:7px;
+	outline: none;
 }
 
 #login-form .form-group button:hover,
@@ -1260,6 +1313,10 @@ header .activate-dropdown:hover ul{
 	background-image: linear-gradient(left, #82cc43, #62cc6c, #7fcc47);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#82cc43', endColorstr='#7fcc47'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#82cc43', endColorstr='#7fcc47')"; /* IE8 */
+}
+
+#login-form #email{
+	margin-bottom: 40px;
 }
 
 #login-form .forgot-password{
@@ -1278,6 +1335,55 @@ header .activate-dropdown:hover ul{
 	padding-left: 105px;
 }
 	
+/********** Form Error Message ************/
+.alert.alert-error.alert-danger{
+	border: 1px solid #f5aca6;
+    border-radius: 10px;
+    color: #555;
+    font-size: 11px;
+    margin: 10px auto;
+	width: 312px;
+    padding: 10px 36px;
+	background: #ffecec url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/error.png) no-repeat 9px 9px;
+}
+
+.alert.alert-error.alert-danger span{
+    font-weight: bold;
+	display: inline-block;
+	margin-right: 5px;
+    text-transform: uppercase;
+}
+
+.character-tip span,
+.character-tip em{
+	top: -47px;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+	position: relative;
+	z-index: -2;
+}
+
+.character-tip{
+	height: 18px;
+	padding: 0 20px;
+	font-size: 13px;
+	color: #b0bec1;
+	margin: 10px auto;
+	width: 312px;
+	overflow: hidden;
+}
+
+
+.character-tip em{
+	font-style: normal;
+}
+
+.character-tip.slide-down em,
+.character-tip.slide-down span{
+	top: 0 !important;
+}
+
 
 /************* Page Footer **************/
 
