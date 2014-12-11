@@ -4,6 +4,7 @@ use Zizaco\Confide\ConfideUser;
 use Zizaco\Confide\ConfideUserInterface;
 use Zizaco\Entrust\HasRole;
 
+
 class User extends Ardent implements ConfideUserInterface
 {
     use ConfideUser{
@@ -15,6 +16,9 @@ class User extends Ardent implements ConfideUserInterface
     
     public static $relationsData = array(
         'ltcAffiliator' => array(self::BELONGS_TO, 'LTCAffiliator', 'table' => 'users', 'foreignKey' => 'ltc_affiliator_id'),
+        'purchases' => array(self::HAS_MANY, 'CoursePurchase'),
+        'productAffiliators' =>  array(self::HAS_MANY, 'CoursePurchase', 'table' => 'users', 'foreignKey' => 'user_id', 
+            'otherKey' => 'product_affiliator_id'),
   );
     
     

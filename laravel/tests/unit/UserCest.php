@@ -21,7 +21,7 @@ class UserCest{
         $user->save();
         $this->users->attachRoles($user);
         $I->assertTrue($user->hasRole('Student'));
-        $I->assertFalse($user->hasRole('Teacher'));
+        $I->assertFalse($user->hasRole('Instructor'));
         $I->assertFalse($user->hasRole('Admin'));
         $I->assertFalse($user->hasRole('Affiliate'));
     }
@@ -32,19 +32,19 @@ class UserCest{
         $user = $this->users->signup($data);
         $I->assertTrue($user->save());
         $I->assertTrue($user->hasRole('Student'));
-        $I->assertFalse($user->hasRole('Teacher'));
+        $I->assertFalse($user->hasRole('Instructor'));
         $I->assertFalse($user->hasRole('Admin'));
         $I->assertFalse($user->hasRole('Affiliate'));
     }
     
-    public function makeUserStudentAndTeacher(UnitTester $I){
+    public function makeUserStudentAndInstructor(UnitTester $I){
         User::unguard();
         $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 
-            'password_confirmation' => 'pass', 'teacher' => 1];
+            'password_confirmation' => 'pass', 'instructor' => 1];
         $user = $this->users->signup($data);
         $I->assertTrue($user->save());
         $I->assertTrue($user->hasRole('Student'));
-        $I->assertTrue($user->hasRole('Teacher'));
+        $I->assertTrue($user->hasRole('Instructor'));
         $I->assertFalse($user->hasRole('Admin'));
         $I->assertFalse($user->hasRole('Affiliate'));
     }
@@ -55,7 +55,7 @@ class UserCest{
         $user = $this->users->signupWithFacebook($data);
         $I->assertTrue($user->save());
         $I->assertTrue($user->hasRole('Student'));
-        $I->assertFalse($user->hasRole('Teacher'));
+        $I->assertFalse($user->hasRole('Instructor'));
         $I->assertFalse($user->hasRole('Admin'));
         $I->assertFalse($user->hasRole('Affiliate'));
     }
@@ -66,7 +66,7 @@ class UserCest{
         $user = $this->users->signupWithGoogle($data);
         $I->assertTrue($user->save());
         $I->assertTrue($user->hasRole('Student'));
-        $I->assertFalse($user->hasRole('Teacher'));
+        $I->assertFalse($user->hasRole('Instructor'));
         $I->assertFalse($user->hasRole('Admin'));
         $I->assertFalse($user->hasRole('Affiliate'));
     }
@@ -93,20 +93,20 @@ class UserCest{
         $I->assertEquals('123', $user->google_plus_login_id);
     }
     
-    public function makeStudentTeacher(UnitTester $I){
+    public function makeStudentInstructor(UnitTester $I){
         $student = User::where('username','student')->first();
         $I->assertTrue($student->id > 0);
-        $this->users->become('Teacher', $student);
+        $this->users->become('Instructor', $student);
         $student = User::where('username','student')->first();
-        $I->assertTrue($student->hasRole('Teacher'));
+        $I->assertTrue($student->hasRole('Instructor'));
     }
     
-    public function makeStudentTeacherOnlyOnce(UnitTester $I){
+    public function makeStudentInstructorOnlyOnce(UnitTester $I){
         $student = User::where('username','student')->first();
         $I->assertTrue($student->id > 0);
-        $this->users->become('Teacher', $student);
+        $this->users->become('Instructor', $student);
         $student = User::where('username','student')->first();
-        $this->users->become('Teacher', $student);
+        $this->users->become('Instructor', $student);
         $student = User::where('username','student')->first();
         $I->assertEquals(2, $student->roles()->count());
     }

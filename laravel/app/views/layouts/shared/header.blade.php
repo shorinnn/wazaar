@@ -48,7 +48,7 @@
         </div>
     </div>
     @else
-        <a class="btn btn-link" href="{{url('login')}}">Temporary Login</a> |
+        <a class="btn btn-link" href="{{url('login')}}">Temporary Login</a> 
         <a class="btn btn-link" href="{{url('register')}}">Temporary Register</a>
     @endif
 </div>

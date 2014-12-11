@@ -17,16 +17,16 @@ class UsersController extends Controller
     /**
      * Displays the form for account creation
      *
-     * @param mixed $teacher_account If not 0, sign up for a teacher account
+     * @param mixed $instructor_account If not 0, sign up for a instructor account
      * @return  Illuminate\Http\Response
      */
-    public function create($teacher_account = 0)
+    public function create($instructor_account = 0)
     {
-        $teacher = $teacher_account===0 ? 0 : 1;
-        if(Input::old('teacher')) $teacher = Input::old('teacher');
-        return View::make(Config::get('confide::signup_form'))->withTeacher($teacher);
+        $instructor = $instructor_account===0 ? 0 : 1;
+        if(Input::old('instructor')) $instructor = Input::old('instructor');
+        return View::make(Config::get('confide::signup_form'))->withInstructor($instructor);
     }
-
+    
     /**
      * Stores new account
      *
@@ -49,6 +49,7 @@ class UsersController extends Controller
                     }
                 );
             }
+            Cookie::queue('ltc', null, -1);
             Auth::login($user);
             return Redirect::to('/');
         } else {
@@ -123,7 +124,7 @@ class UsersController extends Controller
                 else{
                     // create user
                     
-                    $user = $this->users->signupWithGoogle($result);
+                    $user = $this->users->signupWithGoogle($result, Cookie::get('ltc'));
 
                     if(!$user->id){ 
                         // cannot create user
@@ -133,6 +134,7 @@ class UsersController extends Controller
                             ->with('error', $error);
                     }
                     else{
+                        Cookie::queue('ltc', null, -1);
                         $this->users->saveSocialPicture($user, "G$result[id]", "$result[picture]?sz=150");
                         //user created
                         Auth::login($user);
@@ -221,7 +223,7 @@ class UsersController extends Controller
                 }
                 else{
                     // create user
-                    $user = $this->users->signupWithFacebook($result);
+                    $user = $this->users->signupWithFacebook($result, Cookie::get('ltc'));
                     if(!$user->id){ 
                         // cannot create user
                         $error = $user->errors()->all(':message');
@@ -230,6 +232,7 @@ class UsersController extends Controller
                             ->with('error', $error);
                     }
                     else{
+                        Cookie::queue('ltc', null, -1);
                         $this->users->saveSocialPicture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
                         //user created
                         Auth::login($user);

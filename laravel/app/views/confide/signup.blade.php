@@ -46,7 +46,7 @@
             <label for="password_confirmation">{{{ Lang::get('confide::confide.password_confirmation') }}}</label>
             <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password_confirmation') }}}" type="password" name="password_confirmation" id="password_confirmation">
         </div>
-        <input class="form-control" type="hidden" name="teacher" id="teacher" value="{{{ $teacher }}}">
+        <input class="form-control" type="hidden" name="instructor" id="instructor" value="{{{ $instructor }}}">
 
         
 

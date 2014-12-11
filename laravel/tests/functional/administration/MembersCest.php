@@ -30,8 +30,8 @@ class MembersCest{
         $I->seeCurrentUrlEquals('');
     }
     
-    public function redirectIfTeacherOnly(FunctionalTester $I){
-        $user = User::where('username', 'teacher')->first();
+    public function redirectIfInstructorOnly(FunctionalTester $I){
+        $user = User::where('username', 'instructor')->first();
         $I->amLoggedAs($user);
         $I->seeAuthentication();
         $I->amOnPage('/administration/members');
