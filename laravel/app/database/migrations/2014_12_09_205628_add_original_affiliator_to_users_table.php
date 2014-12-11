@@ -14,7 +14,7 @@ class AddOriginalAffiliatorToUsersTable extends Migration {
 	{
 		Schema::table('users', function(Blueprint $table)
 		{
-			$table->integer('ltc_affiliator_id')->after('id');
+			$table->bigInteger('ltc_affiliator_id')->after('id');
 		});
 	}
 

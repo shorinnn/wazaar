@@ -8,12 +8,12 @@
                
                 <div class="object big-box">
                 	<div class="price-tag">
-                     ¥ {{ number_format($course->price, 2) }} {{trans('courses/general.sale')}}
+                     ¥ {{ number_format($course->price, Config::get('custom.currency_decimals')) }} {{trans('courses/general.sale')}}
                 	</div>
                     <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image1.jpg" alt="" 
                     class="hidden-sm hidden-xs img-responsive">
                     <div>
-                        <div class="level"> {{ trans("courses/general.$course->difficulty_level") }} </div>
+                        <div class="level"> {{ $course->courseDifficulty->name }} </div>
                         <h2>{{$course->name}}</h2>
                         <p>{{$course->description }}</p>
                         <div class="next_">

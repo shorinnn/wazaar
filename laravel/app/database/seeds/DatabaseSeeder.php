@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder {
 		 $this->call('UserTableSeeder');
 		 $this->call('AssignedRoleTableSeeder');
 		 $this->call('CourseCategorySeeder');
+		 $this->call('CourseDifficultySeeder');
 		 $this->call('CoursesSeeder');
 	}
 
@@ -207,19 +208,69 @@ class CourseCategorySeeder extends Seeder {
 
 }
 
+class CourseDifficultySeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('course_difficulties')->delete();
+        CourseDifficulty::unguard();
+        CourseDifficulty::create( ['name' => 'Beginner'] );
+        CourseDifficulty::create( ['name' => 'Intermediate'] );
+        CourseDifficulty::create( ['name' => 'Expert'] );       
+       
+    }
+}
+
 class CoursesSeeder extends Seeder {
 
     public function run()
     {
         DB::table('courses')->delete();
         Course::unguard();
-        Course::create( ['name' => 'App Development', 'slug' => 'app-development', 'course_category_id' => 1, 'price' => 300000, 'difficulty_level' => 'Beginner',
-                                 'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
-                                 'student_count' => 0 ]);
+        // IT Courses
+        Course::create( ['name' => 'App Development', 'slug' => 'app-development', 'course_category_id' => 1, 'price' => 300000, 
+                        'course_difficulty_id' => 1,
+                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
+                        'student_count' => 0 ]);
         Course::create( ['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'course_category_id' => 1, 'price' => 185000.99, 
-                        'difficulty_level' => 'Intermmediate', 'description' => 'JS - the best language around.', 'student_count' => 0 ]);
-        Course::create( ['name' => 'PHP Primer', 'slug' => 'php-primer', 'course_category_id' => 1,  'price' => 99.99, 'difficulty_level' => 'Expert',
+                        'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0 ]);
+        Course::create( ['name' => 'PHP Primer', 'slug' => 'php-primer', 'course_category_id' => 1,  'price' => 99.99, 'course_difficulty_id' => 3,
                                  'description' => 'PHP - the best language around.', 'student_count' => 0 ]);
+        Course::create( ['name' => 'PHP Primer Revisited', 'slug' => 'php-primer-revisited', 'course_category_id' => 1,  'price' => 99.99, 'course_difficulty_id' => 3,
+                                 'description' => 'PHP - the best language around. REVISITED.', 'student_count' => 0 ]);
+        // Business Courses
+        Course::create( ['name' => 'Business App Development', 'slug' => 'business-app-development', 'course_category_id' => 2, 'price' => 300000, 
+                        'course_difficulty_id' => 1,
+                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
+                        'student_count' => 0 ]);
+        // Investments Courses
+        Course::create( ['name' => 'Investments App Development', 'slug' => 'investments-app-development', 'course_category_id' => 3, 'price' => 300000, 
+                        'course_difficulty_id' => 1,
+                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
+                        'student_count' => 0 ]);
+        Course::create( ['name' => 'Investments Javascript Primer', 'slug' => 'investments-javascript-primer', 'course_category_id' => 1, 'price' => 185000.99, 
+                        'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0 ]);
+        // Music Courses
+        Course::create( ['name' => 'Music App Development', 'slug' => 'music-app-development', 'course_category_id' => 4, 'price' => 300000, 
+                        'course_difficulty_id' => 1,
+                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
+                        'student_count' => 0 ]);
+        // Beauty Courses
+        Course::create( ['name' => 'Beauty App Development', 'slug' => 'beauty-app-development', 'course_category_id' => 5, 'price' => 300000, 
+                        'course_difficulty_id' => 1,
+                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
+                        'student_count' => 0 ]);
+        Course::create( ['name' => 'Beauty Javascript Primer', 'slug' => 'beauty-javascript-primer', 'course_category_id' => 5, 'price' => 185000.99, 
+                        'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0 ]);
+        Course::create( ['name' => 'Beauty PHP Primer', 'slug' => 'beauty-php-primer', 'course_category_id' => 5,  'price' => 99.99, 'course_difficulty_id' => 3,
+                                 'description' => 'PHP - the best language around.', 'student_count' => 0 ]);
+        Course::create( ['name' => 'Beauty PHP Primer Revisited', 'slug' => 'beauty-php-primer-revisited', 'course_category_id' => 5,  'price' => 99.99, 'course_difficulty_id' => 3,
+                                 'description' => 'PHP - the best language around. REVISITED.', 'student_count' => 0 ]);
+        // Health Courses
+        Course::create( ['name' => 'Health App Development', 'slug' => 'health-app-development', 'course_category_id' => 6, 'price' => 300000, 
+                        'course_difficulty_id' => 1,
+                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
+                        'student_count' => 0 ]);
   
        
     }

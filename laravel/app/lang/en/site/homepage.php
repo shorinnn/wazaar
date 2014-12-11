@@ -15,8 +15,5 @@ return array(
 	'get-started' => 'Get Started',
 	'be-an-instructor' => 'BECOME AN INSTRUCTOR',
 	'view-all' => 'View all',
-	'profile' => 'Profile',
-	'courses' => 'Courses',
-	'settings' => 'Settings',
 	'beginner' => 'Beginner'
 );

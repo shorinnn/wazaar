@@ -1,6 +1,6 @@
 <div class="row">
     <div class="top-menu clearfix">
-        <a href="#" class="main-logo"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
+        <a href="{{url('/')}}" class="main-logo"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
                                            class="img-responsive" alt=""></a>
         @if(Auth::check())
         <ul>
@@ -28,13 +28,16 @@
                 </button>
                 <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
                     <li>
-                        <a class="profile-button" href="#">{{trans('site/homepage.profile')}}</a>
+                        <a class="profile-button" href="#">{{trans('site/menus.profile')}}</a>
                     </li>
                     <li>
-                        <a class="courses-button" href="#">{{trans('site/homepage.courses')}}</a>
+                        <a class="courses-button" href="#">{{trans('site/menus.courses')}}</a>
                     </li>
                     <li>
-                        <a class="settings-button" href="#">{{trans('site/homepage.settings')}}</a>
+                        <a class="settings-button" href="#">{{trans('site/menus.settings')}}</a>
+                    </li>
+                    <li>
+                        <a class="settings-button" href="{{url('logout')}}">{{trans('site/menus.logout')}}</a>
                     </li>
                 </ul>
             </li>
@@ -44,5 +47,8 @@
             <span class="notification-number">3</span>
         </div>
     </div>
+    @else
+        <a class="btn btn-link" href="{{url('login')}}">Temporary Login</a> |
+        <a class="btn btn-link" href="{{url('register')}}">Temporary Register</a>
     @endif
 </div>

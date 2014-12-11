@@ -4,7 +4,8 @@ class SiteController extends \BaseController {
 
 	public function index()
 	{
-            Return View::make('site.homepage_authenticated');
+            $categories = CourseCategory::all();
+            Return View::make('site.homepage_authenticated')->with(compact('categories'));
 	}
 
 

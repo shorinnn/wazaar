@@ -3,7 +3,8 @@ use LaravelBook\Ardent\Ardent;
 
 class Course extends Ardent{
     public static $relationsData = array(
-        'course_category' => array(self::BELONGS_TO, 'CourseCategory'),
+        'courseCategory' => array(self::BELONGS_TO, 'CourseCategory'),
+        'courseDifficulty' => array(self::BELONGS_TO, 'CourseDifficulty'),
     );
 
 }

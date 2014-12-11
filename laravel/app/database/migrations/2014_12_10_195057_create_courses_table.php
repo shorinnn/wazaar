@@ -13,13 +13,13 @@ class CreateCoursesTable extends Migration {
 	public function up()
 	{
 		Schema::create('courses', function ($table) {
-                    $table->increments('id');
+                    $table->bigIncrements('id');
                     $table->integer('course_category_id');
                     $table->string('name');
                     $table->string('slug')->unique();
                     $table->text('description');
                     $table->double('price', 15, 2);
-                    $table->enum('difficulty_level', ['Beginner', 'Intermmediate', 'Expert']);
+                    $table->integer('course_difficulty_id');
                     $table->integer('student_count');
                     $table->timestamps();
                 });
