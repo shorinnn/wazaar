@@ -50,7 +50,7 @@
             <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password_confirmation') }}}" type="password" name="password_confirmation" id="password_confirmation">
 	        <p class="clearfix character-tip"><span class="block">Type in the password again</span></p>
         </div>
-        <input class="form-control" type="hidden" name="teacher" id="teacher" value="{{{ $teacher }}}">
+        <input class="form-control" type="hidden" name="instructor" id="instructor" value="{{{ $instructor }}}">
 
         
 

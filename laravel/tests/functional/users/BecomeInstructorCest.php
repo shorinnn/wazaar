@@ -1,7 +1,7 @@
 <?php 
 use \FunctionalTester;
 
-class BecomeTeacherCest{
+class BecomeInstructorCest{
     
     public function _before(FunctionalTester $I){
         $I->haveEnabledFilters();
@@ -10,37 +10,38 @@ class BecomeTeacherCest{
 
     
 
-    public function failBecomingTeacherUnauthenticated(FunctionalTester $I){
+    public function failBecomingInstructorUnauthenticated(FunctionalTester $I){
         $I->dontSeeAuthentication();
-        $I->amOnPage('/become-teacher');
+        $I->amOnPage('/become-instructor');
         $I->seeCurrentUrlEquals('/login');
     }
     
-    public function becomeTeacher(FunctionalTester $I){
+    public function becomeInstructor(FunctionalTester $I){
         $user =  User::where('username','student')->first();
         Auth::login($user);
+        $I->assertEquals(1, $user->roles()->count());
         $I->seeAuthentication();
-        $I->amOnPage('/become-teacher');
+        $I->amOnPage('/become-instructor');
         $I->see('congrats');
         $user = User::where('username','student')->first();
         $I->assertEquals(2, $user->roles()->count());
     }
     
-    public function failBecomingTeacherAgain(FunctionalTester $I){
+    public function failBecomingInstructorAgain(FunctionalTester $I){
         $user =  User::where('username','student')->first();
         Auth::login($user);
         $I->seeAuthentication();
         $I->assertEquals(1, $user->roles()->count());
-        $I->amOnPage('/become-teacher');
+        $I->amOnPage('/become-instructor');
         $I->see('congrats');
         $user = $I->refreshAuthenticatedUser($user);
         $I->assertEquals(2, $user->roles()->count());
         $user = $I->refreshAuthenticatedUser($user);
-        $I->assertTrue($user->hasRole('Teacher'));
+        $I->assertTrue($user->hasRole('Instructor'));
         
-        $I->amOnPage('/become-teacher');
+        $I->amOnPage('/become-instructor');
         $user = $I->refreshAuthenticatedUser($user);
-        $I->amOnPage('/become-teacher');
+        $I->amOnPage('/become-instructor');
         $user = $I->refreshAuthenticatedUser($user);
         $I->assertEquals(2, $user->roles()->count());
         $I->see('Cannot');        

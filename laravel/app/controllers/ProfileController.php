@@ -7,12 +7,12 @@ class ProfileController extends Controller
         $this->beforeFilter('auth');
     }
     
-    public function becomeTeacher(){
-        if($this->users->become('Teacher', Auth::user())){
-            return 'Became a teacher, congrats';
+    public function becomeInstructor(){
+        if($this->users->become('Instructor', Auth::user())){
+            return 'Became a instructor, congrats';
         }
         else{
-            return 'Cannot become a teacher';
+            return 'Cannot become a instructor';
         }
     }
 }

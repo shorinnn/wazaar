@@ -34,7 +34,7 @@ Route::post('reset-password', 'UsersController@doResetPassword');
 Route::get('logout', 'UsersController@logout');
 
 // Profile routes
-Route::get('become-teacher', 'ProfileController@becomeTeacher');
+Route::get('become-instructor', 'ProfileController@becomeInstructor');
 
 // Admin Controller
 Route::group(array('prefix'=>'administration'),function(){

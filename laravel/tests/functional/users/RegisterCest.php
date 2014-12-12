@@ -25,14 +25,14 @@ class RegisterCest{
         $I->seeAuthentication();
     }
     
-    public function registerAsTeacher(FunctionalTester $I){
-        $I->amOnPage('/register/teacher');
+    public function registerAsInstructor(FunctionalTester $I){
+        $I->amOnPage('/register/instructor');
         $I->dontSeeAuthentication();
         $I->seeNumberOfElements('input[name=email]', 1);
         $I->submitForm('form', ['username' => 'new_student', 'email' => 'new_student@mailinator.com',
                                         'password' => 'pass', 'password_confirmation' => 'pass']);
         $I->seeAuthentication();
-        $I->assertTrue(Auth::user()->hasRole('Teacher'));
+        $I->assertTrue(Auth::user()->hasRole('Instructor'));
         $I->assertTrue(Auth::user()->hasRole('Student'));
     }
     

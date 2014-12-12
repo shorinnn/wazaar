@@ -24,7 +24,7 @@ class UserRepository
      */
     public function signup($input, $ltc_cookie=null)
     {
-        $user = new User;
+        $user = new Student;
 
 //        $user->username = array_get($input, 'username');
         $user->email    = array_get($input, 'email');
@@ -41,7 +41,7 @@ class UserRepository
 
         // Save if valid. Password field will be hashed before save
         if($this->save($user)){
-            $this->attachRoles($user, array_get($input, 'teacher'));
+            $this->attachRoles($user, array_get($input, 'instructor'));
         }
         $this->save_ltc($user, $ltc_cookie);
         return $user;
@@ -70,26 +70,29 @@ class UserRepository
      * Attaches roles after user registration
      * 
      * @param User $user The user object
-     * @param int $teacher Flag, 0 for no teacher role, 1 otherwise
+     * @param int $instructor Flag, 0 for no instructor role, 1 otherwise
      */
-    public function attachRoles($user, $teacher=0){
+    public function attachRoles($user, $instructor=0){
         // assign the default student role
         $studentRole = Role::where('name','=','Student')->first();
         $user->attachRole( $studentRole );
-        // user signs up for a teacher account
-        if($teacher){
-            $teacherRole = Role::where('name','=','Teacher')->first();
-            $user->attachRole( $teacherRole );
+        // user signs up for a instructor account
+        if($instructor){
+            $instructorRole = Role::where('name','=','Instructor')->first();
+            $user->attachRole( $instructorRole );
         }
     }
     
     /**
      * Signup a new account with FB Credentials
+     * @param array $input User fields
+     * @param string|null $ltc_cookie The Life Time Commission Affiliate ID or null if none
+     * 
      * @return  User User object that may or may not be saved successfully. Check the id to make sure.
      */
-    public function signupWithFacebook($input)
+    public function signupWithFacebook($input, $ltc_cookie=null)
     {
-        $user = new User;
+        $user = new Student;
 
         $user->username = "FB$input[id]";
         $user->email    = $input['email'];
@@ -107,6 +110,7 @@ class UserRepository
         // Save if valid. Password field will be hashed before save
         $this->save($user);
         $this->attachRoles($user);
+        $this->save_ltc($user, $ltc_cookie);
         return $user;
     }
     
@@ -147,11 +151,13 @@ class UserRepository
     
     /**
      * Signup a new account with Google Credentials
+     * @param array $input User fields
+     * @param string|null $ltc_cookie The Life Time Commission Affiliate ID or null if none
      * @return  User User object that may or may not be saved successfully. Check the id to make sure.
      */
-    public function signupWithGoogle($input)
+    public function signupWithGoogle($input, $ltc_cookie=null)
     {
-        $user = new User;
+        $user = new Student;
 
         $user->username = "G$input[id]";
         $user->email    = $input['email'];
@@ -169,6 +175,7 @@ class UserRepository
         // Save if valid. Password field will be hashed before save
         $this->save($user);
         $this->attachRoles($user);
+        $this->save_ltc($user, $ltc_cookie);
         return $user;
     }
     
@@ -320,7 +327,7 @@ class UserRepository
      */
     public function become($role, User $user){
         // usable roles
-        if(!in_array($role, ['Student', 'Teacher', 'Affiliate'])) return false;
+        if(!in_array($role, ['Student', 'Instructor', 'Affiliate'])) return false;
         
         try{
             $role = Role::where('name', $role)->first();

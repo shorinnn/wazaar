@@ -34,9 +34,9 @@ class RoleTableSeeder extends Seeder {
         $student->name = 'Student';
         $student->save();
         
-        $teacher = new Role;
-        $teacher->name = 'Teacher';
-        $teacher->save();
+        $instructor = new Role;
+        $instructor->name = 'Instructor';
+        $instructor->save();
         
         $affiliate = new Role;
         $affiliate->name = 'Affiliate';
@@ -80,10 +80,10 @@ class UserTableSeeder extends Seeder {
         $user->save();
         $user = new User;
         $user->ltc_affiliator_id = 2;
-        $user->username = 'teacher';
-        $user->email = 'teacher@mailinator.com';
-        $user->first_name = 'Teacher';
-        $user->last_name = 'McTeacher';
+        $user->username = 'instructor';
+        $user->email = 'instructor@mailinator.com';
+        $user->first_name = 'Instructor';
+        $user->last_name = 'McInstructor';
         $user->password = 'pass';
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
@@ -168,10 +168,10 @@ class AssignedRoleTableSeeder extends Seeder {
         $user = User::where('username', '=', 'sorin')->first();
         $user->attachRole( $studentRole );
         
-        $user = User::where('username', '=', 'teacher')->first();
-        $teacherRole = Role::where('name','=','Teacher')->first();
+        $user = User::where('username', '=', 'instructor')->first();
+        $instructorRole = Role::where('name','=','Instructor')->first();
         $user->attachRole( $studentRole );
-        $user->attachRole( $teacherRole );
+        $user->attachRole( $instructorRole );
         $user = User::where('username', '=', 'affiliate')->first();
         $affiliateRole = Role::where('name','=','Affiliate')->first();
         $user->attachRole( $studentRole );
