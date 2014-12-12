@@ -43,7 +43,7 @@
         <div class="form-group">
             <label for="password">{{{ Lang::get('confide::confide.password') }}}</label>
             <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password') }}}" type="password" name="password" id="password">
-	        <p class="clearfix character-tip"><span class="block">At least 8 characters</span></p>
+	        <p class="clearfix character-tip"><span class="block">At least 6 characters</span></p>
         </div>
         <div class="form-group">
             <label for="password_confirmation">{{{ Lang::get('confide::confide.password_confirmation') }}}</label>

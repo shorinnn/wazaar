@@ -253,6 +253,11 @@ header .activate-dropdown:hover ul{
 	display: block;
 }
 
+.btn.btn-link.temp-links {
+    color: #fff;
+    margin-left: 14px;
+    padding-top: 22px;
+}
 /************ Top "What do you want to learn" section *************/
 .course-search-section{
 	min-height: 300px;
@@ -1035,7 +1040,7 @@ header .activate-dropdown:hover ul{
 	margin-top:0px 
 }
 
-.become-an-instructor button{ 
+.become-an-instructor a{ 
 	background-color:#92cc2e;
 	margin: 49px auto 60px;
 	color:#18222b;

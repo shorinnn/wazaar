@@ -118,7 +118,7 @@
                 <div class="col-xs-12">
                   <h1>BECOME</h1>
                   <h2>AN INSTRUCTOR</h2>
-                  <button><span>{{trans('site/homepage.get-started')}}</span></button>
+                  <a href="{{url('become-teacher')}}"><span>{{trans('site/homepage.get-started')}}</span></a>
                 </div>
               </div>
           </div>
