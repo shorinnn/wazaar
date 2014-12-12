@@ -1,7 +1,12 @@
     @extends('layouts.default')
     @section('content')	
-
         <section class="container">
+            @if (Session::get('success'))
+                <div class="alert alert-success">{{{ Session::get('success') }}}</div>
+            @endif
+            @if (Session::get('error'))
+                <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
+            @endif
 			<!-- First row begins -->         
             <div class="row first-row">
             	<div class="col-xs-12 col-sm-12 col-md-12">
@@ -18,9 +23,11 @@
                         <p>{{$course->description }}</p>
                         <div class="next_">
                         <div class="learn-more">
-                            {{ Form::open(['action' => ["CoursesController@purchase", $course->slug]]) }}
-                            <input type='submit' class='btn btn-primary' value='{{ trans("courses/general.purchase") }}' />
-                            {{Form::close()}}
+                            @if(Auth::guest() || Auth::user()->can_purchase($course) )
+                                {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                                <input type='submit' class='btn btn-primary' value='{{ trans("courses/general.purchase") }}' />
+                                {{Form::close()}}
+                            @endif
                         </div>
                         <div class="students-attending">
                           {{ $course->student_count }} Students

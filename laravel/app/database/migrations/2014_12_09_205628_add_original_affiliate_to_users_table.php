@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddOriginalAffiliatorToUsersTable extends Migration {
+class AddOriginalAffiliateToUsersTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,7 +14,7 @@ class AddOriginalAffiliatorToUsersTable extends Migration {
 	{
 		Schema::table('users', function(Blueprint $table)
 		{
-			$table->bigInteger('ltc_affiliator_id')->after('id');
+			$table->bigInteger('ltc_affiliate_id')->after('id');
 		});
 	}
 
@@ -27,7 +27,7 @@ class AddOriginalAffiliatorToUsersTable extends Migration {
 	{
             Schema::table('users', function(Blueprint $table)
             {
-                $table->dropColumn('ltc_affiliator_id');
+                $table->dropColumn('ltc_affiliate_id');
             });
 	}
 

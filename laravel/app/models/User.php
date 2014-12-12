@@ -14,16 +14,23 @@ class User extends Ardent implements ConfideUserInterface
     use HasRole;
     protected $fillable = ['first_name', 'last_name', 'email', 'username', 'affiliate_id'];
     
-    
-    
-    
-    
+    /**
+     * Make Ardent and Confide save methods compatible
+     */
     public function save(array $rules = Array(), array $customMessages = Array(), array $options = Array(), Closure $beforeSave = NULL, Closure $afterSave = NULL){
         return $this->confideSave();
     }
     
-    public function purchase(Course $course){
-        // todo move to student class
+    /**
+     * Can the current user purchase the supplied course
+     * @param Course $course
+     * @return boolean
+     */
+    public function can_purchase(Course $course){
+        if($this->id == $course->instructor->id) return false;
+        $student = Student::find($this->id);
+        if( $student->purchased($course) ) return false;
+        return true;
     }
     
     /**

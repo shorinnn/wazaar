@@ -54,15 +54,15 @@ class UserRepository
      */
     public function save_ltc($user, $ltc=null){
         if($ltc==null){// no affiliate ID, Wazzar is LTC
-            $ltc_affiliator = LTCAffiliator::find(2);
+            $ltc_affiliate = LTCAffiliate::find(2);
         }
         else{// affiliate ID exists
-            $ltc_affiliator = LTCAffiliator::where('affiliate_id', $ltc)->first();
-            if($ltc_affiliator==null){// invalid affiliate ID, default to Wazaar
-                $ltc_affiliator = LTCAffiliator::find(2);
+            $ltc_affiliate = LTCAffiliate::where('affiliate_id', $ltc)->first();
+            if($ltc_affiliate==null){// invalid affiliate ID, default to Wazaar
+                $ltc_affiliate = LTCAffiliate::find(2);
             }            
         }
-        $user->ltcAffiliator()->associate($ltc_affiliator);
+        $user->ltcAffiliate()->associate($ltc_affiliate);
         $user->save();
     }
     

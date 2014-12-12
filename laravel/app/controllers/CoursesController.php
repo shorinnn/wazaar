@@ -19,20 +19,31 @@ class CoursesController extends \BaseController {
         }
         
         public function show($slug){
-            $course = Course::where('slug', $slug)->first();
+            $course = Course::where('slug', $slug)->with('instructor')->first();
+
             if(Input::has('aid')){
                 Cookie::queue("aid-$course->id", Input::get('aid'), 60*60*30);
             }
-            Return View::make('courses.show')->with(compact('course'));
+            Return View::make('courses.show')->with(compact('course'))->with(compact('student'));
         }
         
         public function purchase($slug){
-            $course = Course::where('slug', $slug)->first();
-            if(Cookie::has("aid-$course->id")){
-                return "PURCHASED. AFFILIATOR ID  = ".Cookie::get("aid-$course->id");
+            if(Auth::guest()){
+                return Redirect::to('login')->withError( trans('courses/general.login_to_purchase') );
             }
-//            Auth::user()->purchase($course);
-            return "PURCHASED! Kinda...";
+            
+            $course = Course::where('slug', $slug)->first();
+            $student = Student::current(Auth::user());
+            
+            if($student->purchase($course, Cookie::get("aid-$course->id"))){
+                // unset the affiliate cookie
+                Cookie::queue("aid-$course->id", null, -1);
+                return Redirect::action('CoursesController@show', $slug)->withSuccess( trans('courses/general.purchase_successful') );
+            }
+            else{
+                return Redirect::action('CoursesController@show', $slug)->withError( trans('courses/general.purchase_failed') );
+            }
+            
         }
 
 
