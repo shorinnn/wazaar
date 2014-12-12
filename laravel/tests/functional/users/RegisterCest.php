@@ -44,14 +44,14 @@ class RegisterCest{
         $I->seeCurrentUrlEquals('');
     }
     
-    public function defaultWazaarAsLtcAffiliator(FunctionalTester $I){
+    public function defaultWazaarAsLtcAffiliate(FunctionalTester $I){
         $I->amOnPage('/register');
         $I->dontSeeAuthentication();
         $I->seeNumberOfElements('input[name=email]', 1);
         $I->submitForm('form', ['username' => 'new_student', 'email' => 'new_student@mailinator.com',
                                         'password' => 'pass', 'password_confirmation' => 'pass']);
         $I->seeAuthentication();
-        $I->seeRecord('users', array('email' => 'new_student@mailinator.com', 'ltc_affiliator_id' => '2'));
+        $I->seeRecord('users', array('email' => 'new_student@mailinator.com', 'ltc_affiliate_id' => '2'));
     }
     
     public function referUserByAffiliate5(FunctionalTester $I){
@@ -63,7 +63,7 @@ class RegisterCest{
         $I->submitForm('form', ['username' => 'new_student', 'email' => 'new_student@mailinator.com',
                                         'password' => 'pass', 'password_confirmation' => 'pass']);
         $I->seeAuthentication();
-        $I->seeRecord('users', array('email' => 'new_student@mailinator.com', 'ltc_affiliator_id' => '5'));
+        $I->seeRecord('users', array('email' => 'new_student@mailinator.com', 'ltc_affiliate_id' => '5'));
     }
     
     public function overrideUserReferral(FunctionalTester $I){
@@ -77,7 +77,7 @@ class RegisterCest{
         $I->submitForm('form', ['username' => 'new_student', 'email' => 'new_student@mailinator.com',
                                         'password' => 'pass', 'password_confirmation' => 'pass']);
         $I->seeAuthentication();
-        $I->seeRecord('users', array('email' => 'new_student@mailinator.com', 'ltc_affiliator_id' => '2'));
+        $I->seeRecord('users', array('email' => 'new_student@mailinator.com', 'ltc_affiliate_id' => '2'));
     }
     
     

@@ -14,7 +14,7 @@ class AddAffiliateIdToUsersTable extends Migration {
 	{
 		Schema::table('users', function(Blueprint $table)
 		{
-			$table->string('affiliate_id')->after('ltc_affiliator_id');
+			$table->string('affiliate_id')->after('ltc_affiliate_id');
 		});
 	}
 

@@ -166,15 +166,15 @@ class UserCest{
         User::unguard();
         $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 'password_confirmation' => 'pass'];
         $user = $this->users->signup($data);
-        $I->assertEquals($user->ltc_affiliator_id, 2);
+        $I->assertEquals($user->ltc_affiliate_id, 2);
     }
     
-    public function registerUserAffilitedByAffiliator5(UnitTester $I){
+    public function registerUserAffilitedByAffiliate5(UnitTester $I){
         User::unguard();
         $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 'password_confirmation' => 'pass'];
-        $affiliator = User::where('username', 'affiliate')->first();
-        $user = $this->users->signup($data, $affiliator->affiliate_id);
-        $I->assertEquals($user->ltc_affiliator_id, $affiliator->affiliate_id);
+        $affiliate = User::where('username', 'affiliate')->first();
+        $user = $this->users->signup($data, $affiliate->affiliate_id);
+        $I->assertEquals($user->ltc_affiliate_id, $affiliate->affiliate_id);
     }
     
     

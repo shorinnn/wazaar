@@ -14,6 +14,7 @@ class CreateCoursesTable extends Migration {
 	{
 		Schema::create('courses', function ($table) {
                     $table->bigIncrements('id');
+                    $table->bigInteger('instructor_id');
                     $table->integer('course_category_id');
                     $table->string('name');
                     $table->string('slug')->unique();

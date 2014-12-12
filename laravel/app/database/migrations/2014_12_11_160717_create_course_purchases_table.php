@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCourePurchasesTable extends Migration {
+class CreateCoursePurchasesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -16,8 +16,8 @@ class CreateCourePurchasesTable extends Migration {
                     $table->bigIncrements('id');
                     $table->bigInteger('course_id');
                     $table->bigInteger('student_id');
-                    $table->bigInteger('ltc_affiliator_id');
-                    $table->bigInteger('product_affiliator_id');
+                    $table->bigInteger('ltc_affiliate_id');
+                    $table->bigInteger('product_affiliate_id');
                     $table->timestamps();
                 });
 	}

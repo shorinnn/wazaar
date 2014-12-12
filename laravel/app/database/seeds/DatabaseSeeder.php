@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
 		 $this->call('CourseCategorySeeder');
 		 $this->call('CourseDifficultySeeder');
 		 $this->call('CoursesSeeder');
+		 $this->call('CoursePurchasesSeeder');
 	}
 
 }
@@ -59,16 +60,16 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
-        $user->username = 'WazaarAffiliator';
+        $user->username = 'WazaarAffiliate';
         $user->affiliate_id = '2';
-        $user->email = 'wazaarAffiliator@wazaar.jp';
+        $user->email = 'wazaarAffiliate@wazaar.jp';
         $user->password = 'random';
         $user->password_confirmation = 'random';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
         $user->save();
         $user = new User;
-        $user->ltc_affiliator_id = 2;
+        $user->ltc_affiliate_id = 2;
         $user->username = 'student';
         $user->email = 'student@mailinator.com';
         $user->first_name = 'Student';
@@ -79,7 +80,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
-        $user->ltc_affiliator_id = 2;
+        $user->ltc_affiliate_id = 2;
         $user->username = 'instructor';
         $user->email = 'instructor@mailinator.com';
         $user->first_name = 'Instructor';
@@ -91,7 +92,7 @@ class UserTableSeeder extends Seeder {
         $user->save();
         $user = new User;
         $user->affiliate_id = '5';
-        $user->ltc_affiliator_id = 2;
+        $user->ltc_affiliate_id = 2;
         $user->username = 'affiliate';
         $user->email = 'affiliate@mailinator.com';
         $user->first_name = 'Affiliate';
@@ -102,7 +103,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
-        $user->ltc_affiliator_id = 2;
+        $user->ltc_affiliate_id = 2;
         $user->username = 'mac';
         $user->email = 'mac@mailinator.com';
         $user->first_name = 'Mac';
@@ -113,7 +114,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
-        $user->ltc_affiliator_id = 2;
+        $user->ltc_affiliate_id = 2;
         $user->username = 'jeremy';
         $user->email = 'jeremy@mailinator.com';
         $user->first_name = 'Jeremy';
@@ -124,7 +125,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
-        $user->ltc_affiliator_id = 2;
+        $user->ltc_affiliate_id = 2;
         $user->username = 'martin';
         $user->email = 'martin@mailinator.com';
         $user->first_name = 'Martin';
@@ -135,11 +136,22 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->save();
         $user = new User;
-        $user->ltc_affiliator_id = 2;
+        $user->ltc_affiliate_id = 2;
         $user->username = 'sorin';
         $user->email = 'sorin@mailinator.com';
         $user->first_name = 'Sorin';
         $user->last_name = 'Ryan';
+        $user->password = 'pass';
+        $user->password_confirmation = 'pass';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->save();
+        $user = new User;
+        $user->ltc_affiliate_id = 2;
+        $user->username = 'second_instructor';
+        $user->email = 'second_instructor@mailinator.com';
+        $user->first_name = 'SInstructor';
+        $user->last_name = 'McSInstructor';
         $user->password = 'pass';
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
@@ -172,11 +184,14 @@ class AssignedRoleTableSeeder extends Seeder {
         $instructorRole = Role::where('name','=','Instructor')->first();
         $user->attachRole( $studentRole );
         $user->attachRole( $instructorRole );
+        $user = User::where('username', '=', 'second_instructor')->first();
+        $user->attachRole( $studentRole );
+        $user->attachRole( $instructorRole );
         $user = User::where('username', '=', 'affiliate')->first();
         $affiliateRole = Role::where('name','=','Affiliate')->first();
         $user->attachRole( $studentRole );
         $user->attachRole( $affiliateRole );
-        $user = User::where('username', '=', 'wazaarAffiliator')->first();
+        $user = User::where('username', '=', 'wazaarAffiliate')->first();
         $user->attachRole( $studentRole );
         $user->attachRole( $affiliateRole );
 
@@ -228,51 +243,63 @@ class CoursesSeeder extends Seeder {
         DB::table('courses')->delete();
         Course::unguard();
         // IT Courses
-        Course::create( ['name' => 'App Development', 'slug' => 'app-development', 'course_category_id' => 1, 'price' => 300000, 
+        Course::create( ['name' => 'App Development', 'slug' => 'app-development', 'instructor_id' => 4, 'course_category_id' => 1, 'price' => 300000, 
                         'course_difficulty_id' => 1,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
                         'student_count' => 0 ]);
-        Course::create( ['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'course_category_id' => 1, 'price' => 185000.99, 
+        Course::create( ['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'price' => 185000.99, 
                         'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0 ]);
-        Course::create( ['name' => 'PHP Primer', 'slug' => 'php-primer', 'course_category_id' => 1,  'price' => 99.99, 'course_difficulty_id' => 3,
+        Course::create( ['name' => 'PHP Primer', 'slug' => 'php-primer', 'instructor_id' => 4, 'course_category_id' => 1,  'price' => 99.99, 'course_difficulty_id' => 3,
                                  'description' => 'PHP - the best language around.', 'student_count' => 0 ]);
-        Course::create( ['name' => 'PHP Primer Revisited', 'slug' => 'php-primer-revisited', 'course_category_id' => 1,  'price' => 99.99, 'course_difficulty_id' => 3,
+        Course::create( ['name' => 'PHP Primer Revisited', 'slug' => 'php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 1,  'price' => 99.99, 'course_difficulty_id' => 3,
                                  'description' => 'PHP - the best language around. REVISITED.', 'student_count' => 0 ]);
         // Business Courses
-        Course::create( ['name' => 'Business App Development', 'slug' => 'business-app-development', 'course_category_id' => 2, 'price' => 300000, 
+        Course::create( ['name' => 'Business App Development', 'slug' => 'business-app-development', 'instructor_id' => 4, 'course_category_id' => 2, 'price' => 300000, 
                         'course_difficulty_id' => 1,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
-                        'student_count' => 0 ]);
+                        'student_count' => 1 ]);
         // Investments Courses
-        Course::create( ['name' => 'Investments App Development', 'slug' => 'investments-app-development', 'course_category_id' => 3, 'price' => 300000, 
+        Course::create( ['name' => 'Investments App Development', 'slug' => 'investments-app-development', 'instructor_id' => 4, 'course_category_id' => 3, 'price' => 300000, 
                         'course_difficulty_id' => 1,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
-                        'student_count' => 0 ]);
-        Course::create( ['name' => 'Investments Javascript Primer', 'slug' => 'investments-javascript-primer', 'course_category_id' => 1, 'price' => 185000.99, 
+                        'student_count' => 2 ]);
+        Course::create( ['name' => 'Investments Javascript Primer', 'slug' => 'investments-javascript-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'price' => 185000.99, 
                         'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0 ]);
         // Music Courses
-        Course::create( ['name' => 'Music App Development', 'slug' => 'music-app-development', 'course_category_id' => 4, 'price' => 300000, 
+        Course::create( ['name' => 'Music App Development', 'slug' => 'music-app-development',  'instructor_id' => 4,'course_category_id' => 4, 'price' => 300000, 
                         'course_difficulty_id' => 1,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
                         'student_count' => 0 ]);
         // Beauty Courses
-        Course::create( ['name' => 'Beauty App Development', 'slug' => 'beauty-app-development', 'course_category_id' => 5, 'price' => 300000, 
+        Course::create( ['name' => 'Beauty App Development', 'slug' => 'beauty-app-development', 'instructor_id' => 4, 'course_category_id' => 5, 'price' => 300000, 
                         'course_difficulty_id' => 1,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
                         'student_count' => 0 ]);
-        Course::create( ['name' => 'Beauty Javascript Primer', 'slug' => 'beauty-javascript-primer', 'course_category_id' => 5, 'price' => 185000.99, 
+        Course::create( ['name' => 'Beauty Javascript Primer', 'slug' => 'beauty-javascript-primer', 'instructor_id' => 4, 'course_category_id' => 5, 'price' => 185000.99, 
                         'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0 ]);
-        Course::create( ['name' => 'Beauty PHP Primer', 'slug' => 'beauty-php-primer', 'course_category_id' => 5,  'price' => 99.99, 'course_difficulty_id' => 3,
+        Course::create( ['name' => 'Beauty PHP Primer', 'slug' => 'beauty-php-primer', 'instructor_id' => 4, 'course_category_id' => 5,  'price' => 99.99, 'course_difficulty_id' => 3,
                                  'description' => 'PHP - the best language around.', 'student_count' => 0 ]);
-        Course::create( ['name' => 'Beauty PHP Primer Revisited', 'slug' => 'beauty-php-primer-revisited', 'course_category_id' => 5,  'price' => 99.99, 'course_difficulty_id' => 3,
+        Course::create( ['name' => 'Beauty PHP Primer Revisited', 'slug' => 'beauty-php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 5,  'price' => 99.99, 'course_difficulty_id' => 3,
                                  'description' => 'PHP - the best language around. REVISITED.', 'student_count' => 0 ]);
         // Health Courses
-        Course::create( ['name' => 'Health App Development', 'slug' => 'health-app-development', 'course_category_id' => 6, 'price' => 300000, 
+        Course::create( ['name' => 'Health App Development', 'slug' => 'health-app-development', 'instructor_id' => 4, 'course_category_id' => 6, 'price' => 300000, 
                         'course_difficulty_id' => 1,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
                         'student_count' => 0 ]);
   
        
     }
+}
+    
+class CoursePurchasesSeeder extends Seeder {
 
+    public function run()
+    {
+        DB::table('course_purchases')->delete();
+        CoursePurchase::unguard();
+        CoursePurchase::create( ['course_id' => 6, 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
+        CoursePurchase::create( ['course_id' => 5, 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 2] );
+        CoursePurchase::create( ['course_id' => 6, 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
+       
+    }
 }
