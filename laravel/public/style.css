@@ -1237,9 +1237,31 @@ header .activate-dropdown:hover ul{
 
 #login-form #email,
 #register-form #email{
+	text-indent: 45px;
+}
+
+#login-form .active-input,
+#register-form .active-input{
 	border-color: #92cc2e;
 	color: #99cf3b;
-	text-indent: 45px;
+}
+
+#login-form .active-button,
+#register-form .active-button{
+	border-color: #92cc2e;
+	box-shadow: 0 7px 5px #689814 !important;
+}
+
+.form-group.email-input-container:after {
+    background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/error.png") no-repeat -4px -64px;
+    content: "";
+    display: none;
+    height: 15px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 15px;
+    z-index: 100;
 }
 
 .form-group.email-input-container::before {
@@ -1336,6 +1358,7 @@ header .activate-dropdown:hover ul{
 }
 	
 /********** Form Error Message ************/
+.js-error-message,
 .alert.alert-error.alert-danger{
 	border: 1px solid #f5aca6;
     border-radius: 10px;
@@ -1347,11 +1370,31 @@ header .activate-dropdown:hover ul{
 	background: #ffecec url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/error.png) no-repeat 9px 9px;
 }
 
+.js-error-message > span,
 .alert.alert-error.alert-danger span{
     font-weight: bold;
 	display: inline-block;
 	margin-right: 5px;
     text-transform: uppercase;
+}
+
+.js-error-message{
+	display: none;
+	margin-top: -22px;
+	margin-bottom: 0;
+	position: relative;
+	top: -9px;
+	height: 22px;
+	width: 286px;
+	line-height: 22px;
+	background-position: 9px 4px;
+	border-radius: 7px;
+	padding: 0;
+	text-indent: 35px;
+}
+
+.js-error-message > span{
+	margin-left: -37px;
 }
 
 .character-tip span,

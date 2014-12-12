@@ -28,9 +28,10 @@
     <fieldset>
         <div class="form-group email-input-container">
             <label for="email">{{{ Lang::get('confide::confide.e_mail') }}} <small>{{ Lang::get('confide::confide.signup.confirmation_required') }}</small></label>
-            <input class="form-control" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
-	        <p class="clearfix character-tip"><em class="left">Almost there!</em> <span class="block right">8 to 20 characters</span></p>
+            <input class="form-control active-input" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
+	        <p class="clearfix character-tip"><em class="left"></em><span class="block right"></span></p>
         </div>
+        <p class="js-error-message"></p>
         @if (Session::get('error'))
             <div class="alert alert-error alert-danger">
             	<span>ERROR</span>
