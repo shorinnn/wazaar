@@ -257,12 +257,12 @@ class CoursesSeeder extends Seeder {
         Course::create( ['name' => 'Business App Development', 'slug' => 'business-app-development', 'instructor_id' => 4, 'course_category_id' => 2, 'price' => 300000, 
                         'course_difficulty_id' => 1,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
-                        'student_count' => 0 ]);
+                        'student_count' => 1 ]);
         // Investments Courses
         Course::create( ['name' => 'Investments App Development', 'slug' => 'investments-app-development', 'instructor_id' => 4, 'course_category_id' => 3, 'price' => 300000, 
                         'course_difficulty_id' => 1,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
-                        'student_count' => 0 ]);
+                        'student_count' => 2 ]);
         Course::create( ['name' => 'Investments Javascript Primer', 'slug' => 'investments-javascript-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'price' => 185000.99, 
                         'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0 ]);
         // Music Courses

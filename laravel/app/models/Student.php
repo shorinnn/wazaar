@@ -52,7 +52,11 @@ class Student extends User{
             $affiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
             $purchase->product_affiliate_id = $affiliate->id;
         }
-        if($purchase->save()) return true;
+        if($purchase->save()){
+            $course->student_count+=1;
+            $course->save();
+            return true;
+        }
         else return false;
     }
     

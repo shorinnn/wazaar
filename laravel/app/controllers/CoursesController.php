@@ -29,6 +29,7 @@ class CoursesController extends \BaseController {
         
         public function purchase($slug){
             if(Auth::guest()){
+                Session::set('url.intended', action('CoursesController@show', $slug));
                 return Redirect::to('login')->withError( trans('courses/general.login_to_purchase') );
             }
             
