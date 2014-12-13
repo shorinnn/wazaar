@@ -1363,7 +1363,7 @@ header .activate-dropdown:hover ul{
 }
 	
 /********** Form Error Message ************/
-.js-error-message,
+.parsley-errors-list.filled,
 .alert.alert-error.alert-danger{
 	border: 1px solid #f5aca6;
     border-radius: 10px;
@@ -1375,7 +1375,6 @@ header .activate-dropdown:hover ul{
 	background: #ffecec url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/error.png) no-repeat 9px 9px;
 }
 
-.js-error-message > span,
 .alert.alert-error.alert-danger span{
     font-weight: bold;
 	display: inline-block;
