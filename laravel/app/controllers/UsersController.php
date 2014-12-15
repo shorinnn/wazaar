@@ -51,7 +51,7 @@ class UsersController extends Controller
             }
             Cookie::queue('ltc', null, -1);
             Auth::login($user);
-            return Redirect::to('/');
+            return Redirect::intended('/');
         } else {
             $error = $user->errors()->all(':message');
 
@@ -138,14 +138,14 @@ class UsersController extends Controller
                         $this->users->saveSocialPicture($user, "G$result[id]", "$result[picture]?sz=150");
                         //user created
                         Auth::login($user);
-                        return Redirect::to('/');
+                        return Redirect::intended('/');
                     }
                 }
             }
             else{
                 // login
                 Auth::login($user);
-                return Redirect::to('/');
+                return Redirect::intended('/');
             }
 
         }
@@ -155,7 +155,7 @@ class UsersController extends Controller
             $url = $googleService->getAuthorizationUri();
 
             // return to google login url
-            return Redirect::to( (string)$url );
+            return Redirect::intended( (string)$url );
         }
     }
     
@@ -173,7 +173,7 @@ class UsersController extends Controller
         
         if( $this->users->linkGooglePlus(Input::all(), Session::get('uid'), Session::get('gid'), Session::get('glink')) ){
             Session::flash('success', trans('acl.google_linked'));
-            return Redirect::to('/');
+            return Redirect::intended('/');
         }
         else{
             return Redirect::action('UsersController@linkGooglePlus')->with('error', trans('acl.password_not_valid'));
@@ -236,7 +236,7 @@ class UsersController extends Controller
                         $this->users->saveSocialPicture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
                         //user created
                         Auth::login($user);
-                        return Redirect::to('/');
+                        return Redirect::intended('/');
                     }
                 }
                 
@@ -244,7 +244,7 @@ class UsersController extends Controller
             else{
                 // login
                 Auth::login($user);
-                return Redirect::to('/');
+                return Redirect::intended('/');
             }
         }
         // if not ask for permission first
@@ -252,7 +252,7 @@ class UsersController extends Controller
             // get fb authorization
             $url = $fb->getAuthorizationUri();
             // return to facebook login url
-            return Redirect::to( (string)$url );
+            return Redirect::intended( (string)$url );
         }
     }
     
@@ -272,7 +272,7 @@ class UsersController extends Controller
         
         if( $this->users->linkFacebook(Input::all(), Session::get('uid'), Session::get('fbid'), Session::get('fblink')) ){
             Session::flash('success', trans('acl.facebook_linked'));
-            return Redirect::to('/');
+            return Redirect::intended('/');
         }
         else{
             return Redirect::action('UsersController@linkFacebook')->with('error', trans('acl.password_not_valid'));

@@ -96,3 +96,14 @@ Route::filter('admin', function()
 	if (Auth::guest()) return Redirect::to('/');
         if(!Auth::user()->hasRole('Admin')) return Redirect::to('/');
 });
+
+Route::filter('instructor', function()
+{
+        if(Auth::guest()) return Redirect::to('/');
+        if(!Auth::user()->hasRole('Instructor')) return Redirect::to('/');
+});
+
+Route::filter('nonInstructor', function()
+{
+        if(Auth::check() && Auth::user()->hasRole('Instructor')) return Redirect::to('/');
+});

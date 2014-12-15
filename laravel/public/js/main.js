@@ -6,5 +6,5 @@ $(document).ready(function(){
     // listen for validated fields
     $.listen('parsley:field:success', form_valid_callback);
     // listen for instant validation events
-    $('body').delegate('.instant-valid', 'keyup', instant_valid);
+    $('body').delegate('.instant-valid', 'keyup', field_instant_valid_callback);
 });

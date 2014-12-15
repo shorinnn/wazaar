@@ -3,7 +3,7 @@
  * @param event e
  * @returns bool - True if the element was valid, false otherwise
  */
-function instant_valid(e){
+function field_instant_valid_callback(e){
     // fire the instant valid callback
     if( $(e.target).parsley().isValid() ){
         $.emit('parsley:field:success');

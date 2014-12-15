@@ -33,8 +33,7 @@ Route::get('reset-password/{token}', 'UsersController@resetPassword');
 Route::post('reset-password', 'UsersController@doResetPassword');
 Route::get('logout', 'UsersController@logout');
 
-// Profile routes
-Route::get('become-instructor', 'ProfileController@becomeInstructor');
+
 
 // Admin Controller
 Route::group(array('prefix'=>'administration'),function(){
@@ -46,3 +45,10 @@ Route::get('courses/categories', 'CoursesController@categories');
 Route::get('courses/category/{slug}', 'CoursesController@category');
 Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
 Route::resource('courses', 'CoursesController');
+
+// Instructors routes
+Route::get('instructors', 'InstructorsController@index');
+Route::get('instructors/start/{user}', 'InstructorsController@start');
+Route::get('instructors/become-instructor', 'InstructorsController@become');
+Route::post('instructors/become-instructor', 'InstructorsController@doBecome');
+Route::resource('instructors', 'InstructorsController');

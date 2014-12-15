@@ -17,7 +17,6 @@ class FunctionalHelper extends \Codeception\Module
     
     public function refresh_user(\User $user){
         $user = $this->users->find($user->id);
-        \Auth::login($user);
         return $user;
     }
 }
