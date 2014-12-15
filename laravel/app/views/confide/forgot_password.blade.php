@@ -24,4 +24,3 @@
 
 </form>
 @stop
-forgot-password-page clearfix
