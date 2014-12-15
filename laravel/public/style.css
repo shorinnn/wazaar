@@ -1431,8 +1431,58 @@ header .activate-dropdown:hover ul{
 	top: 0 !important;
 }
 
+/************* Forgot Password ****************/
+#forgot-form .form-group{
+	width: 500px;
+	margin: 10% auto 20px;
+}
+
+#forgot-form label{
+	color: #849598;
+	float: left;
+	margin-top: 7px;
+}
+
+#forgot-form .input-append.input-group{
+	float: right;
+	width: 87%;
+}
+#forgot-form input.btn.btn-default{
+	background: -moz-linear-gradient(top, #4c7aa1, #314e67, #172531);
+	background: -webkit-linear-gradient(top, #4c7aa1, #314e67, #172531);
+	background: -ms-linear-gradient(top, #4c7aa1, #314e67, #172531);
+	background: -o-linear-gradient(top, #4c7aa1, #314e67, #172531);
+	background: linear-gradient(top, #4c7aa1, #314e67, #172531);
+	color: #fff;
+}
+
+#forgot-form input.btn.btn-default:hover,
+#forgot-form input.btn.btn-default:active,
+#forgot-form input.btn.btn-default:focus{
+	background: -moz-linear-gradient(top, #172531, #314e67, #4c7aa1);
+	background: -webkit-linear-gradient(top, #172531, #314e67, #4c7aa1);
+	background: -ms-linear-gradient(top, #172531, #314e67, #4c7aa1);
+	background: -o-linear-gradient(top, #172531, #314e67, #4c7aa1);
+	background: linear-gradient(top, #172531, #314e67, #4c7aa1);
+	outline: none;
+}
+
+#forgot-form + footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+#forgot-form p{
+	color: #849598;
+	margin-bottom: 53px;
+	line-height: 23px;
+}
 
 /************* Page Footer **************/
+footer{
+	clear:both;
+}
 
 .footer-container{ 
 	background-color:#ececec 
@@ -1589,8 +1639,28 @@ header .top-menu li{
 }
 }
 
+@media (max-width:520px){
+	#forgot-form .form-group{
+		width: 100%;
+		padding: 0 15px;
+	}
+}
+
 @media (max-width:475px){
+	#forgot-form label{
+		float: none;
+	}
+	
+	#forgot-form .input-append.input-group{
+		float: none;
+		width: 100%;
+		margin-top: 10px;
+	}
+}
+
+@media (max-width:380px){
 	.category-heading a{
 		float: left;
 	}																								
 }
+
