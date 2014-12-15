@@ -23,14 +23,17 @@
         </div>
     </div>
 </div>
-<form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8" id="register-form" data-parsley-validate>
+<form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8" id="register-form"
+      data-form-valid-callback="some_cool_animation" data-form-invalid-callback="remove_some_cool_animation"
+      data-parsley-validate>
     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
     <fieldset>
         <div class="form-group email-input-container">
             <label for="email">{{{ Lang::get('confide::confide.e_mail') }}} <small>{{ Lang::get('confide::confide.signup.confirmation_required') }}</small></label>
-            <input class="form-control active-input" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" 
+            <input class="form-control active-input instant-valid" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" 
                    type="email" name="email" id="email" value="{{{ Input::old('email') }}}" 
-                   required  data-parsley-trigger="change" />
+                   required  data-parsley-trigger="change" data-instant-valid-callback="append_check_mark" 
+                   data-instant-invalid-callback="remove_check_mark" />
 	        <p class="clearfix character-tip"><em class="left"></em><span class="block right"></span></p>
         </div>
         <p class="js-error-message"></p>
@@ -51,7 +54,7 @@
         </div>
         <div class="form-group">
             <label for="password_confirmation">{{{ Lang::get('confide::confide.password_confirmation') }}}</label>
-            <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password_confirmation') }}}" 
+            <input class="form-control instant-valid" placeholder="{{{ Lang::get('confide::confide.password_confirmation') }}}" 
                    type="password" name="password_confirmation" id="password_confirmation" 
                    data-parsley-equalto="#password" required  data-parsley-trigger="change" data-parsley-minlength="6" />
 	        <p class="clearfix character-tip"><span class="block">Type in the password again</span></p>
