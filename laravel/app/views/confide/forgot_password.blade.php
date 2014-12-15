@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('content')	
 
-@if (Session::get('error'))
-    <div class="alert alert-error alert-danger">{{{ Session::get('error') }}}</div>
-@endif
 
 @if (Session::get('notice'))
     <div class="alert">{{{ Session::get('notice') }}}</div>
@@ -21,5 +18,10 @@
             </span>
         </div>
     </div>
+    @if (Session::get('error'))
+        <div class="alert alert-error alert-danger">{{{ Session::get('error') }}}</div>
+    @endif
+
 </form>
 @stop
+forgot-password-page clearfix

@@ -1375,6 +1375,11 @@ header .activate-dropdown:hover ul{
 	background: #ffecec url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/error.png) no-repeat 9px 9px;
 }
 
+.forgot-password-page{
+	position: relative;
+	top: 50px;
+}
+
 .alert.alert-error.alert-danger span{
     font-weight: bold;
 	display: inline-block;
@@ -1664,3 +1669,8 @@ header .top-menu li{
 	}																								
 }
 
+@media (max-width:320px){
+	#forgot-form + footer{
+		position: relative;
+	}																								
+}
