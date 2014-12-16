@@ -1259,7 +1259,13 @@ header .activate-dropdown:hover ul{
 
 .activate-button{
 	border-color: #92cc2e;
-	box-shadow: 0 7px 5px #689814 !important;
+	box-shadow: 1px 0px 12px 2px #689814;
+	/*box-shadow: 0 7px 5px #689814 !important;*/
+}
+
+.deactivate-button{
+	border-color: #92cc2e;
+	box-shadow: none;
 }
 
 .form-group.email-input-container:after {
