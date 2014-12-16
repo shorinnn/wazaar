@@ -8,4 +8,7 @@ return array(
     'registered' => 'Registered',
     'groups' => 'Groups',
     'affiliate_id' => 'Affiliate ID',
+    'student' => 'Student|Students',
+    'published' => 'Published',
+    'updated' => 'Updated',
 );
