@@ -15,8 +15,13 @@
                 	<div class="price-tag">
                      ¥ {{ number_format($course->price, Config::get('custom.currency_decimals')) }} {{trans('courses/general.sale')}}
                 	</div>
-                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image1.jpg" alt="" 
-                    class="hidden-sm hidden-xs img-responsive">
+                    <img 
+                         @if($course->previewImage==null)
+                            src="http://placehold.it/350x150&text=Preview Unavailable"
+                        @else
+                            src="{{$course->previewImage->url}}"
+                        @endif
+                        alt="" class="hidden-sm hidden-xs img-responsive">
                     <div>
                         <div class="level"> {{ $course->courseDifficulty->name }} </div>
                         <h2>{{$course->name}}</h2>

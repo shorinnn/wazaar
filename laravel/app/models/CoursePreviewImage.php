@@ -2,6 +2,7 @@
 use LaravelBook\Ardent\Ardent;
 
 class CoursePreviewImage extends Ardent{
+    public static $skip_upload = false;
     
     public static $relationsData = array(
         'courses' => array(self::HAS_MANY, 'Course'),
@@ -9,7 +10,7 @@ class CoursePreviewImage extends Ardent{
     );
     
     public function beforeSave(){
-        $this->upload();
+        if(!self::$skip_upload) $this->upload();
     }
     public function upload(){
         $key = uniqid();
@@ -29,3 +30,4 @@ class CoursePreviewImage extends Ardent{
     }
 
 }
+

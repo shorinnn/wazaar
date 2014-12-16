@@ -97,7 +97,7 @@ class CoursesController extends \BaseController {
         
         public function category($slug=''){
             $category = CourseCategory::where('slug',$slug)->first();
-            $courses = $category->courses()->paginate(2);
+            $courses = $category->courses()->paginate(9);
             Return View::make('courses.category')->with(compact('category'))->with(compact('courses'));
         }
         

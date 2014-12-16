@@ -36,5 +36,11 @@ class Course extends Ardent{
         }
         return true;
     }
+    
+    
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured', 1);
+    }
 
 }
