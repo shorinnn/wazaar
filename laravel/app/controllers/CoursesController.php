@@ -1,11 +1,41 @@
 <?php
 
 class CoursesController extends \BaseController {
+    
+        public function __constructor(){
+            $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store'] ] );
+        }
 
 	public function index()
 	{
-            Return View::make('courses.index');
+            $categories = CourseCategory::all();
+            Return View::make('courses.index')->with(compact('categories'));
 	}
+        
+        public function create(){
+            $course = new Course;
+            $difficulties = CourseDifficulty::lists('name', 'id');
+            $categories = CourseCategory::lists('name', 'id');
+            return View::make('courses.create')->with(compact('course'))->with(compact('difficulties'))->with(compact('categories'));
+        }
+        
+        public function store(){
+            $course = new Course( input_except(['_method', '_token']) );
+            $course->instructor_id = Auth::user()->id;
+            
+            if($course->save()){
+                // upload the preview image
+                if (Input::hasFile('photo')){
+                    $course->upload_preview();
+                }
+                return Redirect::action('CoursesController@show', $course->slug)
+                        ->withSuccess( trans('crud/errors.object_created',['object' => 'Course']) );
+            }
+            else{
+                return Redirect::back()
+                        ->withError(trans('crud/errors.cannot_save_object',['object'=>'Course']).': '.format_errors($course->errors()->all()));
+            }
+        }
         
         public function categories(){
             $categories = CourseCategory::paginate(3);

@@ -7,4 +7,16 @@ $(document).ready(function(){
     $.listen('parsley:field:success', form_valid_callback);
     // listen for instant validation events
     $('body').delegate('.instant-valid', 'keyup', field_instant_valid_callback);
+    
+    $('body').delegate('.has-slug', 'keyup', update_slug);
 });
+
+
+function update_slug(e){
+    target = $(e.target).attr('data-slug-target');
+    $(target).val( convertToSlug( $(e.target).val() ) );
+}
+
+function convertToSlug(text){
+     return text.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+}

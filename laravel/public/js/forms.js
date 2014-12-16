@@ -6,7 +6,7 @@
 function field_instant_valid_callback(e){
     // fire the instant valid callback
     if( $(e.target).parsley().isValid() ){
-        $.emit('parsley:field:success');
+        $(e.target).trigger('blur change');
         if( typeof($(e.target).attr('data-instant-valid-callback')) !='undefined') {
             window[$(e.target).attr('data-instant-valid-callback')]( $(e.target) );
             return true;
@@ -14,8 +14,9 @@ function field_instant_valid_callback(e){
     }
     // fire the instant invalid callback
     else{
-        $.emit('parsley:field:error');
+//        $(e.target).trigger('blur change');
         form_invalid_callback(e);
+   
         if( typeof($(e.target).attr('data-instant-invalid-callback')) !='undefined') {
             window[$(e.target).attr('data-instant-invalid-callback')]( $(e.target) );
         }
@@ -29,7 +30,7 @@ function field_instant_valid_callback(e){
  * @returns bool - True on fired, false otherwise
  */
 function form_valid_callback(e){
-    if( typeof($element)=='undefined' ){
+    if( typeof(e.$element)=='undefined' ){
         e = {};
         e.$element = $(event.srcElement);
     }
@@ -58,9 +59,10 @@ function form_valid_callback(e){
  * @returns {undefined}
  */
 function form_invalid_callback(e){
-    if( typeof($element)=='undefined' ){
+    if( typeof(e.$element)=='undefined' ){
+        target = e.target;
         e = {};
-        e.$element = $(event.srcElement);
+        e.$element = $(target) ;// || $(event.srcElement);
     }
     $form = e.$element.closest('form');
     if($form.attr('data-validation-callback-called')==1){
