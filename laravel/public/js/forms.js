@@ -85,10 +85,10 @@ function confirmDelete(e){
  *  This will append an icon to the email area if valid
  * @param object $element
  */
-function append_check_mark($element){
-    id = $element.attr('data-parsley-id');
-    $('.check-'+id).remove();
-    $element.after("<i class='check-"+id+" glyphicon glyphicon-ok'></i>");
+
+function append_green_border($element){
+    $element.addClass("active-input");
+    $element.removeClass("invalid-input");
 }
 
 /** this function is defined as the email field invalid callback
@@ -96,9 +96,9 @@ function append_check_mark($element){
  *  This will remove the check icon if the value becomes invalid
  * @param object $element
  */
-function remove_check_mark($element){
-    id = $element.attr('data-parsley-id');
-    $('.check-'+id).remove();
+function append_red_border($element){
+    $element.addClass("invalid-input");
+    $element.removeClass("active-input");
 }
 
 /** this function is defined as the form valid callback
@@ -106,8 +106,8 @@ function remove_check_mark($element){
  * Just put some text before the form. Can do anything: make the submit btn glow, the form shake, etc
  * @param object $form
  */
-function some_cool_animation($form){
-    $form.before("<p class='form-success alert alert-success register-form-success'>FORM IS VALID! This can also be anything else: animation, dom change, etc</p>");
+function activate_submit_button($form){
+    $form.children("button").addClass("activate-button");
 }
 
 /** this function is defined as the form invalid callback

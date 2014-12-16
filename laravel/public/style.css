@@ -1251,8 +1251,13 @@ header .activate-dropdown:hover ul{
 	color: #99cf3b;
 }
 
-#login-form .active-button,
-#register-form .active-button{
+#login-form .invalid-input,
+#register-form .invalid-input{
+	border-color: #ff0000;
+	color: #555;
+}
+
+.activate-button{
 	border-color: #92cc2e;
 	box-shadow: 0 7px 5px #689814 !important;
 }
