@@ -107,7 +107,7 @@ function append_red_border($element){
  * @param object $form
  */
 function activate_submit_button(){
-    glowButton();
+    animateBoxShadow();
 }
 
 /** this function is defined as the form invalid callback
@@ -119,7 +119,6 @@ function remove_some_cool_animation($form){
     $(".register-form-success").remove();
 }
 
-function glowButton(){
     anim_count = 0;
     required_anim_count = 2;
     function animateBoxShadow() {
@@ -135,5 +134,4 @@ function glowButton(){
             }
         });
     }
-}
 /* end example instant valid callbacks */
