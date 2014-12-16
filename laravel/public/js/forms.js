@@ -106,8 +106,8 @@ function append_red_border($element){
  * Just put some text before the form. Can do anything: make the submit btn glow, the form shake, etc
  * @param object $form
  */
-function activate_submit_button($form){
-    $form.children("button").addClass("activate-button");
+function activate_submit_button(){
+    animateBoxShadow();
 }
 
 /** this function is defined as the form invalid callback
@@ -118,4 +118,20 @@ function activate_submit_button($form){
 function remove_some_cool_animation($form){
     $(".register-form-success").remove();
 }
+
+    anim_count = 0;
+    required_anim_count = 2;
+    function animateBoxShadow() {
+        $('#submit-button').switchClass('deactivate-button', 'activate-button', 200, function(){
+            if (anim_count < required_anim_count) {
+                // call the animation again in 2 seconds
+                anim_count++;
+                setTimeout(animateBoxShadow, 2000);
+            }
+            else {
+                // reset the counter
+                anim_count = 0;
+            }
+        });
+    }
 /* end example instant valid callbacks */

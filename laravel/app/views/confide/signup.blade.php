@@ -66,7 +66,7 @@
         
 
         <div class="form-actions form-group">
-          <button type="submit" class="btn btn-primary">{{{ Lang::get('confide::confide.signup.submit') }}}</button>
+          <button type="submit" id="submit-button" class="btn btn-primary deactivate-button">{{{ Lang::get('confide::confide.signup.submit') }}}</button>
         </div>
 
     </fieldset>
