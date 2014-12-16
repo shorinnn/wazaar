@@ -35,7 +35,7 @@
                             @endif
                         </div>
                         <div class="students-attending">
-                          {{ $course->student_count }} Students
+                            {{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}
                         </div>            
                       </div>
                   </div>

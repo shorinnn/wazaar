@@ -34,7 +34,18 @@ class StudentCest{
         $student->purchase($course);
         $student = Student::where('username','student')->first();
         $I->assertTrue( $student->purchased($course) );
-        
+    }
+    
+    public function purchaseIncrementStudentsCount(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        $course = Course::find(1);
+        $count = $course->student_count;
+        $I->assertTrue( $student->purchase( $course ) );
+        $student = Student::where('username','student')->first();
+        $I->assertTrue( $student->purchased($course) );
+        $count++;
+        $course = Course::find(1);
+        $I->assertEquals($course->student_count, $count );
     }
     
     public function denyDuplicatePurchases(UnitTester $I){

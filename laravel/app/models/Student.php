@@ -53,8 +53,8 @@ class Student extends User{
             $purchase->product_affiliate_id = $affiliate->id;
         }
         if($purchase->save()){
-            $course->student_count+=1;
-            $course->save();
+            $course->student_count += 1;
+            $course->updateUniques();
             return true;
         }
         else return false;

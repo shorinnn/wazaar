@@ -19,8 +19,7 @@
                 <a href="{{action("CoursesController@show", $course->slug)}}">Learn more</a>
             </div>
             <div class="students-attending">
-                {{ $course->student_count }}
-                {{Lang::choice('general.student', $course->student_count)}}
+                {{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}
             </div>            
         </div> 
     </div>

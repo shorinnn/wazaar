@@ -37,6 +37,16 @@ class ShowCourseCest{
         $I->seeNumberOfElements('#purchase-form', 0);
     }
     
+    public function seeStudentCounterIncrement(FunctionalTester $I){
+        $instructor = Instructor::where('username', 'student')->first();
+        $I->amLoggedAs($instructor);
+        $I->seeAuthentication();
+        $I->amOnPage('/courses/app-development');
+        $I->see('0 Students');
+        $I->click('Purchase');
+        $I->see('1 Student');
+    }
+    
     
     
 }
