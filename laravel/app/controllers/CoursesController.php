@@ -3,7 +3,7 @@
 class CoursesController extends \BaseController {
     
         public function __constructor(){
-            $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store'] ] );
+            $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update'] ] );
         }
 
 	public function index()
@@ -16,17 +16,24 @@ class CoursesController extends \BaseController {
             $course = new Course;
             $difficulties = CourseDifficulty::lists('name', 'id');
             $categories = CourseCategory::lists('name', 'id');
-            return View::make('courses.create')->with(compact('course'))->with(compact('difficulties'))->with(compact('categories'));
+            $instructor = Instructor::find(Auth::user()->id);
+            $images = $instructor->coursePreviewImages;
+            return View::make('courses.form')->with(compact('course'))->with(compact('images'))
+                    ->with(compact('difficulties'))->with(compact('categories'));
         }
         
         public function store(){
-            $course = new Course( input_except(['_method', '_token']) );
+            $data = input_except(['_method', '_token']);
+            $course = new Course( $data );
             $course->instructor_id = Auth::user()->id;
-            
+            $course->course_preview_image_id = Input::get("course_preview_image_id");
             if($course->save()){
                 // upload the preview image
-                if (Input::hasFile('photo')){
-                    $course->upload_preview();
+                if (Input::hasFile('preview_image')){
+                    if(!$course->upload_preview( Input::file('preview_image')->getRealPath() )){
+                        return Redirect::action('CoursesController@show', $course->slug)
+                        ->withError( trans('courses/general.course_created_image_error') );
+                    }
                 }
                 return Redirect::action('CoursesController@show', $course->slug)
                         ->withSuccess( trans('crud/errors.object_created',['object' => 'Course']) );
@@ -35,6 +42,52 @@ class CoursesController extends \BaseController {
                 return Redirect::back()
                         ->withError(trans('crud/errors.cannot_save_object',['object'=>'Course']).': '.format_errors($course->errors()->all()));
             }
+        }
+        
+         public function edit($slug){
+            $course = Course::where('slug',$slug)->first();
+            if($course->instructor->id != Auth::user()->id){
+                return Redirect::action('CoursesController@index');
+            }
+            $difficulties = CourseDifficulty::lists('name', 'id');
+            $categories = CourseCategory::lists('name', 'id');
+            $instructor = Instructor::find(Auth::user()->id);
+            $images = $instructor->coursePreviewImages;
+            return View::make('courses.form')->with(compact('course'))->with(compact('images'))
+                    ->with(compact('difficulties'))->with(compact('categories'));
+        }
+        
+        public function update($slug){
+            $course = Course::where('slug',$slug)->first();
+            if($course->instructor->id != Auth::user()->id){
+                return Redirect::action('CoursesController@index');
+            }
+            $data = input_except(['_method', '_token']);
+            if( Input::has("course_preview_image_id") ) $course->course_preview_image_id = Input::get("course_preview_image_id");
+            $course->fill($data);
+            if($course->updateUniques()){
+                // upload the preview image
+                if (Input::hasFile('preview_image')){
+                    if(!$course->upload_preview( Input::file('preview_image')->getRealPath() )){
+                        return Redirect::action('CoursesController@edit', $course->slug)
+                        ->withError( trans('courses/general.course_created_image_error') );
+                    }
+                }
+                return Redirect::action('CoursesController@edit', $course->slug)
+                        ->withSuccess( trans('crud/errors.object_updated',['object' => 'Course']) );
+            }
+            else{
+                return Redirect::back()
+                        ->withError(trans('crud/errors.cannot_save_object',['object'=>'Course']).': '.format_errors($course->errors()->all()));
+            }
+        }
+        
+        
+        
+        public function myCourses(){
+            $instructor = Instructor::find(Auth::user()->id);
+            $courses = $instructor->courses()->paginate(10);
+            Return View::make('courses.myCourses')->with(compact('courses'));
         }
         
         public function categories(){
@@ -75,6 +128,17 @@ class CoursesController extends \BaseController {
                 return Redirect::action('CoursesController@show', $slug)->withError( trans('courses/general.purchase_failed') );
             }
             
+        }
+        
+        public function destroy($id){
+            $course = Course::find($id);
+            if( $course->instructor->id == Auth::user()->id ){
+                $course->delete();
+                return Redirect::back()->withSuccess( trans('crud/errors.object_deleted',['object'=>'Course']));
+            }
+            else{
+                return Redirect::back()->withError( trans('crud/errors.cannot_delete_object',['object'=>'Course']) );
+            }
         }
 
 

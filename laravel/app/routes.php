@@ -41,6 +41,7 @@ Route::group(array('prefix'=>'administration'),function(){
 });
 
 // Courses Controller
+Route::get('courses/mycourses', 'CoursesController@myCourses');
 Route::get('courses/categories', 'CoursesController@categories');
 Route::get('courses/category/{slug}', 'CoursesController@category');
 Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
