@@ -245,7 +245,7 @@ class CoursesSeeder extends Seeder {
         Course::unguard();
         // IT Courses
         Course::create( ['name' => 'App Development', 'slug' => 'app-development', 'instructor_id' => 4, 'course_category_id' => 1, 'price' => 300000, 
-                        'course_difficulty_id' => 1, 'course_preview_image_id' => 1,
+                        'course_difficulty_id' => 1, 'course_preview_image_id' => 1, 'featured' => 1,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
                         'student_count' => 0 ]);
         Course::create( ['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'price' => 185000.99, 
