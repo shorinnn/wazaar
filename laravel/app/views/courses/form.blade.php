@@ -14,6 +14,7 @@
     @else
     {{ Form::model($course, ['action' => ['CoursesController@store'], 'id' =>'create-form', 'files' => true])}}
     @endif
+    <tr><td>Privacy Status</td><td>{{ Form::select('privacy_status', [ 'private' => 'Private', 'public' => 'Public']) }}</td></tr>    
     <tr><td>Category</td><td>{{ Form::select('course_category_id', $categories) }}</td></tr>    
     <tr><td>Sub Category</td><td>{{ Form::select('course_subcategory_id', $subcategories) }}</td></tr>    
     <tr><td>Difficulty</td><td>{{ Form::select('course_difficulty_id', $difficulties) }}</td></tr>    

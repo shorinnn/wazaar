@@ -38,6 +38,16 @@ class HomepageCest{
         $I->dontSee('AN INSTRUCTOR');
     }
     
+    public function seeOnlyPublicCourse(FunctionalTester $I){
+        $I->amOnPage('/');
+        $I->see('Beauty PHP Primer Revisited');
+        $course = Course::where('name', 'Beauty PHP Primer Revisited')->first();
+        $course->privacy_status = 'private';
+        $course->save();
+        $I->amOnPage('/');
+        $I->dontSee('Beauty Beauty PHP Primer Revisited');
+    }
+    
     
     
     

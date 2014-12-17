@@ -16,5 +16,11 @@ class CourseSubcategory extends Ardent{
         }
         return $subcategories;
     }
+    
+        
+    public function courses($privacy_status = 'public'){
+        if($privacy_status=='public') return Course::where('course_subcategory_id', $this->id)->where('privacy_status', 'public');
+        return Course::where('course_subcategory_id', $this->id); 
+   }
 
 }

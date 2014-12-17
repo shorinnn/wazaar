@@ -99,14 +99,14 @@ class CoursesController extends \BaseController {
         
         public function category($slug=''){
             $category = CourseCategory::where('slug',$slug)->first();
-            $courses = $category->courses()->paginate(9);
+            $courses = $category->courses()->orderBy('id','Desc')->paginate(9);
             Return View::make('courses.category')->with(compact('category'))->with(compact('courses'));
         }
         
         public function subCategory($slug='', $subcat=''){
             $category =  CourseCategory::where('slug',$slug)->first();
             $subcategory = CourseSubcategory::where('slug',$subcat)->first();
-            $courses = $subcategory->courses()->paginate(9);
+            $courses = $subcategory->courses()->orderBy('id','Desc')->paginate(9);
             Return View::make('courses.category')->with(compact('category'))->with(compact('courses'))->with(compact('subcategory'));
         }
         

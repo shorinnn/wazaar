@@ -4,7 +4,8 @@ use LaravelBook\Ardent\Ardent;
 class Course extends Ardent{
 
     
-    public $fillable = ['name', 'slug', 'description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id', 'course_image_preview_id'];
+    public $fillable = ['name', 'slug', 'description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
+        'course_image_preview_id', 'privacy_status'];
     public static $rules = [
         'name' => 'required',
         'slug' => 'required|alpha_dash|unique:courses|not_in:index,show,create,store,categories,category,purchase,mycourses,destroy,edit,update',
@@ -42,7 +43,7 @@ class Course extends Ardent{
     
     public function scopeFeatured($query)
     {
-        return $query->where('featured', 1);
+        return $query->where('featured', 1)->where('privacy_status', 'public');
     }
     
     public function beforeDelete(){
