@@ -17,6 +17,7 @@ class CreateCoursesTable extends Migration {
                     $table->bigInteger('instructor_id');
                     $table->bigInteger('course_preview_image_id')->nullable();
                     $table->integer('course_category_id');
+                    $table->integer('course_subcategory_id');
                     $table->string('name');
                     $table->string('slug')->unique();
                     $table->text('description');
@@ -24,6 +25,7 @@ class CreateCoursesTable extends Migration {
                     $table->integer('featured')->default(0);
                     $table->integer('course_difficulty_id');
                     $table->integer('student_count');
+                    $table->enum('privacy_status', ['private', 'public']);
                     $table->timestamps();
                 });
 	}

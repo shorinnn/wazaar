@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b097e07f45a2396f52ff01a6e1828a07",
+    "hash": "88a7da6208e32cab44c779841442679f",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -56,16 +56,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "2.7.8",
+            "version": "2.7.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "f342e5c0a80c6390b2d618f5507997d73194d3f6"
+                "reference": "f315695a5a8995f7c0c163189441a5a1d04989d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f342e5c0a80c6390b2d618f5507997d73194d3f6",
-                "reference": "f342e5c0a80c6390b2d618f5507997d73194d3f6",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f315695a5a8995f7c0c163189441a5a1d04989d0",
+                "reference": "f315695a5a8995f7c0c163189441a5a1d04989d0",
                 "shasum": ""
             },
             "require": {
@@ -119,7 +119,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2014-12-04 21:37:52"
+            "time": "2014-12-12 18:07:09"
         },
         {
             "name": "aws/aws-sdk-php-laravel",
@@ -695,6 +695,62 @@
             "time": "2014-08-17 21:15:53"
         },
         {
+            "name": "intervention/image",
+            "version": "2.0.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "e012301c8596118578c4abef178955888d02b435"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/e012301c8596118578c4abef178955888d02b435",
+                "reference": "e012301c8596118578c4abef178955888d02b435",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "3.*"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@olivervogel.net",
+                    "homepage": "http://olivervogel.net/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "time": "2014-12-12 15:45:28"
+        },
+        {
             "name": "ircmaxell/password-compat",
             "version": "v1.0.4",
             "source": {
@@ -786,16 +842,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v4.2.11",
+            "version": "v4.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "e29253c7f29e3b1ca716de7fe309b272e3ddf47d"
+                "reference": "70a60f2ff9b96b3fcd88a68ef5382557733fe671"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/e29253c7f29e3b1ca716de7fe309b272e3ddf47d",
-                "reference": "e29253c7f29e3b1ca716de7fe309b272e3ddf47d",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/70a60f2ff9b96b3fcd88a68ef5382557733fe671",
+                "reference": "70a60f2ff9b96b3fcd88a68ef5382557733fe671",
                 "shasum": ""
             },
             "require": {
@@ -897,7 +953,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2014-10-04 18:48:27"
+            "time": "2014-12-11 17:14:36"
         },
         {
             "name": "laravelbook/ardent",
@@ -2121,16 +2177,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.3.0",
+            "version": "v5.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "b86b927dfefdb56ab0b22d1350033d9a38e9f205"
+                "reference": "c5f963e7f9d6f6438fda4f22d5cc2db296ec621a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/b86b927dfefdb56ab0b22d1350033d9a38e9f205",
-                "reference": "b86b927dfefdb56ab0b22d1350033d9a38e9f205",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/c5f963e7f9d6f6438fda4f22d5cc2db296ec621a",
+                "reference": "c5f963e7f9d6f6438fda4f22d5cc2db296ec621a",
                 "shasum": ""
             },
             "require": {
@@ -2169,7 +2225,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2014-10-04 05:53:18"
+            "time": "2014-12-05 14:17:14"
         },
         {
             "name": "symfony/browser-kit",
@@ -2544,6 +2600,7 @@
             "description": "Symfony Filesystem Component",
             "homepage": "http://symfony.com",
             "time": "2014-12-02 20:19:20"
+        },
         {
             "name": "symfony/finder",
             "version": "v2.5.8",

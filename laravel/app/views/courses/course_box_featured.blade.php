@@ -16,7 +16,12 @@
         <div class="featured-contents-container">
             <div class="level">{{ $course->courseDifficulty->name }}</div>
             <h2>{{ $course->name }}</h2>
-            <p>{{ $course->description }}</p>
+            <p>{{ $course->description }}
+                <br />
+            <small>Subcategory: 
+                <a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>
+            </small>
+            </p>
             <div class="next_">
                 <div class="learn-more">
                     <a href="{{action("CoursesController@show", $course->slug)}}">Learn more</a>

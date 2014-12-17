@@ -15,7 +15,8 @@
 		"phpunit/phpunit": "4.0.*",
 		"mockery/mockery": "0.9.*",
 		"fabpot/goutte": "~2.0",
-		"codeception/codeception": "*"
+		"codeception/codeception": "*",
+		"intervention/image": "~2.0"
 	},
 	"autoload": {
 		"classmap": [

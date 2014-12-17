@@ -38,7 +38,7 @@
             </div>       
         
             <div class="row {{ $row_class }}-row">
-                @foreach($category->courses()->where('featured',0)->take(3)->get() as $course)
+                @foreach($category->courses()->orderBy('id','Desc')->where('featured',0)->take(3)->get() as $course)
                     {{ View::make('courses.course_box')->with(compact('course')) }}
                 @endforeach
             </div>
