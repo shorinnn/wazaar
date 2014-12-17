@@ -125,6 +125,7 @@ return array(
                 'Zizaco\Entrust\EntrustServiceProvider',
                 'Artdarek\OAuth\OAuthServiceProvider',
                 'Aws\Laravel\AwsServiceProvider',
+                'Intervention\Image\ImageServiceProvider',
 
 	),
 
@@ -196,7 +197,7 @@ return array(
                 'Entrust'           => 'Zizaco\Entrust\EntrustFacade',
                 'OAuth'             => 'Artdarek\OAuth\Facade\OAuth',
                 'AWS'               => 'Aws\Laravel\AwsFacade',
-
+                'Image' => 'Intervention\Image\Facades\Image',
 	),
 
 );
