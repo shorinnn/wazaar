@@ -560,9 +560,19 @@ header .activate-dropdown:hover ul{
 	float: left;
 }
 
+.big-box .featured-img-container{
+	float: left;
+	width: 50%;
+}
+
+.big-box .featured-contents-container{
+	width: 50%;
+	float: right;
+}
+
 .big-box p{ 
 	font-size:12px;color:#fff;float:right;clear:both;
- 	min-height:100px;
+ 	min-height:130px;
   	max-width:450px;
   	width:100%;
   	text-align:left;
@@ -1621,6 +1631,16 @@ footer{
 	padding:0px;
 	text-align:center;
 }	
+}
+
+@media (max-width:991px){
+	.big-box .featured-contents-container {
+		width: 100%;
+	}
+	
+	.big-box p{
+		min-height: 110px;
+	}
 }
 
 @media (max-width:767px){

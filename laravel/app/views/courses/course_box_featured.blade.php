@@ -1,8 +1,9 @@
 
-    <div class="object big-box">
+    <div class="object big-box clearfix">
         <div class="price-tag">
             ¥ {{ number_format($course->price, Config::get('custom.currency_decimals')) }} {{trans('courses/general.sale')}}
         </div>
+        <div class="featured-img-container hidden-sm hidden-xs">
         <img
             @if($course->previewImage==null)
                 src="http://placehold.it/350x150&text=Preview Unavailable"
@@ -11,7 +12,8 @@
             @endif
             alt="" 
              class="hidden-sm hidden-xs img-responsive">
-        <div>
+        </div>
+        <div class="featured-contents-container">
             <div class="level">{{ $course->courseDifficulty->name }}</div>
             <h2>{{ $course->name }}</h2>
             <p>{{ $course->description }}</p>
