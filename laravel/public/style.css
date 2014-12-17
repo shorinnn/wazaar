@@ -574,8 +574,9 @@ header .activate-dropdown:hover ul{
   	max-width:460px;
   	width:100%;
   	text-align:left;
-  	clear:both; 
-  	margin-top: 
+  	clear:both;
+	position: relative;
+	top: 25px; 
 }
 
 .big-box .students-attending{ 
@@ -621,7 +622,7 @@ header .activate-dropdown:hover ul{
   	background-repeat:no-repeat;
   	background-position:top left;
  	border-radius:5px;
-  	min-height:250px;
+  	height:350px;
   	background-repeat:no-repeat;
   	position:relative;
   	margin-top:30px;
@@ -653,14 +654,13 @@ header .activate-dropdown:hover ul{
 }
 
 .small-box .next_{
-  	float:right;
-  	max-width:460px;
   	width:100%;
   	text-align:left;
   	padding-left:20px;
-  	display:inline-table;
-  	clear:both; 
-  	padding-bottom:30px;  
+  	clear:both;
+	position: absolute;
+	bottom: 15px;
+	right: 0;
 }
 
 .learn-more a{ 
@@ -689,7 +689,8 @@ header .activate-dropdown:hover ul{
 }
 
 .small-box img{
-	min-width: 100%;
+	width: 100%;
+	height: 166px;
 }
   
 .small-box h2{
@@ -1040,18 +1041,19 @@ header .activate-dropdown:hover ul{
 	margin-top:0px 
 }
 
-.become-an-instructor a{ 
-	background-color:#92cc2e;
-	margin: 49px auto 60px;
-	color:#18222b;
-	font-size:14px;
-	padding:10px 30px;
-	display:block;
-	overflow:hidden;
-	border-radius:5px;
-	border:0px;
+.become-an-instructor a {
+    background-color: #92cc2e;
+    border: 0 none;
+    border-radius: 5px;
+    color: #18222b;
+    display: block;
+    font-size: 14px;
+    height: 42px;
+    margin: 49px auto 60px;
+    overflow: hidden;
+    padding: 13px 30px 0;
+    width: 135px;
 }
-
 /************** Register and Login Page ******************/
 .login-page.top-blue-section,
 .register-page.top-blue-section{
@@ -1592,8 +1594,6 @@ footer{
 @media (max-width:1002px){
 .big-box .price-tag{ 
 	top:auto;
-	bottom:0px;
-	border-radius:0px 8px 0px 0px
 }
 
 .big-box h2{ 
