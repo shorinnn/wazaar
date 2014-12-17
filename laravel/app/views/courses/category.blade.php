@@ -8,7 +8,12 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="category-heading">         
                         <div class="clearfix">
-                            <p class="lead"> {{ $category->name }} <small>{{ $category->description }}</small></p>
+                            <p class="lead"> {{ $category->name }} 
+                                @if(isset($subcategory))
+                                    {{" > $subcategory->name"}}
+                                @endif
+                                
+                                <small>{{ $category->description }}</small></p>
                                                     </div>
                     </div>
                 </div>

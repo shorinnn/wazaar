@@ -72,4 +72,32 @@ class CourseCest{
         $I->assertEquals('Cannot delete this course because students have already purchased it', $course->errors()->first());
     }
     
+    public function createCourse(UnitTester $I){
+        $course = new Course();
+        $course->name = 'New App Development';
+        $course->slug = 'new-app-development';
+        $course->instructor_id = 4;
+        $course->course_category_id = 1;
+        $course->course_subcategory_id = 1;
+        $course->price = 300000;
+        $course->course_difficulty_id = 1;
+        $course->description = 'Create your very first application in 2 weeks! You get a beginner award after completing the course.';
+        $course->student_count =  0;
+        $I->assertTrue( $course->save() );
+    }
+    
+    public function failWrongSubcategory(UnitTester $I){
+        $course = new Course();
+        $course->name = 'New App Development';
+        $course->slug = 'new-app-development';
+        $course->instructor_id = 4;
+        $course->course_category_id = 1;
+        $course->course_subcategory_id = 2;
+        $course->price = 300000;
+        $course->course_difficulty_id = 1;
+        $course->description = 'Create your very first application in 2 weeks! You get a beginner award after completing the course.';
+        $course->student_count =  0;
+        $I->assertFalse( $course->save() );
+    }
+    
 }

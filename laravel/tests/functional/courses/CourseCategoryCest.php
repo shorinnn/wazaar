@@ -20,6 +20,12 @@ class CourseCategoryCest{
         $I->seeCurrentUrlEquals('/courses/javascript-primer');
     }
     
+    public function getToJSSubcategory(FunctionalTester $I){
+        $I->amOnPage('/courses/category/it-and-technology');
+        $I->click('javascript');
+        $I->seeCurrentUrlEquals('/courses/category/it-and-technology/javascript');
+    }
+    
   
     
     

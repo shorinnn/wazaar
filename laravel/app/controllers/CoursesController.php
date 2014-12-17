@@ -16,10 +16,11 @@ class CoursesController extends \BaseController {
             $course = new Course;
             $difficulties = CourseDifficulty::lists('name', 'id');
             $categories = CourseCategory::lists('name', 'id');
+            $subcategories = CourseSubcategory::arrayWithParent();
             $instructor = Instructor::find(Auth::user()->id);
             $images = $instructor->coursePreviewImages;
             return View::make('courses.form')->with(compact('course'))->with(compact('images'))
-                    ->with(compact('difficulties'))->with(compact('categories'));
+                    ->with(compact('difficulties'))->with(compact('categories'))->with(compact('subcategories'));
         }
         
         public function store(){
@@ -39,7 +40,7 @@ class CoursesController extends \BaseController {
                         ->withSuccess( trans('crud/errors.object_created',['object' => 'Course']) );
             }
             else{
-                return Redirect::back()
+                return Redirect::back()->withInput()
                         ->withError(trans('crud/errors.cannot_save_object',['object'=>'Course']).': '.format_errors($course->errors()->all()));
             }
         }
@@ -51,10 +52,11 @@ class CoursesController extends \BaseController {
             }
             $difficulties = CourseDifficulty::lists('name', 'id');
             $categories = CourseCategory::lists('name', 'id');
+            $subcategories = CourseSubcategory::arrayWithParent();
             $instructor = Instructor::find(Auth::user()->id);
             $images = $instructor->coursePreviewImages;
             return View::make('courses.form')->with(compact('course'))->with(compact('images'))
-                    ->with(compact('difficulties'))->with(compact('categories'));
+                    ->with(compact('difficulties'))->with(compact('categories'))->with(compact('subcategories'));
         }
         
         public function update($slug){
@@ -99,6 +101,13 @@ class CoursesController extends \BaseController {
             $category = CourseCategory::where('slug',$slug)->first();
             $courses = $category->courses()->paginate(9);
             Return View::make('courses.category')->with(compact('category'))->with(compact('courses'));
+        }
+        
+        public function subCategory($slug='', $subcat=''){
+            $category =  CourseCategory::where('slug',$slug)->first();
+            $subcategory = CourseSubcategory::where('slug',$subcat)->first();
+            $courses = $subcategory->courses()->paginate(9);
+            Return View::make('courses.category')->with(compact('category'))->with(compact('courses'))->with(compact('subcategory'));
         }
         
         public function show($slug){
