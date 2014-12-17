@@ -42,5 +42,12 @@ class Course extends Ardent{
     {
         return $query->where('featured', 1);
     }
+    
+    public function beforeDelete(){
+        if($this->student_count > 0){
+            $this->errors()->add(0, trans('courses/general.cannot_delete_has_students') );
+            return false;
+        }
+    }
 
 }

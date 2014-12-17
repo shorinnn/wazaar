@@ -2,7 +2,7 @@
 
 class CoursesController extends \BaseController {
     
-        public function __constructor(){
+        public function __construct(){
             $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update'] ] );
         }
 
