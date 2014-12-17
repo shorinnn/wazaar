@@ -533,7 +533,6 @@ header .activate-dropdown:hover ul{
 /************** Category rows ******************/
 .big-box{
 	border-radius:5px;
-  	min-height:250px;
   	background-repeat:no-repeat;
   	position:relative;
 }
@@ -572,7 +571,7 @@ header .activate-dropdown:hover ul{
 
 .big-box p{ 
 	font-size:12px;color:#fff;float:right;clear:both;
- 	min-height:130px;
+ 	min-height:100px;
   	max-width:450px;
   	width:100%;
   	text-align:left;
@@ -586,7 +585,7 @@ header .activate-dropdown:hover ul{
   	text-align:left;
   	clear:both;
 	position: relative;
-	top: 25px; 
+	top: 0; 
 }
 
 .big-box .students-attending{ 
@@ -1638,9 +1637,6 @@ footer{
 		width: 100%;
 	}
 	
-	.big-box p{
-		min-height: 110px;
-	}
 }
 
 @media (max-width:767px){
