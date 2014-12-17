@@ -5,7 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Wazaar | Home</title>    
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{url('style.css')}}">
     
@@ -44,10 +45,15 @@
           </section>          
         </footer>
     </div>    
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>
+    <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>-->
+    <script src="{{url("js/bootstrap.min.js")}}"></script>
+    <script src="{{url("js/jquery.min.js")}}"></script>
+    <script src="{{url("js/parsley.min.js")}}"></script>
     <script src="{{url("js/main.js")}}"></script>
     <script src="{{url("js/forms.js")}}"></script>
-</body>
+    <script src="{{url("js/tweenmax.min.js")}}"></script>
+    <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>-->
+	</body>
 </html>
