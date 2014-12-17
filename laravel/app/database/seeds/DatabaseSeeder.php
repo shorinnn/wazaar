@@ -245,11 +245,12 @@ class CoursesSeeder extends Seeder {
         Course::unguard();
         // IT Courses
         Course::create( ['name' => 'App Development', 'slug' => 'app-development', 'instructor_id' => 4, 'course_category_id' => 1, 'price' => 300000, 
-                        'course_difficulty_id' => 1, 'course_preview_image_id' => 1, 'featured' => 1,
+                        'course_difficulty_id' => 1, 'course_preview_image_id' => 1, 
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
                         'student_count' => 0 ]);
         Course::create( ['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'price' => 185000.99, 
-                        'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0,  'course_preview_image_id' => 2, ]);
+                        'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0, 
+                        'course_preview_image_id' => 2, 'featured' => 1 ]);
         Course::create( ['name' => 'PHP Primer', 'slug' => 'php-primer', 'instructor_id' => 4, 'course_category_id' => 1,  'price' => 99.99, 'course_difficulty_id' => 3,
                                  'description' => 'PHP - the best language around.', 'student_count' => 0,  'course_preview_image_id' => 3, ]);
         Course::create( ['name' => 'PHP Primer Revisited', 'slug' => 'php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 1,  'price' => 99.99, 'course_difficulty_id' => 3,
