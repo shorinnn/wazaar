@@ -43,6 +43,9 @@
             </div>
         </section>
         <section class="main-content-container clearfix">
+            @if($course->bannerImage!=null)
+                <img src='{{$course->bannerImage->url}}' />
+            @endif
         	<div class="main-content">
                     @if (Session::get('success'))
                         <div class="alert alert-success">{{{ Session::get('success') }}}</div>
