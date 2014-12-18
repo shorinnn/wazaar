@@ -1,6 +1,7 @@
     @extends('layouts.default')
     @section('content')	
         <section class="course-detail-top-section clearfix">
+        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/course-detail-banner-img.jpg" alt="" class="img-responsive">
         	<div class="centered-contents clearfix">
             	<h1> {{ $course->name }}</h1>
                 <div class="clearfix">
@@ -96,20 +97,20 @@
                 </div>
                 <div class="curriculum clearfix clear">
                 	<h3>Curriculum</h3>
-                    <div class="lessons">
+                    <div class="lessons clearfix">
                     	<span>Module 1</span>
                         <p>Creating a splash screen with javascript</p>
                         <a href="#" class="button">CRASH CLASS</a>
                     </div>
-                    <div class="lessons">
+                    <div class="lessons clearfix">
                     	<span>Lesson 1</span>
                         <p>Introduction</p>
                     </div>
-                    <div class="lessons">
+                    <div class="lessons clearfix">
                     	<span>Lesson 2</span>
                         <p>Your very first</p>
                     </div>
-                    <div class="lessons">
+                    <div class="lessons clearfix">
                     	<span>Lesson 3</span>
                         <p>Time to show it off!</p>
                     </div>
