@@ -51,6 +51,25 @@
         
         </td></tr>
     
+    <tr><td>Who Is This For</td>
+        <td>
+            @if($values = json2Array($course->who_is_this_for))
+                @foreach($values as $val)
+                    <input type='text' name='who_is_this_for[]' value='{{$val}}' /><br />
+                @endforeach
+            @endif
+
+            <input type='text' name='who_is_this_for[]' />
+        </td></tr>    
+    <tr><td>What you will achieve at the end of the course</td>
+        <td>
+            @if($values = json2Array($course->what_will_you_achieve))
+                @foreach($values as $val)
+                    <input type='text' name='what_will_you_achieve[]' value='{{$val}}' /><br />
+                @endforeach
+            @endif
+            <input type='text' name='what_will_you_achieve[]' />
+        </td></tr>    
     <tr><td>Description</td><td>{{ Form::textarea('description') }}</td></tr>    
     <tr><td>Price</td><td>{{ Form::text('price') }}</td></tr>    
     <tr><td colspan="2">{{ Form::submit( trans('crud/labels.update'), ['class' => 'btn btn-default'] ) }}</td></tr>

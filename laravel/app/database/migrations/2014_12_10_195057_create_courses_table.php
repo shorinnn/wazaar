@@ -22,6 +22,8 @@ class CreateCoursesTable extends Migration {
                     $table->string('name');
                     $table->string('slug')->unique();
                     $table->text('description');
+                    $table->text('who_is_this_for');
+                    $table->text('what_will_you_achieve');
                     $table->double('price', 15, 2);
                     $table->integer('featured')->default(0);
                     $table->integer('course_difficulty_id');

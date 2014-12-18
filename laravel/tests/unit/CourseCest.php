@@ -100,4 +100,34 @@ class CourseCest{
         $I->assertFalse( $course->save() );
     }
     
+    public function getNewCourseLessThan20Students(UnitTester $I){
+        $course = Course::find(1);
+        $I->assertLessThan(20, $course->student_count);
+        $I->assertTrue($course->isNew());
+    }
+    
+    public function getNewCourseLessThan6Months(UnitTester $I){
+        $course = Course::find(1);
+        $course->student_count = 33;
+        $I->assertTrue( $course->updateUniques() );
+        $creation_date = date_create($course->created_at);
+        $now = date_create();
+        $interval = (int)date_diff($creation_date, $now)->format('%m');
+        $I->assertLessThan(6, $interval);
+        $I->assertTrue($course->isNew());
+    }
+    
+    public function notGetNewCourseOlderThan6MonthsAndMoreThan20Students(UnitTester $I){
+        $course = Course::find(1);
+        $course->student_count = 33;
+        $d = date('Y-m-d H:i:s', strtotime('6 month ago') );
+        $course->created_at = $d;
+        $I->assertTrue( $course->updateUniques() );
+        $creation_date = date_create($course->created_at);
+        $now = date_create();
+        $interval = (int)date_diff($creation_date, $now)->format('%m');
+        $I->assertGreaterThanOrEqual(6, $interval);
+        $I->assertFalse( $course->isNew() );
+    }
+    
 }

@@ -4,7 +4,9 @@
             ¥ {{ number_format($course->price, Config::get('custom.currency_decimals')) }}
         </div>
         <div class="level">{{ $course->courseDifficulty->name }}</div>
-        <div class="new-tag">NEW</div>
+        @if($course->isNew())
+            <div class="new-tag">NEW</div>
+        @endif
         <img 
             @if($course->previewImage==null)
                 src="http://placehold.it/350x150&text=Preview Unavailable"

@@ -402,3 +402,14 @@ function cycle($first_value, $values = '*') {
   $count[$name]++;
   return $values[$index];  
 }
+
+/**
+ * If the supplies string is a valid json resource, return an associative array
+ * @param string $json The string to be checked for valid json
+ * @return mixed False if not valid json, associative array otherwise
+ */
+function json2Array($json){
+    $arr = json_decode($json, true);
+    if( json_last_error() != JSON_ERROR_NONE) return false;
+    return $arr;
+}

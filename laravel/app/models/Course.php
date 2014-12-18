@@ -5,7 +5,7 @@ class Course extends Ardent{
 
     
     public $fillable = ['name', 'slug', 'description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
-        'course_preview_image_id',  'course_banner_image_id', 'privacy_status'];
+        'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for'];
     public static $rules = [
         'name' => 'required',
         'slug' => 'required|alpha_dash|unique:courses|not_in:index,show,create,store,categories,category,purchase,mycourses,destroy,edit,update',
@@ -75,5 +75,15 @@ class Course extends Ardent{
             return false;
         }
     }
+    
+    public function isNew(){
+        if($this->student_count < 20) return true;
+        $creation_date = date_create($this->created_at);
+        $now = date_create();
+        $posted_ago = (int)date_diff($creation_date, $now)->format('%m');
+        if( $posted_ago < 6) return true;
+        return false;
+    }
+
 
 }
