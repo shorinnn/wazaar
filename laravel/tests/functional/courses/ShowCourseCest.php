@@ -21,12 +21,13 @@ class ShowCourseCest{
         $I->seeNumberOfElements('#purchase-form', 1);
     }
     
-    public function dontSeeBuyButtonAsOwner(FunctionalTester $I){
+    public function seeDisabledAsOwner(FunctionalTester $I){
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
         $I->seeAuthentication();
         $I->amOnPage('/courses/app-development');
-        $I->seeNumberOfElements('#purchase-form', 0);
+        $I->seeNumberOfElements('#purchase-form', 1);
+        $I->see('<button class="join-class" disabled="disabled">');
     }
     
     public function dontSeeBuyButtonIfAlreadyPurchased(FunctionalTester $I){
@@ -34,7 +35,8 @@ class ShowCourseCest{
         $I->amLoggedAs($instructor);
         $I->seeAuthentication();
         $I->amOnPage('/courses/investments-app-development');
-        $I->seeNumberOfElements('#purchase-form', 0);
+        $I->seeNumberOfElements('#purchase-form', 1);
+        $I->see('<button class="join-class" disabled="disabled">');
     }
     
     public function seeStudentCounterIncrement(FunctionalTester $I){
@@ -43,6 +45,7 @@ class ShowCourseCest{
         $I->seeAuthentication();
         $I->amOnPage('/courses/app-development');
         $I->see('0 Students');
+        $I->dontSee('<button class="join-class" disabled="disabled">');
         $I->submitForm('#purchase-form',[]);
         $I->see('1 Student');
     }

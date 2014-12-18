@@ -3,7 +3,7 @@ use LaravelBook\Ardent\Ardent;
 
 class Course extends Ardent{
 
-    
+    protected $dates = ['sale_ends_on'];
     public $fillable = ['name', 'slug', 'description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
         'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage'];
     public static $rules = [
@@ -17,6 +17,7 @@ class Course extends Ardent{
         'course_subcategory_id' => 'required|numeric',
         'course_preview_image_id' => 'numeric',
         'course_banner_image_id' => 'numeric',
+        'sale' => 'numeric',
     ];
     
     public static $relationsData = array(
@@ -75,15 +76,60 @@ class Course extends Ardent{
             $this->errors()->add(0, trans('courses/general.selected_subcategory_not_child_of_category') );
             return false;
         }
+        if($this->sale_kind=='percentage' && $this->sale  > 100){
+            $this->errors()->add(0, trans('courses/general.cant_discount_101_percent') );
+            return false;
+        }
+        if($this->sale_kind=='amount' && $this->sale  > $this->price){
+            $this->errors()->add(0, trans('courses/general.cant_discount_more_than_price') );
+            return false;
+        }
+        if( $this->sale<0 ){
+            $this->errors()->add(0, trans('courses/general.no_negative_discounts') );
+            return false;
+        }
     }
     
     public function isNew(){
-        if($this->student_count < 20) return true;
+        if($this->force_new == 1) return true;
+        if($this->student_count > Config::get('custom.course_is_new.maximum_students')) return false;
         $creation_date = date_create($this->created_at);
         $now = date_create();
         $posted_ago = (int)date_diff($creation_date, $now)->format('%m');
-        if( $posted_ago < 6) return true;
-        return false;
+        if( $posted_ago >= Config::get('custom.course_is_new.maximum_months')) return false;
+        return true;
+    }
+    
+    public function cost(){
+        if(!$this->isDiscounted()) return $this->price;
+        else{
+            if($this->sale_kind=='amount') return $this->price - $this->sale;
+            else return $this->price - ($this->price * ($this->sale/100));
+        }
+    }
+    
+    public function isDiscounted(){
+        if($this->sale==0 || $this->sale_ends_on < date('Y-m-d H:i:s')) return false;
+        else{
+            $now = new DateTime();
+            $future_date = new DateTime($this->sale_ends_on);
+            $interval = $future_date->diff($now);
+            if($interval->format("%d")>0){
+                $this->discount_ends_in = $interval->format("%d days, %h hours, %i minutes");
+            }
+            else{
+                $this->discount_ends_in = $interval->format("%h:%i:%s");
+            }
+            if($this->sale_kind=='amount'){
+                $this->discount_original = $this->price;
+                $this->discount_saved = $this->sale;
+            }
+            else {
+                $this->discount_original = $this->price;
+                $this->discount_saved = $this->price * ($this->sale/100);
+            }
+            return true;
+        }
     }
 
 

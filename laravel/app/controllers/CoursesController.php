@@ -32,6 +32,9 @@ class CoursesController extends \BaseController {
             $course->course_banner_image_id = Input::get("course_banner_image_id");
             $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
             $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
+            $course->sale = Input::get('sale');
+            $course->sale_kind = Input::get('sale_kind');
+            $course->sale_ends_on = Input::get('sale_ends_on');
             if($course->save()){
                 // upload the preview image
                 if (Input::hasFile('preview_image')){
@@ -83,6 +86,9 @@ class CoursesController extends \BaseController {
             $course->fill($data);
             $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
             $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
+            $course->sale = Input::get('sale');
+            $course->sale_kind = Input::get('sale_kind');
+            $course->sale_ends_on = Input::get('sale_ends_on');
             if($course->updateUniques()){
                 // upload the preview image
                 if (Input::hasFile('preview_image')){

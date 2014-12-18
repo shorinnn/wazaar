@@ -355,6 +355,11 @@ class CoursesSeeder extends Seeder {
         $d = date('Y-m-d H:i:s', strtotime('6 month ago') );
         $phpPrimer->created_at = $d;
         $phpPrimer->updateUniques();
+        $js = Course::find(2);
+        $js->sale = '33';
+        $js->sale_kind = 'percentage';
+        $js->sale_ends_on = date('Y-m-d H:i:s', strtotime('+ 4 day 2 hour'));
+        $js->updateUniques();
     }
 }
     

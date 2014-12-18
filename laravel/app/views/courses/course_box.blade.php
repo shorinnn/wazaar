@@ -1,7 +1,10 @@
 <div class="col-xs-12 col-sm-6 col-md-4">
     <div class="object small-box small-box-one">
         <div class="price-tag">
-            ¥ {{ number_format($course->price, Config::get('custom.currency_decimals')) }}
+             ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+            @if($course->isDiscounted())
+                {{trans('courses/general.sale')}}
+            @endif
         </div>
         <div class="level">{{ $course->courseDifficulty->name }}</div>
         @if($course->isNew())

@@ -29,6 +29,10 @@ class CreateCoursesTable extends Migration {
                     $table->integer('featured')->default(0);
                     $table->integer('course_difficulty_id');
                     $table->integer('student_count');
+                    $table->enum('force_new', ['0', '1']);
+                    $table->double('sale', 15, 2)->nullable();
+                    $table->enum('sale_kind', ['amount', 'percentage'])->default('amount')->nullable();
+                    $table->dateTime('sale_ends_on')->nullable();
                     $table->enum('privacy_status', ['private', 'public']);
                     $table->timestamps();
                 });
