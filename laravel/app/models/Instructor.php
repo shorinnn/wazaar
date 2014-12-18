@@ -6,5 +6,6 @@ class Instructor extends User{
     public static $relationsData = array(
         'courses' => array(self::HAS_MANY, 'Course'),
         'coursePreviewImages' => array(self::HAS_MANY, 'CoursePreviewImage'),
+        'courseBannerImages' => array(self::HAS_MANY, 'CourseBannerImage'),
       );
 }

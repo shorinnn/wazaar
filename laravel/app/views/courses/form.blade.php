@@ -35,6 +35,21 @@
             @endif
         
         </td></tr>
+    <tr><td>Details Page Banner Image</td>
+        <td>{{  Form::file('banner_image') }}
+            @if($bannerImages->count() > 0)
+            Or Use existing:<br />
+                @foreach($bannerImages as $img)
+                    <div class="col-lg-3">
+                        {{ Form::radio('course_banner_image_id', $img->id, null, ['id' => "img-$img->id"] ) }}
+                        <label for="img-{{$img->id}}">
+                            <img src="{{$img->url}}" height="100" />
+                        </label>
+                    </div>
+                @endforeach
+            @endif
+        
+        </td></tr>
     
     <tr><td>Description</td><td>{{ Form::textarea('description') }}</td></tr>    
     <tr><td>Price</td><td>{{ Form::text('price') }}</td></tr>    

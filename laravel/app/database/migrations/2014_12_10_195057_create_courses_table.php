@@ -16,6 +16,7 @@ class CreateCoursesTable extends Migration {
                     $table->bigIncrements('id');
                     $table->bigInteger('instructor_id');
                     $table->bigInteger('course_preview_image_id')->nullable();
+                    $table->bigInteger('course_banner_image_id')->nullable();
                     $table->integer('course_category_id');
                     $table->integer('course_subcategory_id');
                     $table->string('name');
