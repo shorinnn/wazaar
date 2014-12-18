@@ -5,12 +5,13 @@ class Course extends Ardent{
 
     
     public $fillable = ['name', 'slug', 'description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
-        'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for'];
+        'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage'];
     public static $rules = [
         'name' => 'required',
         'slug' => 'required|alpha_dash|unique:courses|not_in:index,show,create,store,categories,category,purchase,mycourses,destroy,edit,update',
         'description' => 'required',
         'price' => 'required|numeric',
+        'affiliate_percentage' => 'required|numeric|between:0,70',
         'course_difficulty_id' => 'required|numeric',
         'course_category_id' => 'required|numeric',
         'course_subcategory_id' => 'required|numeric',

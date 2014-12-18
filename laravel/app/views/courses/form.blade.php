@@ -72,6 +72,7 @@
         </td></tr>    
     <tr><td>Description</td><td>{{ Form::textarea('description') }}</td></tr>    
     <tr><td>Price</td><td>{{ Form::text('price') }}</td></tr>    
+    <tr><td>Affiliate Percentage</td><td>{{ Form::select('affiliate_percentage', range(0,70)) }}%</td></tr>    
     <tr><td colspan="2">{{ Form::submit( trans('crud/labels.update'), ['class' => 'btn btn-default'] ) }}</td></tr>
     {{ Form::close() }}
 </table>
