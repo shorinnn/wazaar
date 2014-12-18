@@ -105,6 +105,23 @@ class MyCourseCest{
         $I->click('Update');
         $I->see('Could not save Course: The slug has already been taken.');
      }
+     
+     public function createCourse(FunctionalTester $I){
+        $instructor = Instructor::where('username', 'instructor')->first();
+        $I->amLoggedAs($instructor);
+        $I->amOnPage('/courses/create');
+        $I->submitForm('#create-form', 
+                ['name' => 'new c', 
+                'slug' => 'new-c', 
+                'description' => 'desc', 
+                'price' => 10,
+                'affiliate_percentage' => 10,
+                'course_category_id' => 1,
+                'course_subcategory_id' => 1,
+                'course_difficulty_id' => 1]);
+        $I->seeCurrentUrlEquals('/courses/new-c');
+        $I->see('Course Created');
+     }
     
     
     
