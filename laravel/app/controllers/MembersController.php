@@ -4,6 +4,7 @@ class MembersController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter('admin');
+            $this->beforeFilter('csrf', ['only' => [ 'update','destroy' ]]);
         }
 
 	/**
@@ -59,6 +60,9 @@ class MembersController extends \BaseController {
 	public function update($id)
 	{
             $user = User::find($id);
+            if($user==null){
+                return Redirect::action('MembersController@index')->withError( trans('crud/errors.object_doesnt_exist', ['object' => 'User' ]) );
+            }
            if( $user->update( input_except(['_method', '_token'] ) ) ){
                 return Redirect::back()->withSuccess( trans('crud/errors.object_updated', ['object'=>'User'] ));
             }
@@ -77,6 +81,9 @@ class MembersController extends \BaseController {
 	public function destroy($id)
 	{
             $user = User::find($id);
+            if($user==null){
+                return Redirect::action('MembersController@index')->withError( trans('crud/errors.object_doesnt_exist', ['object' => 'User' ]) );
+            }
             if($user->delete($id)){
                 return Redirect::back()->withSuccess( trans('crud/errors.object_deleted',['object'=>'User']));
             }
