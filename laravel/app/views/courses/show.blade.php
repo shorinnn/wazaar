@@ -19,7 +19,7 @@
                         
                         {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
                        
-                            <button class="join-class">
+                            <button class="join-class" disabled='disabled'>
                                 {{ trans("courses/general.join_class") }}<span>¥{{ number_format($course->price, Config::get('custom.currency_decimals')) }}</span>
                             </button>
                        
