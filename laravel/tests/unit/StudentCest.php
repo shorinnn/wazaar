@@ -95,4 +95,26 @@ class StudentCest{
         $I->assertEquals(5, $student->purchases->last()->product_affiliate_id);
     }
     
+    public function saveReferralToDB(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        $I->assertEquals(0, $student->courseReferrals()->count());
+        $student->saveReferral(1,1);
+        $I->assertEquals(1, $student->courseReferrals()->count());
+    }
+    
+    public function deleteExpiredReferrals(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        $student->saveReferral(1,1);
+        $student->saveReferral(1,2);
+        $I->assertEquals(2, $student->courseReferrals()->count());
+        $ref = CourseReferral::find($student->courseReferrals()->first()->id);
+        $ref->expires = '2012-12-12 00:00:00';
+        $I->assertTrue( $ref->updateUniques() );
+        $I->assertEquals(2, $student->courseReferrals()->count());
+        $student->restoreReferrals();
+        $student = Student::where('username','student')->first();
+        $I->assertEquals(1, $student->courseReferrals()->count());
+        
+    }
+    
 }

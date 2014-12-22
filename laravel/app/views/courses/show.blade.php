@@ -30,13 +30,13 @@
                          @else 
                               <button class="join-class" disabled="disabled">
                          @endif
-                        {{ trans("courses/general.join_class") }}<span>¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</span>
+                        {{ trans("courses/general.join_class") }}<span>Â¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</span>
                             </button>
                        
                         {{Form::close()}}
                          @if($course->isDiscounted())
-                            <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
-                                You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
+                            <p>Original <span> Â¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
+                                You saved <em> Â¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                         @endif
                         <a href="#" class="crash-class">CRASH CLASS</a>
                         <div class="clearfix">

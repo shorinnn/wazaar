@@ -126,6 +126,8 @@ return array(
                 'Artdarek\OAuth\OAuthServiceProvider',
                 'Aws\Laravel\AwsServiceProvider',
                 'Intervention\Image\ImageServiceProvider',
+                'Felixkiss\UniqueWithValidator\UniqueWithValidatorServiceProvider',
+            
 
 	),
 

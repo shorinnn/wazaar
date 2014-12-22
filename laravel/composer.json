@@ -16,7 +16,8 @@
 		"mockery/mockery": "0.9.*",
 		"fabpot/goutte": "~2.0",
 		"codeception/codeception": "*",
-		"intervention/image": "~2.0"
+		"intervention/image": "~2.0",
+                "felixkiss/uniquewith-validator": "1.1.*"
 	},
 	"autoload": {
 		"classmap": [

@@ -6,6 +6,7 @@ class Student extends User{
     public static $relationsData = array(
         'ltcAffiliate' => array(self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id'),
         'purchases' => array(self::HAS_MANY, 'CoursePurchase'),
+        'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
       );
         
     public function productAffiliates()
@@ -71,6 +72,38 @@ class Student extends User{
         if($now->diff($register)->days >=30){
             $this->ltc_affiliate_id = 2;
             $this->save();
+        }
+    }
+    
+    /**
+     * Saves the product referral in the DB, as a backup for the cookie 
+     * @param int $affiliate_id The affiliate ID
+     * @param int $course_id The course ID
+     */
+    public function saveReferral($affiliate_id, $course_id){
+        $recommendation = CourseReferral::firstOrNew( ['course_id' => $course_id, 'student_id' => $this->id] );
+        $recommendation->expires = date('Y-m-d H:i:s', strtotime('+30 day'));
+        $recommendation->affiliate_id = $affiliate_id;
+        $recommendation->updateUniques();
+    }
+    
+    /**
+     * Recreates cookies containing the referral data, if necessary and deletes expired entries
+     */
+    public function restoreReferrals(){
+        // delete expired referrals
+        $now = date('Y-m-d H:i:s');
+        foreach($this->courseReferrals()->where('expires', '<', $now )->get() as $recommendation){
+            $recommendation->delete();
+        }
+        // restore the cookies
+        foreach($this->courseReferrals as $recommendation){
+            if( !Cookie::has( "aid-$recommendation->course_id" ) ){
+                $expires = strtotime($recommendation->expires);
+                $now = time();
+                $expires_in  = ($expires-$now) / 60;
+                Cookie::queue( "aid-$recommendation->course_id", $recommendation->affiliate_id, $expires_in);
+            }
         }
     }
 }

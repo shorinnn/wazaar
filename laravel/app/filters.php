@@ -13,8 +13,9 @@
 
 App::before(function($request)
 {
-    if(Input::has('aid')){
-        Cookie::queue('ltc', Input::get('aid'), 60*60*30);
+    // record the LTC Affiliate on any page
+    if(Auth::guest() && Input::has('aid')){
+        Cookie::queue('ltc', Input::get('aid'), 60*24*30);
     }
 });
 
