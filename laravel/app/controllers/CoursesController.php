@@ -4,6 +4,7 @@ class CoursesController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update'] ] );
+            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy', 'purchase' ]]);
         }
 
 	public function index()
@@ -32,6 +33,9 @@ class CoursesController extends \BaseController {
             $course->course_banner_image_id = Input::get("course_banner_image_id");
             $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
             $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
+            $course->sale = Input::get('sale');
+            $course->sale_kind = Input::get('sale_kind');
+            $course->sale_ends_on = Input::get('sale_ends_on');
             if($course->save()){
                 // upload the preview image
                 if (Input::hasFile('preview_image')){
@@ -83,6 +87,9 @@ class CoursesController extends \BaseController {
             $course->fill($data);
             $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
             $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
+            $course->sale = Input::get('sale');
+            $course->sale_kind = Input::get('sale_kind');
+            $course->sale_ends_on = Input::get('sale_ends_on');
             if($course->updateUniques()){
                 // upload the preview image
                 if (Input::hasFile('preview_image')){
@@ -121,21 +128,28 @@ class CoursesController extends \BaseController {
         }
         
         public function category($slug=''){
-            $category = CourseCategory::where('slug',$slug)->first();
+            if( !$category = CourseCategory::where('slug',$slug)->first() ){
+                 return View::make('site.error_encountered');
+            }
+            
             $courses = $category->courses()->orderBy('id','Desc')->paginate(9);
             Return View::make('courses.category')->with(compact('category'))->with(compact('courses'));
         }
         
         public function subCategory($slug='', $subcat=''){
             $category =  CourseCategory::where('slug',$slug)->first();
-            $subcategory = CourseSubcategory::where('slug',$subcat)->first();
+            if( !$subcategory = CourseSubcategory::where('slug',$subcat)->first() ){
+                 return View::make('site.error_encountered');
+            }
             $courses = $subcategory->courses()->orderBy('id','Desc')->paginate(9);
             Return View::make('courses.category')->with(compact('category'))->with(compact('courses'))->with(compact('subcategory'));
         }
         
         public function show($slug){
-            $course = Course::where('slug', $slug)->with('instructor')->first();
-
+            if( !$course = Course::where('slug', $slug)->with('instructor')->first()){
+                return View::make('site.error_encountered');
+            }
+            
             if(Input::has('aid')){
                 Cookie::queue("aid-$course->id", Input::get('aid'), 60*60*30);
             }

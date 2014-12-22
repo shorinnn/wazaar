@@ -1,7 +1,13 @@
     @extends('layouts.default')
     @section('content')	
         <section class="course-detail-top-section clearfix">
-        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/course-detail-banner-img.jpg" alt="" class="img-responsive">
+                @if($course->bannerImage != null)
+                    <img src="{{$course->bannerImage->url}}" alt="" class="img-responsive" />
+                @else
+                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/course-detail-banner-img.jpg" 
+                         alt="" class="img-responsive" />
+                @endif
+        	
         	<div class="centered-contents clearfix">
             	<h1> {{ $course->name }}</h1>
                 <div class="clearfix">
@@ -12,20 +18,26 @@
                 	21 REVIEWS
                     <span>89%</span>
                 </div>
-                @if(Auth::guest() || Auth::user()->can_purchase($course) )
+                
                 <div class="white-box">
-                    
-                        <div class="sale-ends">SALE ENDS IN 2 DAYS 15:22:21</div>
+                        @if($course->isDiscounted())
+                            <div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>
+                        @endif
                         
                         {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
-                       
-                            <button class="join-class" disabled='disabled'>
-                                {{ trans("courses/general.join_class") }}<span>Â¥{{ number_format($course->price, Config::get('custom.currency_decimals')) }}</span>
+                         @if(Auth::guest() || Auth::user()->can_purchase($course) )
+                              <button class="join-class">
+                         @else 
+                              <button class="join-class" disabled="disabled">
+                         @endif
+                        {{ trans("courses/general.join_class") }}<span>¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</span>
                             </button>
                        
                         {{Form::close()}}
-                         
-                        <p>Original <span> Â¥500.000 </span> You saved <em> Â¥150.000</em></p>
+                         @if($course->isDiscounted())
+                            <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
+                                You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
+                        @endif
                         <a href="#" class="crash-class">CRASH CLASS</a>
                         <div class="clearfix">
                             <a href="#" class="add-to-wishlist">Add to Wishlist</a>
@@ -40,7 +52,7 @@
                     
                 </div>
                 <a href="#" class="watch-video-button">WATCH VIDEO</a>
-                 @endif
+                 
             </div>
         </section>
         <section class="main-content-container clearfix">

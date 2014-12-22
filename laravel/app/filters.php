@@ -85,6 +85,7 @@ Route::filter('guest', function()
 
 Route::filter('csrf', function()
 {
+    if(App::environment()=="testing" || App::environment()=="codeception") return;
 	if (Session::token() !== Input::get('_token'))
 	{
 		throw new Illuminate\Session\TokenMismatchException;

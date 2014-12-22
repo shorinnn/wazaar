@@ -5,6 +5,7 @@ class MyCourseCest{
     
     public function _before(FunctionalTester $I){
         $I->haveEnabledFilters();
+         Course::boot();
     }
 
     public function redirectIfNotLoggedIn(FunctionalTester $I){
@@ -122,7 +123,48 @@ class MyCourseCest{
         $I->seeCurrentUrlEquals('/courses/new-c');
         $I->see('Course Created');
      }
+     
+     public function setDiscount(FunctionalTester $I){
+        $instructor = Instructor::where('username', 'instructor')->first();
+        $I->amLoggedAs($instructor);
+        $I->amOnPage('/courses/app-development/edit');
+        $I->fillField(['name' => 'sale'], '5');
+        $I->click('Update');
+        $I->see('Course Updated');
+        $I->seeInField(['name' => 'sale'], '5');
+    }
     
+     public function failNegativeDiscount(FunctionalTester $I){
+        $instructor = Instructor::where('username', 'instructor')->first();
+        $I->amLoggedAs($instructor);
+        $I->amOnPage('/courses/app-development/edit');
+        $I->fillField(['name' => 'sale'], '-5');
+        $I->fillField(['name' => 'sale_kind'], 'amount');
+        $I->click('Update');
+        $I->see('Could not save Course');
+    }
     
+     public function failDiscountGreaterThanPrice(FunctionalTester $I){
+        $instructor = Instructor::where('username', 'instructor')->first();
+        $I->amLoggedAs($instructor);
+        $I->amOnPage('/courses/app-development/edit');
+        $I->fillField(['name' => 'sale'], '999999999');
+        $I->fillField(['name' => 'sale_kind'], 'amount');
+        $I->click('Update');
+        $I->see('Could not save');
+        $I->dontSeeInField(['name' => 'sale'], '999999999.00');
+    }
+    
+     public function failDiscountGreaterThan100Percent(FunctionalTester $I){
+        $instructor = Instructor::where('username', 'instructor')->first();
+        $I->amLoggedAs($instructor);
+        $I->amOnPage('/courses/app-development/edit');
+        $I->fillField(['name' => 'sale'], '200');
+        $I->fillField(['name' => 'sale_kind'], 'percentage');
+        $I->click('Update');
+        $I->see('Could not save');
+        $I->dontSeeInField(['name' => 'sale'], '200.00');
+    }
+      
     
 }

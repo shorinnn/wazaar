@@ -1,7 +1,10 @@
 
     <div class="object big-box clearfix">
         <div class="price-tag">
-            ¥ {{ number_format($course->price, Config::get('custom.currency_decimals')) }} {{trans('courses/general.sale')}}
+            ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }} 
+            @if($course->isDiscounted())
+                {{trans('courses/general.sale')}}
+            @endif
         </div>
         <div class="featured-img-container hidden-sm hidden-xs">
         <img
@@ -18,7 +21,7 @@
             <h2>{{ $course->name }}</h2>
             <p>{{ $course->description }}
                 <br />
-            <small>Subcategory: 
+            <small>Subcategory:
                 <a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>
             </small>
             </p>

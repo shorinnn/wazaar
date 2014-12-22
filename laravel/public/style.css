@@ -1623,13 +1623,21 @@ header .activate-dropdown:hover ul{
 	padding: 0 20px;
 	margin-bottom: 10px;
 	position: relative;
-	line-height: 47px; 
+	line-height: 47px;
+	width: 270px;
 	-webkit-box-shadow: 0px 5px 0px #f1b90f;
     -moz-box-shadow: 0px 5px 0px #f1b90f;
     box-shadow: 0px 5px 0px #f1b90f;
 	-webkit-transition: all 0.1s;
 	-moz-transition: all 0.1s;
 	transition: all 0.1s;
+}
+
+.course-detail-top-section .centered-contents .white-box button[disabled="disabled"]{
+    cursor: not-allowed;
+	background: #fff164;
+	box-shadow: none;
+	color: #bababa;
 }
 
 .course-detail-top-section .centered-contents 
