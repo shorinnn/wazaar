@@ -2,6 +2,9 @@
 
 class ProfileController extends Controller
 {
+    /** 
+     * Sorin: see polymorphicTest method for an example
+     */
     protected $uploadHelper;
     protected $userHelper;
 
@@ -9,7 +12,8 @@ class ProfileController extends Controller
         $this->users = $users;
         $this->userHelper = $userHelper;
         $this->uploadHelper = $uploadHelper;
-        $this->beforeFilter('auth');
+        // sorin:  temporarily allow the polymorhicTest action for guests
+        $this->beforeFilter('auth', ['except' => 'polymorphicTest']);
     }
 
     public function index()
@@ -64,12 +68,38 @@ class ProfileController extends Controller
         }
     }
     
-    public function becomeInstructor(){
-        if($this->users->become('Instructor', Auth::user())){
-            return 'Became a instructor, congrats';
+    /**
+     * @owner: Sorin
+     * Testing some polymorphic relationships
+     * http://wazaar.dev/profile/polymorphic-test
+     */
+    public function polymorphicTest(){
+        // get a student
+        $student = Student::find(4);
+        // create a profile for him
+        if($student->profile()->count()==0){
+            $profile = new Profile;
+            $profile->first_name = "Student";
+            $profile->last_name = "McProfile";
+            $student->profile()->save( $profile );
         }
-        else{
-            return 'Cannot become a instructor';
+        // echo some profile data
+        echo 'Profile ID <b>'.$student->profile->id  . '</b> Profile First name <b>'. $student->profile->first_name.'</b>';
+        
+        // get the same user who's also an instructor
+        $instructor = Instructor::find(4);
+        if($instructor->profile()->count()==0){
+            $profile = new Profile;
+            $profile->first_name = "Instructor";
+            $profile->last_name = "ProfileInstr";
+            $instructor->profile()->save( $profile );
         }
+        // echo some profile data
+        echo '<br />Profile ID <b>'.$instructor->profile->id  . '</b> Profile First name <b>'. $instructor->profile->first_name.'</b>';
+        
+        // get a profile and fetch user info from it (reverse relationship)
+        $profile = Profile::first();
+        // echo the username
+        echo '<br />Username: <b>'.$profile->owner->username.'</b>';
     }
 }

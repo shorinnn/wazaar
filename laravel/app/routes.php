@@ -70,5 +70,8 @@ Route::group(['prefix' => 'profile'], function (){
 
     ## POST call to process additional data for initial profile set-up
     Route::post('store-new-profile', 'ProfileController@storeNewProfile');
+    
+    ## Polymorphic Test
+    Route::get('polymorphic-test','ProfileController@polymorphicTest');
 
 });
