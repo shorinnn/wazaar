@@ -19,9 +19,12 @@
                     <span>89%</span>
                 </div>
                 
-                <div class="white-box">
+                
                         @if($course->isDiscounted())
+                        <div class="white-box">
                             <div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>
+                        @else
+                        <div class="white-box not-on-sale">
                         @endif
                         
                         {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
