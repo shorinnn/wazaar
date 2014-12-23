@@ -1,3 +1,4 @@
 /nbproject/
 .idea
 laravel/app/storage/*
+laravel/public/uploads/*
