@@ -13,6 +13,9 @@
 // Site routes
 Route::get('/', 'SiteController@index');
 
+// Temporary classroom route for mac to work with
+Route::get('classroom', 'SiteController@classroom');
+
 // Confide routes
 Route::get('register', 'UsersController@create');
 Route::get('register/{teacher_account}', 'UsersController@create');
