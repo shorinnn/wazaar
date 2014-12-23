@@ -6,6 +6,7 @@ class Course extends Ardent{
     protected $dates = ['sale_ends_on'];
     public $fillable = ['name', 'slug', 'description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
         'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage'];
+    
     public static $rules = [
         'name' => 'required',
         'slug' => 'required|alpha_dash|unique:courses|not_in:index,show,create,store,categories,category,purchase,mycourses,destroy,edit,update',
@@ -28,6 +29,7 @@ class Course extends Ardent{
         'courseSubcategory' => array(self::BELONGS_TO, 'CourseSubcategory'),
         'courseDifficulty' => array(self::BELONGS_TO, 'CourseDifficulty'),
         'sales' => array(self::HAS_MANY, 'CoursePurchase'),
+        'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
     );
     
     public function upload_preview($path){

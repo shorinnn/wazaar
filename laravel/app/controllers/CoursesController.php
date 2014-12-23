@@ -151,7 +151,13 @@ class CoursesController extends \BaseController {
             }
             
             if(Input::has('aid')){
-                Cookie::queue("aid-$course->id", Input::get('aid'), 60*60*30);
+                Cookie::queue("aid-$course->id", Input::get('aid'), 60*24*30);
+                // store this in the DB as well, in case the cookies get deleted
+                if(Auth::check()) {
+                    $student = Student::find(Auth::user()->id);
+                    $student->saveReferral(Input::get('aid'), $course->id);
+                }
+                
             }
             Return View::make('courses.show')->with(compact('course'))->with(compact('student'));
         }

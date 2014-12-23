@@ -30,7 +30,7 @@
                          @else 
                               <button class="join-class" disabled="disabled">
                          @endif
-                                {{ trans("courses/general.join_class") }}<span>¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</span>
+                        {{ trans("courses/general.join_class") }}<span>¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</span>
                             </button>
                        
                         {{Form::close()}}

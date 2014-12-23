@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "88a7da6208e32cab44c779841442679f",
+    "hash": "0fd7fedaee067984543961c335987c0f",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -56,16 +56,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "2.7.10",
+            "version": "2.7.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "f315695a5a8995f7c0c163189441a5a1d04989d0"
+                "reference": "087912b2318814e48fee54610a441672491f3200"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f315695a5a8995f7c0c163189441a5a1d04989d0",
-                "reference": "f315695a5a8995f7c0c163189441a5a1d04989d0",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/087912b2318814e48fee54610a441672491f3200",
+                "reference": "087912b2318814e48fee54610a441672491f3200",
                 "shasum": ""
             },
             "require": {
@@ -119,7 +119,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2014-12-12 18:07:09"
+            "time": "2014-12-18 21:40:25"
         },
         {
             "name": "aws/aws-sdk-php-laravel",
@@ -223,16 +223,16 @@
         },
         {
             "name": "codeception/codeception",
-            "version": "2.0.8",
+            "version": "2.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "0f9de6de9788912a289214a020193eac0a9a05e8"
+                "reference": "0094191ac0d6e87821fba41de002103ebe79a279"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/0f9de6de9788912a289214a020193eac0a9a05e8",
-                "reference": "0f9de6de9788912a289214a020193eac0a9a05e8",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/0094191ac0d6e87821fba41de002103ebe79a279",
+                "reference": "0094191ac0d6e87821fba41de002103ebe79a279",
                 "shasum": ""
             },
             "require": {
@@ -254,6 +254,7 @@
                 "codeception/specify": "~0.3",
                 "codegyre/robo-ci": "@dev",
                 "facebook/php-sdk": "~3.2",
+                "flow/jsonpath": "~0.1",
                 "monolog/monolog": "~1.8",
                 "pda/pheanstalk": "~2.0",
                 "phpseclib/phpseclib": "~0.3.6",
@@ -300,7 +301,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2014-11-18 00:48:50"
+            "time": "2014-12-19 23:54:20"
         },
         {
             "name": "d11wtq/boris",
@@ -425,6 +426,51 @@
                 "webdriver"
             ],
             "time": "2014-11-05 20:53:09"
+        },
+        {
+            "name": "felixkiss/uniquewith-validator",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/felixkiss/uniquewith-validator.git",
+                "reference": "ffdfafa7f72cb5bb6dac6698b9d91adcf372d69c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/felixkiss/uniquewith-validator/zipball/ffdfafa7f72cb5bb6dac6698b9d91adcf372d69c",
+                "reference": "ffdfafa7f72cb5bb6dac6698b9d91adcf372d69c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.x",
+                "illuminate/validation": "4.x",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Felixkiss\\UniqueWithValidator": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Felix Kiss",
+                    "email": "felix@felixkiss.com"
+                }
+            ],
+            "description": "Custom Laravel 4 Validator for combined unique indexes",
+            "homepage": "https://github.com/felixkiss/uniquewith-validator",
+            "keywords": [
+                "laravel"
+            ],
+            "time": "2014-08-07 06:42:51"
         },
         {
             "name": "filp/whoops",
@@ -842,16 +888,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v4.2.12",
+            "version": "v4.2.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "70a60f2ff9b96b3fcd88a68ef5382557733fe671"
+                "reference": "a8104d53fef0582a8e93b33f424eafd4bd5c7989"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/70a60f2ff9b96b3fcd88a68ef5382557733fe671",
-                "reference": "70a60f2ff9b96b3fcd88a68ef5382557733fe671",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a8104d53fef0582a8e93b33f424eafd4bd5c7989",
+                "reference": "a8104d53fef0582a8e93b33f424eafd4bd5c7989",
                 "shasum": ""
             },
             "require": {
@@ -953,7 +999,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2014-12-11 17:14:36"
+            "time": "2014-12-21 20:31:14"
         },
         {
             "name": "laravelbook/ardent",
@@ -1078,16 +1124,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "0.9.2",
+            "version": "0.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "95a4855380dc70176c51807c678fb3bd6198529a"
+                "reference": "686f85fa5b3b079cc0157d7cd3e9adb97f0b41e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/95a4855380dc70176c51807c678fb3bd6198529a",
-                "reference": "95a4855380dc70176c51807c678fb3bd6198529a",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/686f85fa5b3b079cc0157d7cd3e9adb97f0b41e1",
+                "reference": "686f85fa5b3b079cc0157d7cd3e9adb97f0b41e1",
                 "shasum": ""
             },
             "require": {
@@ -1140,7 +1186,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2014-09-03 10:11:10"
+            "time": "2014-12-22 10:06:19"
         },
         {
             "name": "monolog/monolog",

@@ -139,7 +139,7 @@ class MyCourseCest{
         $I->amLoggedAs($instructor);
         $I->amOnPage('/courses/app-development/edit');
         $I->fillField(['name' => 'sale'], '-5');
-        $I->fillField(['name' => 'sale_kind'], 'amount');
+        $I->selectOption(['name' => 'sale_kind'], 'amount');
         $I->click('Update');
         $I->see('Could not save Course');
     }
@@ -149,7 +149,7 @@ class MyCourseCest{
         $I->amLoggedAs($instructor);
         $I->amOnPage('/courses/app-development/edit');
         $I->fillField(['name' => 'sale'], '999999999');
-        $I->fillField(['name' => 'sale_kind'], 'amount');
+        $I->selectOption(['name' => 'sale_kind'], 'amount');
         $I->click('Update');
         $I->see('Could not save');
         $I->dontSeeInField(['name' => 'sale'], '999999999.00');
@@ -160,7 +160,7 @@ class MyCourseCest{
         $I->amLoggedAs($instructor);
         $I->amOnPage('/courses/app-development/edit');
         $I->fillField(['name' => 'sale'], '200');
-        $I->fillField(['name' => 'sale_kind'], 'percentage');
+        $I->selectOption(['name' => 'sale_kind'], 'percentage');
         $I->click('Update');
         $I->see('Could not save');
         $I->dontSeeInField(['name' => 'sale'], '200.00');
