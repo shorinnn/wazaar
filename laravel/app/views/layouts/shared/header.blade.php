@@ -28,7 +28,7 @@
                 </button>
                 <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
                     <li>
-                        <a class="profile-button" href="#">{{trans('site/menus.profile')}}</a>
+                        <a class="profile-button" href="/profile">{{trans('site/menus.profile')}}</a>
                     </li>
                     <li>
                         <a class="courses-button" href="#">{{trans('site/menus.courses')}}</a>
