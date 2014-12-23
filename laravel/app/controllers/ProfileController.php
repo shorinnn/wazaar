@@ -25,9 +25,21 @@ class ProfileController extends Controller
         $validator = Validator::make(Input::only('profilePicture'), $validationRule);
 
         if ($validator->passes()){
-            $this->uploadHelper->prepareUploadDirectories();
-            $this->uploadHelper->uploadProfilePicture(Auth::id(), 'profilePicture');
-            return Redirect::to('profile/?step=2');
+            $imagePath = $this->uploadHelper->uploadImage('profilePicture');
+
+            if ($imagePath){
+                $pictureUrl = $this->uploadHelper->moveToAWS($imagePath, 'avatars');
+                $user = Auth::user();
+
+                $user->photo = $pictureUrl;
+                $user->save();
+
+                unset($file);
+                return Redirect::to('profile/?step=2');
+            }
+            else{
+                return Redirect::back()->with('errors',['Something wrong happened']); //Should probably throw an exception
+            }
         }
         else{
             return Redirect::back()->with('errors', $validator->messages()->all());
@@ -36,7 +48,20 @@ class ProfileController extends Controller
 
     public function storeNewProfile()
     {
+        $user = User::find(Auth::id());
 
+        $user->first_name = Input::get('first_name');
+        $user->last_name = Input::get('last_name');
+        $user->address_1 = Input::get('address_1');
+        $user->addrsss_2 = Input::get('address_2');
+
+        if ($user->save()){
+
+        }
+        else{
+            dd($user->errors()->all());
+            return Redirect::back()->with('errors', $user->errors()->all());
+        }
     }
     
     public function becomeInstructor(){

@@ -11,9 +11,8 @@ class UserHelper
             $user = User::find($userId);
         }
 
-
         if ($user){
-            if (!empty($user->first_name) AND !empty($user->last_name)){
+            if ( (!empty($user->first_name) AND !empty($user->last_name)) ){
                 return false;
             }
         }
