@@ -1,7 +1,12 @@
 <?php
 
+
 class Student extends User{
+
+    use ProfileTrait;
+
     protected $table = 'users';
+    protected $roleId = 2;
     
     public static $relationsData = array(
         'ltcAffiliate' => array(self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id'),
@@ -106,4 +111,8 @@ class Student extends User{
             }
         }
     }
+
+
+
+
 }
