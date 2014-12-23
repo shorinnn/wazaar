@@ -1574,6 +1574,7 @@ header .activate-dropdown:hover ul{
 .course-detail-top-section .centered-contents .white-box{
 	padding: 20px;
 	width: 312px;
+	min-height: 286px;
 	background: #f8f8f8;
 	border-radius: 5px 5px 0 0;
 	position: relative;
@@ -1602,7 +1603,7 @@ header .activate-dropdown:hover ul{
 
 .course-detail-top-section .centered-contents 
 .white-box .sale-ends{
-	background: #ff556a url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-3.png) no-repeat 10px -161px;
+	background: #ff556a url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-3.png) no-repeat 10px 50%;
 	text-transform: uppercase;
     border-radius: 15px;
     color: #fff;
@@ -1798,6 +1799,18 @@ header .activate-dropdown:hover ul{
     padding-left: 48px;
     width: 292px;
 }
+
+.white-box.not-on-sale + .watch-video-button {
+    clear: both;
+    margin: -67px 0 0 10px;
+    position: relative;
+    z-index: 1;
+	border-radius: 5px;
+}
+/*********** Course Details main content *************/
+.course-detail-top-section 
+.centered-contents 
+.white-box.not-on-sale{
 
 .main-content-container{
 	width: 100%;
