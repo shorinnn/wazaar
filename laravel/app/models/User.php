@@ -12,12 +12,8 @@ class User extends Ardent implements ConfideUserInterface
     }
 
     use HasRole;
-    protected $fillable = ['first_name', 'last_name', 'email', 'username', 'affiliate_id'];
-
-    public static $rules = [
-        'first_name' => 'required',
-        'last_name' => 'required'
-    ];
+    protected $fillable = ['first_name', 'last_name', 'email', 'username', 'affiliate_id']; 
+    
     /**
      * Make Ardent and Confide save methods compatible
      */

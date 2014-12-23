@@ -48,7 +48,7 @@
         </div>
     </div>
     @else
-        <a class="btn btn-link temp-links" href="{{url('login')}}">Temporary Login</a> 
-        <a class="btn btn-link temp-links" href="{{url('register')}}">Temporary Register</a>
+        <a data-c6m-tracker-id="header-login-button" class="btn btn-link temp-links" href="{{url('login')}}">Temporary Login</a> 
+        <a data-c6m-tracker-id="header-register-button" class="btn btn-link temp-links" href="{{url('register')}}">Temporary Register</a>
     @endif
 </div>

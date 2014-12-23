@@ -15,6 +15,8 @@ Route::get('/', 'SiteController@index');
 
 // Temporary classroom route for mac to work with
 Route::get('classroom', 'SiteController@classroom');
+// temporary tracking route
+Route::post('action-tracker', 'ActionController@track');
 
 // Confide routes
 Route::get('register', 'UsersController@create');
