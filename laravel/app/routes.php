@@ -8,12 +8,16 @@
 | Here is where you can register all of the routes for an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the Closure to execute when that URI is requested.
-|
+|   
 */
 // Site routes
 Route::get('/', 'SiteController@index');
 
 // Temporary classroom route for mac to work with
+Route::get('classroom', 'SiteController@classroom');
+Route::get('admindash', 'SiteController@admindash');
+Route::get('affiliatedash', 'SiteController@affiliatedash');
+Route::get('classroomdash', 'SiteController@classroomdash');
 Route::get('classroom', 'SiteController@classroom');
 // temporary tracking route
 Route::post('action-tracker', 'ActionController@track');
