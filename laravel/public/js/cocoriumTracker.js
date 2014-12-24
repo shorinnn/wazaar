@@ -9,7 +9,10 @@ var cocoriumTracker = {
             target_id: e.target.id,
             tracker_id: $(e.target).attr('data-c6m-tracker-id'),
             url: document.URL,
-            user_agent: navigator.userAgent
+            user_agent: navigator.userAgent,
+            mouse_position: e.pageX+'x'+e.pageY,
+            window_scroll_top: $(window).scrollTop(),
+            ajax_url: e.ajax_url || ''
         };
         this.actions.push( action );
         return true;
@@ -21,7 +24,16 @@ var cocoriumTracker = {
       url = 'http://wazaar.dev/action-tracker';
         $.post(url, {data:this.actions}, function(){
         } );
-      }
+      },
+  createAjaxEvent: function(type, url){
+      ev = {};
+      ev.target = {};
+      ev.target.className = ev.target.id = '';
+      ev.type = type;
+      ev.pageX = ev.pageY = 'NA';
+      ev.ajax_url = url;
+      return ev;
+  }
 };
 
 $(function(){

@@ -9,6 +9,7 @@ class ActionController extends \BaseController {
                 foreach($data as $action){
                     $action = new Action($action);
                     $action->ip = $_SERVER['REMOTE_ADDR'];
+                    $action->session_id = Session::getId();
                     if( !$action->save() ) dd($action->errors()->all());
                 }
             }
