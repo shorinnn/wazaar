@@ -19,8 +19,15 @@ class ProfileController extends Controller
     public function index()
     {
         $isProfileNew = $this->userHelper->isProfileNew();
-        $step = Input::has('step') ? Input::get('step') : 1;
-        return View::make('profile.index', compact('isProfileNew', 'step'));
+
+        if ($isProfileNew OR Input::get('step') == 2) {
+            $step = Input::has('step') ? Input::get('step') : 1;
+            return View::make('profile.new', compact('isProfileNew', 'step'));
+        }
+        else{
+            $profile = Student::find(Auth::id())->profile; //let's use student profile for now
+            return View::make('profile.index', compact('profile'));
+        }
     }
 
     public function uploadProfilePicture()
@@ -33,12 +40,12 @@ class ProfileController extends Controller
 
             if ($imagePath){
                 $pictureUrl = $this->uploadHelper->moveToAWS($imagePath, 'avatars');
-                $user = Auth::user();
 
-                $user->photo = $pictureUrl;
-                $user->save();
+                $profileData = ['photo' => $pictureUrl];
+                $this->userHelper->saveProfile(Auth::id(), $profileData);
 
-                unset($file);
+                unset($imagePath);
+
                 return Redirect::to('profile/?step=2');
             }
             else{
@@ -52,21 +59,35 @@ class ProfileController extends Controller
 
     public function storeNewProfile()
     {
-        $user = User::find(Auth::id());
-
-        $user->first_name = Input::get('first_name');
-        $user->last_name = Input::get('last_name');
-        $user->address_1 = Input::get('address_1');
-        $user->addrsss_2 = Input::get('address_2');
-
-        if ($user->save()){
-
+        if (Input::has('first_name')){
+            $profileData = Input::only('first_name', 'last_name', 'address_1', 'address_2');
+            $this->userHelper->saveProfile(Auth::id(), $profileData);
+            return Redirect::to('profile');
         }
         else{
-            dd($user->errors()->all());
-            return Redirect::back()->with('errors', $user->errors()->all());
+            App::abort(404);
         }
     }
+
+    public function update($id)
+    {
+        if ($id){
+            $profile = Profile::find($id);
+
+            foreach(Input::except('_token') as $key => $val){
+                $profile->{$key} = $val;
+            }
+
+            if ($profile->updateUniques()){
+
+            }
+            else{
+                return Redirect::back()->with('errors', $profile->errors());
+            }
+        }
+    }
+
+
     
     /**
      * @owner: Sorin
