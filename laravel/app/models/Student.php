@@ -1,12 +1,22 @@
 <?php
 
+
 class Student extends User{
+/**
+ * To implement polymorphism I've commented out the trait and introduced a profile relationship
+ * Also commented out the roleID property
+ */
+    
+   // use ProfileTrait;
+
     protected $table = 'users';
+//    protected $roleId = 2;
     
     public static $relationsData = array(
         'ltcAffiliate' => array(self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id'),
         'purchases' => array(self::HAS_MANY, 'CoursePurchase'),
         'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
+        'profile' => array(self::MORPH_ONE, 'Profile', 'name'=>'owner')
       );
         
     public function productAffiliates()
@@ -106,4 +116,8 @@ class Student extends User{
             }
         }
     }
+
+
+
+
 }

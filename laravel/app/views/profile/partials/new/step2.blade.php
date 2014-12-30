@@ -1,5 +1,17 @@
-<div class="profile-wizard step1">
-    <h5>{{trans('profile.new.step2')}}</h5>
+<div class="profile-wizard step2">
+    {{Form::open(['url' => 'profile/store-new-profile'])}}
+    @if (count($errors) > 0)
+        <div class="alert alert-danger alert-block">
+            <h4 class="alert-heading">The following errors were found:</h4>
+            <ul class="list-unstyled" id="error-lists">
+                @foreach($errors as $error)
+                    <li><i class="fa fa-exclamation-circle"></i> {{$error}}</li>
+                @endforeach
+
+            </ul>
+        </div>
+    @endif
+    <h4>{{trans('profile.new.step2')}}</h4>
     <hr />
 
     <div class="form-group">
@@ -23,4 +35,5 @@
     <div class="pull-right">{{Form::submit('Next',['class' => 'btn btn-success'])}}</div>
     <div class="clearfix"></div>
 
+    {{Form::close()}}
 </div>

@@ -12,7 +12,7 @@ class User extends Ardent implements ConfideUserInterface
     }
 
     use HasRole;
-    protected $fillable = ['first_name', 'last_name', 'email', 'username', 'affiliate_id'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'username', 'affiliate_id']; 
     
     /**
      * Make Ardent and Confide save methods compatible
@@ -55,5 +55,6 @@ class User extends Ardent implements ConfideUserInterface
             return false;
         }
     }
-    
+
+
 }

@@ -54,6 +54,7 @@
     <script src="{{url("js/parsley.min.js")}}"></script>
     <script src="{{url("js/main.js")}}"></script>
     <script src="{{url("js/forms.js")}}"></script>
+    <script src="{{url("js/cocoriumTracker.js")}}"></script>
     <script src="{{url("js/tweenmax.min.js")}}"></script>
     <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>-->
 	</body>

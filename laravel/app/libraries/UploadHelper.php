@@ -5,51 +5,84 @@ class UploadHelper
 
     public function uploadsPath()
     {
-        return  public_path() . DIRECTORY_SEPARATOR . 'uploads';
+        return public_path() . DIRECTORY_SEPARATOR . 'uploads';
     }
 
-    public function uploadProfilePicture($userId, $fileInputName, $width = 200, $height = 200)
+    /**
+     * @param $file - The physical path to the file
+     * @param string $prefixSegment - The segment that comes before the actual filename e.g. 'avatar' - avatar/3909239023902390.gif
+     * @param null $bucket - S3 Bucket name
+     * @return string - S3 URL to the image
+     */
+    public function moveToAWS($file, $prefixSegment = '', $bucket = null)
     {
-        $user = User::find($userId);
+        $key = Str::random();
 
-        if (Input::hasFile($fileInputName) AND $user) {
-            $extension = Input::file($fileInputName)->getClientOriginalExtension();
-            $fileName = Str::random();
-            $fullFileName = $fileName . '.' . $extension;
+        $file      = file_get_contents($file);
+        $mime      = mimetype($file);
+        $extension = mime_to_extension($mime);
 
-            //TODO: THIS PART WILL USE S3, NO NEED TO STORE IMAGE
+        $s3 = AWS::get('s3');
 
-            $destinationPath = $this->uploadsPath() . '/users/' . $userId;
+        if (is_null($bucket)) {
+            $bucket = getenv('AWS_BUCKET');
+        }
 
-            ## Let's make sure that the upload path for users exist, if not then create it
-            if (!is_dir($destinationPath)){
-                mkdir($destinationPath);
-            }
+        $result = $s3->putObject(array(
+            'ACL'         =>  'public-read',
+            'Bucket'      =>  $bucket,
+            'ContentType' =>  $mime,
+            'Key'         =>  $prefixSegment . '/' . $key . $extension,
+            'Body'        =>  $file
+        ));
+
+        return $result->get('ObjectURL');
+    }
+
+    /**
+     * @param $fileInputName - The FILE Input name
+     * @param int $width
+     * @param int $height
+     * @param bool $aspectRatio - Set to True if you want aspect ratio to be maintained when resizing, $width must be greater than 0
+     * @return null|string - Physical path to the file
+     */
+    public function uploadImage($fileInputName, $width = 200, $height = 200, $aspectRatio = true)
+    {
+        $this->prepareUploadDirectories();
+
+        if (Input::hasFile($fileInputName)) {
+            $extension    = Input::file($fileInputName)->getClientOriginalExtension();
+            $baseName     = Str::random();
+            $fileName = $baseName . '.' . $extension;
+
+            $destinationPath = $this->uploadsPath();
 
             ## Do actual moving of the file into destination
-            Input::file($fileInputName)->move($destinationPath, $fullFileName);
-            ## Resize the image according to desired with constraining aspect ratio
-            Image::make($destinationPath . DIRECTORY_SEPARATOR . $fullFileName)->resize($width, $height, function ($constraint){
-                $constraint->aspectRatio();
-            })->save();
+            Input::file($fileInputName)->move($destinationPath, $fileName);
 
-            return true;
+            $imagePath = $destinationPath . DIRECTORY_SEPARATOR . $fileName;
+
+            if ($width !== 0) {
+                ## Resize the image according to desired with constraining aspect ratio
+                Image::make($imagePath)->resize($width, $height,
+                    function ($constraint) use ($aspectRatio) {
+                        if ($aspectRatio) {
+                            $constraint->aspectRatio();
+                        }
+                    })->save();
+            }
+
+            return $imagePath;
         }
-        return false;
+        return null;
     }
 
     public function prepareUploadDirectories()
     {
         # Prepare Public Uploads Directory
         $uploadsPath = $this->uploadsPath();
-        if (!is_dir($uploadsPath)){
+        if (!is_dir($uploadsPath)) {
             mkdir($uploadsPath);
-        }
-
-        ## Prepare Users Upload Directory
-        $usersUploadPath = $uploadsPath . '/users';
-        if (!is_dir($usersUploadPath)){
-            mkdir($usersUploadPath);
         }
     }
 }
