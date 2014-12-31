@@ -1,0 +1,132 @@
+.video-container{
+	width: 100%;
+	position: relative;
+}
+
+.video-container .centered-play-button {
+    background-color: rgba(21, 34, 46, 0.8);
+    background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-4.png");
+    background-position: 50% 38px;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    bottom: 0;
+    display: block;
+    height: 16%;
+    left: 0;
+    margin: 12% auto;
+    min-height: 20px;
+    min-width: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 6.25%;
+	cursor: pointer;
+}
+
+.video-container .progress{
+	width: 100%;
+	height: 3px;
+	margin: 0;
+	background: #283644;
+}
+
+.video-container .progress .progress-bar{
+	background: #8cc32c;
+	width: 40%;
+}
+
+.video-container .video-controls{
+	width: 100%;
+	height: 100px;
+	background: #18222b;
+	position: relative;
+}
+
+.video-container .video-controls > div{
+	height: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 34px 40px;
+	position: relative;
+}
+
+.video-container .video-controls > div > span{
+	display: block;
+	float: left;
+	width: 33px;
+	cursor: pointer;
+	height: 33px;
+    background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-4.png");
+    background-repeat: no-repeat;
+}
+
+.video-container .video-controls span.play-button{
+	background-position: center 5px;
+	margin-right: 64px;
+}
+
+
+.video-container .video-controls span.volume-button{
+	background-position: center -145px;
+}
+
+.video-container .video-controls span.full-screen-button{
+	background-position: center -281px;
+	float: right;
+}
+
+.video-container .video-controls .volume-control{
+	width: 8%;
+	top: -150px;
+	left: 114px;
+	height: 135px;
+	border-radius: 5px;
+	background: #162028;
+	position: absolute;
+	display: block;
+}
+
+.video-container .video-controls 
+.volume-control .caret{
+	border-color: #18212a transparent;
+	border-width: 7px 7px 0;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	top: 0;
+	right: 0;
+	margin: 135px auto 0;
+}
+
+.video-container .video-controls 
+.volume-control > div{
+	margin: 17px auto 0;
+	height: 100px;
+	width: 10px;
+	background: #c9cbcc;
+	border-radius: 5px;
+	position: relative;
+	cursor: pointer;
+}
+
+.video-container .video-controls 
+.volume-control > div .volume-bar{
+	position: absolute;
+	bottom: 0;
+	height: 50%;
+	width: 100%;
+	border-radius: 0 0 5px 5px;
+	background: #81b42c;
+}
+
+.video-container .video-controls 
+.volume-control > div .volume-bar > span{
+	display: block;
+	background: #0382d8;
+	width: 16px;
+	height: 16px;
+	position: relative;
+	left: -3px;
+	top: -11px;
+	border-radius: 16px;
+}

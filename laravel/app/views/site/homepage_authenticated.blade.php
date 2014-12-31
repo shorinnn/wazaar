@@ -54,7 +54,7 @@
     
         @if(Auth::guest() || !Auth::user()->hasRole('Instructor'))
             <section class="container-fluid become-an-instructor">
-                    <div class="container">
+            	<div class="container">
                   <div class="row">
                     <div class="col-xs-12">
                       <h1>BECOME</h1>

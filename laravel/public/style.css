@@ -2294,12 +2294,22 @@ header .activate-dropdown:hover ul{
 	background: #f8f8f8;
 }
 
+.classrooms-wrapper .become-an-instructor{
+	background: #fff;
+}
+
+.classmate-conversations-heading {
+    margin-top: 40px;
+}
+
 .classmate-conversations-heading p.lead,
-.classroom-content .col-md-6 > p.lead{
+.classroom-content .col-md-6 > p.lead,
+.classroom-content .col-md-12 p.lead{
 	padding: 15px 0 15px 20px;
 	margin: 0 0 1px;
 	color: #0099ff;
 	font-size: 18px;
+	font-weight: normal;
 	background: #fff;
 	border-radius: 5px;
 }
@@ -2353,6 +2363,20 @@ header .activate-dropdown:hover ul{
 	margin: 33px 0 0;
 	float: left;
 	border-radius: 20px;
+	position: relative;
+}
+
+.classroom-content .header.blue .avater p.quote::before{
+    border-color: #fff transparent;
+    border-style: solid;
+    border-width: 0 12px 12px;
+    content: "";
+    height: 0;
+    margin-top: -3px;
+    position: absolute;
+    right: -4px;
+    bottom: 0;
+    width: 0;
 }
 
 .classroom-content .header.blue .avater img{
@@ -2472,6 +2496,10 @@ header .activate-dropdown:hover ul{
 	margin: 40px 0 20px;
 }
 
+.comment-section {
+    margin-top: 20px;
+}
+
 .comment-section .comment-box{
 	background: #ececec;
 	padding: 10px;
@@ -2494,6 +2522,235 @@ header .activate-dropdown:hover ul{
 	float: right;
 	height: 80px;
 	border-radius: 5px;
+}
+
+.users-comments{
+	padding-top: 40px;
+	background: #fff;
+	border-radius: 5px;
+}
+
+.users-comments > div{
+	max-width: 828px;
+	margin: auto;
+}
+
+.users-comments .comment{
+	margin-bottom: 30px;
+}
+
+.users-comments .comment .info{
+	margin-left: 14.3%;
+	padding-bottom: 9px;
+}
+
+.users-comments .comment .info span{
+	display: inline-block;
+	font-size: 14px;
+	color: #849598;
+}
+
+.users-comments .comment .info a{
+	display: inline-block;
+	font-size: 14px;
+	color: #0099ff;
+}
+
+.users-comments .comment .info span.name{
+	padding-right: 10px;
+}
+
+.users-comments .comment .info span.time-of-reply{
+	float: right;
+	margin-right: 2.3%;
+}
+
+.users-comments .comment .info a.reply-link,
+.users-comments .comment .info span.number-of-replies{
+	padding-left: 15px;
+	padding-right: 10px;
+	position: relative;
+}
+
+.users-comments .comment .info a.reply-link::before,
+.users-comments .comment .info span.number-of-replies::before{
+	position: absolute;
+	content: '';
+	left: 0;
+	top: 9px;
+	height: 3px;
+	width: 3px;
+	border-radius: 3px;
+	background: #b0bfc1;
+}
+
+.users-comments .comment .info span.number-of-replies{
+	color: #b0bec1;
+}
+
+.users-comments .comment .main img{
+	float: left;
+	margin-right: 2%;
+}
+
+.users-comments .comment .main span{
+	display: block;
+	float: left;
+	min-height: 80px;
+	border-radius: 10px;
+	background: #b0bfc1;
+	padding: 16px 20px;
+	font-size: 14px;
+	color: #fff;
+	line-height: 24px;
+	max-width: 731px;
+	position: relative;
+}
+
+.comment.reply {
+    float: right;
+    width: 89%;
+}
+
+.comment.reply .main > span {
+    max-width: 642px;
+}
+
+.users-comments .comment .main span:before{
+    border-color: #b0bfc1 transparent;
+    border-style: solid;
+    border-width: 0 8px 8px;
+    content: "";
+    height: 0;
+    margin-top: -3px;
+    position: absolute;
+    left: -8px;
+    bottom: 0;
+    width: 0;
+}
+
+.load-more-comments{
+	display: block;
+	margin-top: 10px;
+	height: 32px;
+	color: #fff;
+	border-radius: 5px;
+	background: #0099ff;
+	text-align: center;
+	line-height: 32px;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.classroom-content .curriculum{
+	padding-top: 40px;
+}
+
+.classroom-content .curriculum p.lead{
+	margin-bottom: 10px;
+}
+
+.classroom-content .curriculum div.view-previous-lessons{
+	height: 64px;
+	background: #fff;
+	width: 100%;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 64px;
+	font-size: 12px;
+	color: #0669d1;
+	text-transform: uppercase;
+	position: relative;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+.classroom-content .curriculum div.view-previous-lessons:hover{
+	text-decoration: underline;
+}
+
+.classroom-content .curriculum div.view-previous-lessons::before{
+	content:'+';
+	width: 18px;
+	height: 18px;
+	border-radius: 18px;
+	border: solid 1px #247bd7;
+	color: #247bd7;
+	font-size: 14px;
+	text-align: center;
+	line-height: 14px;
+	position: relative;
+	margin-right: 10px;
+	display: inline-block;
+}
+
+.classroom-content .curriculum .lessons{
+	width: 98%;
+	float: left;
+	height: 286px;
+	overflow: hidden;
+	padding: 0;
+	margin: 0 0 200px;
+}
+
+.classroom-content .curriculum .lessons li a{
+	display: block;
+	width: 100%;
+	height: 64px;
+	border-radius: 5px;
+	line-height: 64px;
+	color: #fff;
+	margin-bottom: 10px;
+}
+
+.classroom-content .curriculum .lessons li a span{
+	display: block;
+	float: left;
+	width: 14.25%;
+	font-size: 12px;
+	height: 100%;
+	padding-left: 20px;
+	text-transform: uppercase;
+}
+
+.classroom-content .curriculum .lessons li a p{
+	margin: 0;
+	font-size: 14px;
+	padding-left: 10px;
+	float: left;
+}
+
+.classroom-content .curriculum .lessons li a.lesson-1{
+	background: #0099ff;
+}
+
+.classroom-content .curriculum .lessons li a.lesson-2{
+	background: #95d2fb;
+}
+
+.classroom-content .curriculum .lessons li a.lesson-3{
+	background: #c6e5f9;
+}
+
+.classroom-content .curriculum .lessons li a.lesson-4{
+	background: #dfeef9;
+}
+
+.custom-scrollbar{
+	height: 286px;
+	float: right;
+	width: 8px;
+	background: #e1e1e1;
+	border-radius: 8px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.custom-scrollbar span{
+	display: block;
+	width: 100%;
+	height: 80%;
+	background: #a4da28;
 }
 
 /************* Page Footer **************/

@@ -87,6 +87,111 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                	<div class="col-md-12">
+                    	<div class="users-comments">
+                        	<div class="clearfix">
+                                <div class="comment clearfix clear">
+                                    <div class="info clearfix clear">
+                                        <span class="name">Bas Mooreland</span>
+                                        <a href="#" class="reply-link">Reply</a>
+                                        <span class="number-of-replies">14 others replied</span>
+                                        <span class="time-of-reply">10 hours ago</span>
+                                    </div>
+                                    <div class="main clearfix clear">
+                                        <img class="img-responsive img-circle" alt="" 
+                                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-2.png">
+                                        <span>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore 
+                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="comment reply clearfix clear">
+                                    <div class="info clearfix clear">
+                                        <span class="name">Anabelle Jackson</span>
+                                        <a href="#" class="reply-link">Reply</a>
+                                        <span class="time-of-reply">10 hours ago</span>
+                                    </div>
+                                    <div class="main clearfix clear">
+                                        <img class="img-responsive img-circle" alt="" 
+                                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-3.png">
+                                        <span>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore 
+                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="comment clearfix clear">
+                                    <div class="info clearfix clear">
+                                        <span class="name">Bas Mooreland</span>
+                                        <a href="#" class="reply-link">Reply</a>
+                                        <span class="number-of-replies">14 others replied</span>
+                                        <span class="time-of-reply">10 hours ago</span>
+                                    </div>
+                                    <div class="main clearfix clear">
+                                        <img class="img-responsive img-circle" alt="" 
+                                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-2.png">
+                                        <span>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore 
+                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="load-more-comments">LOAD MORE</span>
+                    </div>
+                </div>
+                <div class="row curriculum">
+                	<div class="col-md-12">
+                    	<div>
+                        	<p class="lead">Curriculum</p>
+                            <div class="view-previous-lessons">view previous lessons</div>
+                            <ul class="lessons">
+                                <li>
+                                    <a href="#" class="lesson-1">
+                                        <span>Lesson 1</span>
+                                        <p>Creating a splash screen with javascript</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="lesson-2">
+                                        <span>Lesson 2</span>
+                                        <p>Introduction</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="lesson-3">
+                                        <span>Lesson 3</span>
+                                        <p>Your very first</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="lesson-4">
+                                        <span>Lesson 4</span>
+                                        <p>Time to show it off!</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="custom-scrollbar">
+                            	<span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="container-fluid become-an-instructor">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <h1>BECOME</h1>
+                      <h2>AN INSTRUCTOR</h2>
+                      <a href="{{ action('InstructorsController@become') }}"><span>{{trans('site/homepage.get-started')}}</span></a>
+                    </div>
+                  </div>
+              </div>
             </section>
         </div>
+
     @stop
