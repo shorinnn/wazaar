@@ -39,8 +39,8 @@ class ProfileController extends Controller
             $imagePath = $this->uploadHelper->uploadImage('profilePicture');
 
             if ($imagePath){
-                $pictureUrl = $this->uploadHelper->moveToAWS($imagePath, 'avatars');
-
+                $awsResult = $this->uploadHelper->moveToAWS($imagePath, 'avatars');
+                $pictureUrl = $awsResult->get('ObjectURL');
                 $profileData = ['photo' => $pictureUrl];
                 $this->userHelper->saveProfile(Auth::id(), $profileData);
 
