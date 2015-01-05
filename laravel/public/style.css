@@ -2439,6 +2439,7 @@ header .activate-dropdown:hover ul{
 
 .classroom-content .white-box ul{
 	margin-left: 20px;
+	min-height: 254px;
 	padding: 35px 20px;
 }
 
