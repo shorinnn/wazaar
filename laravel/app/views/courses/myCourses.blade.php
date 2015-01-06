@@ -37,7 +37,7 @@
     <td class="text-center">{{ link_to_action('CoursesController@edit', trans('crud/labels.edit'), $course->slug, [ 'class'=>'edit-button btn btn-primary' ] ) }}
                 @if($course->student_count==0)
                 {{ Form::open(array('action' => array('CoursesController@destroy', $course->id), 'method' => 'delete', 'id'=>'course-form-'.$course->id)) }}
-                    <button class="btn btn-danger delete-button" data-message="Are you sure you want to delete?" type="submit" >{{trans('crud/labels.delete')}}</button>
+                    <button class="btn btn-danger delete-button" data-message="{{ trans('you-sure-want-delete') }}" type="submit" >{{trans('crud/labels.delete')}}</button>
                 {{ Form::close() }}
             @endif
 
