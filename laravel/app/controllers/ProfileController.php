@@ -35,55 +35,51 @@ class ProfileController extends Controller
         $validationRule = ['profilePicture' => 'image|required'];
         $validator = Validator::make(Input::only('profilePicture'), $validationRule);
 
-        if ($validator->passes()){
-            $imagePath = $this->uploadHelper->uploadImage('profilePicture');
+        if ($validator->fails()){
+            return Redirect::back()->with('errors', $validator->messages()->all());
+        }
 
-            if ($imagePath){
-                $awsResult = $this->uploadHelper->moveToAWS($imagePath, 'avatars');
-                $pictureUrl = $awsResult->get('ObjectURL');
-                $profileData = ['photo' => $pictureUrl];
-                $this->userHelper->saveProfile(Auth::id(), $profileData);
+        $imagePath = $this->uploadHelper->uploadImage('profilePicture');
 
-                unset($imagePath);
+        if ($imagePath){
+            $awsResult = $this->uploadHelper->moveToAWS($imagePath, 'avatars');
+            $pictureUrl = $awsResult->get('ObjectURL');
+            $profileData = ['photo' => $pictureUrl];
+            $this->userHelper->saveProfile(Auth::id(), $profileData);
 
-                return Redirect::to('profile/?step=2');
-            }
-            else{
-                return Redirect::back()->with('errors',['Something wrong happened']); //Should probably throw an exception
-            }
+            unset($imagePath);
+
+            return Redirect::to('profile/?step=2');
         }
         else{
-            return Redirect::back()->with('errors', $validator->messages()->all());
+            return Redirect::back()->with('errors',['Something wrong happened']); //Should probably throw an exception
         }
     }
 
     public function storeNewProfile()
     {
-        if (Input::has('first_name')){
-            $profileData = Input::only('first_name', 'last_name', 'address_1', 'address_2');
-            $this->userHelper->saveProfile(Auth::id(), $profileData);
-            return Redirect::to('profile');
+        $validator = Validator::make(Input::only('first_name', 'last_name'),$this->userHelper->profileValidationRules());
+
+        if ($validator->fails()){
+            return Redirect::back()->withInput(Input::except('_token'))->with('errors', $validator->errors()->all());
         }
-        else{
-            App::abort(404);
-        }
+
+        $profileData = Input::only('first_name', 'last_name', 'address_1', 'address_2');
+        $this->userHelper->saveProfile(Auth::id(), $profileData);
+        return Redirect::to('profile');
     }
 
     public function update($id)
     {
         if ($id){
-            $profile = Profile::find($id);
+            $validator = Validator::make(Input::only('first_name', 'last_name'),$this->userHelper->profileValidationRules());
 
-            foreach(Input::except('_token') as $key => $val){
-                $profile->{$key} = $val;
+            if ($validator->fails()){
+                return Redirect::back()->withInput(Input::all())->with('errors', $validator->messages()->all());
             }
 
-            if ($profile->updateUniques()){
-
-            }
-            else{
-                return Redirect::back()->with('errors', $profile->errors());
-            }
+            $this->userHelper->saveProfile(Auth::id(), Input::except('_token'));
+            return Redirect::to('profile');
         }
     }
 

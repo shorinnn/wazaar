@@ -7,17 +7,17 @@
                 <hr/>
 
                 {{Form::open(['url' => 'profile/' . $profile->id . '/update', 'class' => 'form-horizontal'])}}
-                    <h4>Photo</h4>
+                    <h4>{{trans('profile.headerPhoto')}}</h4>
                     <hr/>
                     <div class="text-center">
                         <img src="{{$profile->photo}}" alt=""/>
                     </div>
 
-                    <h4>Personal</h4>
+                    <h4>{{trans('profile.headerPersonal')}}</h4>
                     <hr/>
                     @include('profile.partials.done.personal')
 
-                    <h4>Social Media</h4>
+                    <h4>{{trans('profile.headerSocial')}}</h4>
                     <hr/>
                     @include('profile.partials.done.socialmedia')
 

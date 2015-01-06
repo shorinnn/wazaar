@@ -5,4 +5,5 @@ return array(
     'edit' => 'Edit',
     'delete' => 'Delete',
     'update' => 'Update',
+    'next'  => 'Next'
 );
