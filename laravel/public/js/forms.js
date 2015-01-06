@@ -107,6 +107,7 @@ function append_red_border($element){
  * @param object $form
  */
 function activate_submit_button(){
+    
     animateBoxShadow();
 }
 
@@ -122,16 +123,17 @@ function remove_some_cool_animation($form){
     anim_count = 0;
     required_anim_count = 2;
     function animateBoxShadow() {
-        $('#submit-button').switchClass('deactivate-button', 'activate-button', 200, function(){
-            if (anim_count < required_anim_count) {
-                // call the animation again in 2 seconds
-                anim_count++;
-                setTimeout(animateBoxShadow, 2000);
-            }
-            else {
-                // reset the counter
-                anim_count = 0;
-            }
-        });
+        // this fails because jqueryUI is not included
+//        $('#submit-button').switchClass('deactivate-button', 'activate-button', 200, function(){
+//            if (anim_count < required_anim_count) {
+//                // call the animation again in 2 seconds
+//                anim_count++;
+//                setTimeout(animateBoxShadow, 2000);
+//            }
+//            else {
+//                // reset the counter
+//                anim_count = 0;
+//            }
+//        });
     }
 /* end example instant valid callbacks */

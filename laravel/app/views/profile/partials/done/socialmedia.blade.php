@@ -1,37 +1,37 @@
 <div class="form-group">
-    {{Form::label('website', 'Webiste URL',['class' => 'col-sm-3 control-label'])}}
+    {{Form::label('website', trans('profile.form.website'),['class' => 'col-sm-3 control-label'])}}
     <div class="col-sm-9">
-        {{Form::text('website',$profile->zip,['class' => 'form-control', 'placeholder' => ''])}}
+        {{Form::text('website',$profile->zip,['class' => 'form-control'])}}
     </div>
 </div>
 <div class="form-group">
-    {{Form::label('google_plus', 'Google Plus',['class' => 'col-sm-3 control-label'])}}
+    {{Form::label('google_plus', trans('profile.form.google'),['class' => 'col-sm-3 control-label'])}}
     <div class="col-sm-9">
-        {{Form::text('google_plus',$profile->zip,['class' => 'form-control', 'placeholder' => 'Google+ URL'])}}
+        {{Form::text('google_plus',$profile->zip,['class' => 'form-control'])}}
     </div>
 </div>
 <div class="form-group">
-    {{Form::label('facebook', 'Facebook',['class' => 'col-sm-3 control-label'])}}
+    {{Form::label('facebook', trans('profile.form.facebook'),['class' => 'col-sm-3 control-label'])}}
     <div class="col-sm-9">
-        {{Form::text('facebook',$profile->zip,['class' => 'form-control', 'placeholder' => 'Facebook URL'])}}                        </div>
+        {{Form::text('facebook',$profile->zip,['class' => 'form-control'])}}                        </div>
 </div>
 <div class="form-group">
-    {{Form::label('twitter', 'Twitter',['class' => 'col-sm-3 control-label'])}}
+    {{Form::label('twitter', trans('profile.form.twitter'),['class' => 'col-sm-3 control-label'])}}
     <div class="col-sm-9">
-        {{Form::text('twitter',$profile->zip,['class' => 'form-control', 'placeholder' => 'Twitter URL'])}}
-    </div>
-</div>
-
-<div class="form-group">
-    {{Form::label('linked_in', 'LinkedIn',['class' => 'col-sm-3 control-label'])}}
-    <div class="col-sm-9">
-        {{Form::text('linked_in',$profile->zip,['class' => 'form-control', 'placeholder' => 'LinkedIn URL'])}}
+        {{Form::text('twitter',$profile->zip,['class' => 'form-control'])}}
     </div>
 </div>
 
 <div class="form-group">
-    {{Form::label('youtube', 'Youtube',['class' => 'col-sm-3 control-label'])}}
+    {{Form::label('linked_in', trans('profile.form.linkedin'),['class' => 'col-sm-3 control-label'])}}
     <div class="col-sm-9">
-        {{Form::text('youtube',$profile->zip,['class' => 'form-control', 'placeholder' => 'Youtube URL'])}}
+        {{Form::text('linked_in',$profile->zip,['class' => 'form-control'])}}
+    </div>
+</div>
+
+<div class="form-group">
+    {{Form::label('youtube', trans('profile.form.youtube'),['class' => 'col-sm-3 control-label'])}}
+    <div class="col-sm-9">
+        {{Form::text('youtube',$profile->zip,['class' => 'form-control'])}}
     </div>
 </div>

@@ -2,12 +2,11 @@
     {{Form::open(['url' => 'profile/upload-profile-picture',  'files' => true])}}
          @if (count($errors) > 0)
               <div class="alert alert-danger alert-block">
-                  <h4 class="alert-heading">The following errors were found:</h4>
+                  <h4 class="alert-heading">{{trans('profile.errorHeading')}}:</h4>
                   <ul class="list-unstyled" id="error-lists">
                      @foreach($errors as $error)
                          <li><i class="fa fa-exclamation-circle"></i> {{$error}}</li>
                      @endforeach
-
                   </ul>
               </div>
           @endif
@@ -19,7 +18,7 @@
             <span class="label label-warning">{{trans('profile.allowedPictureFormat')}}</span>
         </div>
 
-        <div class="pull-right">{{Form::submit('Next',['class' => 'btn btn-success'])}}</div>
+        <div class="pull-right">{{Form::submit(trans('crud/labels.next'),['class' => 'btn btn-success'])}}</div>
         <div class="clearfix"></div>
 
 

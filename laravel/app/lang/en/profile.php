@@ -4,6 +4,10 @@ return
     [
         'pageTitle'            => 'Edit Profile',
         'pageTitleNew'         => 'Set Up Your Profile',
+        'errorHeading'         => 'The following errors were found',
+        'headerPhoto'          => 'Photo',
+        'headerPersonal'       => 'Personal',
+        'headerSocial'         => 'Social Media',
         'new'                  =>
             [
                 'step1' => 'Step 1: Upload Your Photo or Picture',
@@ -18,7 +22,13 @@ return
             'address1' => 'Address 1',
             'address2' => 'Address 2',
             'city'      => 'City',
-            'zip'       => 'ZIP'
+            'zip'       => 'ZIP',
+            'website'   => 'Website URL',
+            'google'    => 'Google Plus',
+            'facebook'  => 'Facebook',
+            'twitter'   => 'Twitter',
+            'linkedin'  => 'LinkedIn',
+            'youtube'   => 'Youtube'
         ]
 
     ];

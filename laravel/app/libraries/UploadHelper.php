@@ -36,10 +36,11 @@ class UploadHelper
             'Body'        =>  $file
         ));
 
-        return $result->get('ObjectURL');
+        return $result;
     }
 
     /**
+     * Upload an image type file with few parameters as options
      * @param $fileInputName - The FILE Input name
      * @param int $width
      * @param int $height
@@ -48,32 +49,51 @@ class UploadHelper
      */
     public function uploadImage($fileInputName, $width = 200, $height = 200, $aspectRatio = true)
     {
+        $imagePath = $this->doUpload($fileInputName);
+
+        if ($width !== 0 AND $imagePath) {
+            ## Resize the image according to desired with constraining aspect ratio
+            Image::make($imagePath)->resize($width, $height,
+                function ($constraint) use ($aspectRatio) {
+                    if ($aspectRatio) {
+                        $constraint->aspectRatio();
+                    }
+                })->save();
+        }
+
+        return $imagePath;
+    }
+
+    /**
+     * Upload any media type (video, image, file, etc.)
+     * @param $fileInputName
+     * @return string
+     */
+
+    public function uploadMedia($fileInputName)
+    {
+        return $this->doUpload($fileInputName);
+    }
+
+    private function doUpload($fileInputName)
+    {
         $this->prepareUploadDirectories();
 
         if (Input::hasFile($fileInputName)) {
-            $extension    = Input::file($fileInputName)->getClientOriginalExtension();
-            $baseName     = Str::random();
-            $fileName = $baseName . '.' . $extension;
+            $extension = Input::file($fileInputName)->getClientOriginalExtension();
+            $baseName  = Str::random();
+            $fileName  = $baseName . '.' . $extension;
 
             $destinationPath = $this->uploadsPath();
 
             ## Do actual moving of the file into destination
             Input::file($fileInputName)->move($destinationPath, $fileName);
 
-            $imagePath = $destinationPath . DIRECTORY_SEPARATOR . $fileName;
+            $mediaPath = $destinationPath . DIRECTORY_SEPARATOR . $fileName;
 
-            if ($width !== 0) {
-                ## Resize the image according to desired with constraining aspect ratio
-                Image::make($imagePath)->resize($width, $height,
-                    function ($constraint) use ($aspectRatio) {
-                        if ($aspectRatio) {
-                            $constraint->aspectRatio();
-                        }
-                    })->save();
-            }
-
-            return $imagePath;
+            return $mediaPath;
         }
+
         return null;
     }
 

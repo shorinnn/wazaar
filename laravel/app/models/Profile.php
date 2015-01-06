@@ -10,10 +10,7 @@ class Profile extends LaravelBook\Ardent\Ardent
     protected $guarded = ['id'];
     
      public static $rules = [
-         'owner_id' => 'numeric|unique_with:user_profiles,owner_type',
-         'email'    => 'required|email',
-         'first_name' => 'required',
-         'last_name' => 'required'
+         'owner_id' => 'numeric|unique_with:user_profiles,owner_type'
      ];
      
     public static $relationsData = array(

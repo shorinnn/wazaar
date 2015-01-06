@@ -12,6 +12,11 @@ class UserHelper
         return ($profiles->count() == 0);
     }
 
+    /**
+     * @param $userId  - Most probably the Auth::id()
+     * @param array $profileData - Key value of the profile data
+     * @param null $profileObject - the User collection if you want to update a particular profile 1 by 1(e.g. Student), leave null if all profiles are to be updated
+     */
     public function saveProfile($userId, $profileData = [], $profileObject = null)
     {
 
@@ -21,7 +26,7 @@ class UserHelper
         else{
             $profileObjects = [$profileObject];
         }
-
+        $profileObjects = [Student::find($userId), Instructor::find($userId), LTCAffiliate::find($userId)];
 
         foreach($profileObjects as $user){
 
@@ -45,14 +50,20 @@ class UserHelper
                     $user->profile()->save($profile);
                 }
                 else{
-
-                    if (!$user->profile->updateUniques()){
-
-                    }
+                    $user->profile->updateUniques();
                 }
             }
+
         }
 
 
+    }
+
+    public function profileValidationRules()
+    {
+        return [
+            'first_name' => 'required',
+            'last_name' => 'required'
+        ];
     }
 }
