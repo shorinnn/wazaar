@@ -14,6 +14,12 @@ return array(
 	*/
 
 	'debug' => true,
-        'url' => 'http://wazaar.dev',
+	'url' => 'http://wazaar.dev',
+	'providers' => append_config(
+		[
+			'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+			'Barryvdh\Debugbar\ServiceProvider',
+		]
+	)
 
 );

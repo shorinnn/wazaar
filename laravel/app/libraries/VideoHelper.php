@@ -28,22 +28,23 @@ class VideoHelper
      * @param $outputKey - The desired key name of the output video which will be placed in the outputucket
      * @return object - Result of the job
      */
-    public function doTranscoding($inputKey, $outputKey)
+    public function doTranscoding($inputKey, $presetIds = [])
     {
         $client = AWS::get('ElasticTranscoder');
         //must be in an .env config file
         $pipelineId = getenv('AWS_PIPELINEID');
-        $presetId = getenv('AWS_PRESET_320x240');
+
+        $outputs = [];
+        foreach($presetIds as $presetId){
+            $outputs[] = ['key' => $inputKey . $presetId, 'PresetId' => $presetId];
+        }
 
         $result = $client->createJob([
             'PipelineId' => $pipelineId,
             'Input' => [
                 'Key' => $inputKey
             ],
-            'Output' => [
-                'Key' => $outputKey,
-                'PresetId' => $presetId
-            ],
+            'Outputs' => $outputs,
         ]);
 
         return $result;
@@ -61,6 +62,16 @@ class VideoHelper
         return $client->readJob([
             'Id' => $jobId
         ]);
+    }
+
+    public function getKeyFromUrl($url)
+    {
+        if(filter_var($url, FILTER_VALIDATE_URL) === FALSE)
+        {
+           return null;
+        }
+        $segments = explode('/', $url);
+        return end($segments);
     }
 
 

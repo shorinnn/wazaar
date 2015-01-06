@@ -67,20 +67,23 @@ Route::resource('instructors', 'InstructorsController');
 ## Route Group for Profile
 Route::group(['prefix' => 'profile'], function (){
     ## Profile Page /profile
-    Route::get('/','ProfileController@index');
-
+    Route::get('/', 'ProfileController@index');
     ## POST call to upload a profile picture
     Route::post('upload-profile-picture', 'ProfileController@uploadProfilePicture');
-
     ## POST call to process additional data for initial profile set-up
     Route::post('store-new-profile', 'ProfileController@storeNewProfile');
-
     ##
     Route::post('{id}/update', 'ProfileController@update');
-
     ## Polymorphic Test
-    Route::get('polymorphic-test','ProfileController@polymorphicTest');
+    Route::get('polymorphic-test', 'ProfileController@polymorphicTest');
 
+});
+
+
+## Route Group Videos Manager
+Route::group(['prefix' => 'video'], function(){
+    Route::get('add','VideosController@add');
+    Route::post('upload', 'VideosController@doUpload');
 });
 
 
