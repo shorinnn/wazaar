@@ -1306,7 +1306,7 @@ header .activate-dropdown:hover ul{
     z-index: 101;
 }
 
-
+.form-group.password-input-container,
 .form-group.email-input-container,
 .form-group.input-container{
     margin: 0 auto 10px;
@@ -1392,25 +1392,28 @@ header .activate-dropdown:hover ul{
 /********** Form Error Message ************/
 .parsley-errors-list.filled,
 .alert.alert-error.alert-danger{
-	/*border: 1px solid #f5aca6;
+	border: none;
     border-radius: 10px;*/
     color: #ff0000;
     font-size: 11px;
     margin: 10px auto;
     padding: 0 36px;
 	text-align: center;
-	/*background: #ffecec url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/error.png) no-repeat 9px 9px;*/
+	background: none;
 }
 
-.parsley-errors-list.filled > li,
-.alert.alert-error.alert-danger > li{
+.parsley-errors-list.filled > li{
 	display: inline;
 }
 
+.alert.alert-error.alert-danger{
+	padding: 0;
+}
+
 .parsley-errors-list.filled > li::after,
-.alert.alert-error.alert-danger > li::after,
+.alert.alert-error.alert-danger::after,
 .parsley-errors-list.filled > li::before,
-.alert.alert-error.alert-danger > li::before{
+.alert.alert-error.alert-danger::before{
 	content: '▲';
 	display:inline;
 }
