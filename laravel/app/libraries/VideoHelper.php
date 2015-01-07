@@ -32,20 +32,23 @@ class VideoHelper
 
         if (isset($response['ObjectURL'])) {
             $inputKey = $this->_getKeyFromUrl($response['ObjectURL']);
-            $presets  = Config::get('aws.AWS_VIDEO_PRESETS');
+            $presets  = Config::get('wazaar.AWS_VIDEO_PRESETS');
 
             if (is_array($presets)) {
                 $presetIds    = array_keys($presets);
                 $transcodeJob = $this->_doTranscoding($inputKey, $presetIds);
 
-                if (isset($transcodeJob->Job['Id'])) {
+                if (isset($transcodeJob['Job']['Id'])) {
                     $video                   = Video::find($videoId);
-                    $video->transcode_job_id = $transcodeJob->Job['Id'];
-                    $video->transcode_status = $transcodeJob->Job['Status'];
+                    $video->transcode_job_id = $transcodeJob['Job']['Id'];
+                    $video->transcode_status = $transcodeJob['Job']['Status'];
                     $video->save(); //update video record
-                    if ($transcodeJob->Status == Video::STATUS_COMPLETE) {
-                        $videoFormats = $this->_extractVideoFormatsFromOutputs($videoId, $transcodeJob->Outputs);
+                    if ($transcodeJob['Job']['Status'] == Video::STATUS_COMPLETE) {
+                        $videoFormats = $this->_extractVideoFormatsFromOutputs($videoId, $transcodeJob['Outputs']);
                         VideoFormat::insert($videoFormats);
+                    }
+                    else{
+                        //TODO: call an artisan command
                     }
                 }
             }
@@ -117,7 +120,7 @@ class VideoHelper
 
         $outputs = [];
         foreach ($presetIds as $presetId) {
-            $outputs[] = ['key' => $inputKey . $presetId, 'PresetId' => $presetId, 'ThumbnailPattern ' => $inputKey];
+            $outputs[] = ['Key' => $inputKey . $presetId, 'PresetId' => $presetId, 'ThumbnailPattern ' => 'thumbnail'];
         }
 
         $result = $client->createJob([
