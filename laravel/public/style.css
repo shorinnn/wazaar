@@ -1393,7 +1393,7 @@ header .activate-dropdown:hover ul{
 .parsley-errors-list.filled,
 .alert.alert-error.alert-danger{
 	border: none;
-    border-radius: 10px;*/
+    border-radius: 10px;
     color: #ff0000;
     font-size: 11px;
     margin: 10px auto;
