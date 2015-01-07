@@ -1256,22 +1256,24 @@ header .activate-dropdown:hover ul{
 	text-indent: 45px;
 }
 
-#login-form .active-input,
-#register-form .active-input{
+#login-form .valid-input,
+#register-form .valid-input{
 	border-color: #92cc2e;
 	color: #99cf3b;
+	box-shadow: none;
+	/*box-shadow: 1px 0px 12px 2px #92cc2e;*/
 }
 
 #login-form .invalid-input,
 #register-form .invalid-input{
 	border-color: #ff0000;
 	color: #555;
+	box-shadow: 1px 0px 12px 2px #ff0000;
 }
 
-.activate-button{
-	border-color: #92cc2e;
-	box-shadow: 1px 0px 12px 2px #689814;
-	/*box-shadow: 0 7px 5px #689814 !important;*/
+.active-input{
+	border-color: #92cc2e !important;
+	box-shadow: 1px 0px 12px 2px #92cc2e !important;
 }
 
 .deactivate-button{
@@ -1279,31 +1281,30 @@ header .activate-dropdown:hover ul{
 	box-shadow: none;
 }
 
-.form-group.email-input-container:after {
-    background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/error.png") no-repeat -4px -64px;
+.form-group.input-container::after {
+    background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/check.png") no-repeat center center;
     content: "";
-    display: none;
-    height: 15px;
+    height: 25px;
     position: absolute;
-    right: 12px;
-    top: 12px;
-    width: 15px;
+    right: -34px;
+    top: 6px;
+    width: 25px;
     z-index: 100;
 }
 
 .form-group.email-input-container::before {
-	background: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/fb-and-google-icons.png) no-repeat 19px -116px; 
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/fb-and-google-icons.png") no-repeat 19px -116px; 
     content: "";
-    display: block;
     height: 30px;
     position: absolute;
     top: 0;
     width: 47px;
-    z-index: 99;
+    z-index: 101;
 }
 
 
-.form-group.email-input-container{
+.form-group.email-input-container,
+.form-group.input-container{
     margin: 0 auto 10px;
     position: relative;
     width: 312px;
@@ -1387,14 +1388,15 @@ header .activate-dropdown:hover ul{
 /********** Form Error Message ************/
 .parsley-errors-list.filled,
 .alert.alert-error.alert-danger{
-	border: 1px solid #f5aca6;
-    border-radius: 10px;
-    color: #555;
+	/*border: 1px solid #f5aca6;
+    border-radius: 10px;*/
+    color: #ff0000;
     font-size: 11px;
     margin: 10px auto;
 	width: 312px;
-    padding: 10px 36px;
-	background: #ffecec url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/error.png) no-repeat 9px 9px;
+    padding: 0 36px;
+	text-align: center;
+	/*background: #ffecec url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/error.png) no-repeat 9px 9px;*/
 }
 
 .forgot-password-page{

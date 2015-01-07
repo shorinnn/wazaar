@@ -1,5 +1,10 @@
 // JavaScript Document
 $(document).ready(function(){
+    // This listens for the parsley error on form fields and inserts the
+    // trianlge symbol in the error message.
+    $.listen('parsley:field:error', function(){
+        $("body").find(".parsley-errors-list.filled > li").prepend("▲");
+    });
     $(".profile-name > li").removeClass("activate-dropdown");
     // attach event to body, this allows the function to run when dynamically loaded (ajax) btns are clicked
     $('body').delegate('.delete-button', 'click', confirmDelete);
@@ -9,8 +14,10 @@ $(document).ready(function(){
     $('body').delegate('.instant-valid', 'keyup', field_instant_valid_callback);
     $('body').delegate('.delayed-valid', 'keyup', validateOnDelay);
     $('body').delegate('form', 'submit', submittedFormButton);
-    
     $('body').delegate('.has-slug', 'keyup', update_slug);
+    $('body').delegate('.instant-valid', 'focus', highlightInput);
+
+
 });
 
 
@@ -39,7 +46,7 @@ function cancelDelayTimer(e){
 }
 
 function almost_there($element){
-    $element.after('almost there...');
+    $element.parent().find('.character-tip span').css('top','0px');
 }
 
 function submittedFormButton(e){
