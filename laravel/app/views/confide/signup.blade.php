@@ -30,7 +30,7 @@
     <fieldset>
         <div class="form-group email-input-container">
             <label for="email">{{{ Lang::get('confide::confide.e_mail') }}} <small>{{ Lang::get('confide::confide.signup.confirmation_required') }}</small></label>
-            <input class="form-control instant-valid delayed-valid" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" 
+                <input class="form-control instant-valid delayed-valid" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" 
                    type="email" name="email" id="email" value="{{{ Input::old('email') }}}" 
                    required  data-parsley-trigger="change" data-instant-valid-callback="append_green_border" 
                    data-instant-invalid-callback="append_red_border" data-delayed-invalid-callback="almost_there" />
