@@ -35,7 +35,7 @@ function prepareCourseDetails(json){
     $('#edit-course-details-form').attr( 'action', json.updateAction );
     unhide('#step2');
 }
-var zzz;
+
 function populateDropdown(elem){
     target = $(elem).attr('data-target');
     target = $(target);
@@ -47,7 +47,6 @@ function populateDropdown(elem){
     $.get( $(elem).attr('data-url'),{id:$(elem).val()}, function(result){
         target.empty();
         for(i=0; i<result.length; ++i){
-            console.log( result[i] );
             var o = new Option( result[i].name, result[i].id );
             $(o).html( result[i].name );
             target.append(o);
@@ -55,4 +54,25 @@ function populateDropdown(elem){
         target.attr('disabled', false);
     });
     return;    
+}
+
+var unique_numbers = new Array();
+$('body').delegate('.clonable', 'keydown', duplicateField);
+function duplicateField(e){
+    $elem = $(e.target);
+    if( $.trim($elem.val()) == '' && $elem.next('.clonable').length==0){
+        clone = $elem.clone();
+        clone.removeAttr('id');
+        clone.removeClass();
+        id = Math.random()*1000000;
+        id = Math.ceil(id);
+        while( unique_numbers.indexOf(id) != -1){
+            id = Math.random()*1000000;
+            id = Math.ceil(id);
+            unique_numbers.push(id);
+        }
+        
+        clone.addClass('clonable clonable-'+id);
+        $elem.after(clone);
+    }
 }

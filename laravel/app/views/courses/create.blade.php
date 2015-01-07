@@ -20,7 +20,7 @@ The world is yours to conquer.
                     ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 'data-url'=> action('CoursesCategoriesController@subcategories')]) }}
         <h1>What sub-category?</h1>
         <select name='course_subcategory_id' id='course_subcategory_id'><option value='0'>Select category...</option></select><br />
-        <button class='btn btn-primary' onclick='unhide("#step3")'>Next Step</button>
+        <button class='btn btn-primary' type="button" onclick='unhide("#step3")'>Next Step</button>
     </div>
 
     <div id='step3' class='hidden'>
@@ -32,7 +32,7 @@ The world is yours to conquer.
          @endforeach
 
          <h3>By the end of the course your students will be able to...</h3>
-         <input type='text' name='what_will_you_achieve[]' />
+         <input type='text' name='what_will_you_achieve[]' class="clonable" />
 
          <h3>This course is for your student if your student is...</h3>
          <input type='text' name='who_is_this_for[]' /><br />

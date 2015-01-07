@@ -101,7 +101,6 @@ function append_green_border($element){
 
     // Switches the green box shadow to the next input on a successful validation
     if($element.parsley().isValid()){
-        $element = $('#email');
         $element.parent("div.form-group").nextAll('div.form-group').first().find("input").addClass("active-input");
     }
 }
