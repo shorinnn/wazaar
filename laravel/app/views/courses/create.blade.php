@@ -12,7 +12,8 @@ The world is yours to conquer.
         <button type='submit' class='btn btn-primary'>Create Course</button>
     </form>
 </div>
-<form method='post' class='ajax-form' id='edit-course-details-form'>
+<form method='post' class='ajax-form' id='edit-course-details-form' data-callback='followRedirect' >
+    <input type='hidden' name='_token' value='{{csrf_token()}}' />
     <input type='hidden' name='_method' value='PUT' />
     <div id='step2' class='hidden'>
         <h1>What category is your course in?</h1>
@@ -35,7 +36,7 @@ The world is yours to conquer.
          <input type='text' name='what_will_you_achieve[]' class="clonable" />
 
          <h3>This course is for your student if your student is...</h3>
-         <input type='text' name='who_is_this_for[]' /><br />
+         <input type='text' name='who_is_this_for[]'  class="clonable" /><br />
          <button class='btn btn-primary'>Start Creating Lessons</button>
     </div>
 </form>

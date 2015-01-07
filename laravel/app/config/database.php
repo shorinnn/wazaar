@@ -52,17 +52,6 @@ return array(
 			'prefix'   => '',
 		),
 
-		'mysql_live' => array(
-			'driver'    => 'mysql',
-			'host'      => '54.172.154.186',
-			'database'  => 'wazaar',
-			'username'  => 'admin',
-			'password'  => 'AnU7A1\6A06l.9T',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
-		),
-
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => getenv('DB_HOST'),

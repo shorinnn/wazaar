@@ -96,10 +96,18 @@ class CoursesController extends \BaseController {
                         ->withError( trans('courses/general.course_created_image_error') );
                     }
                 }
+                if(Request::ajax()){
+                    $response = ['status' => 'success', 'url' => action('CoursesController@curriculum', $course->slug) ];
+                    return json_encode($response);
+                }
                 return Redirect::action('CoursesController@edit', $course->slug)
                         ->withSuccess( trans('crud/errors.object_updated',['object' => 'Course']) );
             }
             else{
+                if(Request::ajax()){
+                    $response = ['status' => 'error', 'errors' => format_errors($course->errors()->all())];
+                    return json_encode($response);
+                }
                 return Redirect::back()
                         ->withError(trans('crud/errors.cannot_save_object',['object'=>'Course']).': '.format_errors($course->errors()->all()));
             }
@@ -182,6 +190,10 @@ class CoursesController extends \BaseController {
             else{
                 return Redirect::back()->withError( trans('crud/errors.cannot_delete_object',['object'=>'Course']) );
             }
+        }
+        
+        public function curriculum($slug){
+            return 'curriculum page here for '.$slug;
         }
 
 
