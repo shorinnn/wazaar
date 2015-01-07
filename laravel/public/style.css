@@ -29,6 +29,10 @@ body {
 	display: block;
 }
 
+.hide{
+	display: none;
+}
+
 a, input::-moz-focus-inner {
    outline: none;
    border: 0;
@@ -1393,10 +1397,22 @@ header .activate-dropdown:hover ul{
     color: #ff0000;
     font-size: 11px;
     margin: 10px auto;
-	width: 312px;
     padding: 0 36px;
 	text-align: center;
 	/*background: #ffecec url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/error.png) no-repeat 9px 9px;*/
+}
+
+.parsley-errors-list.filled > li,
+.alert.alert-error.alert-danger > li{
+	display: inline;
+}
+
+.parsley-errors-list.filled > li::after,
+.alert.alert-error.alert-danger > li::after,
+.parsley-errors-list.filled > li::before,
+.alert.alert-error.alert-danger > li::before{
+	content: '▲';
+	display:inline;
 }
 
 .forgot-password-page{
