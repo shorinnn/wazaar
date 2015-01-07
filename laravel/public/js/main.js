@@ -43,5 +43,10 @@ function almost_there($element){
 }
 
 function submittedFormButton(e){
+    $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
     $(e.target).find('[type=submit]').html('Processing...<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+}
+
+function restoreSubmitLabel($form){
+    $form.find('[type=submit]').html( $form.find('[type=submit]').attr('data-old-label') );
 }

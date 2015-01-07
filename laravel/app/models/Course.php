@@ -10,12 +10,11 @@ class Course extends Ardent{
     public static $rules = [
         'name' => 'required',
         'slug' => 'required|alpha_dash|unique:courses|not_in:index,show,create,store,categories,category,purchase,mycourses,destroy,edit,update',
-        'description' => 'required',
-        'price' => 'required|numeric',
-        'affiliate_percentage' => 'required|numeric|between:0,70',
-        'course_difficulty_id' => 'required|numeric',
-        'course_category_id' => 'required|numeric',
-        'course_subcategory_id' => 'required|numeric',
+        'price' => 'numeric',
+        'affiliate_percentage' => 'numeric|between:0,70',
+        'course_difficulty_id' => 'numeric',
+        'course_category_id' => 'numeric',
+        'course_subcategory_id' => 'numeric',
         'course_preview_image_id' => 'numeric',
         'course_banner_image_id' => 'numeric',
         'sale' => 'numeric',
@@ -74,10 +73,6 @@ class Course extends Ardent{
     }
     
     public function beforeSave(){
-        if($this->courseCategory->id != $this->courseSubcategory->courseCategory->id){
-            $this->errors()->add(0, trans('courses/general.selected_subcategory_not_child_of_category') );
-            return false;
-        }
         if($this->sale_kind=='percentage' && $this->sale  > 100){
             $this->errors()->add(0, trans('courses/general.cant_discount_101_percent') );
             return false;
