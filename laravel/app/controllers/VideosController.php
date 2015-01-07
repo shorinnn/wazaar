@@ -18,14 +18,19 @@ class VideosController extends BaseController
 
     public function doUpload()
     {
+        //upload media and get the full path to it
         $videoPath = $this->uploadHelper->uploadMedia('fileupload');
 
         if ($videoPath){
-            $response = $this->videoHelper->prepareForTranscoding($videoPath);
+            //Save video record first
+            $video = Video::create([
+                'original_filename' => Input::file('fileupload')->getClientOriginalName(),
+                'created_by_id' => Auth::id()
+            ]);
 
-            if (isset($response['ObjectURL'])){
-                $videoKey = $this->videoHelper->getKeyFromUrl($response['ObjectURL']);
-                echo $videoKey;
+            if ($video){
+                $videoId = $video->id;
+                $this->videoHelper->createTranscodingJob($videoId, $videoPath);
             }
         }
         else{

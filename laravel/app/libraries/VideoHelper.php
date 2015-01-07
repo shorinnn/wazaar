@@ -4,53 +4,6 @@ class VideoHelper
 {
 
     /**
-     * Puts the video into the input bucket for processing
-     * @param $videoFullpath
-     * @return bool
-     */
-    public function prepareForTranscoding($videoFullpath)
-    {
-        if (!file_exists($videoFullpath)){
-            return false;
-        }
-
-        $uploadHelper = new UploadHelper;
-        // Move Video to input bucket for processing later on
-        $inputBucket = getenv('AWS_VIDEO_INPUT_BUCKET');
-        $request = $uploadHelper->moveToAWS($videoFullpath,'', $inputBucket);
-
-        return $request;
-    }
-
-    /**
-     * Create the job to transcode the video
-     * @param $inputKey - The source key name/id of the video on the input bucket
-     * @param $outputKey - The desired key name of the output video which will be placed in the outputucket
-     * @return object - Result of the job
-     */
-    public function doTranscoding($inputKey, $presetIds = [])
-    {
-        $client = AWS::get('ElasticTranscoder');
-        //must be in an .env config file
-        $pipelineId = getenv('AWS_PIPELINEID');
-
-        $outputs = [];
-        foreach($presetIds as $presetId){
-            $outputs[] = ['key' => $inputKey . $presetId, 'PresetId' => $presetId];
-        }
-
-        $result = $client->createJob([
-            'PipelineId' => $pipelineId,
-            'Input' => [
-                'Key' => $inputKey
-            ],
-            'Outputs' => $outputs,
-        ]);
-
-        return $result;
-    }
-
-    /**
      * @param $jobId - The job transcoding Job Id
      * @return object
      */
@@ -64,18 +17,120 @@ class VideoHelper
         ]);
     }
 
-    public function getKeyFromUrl($url)
+    /**
+     * Creates a Queue job for transcoding uploaded videos
+     * @param $videoId
+     * @param $videoPath
+     */
+    public function createTranscodingJob($videoId, $videoPath)
     {
-        if(filter_var($url, FILTER_VALIDATE_URL) === FALSE)
-        {
-           return null;
+        //Create a queue
+        //Queue::push(function ($job) use($videoId, $videoPath){
+        //move the video to s3 input bucket
+        $response = $this->_prepareForTranscoding($videoPath);
+        //we'll proceed if the url to input video was successfully created
+
+        if (isset($response['ObjectURL'])) {
+            $inputKey = $this->_getKeyFromUrl($response['ObjectURL']);
+            $presets  = Config::get('aws.AWS_VIDEO_PRESETS');
+
+            if (is_array($presets)) {
+                $presetIds    = array_keys($presets);
+                $transcodeJob = $this->_doTranscoding($inputKey, $presetIds);
+
+                if (isset($transcodeJob->Job['Id'])) {
+                    $video                   = Video::find($videoId);
+                    $video->transcode_job_id = $transcodeJob->Job['Id'];
+                    $video->transcode_status = $transcodeJob->Job['Status'];
+                    $video->save(); //update video record
+                    if ($transcodeJob->Status == Video::STATUS_COMPLETE) {
+                        $videoFormats = $this->_extractVideoFormatsFromOutputs($videoId, $transcodeJob->Outputs);
+                        VideoFormat::insert($videoFormats);
+                    }
+                }
+            }
+        }
+        //});
+    }
+
+    private function _extractVideoFormatsFromOutputs($videoId, $outputs)
+    {
+        $outputLink   = 'https://s3-ap-southeast-1.amazonaws.com/videosoutput/';
+        $videoFormats = [];
+        foreach ($outputs as $output) {
+            $resolution     = $output['Width'] . 'x' . $output['Height'];
+            $videoFormats[] = [
+                               'video_id'   => $videoId,
+                               'output_key' => $output['Key'],
+                               'resolution' => $resolution,
+                               'duration'   => $output['Duration'],
+                               'video_url'  => $outputLink . $output['Key']
+            ];
+        }
+
+        return $videoFormats;
+    }
+
+    /**
+     * @param $url
+     * @return mixed|null
+     */
+    private function _getKeyFromUrl($url)
+    {
+        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+            return null;
         }
         $segments = explode('/', $url);
         return end($segments);
     }
 
+    /**
+     * Puts the video into the input bucket for processing
+     * @param $videoFullpath
+     * @return bool
+     */
+    private function _prepareForTranscoding($videoFullpath)
+    {
+        if (!file_exists($videoFullpath)) {
+            return false;
+        }
+
+        $uploadHelper = new UploadHelper;
+        // Move Video to input bucket for processing later on
+        $inputBucket = getenv('AWS_VIDEO_INPUT_BUCKET');
+        $request     = $uploadHelper->moveToAWS($videoFullpath, '', $inputBucket);
+
+        return $request;
+    }
+
+    /**
+     * Create the job to transcode the video
+     * @param $inputKey - The source key name/id of the video on the input bucket
+     * @param $outputKey - The desired key name of the output video which will be placed in the outputucket
+     * @return object - Result of the job
+     */
+    private function _doTranscoding($inputKey, $presetIds = [])
+    {
+        $client = AWS::get('ElasticTranscoder');
+        //must be in an .env config file
+        $pipelineId = getenv('AWS_PIPELINEID');
+
+        $outputs = [];
+        foreach ($presetIds as $presetId) {
+            $outputs[] = ['key' => $inputKey . $presetId, 'PresetId' => $presetId, 'ThumbnailPattern ' => $inputKey];
+        }
+
+        $result = $client->createJob([
+            'PipelineId' => $pipelineId,
+            'Input'      => [
+                'Key' => $inputKey
+            ],
+            'Outputs'    => $outputs,
+        ]);
 
 
+        return $result;
+    }
 
 
 }
