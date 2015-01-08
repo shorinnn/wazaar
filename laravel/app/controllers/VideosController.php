@@ -37,4 +37,13 @@ class VideosController extends BaseController
             //TODO: uploading of video went wrong
         }
     }
+
+    public function snsCallback()
+    {
+        $data['msg'] = file_get_contents('php://input');
+        Mail::send('emails.test', $data, function($message)
+        {
+            $message->to('albertmaranian@gmail.com', 'Albert Maranian')->subject('Cocorium!');
+        });
+    }
 }

@@ -15,7 +15,7 @@ return array(
 	|
 	*/
 
-	'default' => 'sync',
+	'default' => 'sqs',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -43,9 +43,9 @@ return array(
 
 		'sqs' => array(
 			'driver' => 'sqs',
-			'key'    => 'your-public-key',
-			'secret' => 'your-secret-key',
-			'queue'  => 'your-queue-url',
+			'key'    => 'AKIAIPBPNFBWG72FDHXA', // Your AWS Access Key ID
+			'secret' => 'VUggsLftvTH0vEAxvjbnhlyTQDKtut7VA9iPFHVI', // Your AWS Secret Access Key
+			'queue'  => 'https://sqs.us-east-1.amazonaws.com/932188653619/wazaar-video-transcode',
 			'region' => 'us-east-1',
 		),
 

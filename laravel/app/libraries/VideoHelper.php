@@ -25,7 +25,7 @@ class VideoHelper
     public function createTranscodingJob($videoId, $videoPath)
     {
         //Create a queue
-        //Queue::push(function ($job) use($videoId, $videoPath){
+        Queue::push(function ($job) use($videoId, $videoPath){
         //move the video to s3 input bucket
         $response = $this->_prepareForTranscoding($videoPath);
         //we'll proceed if the url to input video was successfully created
@@ -39,8 +39,12 @@ class VideoHelper
                 $transcodeJob = $this->_doTranscoding($inputKey, $presetIds);
 
                 if (isset($transcodeJob['Job']['Id'])) {
+
+                    $arn = $transcodeJob['Job']['Arn'];
+                    $jobId = $transcodeJob['Job']['Id'];
+
                     $video                   = Video::find($videoId);
-                    $video->transcode_job_id = $transcodeJob['Job']['Id'];
+                    $video->transcode_job_id = $jobId;
                     $video->transcode_status = $transcodeJob['Job']['Status'];
                     $video->save(); //update video record
                     if ($transcodeJob['Job']['Status'] == Video::STATUS_COMPLETE) {
@@ -48,13 +52,16 @@ class VideoHelper
                         VideoFormat::insert($videoFormats);
                     }
                     else{
-                        //TODO: call an artisan command
+                        //Create notification
+                        //$this->createSnsFromArn($arn);
                     }
                 }
             }
         }
-        //});
+        });
     }
+
+
 
     private function _extractVideoFormatsFromOutputs($videoId, $outputs)
     {
@@ -120,8 +127,10 @@ class VideoHelper
 
         $outputs = [];
         foreach ($presetIds as $presetId) {
-            $outputs[] = ['Key' => $inputKey . $presetId, 'PresetId' => $presetId, 'ThumbnailPattern ' => 'thumbnail'];
+            $key = $inputKey . str_replace('-','',$presetId);
+            $outputs[] = ['Key' => $key . '.mp4', 'PresetId' => $presetId, 'ThumbnailPattern' => $key . '-{count}' ];
         }
+
 
         $result = $client->createJob([
             'PipelineId' => $pipelineId,
