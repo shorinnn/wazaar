@@ -54,6 +54,7 @@
     <script src="{{url("js/parsley.min.js")}}"></script>
     <script src="{{url("js/main.js")}}"></script>
     <script src="{{url("js/forms.js")}}"></script>
+    <script src="{{url("js/validations.js")}}"></script>
     <script src="{{url("js/courses.js")}}"></script>
     <script src="{{url("js/cocoriumTracker.js")}}"></script>
     <script src="{{url("js/tweenmax.min.js")}}"></script>
