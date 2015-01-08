@@ -1,17 +1,24 @@
 @extends('layouts.default')
 @section('content')	
-
-<h1>Creating a course</h1>      
-The world is yours to conquer.
-
-<div id='step1'>
-    <form method='post' class='ajax-form' data-callback='prepareCourseDetails' action='{{action('CoursesController@store')}}'>
-        <h1>Enter Course Name</h1>
-        <input type='hidden' name='_token' value='{{csrf_token()}}' />
-        <input type='text' name='name' id='name' /><br />
-        <button type='submit' class='btn btn-primary'>Create Course</button>
-    </form>
+<div class="container create-course">
+<div class="row">
+	<div class="col-md-12">
+        <h1>Creating a course
+        	<small>The world is yours to conquer.</small>
+		</h1>      
+        <div id='step1'>
+            <form method='post' class='ajax-form' data-callback='prepareCourseDetails' action='{{action('CoursesController@store')}}'>
+                <h2>Enter Course Name</h2>
+                <input type='hidden' name='_token' value='{{csrf_token()}}' />
+                <input type='text' name='name' id='name' /><br />
+                <button type='submit' class='btn btn-primary'>Create Course</button>
+            </form>
+        </div>
+		
+    </div>
 </div>
+</div>
+
 <form method='post' class='ajax-form' id='edit-course-details-form' data-callback='followRedirect' >
     <input type='hidden' name='_token' value='{{csrf_token()}}' />
     <input type='hidden' name='_method' value='PUT' />
@@ -40,7 +47,4 @@ The world is yours to conquer.
          <button class='btn btn-primary'>Start Creating Lessons</button>
     </div>
 </form>
-<script type="text/javascript">
-    var _globalObj = {{ json_encode(array('_token'=> csrf_token())) }}
-</script>
 @stop

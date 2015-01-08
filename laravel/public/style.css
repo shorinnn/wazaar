@@ -1309,7 +1309,7 @@ header .activate-dropdown:hover ul{
 .form-group.password-input-container,
 .form-group.email-input-container,
 .form-group.input-container{
-    margin: 0 auto 10px;
+    margin: 0 auto 20px;
     position: relative;
     width: 312px;
 }
@@ -1390,16 +1390,18 @@ header .activate-dropdown:hover ul{
 }
 	
 /********** Form Error Message ************/
-.parsley-errors-list.filled,
+.parsley-errors-list,
 .alert.alert-error.alert-danger{
 	border: none;
     border-radius: 10px;
     color: #ff0000;
     font-size: 11px;
-    margin: 10px auto;
+    margin: 0 auto;
     padding: 0 36px;
 	text-align: center;
 	background: none;
+	position: absolute;
+	top: 50px;
 }
 
 .parsley-errors-list.filled > li{
@@ -1410,9 +1412,9 @@ header .activate-dropdown:hover ul{
 	padding: 0;
 }
 
-.parsley-errors-list.filled > li::after,
+.parsley-errors-list > li::after,
 .alert.alert-error.alert-danger::after,
-.parsley-errors-list.filled > li::before,
+.parsley-errors-list > li::before,
 .alert.alert-error.alert-danger::before{
 	content: '▲';
 	display:inline;
@@ -2774,6 +2776,24 @@ header .activate-dropdown:hover ul{
 	height: 80%;
 	background: #a4da28;
 }
+
+/************** Create a Course***********/
+.create-course h1{
+	color: #0099ff;
+	font-size: 42px;
+	font-weight: 200;
+	margin: 35px 0 0;	
+}
+
+.create-course h1 small{
+	display: block;
+	font-weight: 200;
+	font-size: 14px;
+	color: #18222b;
+}
+
+.create-course h2{
+	color: #0099ff;
 
 /************* Page Footer **************/
 footer{
