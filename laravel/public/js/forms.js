@@ -1,166 +1,152 @@
 /**
- * Fires valid/invalid events and callbacks for elements with the .instant-valid class
- * @param event e
- * @returns bool - True if the element was valid, false otherwise
+ * Contains form related reusable functions and event listeners
+ * @class Forms 
  */
-function field_instant_valid_callback(e){
-    // fire the instant valid callback
-    if( $(e.target).parsley().isValid() ){
-        $(e.target).trigger('blur change');
-        if( typeof($(e.target).attr('data-instant-valid-callback')) !='undefined') {
-            window[$(e.target).attr('data-instant-valid-callback')]($(e.target));
-            return true;
-        }        
-    }
-    // fire the instant invalid callback
-    else{
-//        $(e.target).trigger('blur change');
-        form_invalid_callback(e);
-   
-        if( typeof($(e.target).attr('data-instant-invalid-callback')) !='undefined') {
-            window[$(e.target).attr('data-instant-invalid-callback')]( $(e.target) );
+$(document).ready(function(){
+    $('body').delegate('form', 'submit', submittedFormButton);    
+    $('body').delegate('.delete-button', 'click', confirmDelete);
+    $('body').delegate('.has-slug', 'keyup', updateSlug);
+    $('body').delegate('.ajax-form', 'submit', formAjaxSubmit);
+    $('body').delegate('input.clonable', 'keydown', cloneInput);
+    $('body').delegate('.delete-clonable', 'click', deleteClonable);
+});
+
+/**
+ * Event handler for .ajax-form<br />
+ * Submits forms with .ajax-form class via ajax and fires the data-callback function if specified
+ * @method formAjaxSubmit
+ * @param {type} e Submit event
+ * @returns {Boolean} False
+ */
+function formAjaxSubmit(e){
+    form = $(e.target);
+    form.find('.ajax-errors').remove();
+    $.post(form.attr('action'), form.serialize(), function(result){
+        result = JSON.parse(result);
+        if(result.status=='error'){
+            form.append('<p class="alert alert-danger ajax-errors">'+result.errors+'</p>');
+            restoreSubmitLabel(form);
+            return false;
         }
-    }
+        if( typeof(form.attr('data-callback'))!='undefined' ){
+            window[form.attr('data-callback')](result);
+        }
+    });
     return false;
 }
 
+
 /**
- * Fires a form callback (data-form-valid-callback) if all elements within the form are valid
- * @param event e
- * @returns bool - True on fired, false otherwise
+ * Event handler for forms.<br />
+ * Called on all forms when they're submitted. It replaces the submit button label with "Processing...[loader icon]" 
+ * and stores the old value in data-old-label attribute.
+ * @method submittedFormButton
+ * @param {Event} e
  */
-function form_valid_callback(e){
-    if( typeof(e.$element)=='undefined' ){
-        e = {};
-        e.$element = $(event.srcElement);
-    }
-    // get the parent form
-    $form = e.$element.closest('form');
-    // loop through elements and check if all valid
-    all_valid = true;
-    $form.find("[data-parsley-trigger]").each(
-        function(){
-            if($(this).hasClass() || $(this).attr('id')!=''){
-                if(!$(this).parsley().isValid()) all_valid = false;
-            }
-        }
-    );
-    if( all_valid && typeof($form.attr('data-form-valid-callback')) !='undefined' && $form.attr('data-validation-callback-called')!=1 ){
-        $form.attr('data-validation-callback-called', 1);
-        window[$form.attr('data-form-valid-callback')]($form);
-        return true;
-    }
-    return false;
+function submittedFormButton(e){
+    $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
+    $(e.target).find('[type=submit]').html('Processing...<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
 }
 
 /**
- * Fires the invalid form callback (data-form-valid-callback) if specified
- * @param {type} e
- * @returns {undefined}
+ * Restores the form's submit button original label
+ * @method restoreSubmitLabel
+ * @param {jQuery form} $form
  */
-function form_invalid_callback(e){
-    if( typeof(e.$element)=='undefined' ){
-        target = e.target;
-        e = {};
-        e.$element = $(target) ;// || $(event.srcElement);
-    }
-    $form = e.$element.closest('form');
-    if($form.attr('data-validation-callback-called')==1){
-        $form.attr('data-validation-callback-called', 0);
-        window[$form.attr('data-form-invalid-callback')]($form);
-    }
+function restoreSubmitLabel($form){
+    $form.find('[type=submit]').html( $form.find('[type=submit]').attr('data-old-label') );
 }
 
+/**
+ * Event handler for  .delete-button.<br />
+ * Fired by click on .delete-button and asks for confirmation
+ * @method confirmDelete
+ * @param {event} e
+ * @returns {bool} True if confirmed, false otherwise
+ */
 function confirmDelete(e){
     // get the message from the clicked button, don't hard code it (so we can use localization)
     msg = $(e.target).attr('data-message');
     return confirm(msg);
 }
 
-/******* Example Form/field callbacks *******/
-
-
-/** this function is defined as the email field valid callback
- *  data-instant-valid-callback="append_check_mark" 
- *  This will append an icon to the email area if valid
- * @param object $element
+/**
+ * Event handler for .has-slug<br />
+ * Is called on keyup event for elements with .has-slug class. It takes the elements value 
+ * and populates another field specified by the elements data-slug-target attribute with
+ * the slug version of the value
+ * @method updateSlug
+ * @param {Event} e
+ * @return {null} null
  */
+function updateSlug(e){
+    target = $(e.target).attr('data-slug-target');
+    $(target).val( convertToSlug( $(e.target).val() ) );
+    return null;
+}
 
-function append_green_border($element){
-    // On successful validation appends a green border on the input
-    $element.addClass("valid-input");
+/**
+ * Populates a second dropdown specified by 'data-target' with the values 
+ * returned by the get call to the resource at data-url
+ * @method populateDropdown
+ * @param {object} elem HTML dropdown
+ */
+function populateDropdown(elem){
+    target = $(elem).attr('data-target');
+    target = $(target);
+    target.empty();
+    var o = new Option( 'loading...', 'loading...' );
+    $(o).html( 'loading...' );
+    target.append(o);
+    target.attr('disabled', true);
+    $.get( $(elem).attr('data-url'),{id:$(elem).val()}, function(result){
+        target.empty();
+        for(i=0; i<result.length; ++i){
+            var o = new Option( result[i].name, result[i].id );
+            $(o).html( result[i].name );
+            target.append(o);
+        }
+        target.attr('disabled', false);
+    });
+}
 
-    // Removes the box shadow from successfully validated inputs
-    $element.removeClass("active-input invalid-input");
+/**
+ * Event handler for .clonable inputs.<br />
+ * Fired on keyup on an empty clonable input - it creates a set of 
+ * input+delete button after the calling element
+ * @param {event} e keyup event
+ */
+function cloneInput(e){
+    var keynum;
+    var keychar;
+    var charcheck;
+    if(window.event) // IE
+    keynum = e.keyCode;
+    else if(e.which) // Netscape/Firefox/Opera
+    keynum = e.which;
+    keychar = String.fromCharCode(keynum);
+    charcheck = /[a-zA-Z0-9]/;
 
-    // Adds a class that displays the green tick icon
-    $element.parent("div.form-group").addClass("input-container");
-
-    // Slides up the character tip span when the field successfully validates
-    $element.parent().find('.character-tip span').css('top','-47px');
-
-    // Switches the green box shadow to the next input on a successful validation
-    if($element.parsley().isValid()){
-        $element.parent("div.form-group").nextAll('div.form-group').first().find("input").addClass("active-input");
+    if( !charcheck.test(keychar) ) return;   
+    $elem = $(e.target);
+    if( $.trim($elem.val()) == '' && $elem.next('.clonable').length==0 ){
+        var $destination = ($elem.parent().hasClass('clonable')) ? $elem.parent() : $elem;
+        var clone = $elem.clone();
+        clone.removeAttr('id');
+        clone.removeClass();
+        id = uniqueId();
+        clone.addClass('clonable clonable-'+id);
+        $destination.after('<div class="clonable clonable-'+id+'"><button type="button" class="btn btn-danger delete-clonable clonable-'+id+'">X</button></div>');
+        $('button.clonable-'+id).before(clone);
     }
 }
 
-/** this function is defined as the email field invalid callback
- *  data-instant-invalid-callback="remove_check_mark" 
- *  This will remove the check icon if the value becomes invalid
- * @param object $element
+/**
+ * Event handler for click on .delete-clonable buttons<br />
+ * Deletes the clonable input and associated delete button
+ * @param {event} e Click event
  */
-function append_red_border($element){
-    // Adds the red border when validation fails
-    $element.addClass("invalid-input");
-
-    // Removes the green border
-    $element.removeClass("valid-input");
-
-    // Removes the green tick icon
-    $element.parent("div.form-group").removeClass("input-container");
-
+function deleteClonable(e){
+    $(e.target).parent().remove();
 }
 
-/** this function is defined as the form valid callback
- *  data-form-valid-callback="some_cool_animation"
- * Just put some text before the form. Can do anything: make the submit btn glow, the form shake, etc
- * @param object $form
- */
-function activate_submit_button(){
-    animateBoxShadow();
-}
-
-/** this function is defined as the form invalid callback
- *  data-form-invalid-callback="remove_some_cool_animation"
- * Remove the text included by some_cool_animation so the user knows the form is no longer valid
- * @param object $form
- */
-function remove_some_cool_animation($form){
-    $(".register-form-success").remove();
-}
-
-    anim_count = 0;
-    required_anim_count = 2;
-    function animateBoxShadow() {
-        // this fails because jqueryUI is not included
-//        $('#submit-button').switchClass('deactivate-button', 'activate-button', 200, function(){
-//            if (anim_count < required_anim_count) {
-//                // call the animation again in 2 seconds
-//                anim_count++;
-//                setTimeout(animateBoxShadow, 2000);
-//            }
-//            else {
-//                // reset the counter
-//                anim_count = 0;
-//            }
-//        });
-    }
-/* end example instant valid callbacks */
-
-/** Adds a green shadow and border to the active form field
-* and highlights the next form field on validation
-**/
-function highlightInput(e){
-    $(e.target).addClass("active-input");
-}

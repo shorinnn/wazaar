@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>forms.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Courses.html">Courses</a></li>
+                                <li><a href="../classes/Forms.html">Forms</a></li>
+                                <li><a href="../classes/Main.html">Main</a></li>
+                                <li><a href="../classes/Validations.html">Validations</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: forms.js</h1>
+                        
+                        <div class="file">
+                            <pre class="code prettyprint linenums">
+                        /**
+                         * Contains form related reusable functions and event listeners
+                         * @class Forms 
+                         */
+                        $(document).ready(function(){
+                            $(&#x27;body&#x27;).delegate(&#x27;form&#x27;, &#x27;submit&#x27;, submittedFormButton);    
+                            $(&#x27;body&#x27;).delegate(&#x27;.delete-button&#x27;, &#x27;click&#x27;, confirmDelete);
+                            $(&#x27;body&#x27;).delegate(&#x27;.has-slug&#x27;, &#x27;keyup&#x27;, updateSlug);
+                            $(&#x27;body&#x27;).delegate(&#x27;.ajax-form&#x27;, &#x27;submit&#x27;, formAjaxSubmit);
+                            $(&#x27;body&#x27;).delegate(&#x27;input.clonable&#x27;, &#x27;keydown&#x27;, cloneInput);
+                            $(&#x27;body&#x27;).delegate(&#x27;.delete-clonable&#x27;, &#x27;click&#x27;, deleteClonable);
+                        });
+                        
+                        /**
+                         * Event handler for .ajax-form&lt;br /&gt;
+                         * Submits forms with .ajax-form class via ajax and fires the data-callback function if specified
+                         * @method formAjaxSubmit
+                         * @param {type} e Submit event
+                         * @returns {Boolean} False
+                         */
+                        function formAjaxSubmit(e){
+                            form = $(e.target);
+                            form.find(&#x27;.ajax-errors&#x27;).remove();
+                            $.post(form.attr(&#x27;action&#x27;), form.serialize(), function(result){
+                                result = JSON.parse(result);
+                                if(result.status==&#x27;error&#x27;){
+                                    form.append(&#x27;&lt;p class=&quot;alert alert-danger ajax-errors&quot;&gt;&#x27;+result.errors+&#x27;&lt;/p&gt;&#x27;);
+                                    restoreSubmitLabel(form);
+                                    return false;
+                                }
+                                if( typeof(form.attr(&#x27;data-callback&#x27;))!=&#x27;undefined&#x27; ){
+                                    window[form.attr(&#x27;data-callback&#x27;)](result);
+                                }
+                            });
+                            return false;
+                        }
+                        
+                        
+                        /**
+                         * Event handler for forms.&lt;br /&gt;
+                         * Called on all forms when they&#x27;re submitted. It replaces the submit button label with &quot;Processing...[loader icon]&quot; 
+                         * and stores the old value in data-old-label attribute.
+                         * @method submittedFormButton
+                         * @param {Event} e
+                         */
+                        function submittedFormButton(e){
+                            $(e.target).find(&#x27;[type=submit]&#x27;).attr(&#x27;data-old-label&#x27;, $(e.target).find(&#x27;[type=submit]&#x27;).html());
+                            $(e.target).find(&#x27;[type=submit]&#x27;).html(&#x27;Processing...&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
+                        }
+                        
+                        /**
+                         * Restores the form&#x27;s submit button original label
+                         * @method restoreSubmitLabel
+                         * @param {jQuery form} $form
+                         */
+                        function restoreSubmitLabel($form){
+                            $form.find(&#x27;[type=submit]&#x27;).html( $form.find(&#x27;[type=submit]&#x27;).attr(&#x27;data-old-label&#x27;) );
+                        }
+                        
+                        /**
+                         * Event handler for  .delete-button.&lt;br /&gt;
+                         * Fired by click on .delete-button and asks for confirmation
+                         * @method confirmDelete
+                         * @param {event} e
+                         * @returns {bool} True if confirmed, false otherwise
+                         */
+                        function confirmDelete(e){
+                            // get the message from the clicked button, don&#x27;t hard code it (so we can use localization)
+                            msg = $(e.target).attr(&#x27;data-message&#x27;);
+                            return confirm(msg);
+                        }
+                        
+                        /**
+                         * Event handler for .has-slug&lt;br /&gt;
+                         * Is called on keyup event for elements with .has-slug class. It takes the elements value 
+                         * and populates another field specified by the elements data-slug-target attribute with
+                         * the slug version of the value
+                         * @method updateSlug
+                         * @param {Event} e
+                         * @return {null} null
+                         */
+                        function updateSlug(e){
+                            target = $(e.target).attr(&#x27;data-slug-target&#x27;);
+                            $(target).val( convertToSlug( $(e.target).val() ) );
+                            return null;
+                        }
+                        
+                        /**
+                         * Populates a second dropdown specified by &#x27;data-target&#x27; with the values 
+                         * returned by the get call to the resource at data-url
+                         * @method populateDropdown
+                         * @param {object} elem HTML dropdown
+                         */
+                        function populateDropdown(elem){
+                            target = $(elem).attr(&#x27;data-target&#x27;);
+                            target = $(target);
+                            target.empty();
+                            var o = new Option( &#x27;loading...&#x27;, &#x27;loading...&#x27; );
+                            $(o).html( &#x27;loading...&#x27; );
+                            target.append(o);
+                            target.attr(&#x27;disabled&#x27;, true);
+                            $.get( $(elem).attr(&#x27;data-url&#x27;),{id:$(elem).val()}, function(result){
+                                target.empty();
+                                for(i=0; i&lt;result.length; ++i){
+                                    var o = new Option( result[i].name, result[i].id );
+                                    $(o).html( result[i].name );
+                                    target.append(o);
+                                }
+                                target.attr(&#x27;disabled&#x27;, false);
+                            });
+                        }
+                        
+                        /**
+                         * Event handler for .clonable inputs.&lt;br /&gt;
+                         * Fired on keyup on an empty clonable input - it creates a set of 
+                         * input+delete button after the calling element
+                         * @param {event} e keyup event
+                         */
+                        function cloneInput(e){
+                            var keynum;
+                            var keychar;
+                            var charcheck;
+                            if(window.event) // IE
+                            keynum = e.keyCode;
+                            else if(e.which) // Netscape/Firefox/Opera
+                            keynum = e.which;
+                            keychar = String.fromCharCode(keynum);
+                            charcheck = /[a-zA-Z0-9]/;
+                        
+                            if( !charcheck.test(keychar) ) return;   
+                            $elem = $(e.target);
+                            if( $.trim($elem.val()) == &#x27;&#x27; &amp;&amp; $elem.next(&#x27;.clonable&#x27;).length==0 ){
+                                var $destination = ($elem.parent().hasClass(&#x27;clonable&#x27;)) ? $elem.parent() : $elem;
+                                var clone = $elem.clone();
+                                clone.removeAttr(&#x27;id&#x27;);
+                                clone.removeClass();
+                                id = uniqueId();
+                                clone.addClass(&#x27;clonable clonable-&#x27;+id);
+                                $destination.after(&#x27;&lt;div class=&quot;clonable clonable-&#x27;+id+&#x27;&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-danger delete-clonable clonable-&#x27;+id+&#x27;&quot;&gt;X&lt;/button&gt;&lt;/div&gt;&#x27;);
+                                $(&#x27;button.clonable-&#x27;+id).before(clone);
+                            }
+                        }
+                        
+                        /**
+                         * Event handler for click on .delete-clonable buttons&lt;br /&gt;
+                         * Deletes the clonable input and associated delete button
+                         * @param {event} e Click event
+                         */
+                        function deleteClonable(e){
+                            $(e.target).parent().remove();
+                        }
+                        
+                        
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
