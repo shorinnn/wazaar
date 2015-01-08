@@ -40,6 +40,7 @@ class VideosController extends BaseController
 
     public function snsCallback()
     {
+        echo 'This will be the callback endpoint for transcoded videos';
         File::put(storage_path() . '/snstest.txt', print_r(Input::all(), true));
     }
 }
