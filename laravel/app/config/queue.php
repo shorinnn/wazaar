@@ -31,7 +31,7 @@ return array(
 	'connections' => array(
 
 		'sync' => array(
-			'driver' => 'sync',
+			'driver' => 'sqs',
 		),
 
 		'beanstalkd' => array(
@@ -43,10 +43,10 @@ return array(
 
 		'sqs' => array(
 			'driver' => 'sqs',
-			'key'    => 'your-public-key',
-			'secret' => 'your-secret-key',
-			'queue'  => 'your-queue-url',
-			'region' => 'us-east-1',
+			'key'    => 'AKIAIPBPNFBWG72FDHXA', // Your AWS Access Key ID
+			'secret' => 'VUggsLftvTH0vEAxvjbnhlyTQDKtut7VA9iPFHVI', // Your AWS Secret Access Key
+			'queue'  => 'https://sqs.us-east-1.amazonaws.com/932188653619/wazaar-video-transcode',
+			'region' => 'us-east-1'
 		),
 
 		'iron' => array(

@@ -37,4 +37,9 @@ class VideosController extends BaseController
             //TODO: uploading of video went wrong
         }
     }
+
+    public function snsCallback()
+    {
+        File::put(storage_path() . '/snstest.txt', print_r(Input::all(), true));
+    }
 }
