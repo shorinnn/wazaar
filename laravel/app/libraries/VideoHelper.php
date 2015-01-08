@@ -24,23 +24,23 @@ class VideoHelper
      */
     public function createTranscodingJob($videoId, $videoPath)
     {
+
         //Create a queue
         Queue::push(function ($job) use($videoId, $videoPath){
         //move the video to s3 input bucket
-        $response = $this->_prepareForTranscoding($videoPath);
+        $videoHelper = new VideoHelper;
+        $response = $videoHelper->_prepareForTranscoding($videoPath);
         //we'll proceed if the url to input video was successfully created
 
         if (isset($response['ObjectURL'])) {
-            $inputKey = $this->_getKeyFromUrl($response['ObjectURL']);
+            $inputKey = $videoHelper->_getKeyFromUrl($response['ObjectURL']);
             $presets  = Config::get('wazaar.AWS_VIDEO_PRESETS');
 
             if (is_array($presets)) {
                 $presetIds    = array_keys($presets);
-                $transcodeJob = $this->_doTranscoding($inputKey, $presetIds);
+                $transcodeJob = $videoHelper->_doTranscoding($inputKey, $presetIds);
 
                 if (isset($transcodeJob['Job']['Id'])) {
-
-                    $arn = $transcodeJob['Job']['Arn'];
                     $jobId = $transcodeJob['Job']['Id'];
 
                     $video                   = Video::find($videoId);
@@ -48,7 +48,7 @@ class VideoHelper
                     $video->transcode_status = $transcodeJob['Job']['Status'];
                     $video->save(); //update video record
                     if ($transcodeJob['Job']['Status'] == Video::STATUS_COMPLETE) {
-                        $videoFormats = $this->_extractVideoFormatsFromOutputs($videoId, $transcodeJob['Outputs']);
+                        $videoFormats = $videoHelper->_extractVideoFormatsFromOutputs($videoId, $transcodeJob['Outputs']);
                         VideoFormat::insert($videoFormats);
                     }
                     else{
@@ -63,7 +63,7 @@ class VideoHelper
 
 
 
-    private function _extractVideoFormatsFromOutputs($videoId, $outputs)
+    public function _extractVideoFormatsFromOutputs($videoId, $outputs)
     {
         $outputLink   = 'https://s3-ap-southeast-1.amazonaws.com/videosoutput/';
         $videoFormats = [];
@@ -85,7 +85,7 @@ class VideoHelper
      * @param $url
      * @return mixed|null
      */
-    private function _getKeyFromUrl($url)
+    public function _getKeyFromUrl($url)
     {
         if (filter_var($url, FILTER_VALIDATE_URL) === false) {
             return null;
@@ -99,7 +99,7 @@ class VideoHelper
      * @param $videoFullpath
      * @return bool
      */
-    private function _prepareForTranscoding($videoFullpath)
+    public function _prepareForTranscoding($videoFullpath)
     {
         if (!file_exists($videoFullpath)) {
             return false;
@@ -119,7 +119,7 @@ class VideoHelper
      * @param $outputKey - The desired key name of the output video which will be placed in the outputucket
      * @return object - Result of the job
      */
-    private function _doTranscoding($inputKey, $presetIds = [])
+    public function _doTranscoding($inputKey, $presetIds = [])
     {
         $client = AWS::get('ElasticTranscoder');
         //must be in an .env config file
@@ -139,8 +139,6 @@ class VideoHelper
             ],
             'Outputs'    => $outputs,
         ]);
-
-
         return $result;
     }
 
