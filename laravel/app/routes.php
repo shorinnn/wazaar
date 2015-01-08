@@ -90,7 +90,7 @@ Route::group(['prefix' => 'profile'], function (){
 Route::group(['prefix' => 'video'], function(){
     Route::get('add','VideosController@add');
     Route::post('upload', 'VideosController@doUpload');
-    Route::any('sns/callback', 'VideosController@snsCallback');
+    Route::post('sns/callback', 'VideosController@snsCallback');
 });
 
 
