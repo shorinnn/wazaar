@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Courses</title>
+    <title>Validations</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -42,6 +42,7 @@
                                 <li><a href="../classes/Forms.html">Forms</a></li>
                                 <li><a href="../classes/Main.html">Main</a></li>
                                 <li><a href="../classes/Validations.html">Validations</a></li>
+                                <li><a href="../classes/.html"></a></li>
                             </ul>
                 
                             <ul id="api-modules" class="apis modules">
@@ -78,12 +79,12 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Courses Class</h1>
+                        <h1>Validations Class</h1>
                         <div class="box meta">
                         
                         
                                 <div class="foundat">
-                                    Defined in: <a href="../files/courses.js.html#l1"><code>courses.js:1</code></a>
+                                    Defined in: <a href="../files/public_js_validations.js.html#l1"><code>public&#x2F;js&#x2F;validations.js:1</code></a>
                                 </div>
                         
                         
@@ -91,7 +92,7 @@
                         
                         
                         <div class="box intro">
-                            <p>Contains form related reusable functions and event listeners</p>
+                            <p>Contains validation functions and event handlers</p>
                         
                         </div>
                         
@@ -112,23 +113,35 @@
                         
                                             <ul class="index-list methods">
                                                     <li class="index-item method">
-                                                        <a href="#method_addLesson">addLesson</a>
+                                                        <a href="#method_appendGreenBorder">appendGreenBorder</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#method_addModule">addModule</a>
+                                                        <a href="#method_appendRedBorder">appendRedBorder</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#method_prepareCourseDetails">prepareCourseDetails</a>
+                                                        <a href="#method_cancelDelayTimer">cancelDelayTimer</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#method_reorderLessons">reorderLessons</a>
+                                                        <a href="#method_fieldInstantValidCallback">fieldInstantValidCallback</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#method_sortablizeLessons">sortablizeLessons</a>
+                                                        <a href="#method_formInvalidCallback">formInvalidCallback</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#method_formValidCallback">formValidCallback</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#method_highlightInput">highlightInput</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#method_validateOnDelay">validateOnDelay</a>
                         
                                                     </li>
                                             </ul>
@@ -141,13 +154,13 @@
                                     <div id="methods" class="api-class-tabpanel">
                                         <h2 class="off-left">Methods</h2>
                         
-                                            <div id="method_addLesson" class="method item">
-                                                <h3 class="name"><code>addLesson</code></h3>
+                                            <div id="method_appendGreenBorder" class="method item">
+                                                <h3 class="name"><code>appendGreenBorder</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
                                                             <li class="arg">
-                                                                    <code>e</code>
+                                                                    <code>$element</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
@@ -162,7 +175,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/courses.js.html#l83"><code>courses.js:83</code></a>
+                                                    <a href="../files/public_js_validations.js.html#l91"><code>public&#x2F;js&#x2F;validations.js:91</code></a>
                                                     </p>
                                             
                                             
@@ -170,8 +183,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Event handler for click on .add-lesson<br />
-                                            Adds a lesson under the selected module</p>
+                                                    <p>Adds a green border to an element</p>
                                             
                                                 </div>
                                             
@@ -180,119 +192,12 @@
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
-                                                                    <code class="param-name">e</code>
-                                                                    <span class="type">Event</span>
-                                            
-                                            
-                                                                <div class="param-description">
-                                                                    <p>Click event</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                            
-                                            
-                                            </div>
-                                            <div id="method_addModule" class="method item">
-                                                <h3 class="name"><code>addModule</code></h3>
-                                            
-                                                    <div class="args">
-                                                        <span class="paren">(</span><ul class="args-list inline commas">
-                                                            <li class="arg">
-                                                                    <code>e</code>
-                                                            </li>
-                                                        </ul><span class="paren">)</span>
-                                                    </div>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                                <div class="meta">
-                                                            <p>
-                                                            Defined in
-                                                    <a href="../files/courses.js.html#l63"><code>courses.js:63</code></a>
-                                                    </p>
-                                            
-                                            
-                                            
-                                                </div>
-                                            
-                                                <div class="description">
-                                                    <p>Event handler for click on .add-module<br />
-                                            Adds a new Module under the current course</p>
-                                            
-                                                </div>
-                                            
-                                                    <div class="params">
-                                                        <h4>Parameters:</h4>
-                                            
-                                                        <ul class="params-list">
-                                                            <li class="param">
-                                                                    <code class="param-name">e</code>
-                                                                    <span class="type">Event</span>
-                                            
-                                            
-                                                                <div class="param-description">
-                                                                    <p>The click event</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                            
-                                            
-                                            </div>
-                                            <div id="method_prepareCourseDetails" class="method item">
-                                                <h3 class="name"><code>prepareCourseDetails</code></h3>
-                                            
-                                                    <div class="args">
-                                                        <span class="paren">(</span><ul class="args-list inline commas">
-                                                            <li class="arg">
-                                                                    <code>json</code>
-                                                            </li>
-                                                        </ul><span class="paren">)</span>
-                                                    </div>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                                <div class="meta">
-                                                            <p>
-                                                            Defined in
-                                                    <a href="../files/courses.js.html#l52"><code>courses.js:52</code></a>
-                                                    </p>
-                                            
-                                            
-                                            
-                                                </div>
-                                            
-                                                <div class="description">
-                                                    <p>Called after course creations, sets the step 2 form action attribute</p>
-                                            
-                                                </div>
-                                            
-                                                    <div class="params">
-                                                        <h4>Parameters:</h4>
-                                            
-                                                        <ul class="params-list">
-                                                            <li class="param">
-                                                                    <code class="param-name">json</code>
+                                                                    <code class="param-name">$element</code>
                                                                     <span class="type">Object</span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>JSON response from the create course action</p>
+                                                                    <p>The html object to add the border</p>
                                             
                                                                 </div>
                                             
@@ -302,13 +207,13 @@
                                             
                                             
                                             </div>
-                                            <div id="method_reorderLessons" class="method item">
-                                                <h3 class="name"><code>reorderLessons</code></h3>
+                                            <div id="method_appendRedBorder" class="method item">
+                                                <h3 class="name"><code>appendRedBorder</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
                                                             <li class="arg">
-                                                                    <code>id</code>
+                                                                    <code>$element</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
@@ -323,7 +228,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/courses.js.html#l39"><code>courses.js:39</code></a>
+                                                    <a href="../files/public_js_validations.js.html#l115"><code>public&#x2F;js&#x2F;validations.js:115</code></a>
                                                     </p>
                                             
                                             
@@ -331,7 +236,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Recalculates the lesson order within the module</p>
+                                                    <p>Adds a red border to the supplied element</p>
                                             
                                                 </div>
                                             
@@ -340,13 +245,12 @@
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
-                                                                    <code class="param-name">id</code>
-                                                                    <span class="type">String</span>
+                                                                    <code class="param-name">$element</code>
+                                                                    <span class="type">Object</span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>The ID of the UL element containing the list</p>
-                                            
+                                                                     
                                                                 </div>
                                             
                                                             </li>
@@ -355,13 +259,13 @@
                                             
                                             
                                             </div>
-                                            <div id="method_sortablizeLessons" class="method item">
-                                                <h3 class="name"><code>sortablizeLessons</code></h3>
+                                            <div id="method_cancelDelayTimer" class="method item">
+                                                <h3 class="name"><code>cancelDelayTimer</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
                                                             <li class="arg">
-                                                                    <code>id</code>
+                                                                    <code>e</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
@@ -376,7 +280,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/courses.js.html#l23"><code>courses.js:23</code></a>
+                                                    <a href="../files/public_js_validations.js.html#l165"><code>public&#x2F;js&#x2F;validations.js:165</code></a>
                                                     </p>
                                             
                                             
@@ -384,7 +288,8 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Enables Drag and Drop sorting for dynamically added lessons</p>
+                                                    <p>Event listener for blur on .delayed-valid.<br />
+                                            Cancel the validateOnDelay if element is blured</p>
                                             
                                                 </div>
                                             
@@ -393,12 +298,305 @@
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
-                                                                    <code class="param-name">id</code>
-                                                                    <span class="type">String</span>
+                                                                    <code class="param-name">e</code>
+                                                                    <span class="type">Event</span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>The ID of the UL element containing the list</p>
+                                                                    <p>Blur event</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_fieldInstantValidCallback" class="method item">
+                                                <h3 class="name"><code>fieldInstantValidCallback</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>e</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type">Bool</span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/public_js_validations.js.html#l12"><code>public&#x2F;js&#x2F;validations.js:12</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Event Listener for .instant-valid class.<br />
+                                            Fired by keyup on elements with the .instant-valid class and triggers  valid/invalid 
+                                            parsley events and callbacks for current element</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">e</code>
+                                                                    <span class="type">Event</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                     
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type">Bool</span>:
+                                                                <p>True if the element was valid, false otherwise</p>
+                                            
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_formInvalidCallback" class="method item">
+                                                <h3 class="name"><code>formInvalidCallback</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>e</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/public_js_validations.js.html#l72"><code>public&#x2F;js&#x2F;validations.js:72</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Called by fieldInstantValidCallback() - Fires the invalid form callback (specified by the data-form-valid-callback
+                                            attr of e.target) if specified</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">e</code>
+                                                                    <span class="type">Event</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                     
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_formValidCallback" class="method item">
+                                                <h3 class="name"><code>formValidCallback</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>event</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type"><a href="../classes/.html" class="crosslink"></a></span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/public_js_validations.js.html#l41"><code>public&#x2F;js&#x2F;validations.js:41</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Event listener for parsley:field:success.<br />
+                                            Fires a form callback (data-form-valid-callback) if all elements within the form are valid</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">event</code>
+                                                                    <span class="type">Object</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>e</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                <p>bool - True on fired, false otherwise</p>
+                                            
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_highlightInput" class="method item">
+                                                <h3 class="name"><code>highlightInput</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>e</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/public_js_validations.js.html#l132"><code>public&#x2F;js&#x2F;validations.js:132</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Event listener for .instant-valid .<br />. 
+                                            Adds a green shadow and border to the active form field and highlights the next form field on validation</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">e</code>
+                                                                    <span class="type">Event</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>Focus event</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_validateOnDelay" class="method item">
+                                                <h3 class="name"><code>validateOnDelay</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>e</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/public_js_validations.js.html#l142"><code>public&#x2F;js&#x2F;validations.js:142</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Event listener for .delayed-valid class.<br />
+                                            Checks if the current input is valid and fires a callback specified by
+                                            data-delayed-invalid-callback if invalid</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">e</code>
+                                                                    <span class="type">Event</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>keyup event</p>
                                             
                                                                 </div>
                                             

@@ -15,8 +15,8 @@
 <tr class="course-header">
     <td colspan="3">
         {{$course->name}}
-        <span class="label label-primary">{{$course->courseCategory->name}}</span>
-        <span class="label label-primary">{{$course->courseSubcategory->name}}</span>
+        <span class="label label-primary">{{$course->courseCategory->name or 'No Category'}}</span>
+        <span class="label label-primary">{{$course->courseSubcategory->name or 'No Subcategory'}}</span>
     </td>
     <td>
     </td>
@@ -34,7 +34,10 @@
         {{Lang::choice('general.student', $course->student_count)}}
     </td>
     <td class="text-center">{{link_to_action('CoursesController@show', trans('crud/labels.view'), $course->slug)}}</td>
-    <td class="text-center">{{ link_to_action('CoursesController@edit', trans('crud/labels.edit'), $course->slug, [ 'class'=>'edit-button btn btn-primary' ] ) }}
+    <td class="text-center">
+        
+        {{ link_to_action('CoursesController@curriculum', trans('courses/general.manage_lessons'), $course->slug, [ 'class'=>'edit-button btn btn-primary' ] ) }}
+        {{ link_to_action('CoursesController@edit', trans('courses/general.edit_details'), $course->slug, [ 'class'=>'edit-button btn btn-primary' ] ) }}
                 @if($course->student_count==0)
                 {{ Form::open(array('action' => array('CoursesController@destroy', $course->id), 'method' => 'delete', 'id'=>'course-form-'.$course->id)) }}
                     <button class="btn btn-danger delete-button" data-message="{{ trans('you-sure-want-delete') }}" type="submit" >{{trans('crud/labels.delete')}}</button>

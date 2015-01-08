@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Courses</title>
+    <title>Forms</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -42,6 +42,7 @@
                                 <li><a href="../classes/Forms.html">Forms</a></li>
                                 <li><a href="../classes/Main.html">Main</a></li>
                                 <li><a href="../classes/Validations.html">Validations</a></li>
+                                <li><a href="../classes/.html"></a></li>
                             </ul>
                 
                             <ul id="api-modules" class="apis modules">
@@ -78,12 +79,12 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Courses Class</h1>
+                        <h1>Forms Class</h1>
                         <div class="box meta">
                         
                         
                                 <div class="foundat">
-                                    Defined in: <a href="../files/courses.js.html#l1"><code>courses.js:1</code></a>
+                                    Defined in: <a href="../files/public_js_forms.js.html#l1"><code>public&#x2F;js&#x2F;forms.js:1</code></a>
                                 </div>
                         
                         
@@ -112,23 +113,31 @@
                         
                                             <ul class="index-list methods">
                                                     <li class="index-item method">
-                                                        <a href="#method_addLesson">addLesson</a>
+                                                        <a href="#method_confirmDelete">confirmDelete</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#method_addModule">addModule</a>
+                                                        <a href="#method_deleteItem">deleteItem</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#method_prepareCourseDetails">prepareCourseDetails</a>
+                                                        <a href="#method_formAjaxSubmit">formAjaxSubmit</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#method_reorderLessons">reorderLessons</a>
+                                                        <a href="#method_populateDropdown">populateDropdown</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#method_sortablizeLessons">sortablizeLessons</a>
+                                                        <a href="#method_restoreSubmitLabel">restoreSubmitLabel</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#method_submittedFormButton">submittedFormButton</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#method_updateSlug">updateSlug</a>
                         
                                                     </li>
                                             </ul>
@@ -141,8 +150,8 @@
                                     <div id="methods" class="api-class-tabpanel">
                                         <h2 class="off-left">Methods</h2>
                         
-                                            <div id="method_addLesson" class="method item">
-                                                <h3 class="name"><code>addLesson</code></h3>
+                                            <div id="method_confirmDelete" class="method item">
+                                                <h3 class="name"><code>confirmDelete</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
@@ -152,6 +161,9 @@
                                                         </ul><span class="paren">)</span>
                                                     </div>
                                             
+                                                    <span class="returns-inline">
+                                                        <span class="type">Bool</span>
+                                                    </span>
                                             
                                             
                                             
@@ -162,7 +174,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/courses.js.html#l83"><code>courses.js:83</code></a>
+                                                    <a href="../files/public_js_forms.js.html#l60"><code>public&#x2F;js&#x2F;forms.js:60</code></a>
                                                     </p>
                                             
                                             
@@ -170,8 +182,8 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Event handler for click on .add-lesson<br />
-                                            Adds a lesson under the selected module</p>
+                                                    <p>Event handler for  .delete-button.<br />
+                                            Fired by click on .delete-button and asks for confirmation</p>
                                             
                                                 </div>
                                             
@@ -185,7 +197,82 @@
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>Click event</p>
+                                                                     
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type">Bool</span>:
+                                                                <p>True if confirmed, false otherwise</p>
+                                            
+                                                        </div>
+                                                    </div>
+                                            
+                                            </div>
+                                            <div id="method_deleteItem" class="method item">
+                                                <h3 class="name"><code>deleteItem</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>result</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>event</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/public_js_forms.js.html#l153"><code>public&#x2F;js&#x2F;forms.js:153</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Called after an AJAX delete call, removes the specified HTML element</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">result</code>
+                                                                    <span class="type">Json</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>The ajax call json response</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">event</code>
+                                                                    <span class="type">Event</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>The original submit event</p>
                                             
                                                                 </div>
                                             
@@ -195,8 +282,8 @@
                                             
                                             
                                             </div>
-                                            <div id="method_addModule" class="method item">
-                                                <h3 class="name"><code>addModule</code></h3>
+                                            <div id="method_formAjaxSubmit" class="method item">
+                                                <h3 class="name"><code>formAjaxSubmit</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
@@ -206,6 +293,9 @@
                                                         </ul><span class="paren">)</span>
                                                     </div>
                                             
+                                                    <span class="returns-inline">
+                                                        <span class="type">Boolean</span>
+                                                    </span>
                                             
                                             
                                             
@@ -216,7 +306,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/courses.js.html#l63"><code>courses.js:63</code></a>
+                                                    <a href="../files/public_js_forms.js.html#l14"><code>public&#x2F;js&#x2F;forms.js:14</code></a>
                                                     </p>
                                             
                                             
@@ -224,8 +314,8 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Event handler for click on .add-module<br />
-                                            Adds a new Module under the current course</p>
+                                                    <p>Event handler for .ajax-form<br />
+                                            Submits forms with .ajax-form class via ajax and fires the data-callback function if specified</p>
                                             
                                                 </div>
                                             
@@ -235,11 +325,11 @@
                                                         <ul class="params-list">
                                                             <li class="param">
                                                                     <code class="param-name">e</code>
-                                                                    <span class="type">Event</span>
+                                                                    <span class="type">Type</span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>The click event</p>
+                                                                    <p>Submit event</p>
                                             
                                                                 </div>
                                             
@@ -247,15 +337,24 @@
                                                         </ul>
                                                     </div>
                                             
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type">Boolean</span>:
+                                                                <p>False</p>
+                                            
+                                                        </div>
+                                                    </div>
                                             
                                             </div>
-                                            <div id="method_prepareCourseDetails" class="method item">
-                                                <h3 class="name"><code>prepareCourseDetails</code></h3>
+                                            <div id="method_populateDropdown" class="method item">
+                                                <h3 class="name"><code>populateDropdown</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
                                                             <li class="arg">
-                                                                    <code>json</code>
+                                                                    <code>elem</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
@@ -270,7 +369,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/courses.js.html#l52"><code>courses.js:52</code></a>
+                                                    <a href="../files/public_js_forms.js.html#l88"><code>public&#x2F;js&#x2F;forms.js:88</code></a>
                                                     </p>
                                             
                                             
@@ -278,7 +377,8 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Called after course creations, sets the step 2 form action attribute</p>
+                                                    <p>Populates a second dropdown specified by &#39;data-target&#39; with the values 
+                                            returned by the get call to the resource at data-url</p>
                                             
                                                 </div>
                                             
@@ -287,12 +387,12 @@
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
-                                                                    <code class="param-name">json</code>
+                                                                    <code class="param-name">elem</code>
                                                                     <span class="type">Object</span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>JSON response from the create course action</p>
+                                                                    <p>HTML dropdown</p>
                                             
                                                                 </div>
                                             
@@ -302,13 +402,13 @@
                                             
                                             
                                             </div>
-                                            <div id="method_reorderLessons" class="method item">
-                                                <h3 class="name"><code>reorderLessons</code></h3>
+                                            <div id="method_restoreSubmitLabel" class="method item">
+                                                <h3 class="name"><code>restoreSubmitLabel</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
                                                             <li class="arg">
-                                                                    <code>id</code>
+                                                                    <code>$form</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
@@ -323,7 +423,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/courses.js.html#l39"><code>courses.js:39</code></a>
+                                                    <a href="../files/public_js_forms.js.html#l51"><code>public&#x2F;js&#x2F;forms.js:51</code></a>
                                                     </p>
                                             
                                             
@@ -331,7 +431,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Recalculates the lesson order within the module</p>
+                                                    <p>Restores the form&#39;s submit button original label</p>
                                             
                                                 </div>
                                             
@@ -340,13 +440,12 @@
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
-                                                                    <code class="param-name">id</code>
-                                                                    <span class="type">String</span>
+                                                                    <code class="param-name">$form</code>
+                                                                    <span class="type">JQuery form</span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>The ID of the UL element containing the list</p>
-                                            
+                                                                     
                                                                 </div>
                                             
                                                             </li>
@@ -355,13 +454,13 @@
                                             
                                             
                                             </div>
-                                            <div id="method_sortablizeLessons" class="method item">
-                                                <h3 class="name"><code>sortablizeLessons</code></h3>
+                                            <div id="method_submittedFormButton" class="method item">
+                                                <h3 class="name"><code>submittedFormButton</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
                                                             <li class="arg">
-                                                                    <code>id</code>
+                                                                    <code>e</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
@@ -376,7 +475,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/courses.js.html#l23"><code>courses.js:23</code></a>
+                                                    <a href="../files/public_js_forms.js.html#l39"><code>public&#x2F;js&#x2F;forms.js:39</code></a>
                                                     </p>
                                             
                                             
@@ -384,7 +483,9 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Enables Drag and Drop sorting for dynamically added lessons</p>
+                                                    <p>Event handler for forms.<br />
+                                            Called on all forms when they&#39;re submitted. It replaces the submit button label with &quot;Processing...[loader icon]&quot; 
+                                            and stores the old value in data-old-label attribute.</p>
                                             
                                                 </div>
                                             
@@ -393,19 +494,85 @@
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
-                                                                    <code class="param-name">id</code>
-                                                                    <span class="type">String</span>
+                                                                    <code class="param-name">e</code>
+                                                                    <span class="type">Event</span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>The ID of the UL element containing the list</p>
-                                            
+                                                                     
                                                                 </div>
                                             
                                                             </li>
                                                         </ul>
                                                     </div>
                                             
+                                            
+                                            </div>
+                                            <div id="method_updateSlug" class="method item">
+                                                <h3 class="name"><code>updateSlug</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>e</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                                    <span class="returns-inline">
+                                                        <span class="type">Null</span>
+                                                    </span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/public_js_forms.js.html#l73"><code>public&#x2F;js&#x2F;forms.js:73</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Event handler for .has-slug<br />
+                                            Is called on keyup event for elements with .has-slug class. It takes the elements value 
+                                            and populates another field specified by the elements data-slug-target attribute with
+                                            the slug version of the value</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">e</code>
+                                                                    <span class="type">Event</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                     
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type">Null</span>:
+                                                                <p>null</p>
+                                            
+                                                        </div>
+                                                    </div>
                                             
                                             </div>
                                     </div>

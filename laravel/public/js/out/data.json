@@ -92,17 +92,77 @@
     "classitems": [
         {
             "file": "courses.js",
-            "line": 6,
+            "line": 23,
+            "description": "Enables Drag and Drop sorting for dynamically added lessons",
+            "itemtype": "method",
+            "name": "sortablizeLessons",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "The ID of the UL element containing the list",
+                    "type": "String"
+                }
+            ],
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 39,
+            "description": "Recalculates the lesson order within the module",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "The ID of the UL element containing the list",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "reorderLessons",
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 52,
             "description": "Called after course creations, sets the step 2 form action attribute",
             "itemtype": "method",
             "name": "prepareCourseDetails",
             "params": [
                 {
                     "name": "json",
-                    "description": "",
-                    "type": "Type"
+                    "description": "JSON response from the create course action",
+                    "type": "Object"
                 }
             ],
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 63,
+            "description": "Event handler for click on .add-module<br />\nAdds a new Module under the current course",
+            "itemtype": "method",
+            "name": "addModule",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The click event",
+                    "type": "Event"
+                }
+            ],
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 83,
+            "description": "Event handler for click on .add-lesson<br />\nAdds a lesson under the selected module",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Click event",
+                    "type": "Event"
+                }
+            ],
+            "itemtype": "method",
+            "name": "addLesson",
             "class": "Courses"
         },
         {

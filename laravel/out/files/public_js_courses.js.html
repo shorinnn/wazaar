@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>courses.js</title>
+    <title>public/js/courses.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -42,6 +42,7 @@
                                 <li><a href="../classes/Forms.html">Forms</a></li>
                                 <li><a href="../classes/Main.html">Main</a></li>
                                 <li><a href="../classes/Validations.html">Validations</a></li>
+                                <li><a href="../classes/.html"></a></li>
                             </ul>
                 
                             <ul id="api-modules" class="apis modules">
@@ -78,7 +79,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: courses.js</h1>
+                        <h1 class="file-heading">File: public/js/courses.js</h1>
                         
                         <div class="file">
                             <pre class="code prettyprint linenums">
@@ -90,18 +91,21 @@
                             $(&#x27;body&#x27;).delegate(&#x27;.add-module&#x27;, &#x27;click&#x27;, addModule);    
                             $(&#x27;body&#x27;).delegate(&#x27;.add-lesson&#x27;, &#x27;click&#x27;, addLesson);    
                             
+                            // Make the modules list sortable
                             var el = document.getElementById(&#x27;modules-list&#x27;);
-                            var sortable = Sortable.create(el, {
-                                animation: 150, 
-                                handle: &#x27;.sortable-handle&#x27;,
-                                onEnd: function (evt) {
-                                    var i = 1;
-                                    $(&#x27;.module-order&#x27;).each(function(){
-                                        $(this).html(i);
-                                        ++i;
-                                    });
-                                }
-                            });
+                            if( $(&#x27;#modules-list&#x27;).length &gt; 0){
+                                var sortable = Sortable.create(el, {
+                                    animation: 150, 
+                                    handle: &#x27;.sortable-handle&#x27;,
+                                    onEnd: function (evt) {
+                                        var i = 1;
+                                        $(&#x27;.module-order&#x27;).each(function(){
+                                            $(this).html(i);
+                                            ++i;
+                                        });
+                                    }
+                                });
+                            }
                         });
                         
                         /**
@@ -148,20 +152,16 @@
                          * Event handler for click on .add-module&lt;br /&gt;
                          * Adds a new Module under the current course
                          * @method addModule
-                         * @param {event} e The click event
+                         * @param {json} e The json response of the create module call
                          */
-                        function addModule(e){
-                            var destination = $(e.target).attr(&#x27;data-destination&#x27;);
+                        function addModule(json){
+                            var destination = &#x27;#modules-list&#x27;;
                             var current = $(&#x27;#modules-list &gt; li&#x27;).length + 1 * 1;
-                            var id = uniqueId();
-                            var module = &#x27;&lt;li&gt;Module &lt;span class=&quot;module-order&quot;&gt;&#x27;+current+&#x27;&lt;/span&gt; - &lt;input type=&quot;text&quot; /&gt; &#x27; +
-                                    &#x27;&lt;button class=&quot;btn btn-danger&quot;&gt;X&lt;/button&gt; &lt;span class=&quot;sortable-handle&quot;&gt;[dragicon]&lt;/span&gt; &#x27; +
-                                    &#x27;&lt;ul class=&quot;lessons&quot; id=&quot;lessons-holder-&#x27;+id+&#x27;&quot;&gt;&#x27; +
-                                    &#x27;&lt;li&gt;Lesson &lt;span class=&quot;lesson-order&quot;&gt;1&lt;/span&gt; - &lt;input type=&quot;text&quot; /&gt;&lt;button class=&quot;btn btn-danger&quot;&gt;X&lt;/button&gt;&#x27; +
-                                    &#x27;&lt;span class=&quot;sortable-handle&quot;&gt;[dragicon]&lt;/span&gt; &lt;/li&gt;&lt;/ul&gt;&#x27; +
-                                    &#x27;&lt;button class=&quot;btn btn-primary add-lesson&quot;&gt;Add Lesson&lt;/button&gt;&lt;/li&gt;&#x27;;
+                            var id = json.module.id;
+                            var module = json.html;
                             $(destination).append(module);
                             sortablizeLessons(&#x27;lessons-holder-&#x27;+id);
+                            restoreSubmitLabel( $(&#x27;#modules-form&#x27;) );
                         }
                         
                         /**
