@@ -30,11 +30,11 @@
     <fieldset>
         <div class="form-group email-input-container">
             <label for="email">{{{ Lang::get('confide::confide.e_mail') }}} <small>{{ Lang::get('confide::confide.signup.confirmation_required') }}</small></label>
-            <input class="form-control instant-valid delayed-valid" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" 
+                <input class="form-control instant-valid delayed-valid" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" 
                    type="email" name="email" id="email" value="{{{ Input::old('email') }}}" 
                    required  data-parsley-trigger="change" data-instant-valid-callback="append_green_border" 
                    data-instant-invalid-callback="append_red_border" data-delayed-invalid-callback="almost_there" />
-	        <p class="clearfix character-tip"><em class="left"></em><span class="block right"></span></p>
+	        <p class="clearfix character-tip"><em class="left"></em><span class="block">You're almost there...</span></p>
         </div>
         <p class="js-error-message"></p>
         @if (Session::get('error'))
@@ -47,18 +47,18 @@
         @endif
         <div class="form-group">
             <label for="password">{{{ Lang::get('confide::confide.password') }}}</label>
-            <input class="form-control delayed-valid" placeholder="{{{ Lang::get('confide::confide.password')}}}" 
+            <input class="form-control delayed-valid instant-valid" placeholder="{{{ Lang::get('confide::confide.password')}}}" 
                    type="password" name="password" id="password" 
                    required  data-parsley-trigger="change" data-parsley-minlength="6" data-instant-valid-callback="append_green_border" 
-                   data-delayed-invalid-callback="almost_there"  />
+                   data-delayed-invalid-callback="almost_there" data-instant-invalid-callback="append_red_border" />
 	        <p class="clearfix character-tip"><span class="block">At least 6 characters</span></p>
         </div>
         <div class="form-group">
             <label for="password_confirmation">{{{ Lang::get('confide::confide.password_confirmation') }}}</label>
             <input class="form-control instant-valid" placeholder="{{{ Lang::get('confide::confide.password_confirmation') }}}" 
                    type="password" name="password_confirmation" id="password_confirmation" 
-                   data-parsley-equalto="#password" required  data-parsley-trigger="change" data-parsley-minlength="6" data-instant-valid-callback="append_green_border" 
-                    />
+                   data-parsley-equalto="#password" required  data-parsley-trigger="change" data-parsley-minlength="6" 
+                   data-instant-valid-callback="append_green_border" />
 	        <p class="clearfix character-tip"><span class="block">Type in the password again</span></p>
         </div>
         <input class="form-control" type="hidden" name="instructor" id="instructor" value="{{{ $instructor }}}">
@@ -66,6 +66,7 @@
         
 
         <div class="form-actions form-group">
+        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" class="hide" alt="">
           <button type="submit" id="submit-button" class="btn btn-primary deactivate-button">{{{ Lang::get('confide::confide.signup.submit') }}}</button>
         </div>
 

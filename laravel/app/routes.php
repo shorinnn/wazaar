@@ -49,14 +49,20 @@ Route::group(array('prefix'=>'administration'),function(){
     Route::resource('members', 'MembersController');
 });
 
+// Course Categories
+Route::get('coursecategories/subcategories', 'CoursesCategoriesController@subcategories');
 // Courses Controller
 Route::get('courses/mycourses', 'CoursesController@myCourses');
 Route::get('courses/categories', 'CoursesController@categories');
 Route::get('courses/category/{slug}/{subcat}', 'CoursesController@subCategory');
 Route::get('courses/category/{slug}', 'CoursesController@category');
 Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
+Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
 Route::resource('courses', 'CoursesController');
-
+// Lessons 
+Route::group(['prefix' => 'lessons'], function(){
+    Route::get('/{slug}', 'LessonsController@index');
+});
 // Instructors routes
 Route::get('instructors', 'InstructorsController@index');
 Route::get('instructors/start/{user}', 'InstructorsController@start');

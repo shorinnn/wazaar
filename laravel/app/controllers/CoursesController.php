@@ -17,10 +17,13 @@ class CoursesController extends \BaseController {
             $course = new Course;
             $difficulties = CourseDifficulty::lists('name', 'id');
             $categories = CourseCategory::lists('name', 'id');
+            $select = 'Select';
+            array_unshift($categories, $select);
             $subcategories = CourseSubcategory::arrayWithParent();
             $instructor = Instructor::find(Auth::user()->id);
             $images = $instructor->coursePreviewImages;
             $bannerImages = $instructor->courseBannerImages;
+            return View::make('courses.create')->with(compact('difficulties'))->with(compact('categories'));
             return View::make('courses.form')->with(compact('course'))->with(compact('images'))->with(compact('bannerImages'))
                     ->with(compact('difficulties'))->with(compact('categories'))->with(compact('subcategories'));
         }
@@ -29,32 +32,20 @@ class CoursesController extends \BaseController {
             $data = input_except(['_method', '_token']);
             $course = new Course( $data );
             $course->instructor_id = Auth::user()->id;
-            $course->course_preview_image_id = Input::get("course_preview_image_id");
-            $course->course_banner_image_id = Input::get("course_banner_image_id");
-            $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
-            $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
-            $course->sale = Input::get('sale');
-            $course->sale_kind = Input::get('sale_kind');
-            $course->sale_ends_on = Input::get('sale_ends_on');
+            $course->slug = Str::slug(Input::get('name')).rand(1,100);
             if($course->save()){
-                // upload the preview image
-                if (Input::hasFile('preview_image')){
-                    if(!$course->upload_preview( Input::file('preview_image')->getRealPath() )){
-                        return Redirect::action('CoursesController@show', $course->slug)
-                        ->withError( trans('courses/general.course_created_image_error') );
-                    }
-                }
-                // upload banner image
-                if (Input::hasFile('banner_image')){
-                    if(!$course->upload_banner( Input::file('banner_image')->getRealPath() )){
-                        return Redirect::action('CoursesController@edit', $course->slug)
-                        ->withError( trans('courses/general.course_created_image_error') );
-                    }
+                if(Request::ajax()){
+                    $response = ['status' => 'success', 'updateAction' => action('CoursesController@update', $course->slug) ];
+                    return json_encode($response);
                 }
                 return Redirect::action('CoursesController@show', $course->slug)
                         ->withSuccess( trans('crud/errors.object_created',['object' => 'Course']) );
             }
             else{
+                if(Request::ajax()){
+                    $response = ['status' => 'error', 'errors' => format_errors($course->errors()->all())];
+                    return json_encode($response);
+                }
                 return Redirect::back()->withInput()
                         ->withError(trans('crud/errors.cannot_save_object',['object'=>'Course']).': '.format_errors($course->errors()->all()));
             }
@@ -105,10 +96,18 @@ class CoursesController extends \BaseController {
                         ->withError( trans('courses/general.course_created_image_error') );
                     }
                 }
+                if(Request::ajax()){
+                    $response = ['status' => 'success', 'url' => action('CoursesController@curriculum', $course->slug) ];
+                    return json_encode($response);
+                }
                 return Redirect::action('CoursesController@edit', $course->slug)
                         ->withSuccess( trans('crud/errors.object_updated',['object' => 'Course']) );
             }
             else{
+                if(Request::ajax()){
+                    $response = ['status' => 'error', 'errors' => format_errors($course->errors()->all())];
+                    return json_encode($response);
+                }
                 return Redirect::back()
                         ->withError(trans('crud/errors.cannot_save_object',['object'=>'Course']).': '.format_errors($course->errors()->all()));
             }
@@ -191,6 +190,10 @@ class CoursesController extends \BaseController {
             else{
                 return Redirect::back()->withError( trans('crud/errors.cannot_delete_object',['object'=>'Course']) );
             }
+        }
+        
+        public function curriculum($slug){
+            return 'curriculum page here for '.$slug;
         }
 
 

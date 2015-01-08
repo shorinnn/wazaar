@@ -87,20 +87,6 @@ class CourseCest{
         $I->assertTrue( $course->save() );
     }
     
-    public function failWrongSubcategory(UnitTester $I){
-        $course = new Course();
-        $course->name = 'New App Development';
-        $course->slug = 'new-app-development';
-        $course->instructor_id = 4;
-        $course->course_category_id = 1;
-        $course->course_subcategory_id = 2;
-        $course->price = 300000;
-        $course->course_difficulty_id = 1;
-        $course->description = 'Create your very first application in 2 weeks! You get a beginner award after completing the course.';
-        $course->student_count =  0;
-        $I->assertFalse( $course->save() );
-    }
-    
     public function getNewCourseLessThanXStudents(UnitTester $I){
         $course = Course::find(1);
         $I->assertLessThan( Config::get('custom.course_is_new.maximum_students'), $course->student_count);

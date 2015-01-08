@@ -24,7 +24,7 @@
             <label for="email">{{{ Lang::get('confide::confide.e_mail') }}}</label>
             <input class="form-control" tabindex="1" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
         </div>
-        <div class="form-group">
+        <div class="form-group password-input-container">
         <label for="password">
             {{{ Lang::get('confide::confide.password') }}}
         </label>

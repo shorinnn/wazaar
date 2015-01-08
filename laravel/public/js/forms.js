@@ -8,7 +8,7 @@ function field_instant_valid_callback(e){
     if( $(e.target).parsley().isValid() ){
         $(e.target).trigger('blur change');
         if( typeof($(e.target).attr('data-instant-valid-callback')) !='undefined') {
-            window[$(e.target).attr('data-instant-valid-callback')]( $(e.target) );
+            window[$(e.target).attr('data-instant-valid-callback')]($(e.target));
             return true;
         }        
     }
@@ -87,8 +87,22 @@ function confirmDelete(e){
  */
 
 function append_green_border($element){
-    $element.addClass("active-input");
-    $element.removeClass("invalid-input");
+    // On successful validation appends a green border on the input
+    $element.addClass("valid-input");
+
+    // Removes the box shadow from successfully validated inputs
+    $element.removeClass("active-input invalid-input");
+
+    // Adds a class that displays the green tick icon
+    $element.parent("div.form-group").addClass("input-container");
+
+    // Slides up the character tip span when the field successfully validates
+    $element.parent().find('.character-tip span').css('top','-47px');
+
+    // Switches the green box shadow to the next input on a successful validation
+    if($element.parsley().isValid()){
+        $element.parent("div.form-group").nextAll('div.form-group').first().find("input").addClass("active-input");
+    }
 }
 
 /** this function is defined as the email field invalid callback
@@ -97,8 +111,15 @@ function append_green_border($element){
  * @param object $element
  */
 function append_red_border($element){
+    // Adds the red border when validation fails
     $element.addClass("invalid-input");
-    $element.removeClass("active-input");
+
+    // Removes the green border
+    $element.removeClass("valid-input");
+
+    // Removes the green tick icon
+    $element.parent("div.form-group").removeClass("input-container");
+
 }
 
 /** this function is defined as the form valid callback
@@ -107,7 +128,6 @@ function append_red_border($element){
  * @param object $form
  */
 function activate_submit_button(){
-    
     animateBoxShadow();
 }
 
@@ -137,3 +157,10 @@ function remove_some_cool_animation($form){
 //        });
     }
 /* end example instant valid callbacks */
+
+/** Adds a green shadow and border to the active form field
+* and highlights the next form field on validation
+**/
+function highlightInput(e){
+    $(e.target).addClass("active-input");
+}

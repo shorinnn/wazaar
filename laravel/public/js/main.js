@@ -1,5 +1,6 @@
 // JavaScript Document
 $(document).ready(function(){
+    // This listens for the parsley error on form fields and inserts the
     $(".profile-name > li").removeClass("activate-dropdown");
     // attach event to body, this allows the function to run when dynamically loaded (ajax) btns are clicked
     $('body').delegate('.delete-button', 'click', confirmDelete);
@@ -9,8 +10,10 @@ $(document).ready(function(){
     $('body').delegate('.instant-valid', 'keyup', field_instant_valid_callback);
     $('body').delegate('.delayed-valid', 'keyup', validateOnDelay);
     $('body').delegate('form', 'submit', submittedFormButton);
-    
     $('body').delegate('.has-slug', 'keyup', update_slug);
+    $('body').delegate('.instant-valid', 'focus', highlightInput);
+
+
 });
 
 
@@ -24,13 +27,18 @@ function convertToSlug(text){
 }
 
 function validateOnDelay(e){
+    if( typeof(e.target.timer) != 'undefined'){
+        clearTimeout(e.target.timer);
+    }
+    
     e.target.timer = setTimeout(function () {
         if(! $(e.target).parsley().isValid() ){
+            $(e.target).removeClass('delayed-valid');
             callback = $(e.target).attr('data-delayed-invalid-callback');
             window[callback]( $(e.target) );
         }
     }, 3000);
-    $(e.target).removeClass('delayed-valid');
+    
     $(e.target).on('blur', cancelDelayTimer);
 }
 
@@ -39,9 +47,14 @@ function cancelDelayTimer(e){
 }
 
 function almost_there($element){
-    $element.after('almost there...');
+    $element.parent().find('.character-tip span').css('top','0px');
 }
 
 function submittedFormButton(e){
+    $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
     $(e.target).find('[type=submit]').html('Processing...<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+}
+
+function restoreSubmitLabel($form){
+    $form.find('[type=submit]').html( $form.find('[type=submit]').attr('data-old-label') );
 }
