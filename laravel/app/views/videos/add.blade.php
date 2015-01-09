@@ -109,7 +109,7 @@
                 $notificationItem = $notificationItem.replace('_FILENAME_', data.files[0].name);
                 $('.list-group').append($notificationItem);
                 if (data.result.videoId !== undefined) {
-                    setInterval (function() { Video.GetVideo(data.result.videoId) }, 5000);
+                    Video.IntervalId = setInterval (function() { Video.GetVideo(data.result.videoId) }, 5000);
                 }
             });
 
@@ -117,7 +117,7 @@
 
 
         var Video = {
-            'videoId' : 0,
+            'IntervalId' : 0,
             'GetVideo' : function ($videoId){
                 $.ajax({
                     dataType: "json",
@@ -137,7 +137,7 @@
 
                             $('#processing-message').hide();
                             $('#table-video-formats').removeClass('hide');
-
+                            clearInterval(Video.IntervalId);
                         }
                     }
                 });
