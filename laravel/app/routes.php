@@ -97,4 +97,8 @@ Route::group(['prefix' => 'video'], function(){
     Route::post('sns/callback', 'VideosController@snsCallback');
 });
 
+Route::get('test', function (){
+    Log::alert('just a test yo');
+});
+
 

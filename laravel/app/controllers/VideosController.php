@@ -49,6 +49,7 @@ class VideosController extends BaseController
         if (!isset($messageBody['state'])){
             return;
         }
+        Log::alert('-------------lusot-------------');
         if ($messageBody['state'] == 'COMPLETED' AND isset($messageBody['outputs'])){
             $jobId = @$messageBody['jobId'];
             $video = Video::where('transcode_job_id', $jobId)->first();
