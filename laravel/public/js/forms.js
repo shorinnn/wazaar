@@ -9,6 +9,7 @@ $(document).ready(function(){
     $('body').delegate('.ajax-form', 'submit', formAjaxSubmit);
     $('body').delegate('input.clonable', 'keydown', cloneInput);
     $('body').delegate('.delete-clonable', 'click', deleteClonable);
+    $('body').delegate('.ajax-updatable', 'change', updateFieldRemote);
 });
 
 /**
@@ -177,4 +178,19 @@ function deleteClonable(e){
 function deleteItem(result, event){
     identifier = $(event.target).attr('data-delete');
     $(identifier).remove();
+}
+
+function updateFieldRemote(e){
+    url = $(e.target).attr('data-url');
+    name = $(e.target).attr('data-name');
+    value = $(e.target).val();
+    token = $('[name="_token"]').first().val();
+    $.ajax({
+        url: url,
+        type: 'PUT',
+        data: {name:name, value:value, _token:token},
+        success: function(result) {
+            // Do something with the result
+        }
+    });
 }

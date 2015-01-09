@@ -34,7 +34,7 @@
 <h3>Plan out your curriculum</h3>
 <h4>Outline your modules and lessons that your students will go through.</h4>
 <ul id="modules-list">
-    @foreach($course->modules as $module)
+    @foreach($course->modules()->orderBy('order','ASC')->get() as $module)
         {{ View::make('courses.modules.module')->with(compact('module')) }}
     @endforeach
 </ul>

@@ -36,4 +36,17 @@ class ModulesController extends \BaseController {
             return json_encode($response);
         }
         
+        public function update($id){
+            $module = Module::find($id);
+            if($module!=null && $module->course->instructor->id == Auth::user()->id){
+                $name = Input::get('name');
+                $module->$name = Input::get('value');
+                $module->save();
+                $response = ['status' => 'success'];
+                return json_encode($response);
+            }
+            $response = ['status' => 'error', 'errors' => 'Cannot update this module'];
+            return json_encode($response);
+        }
+        
 }
