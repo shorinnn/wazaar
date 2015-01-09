@@ -7,7 +7,7 @@
         	<small>The world is yours to conquer.</small>
 		</h1>      
         <div id='step1'>
-            <form method='post' class='ajax-form' data-callback='prepareCourseDetails' action='{{action('CoursesController@store')}}'>
+            <form method='post' class='ajax-form' id="create-form" data-callback='prepareCourseDetails' action='{{action('CoursesController@store')}}'>
                 <h2>Enter Course Name</h2>
                 <input type='hidden' name='_token' value='{{csrf_token()}}' />
                 <input type='text' name='name' id='name' /><br />
@@ -54,13 +54,13 @@
                      <div>
                          <input type='text' name='what_will_you_achieve[]' class="clonable" />
                          <span>1</span>
-                         <a href="#" class="style-one"></a>
+                         <!--<a href="#" class="style-one"></a>-->
                      </div>
-                     <div>
+<!--                     <div>
                          <input type='text' name='what_will_you_achieve[]' class="clonable" />
                          <span>2</span>
                          <a href="#" class="style-two"></a>
-                     </div>
+                     </div>-->
                      <a href="#" class="help-tip">Help</a>
         		 </div>
                  <div class="who-its-for">
@@ -73,25 +73,25 @@
                      <div>
                          <input type='text' name='who_is_this_for[]'  class="clonable" /><br />
                          <span>1</span>
-                         <a href="#" class="style-one"></a>
+                         <!--<a href="#" class="style-one"></a>-->
                      </div>
-                     <div>
+<!--                     <div>
                          <input type='text' name='who_is_this_for[]'  class="clonable" /><br />
                          <span>2</span>
                          <a href="#" class="style-two"></a>
-                     </div>
+                     </div>-->
                      <a href="#" class="help-tip">Help</a>
-                     <div>
+<!--                     <div>
                          <input type='text' name='who_is_this_for[]'  class="clonable its-for-you" / placeholder="This course if for you if you are..."><br />
-                     </div>
+                     </div>-->
                      <button class='btn btn-primary clear start-creating'>Start Creating Lessons</button>
                  </div>
             </div>
         </form>
 		<div class="steps-meter">
-        	<p class="active"><span class="step-one"></span><em>Step 1</em></p>
-        	<p><span class="step-two"></span><em>Step 2</em></p>
-        	<p><span class="step-three"></span><em>Step 3</em></p>
+        	<p class="active" data-target='#step1'><span class="step-one"></span><em>Step 1</em></p>
+        	<p data-target='#step2'><span class="step-two"></span><em>Step 2</em></p>
+        	<p data-target='#step3'><span class="step-three"></span><em>Step 3</em></p>
         </div>
     </div>
 </div>
