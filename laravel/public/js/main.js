@@ -57,6 +57,8 @@ function uniqueId(){
  */
 function unhide(elem){
     $(elem).removeClass('hidden');
+    $('.steps-meter').find('p.active').removeClass('active');
+    $('[data-target="'+elem+'"]').addClass('active');
     $('html, body').animate({
         scrollTop: $(elem).offset().top
     }, 200);

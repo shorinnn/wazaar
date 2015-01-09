@@ -58,8 +58,9 @@ function reorderLessons(id){
  * @param {object} json JSON response from the create course action
  */
 function prepareCourseDetails(json){
-    $('#step1').hide();
     $('#edit-course-details-form').attr( 'action', json.updateAction );
+    restoreSubmitLabel( $('#create-form') );
+    $('#step1').addClass('disabled-item');
     unhide('#step2');
 }
 

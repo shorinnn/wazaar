@@ -130,15 +130,29 @@ function cloneInput(e){
     if( !charcheck.test(keychar) ) return;   
     $elem = $(e.target);
     if( $.trim($elem.val()) == '' && $elem.next('.clonable').length==0 ){
-        var $destination = ($elem.parent().hasClass('clonable')) ? $elem.parent() : $elem;
+        var $destination = $elem.parent();
         var clone = $elem.clone();
         clone.removeAttr('id');
         clone.removeClass();
         id = uniqueId();
         clone.addClass('clonable clonable-'+id);
-        $destination.after('<div class="clonable clonable-'+id+'"><button type="button" class="btn btn-danger delete-clonable clonable-'+id+'">X</button></div>');
-        $('button.clonable-'+id).before(clone);
+        $destination.after('<div class="clonable clonable-'+id+'"><span>1</span><a href="#" tabindex="-1" class="style-one delete-clonable clonable-'+id+'"></a></div>');
+        $('a.clonable-'+id).before(clone);
+        reorderClonable($elem.attr('name'));
     }
+}
+
+/**
+ * Renumbers the position label under clonable inputs
+ * @method reorderClonable
+ * @param {string} name The name of the clonable inputs
+ */
+function reorderClonable(name){
+    var i = 1;
+    $('[name="'+name+'"]').each(function(){
+        $(this).prev('span').html(i);
+        ++i;
+    });
 }
 
 /**
@@ -147,7 +161,11 @@ function cloneInput(e){
  * @param {event} e Click event
  */
 function deleteClonable(e){
+    e.preventDefault();
+    name = $(e.target).parent().find('input').attr('name');
     $(e.target).parent().remove();
+    reorderClonable( name );
+    return false;
 }
 
 /**
