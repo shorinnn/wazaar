@@ -29,7 +29,7 @@ function formAjaxSubmit(e){
             return false;
         }
         if( typeof(form.attr('data-callback'))!='undefined' ){
-            window[form.attr('data-callback')](result);
+            window[form.attr('data-callback')](result, e);
         }
     });
     return false;
@@ -150,3 +150,13 @@ function deleteClonable(e){
     $(e.target).parent().remove();
 }
 
+/**
+ * Called after an AJAX delete call, removes the specified HTML element
+ * @method deleteItem
+ * @param {json} result The ajax call json response
+ * @param {event} event The original submit event
+ */
+function deleteItem(result, event){
+    identifier = $(event.target).attr('data-delete');
+    $(identifier).remove();
+}

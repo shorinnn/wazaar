@@ -1,0 +1,2599 @@
+{
+    "project": {},
+    "files": {
+        "public/js/courses.js": {
+            "name": "public/js/courses.js",
+            "modules": {},
+            "classes": {
+                "Courses": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "public/js/forms.js": {
+            "name": "public/js/forms.js",
+            "modules": {},
+            "classes": {
+                "Forms": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "public/js/main.js": {
+            "name": "public/js/main.js",
+            "modules": {},
+            "classes": {
+                "Main": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "public/js/validations.js": {
+            "name": "public/js/validations.js",
+            "modules": {},
+            "classes": {
+                "Validations": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor/guzzle/guzzle/tests/Guzzle/Tests/Http/server.js": {
+            "name": "vendor/guzzle/guzzle/tests/Guzzle/Tests/Http/server.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor/guzzlehttp/guzzle/tests/server.js": {
+            "name": "vendor/guzzlehttp/guzzle/tests/server.js",
+            "modules": {},
+            "classes": {
+                "": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets/mails/widget.js": {
+            "name": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets/mails/widget.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets/sqlqueries/widget.js": {
+            "name": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets/sqlqueries/widget.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets/templates/widget.js": {
+            "name": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets/templates/widget.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js": {
+            "name": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js": {
+            "name": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js": {
+            "name": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/html5shiv.min.js": {
+            "name": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/html5shiv.min.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Courses": {
+            "name": "Courses",
+            "shortname": "Courses",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "public/js/courses.js",
+            "line": 1,
+            "description": "Contains form related reusable functions and event listeners"
+        },
+        "Forms": {
+            "name": "Forms",
+            "shortname": "Forms",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "public/js/forms.js",
+            "line": 1,
+            "description": "Contains form related reusable functions and event listeners"
+        },
+        "Main": {
+            "name": "Main",
+            "shortname": "Main",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "public/js/main.js",
+            "line": 1,
+            "description": "Contains generic reusable functions and event listeners"
+        },
+        "Validations": {
+            "name": "Validations",
+            "shortname": "Validations",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "public/js/validations.js",
+            "line": 1,
+            "description": "Contains validation functions and event handlers"
+        },
+        "": {
+            "file": "vendor/guzzlehttp/guzzle/tests/server.js",
+            "line": 30,
+            "description": "Guzzle node.js server"
+        }
+    },
+    "classitems": [
+        {
+            "file": "public/js/courses.js",
+            "line": 26,
+            "description": "Enables Drag and Drop sorting for dynamically added lessons",
+            "itemtype": "method",
+            "name": "sortablizeLessons",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "The ID of the UL element containing the list",
+                    "type": "String"
+                }
+            ],
+            "class": "Courses"
+        },
+        {
+            "file": "public/js/courses.js",
+            "line": 42,
+            "description": "Recalculates the lesson order within the module",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "The ID of the UL element containing the list",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "reorderLessons",
+            "class": "Courses"
+        },
+        {
+            "file": "public/js/courses.js",
+            "line": 55,
+            "description": "Called after course creations, sets the step 2 form action attribute",
+            "itemtype": "method",
+            "name": "prepareCourseDetails",
+            "params": [
+                {
+                    "name": "json",
+                    "description": "JSON response from the create course action",
+                    "type": "Object"
+                }
+            ],
+            "class": "Courses"
+        },
+        {
+            "file": "public/js/courses.js",
+            "line": 66,
+            "description": "Event handler for click on .add-module<br />\nAdds a new Module under the current course",
+            "itemtype": "method",
+            "name": "addModule",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The json response of the create module call",
+                    "type": "Json"
+                }
+            ],
+            "class": "Courses"
+        },
+        {
+            "file": "public/js/courses.js",
+            "line": 82,
+            "description": "Event handler for click on .add-lesson<br />\nAdds a lesson under the selected module",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Click event",
+                    "type": "Event"
+                }
+            ],
+            "itemtype": "method",
+            "name": "addLesson",
+            "class": "Courses"
+        },
+        {
+            "file": "public/js/forms.js",
+            "line": 14,
+            "description": "Event handler for .ajax-form<br />\nSubmits forms with .ajax-form class via ajax and fires the data-callback function if specified",
+            "itemtype": "method",
+            "name": "formAjaxSubmit",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Submit event",
+                    "type": "Type"
+                }
+            ],
+            "return": {
+                "description": "False",
+                "type": "Boolean"
+            },
+            "class": "Forms"
+        },
+        {
+            "file": "public/js/forms.js",
+            "line": 39,
+            "description": "Event handler for forms.<br />\nCalled on all forms when they're submitted. It replaces the submit button label with \"Processing...[loader icon]\" \nand stores the old value in data-old-label attribute.",
+            "itemtype": "method",
+            "name": "submittedFormButton",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "public/js/forms.js",
+            "line": 51,
+            "description": "Restores the form's submit button original label",
+            "itemtype": "method",
+            "name": "restoreSubmitLabel",
+            "params": [
+                {
+                    "name": "$form",
+                    "description": "",
+                    "type": "JQuery form"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "public/js/forms.js",
+            "line": 60,
+            "description": "Event handler for  .delete-button.<br />\nFired by click on .delete-button and asks for confirmation",
+            "itemtype": "method",
+            "name": "confirmDelete",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "return": {
+                "description": "True if confirmed, false otherwise",
+                "type": "Bool"
+            },
+            "class": "Forms"
+        },
+        {
+            "file": "public/js/forms.js",
+            "line": 73,
+            "description": "Event handler for .has-slug<br />\nIs called on keyup event for elements with .has-slug class. It takes the elements value \nand populates another field specified by the elements data-slug-target attribute with\nthe slug version of the value",
+            "itemtype": "method",
+            "name": "updateSlug",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "return": {
+                "description": "null",
+                "type": "Null"
+            },
+            "class": "Forms"
+        },
+        {
+            "file": "public/js/forms.js",
+            "line": 88,
+            "description": "Populates a second dropdown specified by 'data-target' with the values \nreturned by the get call to the resource at data-url",
+            "itemtype": "method",
+            "name": "populateDropdown",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "HTML dropdown",
+                    "type": "Object"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "public/js/forms.js",
+            "line": 113,
+            "description": "Event handler for .clonable inputs.<br />\nFired on keyup on an empty clonable input - it creates a set of \ninput+delete button after the calling element",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "keyup event",
+                    "type": "Event"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "public/js/forms.js",
+            "line": 144,
+            "description": "Event handler for click on .delete-clonable buttons<br />\nDeletes the clonable input and associated delete button",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Click event",
+                    "type": "Event"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "public/js/forms.js",
+            "line": 153,
+            "description": "Called after an AJAX delete call, removes the specified HTML element",
+            "itemtype": "method",
+            "name": "deleteItem",
+            "params": [
+                {
+                    "name": "result",
+                    "description": "The ajax call json response",
+                    "type": "Json"
+                },
+                {
+                    "name": "event",
+                    "description": "The original submit event",
+                    "type": "Event"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "public/js/main.js",
+            "line": 11,
+            "description": "Returns a slug version of the supplied string",
+            "itemtype": "method",
+            "name": "convertToSlug",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "the slug",
+                "type": "String"
+            },
+            "class": "Main"
+        },
+        {
+            "file": "public/js/main.js",
+            "line": 21,
+            "description": "Redirects the window to the specified URL",
+            "itemtype": "method",
+            "name": "followRedirect",
+            "params": [
+                {
+                    "name": "An",
+                    "description": "ovject with an URL property, usually a JSON response",
+                    "type": "Object"
+                }
+            ],
+            "class": "Main"
+        },
+        {
+            "file": "public/js/main.js",
+            "line": 31,
+            "description": "Static unique numbers holder. Used to keep track of used numbers",
+            "itemtype": "property",
+            "name": "unique_numbers",
+            "type": "{Array}",
+            "class": "Main"
+        },
+        {
+            "file": "public/js/main.js",
+            "line": 38,
+            "description": "Returns a document-wide unique number",
+            "itemtype": "method",
+            "name": "uniqueID",
+            "return": {
+                "description": "The unique number",
+                "type": "Number"
+            },
+            "class": "Main"
+        },
+        {
+            "file": "public/js/main.js",
+            "line": 54,
+            "description": "Removes the hidden class of the supplied identifier and scrolls to it",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "CSS selector",
+                    "type": "String"
+                }
+            ],
+            "class": "Main"
+        },
+        {
+            "file": "public/js/validations.js",
+            "line": 12,
+            "description": "Event Listener for .instant-valid class.<br />\nFired by keyup on elements with the .instant-valid class and triggers  valid/invalid \nparsley events and callbacks for current element",
+            "itemtype": "method",
+            "name": "fieldInstantValidCallback",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "return": {
+                "description": "True if the element was valid, false otherwise",
+                "type": "Bool"
+            },
+            "class": "Validations"
+        },
+        {
+            "file": "public/js/validations.js",
+            "line": 41,
+            "description": "Event listener for parsley:field:success.<br />\nFires a form callback (data-form-valid-callback) if all elements within the form are valid",
+            "itemtype": "method",
+            "name": "formValidCallback",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "e"
+                }
+            ],
+            "return": {
+                "description": "bool - True on fired, false otherwise"
+            },
+            "class": "Validations"
+        },
+        {
+            "file": "public/js/validations.js",
+            "line": 72,
+            "description": "Called by fieldInstantValidCallback() - Fires the invalid form callback (specified by the data-form-valid-callback\nattr of e.target) if specified",
+            "itemtype": "method",
+            "name": "formInvalidCallback",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "public/js/validations.js",
+            "line": 91,
+            "description": "Adds a green border to an element",
+            "itemtype": "method",
+            "name": "appendGreenBorder",
+            "params": [
+                {
+                    "name": "$element",
+                    "description": "The html object to add the border",
+                    "type": "Object"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "public/js/validations.js",
+            "line": 115,
+            "description": "Adds a red border to the supplied element",
+            "itemtype": "method",
+            "name": "appendRedBorder",
+            "params": [
+                {
+                    "name": "$element",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "public/js/validations.js",
+            "line": 132,
+            "description": "Event listener for .instant-valid .<br />. \nAdds a green shadow and border to the active form field and highlights the next form field on validation",
+            "itemtype": "method",
+            "name": "highlightInput",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Focus event",
+                    "type": "Event"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "public/js/validations.js",
+            "line": 142,
+            "description": "Event listener for .delayed-valid class.<br />\nChecks if the current input is valid and fires a callback specified by\ndata-delayed-invalid-callback if invalid",
+            "itemtype": "method",
+            "name": "validateOnDelay",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "keyup event",
+                    "type": "Event"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "public/js/validations.js",
+            "line": 165,
+            "description": "Event listener for blur on .delayed-valid.<br />\nCancel the validateOnDelay if element is blured",
+            "itemtype": "method",
+            "name": "cancelDelayTimer",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Blur event",
+                    "type": "Event"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "public/js/validations.js",
+            "line": 176,
+            "description": "Slides down a subtle hint if the element supplied is not valid",
+            "params": [
+                {
+                    "name": "$element",
+                    "description": "Form input",
+                    "type": "Object"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "vendor/guzzle/guzzle/tests/Guzzle/Tests/Http/server.js",
+            "line": 1,
+            "description": "Guzzle node.js test server to return queued responses to HTTP requests and\nexpose a RESTful API for enqueueing responses and retrieving the requests\nthat have been received.\n\n- Delete all requests that have been received:\n     DELETE /guzzle-server/requests\n     Host: 127.0.0.1:8124\n\n - Enqueue responses\n     PUT /guzzle-server/responses\n     Host: 127.0.0.1:8124\n\n     [{ \"statusCode\": 200, \"reasonPhrase\": \"OK\", \"headers\": {}, \"body\": \"\" }]\n\n - Get the received requests\n     GET /guzzle-server/requests\n     Host: 127.0.0.1:8124\n\n - Shutdown the server\n     DELETE /guzzle-server\n     Host: 127.0.0.1:8124",
+            "package": "Guzzle PHP <http://www.guzzlephp.org>",
+            "license": "See the LICENSE file that was distributed with this source code.",
+            "class": ""
+        },
+        {
+            "file": "vendor/guzzlehttp/guzzle/tests/server.js",
+            "line": 1,
+            "description": "Guzzle node.js test server to return queued responses to HTTP requests and\nexpose a RESTful API for enqueueing responses and retrieving the requests\nthat have been received.\n\n- Delete all requests that have been received:\n     DELETE /guzzle-server/requests\n     Host: 127.0.0.1:8125\n\n - Enqueue responses\n     PUT /guzzle-server/responses\n     Host: 127.0.0.1:8125\n\n     [{ \"statusCode\": 200, \"reasonPhrase\": \"OK\", \"headers\": {}, \"body\": \"\" }]\n\n - Get the received requests\n     GET /guzzle-server/requests\n     Host: 127.0.0.1:8125\n\n - Shutdown the server\n     DELETE /guzzle-server\n     Host: 127.0.0.1:8125",
+            "package": "Guzzle PHP <http://www.guzzlephp.org>",
+            "license": "See the LICENSE file that was distributed with this source code.",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets/mails/widget.js",
+            "line": 5,
+            "description": "Widget for the displaying mails data\n\nOptions:\n - data",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets/sqlqueries/widget.js",
+            "line": 5,
+            "description": "Widget for the displaying sql queries\n\nOptions:\n - data",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets/templates/widget.js",
+            "line": 5,
+            "description": "Widget for the displaying templates data\n\nOptions:\n - data",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 21,
+            "description": "Returns the value from an object property.\nUsing dots in the key, it is possible to retrieve nested property values",
+            "params": [
+                {
+                    "name": "dict",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "default_value",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 41,
+            "description": "Counts the number of properties in an object",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Integer"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 60,
+            "description": "Returns a prefixed css class name",
+            "params": [
+                {
+                    "name": "cls",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 80,
+            "description": "Creates a partial function of csscls where the second\nargument is already defined",
+            "params": [
+                {
+                    "name": "prefix",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Function"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 99,
+            "description": "Base class for all elements with a visual component",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "is_constructor": 1,
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 124,
+            "description": "Called after the constructor",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 133,
+            "description": "Called after the constructor to render the element",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 138,
+            "description": "Sets the value of an attribute",
+            "params": [
+                {
+                    "name": "attr",
+                    "description": "Can also be an object to set multiple attributes at once",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 160,
+            "description": "Checks if an attribute exists and is not null",
+            "params": [
+                {
+                    "name": "attr",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "[description]",
+                "type": "[type]"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 170,
+            "description": "Returns the value of an attribute",
+            "params": [
+                {
+                    "name": "attr",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 180,
+            "description": "Registers a callback function that will be called whenever the value of the attribute changes\n\nIf cb is a jQuery element, text() will be used to fill the element",
+            "params": [
+                {
+                    "name": "attr",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "cb",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 212,
+            "description": "Creates a subclass\n\nCode from Backbone.js",
+            "params": [
+                {
+                    "name": "props",
+                    "description": "Prototype properties",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Function"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 238,
+            "description": "Tab\n\nA tab is composed of a tab label which is always visible and\na tab panel which is visible only when the tab is active.\n\nThe panel must contain a widget. A widget is an object which has\nan element property containing something appendable to a jQuery object.\n\nOptions:\n - title\n - badge\n - widget\n - data: forward data to widget data",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 296,
+            "description": "Indicator\n\nAn indicator is a text and an icon to display single value information\nright inside the always visible part of the debug bar\n\nOptions:\n - icon\n - title\n - tooltip\n - data: alias of title",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 340,
+            "description": "Dataset title formater\n\nFormats the title of a dataset for the select box",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 351,
+            "description": "Formats the title of a dataset",
+            "this": "{DatasetTitleFormater}",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "suffix",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 383,
+            "description": "DebugBar\n\nCreates a bar that appends itself to the body of your page\nand sticks to the bottom.\n\nThe bar can be customized by adding tabs and indicators.\nA data map is used to fill those controls with data provided\nfrom datasets.",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 411,
+            "description": "Register resize event, for resize debugbar with reponsive css.",
+            "this": "{DebugBar}",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 425,
+            "description": "Resizes the debugbar to fit the current browser window",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 452,
+            "description": "Initialiazes the UI",
+            "this": "{DebugBar}",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 514,
+            "description": "Sets the height of the debugbar body section\nForces the height to lie within a reasonable range\nStores the height in local storage so it can be restored\nResets the document body bottom offset",
+            "this": "{DebugBar}",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 532,
+            "description": "Restores the state of the DebugBar using localStorage\nThis is not called by default in the constructor and\nneeds to be called by subclasses in their init() method",
+            "this": "{DebugBar}",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 559,
+            "description": "Creates and adds a new tab",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Internal name",
+                    "type": "String"
+                },
+                {
+                    "name": "widget",
+                    "description": "A widget object with an element property",
+                    "type": "Object"
+                },
+                {
+                    "name": "title",
+                    "description": "The text in the tab, if not specified, name will be used",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Tab"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 576,
+            "description": "Adds a new tab",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Internal name",
+                    "type": "String"
+                },
+                {
+                    "name": "tab",
+                    "description": "Tab object",
+                    "type": "Tab"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Tab"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 606,
+            "description": "Creates and adds an indicator",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Internal name",
+                    "type": "String"
+                },
+                {
+                    "name": "icon",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "tooltip",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "position",
+                    "description": "\"right\" or \"left\", default is \"right\"",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Indicator"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 624,
+            "description": "Adds an indicator",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Internal name",
+                    "type": "String"
+                },
+                {
+                    "name": "indicator",
+                    "description": "Indicator object",
+                    "type": "Indicator"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Indicator"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 647,
+            "description": "Returns a control",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 659,
+            "description": "Checks if there's a control under the specified name",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 670,
+            "description": "Checks if a tab with the specified name exists",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 681,
+            "description": "Checks if an indicator with the specified name exists",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 692,
+            "description": "Removes all tabs and indicators from the debug bar and hides it",
+            "this": "{DebugBar}",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 709,
+            "description": "Open the debug bar and display the specified tab",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "If not specified, display the first tab",
+                    "type": "String"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 745,
+            "description": "Hide panels and minimize the debug bar",
+            "this": "{DebugBar}",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 760,
+            "description": "Checks if the panel is minimized",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 769,
+            "description": "Close the debug bar",
+            "this": "{DebugBar}",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 784,
+            "description": "Restore the debug bar",
+            "this": "{DebugBar}",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 802,
+            "description": "Recomputes the padding-bottom css property of the body so\nthat the debug bar never hides any content",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 812,
+            "description": "Sets the data map used by dataChangeHandler to populate\nindicators and widgets\n\nA data map is an object where properties are control names.\nThe value of each property should be an array where the first\nitem is the name of a property from the data object (nested properties\ncan be specified) and the second item the default value.\n\nExample:\n    {\"memory\": [\"memory.peak_usage_str\", \"0B\"]}",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "map",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 831,
+            "description": "Same as setDataMap() but appends to the existing map\nrather than replacing it",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "map",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 842,
+            "description": "Resets datasets and add one set of data\n\nFor this method to be usefull, you need to specify\na dataMap using setDataMap()",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Dataset's id",
+                "type": "String"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 857,
+            "description": "Adds a dataset\n\nIf more than one dataset are added, the dataset selector\nwill be displayed.\n\nFor this method to be usefull, you need to specify\na dataMap using setDataMap()",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "id",
+                    "description": "The name of this set, optional",
+                    "type": "String"
+                },
+                {
+                    "name": "suffix",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Dataset's id",
+                "type": "String"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 886,
+            "description": "Loads a dataset using the open handler",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 902,
+            "description": "Returns the data from a dataset",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 913,
+            "description": "Switch the currently displayed dataset",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 924,
+            "description": "Called when the current dataset is modified.",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 943,
+            "description": "Sets the handler to open past dataset",
+            "this": "{DebugBar}",
+            "params": [
+                {
+                    "name": "handler",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 958,
+            "description": "Returns the handler to open past dataset",
+            "this": "{DebugBar}",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 975,
+            "description": "AjaxHandler\n\nExtract data from headers of an XMLHttpRequest and adds a new dataset",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 987,
+            "description": "Handles an XMLHttpRequest",
+            "this": "{AjaxHandler}",
+            "params": [
+                {
+                    "name": "xhr",
+                    "description": "",
+                    "type": "XMLHttpRequest"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Bool"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 1001,
+            "description": "Checks if the HEADER-id exists and loads the dataset using the open handler",
+            "params": [
+                {
+                    "name": "xhr",
+                    "description": "",
+                    "type": "XMLHttpRequest"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Bool"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 1016,
+            "description": "Extracts the id from the HEADER-id",
+            "params": [
+                {
+                    "name": "xhr",
+                    "description": "",
+                    "type": "XMLHttpRequest"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 1026,
+            "description": "Checks if the HEADER exists and loads the dataset",
+            "params": [
+                {
+                    "name": "xhr",
+                    "description": "",
+                    "type": "XMLHttpRequest"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Bool"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 1047,
+            "description": "Extract the data as a string from headers of an XMLHttpRequest",
+            "this": "{AjaxHandler}",
+            "params": [
+                {
+                    "name": "xhr",
+                    "description": "",
+                    "type": "XMLHttpRequest"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 1069,
+            "description": "Parses the string data into an object",
+            "this": "{AjaxHandler}",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 1080,
+            "description": "Attaches an event listener to jQuery.ajaxComplete()",
+            "this": "{AjaxHandler}",
+            "params": [
+                {
+                    "name": "jq",
+                    "description": "Optional",
+                    "type": "JQuery"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js",
+            "line": 1095,
+            "description": "Attaches an event listener to XMLHttpRequest",
+            "this": "{AjaxHandler}",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 9,
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 14,
+            "description": "Replaces spaces with &nbsp; and line breaks with <br>",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 24,
+            "description": "Returns a string representation of value, using JSON.stringify\nif it's an object.",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "prettify",
+                    "description": "Uses htmlize() if true",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 42,
+            "description": "Highlights a block of code",
+            "params": [
+                {
+                    "name": "code",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "lang",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 66,
+            "description": "Creates a <pre> element with a block of code",
+            "params": [
+                {
+                    "name": "code",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "lang",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 90,
+            "description": "Displays array element in a <ul> list\n\nOptions:\n - data\n - itemRenderer: a function used to render list items (optional)",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 125,
+            "description": "Renders the content of a <li> element",
+            "params": [
+                {
+                    "name": "li",
+                    "description": "The <li> element as a jQuery Object",
+                    "type": "JQuery"
+                },
+                {
+                    "name": "value",
+                    "description": "An item from the data array",
+                    "type": "Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 139,
+            "description": "Displays object property/value paris in a <dl> list\n\nOptions:\n - data\n - itemRenderer: a function used to render list items (optional)",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 168,
+            "description": "Renders the content of the <dt> and <dd> elements",
+            "params": [
+                {
+                    "name": "dt",
+                    "description": "The <dt> element as a jQuery Object",
+                    "type": "JQuery"
+                },
+                {
+                    "name": "dd",
+                    "description": "The <dd> element as a jQuery Object",
+                    "type": "JQuery"
+                },
+                {
+                    "name": "key",
+                    "description": "Property name",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "Property value",
+                    "type": "Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 185,
+            "description": "An extension of KVListWidget where the data represents a list\nof variables\n\nOptions:\n - data",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 218,
+            "description": "Iframe widget\n\nOptions:\n - data",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 247,
+            "description": "Widget for the MessagesCollector\n\nUses ListWidget under the hood\n\nOptions:\n - data",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 350,
+            "description": "Widget for the TimeDataCollector\n\nOptions:\n - data",
+            "class": ""
+        },
+        {
+            "file": "vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js",
+            "line": 412,
+            "description": "Widget for the displaying exceptions\n\nOptions:\n - data",
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 13,
+            "description": "Adds a theme to default settings",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Theme name",
+                    "type": "String"
+                },
+                {
+                    "name": "theme",
+                    "description": "Theme object, with foreground, background, size, font, and fontweight properties.",
+                    "type": "Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 25,
+            "description": "Appends a placeholder to an element",
+            "params": [
+                {
+                    "name": "src",
+                    "description": "Placeholder URL string",
+                    "type": "String"
+                },
+                {
+                    "name": "el",
+                    "description": "Selector of target element(s)",
+                    "type": "String"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 45,
+            "description": "Runs Holder with options. By default runs Holder on all images with \"holder.js\" in their source attributes.",
+            "params": [
+                {
+                    "name": "userOptions",
+                    "description": "Options object, can contain domain, themes, images, and bgnodes properties",
+                    "type": "Object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 297,
+            "description": "Processes provided source attribute and sets up the appropriate rendering workflow",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Instance options from Holder.run"
+                },
+                {
+                    "name": "renderSettings",
+                    "description": "Instance configuration"
+                },
+                {
+                    "name": "src",
+                    "description": "Image URL"
+                },
+                {
+                    "name": "el",
+                    "description": "Image DOM element"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 313,
+            "description": "Processes a Holder URL and extracts flags",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "URL"
+                },
+                {
+                    "name": "options",
+                    "description": "Instance options from Holder.run"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 392,
+            "description": "Modifies the DOM to fit placeholders and sets up resizable image callbacks (for fluid and automatically sized placeholders)",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "el",
+                    "description": "Image DOM element"
+                },
+                {
+                    "name": "flags",
+                    "description": "Placeholder-specific configuration"
+                },
+                {
+                    "name": "_renderSettings",
+                    "description": "Instance configuration"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 514,
+            "description": "Core function that takes output from renderers and sets it as the source or background-image of the target element",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "mode",
+                    "description": "Placeholder mode, either background or image"
+                },
+                {
+                    "name": "params",
+                    "description": "Placeholder-specific parameters"
+                },
+                {
+                    "name": "el",
+                    "description": "Image DOM element"
+                },
+                {
+                    "name": "renderSettings",
+                    "description": "Instance configuration"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 622,
+            "description": "Core function that takes a Holder scene description and builds a scene graph",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "scene",
+                    "description": "Holder scene object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 750,
+            "description": "Adaptive text sizing function",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "width",
+                    "description": "Parent width"
+                },
+                {
+                    "name": "height",
+                    "description": "Parent height"
+                },
+                {
+                    "name": "fontSize",
+                    "description": "Requested text size"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 768,
+            "description": "Iterates over resizable (fluid or auto) placeholders and renders them",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "Optional element selector, specified only if a specific element needs to be re-rendered"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 819,
+            "description": "Checks if an element is visible",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "el",
+                    "description": "DOM element"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function executed if the element is invisible"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 842,
+            "description": "Sets up aspect ratio metadata for fluid placeholders, in order to preserve proportions when resizing",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "el",
+                    "description": "Image DOM element"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 1068,
+            "description": "Generic new DOM element function",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "tag",
+                    "description": "Tag to create"
+                },
+                {
+                    "name": "namespace",
+                    "description": "Optional namespace value"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 1083,
+            "description": "Generic setAttribute function",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "el",
+                    "description": "Reference to DOM element"
+                },
+                {
+                    "name": "attrs",
+                    "description": "Object with attribute keys and values"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 1096,
+            "description": "Generic SVG element creation function",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "svg",
+                    "description": "SVG context, set to null if new"
+                },
+                {
+                    "name": "width",
+                    "description": "Document width"
+                },
+                {
+                    "name": "height",
+                    "description": "Document height"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 1124,
+            "description": "Generic SVG serialization function",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "svg",
+                    "description": "SVG context"
+                },
+                {
+                    "name": "stylesheets",
+                    "description": "CSS stylesheets to include"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 1190,
+            "description": "Shallow object clone and merge",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "Object A"
+                },
+                {
+                    "name": "b",
+                    "description": "Object B"
+                }
+            ],
+            "return": {
+                "description": "New object with all of A's properties, and all of B's properties, overwriting A's properties",
+                "type": "Object"
+            },
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 1214,
+            "description": "Takes a k/v list of CSS properties and returns a rule",
+            "params": [
+                {
+                    "name": "props",
+                    "description": "CSS properties object"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 1229,
+            "description": "Prevents a function from being called too often, waits until a timer elapses to call it again",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "Function to call"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 1243,
+            "description": "Holder-specific resize/orientation change callback, debounced to prevent excessive execution",
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 1252,
+            "description": "Converts a value into an array of DOM nodes",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "A string, a NodeList, a Node, or an HTMLCollection"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 1273,
+            "description": "Checks if an image exists",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Configuration object, must specify at least a src key"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback to call once image status has been found"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 1290,
+            "description": "Encodes HTML entities in a string",
+            "params": [
+                {
+                    "name": "str",
+                    "description": "Input string"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js",
+            "line": 1309,
+            "description": "Decodes HTML entities in a stirng",
+            "params": [
+                {
+                    "name": "str",
+                    "description": "Input string"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/html5shiv.min.js",
+            "line": 1,
+            "preserve": "HTML5 Shiv 3.7.2 | @afarkas @jdalton @jon_neal @rem | MIT/GPL2 Licensed",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " public/js/forms.js:14"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " public/js/forms.js:60"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " public/js/validations.js:41"
+        },
+        {
+            "message": "unknown tag: package",
+            "line": " vendor/guzzle/guzzle/tests/Guzzle/Tests/Http/server.js:1"
+        },
+        {
+            "message": "unknown tag: license",
+            "line": " vendor/guzzle/guzzle/tests/Guzzle/Tests/Http/server.js:1"
+        },
+        {
+            "message": "unknown tag: package",
+            "line": " vendor/guzzlehttp/guzzle/tests/server.js:1"
+        },
+        {
+            "message": "unknown tag: license",
+            "line": " vendor/guzzlehttp/guzzle/tests/server.js:1"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:351"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:411"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:452"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:514"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:532"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:559"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:576"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:606"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:624"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:659"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:670"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:681"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:692"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:709"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:745"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:769"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:784"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:812"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:831"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:842"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:857"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:902"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:913"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:924"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:943"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:958"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:987"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:1047"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:1069"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:1080"
+        },
+        {
+            "message": "unknown tag: this",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:1095"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:1190"
+        },
+        {
+            "message": "unknown tag: preserve",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/html5shiv.min.js:1"
+        },
+        {
+            "message": "Missing item type\nEvent handler for .clonable inputs.<br />\nFired on keyup on an empty clonable input - it creates a set of \ninput+delete button after the calling element",
+            "line": " public/js/forms.js:113"
+        },
+        {
+            "message": "Missing item type\nEvent handler for click on .delete-clonable buttons<br />\nDeletes the clonable input and associated delete button",
+            "line": " public/js/forms.js:144"
+        },
+        {
+            "message": "Missing item type\nRemoves the hidden class of the supplied identifier and scrolls to it",
+            "line": " public/js/main.js:54"
+        },
+        {
+            "message": "Missing item type\nSlides down a subtle hint if the element supplied is not valid",
+            "line": " public/js/validations.js:176"
+        },
+        {
+            "message": "Missing item type\nGuzzle node.js test server to return queued responses to HTTP requests and\nexpose a RESTful API for enqueueing responses and retrieving the requests\nthat have been received.\n\n- Delete all requests that have been received:\n     DELETE /guzzle-server/requests\n     Host: 127.0.0.1:8124\n\n - Enqueue responses\n     PUT /guzzle-server/responses\n     Host: 127.0.0.1:8124\n\n     [{ \"statusCode\": 200, \"reasonPhrase\": \"OK\", \"headers\": {}, \"body\": \"\" }]\n\n - Get the received requests\n     GET /guzzle-server/requests\n     Host: 127.0.0.1:8124\n\n - Shutdown the server\n     DELETE /guzzle-server\n     Host: 127.0.0.1:8124",
+            "line": " vendor/guzzle/guzzle/tests/Guzzle/Tests/Http/server.js:1"
+        },
+        {
+            "message": "Missing item type\nGuzzle node.js test server to return queued responses to HTTP requests and\nexpose a RESTful API for enqueueing responses and retrieving the requests\nthat have been received.\n\n- Delete all requests that have been received:\n     DELETE /guzzle-server/requests\n     Host: 127.0.0.1:8125\n\n - Enqueue responses\n     PUT /guzzle-server/responses\n     Host: 127.0.0.1:8125\n\n     [{ \"statusCode\": 200, \"reasonPhrase\": \"OK\", \"headers\": {}, \"body\": \"\" }]\n\n - Get the received requests\n     GET /guzzle-server/requests\n     Host: 127.0.0.1:8125\n\n - Shutdown the server\n     DELETE /guzzle-server\n     Host: 127.0.0.1:8125",
+            "line": " vendor/guzzlehttp/guzzle/tests/server.js:1"
+        },
+        {
+            "message": "Missing item type\nWidget for the displaying mails data\n\nOptions:\n - data",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets/mails/widget.js:5"
+        },
+        {
+            "message": "Missing item type\nWidget for the displaying sql queries\n\nOptions:\n - data",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets/sqlqueries/widget.js:5"
+        },
+        {
+            "message": "Missing item type\nWidget for the displaying templates data\n\nOptions:\n - data",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets/templates/widget.js:5"
+        },
+        {
+            "message": "Missing item type\nReturns the value from an object property.\nUsing dots in the key, it is possible to retrieve nested property values",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:21"
+        },
+        {
+            "message": "Missing item type\nCounts the number of properties in an object",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:41"
+        },
+        {
+            "message": "Missing item type\nReturns a prefixed css class name",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:60"
+        },
+        {
+            "message": "Missing item type\nCreates a partial function of csscls where the second\nargument is already defined",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:80"
+        },
+        {
+            "message": "Missing item type\nBase class for all elements with a visual component",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:99"
+        },
+        {
+            "message": "Missing item type\nCalled after the constructor",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:124"
+        },
+        {
+            "message": "Missing item type\nCalled after the constructor to render the element",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:133"
+        },
+        {
+            "message": "Missing item type\nSets the value of an attribute",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:138"
+        },
+        {
+            "message": "Missing item type\nChecks if an attribute exists and is not null",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:160"
+        },
+        {
+            "message": "Missing item type\nReturns the value of an attribute",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:170"
+        },
+        {
+            "message": "Missing item type\nRegisters a callback function that will be called whenever the value of the attribute changes\n\nIf cb is a jQuery element, text() will be used to fill the element",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:180"
+        },
+        {
+            "message": "Missing item type\nCreates a subclass\n\nCode from Backbone.js",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:212"
+        },
+        {
+            "message": "Missing item type\nTab\n\nA tab is composed of a tab label which is always visible and\na tab panel which is visible only when the tab is active.\n\nThe panel must contain a widget. A widget is an object which has\nan element property containing something appendable to a jQuery object.\n\nOptions:\n - title\n - badge\n - widget\n - data: forward data to widget data",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:238"
+        },
+        {
+            "message": "Missing item type\nIndicator\n\nAn indicator is a text and an icon to display single value information\nright inside the always visible part of the debug bar\n\nOptions:\n - icon\n - title\n - tooltip\n - data: alias of title",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:296"
+        },
+        {
+            "message": "Missing item type\nDataset title formater\n\nFormats the title of a dataset for the select box",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:340"
+        },
+        {
+            "message": "Missing item type\nFormats the title of a dataset",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:351"
+        },
+        {
+            "message": "Missing item type\nDebugBar\n\nCreates a bar that appends itself to the body of your page\nand sticks to the bottom.\n\nThe bar can be customized by adding tabs and indicators.\nA data map is used to fill those controls with data provided\nfrom datasets.",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:383"
+        },
+        {
+            "message": "Missing item type\nRegister resize event, for resize debugbar with reponsive css.",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:411"
+        },
+        {
+            "message": "Missing item type\nResizes the debugbar to fit the current browser window",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:425"
+        },
+        {
+            "message": "Missing item type\nInitialiazes the UI",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:452"
+        },
+        {
+            "message": "Missing item type\nSets the height of the debugbar body section\nForces the height to lie within a reasonable range\nStores the height in local storage so it can be restored\nResets the document body bottom offset",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:514"
+        },
+        {
+            "message": "Missing item type\nRestores the state of the DebugBar using localStorage\nThis is not called by default in the constructor and\nneeds to be called by subclasses in their init() method",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:532"
+        },
+        {
+            "message": "Missing item type\nCreates and adds a new tab",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:559"
+        },
+        {
+            "message": "Missing item type\nAdds a new tab",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:576"
+        },
+        {
+            "message": "Missing item type\nCreates and adds an indicator",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:606"
+        },
+        {
+            "message": "Missing item type\nAdds an indicator",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:624"
+        },
+        {
+            "message": "Missing item type\nReturns a control",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:647"
+        },
+        {
+            "message": "Missing item type\nChecks if there's a control under the specified name",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:659"
+        },
+        {
+            "message": "Missing item type\nChecks if a tab with the specified name exists",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:670"
+        },
+        {
+            "message": "Missing item type\nChecks if an indicator with the specified name exists",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:681"
+        },
+        {
+            "message": "Missing item type\nRemoves all tabs and indicators from the debug bar and hides it",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:692"
+        },
+        {
+            "message": "Missing item type\nOpen the debug bar and display the specified tab",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:709"
+        },
+        {
+            "message": "Missing item type\nHide panels and minimize the debug bar",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:745"
+        },
+        {
+            "message": "Missing item type\nChecks if the panel is minimized",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:760"
+        },
+        {
+            "message": "Missing item type\nClose the debug bar",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:769"
+        },
+        {
+            "message": "Missing item type\nRestore the debug bar",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:784"
+        },
+        {
+            "message": "Missing item type\nRecomputes the padding-bottom css property of the body so\nthat the debug bar never hides any content",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:802"
+        },
+        {
+            "message": "Missing item type\nSets the data map used by dataChangeHandler to populate\nindicators and widgets\n\nA data map is an object where properties are control names.\nThe value of each property should be an array where the first\nitem is the name of a property from the data object (nested properties\ncan be specified) and the second item the default value.\n\nExample:\n    {\"memory\": [\"memory.peak_usage_str\", \"0B\"]}",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:812"
+        },
+        {
+            "message": "Missing item type\nSame as setDataMap() but appends to the existing map\nrather than replacing it",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:831"
+        },
+        {
+            "message": "Missing item type\nResets datasets and add one set of data\n\nFor this method to be usefull, you need to specify\na dataMap using setDataMap()",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:842"
+        },
+        {
+            "message": "Missing item type\nAdds a dataset\n\nIf more than one dataset are added, the dataset selector\nwill be displayed.\n\nFor this method to be usefull, you need to specify\na dataMap using setDataMap()",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:857"
+        },
+        {
+            "message": "Missing item type\nLoads a dataset using the open handler",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:886"
+        },
+        {
+            "message": "Missing item type\nReturns the data from a dataset",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:902"
+        },
+        {
+            "message": "Missing item type\nSwitch the currently displayed dataset",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:913"
+        },
+        {
+            "message": "Missing item type\nCalled when the current dataset is modified.",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:924"
+        },
+        {
+            "message": "Missing item type\nSets the handler to open past dataset",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:943"
+        },
+        {
+            "message": "Missing item type\nReturns the handler to open past dataset",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:958"
+        },
+        {
+            "message": "Missing item type\nAjaxHandler\n\nExtract data from headers of an XMLHttpRequest and adds a new dataset",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:975"
+        },
+        {
+            "message": "Missing item type\nHandles an XMLHttpRequest",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:987"
+        },
+        {
+            "message": "Missing item type\nChecks if the HEADER-id exists and loads the dataset using the open handler",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:1001"
+        },
+        {
+            "message": "Missing item type\nExtracts the id from the HEADER-id",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:1016"
+        },
+        {
+            "message": "Missing item type\nChecks if the HEADER exists and loads the dataset",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:1026"
+        },
+        {
+            "message": "Missing item type\nExtract the data as a string from headers of an XMLHttpRequest",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:1047"
+        },
+        {
+            "message": "Missing item type\nParses the string data into an object",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:1069"
+        },
+        {
+            "message": "Missing item type\nAttaches an event listener to jQuery.ajaxComplete()",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:1080"
+        },
+        {
+            "message": "Missing item type\nAttaches an event listener to XMLHttpRequest",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/debugbar.js:1095"
+        },
+        {
+            "message": "Missing item type",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:9"
+        },
+        {
+            "message": "Missing item type\nReplaces spaces with &nbsp; and line breaks with <br>",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:14"
+        },
+        {
+            "message": "Missing item type\nReturns a string representation of value, using JSON.stringify\nif it's an object.",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:24"
+        },
+        {
+            "message": "Missing item type\nHighlights a block of code",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:42"
+        },
+        {
+            "message": "Missing item type\nCreates a <pre> element with a block of code",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:66"
+        },
+        {
+            "message": "Missing item type\nDisplays array element in a <ul> list\n\nOptions:\n - data\n - itemRenderer: a function used to render list items (optional)",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:90"
+        },
+        {
+            "message": "Missing item type\nRenders the content of a <li> element",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:125"
+        },
+        {
+            "message": "Missing item type\nDisplays object property/value paris in a <dl> list\n\nOptions:\n - data\n - itemRenderer: a function used to render list items (optional)",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:139"
+        },
+        {
+            "message": "Missing item type\nRenders the content of the <dt> and <dd> elements",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:168"
+        },
+        {
+            "message": "Missing item type\nAn extension of KVListWidget where the data represents a list\nof variables\n\nOptions:\n - data",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:185"
+        },
+        {
+            "message": "Missing item type\nIframe widget\n\nOptions:\n - data",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:218"
+        },
+        {
+            "message": "Missing item type\nWidget for the MessagesCollector\n\nUses ListWidget under the hood\n\nOptions:\n - data",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:247"
+        },
+        {
+            "message": "Missing item type\nWidget for the TimeDataCollector\n\nOptions:\n - data",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:350"
+        },
+        {
+            "message": "Missing item type\nWidget for the displaying exceptions\n\nOptions:\n - data",
+            "line": " vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js:412"
+        },
+        {
+            "message": "Missing item type\nAdds a theme to default settings",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:13"
+        },
+        {
+            "message": "Missing item type\nAppends a placeholder to an element",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:25"
+        },
+        {
+            "message": "Missing item type\nRuns Holder with options. By default runs Holder on all images with \"holder.js\" in their source attributes.",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:45"
+        },
+        {
+            "message": "Missing item type\nProcesses provided source attribute and sets up the appropriate rendering workflow",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:297"
+        },
+        {
+            "message": "Missing item type\nProcesses a Holder URL and extracts flags",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:313"
+        },
+        {
+            "message": "Missing item type\nModifies the DOM to fit placeholders and sets up resizable image callbacks (for fluid and automatically sized placeholders)",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:392"
+        },
+        {
+            "message": "Missing item type\nCore function that takes output from renderers and sets it as the source or background-image of the target element",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:514"
+        },
+        {
+            "message": "Missing item type\nCore function that takes a Holder scene description and builds a scene graph",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:622"
+        },
+        {
+            "message": "Missing item type\nAdaptive text sizing function",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:750"
+        },
+        {
+            "message": "Missing item type\nIterates over resizable (fluid or auto) placeholders and renders them",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:768"
+        },
+        {
+            "message": "Missing item type\nChecks if an element is visible",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:819"
+        },
+        {
+            "message": "Missing item type\nSets up aspect ratio metadata for fluid placeholders, in order to preserve proportions when resizing",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:842"
+        },
+        {
+            "message": "Missing item type\nGeneric new DOM element function",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:1068"
+        },
+        {
+            "message": "Missing item type\nGeneric setAttribute function",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:1083"
+        },
+        {
+            "message": "Missing item type\nGeneric SVG element creation function",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:1096"
+        },
+        {
+            "message": "Missing item type\nGeneric SVG serialization function",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:1124"
+        },
+        {
+            "message": "Missing item type\nShallow object clone and merge",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:1190"
+        },
+        {
+            "message": "Missing item type\nTakes a k/v list of CSS properties and returns a rule",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:1214"
+        },
+        {
+            "message": "Missing item type\nPrevents a function from being called too often, waits until a timer elapses to call it again",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:1229"
+        },
+        {
+            "message": "Missing item type\nHolder-specific resize/orientation change callback, debounced to prevent excessive execution",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:1243"
+        },
+        {
+            "message": "Missing item type\nConverts a value into an array of DOM nodes",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:1252"
+        },
+        {
+            "message": "Missing item type\nChecks if an image exists",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:1273"
+        },
+        {
+            "message": "Missing item type\nEncodes HTML entities in a string",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:1290"
+        },
+        {
+            "message": "Missing item type\nDecodes HTML entities in a stirng",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/holder.js:1309"
+        },
+        {
+            "message": "Missing item type",
+            "line": " vendor/phpunit/php-code-coverage/src/CodeCoverage/Report/HTML/Renderer/Template/js/html5shiv.min.js:1"
+        }
+    ]
+}

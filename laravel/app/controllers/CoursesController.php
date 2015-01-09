@@ -193,7 +193,11 @@ class CoursesController extends \BaseController {
         }
         
         public function curriculum($slug){
-            return 'curriculum page here for '.$slug;
+            $course = Course::where('slug',$slug)->first();
+            if( $course==null || $course->instructor->id != Auth::user()->id ){
+                return Redirect::to('/');
+            }
+            return View::make('courses/curriculum')->with(compact('course'));
         }
 
 

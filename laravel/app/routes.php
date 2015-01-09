@@ -59,10 +59,14 @@ Route::get('courses/category/{slug}', 'CoursesController@category');
 Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
 Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
 Route::resource('courses', 'CoursesController');
+// Modules
+Route::resource('modules','ModulesController');
+
 // Lessons 
 Route::group(['prefix' => 'lessons'], function(){
     Route::get('/{slug}', 'LessonsController@index');
 });
+
 // Instructors routes
 Route::get('instructors', 'InstructorsController@index');
 Route::get('instructors/start/{user}', 'InstructorsController@start');

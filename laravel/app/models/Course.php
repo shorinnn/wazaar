@@ -29,6 +29,7 @@ class Course extends Ardent{
         'courseDifficulty' => array(self::BELONGS_TO, 'CourseDifficulty'),
         'sales' => array(self::HAS_MANY, 'CoursePurchase'),
         'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
+        'modules' => array(self::HAS_MANY, 'Module'),
     );
     
     public function upload_preview($path){

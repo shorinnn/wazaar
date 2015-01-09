@@ -58,6 +58,7 @@
     <script src="{{url("js/courses.js")}}"></script>
     <script src="{{url("js/cocoriumTracker.js")}}"></script>
     <script src="{{url("js/tweenmax.min.js")}}"></script>
+    <script src="{{url("js/Sortable.min.js")}}"></script>
     <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>-->
     @yield('extra_js')
 	</body>
