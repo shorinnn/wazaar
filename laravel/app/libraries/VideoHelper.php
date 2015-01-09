@@ -48,12 +48,8 @@ class VideoHelper
                     $video->transcode_status = $transcodeJob['Job']['Status'];
                     $video->save(); //update video record
                     if ($transcodeJob['Job']['Status'] == Video::STATUS_COMPLETE) {
-                        $videoFormats = $videoHelper->_extractVideoFormatsFromOutputs($videoId, $transcodeJob['Outputs']);
+                        $videoFormats = $videoHelper->extractVideoFormatsFromOutputs($videoId, $transcodeJob['Outputs']);
                         VideoFormat::insert($videoFormats);
-                    }
-                    else{
-                        //Create notification
-                        //$this->createSnsFromArn($arn);
                     }
                 }
             }
@@ -63,7 +59,7 @@ class VideoHelper
 
 
 
-    public function _extractVideoFormatsFromOutputs($videoId, $outputs)
+    public function extractVideoFormatsFromOutputs($videoId, $outputs)
     {
         $outputLink   = 'https://s3-ap-southeast-1.amazonaws.com/videosoutput/';
         $videoFormats = [];

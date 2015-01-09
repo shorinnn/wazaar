@@ -94,7 +94,3 @@ Route::group(['prefix' => 'video'], function(){
 });
 
 
-Route::get('test', function (){
-   dd(array_keys(Config::get('aws.AWS_VIDEO_PRESETS')));
-});
-

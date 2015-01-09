@@ -40,10 +40,21 @@ class VideosController extends BaseController
 
     public function snsCallback()
     {
-        $data['msg'] = file_get_contents('php://input');
-        Mail::send('emails.test', $data, function($message)
-        {
-            $message->to('albertmaranian@gmail.com', 'Albert Maranian')->subject('Cocorium!');
-        });
+        $postBody = file_get_contents('php://input');
+        $postObject = json_decode($postBody, true);
+        if (!isset($postObject['Message'])){
+            return;
+        }
+        $messageBody = json_decode($postObject['Message'], true);
+        if (!isset($messageBody['state'])){
+            return;
+        }
+        if ($messageBody['state'] == 'COMPLETED' AND isset($messageBody['outputs'])){
+            $jobId = @$messageBody['jobId'];
+            $video = Video::where('transcode_job_id', $jobId)->first();
+            if ($video){
+                $this->videoHelper->extractVideoFormatsFromOutputs($video->id,$messageBody['outputs']);
+            }
+        }
     }
 }
