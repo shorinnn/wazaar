@@ -64,13 +64,13 @@ class VideoHelper
     {
         $outputLink   = 'https://s3-ap-southeast-1.amazonaws.com/videosoutput/';
         $videoFormats = [];
+        $presets  = Config::get('wazaar.AWS_VIDEO_PRESETS');
         foreach ($outputs as $output) {
-            $resolution     = $output['width'] . 'x' . $output['height'];
             $thumbnail     = str_replace('{count}','00001.png', $output['thumbnailPattern']);
             $videoFormats[] = [
                 'video_id'   => $videoId,
                 'output_key' => $output['key'],
-                'resolution' => $resolution,
+                'resolution' => @$presets[$output['presetId']],//  $resolution,
                 'duration'   => $output['duration'],
                 'thumbnail'  => $thumbnail,
                 'video_url'  => $outputLink . $output['key']
