@@ -4,7 +4,7 @@
     <input type="text" value="{{$module->name}}" />
     {{ Form::open(array('action' => ['ModulesController@destroy', $module->id], 'method' => 'delete', 
                 'class' => 'ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '#module-'.$module->id )) }}
-        <button class="btn btn-danger btn-mini">X</button>
+        <button class="btn btn-danger btn-mini delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}">X</button>
     {{ Form::close() }}
     <span class="sortable-handle">[dragicon]</span> 
     <ul class="lessons" id="lessons-holder-{{$module->id}}">

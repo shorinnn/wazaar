@@ -185,9 +185,17 @@ class CoursesController extends \BaseController {
             $course = Course::find($id);
             if( $course->instructor->id == Auth::user()->id ){
                 $course->delete();
+                if(Request::ajax()){
+                    $response = ['status' => 'success' ];
+                    return json_encode($response);
+                }
                 return Redirect::back()->withSuccess( trans('crud/errors.object_deleted',['object'=>'Course']));
             }
             else{
+                if(Request::ajax()){
+                    $response = ['status' => 'error', 'errors' => trans('crud/errors.cannot_delete_object',['object'=>'Course']) ];
+                    return json_encode($response);
+                }
                 return Redirect::back()->withError( trans('crud/errors.cannot_delete_object',['object'=>'Course']) );
             }
         }
