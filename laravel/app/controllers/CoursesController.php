@@ -32,7 +32,7 @@ class CoursesController extends \BaseController {
             $data = input_except(['_method', '_token']);
             $course = new Course( $data );
             $course->instructor_id = Auth::user()->id;
-            $course->slug = Str::slug(Input::get('name')).rand(1,100);
+            $course->slug = Str::slug(Input::get('name'));
             if($course->save()){
                 if(Request::ajax()){
                     $response = ['status' => 'success', 'updateAction' => action('CoursesController@update', $course->slug) ];

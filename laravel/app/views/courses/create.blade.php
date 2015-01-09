@@ -14,26 +14,23 @@
                 <button type='submit' class='btn btn-primary'>Create Course</button>
             </form>
         </div>
+    <form method='post' class='ajax-form' id='edit-course-details-form' data-callback='followRedirect' >
         <div id='step2' class='#'>
 	        <h2>What category is your course in?</h2>
-            <form>
             <div class="ui-select">
             {{ Form::select('course_category_id', $categories, null,  
                         ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 
                         'data-url'=> action('CoursesCategoriesController@subcategories')]) }}
             </div>
-            </form>
             <h2>What sub-category?</h2>
-            <form>
             	<div class="ui-select">
                     <select class="ui-select" name='course_subcategory_id' id='course_subcategory_id'>
                         <option value='0'>Select category...</option>
                     </select><br />
                 </div>
                 <button class='btn btn-primary' type="button" onclick='unhide("#step3")'>Next Step</button>
-            </form>
         </div>
-        <form method='post' class='ajax-form' id='edit-course-details-form' data-callback='followRedirect' >
+        
             <input type='hidden' name='_token' value='{{csrf_token()}}' />
             <input type='hidden' name='_method' value='PUT' />
             <h1>Set your course objectives
