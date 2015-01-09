@@ -41,9 +41,11 @@
             </h1>        
             <div id='step3' class='#'>
                  <h2>Course Level</h2>
-                 <div class="course-level">
+                 <div class="course-level btn-group clearfix" data-toggle="buttons">
                      @foreach($difficulties as $key=>$difficulty)
-                         <input type='button' name='course_difficulty_id' value='{{$difficulty}}' /> <!--{{$difficulty}}-->
+                     	<label class="btn btn-primary">
+                         	<input type='radio' name='course_difficulty_id' id="option{{$key}}" autocomplete="off" value='{{$key}}' /> {{$difficulty}}
+                        </label>
                      @endforeach
         		 </div>
                  <div class="what-you-will-achieve">
