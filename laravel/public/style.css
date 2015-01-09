@@ -2794,6 +2794,293 @@ header .activate-dropdown:hover ul{
 
 .create-course h2{
 	color: #0099ff;
+	font-weight: 200;
+	font-size: 18px;
+	margin: 10px 0 16px;
+	text-align: center;
+}
+
+#step2,
+#step1{
+	max-width: 656px;
+	margin: 30px auto 0;
+	border: solid #ececec;
+	border-width: 0 0 1px;
+	padding-bottom: 100px;
+}
+
+#step2 form,
+#step1 form{
+	width: 312px;
+	margin: 0 auto;
+}
+
+#step3 button.start-creating,
+#step2 form select,
+#step2 form button,
+#step1 form input,
+#step1 form button{
+	width: 310px;
+	height: 40px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #eef0f0;
+	margin: 0 auto 20px;
+	border-radius: 20px;
+	outline: none;
+}
+
+#step1 form input{
+	background: none;
+	border-color: #eef0f0;
+	padding: 0;
+	text-indent: 18px;
+}
+
+#step3 button.start-creating,
+#step2 form button,
+#step1 form button{
+	background: #0099ff;
+	border-color: #0099ff;
+	font-size: 12px;
+	color: #fff;
+}
+
+#step3 button.start-creating:hover,
+#step2 form button:hover,
+#step1 form button:hover{
+	background: #36d2ff;
+	border-color: #36d2ff;
+}
+
+#step2{
+	margin-top: 90px;
+}
+
+#edit-course-details-form h1{
+	margin-top: 103px;
+}
+
+#step2 form select{
+	border-color: #eef0f0;
+	position: relative;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	padding-left: 18px;
+	font-size: 12px;
+	color: #849598;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-5.png') no-repeat right -72px;
+}
+
+/* For Microsoft IE */
+select::-ms-expand {    
+	display: none; 
+}
+
+/* For Firefox version 30 and above */
+@-moz-document url-prefix(){
+      .ui-select{
+	   	  border: solid 1px #eef0f0;
+          border-radius: 20px; 
+          box-sizing: border-box; 
+		  margin-bottom: 20px;
+          position: relative; 
+          overflow: hidden;
+     }
+     .ui-select select{
+          width: 110% !important;
+		  margin: 0 !important;
+	   	  background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-5.png') no-repeat 90% -72px !important;
+          border: none !important;
+     }
+}
+
+#step3{
+	margin-top: 50px;
+}
+
+#step3 .course-level{
+	width: 389px;
+	margin: 0 auto;
+}
+
+#step3 .course-level input[type='button']{
+	height: 40px;
+	padding: 0 30px;
+	border: solid 1px #e5e8e9;
+	border-radius: 20px;
+	font-size: 12px;
+	color: #849598;
+	background: none;
+	outline: none;
+	margin: 0 15px 0 0;
+
+}
+
+#step3 .course-level input[type='button']:hover{
+	border: solid 1px #0099ff;
+	color: #0099ff;
+}
+
+#step3 .course-level input[type='button']:focus{
+	border: solid 1px #05a5f4;
+	color: #fff;
+	background: #05a5f4;
+}
+
+.what-you-will-achieve,
+.who-its-for{
+	width: 484px;
+	margin: 80px auto 0;
+}
+
+.what-you-will-achieve > div,
+.who-its-for > div{
+	width: 100%;
+	position: relative;
+}
+
+.what-you-will-achieve > div span,
+.who-its-for > div span{
+	display: block;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	background: #92cc2e;
+	color: #f9fcf6;
+	line-height: 20px;
+	text-align: center;
+	position: absolute;
+	top: 11px;
+	left: 10px;
+	z-index: 1;
+	font-size: 12px;
+}
+
+.what-you-will-achieve > div a,
+.who-its-for > div a{
+	display: block;
+	height: 22px;
+	width: 22px;
+	position: absolute;
+	right: 10px;
+	top: 9px;
+	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-5.png');
+	background-repeat: no-repeat;
+	z-index: 1;
+}
+
+.what-you-will-achieve > div a.style-one,
+.who-its-for > div a.style-one{
+	background-position: -8px -147px;
+}
+
+.what-you-will-achieve > div a.style-two,
+.who-its-for > div a.style-two{
+	background-position: -8px -214px;
+}
+
+.what-you-will-achieve input,
+.who-its-for input{
+	width: 482px;
+	height: 40px;
+	border: solid 1px #e5e8e9;
+	border-radius: 20px;
+	outline: none;
+	padding-left: 50px;
+	color: #849598;
+	font-size: 12px;
+	margin: 0 0 10px;
+}
+
+.what-you-will-achieve > a.help-tip,
+.who-its-for > a.help-tip{
+	font-weight: bold;
+	font-size: 12px;
+	color: #849598;
+	display: inline-block;
+	padding-right: 30px;
+	margin: 10px 10px 40px 0;
+	height: 20px;
+	line-height: 20px;
+	float: right;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-5.png') no-repeat 26px -280px;
+}
+
+.what-you-will-achieve > p,
+.who-its-for > p{
+	color: #849598;
+	font-size: 12px;
+	text-align: center;
+	line-height: 24px;
+	margin: 18px 0 40px;
+	position: relative;
+}
+
+.what-you-will-achieve > p.tip::before{
+	content: 'TIP';
+	padding: 5px 10px;
+	border-radius: 2px;
+	margin-right: 11px;
+	border: solid 1px #b0bfc1;
+}
+
+.who-its-for .its-for-you{
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-5.png') no-repeat 5px 3px;
+}
+
+#step3 button.start-creating{
+	display: block;
+	margin-top: 30px;
+	margin-bottom: 250px;
+}
+
+.steps-meter{
+	position: fixed;
+	top: 186px;
+	left: 0;
+}
+
+.steps-meter p{
+	margin: 0 0 7px;
+}
+
+.steps-meter p span{
+	display: block;
+	float: left;
+	width: 30px;
+	height: 20px;
+	margin-right: 10px;
+	border-radius: 0 15px 15px 0;
+}
+
+.steps-meter p span.step-one{
+	background: #0099ff;	
+}
+
+.steps-meter p span.step-two{
+	background: #6dc5ff;		
+}
+
+.steps-meter p span.step-three{
+	background: #c9eaff;		
+}
+
+.steps-meter p em{
+	font-style: normal;
+	font-size: 14px;
+	color: #849598;
+}
+
+.steps-meter p.active span{
+	width: 50px;
+}
+
+.steps-meter p.active em{
+	color: #849598;
+}
+
 
 /************* Page Footer **************/
 footer{

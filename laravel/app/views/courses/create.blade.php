@@ -14,37 +14,85 @@
                 <button type='submit' class='btn btn-primary'>Create Course</button>
             </form>
         </div>
-		
+        <div id='step2' class='#'>
+	        <h2>What category is your course in?</h2>
+            <form>
+            <div class="ui-select">
+            {{ Form::select('course_category_id', $categories, null,  
+                        ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 
+                        'data-url'=> action('CoursesCategoriesController@subcategories')]) }}
+            </div>
+            </form>
+            <h2>What sub-category?</h2>
+            <form>
+            	<div class="ui-select">
+                    <select class="ui-select" name='course_subcategory_id' id='course_subcategory_id'>
+                        <option value='0'>Select category...</option>
+                    </select><br />
+                </div>
+                <button class='btn btn-primary' type="button" onclick='unhide("#step3")'>Next Step</button>
+            </form>
+        </div>
+        <form method='post' class='ajax-form' id='edit-course-details-form' data-callback='followRedirect' >
+            <input type='hidden' name='_token' value='{{csrf_token()}}' />
+            <input type='hidden' name='_method' value='PUT' />
+            <h1>Set your course objectives
+               <small>This helps you with creating a great course that people will talk about and love</small>
+            </h1>        
+            <div id='step3' class='#'>
+                 <h2>Course Level</h2>
+                 <div class="course-level">
+                     @foreach($difficulties as $key=>$difficulty)
+                         <input type='button' name='course_difficulty_id' value='{{$difficulty}}' /> <!--{{$difficulty}}-->
+                     @endforeach
+        		 </div>
+                 <div class="what-you-will-achieve">
+                     <h2>By the end of the course your students will be able to...</h2>
+                     <p class="tip">Make it results based</p>
+                     <div>
+                         <input type='text' name='what_will_you_achieve[]' class="clonable" />
+                         <span>1</span>
+                         <a href="#" class="style-one"></a>
+                     </div>
+                     <div>
+                         <input type='text' name='what_will_you_achieve[]' class="clonable" />
+                         <span>2</span>
+                         <a href="#" class="style-two"></a>
+                     </div>
+                     <a href="#" class="help-tip">Help</a>
+        		 </div>
+                 <div class="who-its-for">
+                     <h2>This course is for your student if your student is...</h2>
+                     <p>
+                     te irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+                     ed ut perspiciatis unde omnis iste natus  error sit.
+                     </p>
+                     <div>
+                         <input type='text' name='who_is_this_for[]'  class="clonable" /><br />
+                         <span>1</span>
+                         <a href="#" class="style-one"></a>
+                     </div>
+                     <div>
+                         <input type='text' name='who_is_this_for[]'  class="clonable" /><br />
+                         <span>2</span>
+                         <a href="#" class="style-two"></a>
+                     </div>
+                     <a href="#" class="help-tip">Help</a>
+                     <div>
+                         <input type='text' name='who_is_this_for[]'  class="clonable its-for-you" / placeholder="This course if for you if you are..."><br />
+                     </div>
+                     <button class='btn btn-primary clear start-creating'>Start Creating Lessons</button>
+                 </div>
+            </div>
+        </form>
+		<div class="steps-meter">
+        	<p class="active"><span class="step-one"></span><em>Step 1</em></p>
+        	<p><span class="step-two"></span><em>Step 2</em></p>
+        	<p><span class="step-three"></span><em>Step 3</em></p>
+        </div>
     </div>
 </div>
 </div>
 
-<form method='post' class='ajax-form' id='edit-course-details-form' data-callback='followRedirect' >
-    <input type='hidden' name='_token' value='{{csrf_token()}}' />
-    <input type='hidden' name='_method' value='PUT' />
-    <div id='step2' class='hidden'>
-        <h1>What category is your course in?</h1>
-        {{ Form::select('course_category_id', $categories, null,  
-                    ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 'data-url'=> action('CoursesCategoriesController@subcategories')]) }}
-        <h1>What sub-category?</h1>
-        <select name='course_subcategory_id' id='course_subcategory_id'><option value='0'>Select category...</option></select><br />
-        <button class='btn btn-primary' type="button" onclick='unhide("#step3")'>Next Step</button>
-    </div>
-
-    <div id='step3' class='hidden'>
-         <h1>Set your course objectives</h1>
-         This helps you with creating a great course that people will talk about and love
-         <h3>Course Level</h3>
-         @foreach($difficulties as $key=>$difficulty)
-             <input type='radio' name='course_difficulty_id' value='{{$key}}' /> {{$difficulty}}
-         @endforeach
-
-         <h3>By the end of the course your students will be able to...</h3>
-         <input type='text' name='what_will_you_achieve[]' class="clonable" />
-
-         <h3>This course is for your student if your student is...</h3>
-         <input type='text' name='who_is_this_for[]'  class="clonable" /><br />
-         <button class='btn btn-primary'>Start Creating Lessons</button>
-    </div>
-</form>
 @stop
