@@ -15,8 +15,20 @@
     .inline-block{
         display:inline-block;
     }
-</style>
-<h1>{{$course->name}}</h1>    
+    
+    #save-indicator{
+        border:1px solid black;
+        background-color:white;
+        width:90px;
+        height:30px;
+        position:fixed;
+        top:100px;
+        left:-100px;
+        text-align: right;
+        padding-right: 10px;
+    }
+    </style>
+<h1 class='icon'>{{$course->name}}</h1>    
 <div>
     <div class="col-lg-6">
         By the end of this course, your students will be able to...

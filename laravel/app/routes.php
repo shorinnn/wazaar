@@ -63,9 +63,8 @@ Route::resource('courses', 'CoursesController');
 Route::resource('modules', 'ModulesController');
 
 // Lessons
-Route::group(['prefix' => 'lessons'], function(){
-    Route::get('/{slug}', 'LessonsController@index');
-});
+Route::resource('lessons', 'LessonsController');
+
 // Instructors routes
 Route::get('instructors', 'InstructorsController@index');
 Route::get('instructors/start/{user}', 'InstructorsController@start');

@@ -3,7 +3,7 @@
 class CoursesController extends \BaseController {
     
         public function __construct(){
-            $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update'] ] );
+            $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum'] ] );
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy', 'purchase' ]]);
         }
 

@@ -9,4 +9,5 @@ return array(
     'cannot_delete_object' => 'Cannot delete :object',
     'object_doesnt_exist' => ":object doesn't exist",
     'attr_taken' => ":attr is taken",
+    'error_occurred' => "An error occurred",
 );
