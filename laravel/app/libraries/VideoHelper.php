@@ -24,40 +24,38 @@ class VideoHelper
      */
     public function createTranscodingJob($videoId, $videoPath)
     {
-
         //Create a queue
-        Queue::push(function ($job) use($videoId, $videoPath){
-        //move the video to s3 input bucket
-        $videoHelper = new VideoHelper;
-        $response = $videoHelper->_prepareForTranscoding($videoPath);
-        //we'll proceed if the url to input video was successfully created
+        Queue::push(function ($job) use ($videoId, $videoPath) {
+            //move the video to s3 input bucket
+            $videoHelper = new VideoHelper;
+            $response    = $videoHelper->prepareForTranscoding($videoPath);
+            //we'll proceed if the url to input video was successfully created
 
-        if (isset($response['ObjectURL'])) {
-            $inputKey = $videoHelper->_getKeyFromUrl($response['ObjectURL']);
-            $presets  = Config::get('wazaar.AWS_VIDEO_PRESETS');
+            if (isset($response['ObjectURL'])) {
+                $inputKey = $videoHelper->getKeyFromUrl($response['ObjectURL']);
+                $presets  = Config::get('wazaar.AWS_VIDEO_PRESETS');
 
-            if (is_array($presets)) {
-                $presetIds    = array_keys($presets);
-                $transcodeJob = $videoHelper->_doTranscoding($inputKey, $presetIds);
+                if (is_array($presets)) {
+                    $presetIds    = array_keys($presets);
+                    $transcodeJob = $videoHelper->doTranscoding($inputKey, $presetIds);
 
-                if (isset($transcodeJob['Job']['Id'])) {
-                    $jobId = $transcodeJob['Job']['Id'];
+                    if (isset($transcodeJob['Job']['Id'])) {
+                        $jobId = $transcodeJob['Job']['Id'];
 
-                    $video                   = Video::find($videoId);
-                    $video->transcode_job_id = $jobId;
-                    $video->transcode_status = $transcodeJob['Job']['Status'];
-                    $video->save(); //update video record
-                    if ($transcodeJob['Job']['Status'] == Video::STATUS_COMPLETE) {
-                        $videoFormats = $videoHelper->extractVideoFormatsFromOutputs($videoId, $transcodeJob['Outputs']);
-                        VideoFormat::insert($videoFormats);
+                        $video                   = Video::find($videoId);
+                        $video->transcode_job_id = $jobId;
+                        $video->transcode_status = $transcodeJob['Job']['Status'];
+                        $video->save(); //update video record
+                        if ($transcodeJob['Job']['Status'] == Video::STATUS_COMPLETE) {
+                            $videoFormats = $videoHelper->extractVideoFormatsFromOutputs($videoId,
+                                $transcodeJob['Outputs']);
+                            VideoFormat::insert($videoFormats);
+                        }
                     }
                 }
             }
-        }
         });
     }
-
-
 
     public function extractVideoFormatsFromOutputs($videoId, $outputs)
     {
@@ -66,11 +64,11 @@ class VideoHelper
         foreach ($outputs as $output) {
             $resolution     = $output['Width'] . 'x' . $output['Height'];
             $videoFormats[] = [
-                               'video_id'   => $videoId,
-                               'output_key' => $output['Key'],
-                               'resolution' => $resolution,
-                               'duration'   => $output['Duration'],
-                               'video_url'  => $outputLink . $output['Key']
+                'video_id'   => $videoId,
+                'output_key' => $output['Key'],
+                'resolution' => $resolution,
+                'duration'   => $output['Duration'],
+                'video_url'  => $outputLink . $output['Key']
             ];
         }
 
@@ -81,7 +79,7 @@ class VideoHelper
      * @param $url
      * @return mixed|null
      */
-    public function _getKeyFromUrl($url)
+    public function getKeyFromUrl($url)
     {
         if (filter_var($url, FILTER_VALIDATE_URL) === false) {
             return null;
@@ -95,7 +93,7 @@ class VideoHelper
      * @param $videoFullpath
      * @return bool
      */
-    public function _prepareForTranscoding($videoFullpath)
+    public function prepareForTranscoding($videoFullpath)
     {
         if (!file_exists($videoFullpath)) {
             return false;
@@ -115,7 +113,7 @@ class VideoHelper
      * @param $outputKey - The desired key name of the output video which will be placed in the outputucket
      * @return object - Result of the job
      */
-    public function _doTranscoding($inputKey, $presetIds = [])
+    public function doTranscoding($inputKey, $presetIds = [])
     {
         $client = AWS::get('ElasticTranscoder');
         //must be in an .env config file
@@ -123,10 +121,9 @@ class VideoHelper
 
         $outputs = [];
         foreach ($presetIds as $presetId) {
-            $key = $inputKey . str_replace('-','',$presetId);
-            $outputs[] = ['Key' => $key . '.mp4', 'PresetId' => $presetId, 'ThumbnailPattern' => $key . '-{count}' ];
+            $key       = $inputKey . str_replace('-', '', $presetId);
+            $outputs[] = ['Key' => $key . '.mp4', 'PresetId' => $presetId, 'ThumbnailPattern' => $key . '-{count}'];
         }
-
 
         $result = $client->createJob([
             'PipelineId' => $pipelineId,
@@ -137,6 +134,4 @@ class VideoHelper
         ]);
         return $result;
     }
-
-
 }
