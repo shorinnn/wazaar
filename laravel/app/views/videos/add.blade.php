@@ -62,7 +62,7 @@
 
                     <div id="video-formats">
                         {{-- TODO: Replace the source image url with our own, just borrowing the gif for demo purposes --}}
-                        <div id="processing-message"><img src="http://apps.nea.gov/GrantSearch/images/ajaxSpinner.gif" alt=""/> We are still processing the videos, please wait....</div>
+                        <div id="processing-message"><img height="80px" src="http://apps.nea.gov/GrantSearch/images/ajaxSpinner.gif" alt=""/> We are still processing the videos, please wait....</div>
                         <table class="table table-striped hide" id="table-video-formats">
                             <thead>
                                 <th>Thumbnail</th>
