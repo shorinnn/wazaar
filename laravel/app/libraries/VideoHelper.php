@@ -43,6 +43,7 @@ class VideoHelper
                         $jobId = $transcodeJob['Job']['Id'];
 
                         $video                   = Video::find($videoId);
+                        $video->input_key        = $inputKey;
                         $video->transcode_job_id = $jobId;
                         $video->transcode_status = $transcodeJob['Job']['Status'];
                         $video->save(); //update video record
@@ -64,13 +65,15 @@ class VideoHelper
         $outputLink   = 'https://s3-ap-southeast-1.amazonaws.com/videosoutput/';
         $videoFormats = [];
         foreach ($outputs as $output) {
-            $resolution     = $output['Width'] . 'x' . $output['Height'];
+            $resolution     = $output['width'] . 'x' . $output['height'];
+            $thumbnail     = str_replace('{count}','00001.png', $output['thumbnailPattern']);
             $videoFormats[] = [
                 'video_id'   => $videoId,
-                'output_key' => $output['Key'],
+                'output_key' => $output['key'],
                 'resolution' => $resolution,
-                'duration'   => $output['Duration'],
-                'video_url'  => $outputLink . $output['Key']
+                'duration'   => $output['duration'],
+                'thumbnail'  => $thumbnail,
+                'video_url'  => $outputLink . $output['key']
             ];
         }
 
