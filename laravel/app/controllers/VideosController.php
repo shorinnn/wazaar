@@ -49,12 +49,15 @@ class VideosController extends BaseController
         if (!isset($messageBody['state'])){
             return;
         }
-        Log::alert('-------------lusot-------------');
+
         if ($messageBody['state'] == 'COMPLETED' AND isset($messageBody['outputs'])){
             $jobId = @$messageBody['jobId'];
             $video = Video::where('transcode_job_id', $jobId)->first();
             if ($video){
-                $this->videoHelper->extractVideoFormatsFromOutputs($video->id,$messageBody['outputs']);
+                $videoFormats = $this->videoHelper->extractVideoFormatsFromOutputs($video->id,$messageBody['outputs']);
+                VideoFormat::insert($videoFormats);
+                $video->transcode_status = Video::STATUS_COMPLETE;
+                $video->save();
             }
         }
     }
