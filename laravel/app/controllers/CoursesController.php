@@ -16,9 +16,7 @@ class CoursesController extends \BaseController {
         public function create(){
             $course = new Course;
             $difficulties = CourseDifficulty::lists('name', 'id');
-            $categories = CourseCategory::lists('name', 'id');
-            $select = 'Select';
-            array_unshift($categories, $select);
+            $categories = ['' => 'Select'] + CourseCategory::lists('name', 'id');
             $subcategories = CourseSubcategory::arrayWithParent();
             $instructor = Instructor::find(Auth::user()->id);
             $images = $instructor->coursePreviewImages;

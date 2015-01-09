@@ -134,6 +134,7 @@ function cloneInput(e){
         var $destination = $elem.parent();
         var clone = $elem.clone();
         clone.removeAttr('id');
+        clone.removeAttr('required');
         clone.removeClass();
         id = uniqueId();
         clone.addClass('clonable clonable-'+id);
