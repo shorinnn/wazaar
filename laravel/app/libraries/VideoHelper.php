@@ -51,6 +51,8 @@ class VideoHelper
                                 $transcodeJob['Outputs']);
                             VideoFormat::insert($videoFormats);
                         }
+
+                        $job->delete();
                     }
                 }
             }
