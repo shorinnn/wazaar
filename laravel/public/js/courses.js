@@ -14,8 +14,10 @@ $(document).ready(function(){
             handle: '.sortable-handle',
             onEnd: function (evt) {
                 var i = 1;
-                $('.module-order').each(function(){
+                $('span.module-order').each(function(){
                     $(this).html(i);
+                    $(this).next('input.module-order').val(i);
+                    $(this).next('input.module-order').trigger('change');
                     ++i;
                 });
             }

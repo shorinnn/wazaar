@@ -8,7 +8,7 @@ class Course extends Ardent{
         'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage'];
     
     public static $rules = [
-        'name' => 'required',
+        'name' => 'required|unique:courses',
         'slug' => 'required|alpha_dash|unique:courses|not_in:index,show,create,store,categories,category,purchase,mycourses,destroy,edit,update',
         'price' => 'numeric',
         'affiliate_percentage' => 'numeric|between:0,70',
