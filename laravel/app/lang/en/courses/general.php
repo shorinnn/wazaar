@@ -13,4 +13,6 @@ return array(
     'cant_discount_101_percent' => 'Discounts greater than 100% are not allowed',
     'cant_discount_more_than_price' => 'Discount cannot be greater than original price',
     'no_negative_discounts' => 'Cannot use negative discounts',
+    'edit_details' => 'Edit Details',
+    'manage_lessons' => 'Manage Lessons',
 );

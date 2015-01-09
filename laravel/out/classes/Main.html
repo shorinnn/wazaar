@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Courses</title>
+    <title>Main</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -42,6 +42,7 @@
                                 <li><a href="../classes/Forms.html">Forms</a></li>
                                 <li><a href="../classes/Main.html">Main</a></li>
                                 <li><a href="../classes/Validations.html">Validations</a></li>
+                                <li><a href="../classes/.html"></a></li>
                             </ul>
                 
                             <ul id="api-modules" class="apis modules">
@@ -78,12 +79,12 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>Courses Class</h1>
+                        <h1>Main Class</h1>
                         <div class="box meta">
                         
                         
                                 <div class="foundat">
-                                    Defined in: <a href="../files/courses.js.html#l1"><code>courses.js:1</code></a>
+                                    Defined in: <a href="../files/public_js_main.js.html#l1"><code>public&#x2F;js&#x2F;main.js:1</code></a>
                                 </div>
                         
                         
@@ -91,7 +92,7 @@
                         
                         
                         <div class="box intro">
-                            <p>Contains form related reusable functions and event listeners</p>
+                            <p>Contains generic reusable functions and event listeners</p>
                         
                         </div>
                         
@@ -101,6 +102,7 @@
                                 <li class="api-class-tab index"><a href="#index">Index</a></li>
                         
                                     <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+                                    <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
                             </ul>
                         
                             <div>
@@ -112,28 +114,30 @@
                         
                                             <ul class="index-list methods">
                                                     <li class="index-item method">
-                                                        <a href="#method_addLesson">addLesson</a>
+                                                        <a href="#method_convertToSlug">convertToSlug</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#method_addModule">addModule</a>
+                                                        <a href="#method_followRedirect">followRedirect</a>
                         
                                                     </li>
                                                     <li class="index-item method">
-                                                        <a href="#method_prepareCourseDetails">prepareCourseDetails</a>
-                        
-                                                    </li>
-                                                    <li class="index-item method">
-                                                        <a href="#method_reorderLessons">reorderLessons</a>
-                        
-                                                    </li>
-                                                    <li class="index-item method">
-                                                        <a href="#method_sortablizeLessons">sortablizeLessons</a>
+                                                        <a href="#method_uniqueID">uniqueID</a>
                         
                                                     </li>
                                             </ul>
                                         </div>
                         
+                                        <div class="index-section properties">
+                                            <h3>Properties</h3>
+                        
+                                            <ul class="index-list properties">
+                                                    <li class="index-item property">
+                                                        <a href="#property_unique_numbers">unique_numbers</a>
+                        
+                                                    </li>
+                                            </ul>
+                                        </div>
                         
                         
                                 </div>
@@ -141,17 +145,20 @@
                                     <div id="methods" class="api-class-tabpanel">
                                         <h2 class="off-left">Methods</h2>
                         
-                                            <div id="method_addLesson" class="method item">
-                                                <h3 class="name"><code>addLesson</code></h3>
+                                            <div id="method_convertToSlug" class="method item">
+                                                <h3 class="name"><code>convertToSlug</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
                                                             <li class="arg">
-                                                                    <code>e</code>
+                                                                    <code>text</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
                                             
+                                                    <span class="returns-inline">
+                                                        <span class="type">String</span>
+                                                    </span>
                                             
                                             
                                             
@@ -162,7 +169,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/courses.js.html#l83"><code>courses.js:83</code></a>
+                                                    <a href="../files/public_js_main.js.html#l11"><code>public&#x2F;js&#x2F;main.js:11</code></a>
                                                     </p>
                                             
                                             
@@ -170,8 +177,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Event handler for click on .add-lesson<br />
-                                            Adds a lesson under the selected module</p>
+                                                    <p>Returns a slug version of the supplied string</p>
                                             
                                                 </div>
                                             
@@ -180,28 +186,36 @@
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
-                                                                    <code class="param-name">e</code>
-                                                                    <span class="type">Event</span>
+                                                                    <code class="param-name">text</code>
+                                                                    <span class="type">String</span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>Click event</p>
-                                            
+                                                                     
                                                                 </div>
                                             
                                                             </li>
                                                         </ul>
                                                     </div>
                                             
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
+                                            
+                                                        <div class="returns-description">
+                                                                    <span class="type">String</span>:
+                                                                <p>the slug</p>
+                                            
+                                                        </div>
+                                                    </div>
                                             
                                             </div>
-                                            <div id="method_addModule" class="method item">
-                                                <h3 class="name"><code>addModule</code></h3>
+                                            <div id="method_followRedirect" class="method item">
+                                                <h3 class="name"><code>followRedirect</code></h3>
                                             
                                                     <div class="args">
                                                         <span class="paren">(</span><ul class="args-list inline commas">
                                                             <li class="arg">
-                                                                    <code>e</code>
+                                                                    <code>An</code>
                                                             </li>
                                                         </ul><span class="paren">)</span>
                                                     </div>
@@ -216,7 +230,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/courses.js.html#l63"><code>courses.js:63</code></a>
+                                                    <a href="../files/public_js_main.js.html#l21"><code>public&#x2F;js&#x2F;main.js:21</code></a>
                                                     </p>
                                             
                                             
@@ -224,8 +238,7 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Event handler for click on .add-module<br />
-                                            Adds a new Module under the current course</p>
+                                                    <p>Redirects the window to the specified URL</p>
                                             
                                                 </div>
                                             
@@ -234,65 +247,12 @@
                                             
                                                         <ul class="params-list">
                                                             <li class="param">
-                                                                    <code class="param-name">e</code>
-                                                                    <span class="type">Event</span>
-                                            
-                                            
-                                                                <div class="param-description">
-                                                                    <p>The click event</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                            
-                                            
-                                            </div>
-                                            <div id="method_prepareCourseDetails" class="method item">
-                                                <h3 class="name"><code>prepareCourseDetails</code></h3>
-                                            
-                                                    <div class="args">
-                                                        <span class="paren">(</span><ul class="args-list inline commas">
-                                                            <li class="arg">
-                                                                    <code>json</code>
-                                                            </li>
-                                                        </ul><span class="paren">)</span>
-                                                    </div>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                                <div class="meta">
-                                                            <p>
-                                                            Defined in
-                                                    <a href="../files/courses.js.html#l52"><code>courses.js:52</code></a>
-                                                    </p>
-                                            
-                                            
-                                            
-                                                </div>
-                                            
-                                                <div class="description">
-                                                    <p>Called after course creations, sets the step 2 form action attribute</p>
-                                            
-                                                </div>
-                                            
-                                                    <div class="params">
-                                                        <h4>Parameters:</h4>
-                                            
-                                                        <ul class="params-list">
-                                                            <li class="param">
-                                                                    <code class="param-name">json</code>
+                                                                    <code class="param-name">An</code>
                                                                     <span class="type">Object</span>
                                             
                                             
                                                                 <div class="param-description">
-                                                                    <p>JSON response from the create course action</p>
+                                                                    <p>ovject with an URL property, usually a JSON response</p>
                                             
                                                                 </div>
                                             
@@ -302,17 +262,14 @@
                                             
                                             
                                             </div>
-                                            <div id="method_reorderLessons" class="method item">
-                                                <h3 class="name"><code>reorderLessons</code></h3>
+                                            <div id="method_uniqueID" class="method item">
+                                                <h3 class="name"><code>uniqueID</code></h3>
                                             
-                                                    <div class="args">
-                                                        <span class="paren">(</span><ul class="args-list inline commas">
-                                                            <li class="arg">
-                                                                    <code>id</code>
-                                                            </li>
-                                                        </ul><span class="paren">)</span>
-                                                    </div>
+                                                    <span class="paren">()</span>
                                             
+                                                    <span class="returns-inline">
+                                                        <span class="type">Number</span>
+                                                    </span>
                                             
                                             
                                             
@@ -323,7 +280,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/courses.js.html#l39"><code>courses.js:39</code></a>
+                                                    <a href="../files/public_js_main.js.html#l38"><code>public&#x2F;js&#x2F;main.js:38</code></a>
                                                     </p>
                                             
                                             
@@ -331,85 +288,53 @@
                                                 </div>
                                             
                                                 <div class="description">
-                                                    <p>Recalculates the lesson order within the module</p>
+                                                    <p>Returns a document-wide unique number</p>
                                             
                                                 </div>
                                             
-                                                    <div class="params">
-                                                        <h4>Parameters:</h4>
                                             
-                                                        <ul class="params-list">
-                                                            <li class="param">
-                                                                    <code class="param-name">id</code>
-                                                                    <span class="type">String</span>
+                                                    <div class="returns">
+                                                        <h4>Returns:</h4>
                                             
+                                                        <div class="returns-description">
+                                                                    <span class="type">Number</span>:
+                                                                <p>The unique number</p>
                                             
-                                                                <div class="param-description">
-                                                                    <p>The ID of the UL element containing the list</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                        </ul>
+                                                        </div>
                                                     </div>
-                                            
-                                            
-                                            </div>
-                                            <div id="method_sortablizeLessons" class="method item">
-                                                <h3 class="name"><code>sortablizeLessons</code></h3>
-                                            
-                                                    <div class="args">
-                                                        <span class="paren">(</span><ul class="args-list inline commas">
-                                                            <li class="arg">
-                                                                    <code>id</code>
-                                                            </li>
-                                                        </ul><span class="paren">)</span>
-                                                    </div>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                                <div class="meta">
-                                                            <p>
-                                                            Defined in
-                                                    <a href="../files/courses.js.html#l23"><code>courses.js:23</code></a>
-                                                    </p>
-                                            
-                                            
-                                            
-                                                </div>
-                                            
-                                                <div class="description">
-                                                    <p>Enables Drag and Drop sorting for dynamically added lessons</p>
-                                            
-                                                </div>
-                                            
-                                                    <div class="params">
-                                                        <h4>Parameters:</h4>
-                                            
-                                                        <ul class="params-list">
-                                                            <li class="param">
-                                                                    <code class="param-name">id</code>
-                                                                    <span class="type">String</span>
-                                            
-                                            
-                                                                <div class="param-description">
-                                                                    <p>The ID of the UL element containing the list</p>
-                                            
-                                                                </div>
-                                            
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                            
                                             
                                             </div>
                                     </div>
                         
+                                    <div id="properties" class="api-class-tabpanel">
+                                        <h2 class="off-left">Properties</h2>
+                        
+                                            <div id="property_unique_numbers" class="property item">
+                                                <h3 class="name"><code>unique_numbers</code></h3>
+                                                <span class="type">Array</span>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/public_js_main.js.html#l31"><code>public&#x2F;js&#x2F;main.js:31</code></a>
+                                                    </p>
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Static unique numbers holder. Used to keep track of used numbers</p>
+                                            
+                                                </div>
+                                            
+                                            
+                                            
+                                            </div>
+                                    </div>
                         
                         
                             </div>

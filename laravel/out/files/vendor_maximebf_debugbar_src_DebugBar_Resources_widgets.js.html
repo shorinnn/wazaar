@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Courses.html">Courses</a></li>
+                                <li><a href="../classes/Forms.html">Forms</a></li>
+                                <li><a href="../classes/Main.html">Main</a></li>
+                                <li><a href="../classes/Validations.html">Validations</a></li>
+                                <li><a href="../classes/.html"></a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: vendor/maximebf/debugbar/src/DebugBar/Resources/widgets.js</h1>
+                        
+                        <div class="file">
+                            <pre class="code prettyprint linenums">
+                        if (typeof(PhpDebugBar) == &#x27;undefined&#x27;) {
+                            // namespace
+                            var PhpDebugBar = {};
+                            PhpDebugBar.$ = jQuery;
+                        }
+                        
+                        (function($) {
+                        
+                            /**
+                             * @namespace
+                             */
+                            PhpDebugBar.Widgets = {};
+                        
+                            /**
+                             * Replaces spaces with &amp;nbsp; and line breaks with &lt;br&gt;
+                             *
+                             * @param {String} text
+                             * @return {String}
+                             */
+                            var htmlize = PhpDebugBar.Widgets.htmlize = function(text) {
+                                return text.replace(/\n/g, &#x27;&lt;br&gt;&#x27;).replace(/\s/g, &quot;&amp;nbsp;&quot;)
+                            };
+                        
+                            /**
+                             * Returns a string representation of value, using JSON.stringify
+                             * if it&#x27;s an object.
+                             *
+                             * @param {Object} value
+                             * @param {Boolean} prettify Uses htmlize() if true
+                             * @return {String}
+                             */
+                            var renderValue = PhpDebugBar.Widgets.renderValue = function(value, prettify) {
+                                if (typeof(value) !== &#x27;string&#x27;) {
+                                    if (prettify) {
+                                        return htmlize(JSON.stringify(value, undefined, 2));
+                                    }
+                                    return JSON.stringify(value);
+                                }
+                                return value;
+                            };
+                        
+                            /**
+                             * Highlights a block of code
+                             *
+                             * @param  {String} code
+                             * @param  {String} lang
+                             * @return {String}
+                             */
+                            var highlight = PhpDebugBar.Widgets.highlight = function(code, lang) {
+                                if (typeof(code) === &#x27;string&#x27;) {
+                                    if (typeof(hljs) === &#x27;undefined&#x27;) {
+                                        return htmlize(code);
+                                    }
+                                    if (lang) {
+                                        return hljs.highlight(lang, code).value;
+                                    }
+                                    return hljs.highlightAuto(code).value;
+                                }
+                        
+                                if (typeof(hljs) === &#x27;object&#x27;) {
+                                    code.each(function(i, e) { hljs.highlightBlock(e); });
+                                }
+                                return code;
+                            };
+                        
+                            /**
+                             * Creates a &lt;pre&gt; element with a block of code
+                             *
+                             * @param  {String} code
+                             * @param  {String} lang
+                             * @return {String}
+                             */
+                            var createCodeBlock = PhpDebugBar.Widgets.createCodeBlock = function(code, lang) {
+                                var pre = $(&#x27;&lt;pre /&gt;&#x27;);
+                                $(&#x27;&lt;code /&gt;&#x27;).text(code).appendTo(pre);
+                                if (lang) {
+                                    pre.addClass(&quot;language-&quot; + lang);
+                                }
+                                highlight(pre);
+                                return pre;
+                            };
+                        
+                            var csscls = PhpDebugBar.utils.makecsscls(&#x27;phpdebugbar-widgets-&#x27;);
+                        
+                        
+                            // ------------------------------------------------------------------
+                            // Generic widgets
+                            // ------------------------------------------------------------------
+                        
+                            /**
+                             * Displays array element in a &lt;ul&gt; list
+                             *
+                             * Options:
+                             *  - data
+                             *  - itemRenderer: a function used to render list items (optional)
+                             */
+                            var ListWidget = PhpDebugBar.Widgets.ListWidget = PhpDebugBar.Widget.extend({
+                        
+                                tagName: &#x27;ul&#x27;,
+                        
+                                className: csscls(&#x27;list&#x27;),
+                        
+                                initialize: function(options) {
+                                    if (!options[&#x27;itemRenderer&#x27;]) {
+                                        options[&#x27;itemRenderer&#x27;] = this.itemRenderer;
+                                    }
+                                    this.set(options);
+                                },
+                        
+                                render: function() {
+                                    this.bindAttr([&#x27;itemRenderer&#x27;, &#x27;data&#x27;], function() {
+                                        this.$el.empty();
+                                        if (!this.has(&#x27;data&#x27;)) {
+                                            return;
+                                        }
+                        
+                                        var data = this.get(&#x27;data&#x27;);
+                                        for (var i = 0; i &lt; data.length; i++) {
+                                            var li = $(&#x27;&lt;li /&gt;&#x27;).addClass(csscls(&#x27;list-item&#x27;)).appendTo(this.$el);
+                                            this.get(&#x27;itemRenderer&#x27;)(li, data[i]);
+                                        }
+                                    });
+                                },
+                        
+                                /**
+                                 * Renders the content of a &lt;li&gt; element
+                                 *
+                                 * @param {jQuery} li The &lt;li&gt; element as a jQuery Object
+                                 * @param {Object} value An item from the data array
+                                 */
+                                itemRenderer: function(li, value) {
+                                    li.html(renderValue(value));
+                                }
+                        
+                            });
+                        
+                            // ------------------------------------------------------------------
+                        
+                            /**
+                             * Displays object property/value paris in a &lt;dl&gt; list
+                             *
+                             * Options:
+                             *  - data
+                             *  - itemRenderer: a function used to render list items (optional)
+                             */
+                            var KVListWidget = PhpDebugBar.Widgets.KVListWidget = ListWidget.extend({
+                        
+                                tagName: &#x27;dl&#x27;,
+                        
+                                className: csscls(&#x27;kvlist&#x27;),
+                        
+                                render: function() {
+                                    this.bindAttr([&#x27;itemRenderer&#x27;, &#x27;data&#x27;], function() {
+                                        this.$el.empty();
+                                        if (!this.has(&#x27;data&#x27;)) {
+                                            return;
+                                        }
+                        
+                                        var self = this;
+                                        $.each(this.get(&#x27;data&#x27;), function(key, value) {
+                                            var dt = $(&#x27;&lt;dt /&gt;&#x27;).addClass(csscls(&#x27;key&#x27;)).appendTo(self.$el);
+                                            var dd = $(&#x27;&lt;dd /&gt;&#x27;).addClass(csscls(&#x27;value&#x27;)).appendTo(self.$el);
+                                            self.get(&#x27;itemRenderer&#x27;)(dt, dd, key, value);
+                                        });
+                                    });
+                                },
+                        
+                                /**
+                                 * Renders the content of the &lt;dt&gt; and &lt;dd&gt; elements
+                                 *
+                                 * @param {jQuery} dt The &lt;dt&gt; element as a jQuery Object
+                                 * @param {jQuery} dd The &lt;dd&gt; element as a jQuery Object
+                                 * @param {String} key Property name
+                                 * @param {Object} value Property value
+                                 */
+                                itemRenderer: function(dt, dd, key, value) {
+                                    dt.text(key);
+                                    dd.html(htmlize(value));
+                                }
+                        
+                            });
+                        
+                            // ------------------------------------------------------------------
+                            
+                            /**
+                             * An extension of KVListWidget where the data represents a list
+                             * of variables
+                             * 
+                             * Options:
+                             *  - data
+                             */
+                            var VariableListWidget = PhpDebugBar.Widgets.VariableListWidget = KVListWidget.extend({
+                        
+                                className: csscls(&#x27;kvlist varlist&#x27;),
+                        
+                                itemRenderer: function(dt, dd, key, value) {
+                                    $(&#x27;&lt;span /&gt;&#x27;).attr(&#x27;title&#x27;, key).text(key).appendTo(dt);
+                        
+                                    var v = value;
+                                    if (v &amp;&amp; v.length &gt; 100) {
+                                        v = v.substr(0, 100) + &quot;...&quot;;
+                                    }
+                                    var prettyVal = null;
+                                    dd.text(v).click(function() {
+                                        if (dd.hasClass(csscls(&#x27;pretty&#x27;))) {
+                                            dd.text(v).removeClass(csscls(&#x27;pretty&#x27;));
+                                        } else {
+                                            prettyVal = prettyVal || createCodeBlock(value);
+                                            dd.addClass(csscls(&#x27;pretty&#x27;)).empty().append(prettyVal);
+                                        }
+                                    });
+                                }
+                        
+                            });
+                        
+                            // ------------------------------------------------------------------
+                            
+                            /**
+                             * Iframe widget
+                             *
+                             * Options:
+                             *  - data
+                             */
+                            var IFrameWidget = PhpDebugBar.Widgets.IFrameWidget = PhpDebugBar.Widget.extend({
+                        
+                                tagName: &#x27;iframe&#x27;,
+                        
+                                className: csscls(&#x27;iframe&#x27;),
+                        
+                                render: function() {
+                                    this.$el.attr({
+                                        seamless: &quot;seamless&quot;,
+                                        border: &quot;0&quot;,
+                                        width: &quot;100%&quot;,
+                                        height: &quot;100%&quot;
+                                    });
+                                    this.bindAttr(&#x27;data&#x27;, function(url) { this.$el.attr(&#x27;src&#x27;, url); });
+                                }
+                        
+                            });
+                        
+                        
+                            // ------------------------------------------------------------------
+                            // Collector specific widgets
+                            // ------------------------------------------------------------------
+                        
+                            /**
+                             * Widget for the MessagesCollector
+                             *
+                             * Uses ListWidget under the hood
+                             *
+                             * Options:
+                             *  - data
+                             */
+                            var MessagesWidget = PhpDebugBar.Widgets.MessagesWidget = PhpDebugBar.Widget.extend({
+                        
+                                className: csscls(&#x27;messages&#x27;),
+                        
+                                render: function() {
+                                    var self = this;
+                        
+                                    this.$list = new ListWidget({ itemRenderer: function(li, value) {
+                                        var m = value.message;
+                                        if (m.length &gt; 100) {
+                                            m = m.substr(0, 100) + &quot;...&quot;;
+                                        }
+                        
+                                        var val = $(&#x27;&lt;span /&gt;&#x27;).addClass(csscls(&#x27;value&#x27;)).text(m).appendTo(li);
+                                        if (!value.is_string || value.message.length &gt; 100) {
+                                            var prettyVal = value.message;
+                                            if (!value.is_string) {
+                                                prettyVal = null;
+                                            }
+                                            li.css(&#x27;cursor&#x27;, &#x27;pointer&#x27;).click(function() {
+                                                if (val.hasClass(csscls(&#x27;pretty&#x27;))) {
+                                                    val.text(m).removeClass(csscls(&#x27;pretty&#x27;));
+                                                } else {
+                                                    prettyVal = prettyVal || createCodeBlock(value.message, &#x27;php&#x27;);
+                                                    val.addClass(csscls(&#x27;pretty&#x27;)).empty().append(prettyVal);
+                                                }
+                                            });
+                                        }
+                        
+                                        if (value.label) {
+                                            val.addClass(csscls(value.label));
+                                            $(&#x27;&lt;span /&gt;&#x27;).addClass(csscls(&#x27;label&#x27;)).text(value.label).appendTo(li);
+                                        }
+                                        if (value.collector) {
+                                            $(&#x27;&lt;span /&gt;&#x27;).addClass(csscls(&#x27;collector&#x27;)).text(value.collector).appendTo(li);
+                                        }
+                                    }});
+                        
+                                    this.$list.$el.appendTo(this.$el);
+                                    this.$toolbar = $(&#x27;&lt;div&gt;&lt;i class=&quot;fa fa-search&quot;&gt;&lt;/i&gt;&lt;/div&gt;&#x27;).addClass(csscls(&#x27;toolbar&#x27;)).appendTo(this.$el);
+                        
+                                    $(&#x27;&lt;input type=&quot;text&quot; /&gt;&#x27;)
+                                        .on(&#x27;change&#x27;, function() { self.set(&#x27;search&#x27;, this.value); })
+                                        .appendTo(this.$toolbar);
+                        
+                                    this.bindAttr(&#x27;data&#x27;, function(data) {
+                                        this.set({ exclude: [], search: &#x27;&#x27; });
+                                        this.$toolbar.find(csscls(&#x27;.filter&#x27;)).remove();
+                        
+                                        var filters = [], self = this;
+                                        for (var i = 0; i &lt; data.length; i++) {
+                                            if (!data[i].label || $.inArray(data[i].label, filters) &gt; -1) {
+                                                continue;
+                                            }
+                                            filters.push(data[i].label);
+                                            $(&#x27;&lt;a href=&quot;javascript:&quot; /&gt;&#x27;)
+                                                .addClass(csscls(&#x27;filter&#x27;))
+                                                .text(data[i].label)
+                                                .attr(&#x27;rel&#x27;, data[i].label)
+                                                .on(&#x27;click&#x27;, function() { self.onFilterClick(this); })
+                                                .appendTo(this.$toolbar);
+                                        }
+                                    });
+                        
+                                    this.bindAttr([&#x27;exclude&#x27;, &#x27;search&#x27;], function() {
+                                        var data = this.get(&#x27;data&#x27;),
+                                            exclude = this.get(&#x27;exclude&#x27;), 
+                                            search = this.get(&#x27;search&#x27;),
+                                            fdata = [];
+                        
+                                        for (var i = 0; i &lt; data.length; i++) {
+                                            if ((!data[i].label || $.inArray(data[i].label, exclude) === -1) &amp;&amp; (!search || data[i].message.indexOf(search) &gt; -1)) {
+                                                fdata.push(data[i]);
+                                            }
+                                        }
+                        
+                                        this.$list.set(&#x27;data&#x27;, fdata);
+                                    });
+                                },
+                        
+                                onFilterClick: function(el) {
+                                    $(el).toggleClass(csscls(&#x27;excluded&#x27;));
+                        
+                                    var excludedLabels = [];
+                                    this.$toolbar.find(csscls(&#x27;.filter&#x27;) + csscls(&#x27;.excluded&#x27;)).each(function() {
+                                        excludedLabels.push(this.rel);
+                                    });
+                        
+                                    this.set(&#x27;exclude&#x27;, excludedLabels);
+                                }
+                        
+                            });
+                        
+                            // ------------------------------------------------------------------
+                        
+                            /**
+                             * Widget for the TimeDataCollector
+                             *
+                             * Options:
+                             *  - data
+                             */
+                            var TimelineWidget = PhpDebugBar.Widgets.TimelineWidget = PhpDebugBar.Widget.extend({
+                        
+                                tagName: &#x27;ul&#x27;,
+                        
+                                className: csscls(&#x27;timeline&#x27;),
+                        
+                                render: function() {
+                                    this.bindAttr(&#x27;data&#x27;, function(data) {
+                                        this.$el.empty();
+                                        if (data.measures) {
+                                            for (var i = 0; i &lt; data.measures.length; i++) {
+                                                var measure = data.measures[i];
+                                                var m = $(&#x27;&lt;div /&gt;&#x27;).addClass(csscls(&#x27;measure&#x27;)),
+                                                    li = $(&#x27;&lt;li /&gt;&#x27;),
+                                                    left = Math.round(measure.relative_start * 100 / data.duration),
+                                                    width = Math.min(Math.round(measure.duration * 100 / data.duration), 100 - left);
+                        
+                                                m.append($(&#x27;&lt;span /&gt;&#x27;).addClass(csscls(&#x27;value&#x27;)).css({
+                                                    left: left + &quot;%&quot;,
+                                                    width: width + &quot;%&quot;
+                                                }));
+                                                m.append($(&#x27;&lt;span /&gt;&#x27;).addClass(csscls(&#x27;label&#x27;)).text(measure.label + &quot; (&quot; + measure.duration_str + &quot;)&quot;));
+                        
+                                                if (measure.collector) {
+                                                    $(&#x27;&lt;span /&gt;&#x27;).addClass(csscls(&#x27;collector&#x27;)).text(measure.collector).appendTo(m);
+                                                }
+                        
+                                                m.appendTo(li);
+                                                this.$el.append(li);
+                                                
+                                                if (measure.params &amp;&amp; !$.isEmptyObject(measure.params)) {
+                                                    var table = $(&#x27;&lt;table&gt;&lt;tr&gt;&lt;th colspan=&quot;2&quot;&gt;Params&lt;/th&gt;&lt;/tr&gt;&lt;/table&gt;&#x27;).addClass(csscls(&#x27;params&#x27;)).appendTo(li);
+                                                    for (var key in measure.params) {
+                                                        if (typeof measure.params[key] !== &#x27;function&#x27;) {
+                                                            table.append(&#x27;&lt;tr&gt;&lt;td class=&quot;&#x27; + csscls(&#x27;name&#x27;) + &#x27;&quot;&gt;&#x27; + key + &#x27;&lt;/td&gt;&lt;td class=&quot;&#x27; + csscls(&#x27;value&#x27;) +
+                                                            &#x27;&quot;&gt;&lt;pre&gt;&lt;code&gt;&#x27; + measure.params[key] + &#x27;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&#x27;);
+                                                        }
+                                                    }
+                                                    li.css(&#x27;cursor&#x27;, &#x27;pointer&#x27;).click(function() {
+                                                        var table = $(this).find(&#x27;table&#x27;);
+                                                        if (table.is(&#x27;:visible&#x27;)) {
+                                                            table.hide();
+                                                        } else {
+                                                            table.show();
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+                        
+                            });
+                        
+                            // ------------------------------------------------------------------
+                            
+                            /**
+                             * Widget for the displaying exceptions
+                             *
+                             * Options:
+                             *  - data
+                             */
+                            var ExceptionsWidget = PhpDebugBar.Widgets.ExceptionsWidget = PhpDebugBar.Widget.extend({
+                        
+                                className: csscls(&#x27;exceptions&#x27;),
+                        
+                                render: function() {
+                                    this.$list = new ListWidget({ itemRenderer: function(li, e) {
+                                        $(&#x27;&lt;span /&gt;&#x27;).addClass(csscls(&#x27;message&#x27;)).text(e.message).appendTo(li);
+                                        if (e.file) {
+                                            $(&#x27;&lt;span /&gt;&#x27;).addClass(csscls(&#x27;filename&#x27;)).text(e.file + &quot;#&quot; + e.line).appendTo(li);
+                                        }
+                                        if (e.type) {
+                                            $(&#x27;&lt;span /&gt;&#x27;).addClass(csscls(&#x27;type&#x27;)).text(e.type).appendTo(li);
+                                        }
+                                        if (e.surrounding_lines) {
+                                            var pre = createCodeBlock(e.surrounding_lines.join(&quot;&quot;), &#x27;php&#x27;).addClass(csscls(&#x27;file&#x27;)).appendTo(li);
+                                            li.click(function() {
+                                                if (pre.is(&#x27;:visible&#x27;)) {
+                                                    pre.hide();
+                                                } else {
+                                                    pre.show();
+                                                }
+                                            });
+                                        }
+                                    }});
+                                    this.$list.$el.appendTo(this.$el);
+                        
+                                    this.bindAttr(&#x27;data&#x27;, function(data) {
+                                        this.$list.set(&#x27;data&#x27;, data);
+                                        if (data.length == 1) {
+                                            this.$list.$el.children().first().find(csscls(&#x27;.file&#x27;)).show();
+                                        }
+                                    });
+                        
+                                }
+                        
+                            });
+                            
+                        
+                        })(PhpDebugBar.$);
+                        
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
