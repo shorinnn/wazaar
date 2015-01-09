@@ -2896,37 +2896,49 @@ select::-ms-expand {
      }
 }
 
+.disabled-item{
+	pointer-events: none;
+    opacity: 0.3;
+}
+
 #step3{
 	margin-top: 50px;
 }
 
 #step3 .course-level{
-	width: 389px;
+	width: 383px;
 	margin: 0 auto;
+	display: block;
 }
 
-#step3 .course-level input[type='button']{
+#step3 .course-level label,
+#step3 .course-level input[type='radio']{
 	height: 40px;
 	padding: 0 30px;
-	border: solid 1px #e5e8e9;
+	border: solid 1px #e5e8e9 !important;
 	border-radius: 20px;
+	box-shadow: none;
+	line-height: 40px;
 	font-size: 12px;
-	color: #849598;
+	color: #849598 !important;
 	background: none;
 	outline: none;
 	margin: 0 15px 0 0;
 
 }
 
-#step3 .course-level input[type='button']:hover{
-	border: solid 1px #0099ff;
-	color: #0099ff;
+#step3 .course-level label:hover,
+#step3 .course-level input[type='radio']:hover{
+	border: solid 1px #0099ff !important;
+	color: #0099ff !important;
 }
 
-#step3 .course-level input[type='button']:focus{
-	border: solid 1px #05a5f4;
-	color: #fff;
-	background: #05a5f4;
+#step3 .course-level label.active,
+#step3 .course-level label:focus,
+#step3 .course-level input[type='radio']:focus{
+	border: solid 1px #05a5f4 !important;
+	color: #fff !important;
+	background: #05a5f4 !important;
 }
 
 .what-you-will-achieve,
