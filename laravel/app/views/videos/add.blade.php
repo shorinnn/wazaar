@@ -109,7 +109,7 @@
                 $notificationItem = $notificationItem.replace('_FILENAME_', data.files[0].name);
                 $('.list-group').append($notificationItem);
                 if (data.result.videoId !== undefined) {
-                    setTimeout(function() { Video.GetVideo(data.result.videoId) }, 5000);
+                    setInterval (function() { Video.GetVideo(data.result.videoId) }, 5000);
                 }
             });
 
