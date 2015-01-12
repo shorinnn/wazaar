@@ -7,9 +7,9 @@ class ModulesController extends \BaseController {
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy']]);
         }
         
-        public function store(){
+        public function store($course){
             $module = new Module();
-            $course = Course::find(Input::get('course_id'));
+            $course = Course::find($course);
             if($course->instructor->id != Auth::user()->id){
                 $response = ['status' => 'error', 'errors' => trans('crud/errors.error_occurred') ];
                 return json_encode($response);
@@ -30,7 +30,7 @@ class ModulesController extends \BaseController {
             }
         }
         
-        public function destroy($id){
+        public function destroy($course, $id){
             $module = Module::find($id);
             if($module!=null && $module->course->instructor->id == Auth::user()->id){
                 $module->delete();
@@ -41,7 +41,7 @@ class ModulesController extends \BaseController {
             return json_encode($response);
         }
         
-        public function update($id){
+        public function update($course, $id){
             $module = Module::find($id);
             if($module!=null && $module->course->instructor->id == Auth::user()->id){
                 $name = Input::get('name');

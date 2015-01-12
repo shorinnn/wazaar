@@ -93,6 +93,7 @@
                             $(&#x27;body&#x27;).delegate(&#x27;.ajax-form&#x27;, &#x27;submit&#x27;, formAjaxSubmit);
                             $(&#x27;body&#x27;).delegate(&#x27;input.clonable&#x27;, &#x27;keydown&#x27;, cloneInput);
                             $(&#x27;body&#x27;).delegate(&#x27;.delete-clonable&#x27;, &#x27;click&#x27;, deleteClonable);
+                            $(&#x27;body&#x27;).delegate(&#x27;.ajax-updatable&#x27;, &#x27;change&#x27;, updateFieldRemote);
                         });
                         
                         /**
@@ -112,8 +113,9 @@
                                     restoreSubmitLabel(form);
                                     return false;
                                 }
+                                restoreSubmitLabel(form);
                                 if( typeof(form.attr(&#x27;data-callback&#x27;))!=&#x27;undefined&#x27; ){
-                                    window[form.attr(&#x27;data-callback&#x27;)](result);
+                                    window[form.attr(&#x27;data-callback&#x27;)](result, e);
                                 }
                             });
                             return false;
@@ -214,15 +216,30 @@
                             if( !charcheck.test(keychar) ) return;   
                             $elem = $(e.target);
                             if( $.trim($elem.val()) == &#x27;&#x27; &amp;&amp; $elem.next(&#x27;.clonable&#x27;).length==0 ){
-                                var $destination = ($elem.parent().hasClass(&#x27;clonable&#x27;)) ? $elem.parent() : $elem;
+                                var $destination = $elem.parent();
                                 var clone = $elem.clone();
                                 clone.removeAttr(&#x27;id&#x27;);
+                                clone.removeAttr(&#x27;required&#x27;);
                                 clone.removeClass();
                                 id = uniqueId();
                                 clone.addClass(&#x27;clonable clonable-&#x27;+id);
-                                $destination.after(&#x27;&lt;div class=&quot;clonable clonable-&#x27;+id+&#x27;&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;btn btn-danger delete-clonable clonable-&#x27;+id+&#x27;&quot;&gt;X&lt;/button&gt;&lt;/div&gt;&#x27;);
-                                $(&#x27;button.clonable-&#x27;+id).before(clone);
+                                $destination.after(&#x27;&lt;div class=&quot;clonable clonable-&#x27;+id+&#x27;&quot;&gt;&lt;span&gt;1&lt;/span&gt;&lt;a href=&quot;#&quot; tabindex=&quot;-1&quot; class=&quot;style-one delete-clonable clonable-&#x27;+id+&#x27;&quot;&gt;&lt;/a&gt;&lt;/div&gt;&#x27;);
+                                $(&#x27;a.clonable-&#x27;+id).before(clone);
+                                reorderClonable($elem.attr(&#x27;name&#x27;));
                             }
+                        }
+                        
+                        /**
+                         * Renumbers the position label under clonable inputs
+                         * @method reorderClonable
+                         * @param {string} name The name of the clonable inputs
+                         */
+                        function reorderClonable(name){
+                            var i = 1;
+                            $(&#x27;[name=&quot;&#x27;+name+&#x27;&quot;]&#x27;).each(function(){
+                                $(this).prev(&#x27;span&#x27;).html(i);
+                                ++i;
+                            });
                         }
                         
                         /**
@@ -231,10 +248,63 @@
                          * @param {event} e Click event
                          */
                         function deleteClonable(e){
+                            e.preventDefault();
+                            name = $(e.target).parent().find(&#x27;input&#x27;).attr(&#x27;name&#x27;);
                             $(e.target).parent().remove();
+                            reorderClonable( name );
+                            return false;
                         }
                         
+                        /**
+                         * Called after an AJAX delete call, removes the specified HTML element
+                         * @method deleteItem
+                         * @param {json} result The ajax call json response
+                         * @param {event} event The original submit event
+                         */
+                        function deleteItem(result, event){
+                            identifier = $(event.target).attr(&#x27;data-delete&#x27;);
+                            $(identifier).remove();
+                        }
+                        var saving_animation = 0;
+                        function updateFieldRemote(e){
+                            
+                            url = $(e.target).attr(&#x27;data-url&#x27;);
+                            name = $(e.target).attr(&#x27;data-name&#x27;);
+                            value = $(e.target).val();
+                            token = $(&#x27;[name=&quot;_token&quot;]&#x27;).first().val();
+                            savingAnimation(0);
+                            $.ajax({
+                                url: url,
+                                type: &#x27;PUT&#x27;,
+                                data: {name:name, value:value, _token:token},
+                                success: savingAnimation(1)
+                            });
+                        }
                         
+                        /**
+                         * Displays a saving animation when called with a 0 param, ends it when called with a 1 param 
+                         * @param {Number} stop zero to start the animation, 1 to end it
+                         * @method savingAnimation
+                         */
+                        function savingAnimation(stop) {
+                            if(stop==1){
+                                setTimeout(function(){
+                                    saving_animation = 0;
+                                    $(&#x27;#save-indicator&#x27;).animate({
+                                        left: &#x27;-100px&#x27;
+                                    }, 300);
+                                }, 700);
+                                return false;
+                            }
+                            
+                            if (saving_animation == 1) return false;
+                            saving_animation = 1;
+                            $(&#x27;body&#x27;).remove(&#x27;#save-indicator&#x27;);
+                            $(&#x27;body&#x27;).append(&#x27;&lt;div id=&quot;save-indicator&quot;&gt;Saving &lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&lt;/div&gt;&#x27;);
+                            $(&#x27;#save-indicator&#x27;).animate({
+                                left: &#x27;0px&#x27;
+                            }, 300);
+                        };
                             </pre>
                         </div>
                     </div>

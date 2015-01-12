@@ -89,7 +89,8 @@
                         // JavaScript Document
                         $(document).ready(function(){
                             $(&quot;.profile-name &gt; li&quot;).removeClass(&quot;activate-dropdown&quot;);
-                            
+                            $(&#x27;body&#x27;).delegate(&#x27;.slide-toggler&#x27;, &#x27;click&#x27;, slideToggle);
+                            $(&#x27;body&#x27;).delegate(&#x27;a.load-remote&#x27;, &#x27;click&#x27;, loadRemote);    
                         });
                         
                         /**
@@ -141,9 +142,48 @@
                          */
                         function unhide(elem){
                             $(elem).removeClass(&#x27;hidden&#x27;);
+                            $(&#x27;.steps-meter&#x27;).find(&#x27;p.active&#x27;).removeClass(&#x27;active&#x27;);
+                            $(&#x27;[data-target=&quot;&#x27;+elem+&#x27;&quot;]&#x27;).addClass(&#x27;active&#x27;);
                             $(&#x27;html, body&#x27;).animate({
                                 scrollTop: $(elem).offset().top
                             }, 200);
+                        }
+                        
+                        /**
+                         * Slide toggles an element defined by the caller&#x27;s data-target attribute
+                         * @method slideToggle
+                         * @param {event} e The click event
+                         */
+                        function slideToggle(e){
+                            target = $(e.target).attr(&#x27;data-target&#x27;);
+                            $(target).slideToggle(&#x27;fast&#x27;);
+                        }
+                        
+                        /**
+                         * Event handler for a.load-remote&lt;br /&gt;
+                         * It loads the resource specified at data-url into the element specified at data-target
+                         * @param {event} e Click event
+                         * @method loadRemote
+                         */
+                        function loadRemote(e){
+                            e.preventDefault();
+                            url = $(e.target).attr(&#x27;data-url&#x27;);
+                            target = $(e.target).attr(&#x27;data-target&#x27;);
+                            var callback = $(e.target).attr(&#x27;data-callback&#x27;);
+                            
+                            while(typeof(url)==&#x27;undefined&#x27;){
+                                elem = $(e.target).parent();
+                                url = elem.attr(&#x27;data-url&#x27;);
+                                target = elem.attr(&#x27;data-target&#x27;);
+                                callback = elem.attr(&#x27;data-callback&#x27;);  
+                            }
+                            
+                            $(target).html(&#x27;loading...&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
+                            $(target).load(url, function(){
+                                if( typeof(callback)!= &#x27;undefined&#x27;){
+                                    window[callback](e);
+                                }
+                            });
                         }
                         
                             </pre>

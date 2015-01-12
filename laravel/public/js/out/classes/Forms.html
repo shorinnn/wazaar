@@ -116,6 +116,10 @@
                         
                                                     </li>
                                                     <li class="index-item method">
+                                                        <a href="#method_deleteItem">deleteItem</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
                                                         <a href="#method_formAjaxSubmit">formAjaxSubmit</a>
                         
                                                     </li>
@@ -124,7 +128,15 @@
                         
                                                     </li>
                                                     <li class="index-item method">
+                                                        <a href="#method_reorderClonable">reorderClonable</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
                                                         <a href="#method_restoreSubmitLabel">restoreSubmitLabel</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#method_savingAnimation">savingAnimation</a>
                         
                                                     </li>
                                                     <li class="index-item method">
@@ -169,7 +181,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/forms.js.html#l60"><code>forms.js:60</code></a>
+                                                    <a href="../files/forms.js.html#l62"><code>forms.js:62</code></a>
                                                     </p>
                                             
                                             
@@ -210,6 +222,73 @@
                                                     </div>
                                             
                                             </div>
+                                            <div id="method_deleteItem" class="method item">
+                                                <h3 class="name"><code>deleteItem</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>result</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>event</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/forms.js.html#l174"><code>forms.js:174</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Called after an AJAX delete call, removes the specified HTML element</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">result</code>
+                                                                    <span class="type">Json</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>The ajax call json response</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">event</code>
+                                                                    <span class="type">Event</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>The original submit event</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
                                             <div id="method_formAjaxSubmit" class="method item">
                                                 <h3 class="name"><code>formAjaxSubmit</code></h3>
                                             
@@ -234,7 +313,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/forms.js.html#l14"><code>forms.js:14</code></a>
+                                                    <a href="../files/forms.js.html#l15"><code>forms.js:15</code></a>
                                                     </p>
                                             
                                             
@@ -297,7 +376,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/forms.js.html#l88"><code>forms.js:88</code></a>
+                                                    <a href="../files/forms.js.html#l90"><code>forms.js:90</code></a>
                                                     </p>
                                             
                                             
@@ -330,6 +409,59 @@
                                             
                                             
                                             </div>
+                                            <div id="method_reorderClonable" class="method item">
+                                                <h3 class="name"><code>reorderClonable</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>name</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/forms.js.html#l148"><code>forms.js:148</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Renumbers the position label under clonable inputs</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">name</code>
+                                                                    <span class="type">String</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>The name of the clonable inputs</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
                                             <div id="method_restoreSubmitLabel" class="method item">
                                                 <h3 class="name"><code>restoreSubmitLabel</code></h3>
                                             
@@ -351,7 +483,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/forms.js.html#l51"><code>forms.js:51</code></a>
+                                                    <a href="../files/forms.js.html#l53"><code>forms.js:53</code></a>
                                                     </p>
                                             
                                             
@@ -382,6 +514,59 @@
                                             
                                             
                                             </div>
+                                            <div id="method_savingAnimation" class="method item">
+                                                <h3 class="name"><code>savingAnimation</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>stop</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/forms.js.html#l200"><code>forms.js:200</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Displays a saving animation when called with a 0 param, ends it when called with a 1 param</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">stop</code>
+                                                                    <span class="type">Number</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>zero to start the animation, 1 to end it</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
                                             <div id="method_submittedFormButton" class="method item">
                                                 <h3 class="name"><code>submittedFormButton</code></h3>
                                             
@@ -403,7 +588,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/forms.js.html#l39"><code>forms.js:39</code></a>
+                                                    <a href="../files/forms.js.html#l41"><code>forms.js:41</code></a>
                                                     </p>
                                             
                                             
@@ -460,7 +645,7 @@
                                                 <div class="meta">
                                                             <p>
                                                             Defined in
-                                                    <a href="../files/forms.js.html#l73"><code>forms.js:73</code></a>
+                                                    <a href="../files/forms.js.html#l75"><code>forms.js:75</code></a>
                                                     </p>
                                             
                                             

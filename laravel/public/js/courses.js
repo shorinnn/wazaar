@@ -98,3 +98,63 @@ function addLesson(json){
     $('#lessons-holder-'+json.module).append(json.html);
     reorderLessons( 'lessons-holder-'+json.module );
 }
+
+function enableLessonRTE(e){
+    selector = '#'+$(e.target).parent().parent().parent().find('textarea').attr('id');
+    tinymce.init({
+        autosave_interval: "20s",
+        autosave_restore_when_empty: true,
+        selector: selector,
+        save_onsavecallback: function() {
+            savingAnimation(0);
+            $(selector).closest('form').submit();
+            savingAnimation(1);
+            return true;
+        },
+        
+        plugins: [
+            "advlist autolink autosave lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste save"
+        ],
+        toolbar: "save | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    });
+}
+function enableFileUploader($uploader){
+    dropzone = $uploader.attr('data-dropzone');
+    progressbar = $uploader.attr('data-progress-bar');
+    $uploader.fileupload({
+                dropZone: $(dropzone)
+            }).on('fileuploadprogress', function (e, data) {
+                var $progress = parseInt(data.loaded / data.total * 100, 10);
+                console.log($progress);
+                $(progressbar).css('width', $progress + '%');
+                $(progressbar).find('span').html($progress);
+            }).on('fileuploadfail', function (e, data) {
+                $.each(data.files, function (index) {
+                    var error = $('<span class="text-danger"/>').text('File upload failed.');
+                    $(data.context.children()[index])
+                            .append('<br>')
+                            .append(error);
+                });
+            }).on('fileuploaddone', function (e,data){
+                callback = $uploader.attr('data-callback');
+                if( typeof(callback) !=undefined ){
+                    console.log('uploaded, calling callback');
+                    $(progressbar).find('span').html('Upload complete. Processing <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                    window[callback](e, data);
+                }
+            });
+}
+
+function enableBlockFileUploader(e){
+    $uploader = $(e.target).parent().parent().parent().find('[type=file]');
+    enableFileUploader($uploader);
+}
+
+function blockFileUploaded(e, data){
+    $(progressbar).find('span').html('');
+     $(progressbar).css('width', 0 + '%');
+    result = JSON.parse(data.result);
+    $(e.target).parent().parent().append(result.html);
+}

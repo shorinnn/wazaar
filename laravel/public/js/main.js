@@ -5,7 +5,8 @@
 // JavaScript Document
 $(document).ready(function(){
     $(".profile-name > li").removeClass("activate-dropdown");
-    
+    $('body').delegate('.slide-toggler', 'click', slideToggle);
+    $('body').delegate('a.load-remote', 'click', loadRemote);    
 });
 
 /**
@@ -62,4 +63,41 @@ function unhide(elem){
     $('html, body').animate({
         scrollTop: $(elem).offset().top
     }, 200);
+}
+
+/**
+ * Slide toggles an element defined by the caller's data-target attribute
+ * @method slideToggle
+ * @param {event} e The click event
+ */
+function slideToggle(e){
+    target = $(e.target).attr('data-target');
+    $(target).slideToggle('fast');
+}
+
+/**
+ * Event handler for a.load-remote<br />
+ * It loads the resource specified at data-url into the element specified at data-target
+ * @param {event} e Click event
+ * @method loadRemote
+ */
+function loadRemote(e){
+    e.preventDefault();
+    url = $(e.target).attr('data-url');
+    target = $(e.target).attr('data-target');
+    var callback = $(e.target).attr('data-callback');
+    
+    while(typeof(url)=='undefined'){
+        elem = $(e.target).parent();
+        url = elem.attr('data-url');
+        target = elem.attr('data-target');
+        callback = elem.attr('data-callback');  
+    }
+    
+    $(target).html('loading...<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $(target).load(url, function(){
+        if( typeof(callback)!= 'undefined'){
+            window[callback](e);
+        }
+    });
 }

@@ -90,18 +90,27 @@
                             $(&#x27;body&#x27;).delegate(&#x27;.add-module&#x27;, &#x27;click&#x27;, addModule);    
                             $(&#x27;body&#x27;).delegate(&#x27;.add-lesson&#x27;, &#x27;click&#x27;, addLesson);    
                             
+                            // Make the modules list sortable
                             var el = document.getElementById(&#x27;modules-list&#x27;);
-                            var sortable = Sortable.create(el, {
-                                animation: 150, 
-                                handle: &#x27;.sortable-handle&#x27;,
-                                onEnd: function (evt) {
-                                    var i = 1;
-                                    $(&#x27;.module-order&#x27;).each(function(){
-                                        $(this).html(i);
-                                        ++i;
-                                    });
-                                }
-                            });
+                            if( $(&#x27;#modules-list&#x27;).length &gt; 0){
+                                var sortable = Sortable.create(el, {
+                                    animation: 150, 
+                                    handle: &#x27;.sortable-handle&#x27;,
+                                    onEnd: function (evt) {
+                                        var i = 1;
+                                        $(&#x27;span.module-order&#x27;).each(function(){
+                                            $(this).html(i);
+                                            $(this).next(&#x27;input.module-order&#x27;).val(i);
+                                            $(this).next(&#x27;input.module-order&#x27;).trigger(&#x27;change&#x27;);
+                                            ++i;
+                                        });
+                                    }
+                                });
+                                
+                                $(&#x27;.lessons&#x27;).each(function(){
+                                    sortablizeLessons( $(this).attr(&#x27;id&#x27;) );
+                                });
+                            }
                         });
                         
                         /**
@@ -127,8 +136,10 @@
                          */
                         function reorderLessons(id){
                             var i = 1;
-                            $(&#x27;#&#x27;+id+&#x27; .lesson-order&#x27;).each(function(){
+                            $(&#x27;#&#x27;+id+&#x27; span.lesson-order&#x27;).each(function(){
                                 $(this).html(i);
+                                $(this).next(&#x27;input.lesson-order&#x27;).val(i);
+                                $(this).next(&#x27;input.lesson-order&#x27;).trigger(&#x27;change&#x27;);
                                 ++i;
                             });
                         }
@@ -139,8 +150,9 @@
                          * @param {object} json JSON response from the create course action
                          */
                         function prepareCourseDetails(json){
-                            $(&#x27;#step1&#x27;).hide();
                             $(&#x27;#edit-course-details-form&#x27;).attr( &#x27;action&#x27;, json.updateAction );
+                            restoreSubmitLabel( $(&#x27;#create-form&#x27;) );
+                            $(&#x27;#step1&#x27;).addClass(&#x27;disabled-item&#x27;);
                             unhide(&#x27;#step2&#x27;);
                         }
                         
@@ -148,33 +160,49 @@
                          * Event handler for click on .add-module&lt;br /&gt;
                          * Adds a new Module under the current course
                          * @method addModule
-                         * @param {event} e The click event
+                         * @param {json} e The json response of the create module call
                          */
-                        function addModule(e){
-                            var destination = $(e.target).attr(&#x27;data-destination&#x27;);
+                        function addModule(json){
+                            var destination = &#x27;#modules-list&#x27;;
                             var current = $(&#x27;#modules-list &gt; li&#x27;).length + 1 * 1;
-                            var id = uniqueId();
-                            var module = &#x27;&lt;li&gt;Module &lt;span class=&quot;module-order&quot;&gt;&#x27;+current+&#x27;&lt;/span&gt; - &lt;input type=&quot;text&quot; /&gt; &#x27; +
-                                    &#x27;&lt;button class=&quot;btn btn-danger&quot;&gt;X&lt;/button&gt; &lt;span class=&quot;sortable-handle&quot;&gt;[dragicon]&lt;/span&gt; &#x27; +
-                                    &#x27;&lt;ul class=&quot;lessons&quot; id=&quot;lessons-holder-&#x27;+id+&#x27;&quot;&gt;&#x27; +
-                                    &#x27;&lt;li&gt;Lesson &lt;span class=&quot;lesson-order&quot;&gt;1&lt;/span&gt; - &lt;input type=&quot;text&quot; /&gt;&lt;button class=&quot;btn btn-danger&quot;&gt;X&lt;/button&gt;&#x27; +
-                                    &#x27;&lt;span class=&quot;sortable-handle&quot;&gt;[dragicon]&lt;/span&gt; &lt;/li&gt;&lt;/ul&gt;&#x27; +
-                                    &#x27;&lt;button class=&quot;btn btn-primary add-lesson&quot;&gt;Add Lesson&lt;/button&gt;&lt;/li&gt;&#x27;;
+                            var id = json.id;
+                            var module = json.html;
                             $(destination).append(module);
                             sortablizeLessons(&#x27;lessons-holder-&#x27;+id);
+                            restoreSubmitLabel( $(&#x27;#modules-form&#x27;) );
                         }
                         
                         /**
                          * Event handler for click on .add-lesson&lt;br /&gt;
                          * Adds a lesson under the selected module
-                         * @param {event} e Click event
+                         * @param {json} e The json response of the create module call
                          * @method addLesson
                          */
-                        function addLesson(e){
-                            lesson = &#x27;&lt;li&gt;Lesson &lt;span class=&quot;lesson-order&quot;&gt;1&lt;/span&gt;  - &lt;input type=&quot;text&quot; /&gt;&lt;button class=&quot;btn btn-danger&quot;&gt;X&lt;/button&gt;&#x27; +
-                                    &#x27;&lt;span class=&quot;sortable-handle&quot;&gt;[dragicon]&lt;/span&gt; &lt;/li&gt;&#x27;;
-                            $(e.target).parent().find(&#x27;ul&#x27;).append(lesson);
-                            reorderLessons( $(e.target).parent().find(&#x27;ul&#x27;).attr(&#x27;id&#x27;) );
+                        function addLesson(json){
+                            $(&#x27;#lessons-holder-&#x27;+json.module).append(json.html);
+                            reorderLessons( &#x27;lessons-holder-&#x27;+json.module );
+                        }
+                        
+                        function enableLessonRTE(e){
+                            selector = &#x27;#&#x27;+$(e.target).parent().parent().parent().find(&#x27;textarea&#x27;).attr(&#x27;id&#x27;);
+                            tinymce.init({
+                                autosave_interval: &quot;20s&quot;,
+                                autosave_restore_when_empty: true,
+                                selector: selector,
+                                save_onsavecallback: function() {
+                                    savingAnimation(0);
+                                    $(selector).closest(&#x27;form&#x27;).submit();
+                                    savingAnimation(1);
+                                    return true;
+                                },
+                                
+                                plugins: [
+                                    &quot;advlist autolink autosave lists link image charmap print preview anchor&quot;,
+                                    &quot;searchreplace visualblocks code fullscreen&quot;,
+                                    &quot;insertdatetime media table contextmenu paste save&quot;
+                                ],
+                                toolbar: &quot;save | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image&quot;
+                            });
                         }
                             </pre>
                         </div>

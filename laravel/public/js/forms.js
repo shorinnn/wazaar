@@ -25,6 +25,7 @@ function formAjaxSubmit(e){
     $.post(form.attr('action'), form.serialize(), function(result){
         result = JSON.parse(result);
         if(result.status=='error'){
+            console.log(result.errors);
             form.append('<p class="alert alert-danger ajax-errors">'+result.errors+'</p>');
             restoreSubmitLabel(form);
             return false;
@@ -183,31 +184,41 @@ function deleteItem(result, event){
 }
 var saving_animation = 0;
 function updateFieldRemote(e){
+    
     url = $(e.target).attr('data-url');
     name = $(e.target).attr('data-name');
     value = $(e.target).val();
     token = $('[name="_token"]').first().val();
+    savingAnimation(0);
     $.ajax({
         url: url,
         type: 'PUT',
         data: {name:name, value:value, _token:token},
-        success: function(result) {
-           if(saving_animation==1) return false;
-           saving_animation = 1;
-           $('body').remove('#save-indicator');
-           $('body').append('<div id="save-indicator">Saving <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>');
-           $('#save-indicator').animate({
-               left: '0px'
-           },300, function(){
-               setTimeout(function(){
-                   saving_animation = 0;
-                   $('#save-indicator').animate({
-                       left: '-100px'
-                   },300);
-                   
-               },600);
-               
-           });
-        }
+        success: savingAnimation(1)
     });
 }
+
+/**
+ * Displays a saving animation when called with a 0 param, ends it when called with a 1 param 
+ * @param {Number} stop zero to start the animation, 1 to end it
+ * @method savingAnimation
+ */
+function savingAnimation(stop) {
+    if(stop==1){
+        setTimeout(function(){
+            saving_animation = 0;
+            $('#save-indicator').animate({
+                left: '-100px'
+            }, 300);
+        }, 700);
+        return false;
+    }
+    
+    if (saving_animation == 1) return false;
+    saving_animation = 1;
+    $('body').remove('#save-indicator');
+    $('body').append('<div id="save-indicator">Saving <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>');
+    $('#save-indicator').animate({
+        left: '0px'
+    }, 300);
+};

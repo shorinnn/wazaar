@@ -1,0 +1,61 @@
+<?php
+
+class BlocksController extends \BaseController {
+    
+        public function __construct(){
+            $this->beforeFilter( 'instructor' );
+            $this->beforeFilter('csrf', ['only' => [ 'saveText', 'update', 'destroy']]);
+        }
+        
+        public function text($lesson_id){
+            $block = Block::firstOrCreate(['lesson_id' => $lesson_id, 'type' => 'text']);
+            return View::make('courses.blocks.text')->with(compact('block'));
+        }
+        
+        public function saveText($lesson_id, $block_id){
+            $block = Block::find($block_id);
+            if( $block!=null && $block->lesson->id == $lesson_id && $block->lesson->module->course->instructor->id == Auth::user()->id ){
+                $block->content = Input::get('content');
+                $block->save();
+                return json_encode(['status'=>'success']);
+            }
+            return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred') ]);
+            
+        }
+        
+        public function files($lesson_id){
+            $lesson = Lesson::find($lesson_id);
+            return View::make('courses.blocks.files')->with(compact('lesson_id'))->with(compact('lesson'));
+        }
+        
+        public function uploadFiles($lesson_id){
+            $block = new Block();
+            $block->lesson_id = $lesson_id;
+            $block->type = 'file';
+            if( $block->upload( Input::file('file')->getRealPath() ) ){
+                if($block->save()){
+                    return json_encode(['status'=>'success', 'html' => View::make('courses.blocks.file')->with(compact('block'))->render() ]);
+                }
+                else{
+                    return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred') ]); 
+                }
+            }
+            else{
+                return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred') ]); 
+            }
+        }
+        
+        public function destroy($lesson_id, $id){
+            $block = Block::find($id);
+            if($block!=null && $block->lesson->module->course->instructor->id == Auth::user()->id){
+                $block->delete();
+                $response = ['status' => 'success'];
+                // todo S3 delete
+                return json_encode($response);
+            }
+            $response = ['status' => 'error', 'errors' => trans('crud/errors.cannot_delete_object', 'Block') ];
+            return json_encode($response);
+        }
+
+
+}

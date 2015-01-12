@@ -60,11 +60,22 @@ Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
 Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
 Route::resource('courses', 'CoursesController');
 // Modules routes
-Route::resource('modules', 'ModulesController');
+Route::resource('courses.modules', 'ModulesController');
 
 // Lessons
-Route::resource('lessons', 'LessonsController');
+Route::resource('modules.lessons', 'LessonsController');
 
+// Blocks
+Route::group(['prefix' => 'lessons'], function (){
+    Route::group(['prefix' => 'blocks'], function (){
+        Route::get('/{lesson_id}/text', 'BlocksController@text');
+        Route::post('/{lesson_id}/{block_id}/text', 'BlocksController@saveText');
+        Route::get('/{lesson_id}/files', 'BlocksController@files');
+        Route::post('/{lesson_id}/files', 'BlocksController@uploadFiles');
+        Route::delete('/{lesson_id}/{id}', 'BlocksController@destroy');
+    });
+});
+ 
 // Instructors routes
 Route::get('instructors', 'InstructorsController@index');
 Route::get('instructors/start/{user}', 'InstructorsController@start');

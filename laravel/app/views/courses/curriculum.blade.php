@@ -27,6 +27,27 @@
         text-align: right;
         padding-right: 10px;
     }
+    .lesson-options{
+        display:none;
+    }
+        .upload-drop-zone {
+            height: 200px;
+            border-width: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* skin.css Style*/
+        .upload-drop-zone {
+            color: #ccc;
+            border-style: dashed;
+            border-color: #ccc;
+            line-height: 200px;
+            text-align: center
+        }
+        .upload-drop-zone.drop {
+            color: #222;
+            border-color: #222;
+        }
     </style>
 <h1 class='icon'>{{$course->name}}</h1>    
 <div>
@@ -52,11 +73,14 @@
 </ul>
 
 <form method='post' class='ajax-form' id="modules-form" data-callback='addModule'
-      action='{{action('ModulesController@store')}}'>
+      action='{{ action('ModulesController@store',[$course->id] )}}'>
     <input type='hidden' name='_token' value='{{ csrf_token() }}' />
-    <input type='hidden' name='course_id' value='{{ $course->id }}' />
     <button type='submit' class='btn btn-primary'>Add Module</button>
 </form>
+@stop
 
-
+@section('extra_js')
+    <script src="{{url('plugins/uploader/js/vendor/jquery.ui.widget.js')}}"></script>
+    <script src="{{url('plugins/uploader/js/jquery.iframe-transport.js')}}"></script>
+    <script src="{{url('plugins/uploader/js/jquery.fileupload.js')}}"></script>
 @stop
