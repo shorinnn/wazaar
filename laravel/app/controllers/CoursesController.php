@@ -78,9 +78,8 @@ class CoursesController extends \BaseController {
             $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
             $course->sale = Input::get('sale');
             $course->sale_kind = Input::get('sale_kind');
-            $course->sale_ends_on = Input::get('sale_ends_on');
+            $course->sale_ends_on = (Input::get('sale_ends_on')) ?  Input::get('sale_ends_on') : null;
             if($course->updateUniques()){
-                // upload the preview image
                 if (Input::hasFile('preview_image')){
                     if(!$course->upload_preview( Input::file('preview_image')->getRealPath() )){
                         return Redirect::action('CoursesController@edit', $course->slug)
