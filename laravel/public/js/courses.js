@@ -132,11 +132,12 @@ function enableFileUploader($uploader){
                 $(progressbar).find('span').html($progress);
                 if($progress=='100') $(progressbar).find('span').html('Upload complete. Processing <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
             }).on('fileuploadfail', function (e, data) {
+                $(progressbar).find('span').html('');
+                $(progressbar).css('width', 0 + '%');
                 $.each(data.files, function (index) {
-                    var error = $('<span class="text-danger"/>').text('File upload failed.');
-                    $(data.context.children()[index])
-                            .append('<br>')
-                            .append(error);
+                    var error = $('<span class="alert alert-danger upload-error"/>').text('File upload failed.');
+                    $(progressbar).css('width', 100 + '%');
+                    $(progressbar).find('span').html(error);
                 });
             }).on('fileuploaddone', function (e,data){
                 callback = $uploader.attr('data-callback');
@@ -153,7 +154,7 @@ function enableBlockFileUploader(e){
 
 function blockFileUploaded(e, data){
     $(progressbar).find('span').html('');
-     $(progressbar).css('width', 0 + '%');
+    $(progressbar).css('width', 0 + '%');
     result = JSON.parse(data.result);
     $(e.target).parent().parent().append(result.html);
 }

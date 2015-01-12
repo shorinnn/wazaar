@@ -29,6 +29,7 @@ class BlocksController extends \BaseController {
         }
         
         public function uploadFiles($lesson_id){
+            if(!Input::hasFile('file')) return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred') ]); 
             $block = new Block();
             $block->lesson_id = $lesson_id;
             $block->type = 'file';
