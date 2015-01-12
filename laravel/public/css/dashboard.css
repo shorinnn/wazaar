@@ -1,0 +1,442 @@
+@charset "utf-8";
+/* Affiliate Pages CSS Document */
+
+.right-twenty-margin{
+	margin-right: 20px;
+}
+
+.wrapper{
+	background: #f8f8f8;
+}
+
+/****************** Affiliate Dashboard *****************/
+.dashboard .header{
+	background: #fff;
+	padding: 8px 20px;
+	border-radius: 5px;
+	margin: 30px 0;
+}
+
+.dashboard .negative-percent{
+	color: #bc3131;
+}
+
+.dashboard .positive-percent{
+	color: #7aa826;
+}
+
+.affiliate-dashboard .header img{
+	float: left;
+}
+
+.affiliate-dashboard .header p.lead{
+	font-size: 14px;
+	color: #0099ff;
+	margin: 17px 0 0 20px;
+	float: left;
+}
+
+.affiliate-dashboard .header ul{
+	margin: 0;
+	padding: 0;
+	float: right;
+	max-width: 430px;
+}
+
+.admin-dashboard .header ul{
+	max-width: 520px;
+	margin: 0 auto;
+	float: none;
+	padding: 0;
+}
+
+.dashboard .header ul li{
+	float: left;
+	margin-top: 10px;
+}
+
+.dashboard .header ul li a{
+	display: block;
+	padding: 8px 20px;
+	border-radius: 20px;
+	background: #7fccff;
+	font-size: 14px;
+	color: #fff;
+}
+
+.dashboard .header ul li a:hover,	
+.dashboard .header ul li a.active{	
+	background: #0099ff;
+	text-decoration: none;
+}
+
+.top-activities > div > div{
+	height: 339px;
+	border: solid 1px #ececec;
+	border-radius: 4px;
+	margin-bottom: 30px;
+	background: #fff;
+	overflow: hidden;
+	padding: 0;
+}
+
+.top-activities > div button{
+	width: 100%;
+	height: 59px;
+	text-align: left;
+	padding-left: 20px;
+	font-size: 14px;
+	color: #fff;
+	border: none;
+	border-radius: 0;
+	background-color: #0099ff;
+}
+
+
+.top-activities > div ul{
+	padding: 0 20px;
+	margin: 0;
+}
+
+.top-activities > div ul a,
+.top-activities > div ul li{
+	font-size: 12px;
+	color: #32cfd7;
+	margin-top: 9px;
+}
+
+.top-activities > div ul li span{
+	display:inline-block;
+	color: #97a4a7;
+	margin-right: 1px;
+}
+
+.top-activities > div ul li em{
+	font-style: normal;
+	color: #97a4a7;
+	float: right;
+}
+
+.top-activities > div a.view-all{
+	display: block;
+	height: 32px;
+	background: #ececec;
+	text-align: center;
+	line-height: 32px;
+	color: #565656;
+	font-size: 12px;
+	margin-top: 6px;
+}
+
+.top-activities > div h2{
+	font-weight: 200;
+	font-size: 42px;
+	text-align: center;
+	color: #55da90;
+	margin: 20px 0 17px;
+}
+
+.top-activities > div h2 span{
+	display: block;
+	margin-top: 14px;
+	text-align: center;
+	font-size: 12px;
+	color: #333;
+}
+
+#sales-today ul{
+	padding: 0 20px 0 9px;
+	margin: 0;
+}
+
+#sales-today ul li{
+	color: #849598;
+	margin: 14px 0;
+	font-size: 12px;
+}
+
+#sales-today ul li > span{
+	display: inline-block;
+	width: 70px;
+	float: left;
+}
+
+#sales-today ul li > div{
+	width: 140px;
+	float: left;
+	padding-top: 4px;
+	padding-left: 8px;
+}
+
+#sales-today ul li > div span{
+	display: block;
+	height: 8px;
+	border-radius: 4px 0 0 4px;
+	background: #96cf2d;
+}
+
+#sales-today ul li > em{
+	font-style: normal;
+	width: 60px;
+	float: left;
+	text-align: right;
+	display: inline-block;
+}
+
+#sales-today ul li#monday > div span{
+	width: 60%;
+}
+
+#sales-today ul li#tuesday > div span{
+	width: 40%;
+}
+
+#sales-today ul li#wednesday > div span{
+	width: 40%;
+}
+
+#sales-today ul li#thursday > div span{
+	width: 60%;
+}
+
+#sales-today ul li#friday > div span{
+	width: 90%;
+}
+
+#customize a{
+	display: block;
+	height: 100%;
+	position: relative;
+	width: 100%;
+	font-size: 18px;
+	color: #fff;
+	background: -moz-linear-gradient(left, #3fd5a6, #67de7e, #8fe754);
+	background: -webkit-linear-gradient(left, #3fd5a6, #67de7e, #8fe754);
+	background: -o-linear-gradient(left, #3fd5a6, #67de7e, #8fe754);
+	background: -ms-linear-gradient(left, #3fd5a6, #67de7e, #8fe754);
+	background: linear-gradient(left, #3fd5a6, #67de7e, #8fe754);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#3fd5a6', endColorstr='#8fe754'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#3fd5a6', endColorstr='#8fe754')"; /* IE8 */
+}
+
+#customize a span{
+	position: absolute;
+	top: 50%;
+	left: 31%;
+}
+
+#customize a span::before{
+	content: '+';
+	width: 18px;
+	height: 18px;
+	line-height: 16px;
+	text-align: center;
+	margin-right: 10px;
+	display:inline-block;
+	border-radius: 18px;
+	border: solid 1px #fff;
+}
+
+.affiliate-dashboard .white-row{
+	background: #fff;
+	border-radius: 5px;
+	min-height: 120px;
+	margin-bottom: 30px;
+}
+
+
+.dashboard .weekly-topsellers-header,
+.dashboard .upcoming-courses-header{
+	height: 42px;
+	background: #fff;
+	border-radius: 5px;
+	position: relative;
+	margin-bottom: 30px;
+}
+
+.dashboard .weekly-topsellers-header h3,
+.dashboard .upcoming-courses-header h3{
+	line-height: 42px;
+	text-align: center;
+	margin: 0;
+	font-size: 14px;
+	color: #0099ff;
+}
+
+.dashboard .weekly-topsellers-header h3 small,
+.dashboard .upcoming-courses-header h3 small{
+	color: #b0bec1;
+	font-size: 14px;
+}
+
+.dashboard .weekly-topsellers-header a,
+.dashboard .upcoming-courses-header a{
+	display: block;
+	height: 20px;
+	width: 20px;
+	position: absolute;
+	top: 12px;
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/left-right-arrows.png") no-repeat;
+}
+
+.dashboard .weekly-topsellers-header a.left-arrow,
+.dashboard .upcoming-courses-header a.left-arrow{
+	left: 20px;
+	background-position: 0 0;
+}
+
+.dashboard .weekly-topsellers-header a.right-arrow,
+.dashboard .upcoming-courses-header a.right-arrow{
+	right: 20px;
+	background-position: 100% 0;
+}
+
+.affiliate-dashboard .weekly-topsellers .courses,
+.affiliate-dashboard .upcoming-courses .courses{
+	margin-bottom: 30px;
+	border-radius: 5px;
+	overflow: hidden;
+	height: 226px;
+}
+
+.affiliate-dashboard .weekly-topsellers .courses h4,
+.affiliate-dashboard .upcoming-courses .courses h4{
+	color: #fff;
+	font-size: 18px;
+	margin: 20px 10px 20px 20px;
+}
+
+.affiliate-dashboard .weekly-topsellers .courses span,
+.affiliate-dashboard .upcoming-courses .courses span{
+	display: block;
+	font-size: 24px;
+	color: #fff;
+	margin: 0 0 10px 20px;
+}
+
+.affiliate-dashboard .weekly-topsellers .courses.course-1,
+.affiliate-dashboard .upcoming-courses .courses.course-1{
+	background: -moz-linear-gradient(left, #ffa63d, #ff8b53, #ff7565);
+	background: -webkit-linear-gradient(left, #ffa63d, #ff8b53, #ff7565);
+	background: -ms-linear-gradient(left, #ffa63d, #ff8b53, #ff7565);
+	background: -o-linear-gradient(left, #ffa63d, #ff8b53, #ff7565);
+	background: linear-gradient(left, #ffa63d, #ff8b53, #ff7565);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ffa63d', endColorstr='#ff7565'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ffa63d', endColorstr='#ff7565')"; /* IE8 */
+}
+
+.affiliate-dashboard .weekly-topsellers .courses.course-2,
+.affiliate-dashboard .upcoming-courses .courses.course-2{
+	background: -moz-linear-gradient(left, #59db8c, #7de367, #95e94d);
+	background: -webkit-linear-gradient(left, #59db8c, #7de367, #95e94d);
+	background: -o-linear-gradient(left, #59db8c, #7de367, #95e94d);
+	background: -ms-linear-gradient(left, #59db8c, #7de367, #95e94d);
+	background: linear-gradient(left, #59db8c, #7de367, #95e94d);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#59db8c', endColorstr='#95e94d'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#59db8c', endColorstr='#95e94d')"; /* IE8 */
+}
+
+.affiliate-dashboard .weekly-topsellers .courses.course-3,
+.affiliate-dashboard .upcoming-courses .courses.course-3{
+	background: -moz-linear-gradient(left, #c84393, #ac3c9b, #9a37a0);
+	background: -webkit-linear-gradient(left, #c84393, #ac3c9b, #9a37a0);
+	background: -o-linear-gradient(left, #c84393, #ac3c9b, #9a37a0);
+	background: -ms-linear-gradient(left, #c84393, #ac3c9b, #9a37a0);
+	background: linear-gradient(left, #c84393, #ac3c9b, #9a37a0);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#c84393', endColorstr='#9a37a0'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#c84393', endColorstr='#9a37a0')"; /* IE8 */
+}
+
+.affiliate-dashboard .weekly-topsellers .courses.course-4,
+.affiliate-dashboard .upcoming-courses .courses.course-4{
+	background: -moz-linear-gradient(left, #ff9948, #ff7863, #ff6a6e);
+	background: -webkit-linear-gradient(left, #ff9948, #ff7863, #ff6a6e);
+	background: -o-linear-gradient(left, #ff9948, #ff7863, #ff6a6e);
+	background: -ms-linear-gradient(left, #ff9948, #ff7863, #ff6a6e);
+	background: linear-gradient(left, #ff9948, #ff7863, #ff6a6e);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff9948', endColorstr='#ff6a6e'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff9948', endColorstr='#ff6a6e')"; /* IE8 */
+}
+
+.top-activities .dropdown-wrapper{
+	position: relative;
+}
+
+.top-activities .dropdown-wrapper #activities-dropdown{
+	width: 100%;
+	background: #0099ff;
+	padding: 0;
+	margin: 0;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+#activities-dropdown{
+	border: none;
+}
+
+#activities-dropdown li{
+	margin: 0;
+}
+
+#activities-dropdown li a{
+	padding: 5px 0 5px 40px;
+	font-size: 24px !important;
+	color: #87c3ff;
+	margin: 0;
+	position: relative;
+}
+
+#activities-dropdown li a:hover{
+	color: #fff;
+	background: none;
+}
+
+#activities-dropdown li a.active{
+	text-indent: 10px;
+	color: #fff;
+}
+
+#activities-dropdown li a.active::before,
+#activities-dropdown li a:hover::before{
+	position: absolute;
+	left: 20px;
+	top: 19px;
+	content: '';
+	height: 10px;
+	width: 10px;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-6.png') no-repeat 100% -5px;
+}
+
+.dropdown-wrapper button:active,
+.dropdown-wrapper button:focus,
+.dropdown-wrapper button:hover,
+.dropdown-wrapper.open button{
+	background: #0099ff !important;
+	color: #fff !important;
+	outline: none;
+}
+
+.dropdown-wrapper.open button{
+	position: relative;
+}
+
+.dropdown-wrapper button::after{
+	content: '';
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	right: 20px;
+	top: 20px;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-6.png') no-repeat -40px 0;
+}
+
+.dropdown-wrapper.open button::after{
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-6.png') no-repeat 0 0;
+}
+
+.become-an-instructor.affiliate{
+	background: #fff;
+}
+
+/*************** Admin Dashboard *****************/
