@@ -2813,6 +2813,7 @@ header .activate-dropdown:hover ul{
 #step1 form{
 	width: 312px;
 	margin: 0 auto;
+	position: relative;
 }
 
 #step3 button.start-creating,
@@ -2892,6 +2893,7 @@ select::-ms-expand {
 		  margin-bottom: 20px;
           position: relative; 
           overflow: hidden;
+		  position: relative;
      }
      .ui-select select{
           width: 110% !important;
