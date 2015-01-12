@@ -10,7 +10,7 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{url('style.css')}}">
     <link rel="stylesheet" href="{{url('css/video-player.css')}}">
-    <link rel="stylesheet" href="{{url('css/affiliate.css')}}">
+    <link rel="stylesheet" href="{{url('css/dashboard.css')}}">
     @yield('extra_css')
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>

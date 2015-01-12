@@ -9,11 +9,20 @@
 	background: #f8f8f8;
 }
 
-.affiliate-dashboard .header{
+/****************** Affiliate Dashboard *****************/
+.dashboard .header{
 	background: #fff;
 	padding: 8px 20px;
 	border-radius: 5px;
 	margin: 30px 0;
+}
+
+.dashboard .negative-percent{
+	color: #bc3131;
+}
+
+.dashboard .positive-percent{
+	color: #7aa826;
 }
 
 .affiliate-dashboard .header img{
@@ -34,12 +43,19 @@
 	max-width: 430px;
 }
 
-.affiliate-dashboard .header ul li{
+.admin-dashboard .header ul{
+	max-width: 520px;
+	margin: 0 auto;
+	float: none;
+	padding: 0;
+}
+
+.dashboard .header ul li{
 	float: left;
 	margin-top: 10px;
 }
 
-.affiliate-dashboard .header ul li a{
+.dashboard .header ul li a{
 	display: block;
 	padding: 8px 20px;
 	border-radius: 20px;
@@ -48,8 +64,8 @@
 	color: #fff;
 }
 
-.affiliate-dashboard .header ul li a:hover,	
-.affiliate-dashboard .header ul li a.active{	
+.dashboard .header ul li a:hover,	
+.dashboard .header ul li a.active{	
 	background: #0099ff;
 	text-decoration: none;
 }
@@ -229,8 +245,8 @@
 }
 
 
-.affiliate-dashboard .weekly-topsellers-header,
-.affiliate-dashboard .upcoming-courses-header{
+.dashboard .weekly-topsellers-header,
+.dashboard .upcoming-courses-header{
 	height: 42px;
 	background: #fff;
 	border-radius: 5px;
@@ -238,8 +254,8 @@
 	margin-bottom: 30px;
 }
 
-.affiliate-dashboard .weekly-topsellers-header h3,
-.affiliate-dashboard .upcoming-courses-header h3{
+.dashboard .weekly-topsellers-header h3,
+.dashboard .upcoming-courses-header h3{
 	line-height: 42px;
 	text-align: center;
 	margin: 0;
@@ -247,14 +263,14 @@
 	color: #0099ff;
 }
 
-.affiliate-dashboard .weekly-topsellers-header h3 small,
-.affiliate-dashboard .upcoming-courses-header h3 small{
+.dashboard .weekly-topsellers-header h3 small,
+.dashboard .upcoming-courses-header h3 small{
 	color: #b0bec1;
 	font-size: 14px;
 }
 
-.affiliate-dashboard .weekly-topsellers-header a,
-.affiliate-dashboard .upcoming-courses-header a{
+.dashboard .weekly-topsellers-header a,
+.dashboard .upcoming-courses-header a{
 	display: block;
 	height: 20px;
 	width: 20px;
@@ -263,14 +279,14 @@
 	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/left-right-arrows.png") no-repeat;
 }
 
-.affiliate-dashboard .weekly-topsellers-header a.left-arrow,
-.affiliate-dashboard .upcoming-courses-header a.left-arrow{
+.dashboard .weekly-topsellers-header a.left-arrow,
+.dashboard .upcoming-courses-header a.left-arrow{
 	left: 20px;
 	background-position: 0 0;
 }
 
-.affiliate-dashboard .weekly-topsellers-header a.right-arrow,
-.affiliate-dashboard .upcoming-courses-header a.right-arrow{
+.dashboard .weekly-topsellers-header a.right-arrow,
+.dashboard .upcoming-courses-header a.right-arrow{
 	right: 20px;
 	background-position: 100% 0;
 }
@@ -422,3 +438,5 @@
 .become-an-instructor.affiliate{
 	background: #fff;
 }
+
+/*************** Admin Dashboard *****************/
