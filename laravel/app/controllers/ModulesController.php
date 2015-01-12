@@ -10,12 +10,17 @@ class ModulesController extends \BaseController {
         public function store(){
             $module = new Module();
             $course = Course::find(Input::get('course_id'));
+            if($course->instructor->id != Auth::user()->id){
+                $response = ['status' => 'error', 'errors' => trans('crud/errors.error_occurred') ];
+                return json_encode($response);
+            }
+            
             $module->course_id = $course->id;
             $module->name = 'New Module';
             $module->order = $course->modules->count() + 1;
             if($module->save()){
                 $response = ['status' => 'success', 
-                             'module' => $module, 
+                             'id' => $module->id, 
                              'html' => View::make('courses.modules.module')->with(compact('module'))->render() ];
                 return json_encode($response);
             }
@@ -32,7 +37,7 @@ class ModulesController extends \BaseController {
                 $response = ['status' => 'success'];
                 return json_encode($response);
             }
-            $response = ['status' => 'error', 'errors' => 'Cannot delete this module'];
+            $response = ['status' => 'error', 'errors' => trans('crud/errors.cannot_delete_object', 'Module') ];
             return json_encode($response);
         }
         
@@ -45,7 +50,7 @@ class ModulesController extends \BaseController {
                 $response = ['status' => 'success'];
                 return json_encode($response);
             }
-            $response = ['status' => 'error', 'errors' => 'Cannot update this module'];
+            $response = ['status' => 'error', 'errors' => trans('crud/errors.cannot_save_object', 'Module') ];
             return json_encode($response);
         }
         

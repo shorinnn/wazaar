@@ -86,6 +86,34 @@ class Course extends Ardent{
             $this->errors()->add(0, trans('courses/general.no_negative_discounts') );
             return false;
         }
+        // update category counter
+        if($this->isDirty('course_category_id')){
+            $old = $this->getOriginal();
+            if( count($old)>0 ){
+                $oldCategory = CourseCategory::find( $old['course_category_id'] );
+                if($oldCategory!=null){
+                    $oldCategory->courses_count--;
+                    $oldCategory->save();
+                }
+            }
+            $category = CourseCategory::find($this->course_category_id);
+            $category->courses_count += 1;
+            $category->save();
+        }
+        // update subcategory counter
+        if($this->isDirty('course_subcategory_id')){
+            $old = $this->getOriginal();
+            if( count($old)>0 ){
+                $oldSubCategory = CourseSubCategory::find( $old['course_subcategory_id'] );
+                if($oldSubCategory!=null){
+                    $oldSubCategory->courses_count--;
+                    $oldSubCategory->save();
+                }
+            }
+            $subcategory = CourseSubCategory::find($this->course_subcategory_id);
+            $subcategory->courses_count += 1;
+            $subcategory->save();
+        }
     }
     
     public function isNew(){

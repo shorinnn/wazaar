@@ -1,5 +1,10 @@
 @extends('layouts.default')
 @section('content')	
+<style>
+    .ui-select{
+        position:relative;
+    }
+</style>
 <div class="container create-course">
 <div class="row">
 	<div class="col-md-12">
@@ -7,25 +12,26 @@
         	<small>The world is yours to conquer.</small>
 		</h1>      
         <div id='step1'>
-            <form method='post' class='ajax-form' id="create-form" data-callback='prepareCourseDetails' action='{{action('CoursesController@store')}}'>
+            <form method='post' class='ajax-form' id="create-form" data-callback='prepareCourseDetails' 
+                  action='{{action('CoursesController@store')}}' data-parsley-validate>
                 <h2>Enter Course Name</h2>
                 <input type='hidden' name='_token' value='{{csrf_token()}}' />
-                <input type='text' name='name' id='name' /><br />
+                <input type='text' name='name' id='name' required /><br />
                 <button type='submit' class='btn btn-primary'>Create Course</button>
             </form>
         </div>
-    <form method='post' class='ajax-form' id='edit-course-details-form' data-callback='followRedirect' >
+    <form method='post' class='ajax-form' id='edit-course-details-form' data-callback='followRedirect' data-parsley-validate >
         <div id='step2' class='#'>
 	        <h2>What category is your course in?</h2>
             <div class="ui-select">
             {{ Form::select('course_category_id', $categories, null,  
                         ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 
-                        'data-url'=> action('CoursesCategoriesController@subcategories')]) }}
+                        'data-url'=> action('CoursesCategoriesController@subcategories'), 'required']) }}
             </div>
             <h2>What sub-category?</h2>
             	<div class="ui-select">
-                    <select class="ui-select" name='course_subcategory_id' id='course_subcategory_id'>
-                        <option value='0'>Select category...</option>
+                    <select class="ui-select" name='course_subcategory_id' id='course_subcategory_id' required>
+                        <option value=''>Select category...</option>
                     </select><br />
                 </div>
                 <button class='btn btn-primary' type="button" onclick='unhide("#step3")'>Next Step</button>
@@ -41,7 +47,7 @@
                  <div class="course-level btn-group clearfix" data-toggle="buttons">
                      @foreach($difficulties as $key=>$difficulty)
                      	<label class="btn btn-primary">
-                         	<input type='radio' name='course_difficulty_id' id="option{{$key}}" autocomplete="off" value='{{$key}}' /> {{$difficulty}}
+                         	<input type='radio' name='course_difficulty_id' id="option{{$key}}" autocomplete="off" value='{{$key}}' required /> {{$difficulty}}
                         </label>
                      @endforeach
         		 </div>
@@ -49,7 +55,7 @@
                      <h2>By the end of the course your students will be able to...</h2>
                      <p class="tip">Make it results based</p>
                      <div>
-                         <input type='text' name='what_will_you_achieve[]' class="clonable" />
+                         <input type='text' name='what_will_you_achieve[]' class="clonable" required />
                          <span>1</span>
                          <!--<a href="#" class="style-one"></a>-->
                      </div>
@@ -68,7 +74,7 @@
                      ed ut perspiciatis unde omnis iste natus  error sit.
                      </p>
                      <div>
-                         <input type='text' name='who_is_this_for[]'  class="clonable" /><br />
+                         <input type='text' name='who_is_this_for[]'  class="clonable" required /><br />
                          <span>1</span>
                          <!--<a href="#" class="style-one"></a>-->
                      </div>
@@ -81,7 +87,7 @@
 <!--                     <div>
                          <input type='text' name='who_is_this_for[]'  class="clonable its-for-you" / placeholder="This course if for you if you are..."><br />
                      </div>-->
-                     <button class='btn btn-primary clear start-creating'>Start Creating Lessons</button>
+                     <button type="submit" class='btn btn-primary clear start-creating'>Start Creating Lessons</button>
                  </div>
             </div>
         </form>

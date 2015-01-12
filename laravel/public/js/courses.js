@@ -22,6 +22,10 @@ $(document).ready(function(){
                 });
             }
         });
+        
+        $('.lessons').each(function(){
+            sortablizeLessons( $(this).attr('id') );
+        });
     }
 });
 
@@ -48,8 +52,10 @@ function sortablizeLessons(id){
  */
 function reorderLessons(id){
     var i = 1;
-    $('#'+id+' .lesson-order').each(function(){
+    $('#'+id+' span.lesson-order').each(function(){
         $(this).html(i);
+        $(this).next('input.lesson-order').val(i);
+        $(this).next('input.lesson-order').trigger('change');
         ++i;
     });
 }
@@ -75,7 +81,7 @@ function prepareCourseDetails(json){
 function addModule(json){
     var destination = '#modules-list';
     var current = $('#modules-list > li').length + 1 * 1;
-    var id = json.module.id;
+    var id = json.id;
     var module = json.html;
     $(destination).append(module);
     sortablizeLessons('lessons-holder-'+id);
@@ -85,12 +91,10 @@ function addModule(json){
 /**
  * Event handler for click on .add-lesson<br />
  * Adds a lesson under the selected module
- * @param {event} e Click event
+ * @param {json} e The json response of the create module call
  * @method addLesson
  */
-function addLesson(e){
-    lesson = '<li>Lesson <span class="lesson-order">1</span>  - <input type="text" /><button class="btn btn-danger">X</button>' +
-            '<span class="sortable-handle">[dragicon]</span> </li>';
-    $(e.target).parent().find('ul').append(lesson);
-    reorderLessons( $(e.target).parent().find('ul').attr('id') );
+function addLesson(json){
+    $('#lessons-holder-'+json.module).append(json.html);
+    reorderLessons( 'lessons-holder-'+json.module );
 }

@@ -59,6 +59,22 @@
                     <div class="list-group">
 
                     </div>
+
+                    <div id="video-formats">
+                        {{-- TODO: Replace the source image url with our own, just borrowing the gif for demo purposes --}}
+                        <div id="processing-message"><img height="80px" src="http://apps.nea.gov/GrantSearch/images/ajaxSpinner.gif" alt=""/> We are still processing the videos, please wait....</div>
+                        <table class="table table-striped hide" id="table-video-formats">
+                            <thead>
+                                <th>Thumbnail</th>
+                                <th>URL</th>
+                                <th>Duration</th>
+                                <th>Resolution</th>
+                            </thead>
+
+                            <tbody id="tbody-video-formats"></tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -92,8 +108,44 @@
                 $('.upload-finished').removeClass('hide');
                 var $notificationItem = $('#completed-notification-template').html();
                 $notificationItem = $notificationItem.replace('_FILENAME_', data.files[0].name);
-                $('.list-group').append($notificationItem)
+                $('.list-group').append($notificationItem);
+                if (data.result.videoId !== undefined) {
+                    Video.IntervalId = setInterval (function() { Video.GetVideo(data.result.videoId) }, 5000);
+                }
             });
+
         });
+
+
+        var Video = {
+            'IntervalId' : 0,
+            'GetVideo' : function ($videoId){
+                $.ajax({
+                    dataType: "json",
+                    url: '/video/' + $videoId + '/json',
+                    success: function ($jsonObj){
+                        var $row = '';
+                        if ($jsonObj.formats.length > 0){
+                            for(var $i = 0; $i < $jsonObj.formats.length; $i++){
+                                $row = '<tr>' +
+                                          '<td><img src="'+ $jsonObj.formats[$i].thumbnail +'"/></td>' +
+                                            '<td><video controls><source src="'+ $jsonObj.formats[$i].video_url +'" type="video/mp4"></video></td>' +
+                                            '<td>'+ $jsonObj.formats[$i].duration +'</td>' +
+                                            '<td>'+ $jsonObj.formats[$i].resolution +'</td>'+
+                                        '</tr>';
+                                $('#tbody-video-formats').append($row);
+                            }
+
+                            $('#processing-message').hide();
+                            $('#table-video-formats').removeClass('hide');
+                            clearInterval(Video.IntervalId);
+                        }
+                    }
+                });
+            }
+        }
+
     </script>
+
+
 @stop

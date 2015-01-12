@@ -72,7 +72,7 @@ class VideoHelper
                 'output_key' => $output['key'],
                 'resolution' => @$presets[$output['presetId']],//  $resolution,
                 'duration'   => $output['duration'],
-                'thumbnail'  => $thumbnail,
+                'thumbnail'  => $outputLink .$thumbnail,
                 'video_url'  => $outputLink . $output['key']
             ];
         }

@@ -29,6 +29,7 @@ function formAjaxSubmit(e){
             restoreSubmitLabel(form);
             return false;
         }
+        restoreSubmitLabel(form);
         if( typeof(form.attr('data-callback'))!='undefined' ){
             window[form.attr('data-callback')](result, e);
         }
@@ -134,6 +135,7 @@ function cloneInput(e){
         var $destination = $elem.parent();
         var clone = $elem.clone();
         clone.removeAttr('id');
+        clone.removeAttr('required');
         clone.removeClass();
         id = uniqueId();
         clone.addClass('clonable clonable-'+id);
@@ -179,7 +181,7 @@ function deleteItem(result, event){
     identifier = $(event.target).attr('data-delete');
     $(identifier).remove();
 }
-
+var saving_animation = 0;
 function updateFieldRemote(e){
     url = $(e.target).attr('data-url');
     name = $(e.target).attr('data-name');
@@ -190,7 +192,22 @@ function updateFieldRemote(e){
         type: 'PUT',
         data: {name:name, value:value, _token:token},
         success: function(result) {
-            // Do something with the result
+           if(saving_animation==1) return false;
+           saving_animation = 1;
+           $('body').remove('#save-indicator');
+           $('body').append('<div id="save-indicator">Saving <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>');
+           $('#save-indicator').animate({
+               left: '0px'
+           },300, function(){
+               setTimeout(function(){
+                   saving_animation = 0;
+                   $('#save-indicator').animate({
+                       left: '-100px'
+                   },300);
+                   
+               },600);
+               
+           });
         }
     });
 }
