@@ -130,6 +130,7 @@ function enableFileUploader($uploader){
                 console.log($progress);
                 $(progressbar).css('width', $progress + '%');
                 $(progressbar).find('span').html($progress);
+                if($progress=='100') $(progressbar).find('span').html('Upload complete. Processing <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
             }).on('fileuploadfail', function (e, data) {
                 $.each(data.files, function (index) {
                     var error = $('<span class="text-danger"/>').text('File upload failed.');
@@ -140,8 +141,6 @@ function enableFileUploader($uploader){
             }).on('fileuploaddone', function (e,data){
                 callback = $uploader.attr('data-callback');
                 if( typeof(callback) !=undefined ){
-                    console.log('uploaded, calling callback');
-                    $(progressbar).find('span').html('Upload complete. Processing <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
                     window[callback](e, data);
                 }
             });
