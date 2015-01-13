@@ -4,7 +4,7 @@ class BlocksController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor' );
-            $this->beforeFilter('csrf', ['only' => [ 'saveText', 'destroy', 'uploadFiles']]);
+            $this->beforeFilter('csrf', ['only' => [ 'saveText', 'destroy', 'uploadFiles', 'update']]);
         }
         
         public function text($lesson_id){
@@ -54,6 +54,19 @@ class BlocksController extends \BaseController {
                 return json_encode($response);
             }
             $response = ['status' => 'error', 'errors' => trans('crud/errors.cannot_delete_object', 'Block') ];
+            return json_encode($response);
+        }
+        
+        public function update($lesson_id, $id){
+            $block = Block::find($id);
+            if($block!=null && $block->lesson->module->course->instructor->id == Auth::user()->id){
+                $name = Input::get('name');
+                $block->$name = Input::get('value');
+                $block->save();
+                $response = ['status' => 'success'];
+                return json_encode($response);
+            }
+            $response = ['status' => 'error', 'errors' =>  trans('crud/errors.cannot_save_object', 'Block') ];
             return json_encode($response);
         }
 
