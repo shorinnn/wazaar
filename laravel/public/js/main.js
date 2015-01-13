@@ -86,9 +86,9 @@ function loadRemote(e){
     url = $(e.target).attr('data-url');
     target = $(e.target).attr('data-target');
     var callback = $(e.target).attr('data-callback');
-    
+    elem = $(e.target);
     while(typeof(url)=='undefined'){
-        elem = $(e.target).parent();
+        elem = elem.parent();
         url = elem.attr('data-url');
         target = elem.attr('data-target');
         callback = elem.attr('data-callback');  

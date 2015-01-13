@@ -54,6 +54,27 @@ class LessonsController extends \BaseController {
             return json_encode($response);
         }
         
+        public function details($module, $id){
+            $lesson = Lesson::find($id);
+            if( $lesson!=null && $lesson->module->course->instructor->id == Auth::user()->id ){
+                return View::make('courses.lessons.details')->with(compact('lesson'));
+            }
+        }
+        
+        public function saveDetails($module, $id){
+            $lesson = Lesson::find($id);
+            if( $lesson!=null && $lesson->module->course->instructor->id == Auth::user()->id ){
+                $data = input_except(['_method', '_token']);
+                $lesson->fill($data);
+                if($lesson->save()){
+                    $response = ['status' => 'success'];
+                    return json_encode($response);
+                }
+            }
+            $response = ['status' => 'error', 'errors' =>  trans('crud/errors.cannot_save_object', 'Lesson') ];
+            return json_encode($response);
+        }
+        
         
 
 

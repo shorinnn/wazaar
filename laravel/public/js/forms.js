@@ -48,6 +48,7 @@ function formAjaxSubmit(e){
  */
 function submittedFormButton(e){
     $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
+    $(e.target).find('[type=submit]').attr('disabled', 'disabled');
     $(e.target).find('[type=submit]').html('Processing...<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
 }
 
@@ -58,6 +59,7 @@ function submittedFormButton(e){
  */
 function restoreSubmitLabel($form){
     $form.find('[type=submit]').html( $form.find('[type=submit]').attr('data-old-label') );
+    $form.find('[type=submit]').removeAttr('disabled');
 }
 
 /**
@@ -70,6 +72,11 @@ function restoreSubmitLabel($form){
 function confirmDelete(e){
     // get the message from the clicked button, don't hard code it (so we can use localization)
     msg = $(e.target).attr('data-message');
+    elem = $(e.target);
+    while(typeof(msg)=='undefined'){
+        elem = elem.parent();
+        msg = elem.attr('data-message');
+    }
     return confirm(msg);
 }
 
