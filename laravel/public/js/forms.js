@@ -240,6 +240,11 @@ function enableFileUploader($uploader){
     progressbar = $uploader.attr('data-progress-bar');
     $uploader.fileupload({
                 dropZone: $(dropzone)
+            }).on('fileuploadadd', function (e, data) {
+                callback = $uploader.attr('data-add-callback');
+                if( typeof(callback) !=undefined ){
+                    return window[callback](e, data);
+                }
             }).on('fileuploadprogress', function (e, data) {
                 var $progress = parseInt(data.loaded / data.total * 100, 10);
                 console.log($progress);

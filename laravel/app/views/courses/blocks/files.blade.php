@@ -1,7 +1,9 @@
 <form method='post' class='ajax-form' action='{{action('BlocksController@files', $lesson_id)}}'>
     <input type='hidden' name='_token' value='{{ csrf_token() }}' />
     <input type='file' name='file' id='file-upload-{{$lesson_id}}' data-dropzone='.dropzone-{{$lesson_id}}'
-           data-progress-bar='.progress-bar-{{$lesson_id}}' data-callback='blockFileUploaded' />
+           data-progress-bar='.progress-bar-{{$lesson_id}}' data-callback='blockFileUploaded'
+           data-add-callback='limitLessonFiles' data-max-upload='{{ Config::get('custom.maximum_lesson_files') }}'
+           data-max-upload-error="{{trans('courses/general.max_upload_error')}}" />
 </form>
 <div class="upload-drop-zone dropzone-{{$lesson_id}}" id="dropzone">
     Just drag and drop files here

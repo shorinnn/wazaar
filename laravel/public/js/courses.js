@@ -146,8 +146,22 @@ function enableBlockFileUploader(e){
  * @method blockFileUploaded
  */
 function blockFileUploaded(e, data){
+    var progressbar = $(e.target).attr('data-progress-bar');
     $(progressbar).find('span').html('');
     $(progressbar).css('width', 0 + '%');
     result = JSON.parse(data.result);
+    if(result.status=='error'){
+        $(e.target).after("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
+        return false;
+    }
     $(e.target).parent().parent().append(result.html);
+}
+
+function limitLessonFiles(e, data){
+    $(e.target).parent().find('.ajax-error').remove();
+    max_upload = $(e.target).attr('data-max-upload');
+    if( $(e.target).parent().parent().find('.uploaded-file').length >= max_upload){
+        $(e.target).after("<p class='alert alert-danger ajax-error'>"+$(e.target).attr('data-max-upload-error')+'</p>');
+        return false;
+    }
 }

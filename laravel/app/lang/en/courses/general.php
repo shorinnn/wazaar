@@ -15,4 +15,5 @@ return array(
     'no_negative_discounts' => 'Cannot use negative discounts',
     'edit_details' => 'Edit Details',
     'manage_lessons' => 'Manage Lessons',
+    'max_upload_error' => "You've reached the file upload limit for this lesson",
 );
