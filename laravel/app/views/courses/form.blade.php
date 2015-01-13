@@ -79,6 +79,7 @@
                         @endforeach
                     @endif
                 </span>
+             <br class="clear" />
             </div>
         
         <div class="who-its-for">Who Is This For<br />
