@@ -37,8 +37,11 @@
             </a>
         </div>
         <div class="col-lg-3">
-            <i class="fa fa-cog"></i> 
-            <p>Details</p>
+            <a href='#' class='load-remote' data-target='.action-panel-{{$lesson->id}}' 
+               data-url='{{action('LessonsController@details', [$lesson->module->id, $lesson->id] )}}'>
+                <i class="fa fa-cog"></i> 
+                <p>Details</p>
+            </a>
         </div>
         <div class="col-lg-12 action-panel-{{$lesson->id}}">
         </div>
