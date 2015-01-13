@@ -39,6 +39,7 @@ class Course extends Ardent{
         if($preview->save()){
             $this->previewImage()->associate($preview);
             if(!$this->updateUniques()) return false;
+            return $preview;
         }
         else{
            return false;
@@ -53,6 +54,7 @@ class Course extends Ardent{
         if($banner->save()){
             $this->bannerImage()->associate($banner);
             if(!$this->updateUniques()) return false;
+            else return $banner;
         }
         else{
            return false;
