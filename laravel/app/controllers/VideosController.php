@@ -39,6 +39,19 @@ class VideosController extends BaseController
         }
     }
 
+    public function videoAndFormatsJson($videoId)
+    {
+        $video = Video::with('formats')->find($videoId);
+
+        if ($video){
+            return $video->toJson();
+        }
+
+    }
+
+    /**
+     * This is what AWS will call to tell us that a video has completed the transcode process
+     */
     public function snsCallback()
     {
         $postBody = file_get_contents('php://input');
@@ -63,14 +76,6 @@ class VideosController extends BaseController
         }
     }
 
-    public function videoAndFormatsJson($videoId)
-    {
-        $video = Video::with('formats')->find($videoId);
 
-        if ($video){
-            return $video->toJson();
-        }
-
-    }
 
 }

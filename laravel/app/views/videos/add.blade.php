@@ -89,61 +89,49 @@
     <script src="{{url('plugins/uploader/js/vendor/jquery.ui.widget.js')}}"></script>
     <script src="{{url('plugins/uploader/js/jquery.iframe-transport.js')}}"></script>
     <script src="{{url('plugins/uploader/js/jquery.fileupload.js')}}"></script>
+    <script src="{{url('js/videoUploader.js')}}"></script>
     <script type="text/javascript">
-        $(function () {
-            $('#fileupload').fileupload({
-                dropZone: $('#dropzone')
-            }).on('fileuploadprogress', function (e, data) {
-                var $progress = parseInt(data.loaded / data.total * 100, 10);
-                console.log($progress)
-                $('.progress-bar').css('width', $progress + '%');
-            }).on('fileuploadfail', function (e, data) {
-                $.each(data.files, function (index) {
-                    var error = $('<span class="text-danger"/>').text('File upload failed.');
-                    $(data.context.children()[index])
-                            .append('<br>')
-                            .append(error);
-                });
-            }).on('fileuploaddone', function (e,data){
-                $('.upload-finished').removeClass('hide');
-                var $notificationItem = $('#completed-notification-template').html();
-                $notificationItem = $notificationItem.replace('_FILENAME_', data.files[0].name);
-                $('.list-group').append($notificationItem);
-                if (data.result.videoId !== undefined) {
-                    Video.IntervalId = setInterval (function() { Video.GetVideo(data.result.videoId) }, 5000);
-                }
-            });
 
+        $(function (){
+
+            var $intervalId = 0;
+
+            videoUploader.initialize({
+               'fileInputElem' : $('#fileupload'),
+               'progressCallBack' : function ($data, $progressPercentage){
+                   $('.progress-bar').css('width', $progressPercentage + '%');
+               },
+               'failCallBack' : function ($data){
+
+               },
+               'successCallBack' : function ($data){
+                   $('.upload-finished').removeClass('hide');
+                   var $notificationItem = $('#completed-notification-template').html();
+                   $notificationItem = $notificationItem.replace('_FILENAME_', $data.files[0].name);
+                   $('.list-group').append($notificationItem);
+                   if ($data.result.videoId !== undefined) {
+                       $intervalId = setInterval (function() { videoUploader.getVideo($data.result.videoId, function ($jsonObj){
+                           if ($jsonObj.formats.length > 0){
+                               for(var $i = 0; $i < $jsonObj.formats.length; $i++){
+                                   $row = '<tr>' +
+                                   '<td><img src="'+ $jsonObj.formats[$i].thumbnail +'"/></td>' +
+                                   '<td><video controls><source src="'+ $jsonObj.formats[$i].video_url +'" type="video/mp4"></video></td>' +
+                                   '<td>'+ $jsonObj.formats[$i].duration +'</td>' +
+                                   '<td>'+ $jsonObj.formats[$i].resolution +'</td>'+
+                                   '</tr>';
+                                   $('#tbody-video-formats').append($row);
+                               }
+
+                               $('#processing-message').hide();
+                               $('#table-video-formats').removeClass('hide');
+                               clearInterval(Video.IntervalId);
+                           }
+                       }) }, 5000);
+                   }
+               }
+            });
         });
 
-
-        var Video = {
-            'IntervalId' : 0,
-            'GetVideo' : function ($videoId){
-                $.ajax({
-                    dataType: "json",
-                    url: '/video/' + $videoId + '/json',
-                    success: function ($jsonObj){
-                        var $row = '';
-                        if ($jsonObj.formats.length > 0){
-                            for(var $i = 0; $i < $jsonObj.formats.length; $i++){
-                                $row = '<tr>' +
-                                          '<td><img src="'+ $jsonObj.formats[$i].thumbnail +'"/></td>' +
-                                            '<td><video controls><source src="'+ $jsonObj.formats[$i].video_url +'" type="video/mp4"></video></td>' +
-                                            '<td>'+ $jsonObj.formats[$i].duration +'</td>' +
-                                            '<td>'+ $jsonObj.formats[$i].resolution +'</td>'+
-                                        '</tr>';
-                                $('#tbody-video-formats').append($row);
-                            }
-
-                            $('#processing-message').hide();
-                            $('#table-video-formats').removeClass('hide');
-                            clearInterval(Video.IntervalId);
-                        }
-                    }
-                });
-            }
-        }
 
     </script>
 
