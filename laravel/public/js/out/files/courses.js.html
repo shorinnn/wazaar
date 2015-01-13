@@ -183,8 +183,15 @@
                             reorderLessons( &#x27;lessons-holder-&#x27;+json.module );
                         }
                         
+                        /**
+                         * Activates TinyMCE when the text tab of a lesson is loaded
+                         * @param {Event} e The event containing the calling object
+                         * @method enableLessonRTE
+                         */
                         function enableLessonRTE(e){
                             selector = &#x27;#&#x27;+$(e.target).parent().parent().parent().find(&#x27;textarea&#x27;).attr(&#x27;id&#x27;);
+                            console.log(&#x27;enabling &#x27;+selector);
+                            tinymce.remove(selector);
                             tinymce.init({
                                 autosave_interval: &quot;20s&quot;,
                                 autosave_restore_when_empty: true,
@@ -203,6 +210,30 @@
                                 ],
                                 toolbar: &quot;save | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image&quot;
                             });
+                        }
+                        
+                        /**
+                         * Called after the files tab of a lesson is loaded, it ajaxifies the file upload form
+                         * @param {Event} e The original event containing the calling object
+                         * @method enableBlockFileUploader
+                         */
+                        function enableBlockFileUploader(e){
+                            $uploader = $(e.target).parent().parent().parent().find(&#x27;[type=file]&#x27;);
+                            enableFileUploader($uploader);
+                        }
+                        
+                        /**
+                         * Called after the lesson file has been uploaded, it resets the progress bar 
+                         * and includes the new object in the UI
+                         * @param {event} e The original event
+                         * @param {object} data The upload result object
+                         * @method blockFileUploaded
+                         */
+                        function blockFileUploaded(e, data){
+                            $(progressbar).find(&#x27;span&#x27;).html(&#x27;&#x27;);
+                            $(progressbar).css(&#x27;width&#x27;, 0 + &#x27;%&#x27;);
+                            result = JSON.parse(data.result);
+                            $(e.target).parent().parent().append(result.html);
                         }
                             </pre>
                         </div>

@@ -170,9 +170,9 @@
                             url = $(e.target).attr(&#x27;data-url&#x27;);
                             target = $(e.target).attr(&#x27;data-target&#x27;);
                             var callback = $(e.target).attr(&#x27;data-callback&#x27;);
-                            
+                            elem = $(e.target);
                             while(typeof(url)==&#x27;undefined&#x27;){
-                                elem = $(e.target).parent();
+                                elem = elem.parent();
                                 url = elem.attr(&#x27;data-url&#x27;);
                                 target = elem.attr(&#x27;data-target&#x27;);
                                 callback = elem.attr(&#x27;data-callback&#x27;);  

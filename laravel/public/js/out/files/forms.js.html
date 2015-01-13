@@ -109,6 +109,7 @@
                             $.post(form.attr(&#x27;action&#x27;), form.serialize(), function(result){
                                 result = JSON.parse(result);
                                 if(result.status==&#x27;error&#x27;){
+                                    console.log(result.errors);
                                     form.append(&#x27;&lt;p class=&quot;alert alert-danger ajax-errors&quot;&gt;&#x27;+result.errors+&#x27;&lt;/p&gt;&#x27;);
                                     restoreSubmitLabel(form);
                                     return false;
@@ -131,6 +132,7 @@
                          */
                         function submittedFormButton(e){
                             $(e.target).find(&#x27;[type=submit]&#x27;).attr(&#x27;data-old-label&#x27;, $(e.target).find(&#x27;[type=submit]&#x27;).html());
+                            $(e.target).find(&#x27;[type=submit]&#x27;).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
                             $(e.target).find(&#x27;[type=submit]&#x27;).html(&#x27;Processing...&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
                         }
                         
@@ -141,6 +143,7 @@
                          */
                         function restoreSubmitLabel($form){
                             $form.find(&#x27;[type=submit]&#x27;).html( $form.find(&#x27;[type=submit]&#x27;).attr(&#x27;data-old-label&#x27;) );
+                            $form.find(&#x27;[type=submit]&#x27;).removeAttr(&#x27;disabled&#x27;);
                         }
                         
                         /**
@@ -153,6 +156,11 @@
                         function confirmDelete(e){
                             // get the message from the clicked button, don&#x27;t hard code it (so we can use localization)
                             msg = $(e.target).attr(&#x27;data-message&#x27;);
+                            elem = $(e.target);
+                            while(typeof(msg)==&#x27;undefined&#x27;){
+                                elem = elem.parent();
+                                msg = elem.attr(&#x27;data-message&#x27;);
+                            }
                             return confirm(msg);
                         }
                         
@@ -305,6 +313,38 @@
                                 left: &#x27;0px&#x27;
                             }, 300);
                         };
+                        
+                        /**
+                         * Enables AJAX file uploading for the specified element
+                         * @param {object} $uploader The file object that is ajaxified
+                         * @method enableFileUploader
+                         */
+                        function enableFileUploader($uploader){
+                            dropzone = $uploader.attr(&#x27;data-dropzone&#x27;);
+                            progressbar = $uploader.attr(&#x27;data-progress-bar&#x27;);
+                            $uploader.fileupload({
+                                        dropZone: $(dropzone)
+                                    }).on(&#x27;fileuploadprogress&#x27;, function (e, data) {
+                                        var $progress = parseInt(data.loaded / data.total * 100, 10);
+                                        console.log($progress);
+                                        $(progressbar).css(&#x27;width&#x27;, $progress + &#x27;%&#x27;);
+                                        $(progressbar).find(&#x27;span&#x27;).html($progress);
+                                        if($progress==&#x27;100&#x27;) $(progressbar).find(&#x27;span&#x27;).html(&#x27;Upload complete. Processing &lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
+                                    }).on(&#x27;fileuploadfail&#x27;, function (e, data) {
+                                        $(progressbar).find(&#x27;span&#x27;).html(&#x27;&#x27;);
+                                        $(progressbar).css(&#x27;width&#x27;, 0 + &#x27;%&#x27;);
+                                        $.each(data.files, function (index) {
+                                            var error = $(&#x27;&lt;span class=&quot;alert alert-danger upload-error&quot;/&gt;&#x27;).text(&#x27;File upload failed.&#x27;);
+                                            $(progressbar).css(&#x27;width&#x27;, 100 + &#x27;%&#x27;);
+                                            $(progressbar).find(&#x27;span&#x27;).html(error);
+                                        });
+                                    }).on(&#x27;fileuploaddone&#x27;, function (e,data){
+                                        callback = $uploader.attr(&#x27;data-callback&#x27;);
+                                        if( typeof(callback) !=undefined ){
+                                            window[callback](e, data);
+                                        }
+                                    });
+                        }
                             </pre>
                         </div>
                     </div>

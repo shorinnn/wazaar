@@ -4,7 +4,7 @@ class BlocksController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor' );
-            $this->beforeFilter('csrf', ['only' => [ 'saveText', 'update', 'destroy']]);
+            $this->beforeFilter('csrf', ['only' => [ 'saveText', 'destroy', 'uploadFiles']]);
         }
         
         public function text($lesson_id){
@@ -51,7 +51,6 @@ class BlocksController extends \BaseController {
             if($block!=null && $block->lesson->module->course->instructor->id == Auth::user()->id){
                 $block->delete();
                 $response = ['status' => 'success'];
-                // todo S3 delete
                 return json_encode($response);
             }
             $response = ['status' => 'error', 'errors' => trans('crud/errors.cannot_delete_object', 'Block') ];

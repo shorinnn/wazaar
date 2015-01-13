@@ -99,6 +99,11 @@ function addLesson(json){
     reorderLessons( 'lessons-holder-'+json.module );
 }
 
+/**
+ * Activates TinyMCE when the text tab of a lesson is loaded
+ * @param {Event} e The event containing the calling object
+ * @method enableLessonRTE
+ */
 function enableLessonRTE(e){
     selector = '#'+$(e.target).parent().parent().parent().find('textarea').attr('id');
     console.log('enabling '+selector);
@@ -122,38 +127,24 @@ function enableLessonRTE(e){
         toolbar: "save | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
     });
 }
-function enableFileUploader($uploader){
-    dropzone = $uploader.attr('data-dropzone');
-    progressbar = $uploader.attr('data-progress-bar');
-    $uploader.fileupload({
-                dropZone: $(dropzone)
-            }).on('fileuploadprogress', function (e, data) {
-                var $progress = parseInt(data.loaded / data.total * 100, 10);
-                console.log($progress);
-                $(progressbar).css('width', $progress + '%');
-                $(progressbar).find('span').html($progress);
-                if($progress=='100') $(progressbar).find('span').html('Upload complete. Processing <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
-            }).on('fileuploadfail', function (e, data) {
-                $(progressbar).find('span').html('');
-                $(progressbar).css('width', 0 + '%');
-                $.each(data.files, function (index) {
-                    var error = $('<span class="alert alert-danger upload-error"/>').text('File upload failed.');
-                    $(progressbar).css('width', 100 + '%');
-                    $(progressbar).find('span').html(error);
-                });
-            }).on('fileuploaddone', function (e,data){
-                callback = $uploader.attr('data-callback');
-                if( typeof(callback) !=undefined ){
-                    window[callback](e, data);
-                }
-            });
-}
 
+/**
+ * Called after the files tab of a lesson is loaded, it ajaxifies the file upload form
+ * @param {Event} e The original event containing the calling object
+ * @method enableBlockFileUploader
+ */
 function enableBlockFileUploader(e){
     $uploader = $(e.target).parent().parent().parent().find('[type=file]');
     enableFileUploader($uploader);
 }
 
+/**
+ * Called after the lesson file has been uploaded, it resets the progress bar 
+ * and includes the new object in the UI
+ * @param {event} e The original event
+ * @param {object} data The upload result object
+ * @method blockFileUploaded
+ */
 function blockFileUploaded(e, data){
     $(progressbar).find('span').html('');
     $(progressbar).css('width', 0 + '%');

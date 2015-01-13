@@ -64,7 +64,6 @@ Route::resource('courses.modules', 'ModulesController');
 
 // Lessons
 Route::get('modules/{module}/lessons/{id}/details', 'LessonsController@details');
-Route::put('modules/{module}/lessons/{id}/details', 'LessonsController@saveDetails');
 Route::resource('modules.lessons', 'LessonsController');
 
 // Blocks

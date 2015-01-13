@@ -30,6 +30,23 @@ class Block extends Ardent{
         return true;
     }
     
+    /**
+     * Delete S3 file
+     */
+    public function beforeDelete(){
+        if($this->type=='file'){
+            $s3 = AWS::get('s3');
+            $object = explode('course_uploads', $this->content);
+            $object = $object[1];
+            $result = $s3->deleteObject(array(
+                'ACL'    => 'public-read',
+                'Bucket' => $_ENV['AWS_BUCKET'],
+                'Key'    => 'course_uploads'.$object
+            ));
+            return true;
+        }
+    }
+    
    
 
 }

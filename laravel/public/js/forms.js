@@ -229,3 +229,35 @@ function savingAnimation(stop) {
         left: '0px'
     }, 300);
 };
+
+/**
+ * Enables AJAX file uploading for the specified element
+ * @param {object} $uploader The file object that is ajaxified
+ * @method enableFileUploader
+ */
+function enableFileUploader($uploader){
+    dropzone = $uploader.attr('data-dropzone');
+    progressbar = $uploader.attr('data-progress-bar');
+    $uploader.fileupload({
+                dropZone: $(dropzone)
+            }).on('fileuploadprogress', function (e, data) {
+                var $progress = parseInt(data.loaded / data.total * 100, 10);
+                console.log($progress);
+                $(progressbar).css('width', $progress + '%');
+                $(progressbar).find('span').html($progress);
+                if($progress=='100') $(progressbar).find('span').html('Upload complete. Processing <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+            }).on('fileuploadfail', function (e, data) {
+                $(progressbar).find('span').html('');
+                $(progressbar).css('width', 0 + '%');
+                $.each(data.files, function (index) {
+                    var error = $('<span class="alert alert-danger upload-error"/>').text('File upload failed.');
+                    $(progressbar).css('width', 100 + '%');
+                    $(progressbar).find('span').html(error);
+                });
+            }).on('fileuploaddone', function (e,data){
+                callback = $uploader.attr('data-callback');
+                if( typeof(callback) !=undefined ){
+                    window[callback](e, data);
+                }
+            });
+}

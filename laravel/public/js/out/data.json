@@ -166,6 +166,56 @@
             "class": "Courses"
         },
         {
+            "file": "courses.js",
+            "line": 102,
+            "description": "Activates TinyMCE when the text tab of a lesson is loaded",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The event containing the calling object",
+                    "type": "Event"
+                }
+            ],
+            "itemtype": "method",
+            "name": "enableLessonRTE",
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 131,
+            "description": "Called after the files tab of a lesson is loaded, it ajaxifies the file upload form",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The original event containing the calling object",
+                    "type": "Event"
+                }
+            ],
+            "itemtype": "method",
+            "name": "enableBlockFileUploader",
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 141,
+            "description": "Called after the lesson file has been uploaded, it resets the progress bar \nand includes the new object in the UI",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The original event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data",
+                    "description": "The upload result object",
+                    "type": "Object"
+                }
+            ],
+            "itemtype": "method",
+            "name": "blockFileUploaded",
+            "class": "Courses"
+        },
+        {
             "file": "forms.js",
             "line": 15,
             "description": "Event handler for .ajax-form<br />\nSubmits forms with .ajax-form class via ajax and fires the data-callback function if specified",
@@ -186,7 +236,7 @@
         },
         {
             "file": "forms.js",
-            "line": 41,
+            "line": 42,
             "description": "Event handler for forms.<br />\nCalled on all forms when they're submitted. It replaces the submit button label with \"Processing...[loader icon]\" \nand stores the old value in data-old-label attribute.",
             "itemtype": "method",
             "name": "submittedFormButton",
@@ -201,7 +251,7 @@
         },
         {
             "file": "forms.js",
-            "line": 53,
+            "line": 55,
             "description": "Restores the form's submit button original label",
             "itemtype": "method",
             "name": "restoreSubmitLabel",
@@ -216,7 +266,7 @@
         },
         {
             "file": "forms.js",
-            "line": 62,
+            "line": 65,
             "description": "Event handler for  .delete-button.<br />\nFired by click on .delete-button and asks for confirmation",
             "itemtype": "method",
             "name": "confirmDelete",
@@ -235,7 +285,7 @@
         },
         {
             "file": "forms.js",
-            "line": 75,
+            "line": 83,
             "description": "Event handler for .has-slug<br />\nIs called on keyup event for elements with .has-slug class. It takes the elements value \nand populates another field specified by the elements data-slug-target attribute with\nthe slug version of the value",
             "itemtype": "method",
             "name": "updateSlug",
@@ -254,7 +304,7 @@
         },
         {
             "file": "forms.js",
-            "line": 90,
+            "line": 98,
             "description": "Populates a second dropdown specified by 'data-target' with the values \nreturned by the get call to the resource at data-url",
             "itemtype": "method",
             "name": "populateDropdown",
@@ -269,7 +319,7 @@
         },
         {
             "file": "forms.js",
-            "line": 115,
+            "line": 123,
             "description": "Event handler for .clonable inputs.<br />\nFired on keyup on an empty clonable input - it creates a set of \ninput+delete button after the calling element",
             "params": [
                 {
@@ -282,7 +332,7 @@
         },
         {
             "file": "forms.js",
-            "line": 148,
+            "line": 156,
             "description": "Renumbers the position label under clonable inputs",
             "itemtype": "method",
             "name": "reorderClonable",
@@ -297,7 +347,7 @@
         },
         {
             "file": "forms.js",
-            "line": 161,
+            "line": 169,
             "description": "Event handler for click on .delete-clonable buttons<br />\nDeletes the clonable input and associated delete button",
             "params": [
                 {
@@ -310,7 +360,7 @@
         },
         {
             "file": "forms.js",
-            "line": 174,
+            "line": 182,
             "description": "Called after an AJAX delete call, removes the specified HTML element",
             "itemtype": "method",
             "name": "deleteItem",
@@ -330,7 +380,7 @@
         },
         {
             "file": "forms.js",
-            "line": 200,
+            "line": 208,
             "description": "Displays a saving animation when called with a 0 param, ends it when called with a 1 param",
             "params": [
                 {
@@ -341,6 +391,21 @@
             ],
             "itemtype": "method",
             "name": "savingAnimation",
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 233,
+            "description": "Enables AJAX file uploading for the specified element",
+            "params": [
+                {
+                    "name": "$uploader",
+                    "description": "The file object that is ajaxified",
+                    "type": "Object"
+                }
+            ],
+            "itemtype": "method",
+            "name": "enableFileUploader",
             "class": "Forms"
         },
         {
@@ -588,7 +653,7 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " forms.js:62"
+            "line": " forms.js:65"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -596,11 +661,11 @@
         },
         {
             "message": "Missing item type\nEvent handler for .clonable inputs.<br />\nFired on keyup on an empty clonable input - it creates a set of \ninput+delete button after the calling element",
-            "line": " forms.js:115"
+            "line": " forms.js:123"
         },
         {
             "message": "Missing item type\nEvent handler for click on .delete-clonable buttons<br />\nDeletes the clonable input and associated delete button",
-            "line": " forms.js:161"
+            "line": " forms.js:169"
         },
         {
             "message": "Missing item type\nRemoves the hidden class of the supplied identifier and scrolls to it",

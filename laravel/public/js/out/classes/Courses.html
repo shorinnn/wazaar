@@ -120,6 +120,18 @@
                         
                                                     </li>
                                                     <li class="index-item method">
+                                                        <a href="#method_blockFileUploaded">blockFileUploaded</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#method_enableBlockFileUploader">enableBlockFileUploader</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
+                                                        <a href="#method_enableLessonRTE">enableLessonRTE</a>
+                        
+                                                    </li>
+                                                    <li class="index-item method">
                                                         <a href="#method_prepareCourseDetails">prepareCourseDetails</a>
                         
                                                     </li>
@@ -240,6 +252,180 @@
                                             
                                                                 <div class="param-description">
                                                                     <p>The json response of the create module call</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_blockFileUploaded" class="method item">
+                                                <h3 class="name"><code>blockFileUploaded</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>e</code>
+                                                            </li>
+                                                            <li class="arg">
+                                                                    <code>data</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/courses.js.html#l141"><code>courses.js:141</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Called after the lesson file has been uploaded, it resets the progress bar 
+                                            and includes the new object in the UI</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">e</code>
+                                                                    <span class="type">Event</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>The original event</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                            <li class="param">
+                                                                    <code class="param-name">data</code>
+                                                                    <span class="type">Object</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>The upload result object</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_enableBlockFileUploader" class="method item">
+                                                <h3 class="name"><code>enableBlockFileUploader</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>e</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/courses.js.html#l131"><code>courses.js:131</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Called after the files tab of a lesson is loaded, it ajaxifies the file upload form</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">e</code>
+                                                                    <span class="type">Event</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>The original event containing the calling object</p>
+                                            
+                                                                </div>
+                                            
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                            
+                                            
+                                            </div>
+                                            <div id="method_enableLessonRTE" class="method item">
+                                                <h3 class="name"><code>enableLessonRTE</code></h3>
+                                            
+                                                    <div class="args">
+                                                        <span class="paren">(</span><ul class="args-list inline commas">
+                                                            <li class="arg">
+                                                                    <code>e</code>
+                                                            </li>
+                                                        </ul><span class="paren">)</span>
+                                                    </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                <div class="meta">
+                                                            <p>
+                                                            Defined in
+                                                    <a href="../files/courses.js.html#l102"><code>courses.js:102</code></a>
+                                                    </p>
+                                            
+                                            
+                                            
+                                                </div>
+                                            
+                                                <div class="description">
+                                                    <p>Activates TinyMCE when the text tab of a lesson is loaded</p>
+                                            
+                                                </div>
+                                            
+                                                    <div class="params">
+                                                        <h4>Parameters:</h4>
+                                            
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                    <code class="param-name">e</code>
+                                                                    <span class="type">Event</span>
+                                            
+                                            
+                                                                <div class="param-description">
+                                                                    <p>The event containing the calling object</p>
                                             
                                                                 </div>
                                             
