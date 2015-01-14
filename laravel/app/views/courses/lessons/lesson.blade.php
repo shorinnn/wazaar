@@ -1,5 +1,5 @@
 <li id="lesson-{{$lesson->id}}">
-    Lesson <span class="lesson-order">{{ $lesson->order }}</span> - 
+    {{ trans('general.lesson') }} <span class="lesson-order">{{ $lesson->order }}</span> - 
     <input type="hidden" class="lesson-order ajax-updatable" value="{{$lesson->order}}"
            data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}' data-name='order' /> 
     
@@ -22,28 +22,28 @@
             <a href='#' class='load-remote' data-target='.action-panel-{{$lesson->id}}'
                data-url='{{action('BlocksController@video', [$lesson->id] )}}' data-callback='enableLessonRTE'>
                 <i class="fa fa-film"></i>
-                <p>Video</p>
+                <p>{{ trans('general.video') }}</p>
             </a>
         </div>
         <div class="col-lg-3">
             <a href='#' class='load-remote' data-target='.action-panel-{{$lesson->id}}' 
                data-url='{{action('BlocksController@text', [$lesson->id] )}}' data-callback='enableLessonRTE'>
                 <i class="fa fa-file-text-o"></i>
-                <p>Edit Text</p>
+                <p>{{ trans('crud/labels.edit_text') }}</p>
             </a>
         </div>
         <div class="col-lg-3">
             <a href='#' class='load-remote' data-target='.action-panel-{{$lesson->id}}' 
                data-url='{{action('BlocksController@files', [$lesson->id] )}}' data-callback='enableBlockFileUploader'>
                 <i class="fa fa-file-o"></i>
-                <p>Add File</p>
+                <p>{{ trans('general.add_file') }}</p>
             </a>
         </div>
         <div class="col-lg-3">
             <a href='#' class='load-remote' data-target='.action-panel-{{$lesson->id}}' 
                data-url='{{action('LessonsController@details', [$lesson->module->id, $lesson->id] )}}'>
                 <i class="fa fa-cog"></i> 
-                <p>Details</p>
+                <p>{{ trans('general.details') }}</p>
             </a>
         </div>
         <div class="col-lg-12 action-panel-{{$lesson->id}}">
