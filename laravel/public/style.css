@@ -34,7 +34,7 @@ body {
 }
 
 a, input::-moz-focus-inner {
-   outline: none;
+   outline: none !important;
    border: 0;
 }
 
@@ -3100,6 +3100,128 @@ select::-ms-expand {
 	color: #849598;
 }
 
+
+/*********** Unauthenticared Homepage *************/
+
+.unauthenticated-homepage.course-search-section p.lead{
+	margin: 0;
+}
+
+.unauthenticated-homepage.course-search-section p.lead span{
+	color: #c3f31e;
+}
+
+.unauthenticated-homepage.course-search-section .course-search-form{
+	margin-top: 60px;
+	position: relative;
+	overflow: visible;
+}
+
+.unauthenticated-homepage.course-search-section .logo{
+	display: block;
+	text-align: center;
+	margin-top: 60px;
+}
+
+.unauthenticated-homepage.course-search-section .color-bubbles{
+	margin-bottom: 43px;
+	text-align: center;
+	margin-top: -40px;
+}
+
+.unauthenticated-homepage.course-search-section .down-arrow{
+	display: block;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.unauthenticated-homepage.course-search-section 
+.discover-wazaar-button{
+	display: block;
+	margin: 50px auto 25px;
+	font-size: 14px;
+	color: #18222b;
+	height: 41px;
+	width: 147px;
+	text-align: center;
+	line-height: 41px;
+	border-radius: 5px;
+	background: #92cc2e;
+}
+
+.unauthenticated-homepage.course-search-section 
+.discover-wazaar-button:hover{
+	text-decoration: none;
+	background: #c3f31e;
+}
+
+.course-search-section .course-search-form:before, 
+.course-search-section .course-search-form:after{
+	top: 0;
+}
+
+.course-search-section .course-search-form:before{
+	left: -115px;
+}
+
+.course-search-section .course-search-form:after{
+	right: -115px;
+}
+
+.unauthenticated-homepage.school-is-a-thing{
+	position: relative;
+	min-height: 447px;
+}
+
+.unauthenticated-homepage.school-is-a-thing > div{
+	max-width: 1000px;
+	margin: 92px auto 20px;
+}
+
+.unauthenticated-homepage.school-is-a-thing > div h3{
+	font-size: 42px;
+	font-weight: 200;
+	color: #0099ff;
+	margin: 0 0 40px;
+}
+
+.unauthenticated-homepage.school-is-a-thing > div h3 span{
+	display: block;
+	margin-top: 15px;
+	color: #18222b;
+	font-size: 14px;
+}
+
+.unauthenticated-homepage.school-is-a-thing > div p{
+	font-size: 12px;
+	color: #849598;
+	margin: 0 0 25px;
+	line-height: 28px;
+	max-width: 40%;
+}
+
+.unauthenticated-homepage.school-is-a-thing > div .sign-up-button{
+	font-size: 12px;
+	color: #fff;
+	width: 189px;
+	height: 42px;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 42px;
+	background: #04a4f6;
+	display: block;
+}
+
+.unauthenticated-homepage.school-is-a-thing > div .sign-up-button:hover{
+	background: #0291f1;
+	text-decoration: none;
+}
+
+.unauthenticated-homepage.school-is-a-thing > img{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
 
 /************* Page Footer **************/
 footer{

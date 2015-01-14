@@ -440,3 +440,76 @@
 }
 
 /*************** Admin Dashboard *****************/
+
+
+
+/************* Classroom Dashboard ***************/
+.classroom-stats .today-stat{
+	border-radius: 5px;
+	background: #0099ff;
+	overflow: hidden;
+}
+
+.classroom-stats .today-stat h2{
+	font-weight: 200;
+	font-size: 24px;
+	color: #fff;
+	text-align: center;
+	margin: 20px 0;
+}
+
+.classroom-stats .today-stat h2 span{
+	display: block;
+	margin: 20px 0 0;
+}
+
+.classroom-stats .today-stat h4{
+	margin: 0 0 30px;
+	font-size: 12px;
+	font-weight: 200;
+	color: #fff;
+	text-align: center;
+}
+
+.classroom-stats .today-stat ul{
+	padding: 0 40px;
+	margin: 0;
+	width: 100%;
+}
+
+.classroom-stats .today-stat ul li{
+	font-size: 12px;
+	color: #fff;	
+}
+
+.classroom-stats .today-stat ul li > span{
+	display: inline-block;
+	float: left;
+	width: 90px;
+}
+
+.classroom-stats .today-stat ul li div{
+	float: left;
+	width: 228px;
+	border-radius: 4px;
+	overflow: hidden;
+	background: #fff;
+}
+
+.classroom-stats .today-stat ul li div span{
+	background: #95cf2d;
+	height: 8px;
+	display: block;
+}
+
+.classroom-stats .today-stat ul li em{
+	display: inline-block;
+    float: left;
+    font-style: normal;
+    text-align: right;
+    width: 87px;
+}
+
+.classroom-stats .today-stat li#monday > div span {
+    width: 60%;
+}
