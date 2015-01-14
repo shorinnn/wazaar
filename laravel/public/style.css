@@ -3234,7 +3234,7 @@ select::-ms-expand {
 	margin: 0 0 20px;
 }
 
-.unauthenticated-homepage .course-listing-container p{
+.unauthenticated-homepage .course-listing-container p.description{
 	display: block;
 	font-weight: normal;
 	font-size: 14px;
@@ -3274,6 +3274,15 @@ select::-ms-expand {
 	background: #031623;
 }
 
+.unauthenticated-homepage .small-box{
+	margin-top: 60px;
+	overflow: hidden;
+}
+
+.unauthenticated-homepage .small-box .level{
+	display: none;
+}
+
 .unauthenticated-homepage .course-listing-container a.sign-up:hover{
 	text-decoration: none;
 	background: #042943;
@@ -3285,6 +3294,12 @@ select::-ms-expand {
 	background: -o-linear-gradient(left, #bc4ff8, #a250ef, #6552db);
 	background: -ms-linear-gradient(left, #bc4ff8, #a250ef, #6552db);
 	background: linear-gradient(left, #bc4ff8, #a250ef, #6552db);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#bc4ff8', endColorstr='#6552db'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#bc4ff8', endColorstr='#6552db')"; /* IE8 */
+}
+
+.unauthenticated-homepage#it-and-tech .small-box{
+	background: #b383c9;
 }
 
 .unauthenticated-homepage#music-and-arts{
@@ -3293,6 +3308,12 @@ select::-ms-expand {
 	background: -o-linear-gradient(left, #d34690, #ca4492, #9035a3);
 	background: -ms-linear-gradient(left, #d34690, #ca4492, #9035a3);
 	background: linear-gradient(left, #d34690, #ca4492, #9035a3);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#d34690', endColorstr='#9035a3'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#d34690', endColorstr='#9035a3')"; /* IE8 */
+}
+
+.unauthenticated-homepage#music-and-arts .small-box{
+	background: #b15a85;
 }
 
 .unauthenticated-homepage#love-and-relationships{
@@ -3301,6 +3322,12 @@ select::-ms-expand {
 	background: -webkit-linear-gradient(left, #ff527d, #ff5473, #ff5a52);
 	background: -ms-linear-gradient(left, #ff527d, #ff5473, #ff5a52);
 	background: linear-gradient(left, #ff527d, #ff5473, #ff5a52);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff527d', endColorstr='#ff5a52'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff527d', endColorstr='#ff5a52')"; /* IE8 */
+}
+
+.unauthenticated-homepage#love-and-relationships .small-box{
+	background: #de7792;
 }
 
 .unauthenticated-homepage#personal-development{
@@ -3309,6 +3336,12 @@ select::-ms-expand {
 	background: -o-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
 	background: -ms-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
 	background: linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff573c', endColorstr='#ff2f5f'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff573c', endColorstr='#ff2f5f')"; /* IE8 */
+}
+
+.unauthenticated-homepage#personal-development .small-box{
+	background: #d1887a;
 }
 
 .unauthenticated-homepage#language{
@@ -3317,6 +3350,12 @@ select::-ms-expand {
 	background: -o-linear-gradient(left, #ff8e05, #ff7f13, #ff632f);
 	background: -ms-linear-gradient(left, #ff8e05, #ff7f13, #ff632f);
 	background: linear-gradient(left, #ff8e05, #ff7f13, #ff632f);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff8e05', endColorstr='#ff632f'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff8e05', endColorstr='#ff632f')"; /* IE8 */
+}
+
+.unauthenticated-homepage#language .small-box{
+	background: #d3974c;
 }
 
 .unauthenticated-homepage#money{
@@ -3325,6 +3364,12 @@ select::-ms-expand {
 	background: -o-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
 	background: -ms-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
 	background: linear-gradient(left, #f3be0d, #f7b009, #ff9501);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#f3be0d', endColorstr='#ff9501'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#f3be0d', endColorstr='#ff9501')"; /* IE8 */
+}
+
+.unauthenticated-homepage#money .small-box{
+	background: #feb441;
 }
 
 .unauthenticated-homepage#health-and-fitness{
@@ -3333,6 +3378,12 @@ select::-ms-expand {
 	background: -o-linear-gradient(left, #88ef5d, #8ddd45, #91ce31);
 	background: -ms-linear-gradient(left, #88ef5d, #8ddd45, #91ce31);
 	background: linear-gradient(left, #88ef5d, #8ddd45, #91ce31);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#88ef5d', endColorstr='#91ce31'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#88ef5d', endColorstr='#91ce31')"; /* IE8 */
+}
+
+.unauthenticated-homepage#health-and-fitness .small-box{
+	background: #90c47b;
 }
 
 .unauthenticated-homepage#business-and-marketing{
@@ -3341,6 +3392,12 @@ select::-ms-expand {
 	background: -o-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
 	background: -ms-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
 	background: linear-gradient(left, #7decff, #3e9efa, #1e77f7);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#7decff', endColorstr='#1e77f7'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#7decff', endColorstr='#1e77f7')"; /* IE8 */
+}
+
+.unauthenticated-homepage#business-and-marketing .small-box{
+	background: #4db9cc;
 }
 
 .unauthenticated-homepage#photography-and-video{
@@ -3349,7 +3406,63 @@ select::-ms-expand {
 	background: -o-linear-gradient(left, #0d5a90, #11466b, #172937);
 	background: -ms-linear-gradient(left, #0d5a90, #11466b, #172937);
 	background: linear-gradient(left, #0d5a90, #11466b, #172937);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0d5a90', endColorstr='#172937'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0d5a90', endColorstr='#172937')"; /* IE8 */
 }
+
+.unauthenticated-homepage#photography-and-video .small-box{
+	background: #355d79;
+}
+
+.unauthenticated-homepage#the-world-is-yours{
+	padding: 152px 0 95px;
+}
+
+.unauthenticated-homepage#the-world-is-yours h3{
+	color: #18222b;
+	font-size: 42px;
+	font-weight: 200;
+	text-align: center;
+	margin: 0 0 35px;
+}
+
+.unauthenticated-homepage#the-world-is-yours h3 span{
+	display: block;
+	margin-top: 15px;
+	font-size: 14px;
+	color: #849598;
+}
+
+.unauthenticated-homepage#the-world-is-yours a.sign-up{
+	font-size: 12px;
+	color: #fff;
+	text-align: center;
+	height: 42px;
+	line-height: 42px;
+	width: 103px;
+	display: block;
+	border-radius: 5px;
+	background: #09b2ea;
+	margin: 0 auto 38px;
+}
+
+.unauthenticated-homepage#the-world-is-yours a.sign-up:hover{
+	background: #0c82bb;
+	text-decoration: none;
+}
+
+.unauthenticated-homepage#the-world-is-yours span.get-reward{
+	display: block;
+	width: 245px;
+	height: 45px;
+	text-align: center;
+	font-size: 14px;
+	color: #18222b;
+	margin: 0 auto;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-16.png') no-repeat center top;
+}
+	
+
 /************* Page Footer **************/
 footer{
 	clear:both;

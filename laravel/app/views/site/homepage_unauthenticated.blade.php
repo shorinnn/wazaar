@@ -41,7 +41,7 @@
             	<h3>{{trans('site/homepage.thing-of-yesterday')}}
                 	<span>This is the new way to upgrade yourself. Save time and money, and get a promotion.</span>
                 </h3>
-                <p>
+                        <p class="description">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. Lorem ipsum dolor sit amet, 
                 consectetur adipisicing elit, sed do 
@@ -59,7 +59,7 @@
             	<div class="row">
                 	<div class="col-md-6">
                     	<h3>IT & Tech</h3>
-                        <p>
+                        <p class="description">
                         Get the skills you need to become an IT worker or build your dreams.
                         </p>
                         <a href="#" class="learn-more">Learn more</a>
@@ -90,7 +90,7 @@
                     </div>
                 	<div class="col-md-6">
                     	<h3>Music & Arts</h3>
-                        <p>
+                        <p class="description">
                         Keep the weight off and stay slim, or become like Brad Pitt!
                         </p>
                         <a href="#" class="learn-more">Learn more</a>
@@ -99,10 +99,12 @@
                     </div>
                 </div>
             	<div class="row">
-                	<div class="col-md-4 col-sm-6 col-xs-12">
-                    
-                    </div>
-
+                    <!-- include the 3 course boxes -->
+                    <?php $category = CourseCategory::where('name','Beauty')->first();?>
+                    @foreach($category->courses()->orderBy('id','Desc')->where('featured',0)->take(3)->get() as $course)
+                        {{ View::make('courses.course_box')->with(compact('course')) }}
+                    @endforeach
+                    <!-- end of the 3 course boxes -->
                 </div>
             </div>
         </section>
@@ -111,7 +113,7 @@
             	<div class="row">
                 	<div class="col-md-6">
                     	<h3>Love & Relationships</h3>
-                        <p>
+                        <p class="description">
                         Get the partner of your dreams, or turn your relationship around.
                         </p>
                         <a href="#" class="learn-more">Learn more</a>
@@ -124,9 +126,12 @@
                     </div>
                 </div>
             	<div class="row">
-                	<div class="col-md-4 col-sm-6 col-xs-12">
-                    
-                    </div>
+                    <!-- include the 3 course boxes -->
+                    <?php $category = CourseCategory::where('name','Beauty')->first();?>
+                    @foreach($category->courses()->orderBy('id','Desc')->where('featured',0)->take(3)->get() as $course)
+                        {{ View::make('courses.course_box')->with(compact('course')) }}
+                    @endforeach
+                    <!-- end of the 3 course boxes -->
                 </div>
             </div>
         </section>
@@ -139,7 +144,7 @@
                     </div>
                 	<div class="col-md-6">
                     	<h3>Personal Development</h3>
-                        <p>
+                        <p class="description">
                         Master life and be happier than you’ve ever been.  Health, prosperity and happiness.
                         </p>
                         <a href="#" class="learn-more">Learn more</a>
@@ -148,9 +153,12 @@
                     </div>
                 </div>
             	<div class="row">
-                	<div class="col-md-4 col-sm-6 col-xs-12">
-                    
-                    </div>
+                    <!-- include the 3 course boxes -->
+                    <?php $category = CourseCategory::where('name','Beauty')->first();?>
+                    @foreach($category->courses()->orderBy('id','Desc')->where('featured',0)->take(3)->get() as $course)
+                        {{ View::make('courses.course_box')->with(compact('course')) }}
+                    @endforeach
+                    <!-- end of the 3 course boxes -->
                 </div>
             </div>
         </section>
@@ -159,7 +167,7 @@
             	<div class="row">
                 	<div class="col-md-6">
                     	<h3>Language</h3>
-                        <p>
+                        <p class="description">
                         Learn a new language. It’s never been easier.
                         </p>
                         <a href="#" class="learn-more">Learn more</a>
@@ -172,9 +180,12 @@
                     </div>
                 </div>
             	<div class="row">
-                	<div class="col-md-4 col-sm-6 col-xs-12">
-                    
-                    </div>
+                    <!-- include the 3 course boxes -->
+                    <?php $category = CourseCategory::where('name','Beauty')->first();?>
+                    @foreach($category->courses()->orderBy('id','Desc')->where('featured',0)->take(3)->get() as $course)
+                        {{ View::make('courses.course_box')->with(compact('course')) }}
+                    @endforeach
+                    <!-- end of the 3 course boxes -->
                 </div>
             </div>
         </section>
@@ -187,7 +198,7 @@
                     </div>
                 	<div class="col-md-6">
                     	<h3>Money</h3>
-                        <p>
+                        <p class="description">
                         Learn how to make the best use of your money and let it grow for you!
                         </p>
                         <a href="#" class="learn-more">Learn more</a>
@@ -196,9 +207,12 @@
                     </div>
                 </div>
             	<div class="row">
-                	<div class="col-md-4 col-sm-6 col-xs-12">
-                    
-                    </div>
+                    <!-- include the 3 course boxes -->
+                    <?php $category = CourseCategory::where('name','Beauty')->first();?>
+                    @foreach($category->courses()->orderBy('id','Desc')->where('featured',0)->take(3)->get() as $course)
+                        {{ View::make('courses.course_box')->with(compact('course')) }}
+                    @endforeach
+                    <!-- end of the 3 course boxes -->
                 </div>
             </div>
         </section>
@@ -207,7 +221,7 @@
             	<div class="row">
                 	<div class="col-md-6">
                     	<h3>Health & Fitness</h3>
-                        <p>
+                        <p class="description">
                         Keep the weight off and stay slim, or become like Brad Pitt!
                         </p>
                         <a href="#" class="learn-more">Learn more</a>
@@ -220,9 +234,12 @@
                     </div>
                 </div>
             	<div class="row">
-                	<div class="col-md-4 col-sm-6 col-xs-12">
-                    
-                    </div>
+                    <!-- include the 3 course boxes -->
+                    <?php $category = CourseCategory::where('name','Beauty')->first();?>
+                    @foreach($category->courses()->orderBy('id','Desc')->where('featured',0)->take(3)->get() as $course)
+                        {{ View::make('courses.course_box')->with(compact('course')) }}
+                    @endforeach
+                    <!-- end of the 3 course boxes -->
                 </div>
             </div>
         </section>
@@ -235,7 +252,7 @@
                     </div>
                 	<div class="col-md-6">
                     	<h3>Business & Marketing</h3>
-                        <p>
+                        <p class="description">
                         Start your business right
                         </p>
                         <a href="#" class="learn-more">Learn more</a>
@@ -244,9 +261,12 @@
                     </div>
                 </div>
             	<div class="row">
-                	<div class="col-md-4 col-sm-6 col-xs-12">
-                    
-                    </div>
+                    <!-- include the 3 course boxes -->
+                    <?php $category = CourseCategory::where('name','Beauty')->first();?>
+                    @foreach($category->courses()->orderBy('id','Desc')->where('featured',0)->take(3)->get() as $course)
+                        {{ View::make('courses.course_box')->with(compact('course')) }}
+                    @endforeach
+                    <!-- end of the 3 course boxes -->
                 </div>
             </div>
         </section>
@@ -255,7 +275,7 @@
             	<div class="row">
                 	<div class="col-md-6">
                     	<h3>Photography and Video</h3>
-                        <p>
+                        <p class="description">
                         Learn how to make the best use of your money and let it grow for you!
                         </p>
                         <a href="#" class="learn-more">Learn more</a>
@@ -268,9 +288,23 @@
                     </div>
                 </div>
             	<div class="row">
-                	<div class="col-md-4 col-sm-6 col-xs-12">
-                    
-                    </div>
+                    <!-- include the 3 course boxes -->
+                    <?php $category = CourseCategory::where('name','Beauty')->first();?>
+                    @foreach($category->courses()->orderBy('id','Desc')->where('featured',0)->take(3)->get() as $course)
+                        {{ View::make('courses.course_box')->with(compact('course')) }}
+                    @endforeach
+                    <!-- end of the 3 course boxes -->
+                </div>
+            </div>
+        </section>
+        <section class="container unauthenticated-homepage" id="the-world-is-yours">
+        	<div class="row">
+            	<div class="col-md-12">
+                	<h3>The world is yours to conquer.
+                    	<span>Create yourself.</span>
+                    </h3>
+                    <a href="#" class="sign-up">Sign up now</a>
+                    <span class="get-reward">Get 500¥ Credit!</span>
                 </div>
             </div>
         </section>
