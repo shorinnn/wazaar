@@ -40,8 +40,8 @@ var videoUploader = {
         $.ajax({
             dataType: "json",
             url: '/video/' + $videoId + '/json',
-            success: function ($jsonObj){
-                $callBack($jsonObj);
+            success: function ($video){
+                $callBack($video);
             }
         });
     }

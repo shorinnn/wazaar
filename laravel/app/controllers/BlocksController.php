@@ -75,5 +75,31 @@ class BlocksController extends \BaseController {
             return json_encode($response);
         }
 
+     /**
+     * Add Course lesson video form. Loaded via ajax
+     * @param $lessonId
+     */
+    public function video($lessonId)
+    {
+        $block = Block::firstOrCreate(['lesson_id' => $lessonId, 'type' => 'video']);
+        $video = null;
+        if (is_numeric($block->content)){
+            $video = Video::getByIdAndPreset($block->content);
+        }
+
+
+        return View::make('courses.blocks.video')->with(compact('block', 'lessonId', 'video'));
+    }
+
+    public function saveVideo($lessonId)
+    {
+        if ($lessonId AND Input::has('blockId')){
+            $blockId = Input::get('blockId');
+            $block = Block::find($blockId);
+            $block->content = Input::get('videoId');
+            $block->save();
+        }
+    }
+
 
 }

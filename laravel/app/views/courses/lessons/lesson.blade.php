@@ -19,8 +19,11 @@
     
     <div class="lesson-options lesson-options-{{$lesson->id}} row">
         <div class="col-lg-3">
-            <i class="fa fa-film"></i>
-            <p>Video</p>
+            <a href='#' class='load-remote' data-target='.action-panel-{{$lesson->id}}'
+               data-url='{{action('BlocksController@video', [$lesson->id] )}}' data-callback='enableLessonRTE'>
+                <i class="fa fa-film"></i>
+                <p>Video</p>
+            </a>
         </div>
         <div class="col-lg-3">
             <a href='#' class='load-remote' data-target='.action-panel-{{$lesson->id}}' 

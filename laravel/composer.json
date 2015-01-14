@@ -17,7 +17,8 @@
 		"fabpot/goutte": "~2.0",
 		"codeception/codeception": "*",
 		"intervention/image": "~2.0",
-                "felixkiss/uniquewith-validator": "1.1.*"
+                "felixkiss/uniquewith-validator": "1.1.*",
+		"jenssegers/agent": "2.1.4"
 	},
 	"autoload": {
 		"classmap": [
