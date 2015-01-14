@@ -6,7 +6,8 @@
 $(document).ready(function(){
     $(".profile-name > li").removeClass("activate-dropdown");
     $('body').delegate('.slide-toggler', 'click', slideToggle);
-    $('body').delegate('a.load-remote', 'click', loadRemote);    
+    $('body').delegate('a.load-remote', 'click', loadRemote);  
+    _.setTranslation( js_translation_map );
 });
 
 /**
@@ -94,7 +95,7 @@ function loadRemote(e){
         callback = elem.attr('data-callback');  
     }
     
-    $(target).html('loading...<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
     $(target).load(url, function(){
         if( typeof(callback)!= 'undefined'){
             window[callback](e);

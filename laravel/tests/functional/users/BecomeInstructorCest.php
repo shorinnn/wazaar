@@ -8,9 +8,7 @@ class BecomeInstructorCest{
     }
     
     public function seeAuthLinks(FunctionalTester $I){
-        $I->amOnPage('/');
-        $I->click('Get Started');
-        $I->seeCurrentUrlEquals('/instructors/become-instructor');
+        $I->amOnPage('/instructors/become-instructor');
         $I->see('Register');
         $I->see('Login');
     }

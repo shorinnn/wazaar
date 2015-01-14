@@ -20,4 +20,5 @@ return array(
     'add_file' => 'Add File',
     'details' => 'Details',
     'lesson_price' => 'Lesson Price',
+    'new_file' => 'New file',
 );
