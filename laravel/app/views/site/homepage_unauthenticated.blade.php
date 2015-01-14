@@ -4,9 +4,9 @@
         	<div class="container">
             	<div class="row">
                 	<div class="col-md-12">
-                    	<a href="#" class="logo">
+                    	<span class="logo">
                         	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/logged-out-home-logo.png" alt="">
-                        </a>
+                        </span>
                         <div class="color-bubbles">
                         	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/color-bubbles.png" alt="" class="img-responsive">
                         </div>
@@ -33,7 +33,7 @@
                 </div>
             </div>
         </section>
-        <section class="unauthenticated-homepage">
+        <section class="unauthenticated-homepage parallax-1">
         	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image5.jpg" class="img-responsive">
         </section>
         <section class="school-is-a-thing unauthenticated-homepage clearfix">
@@ -51,7 +51,223 @@
             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image6.jpg" alt="" 
             class="hidden-xs img-responsive">
         </section>
-        <section class="unauthenticated-homepage">
+        <section class="unauthenticated-homepage parallax-2">
         	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image7.jpg" class="img-responsive">
+        </section>
+        <section class="container-fluid unauthenticated-homepage" id="it-and-tech">
+        	<div class="container course-listing-container">
+            	<div class="row">
+                	<div class="col-md-6">
+                    	<h3>IT & Tech</h3>
+                        <p>
+                        Get the skills you need to become an IT worker or build your dreams.
+                        </p>
+                        <a href="#" class="learn-more">Learn more</a>
+                        <i class="fa fa-arrow-down fa-1"></i>
+                        <a href="#" class="sign-up">Sign up and earn ¥500 credit</a>
+                    </div>
+                	<div class="col-md-6 hidden-xs">
+                    	<img class="hidden-xs img-responsive right"
+                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-7.png" alt="">
+                    </div>
+                </div>
+            	<div class="row">
+                	<div class="col-md-4 col-sm-6 col-xs-12">
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid unauthenticated-homepage" id="music-and-arts">
+        	<div class="container course-listing-container">
+            	<div class="row">
+                	<div class="col-md-6 hidden-xs">
+                    	<img class="hidden-xs img-responsive left"
+                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-8.png" alt="">
+                    </div>
+                	<div class="col-md-6">
+                    	<h3>Music & Arts</h3>
+                        <p>
+                        Keep the weight off and stay slim, or become like Brad Pitt!
+                        </p>
+                        <a href="#" class="learn-more">Learn more</a>
+                        <i class="fa fa-arrow-down fa-1"></i>
+                        <a href="#" class="sign-up">Sign up and earn ¥500 credit</a>
+                    </div>
+                </div>
+            	<div class="row">
+                	<div class="col-md-4 col-sm-6 col-xs-12">
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid unauthenticated-homepage" id="love-and-relationships">
+        	<div class="container course-listing-container">
+            	<div class="row">
+                	<div class="col-md-6">
+                    	<h3>Love & Relationships</h3>
+                        <p>
+                        Get the partner of your dreams, or turn your relationship around.
+                        </p>
+                        <a href="#" class="learn-more">Learn more</a>
+                        <i class="fa fa-arrow-down fa-1"></i>
+                        <a href="#" class="sign-up">Sign up and earn ¥500 credit</a>
+                    </div>
+                	<div class="col-md-6 hidden-xs">
+                    	<img class="hidden-xs img-responsive right"
+                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-9.png" alt="">
+                    </div>
+                </div>
+            	<div class="row">
+                	<div class="col-md-4 col-sm-6 col-xs-12">
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid unauthenticated-homepage" id="personal-development">
+        	<div class="container course-listing-container">
+            	<div class="row">
+                	<div class="col-md-6 hidden-xs">
+                    	<img class="hidden-xs img-responsive left"
+                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-10.png" alt="">
+                    </div>
+                	<div class="col-md-6">
+                    	<h3>Personal Development</h3>
+                        <p>
+                        Master life and be happier than you’ve ever been.  Health, prosperity and happiness.
+                        </p>
+                        <a href="#" class="learn-more">Learn more</a>
+                        <i class="fa fa-arrow-down fa-1"></i>
+                        <a href="#" class="sign-up">Sign up and earn ¥500 credit</a>
+                    </div>
+                </div>
+            	<div class="row">
+                	<div class="col-md-4 col-sm-6 col-xs-12">
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid unauthenticated-homepage" id="language">
+        	<div class="container course-listing-container">
+            	<div class="row">
+                	<div class="col-md-6">
+                    	<h3>Language</h3>
+                        <p>
+                        Learn a new language. It’s never been easier.
+                        </p>
+                        <a href="#" class="learn-more">Learn more</a>
+                        <i class="fa fa-arrow-down fa-1"></i>
+                        <a href="#" class="sign-up">Sign up and earn ¥500 credit</a>
+                    </div>
+                	<div class="col-md-6 hidden-xs">
+                    	<img class="hidden-xs img-responsive right"
+                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-11.png" alt="">
+                    </div>
+                </div>
+            	<div class="row">
+                	<div class="col-md-4 col-sm-6 col-xs-12">
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid unauthenticated-homepage" id="money">
+        	<div class="container course-listing-container">
+            	<div class="row">
+                	<div class="col-md-6 hidden-xs">
+                    	<img class="hidden-xs img-responsive left"
+                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-12.png" alt="">
+                    </div>
+                	<div class="col-md-6">
+                    	<h3>Money</h3>
+                        <p>
+                        Learn how to make the best use of your money and let it grow for you!
+                        </p>
+                        <a href="#" class="learn-more">Learn more</a>
+                        <i class="fa fa-arrow-down fa-1"></i>
+                        <a href="#" class="sign-up">Sign up and earn ¥500 credit</a>
+                    </div>
+                </div>
+            	<div class="row">
+                	<div class="col-md-4 col-sm-6 col-xs-12">
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid unauthenticated-homepage" id="health-and-fitness">
+        	<div class="container course-listing-container">
+            	<div class="row">
+                	<div class="col-md-6">
+                    	<h3>Health & Fitness</h3>
+                        <p>
+                        Keep the weight off and stay slim, or become like Brad Pitt!
+                        </p>
+                        <a href="#" class="learn-more">Learn more</a>
+                        <i class="fa fa-arrow-down fa-1"></i>
+                        <a href="#" class="sign-up">Sign up and earn ¥500 credit</a>
+                    </div>
+                	<div class="col-md-6 hidden-xs">
+                    	<img class="hidden-xs img-responsive right"
+                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-13.png" alt="">
+                    </div>
+                </div>
+            	<div class="row">
+                	<div class="col-md-4 col-sm-6 col-xs-12">
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid unauthenticated-homepage" id="business-and-marketing">
+        	<div class="container course-listing-container">
+            	<div class="row">
+                	<div class="col-md-6 hidden-xs">
+                    	<img class="hidden-xs img-responsive left"
+                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-14.png" alt="">
+                    </div>
+                	<div class="col-md-6">
+                    	<h3>Business & Marketing</h3>
+                        <p>
+                        Start your business right
+                        </p>
+                        <a href="#" class="learn-more">Learn more</a>
+                        <i class="fa fa-arrow-down fa-1"></i>
+                        <a href="#" class="sign-up">Sign up and earn ¥500 credit</a>
+                    </div>
+                </div>
+            	<div class="row">
+                	<div class="col-md-4 col-sm-6 col-xs-12">
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid unauthenticated-homepage" id="photography-and-video">
+        	<div class="container course-listing-container">
+            	<div class="row">
+                	<div class="col-md-6">
+                    	<h3>Photography and Video</h3>
+                        <p>
+                        Learn how to make the best use of your money and let it grow for you!
+                        </p>
+                        <a href="#" class="learn-more">Learn more</a>
+                        <i class="fa fa-arrow-down fa-1"></i>
+                        <a href="#" class="sign-up">Sign up and earn ¥500 credit</a>
+                    </div>
+                	<div class="col-md-6 hidden-xs">
+                    	<img class="hidden-xs img-responsive right"
+                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-15.png" alt="">
+                    </div>
+                </div>
+            	<div class="row">
+                	<div class="col-md-4 col-sm-6 col-xs-12">
+                    
+                    </div>
+                </div>
+            </div>
         </section>
     @stop
