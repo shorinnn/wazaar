@@ -47,6 +47,7 @@ function formAjaxSubmit(e){
  * @param {Event} e
  */
 function submittedFormButton(e){
+    console.log( $(e.target) );
     $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
     $(e.target).find('[type=submit]').attr('disabled', 'disabled');
     $(e.target).find('[type=submit]').html('Processing...<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
@@ -139,7 +140,7 @@ function cloneInput(e){
 
     if( !charcheck.test(keychar) ) return;   
     $elem = $(e.target);
-    if( $.trim($elem.val()) == '' && $elem.next('.clonable').length==0 ){
+    if( $.trim($elem.val()) == '' && $elem.parent().next('.clonable').length==0 ){
         var $destination = $elem.parent();
         var clone = $elem.clone();
         clone.removeAttr('id');
@@ -242,7 +243,7 @@ function enableFileUploader($uploader){
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
                 callback = $uploader.attr('data-add-callback');
-                if( typeof(callback) !=undefined ){
+                if( typeof(callback) !='undefined' ){
                     return window[callback](e, data);
                 }
             }).on('fileuploadprogress', function (e, data) {
@@ -265,4 +266,9 @@ function enableFileUploader($uploader){
                     window[callback](e, data);
                 }
             });
+}
+
+function formSaved(){
+    savingAnimation(0);
+    savingAnimation(1);
 }

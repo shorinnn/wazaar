@@ -56,7 +56,7 @@ class CoursesController extends \BaseController {
             }
             $difficulties = CourseDifficulty::lists('name', 'id');
             $categories = CourseCategory::lists('name', 'id');
-            $subcategories = CourseSubcategory::arrayWithParent();
+            $subcategories = CourseSubcategory::where('course_category_id',$course->course_category_id)->lists('name','id');
             $instructor = Instructor::find(Auth::user()->id);
             $images = $instructor->coursePreviewImages;
             $bannerImages = $instructor->courseBannerImages;
@@ -81,16 +81,24 @@ class CoursesController extends \BaseController {
             $course->sale_ends_on = (Input::get('sale_ends_on')) ?  Input::get('sale_ends_on') : null;
             if($course->updateUniques()){
                 if (Input::hasFile('preview_image')){
-                    if(!$course->upload_preview( Input::file('preview_image')->getRealPath() )){
+                    $img = $course->upload_preview( Input::file('preview_image')->getRealPath()); 
+                    if( !$img ){
                         return Redirect::action('CoursesController@edit', $course->slug)
                         ->withError( trans('courses/general.course_created_image_error') );
+                    }
+                    else{
+                        return json_encode(['status'=>'success', 'html'=> View::make('courses.preview_image')->with(compact('img'))->render() ]);
                     }
                 }
                 // upload banner image
                 if (Input::hasFile('banner_image')){
-                    if(!$course->upload_banner( Input::file('banner_image')->getRealPath() )){
+                    $img = $course->upload_banner( Input::file('banner_image')->getRealPath());
+                    if(!$img ){
                         return Redirect::action('CoursesController@edit', $course->slug)
                         ->withError( trans('courses/general.course_created_image_error') );
+                    }
+                    else{
+                        return json_encode(['status'=>'success', 'html'=> View::make('courses.preview_image')->with(compact('img'))->render() ]);
                     }
                 }
                 if(Request::ajax()){

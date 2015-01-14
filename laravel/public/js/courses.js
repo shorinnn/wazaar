@@ -165,3 +165,13 @@ function limitLessonFiles(e, data){
         return false;
     }
 }
+
+function courseImageUploaded(e, data){
+    var progressbar = $(e.target).attr('data-progress-bar');
+    $(progressbar).find('span').html('');
+    $(progressbar).css('width', 0 + '%');
+    target = $(e.target).attr('data-target');
+    result = JSON.parse(data.result);
+    $(target).append(result.html);
+    $(target).find('[type=radio]').click();
+}
