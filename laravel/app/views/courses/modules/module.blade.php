@@ -1,5 +1,5 @@
 <li id="module-{{ $module->id }}">
-    Module <span class="module-order">{{ $module->order }}</span>
+    {{ trans('general.module') }} <span class="module-order">{{ $module->order }}</span>
     <input type="hidden" class="module-order ajax-updatable" value="{{$module->order}}"
            data-url='{{action('ModulesController@update', [$module->course->id, $module->id] )}}' data-name='order' /> 
     
@@ -18,6 +18,6 @@
     <form method='post' class='ajax-form' id="modules-form" data-callback='addLesson'
       action='{{action('LessonsController@store', $module->id)}}'>
         <input type='hidden' name='_token' value='{{ csrf_token() }}' />
-        <button type='submit' class='btn btn-primary'>Add Lesson</button>
+        <button type='submit' class='btn btn-primary'>{{ trans('crud/labels.add_lesson') }}</button>
     </form>
 </li>
