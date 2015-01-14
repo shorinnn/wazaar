@@ -25,7 +25,6 @@ function formAjaxSubmit(e){
     $.post(form.attr('action'), form.serialize(), function(result){
         result = JSON.parse(result);
         if(result.status=='error'){
-            console.log(result.errors);
             form.append('<p class="alert alert-danger ajax-errors">'+result.errors+'</p>');
             restoreSubmitLabel(form);
             return false;
@@ -47,7 +46,6 @@ function formAjaxSubmit(e){
  * @param {Event} e
  */
 function submittedFormButton(e){
-    console.log( $(e.target) );
     $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
     $(e.target).find('[type=submit]').attr('disabled', 'disabled');
     $(e.target).find('[type=submit]').html('Processing...<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
@@ -248,7 +246,6 @@ function enableFileUploader($uploader){
                 }
             }).on('fileuploadprogress', function (e, data) {
                 var $progress = parseInt(data.loaded / data.total * 100, 10);
-                console.log($progress);
                 $(progressbar).css('width', $progress + '%');
                 $(progressbar).find('span').html($progress);
                 if($progress=='100') $(progressbar).find('span').html('Upload complete. Processing <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
@@ -268,7 +265,22 @@ function enableFileUploader($uploader){
             });
 }
 
+/**
+ * Displays saving animation after ajax form is submitted
+ * @method formSaved
+ */
 function formSaved(){
     savingAnimation(0);
     savingAnimation(1);
+}
+
+/**
+ * Converts the supplied element into a slider object
+ * @param {String} selector The css selector of the element to be converted
+ */
+function enableSlider(selector){
+    var label = $(selector).attr('data-label');
+    $(selector).slider().on('slide', function(ev){
+            $(label).html(ev.value+"%");
+      });
 }

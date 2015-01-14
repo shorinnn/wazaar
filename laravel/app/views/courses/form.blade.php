@@ -121,12 +121,12 @@
         <div>Description <div class="description-box">{{ Form::textarea('description') }}</div></div>    
         <div>Price {{ Form::text('price') }}</div>    
         <div>Affiliate Percentage 
-            <!--<div class="custom-dropdown affiliate-percentage">-->
+            
                 <input type="text" class='span2' name='affiliate_percentage' id='affiliate_percentage' value="{{ $course->affiliate_percentage }}" data-slider-min="0" data-slider-max="70" 
                        data-slider-step="1" data-slider-value="{{ $course->affiliate_percentage }}" data-slider-orientation="horizontal" 
-                       data-slider-selection="after" data-slider-tooltip="show" />
+                       data-slider-selection="after" data-slider-tooltip="show" data-label="#affiliate_percentage_output" />
                 <span id='affiliate_percentage_output'>{{ $course->affiliate_percentage }}%</span>
-                <!--{{ Form::select('affiliate_percentage', range(0,70)) }}</div>%</div>-->    
+                
         <div>Discount
                 {{ Form::text('sale') }}
                 <div class="custom-dropdown discount">{{ Form::select('sale_kind', ['amount' => '$', 'percentage' => '%'] ) }}</div>
@@ -145,13 +145,10 @@
 <script src="{{url('plugins/uploader/js/jquery.fileupload.js')}}"></script>
 <script src="{{url('plugins/slider/js/bootstrap-slider.js')}}"></script>
 <script type="text/javascript">
-
         $(function (){
             enableFileUploader( $('#upload-preview-image') );
             enableFileUploader( $('#upload-banner-image') );
-            $('#affiliate_percentage').slider().on('slide', function(ev){
-                    $('#affiliate_percentage_output').html(ev.value+"%");
-              });
+            enableSlider('#affiliate_percentage');
         });
 </script>
 @stop

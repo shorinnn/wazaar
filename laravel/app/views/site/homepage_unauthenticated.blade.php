@@ -72,9 +72,12 @@
                     </div>
                 </div>
             	<div class="row">
-                	<div class="col-md-4 col-sm-6 col-xs-12">
-                    
-                    </div>
+                    <!-- include the 3 course boxes -->
+                    <?php $category = CourseCategory::where('name','Beauty')->first();?>
+                    @foreach($category->courses()->orderBy('id','Desc')->where('featured',0)->take(3)->get() as $course)
+                        {{ View::make('courses.course_box')->with(compact('course')) }}
+                    @endforeach
+                    <!-- end of the 3 course boxes -->
                 </div>
             </div>
         </section>
@@ -99,6 +102,7 @@
                 	<div class="col-md-4 col-sm-6 col-xs-12">
                     
                     </div>
+
                 </div>
             </div>
         </section>
