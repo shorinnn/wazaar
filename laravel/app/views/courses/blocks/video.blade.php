@@ -2,7 +2,7 @@
     <div id="video-player-container">
 
             <div id="notify-warning-new-video" class="alert alert-warning
-                @if ($video->transcode_status == Video::STATUS_COMPLETE)
+                @if (@$video->transcode_status == Video::STATUS_COMPLETE)
                     hide
                 @endif
                     "><strong>Note: </strong>Your video will appear here when it's processed successfully</div>
