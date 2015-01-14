@@ -110,21 +110,21 @@
                    $notificationItem = $notificationItem.replace('_FILENAME_', $data.files[0].name);
                    $('.list-group').append($notificationItem);
                    if ($data.result.videoId !== undefined) {
-                       $intervalId = setInterval (function() { videoUploader.getVideo($data.result.videoId, function ($jsonObj){
-                           if ($jsonObj.formats.length > 0){
-                               for(var $i = 0; $i < $jsonObj.formats.length; $i++){
+                       $intervalId = setInterval (function() { videoUploader.getVideo($data.result.videoId, function ($video){
+                           if ($video.formats.length > 0){
+                               for(var $i = 0; $i < $video.formats.length; $i++){
                                    $row = '<tr>' +
-                                   '<td><img src="'+ $jsonObj.formats[$i].thumbnail +'"/></td>' +
-                                   '<td><video controls><source src="'+ $jsonObj.formats[$i].video_url +'" type="video/mp4"></video></td>' +
-                                   '<td>'+ $jsonObj.formats[$i].duration +'</td>' +
-                                   '<td>'+ $jsonObj.formats[$i].resolution +'</td>'+
+                                   '<td><img src="'+ $video.formats[$i].thumbnail +'"/></td>' +
+                                   '<td><video controls><source src="'+ $video.formats[$i].video_url +'" type="video/mp4"></video></td>' +
+                                   '<td>'+ $video.formats[$i].duration +'</td>' +
+                                   '<td>'+ $video.formats[$i].resolution +'</td>'+
                                    '</tr>';
                                    $('#tbody-video-formats').append($row);
                                }
 
                                $('#processing-message').hide();
                                $('#table-video-formats').removeClass('hide');
-                               clearInterval(Video.IntervalId);
+                               clearInterval($intervalId);
                            }
                        }) }, 5000);
                    }

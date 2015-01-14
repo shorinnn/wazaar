@@ -121,12 +121,13 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-                'Zizaco\Confide\ServiceProvider',
-                'Zizaco\Entrust\EntrustServiceProvider',
-                'Artdarek\OAuth\OAuthServiceProvider',
-                'Aws\Laravel\AwsServiceProvider',
-                'Intervention\Image\ImageServiceProvider',
-                'Felixkiss\UniqueWithValidator\UniqueWithValidatorServiceProvider',
+		'Zizaco\Confide\ServiceProvider',
+		'Zizaco\Entrust\EntrustServiceProvider',
+		'Artdarek\OAuth\OAuthServiceProvider',
+		'Aws\Laravel\AwsServiceProvider',
+		'Intervention\Image\ImageServiceProvider',
+		'Felixkiss\UniqueWithValidator\UniqueWithValidatorServiceProvider',
+		'Jenssegers\Agent\AgentServiceProvider',
             
 
 	),
@@ -156,7 +157,6 @@ return array(
 	*/
 
 	'aliases' => array(
-
 		'App'               => 'Illuminate\Support\Facades\App',
 		'Artisan'           => 'Illuminate\Support\Facades\Artisan',
 		'Auth'              => 'Illuminate\Support\Facades\Auth',
@@ -195,11 +195,12 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-                'Confide'           => 'Zizaco\Confide\Facade',
-                'Entrust'           => 'Zizaco\Entrust\EntrustFacade',
-                'OAuth'             => 'Artdarek\OAuth\Facade\OAuth',
-                'AWS'               => 'Aws\Laravel\AwsFacade',
-                'Image' => 'Intervention\Image\Facades\Image',
+		'Confide'           => 'Zizaco\Confide\Facade',
+		'Entrust'           => 'Zizaco\Entrust\EntrustFacade',
+		'OAuth'             => 'Artdarek\OAuth\Facade\OAuth',
+		'AWS'               => 'Aws\Laravel\AwsFacade',
+		'Image' 			=> 'Intervention\Image\Facades\Image',
+		'Agent'             => 'Jenssegers\Agent\Facades\Agent',
 	),
 
 );

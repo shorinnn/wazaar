@@ -52,20 +52,20 @@
 <h1 class='icon'>{{$course->name}}</h1>    
 <div>
     <div class="col-lg-6">
-        By the end of this course, your students will be able to...
+        {{ trans('courses/create.by_the_end') }}
         @foreach( json2Array($course->what_will_you_achieve) as $skill)
             <p>{{ $skill }}</p>
         @endforeach
     </div>
     <div class="col-lg-6">
-        This is for those who...
+        {{ trans('courses/curriculum.for_those_who') }}
         @foreach( json2Array($course->who_is_this_for) as $for)
             <p>{{ $for }}</p>
         @endforeach
     </div>
 </div>
-<h3>Plan out your curriculum</h3>
-<h4>Outline your modules and lessons that your students will go through.</h4>
+<h3>{{ trans('courses/curriculum.plan_out') }}</h3>
+<h4>{{ trans('courses/curriculum.outline_modules') }}</h4>
 <ul id="modules-list">
     @foreach($course->modules()->orderBy('order','ASC')->get() as $module)
         {{ View::make('courses.modules.module')->with(compact('module')) }}
@@ -75,12 +75,13 @@
 <form method='post' class='ajax-form' id="modules-form" data-callback='addModule'
       action='{{ action('ModulesController@store',[$course->id] )}}'>
     <input type='hidden' name='_token' value='{{ csrf_token() }}' />
-    <button type='submit' class='btn btn-primary'>Add Module</button>
+    <button type='submit' class='btn btn-primary'>{{ trans('crud/labels.add_module') }}</button>
 </form>
 @stop
 
 @section('extra_js')
-    <script src="{{url('plugins/uploader/js/vendor/jquery.ui.widget.js')}}"></script>
-    <script src="{{url('plugins/uploader/js/jquery.iframe-transport.js')}}"></script>
-    <script src="{{url('plugins/uploader/js/jquery.fileupload.js')}}"></script>
+    <script src="{{url('plugins/uploader/js/vendor/jquery.ui.widget.js')}}" type="text/javascript"></script>
+    <script src="{{url('plugins/uploader/js/jquery.iframe-transport.js')}}" type="text/javascript"></script>
+    <script src="{{url('plugins/uploader/js/jquery.fileupload.js')}}" type="text/javascript"></script>
+    <script src="{{url('js/videoUploader.js')}}" type="text/javascript"></script>
 @stop
