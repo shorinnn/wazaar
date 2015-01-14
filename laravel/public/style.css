@@ -3223,6 +3223,133 @@ select::-ms-expand {
 	top: 0;
 }
 
+.unauthenticated-homepage .course-listing-container{
+	padding: 105px 0 40px;
+}
+
+.unauthenticated-homepage .course-listing-container h3{
+	font-size: 42px;
+	font-weight: 200;
+	color: #fff;
+	margin: 0 0 20px;
+}
+
+.unauthenticated-homepage .course-listing-container p{
+	display: block;
+	font-weight: normal;
+	font-size: 14px;
+	color: #fff;
+	margin: 0 0 40px;
+}
+
+.unauthenticated-homepage .course-listing-container a.learn-more{
+	display: inline-block;
+	width: 100px;
+	height: 42px;
+	background: #fff;
+	border-radius: 5px;
+	color: #18222b;
+	text-align: center;
+	line-height: 42px;
+	position: relative;
+}
+
+.unauthenticated-homepage .course-listing-container i.fa-arrow-down{
+	color: #fff;
+	display: inline-block;
+	font-size: 14px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.unauthenticated-homepage .course-listing-container a.sign-up{
+	display: inline-block;
+	text-align: center;
+	font-size: 12px;
+	color: #fff;
+	border-radius: 5px;
+	width: 189px;
+	height: 43px;
+	line-height: 43px;
+	background: #031623;
+}
+
+.unauthenticated-homepage .course-listing-container a.sign-up:hover{
+	text-decoration: none;
+	background: #042943;
+}
+
+.unauthenticated-homepage#it-and-tech{
+	background: -moz-linear-gradient(left, #bc4ff8, #a250ef, #6552db);
+	background: -webkit-linear-gradient(left, #bc4ff8, #a250ef, #6552db);
+	background: -o-linear-gradient(left, #bc4ff8, #a250ef, #6552db);
+	background: -ms-linear-gradient(left, #bc4ff8, #a250ef, #6552db);
+	background: linear-gradient(left, #bc4ff8, #a250ef, #6552db);
+}
+
+.unauthenticated-homepage#music-and-arts{
+	background: -moz-linear-gradient(left, #d34690, #ca4492, #9035a3);
+	background: -webkit-linear-gradient(left, #d34690, #ca4492, #9035a3);
+	background: -o-linear-gradient(left, #d34690, #ca4492, #9035a3);
+	background: -ms-linear-gradient(left, #d34690, #ca4492, #9035a3);
+	background: linear-gradient(left, #d34690, #ca4492, #9035a3);
+}
+
+.unauthenticated-homepage#love-and-relationships{
+	background: -moz-linear-gradient(left, #ff527d, #ff5473, #ff5a52);
+	background: -o-linear-gradient(left, #ff527d, #ff5473, #ff5a52);
+	background: -webkit-linear-gradient(left, #ff527d, #ff5473, #ff5a52);
+	background: -ms-linear-gradient(left, #ff527d, #ff5473, #ff5a52);
+	background: linear-gradient(left, #ff527d, #ff5473, #ff5a52);
+}
+
+.unauthenticated-homepage#personal-development{
+	background: -moz-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
+	background: -webkit-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
+	background: -o-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
+	background: -ms-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
+	background: linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
+}
+
+.unauthenticated-homepage#language{
+	background: -moz-linear-gradient(left, #ff8e05, #ff7f13, #ff632f);
+	background: -webkit-linear-gradient(left, #ff8e05, #ff7f13, #ff632f);
+	background: -o-linear-gradient(left, #ff8e05, #ff7f13, #ff632f);
+	background: -ms-linear-gradient(left, #ff8e05, #ff7f13, #ff632f);
+	background: linear-gradient(left, #ff8e05, #ff7f13, #ff632f);
+}
+
+.unauthenticated-homepage#money{
+	background: -moz-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
+	background: -webkit-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
+	background: -o-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
+	background: -ms-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
+	background: linear-gradient(left, #f3be0d, #f7b009, #ff9501);
+}
+
+.unauthenticated-homepage#health-and-fitness{
+	background: -moz-linear-gradient(left, #88ef5d, #8ddd45, #91ce31);
+	background: -webkit-linear-gradient(left, #88ef5d, #8ddd45, #91ce31);
+	background: -o-linear-gradient(left, #88ef5d, #8ddd45, #91ce31);
+	background: -ms-linear-gradient(left, #88ef5d, #8ddd45, #91ce31);
+	background: linear-gradient(left, #88ef5d, #8ddd45, #91ce31);
+}
+
+.unauthenticated-homepage#business-and-marketing{
+	background: -moz-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
+	background: -webkit-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
+	background: -o-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
+	background: -ms-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
+	background: linear-gradient(left, #7decff, #3e9efa, #1e77f7);
+}
+
+.unauthenticated-homepage#photography-and-video{
+	background: -moz-linear-gradient(left, #0d5a90, #11466b, #172937);
+	background: -webkit-linear-gradient(left, #0d5a90, #11466b, #172937);
+	background: -o-linear-gradient(left, #0d5a90, #11466b, #172937);
+	background: -ms-linear-gradient(left, #0d5a90, #11466b, #172937);
+	background: linear-gradient(left, #0d5a90, #11466b, #172937);
+}
 /************* Page Footer **************/
 footer{
 	clear:both;

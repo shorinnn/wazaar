@@ -157,6 +157,12 @@ function blockFileUploaded(e, data){
     $(e.target).parent().parent().append(result.html);
 }
 
+/**
+ * Called before ajax uploading a lesson file, it limits the number of files that can be uploaded
+ * @param {event} e The original event
+ * @param {object} data The upload result object
+ * @return {Boolean} False if file can't be uploaded, true otherwise
+ */
 function limitLessonFiles(e, data){
     $(e.target).parent().find('.ajax-error').remove();
     max_upload = $(e.target).attr('data-max-upload');
@@ -164,8 +170,14 @@ function limitLessonFiles(e, data){
         $(e.target).after("<p class='alert alert-danger ajax-error'>"+$(e.target).attr('data-max-upload-error')+'</p>');
         return false;
     }
+    return true;
 }
-
+/**
+ * Called after a course preview/banner image is uploaded, it appends the new element to the list and clears the progressbar
+ * @param {event} e The original event
+ * @param {object} data The upload result object
+ * @return {undefined}
+ */
 function courseImageUploaded(e, data){
     var progressbar = $(e.target).attr('data-progress-bar');
     $(progressbar).find('span').html('');
