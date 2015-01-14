@@ -13,7 +13,7 @@
                     	<p class="lead">Advance <span>Your Career.</span> Discover new skills. 
                         </p>
                         <p class="lead">
-                        Learn what you never got a chance to learn at school.                        
+                        {{trans('site/homepage.learn-what-you-didnt')}}                       
                         </p>
                         <div class="course-search-form">
                         	<form>
@@ -24,7 +24,7 @@
                             alt="" class="img-responsive">
                         </div>
                         <a href="#" class="discover-wazaar-button">
-                        Discover Wazaar
+                        {{trans('site/homepage.discover-wazaar')}}
                         </a>
                         <span class="down-arrow">
                         	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/down-arrow.png">
@@ -38,7 +38,7 @@
         </section>
         <section class="school-is-a-thing unauthenticated-homepage clearfix">
         	<div>
-            	<h3>School is a thing of yesterday.
+            	<h3>{{trans('site/homepage.thing-of-yesterday')}}
                 	<span>This is the new way to upgrade yourself. Save time and money, and get a promotion.</span>
                 </h3>
                 <p>
@@ -46,7 +46,7 @@
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. Lorem ipsum dolor sit amet, 
                 consectetur adipisicing elit, sed do 
                 </p>
-                <a href="#" class="sign-up-button">Sign up and earn 500¥ credit</a>
+                <a href="#" class="sign-up-button">{{trans('site/homepage.sign-up-and-earn')}}</a>
             </div>
             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image6.jpg" alt="" 
             class="hidden-xs img-responsive">

@@ -15,5 +15,10 @@ return array(
 	'get-started' => 'Get Started',
 	'be-an-instructor' => 'BECOME AN INSTRUCTOR',
 	'view-all' => 'View all',
-	'beginner' => 'Beginner'
+	'beginner' => 'Beginner',
+	'advance-your-career' => 'Advance Your Career. Discover new skills.',
+	'learn-what-you-didnt' => 'Learn what you never got a chance to learn at school.',
+	'discover-wazaar' => 'Discover Wazaar',
+	'thing-of-yesterday' => 'School is a thing of yesterday.',
+	'sign-up-and-earn' => 'Sign up and earn 500¥ credit'
 );
