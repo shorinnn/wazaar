@@ -75,6 +75,8 @@ Route::group(['prefix' => 'lessons'], function (){
         Route::post('/{lesson_id}/files', 'BlocksController@uploadFiles');
         Route::delete('/{lesson_id}/{id}', 'BlocksController@destroy');
         Route::put('/{lesson_id}/{id}', 'BlocksController@update');
+        Route::get('/{lesson_id}/video', 'BlocksController@video');
+        Route::post('{lesson_id}/video', 'BlocksController@saveVideo');
     });
 });
  

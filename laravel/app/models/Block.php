@@ -3,7 +3,11 @@ use LaravelBook\Ardent\Ardent;
 
 class Block extends Ardent{
 
-    public $fillable = ['content','lesson_id'];
+    const TYPE_VIDEO = 'video';
+    const TYPE_TEXT = 'text';
+    const TYPE_FILE = 'file';
+
+    public $fillable = ['content','lesson_id', 'type'];
     
     public static $relationsData = array(
         'lesson' => array(self::BELONGS_TO, 'Lesson'),

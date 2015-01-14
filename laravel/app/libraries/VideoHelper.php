@@ -70,6 +70,7 @@ class VideoHelper
             $videoFormats[] = [
                 'video_id'   => $videoId,
                 'output_key' => $output['key'],
+                'preset_id'  => $output['presetId'],
                 'resolution' => @$presets[$output['presetId']],//  $resolution,
                 'duration'   => $output['duration'],
                 'thumbnail'  => $outputLink .$thumbnail,

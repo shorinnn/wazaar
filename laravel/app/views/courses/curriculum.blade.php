@@ -80,7 +80,8 @@
 @stop
 
 @section('extra_js')
-    <script src="{{url('plugins/uploader/js/vendor/jquery.ui.widget.js')}}"></script>
-    <script src="{{url('plugins/uploader/js/jquery.iframe-transport.js')}}"></script>
-    <script src="{{url('plugins/uploader/js/jquery.fileupload.js')}}"></script>
+    <script src="{{url('plugins/uploader/js/vendor/jquery.ui.widget.js')}}" type="text/javascript"></script>
+    <script src="{{url('plugins/uploader/js/jquery.iframe-transport.js')}}" type="text/javascript"></script>
+    <script src="{{url('plugins/uploader/js/jquery.fileupload.js')}}" type="text/javascript"></script>
+    <script src="{{url('js/videoUploader.js')}}" type="text/javascript"></script>
 @stop

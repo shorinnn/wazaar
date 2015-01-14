@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a591fdec7a692098b716ed71754c65ea",
+    "hash": "29a8d4b05c0df5146c0191cbc98b7b15",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/artdarek/oauth-4-laravel.git",
-                "reference": "d7226ea17932ee31143bb33b499e6f0aeb7d8ce2"
+                "reference": "12d27a1ae6925ebe2731de4d1896bb0c62b49c48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/artdarek/oauth-4-laravel/zipball/d7226ea17932ee31143bb33b499e6f0aeb7d8ce2",
-                "reference": "d7226ea17932ee31143bb33b499e6f0aeb7d8ce2",
+                "url": "https://api.github.com/repos/artdarek/oauth-4-laravel/zipball/12d27a1ae6925ebe2731de4d1896bb0c62b49c48",
+                "reference": "12d27a1ae6925ebe2731de4d1896bb0c62b49c48",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                 "oauth",
                 "php"
             ],
-            "time": "2015-01-08 16:40:21"
+            "time": "2014-08-07 07:18:32"
         },
         {
             "name": "aws/aws-sdk-php",
@@ -839,6 +839,56 @@
             "time": "2014-11-20 16:49:30"
         },
         {
+            "name": "jenssegers/agent",
+            "version": "v2.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/laravel-agent.git",
+                "reference": "7e04968dd85dfba150c8c4a98a34eed6f6a6df01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/laravel-agent/zipball/7e04968dd85dfba150c8c4a98a34eed6f6a6df01",
+                "reference": "7e04968dd85dfba150c8c4a98a34eed6f6a6df01",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.*|5.*",
+                "mobiledetect/mobiledetectlib": "2.*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jenssegers\\Agent\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "http://jenssegers.be"
+                }
+            ],
+            "description": "A user agent class for Laravel",
+            "keywords": [
+                "Agent",
+                "browser",
+                "laravel",
+                "mobile",
+                "platform",
+                "user agent",
+                "useragent"
+            ],
+            "time": "2014-12-07 17:08:08"
+        },
+        {
             "name": "jeremeamia/SuperClosure",
             "version": "1.0.2",
             "source": {
@@ -1121,6 +1171,59 @@
                 "security"
             ],
             "time": "2014-09-05 15:19:58"
+        },
+        {
+            "name": "mobiledetect/mobiledetectlib",
+            "version": "2.8.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/serbanghita/Mobile-Detect.git",
+                "reference": "c68901fb09227dcf04872f0d6a27b9f6e75ecf1f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/c68901fb09227dcf04872f0d6a27b9f6e75ecf1f",
+                "reference": "c68901fb09227dcf04872f0d6a27b9f6e75ecf1f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.0.0"
+            },
+            "require-dev": {
+                "johnkary/phpunit-speedtrap": "~1.0@dev",
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Mobile_Detect.php"
+                ],
+                "psr-0": {
+                    "Detection": "namespaced/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Serban Ghita",
+                    "email": "serbanghita@gmail.com",
+                    "homepage": "http://mobiledetect.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Mobile_Detect is a lightweight PHP class for detecting mobile devices. It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment.",
+            "homepage": "https://github.com/serbanghita/Mobile-Detect",
+            "keywords": [
+                "detect mobile devices",
+                "mobile",
+                "mobile detect",
+                "mobile detector",
+                "php mobile detect"
+            ],
+            "time": "2014-11-23 13:08:17"
         },
         {
             "name": "mockery/mockery",
@@ -3238,16 +3341,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "d4ebe58f0be834bda4383491948587a28d1be03a"
+                "reference": "548e12d45760ee66192029f4b642d2f4e3d64118"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/d4ebe58f0be834bda4383491948587a28d1be03a",
-                "reference": "d4ebe58f0be834bda4383491948587a28d1be03a",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/548e12d45760ee66192029f4b642d2f4e3d64118",
+                "reference": "548e12d45760ee66192029f4b642d2f4e3d64118",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "4.*|5.0.*",
+                "laravel/framework": "4.*|5.0.*",
                 "maximebf/debugbar": "~1.10.2",
                 "php": ">=5.3.0",
                 "symfony/finder": "~2.3"
@@ -3284,7 +3387,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2015-01-13 12:39:59"
+            "time": "2014-12-24 08:00:07"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
