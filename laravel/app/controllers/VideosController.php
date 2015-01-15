@@ -41,7 +41,7 @@ class VideosController extends BaseController
 
     public function videoAndFormatsJson($videoId)
     {
-        $video = Video::getByIdAndPreset($videoId);
+        $video = Video::getByIdAndPreset($videoId)->with('formats');
         if ($video){
             return $video->toJson();
         }
