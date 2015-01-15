@@ -7,7 +7,7 @@
                     <h2><input type="radio" class="radio-video-id" name="radioVideoId" value="{{$video->id}}"> {{$video->original_filename}}</h2>
 
 
-                    <span class="duration">{{gmdate("H:i:s", $video->formats[0]->duration)}}</span>
+                    <span class="duration">{{gmdate("i:s", $video->formats[0]->duration)}}</span>
                 </a>
             </li>
         @endforeach
