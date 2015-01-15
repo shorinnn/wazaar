@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder {
 		 $this->call('CoursesSeeder');
 		 $this->call('CoursePurchasesSeeder');
 		 $this->call('CoursePreviewImagesSeeder');
+		 $this->call('ModulesSeeder');
+		 $this->call('LessonsSeeder');
 	}
 
 }
@@ -391,6 +393,30 @@ class CoursePreviewImagesSeeder extends Seeder {
         CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg'] );
         CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg'] );
         CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg'] );
+       
+    }
+}
+
+
+class ModulesSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('modules')->delete();
+        Module::unguard();
+        Module::create( ['course_id' => 1, 'name' => 'Test Module', 'order' => 1] );
+       
+    }
+}
+
+
+class LessonsSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('lessons')->delete();
+        Lesson::unguard();
+        Lesson::create( ['module_id' => 1, 'name' => 'Test Lesson', 'order' => 1] );
        
     }
 }

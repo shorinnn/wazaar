@@ -19,14 +19,24 @@ class LessonsController extends \BaseController {
             $lesson->name = 'New Lesson';
             $lesson->order = $module->lessons->count() + 1;
             if($lesson->save()){
-                $response = ['status' => 'success', 
-                             'module' => $lesson->module_id, 
-                             'html' => View::make('courses.lessons.lesson')->with(compact('lesson'))->render() ];
-                return json_encode($response);
+                if(Request::ajax()){
+                    $response = ['status' => 'success', 
+                                 'module' => $lesson->module_id, 
+                                 'html' => View::make('courses.lessons.lesson')->with(compact('lesson'))->render() ];
+                    return json_encode($response);
+                }
+                else{
+                    return Redirect::back();
+                }
             }
             else{
-                $response = ['status' => 'error', 'errors' => format_errors($lesson->errors()->all())];
-                return json_encode($response);
+                if(Request::ajax()){
+                    $response = ['status' => 'error', 'errors' => format_errors($lesson->errors()->all())];
+                    return json_encode($response);
+                }
+                else{
+                    return Redirect::back()->withError( format_errors( $lesson->errors()->all() ) );
+                }
             }
         }
         

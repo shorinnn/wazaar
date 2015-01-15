@@ -19,14 +19,24 @@ class ModulesController extends \BaseController {
             $module->name = 'New Module';
             $module->order = $course->modules->count() + 1;
             if($module->save()){
-                $response = ['status' => 'success', 
-                             'id' => $module->id, 
-                             'html' => View::make('courses.modules.module')->with(compact('module'))->render() ];
-                return json_encode($response);
+                if(Request::ajax()){
+                    $response = ['status' => 'success', 
+                                 'id' => $module->id, 
+                                 'html' => View::make('courses.modules.module')->with(compact('module'))->render() ];
+                    return json_encode($response);
+                }
+                else{
+                    return Redirect::back();
+                }
             }
             else{
-                $response = ['status' => 'error', 'errors' => format_errors($module->errors()->all())];
-                return json_encode($response);
+                if(Request::ajax()){
+                    $response = ['status' => 'error', 'errors' => format_errors($module->errors()->all())];
+                    return json_encode($response);
+                }
+                else{
+                    return Redirect::back()->withError( format_errors( $module->errors()->all() ) );
+                }
             }
         }
         

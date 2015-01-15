@@ -7,7 +7,7 @@
            data-url='{{action('ModulesController@update', [$module->course->id, $module->id] )}}' data-name='name' />
     {{ Form::open(array('action' => ['ModulesController@destroy', $module->course->id, $module->id], 'method' => 'delete', 
                 'class' => 'ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '#module-'.$module->id )) }}
-            <button type="submit" class="btn btn-danger btn-mini delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}"><i class="fa fa-trash"></i></button>
+            <button type="submit" name="delete-module-{{$module->id}}" class="btn btn-danger btn-mini delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}"><i class="fa fa-trash"></i></button>
     {{ Form::close() }}
     <i class="sortable-handle fa fa-bars"></i> 
     <ul class="lessons" id="lessons-holder-{{$module->id}}">
