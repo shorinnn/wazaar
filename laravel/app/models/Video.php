@@ -34,7 +34,7 @@ class Video extends \LaravelBook\Ardent\Ardent
         if (empty($presetId)){
             $presetId = self::getPresetIdByAgent();
         }
-        $video = Video::where('id', $id)->whereHas('formats', function ($q) use($presetId) {
+        $video = Video::with('formats')->where('id', $id)->whereHas('formats', function ($q) use($presetId) {
             $q->where('preset_id', $presetId);
         })->first();
 
