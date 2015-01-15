@@ -22,6 +22,8 @@ class Block extends Ardent{
         $file = file_get_contents($path);
         $mime = mimetype($file);
         $extension = mime_to_extension($mime);
+        if( !in_array( $extension, Config::get('custom.course_attachments') ) ) return false;
+        
         $s3 = AWS::get('s3');
         $result = $s3->putObject(array(
             'ACL'    => 'public-read',

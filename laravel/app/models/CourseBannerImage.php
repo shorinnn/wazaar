@@ -10,21 +10,22 @@ class CourseBannerImage extends Ardent{
     );
     
     public function beforeSave(){
-        if(!self::$skip_upload) $this->upload();
+        if(!self::$skip_upload) return $this->upload();
     }
     public function upload(){
         $key = 'banner-'.uniqid();
+        
+        $file = file_get_contents($this->file_path);
+        $mime = mimetype($file);
+        $extension = mime_to_extension($mime);
+        if( !in_array( $extension, Config::get('custom.course_banner_image.allowed_types') ) ) return false;
         
         // resize image to new width but do not exceed original size
         Image::make($this->file_path)
                 ->resize( Config::get('custom.course_banner_image.width'),
                           Config::get('custom.course_banner_image.height') )->save();
         
-
-        
         $file = file_get_contents($this->file_path);
-        $mime = mimetype($file);
-        $extension = mime_to_extension($mime);
         $s3 = AWS::get('s3');
         $result = $s3->putObject(array(
             'ACL'    => 'public-read',
