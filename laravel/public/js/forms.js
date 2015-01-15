@@ -25,7 +25,7 @@ function formAjaxSubmit(e){
     $.post(form.attr('action'), form.serialize(), function(result){
         result = JSON.parse(result);
         if(result.status=='error'){
-            form.append('<p class="alert alert-danger ajax-errors">'+result.errors+'</p>');
+            form.find('[type="submit"]').after('<p class="alert alert-danger ajax-errors">'+result.errors+'</p>');
             restoreSubmitLabel(form);
             return false;
         }
@@ -146,8 +146,9 @@ function cloneInput(e){
         clone.removeClass();
         id = uniqueId();
         clone.addClass('clonable clonable-'+id);
-        $destination.after('<div class="clonable clonable-'+id+'"><span>1</span><a href="#" tabindex="-1" class="style-one delete-clonable clonable-'+id+'"></a></div>');
+        $destination.after('<div style="display:none" class="clonable clonable-'+id+'"><span>1</span><a href="#" tabindex="-1" class="style-one delete-clonable clonable-'+id+'"></a></div>');
         $('a.clonable-'+id).before(clone);
+        $('div.clonable-'+id).fadeIn();
         reorderClonable($elem.attr('name'));
     }
 }
@@ -173,8 +174,11 @@ function reorderClonable(name){
 function deleteClonable(e){
     e.preventDefault();
     name = $(e.target).parent().find('input').attr('name');
-    $(e.target).parent().remove();
-    reorderClonable( name );
+    $(e.target).parent().fadeOut( function(){
+        $(e.target).parent().remove();
+        reorderClonable( name );
+    });
+    
     return false;
 }
 

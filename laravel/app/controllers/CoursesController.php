@@ -27,12 +27,18 @@ class CoursesController extends \BaseController {
         }
         
         public function store(){
+            
             $data = input_except(['_method', '_token']);
-            $course = new Course( $data );
+            $course = new Course();
             $course->instructor_id = Auth::user()->id;
+            $course->name = Input::get('name');
             $course->slug = Str::slug(Input::get('name'));
             if($course->save()){
                 if(Request::ajax()){
+                    return $this->update( $course->slug );
+                    $response = ['status' => 'success', 'url' => 'http://google.ro' ];
+                    return json_encode($response);
+                    
                     $response = ['status' => 'success', 'updateAction' => action('CoursesController@update', $course->slug) ];
                     return json_encode($response);
                 }

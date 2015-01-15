@@ -7,15 +7,6 @@ class ManageCourseCest{
         $I->haveEnabledFilters();
          Course::boot();
     }
-
-    public function createCourse(FunctionalTester $I){
-        $instructor = Instructor::where('username', 'instructor')->first();
-        $I->amLoggedAs($instructor);
-        $I->amOnPage('/courses/create');
-        $I->fillField(['name' => 'name'], 'Codecept Course');
-        $I->click('Create Course');
-        $I->seeRecord( 'courses', ['name'=>'Codecept Course'] );
-    }
     
     public function seeModule(FunctionalTester $I){
         $instructor = Instructor::where('username', 'instructor')->first();

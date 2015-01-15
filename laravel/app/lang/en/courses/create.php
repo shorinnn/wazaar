@@ -15,5 +15,5 @@ return array(
     'by_the_end' => 'By the end of the course your students will be able to...',
     'make_it_results' => 'Make it results based',
     'for_your_student_if' => 'This course is for your student if your student is...',
-    'start_creating_lessons' => 'Start Creating Lessons',
+    'start_creating_curriculum' => 'Start Creating Curriculum',
 );
