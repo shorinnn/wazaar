@@ -65,10 +65,9 @@
                     //Run timer to check for video transcode status
                     $intervalId = setInterval (function() { videoUploader.getVideo($data.result.videoId, function ($video){
                         if ($video.transcode_status == 'Complete'){
-                            $('#notify-warning-new-video').addClass('hide');
-                            $('#video-player').removeClass('hide');
-                            $('#source-video-url').attr('src', $video.formats[0].video_url);
                             clearInterval($intervalId);
+                            $('#video-link-' + $lessonId).trigger('click');
+                            //reload video chunk
                         }
                     }) }, 5000);
                 }
