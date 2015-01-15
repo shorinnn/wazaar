@@ -7,16 +7,15 @@
                 @endif
                     "><strong>Note: </strong>Your video will appear here when it's processed successfully</div>
 
-            @if (isset($video->formats[0]->video_url))
-                @if (!empty($video->formats[0]->video_url))
-                    <div id="video-player">
+
+
+                    <div id="video-player" class="@if (!isset($video->formats[0]->video_url)) hide @endif">
                         <video controls>
-                            <source src="{{$video->formats[0]->video_url}}">
+                            <source id="source-video-url" src="{{$video->formats[0]->video_url}}">
                             Your browser does not support HTML 5.
                         </video>
                     </div>
-                @endif
-            @endif
+
 
     </div>
     <h3>Upload Video</h3>
@@ -43,13 +42,15 @@
 <script type="text/javascript">
     $(function (){
 
-        var blockId = {{$block->id}};
-        var lessonId = {{$lessonId}};
+        var $blockId = {{$block->id}};
+        var $lessonId = {{$lessonId}};
+        var $intervalId = 0;
+
         videoUploader.initialize({
-            'fileInputElem' : $('#fileupload-' + blockId),
+            'fileInputElem' : $('#fileupload-' + $blockId),
             'progressCallBack' : function ($data, $progressPercentage){
-                $('#progress-bar-' + blockId).css('width', $progressPercentage + '%');
-                $('#percent-complete-' + blockId).html($progressPercentage);
+                $('#progress-bar-' + $blockId).css('width', $progressPercentage + '%');
+                $('#percent-complete-' + $blockId).html($progressPercentage);
             },
             'failCallBack' : function ($data){
 
@@ -59,7 +60,17 @@
                 if ($data.result.videoId !== undefined) {
                     $('#video-player').hide();
                     $('#notify-warning-new-video').removeClass('hide');
-                    $.post('/lessons/blocks/' + lessonId + '/video', {videoId : $data.result.videoId, blockId : blockId });
+                    $.post('/lessons/blocks/' + $lessonId + '/video', {videoId : $data.result.videoId, blockId : $blockId });
+
+                    //Run timer to check for video transcode status
+                    $intervalId = setInterval (function() { videoUploader.getVideo($data.result.videoId, function ($video){
+                        if ($video.transcode_status == 'Complete'){
+                            $('#notify-warning-new-video').addClass('hide');
+                            $('#video-player').removeClass('hide');
+                            $('#source-video-url').attr('src', $video.formats[0].video_url);
+                            clearInterval($intervalId);
+                        }
+                    }) }, 5000);
                 }
             }
         });
