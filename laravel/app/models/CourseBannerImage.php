@@ -16,14 +16,11 @@ class CourseBannerImage extends Ardent{
         $key = 'banner-'.uniqid();
         
         // resize image to new width but do not exceed original size
-        Image::make($this->file_path)->widen( Config::get('custom.course_banner_image.max_width'), function ($constraint) {
-            $constraint->upsize();
-        })->save();
+        Image::make($this->file_path)
+                ->resize( Config::get('custom.course_banner_image.width'),
+                          Config::get('custom.course_banner_image.height') )->save();
         
-        // resize image to new height but do not exceed original size
-        Image::make($this->file_path)->heighten( Config::get('custom.course_banner_image.max_height'), function ($constraint) {
-            $constraint->upsize();
-        })->save();
+
         
         $file = file_get_contents($this->file_path);
         $mime = mimetype($file);
