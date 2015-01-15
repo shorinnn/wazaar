@@ -11,7 +11,7 @@
 
                     <div id="video-player" class="@if (!isset($video->formats[0]->video_url)) hide @endif">
                         <video controls>
-                            <source id="source-video-url" src="{{$video->formats[0]->video_url}}">
+                            <source id="source-video-url" src="{{@$video->formats[0]->video_url}}">
                             Your browser does not support HTML 5.
                         </video>
                     </div>
