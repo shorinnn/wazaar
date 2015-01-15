@@ -5,7 +5,7 @@
                 <a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
                     <img src="{{$video->formats[0]->thumbnail}}" alt="{{$video->original_filename}}" class="img-responsive" height="130px" />
                     <h2><input type="radio" class="radio-video-id" name="radioVideoId" value="{{$video->id}}"> {{$video->original_filename}}</h2>
-                    <span class="glyphicon glyphicon-play-circle"></span>
+                   
 
                     <span class="duration">{{$video->formats[0]->duration}}</span>
                 </a>
