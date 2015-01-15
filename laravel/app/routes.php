@@ -77,6 +77,7 @@ Route::group(['prefix' => 'lessons'], function (){
         Route::put('/{lesson_id}/{id}', 'BlocksController@update');
         Route::get('/{lesson_id}/video', 'BlocksController@video');
         Route::post('{lesson_id}/video', 'BlocksController@saveVideo');
+        Route::post('{lesson_id}/video/assign', 'BlocksController@assignVideo');
     });
 });
  
@@ -109,6 +110,7 @@ Route::group(['prefix' => 'video'], function(){
     Route::post('upload', 'VideosController@doUpload');
     Route::post('sns/callback', 'VideosController@snsCallback');
     Route::get('{id}/json','VideosController@videoAndFormatsJson');
+    Route::get('user/archive','VideosController@userArchive');
 
 });
 

@@ -18,7 +18,7 @@
 
 
     </div>
-    <h3>Upload Video</h3>
+    <h3>Upload Video OR <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}">Select From Existing</a></h3>
     <p>Formats supported: mp4, avi, wmv</p>
     <p>Max file size: 2GB</p>
 
@@ -73,5 +73,7 @@
                 }
             }
         });
+
+
     });
 </script>

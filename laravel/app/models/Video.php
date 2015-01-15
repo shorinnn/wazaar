@@ -40,4 +40,16 @@ class Video extends \LaravelBook\Ardent\Ardent
 
         return $video;
     }
+
+    public static function getByOwnerIdAndPreset($userId, $presetId = null)
+    {
+        if (empty($presetId)){
+            $presetId = self::getPresetIdByAgent();
+        }
+        $video = Video::with('formats')->where('created_by_id', $userId)->whereHas('formats', function ($q) use($presetId) {
+            $q->where('preset_id', $presetId);
+        });
+
+        return $video;
+    }
 }

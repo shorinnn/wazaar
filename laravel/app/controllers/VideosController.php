@@ -7,6 +7,7 @@ class VideosController extends BaseController
 
     public function __construct(UploadHelper $uploadHelper, VideoHelper $videoHelper)
     {
+        $this->beforeFilter('auth');
         $this->uploadHelper = $uploadHelper;
         $this->videoHelper = $videoHelper;
     }
@@ -45,6 +46,17 @@ class VideosController extends BaseController
         if ($video){
             return $video->toJson();
         }
+    }
+
+    /**
+     * Videos uploaded previously by a user(instructor)
+     */
+    public function userArchive()
+    {
+        $videoOwnerId = Auth::id();
+        $videos = Video::getByOwnerIdAndPreset($videoOwnerId);
+
+        return View::make('videos.partials.videoThumbs',compact('videos'));
     }
 
     /**
