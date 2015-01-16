@@ -3231,7 +3231,7 @@ select::-ms-expand {
 }
 
 .unauthenticated-homepage .course-listing-container{
-	padding: 105px 0 40px;
+	padding: 120px 0 40px;
 }
 
 .unauthenticated-homepage .course-listing-container h3{
@@ -3419,6 +3419,31 @@ select::-ms-expand {
 
 .unauthenticated-homepage#photography-and-video .small-box{
 	background: #355d79;
+}
+
+.parallax-1{
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image5.jpg") no-repeat 50% 0 fixed;
+	height: 600px;
+	background-size: cover;
+}
+
+.parallax-2{
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image7.jpg") no-repeat 50% 0 fixed;
+	height: 600px;
+	background-size: cover;
+}
+
+.filterbuttonFixed{
+    position:fixed;
+    top:1px;
+    left: 0;
+    width:100%;
+	z-index: 999;
+	background: rgba(255, 255, 255, 0.7);
+}
+
+.filterbuttonFixed:hover{
+	background: rgba(255, 255, 255, 0.9);
 }
 
 .unauthenticated-homepage#the-world-is-yours{

@@ -6,8 +6,10 @@
 $(document).ready(function(){
     $(".profile-name > li").removeClass("activate-dropdown");
     $('body').delegate('.slide-toggler', 'click', slideToggle);
-    $('body').delegate('a.load-remote', 'click', loadRemote);  
+    $('body').delegate('a.load-remote', 'click', loadRemote);
     _.setTranslation( js_translation_map );
+    floatingNav();
+    scrollNavigation();
 });
 
 /**
@@ -70,7 +72,7 @@ function unhide(elem){
     console.log(val);
     $(elem).prev('.animated-step').animate({
         opacity: 0,
-        marginTop: -val,
+        marginTop: -val
     }, 1000, function(){
         $(elem).prev('.animated-step').hide();
     });
@@ -155,3 +157,56 @@ $(window).scroll(function() {
        },2000);
    }
 });
+
+/**
+ * This function fixes the navigation menu at the top of the page
+ * on scroll.
+ */
+function floatingNav(){
+    // this checks the current top position of the nav and stores it in a variable.
+    var max_scroll = $(".main-nav-section").position().top;
+    $(window).scroll(function () {
+        var navbar = $(".main-nav-section");
+
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop > max_scroll && !navbar.is(".filterbuttonFixed")) {
+            navbar.addClass("filterbuttonFixed");
+        }
+        else if (scrollTop < max_scroll && navbar.is(".filterbuttonFixed")) {
+            navbar.removeClass("filterbuttonFixed");
+        }
+
+    })
+
+}
+
+// Function for sliding to each section when nav button is clicked
+function scrollNavigation(){
+    $('a[href*=#]').each(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+            && location.hostname == this.hostname
+            && this.hash.replace(/#/,'') ) {
+                var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
+                var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+                if ($target) {
+                var targetOffset = $target.offset().top;
+
+                //Function for removing and adding the "active" class and scroll to the DIV
+                $(this).click(function() {
+                    $("#nav li a").removeClass("active");
+                    $(this).addClass('active');
+                    $('html, body').animate({scrollTop: targetOffset}, 1000);
+                    return false;
+                });
+            }
+        }
+
+    });
+    $(window).scroll(function(){
+        $('.parallax-1, .parallax-2').animate({
+            backgroundPosition:"(50% -2000px)"
+        }, 480);
+    });
+
+}
+

@@ -34,7 +34,7 @@
             </div>
         </section>
         <section class="unauthenticated-homepage parallax-1">
-        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image5.jpg" class="img-responsive">
+        	<!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image5.jpg" class="img-responsive">-->
         </section>
         <section class="school-is-a-thing unauthenticated-homepage clearfix">
         	<div>
@@ -52,7 +52,7 @@
             class="hidden-xs img-responsive">
         </section>
         <section class="unauthenticated-homepage parallax-2">
-        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image7.jpg" class="img-responsive">
+        	<!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image7.jpg" class="img-responsive">-->
         </section>
         <section class="container-fluid main-nav-section jp">
         	<div class="container">
@@ -66,12 +66,16 @@
                     </div><!--navbar-header ends-->
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="#">IT & Technology</a></li>
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Investments</a></li>
-                            <li><a href="#">Music</a></li>
+                            <li><a href="#it-and-tech">IT & Technology</a></li>
+                            <li><a href="#love-and-relationships">Love & Relationships</a></li>
+                            <li><a href="#personal-development">Personal Development</a></li>
+                            <li><a href="#language">Language</a></li>
+                            <li><a href="#money">Money</a></li>
+                            <li><a href="#business-and-marketing">Business</a></li>
+                            <li><a href="#photography-and-video">Photography</a></li>
+                            <li><a href="#music-and-arts">Music</a></li>
                             <li><a href="#">Beauty</a></li>
-                            <li><a href="#">Health</a></li>
+                            <li><a href="#health-and-fitness">Health</a></li>
                         </ul>
                     </div><!--nav-collapse ends--> 
                 </div><!--navbar-default ends-->
