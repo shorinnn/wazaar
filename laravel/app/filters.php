@@ -99,9 +99,8 @@ Route::filter('admin', function()
         if(!Auth::user()->hasRole('Admin')) return Redirect::to('/');
 });
 
-Route::filter('instructor', function()
-{
-        if(Auth::guest()) return Redirect::to('/');
+Route::filter('instructor', function(){
+        if(Auth::guest()) return Redirect::guest('login');
         if(!Auth::user()->hasRole('Instructor')) return Redirect::to('/');
 });
 

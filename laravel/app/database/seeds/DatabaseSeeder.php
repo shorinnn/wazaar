@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder {
 		 $this->call('CoursePreviewImagesSeeder');
 		 $this->call('ModulesSeeder');
 		 $this->call('LessonsSeeder');
+		 $this->call('BlocksSeeder');
 	}
 
 }
@@ -417,6 +418,17 @@ class LessonsSeeder extends Seeder {
         DB::table('lessons')->delete();
         Lesson::unguard();
         Lesson::create( ['module_id' => 1, 'name' => 'Test Lesson', 'order' => 1] );
+       
+    }
+}
+
+class BlocksSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('blocks')->delete();
+        Block::unguard();
+        Block::create( ['lesson_id' => 1, 'name' => 'Test Block','type' => 'text'] );
        
     }
 }
