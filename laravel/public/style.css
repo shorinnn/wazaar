@@ -2817,7 +2817,7 @@ header .activate-dropdown:hover ul{
 }
 
 #step2 div.ui-select,
-#step1 form{
+#step1 > div{
 	width: 312px;
 	margin: 0 auto;
 	position: relative;
@@ -2826,8 +2826,8 @@ header .activate-dropdown:hover ul{
 #step3 button.start-creating,
 #step2 select,
 #step2 button,
-#step1 form input,
-#step1 form button{
+#step1 input,
+#step1 button{
 	width: 310px;
 	height: 40px;
 	border-style: solid;

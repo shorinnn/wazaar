@@ -19,11 +19,13 @@
                   action='{{action('CoursesController@store')}}' data-parsley-validate>
         <div id='step1' class="animated-step">
             <h1>TOP</h1>
-                <h2>{{ trans('courses/create.enter_course_name') }}</h2>
-                <input type='hidden' name='_token' value='{{csrf_token()}}' />
-                <input type='text' name='name' id='name' required /><br />
-                <button type="button" onclick='unhide("#step2")' class='btn btn-primary unhide-btn'>{{ trans('courses/create.next_step') }}</button>
-            <!--</form>-->
+        	<div>
+                    <h2>{{ trans('courses/create.enter_course_name') }}</h2>
+                    <input type='hidden' name='_token' value='{{csrf_token()}}' />
+                    <input type='text' name='name' id='name' required /><br />
+                    <button type="button" onclick='unhide("#step2")' class='btn btn-primary unhide-btn'>{{ trans('courses/create.next_step') }}</button>
+                <!--</form>-->
+            </div>
         </div>
 <!--    <form method='post' class='ajax-form' id='edit-course-details-form' data-callback='followRedirect' data-parsley-validate >-->
         <div id='step2' class='# hidden animated-step'>
