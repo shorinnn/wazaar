@@ -499,6 +499,12 @@ header .activate-dropdown:hover ul{
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ff9e44', endColorstr='#ff7863')"; /* IE8 */
 }
 
+.main-nav-section.jp li a:hover,
+.main-nav-section.jp li.active a{
+	background: #c34efa;
+}
+
+
 /********** Home page Category heading ********************/
 .category-heading{
 	padding: 1px;
