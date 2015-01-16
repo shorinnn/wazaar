@@ -54,6 +54,29 @@
         <section class="unauthenticated-homepage parallax-2">
         	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image7.jpg" class="img-responsive">
         </section>
+        <section class="container-fluid main-nav-section jp">
+        	<div class="container">
+                <div class="navbar navbar-default">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> 
+                        	<span class="icon-bar"></span> 
+                            <span class="icon-bar"></span> 
+                            <span class="icon-bar"></span> 
+                        </button>
+                    </div><!--navbar-header ends-->
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">IT & Technology</a></li>
+                            <li><a href="#">Business</a></li>
+                            <li><a href="#">Investments</a></li>
+                            <li><a href="#">Music</a></li>
+                            <li><a href="#">Beauty</a></li>
+                            <li><a href="#">Health</a></li>
+                        </ul>
+                    </div><!--nav-collapse ends--> 
+                </div><!--navbar-default ends-->
+            </div><!--container ends-->
+        </section>
         <section class="container-fluid unauthenticated-homepage" id="it-and-tech">
         	<div class="container course-listing-container">
             	<div class="row">
