@@ -114,6 +114,10 @@ Route::group(['prefix' => 'video'], function(){
 
 });
 
+Route::get('test', function (){
+    $video = Video::getByIdAndPreset(18);
+   return View::make('videos.testPlayer',compact('video'));
+});
 
 
 
