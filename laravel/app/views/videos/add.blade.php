@@ -26,10 +26,10 @@
 @section('content')
     <div class="row-fluid">
         <div class="panel panel-default">
-            <div class="panel-heading"><strong>Videos</strong> <small>Upload videos here</small></div>
+            <div class="panel-heading"><strong>{{trans('videos.title')}}</strong> <small>{{trans('videos.uploadHere')}}</small></div>
             <div class="panel-body">
 
-                <!-- Standar Form -->
+                <!-- Standard Form -->
                 <h4>Select files from your computer</h4>
                 {{Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])}}
                     <div class="form-inline">

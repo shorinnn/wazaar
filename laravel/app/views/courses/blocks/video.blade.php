@@ -5,22 +5,22 @@
                 @if (@$video->transcode_status == Video::STATUS_COMPLETE)
                     hide
                 @endif
-                    "><strong>Note: </strong>Your video will appear here when it's processed successfully</div>
+                    "><strong>{{trans('crud/labels.note')}}: </strong>{{trans('video.willAppearHere')}}</div>
 
 
 
                     <div id="video-player" class="@if (!isset($video->formats[0]->video_url)) hide @endif">
                         <video controls>
                             <source id="source-video-url" src="{{@$video->formats[0]->video_url}}">
-                            Your browser does not support HTML 5.
+                            {{trans('video.doesNotSupportHthml5')}}
                         </video>
                     </div>
 
 
     </div>
-    <h3>Upload Video OR <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}">Select From Existing</a></h3>
-    <p>Formats supported: mp4, avi, wmv</p>
-    <p>Max file size: 2GB</p>
+    <h3>{{trans('video.uploadOr')}} <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}">{{trans('video.selectExisting')}}</a></h3>
+    <p>{{trans('video.formatsSupported')}}</p>
+    <p>{{trans('video.maxFileSize')}}</p>
 
     {{Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])}}
         <div class="form-inline">
@@ -33,7 +33,7 @@
         <!-- Progress Bar -->
         <div class="progress">
             <div id="progress-bar-{{$block->id}}" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                <span><span id="percent-complete-{{$block->id}}"></span>% Complete</span>
+                <span><span id="percent-complete-{{$block->id}}"></span>% {{trans('crud/labels.complete')}}</span>
             </div>
         </div>
     {{Form::close()}}
@@ -67,7 +67,7 @@
                         if ($video.transcode_status == 'Complete'){
                             clearInterval($intervalId);
                             $('#video-link-' + $lessonId).trigger('click');
-                            //reload video chunk
+                            //reload video partial
                         }
                     }) }, 5000);
                 }

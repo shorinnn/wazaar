@@ -2,12 +2,12 @@
     @if ($videos->count() > 0)
         @foreach($videos->get() as $video)
             <li class="col-lg-3 col-sm-4 col-xs-6">
-                <a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
+                <a href="#" title="{{$video->original_filename}}">
                     <img src="{{$video->formats[0]->thumbnail}}" alt="{{$video->original_filename}}" class="img-responsive" height="130px" />
                     <h2><input type="radio" class="radio-video-id" name="radioVideoId" value="{{$video->id}}"> {{$video->original_filename}}</h2>
 
 
-                    <span class="duration">{{gmdate("i:s", $video->formats[0]->duration)}}</span>
+                    <span class="duration">{{$video->formats[0]->duration}}</span>
                 </a>
             </li>
         @endforeach
