@@ -81,7 +81,7 @@ class BlocksController extends \BaseController {
      */
     public function video($lessonId)
     {
-        $block = Block::firstOrCreate(['lesson_id' => $lessonId, 'type' => 'video']);
+        $block = Block::firstOrCreate(['lesson_id' => $lessonId, 'type' => Block::TYPE_VIDEO]);
         $video = null;
         if (is_numeric($block->content)){
             $video = Video::getByIdAndPreset($block->content);
@@ -99,6 +99,13 @@ class BlocksController extends \BaseController {
             $block->content = Input::get('videoId');
             $block->save();
         }
+    }
+
+    public function assignVideo($lessonId)
+    {
+        $block = Block::firstOrCreate(['lesson_id' => $lessonId, 'type' => Block::TYPE_VIDEO]);
+        $block->content = Input::get('videoId');
+        $block->save();
     }
 
 

@@ -2810,6 +2810,7 @@ header .activate-dropdown:hover ul{
 #step1{
 	max-width: 656px;
 	margin: 30px auto 0;
+	margin: 0px auto 0;
 	border: solid #ececec;
 	border-width: 0 0 1px;
 	padding-bottom: 100px;
@@ -2861,7 +2862,7 @@ header .activate-dropdown:hover ul{
 }
 
 #step2{
-	margin-top: 90px;
+	/*margin-top: 90px;*/
 }
 
 #edit-course-details-form h1{
@@ -2915,7 +2916,7 @@ select::-ms-expand {
 }
 
 #step3{
-	margin-top: 50px;
+	/*margin-top: 50px;*/
 }
 
 #step3 .course-level{
@@ -3058,7 +3059,7 @@ select::-ms-expand {
 #step3 button.start-creating{
 	display: block;
 	margin-top: 30px;
-	margin-bottom: 250px;
+	/*margin-bottom: 250px;*/
 }
 
 .steps-meter{

@@ -56,6 +56,7 @@
     <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>-->
     <script src="{{url("js/jquery.min.js")}}"></script>
     <script src="{{url("js/bootstrap.min.js")}}"></script>
+    <script src="{{url("js/lang/parsley/".Config::get('app.locale').".js")}}" /></script>
     <script src="{{url("js/parsley.min.js")}}"></script>
     <script src="{{url("js/main.js")}}"></script>
     <script src="{{url("js/forms.js")}}"></script>
@@ -65,7 +66,12 @@
     <script src="{{url("js/tweenmax.min.js")}}"></script>
     <script src="{{url("js/Sortable.min.js")}}"></script>
     <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+    <script src="http://www.localeplanet.com/api/translate.js" /></script>
+    <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
     <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>-->
+    <script>
+         window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
+    </script>
     @yield('extra_js')
 	</body>
 </html>

@@ -27,12 +27,18 @@ class CoursesController extends \BaseController {
         }
         
         public function store(){
+            
             $data = input_except(['_method', '_token']);
-            $course = new Course( $data );
+            $course = new Course();
             $course->instructor_id = Auth::user()->id;
+            $course->name = Input::get('name');
             $course->slug = Str::slug(Input::get('name'));
             if($course->save()){
                 if(Request::ajax()){
+                    return $this->update( $course->slug );
+                    $response = ['status' => 'success', 'url' => 'http://google.ro' ];
+                    return json_encode($response);
+                    
                     $response = ['status' => 'success', 'updateAction' => action('CoursesController@update', $course->slug) ];
                     return json_encode($response);
                 }
@@ -80,11 +86,12 @@ class CoursesController extends \BaseController {
             $course->sale_kind = Input::get('sale_kind');
             $course->sale_ends_on = (Input::get('sale_ends_on')) ?  Input::get('sale_ends_on') : null;
             if($course->updateUniques()){
-                if (Input::hasFile('preview_image')){
+                if ( Input::hasFile('preview_image') ){
                     $img = $course->upload_preview( Input::file('preview_image')->getRealPath()); 
                     if( !$img ){
-                        return Redirect::action('CoursesController@edit', $course->slug)
-                        ->withError( trans('courses/general.course_created_image_error') );
+                        return json_encode(['status'=>'error', 'errors' => trans('courses/general.course_created_image_error')]);
+//                        return Redirect::action('CoursesController@edit', $course->slug)
+//                        ->withError( trans('courses/general.course_created_image_error') );
                     }
                     else{
                         return json_encode(['status'=>'success', 'html'=> View::make('courses.preview_image')->with(compact('img'))->render() ]);
@@ -93,9 +100,10 @@ class CoursesController extends \BaseController {
                 // upload banner image
                 if (Input::hasFile('banner_image')){
                     $img = $course->upload_banner( Input::file('banner_image')->getRealPath());
-                    if(!$img ){
-                        return Redirect::action('CoursesController@edit', $course->slug)
-                        ->withError( trans('courses/general.course_created_image_error') );
+                    if( !$img ){
+                        return json_encode(['status'=>'error', 'errors' => trans('courses/general.course_created_image_error')]);
+//                        return Redirect::action('CoursesController@edit', $course->slug)
+//                        ->withError( trans('courses/general.course_created_image_error') );
                     }
                     else{
                         return json_encode(['status'=>'success', 'html'=> View::make('courses.preview_image')->with(compact('img'))->render() ]);

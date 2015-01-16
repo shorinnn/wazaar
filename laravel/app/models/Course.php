@@ -99,8 +99,10 @@ class Course extends Ardent{
                 }
             }
             $category = CourseCategory::find($this->course_category_id);
-            $category->courses_count += 1;
-            $category->save();
+            if($category!=null){
+                $category->courses_count += 1;
+                $category->save();
+            }
         }
         // update subcategory counter
         if($this->isDirty('course_subcategory_id')){
@@ -113,8 +115,10 @@ class Course extends Ardent{
                 }
             }
             $subcategory = CourseSubCategory::find($this->course_subcategory_id);
-            $subcategory->courses_count += 1;
-            $subcategory->save();
+            if($subcategory!=null){
+                $subcategory->courses_count += 1;
+                $subcategory->save();
+            }
         }
     }
     

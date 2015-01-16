@@ -13,13 +13,13 @@
     
     {{ Form::open(array('action' => ['LessonsController@destroy', $lesson->module->id, $lesson->id], 'method' => 'delete', 
                 'class' => 'ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '#lesson-'.$lesson->id )) }}
-            <button type="submit" class="btn btn-danger btn-mini delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}"><i class="fa fa-trash"></i></button>
+            <button type="submit" name="delete-lesson-{{$lesson->id}}" class="btn btn-danger btn-mini delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}"><i class="fa fa-trash"></i></button>
     {{ Form::close() }}
     <i class="sortable-handle fa fa-bars"></i> 
     
     <div class="lesson-options lesson-options-{{$lesson->id}} row">
         <div class="col-lg-3">
-            <a href='#' class='load-remote' data-target='.action-panel-{{$lesson->id}}'
+            <a href='#' id="video-link-{{$lesson->id}}" class='load-remote' data-target='.action-panel-{{$lesson->id}}'
                data-url='{{action('BlocksController@video', [$lesson->id] )}}' data-callback='enableLessonRTE'>
                 <i class="fa fa-film"></i>
                 <p>{{ trans('general.video') }}</p>

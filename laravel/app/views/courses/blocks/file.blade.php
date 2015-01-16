@@ -1,6 +1,6 @@
 <div class='uploaded-file' id='uploaded-file-{{$block->id}}'>
     <input type='text' class='ajax-updatable' data-url='{{action('BlocksController@update', [$block->lesson->id, $block->id] )}}'
-          data-name='name'  value='{{ trim($block->name)=='' ? 'New file' : $block->name }}' />
+          data-name='name'  value='{{ trim($block->name)=='' ? trans('general.new_file') : $block->name }}' />
     <a href="{{$block->content}}" target="_blank"><button class="btn btn-primary"><i class="fa fa-eye"></i></button></a>
     
     {{ Form::open(array('action' => ['BlocksController@destroy', $block->lesson->id, $block->id], 'method' => 'delete', 

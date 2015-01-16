@@ -25,7 +25,7 @@ function formAjaxSubmit(e){
     $.post(form.attr('action'), form.serialize(), function(result){
         result = JSON.parse(result);
         if(result.status=='error'){
-            form.append('<p class="alert alert-danger ajax-errors">'+result.errors+'</p>');
+            form.find('[type="submit"]').after('<p class="alert alert-danger ajax-errors">'+result.errors+'</p>');
             restoreSubmitLabel(form);
             return false;
         }
@@ -48,7 +48,7 @@ function formAjaxSubmit(e){
 function submittedFormButton(e){
     $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
     $(e.target).find('[type=submit]').attr('disabled', 'disabled');
-    $(e.target).find('[type=submit]').html('Processing...<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $(e.target).find('[type=submit]').html( _('Processing...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
 }
 
 /**
@@ -104,8 +104,8 @@ function populateDropdown(elem){
     target = $(elem).attr('data-target');
     target = $(target);
     target.empty();
-    var o = new Option( 'loading...', 'loading...' );
-    $(o).html( 'loading...' );
+    var o = new Option( _('loading...'), _('loading...') );
+    $(o).html( _('loading...') );
     target.append(o);
     target.attr('disabled', true);
     $.get( $(elem).attr('data-url'),{id:$(elem).val()}, function(result){
@@ -146,8 +146,9 @@ function cloneInput(e){
         clone.removeClass();
         id = uniqueId();
         clone.addClass('clonable clonable-'+id);
-        $destination.after('<div class="clonable clonable-'+id+'"><span>1</span><a href="#" tabindex="-1" class="style-one delete-clonable clonable-'+id+'"></a></div>');
+        $destination.after('<div style="display:none" class="clonable clonable-'+id+'"><span>1</span><a href="#" tabindex="-1" class="style-one delete-clonable clonable-'+id+'"></a></div>');
         $('a.clonable-'+id).before(clone);
+        $('div.clonable-'+id).fadeIn();
         reorderClonable($elem.attr('name'));
     }
 }
@@ -173,8 +174,11 @@ function reorderClonable(name){
 function deleteClonable(e){
     e.preventDefault();
     name = $(e.target).parent().find('input').attr('name');
-    $(e.target).parent().remove();
-    reorderClonable( name );
+    $(e.target).parent().fadeOut( function(){
+        $(e.target).parent().remove();
+        reorderClonable( name );
+    });
+    
     return false;
 }
 
@@ -223,7 +227,7 @@ function savingAnimation(stop) {
     if (saving_animation == 1) return false;
     saving_animation = 1;
     $('body').remove('#save-indicator');
-    $('body').append('<div id="save-indicator">Saving <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>');
+    $('body').append('<div id="save-indicator">'+ _('saving') +' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>');
     $('#save-indicator').animate({
         left: '0px'
     }, 300);
@@ -236,7 +240,8 @@ function savingAnimation(stop) {
  */
 function enableFileUploader($uploader){
     dropzone = $uploader.attr('data-dropzone');
-    progressbar = $uploader.attr('data-progress-bar');
+    var progressbar = $uploader.attr('data-progress-bar');
+    console.log(progressbar);
     $uploader.fileupload({
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
@@ -248,12 +253,12 @@ function enableFileUploader($uploader){
                 var $progress = parseInt(data.loaded / data.total * 100, 10);
                 $(progressbar).css('width', $progress + '%');
                 $(progressbar).find('span').html($progress);
-                if($progress=='100') $(progressbar).find('span').html('Upload complete. Processing <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                if($progress=='100') $(progressbar).find('span').html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
             }).on('fileuploadfail', function (e, data) {
                 $(progressbar).find('span').html('');
                 $(progressbar).css('width', 0 + '%');
                 $.each(data.files, function (index) {
-                    var error = $('<span class="alert alert-danger upload-error"/>').text('File upload failed.');
+                    var error = $('<span class="alert alert-danger upload-error"/>').text( _('File upload failed.') );
                     $(progressbar).css('width', 100 + '%');
                     $(progressbar).find('span').html(error);
                 });

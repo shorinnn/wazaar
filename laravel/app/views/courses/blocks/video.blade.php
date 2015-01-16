@@ -5,23 +5,22 @@
                 @if (@$video->transcode_status == Video::STATUS_COMPLETE)
                     hide
                 @endif
-                    "><strong>Note: </strong>Your video will appear here when it's processed successfully</div>
+                    "><strong>{{trans('crud/labels.note')}}: </strong>{{trans('video.willAppearHere')}}</div>
 
-            @if (isset($video->formats[0]->video_url))
-                @if (!empty($video->formats[0]->video_url))
-                    <div id="video-player">
+
+
+                    <div id="video-player" class="@if (!isset($video->formats[0]->video_url)) hide @endif">
                         <video controls>
-                            <source src="{{$video->formats[0]->video_url}}">
-                            Your browser does not support HTML 5.
+                            <source id="source-video-url" src="{{@$video->formats[0]->video_url}}">
+                            {{trans('video.doesNotSupportHthml5')}}
                         </video>
                     </div>
-                @endif
-            @endif
+
 
     </div>
-    <h3>Upload Video</h3>
-    <p>Formats supported: mp4, avi, wmv</p>
-    <p>Max file size: 2GB</p>
+    <h3>{{trans('video.uploadOr')}} <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}">{{trans('video.selectExisting')}}</a></h3>
+    <p>{{trans('video.formatsSupported')}}</p>
+    <p>{{trans('video.maxFileSize')}}</p>
 
     {{Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])}}
         <div class="form-inline">
@@ -34,7 +33,7 @@
         <!-- Progress Bar -->
         <div class="progress">
             <div id="progress-bar-{{$block->id}}" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                <span><span id="percent-complete-{{$block->id}}"></span>% Complete</span>
+                <span><span id="percent-complete-{{$block->id}}"></span>% {{trans('crud/labels.complete')}}</span>
             </div>
         </div>
     {{Form::close()}}
@@ -43,13 +42,15 @@
 <script type="text/javascript">
     $(function (){
 
-        var blockId = {{$block->id}};
-        var lessonId = {{$lessonId}};
+        var $blockId = {{$block->id}};
+        var $lessonId = {{$lessonId}};
+        var $intervalId = 0;
+
         videoUploader.initialize({
-            'fileInputElem' : $('#fileupload-' + blockId),
+            'fileInputElem' : $('#fileupload-' + $blockId),
             'progressCallBack' : function ($data, $progressPercentage){
-                $('#progress-bar-' + blockId).css('width', $progressPercentage + '%');
-                $('#percent-complete-' + blockId).html($progressPercentage);
+                $('#progress-bar-' + $blockId).css('width', $progressPercentage + '%');
+                $('#percent-complete-' + $blockId).html($progressPercentage);
             },
             'failCallBack' : function ($data){
 
@@ -59,9 +60,20 @@
                 if ($data.result.videoId !== undefined) {
                     $('#video-player').hide();
                     $('#notify-warning-new-video').removeClass('hide');
-                    $.post('/lessons/blocks/' + lessonId + '/video', {videoId : $data.result.videoId, blockId : blockId });
+                    $.post('/lessons/blocks/' + $lessonId + '/video', {videoId : $data.result.videoId, blockId : $blockId });
+
+                    //Run timer to check for video transcode status
+                    $intervalId = setInterval (function() { videoUploader.getVideo($data.result.videoId, function ($video){
+                        if ($video.transcode_status == 'Complete'){
+                            clearInterval($intervalId);
+                            $('#video-link-' + $lessonId).trigger('click');
+                            //reload video partial
+                        }
+                    }) }, 5000);
                 }
             }
         });
+
+
     });
 </script>

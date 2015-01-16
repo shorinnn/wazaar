@@ -6,7 +6,8 @@
 $(document).ready(function(){
     $(".profile-name > li").removeClass("activate-dropdown");
     $('body').delegate('.slide-toggler', 'click', slideToggle);
-    $('body').delegate('a.load-remote', 'click', loadRemote);    
+    $('body').delegate('a.load-remote', 'click', loadRemote);  
+    _.setTranslation( js_translation_map );
 });
 
 /**
@@ -58,11 +59,45 @@ function uniqueId(){
  */
 function unhide(elem){
     $(elem).removeClass('hidden');
+    $(elem).css('opacity','0');
     $('.steps-meter').find('p.active').removeClass('active');
     $('[data-target="'+elem+'"]').addClass('active');
-    $('html, body').animate({
-        scrollTop: $(elem).offset().top
-    }, 200);
+
+    $(elem).animate({
+        opacity:1
+    }, 1000);
+    val = $(elem).prev('.animated-step').outerHeight(true);
+    console.log(val);
+    $(elem).prev('.animated-step').animate({
+        opacity: 0,
+        marginTop: -val,
+    }, 1000, function(){
+        $(elem).prev('.animated-step').hide();
+    });
+}
+
+function reverseUnhide(){
+    elem = '#'+$('.animated-step:visible').attr('id');
+    if(elem=='#step1') return false;
+    prev = '#'+$(elem).prev('.animated-step').attr('id');
+    console.log(prev);
+    $('.steps-meter').find('p.active').removeClass('active');
+    $('[data-target="'+prev+'"]').addClass('active');
+
+    $(elem).animate({
+        opacity:0
+    }, 1000, function(){
+        $(elem).addClass('hidden');
+    });
+    
+   
+    $(elem).prev('.animated-step').show();
+    $(elem).prev('.animated-step').animate({
+        opacity: 1,
+        marginTop: 0
+    }, 1000, function(){
+        
+    });
 }
 
 /**
@@ -94,10 +129,29 @@ function loadRemote(e){
         callback = elem.attr('data-callback');  
     }
     
-    $(target).html('loading...<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
     $(target).load(url, function(){
         if( typeof(callback)!= 'undefined'){
             window[callback](e);
         }
     });
 }
+scrollAnimationActivated = true;
+$(window).scroll(function() {
+   if(!scrollAnimationActivated) return false;
+   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+       scrollAnimationActivated = false;
+       $('.animated-step:visible').find('.unhide-btn').click();
+       setTimeout(function(){
+           scrollAnimationActivated = true;
+       },2000);
+       return false;    
+   }
+   if($(window).scrollTop() == 0) {
+       scrollAnimationActivated = false;
+       reverseUnhide();
+       setTimeout(function(){
+           scrollAnimationActivated = true;
+       },2000);
+   }
+});
