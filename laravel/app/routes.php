@@ -88,6 +88,9 @@ Route::get('instructors/become-instructor', 'InstructorsController@become');
 Route::post('instructors/become-instructor', 'InstructorsController@doBecome');
 Route::resource('instructors', 'InstructorsController');
 
+//joke route
+Route::get('shop', 'SiteController@shop');
+
 ## Route Group for Profile
 Route::group(['prefix' => 'profile'], function (){
     ## Profile Page /profile
