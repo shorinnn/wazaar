@@ -68,7 +68,7 @@
                                 <img width="200" src="http://shorinnn.com/easteregg/5.png" />
                             </a>
                             <p style='font-style:italic'>The Cruel Cycle of life. Show your support by wearing this. 10% of all proceedings 
-                                go an ISP of your choise.</p>
+                                go an ISP of your choice.</p>
                             <p>$200K (1 left - buy now!)</p>
                             <button class="btn btn-danger"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
                         </div>
