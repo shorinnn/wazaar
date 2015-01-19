@@ -8,6 +8,7 @@ $(document).ready(function(){
     $('body').delegate('.slide-toggler', 'click', slideToggle);
     $('body').delegate('a.load-remote', 'click', loadRemote);
     $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
+    $(window).scroll(stepsScrollAnimation);
     _.setTranslation( js_translation_map );
     floatingNav();
     scrollNavigation();
@@ -171,8 +172,10 @@ function loadRemoteCache(e){
         }
     });
 }
+
+
 scrollAnimationActivated = true;
-$(window).scroll(function() {
+function stepsScrollAnimation(){
    if(!scrollAnimationActivated) return false;
    if($(window).scrollTop() + $(window).height() == $(document).height()) {
        scrollAnimationActivated = false;
@@ -189,7 +192,7 @@ $(window).scroll(function() {
            scrollAnimationActivated = true;
        },2000);
    }
-});
+}
 
 /**
  * This function fixes the navigation menu at the top of the page
