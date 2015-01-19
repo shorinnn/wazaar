@@ -164,6 +164,7 @@ $(window).scroll(function() {
  */
 function floatingNav(){
     // this checks the current top position of the nav and stores it in a variable.
+    if( $(".main-nav-section").length == 0 )return false;
     var max_scroll = $(".main-nav-section").position().top;
     $(window).scroll(function () {
         var navbar = $(".main-nav-section");
@@ -176,7 +177,7 @@ function floatingNav(){
             navbar.removeClass("filterbuttonFixed");
         }
 
-    })
+    });
 
 }
 
