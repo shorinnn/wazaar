@@ -62,7 +62,6 @@ class VideoHelper
 
     public function extractVideoFormatsFromOutputs($videoId, $outputs)
     {
-        $outputLink   = 'https://s3-ap-southeast-1.amazonaws.com/videosoutput/';
         $videoFormats = [];
         $presets  = Config::get('wazaar.AWS_VIDEO_PRESETS');
         foreach ($outputs as $output) {
@@ -73,8 +72,8 @@ class VideoHelper
                 'preset_id'  => $output['presetId'],
                 'resolution' => @$presets[$output['presetId']],//  $resolution,
                 'duration'   => $output['duration'],
-                'thumbnail'  => $outputLink .$thumbnail,
-                'video_url'  => $outputLink . $output['key']
+                'thumbnail'  => $thumbnail,
+                'video_url'  => $output['key']
             ];
         }
 
