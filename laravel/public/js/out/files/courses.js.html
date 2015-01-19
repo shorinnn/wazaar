@@ -190,7 +190,6 @@
                          */
                         function enableLessonRTE(e){
                             selector = &#x27;#&#x27;+$(e.target).parent().parent().parent().find(&#x27;textarea&#x27;).attr(&#x27;id&#x27;);
-                            console.log(&#x27;enabling &#x27;+selector);
                             tinymce.remove(selector);
                             tinymce.init({
                                 autosave_interval: &quot;20s&quot;,
@@ -230,11 +229,48 @@
                          * @method blockFileUploaded
                          */
                         function blockFileUploaded(e, data){
+                            var progressbar = $(e.target).attr(&#x27;data-progress-bar&#x27;);
                             $(progressbar).find(&#x27;span&#x27;).html(&#x27;&#x27;);
                             $(progressbar).css(&#x27;width&#x27;, 0 + &#x27;%&#x27;);
                             result = JSON.parse(data.result);
+                            if(result.status==&#x27;error&#x27;){
+                                $(e.target).after(&quot;&lt;p class=&#x27;alert alert-danger ajax-error&#x27;&gt;&quot;+result.errors+&#x27;&lt;/p&gt;&#x27;);
+                                return false;
+                            }
                             $(e.target).parent().parent().append(result.html);
                         }
+                        
+                        /**
+                         * Called before ajax uploading a lesson file, it limits the number of files that can be uploaded
+                         * @param {event} e The original event
+                         * @param {object} data The upload result object
+                         * @return {Boolean} False if file can&#x27;t be uploaded, true otherwise
+                         */
+                        function limitLessonFiles(e, data){
+                            $(e.target).parent().find(&#x27;.ajax-error&#x27;).remove();
+                            max_upload = $(e.target).attr(&#x27;data-max-upload&#x27;);
+                            if( $(e.target).parent().parent().find(&#x27;.uploaded-file&#x27;).length &gt;= max_upload){
+                                $(e.target).after(&quot;&lt;p class=&#x27;alert alert-danger ajax-error&#x27;&gt;&quot;+$(e.target).attr(&#x27;data-max-upload-error&#x27;)+&#x27;&lt;/p&gt;&#x27;);
+                                return false;
+                            }
+                            return true;
+                        }
+                        /**
+                         * Called after a course preview/banner image is uploaded, it appends the new element to the list and clears the progressbar
+                         * @param {event} e The original event
+                         * @param {object} data The upload result object
+                         * @return {undefined}
+                         */
+                        function courseImageUploaded(e, data){
+                            var progressbar = $(e.target).attr(&#x27;data-progress-bar&#x27;);
+                            $(progressbar).find(&#x27;span&#x27;).html(&#x27;&#x27;);
+                            $(progressbar).css(&#x27;width&#x27;, 0 + &#x27;%&#x27;);
+                            target = $(e.target).attr(&#x27;data-target&#x27;);
+                            result = JSON.parse(data.result);
+                            $(target).append(result.html);
+                            $(target).find(&#x27;[type=radio]&#x27;).click();
+                        }
+                        
                             </pre>
                         </div>
                     </div>

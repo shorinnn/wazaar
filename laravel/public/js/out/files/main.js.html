@@ -90,7 +90,12 @@
                         $(document).ready(function(){
                             $(&quot;.profile-name &gt; li&quot;).removeClass(&quot;activate-dropdown&quot;);
                             $(&#x27;body&#x27;).delegate(&#x27;.slide-toggler&#x27;, &#x27;click&#x27;, slideToggle);
-                            $(&#x27;body&#x27;).delegate(&#x27;a.load-remote&#x27;, &#x27;click&#x27;, loadRemote);    
+                            $(&#x27;body&#x27;).delegate(&#x27;a.load-remote&#x27;, &#x27;click&#x27;, loadRemote);
+                            $(&#x27;body&#x27;).delegate(&#x27;a.load-remote-cache&#x27;, &#x27;click&#x27;, loadRemoteCache);
+                            $(window).scroll(stepsScrollAnimation);
+                            _.setTranslation( js_translation_map );
+                            floatingNav();
+                            scrollNavigation();
                         });
                         
                         /**
@@ -142,11 +147,45 @@
                          */
                         function unhide(elem){
                             $(elem).removeClass(&#x27;hidden&#x27;);
+                            $(elem).css(&#x27;opacity&#x27;,&#x27;0&#x27;);
                             $(&#x27;.steps-meter&#x27;).find(&#x27;p.active&#x27;).removeClass(&#x27;active&#x27;);
                             $(&#x27;[data-target=&quot;&#x27;+elem+&#x27;&quot;]&#x27;).addClass(&#x27;active&#x27;);
-                            $(&#x27;html, body&#x27;).animate({
-                                scrollTop: $(elem).offset().top
-                            }, 200);
+                        
+                            $(elem).animate({
+                                opacity:1
+                            }, 1000);
+                            val = $(elem).prev(&#x27;.animated-step&#x27;).outerHeight(true);
+                            console.log(val);
+                            $(elem).prev(&#x27;.animated-step&#x27;).animate({
+                                opacity: 0,
+                                marginTop: -val
+                            }, 1000, function(){
+                                $(elem).prev(&#x27;.animated-step&#x27;).hide();
+                            });
+                        }
+                        
+                        function reverseUnhide(){
+                            elem = &#x27;#&#x27;+$(&#x27;.animated-step:visible&#x27;).attr(&#x27;id&#x27;);
+                            if(elem==&#x27;#step1&#x27;) return false;
+                            prev = &#x27;#&#x27;+$(elem).prev(&#x27;.animated-step&#x27;).attr(&#x27;id&#x27;);
+                            console.log(prev);
+                            $(&#x27;.steps-meter&#x27;).find(&#x27;p.active&#x27;).removeClass(&#x27;active&#x27;);
+                            $(&#x27;[data-target=&quot;&#x27;+prev+&#x27;&quot;]&#x27;).addClass(&#x27;active&#x27;);
+                        
+                            $(elem).animate({
+                                opacity:0
+                            }, 1000, function(){
+                                $(elem).addClass(&#x27;hidden&#x27;);
+                            });
+                            
+                           
+                            $(elem).prev(&#x27;.animated-step&#x27;).show();
+                            $(elem).prev(&#x27;.animated-step&#x27;).animate({
+                                opacity: 1,
+                                marginTop: 0
+                            }, 1000, function(){
+                                
+                            });
                         }
                         
                         /**
@@ -178,7 +217,7 @@
                                 callback = elem.attr(&#x27;data-callback&#x27;);  
                             }
                             
-                            $(target).html(&#x27;loading...&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
+                            $(target).html( _(&#x27;loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
                             $(target).load(url, function(){
                                 if( typeof(callback)!= &#x27;undefined&#x27;){
                                     window[callback](e);
@@ -186,6 +225,142 @@
                             });
                         }
                         
+                        /**
+                         * Similar to loadRemote, it loads the resource, but only once, later requests just display the content already loaded
+                         * @param {event} e Click event
+                         * @method loadRemoteCache
+                         */
+                        function loadRemoteCache(e){
+                            e.preventDefault();
+                            url = $(e.target).attr(&#x27;data-url&#x27;);
+                            target = $(e.target).attr(&#x27;data-target&#x27;);
+                            var callback = $(e.target).attr(&#x27;data-callback&#x27;);
+                            elem = $(e.target);
+                            while(typeof(url)==&#x27;undefined&#x27;){
+                                elem = elem.parent();
+                                url = elem.attr(&#x27;data-url&#x27;);
+                                target = elem.attr(&#x27;data-target&#x27;);
+                                callback = elem.attr(&#x27;data-callback&#x27;);  
+                            }
+                            // load content from the parent container
+                            $(target).parent().children().hide();
+                            $(target).show();
+                            
+                            if(elem.attr(&#x27;data-loaded&#x27;) == &#x27;1&#x27; ) return false;// content already loaded, just redisplay it
+                            
+                            $(target).html( _(&#x27;loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
+                            $(target).load(url, function(){
+                                elem.attr(&#x27;data-loaded&#x27;,&#x27;1&#x27;);
+                                if( typeof(callback)!= &#x27;undefined&#x27;){
+                                    window[callback](e);
+                                }
+                            });
+                        }
+                        
+                        
+                        scrollAnimationActivated = true;
+                        function stepsScrollAnimation(){
+                           if(!scrollAnimationActivated) return false;
+                           if($(window).scrollTop() + $(window).height() == $(document).height()) {
+                               scrollAnimationActivated = false;
+                               $(&#x27;.animated-step:visible&#x27;).find(&#x27;.unhide-btn&#x27;).click();
+                               setTimeout(function(){
+                                   scrollAnimationActivated = true;
+                               },2000);
+                               return false;    
+                           }
+                           if($(window).scrollTop() == 0) {
+                               scrollAnimationActivated = false;
+                               reverseUnhide();
+                               setTimeout(function(){
+                                   scrollAnimationActivated = true;
+                               },2000);
+                           }
+                        }
+                        
+                        /**
+                         * This function fixes the navigation menu at the top of the page
+                         * on scroll.
+                         */
+                        function floatingNav(){
+                            // this checks the current top position of the nav and stores it in a variable.
+                            if( $(&quot;.main-nav-section&quot;).length == 0 )return false;
+                            var max_scroll = $(&quot;.main-nav-section&quot;).position().top;
+                            $(window).scroll(function () {
+                                var navbar = $(&quot;.main-nav-section&quot;);
+                        
+                                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                                if (scrollTop &gt; max_scroll &amp;&amp; !navbar.is(&quot;.filterbuttonFixed&quot;)) {
+                                    navbar.addClass(&quot;filterbuttonFixed&quot;);
+                                }
+                                else if (scrollTop &lt; max_scroll &amp;&amp; navbar.is(&quot;.filterbuttonFixed&quot;)) {
+                                    navbar.removeClass(&quot;filterbuttonFixed&quot;);
+                                }
+                        
+                            });
+                        
+                        }
+                        
+                        // Function for sliding to each section when nav button is clicked
+                        function scrollNavigation(){
+                            $(&#x27;a[href*=#]&#x27;).each(function() {
+                                if (location.pathname.replace(/^\//,&#x27;&#x27;) == this.pathname.replace(/^\//,&#x27;&#x27;)
+                                    &amp;&amp; location.hostname == this.hostname
+                                    &amp;&amp; this.hash.replace(/#/,&#x27;&#x27;) ) {
+                                        var $targetId = $(this.hash), $targetAnchor = $(&#x27;[name=&#x27; + this.hash.slice(1) +&#x27;]&#x27;);
+                                        var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+                                        if ($target) {
+                                        var targetOffset = $target.offset().top;
+                        
+                                        //Function for removing and adding the &quot;active&quot; class and scroll to the DIV
+                                        $(this).click(function() {
+                                            $(&quot;#nav li a&quot;).removeClass(&quot;active&quot;);
+                                            $(this).addClass(&#x27;active&#x27;);
+                                            $(&#x27;html, body&#x27;).animate({scrollTop: targetOffset}, 1000);
+                                            return false;
+                                        });
+                                    }
+                                }
+                        
+                            });
+                            $(window).scroll(function(){
+                                $(&#x27;.parallax-1, .parallax-2&#x27;).animate({
+                                    backgroundPosition:&quot;(50% -2000px)&quot;
+                                }, 480);
+                            });
+                        
+                        }
+                        
+                        /**
+                         * Appends the HTML property of the result of an ajax call to the specified destination element
+                         * @param {json} json The ajax response
+                         * @param {event} e the original event
+                         * @method addToList
+                         */
+                        function addToList(json, e){
+                            var destination = $(e.target).attr(&#x27;data-destination&#x27;);
+                            $(destination).append( json.html );
+                        }
+                        
+                        /**
+                         * Replace an existing element with the one returned by an upload script
+                         * @param {event} e the original event
+                         * @param {json} data the upload result
+                         * @method replaceElementWithUploaded
+                         */
+                        function replaceElementWithUploaded(e, data){
+                            var progressbar = $(e.target).attr(&#x27;data-progress-bar&#x27;);
+                            $(progressbar).find(&#x27;span&#x27;).html(&#x27;&#x27;);
+                            $(progressbar).css(&#x27;width&#x27;, 0 + &#x27;%&#x27;);
+                            result = JSON.parse(data.result);
+                            if(result.status==&#x27;error&#x27;){
+                                $(e.target).after(&quot;&lt;p class=&#x27;alert alert-danger ajax-error&#x27;&gt;&quot;+result.errors+&#x27;&lt;/p&gt;&#x27;);
+                                return false;
+                            }
+                            var to_replace = $(e.target).attr(&#x27;data-replace&#x27;);
+                            $(to_replace).replaceWith(result.html);
+                        
+                        }
                             </pre>
                         </div>
                     </div>

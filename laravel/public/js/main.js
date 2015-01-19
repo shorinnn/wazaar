@@ -247,3 +247,33 @@ function scrollNavigation(){
 
 }
 
+/**
+ * Appends the HTML property of the result of an ajax call to the specified destination element
+ * @param {json} json The ajax response
+ * @param {event} e the original event
+ * @method addToList
+ */
+function addToList(json, e){
+    var destination = $(e.target).attr('data-destination');
+    $(destination).append( json.html );
+}
+
+/**
+ * Replace an existing element with the one returned by an upload script
+ * @param {event} e the original event
+ * @param {json} data the upload result
+ * @method replaceElementWithUploaded
+ */
+function replaceElementWithUploaded(e, data){
+    var progressbar = $(e.target).attr('data-progress-bar');
+    $(progressbar).find('span').html('');
+    $(progressbar).css('width', 0 + '%');
+    result = JSON.parse(data.result);
+    if(result.status=='error'){
+        $(e.target).after("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
+        return false;
+    }
+    var to_replace = $(e.target).attr('data-replace');
+    $(to_replace).replaceWith(result.html);
+
+}

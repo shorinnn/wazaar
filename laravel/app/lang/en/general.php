@@ -21,4 +21,5 @@ return array(
     'details' => 'Details',
     'lesson_price' => 'Lesson Price',
     'new_file' => 'New file',
+    'homepage_graphic' => 'Homepage Graphic',
 );

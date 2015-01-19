@@ -16,5 +16,7 @@ return array(
     'add_lesson' => 'Add Lesson',
     'edit_text' => 'Edit Text',
     'note' => 'Note',
-    'complete' => 'Complete'
+    'complete' => 'Complete',
+    'add_category' => 'Add Category',
+    'add_subcategory' => 'Add Subcategory'
 );

@@ -164,6 +164,6 @@
                     $('#video-link-' + $lessonId).trigger('click');
                 });
             });
-        })
+        });
     </script>
 @stop

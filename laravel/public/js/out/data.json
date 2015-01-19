@@ -36,6 +36,13 @@
             },
             "fors": {},
             "namespaces": {}
+        },
+        "videoUploader.js": {
+            "name": "videoUploader.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
         }
     },
     "modules": {},
@@ -182,7 +189,7 @@
         },
         {
             "file": "courses.js",
-            "line": 131,
+            "line": 130,
             "description": "Called after the files tab of a lesson is loaded, it ajaxifies the file upload form",
             "params": [
                 {
@@ -197,7 +204,7 @@
         },
         {
             "file": "courses.js",
-            "line": 141,
+            "line": 140,
             "description": "Called after the lesson file has been uploaded, it resets the progress bar \nand includes the new object in the UI",
             "params": [
                 {
@@ -216,8 +223,52 @@
             "class": "Courses"
         },
         {
+            "file": "courses.js",
+            "line": 159,
+            "description": "Called before ajax uploading a lesson file, it limits the number of files that can be uploaded",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The original event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data",
+                    "description": "The upload result object",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "False if file can't be uploaded, true otherwise",
+                "type": "Boolean"
+            },
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 174,
+            "description": "Called after a course preview/banner image is uploaded, it appends the new element to the list and clears the progressbar",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The original event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data",
+                    "description": "The upload result object",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Courses"
+        },
+        {
             "file": "forms.js",
-            "line": 15,
+            "line": 16,
             "description": "Event handler for .ajax-form<br />\nSubmits forms with .ajax-form class via ajax and fires the data-callback function if specified",
             "itemtype": "method",
             "name": "formAjaxSubmit",
@@ -236,7 +287,7 @@
         },
         {
             "file": "forms.js",
-            "line": 42,
+            "line": 43,
             "description": "Event handler for forms.<br />\nCalled on all forms when they're submitted. It replaces the submit button label with \"Processing...[loader icon]\" \nand stores the old value in data-old-label attribute.",
             "itemtype": "method",
             "name": "submittedFormButton",
@@ -251,7 +302,7 @@
         },
         {
             "file": "forms.js",
-            "line": 55,
+            "line": 56,
             "description": "Restores the form's submit button original label",
             "itemtype": "method",
             "name": "restoreSubmitLabel",
@@ -266,7 +317,7 @@
         },
         {
             "file": "forms.js",
-            "line": 65,
+            "line": 66,
             "description": "Event handler for  .delete-button.<br />\nFired by click on .delete-button and asks for confirmation",
             "itemtype": "method",
             "name": "confirmDelete",
@@ -285,7 +336,7 @@
         },
         {
             "file": "forms.js",
-            "line": 83,
+            "line": 84,
             "description": "Event handler for .has-slug<br />\nIs called on keyup event for elements with .has-slug class. It takes the elements value \nand populates another field specified by the elements data-slug-target attribute with\nthe slug version of the value",
             "itemtype": "method",
             "name": "updateSlug",
@@ -304,7 +355,7 @@
         },
         {
             "file": "forms.js",
-            "line": 98,
+            "line": 99,
             "description": "Populates a second dropdown specified by 'data-target' with the values \nreturned by the get call to the resource at data-url",
             "itemtype": "method",
             "name": "populateDropdown",
@@ -319,7 +370,7 @@
         },
         {
             "file": "forms.js",
-            "line": 123,
+            "line": 124,
             "description": "Event handler for .clonable inputs.<br />\nFired on keyup on an empty clonable input - it creates a set of \ninput+delete button after the calling element",
             "params": [
                 {
@@ -332,7 +383,7 @@
         },
         {
             "file": "forms.js",
-            "line": 156,
+            "line": 158,
             "description": "Renumbers the position label under clonable inputs",
             "itemtype": "method",
             "name": "reorderClonable",
@@ -347,7 +398,7 @@
         },
         {
             "file": "forms.js",
-            "line": 169,
+            "line": 171,
             "description": "Event handler for click on .delete-clonable buttons<br />\nDeletes the clonable input and associated delete button",
             "params": [
                 {
@@ -360,7 +411,7 @@
         },
         {
             "file": "forms.js",
-            "line": 182,
+            "line": 187,
             "description": "Called after an AJAX delete call, removes the specified HTML element",
             "itemtype": "method",
             "name": "deleteItem",
@@ -380,7 +431,7 @@
         },
         {
             "file": "forms.js",
-            "line": 208,
+            "line": 213,
             "description": "Displays a saving animation when called with a 0 param, ends it when called with a 1 param",
             "params": [
                 {
@@ -395,7 +446,7 @@
         },
         {
             "file": "forms.js",
-            "line": 233,
+            "line": 238,
             "description": "Enables AJAX file uploading for the specified element",
             "params": [
                 {
@@ -409,8 +460,44 @@
             "class": "Forms"
         },
         {
+            "file": "forms.js",
+            "line": 274,
+            "description": "Displays saving animation after ajax form is submitted",
+            "itemtype": "method",
+            "name": "formSaved",
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 283,
+            "description": "Converts the supplied element into a slider object",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "The css selector of the element to be converted",
+                    "type": "String"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 295,
+            "description": "Sets a slider control's value to the value of the calling input",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The change event fired by the calling input",
+                    "type": "Event"
+                }
+            ],
+            "itemtype": "method",
+            "name": "setSlider",
+            "class": "Forms"
+        },
+        {
             "file": "main.js",
-            "line": 12,
+            "line": 17,
             "description": "Returns a slug version of the supplied string",
             "itemtype": "method",
             "name": "convertToSlug",
@@ -429,7 +516,7 @@
         },
         {
             "file": "main.js",
-            "line": 22,
+            "line": 27,
             "description": "Redirects the window to the specified URL",
             "itemtype": "method",
             "name": "followRedirect",
@@ -444,7 +531,7 @@
         },
         {
             "file": "main.js",
-            "line": 32,
+            "line": 37,
             "description": "Static unique numbers holder. Used to keep track of used numbers",
             "itemtype": "property",
             "name": "unique_numbers",
@@ -453,7 +540,7 @@
         },
         {
             "file": "main.js",
-            "line": 39,
+            "line": 44,
             "description": "Returns a document-wide unique number",
             "itemtype": "method",
             "name": "uniqueID",
@@ -465,7 +552,7 @@
         },
         {
             "file": "main.js",
-            "line": 55,
+            "line": 60,
             "description": "Removes the hidden class of the supplied identifier and scrolls to it",
             "params": [
                 {
@@ -478,7 +565,7 @@
         },
         {
             "file": "main.js",
-            "line": 68,
+            "line": 107,
             "description": "Slide toggles an element defined by the caller's data-target attribute",
             "itemtype": "method",
             "name": "slideToggle",
@@ -493,7 +580,7 @@
         },
         {
             "file": "main.js",
-            "line": 78,
+            "line": 117,
             "description": "Event handler for a.load-remote<br />\nIt loads the resource specified at data-url into the element specified at data-target",
             "params": [
                 {
@@ -504,6 +591,67 @@
             ],
             "itemtype": "method",
             "name": "loadRemote",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 144,
+            "description": "Similar to loadRemote, it loads the resource, but only once, later requests just display the content already loaded",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Click event",
+                    "type": "Event"
+                }
+            ],
+            "itemtype": "method",
+            "name": "loadRemoteCache",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 197,
+            "description": "This function fixes the navigation menu at the top of the page\non scroll.",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 250,
+            "description": "Appends the HTML property of the result of an ajax call to the specified destination element",
+            "params": [
+                {
+                    "name": "json",
+                    "description": "The ajax response",
+                    "type": "Json"
+                },
+                {
+                    "name": "e",
+                    "description": "the original event",
+                    "type": "Event"
+                }
+            ],
+            "itemtype": "method",
+            "name": "addToList",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 261,
+            "description": "Replace an existing element with the one returned by an upload script",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "the original event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data",
+                    "description": "the upload result",
+                    "type": "Json"
+                }
+            ],
+            "itemtype": "method",
+            "name": "replaceElementWithUploaded",
             "class": "Main"
         },
         {
@@ -644,36 +792,62 @@
                 }
             ],
             "class": "Validations"
+        },
+        {
+            "file": "videoUploader.js",
+            "line": 1,
+            "description": "Video uploader object using jqueryUploader for ajax upload",
+            "class": ""
         }
     ],
     "warnings": [
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " forms.js:15"
+            "line": " forms.js:16"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " forms.js:65"
+            "line": " forms.js:66"
         },
         {
             "message": "replacing incorrect tag: returns with return",
             "line": " validations.js:41"
         },
         {
+            "message": "Missing item type\nCalled before ajax uploading a lesson file, it limits the number of files that can be uploaded",
+            "line": " courses.js:159"
+        },
+        {
+            "message": "Missing item type\nCalled after a course preview/banner image is uploaded, it appends the new element to the list and clears the progressbar",
+            "line": " courses.js:174"
+        },
+        {
             "message": "Missing item type\nEvent handler for .clonable inputs.<br />\nFired on keyup on an empty clonable input - it creates a set of \ninput+delete button after the calling element",
-            "line": " forms.js:123"
+            "line": " forms.js:124"
         },
         {
             "message": "Missing item type\nEvent handler for click on .delete-clonable buttons<br />\nDeletes the clonable input and associated delete button",
-            "line": " forms.js:169"
+            "line": " forms.js:171"
+        },
+        {
+            "message": "Missing item type\nConverts the supplied element into a slider object",
+            "line": " forms.js:283"
         },
         {
             "message": "Missing item type\nRemoves the hidden class of the supplied identifier and scrolls to it",
-            "line": " main.js:55"
+            "line": " main.js:60"
+        },
+        {
+            "message": "Missing item type\nThis function fixes the navigation menu at the top of the page\non scroll.",
+            "line": " main.js:197"
         },
         {
             "message": "Missing item type\nSlides down a subtle hint if the element supplied is not valid",
             "line": " validations.js:176"
+        },
+        {
+            "message": "Missing item type\nVideo uploader object using jqueryUploader for ajax upload",
+            "line": " videoUploader.js:1"
         }
     ]
 }

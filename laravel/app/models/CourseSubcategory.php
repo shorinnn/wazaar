@@ -22,5 +22,9 @@ class CourseSubcategory extends Ardent{
         if($privacy_status=='public') return Course::where('course_subcategory_id', $this->id)->where('privacy_status', 'public');
         return Course::where('course_subcategory_id', $this->id); 
    }
+   
+   public function beforeSave(){
+       $this->slug = Str::slug( $this->name );
+   }
 
 }

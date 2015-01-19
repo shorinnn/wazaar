@@ -32,6 +32,7 @@ function formAjaxSubmit(e){
         }
         restoreSubmitLabel(form);
         if( typeof(form.attr('data-callback'))!='undefined' ){
+            form[0].reset();
             window[form.attr('data-callback')](result, e);
         }
     });
@@ -205,7 +206,11 @@ function updateFieldRemote(e){
         url: url,
         type: 'PUT',
         data: {name:name, value:value, _token:token},
-        success: savingAnimation(1)
+        success: savingAnimation(1),
+        error: function(e){
+            alert( _('Request failed: an error occurred') );
+            console.log(e);
+        }
     });
 }
 
@@ -242,7 +247,6 @@ function savingAnimation(stop) {
 function enableFileUploader($uploader){
     dropzone = $uploader.attr('data-dropzone');
     var progressbar = $uploader.attr('data-progress-bar');
-    console.log(progressbar);
     $uploader.fileupload({
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
@@ -266,7 +270,6 @@ function enableFileUploader($uploader){
             }).on('fileuploaddone', function (e,data){
                 callback = $uploader.attr('data-callback');
                 if( typeof(callback) !=undefined ){
-                    console.log(callback)
                     window[callback](e, data);
                 }
             });
@@ -293,6 +296,11 @@ function enableSlider(selector){
       });
 }
 
+/**
+ * Sets a slider control's value to the value of the calling input
+ * @param {event} e The change event fired by the calling input
+ * @method setSlider
+ */
 function setSlider(e){
     elem = $(e.target).attr('data-slider');
     $(elem).slider('setValue', $(e.target).val() );
