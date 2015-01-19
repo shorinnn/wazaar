@@ -448,6 +448,8 @@
 	border-radius: 5px;
 	background: #0099ff;
 	overflow: hidden;
+	margin-top: 60px;
+	padding-bottom: 10px;
 }
 
 .classroom-stats .today-stat h2{
@@ -480,6 +482,7 @@
 .classroom-stats .today-stat ul li{
 	font-size: 12px;
 	color: #fff;	
+	margin-bottom: 27px;
 }
 
 .classroom-stats .today-stat ul li > span{
@@ -491,6 +494,7 @@
 .classroom-stats .today-stat ul li div{
 	float: left;
 	width: 228px;
+	margin-top: 5px;
 	border-radius: 4px;
 	overflow: hidden;
 	background: #fff;
@@ -507,9 +511,86 @@
     float: left;
     font-style: normal;
     text-align: right;
-    width: 87px;
+    width: 70px;
 }
 
 .classroom-stats .today-stat li#monday > div span {
-    width: 60%;
+    width: 40%;
+}
+
+.classroom-stats .today-stat li#tuesday > div span {
+    width: 30%;
+}
+
+.classroom-stats .today-stat li#wednesday > div span {
+    width: 30%;
+}
+
+.classroom-stats .today-stat li#thursday > div span {
+    width: 40%;
+}
+.classroom-stats .today-stat li#friday > div span {
+    width: 50%;
+}
+
+.classroom-module-wrapper .module{
+	width: 100%;
+	height: 40px;
+	border: solid 1px #c4ae96;
+	border-radius: 5px;
+	overflow: hidden;
+	margin-top: 60px;
+	background: #ffdec4;
+}
+
+.classroom-module-wrapper .lesson-variables{
+	width: 91.4%;
+	float: right;
+	height: 40px;
+	overflow: hidden;
+	border-radius: 20px;
+	border: solid 1px #e5e8e9;
+	background: #fff;
+	margin-top: 10px;
+}
+
+.classroom-module-wrapper .lesson-variables.last{
+	background: #bfe5ff;
+}
+
+.classroom-dashboard .become-an-instructor{
+	margin-top: 150px;
+}
+
+.classroom-module-wrapper .module span,
+.classroom-module-wrapper .lesson-variables span{
+	display: block;
+	background: #92cc2e;
+	line-height: 40px;
+	font-size: 12px;
+	width: 50%;
+	height: 100%;
+	border-radius: 0;
+}
+
+.classroom-module-wrapper .module span p,
+.classroom-module-wrapper .lesson-variables span p{
+	margin: 0;
+	padding-left: 20px;
+	font-size: 12px;
+	color: #18222b;
+	float: left;
+}
+
+.classroom-module-wrapper .module span em,
+.classroom-module-wrapper .lesson-variables span em{
+	font-style: normal;
+	color: #fff;
+	float: right;
+	padding-right: 20px;
+	display: inline-block;
+}
+
+.classroom-module-wrapper .lesson-variables span{
+	width: 45%;
 }
