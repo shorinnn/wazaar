@@ -28,24 +28,24 @@
                     <br />
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="easteregg/1.png" target="_blank">
-                                <img width="200" src="easteregg/1.png" />
+                            <a href="http://shorinnn.com/easteregg/1.png" target="_blank">
+                                <img width="200" src="http://shorinnn.com/easteregg/1.png" />
                             </a><br />
                             <p style='font-style:italic'>Who can say no? Wear this luxurious apparel for maximum support and zero downtime.</p>
                             <p>$19.188,99 (out of stock)</p>
                             <button class="btn btn-danger"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
                         </div>
                         <div class="col-lg-4">
-                            <a href="easteregg/2.png" target="_blank">
-                                <img width="200" src="easteregg/2.png" />
+                            <a href="http://shorinnn.com/easteregg/2.png" target="_blank">
+                                <img width="200" src="http://shorinnn.com/easteregg/2.png" />
                             </a>
                             <p style='font-style:italic'>Money. Power. Glory. For the warrior within.</p>
                             <p>$50.000.49 (out of stock)</p>
                             <button class="btn btn-danger"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
                         </div>
                         <div class="col-lg-4">
-                            <a href="easteregg/3.png" target="_blank">
-                                <img width="200" src="easteregg/3.png" />
+                            <a href="http://shorinnn.com/easteregg/3.png" target="_blank">
+                                <img width="200" src="http://shorinnn.com/easteregg/3.png" />
                             </a>
                             <p style='font-style:italic'>Learn it, love it, live it. Once you go cocorium, you don't come back. Exclusive edition.</p>
                             <p>$23.235.01 (out of stock)</p>
@@ -56,16 +56,16 @@
                     
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="easteregg/4.png" target="_blank">
-                                <img width="200" src="easteregg/4.png" />
+                            <a href="http://shorinnn.com/easteregg/4.png" target="_blank">
+                                <img width="200" src="http://shorinnn.com/easteregg/4.png" />
                             </a>
                             <p style='font-style:italic'>Ruling hard or hardly ruling? If you wear this deluxe item, no one will ever question that.</p>
                             <p>$4M (out of stock)</p>
                             <button class="btn btn-danger"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
                         </div>
                         <div class="col-lg-4">
-                            <a href="easteregg/5.png" target="_blank">
-                                <img width="200" src="easteregg/5.png" />
+                            <a href="http://shorinnn.com/easteregg/5.png" target="_blank">
+                                <img width="200" src="http://shorinnn.com/easteregg/5.png" />
                             </a>
                             <p style='font-style:italic'>The Cruel Cycle of life. Show your support by wearing this. 10% of all proceedings 
                                 go an ISP of your choise.</p>
