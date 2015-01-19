@@ -413,3 +413,7 @@ function json2Array($json){
     if( json_last_error() != JSON_ERROR_NONE) return false;
     return $arr;
 }
+
+function money_val($number){
+    return number_format($number, Config::get('custom.currency_decimals'), '', '');
+}

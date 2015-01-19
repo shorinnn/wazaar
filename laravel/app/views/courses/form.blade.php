@@ -31,7 +31,20 @@
         
         <div>{{ trans('courses/general.subcategory') }} <span class="custom-dropdown">{{ Form::select('course_subcategory_id', $subcategories, $course->course_subcategory_id,
         ['id'=>'course_subcategory_id'] ) }}</span></div>    
-        <div>{{ trans('courses/general.difficulty') }} <span class="custom-dropdown">{{ Form::select('course_difficulty_id', $difficulties) }}</span></div>    
+        <div class="course-level btn-group clearfix" data-toggle="buttons">
+            {{ trans('courses/general.difficulty') }} <br />
+                     @foreach($difficulties as $key=>$difficulty)
+                     <?php
+                        $checked = ($key==$course->course_difficulty_id) ? 'checked="checked"' : '';
+                        $active = ($key==$course->course_difficulty_id) ? 'active' : '';
+                     ?>
+                     	<label class="btn btn-primary {{$active}}">
+                         	<input type='radio' name='course_difficulty_id' id="option{{$key}}" autocomplete="off" value='{{$key}}' 
+                                       required {{$checked}} /> {{$difficulty}}
+                        </label>
+                     @endforeach
+        </div>
+
         <div>{{ trans('crud/labels.name') }} {{ Form::text( 'name', null, ['class' => 'has-slug', 'data-slug-target' => '#slug' ]) }}
         {{ Form::hidden( 'slug', null, ['id'=>'slug'] ) }}</div>
         <div>{{ trans('courses/general.preview_image') }}
@@ -119,16 +132,19 @@
                     </div>
             </div>    
         <div>{{ trans('crud/labels.description') }} <div class="description-box">{{ Form::textarea('description') }}</div></div>    
-        <div>{{ trans('courses/general.price') }} {{ Form::text('price') }}</div>    
+        <div>{{ trans('courses/general.price') }} {{  Form::text( 'price', money_val($course->price) ) }}</div>    
+        
         <div>{{ trans('courses/general.affiliate_percentage') }} 
             
                 <input type="text" class='span2' name='affiliate_percentage' id='affiliate_percentage' value="{{ $course->affiliate_percentage }}" data-slider-min="0" data-slider-max="70" 
                        data-slider-step="1" data-slider-value="{{ $course->affiliate_percentage }}" data-slider-orientation="horizontal" 
-                       data-slider-selection="after" data-slider-tooltip="show" data-label="#affiliate_percentage_output" />
-                <span id='affiliate_percentage_output'>{{ $course->affiliate_percentage }}%</span>
+                       data-slider-selection="after" data-slider-tooltip="show" data-label="#affiliate_percentage_output" data-target-input='1' />
+                
+                <input type='number' id='affiliate_percentage_output' class='set-slider' max="70" min="0"
+                       value='{{ $course->affiliate_percentage }}' data-slider='#affiliate_percentage' />%
                 
         <div>{{ trans('courses/general.discount') }} 
-                {{ Form::text('sale') }}
+                {{ Form::text('sale', money_val($course->sale)) }}
                 <div class="custom-dropdown discount">{{ Form::select('sale_kind', ['amount' => '$', 'percentage' => '%'] ) }}</div>
             </div>    
         <div>{{ trans('courses/general.sale_ends_on') }}  {{ Form::text('sale_ends_on') }}</div>    

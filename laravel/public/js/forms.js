@@ -10,6 +10,7 @@ $(document).ready(function(){
     $('body').delegate('input.clonable', 'keydown', cloneInput);
     $('body').delegate('.delete-clonable', 'click', deleteClonable);
     $('body').delegate('.ajax-updatable', 'change', updateFieldRemote);
+    $('body').delegate('.set-slider', 'change', setSlider);
 });
 
 /**
@@ -287,6 +288,13 @@ function formSaved(){
 function enableSlider(selector){
     var label = $(selector).attr('data-label');
     $(selector).slider().on('slide', function(ev){
-            $(label).html(ev.value+"%");
+            if ($(selector).attr('data-target-input')==1) $(label).val(ev.value);
+            else $(label).html(ev.value+"%");
       });
+}
+
+function setSlider(e){
+    elem = $(e.target).attr('data-slider');
+    $(elem).slider('setValue', $(e.target).val() );
+    $(elem).val( $(e.target).val() );
 }
