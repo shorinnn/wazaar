@@ -19,34 +19,38 @@
     
     <div class="lesson-options lesson-options-{{$lesson->id}} row">
         <div class="col-lg-3">
-            <a href='#' id="video-link-{{$lesson->id}}" class='load-remote' data-target='.action-panel-{{$lesson->id}}'
-               data-url='{{action('BlocksController@video', [$lesson->id] )}}' data-callback='enableLessonRTE'>
+            <a href='#' id="video-link-{{$lesson->id}}" class='load-remote-cache' data-target='.action-panel-{{$lesson->id}} .video'
+               data-url='{{action('BlocksController@video', [$lesson->id] )}}'>
                 <i class="fa fa-film"></i>
                 <p>{{ trans('general.video') }}</p>
             </a>
         </div>
         <div class="col-lg-3">
-            <a href='#' class='load-remote' data-target='.action-panel-{{$lesson->id}}' 
+            <a href='#' class='load-remote-cache' data-target='.action-panel-{{$lesson->id}} .text' 
                data-url='{{action('BlocksController@text', [$lesson->id] )}}' data-callback='enableLessonRTE'>
                 <i class="fa fa-file-text-o"></i>
                 <p>{{ trans('crud/labels.edit_text') }}</p>
             </a>
         </div>
         <div class="col-lg-3">
-            <a href='#' class='load-remote' data-target='.action-panel-{{$lesson->id}}' 
+            <a href='#' class='load-remote-cache' data-target='.action-panel-{{$lesson->id}} .files' 
                data-url='{{action('BlocksController@files', [$lesson->id] )}}' data-callback='enableBlockFileUploader'>
                 <i class="fa fa-file-o"></i>
                 <p>{{ trans('general.add_file') }}</p>
             </a>
         </div>
         <div class="col-lg-3">
-            <a href='#' class='load-remote' data-target='.action-panel-{{$lesson->id}}' 
+            <a href='#' class='load-remote-cache' data-target='.action-panel-{{$lesson->id}} .details' 
                data-url='{{action('LessonsController@details', [$lesson->module->id, $lesson->id] )}}'>
                 <i class="fa fa-cog"></i> 
                 <p>{{ trans('general.details') }}</p>
             </a>
         </div>
         <div class="col-lg-12 action-panel-{{$lesson->id}}">
+            <div class="video"></div>
+            <div class="text"></div>
+            <div class="files"></div>
+            <div class="details"></div>
         </div>
     </div>
 </li>

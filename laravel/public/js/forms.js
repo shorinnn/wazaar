@@ -265,6 +265,7 @@ function enableFileUploader($uploader){
             }).on('fileuploaddone', function (e,data){
                 callback = $uploader.attr('data-callback');
                 if( typeof(callback) !=undefined ){
+                    console.log(callback)
                     window[callback](e, data);
                 }
             });

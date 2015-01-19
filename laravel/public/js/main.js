@@ -7,6 +7,7 @@ $(document).ready(function(){
     $(".profile-name > li").removeClass("activate-dropdown");
     $('body').delegate('.slide-toggler', 'click', slideToggle);
     $('body').delegate('a.load-remote', 'click', loadRemote);
+    $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
     _.setTranslation( js_translation_map );
     floatingNav();
     scrollNavigation();
@@ -133,6 +134,38 @@ function loadRemote(e){
     
     $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
     $(target).load(url, function(){
+        if( typeof(callback)!= 'undefined'){
+            window[callback](e);
+        }
+    });
+}
+
+/**
+ * Similar to loadRemote, it loads the resource, but only once, later requests just display the content already loaded
+ * @param {event} e Click event
+ * @method loadRemoteCache
+ */
+function loadRemoteCache(e){
+    e.preventDefault();
+    url = $(e.target).attr('data-url');
+    target = $(e.target).attr('data-target');
+    var callback = $(e.target).attr('data-callback');
+    elem = $(e.target);
+    while(typeof(url)=='undefined'){
+        elem = elem.parent();
+        url = elem.attr('data-url');
+        target = elem.attr('data-target');
+        callback = elem.attr('data-callback');  
+    }
+    // load content from the parent container
+    $(target).parent().children().hide();
+    $(target).show();
+    
+    if(elem.attr('data-loaded') == '1' ) return false;// content already loaded, just redisplay it
+    
+    $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $(target).load(url, function(){
+        elem.attr('data-loaded','1');
         if( typeof(callback)!= 'undefined'){
             window[callback](e);
         }
