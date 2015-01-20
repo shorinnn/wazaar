@@ -67,14 +67,12 @@
                         console.log($video);
                         if ($video.transcode_status == 'Complete'){
                             clearInterval($intervalId);
-                            $('#video-link-' + $lessonId).trigger('click');
+                            $('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
                             //reload video partial
                         }
                     }) }, 5000);
                 }
             }
         });
-
-
     });
 </script>

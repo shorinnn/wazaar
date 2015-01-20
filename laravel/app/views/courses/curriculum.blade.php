@@ -161,6 +161,7 @@
         $(function(){
             videoLookup.initialize(function ($lessonId, $videoId){
                 $.post('/lessons/blocks/' + $lessonId + '/video/assign', {videoId : $videoId}, function (){
+                    $('#video-link-' + $lessonId).attr('data-loaded', '0');
                     $('#video-link-' + $lessonId).trigger('click');
                 });
             });
