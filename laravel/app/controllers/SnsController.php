@@ -17,14 +17,14 @@ class SnsController extends BaseController {
         $postBody = file_get_contents('php://input');
         $postObject = json_decode($postBody, true);
 
-        Log::alert('triggered ' . $postBody);
+        //Log::alert('triggered ' . $postBody);
 
         if (!isset($postObject['Message'])){
-            return;
+            return false;
         }
         $messageBody = json_decode($postObject['Message'], true);
         if (!isset($messageBody['state'])){
-            return;
+            return false;
         }
 
         if ($messageBody['state'] == 'COMPLETED' AND isset($messageBody['outputs'])){
