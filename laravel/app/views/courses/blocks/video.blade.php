@@ -64,7 +64,7 @@
 
                     //Run timer to check for video transcode status
                     $intervalId = setInterval (function() { videoUploader.getVideo($data.result.videoId, function ($video){
-                        console.log($video);
+
                         if ($video.transcode_status == 'Complete'){
                             clearInterval($intervalId);
                             $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')

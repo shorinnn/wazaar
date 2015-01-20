@@ -7,7 +7,7 @@
            data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}' data-name='name'  />
     <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button>
     
-    <button type="button" class="btn btn-primary slide-toggler" data-target=".lesson-options-{{$lesson->id}}">
+    <button type="button" class="btn btn-primary slide-toggler edit-lesson" data-target=".lesson-options-{{$lesson->id}}">
         <i class="fa fa-pencil-square-o" data-target=".lesson-options-{{$lesson->id}}"></i>
     </button>
     
@@ -19,7 +19,7 @@
     
     <div class="lesson-options lesson-options-{{$lesson->id}} row">
         <div class="col-lg-3">
-            <a href='#' id="video-link-{{$lesson->id}}" class='load-remote-cache' data-target='.action-panel-{{$lesson->id}} .video'
+            <a href='#' id="video-link-{{$lesson->id}}" class='load-remote-cache a-add-video' data-target='.action-panel-{{$lesson->id}} .video'
                data-url='{{action('BlocksController@video', [$lesson->id] )}}'>
                 <i class="fa fa-film"></i>
                 <p>{{ trans('general.video') }}</p>
