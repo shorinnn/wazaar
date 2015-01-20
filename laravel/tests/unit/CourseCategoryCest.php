@@ -18,6 +18,8 @@ class CourseCategoryCest{
     }
     
     public function deleteCategoryAndSubcategory(UnitTester $I){
+        CourseCategory::boot();
+        CourseSubcategory::boot();
         $category = CourseCategory::first();
         $I->assertGreaterThan(0, $category->courseSubcategories->count());        
         $subcategory = CourseSubcategory::where('course_category_id', $category->id)->first();

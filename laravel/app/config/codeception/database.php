@@ -22,7 +22,7 @@ return array(
             'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'wazaar',
+			'database'  => getenv('DB_NAME'),
 			'username'  => 'homestead',
 			'password'  => 'secret',
 			'charset'   => 'utf8',
