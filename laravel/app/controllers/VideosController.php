@@ -7,7 +7,7 @@ class VideosController extends BaseController
 
     public function __construct(UploadHelper $uploadHelper, VideoHelper $videoHelper)
     {
-        $this->beforeFilter('auth');
+        $this->beforeFilter('auth.basic');
         $this->uploadHelper = $uploadHelper;
         $this->videoHelper = $videoHelper;
     }
