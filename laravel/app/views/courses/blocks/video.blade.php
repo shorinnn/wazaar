@@ -1,5 +1,5 @@
 <div class="text-center">
-    <div id="video-player-container">
+    <div id="video-player-container-{{$lessonId}}">
 
             <div id="notify-warning-new-video" class="alert alert-warning
                 @if (@$video->transcode_status == Video::STATUS_COMPLETE)
@@ -58,8 +58,8 @@
             'successCallBack' : function ($data){
 
                 if ($data.result.videoId !== undefined) {
-                    $('#video-player').hide();
-                    $('#notify-warning-new-video').removeClass('hide');
+                    $('#video-player-container-' + $lessonId).find('#video-player').addClass('hide');
+                    $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').removeClass('hide');
                     $.post('/lessons/blocks/' + $lessonId + '/video', {videoId : $data.result.videoId, blockId : $blockId });
 
                     //Run timer to check for video transcode status
@@ -67,7 +67,10 @@
                         console.log($video);
                         if ($video.transcode_status == 'Complete'){
                             clearInterval($intervalId);
-                            $('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
+                            $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
+                            $('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
+                            $('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
+                            //$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
                             //reload video partial
                         }
                     }) }, 5000);
