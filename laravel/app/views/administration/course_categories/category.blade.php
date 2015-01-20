@@ -38,7 +38,7 @@
         @endforeach
     </ul>
     <form method='post' class='ajax-form' data-callback='addToList' data-destination="#subcategory-holder-{{$category->id}}"
-      action='{{action('CoursesSubcategoriesController@store')}}'>
+      action='{{action('CoursesSubcategoriesController@store')}}' id='add-subcat-{{$category->id}}'>
         <input type='hidden' name='category_id' value="{{$category->id}}" />
         <input type='hidden' name='_token' value='{{ csrf_token() }}' />
         <input type='text' name='name' placeholder="{{trans('crud/labels.name')}}" />

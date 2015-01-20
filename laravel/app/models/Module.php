@@ -13,6 +13,13 @@ class Module extends Ardent{
      public static $rules = [
         'course_id' => 'required|exists:courses,id'
     ];
+     
+     public function beforeDelete(){
+         // delete lessons
+         foreach($this->lessons as $lesson){
+             $lesson->delete();
+         }
+     }
     
    
 

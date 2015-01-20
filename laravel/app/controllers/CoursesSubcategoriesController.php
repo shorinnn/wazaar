@@ -3,7 +3,7 @@
 class CoursesSubcategoriesController extends \BaseController {
     
         public function __construct(){
-            $this->beforeFilter('admin', ['except' => 'subcategories']);
+            $this->beforeFilter('admin');
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update','destroy' ]]);
         }
         
@@ -36,8 +36,10 @@ class CoursesSubcategoriesController extends \BaseController {
 
         public function destroy($id){
             $subcategory = CourseSubcategory::find($id);
-            $subcategory->delete();
-            $response = ['status' => 'success'];
+            
+            if( $subcategory->delete() ) $response = ['status' => 'success'];
+            else $response = ['status' => 'error', 'errors' => format_errors( $subcategory->errors()->all() ) ];
+            
             if(Request::ajax())            return json_encode($response);
             else return Redirect::back();
         }

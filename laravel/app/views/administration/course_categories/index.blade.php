@@ -40,7 +40,7 @@
     @endforeach
 </ul>
 
-<form method='post' class='ajax-form' data-callback='addToList' data-destination='#items-list'
+<form method='post' class='ajax-form' id="add-category-form" data-callback='addToList' data-destination='#items-list'
       action='{{ action('CoursesCategoriesController@store') }}'>
     <input type='hidden' name='_token' value='{{ csrf_token() }}' />
     <input type='text' name='name' placeholder="{{ trans('name') }}" />

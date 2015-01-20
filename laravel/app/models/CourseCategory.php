@@ -18,7 +18,13 @@ class CourseCategory extends Ardent{
    }
    
    public function beforeDelete(){
+       if($this->courses()->count() > 0){
+            $this->errors()->add(0, trans('general.cannot_delete_category_has_courses' ) );
+            return false;
+       }
+        
        $this->delete_graphic();
+       
        foreach($this->courseSubcategories as $subcategory){
            $subcategory->delete();
        }

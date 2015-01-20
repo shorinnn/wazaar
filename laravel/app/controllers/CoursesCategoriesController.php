@@ -39,8 +39,9 @@ class CoursesCategoriesController extends \BaseController {
 
         public function destroy($id){
             $category = CourseCategory::find($id);
-            $category->delete();
-            $response = ['status' => 'success'];
+            if( $category->delete() ) $response = ['status' => 'success'];
+            else $response = ['status' => 'error', 'errors' => format_errors( $category->errors()->all() ) ];
+            
             if(Request::ajax()) return json_encode($response);
             else return Redirect::back();
         }

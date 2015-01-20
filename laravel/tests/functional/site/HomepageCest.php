@@ -21,7 +21,7 @@ class HomepageCest{
         $I->seeAuthentication();
         $I->amOnPage('/');
         $I->click('View all');
-        $I->seeCurrentUrlEquals('/courses/category/it-and-technology');
+        $I->seeCurrentUrlEquals('/courses/category/it-technology');
     }
     
     public function getToCourseDetails(FunctionalTester $I){

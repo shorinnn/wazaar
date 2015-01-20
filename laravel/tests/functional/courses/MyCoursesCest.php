@@ -11,7 +11,7 @@ class MyCourseCest{
     public function redirectIfNotLoggedIn(FunctionalTester $I){
         $I->dontSeeAuthentication();
         $I->amOnPage('/courses/mycourses');
-        $I->seeCurrentUrlEquals('');
+        $I->seeCurrentUrlEquals('/login');
     }
     
     public function redirectIfNotInstructor(FunctionalTester $I){

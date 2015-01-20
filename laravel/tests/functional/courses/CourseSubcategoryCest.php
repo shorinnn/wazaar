@@ -8,14 +8,14 @@ class CourseSubcategoryCest{
     }
 
     public function seeFeaturedAndRegularCourses(FunctionalTester $I){
-        $I->amOnPage('/courses/category/it-and-technology/javascript');
+        $I->amOnPage('/courses/category/it-technology/javascript');
         $I->see('featured-contents-container');
         $I->see('small-box');
         $I->see('Javascript Primer');
     }
     
     public function getToCourseDetails(FunctionalTester $I){
-        $I->amOnPage('/courses/category/it-and-technology/javascript');
+        $I->amOnPage('/courses/category/it-technology/javascript');
         $I->click('Learn more');
         $I->seeCurrentUrlEquals('/courses/javascript-primer');
     }
