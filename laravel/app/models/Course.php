@@ -73,6 +73,10 @@ class Course extends Ardent{
             $this->errors()->add(0, trans('courses/general.cannot_delete_has_students') );
             return false;
         }
+        // delete modules
+        foreach($this->modules as $module){
+            $module->delete();
+        }
     }
     
     public function beforeSave(){

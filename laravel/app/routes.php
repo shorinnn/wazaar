@@ -51,6 +51,11 @@ Route::group(array('prefix'=>'administration'),function(){
 
 // Course Categories
 Route::get('coursecategories/subcategories', 'CoursesCategoriesController@subcategories');
+Route::group(['prefix' => 'administration'], function (){
+    Route::post('coursecategories/graphics_url/{category}', 'CoursesCategoriesController@graphics_url');
+    Route::resource('coursecategories', 'CoursesCategoriesController');
+    Route::resource('coursesubcategories', 'CoursesSubcategoriesController');
+});
 // Courses Controller
 Route::get('courses/mycourses', 'CoursesController@myCourses');
 Route::get('courses/categories', 'CoursesController@categories');
@@ -111,7 +116,7 @@ Route::group(['prefix' => 'profile'], function (){
 Route::group(['prefix' => 'video'], function(){
     Route::get('add','VideosController@add');
     Route::post('upload', 'VideosController@doUpload');
-    Route::post('sns/callback', 'VideosController@snsCallback');
+    Route::post('sns/callback', 'SnsController@snsCallback');
     Route::get('{id}/json','VideosController@videoAndFormatsJson');
     Route::get('user/archive','VideosController@userArchive');
 

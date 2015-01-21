@@ -66,16 +66,9 @@
                     </div><!--navbar-header ends-->
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="#it-and-tech">IT & Technology</a></li>
-                            <li><a href="#love-and-relationships">Love & Relationships</a></li>
-                            <li><a href="#personal-development">Personal Development</a></li>
-                            <li><a href="#language">Language</a></li>
-                            <li><a href="#money">Money</a></li>
-                            <li><a href="#business-and-marketing">Business</a></li>
-                            <li><a href="#photography-and-video">Photography</a></li>
-                            <li><a href="#music-and-arts">Music</a></li>
-                            <li><a href="#">Beauty</a></li>
-                            <li><a href="#health-and-fitness">Health</a></li>
+                            @foreach($categories as $category)
+                                <li><a href="{{action('CoursesController@category', $category->slug)}}">{{ $category->name }}</a></li>
+                            @endforeach
                         </ul>
                     </div><!--nav-collapse ends--> 
                 </div><!--navbar-default ends-->

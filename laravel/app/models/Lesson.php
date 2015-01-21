@@ -14,6 +14,12 @@ class Lesson extends Ardent{
         'module_id' => 'required|exists:modules,id'
     ];
     
+     public function beforeDelete(){
+         // delete blocks
+         foreach($this->blocks as $block){
+             $block->delete();
+         }
+     }
    
 
 }

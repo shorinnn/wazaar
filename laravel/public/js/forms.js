@@ -10,6 +10,7 @@ $(document).ready(function(){
     $('body').delegate('input.clonable', 'keydown', cloneInput);
     $('body').delegate('.delete-clonable', 'click', deleteClonable);
     $('body').delegate('.ajax-updatable', 'change', updateFieldRemote);
+    $('body').delegate('.set-slider', 'change', setSlider);
 });
 
 /**
@@ -31,6 +32,7 @@ function formAjaxSubmit(e){
         }
         restoreSubmitLabel(form);
         if( typeof(form.attr('data-callback'))!='undefined' ){
+            form[0].reset();
             window[form.attr('data-callback')](result, e);
         }
     });
@@ -204,7 +206,11 @@ function updateFieldRemote(e){
         url: url,
         type: 'PUT',
         data: {name:name, value:value, _token:token},
-        success: savingAnimation(1)
+        success: savingAnimation(1),
+        error: function(e){
+            alert( _('Request failed: an error occurred') );
+            console.log(e);
+        }
     });
 }
 
@@ -241,7 +247,6 @@ function savingAnimation(stop) {
 function enableFileUploader($uploader){
     dropzone = $uploader.attr('data-dropzone');
     var progressbar = $uploader.attr('data-progress-bar');
-    console.log(progressbar);
     $uploader.fileupload({
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
@@ -286,6 +291,18 @@ function formSaved(){
 function enableSlider(selector){
     var label = $(selector).attr('data-label');
     $(selector).slider().on('slide', function(ev){
-            $(label).html(ev.value+"%");
+            if ($(selector).attr('data-target-input')==1) $(label).val(ev.value);
+            else $(label).html(ev.value+"%");
       });
+}
+
+/**
+ * Sets a slider control's value to the value of the calling input
+ * @param {event} e The change event fired by the calling input
+ * @method setSlider
+ */
+function setSlider(e){
+    elem = $(e.target).attr('data-slider');
+    $(elem).slider('setValue', $(e.target).val() );
+    $(elem).val( $(e.target).val() );
 }

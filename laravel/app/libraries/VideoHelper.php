@@ -24,6 +24,7 @@ class VideoHelper
      */
     public function createTranscodingJob($videoId, $videoPath)
     {
+        //dd('before push');
         //Create a queue
         Queue::push(function ($job) use ($videoId, $videoPath) {
             //move the video to s3 input bucket

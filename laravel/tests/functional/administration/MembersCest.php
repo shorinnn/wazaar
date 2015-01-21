@@ -5,6 +5,7 @@ class MembersCest{
     
     public function _before(FunctionalTester $I){
         $I->haveEnabledFilters();
+        User::boot();
     }
     
     public function failDeletingSelf(FunctionalTester $I){

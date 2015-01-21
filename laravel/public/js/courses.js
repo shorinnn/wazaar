@@ -106,7 +106,6 @@ function addLesson(json){
  */
 function enableLessonRTE(e){
     selector = '#'+$(e.target).parent().parent().parent().find('textarea').attr('id');
-    console.log('enabling '+selector);
     tinymce.remove(selector);
     tinymce.init({
         autosave_interval: "20s",

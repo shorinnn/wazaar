@@ -8,6 +8,10 @@ class CourseSubcategory extends Ardent{
         'courseCategory' => array(self::BELONGS_TO, 'CourseCategory'),
     );
     
+    public static $rules = [
+        'course_category_id' => 'required|exists:course_categories,id'
+    ];
+     
     public static function arrayWithParent(){
         $subcats = self::with('courseCategory')->get();
         $subcategories = array();
@@ -22,5 +26,16 @@ class CourseSubcategory extends Ardent{
         if($privacy_status=='public') return Course::where('course_subcategory_id', $this->id)->where('privacy_status', 'public');
         return Course::where('course_subcategory_id', $this->id); 
    }
+   
+   public function beforeSave(){
+       $this->slug = Str::slug( $this->name );
+   }
+   
+   public function beforeDelete(){
+        if($this->courses()->count() > 0){
+            $this->errors()->add(0, trans('general.cannot_delete_subcategory_has_courses' ) );
+            return false;
+        }
+    }
 
 }

@@ -7,6 +7,8 @@ $(document).ready(function(){
     $(".profile-name > li").removeClass("activate-dropdown");
     $('body').delegate('.slide-toggler', 'click', slideToggle);
     $('body').delegate('a.load-remote', 'click', loadRemote);
+    $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
+    $(window).scroll(stepsScrollAnimation);
     _.setTranslation( js_translation_map );
     floatingNav();
     scrollNavigation();
@@ -138,8 +140,42 @@ function loadRemote(e){
         }
     });
 }
+
+/**
+ * Similar to loadRemote, it loads the resource, but only once, later requests just display the content already loaded
+ * @param {event} e Click event
+ * @method loadRemoteCache
+ */
+function loadRemoteCache(e){
+    e.preventDefault();
+    url = $(e.target).attr('data-url');
+    target = $(e.target).attr('data-target');
+    var callback = $(e.target).attr('data-callback');
+    elem = $(e.target);
+    while(typeof(url)=='undefined'){
+        elem = elem.parent();
+        url = elem.attr('data-url');
+        target = elem.attr('data-target');
+        callback = elem.attr('data-callback');  
+    }
+    // load content from the parent container
+    $(target).parent().children().hide();
+    $(target).show();
+    
+    if(elem.attr('data-loaded') == '1' ) return false;// content already loaded, just redisplay it
+    
+    $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $(target).load(url, function(){
+        elem.attr('data-loaded','1');
+        if( typeof(callback)!= 'undefined'){
+            window[callback](e);
+        }
+    });
+}
+
+
 scrollAnimationActivated = true;
-$(window).scroll(function() {
+function stepsScrollAnimation(){
    if(!scrollAnimationActivated) return false;
    if($(window).scrollTop() + $(window).height() == $(document).height()) {
        scrollAnimationActivated = false;
@@ -156,7 +192,7 @@ $(window).scroll(function() {
            scrollAnimationActivated = true;
        },2000);
    }
-});
+}
 
 /**
  * This function fixes the navigation menu at the top of the page
@@ -164,6 +200,7 @@ $(window).scroll(function() {
  */
 function floatingNav(){
     // this checks the current top position of the nav and stores it in a variable.
+    if( $(".main-nav-section").length == 0 )return false;
     var max_scroll = $(".main-nav-section").position().top;
     $(window).scroll(function () {
         var navbar = $(".main-nav-section");
@@ -176,7 +213,7 @@ function floatingNav(){
             navbar.removeClass("filterbuttonFixed");
         }
 
-    })
+    });
 
 }
 
@@ -210,3 +247,33 @@ function scrollNavigation(){
 
 }
 
+/**
+ * Appends the HTML property of the result of an ajax call to the specified destination element
+ * @param {json} json The ajax response
+ * @param {event} e the original event
+ * @method addToList
+ */
+function addToList(json, e){
+    var destination = $(e.target).attr('data-destination');
+    $(destination).append( json.html );
+}
+
+/**
+ * Replace an existing element with the one returned by an upload script
+ * @param {event} e the original event
+ * @param {json} data the upload result
+ * @method replaceElementWithUploaded
+ */
+function replaceElementWithUploaded(e, data){
+    var progressbar = $(e.target).attr('data-progress-bar');
+    $(progressbar).find('span').html('');
+    $(progressbar).css('width', 0 + '%');
+    result = JSON.parse(data.result);
+    if(result.status=='error'){
+        $(e.target).after("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
+        return false;
+    }
+    var to_replace = $(e.target).attr('data-replace');
+    $(to_replace).replaceWith(result.html);
+
+}

@@ -211,17 +211,17 @@ class CourseCategorySeeder extends Seeder {
     {
         DB::table('course_categories')->delete();
         CourseCategory::unguard();
-        CourseCategory::create( ['name' => 'IT & Technology', 'slug' => 'it-and-technology', 
+        CourseCategory::create( ['name' => 'IT & Technology', 'slug' => 'it-technology', 'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-7.png',
                                  'description' => 'Programming, Javascript, C++, etc...', 'courses_count' => 0 ]);
-        CourseCategory::create( ['name' => 'Business', 'slug' => 'business', 
+        CourseCategory::create( ['name' => 'Business', 'slug' => 'business',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-14.png',
                                  'description' => 'Beez Kneez', 'courses_count' => 0 ]);
-        CourseCategory::create( ['name' => 'Investments', 'slug' => 'investments', 
+        CourseCategory::create( ['name' => 'Investments', 'slug' => 'investments',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-12.png',
                                  'description' => 'Mo money', 'courses_count' => 0 ]);
-        CourseCategory::create( ['name' => 'Music', 'slug' => 'music', 
+        CourseCategory::create( ['name' => 'Music', 'slug' => 'music',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-8.png',
                                  'description' => 'Tokyo Square, nom sayin', 'courses_count' => 0 ]);
-        CourseCategory::create( ['name' => 'Beauty', 'slug' => 'beauty', 
+        CourseCategory::create( ['name' => 'Beauty', 'slug' => 'beauty',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-9.png',
                                  'description' => 'Stop being ugly', 'courses_count' => 0 ]);
-        CourseCategory::create( ['name' => 'Health', 'slug' => 'health', 
+        CourseCategory::create( ['name' => 'Health', 'slug' => 'health',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-13.png',
                                  'description' => 'Fat it up bro!', 'courses_count' => 0 ]);
        
     }
