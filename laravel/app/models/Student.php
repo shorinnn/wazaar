@@ -2,22 +2,15 @@
 
 
 class Student extends User{
-/**
- * To implement polymorphism I've commented out the trait and introduced a profile relationship
- * Also commented out the roleID property
- */
-    
-   // use ProfileTrait;
-
     protected $table = 'users';
-//    protected $roleId = 2;
     
-    public static $relationsData = array(
-        'ltcAffiliate' => array(self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id'),
-        'purchases' => array(self::HAS_MANY, 'CoursePurchase'),
-        'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
-        'profile' => array(self::MORPH_ONE, 'Profile', 'name'=>'owner')
-      );
+    public static $relationsData = [
+        'ltcAffiliate' => [ self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id' ],
+        'purchases' => [ self::HAS_MANY, 'CoursePurchase' ],
+        'courseReferrals' => [ self::HAS_MANY, 'CourseReferral' ],
+        'profile' => [ self::MORPH_ONE, 'Profile', 'name'=>'owner' ],
+        'viewedLessons' => [ self::HAS_MANY, 'ViewedLesson' ]
+      ];
         
     public function productAffiliates()
     {
@@ -115,6 +108,41 @@ class Student extends User{
                 Cookie::queue( "aid-$recommendation->course_id", $recommendation->affiliate_id, $expires_in);
             }
         }
+    }
+    
+    /**
+     * Determines if the student has viewed the supplied lesson
+     * @param Lesson $lesson
+     */
+    public function isLessonViewed(Lesson $lesson){
+        if( in_array ( $lesson->id, $this->viewedLessons->lists('lesson_id' ) ) ){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Marks a lesson as viewed
+     * @param Lesson $lesson
+     */
+    public function viewLesson(Lesson $lesson){
+        if( !$this->isLessonViewed($lesson) ){
+            $view = ViewedLesson::create( ['student_id' => $this->id, 'lesson_id' => $lesson->id] );
+        }
+    }
+    
+    /**
+     * Finds the next lesson in the current course
+     * @param Course $course
+     * @return mixed False if none, the lesson object otherwise
+     */
+    public function nextLesson(Course $course){        
+        foreach($course->modules()->orderBy('order','ASC')->get() as $module){
+            foreach($module->lessons()->where('published','yes')->orderBy('order','ASC')->get() as $lesson){
+                if( !$this->isLessonViewed($lesson) ) return $lesson;
+            }
+        }
+        return false;
     }
 
 

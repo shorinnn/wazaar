@@ -12,7 +12,7 @@ class ClassroomController extends \BaseController {
             if( $course==null || !$student->purchased( $course ) ){
                 return Redirect::to('/');
             }
-            return View::make('courses.classroom.dashboard')->with( compact('course') );
+            return View::make('courses.classroom.dashboard')->with( compact('course') )->with( compact('student') );
         }
         
         public function lesson($course, $lesson){
@@ -25,6 +25,9 @@ class ClassroomController extends \BaseController {
             if( $lesson==null || $lesson->module->course->id != $course->id ){
                 return Redirect::to('/');
             }
+            
+            $student->viewLesson( $lesson );
+            
             return View::make('courses.classroom.lesson')->with( compact('course') )->with( compact('lesson') );
         }
 

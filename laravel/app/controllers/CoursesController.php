@@ -186,7 +186,8 @@ class CoursesController extends \BaseController {
             if($student->purchase($course, Cookie::get("aid-$course->id"))){
                 // unset the affiliate cookie
                 Cookie::queue("aid-$course->id", null, -1);
-                return Redirect::action('CoursesController@show', $slug)->withSuccess( trans('courses/general.purchase_successful') );
+                return Redirect::action('ClassroomController@dashboard', $slug);
+//                return Redirect::action('CoursesController@show', $slug)->withSuccess( trans('courses/general.purchase_successful') );
             }
             else{
                 return Redirect::action('CoursesController@show', $slug)->withError( trans('courses/general.purchase_failed') );

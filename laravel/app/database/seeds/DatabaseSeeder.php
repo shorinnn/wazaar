@@ -419,10 +419,10 @@ class LessonsSeeder extends Seeder {
     {
         DB::table('lessons')->delete();
         Lesson::unguard();
-        Lesson::create( ['module_id' => 1, 'name' => 'Welcome', 'order' => 1] );
-        Lesson::create( ['module_id' => 1, 'name' => 'Advanced Stuff', 'order' => 2] );
-        Lesson::create( ['module_id' => 2, 'name' => 'More Advanced Stuff', 'order' => 3] );
-        Lesson::create( ['module_id' => 3, 'name' => 'Thank you, come again', 'order' => 4] );
+        Lesson::create( ['module_id' => 1, 'name' => 'Welcome', 'order' => 1, 'description' => '1A lil bit of this, a lil bit of that, cool stuff mostly'] );
+        Lesson::create( ['module_id' => 1, 'name' => 'Advanced Stuff', 'order' => 2, 'description' => '2A lil bit of this, a lil bit of that, cool stuff mostly'] );
+        Lesson::create( ['module_id' => 2, 'name' => 'More Advanced Stuff', 'order' => 3, 'description' => '3A lil bit of this, a lil bit of that, cool stuff mostly'] );
+        Lesson::create( ['module_id' => 3, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '4A lil bit of this, a lil bit of that, cool stuff mostly'] );
     }
 }
 

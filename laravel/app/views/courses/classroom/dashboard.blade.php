@@ -1,5 +1,6 @@
     @extends('layouts.default')
     @section('content')	
+    
         <div class="classrooms-wrapper">
         	<section class="video-container">
                 <!--<video>
@@ -59,15 +60,17 @@
                     </div>
                 	<div class="col-md-6">
                     	<div class="header green clearfix">
-                        	<h2>BEGIN<small>FIRST LESSON</small></h2>
+                        	<h2>
+                                    @if( $student->viewedLessons->count()==0 )
+                                        BEGIN <small>FIRST LESSON</small>
+                                    @else
+                                    CONTINUE <small>Where you left off</small>
+                                    @endif
+                                </h2>
                         </div>
                         <p class="lead">In the next lesson you will learn</p>
                         <div class="white-box">
-                        	<ul>
-                            	<li>What javascript is</li>
-                            	<li>What is the next web</li>
-                            	<li>How does it all work</li>
-                            </ul>
+                            <p>{{ $student->nextLesson($course)->description or ' finished all lessons ' }}</p>
                         </div>
                     </div>
                 </div>
@@ -150,17 +153,17 @@
                             <!--<div class="view-previous-lessons">view previous lessons</div>-->
                             <ul class="lessons">
                                 <?php $i = $j = 1;  ?>
-                                @foreach($course->modules as $module)
+                                @foreach($course->modules()->orderBy('order','ASC')->get() as $module)
                                     <li>
                                         <a class="module">
                                             <span>Module {{$i}}</span>
                                             <p>{{ $module->name }}</p>
                                         </a>
                                     </li>
-                                    @foreach($module->lessons as $lesson)
+                                    @foreach($module->lessons()->where('published','yes')->orderBy('order','ASC')->get() as $lesson)
                                         <li>
                                             <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'lesson' => $lesson->slug ] ) }}" 
-                                               @if($j==1)
+                                               @if( $student->isLessonViewed($lesson) )
                                                    class="lesson-1">
                                                @else
                                                    class="lesson-2">
@@ -181,17 +184,20 @@
                     </div>
                 </div>
             </section>
-            <section class="container-fluid become-an-instructor">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-xs-12">
-                      <h1>BECOME</h1>
-                      <h2>AN INSTRUCTOR</h2>
-                      <a href="{{ action('InstructorsController@become') }}"><span>{{trans('site/homepage.get-started')}}</span></a>
-                    </div>
+            
+            @if(Auth::guest() || !Auth::user()->hasRole('Instructor'))
+                <section class="container-fluid become-an-instructor">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <h1>BECOME</h1>
+                          <h2>AN INSTRUCTOR</h2>
+                          <a href="{{ action('InstructorsController@become') }}"><span>{{trans('site/homepage.get-started')}}</span></a>
+                        </div>
+                      </div>
                   </div>
-              </div>
-            </section>
+                </section>
+            @endif
         </div>
 
 @stop
