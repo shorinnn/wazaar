@@ -81,7 +81,7 @@
                 </div><!--navbar-default ends-->
             </div><!--container ends-->
         </section>
-        <section class="container-fluid unauthenticated-homepage" id="it-and-tech">
+        <section class="container-fluid unauthenticated-homepage cat-box-1">
         	<div class="container course-listing-container">
             	<div class="row">
                 	<div class="col-md-6">
@@ -108,7 +108,7 @@
                 </div>
             </div>
         </section>
-        <section class="container-fluid unauthenticated-homepage" id="music-and-arts">
+        <section class="container-fluid unauthenticated-homepage cat-box-2">
         	<div class="container course-listing-container">
             	<div class="row">
                 	<div class="col-md-6 hidden-xs">
@@ -135,7 +135,7 @@
                 </div>
             </div>
         </section>
-        <section class="container-fluid unauthenticated-homepage" id="love-and-relationships">
+        <section class="container-fluid unauthenticated-homepage cat-box-3">
         	<div class="container course-listing-container">
             	<div class="row">
                 	<div class="col-md-6">
@@ -162,7 +162,7 @@
                 </div>
             </div>
         </section>
-        <section class="container-fluid unauthenticated-homepage" id="personal-development">
+        <section class="container-fluid unauthenticated-homepage cat-box-4">
         	<div class="container course-listing-container">
             	<div class="row">
                 	<div class="col-md-6 hidden-xs">
@@ -189,7 +189,7 @@
                 </div>
             </div>
         </section>
-        <section class="container-fluid unauthenticated-homepage" id="language">
+        <section class="container-fluid unauthenticated-homepage cat-box-5">
         	<div class="container course-listing-container">
             	<div class="row">
                 	<div class="col-md-6">
@@ -216,7 +216,7 @@
                 </div>
             </div>
         </section>
-        <section class="container-fluid unauthenticated-homepage" id="money">
+        <section class="container-fluid unauthenticated-homepage cat-box-6">
         	<div class="container course-listing-container">
             	<div class="row">
                 	<div class="col-md-6 hidden-xs">
@@ -243,7 +243,7 @@
                 </div>
             </div>
         </section>
-        <section class="container-fluid unauthenticated-homepage" id="health-and-fitness">
+        <section class="container-fluid unauthenticated-homepage cat-box-7">
         	<div class="container course-listing-container">
             	<div class="row">
                 	<div class="col-md-6">
@@ -270,7 +270,7 @@
                 </div>
             </div>
         </section>
-        <section class="container-fluid unauthenticated-homepage" id="business-and-marketing">
+        <section class="container-fluid unauthenticated-homepage cat-box-8">
         	<div class="container course-listing-container">
             	<div class="row">
                 	<div class="col-md-6 hidden-xs">
@@ -297,7 +297,7 @@
                 </div>
             </div>
         </section>
-        <section class="container-fluid unauthenticated-homepage" id="photography-and-video">
+        <section class="container-fluid unauthenticated-homepage cat-box-9">
         	<div class="container course-listing-container">
             	<div class="row">
                 	<div class="col-md-6">

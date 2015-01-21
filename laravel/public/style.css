@@ -1537,9 +1537,9 @@ header .activate-dropdown:hover ul{
 
 /************** Course Detail Pages ********************/
 .course-detail-top-section{
-	background-size: cover;
 	width: 100%;
 	position: relative;
+	background: #fba204;
 }
 
 .course-detail-top-section > img{
@@ -1558,8 +1558,29 @@ header .activate-dropdown:hover ul{
 .course-detail-top-section .centered-contents h1{
 	font-size: 42px;
 	color: #fff;
-	margin: 26px 0 34px;
+	margin: 50px 0 40px;
 	font-weight: 200;
+}
+
+.course-detail-top-section .centered-contents .breadcrumb{
+	display: inline-block;
+	background: none;
+	padding: 0;
+	margin: 20px 0 0;
+}
+
+.course-detail-top-section .centered-contents .breadcrumb li.active,
+.course-detail-top-section .centered-contents .breadcrumb li a,
+.course-detail-top-section .centered-contents .breadcrumb li{
+	font-size: 12px;
+	font-weight: 200;
+	color: #fff !important;
+}
+
+.breadcrumb > li + li:before {
+    color: #fff;
+    content: "> ";
+    padding: 0 5px;
 }
 
 .course-detail-top-section .centered-contents .level{
@@ -1578,8 +1599,7 @@ header .activate-dropdown:hover ul{
     background-repeat: no-repeat;
     border-radius: 15px;
     color: #fff;
-    float: left;
-	margin-left: 10px;
+	margin-bottom: 10px;
     font-size: 12px;
     padding: 7px 20px 7px 40px;
 }
@@ -1603,7 +1623,7 @@ header .activate-dropdown:hover ul{
 .course-detail-top-section .centered-contents .white-box{
 	padding: 20px;
 	width: 312px;
-	min-height: 286px;
+	min-height: 266px;
 	background: #f8f8f8;
 	border-radius: 5px 5px 0 0;
 	position: relative;
@@ -1652,9 +1672,11 @@ header .activate-dropdown:hover ul{
 	color: #18222b;
 	padding: 0 20px;
 	margin-bottom: 10px;
+	top: 0;
 	position: relative;
 	line-height: 47px;
 	width: 270px;
+	text-transform: uppercase;
 	-webkit-box-shadow: 0px 5px 0px #f1b90f;
     -moz-box-shadow: 0px 5px 0px #f1b90f;
     box-shadow: 0px 5px 0px #f1b90f;
@@ -1672,7 +1694,7 @@ header .activate-dropdown:hover ul{
 
 .course-detail-top-section .centered-contents 
 .white-box .join-class span{
-	font-size: 32px;
+	font-size: 22px;
 	position: relative;
 	top: 6px;
 	display: inline-block;
@@ -1749,6 +1771,11 @@ header .activate-dropdown:hover ul{
 }
 
 .course-detail-top-section .centered-contents 
+.white-box .wishlist-and-social{
+	margin: 50px 0 10px;
+}
+
+.course-detail-top-section .centered-contents 
 .white-box .add-to-wishlist{
 	display: block;
 	border-radius: 15px;
@@ -1812,21 +1839,48 @@ header .activate-dropdown:hover ul{
 	background-position: 0 -96px;
 }
 
+.course-detail-top-section .centered-contents
+.video-player{
+	float: left;
+	max-width: 656px;
+	width: 65.6%;
+	min-height: 266px;
+	overflow: hidden;
+	border-radius: 5px 5px 0 0;
+	margin-left: 32px;
+	position: relative;
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/video-poster.jpg") no-repeat center center;
+}
+
 .course-detail-top-section .centered-contents 
 .watch-video-button{
-    background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-3.png") 
-	no-repeat 10px -221px rgba(37, 47, 59, 0.7);
-    border-radius: 5px 5px 0 0;
+    background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-3.png") no-repeat 10px -221px;
     color: #fff;
-    display: block;
+    display: inline-block;
     float: left;
     font-size: 12px;
     height: 40px;
     line-height: 40px;
     margin-left: 15px;
-	margin-top: 231px;
     padding-left: 48px;
-    width: 292px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.course-detail-top-section .centered-contents 
+.video-time{
+	float: right;
+	background-color: rgba(37, 47, 59, 0.7);
+	padding: 14px 20px;
+	display: block;
+	font-weight: 200;
+	font-size: 18px;
+	color: #fff;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	border-radius: 5px 0 0 0;
 }
 
 .white-box.not-on-sale + .watch-video-button {
@@ -1836,6 +1890,11 @@ header .activate-dropdown:hover ul{
     z-index: 1;
 	border-radius: 5px;
 }
+
+.course-detail-top-section .centered-contents .white-box.not-on-sale .join-class{
+	top: 15px;
+}
+
 /*********** Course Details main content *************/
 .main-content-container{
 	width: 100%;
@@ -1846,6 +1905,7 @@ header .activate-dropdown:hover ul{
 .main-content-container .main-content{
 	max-width: 1000px;
 	margin: 0 auto;
+	background: #fff;
 }
 
 .main-content-container .main-content
@@ -1860,11 +1920,16 @@ header .activate-dropdown:hover ul{
 .main-content-container .main-content
 .left-content .lead{
 	padding: 12px 0 16px 20px;
-	margin: 0 0 1px;
+	margin: 0;
 	color: #0099ff;
 	font-size: 18px;
 	background: #fff;
-	border-radius: 5px;
+	border-radius: 5px 5px 0 0;
+}
+
+.main-content-container .main-content
+.left-content .lead.what-you-will-learn{
+	background: #e5f5ff;
 }
 
 .main-content-container .main-content
@@ -1874,8 +1939,33 @@ header .activate-dropdown:hover ul{
 	display: block;
 	color: #849598;
 	font-size: 12px;
-	border-radius: 5px;
+	border-radius: 0 0 5px 5px;
 	line-height: 28px;
+}
+
+.main-content-container .main-content
+.left-content article.what-you-will-learn{
+	background: #e5f5ff;
+}
+
+.main-content-container .main-content
+.left-content article.what-you-will-learn ul{
+	padding: 0;
+}
+
+.main-content-container .main-content
+.left-content article.what-you-will-learn ul li{
+	padding-left: 35px;
+	position: relative;
+}
+
+.main-content-container .main-content
+.left-content article.what-you-will-learn ul li::before{
+	content: "-";
+	color: #849598;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 
 .main-content-container .main-content
@@ -1888,6 +1978,9 @@ header .activate-dropdown:hover ul{
 .sidebar .lead{
 	padding: 15px 0 15px 20px;
 	font-size: 14px;
+	background: #e5f5ff;
+	color: #0099ff;
+	border-radius: 5px 5px 0 0;
 }
 
 .main-content-container .main-content
@@ -1895,8 +1988,8 @@ header .activate-dropdown:hover ul{
 	padding: 20px 20px 20px 30px;
 	margin: 0 0 30px;
 	list-style:disc;
-	border-radius: 5px;
-	background: #fff;
+	border-radius: 0 0 5px 5px;
+	background: #e5f5ff;
 }
 
 .main-content-container .main-content
@@ -1924,7 +2017,14 @@ header .activate-dropdown:hover ul{
 .main-content-container .main-content
 .sidebar .your-teacher .avater{
 	text-align: center;
-	margin-top: 75px;
+}
+
+.main-content-container .main-content
+.sidebar .your-teacher .avater > p{
+	color: #0099ff;
+	font-size: 18px;
+	margin: 15px 0 15px 20px;
+	text-align: left;
 }
 
 .main-content-container .main-content
@@ -2001,6 +2101,134 @@ header .activate-dropdown:hover ul{
 }
 
 .main-content-container .main-content
+.sidebar .testimonial-block{
+	margin-top: 30px;
+	padding-right: 20px;
+}
+
+.main-content-container .main-content
+.sidebar .testimonial-block small{
+	font-size: 12px;
+	color: #849598;
+	display: block;
+	margin-bottom: 12px;
+	text-align: right;
+}
+
+.main-content-container .main-content
+.sidebar .testimonial-block .money-back{
+	height: 40px;
+	border-radius: 5px;
+	position: relative;
+	border: solid 1px #bbc8c9;
+}
+
+.main-content-container .main-content
+.sidebar .testimonial-block .money-back img{
+	margin-left: 5px;
+	position: absolute;
+	left: -15px;
+	top: -20px;
+}
+
+.main-content-container .main-content
+.sidebar .testimonial-block .money-back p{
+	margin: 0;
+	float: left;
+	line-height: 40px;
+	text-indent: 77px;
+	text-transform: uppercase;
+	color: #849598;
+}
+
+.main-content-container .main-content
+.sidebar .testimonial-block .price{
+	width: 292px;
+	height: 28px;
+	border-radius: 15px;
+	background: #feed01;
+	line-height: 28px;
+	font-size: 12px;
+	color: #18222b;
+	display: block;
+	text-align: center;
+}
+
+.main-content-container .main-content
+.sidebar .testimonial-block .crash-class{
+	background: #b0bfc1 url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-3.png) no-repeat 10px -194px;
+	text-align: center;
+	text-transform: uppercase;
+    border-radius: 15px;
+    color: #fff;
+	display: block;
+	margin: 30px 0 10px;
+    font-size: 12px;
+    padding: 7px 0 7px;
+}
+
+
+.main-content-container .main-content
+.sidebar .testimonial-block .crash-class:hover{
+	background: #8b9394 url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-3.png) no-repeat 10px -194px;
+	text-decoration: none;
+}
+
+.main-content-container .main-content
+.sidebar .testimonial-block .testimonials h4{
+	margin: 40px 0 30px;
+	padding: 14px 0 14px 20px;
+	border-radius: 5px;
+	background: #d9f0ff;
+	font-size: 14px;
+	color: #0099ff;
+}
+
+.main-content-container .main-content .testimonials{
+	position: relative;
+}
+
+.main-content-container .main-content .testimonials > p{
+	font-size: 12px;
+	color: #849598;
+	text-align: center;
+	margin-bottom: 0;
+	position: relative;
+	padding: 0 30px;
+	line-height: 28px;
+}
+
+.main-content-container .main-content .testimonials > span.name{
+	display: block;
+	font-size: 18px;
+	font-weight: 200;
+	color: #b0bec1;
+	margin-top: 20px;
+}
+
+.main-content-container .main-content.testimonials p::before,
+.main-content-container .main-content .testimonials p::after{
+	content: '';
+	display: block;
+	height: 19px;
+	width: 19px;
+	position: absolute;
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/quotes.png") no-repeat;
+}
+
+.main-content-container .main-content .testimonials p::before{
+	top: 0;
+	left: 0;
+	background-position: 0 0;
+}
+
+.main-content-container .main-content .testimonials p::after{
+	bottom: 0;
+	right: 0;
+	background-position: 100% 0;
+}
+
+.main-content-container .main-content
 .curriculum{
 	margin-top: 30px;
 	width: 100%;
@@ -2008,12 +2236,13 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content
 .curriculum h3{
-	padding: 13px 0 15px 20px;
+	padding: 68px 20px 0;
 	font-size: 18px;
 	font-weight: normal;
 	color: #0099ff;
 	border-radius: 5px;
-	background: #fff;
+	border-top: solid 1px #fafafa;
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.png") no-repeat center top;
 	margin: 0 0 20px;
 }
 
@@ -2110,6 +2339,36 @@ header .activate-dropdown:hover ul{
 .main-content-container .bottom-margin{
 	margin-bottom: 30px;
 }
+
+.main-content-container .main-content
+.curriculum div.modules{
+	background: #c9eaff;
+	height: 42px;
+	border-radius: 5px;
+	line-height: 42px;
+	max-width: 828px;
+	margin: 0 auto;
+}
+
+.main-content-container .main-content
+.curriculum div.modules p{
+	margin: 0;
+	font-size: 14px;
+	color: #18222b;
+	padding-left: 20px;
+	display: inline-block;
+	float: left;
+}
+
+.main-content-container .main-content
+.curriculum div.modules span{
+	display: inline-block;
+	float: left;
+	color: #0099ff;
+	padding-left: 20px;
+	font-size: 12px;
+}
+
 
 /****************** MyCourse CRUD Pages *******************/
 .pagination{
@@ -3295,7 +3554,7 @@ select::-ms-expand {
 	background: #042943;
 }
 
-.unauthenticated-homepage#it-and-tech{
+.unauthenticated-homepage.cat-box-1{
 	background: -moz-linear-gradient(left, #bc4ff8, #a250ef, #6552db);
 	background: -webkit-linear-gradient(left, #bc4ff8, #a250ef, #6552db);
 	background: -o-linear-gradient(left, #bc4ff8, #a250ef, #6552db);
@@ -3305,11 +3564,11 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#bc4ff8', endColorstr='#6552db')"; /* IE8 */
 }
 
-.unauthenticated-homepage#it-and-tech .small-box{
+.unauthenticated-homepage.cat-box-1 .small-box{
 	background: #b383c9;
 }
 
-.unauthenticated-homepage#music-and-arts{
+.unauthenticated-homepage.cat-box-2{
 	background: -moz-linear-gradient(left, #d34690, #ca4492, #9035a3);
 	background: -webkit-linear-gradient(left, #d34690, #ca4492, #9035a3);
 	background: -o-linear-gradient(left, #d34690, #ca4492, #9035a3);
@@ -3319,11 +3578,11 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#d34690', endColorstr='#9035a3')"; /* IE8 */
 }
 
-.unauthenticated-homepage#music-and-arts .small-box{
+.unauthenticated-homepage.cat-box-2 .small-box{
 	background: #b15a85;
 }
 
-.unauthenticated-homepage#love-and-relationships{
+.unauthenticated-homepage.cat-box-3{
 	background: -moz-linear-gradient(left, #ff527d, #ff5473, #ff5a52);
 	background: -o-linear-gradient(left, #ff527d, #ff5473, #ff5a52);
 	background: -webkit-linear-gradient(left, #ff527d, #ff5473, #ff5a52);
@@ -3333,11 +3592,11 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff527d', endColorstr='#ff5a52')"; /* IE8 */
 }
 
-.unauthenticated-homepage#love-and-relationships .small-box{
+.unauthenticated-homepage.cat-box-3 .small-box{
 	background: #de7792;
 }
 
-.unauthenticated-homepage#personal-development{
+.unauthenticated-homepage.cat-box-4{
 	background: -moz-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
 	background: -webkit-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
 	background: -o-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
@@ -3347,11 +3606,11 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff573c', endColorstr='#ff2f5f')"; /* IE8 */
 }
 
-.unauthenticated-homepage#personal-development .small-box{
+.unauthenticated-homepage.cat-box-4 .small-box{
 	background: #d1887a;
 }
 
-.unauthenticated-homepage#language{
+.unauthenticated-homepage.cat-box-5{
 	background: -moz-linear-gradient(left, #ff8e05, #ff7f13, #ff632f);
 	background: -webkit-linear-gradient(left, #ff8e05, #ff7f13, #ff632f);
 	background: -o-linear-gradient(left, #ff8e05, #ff7f13, #ff632f);
@@ -3361,11 +3620,11 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff8e05', endColorstr='#ff632f')"; /* IE8 */
 }
 
-.unauthenticated-homepage#language .small-box{
+.unauthenticated-homepage.cat-box-5 .small-box{
 	background: #d3974c;
 }
 
-.unauthenticated-homepage#money{
+.unauthenticated-homepage.cat-box-6{
 	background: -moz-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
 	background: -webkit-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
 	background: -o-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
@@ -3375,11 +3634,11 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#f3be0d', endColorstr='#ff9501')"; /* IE8 */
 }
 
-.unauthenticated-homepage#money .small-box{
+.unauthenticated-homepage.cat-box-6 .small-box{
 	background: #feb441;
 }
 
-.unauthenticated-homepage#health-and-fitness{
+.unauthenticated-homepage.cat-box-7{
 	background: -moz-linear-gradient(left, #88ef5d, #8ddd45, #91ce31);
 	background: -webkit-linear-gradient(left, #88ef5d, #8ddd45, #91ce31);
 	background: -o-linear-gradient(left, #88ef5d, #8ddd45, #91ce31);
@@ -3389,11 +3648,11 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#88ef5d', endColorstr='#91ce31')"; /* IE8 */
 }
 
-.unauthenticated-homepage#health-and-fitness .small-box{
+.unauthenticated-homepage.cat-box-7 .small-box{
 	background: #90c47b;
 }
 
-.unauthenticated-homepage#business-and-marketing{
+.unauthenticated-homepage.cat-box-8{
 	background: -moz-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
 	background: -webkit-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
 	background: -o-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
@@ -3403,11 +3662,11 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#7decff', endColorstr='#1e77f7')"; /* IE8 */
 }
 
-.unauthenticated-homepage#business-and-marketing .small-box{
+.unauthenticated-homepage.cat-box-8 .small-box{
 	background: #4db9cc;
 }
 
-.unauthenticated-homepage#photography-and-video{
+.unauthenticated-homepage.cat-box-9{
 	background: -moz-linear-gradient(left, #0d5a90, #11466b, #172937);
 	background: -webkit-linear-gradient(left, #0d5a90, #11466b, #172937);
 	background: -o-linear-gradient(left, #0d5a90, #11466b, #172937);
@@ -3417,7 +3676,7 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0d5a90', endColorstr='#172937')"; /* IE8 */
 }
 
-.unauthenticated-homepage#photography-and-video .small-box{
+.unauthenticated-homepage.cat-box-9 .small-box{
 	background: #355d79;
 }
 

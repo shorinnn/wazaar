@@ -4,15 +4,18 @@
                 @if($course->bannerImage != null)
                     <img src="{{$course->bannerImage->url}}" alt="" class="img-responsive" />
                 @else
-                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/course-detail-banner-img.jpg" 
-                         alt="" class="img-responsive" />
+                    <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/course-detail-banner-img.jpg" 
+                         alt="" class="img-responsive" />-->
                 @endif
         	
         	<div class="centered-contents clearfix">
-            	<h1> {{ $course->name }}</h1>
+                <ol class="breadcrumb">
+                  <li><a href="#">IT & Technology</a></li>
+                  <li class="active">Javascript</li>
+                </ol>
+                <h1> {{ $course->name }}</h1>
                 <div class="clearfix">
-                	<div class="level">{{ $course->courseDifficulty->name }}</div>
-                    <div class="number-of-students">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
+                	<!--<div class="level">{{ $course->courseDifficulty->name }}</div>-->
                 </div>
                 <div class="number-of-reviews">
                 	21 REVIEWS
@@ -22,18 +25,20 @@
                 
                         @if($course->isDiscounted())
                         <div class="white-box">
+	                        <div class="number-of-students">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
                             <div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>
                         @else
                         <div class="white-box not-on-sale">
+	                        <div class="number-of-students">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
                         @endif
-                        
+
                         {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
                          @if(Auth::guest() || Auth::user()->can_purchase($course) )
                               <button class="join-class">
                          @else 
                               <button class="join-class" disabled="disabled">
                          @endif
-                        {{ trans("courses/general.join_class") }}<span>¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</span>
+                        <span>{{ trans("courses/general.enroll_for") }} ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</span>
                             </button>
                        
                         {{Form::close()}}
@@ -41,8 +46,8 @@
                             <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
                                 You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                         @endif
-                        <a href="#" class="crash-class">CRASH CLASS</a>
-                        <div class="clearfix">
+                        <!--<a href="#" class="crash-class">CRASH CLASS</a>-->
+                        <div class="clearfix wishlist-and-social">
                             <a href="#" class="add-to-wishlist">Add to Wishlist</a>
                             <ul class="social-icons">
                                     <li><a href="#" class="twitter-icon"></a></li>
@@ -54,7 +59,10 @@
                 	
                     
                 </div>
-                <a href="#" class="watch-video-button">WATCH VIDEO</a>
+                <div class="video-player">
+	                <a href="#" class="watch-video-button">WATCH VIDEO</a>
+    				<span class="video-time">10:23</span>            
+                </div>
                  
             </div>
         </section>
@@ -70,12 +78,23 @@
                         <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
                     @endif
             	<div class="left-content">
+                    <div class="testimonials">
+                        <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        </p>
+                        <span class="name">Takeshi, muniku</span>
+                    </div>
                     <p class="lead">Description</p>
                     <article class="bottom-margin">
                     {{$course->description}}
                     </article>
-                	<p class="lead">What you will archieve at the end of the course.</p>
+                    <p class="lead">Sub Description</p>
                     <article class="bottom-margin">
+                    {{$course->description}}
+                    </article>
+                	<p class="lead what-you-will-learn">What you will archieve at the end of the course.</p>
+                    <article class="bottom-margin what-you-will-learn">
                         <ul>
                         @if($achievements = json2Array($course->what_will_you_achieve))
                             @foreach($achievements as $achievement)
@@ -97,8 +116,8 @@
                          @endif
                     </aside>
                     <div class="your-teacher">
-                    	<p class="lead">Your Teacher</p>
                         <div class="avater">
+	                    	<p>Your Teacher</p>
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater.png" alt="" >
                         </div>
                         <h3>{{$course->instructor->first_name}} {{$course->instructor->last_name}}<span></span></h3>
@@ -112,10 +131,27 @@
                         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
                         </p>
                     </div>
+                    <div class="testimonial-block">
+                    	<small>You are backed by our</small>
+                        <div class="money-back">
+                        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/30-days-coupon.png" alt="">
+                        	<p>MONEY BACK GUARANTEE</p>
+                        </div>
+                        <a href="#" class="crash-class clearfix">CRASH CLASS</a>
+                        <a href="#" class="price clearfix">¥350,000</a>
+                        <div class="testimonials">
+                        	<h4>Testimonials</h4>
+                            <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                            </p>
+                            <span class="name">Takeshi, muniku</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="curriculum clearfix clear">
-                	<h3>Curriculum</h3>
-                    <div class="lessons clearfix">
+                	<h3 class="text-center">Curriculum</h3>
+                    <!--<div class="lessons clearfix">
                     	<span>Module 1</span>
                         <p>Creating a splash screen with javascript</p>
                         <a href="#" class="button">CRASH CLASS</a>
@@ -135,7 +171,14 @@
                     <div class="assignment">
                     	<span>Assignment 1</span>
                         <p>Your very first Javascript code</p>
+                    </div>-->
+                    <div class="modules module-1">
+                    	<p>Module 1</p>
+                        <span>Introduction to Javascript</span>
                     </div>
+                    <ul>
+                    
+                    </ul>
                 </div>
             </div>
         </section>
