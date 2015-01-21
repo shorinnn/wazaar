@@ -21,8 +21,6 @@
                 	21 REVIEWS
                     <span>89%</span>
                 </div>
-                
-                
                         @if($course->isDiscounted())
                         <div class="white-box">
 	                        <div class="number-of-students">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
@@ -150,37 +148,79 @@
                     </div>
                 </div>
                 <div class="curriculum clearfix clear">
-                	<h3 class="text-center">Curriculum</h3>
-                    <!--<div class="lessons clearfix">
-                    	<span>Module 1</span>
-                        <p>Creating a splash screen with javascript</p>
-                        <a href="#" class="button">CRASH CLASS</a>
+                	<h3 class="text-center">
+                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">
+                        Curriculum
+                   	</h3>
+                    <div class="clearfix">
+                        <div class="modules module-1 clearfix clear">
+                            <p>Module 1</p>
+                            <span>Introduction to Javascript</span>
+                        </div>
+                        <ul class="lesson-container">
+                            <li class="lessons lesson-1 bordered">
+                                <span>Lesson 1</span>
+                                <p>e.g. what is javascript?</p>
+                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
+                            </li>
+                            <li class="lessons lesson-1 bordered">
+                                <span>Lesson 1</span>
+                                <p>e.g. what is javascript?</p>
+                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
+                            </li>
+                            <li class="lessons lesson-1 bordered">
+                                <span>Lesson 1</span>
+                                <p>e.g. what is javascript?</p>
+                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
+                            </li>
+                            <li class="lessons lesson-1">
+                                <span>Lesson 1</span>
+                                <p>e.g. what is javascript?</p>
+                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="lessons clearfix">
-                    	<span>Lesson 1</span>
-                        <p>Introduction</p>
+                    <div class="clearfix">
+                        <div class="modules module-1 clearfix clear">
+                            <p>Module 1</p>
+                            <span>Introduction to Javascript</span>
+                        </div>
+                        <ul class="lesson-container">
+                            <li class="lessons lesson-1 bordered">
+                                <span>Lesson 1</span>
+                                <p>e.g. what is javascript?</p>
+                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
+                            </li>
+                            <li class="lessons lesson-1 bordered">
+                                <span>Lesson 1</span>
+                                <p>e.g. what is javascript?</p>
+                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
+                            </li>
+                            <li class="lessons lesson-1 bordered">
+                                <span>Lesson 1</span>
+                                <p>e.g. what is javascript?</p>
+                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
+                            </li>
+                            <li class="lessons lesson-1">
+                                <span>Lesson 1</span>
+                                <p>e.g. what is javascript?</p>
+                                <a href="#" class="price-button">¥350.000</a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="lessons clearfix">
-                    	<span>Lesson 2</span>
-                        <p>Your very first</p>
-                    </div>
-                    <div class="lessons clearfix">
-                    	<span>Lesson 3</span>
-                        <p>Time to show it off!</p>
-                    </div>
-                    <div class="assignment">
-                    	<span>Assignment 1</span>
-                        <p>Your very first Javascript code</p>
-                    </div>-->
-                    <div class="modules module-1">
-                    	<p>Module 1</p>
-                        <span>Introduction to Javascript</span>
-                    </div>
-                    <ul>
-                    
-                    </ul>
                 </div>
             </div>
+            <section class="container-fluid become-an-instructor description">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <h1>BECOME</h1>
+                      <h2>AN INSTRUCTOR</h2>
+                      <a href="{{ action('InstructorsController@become') }}"><span>{{trans('site/homepage.get-started')}}</span></a>
+                    </div>
+                  </div>
+              </div>
+            </section>
         </section>
         <!--
         <section class="container">

@@ -1624,7 +1624,7 @@ header .activate-dropdown:hover ul{
 	padding: 20px;
 	width: 312px;
 	min-height: 266px;
-	background: #f8f8f8;
+	background: #fff;
 	border-radius: 5px 5px 0 0;
 	position: relative;
 	float: left;
@@ -1898,13 +1898,15 @@ header .activate-dropdown:hover ul{
 /*********** Course Details main content *************/
 .main-content-container{
 	width: 100%;
-	padding-top: 31px;
 	background: #f8f8f8;
 }
 
 .main-content-container .main-content{
 	max-width: 1000px;
 	margin: 0 auto;
+	padding-top: 30px;
+	border-radius: 0 0 5px 5px;
+	padding-bottom: 80px;
 	background: #fff;
 }
 
@@ -1916,6 +1918,18 @@ header .activate-dropdown:hover ul{
 }
 
 .main-content-container .main-content
+.left-content .testimonials > p{
+	text-align: left;
+	margin-left: 20px;
+}
+
+.main-content-container .main-content
+.left-content .testimonials span.name{
+	text-align: right;
+	padding-right: 86px;
+}
+
+.main-content-container .main-content
 .sidebar .lead,
 .main-content-container .main-content
 .left-content .lead{
@@ -1924,7 +1938,7 @@ header .activate-dropdown:hover ul{
 	color: #0099ff;
 	font-size: 18px;
 	background: #fff;
-	border-radius: 5px 5px 0 0;
+	border-radius: 0 5px 0 0;
 }
 
 .main-content-container .main-content
@@ -1939,7 +1953,7 @@ header .activate-dropdown:hover ul{
 	display: block;
 	color: #849598;
 	font-size: 12px;
-	border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 0;
 	line-height: 28px;
 }
 
@@ -1980,15 +1994,15 @@ header .activate-dropdown:hover ul{
 	font-size: 14px;
 	background: #e5f5ff;
 	color: #0099ff;
-	border-radius: 5px 5px 0 0;
+	border-radius: 5px 0 0 0;
 }
 
 .main-content-container .main-content
 .sidebar ul{
-	padding: 20px 20px 20px 30px;
+	padding: 0 20px 20px 30px;
 	margin: 0 0 30px;
 	list-style:disc;
-	border-radius: 0 0 5px 5px;
+	border-radius: 0 0 0 5px;
 	background: #e5f5ff;
 }
 
@@ -2206,7 +2220,7 @@ header .activate-dropdown:hover ul{
 	margin-top: 20px;
 }
 
-.main-content-container .main-content.testimonials p::before,
+.main-content-container .main-content .testimonials p::before,
 .main-content-container .main-content .testimonials p::after{
 	content: '';
 	display: block;
@@ -2242,98 +2256,16 @@ header .activate-dropdown:hover ul{
 	color: #0099ff;
 	border-radius: 5px;
 	border-top: solid 1px #fafafa;
-	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.png") no-repeat center top;
-	margin: 0 0 20px;
+	margin: 60px 0 20px;
 }
 
 .main-content-container .main-content
-.curriculum div.lessons{
-	min-height: 64px;
-	background: #fff;
-	border-radius: 5px;
-	margin-bottom: 20px;
-	position: relative;
-}
-
-.main-content-container .main-content
-.curriculum div.lessons span{
-	display: block;
-	float: left;
-	width: 128px;
-	padding-left: 20px;
-	line-height: 64px;
-	font-size: 12px;
-	color: #92cc2e;
-	border: solid #e0e4e5;
-	border-width: 0 1px 0 0;
-}
-
-.main-content-container .main-content
-.curriculum div.assignment p,
-.main-content-container .main-content
-.curriculum div.lessons p{
-	float: left;
-	padding-left: 20px;
-	line-height: 64px;
-	font-size: 14px;
-	color: #849598;
-	margin: 0;
-}
-
-.main-content-container .main-content
-.curriculum div.lessons .button{
-	display: block;
-	width: 140px;
-	height: 42px;
-	line-height: 42px;
-	text-align: center;
-	color: #fff;
-	border-radius: 5px;
-	margin-top: 11px;
-	font-size: 12px;
-	position: absolute;
-	right: 2%;
-	background: -moz-linear-gradient(left, #72e172, #90e753, #9aea49);
-	background: -webkit-linear-gradient(left, #72e172, #90e753, #9aea49);
-	background: -o-linear-gradient(left, #72e172, #90e753, #9aea49);
-	background: -ms-linear-gradient(left, #72e172, #90e753, #9aea49);
-	background: linear-gradient(left, #72e172, #90e753, #9aea49);
-}
-
-.main-content-container .main-content
-.curriculum div.lessons .button:hover{
-	text-decoration: none;
-	background: -moz-linear-gradient(left, #9aea49, #90e753, #72e172);
-	background: -webkit-linear-gradient(left, #9aea49, #90e753, #72e172);
-	background: -o-linear-gradient(left, #9aea49, #90e753, #72e172);
-	background: -ms-linear-gradient(left, #9aea49, #90e753, #72e172);
-	background: linear-gradient(left, #9aea49, #90e753, #72e172);
-}
-
-.main-content-container .main-content
-.curriculum div.assignment{
-	height: 62px;
-	overflow: hidden;
-	border: solid 1px #ff643b;
-	border-radius: 5px;
-	margin-bottom: 118px;
-	background: #fff url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/gray-arrow.png") no-repeat 99% center;
-}
-
-.main-content-container .main-content
-.curriculum div.assignment span{
-	float: left;
-	display: block;
-	width: 128px;
-	padding-left: 20px;
-	color: #fff;
-	font-size: 12px;
-	line-height: 62px;
-	background: -moz-linear-gradient(left, #ff6352, #ff6a40, #ff6e34);
-	background: -webkit-linear-gradient(left, #ff6352, #ff6a40, #ff6e34);
-	background: -o-linear-gradient(left, #ff6352, #ff6a40, #ff6e34);
-	background: -ms-linear-gradient(left, #ff6352, #ff6a40, #ff6e34);
-	background: linear-gradient(left, #ff6352, #ff6a40, #ff6e34);
+.curriculum h3 img{
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: -70px;
+    width: 85px;
 }
 
 .main-content-container .bottom-margin{
@@ -2347,7 +2279,7 @@ header .activate-dropdown:hover ul{
 	border-radius: 5px;
 	line-height: 42px;
 	max-width: 828px;
-	margin: 0 auto;
+	margin: 40px auto 0;
 }
 
 .main-content-container .main-content
@@ -2369,7 +2301,104 @@ header .activate-dropdown:hover ul{
 	font-size: 12px;
 }
 
+.main-content-container .main-content
+.curriculum .lesson-container{
+    border-bottom: 1px solid #b0bfc1;
+    border-left: 1px solid #b0bfc1;
+    border-radius: 0 0 0 9px;
+    bottom: 1px;
+    float: right;
+    margin: 0 86px 0 0;
+    padding: 0 0 0 20px;
+    position: relative;
+    width: 80.7%;
+}
 
+.main-content-container .main-content
+.curriculum .lesson-container li{
+	width: 100%;
+	height: 40px;
+	border-radius: 20px;
+	border: solid 1px #e5e8e9;
+	margin-top: 10px;
+	line-height: 40px;
+	position:relative;
+	background:#fff;
+	z-index:999;
+	top: 19px;
+}
+
+.main-content-container .main-content .curriculum .lesson-container li.bordered:before {
+    background: #b0bfc1;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    left: -21px;
+    position: absolute;
+    top: 50%;
+    width: 21px;
+}
+
+.main-content-container .main-content
+.curriculum .lesson-container li span{
+	display: inline-block;
+	font-size: 12px;
+	color: #333;
+	float: left;
+	margin-left: 20px;
+}
+
+.main-content-container .main-content
+.curriculum .lesson-container li p{
+	margin: 0 0 0 40px;
+	color: #849598;
+	float: left;
+	font-size: 12px;
+}
+
+.main-content-container .main-content
+.curriculum .lesson-container li a{
+	display: inline-block;
+	float: right;
+	width: 128px;
+	height: 32px;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 32px;
+	font-size: 12px;
+	margin-right: 18px;
+	margin-top: 3px;
+	text-transform: uppercase;
+}
+
+.main-content-container .main-content
+.curriculum .lesson-container li a.crash-lesson-button{
+	color: #fff;
+	background: #92cc2e;
+}
+
+.main-content-container .main-content
+.curriculum .lesson-container li a.crash-lesson-button:hover{
+	background: #669810;
+	text-decoration: none;
+}
+
+.main-content-container .main-content
+.curriculum .lesson-container li a.price-button{
+	background: #f2c70e;
+	color: #18222b;
+}
+
+.main-content-container .main-content
+.curriculum .lesson-container li a.price-button:hover{
+	background: #fbe343;
+	text-decoration: none;
+}
+
+.become-an-instructor.description{
+	margin-top: 35px;
+	background: #fff;
+}
 /****************** MyCourse CRUD Pages *******************/
 .pagination{
 	margin-left: 23px;
