@@ -2912,8 +2912,10 @@ header .activate-dropdown:hover ul{
 .classroom-content .curriculum .lessons{
 	width: 98%;
 	float: left;
-	/*height: 286px;*/
-	/*overflow: hidden;*/
+	height: 286px;
+	height: 400px;
+	overflow: hidden;
+        overflow-y: scroll;
 	padding: 0;
 	/*margin: 0 0 200px;*/
 }
