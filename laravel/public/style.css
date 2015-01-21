@@ -2912,10 +2912,10 @@ header .activate-dropdown:hover ul{
 .classroom-content .curriculum .lessons{
 	width: 98%;
 	float: left;
-	height: 286px;
-	overflow: hidden;
+	/*height: 286px;*/
+	/*overflow: hidden;*/
 	padding: 0;
-	margin: 0 0 200px;
+	/*margin: 0 0 200px;*/
 }
 
 .classroom-content .curriculum .lessons li a{
@@ -2944,21 +2944,28 @@ header .activate-dropdown:hover ul{
 	padding-left: 10px;
 	float: left;
 }
+.classroom-content .curriculum .lessons li a.module{
+	background: #21618B;
+}
 
 .classroom-content .curriculum .lessons li a.lesson-1{
 	background: #0099ff;
+        padding-left: 20px;
 }
 
 .classroom-content .curriculum .lessons li a.lesson-2{
 	background: #95d2fb;
+        padding-left: 20px;
 }
 
 .classroom-content .curriculum .lessons li a.lesson-3{
 	background: #c6e5f9;
+        padding-left: 20px;
 }
 
 .classroom-content .curriculum .lessons li a.lesson-4{
 	background: #dfeef9;
+        padding-left: 20px;
 }
 
 .custom-scrollbar{
