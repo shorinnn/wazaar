@@ -220,7 +220,6 @@ class CoursesController extends \BaseController {
             }
             return View::make('courses/curriculum')->with(compact('course'));
         }
-
-
-
+        
+        
 }

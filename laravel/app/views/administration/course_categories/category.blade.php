@@ -15,6 +15,21 @@
         {{trans('crud/labels.description')}} <textarea name='description' class='ajax-updatable' 
                data-url='{{action('CoursesCategoriesController@update', $category->id )}}' data-name='description'>{{$category->description}}</textarea>
         <br />
+        Color Scheme:
+        <br />
+        <form>
+            
+            @for($i=1; $i<10; $i++)
+                <?php
+                $checked = $i==$category->color_scheme ? 'checked="checked"' : '' ;
+                ?>
+                <input {{$checked}} type='radio' name='color_scheme' value='{{$i}}'  class='ajax-updatable' 
+               data-url='{{action('CoursesCategoriesController@update', $category->id )}}' data-name='color_scheme' />
+                <div class='color-scheme-thumb unauthenticated-homepage cat-box-{{$i}}'></div>
+            @endfor
+
+        </form>
+        <br />
         {{ trans('general.homepage_graphic') }}
         
         {{ View::make('administration.course_categories.graphics')->with(compact('category')) }}

@@ -9,7 +9,7 @@ class Course extends Ardent{
     
     public static $rules = [
         'name' => 'required|unique:courses',
-        'slug' => 'required|alpha_dash|unique:courses|not_in:index,show,create,store,categories,category,purchase,mycourses,destroy,edit,update',
+        'slug' => 'required|alpha_dash|unique:courses|not_in:index,show,create,store,categories,category,purchase,mycourses,destroy,edit,update,dashboard,curriculum',
         'price' => 'numeric',
         'affiliate_percentage' => 'numeric|between:0,70',
         'course_difficulty_id' => 'numeric',

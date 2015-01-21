@@ -11,8 +11,14 @@ class Lesson extends Ardent{
     );
     
      public static $rules = [
-        'module_id' => 'required|exists:modules,id'
+        'module_id' => 'required|exists:modules,id',
+        'slug' => 'alpha_dash|not_in:categories,category,purchase,mycourses,destroy,edit,update,curriculum,dashboard,',
     ];
+     
+     public function beforeSave(){
+         $this->slug = Str::slug( $this->name );
+         if( $this->slug == 'dashboard' ) return false;// the not_in filter not working for "dashboard"????
+     }
     
      public function beforeDelete(){
          // delete blocks

@@ -212,17 +212,17 @@ class CourseCategorySeeder extends Seeder {
         DB::table('course_categories')->delete();
         CourseCategory::unguard();
         CourseCategory::create( ['name' => 'IT & Technology', 'slug' => 'it-technology', 'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-7.png',
-                                 'description' => 'Programming, Javascript, C++, etc...', 'courses_count' => 0 ]);
+                                 'description' => 'Programming, Javascript, C++, etc...', 'courses_count' => 0, 'color_scheme' => 1 ]);
         CourseCategory::create( ['name' => 'Business', 'slug' => 'business',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-14.png',
-                                 'description' => 'Beez Kneez', 'courses_count' => 0 ]);
+                                 'description' => 'Beez Kneez', 'courses_count' => 0, 'color_scheme' => 8 ]);
         CourseCategory::create( ['name' => 'Investments', 'slug' => 'investments',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-12.png',
-                                 'description' => 'Mo money', 'courses_count' => 0 ]);
+                                 'description' => 'Mo money', 'courses_count' => 0, 'color_scheme' => 6 ]);
         CourseCategory::create( ['name' => 'Music', 'slug' => 'music',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-8.png',
-                                 'description' => 'Tokyo Square, nom sayin', 'courses_count' => 0 ]);
+                                 'description' => 'Tokyo Square, nom sayin', 'courses_count' => 0, 'color_scheme' => 2 ]);
         CourseCategory::create( ['name' => 'Beauty', 'slug' => 'beauty',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-9.png',
-                                 'description' => 'Stop being ugly', 'courses_count' => 0 ]);
+                                 'description' => 'Stop being ugly', 'courses_count' => 0, 'color_scheme' => 3 ]);
         CourseCategory::create( ['name' => 'Health', 'slug' => 'health',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-13.png',
-                                 'description' => 'Fat it up bro!', 'courses_count' => 0 ]);
+                                 'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
        
     }
 
@@ -405,7 +405,9 @@ class ModulesSeeder extends Seeder {
     {
         DB::table('modules')->delete();
         Module::unguard();
-        Module::create( ['course_id' => 1, 'name' => 'Test Module', 'order' => 1] );
+        Module::create( ['course_id' => 1, 'name' => 'First Module', 'order' => 1] );
+        Module::create( ['course_id' => 1, 'name' => 'Second Module', 'order' => 2] );
+        Module::create( ['course_id' => 1, 'name' => 'Last Module', 'order' => 3] );
        
     }
 }
@@ -417,8 +419,10 @@ class LessonsSeeder extends Seeder {
     {
         DB::table('lessons')->delete();
         Lesson::unguard();
-        Lesson::create( ['module_id' => 1, 'name' => 'Test Lesson', 'order' => 1] );
-       
+        Lesson::create( ['module_id' => 1, 'name' => 'Welcome', 'order' => 1] );
+        Lesson::create( ['module_id' => 1, 'name' => 'Advanced Stuff', 'order' => 2] );
+        Lesson::create( ['module_id' => 2, 'name' => 'More Advanced Stuff', 'order' => 3] );
+        Lesson::create( ['module_id' => 3, 'name' => 'Thank you, come again', 'order' => 4] );
     }
 }
 

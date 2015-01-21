@@ -31,6 +31,12 @@
         display:none;
     }
         
+    .color-scheme-thumb{
+        height:40px; 
+        width: 40px; 
+        display: inline-block;
+        margin-right: 10px;
+    }
     </style>
 <h1 class='icon'>Course Categories</h1>    
 
