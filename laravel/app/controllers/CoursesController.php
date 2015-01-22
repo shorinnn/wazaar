@@ -143,8 +143,10 @@ class CoursesController extends \BaseController {
             if( !$category = CourseCategory::where('slug',$slug)->first() ){
                  return View::make('site.error_encountered');
             }
+ 
             
-            $courses = $category->courses()->orderBy('id','Desc')->paginate(9);
+            $courses = $category->courses()->with('courseDifficulty')->with('courseCategory')->with('courseSubcategory')->with('previewImage')
+                    ->where('featured',0)->where('privacy_status','public')->orderBy('id','Desc')->paginate(9);
             Return View::make('courses.category')->with(compact('category'))->with(compact('courses'));
         }
         
@@ -153,7 +155,8 @@ class CoursesController extends \BaseController {
             if( !$subcategory = CourseSubcategory::where('slug',$subcat)->first() ){
                  return View::make('site.error_encountered');
             }
-            $courses = $subcategory->courses()->orderBy('id','Desc')->paginate(9);
+            $courses = $subcategory->courses()->with('courseDifficulty')->with('courseCategory')->with('courseSubcategory')->with('previewImage')
+                    ->where('featured',0)->where('privacy_status','public')->orderBy('id','Desc')->paginate(9);
             Return View::make('courses.category')->with(compact('category'))->with(compact('courses'))->with(compact('subcategory'));
         }
         

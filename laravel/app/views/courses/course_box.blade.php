@@ -11,7 +11,7 @@
             <div class="new-tag">NEW</div>
         @endif
         <img 
-            @if($course->course_preview_image_id==null)
+            @if($course->course_preview_image_id == null)
                 src="http://placehold.it/350x150&text=Preview Unavailable"
             @else
                 src="{{$course->previewImage->url}}"

@@ -4,7 +4,7 @@
         <section class="container">
             
 			
-            <div class="row first-row">
+            <div class="row cat-row-{{$category->color_scheme}}">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="category-heading">         
                         <div class="clearfix">
@@ -19,7 +19,7 @@
                 </div>
             </div>      
         @if( $featured = Course::featured()->where('course_category_id', $category->id)->first() )   
-            <div class="row second-row">       
+            <div class="row cat-row-{{$category->color_scheme}}">       
                 <div class="col-xs-12 col-sm-12 col-md-12">
                      {{ View::make('courses.course_box_featured')->with( compact('category') )->withCourse($featured) }}
                 </div>
@@ -28,7 +28,8 @@
          
         
         @foreach($courses as $course)
-            {{ cycle(['<div class="row second-row">','','']) }}
+        
+            {{ cycle(["<div class='row cat-row-$category->color_scheme'>",'','']) }}
               {{ View::make('courses.course_box')->with(compact('course')) }} 
             {{ cycle(['','','</div>']) }}
         @endforeach

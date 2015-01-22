@@ -8,7 +8,7 @@
         </div>
         <div class="featured-img-container hidden-sm hidden-xs">
         <img
-            @if($course->previewImage==null)
+            @if($course->course_preview_image_id==null)
                 src="http://placehold.it/350x150&text=Preview Unavailable"
             @else
                 src="{{$course->previewImage->url}}"
