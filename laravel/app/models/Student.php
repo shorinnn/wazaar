@@ -9,9 +9,28 @@ class Student extends User{
         'purchases' => [ self::HAS_MANY, 'CoursePurchase' ],
         'courseReferrals' => [ self::HAS_MANY, 'CourseReferral' ],
         'profile' => [ self::MORPH_ONE, 'Profile', 'name'=>'owner' ],
-        'viewedLessons' => [ self::HAS_MANY, 'ViewedLesson' ]
+        'viewedLessons' => [ self::HAS_MANY, 'ViewedLesson' ],
       ];
         
+    public function manyThroughMany($related, $through, $firstKey, $secondKey, $pivotKey)
+    {
+        $model = new $related;
+        $table = $model->getTable();
+        $throughModel = new $through;
+        $pivot = $throughModel->getTable();
+
+        return $model
+            ->join($pivot, $pivot . '.' . $pivotKey, '=', $table . '.' . $secondKey)
+            ->select($table . '.*')
+            ->where($pivot . '.' . $firstKey, '=', $this->id);
+    }
+    
+    public function wishlistItems()
+    {
+        return $this->manyThroughMany('Course', 'WishlistItem', 'student_id', 'id', 'course_id' );
+
+    }
+    
     public function productAffiliates()
     {
         return $this->belongsToMany('ProductAffiliate', 'course_purchases', 'student_id', 'product_affiliate_id');

@@ -49,7 +49,11 @@
                         @endif
                         <!--<a href="#" class="crash-class">CRASH CLASS</a>-->
                         <div class="clearfix wishlist-and-social">
-                            <a href="#" class="add-to-wishlist">Add to Wishlist</a>
+                            {{Form::open(['action' => ['WishlistController@store'] ])}}
+                            <input type='hidden' name='id' value='{{ $course->id }}' />
+                            <!--<a href="#" class="add-to-wishlist">Add to Wishlist</a>-->
+                            <input type='submit' class="add-to-wishlist" value='Add to Wishlist' />
+                            {{Form::close()}}
                             <ul class="social-icons">
                                     <li><a href="#" class="twitter-icon"></a></li>
                                     <li><a href="#" class="fb-icon"></a></li>

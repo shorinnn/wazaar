@@ -60,7 +60,10 @@ Route::group(['prefix' => 'administration'], function (){
 // Students
 Route::group(['prefix' => 'student'], function (){
     Route::get('mycourses', 'StudentController@mycourses');
+    Route::get('wishlist', 'StudentController@wishlist');
 });
+
+Route::resource('wishlist', 'WishlistController');
 
 // classroom
 Route::get('classroom/{slug}/dashboard', 'ClassroomController@dashboard');
