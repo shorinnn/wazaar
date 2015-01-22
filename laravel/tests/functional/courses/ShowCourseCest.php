@@ -39,7 +39,7 @@ class ShowCourseCest{
         $I->see('<button class="join-class" disabled="disabled">');
     }
     
-    public function seeStudentCounterIncrement(FunctionalTester $I){
+    public function redirectToDashboardAndIncrementStudentCount(FunctionalTester $I){
         $student = Student::where('username', 'student')->first();
         $I->amLoggedAs($student);
         $I->seeAuthentication();
@@ -47,6 +47,8 @@ class ShowCourseCest{
         $I->see('0 Students');
         $I->dontSee('<button class="join-class" disabled="disabled">');
         $I->submitForm('#purchase-form',[]);
+        $I->seeCurrentUrlEquals('/classroom/app-development/dashboard');
+        $I->amOnPage('/courses/app-development');
         $I->see('1 Student');
     }
     
