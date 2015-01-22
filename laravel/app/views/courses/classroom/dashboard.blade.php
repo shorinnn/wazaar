@@ -153,14 +153,14 @@
                             <!--<div class="view-previous-lessons">view previous lessons</div>-->
                             <ul class="lessons">
                                 <?php $i = $j = 1;  ?>
-                                @foreach($course->modules()->orderBy('order','ASC')->get() as $module)
+                                @foreach($course->modules as $module)
                                     <li>
                                         <a class="module">
                                             <span>Module {{$i}}</span>
                                             <p>{{ $module->name }}</p>
                                         </a>
                                     </li>
-                                    @foreach($module->lessons()->where('published','yes')->orderBy('order','ASC')->get() as $lesson)
+                                    @foreach($module->lessons as $lesson)
                                         <li>
                                             <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'lesson' => $lesson->slug ] ) }}" 
                                                @if( $student->isLessonViewed($lesson) )

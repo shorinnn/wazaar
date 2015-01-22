@@ -133,12 +133,12 @@ class Student extends User{
     
     /**
      * Finds the next lesson in the current course
-     * @param Course $course
+     * @param Course $course (with pre-ordered module and lesson relationships eargerly loaded)
      * @return mixed False if none, the lesson object otherwise
      */
-    public function nextLesson(Course $course){        
-        foreach($course->modules()->orderBy('order','ASC')->get() as $module){
-            foreach($module->lessons()->where('published','yes')->orderBy('order','ASC')->get() as $lesson){
+    public function nextLesson(Course $course){ 
+        foreach($course->modules as $module){
+            foreach($module->lessons as $lesson){
                 if( !$this->isLessonViewed($lesson) ) return $lesson;
             }
         }
