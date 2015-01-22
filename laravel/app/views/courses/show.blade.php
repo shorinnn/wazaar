@@ -10,8 +10,11 @@
         	
         	<div class="centered-contents clearfix">
                 <ol class="breadcrumb">
-                  <li><a href="#">IT & Technology</a></li>
-                  <li class="active">Javascript</li>
+                  <li><a href="{{action('CoursesController@category', [$course->courseCategory->slug] )}}">{{ $course->courseCategory->name }}</a></li>
+                  <li class="active">
+                      <a href='{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}'>
+                          {{ $course->courseSubcategory->name }}
+                      </a></li>
                 </ol>
                 <h1> {{ $course->name }}</h1>
                 <div class="clearfix">
@@ -85,12 +88,13 @@
                     <article class="bottom-margin">
                     {{$course->description}}
                     </article>
-                    <p class="lead">Sub Description</p>
+                    <!-- <p class="lead">Sub Description</p>
                     <article class="bottom-margin">
-                    {{$course->description}}
+                    {{ $course->description }}
                     </article>
-                	<p class="lead what-you-will-learn">What you will archieve at the end of the course.</p>
-                    <article class="bottom-margin what-you-will-learn">
+                    -->
+                    <p class="lead what-you-will-learn">What you will archieve at the end of the course.</p>
+                        <article class="bottom-margin what-you-will-learn">
                         <ul>
                         @if($achievements = json2Array($course->what_will_you_achieve))
                             @foreach($achievements as $achievement)
@@ -101,7 +105,8 @@
                     </article>
                 </div>
                 <div class="sidebar">
-                	<aside>
+                    
+                    <aside>
                     	<p class="lead">Who is this for?</p>
                          @if($who_for = json2Array($course->who_is_this_for))
                         <ul>
@@ -111,6 +116,7 @@
                         </ul>
                          @endif
                     </aside>
+                    
                     <div class="your-teacher">
                         <div class="avater">
 	                    	<p>Your Teacher</p>
@@ -150,7 +156,7 @@
                         <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">
                         Curriculum
                    	</h3>
-                    <div class="clearfix">
+<!--                    <div class="clearfix">
                         <div class="modules module-1 clearfix clear">
                             <p>Module 1</p>
                             <span>Introduction to Javascript</span>
@@ -177,48 +183,46 @@
                                 <a href="#" class="crash-lesson-button">CRASH LESSON</a>
                             </li>
                         </ul>
-                    </div>
+                    </div>-->
+                    @foreach($course->modules as $module)
                     <div class="clearfix">
-                        <div class="modules module-1 clearfix clear">
-                            <p>Module 1</p>
-                            <span>Introduction to Javascript</span>
-                        </div>
+                        
+                            <div class="modules module-1 clearfix clear">
+                                <p>Module {{ $module->order }}</p>
+                                <span>{{ $module->name }}</span>
+                            </div>                        
                         <ul class="lesson-container">
-                            <li class="lessons lesson-1 bordered">
-                                <span>Lesson 1</span>
-                                <p>e.g. what is javascript?</p>
-                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
-                            </li>
-                            <li class="lessons lesson-1 bordered">
-                                <span>Lesson 1</span>
-                                <p>e.g. what is javascript?</p>
-                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
-                            </li>
-                            <li class="lessons lesson-1 bordered">
-                                <span>Lesson 1</span>
-                                <p>e.g. what is javascript?</p>
-                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
-                            </li>
-                            <li class="lessons lesson-1">
-                                <span>Lesson 1</span>
-                                <p>e.g. what is javascript?</p>
-                                <a href="#" class="price-button">¥350.000</a>
-                            </li>
+                            @foreach($module->lessons as $lesson)
+                                @if($lesson->id == $module->lessons->last()->id)
+                                    <li class="lessons lesson-1">
+                                @else
+                                    <li class="lessons lesson-1 bordered">
+                                @endif
+                                    <span>Lesson {{ $lesson->order }}</span>
+                                    <p>{{ $lesson->name }}</p>
+                                    <a href="#" class="crash-lesson-button">CRASH LESSON</a>
+                                </li>
+                            @endforeach
                         </ul>
+                        
                     </div>
+                    @endforeach
                 </div>
             </div>
-            <section class="container-fluid become-an-instructor description">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-xs-12">
-                      <h1>BECOME</h1>
-                      <h2>AN INSTRUCTOR</h2>
-                      <a href="{{ action('InstructorsController@become') }}"><span>{{trans('site/homepage.get-started')}}</span></a>
-                    </div>
+            
+            @if(Auth::guest() || !Auth::user()->hasRole('Instructor'))
+                <section class="container-fluid become-an-instructor description">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <h1>BECOME</h1>
+                          <h2>AN INSTRUCTOR</h2>
+                          <a href="{{ action('InstructorsController@become') }}"><span>{{trans('site/homepage.get-started')}}</span></a>
+                        </div>
+                      </div>
                   </div>
-              </div>
-            </section>
+                </section>
+            @endif
         </section>
         <!--
         <section class="container">

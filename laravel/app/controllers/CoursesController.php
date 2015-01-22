@@ -90,8 +90,6 @@ class CoursesController extends \BaseController {
                     $img = $course->upload_preview( Input::file('preview_image')->getRealPath()); 
                     if( !$img ){
                         return json_encode(['status'=>'error', 'errors' => trans('courses/general.course_created_image_error')]);
-//                        return Redirect::action('CoursesController@edit', $course->slug)
-//                        ->withError( trans('courses/general.course_created_image_error') );
                     }
                     else{
                         return json_encode(['status'=>'success', 'html'=> View::make('courses.preview_image')->with(compact('img'))->render() ]);
@@ -102,8 +100,6 @@ class CoursesController extends \BaseController {
                     $img = $course->upload_banner( Input::file('banner_image')->getRealPath());
                     if( !$img ){
                         return json_encode(['status'=>'error', 'errors' => trans('courses/general.course_created_image_error')]);
-//                        return Redirect::action('CoursesController@edit', $course->slug)
-//                        ->withError( trans('courses/general.course_created_image_error') );
                     }
                     else{
                         return json_encode(['status'=>'success', 'html'=> View::make('courses.preview_image')->with(compact('img'))->render() ]);
@@ -161,7 +157,14 @@ class CoursesController extends \BaseController {
         }
         
         public function show($slug){
-            if( !$course = Course::where('slug', $slug)->with('instructor')->first()){
+            if( !$course = Course::where('slug', $slug)->with('instructor')
+                    ->with(['modules.lessons' => function($query){
+                        $query->where('published', 'yes');
+                        $query->orderBy('order','asc');
+                    }])
+                    ->with(['modules' => function($query){
+                        $query->orderBy('order','asc');
+                    }])->first()){
                 return View::make('site.error_encountered');
             }
             
