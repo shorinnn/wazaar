@@ -17,19 +17,19 @@
                 <div class="clearfix">
                 	<!--<div class="level">{{ $course->courseDifficulty->name }}</div>-->
                 </div>
-                <div class="number-of-reviews">
-                	21 REVIEWS
-                    <span>89%</span>
-                </div>
-                        @if($course->isDiscounted())
+                <div class="clearfix banner-content-wrapper">
+                    <div class="number-of-students">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
+                    <div class="number-of-reviews">
+                        21 REVIEWS
+                        <span>89%</span>
+                    </div>
+                    @if($course->isDiscounted())
                         <div class="white-box">
-	                        <div class="number-of-students">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
                             <div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>
                         @else
                         <div class="white-box not-on-sale">
-	                        <div class="number-of-students">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
                         @endif
-
+        
                         {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
                          @if(Auth::guest() || Auth::user()->can_purchase($course) )
                               <button class="join-class">
@@ -52,10 +52,8 @@
                                     <li><a href="#" class="fb-icon"></a></li>
                                     <li><a href="#" class="google-icon"></a></li>
                             </ul>
-                        </div>
-                   
-                	
-                    
+                        </div>             
+                    </div>
                 </div>
                 <div class="video-player">
 	                <a href="#" class="watch-video-button">WATCH VIDEO</a>
