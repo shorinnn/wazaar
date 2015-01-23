@@ -26,6 +26,10 @@ class SiteController extends \BaseController {
              Return View::make('TEMPORARYVIEWS.classroom_dashboard');
         }
         
+        public function enroll(){
+             Return View::make('TEMPORARYVIEWS.enroll');
+        }
+        
         public function shop(){
              Return View::make('TEMPORARYVIEWS.shop');
         }
