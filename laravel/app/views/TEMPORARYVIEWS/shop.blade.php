@@ -39,8 +39,8 @@
                             <a href="http://shorinnn.com/easteregg/team.png" target="_blank">
                                 <img width="200" src="http://shorinnn.com/easteregg/team.png" />
                             </a>
-                            <p style='font-style:italic'>Need I say more?</p>
-                            <p>$350K (out of stock)</p>
+                            <p style='font-style:italic'>Over 9000 pts</p>
+                            <p>$5 (4 left)</p>
                             <button class="btn btn-danger"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
                         </div>
                         <div class="col-lg-4">
