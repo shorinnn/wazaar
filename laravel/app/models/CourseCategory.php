@@ -4,9 +4,21 @@ use LaravelBook\Ardent\Ardent;
 class CourseCategory extends Ardent{
     
     public static $relationsData = array(
-        'courses' => array(self::HAS_MANY, 'Course', 'table' => 'courses', 'foreignKey' => 'course_category_id'),
+        'allCourses' => array(self::HAS_MANY, 'Course', 'table' => 'courses', 'foreignKey' => 'course_category_id'),
         'courseSubcategories' => array(self::HAS_MANY, 'CourseSubcategory'),
     );
+    
+    public function homepageCourses(){
+         return $this->allCourses()->orderBy('id','desc')->where('featured',0)->where('privacy_status','public')->limit(6);
+    }
+    
+    public function unauthenticatedHomepageCourses(){
+         return $this->allCourses()->orderBy('id','desc')->where('privacy_status','public')->limit(6);
+    }
+
+    public function featuredCourse(){
+        return $this->allCourses()->where('featured',1);
+    }
     
     public function courses($privacy_status = 'public'){
         if($privacy_status=='public') return Course::where('course_category_id', $this->id)->where('privacy_status', 'public');

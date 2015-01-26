@@ -61,10 +61,16 @@
                 	<div class="col-md-6">
                     	<div class="header green clearfix">
                         	<h2>
-                                    @if( $student->viewedLessons->count()==0 )
-                                        BEGIN <small>FIRST LESSON</small>
+                                    @if( !$student->nextLesson($course))
+                                        Completed all lessons - decide what to put here
                                     @else
-                                    CONTINUE <small>Where you left off</small>
+                                        <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'lesson' => $student->nextLesson($course)->slug ] ) }}">
+                                        @if( $student->viewedLessons->count()==0 )
+                                            BEGIN <small>FIRST LESSON</small>
+                                        @else
+                                            CONTINUE <small>Where you left off</small>
+                                        @endif
+                                        </a>
                                     @endif
                                 </h2>
                         </div>
@@ -153,15 +159,15 @@
                             <!--<div class="view-previous-lessons">view previous lessons</div>-->
                             <ul class="lessons">
                                 <?php $i = $j = 1;  ?>
-                                @foreach($course->modules()->orderBy('order','ASC')->get() as $module)
+                                @foreach($course->modules as $module)
                                     <li>
                                         <a class="module">
                                             <span>Module {{$i}}</span>
                                             <p>{{ $module->name }}</p>
                                         </a>
                                     </li>
-                                    @foreach($module->lessons()->where('published','yes')->orderBy('order','ASC')->get() as $lesson)
-                                        <li>
+                                    @foreach($module->lessons as $lesson)
+                                        <li id="curriculum-lesson-{{$lesson->id}}">
                                             <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'lesson' => $lesson->slug ] ) }}" 
                                                @if( $student->isLessonViewed($lesson) )
                                                    class="lesson-1">
@@ -200,4 +206,14 @@
             @endif
         </div>
 
+@stop
+
+@section('extra_js')
+    @if( $student->viewedLessons->count() > 0 )
+        <script type="text/javascript">
+            $(function(){
+                $('.lessons').scrollToChild( $('.lesson-2').first() );
+            });
+        </script>
+    @endif
 @stop

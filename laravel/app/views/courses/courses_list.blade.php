@@ -22,10 +22,13 @@
             
 @foreach($categories as $category)
 
-<?php $row_class = cycle(Config::get('custom.html_row_classes'));?>
+<?php 
+$category->load('homepageCourses.courseDifficulty', 'homepageCourses.previewImage', 'homepageCourses.courseSubcategory', 
+ 'homepageCourses.courseCategory', 'homepageCourses');
+$row_class = cycle(Config::get('custom.html_row_classes'));?>
         <!-- {{ $row_class }} row begins -->   
-        @if( $featured = Course::featured()->where('course_category_id', $category->id)->first() )   
-            <div class="row {{ $row_class }}-row">
+        @if( $category->featuredCourse->first() != null )   
+            <div class="row cat-row-{{$category->color_scheme}}">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="category-heading">         
                         <div class="clearfix">
@@ -33,17 +36,18 @@
                             <a href="{{ action('CoursesController@category', $category->slug) }}">{{trans('site/homepage.view-all')}}</a>
                         </div>
                     </div>
-                 {{ View::make('courses.course_box_featured')->with( compact('category') )->withCourse($featured) }}
+                 {{ View::make('courses.course_box_featured')->with( compact('category') )->withCourse($category->featuredCourse->first()) }}
                  </div>
             </div>       
         
-            <div class="row {{ $row_class }}-row">
-                @foreach($category->courses()->orderBy('id','Desc')->where('featured',0)->take(3)->get() as $course)
+            <div class="row cat-row-{{$category->color_scheme}}">
+                
+                @foreach($category->homepageCourses->take(3) as $course)
                     {{ View::make('courses.course_box')->with(compact('course')) }}
                 @endforeach
             </div>
         @else
-            <div class="row {{ $row_class }}-row">
+            <div class="row cat-row-{{$category->color_scheme}}">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="category-heading">         
                     <div class="clearfix">
@@ -52,13 +56,15 @@
                     </div>
                 </div>
                 </div>
-                @foreach($category->courses()->orderBy('id','Desc')->take(3)->get() as $course)
+                <?php $i = 0;?>
+                @foreach($category->homepageCourses->take(3) as $course)
                     {{ View::make('courses.course_box')->with(compact('course')) }}
+                    <?php unset($category->homepageCourses[$i]); ++$i;?>
                 @endforeach
             </div>
         
-            <div class="row {{ $row_class }}-row">
-                @foreach($category->courses()->orderBy('id','Desc')->skip(3)->take(3)->get() as $course)
+            <div class="row cat-row-{{$category->color_scheme}}">
+                @foreach($category->homepageCourses->take(3) as $course)
                     {{ View::make('courses.course_box')->with(compact('course')) }}
                 @endforeach
             </div>

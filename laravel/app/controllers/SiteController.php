@@ -4,7 +4,7 @@ class SiteController extends \BaseController {
 
 	public function index()
 	{            
-            $categories = CourseCategory::all();
+            $categories = CourseCategory::with('featuredCourse')->get();
             if(Auth::user()) Return View::make('site.homepage_authenticated')->with(compact('categories'));
             else Return View::make('site.homepage_unauthenticated')->with(compact('categories'));
 	}
@@ -24,6 +24,10 @@ class SiteController extends \BaseController {
         
         public function classroomdash(){
              Return View::make('TEMPORARYVIEWS.classroom_dashboard');
+        }
+        
+        public function enroll(){
+             Return View::make('TEMPORARYVIEWS.enroll');
         }
         
         public function shop(){

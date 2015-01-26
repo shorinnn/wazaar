@@ -1,6 +1,8 @@
 @extends('layouts.default')
 
 @section('content')
+
+
     @if($purchases->count() == 0)
         <h1>You have no courses.</h1>
     @else

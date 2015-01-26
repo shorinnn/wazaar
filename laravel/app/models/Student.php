@@ -9,9 +9,28 @@ class Student extends User{
         'purchases' => [ self::HAS_MANY, 'CoursePurchase' ],
         'courseReferrals' => [ self::HAS_MANY, 'CourseReferral' ],
         'profile' => [ self::MORPH_ONE, 'Profile', 'name'=>'owner' ],
-        'viewedLessons' => [ self::HAS_MANY, 'ViewedLesson' ]
+        'viewedLessons' => [ self::HAS_MANY, 'ViewedLesson' ],
       ];
         
+    public function manyThroughMany($related, $through, $firstKey, $secondKey, $pivotKey)
+    {
+        $model = new $related;
+        $table = $model->getTable();
+        $throughModel = new $through;
+        $pivot = $throughModel->getTable();
+
+        return $model
+            ->join($pivot, $pivot . '.' . $pivotKey, '=', $table . '.' . $secondKey)
+            ->select($table . '.*')
+            ->where($pivot . '.' . $firstKey, '=', $this->id);
+    }
+    
+    public function wishlistItems()
+    {
+        return $this->manyThroughMany('Course', 'WishlistItem', 'student_id', 'id', 'course_id' );
+
+    }
+    
     public function productAffiliates()
     {
         return $this->belongsToMany('ProductAffiliate', 'course_purchases', 'student_id', 'product_affiliate_id');
@@ -133,12 +152,12 @@ class Student extends User{
     
     /**
      * Finds the next lesson in the current course
-     * @param Course $course
+     * @param Course $course (with pre-ordered module and lesson relationships eargerly loaded)
      * @return mixed False if none, the lesson object otherwise
      */
-    public function nextLesson(Course $course){        
-        foreach($course->modules()->orderBy('order','ASC')->get() as $module){
-            foreach($module->lessons()->where('published','yes')->orderBy('order','ASC')->get() as $lesson){
+    public function nextLesson(Course $course){ 
+        foreach($course->modules as $module){
+            foreach($module->lessons as $lesson){
                 if( !$this->isLessonViewed($lesson) ) return $lesson;
             }
         }

@@ -19,9 +19,9 @@ class ManageCourseCest{
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
         $I->amOnPage('courses/app-development/curriculum');
-        $I->dontSee('Module <span class="module-order">2</span>');
+        $I->seeNumberOfElements('#modules-list > li', 3);
         $I->click('Add Module');
-        $I->see('Module <span class="module-order">2</span>');
+        $I->seeNumberOfElements('#modules-list > li', 4);
     }
     
     public function deleteModule(FunctionalTester $I){
@@ -45,9 +45,9 @@ class ManageCourseCest{
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
         $I->amOnPage('courses/app-development/curriculum');
-        $I->dontSee('Lesson <span class="lesson-order">2</span>');
+        $I->seeNumberOfElements('#lessons-holder-1 > li', 2);
         $I->click('Add Lesson');
-        $I->see('Lesson <span class="lesson-order">2</span>');
+        $I->seeNumberOfElements('#lessons-holder-1 > li', 3);
     }
     
     public function deleteLesson(FunctionalTester $I){
@@ -82,18 +82,18 @@ class ManageCourseCest{
         $instructor = Instructor::where('username', 'second_instructor')->first();
         $I->amLoggedAs($instructor);
         $course = Course::find(1);
-        $I->assertEquals(1, $course->modules()->count());
+        $I->assertEquals(3, $course->modules()->count());
         $I->sendAjaxRequest('POST', 'blocks/1');
-        $I->assertEquals(1, $course->modules()->count());
+        $I->assertEquals(3, $course->modules()->count());
     }
     
     public function failDeletingModule(FunctionalTester $I){
         $instructor = Instructor::where('username', 'second_instructor')->first();
         $I->amLoggedAs($instructor);
         $course = Course::find(1);
-        $I->assertEquals(1, $course->modules()->count());
+        $I->assertEquals(3, $course->modules()->count());
         $I->sendAjaxRequest('DELETE', 'courses/1/modules/1');
-        $I->assertEquals(1, $course->modules()->count());
+        $I->assertEquals(3, $course->modules()->count());
     }
     
     
@@ -101,21 +101,21 @@ class ManageCourseCest{
         $instructor = Instructor::where('username', 'second_instructor')->first();
         $I->amLoggedAs($instructor);
         $module = Module::find(1);
-        $I->assertEquals(1, $module->lessons()->count());
+        $I->assertEquals(2, $module->lessons()->count());
         $I->sendAjaxRequest('POST', 'modules/1/lessons');
-        $I->assertEquals(1, $module->lessons()->count());
+        $I->assertEquals(2, $module->lessons()->count());
     }
     
     public function failDeleteLesson(FunctionalTester $I){
         $instructor = Instructor::where('username', 'second_instructor')->first();
         $I->amLoggedAs($instructor);
         $module = Module::find(1);
-        $I->assertEquals(1, $module->lessons()->count());
+        $I->assertEquals(2, $module->lessons()->count());
         $I->sendAjaxRequest('DELETE', 'modules/1/lessons/1');
-        $I->assertEquals(1, $module->lessons()->count());
+        $I->assertEquals(2, $module->lessons()->count());
     }
     
-    public function failFeleteBlock(FunctionalTester $I){
+    public function failDeleteBlock(FunctionalTester $I){
         $instructor = Instructor::where('username', 'second_instructor')->first();
         $I->amLoggedAs($instructor);
         $I->seeRecord('blocks',['name'=>'Test Block']);

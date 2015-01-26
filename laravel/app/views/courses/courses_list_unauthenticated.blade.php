@@ -1,4 +1,8 @@
 @foreach($categories as $category)
+<?php
+$category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthenticatedHomepageCourses.previewImage', 'unauthenticatedHomepageCourses.courseSubcategory', 
+ 'unauthenticatedHomepageCourses.courseCategory', 'unauthenticatedHomepageCourses');
+?>
 <section class="container-fluid unauthenticated-homepage cat-box-{{$category->color_scheme}}">
         <div class="container course-listing-container">
             <div class="row">
@@ -34,7 +38,7 @@
             </div>
         <div class="row">
             <!-- include the 3 course boxes -->
-            @foreach($category->courses()->orderBy('id','Desc')->where('featured',0)->take(3)->get() as $course)
+            @foreach($category->unauthenticatedHomepageCourses as $course)
                 {{ View::make('courses.course_box')->with(compact('course')) }}
             @endforeach
             <!-- end of the 3 course boxes -->

@@ -7,7 +7,15 @@ class ClassroomController extends \BaseController {
         }
         
         public function dashboard($slug){
-            $course = Course::where('slug', $slug)->first();
+            $course = Course::where('slug', $slug)->with(['modules.lessons' => function($query){
+                                $query->orderBy('order','ASC');
+                                $query->where('published','yes');
+                            }])
+                             ->with(['modules' => function($query){
+                                $query->orderBy('order','ASC');
+                            }])
+                            ->first();
+                            
             $student = Student::find( Auth::user()->id );
             if( $course==null || !$student->purchased( $course ) ){
                 return Redirect::to('/');

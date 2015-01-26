@@ -277,3 +277,13 @@ function replaceElementWithUploaded(e, data){
     $(to_replace).replaceWith(result.html);
 
 }
+
+/**
+ * jQuery method that scrolls an element to the specified child's position
+ * @method scrollToChild
+ * @param {string|element} child What element to scroll to
+ */
+$.fn.scrollToChild = function(child) {
+    this.css( "color", "green" );
+    this.scrollTop( this.scrollTop() + $(child).position().top - $(child).height() );
+};
