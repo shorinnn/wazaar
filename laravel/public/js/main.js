@@ -256,6 +256,8 @@ function scrollNavigation(){
 function addToList(json, e){
     var destination = $(e.target).attr('data-destination');
     $(destination).append( json.html );
+    // reset the original form
+    $(e.target)[0].reset();
 }
 
 /**

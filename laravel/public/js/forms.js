@@ -32,7 +32,6 @@ function formAjaxSubmit(e){
         }
         restoreSubmitLabel(form);
         if( typeof(form.attr('data-callback'))!='undefined' ){
-            form[0].reset();
             window[form.attr('data-callback')](result, e);
         }
     });

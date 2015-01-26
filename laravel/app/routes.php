@@ -62,6 +62,7 @@ Route::group(['prefix' => 'administration'], function (){
 Route::group(['prefix' => 'student'], function (){
     Route::get('mycourses', 'StudentController@mycourses');
     Route::get('wishlist', 'StudentController@wishlist');
+    Route::get('{email}/wishlist', 'StudentController@wishlist');
 });
 
 Route::resource('wishlist', 'WishlistController');

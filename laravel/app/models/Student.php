@@ -10,6 +10,7 @@ class Student extends User{
         'courseReferrals' => [ self::HAS_MANY, 'CourseReferral' ],
         'profile' => [ self::MORPH_ONE, 'Profile', 'name'=>'owner' ],
         'viewedLessons' => [ self::HAS_MANY, 'ViewedLesson' ],
+        'wishlistItems' => [ self::HAS_MANY, 'WishlistItem' ],
       ];
         
     public function manyThroughMany($related, $through, $firstKey, $secondKey, $pivotKey)
@@ -25,7 +26,7 @@ class Student extends User{
             ->where($pivot . '.' . $firstKey, '=', $this->id);
     }
     
-    public function wishlistItems()
+    public function wishlistCourses()
     {
         return $this->manyThroughMany('Course', 'WishlistItem', 'student_id', 'id', 'course_id' );
 
