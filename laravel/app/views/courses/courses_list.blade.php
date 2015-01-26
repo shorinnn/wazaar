@@ -28,7 +28,7 @@ $category->load('homepageCourses.courseDifficulty', 'homepageCourses.previewImag
 $row_class = cycle(Config::get('custom.html_row_classes'));?>
         <!-- {{ $row_class }} row begins -->   
         @if( $category->featuredCourse->first() != null )   
-            <div class="row cat-row-{{$category->color_scheme}}">
+            <div class="row cat-row-{{$category->color_scheme}}"><!-- new css class here -->
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="category-heading">         
                         <div class="clearfix">
