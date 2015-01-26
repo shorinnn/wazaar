@@ -65,7 +65,11 @@ Route::group(['prefix' => 'student'], function (){
     Route::get('{email}/wishlist', 'StudentController@wishlist');
 });
 
+//Wishlist
 Route::resource('wishlist', 'WishlistController');
+// Follow relationships
+Route::resource('followers', 'FollowersController');
+
 
 // classroom
 Route::get('classroom/{slug}/dashboard', 'ClassroomController@dashboard');

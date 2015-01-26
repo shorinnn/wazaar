@@ -277,7 +277,19 @@ function replaceElementWithUploaded(e, data){
     }
     var to_replace = $(e.target).attr('data-replace');
     $(to_replace).replaceWith(result.html);
+}
 
+/**
+ * Replace an existing element with the one returned by an ajax script
+ * @param {json} result the ajax result
+ * @param {e} e the original event
+ * @method replaceElementWithReturned
+ */
+function replaceElementWithReturned(result, e){
+    var to_replace = $(e.target).attr('data-replace');
+    $(to_replace).replaceWith(result.html);
+    console.log(to_replace);
+    console.log(result.html);
 }
 
 /**

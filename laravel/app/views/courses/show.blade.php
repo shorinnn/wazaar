@@ -129,7 +129,9 @@
                         </div>
                         <h3>{{$course->instructor->first_name}} {{$course->instructor->last_name}}<span></span></h3>
                         <span class="role">Lead programmer, Wazaar</span>
-                        <a href="#" class="follow-button">FOLLOW</a>
+<!--                        <a href="#" class="follow-button">FOLLOW</a>-->
+                        
+                        {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
                         <h4>About {{$course->instructor->first_name}}</h4>
                         <p>
                         Description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et 
