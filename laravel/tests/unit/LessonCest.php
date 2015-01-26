@@ -29,6 +29,6 @@ class LessonCest{
         $I->assertEquals(1, $lesson->module->id);
         $I->assertEquals('instructor', $lesson->module->course->instructor->username);
     }
-    
+     
         
 }

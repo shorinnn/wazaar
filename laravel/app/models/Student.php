@@ -150,6 +150,7 @@ class Student extends User{
         if( !$this->isLessonViewed($lesson) ){
             $view = ViewedLesson::create( ['student_id' => $this->id, 'lesson_id' => $lesson->id] );
         }
+        return true;
     }
     
     /**
