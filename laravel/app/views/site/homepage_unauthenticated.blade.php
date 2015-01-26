@@ -67,7 +67,7 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             @foreach($categories as $category)
-                                <li><a href="{{action('CoursesController@category', $category->slug)}}">{{ $category->name }}</a></li>
+                                <li><a href="#cat-row-{{$category->color_scheme}}">{{ $category->name }}</a></li>
                             @endforeach
                         </ul>
                     </div><!--nav-collapse ends--> 

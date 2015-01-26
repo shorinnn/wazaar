@@ -11,7 +11,7 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             @foreach($categories as $category)
-                                <li><a href="{{action('CoursesController@category', $category->slug)}}">{{ $category->name }}</a></li>
+                                <li><a href="#cat-row-{{$category->color_scheme}}">{{ $category->name }}</a></li>
                             @endforeach
                         </ul>
                     </div><!--nav-collapse ends--> 
@@ -21,14 +21,13 @@
         <section class="container">
             
 @foreach($categories as $category)
-
 <?php 
 $category->load('homepageCourses.courseDifficulty', 'homepageCourses.previewImage', 'homepageCourses.courseSubcategory', 
  'homepageCourses.courseCategory', 'homepageCourses');
 $row_class = cycle(Config::get('custom.html_row_classes'));?>
         <!-- {{ $row_class }} row begins -->   
         @if( $category->featuredCourse->first() != null )   
-            <div class="row cat-row-{{$category->color_scheme}}"><!-- new css class here -->
+            <div class="row cat-row-{{$category->color_scheme}}" id="cat-row-{{$category->color_scheme}}">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="category-heading">         
                         <div class="clearfix">
@@ -47,7 +46,7 @@ $row_class = cycle(Config::get('custom.html_row_classes'));?>
                 @endforeach
             </div>
         @else
-            <div class="row cat-row-{{$category->color_scheme}}">
+            <div class="row cat-row-{{$category->color_scheme}}" id="cat-row-{{$category->color_scheme}}">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="category-heading">         
                     <div class="clearfix">

@@ -3,7 +3,7 @@
 $category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthenticatedHomepageCourses.previewImage', 'unauthenticatedHomepageCourses.courseSubcategory', 
  'unauthenticatedHomepageCourses.courseCategory', 'unauthenticatedHomepageCourses');
 ?>
-<section class="container-fluid unauthenticated-homepage cat-box-{{$category->color_scheme}}">
+<section class="container-fluid unauthenticated-homepage cat-box-{{$category->color_scheme}}" id="cat-row-{{$category->color_scheme}}">
         <div class="container course-listing-container">
             <div class="row">
             @if(cycle(1,2)==1)
