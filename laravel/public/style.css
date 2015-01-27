@@ -3557,13 +3557,7 @@ select::-ms-expand {
 }
 
 .unauthenticated-homepage.cat-box-1 .small-box{
-	background: -moz-linear-gradient(left, #104666, #0d5582, #076ca9);
-	background: -webkit-linear-gradient(left, #104666, #0d5582, #076ca9);
-	background: -o-linear-gradient(left, #104666, #0d5582, #076ca9);
-	background: -ms-linear-gradient(left, #104666, #0d5582, #076ca9);
-	background: linear-gradient(left, #104666, #0d5582, #076ca9);
-	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#104666', endColorstr='#076ca9'); /* IE6 & IE7 */
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#104666', endColorstr='#076ca9')"; /* IE8 */
+	background: #b383c9;
 }
 
 .unauthenticated-homepage.cat-box-2{
