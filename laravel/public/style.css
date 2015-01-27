@@ -649,15 +649,21 @@ header .activate-dropdown:hover ul{
 }
 
 .small-box .price-tag{
-  	background-color:rgba(0,0,0,0.8);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FF000000', endColorstr='#0000000');
-  	color:#fff;
+	background: -moz-linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
+	background: -webkit-linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
+	background: -o-linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
+	background: -ms-linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
+	background: linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fdeb4b', endColorstr='#f3c841'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fdeb4b', endColorstr='#f3c841')"; /* IE8 */
+  	color:#18222a;
   	font-size:13px;
   	display:inline-table;
-  	border-radius:0px 15px 15px 0px;
-  	padding:7px 20px 7px 20px;  
-  	position:absolute;
-  	top:12px;
+  	border-radius: 5px 0 0 5px;
+  	padding: 10px;  
+  	margin-top: 0;
+	margin-bottom: 60px;
+	float: right;
 }
 
 .small-box p{ 
@@ -674,12 +680,30 @@ header .activate-dropdown:hover ul{
 
 .small-box .next_{
   	width:100%;
-  	text-align:left;
-  	padding-left:20px;
+	height: 40px;
+	background: #13364d;
   	clear:both;
 	position: absolute;
-	bottom: 15px;
-	right: 0;
+	bottom: 0;
+	border-radius: 0 0 5px 5px
+}
+
+.small-box .img-container{
+	position: relative;
+}
+
+.small-box .img-container .sale-ends{
+	background: #ff556a;
+	text-align: center;
+	text-transform: uppercase;
+    border-radius: 5px 5px 0 0;
+    color: #fff;
+	position: relative;
+	margin: -33px auto 0;
+    font-size: 12px;
+	width: 226px;
+	height: 33px;
+    padding: 7px 0;
 }
 
 .learn-more a{ 
@@ -694,17 +718,28 @@ header .activate-dropdown:hover ul{
 }
 
 .small-box .students-attending{ 
-  	background-color:rgba(0,0,0,0.6);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FF000000', endColorstr='#0000000');
   	color:#fff;
-  	float:right;
+  	float: left;
+	height: 100%;
+	line-height: 40px;
   	font-size:13px;
-  	display:inline-table;
-  	border-radius:15px 0px 0px 15px;
-  	padding:7px 20px 7px 40px;
+	padding-left: 40px;
+  	display:inline-block;
   	background-image:url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/person-icon-button.png);
 	background-repeat:no-repeat;
-  	background-position:14px 7px;
+  	background-position:14px center;
+}
+
+.small-box .likes{
+	display: inline-block;
+	float: right;
+	padding-left: 30px;
+	padding-right: 10px;
+	font-size: 12px;
+	height: 100%;
+	line-height: 40px;
+	color: #fff;
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/white-like-icon.png") no-repeat left center; 
 }
 
 .small-box img{
@@ -761,6 +796,7 @@ header .activate-dropdown:hover ul{
 }
 
 /******* First row gradient *************/
+.cat-row-1 .small-box,
 .cat-row-1 .big-box,
 .cat-row-1 .category-heading{
 	background: -moz-linear-gradient(left, #bc4ff8, #a250ef, #6552db);
@@ -776,12 +812,9 @@ header .activate-dropdown:hover ul{
 	color: #bc4ff8;
 }
 
-.cat-row-1 .small-box{
-	background: #b383c9;
-}
-
 
 /********* Second Row Gradient *************/
+.cat-row-2 .small-box,
 .cat-row-2 .big-box,
 .cat-row-2 .category-heading{
 	background: -moz-linear-gradient(left, #d34690, #ca4492, #9035a3);
@@ -797,12 +830,9 @@ header .activate-dropdown:hover ul{
 	color: #d34690;
 }
 
-.cat-row-2 .small-box{
-	background: #b15a85;
-}
-
 
 /********* Third Row Gradient *************/
+.cat-row-3 .small-box,
 .cat-row-3 .big-box,
 .cat-row-3 .category-heading{
 	background: -moz-linear-gradient(left, #ff527d, #ff5473, #ff5a52);
@@ -818,12 +848,8 @@ header .activate-dropdown:hover ul{
 	color: #ff527d;
 }
 
-
-.cat-row-3 .small-box{
-	background: #de7792;
-}
-
 /********* fourth Row Gradient *************/
+.cat-row-4 .small-box,
 .cat-row-4 .big-box,
 .cat-row-4 .category-heading{
 	background: -moz-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
@@ -839,11 +865,8 @@ header .activate-dropdown:hover ul{
 	color: #ff573c;
 }
 
-.cat-row-4 .small-box{
-	background: #d1887a;
-}
-
 /********* FIfth Row Gradient *************/
+.cat-row-5 .small-box,
 .cat-row-5 .big-box,
 .cat-row-5 .category-heading{
 	background: -moz-linear-gradient(left, #ff8e05, #ff7f13, #ff632f);
@@ -859,11 +882,8 @@ header .activate-dropdown:hover ul{
 	color: #ff8e05;
 }
 
-.cat-row-5 .small-box{
-	background: #d3974c;
-}
-
 /********* Sixth Row Gradient *************/
+.cat-row-6 .small-box,
 .cat-row-6 .big-box,
 .cat-row-6 .category-heading{
 	background: -moz-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
@@ -879,11 +899,8 @@ header .activate-dropdown:hover ul{
 	color: #f3be0d;
 }
 
-.cat-row-6 .small-box{
-	background: #feb441;
-}
-
 /********* Seventh Row Gradient *************/
+.cat-row-7 .small-box,
 .cat-row-7 .big-box,
 .cat-row-7 .category-heading{
 	background: -moz-linear-gradient(left, #88ef5d, #8ddd45, #91ce31);
@@ -899,11 +916,8 @@ header .activate-dropdown:hover ul{
 	color: #88ef5d;
 }
 
-.cat-row-7 .small-box{
-	background: #90c47b;
-}
-
 /********* Eight Row Gradient *************/
+.cat-row-8 .small-box,
 .cat-row-8 .big-box,
 .cat-row-8 .category-heading{
 	background: -moz-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
@@ -919,11 +933,9 @@ header .activate-dropdown:hover ul{
 	color: #7decff;
 }
 
-.cat-row-8 .small-box{
-	background: #4db9cc;
-}
 
 /********* Nineth Row Gradient *************/
+.cat-row-9 .small-box,
 .cat-row-9 .big-box,
 .cat-row-9 .category-heading{
 	background: -moz-linear-gradient(left, #0d5a90, #11466b, #172937);
@@ -937,10 +949,6 @@ header .activate-dropdown:hover ul{
 
 .cat-row-9 .category-heading .lead{
 	color: #0d5a90;
-}
-
-.cat-row-9 .small-box{
-	background: ##355d79;
 }
 
 /*********************** Become an Instructor Section *****************/
@@ -3500,6 +3508,7 @@ select::-ms-expand {
 .unauthenticated-homepage .small-box{
 	margin-top: 60px;
 	overflow: hidden;
+	background: rgba(255, 255, 255, 0.3);
 }
 
 .unauthenticated-homepage .small-box .level{
@@ -3521,10 +3530,6 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#bc4ff8', endColorstr='#6552db')"; /* IE8 */
 }
 
-.unauthenticated-homepage.cat-box-1 .small-box{
-	background: #b383c9;
-}
-
 .unauthenticated-homepage.cat-box-2{
 	background: -moz-linear-gradient(left, #d34690, #ca4492, #9035a3);
 	background: -webkit-linear-gradient(left, #d34690, #ca4492, #9035a3);
@@ -3533,10 +3538,6 @@ select::-ms-expand {
 	background: linear-gradient(left, #d34690, #ca4492, #9035a3);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#d34690', endColorstr='#9035a3'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#d34690', endColorstr='#9035a3')"; /* IE8 */
-}
-
-.unauthenticated-homepage.cat-box-2 .small-box{
-	background: #b15a85;
 }
 
 .unauthenticated-homepage.cat-box-3{
@@ -3549,10 +3550,6 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff527d', endColorstr='#ff5a52')"; /* IE8 */
 }
 
-.unauthenticated-homepage.cat-box-3 .small-box{
-	background: #de7792;
-}
-
 .unauthenticated-homepage.cat-box-4{
 	background: -moz-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
 	background: -webkit-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
@@ -3561,10 +3558,6 @@ select::-ms-expand {
 	background: linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff573c', endColorstr='#ff2f5f'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff573c', endColorstr='#ff2f5f')"; /* IE8 */
-}
-
-.unauthenticated-homepage.cat-box-4 .small-box{
-	background: #d1887a;
 }
 
 .unauthenticated-homepage.cat-box-5{
@@ -3577,10 +3570,6 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff8e05', endColorstr='#ff632f')"; /* IE8 */
 }
 
-.unauthenticated-homepage.cat-box-5 .small-box{
-	background: #d3974c;
-}
-
 .unauthenticated-homepage.cat-box-6{
 	background: -moz-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
 	background: -webkit-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
@@ -3589,10 +3578,6 @@ select::-ms-expand {
 	background: linear-gradient(left, #f3be0d, #f7b009, #ff9501);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#f3be0d', endColorstr='#ff9501'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#f3be0d', endColorstr='#ff9501')"; /* IE8 */
-}
-
-.unauthenticated-homepage.cat-box-6 .small-box{
-	background: #feb441;
 }
 
 .unauthenticated-homepage.cat-box-7{
@@ -3605,10 +3590,6 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#88ef5d', endColorstr='#91ce31')"; /* IE8 */
 }
 
-.unauthenticated-homepage.cat-box-7 .small-box{
-	background: #90c47b;
-}
-
 .unauthenticated-homepage.cat-box-8{
 	background: -moz-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
 	background: -webkit-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
@@ -3617,10 +3598,6 @@ select::-ms-expand {
 	background: linear-gradient(left, #7decff, #3e9efa, #1e77f7);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#7decff', endColorstr='#1e77f7'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#7decff', endColorstr='#1e77f7')"; /* IE8 */
-}
-
-.unauthenticated-homepage.cat-box-8 .small-box{
-	background: #4db9cc;
 }
 
 .unauthenticated-homepage.cat-box-9{
@@ -3633,10 +3610,6 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0d5a90', endColorstr='#172937')"; /* IE8 */
 }
 
-.unauthenticated-homepage.cat-box-9 .small-box{
-	background: #355d79;
-}
-
 .parallax-1{
 	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image5.jpg") no-repeat 50% 0 fixed;
 	height: 600px;
@@ -3645,13 +3618,13 @@ select::-ms-expand {
 
 .parallax-2{
 	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image7.jpg") no-repeat 50% 0 fixed;
-	height: 600px;
+	height: 662px;
 	background-size: cover;
 }
 
 .filterbuttonFixed{
     position:fixed;
-    top:1px;
+    top: -1px;
     left: 0;
     width:100%;
 	z-index: 999;

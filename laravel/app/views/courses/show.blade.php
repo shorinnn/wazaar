@@ -1,6 +1,6 @@
     @extends('layouts.default')
     @section('content')	
-        <section class="course-detail-top-section clearfix">
+        <section class="course-detail-top-section clearfix unauthenticated-homepage cat-box-{{$course->courseCategory->color_scheme}}">
                 @if($course->bannerImage != null)
                     <img src="{{$course->bannerImage->url}}" alt="" class="img-responsive" />
                 @else
@@ -26,12 +26,12 @@
                         21 REVIEWS
                         <span>89%</span>
                     </div>
-                    @if($course->isDiscounted())
-                        <div class="white-box">
-                            <div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>
+                        @if($course->isDiscounted())
+                            <div class="white-box">
+                                <div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>
                         @else
-                        <div class="white-box not-on-sale">
-                            <div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>
+                            <div class="white-box not-on-sale">
+                                <!--<div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>-->
                         @endif
         
                         {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
@@ -44,8 +44,10 @@
                             </button>
                        
                         {{Form::close()}}
+                        @if($course->isDiscounted())
                             <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
                                 You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
+                        @endif
                         <!--<a href="#" class="crash-class">CRASH CLASS</a>-->
                         <div class="clearfix wishlist-and-social">
                             {{Form::open(['action' => ['WishlistController@store'] ])}}
@@ -127,7 +129,9 @@
                         </div>
                         <h3>{{$course->instructor->first_name}} {{$course->instructor->last_name}}<span></span></h3>
                         <span class="role">Lead programmer, Wazaar</span>
-                        <a href="#" class="follow-button">FOLLOW</a>
+<!--                        <a href="#" class="follow-button">FOLLOW</a>-->
+                        
+                        {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
                         <h4>About {{$course->instructor->first_name}}</h4>
                         <p>
                         Description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et 

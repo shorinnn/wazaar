@@ -117,4 +117,37 @@ class StudentCest{
         
     }
     
+    public function getUnviewedLesson(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        $lesson = Lesson::first();
+        $I->assertFalse( $student->isLessonViewed($lesson) );
+    }
+    
+    public function viewLesson(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        $lesson = Lesson::first();
+        $I->assertTrue( $student->purchase( $lesson->module->course ) );
+        $I->assertFalse( $student->isLessonViewed($lesson) );
+        $I->assertTrue( $student->viewLesson( $lesson ) );
+        $student = Student::where('username','student')->first();
+        $I->assertTrue( $student->isLessonViewed($lesson) );
+    }
+    
+    public function increaseLessonViewCounterOnce(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        $lesson = Lesson::first();
+        $counter = ViewedLesson::where('lesson_id', $lesson->id)->where('student_id', $student->id)->count();
+        $I->assertEquals(0, $counter);
+        $I->assertTrue( $student->purchase( $lesson->module->course ) );
+        $I->assertFalse( $student->isLessonViewed($lesson) );
+        $I->assertTrue( $student->viewLesson( $lesson ) );
+        $student = Student::where('username','student')->first();
+        $I->assertTrue( $student->isLessonViewed($lesson) );
+        $counter = ViewedLesson::where('lesson_id', $lesson->id)->where('student_id', $student->id)->count();
+        $I->assertEquals(1, $counter);
+        $I->assertTrue( $student->viewLesson( $lesson ) );
+        $counter = ViewedLesson::where('lesson_id', $lesson->id)->where('student_id', $student->id)->count();
+        $I->assertEquals(1, $counter);
+    }
+    
 }

@@ -21,9 +21,10 @@ class CoursesController extends \BaseController {
             $instructor = Instructor::find(Auth::user()->id);
             $images = $instructor->coursePreviewImages;
             $bannerImages = $instructor->courseBannerImages;
+         
             return View::make('courses.create')->with(compact('difficulties'))->with(compact('categories'));
-            return View::make('courses.form')->with(compact('course'))->with(compact('images'))->with(compact('bannerImages'))
-                    ->with(compact('difficulties'))->with(compact('categories'))->with(compact('subcategories'));
+//            return View::make('courses.form')->with(compact('course'))->with(compact('images'))->with(compact('bannerImages'))
+//                    ->with(compact('difficulties'))->with(compact('categories'))->with(compact('subcategories'));
         }
         
         public function store(){
@@ -34,6 +35,9 @@ class CoursesController extends \BaseController {
             $course->name = Input::get('name');
             $course->slug = Str::slug(Input::get('name'));
             if($course->save()){
+                // notify followers
+                Instructor::find( Auth::user()->id )->notifyFollowers( $course );
+                
                 if(Request::ajax()){
                     return $this->update( $course->slug );
                     $response = ['status' => 'success', 'url' => 'http://google.ro' ];

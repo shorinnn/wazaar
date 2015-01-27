@@ -9,7 +9,8 @@ class WishlistItem extends Ardent{
      ];
     
     public static $relationsData = [
-        'student' => [ self::BELONGS_TO, 'Student', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id' ],
+        'student' => [ self::BELONGS_TO, 'Student', 'table' => 'users', 'foreignKey' => 'student_id' ],
+        'course' => [ self::BELONGS_TO, 'Course', 'table' => 'course', 'foreignKey' => 'course_id' ],
       ];
         
 
