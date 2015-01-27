@@ -138,7 +138,8 @@ Route::group(['prefix' => 'video'], function(){
 });
 
 Route::get('test', function (){
-    
+    $analyticsHelper = new AnalyticsHelper;
+    $dailyCourses = $analyticsHelper->monthlyTopCourses();
 });
 
 
