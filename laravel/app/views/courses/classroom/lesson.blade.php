@@ -1,6 +1,12 @@
 @extends('layouts.default')
 
 @section('content')
+<style>
+    .replies:not(:empty){
+        border:1px solid silver;
+        width:80%;
+    }
+</style>
     <h1>{{ $course->name }}</h1>
     <h2>{{ $lesson->name }}</h2>
     
@@ -19,4 +25,14 @@
         @endif
     @endforeach
    
+    <h2>Conversations:</h2>
+    <section class="classroom-content container">
+    @if( Auth::check() )
+        {{ View::make('courses.classroom.conversations.form')->with( compact('lesson') ) }}
+    @endif
+    
+    <a class="load-more-comments load-more-ajax" data-url='{{action('ConversationsController@loadMore')}}' 
+       data-target='.users-comments' data-skip='2' data-lesson='{{$lesson->id}}'>LOAD MORE</a>
+    {{ View::make('courses.classroom.conversations.all')->withComments( $lesson->comments ) }}
+    </div>
 @stop

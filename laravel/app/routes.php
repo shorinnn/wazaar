@@ -65,6 +65,10 @@ Route::group(['prefix' => 'student'], function (){
     Route::get('{email}/wishlist', 'StudentController@wishlist');
 });
 
+//Conversations
+Route::get('conversations/replies/{id}', 'ConversationsController@replies');
+Route::post('conversations/load-more/', 'ConversationsController@loadMore');
+Route::resource('conversations', 'ConversationsController');
 //Wishlist
 Route::resource('wishlist', 'WishlistController');
 // Follow relationships

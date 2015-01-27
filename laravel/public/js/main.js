@@ -7,6 +7,7 @@ $(document).ready(function(){
     $(".profile-name > li").removeClass("activate-dropdown");
     $('body').delegate('.slide-toggler', 'click', slideToggle);
     $('body').delegate('a.load-remote', 'click', loadRemote);
+    $('body').delegate('a.load-more-ajax', 'click', loadMoreComments);
     $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
     $(window).scroll(stepsScrollAnimation);
     _.setTranslation( js_translation_map );
@@ -141,6 +142,32 @@ function loadRemote(e){
     });
 }
 
+function loadMoreComments(e){    
+    e.preventDefault();
+    url = $(e.target).attr('data-url');
+    target = $(e.target).attr('data-target');
+    skip = $(e.target).attr('data-skip');
+    lesson = $(e.target).attr('data-lesson');
+    elem = $(e.target);
+    while(typeof(url)=='undefined'){
+        elem = elem.parent();
+        url = elem.attr('data-url');
+        target = elem.attr('data-target');
+        callback = elem.attr('data-callback');  
+    }
+    $(e.target).html( _('Loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $.post(url,{lesson:lesson, skip:skip}, function(data) {
+        $(e.target).html( _('LOAD MORE') );
+        if($.trim(data)==''){
+            $(e.target).removeClass('load-more-ajax');
+            $(e.target).html( _('No more messages') );
+        }
+        $(target).prepend(data).fadeIn('slow');
+        skip = 1 * skip + 1 * 2;
+        $(e.target).attr('data-skip', skip);
+    });
+}
+
 /**
  * Similar to loadRemote, it loads the resource, but only once, later requests just display the content already loaded
  * @param {event} e Click event
@@ -176,6 +203,7 @@ function loadRemoteCache(e){
 
 scrollAnimationActivated = true;
 function stepsScrollAnimation(){
+   if($('.animated-step').length==0) return false;
    if(!scrollAnimationActivated) return false;
    if($(window).scrollTop() + $(window).height() == $(document).height()) {
        scrollAnimationActivated = false;
@@ -301,3 +329,10 @@ $.fn.scrollToChild = function(child) {
     this.css( "color", "green" );
     this.scrollTop( this.scrollTop() + $(child).position().top - $(child).height() );
 };
+
+function postedComment(json, e){
+    addToList(json, e);
+    $('html, body').animate({
+        scrollTop: $('.comment').last().offset().top
+    }, 500);
+}
