@@ -142,9 +142,17 @@ Route::group(['prefix' => 'video'], function(){
 
 });
 
+
+## Dashboard Group
+Route::group(['prefix' => 'dashboard'], function (){
+    Route::get('/', 'DashboardController@index');
+});
+
 Route::get('test', function (){
     $analyticsHelper = new AnalyticsHelper;
     $dailyCourses = $analyticsHelper->monthlyTopCourses();
+
+    dd($dailyCourses);
 });
 
 
