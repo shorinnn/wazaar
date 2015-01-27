@@ -796,6 +796,7 @@ header .activate-dropdown:hover ul{
 }
 
 /******* First row gradient *************/
+.cat-row-1 .small-box,
 .cat-row-1 .big-box,
 .cat-row-1 .category-heading{
 	background: -moz-linear-gradient(left, #bc4ff8, #a250ef, #6552db);
@@ -811,12 +812,9 @@ header .activate-dropdown:hover ul{
 	color: #bc4ff8;
 }
 
-.cat-row-1 .small-box{
-	background: #b383c9;
-}
-
 
 /********* Second Row Gradient *************/
+.cat-row-2 .small-box,
 .cat-row-2 .big-box,
 .cat-row-2 .category-heading{
 	background: -moz-linear-gradient(left, #d34690, #ca4492, #9035a3);
@@ -832,12 +830,9 @@ header .activate-dropdown:hover ul{
 	color: #d34690;
 }
 
-.cat-row-2 .small-box{
-	background: #b15a85;
-}
-
 
 /********* Third Row Gradient *************/
+.cat-row-3 .small-box,
 .cat-row-3 .big-box,
 .cat-row-3 .category-heading{
 	background: -moz-linear-gradient(left, #ff527d, #ff5473, #ff5a52);
@@ -853,12 +848,8 @@ header .activate-dropdown:hover ul{
 	color: #ff527d;
 }
 
-
-.cat-row-3 .small-box{
-	background: #de7792;
-}
-
 /********* fourth Row Gradient *************/
+.cat-row-4 .small-box,
 .cat-row-4 .big-box,
 .cat-row-4 .category-heading{
 	background: -moz-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
@@ -874,11 +865,8 @@ header .activate-dropdown:hover ul{
 	color: #ff573c;
 }
 
-.cat-row-4 .small-box{
-	background: #d1887a;
-}
-
 /********* FIfth Row Gradient *************/
+.cat-row-5 .small-box,
 .cat-row-5 .big-box,
 .cat-row-5 .category-heading{
 	background: -moz-linear-gradient(left, #ff8e05, #ff7f13, #ff632f);
@@ -894,11 +882,8 @@ header .activate-dropdown:hover ul{
 	color: #ff8e05;
 }
 
-.cat-row-5 .small-box{
-	background: #d3974c;
-}
-
 /********* Sixth Row Gradient *************/
+.cat-row-6 .small-box,
 .cat-row-6 .big-box,
 .cat-row-6 .category-heading{
 	background: -moz-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
@@ -914,11 +899,8 @@ header .activate-dropdown:hover ul{
 	color: #f3be0d;
 }
 
-.cat-row-6 .small-box{
-	background: #feb441;
-}
-
 /********* Seventh Row Gradient *************/
+.cat-row-7 .small-box,
 .cat-row-7 .big-box,
 .cat-row-7 .category-heading{
 	background: -moz-linear-gradient(left, #88ef5d, #8ddd45, #91ce31);
@@ -934,11 +916,8 @@ header .activate-dropdown:hover ul{
 	color: #88ef5d;
 }
 
-.cat-row-7 .small-box{
-	background: #90c47b;
-}
-
 /********* Eight Row Gradient *************/
+.cat-row-8 .small-box,
 .cat-row-8 .big-box,
 .cat-row-8 .category-heading{
 	background: -moz-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
@@ -954,11 +933,9 @@ header .activate-dropdown:hover ul{
 	color: #7decff;
 }
 
-.cat-row-8 .small-box{
-	background: #4db9cc;
-}
 
 /********* Nineth Row Gradient *************/
+.cat-row-9 .small-box,
 .cat-row-9 .big-box,
 .cat-row-9 .category-heading{
 	background: -moz-linear-gradient(left, #0d5a90, #11466b, #172937);
@@ -972,10 +949,6 @@ header .activate-dropdown:hover ul{
 
 .cat-row-9 .category-heading .lead{
 	color: #0d5a90;
-}
-
-.cat-row-9 .small-box{
-	background: ##355d79;
 }
 
 /*********************** Become an Instructor Section *****************/
