@@ -3535,6 +3535,7 @@ select::-ms-expand {
 .unauthenticated-homepage .small-box{
 	margin-top: 60px;
 	overflow: hidden;
+	background: rgba(255, 255, 255, 0.3);
 }
 
 .unauthenticated-homepage .small-box .level{
@@ -3556,10 +3557,6 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#bc4ff8', endColorstr='#6552db')"; /* IE8 */
 }
 
-.unauthenticated-homepage.cat-box-1 .small-box{
-	background: #b383c9;
-}
-
 .unauthenticated-homepage.cat-box-2{
 	background: -moz-linear-gradient(left, #d34690, #ca4492, #9035a3);
 	background: -webkit-linear-gradient(left, #d34690, #ca4492, #9035a3);
@@ -3568,10 +3565,6 @@ select::-ms-expand {
 	background: linear-gradient(left, #d34690, #ca4492, #9035a3);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#d34690', endColorstr='#9035a3'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#d34690', endColorstr='#9035a3')"; /* IE8 */
-}
-
-.unauthenticated-homepage.cat-box-2 .small-box{
-	background: #b15a85;
 }
 
 .unauthenticated-homepage.cat-box-3{
@@ -3584,10 +3577,6 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff527d', endColorstr='#ff5a52')"; /* IE8 */
 }
 
-.unauthenticated-homepage.cat-box-3 .small-box{
-	background: #de7792;
-}
-
 .unauthenticated-homepage.cat-box-4{
 	background: -moz-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
 	background: -webkit-linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
@@ -3596,10 +3585,6 @@ select::-ms-expand {
 	background: linear-gradient(left, #ff573c, #ff4c45, #ff2f5f);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff573c', endColorstr='#ff2f5f'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff573c', endColorstr='#ff2f5f')"; /* IE8 */
-}
-
-.unauthenticated-homepage.cat-box-4 .small-box{
-	background: #d1887a;
 }
 
 .unauthenticated-homepage.cat-box-5{
@@ -3612,10 +3597,6 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ff8e05', endColorstr='#ff632f')"; /* IE8 */
 }
 
-.unauthenticated-homepage.cat-box-5 .small-box{
-	background: #d3974c;
-}
-
 .unauthenticated-homepage.cat-box-6{
 	background: -moz-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
 	background: -webkit-linear-gradient(left, #f3be0d, #f7b009, #ff9501);
@@ -3624,10 +3605,6 @@ select::-ms-expand {
 	background: linear-gradient(left, #f3be0d, #f7b009, #ff9501);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#f3be0d', endColorstr='#ff9501'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#f3be0d', endColorstr='#ff9501')"; /* IE8 */
-}
-
-.unauthenticated-homepage.cat-box-6 .small-box{
-	background: #feb441;
 }
 
 .unauthenticated-homepage.cat-box-7{
@@ -3640,10 +3617,6 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#88ef5d', endColorstr='#91ce31')"; /* IE8 */
 }
 
-.unauthenticated-homepage.cat-box-7 .small-box{
-	background: #90c47b;
-}
-
 .unauthenticated-homepage.cat-box-8{
 	background: -moz-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
 	background: -webkit-linear-gradient(left, #7decff, #3e9efa, #1e77f7);
@@ -3654,10 +3627,6 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#7decff', endColorstr='#1e77f7')"; /* IE8 */
 }
 
-.unauthenticated-homepage.cat-box-8 .small-box{
-	background: #4db9cc;
-}
-
 .unauthenticated-homepage.cat-box-9{
 	background: -moz-linear-gradient(left, #0d5a90, #11466b, #172937);
 	background: -webkit-linear-gradient(left, #0d5a90, #11466b, #172937);
@@ -3666,10 +3635,6 @@ select::-ms-expand {
 	background: linear-gradient(left, #0d5a90, #11466b, #172937);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0d5a90', endColorstr='#172937'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0d5a90', endColorstr='#172937')"; /* IE8 */
-}
-
-.unauthenticated-homepage.cat-box-9 .small-box{
-	background: #355d79;
 }
 
 .parallax-1{
