@@ -649,15 +649,21 @@ header .activate-dropdown:hover ul{
 }
 
 .small-box .price-tag{
-  	background-color:rgba(0,0,0,0.8);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FF000000', endColorstr='#0000000');
-  	color:#fff;
+	background: -moz-linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
+	background: -webkit-linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
+	background: -o-linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
+	background: -ms-linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
+	background: linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fdeb4b', endColorstr='#f3c841'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fdeb4b', endColorstr='#f3c841')"; /* IE8 */
+  	color:#18222a;
   	font-size:13px;
   	display:inline-table;
-  	border-radius:0px 15px 15px 0px;
-  	padding:7px 20px 7px 20px;  
-  	position:absolute;
-  	top:12px;
+  	border-radius: 5px 0 0 5px;
+  	padding: 10px;  
+  	margin-top: 0;
+	margin-bottom: 60px;
+	float: right;
 }
 
 .small-box p{ 
@@ -674,12 +680,30 @@ header .activate-dropdown:hover ul{
 
 .small-box .next_{
   	width:100%;
-  	text-align:left;
-  	padding-left:20px;
+	height: 40px;
+	background: #13364d;
   	clear:both;
 	position: absolute;
-	bottom: 15px;
-	right: 0;
+	bottom: 0;
+	border-radius: 0 0 5px 5px
+}
+
+.small-box .img-container{
+	position: relative;
+}
+
+.small-box .img-container .sale-ends{
+	background: #ff556a;
+	text-align: center;
+	text-transform: uppercase;
+    border-radius: 5px 5px 0 0;
+    color: #fff;
+	position: relative;
+	margin: -33px auto 0;
+    font-size: 12px;
+	width: 226px;
+	height: 33px;
+    padding: 7px 0;
 }
 
 .learn-more a{ 
@@ -694,17 +718,28 @@ header .activate-dropdown:hover ul{
 }
 
 .small-box .students-attending{ 
-  	background-color:rgba(0,0,0,0.6);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FF000000', endColorstr='#0000000');
   	color:#fff;
-  	float:right;
+  	float: left;
+	height: 100%;
+	line-height: 40px;
   	font-size:13px;
-  	display:inline-table;
-  	border-radius:15px 0px 0px 15px;
-  	padding:7px 20px 7px 40px;
+	padding-left: 40px;
+  	display:inline-block;
   	background-image:url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/person-icon-button.png);
 	background-repeat:no-repeat;
-  	background-position:14px 7px;
+  	background-position:14px center;
+}
+
+.small-box .likes{
+	display: inline-block;
+	float: right;
+	padding-left: 30px;
+	padding-right: 10px;
+	font-size: 12px;
+	height: 100%;
+	line-height: 40px;
+	color: #fff;
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/white-like-icon.png") no-repeat left center; 
 }
 
 .small-box img{
@@ -3522,7 +3557,13 @@ select::-ms-expand {
 }
 
 .unauthenticated-homepage.cat-box-1 .small-box{
-	background: #b383c9;
+	background: -moz-linear-gradient(left, #104666, #0d5582, #076ca9);
+	background: -webkit-linear-gradient(left, #104666, #0d5582, #076ca9);
+	background: -o-linear-gradient(left, #104666, #0d5582, #076ca9);
+	background: -ms-linear-gradient(left, #104666, #0d5582, #076ca9);
+	background: linear-gradient(left, #104666, #0d5582, #076ca9);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#104666', endColorstr='#076ca9'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#104666', endColorstr='#076ca9')"; /* IE8 */
 }
 
 .unauthenticated-homepage.cat-box-2{
@@ -3645,13 +3686,13 @@ select::-ms-expand {
 
 .parallax-2{
 	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image7.jpg") no-repeat 50% 0 fixed;
-	height: 600px;
+	height: 662px;
 	background-size: cover;
 }
 
 .filterbuttonFixed{
     position:fixed;
-    top:1px;
+    top: -1px;
     left: 0;
     width:100%;
 	z-index: 999;
