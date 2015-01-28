@@ -7,7 +7,7 @@
                     'data-destination' => '.users-comments > .clearfix'] ) }}
             <textarea name="content" class="form-control" placeholder="Share your thoughts"></textarea>
             <input type="hidden" name="lesson" value="{{ $lesson->id }}" />
-            <input type="hidden" name="reply_to" id='reply-to' value="" />
+            <input type="hidden" name="reply_to" id='reply-to' value="{{ $replyto or '' }}" />
             <br />
             <button type="submit" class="btn btn-primary">Comment</button>
             {{ Form::close() }}
