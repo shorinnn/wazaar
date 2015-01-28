@@ -16,7 +16,27 @@ App::before(function($request)
     // record the LTC Affiliate on any page
     if(Auth::guest() && Input::has('aid')){
         Cookie::queue('ltc', Input::get('aid'), 60*24*30);
+
+		if(Input::has('tcode')){ //if a GET tcode param is found
+			$storeTCodeCooke = false;
+			if (Cookie::has('tcode') && Cookie::get('tcode') !== Input::get('tcode')){ //we flag storing of tcode if an existing cookie is found but doesn't match GET param
+				$storeTCodeCooke = true;
+			}
+
+			if (!$storeTCodeCooke AND !Cookie::has('tcode')){ //above said that we don't store, but no cookie yet, so flag to store
+				$storeTCodeCooke = true;
+			}
+
+			if ($storeTCodeCooke){
+				Cookie::queue('tcode', Input::get('tcode'), 60*24*30);
+				//store this as hit
+				TrackingCodeHits::create(['tracking_code' => Input::get('tcode'), 'affiliate_id' => Input::get('aid')]);
+			}
+
+		}
     }
+
+
 });
 
 
