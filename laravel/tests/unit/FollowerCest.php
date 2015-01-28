@@ -29,12 +29,13 @@ class FollowerCest{
     }
     
     public function failFollowingTwice(UnitTester $I){
-        $instructor = Instructor::first();
+        $instructor = Instructor::where('username', 'instructor')->first();
         $student = Student::where('username','student')->first();
-        $rel = new FollowRelationStudent();
+        $rel = new FollowRelationship();
         $rel->student_id = $student->id;
         $rel->instructor_id = $instructor->id;
         $I->assertTrue( $rel->save() );
+        
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->assertEquals(1, $instructor->followers->count());
         $rel = new FollowRelationship;

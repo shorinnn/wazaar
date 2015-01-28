@@ -65,6 +65,13 @@ Route::group(['prefix' => 'student'], function (){
     Route::get('{email}/wishlist', 'StudentController@wishlist');
 });
 
+//Conversations
+Route::get('conversations/lesson/{course}/{slug}', 'ConversationsController@lesson');
+Route::get('conversations/replies/{id}', 'ConversationsController@replies');
+Route::get('conversations/view-replies/{id}', 'ConversationsController@viewReplies');
+Route::get('conversations/reply-to/{id}', 'ConversationsController@replyTo');
+Route::post('conversations/load-more/', 'ConversationsController@loadMore');
+Route::resource('conversations', 'ConversationsController');
 //Wishlist
 Route::resource('wishlist', 'WishlistController');
 // Follow relationships
@@ -142,8 +149,17 @@ Route::group(['prefix' => 'video'], function(){
 
 });
 
+
+## Dashboard Group
+Route::group(['prefix' => 'dashboard'], function (){
+    Route::get('/', 'DashboardController@index');
+});
+
 Route::get('test', function (){
-    
+    $analyticsHelper = new AnalyticsHelper;
+    $dailyCourses = $analyticsHelper->monthlyTopCourses();
+
+    dd($dailyCourses);
 });
 
 

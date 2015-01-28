@@ -19,6 +19,6 @@ class VideoUploadTest extends TestCase
 
         $return = $videoHelper->prepareForTranscoding($videoFullpath);
 
-        $this->assertNotFalse($return);
+        $this->assertFalse($return);
     }
 }

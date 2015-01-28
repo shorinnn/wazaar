@@ -11,6 +11,7 @@ $(document).ready(function(){
     $('body').delegate('.delete-clonable', 'click', deleteClonable);
     $('body').delegate('.ajax-updatable', 'change', updateFieldRemote);
     $('body').delegate('.set-slider', 'change', setSlider);
+    $('body').delegate('.reply-to', 'click', setReplyTo);
 });
 
 /**
@@ -304,4 +305,22 @@ function setSlider(e){
     elem = $(e.target).attr('data-slider');
     $(elem).slider('setValue', $(e.target).val() );
     $(elem).val( $(e.target).val() );
+}
+
+/**
+ * Sets a form's reply_to field to the value specified by data-id attr of the target
+ * @param {event} e The click event
+ * @method setReplyTo
+ */
+function setReplyTo(e){
+    e.preventDefault();
+    field = $(e.target).attr('data-field');
+    scrollTo = $(e.target).attr('data-scroll-to');
+    val = $(e.target).attr('data-id');
+    $(field).val( val );
+    $('html, body').animate({
+        scrollTop: $( scrollTo ).offset().top
+    }, 500, function(){
+        $( scrollTo ).find('textarea').focus();
+    });
 }

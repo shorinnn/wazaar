@@ -15,8 +15,9 @@ class BecomeInstructorCest{
     
     public function seeInstructorRegisterURL(FunctionalTester $I){
         $I->amOnPage('/instructors/become-instructor');
+        $I->see('new-user');
         $I->see('Register');
-        $I->click('Register');
+        $I->click('[href="'.action('InstructorsController@start','new-user').'"]');
         $I->seeCurrentUrlEquals('/register/1');
     }
  
