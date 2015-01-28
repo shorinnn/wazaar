@@ -681,7 +681,7 @@ header .activate-dropdown:hover ul{
 .small-box .next_{
   	width:100%;
 	height: 40px;
-	background: #13364d;
+	background: rgba(0, 0, 0, 0.5);
   	clear:both;
 	position: absolute;
 	bottom: 0;

@@ -31,7 +31,8 @@
         {{ View::make('courses.classroom.conversations.form')->with( compact('lesson') ) }}
     @endif
     
-    <a class="load-more-comments load-more-ajax" data-url='{{action('ConversationsController@loadMore')}}' 
+    <a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->slug] )}}' class="load-more-comments load-more-ajaxx" 
+       data-url='{{action('ConversationsController@loadMore')}}' 
        data-target='.users-comments' data-skip='2' data-lesson='{{$lesson->id}}'>LOAD MORE</a>
     {{ View::make('courses.classroom.conversations.all')->withComments( $lesson->comments ) }}
     </div>

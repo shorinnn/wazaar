@@ -39,6 +39,11 @@ class ConversationsController extends \BaseController {
             return $html;
         }
         
+        public function viewReplies($id){
+            $comment = Conversation::with('replies')->find($id);
+            return  View::make('courses.classroom.conversations.view_replies')->with(compact('comment'));
+        }
+        
         public function loadMore(){
             $lesson = Lesson::with('comments.replies')
                     ->with('comments.poster')->with(['comments' => function($query){
@@ -53,5 +58,31 @@ class ConversationsController extends \BaseController {
                 $html.=  View::make('courses.classroom.conversations.conversation')->withComment( $reply )->render();
             }
             return $html;
+        }
+        
+        public function lesson($course, $slug){
+            $course = Course::where('slug', $course)->first();
+            $student = Student::find( Auth::user()->id );
+            if( $course==null || !$student->purchased( $course ) ){
+                return Redirect::to('/');
+            }
+            $lesson = Lesson::where('slug', $slug)->with('comments.replies')
+                    ->with('comments.poster')->with(['comments' => function($query){
+                        $query->orderBy('id','desc');                        
+                    }])->first();
+            $lesson->comments = $lesson->comments->reverse();
+            if( $lesson==null || $lesson->module->course->id != $course->id ){
+                return Redirect::to('/');
+            }            
+            
+            return View::make('courses.classroom.conversations.lesson_conversations')->with(compact('course'))->with( compact('lesson') );
+        }
+        
+        public function replyTo($id){
+            $comment = Conversation::with('replies')->find($id);
+            return View::make('courses.classroom.conversations.lesson_conversations')
+                    ->withCourse($comment->lesson->module->course)
+                    ->withLesson( $comment->lesson )
+                    ->withReplyto($id);
         }
 }
