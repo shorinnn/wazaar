@@ -26,33 +26,25 @@
                     <div>
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop2" type="button">
-                                Top Courses Today</button>
-                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
+                                Top Courses <span id="header-top-courses-frequency">Today</span></button>
+                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu top-courses-dropdown">
                                 <li>
-                                    <a class="active" href="#">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.topCourses('daily', this);">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.topCourses('week', this);">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.topCourses('month', this);">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.topCourses('alltime', this);">All time</a>
                                 </li>
                             </ul>
                         </div>
-                        <ul>
+                        <ul id="wrapper-top-courses">
 
-                            @foreach($topCoursesToday['data'] as $key => $course)
-                                <li>
-                                    <a href="#">
-                                        <span>{{$key+1}}.</span>
-                                        {{$course['name']}}
-                                        <em>¥{{number_format($course['total_purchase'],2)}}</em>
-                                    </a>
-                                </li>
-                            @endforeach
+                            {{$topCoursesView}}
 
 
                         </ul>
@@ -62,37 +54,27 @@
                     <div id="sales-today">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                Sales Today</button>
-                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu">
+                                Sales <span id="header-sales-frequency">Today</span></button>
+                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
-                                    <a class="active" href="#">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.sales('daily', this);">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('week', this);">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('month', this);">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('alltime', this);">All time</a>
                                 </li>
                             </ul>
                         </div>
-                        <h2>¥{{number_format($weeklySales['sales_total'],2)}}
-                            <span>(+20%)</span>
-                        </h2>
-                        <ul>
-                            @foreach($weeklySales['data'] as $sale)
-                            <li id="monday" class="clearfix">
-                                <span>{{date('l',strtotime($sale['created_at']))}}</span>
-                                <div>
-                                    <span></span>
-                                </div>
-                                <em>¥{{number_format($sale['total_purchase'],2)}}</em>
-                            </li>
-                            @endforeach
 
-                        </ul>
+                        <div id="wrapper-sales">
+                            {{$salesView}}
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 sol-xs-12">
@@ -445,4 +427,9 @@
             </div>
         </section>
     </div>
+@stop
+
+@section('extra_js')
+    <script type="text/javascript" src="{{url('js/analytics.js')}}"></script>
+
 @stop

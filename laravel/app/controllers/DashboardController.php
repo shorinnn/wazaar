@@ -23,11 +23,27 @@ class DashboardController extends BaseController
         return $this->studentDashboard();
     }
 
+    public function topCoursesView($frequency = '')
+    {
+        $topCourses = $this->analyticsHelper->topCourses($frequency);
+        if (is_array($topCourses)) {
+            return View::make('analytics.partials.topCourses', compact('topCourses'))->render();
+        }
+    }
+
+    public function salesView($frequency = '')
+    {
+        $sales = $this->analyticsHelper->sales($frequency);
+        if (is_array($sales)) {
+            return View::make('analytics.partials.sales', compact('sales', 'frequency'))->render();
+        }
+    }
+
     private function affiliateDashboard()
     {
-        $topCoursesToday = $this->analyticsHelper->dailyTopCourses();
-        $weeklySales = $this->analyticsHelper->weeklySales();
-        return View::make('affiliate.dashboard.index', compact('topCoursesToday', 'weeklySales'));
+        $topCoursesView = $this->topCoursesView();
+        $salesView = $this->salesView();
+        return View::make('affiliate.dashboard.index', compact('topCoursesView', 'salesView'));
     }
 
     private function adminDashboard()
