@@ -150,13 +150,12 @@ Route::group(['prefix' => 'video'], function(){
 ## Dashboard Group
 Route::group(['prefix' => 'dashboard'], function (){
     Route::get('/', 'DashboardController@index');
+    Route::get('topcourses/{frequency}', 'DashboardController@topCoursesView');
+    Route::get('sales/{frequency}', 'DashboardController@salesView');
 });
 
 Route::get('test', function (){
-    $analyticsHelper = new AnalyticsHelper;
-    $dailyCourses = $analyticsHelper->monthlyTopCourses();
 
-    dd($dailyCourses);
 });
 
 
