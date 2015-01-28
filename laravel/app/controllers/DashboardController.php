@@ -27,7 +27,7 @@ class DashboardController extends BaseController
     {
         $topCourses = $this->analyticsHelper->topCourses($frequency);
         if (is_array($topCourses)) {
-            return View::make('analytics.partials.topcourses', compact('topCourses'))->render();
+            return View::make('analytics.partials.topCourses', compact('topCourses'))->render();
         }
     }
 
