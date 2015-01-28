@@ -30,7 +30,7 @@ App::before(function($request)
 			if ($storeTCodeCooke){
 				Cookie::queue('tcode', Input::get('tcode'), 60*24*30);
 				//store this as hit
-				TrackingCodeHits::create(['tcode' => Input::get('tcode'), 'affiliate_id' => Input::get('aid')]);
+				TrackingCodeHits::create(['tracking_code' => Input::get('tcode'), 'affiliate_id' => Input::get('aid')]);
 			}
 
 		}

@@ -15,7 +15,7 @@ class CreateTrackingCodeHitsTable extends Migration {
 		Schema::create('tracking_code_hits', function (Blueprint $table){
 		    $table->increments('id');
 			$table->string('affiliate_id');
-			$table->string('tcode');
+			$table->string('tracking_code');
 		    $table->timestamps();
 		});
 	}
