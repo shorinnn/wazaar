@@ -32,10 +32,11 @@ class ClassroomController extends \BaseController {
             $lesson = Lesson::where('slug', $lesson)->with('blocks')->with('comments.replies')
                     ->with('comments.poster')->with(['comments' => function($query){
                         $query->limit(2);
+                        $query->where('reply_to',null);
                         $query->orderBy('id','desc');
                         
                     }])->first();
-            $lesson->comments = $lesson->comments->reverse();
+                    
             if( $lesson==null || $lesson->module->course->id != $course->id ){
                 return Redirect::to('/');
             }            

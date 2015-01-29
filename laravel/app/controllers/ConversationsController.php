@@ -33,14 +33,17 @@ class ConversationsController extends \BaseController {
         public function replies($id){
             $comment = Conversation::find($id);
             $html = '';
-            foreach($comment->replies as $reply){
+            foreach($comment->replies()->orderBy('id','desc')->get() as $reply){
                 $html.=  View::make('courses.classroom.conversations.conversation')->withComment( $reply )->render();
             }
             return $html;
         }
         
         public function viewReplies($id){
-            $comment = Conversation::with('replies')->find($id);
+            $comment = Conversation::with(['replies' => function($query){
+                $query->orderBy('id','desc');
+            }])->find($id);
+            
             return  View::make('courses.classroom.conversations.view_replies')->with(compact('comment'));
         }
         
@@ -52,7 +55,7 @@ class ConversationsController extends \BaseController {
                         $query->orderBy('id','desc');
                         
                     }])->find( Input::get('lesson') );
-            $lesson->comments = $lesson->comments->reverse();
+                    
             $html = '';
             foreach($lesson->comments as $reply){
                 $html.=  View::make('courses.classroom.conversations.conversation')->withComment( $reply )->render();
@@ -66,11 +69,13 @@ class ConversationsController extends \BaseController {
             if( $course==null || !$student->purchased( $course ) ){
                 return Redirect::to('/');
             }
-            $lesson = Lesson::where('slug', $slug)->with('comments.replies')
-                    ->with('comments.poster')->with(['comments' => function($query){
-                        $query->orderBy('id','desc');                        
-                    }])->first();
-            $lesson->comments = $lesson->comments->reverse();
+//            $lesson = Lesson::where('slug', $slug)->with('comments.replies')
+//                    ->with('comments.poster')->with(['comments' => function($query){
+//                        $query->orderBy('id','desc');                        
+//                    }])->first();
+            $lesson = Lesson::where('slug', $slug)->first();
+            $comments = $lesson->comments()->orderBy('id','desc')->where('reply_to', null)->paginate( 5 );
+            $lesson->comments = $comments;
             if( $lesson==null || $lesson->module->course->id != $course->id ){
                 return Redirect::to('/');
             }            
@@ -83,6 +88,7 @@ class ConversationsController extends \BaseController {
             return View::make('courses.classroom.conversations.lesson_conversations')
                     ->withCourse($comment->lesson->module->course)
                     ->withLesson( $comment->lesson )
+                    ->with(compact('comment'))
                     ->withReplyto($id);
         }
 }

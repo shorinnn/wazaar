@@ -65,6 +65,7 @@
     <script src="{{url("js/cocoriumTracker.js")}}"></script>
     <script src="{{url("js/tweenmax.min.js")}}"></script>
     <script src="{{url("js/Sortable.min.js")}}"></script>
+    <script src="{{url("js/pluralize.js")}}"></script>
     <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
     <script src="http://www.localeplanet.com/api/translate.js" /></script>
     <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>

@@ -157,14 +157,16 @@ function loadMoreComments(e){
     }
     $(e.target).html( _('Loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
     $.post(url,{lesson:lesson, skip:skip}, function(data) {
+        $(e.target).attr('href','#');
         $(e.target).html( _('LOAD MORE') );
         if($.trim(data)==''){
             $(e.target).removeClass('load-more-ajax');
             $(e.target).html( _('No more messages') );
         }
-        $(target).prepend(data).fadeIn('slow');
+        $(target).append(data).fadeIn('slow');
         skip = 1 * skip + 1 * 2;
         $(e.target).attr('data-skip', skip);
+        
     });
 }
 
@@ -279,11 +281,13 @@ function scrollNavigation(){
  * Appends the HTML property of the result of an ajax call to the specified destination element
  * @param {json} json The ajax response
  * @param {event} e the original event
+ * @param {bool} prepend if set to true, prepend to list, otherwise append
  * @method addToList
  */
-function addToList(json, e){
+function addToList(json, e, prepend){
     var destination = $(e.target).attr('data-destination');
-    $(destination).append( json.html );
+    if( typeof(prepend)== 'undefined')    $(destination).append( json.html );
+    else     $(destination).prepend( json.html );
     // reset the original form
     $(e.target)[0].reset();
 }
@@ -331,8 +335,21 @@ $.fn.scrollToChild = function(child) {
 };
 
 function postedComment(json, e){
-    addToList(json, e);
-    $('html, body').animate({
-        scrollTop: $('.comment').last().offset().top
-    }, 500);
+    
+    // remove form from page if reply
+    if( $(e.target).find('.reply-to').val() > 0){
+        // increment reply counter
+        count = $(e.target).closest('.comment-form-reply').parent().parent().parent().find('.number-of-replies').html();
+        $.trim( count );
+        count = count.split(' ');
+        count = count[0];
+        count_number = count = count * 1 + 1 * 1;
+        count += ' ' + pluralize( _('reply'), count_number );
+        $(e.target).closest('.comment-form-reply').parent().parent().parent().find('.number-of-replies').html( count );
+        $(e.target).closest('.comment-form-reply').parent().parent().parent().find('.number-of-replies').click();
+        $(e.target).closest('.comment-form-reply').remove();
+    }
+    else{
+        addToList(json, e, true);
+    }
 }

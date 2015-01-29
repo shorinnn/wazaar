@@ -8,21 +8,17 @@
             @endif
         </span>
         
-        <a href="{{ action( 'ConversationsController@replyTo', $comment->id ) }}" class="reply-link reply-to" data-field='#reply-to' data-scroll-to='.ajax-form' data-id='{{ $comment->id }}'>Reply</a>
+        <a href="{{ action( 'ConversationsController@replyTo', $comment->id ) }}" class="reply-link reply-to" data-field='.reply-to'
+           data-id='{{ $comment->id }}'>Reply</a>
         
-        @if($comment->replies->count()==0)
-            <span class="number-of-replies">
-                {{ $comment->replies->count() }} 
-                {{Lang::choice('general.reply', $comment->replies->count() )}}
-            </span>
-        @else
+       
         <a class="number-of-replies load-remote" data-url='{{action('ConversationsController@replies', $comment->id)}}' 
            href='{{action('ConversationsController@viewReplies', $comment->id)}}' target="_blank"
            data-target='.comment-{{$comment->id}} > .replies'>
-                {{ $comment->replies->count() }} 
+                {{ $comment->replies->count() }}
                 {{Lang::choice('general.reply', $comment->replies->count() )}}
             </a>
-        @endif
+        
         
         <span class="time-of-reply">{{ $comment->created_at->diffForHumans() }}</span>
     </div>
@@ -33,5 +29,7 @@
             {{ $comment->content }}
         </span>
     </div>
-    <div class='replies pull-right'></div>
+    <div class='replies pull-right'>@if($comment->reply_to==0 && $comment->replies->count() > 0)
+            {{View::make('courses.classroom.conversations.conversation')->withComment( $comment->replies()->first() ) }}
+        @endif</div>
 </div>

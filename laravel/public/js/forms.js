@@ -314,13 +314,15 @@ function setSlider(e){
  */
 function setReplyTo(e){
     e.preventDefault();
+    $box = $(e.target).parent().parent().find('.main > span').first();
+    $box.find('.comment-form-reply').remove();
+    
+    $form = $('.comment-form').clone();
+    $form.removeClass('comment-form');
+    $form.addClass('comment-form-reply');
+    $box.append( $form );
+    
     field = $(e.target).attr('data-field');
-    scrollTo = $(e.target).attr('data-scroll-to');
     val = $(e.target).attr('data-id');
-    $(field).val( val );
-    $('html, body').animate({
-        scrollTop: $( scrollTo ).offset().top
-    }, 500, function(){
-        $( scrollTo ).find('textarea').focus();
-    });
+    $form.find(field).val( val );
 }
