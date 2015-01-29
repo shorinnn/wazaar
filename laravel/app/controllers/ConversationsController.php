@@ -86,6 +86,7 @@ class ConversationsController extends \BaseController {
         
         public function replyTo($id){
             $comment = Conversation::with('replies')->find($id);
+            $comment->lesson->comments = $comment->lesson->comments()->paginate();
             return View::make('courses.classroom.conversations.lesson_conversations')
                     ->withCourse($comment->lesson->module->course)
                     ->withLesson( $comment->lesson )
