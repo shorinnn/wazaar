@@ -53,6 +53,7 @@ class ConversationsController extends \BaseController {
                         $query->limit(2);
                         $query->skip( Input::get('skip') );
                         $query->orderBy('id','desc');
+                        $query->where('reply_to',null);
                         
                     }])->find( Input::get('lesson') );
                     
