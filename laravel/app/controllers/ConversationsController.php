@@ -33,7 +33,7 @@ class ConversationsController extends \BaseController {
         public function replies($id){
             $comment = Conversation::find($id);
             $html = '';
-            foreach($comment->replies()->orderBy('id','desc')->get() as $reply){
+            foreach($comment->replies()->orderBy('id','asc')->get() as $reply){
                 $html.=  View::make('courses.classroom.conversations.conversation')->withComment( $reply )->render();
             }
             return $html;
