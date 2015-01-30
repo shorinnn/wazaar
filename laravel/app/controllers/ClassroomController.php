@@ -29,14 +29,17 @@ class ClassroomController extends \BaseController {
             if( $course==null || !$student->purchased( $course ) ){
                 return Redirect::to('/');
             }
-            $lesson = Lesson::where('slug', $lesson)->with('blocks')->with('comments.replies')
+            /**
+             * ->with('comments.replies')
                     ->with('comments.poster')->with(['comments' => function($query){
                         $query->limit(2);
                         $query->where('reply_to',null);
                         $query->orderBy('id','desc');
                         
-                    }])->first();
-                    
+                    }])
+             */
+            $lesson = Lesson::where('slug', $lesson)->with('blocks')->first();
+            $lesson->comments = $lesson->comments()->orderBy('id','desc')->where('reply_to', null)->with('poster')->paginate( 2 );
             if( $lesson==null || $lesson->module->course->id != $course->id ){
                 return Redirect::to('/');
             }            

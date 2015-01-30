@@ -314,15 +314,20 @@ function setSlider(e){
  */
 function setReplyTo(e){
     e.preventDefault();
-    $box = $(e.target).parent().parent().find('.main > span').first();
+    id = $(e.target).attr('data-id');
+    
+    //$box = $(e.target).parent().parent().find('.replies').first();
+    $box = $('.replies-comment-'+id);
     $box.find('.comment-form-reply').remove();
+    id =  '.replies-' + $box.parent().attr('id');
     
     $form = $('.comment-form').clone();
     $form.removeClass('comment-form');
     $form.addClass('comment-form-reply');
+    $form.find('form').attr('data-destination', id );
     $box.append( $form );
     
     field = $(e.target).attr('data-field');
-    val = $(e.target).attr('data-id');
+    val = $(e.target).attr('data-reply-to');
     $form.find(field).val( val );
 }

@@ -9,7 +9,16 @@ class ConversationsController extends \BaseController {
         
         public function store(){
             $conv = new Conversation(['poster_id' => Auth::user()->id, 'lesson_id' => Input::get('lesson'), 'content' => Input::get('content') ]);
-            if( Input::get('reply_to') > 0) $conv->reply_to = Input::get('reply_to');
+            if( Input::get('reply_to') > 0) {
+                $original = Conversation::find( Input::get('reply_to') );
+                if($original->reply_to > 0){
+                    $conv->reply_to = $original->reply_to;
+                    $conv->original_reply_to = Input::get('reply_to');
+                }
+                else{
+                    $conv->reply_to = Input::get('reply_to');
+                }
+            }
             if( $conv->save() ){
                 if( Request::ajax() ){
                     return json_encode( ['status'=>'success', 
