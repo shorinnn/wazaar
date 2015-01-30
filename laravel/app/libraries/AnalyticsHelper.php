@@ -33,6 +33,17 @@ class AnalyticsHelper
         }
     }
 
+    public function trackingCodes($frequency = '')
+    {
+        switch($frequency){
+            case 'daily' : return $this->dailyTrackingCodes(); break;
+            case 'week': return $this->weeklyTrackingCodes(); break;
+            case 'month': return $this->monthlyTrackingCodes(); break;
+            case 'alltime' : return $this->allTimeTrackingCodes(); break;
+            default: return $this->dailyTrackingCodes();
+        }
+    }
+
     public function dailySales()
     {
         $dateFilter = $this->_frequencyEquivalence();
@@ -65,11 +76,11 @@ class AnalyticsHelper
     }
 
     public function dailyTopCourses()
-    {
-        $dateFilter = $this->_frequencyEquivalence();
-        $query = $this->_coursePurchaseRawQuery("DATE(course_purchases.created_at) = '{$dateFilter}'");
-        return $this->_transformCoursePurchases($query);
-    }
+{
+    $dateFilter = $this->_frequencyEquivalence();
+    $query = $this->_coursePurchaseRawQuery("DATE(course_purchases.created_at) = '{$dateFilter}'");
+    return $this->_transformCoursePurchases($query);
+}
 
     public function weeklyTopCourses()
     {
@@ -96,6 +107,38 @@ class AnalyticsHelper
         return $this->_transformCoursePurchases($query);
     }
 
+    public function dailyTrackingCodes()
+    {
+        $dateFilter = $this->_frequencyEquivalence();
+        $query = $this->_trackingCodesRawQuery("DATE(created_at) = '{$dateFilter}'");
+
+        return $this->_transformCoursePurchases($query);
+    }
+
+    public function weeklyTrackingCodes()
+    {
+        $dateFilterStart = $this->_frequencyEquivalence('week');
+        $dateFilterEnd = date('Y-m-d');
+        $query = $this->_trackingCodesRawQuery("DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'");
+
+        return $this->_transformCoursePurchases($query);
+    }
+
+    public function monthlyTrackingCodes()
+    {
+        $dateFilterStart = $this->_frequencyEquivalence('month');
+        $dateFilterEnd = date('Y-m-d');
+        $query = $this->_trackingCodesRawQuery("DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'");
+
+        return $this->_transformCoursePurchases($query);
+    }
+
+    public function allTimeTrackingCodes()
+    {
+        $query = $this->_trackingCodesRawQuery();
+
+        return $this->_transformCoursePurchases($query);
+    }
     private function _transformCoursePurchases($query)
     {
         $result = DB::select($query);
@@ -149,6 +192,60 @@ class AnalyticsHelper
                 GROUP BY DATE(created_at)
                 ORDER BY created_at DESC
                 ";
+        return $sql;
+    }
+
+    private function _trackingCodesRawQuery($criteria = '', $limit = 10)
+    {
+        if (!empty($criteria)){
+            $criteria = ' AND ' . $criteria;
+        }
+
+        if (!$this->isAdmin AND !empty($this->affiliateId)){
+            $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
+        }
+
+        $sql = "SELECT tracking_code, count(tracking_code) as 'count'
+                FROM tracking_code_hits  WHERE id <> 0
+                 {$criteria}
+                GROUP BY tracking_code
+                ORDER BY count DESC LIMIT {$limit}";
+        return $sql;
+    }
+
+    private function _coursePurchaseConversionRawQuery($criteria = '', $limit = 10)
+    {
+
+        if (!empty($criteria)){
+            $criteria = ' AND ' . $criteria;
+        }
+
+        $criteriaPurchase = $criteria;
+
+        if (!$this->isAdmin AND !empty($this->affiliateId)){
+            $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
+            $criteriaPurchase .= " AND (course_purchases.ltc_affiliate_id = '{$this->affiliateId}' OR course_purchases.product_affiliate_id = '{$this->affiliateId}' )";
+        }
+
+        $sql = "SELECT DISTINCT courses.`name`, course_id,
+               (
+                      SELECT COUNT(course_purchases.id)
+                      FROM course_purchases
+                      WHERE course_purchases.tracking_code = cp.tracking_code
+                      {$criteriaPurchase}
+                ) as 'purchases',
+               (
+                        SELECT COUNT(tracking_code_hits.id)
+                        FROM tracking_code_hits
+                        WHERE tracking_code_hits.tracking_code = cp.tracking_code
+                        {$criteria}
+                 ) as 'hits'
+            FROM course_purchases cp
+            JOIN courses ON courses.id = cp.course_id
+            WHERE rch.id <> 0
+            {$criteria}
+
+            LIMIT {$limit}";
         return $sql;
     }
 

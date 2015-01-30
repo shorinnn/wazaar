@@ -30,7 +30,19 @@ App::before(function($request)
 			if ($storeTCodeCooke){
 				Cookie::queue('tcode', Input::get('tcode'), 60*24*30);
 				//store this as hit
-				TrackingCodeHits::create(['tracking_code' => Input::get('tcode'), 'affiliate_id' => Input::get('aid')]);
+				$courseId = 0;
+				if (Request::segment(1) == 'courses' AND Request::segment(2)){
+					$course = Course::where('slug', Request::segment(2))->first();
+					if ($course){
+						$courseId = $course->id;
+					}
+				}
+
+				TrackingCodeHits::create([
+					'tracking_code' => Input::get('tcode'),
+					'affiliate_id'  => Input::get('aid'),
+					'course_id' => $courseId
+				]);
 			}
 
 		}

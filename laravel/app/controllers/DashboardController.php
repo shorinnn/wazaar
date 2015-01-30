@@ -39,11 +39,20 @@ class DashboardController extends BaseController
         }
     }
 
+    public function trackingCodesView($frequency = '')
+    {
+        $trackingCodes = $this->analyticsHelper->trackingCodes($frequency);
+        if (is_array($trackingCodes)) {
+            return View::make('analytics.partials.trackingCodes', compact('trackingCodes', 'frequency'))->render();
+        }
+    }
+
     private function affiliateDashboard()
     {
         $topCoursesView = $this->topCoursesView();
         $salesView = $this->salesView();
-        return View::make('affiliate.dashboard.index', compact('topCoursesView', 'salesView'));
+        $trackingCodesView = $this->trackingCodesView();
+        return View::make('affiliate.dashboard.index', compact('topCoursesView', 'salesView', 'trackingCodesView'));
     }
 
     private function adminDashboard()

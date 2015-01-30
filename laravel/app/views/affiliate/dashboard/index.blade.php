@@ -81,93 +81,24 @@
                     <div>
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop4" type="button">
-                                Top Tracking Codes Today</button>
-                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu">
+                                Top Tracking Codes <span id="header-tracking-codes-frequency">Today</span></button>
+                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu tracking-codes-dropdown">
                                 <li>
-                                    <a class="active" href="#">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.trackingCodes('daily', this);">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodes('week', this);">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodes('month', this);">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodes('alltime', this);">All time</a>
                                 </li>
                             </ul>
                         </div>
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <span>1.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>2.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>3.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>4.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>5.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>6.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>7.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>8.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>9.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>10.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
+                        <ul id="wrapper-tracking-codes">
+                            {{$trackingCodesView}}
                         </ul>
                         <a href="#" class="view-all">View All</a>
                     </div>

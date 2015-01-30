@@ -38,5 +38,25 @@ var Analytics = {
                 $('#header-sales-frequency').html('All Time');
             }
         });
+    },
+    'trackingCodes' :  function ($frequency, $elem){
+        $.get('dashboard/trackingcodes/' + $frequency, function ($html){
+            $('#wrapper-tracking-codes').html($html);
+
+            $('.tracking-codes-dropdown a').removeClass('active');
+            $($elem).addClass('active');
+            if ($frequency == 'daily'){
+                $('#header-tracking-codes-frequency').html('Today');
+            }
+            else if($frequency == 'week'){
+                $('#header-tracking-codes-frequency').html('This Week');
+            }
+            else if($frequency == 'month'){
+                $('#header-tracking-codes-frequency').html('This Month');
+            }
+            else if($frequency == 'alltime'){
+                $('#header-tracking-codes-frequency').html('All Time');
+            }
+        });
     }
 };

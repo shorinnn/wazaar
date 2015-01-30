@@ -155,10 +155,11 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('/', 'DashboardController@index');
     Route::get('topcourses/{frequency}', 'DashboardController@topCoursesView');
     Route::get('sales/{frequency}', 'DashboardController@salesView');
+    Route::get('trackingcodes/{frequency}','DashboardController@trackingCodesView');
 });
 
 Route::get('test', function (){
-
+    Cookie::forget('aid');
 });
 
 
