@@ -337,6 +337,8 @@ function setReplyTo(e){
 }
 
 function cancelReply(e){
-    $(e.target).parent().parent().find('.reply-to').val('');
+    $(e.target).parent().parent().find('textarea').css('text-indent', '0px' );
+    $(e.target).parent().parent().find('.reply-to').val('0');
+    $(e.target).parent().parent().find('form').attr('data-destination','.users-comments > .clearfix');
     $(e.target).parent().remove();
 }
