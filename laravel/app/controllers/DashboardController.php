@@ -47,12 +47,29 @@ class DashboardController extends BaseController
         }
     }
 
+    public function courseConversionView($frequency = '')
+    {
+        $courseConversions = $this->analyticsHelper->courseConversion($frequency);
+        if (is_array($courseConversions)) {
+            return View::make('analytics.partials.courseConversions', compact('courseConversions', 'frequency'))->render();
+        }
+    }
+
+    public function trackingCodeConversionView($frequency = '')
+    {
+        $trackingCodeConversions = $this->analyticsHelper->trackingCodeConversion($frequency);
+        if (is_array($trackingCodeConversions)) {
+            return View::make('analytics.partials.trackingCodeConversions', compact('trackingCodeConversions', 'frequency'))->render();
+        }
+    }
     private function affiliateDashboard()
     {
         $topCoursesView = $this->topCoursesView();
         $salesView = $this->salesView();
         $trackingCodesView = $this->trackingCodesView();
-        return View::make('affiliate.dashboard.index', compact('topCoursesView', 'salesView', 'trackingCodesView'));
+        $courseConversionView = $this->courseConversionView();
+        $trackingCodeConversionView = $this->trackingCodeConversionView();
+        return View::make('affiliate.dashboard.index', compact('topCoursesView', 'salesView', 'trackingCodesView', 'courseConversionView', 'trackingCodeConversionView'));
     }
 
     private function adminDashboard()

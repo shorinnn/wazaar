@@ -29,16 +29,16 @@
                                 Top Courses <span id="header-top-courses-frequency">Today</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu top-courses-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.topCourses('daily', this);">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.topCourses('daily', this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.topCourses('week', this);">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.topCourses('week', this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.topCourses('month', this);">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.topCourses('month', this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.topCourses('alltime', this);">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.topCourses('alltime', this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>
@@ -57,16 +57,16 @@
                                 Sales <span id="header-sales-frequency">Today</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.sales('daily', this);">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.sales('daily', this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('week', this);">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('week', this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('month', this);">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('month', this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('alltime', this);">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('alltime', this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>
@@ -84,16 +84,16 @@
                                 Top Tracking Codes <span id="header-tracking-codes-frequency">Today</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu tracking-codes-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.trackingCodes('daily', this);">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.trackingCodes('daily', this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodes('week', this);">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodes('week', this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodes('month', this);">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodes('month', this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodes('alltime', this);">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodes('alltime', this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>
@@ -109,44 +109,25 @@
                     <div>
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop5" type="button">
-                                Top Converting Today</button>
-                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop5" role="menu" class="dropdown-menu">
+                                Top Converting Courses <span id="header-course-conversions-frequency">Today</span></button>
+                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop5" role="menu" class="dropdown-menu course-conversions-dropdown">
                                 <li>
-                                    <a class="active" href="#">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.courseConversions('daily', this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.courseConversions('week', this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.courseConversions('month', this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.courseConversions('alltime', this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <span>1.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>2.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>3.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
+                        <ul id="wrapper-course-conversions">
+                           {{$courseConversionView}}
+
                         </ul>
                     </div>
                 </div>
@@ -161,93 +142,24 @@
                     <div>
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop6" type="button">
-                                Top Converting Today</button>
-                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu">
+                                Tracking Code Converting <span id="header-tracking-code-conversions-frequency">Today</span> </button>
+                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu tracking-code-conversions-dropdown">
                                 <li>
-                                    <a class="active" href="#">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.trackingCodeConversions('daily', this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('week', this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('month', this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('alltime', this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <span>1.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>2.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>3.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>4.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>5.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>6.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>7.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>8.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>9.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>10.</span>
-                                    Javascript Fenzy
-                                    <em>12,50%</em>
-                                </a>
-                            </li>
+                        <ul id="wrapper-tracking-code-conversions">
+                           {{$trackingCodeConversionView}}
                         </ul>
                     </div>
                 </div>

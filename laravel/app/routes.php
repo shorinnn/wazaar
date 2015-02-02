@@ -156,6 +156,8 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('topcourses/{frequency}', 'DashboardController@topCoursesView');
     Route::get('sales/{frequency}', 'DashboardController@salesView');
     Route::get('trackingcodes/{frequency}','DashboardController@trackingCodesView');
+    Route::get('courseconversions/{frequency}','DashboardController@courseConversionView');
+    Route::get('trackingcodeconversions/{frequency}','DashboardController@trackingCodeConversionView');
 });
 
 Route::get('test', function (){
