@@ -12,6 +12,7 @@ $(document).ready(function(){
     $('body').delegate('.ajax-updatable', 'change', updateFieldRemote);
     $('body').delegate('.set-slider', 'change', setSlider);
     $('body').delegate('.reply-to', 'click', setReplyTo);
+    $('body').delegate('.cancel-reply', 'click', cancelReply);
 });
 
 /**
@@ -326,8 +327,16 @@ function setReplyTo(e){
     $form.addClass('comment-form-reply');
     $form.find('form').attr('data-destination', id );
     $box.append( $form );
-    
+    name = $box.find('.name').html();
+    $form.prepend('<span class="reply-to-label">@'+name+' <i class="fa fa-times cancel-reply"></i></span>');
+    indent = $box.find('.reply-to-label').outerWidth();
+    $form.find('textarea').css('text-indent', indent );
     field = $(e.target).attr('data-field');
     val = $(e.target).attr('data-reply-to');
     $form.find(field).val( val );
+}
+
+function cancelReply(e){
+    $(e.target).parent().parent().find('.reply-to').val('');
+    $(e.target).parent().remove();
 }

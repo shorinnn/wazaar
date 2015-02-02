@@ -111,8 +111,14 @@ function reverseUnhide(){
  * @param {event} e The click event
  */
 function slideToggle(e){
+    e.preventDefault();
     target = $(e.target).attr('data-target');
-    $(target).slideToggle('fast');
+    $(target).slideToggle('fast', function(){
+        var callback = $(e.target).attr('data-callback');
+        if( typeof(callback)!= 'undefined'){
+            window[callback](e);
+        }
+    });
 }
 
 /**
@@ -127,19 +133,35 @@ function loadRemote(e){
     target = $(e.target).attr('data-target');
     var callback = $(e.target).attr('data-callback');
     elem = $(e.target);
+    loadMethod = $(e.target).attr('data-load-method');
     while(typeof(url)=='undefined'){
         elem = elem.parent();
         url = elem.attr('data-url');
         target = elem.attr('data-target');
         callback = elem.attr('data-callback');  
+        loadMethod = $(e.target).attr('data-load-method');
     }
     
-    $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
-    $(target).load(url, function(){
-        if( typeof(callback)!= 'undefined'){
-            window[callback](e);
-        }
-    });
+    if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
+        $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+        $(target).load(url, function(){
+            if( typeof(callback)!= 'undefined'){
+                window[callback](e);
+            }
+        });
+    }
+    else if(loadMethod=='append' || loadMethod=='prepend'){
+        $(target).prepend('<p class="remove_this">' + _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></p>');
+        $.get(url, function(data){
+            $('.remove_this').remove();
+            if(loadMethod=='append') $(target).append(data);
+            else $(target).prepend(data);
+            if( typeof(callback)!= 'undefined'){
+                window[callback](e);
+            }
+        });
+    }
+    else{}
 }
 
 function loadMoreComments(e){    
@@ -357,6 +379,24 @@ function postedComment(json, e){
     }
 }
 
-function disableLink(e){
-    $(e.target).addClass('disabled-item');
+function collapseComments(e){
+    $(e.target).removeClass('load-remote');
+    $(e.target).addClass('slide-toggler');
+    $(e.target).attr('data-callback','rotateCollapse');
+    $(e.target).append(" <i class='fa fa-arrow-up fa-animated'></i>");
 }
+
+function rotateCollapse(e){
+    rotation = rotation==0 ? 180 : 0;
+    $(e.target).find('.fa').rotate(rotation);
+}
+
+var rotation = 0;
+
+jQuery.fn.rotate = function(degrees) {
+    $(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
+                 '-moz-transform' : 'rotate('+ degrees +'deg)',
+                 '-ms-transform' : 'rotate('+ degrees +'deg)',
+                 'transform' : 'rotate('+ degrees +'deg)'});
+    return $(this);
+};
