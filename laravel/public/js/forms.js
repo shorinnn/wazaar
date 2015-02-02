@@ -316,6 +316,7 @@ function setSlider(e){
 function setReplyTo(e){
     e.preventDefault();
     id = $(e.target).attr('data-id');
+    name = $(e.target).prev('.name').html();
     
     //$box = $(e.target).parent().parent().find('.replies').first();
     $box = $('.replies-comment-'+id);
@@ -327,7 +328,6 @@ function setReplyTo(e){
     $form.addClass('comment-form-reply');
     $form.find('form').attr('data-destination', id );
     $box.append( $form );
-    name = $box.find('.name').html();
     $form.prepend('<span class="reply-to-label">@'+name+' <i class="fa fa-times cancel-reply"></i></span>');
     indent = $box.find('.reply-to-label').outerWidth();
     $form.find('textarea').css('text-indent', indent );
