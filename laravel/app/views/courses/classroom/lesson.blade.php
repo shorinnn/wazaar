@@ -15,6 +15,26 @@
         font-style: italic;
         font-size: 12px;
     }
+    
+    .fa-animated{
+        -webkit-transition: all 0.3s; /* For Safari 3.1 to 6.0 */
+        transition: all 0.3s;
+    }
+    
+    .reply-to-label{
+        border: 1px solid silver;
+        border-radius: 5px;
+        padding: 2px;
+        background-color: #19B5DA;
+        color: white;
+        position: absolute;
+        z-index: 10;
+        margin-left: 90px;
+        margin-top: 15px;
+    }
+    a.load-remote > *{
+        pointer-events: none;
+    }
 </style>
     <h1>{{ $course->name }}</h1>
     <h2>{{ $lesson->name }}</h2>

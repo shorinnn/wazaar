@@ -13,9 +13,13 @@
         
        
         @if($comment->reply_to == 0)
-        <a class="number-of-replies load-remote" data-url='{{action('ConversationsController@replies', $comment->id)}}' 
-           href='{{action('ConversationsController@viewReplies', $comment->id)}}' target="_blank"
-           data-target='.comment-{{$comment->id}} > .replies' data-callback="disableLink">{{ $comment->replies->count() }} {{Lang::choice('general.reply', $comment->replies->count() )}}</a>
+        <a class="number-of-replies load-remote" data-url='{{action('ConversationsController@replies', ['id' => $comment->id, 'skip' => 1])}}' 
+           href='{{action('ConversationsController@viewReplies', $comment->id)}}' target="_blank" data-load-method='prepend'
+           data-target='.comment-{{$comment->id}} > .replies' data-callback="collapseComments">{{ $comment->replies->count() }} {{Lang::choice('general.reply', $comment->replies->count() )}}
+            @if($comment->replies->count() > 0)
+                <i class='fa fa-arrow-down fa-animated'></i>
+            @endif
+        </a>
         @endif
         
         
