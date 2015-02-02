@@ -1,248 +1,57 @@
     @extends('layouts.default')
     @section('content')	
-        <div class="wrapper">
-            <div class="container admin-dashboard dashboard">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="header clearfix">
-                            <ul class="clearfix">
-                            	<li class="right-twenty-margin">
-                                	<a href="#" class="active">Dashboard</a>
-                                </li>
-                            	<li class="right-twenty-margin">
-                                	<a href="#">Users</a>
-                                </li>
-                            	<li class="right-twenty-margin">
-                                	<a href="#">Sales</a>
-                                </li>
-                            	<li class="right-twenty-margin">
-                                	<a href="#">Courses</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Coupons</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row top-activities">
-                	<div class="col-md-4 col-sm-6 sol-xs-12">
-                    	<div id="sales-today">
-                        	<div class="dropdown-wrapper">
-                                <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                New Users Today</button>
-                                <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu">
-                                    <li>
-                                        <a class="active" href="#">Today</a>
-                                    </li>
-                                    <li>
-                                        <a class="#" href="#">This week</a>
-                                    </li>
-                                    <li>
-                                        <a class="#" href="#">This month</a>
-                                    </li>
-                                    <li>
-                                        <a class="#" href="#">All time</a>
-                                    </li>
-                                </ul>                
-                            </div>
-                            <h2>8,125
-                            	<span class="negative-percent">(-15%)</span>
-                            </h2>
-                            <ul>
-                            	<li id="monday" class="clearfix">
-                                	<span>Monday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            	<li id="tuesday" class="clearfix">
-                                	<span>Tuesday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            	<li id="wednesday" class="clearfix">
-                                	<span>Wednesday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            	<li id="thursday" class="clearfix">
-                                	<span>Thursday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            	<li id="friday" class="clearfix">
-                                	<span>Friday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                	<div class="col-md-4 col-sm-6 sol-xs-12">
-                    	<div id="sales-today">
-                        	<div class="dropdown-wrapper">
-                                <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                Sales/$ Today</button>
-                                <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu">
-                                    <li>
-                                        <a class="active" href="#">Today</a>
-                                    </li>
-                                    <li>
-                                        <a class="#" href="#">This week</a>
-                                    </li>
-                                    <li>
-                                        <a class="#" href="#">This month</a>
-                                    </li>
-                                    <li>
-                                        <a class="#" href="#">All time</a>
-                                    </li>
-                                </ul>                
-                            </div>
-                            <h2>¥520,211.30
-                            	<span class="positive-percent">(+20%)</span>
-                            </h2>
-                            <ul>
-                            	<li id="monday" class="clearfix">
-                                	<span>Monday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            	<li id="tuesday" class="clearfix">
-                                	<span>Tuesday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            	<li id="wednesday" class="clearfix">
-                                	<span>Wednesday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            	<li id="thursday" class="clearfix">
-                                	<span>Thursday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            	<li id="friday" class="clearfix">
-                                	<span>Friday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                	<div class="col-md-4 col-sm-6 sol-xs-12">
-                    	<div id="sales-today">
-                        	<div class="dropdown-wrapper">
-                                <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                Orders Today</button>
-                                <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu">
-                                    <li>
-                                        <a class="active" href="#">Today</a>
-                                    </li>
-                                    <li>
-                                        <a class="#" href="#">This week</a>
-                                    </li>
-                                    <li>
-                                        <a class="#" href="#">This month</a>
-                                    </li>
-                                    <li>
-                                        <a class="#" href="#">All time</a>
-                                    </li>
-                                </ul>                
-                            </div>
-                            <h2>¥9,422
-                            	<span class="positive-percent">(+20%)</span>
-                            </h2>
-                            <ul>
-                            	<li id="monday" class="clearfix">
-                                	<span>Monday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            	<li id="tuesday" class="clearfix">
-                                	<span>Tuesday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            	<li id="wednesday" class="clearfix">
-                                	<span>Wednesday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            	<li id="thursday" class="clearfix">
-                                	<span>Thursday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            	<li id="friday" class="clearfix">
-                                	<span>Friday</span>
-                                    <div>
-                                    	<span></span>
-                                    </div>
-                                    <em>¥44,000</em>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                	<div class="col-md-12">
-                    	<div class="upcoming-courses-header">
-                            <h3>Top Affiliates</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                	<div class="col-md-12">
-                    	<div class="upcoming-courses-header">
-                            <h3>Top Courses <small> (Free)</small></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                	<div class="col-md-12">
-                    	<div class="upcoming-courses-header">
-                            <h3>Top Courses <small> (Paid)</small></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                	<div class="col-md-12">
-                    	<div class="upcoming-courses-header">
-                            <h3>Top Categories</h3>
-                        </div>
-                    </div>
-                </div>
+        <div class="wrapper enroll">
+        	<div class="enroll-header">
+            	<h1>
+                	Congratulations!
+                    <small>You bought the course</small>
+                </h1>
             </div>
-            <section class="container-fluid become-an-instructor affiliate">
+        	<div class="course-enroll-wrapper cat-box-7">
+            	<p>You have enrolled in</p>
+                <h2>Javascript Advanced Animations II</h2>
+				<a href="#" class="others-you-liked">Others you’ve also liked</a>
+                <div class="object small-box small-box-one">
+                    <!--<div class="level">Beginner</div>-->
+                    <!--            <div class="new-tag">NEW</div>
+                    -->
+                    <div class="img-container">
+                    <img src="https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg" class="img-responsive" alt="">
+                         <div class="sale-ends">SALE ENDS IN 2 DAYS 15:22:21</div>
+                    </div>
+                    <h2>Health App Development</h2>
+                    <p>Create your very first application in 2 weeks! You get a beginner award after completing the course.
+                        <br>
+                        <small>Subcategory: 
+                            <a href="http://wazaar.dev/courses/category/health/health-subcat">Health subcat</a>
+                        </small>
+                    </p>
+                    <div class="price-tag clear">
+                         ¥ 300,000
+                                </div>
+            
+                    <div class="next_">
+                        <!--<div class="learn-more">
+                            <a href="http://wazaar.dev/courses/health-app-development">Learn more</a>
+                        </div>-->
+                        <div class="students-attending">
+                            0 Students
+                        </div>   
+                        <span class="likes">89%</span>         
+                    </div> 
+                </div>
+                <span class="cancelled-price">¥500.000</span>
+                <span class="price">¥150.000</span>
+                <em class="w-tax">w.tax</em>
+                <span class="save">YOU SAVE <em>20%</em></span>
+                <form>
+                	<button class="add-to-order">ADD TO ORDER</button>
+                </form>
+                <span class="or">Or</span>
+                <a href="#" class="begin-my-learning">BEGIN MY LEARNING</a>
+                <span class="bottom-course-title">Javascript Advanced Animations II</span>
+            </div>
+            <!--<section class="container-fluid become-an-instructor affiliate">
                 <div class="container">
                   <div class="row">
                     <div class="col-xs-12">
@@ -252,6 +61,6 @@
                     </div>
                   </div>
               </div>
-            </section>
+            </section>-->
         </div>
     @stop
