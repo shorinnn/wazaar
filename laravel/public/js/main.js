@@ -129,6 +129,8 @@ function slideToggle(e){
  */
 function loadRemote(e){
     e.preventDefault();
+    var loading = $(e.target).attr('data-loading');
+    if( typeof(loading)!='undefined'&& loading==1 ) return false;
     url = $(e.target).attr('data-url');
     target = $(e.target).attr('data-target');
     var callback = $(e.target).attr('data-callback');
@@ -141,10 +143,11 @@ function loadRemote(e){
         callback = elem.attr('data-callback');  
         loadMethod = $(e.target).attr('data-load-method');
     }
-    
+    $(e.target).attr('data-loading', 1);
     if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
         $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
         $(target).load(url, function(){
+            $(e.target).attr('data-loading', 0);
             if( typeof(callback)!= 'undefined'){
                 window[callback](e);
             }
@@ -154,6 +157,7 @@ function loadRemote(e){
         $(target).prepend('<p class="remove_this">' + _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></p>');
         $.get(url, function(data){
             $('.remove_this').remove();
+            $(e.target).attr('data-loading', 0);
             if(loadMethod=='append') $(target).append(data);
             else $(target).prepend(data);
             if( typeof(callback)!= 'undefined'){
