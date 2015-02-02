@@ -60,16 +60,20 @@
         {{ View::make('courses.classroom.conversations.form')->with( compact('lesson') ) }}
     @endif
     
-    {{ View::make('courses.classroom.conversations.all')->withComments( $lesson->comments ) }}
-    
-   <!-- <a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->slug] )}}' class="load-more-comments load-more-ajax" 
-       data-url='{{action('ConversationsController@loadMore')}}' 
-       data-target='.users-comments' data-skip='2' data-lesson='{{$lesson->id}}'>LOAD MORE</a>
-    -->
-    <br />
-    <p class="text-center">
-        {{ $lesson->comments->links() }}
-        <!--<a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->slug] )}}'>View All Comments Ever</a>-->
-    </p>
+        <div class='ajax-content'>
+            {{ View::make('courses.classroom.conversations.all')->withComments( $lesson->comments ) }}
+
+           <!-- <a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->slug] )}}' class="load-more-comments load-more-ajax" 
+               data-url='{{action('ConversationsController@loadMore')}}' 
+               data-target='.users-comments' data-skip='2' data-lesson='{{$lesson->id}}'>LOAD MORE</a>
+            -->
+            <br />
+            <div class="text-center load-remote" data-target='.ajax-content'>
+                
+                {{ $lesson->comments->links() }}
+                <!--<a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->slug] )}}'>View All Comments Ever</a>-->
+            </div>
+        </div>
     </div>
+    
 @stop

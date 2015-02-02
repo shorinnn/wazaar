@@ -7,6 +7,7 @@ $(document).ready(function(){
     $(".profile-name > li").removeClass("activate-dropdown");
     $('body').delegate('.slide-toggler', 'click', slideToggle);
     $('body').delegate('a.load-remote', 'click', loadRemote);
+    $('body').delegate('.load-remote a', 'click', prepareLoadRemote);
     $('body').delegate('a.load-more-ajax', 'click', loadMoreComments);
     $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
     $(window).scroll(stepsScrollAnimation);
@@ -120,7 +121,15 @@ function slideToggle(e){
         }
     });
 }
-
+function prepareLoadRemote(e){
+    $(e.target).attr('data-url', $(e.target).attr('href'));
+    if( typeof( $(e.target).closest('.load-remote').attr('data-callback') )!='undefined'){
+        $(e.target).attr('data-callback', $(e.target).closest('.load-remote').attr('data-callback'));
+    }
+    $(e.target).attr('data-target', $(e.target).closest('.load-remote').attr('data-target'));
+    history.pushState({}, '', $(e.target).attr("href"));
+    loadRemote(e);
+}
 /**
  * Event handler for a.load-remote<br />
  * It loads the resource specified at data-url into the element specified at data-target
