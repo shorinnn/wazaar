@@ -5,14 +5,15 @@ class AnalyticsSeeder extends DatabaseSeeder
     public function run()
     {
         $coursePurchases = [];
-        $trackingCodeHits = [];
+
 
         $faker = Faker\Factory::create();
         for ($i = 1; $i< 50; $i++){
             $trackingCode = $faker->word();
             $date = $faker->dateTimeBetween('-1 week');
+            $courseId = $faker->numberBetween(1,10);
             $coursePurchases[] = [
-                'course_id' => $faker->numberBetween(1,10),
+                'course_id' => $courseId,
                 'student_id' => $faker->randomElement([3,7]),
                 'ltc_affiliate_id' => 2,
                 'product_affiliate_id' => 5,
@@ -21,16 +22,24 @@ class AnalyticsSeeder extends DatabaseSeeder
                 'created_at' => $date,
                 'updated_at' => $date
             ];
-            $trackingCodeHits[] = [
+            $this->_createFakeHits( [
                 'affiliate_id' => 2,
+                'course_id' => $courseId,
                 'tracking_code' => $trackingCode,
                 'created_at' => $date,
                 'updated_at' => $date
-            ];
+            ]);
 
         }
 
         CoursePurchase::insert($coursePurchases);
-        TrackingCodeHits::insert($trackingCodeHits);
+        //TrackingCodeHits::insert($trackingCodeHits);
+    }
+
+    private function _createFakeHits($hits)
+    {
+        for ($i = 1; $i < rand(2,10); $i++){
+            TrackingCodeHits::create($hits);
+        }
     }
 }

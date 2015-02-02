@@ -11,6 +11,10 @@
     .comment-form-reply{
         min-width: 500px
     }
+    .is-reply-to{
+        font-style: italic;
+        font-size: 12px;
+    }
 </style>
     <h1>{{ $course->name }}</h1>
     <h2>{{ $lesson->name }}</h2>
@@ -38,13 +42,14 @@
     
     {{ View::make('courses.classroom.conversations.all')->withComments( $lesson->comments ) }}
     
-    <a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->slug] )}}' class="load-more-comments load-more-ajax" 
+   <!-- <a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->slug] )}}' class="load-more-comments load-more-ajax" 
        data-url='{{action('ConversationsController@loadMore')}}' 
        data-target='.users-comments' data-skip='2' data-lesson='{{$lesson->id}}'>LOAD MORE</a>
-    
+    -->
     <br />
     <p class="text-center">
-        <a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->slug] )}}'>View All Comments Ever</a>
+        {{ $lesson->comments->links() }}
+        <!--<a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->slug] )}}'>View All Comments Ever</a>-->
     </p>
     </div>
 @stop

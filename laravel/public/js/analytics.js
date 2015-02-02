@@ -58,5 +58,45 @@ var Analytics = {
                 $('#header-tracking-codes-frequency').html('All Time');
             }
         });
+    },
+    'courseConversions' :  function ($frequency, $elem){
+        $.get('dashboard/courseconversions/' + $frequency, function ($html){
+            $('#wrapper-course-conversions').html($html);
+
+            $('.course-conversions-dropdown a').removeClass('active');
+            $($elem).addClass('active');
+            if ($frequency == 'daily'){
+                $('#header-course-conversions-frequency').html('Today');
+            }
+            else if($frequency == 'week'){
+                $('#header-course-conversions-frequency').html('This Week');
+            }
+            else if($frequency == 'month'){
+                $('#header-course-conversions-frequency').html('This Month');
+            }
+            else if($frequency == 'alltime'){
+                $('#header-course-conversions-frequency').html('All Time');
+            }
+        });
+    },
+    'trackingCodeConversions' :  function ($frequency, $elem){
+        $.get('dashboard/trackingcodeconversions/' + $frequency, function ($html){
+            $('#wrapper-tracking-code-conversions').html($html);
+
+            $('.tracking-code-conversions-dropdown a').removeClass('active');
+            $($elem).addClass('active');
+            if ($frequency == 'daily'){
+                $('#header-tracking-code-conversions-frequency').html('Today');
+            }
+            else if($frequency == 'week'){
+                $('#header-tracking-code-conversions-frequency').html('This Week');
+            }
+            else if($frequency == 'month'){
+                $('#header-tracking-code-conversions-frequency').html('This Month');
+            }
+            else if($frequency == 'alltime'){
+                $('#header-tracking-code-conversions-frequency').html('All Time');
+            }
+        });
     }
 };

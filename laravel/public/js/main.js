@@ -341,15 +341,22 @@ function postedComment(json, e){
         // increment reply counter
         count = $(e.target).closest('.comment-form-reply').parent().parent().parent().find('.number-of-replies').html();
         $.trim( count );
+        
         count = count.split(' ');
         count = count[0];
+        
         count_number = count = count * 1 + 1 * 1;
         count += ' ' + pluralize( _('reply'), count_number );
-        $(e.target).closest('.comment-form-reply').parent().parent().parent().find('.number-of-replies').html( count );
-        $(e.target).closest('.comment-form-reply').parent().parent().parent().find('.number-of-replies').click();
+        $(e.target).closest('.comment-form-reply').parent().parent().parent().find('.number-of-replies').first().html( count );
+//        $(e.target).closest('.comment-form-reply').parent().parent().parent().find('.number-of-replies').click();
         $(e.target).closest('.comment-form-reply').remove();
+        addToList(json, e);
     }
     else{
         addToList(json, e, true);
     }
+}
+
+function disableLink(e){
+    $(e.target).addClass('disabled-item');
 }
