@@ -32,6 +32,9 @@
         margin-left: 90px;
         margin-top: 15px;
     }
+    a.load-remote > *{
+        pointer-events: none;
+    }
 </style>
     <h1>{{ $course->name }}</h1>
     <h2>{{ $lesson->name }}</h2>
