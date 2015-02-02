@@ -369,7 +369,7 @@ class AnalyticsHelper
             $criteriaPurchase2 .= " AND (course_purchases.ltc_affiliate_id = '{$this->affiliateId}' OR course_purchases.product_affiliate_id = '{$this->affiliateId}' )";
         }
 
-        $sql = "SELECT cp.tracking_code, cp.course_id,
+        $sql = "SELECT DISCTINCT cp.tracking_code, cp.course_id,
                (
                        SELECT COUNT(course_purchases.id)
                       FROM course_purchases
