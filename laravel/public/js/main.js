@@ -383,6 +383,7 @@ function collapseComments(e){
     $(e.target).removeClass('load-remote');
     $(e.target).addClass('slide-toggler');
     $(e.target).attr('data-callback','rotateCollapse');
+    $(e.target).find(".fa-arrow-down").remove();
     $(e.target).append(" <i class='fa fa-arrow-up fa-animated'></i>");
 }
 
