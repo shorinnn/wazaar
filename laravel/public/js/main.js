@@ -60,8 +60,10 @@ function uniqueId(){
 }
 
 /**
- * Removes the hidden class of the supplied identifier and scrolls to it
+ * Hides the current .animated-step element, unhides the next one and triggers a slideup animation
+ * @method unhide
  * @param {string} elem CSS selector
+ * @param {string} data-target the element to display
  */
 function unhide(elem){
     $(elem).removeClass('hidden');
@@ -82,6 +84,11 @@ function unhide(elem){
     });
 }
 
+/**
+ * Reverses the unhide method
+ * @method reverseUnhide
+ * @param {string} data-target The element to display
+ */
 function reverseUnhide(){
     elem = '#'+$('.animated-step:visible').attr('id');
     if(elem=='#step1') return false;
@@ -95,8 +102,6 @@ function reverseUnhide(){
     }, 1000, function(){
         $(elem).addClass('hidden');
     });
-    
-   
     $(elem).prev('.animated-step').show();
     $(elem).prev('.animated-step').animate({
         opacity: 1,
@@ -110,6 +115,8 @@ function reverseUnhide(){
  * Slide toggles an element defined by the caller's data-target attribute
  * @method slideToggle
  * @param {event} e The click event
+ * @param {string} data-target The element to toggle
+ * @param {string} data-callback The function to call when the toggle animation finishes
  */
 function slideToggle(e){
     e.preventDefault();
@@ -121,6 +128,17 @@ function slideToggle(e){
         }
     });
 }
+
+/**
+ * Makes the element clicked inside the .load-remote element inherit load-remote
+ * properties then fires loadRemote on it
+ * @param {event} e Clickevent
+ * @param {string} data-url The url to use in the ajax call
+ * @param {string} data-callback The function to call after the ajax call succeedes
+ * @param {string} data-load-method How to add the new content to the target (load|append|prepend|fade)
+ * @param {string} data-target CSS selector of the element that receives the new content
+ * @method prepareLoadRemote
+ */
 function prepareLoadRemote(e){
     $(e.target).attr('data-url', $(e.target).attr('href'));
     if( typeof( $(e.target).closest('.load-remote').attr('data-callback') )!='undefined'){
@@ -137,6 +155,10 @@ function prepareLoadRemote(e){
  * Event handler for a.load-remote<br />
  * It loads the resource specified at data-url into the element specified at data-target
  * @param {event} e Click event
+ * @param {string} data-url The url to use in the ajax call
+ * @param {string} data-callback The function to call after the ajax call succeedes
+ * @param {string} data-load-method How to add the new content to the target (load|append|prepend|fade)
+ * @param {string} data-target CSS selector of the element that receives the new content
  * @method loadRemote
  */
 function loadRemote(e){
@@ -195,6 +217,15 @@ function loadRemote(e){
     else{}
 }
 
+/**
+ * Loads more comments via ajax and appends them to the container
+ * @param {event} e Click event
+ * @param {string} data-url The url to use in the ajax call
+ * @param {string} data-callback The function to call after the ajax call succeedes
+ * @param {string} data-target CSS selector of the element that receives the new content
+ * @param {string} data-skip How many items to skip in the fetch query
+ * @method loadMoreComments
+ */
 function loadMoreComments(e){    
     e.preventDefault();
     url = $(e.target).attr('data-url');
@@ -226,6 +257,9 @@ function loadMoreComments(e){
 /**
  * Similar to loadRemote, it loads the resource, but only once, later requests just display the content already loaded
  * @param {event} e Click event
+ * @param {string} data-url The url to use in the ajax call
+ * @param {string} data-callback The function to call after the ajax call succeedes
+ * @param {string} data-target CSS selector of the element that receives the new content
  * @method loadRemoteCache
  */
 function loadRemoteCache(e){
@@ -256,7 +290,17 @@ function loadRemoteCache(e){
 }
 
 
+/**
+ * Flag, set to true if the scrolling unhide/reverseUnhide animation is running
+ * @property scrollAnimationActivated
+ * @type {Boolean}
+ */
 scrollAnimationActivated = true;
+/**
+ * Fires the unhide method when scrolled to the bottom of the page and reverseUnhide
+ * method when scrolled to the top of the page
+ * @method stepsScrollAnimation
+ */
 function stepsScrollAnimation(){
    if($('.animated-step').length==0) return false;
    if(!scrollAnimationActivated) return false;
@@ -280,6 +324,7 @@ function stepsScrollAnimation(){
 /**
  * This function fixes the navigation menu at the top of the page
  * on scroll.
+ * @method floatingNav
  */
 function floatingNav(){
     // this checks the current top position of the nav and stores it in a variable.
@@ -300,7 +345,10 @@ function floatingNav(){
 
 }
 
-// Function for sliding to each section when nav button is clicked
+/**
+ * Function for sliding to each section when nav button is clicked
+ * @method scrollNavigation
+ */ 
 function scrollNavigation(){
     $('a[href*=#]').each(function() {
         if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
@@ -335,6 +383,7 @@ function scrollNavigation(){
  * @param {json} json The ajax response
  * @param {event} e the original event
  * @param {bool} prepend if set to true, prepend to list, otherwise append
+ * @param {string} data-destination CSS selector of the element that receives the new content
  * @method addToList
  */
 function addToList(json, e, prepend){
@@ -349,6 +398,8 @@ function addToList(json, e, prepend){
  * Replace an existing element with the one returned by an upload script
  * @param {event} e the original event
  * @param {json} data the upload result
+ * @param {string} data-progress-bar The progress bar used in the upload process (so we can reset it)
+ * @param {string} data-replace CSS selector of the element to be replaced by the new stuff
  * @method replaceElementWithUploaded
  */
 function replaceElementWithUploaded(e, data){
@@ -368,6 +419,7 @@ function replaceElementWithUploaded(e, data){
  * Replace an existing element with the one returned by an ajax script
  * @param {json} result the ajax result
  * @param {e} e the original event
+ * @param {string} data-replace CSS selector of the element to be replaced by the new stuff
  * @method replaceElementWithReturned
  */
 function replaceElementWithReturned(result, e){
@@ -387,17 +439,20 @@ $.fn.scrollToChild = function(child) {
     this.scrollTop( this.scrollTop() + $(child).position().top - $(child).height() );
 };
 
+/**
+ * Callback fired after posting a comment
+ * @param {object} json The json response of the post ajax call
+ * @param {type} e The original event (form submit)
+ * @method postedComment
+ */
 function postedComment(json, e){
-    
     // remove form from page if reply
     if( $(e.target).find('.reply-to').val() > 0){
         // increment reply counter
         count = $(e.target).closest('.comment-form-reply').parent().parent().parent().find('.number-of-replies').html();
         $.trim( count );
-        
         count = count.split(' ');
         count = count[0];
-        
         count_number = count = count * 1 + 1 * 1;
         count += ' ' + pluralize( _('reply'), count_number );
         $(e.target).closest('.comment-form-reply').parent().parent().parent().find('.number-of-replies').first().html( count );
@@ -410,6 +465,11 @@ function postedComment(json, e){
     }
 }
 
+/**
+ * Expands/collapses a comment's reply box
+ * @param {event} e The click event
+ * @method collapseComments
+ */
 function collapseComments(e){
     $(e.target).removeClass('load-remote');
     $(e.target).addClass('slide-toggler');
@@ -418,13 +478,30 @@ function collapseComments(e){
     $(e.target).append(" <i class='fa fa-arrow-up fa-animated'></i>");
 }
 
+/**
+ * Used by rotateCollapse it stores the arrow glyph rotation value (0 or 180)
+ * @property rotation
+ * @type {Number}
+ */
+var rotation = 0;
+
+/**
+ * Fired when a comment area is expanded/collapsed, it rotates the arrow glyph
+ * contained in the link element that triggeres the event
+ * @param {event} e The collapseComments click event
+ * @method rotateCollapses
+ */
 function rotateCollapse(e){
     rotation = rotation==0 ? 180 : 0;
     $(e.target).find('.fa').rotate(rotation);
 }
 
-var rotation = 0;
 
+/**
+ * jQuery method that sets an element rotate property to the given value
+ * @param {number} degrees The value of the rotate property
+ * @method jQuery.rotate
+ */
 jQuery.fn.rotate = function(degrees) {
     $(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
                  '-moz-transform' : 'rotate('+ degrees +'deg)',
