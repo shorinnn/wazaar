@@ -126,6 +126,9 @@ function prepareLoadRemote(e){
     if( typeof( $(e.target).closest('.load-remote').attr('data-callback') )!='undefined'){
         $(e.target).attr('data-callback', $(e.target).closest('.load-remote').attr('data-callback'));
     }
+    if( typeof( $(e.target).closest('.load-remote').attr('data-load-method') )!='undefined'){
+        $(e.target).attr('data-load-method', $(e.target).closest('.load-remote').attr('data-load-method'));
+    }
     $(e.target).attr('data-target', $(e.target).closest('.load-remote').attr('data-target'));
     history.pushState({}, '', $(e.target).attr("href"));
     loadRemote(e);
@@ -169,6 +172,21 @@ function loadRemote(e){
             $(e.target).attr('data-loading', 0);
             if(loadMethod=='append') $(target).append(data);
             else $(target).prepend(data);
+            if( typeof(callback)!= 'undefined'){
+                window[callback](e);
+            }
+        });
+    }
+    else if(loadMethod=='fade'){
+        $(target).addClass('disabled-item');
+        $(target).after("<div class='overlay-loading'></div>");
+        mt = $(target).height();
+        mt /=2;
+        $('.overlay-loading').css('margin-top', "-"+mt+"px");
+        $(target).load(url, function(){
+            $('.overlay-loading').remove();
+            $(target).removeClass('disabled-item');
+            $(e.target).attr('data-loading', 0);
             if( typeof(callback)!= 'undefined'){
                 window[callback](e);
             }
