@@ -14,6 +14,10 @@ class SiteController extends \BaseController {
             Return View::make('site.classroom');
 	}
         
+        public function crud(){
+             Return View::make('TEMPORARYVIEWS.crud');
+        }
+        
         public function admindash(){
              Return View::make('TEMPORARYVIEWS.admin_dashboard');
         }
