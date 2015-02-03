@@ -12,9 +12,10 @@ class ProductAffiliateCest{
         ProductAffiliate::boot();
     }
     
-    public function get2Sales(UnitTester $I){
+    public function getSales(UnitTester $I){
         $pa = ProductAffiliate::find(5);
-        $I->assertEquals(2, $pa->sales->count());
+        $sales = CoursePurchase::where('product_affiliate_id', 5)->count();
+        $I->assertEquals($sales, $pa->sales->count());
     }
     
 }
