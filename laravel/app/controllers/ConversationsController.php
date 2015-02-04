@@ -8,6 +8,11 @@ class ConversationsController extends \BaseController {
         }
         
         public function store(){
+            $student = Student::find( Auth::user()->id );
+            $lesson = Lesson::find( Input::get('lesson') );
+            if( !$student->purchased($lesson->module->course) ){
+                 return Redirect::to('/');
+            }
             $conv = new Conversation(['poster_id' => Auth::user()->id, 'lesson_id' => Input::get('lesson'), 'content' => Input::get('content') ]);
             if( Input::get('reply_to') > 0) {
                 $original = Conversation::find( Input::get('reply_to') );
@@ -41,6 +46,10 @@ class ConversationsController extends \BaseController {
         
         public function replies($id, $skip=0){
             $comment = Conversation::find($id);
+            $student = Student::find(Auth::user()->id);
+            if( !$student->purchased($comment->lesson->module->course) ){
+                 return Redirect::to('/');
+            }
             $html = '';
             foreach($comment->replies()->orderBy('id','asc')->take( $comment->replies()->count() - $skip )->get() as $reply){
                 $html.=  View::make('courses.classroom.conversations.conversation')->withComment( $reply )->render();
@@ -53,6 +62,10 @@ class ConversationsController extends \BaseController {
                 $query->orderBy('id','desc');
             }])->find($id);
             
+            $student = Student::find(Auth::user()->id);
+            if( !$student->purchased($comment->lesson->module->course) ){
+                 return Redirect::to('/');
+            }
             return  View::make('courses.classroom.conversations.view_replies')->with(compact('comment'));
         }
         
@@ -65,6 +78,11 @@ class ConversationsController extends \BaseController {
                         $query->where('reply_to',null);
                         
                     }])->find( Input::get('lesson') );
+                    
+            $student = Student::find(Auth::user()->id);
+            if( !$student->purchased($lesson->module->course) ){
+                 return Redirect::to('/');
+            }
                     
             $html = '';
             foreach($lesson->comments as $reply){
@@ -95,6 +113,10 @@ class ConversationsController extends \BaseController {
         
         public function replyTo($id){
             $comment = Conversation::with('replies')->find($id);
+            $student = Student::find(Auth::user()->id);
+            if( !$student->purchased($comment->lesson->module->course) ){
+                 return Redirect::to('/');
+            }
             $comment->lesson->comments = $comment->lesson->comments()->paginate();
             return View::make('courses.classroom.conversations.lesson_conversations')
                     ->withCourse($comment->lesson->module->course)

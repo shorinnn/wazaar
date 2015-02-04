@@ -38,7 +38,8 @@ class ClassroomController extends \BaseController {
                         
                     }])
              */
-            $lesson = Lesson::where('slug', $lesson)->with('blocks')->first();
+ 
+            $lesson = Lesson::where('slug', $lesson)->whereIn( 'module_id', $course->modules()->lists('id') )->with('blocks')->first();
             $lesson->comments = $lesson->comments()->orderBy('id','desc')->where('reply_to', null)->with('poster')->paginate( 2 );
             if( $lesson==null || $lesson->module->course->id != $course->id ){
                 return Redirect::to('/');
