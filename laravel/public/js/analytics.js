@@ -39,8 +39,8 @@ var Analytics = {
             }
         });
     },
-    'trackingCodes' :  function ($frequency, $elem){
-        $.get('dashboard/trackingcodes/' + $frequency, function ($html){
+    'trackingSalesCodes' :  function ($frequency, $elem){
+        $.get('dashboard/trackingcodessales/' + $frequency, function ($html){
             $('#wrapper-tracking-codes').html($html);
 
             $('.tracking-codes-dropdown a').removeClass('active');

@@ -44,14 +44,14 @@ class AnalyticsHelper
         }
     }
 
-    public function courseConversion($frequency = '')
+    public function courseConversion($frequency = '', $courseId = null)
     {
         switch($frequency){
-            case 'daily' : return $this->dailyCourseConversion(); break;
-            case 'week': return $this->weeklyCourseConversion(); break;
-            case 'month': return $this->monthlyCourseConversion(); break;
-            case 'alltime' : return $this->allTimeCourseConversion(); break;
-            default: return $this->dailyCourseConversion();
+            case 'daily' : return $this->dailyCourseConversion($courseId); break;
+            case 'week': return $this->weeklyCourseConversion($courseId); break;
+            case 'month': return $this->monthlyCourseConversion($courseId); break;
+            case 'alltime' : return $this->allTimeCourseConversion($courseId); break;
+            default: return $this->dailyCourseConversion($courseId);
         }
     }
 
@@ -65,6 +65,9 @@ class AnalyticsHelper
             default: return $this->dailyTrackingCodeConversion();
         }
     }
+
+
+
     public function dailySales()
     {
         $dateFilter = $this->_frequencyEquivalence();
@@ -162,35 +165,59 @@ class AnalyticsHelper
     }
 
 
-    public function dailyCourseConversion()
+    public function dailyCourseConversion($courseId)
 {
     $dateFilter = $this->_frequencyEquivalence();
-    $query = $this->_coursePurchaseConversionRawQuery("DATE(cp.created_at) = '{$dateFilter}'");
+    $filterQuery = "DATE(cp.created_at) = '{$dateFilter}'";
+
+    if (!empty($courseId)){
+        $filterQuery .= " AND cp.course_id = '{$courseId}'";
+    }
+
+    $query = $this->_coursePurchaseConversionRawQuery($filterQuery);
+
 
     return $this->_transformCoursePurchaseConversion($query);
 }
 
-    public function weeklyCourseConversion()
+    public function weeklyCourseConversion($courseId)
     {
         $dateFilterStart = $this->_frequencyEquivalence('week');
         $dateFilterEnd = date('Y-m-d');
-        $query = $this->_coursePurchaseConversionRawQuery("DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'");
+        $filterQuery = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        if (!empty($courseId)){
+            $filterQuery .= " AND cp.course_id = '{$courseId}'";
+        }
+
+        $query = $this->_coursePurchaseConversionRawQuery($filterQuery);
 
         return $this->_transformCoursePurchaseConversion($query);
     }
 
-    public function monthlyCourseConversion()
+    public function monthlyCourseConversion($courseId)
     {
         $dateFilterStart = $this->_frequencyEquivalence('month');
         $dateFilterEnd = date('Y-m-d');
-        $query = $this->_coursePurchaseConversionRawQuery("DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'");
+        $filterQuery = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        if (!empty($courseId)){
+            $filterQuery .= " AND cp.course_id = '{$courseId}'";
+        }
+
+        $query = $this->_coursePurchaseConversionRawQuery($filterQuery);
 
         return $this->_transformCoursePurchaseConversion($query);
     }
 
-    public function allTimeCourseConversion()
+    public function allTimeCourseConversion($courseId)
     {
-        $query = $this->_coursePurchaseConversionRawQuery();
+        $filterQuery = "";
+
+        if (!empty($courseId)){
+            $filterQuery = "cp.course_id = '{$courseId}'";
+        }
+        $query = $this->_coursePurchaseConversionRawQuery($filterQuery);
 
         return $this->_transformCoursePurchaseConversion($query);
     }

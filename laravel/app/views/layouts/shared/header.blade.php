@@ -5,7 +5,7 @@
         @if(Auth::check())
         <ul>
             <li>
-                <a href="#">{{trans('site/homepage.dashboard')}}</a>
+                <a href="{{url('dashboard')}}">{{trans('site/homepage.dashboard')}}</a>
             </li>
             <li>
                 <a href="#">{{trans('site/homepage.store')}}</a>
