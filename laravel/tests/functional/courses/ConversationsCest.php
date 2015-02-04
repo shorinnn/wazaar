@@ -13,7 +13,7 @@ class ConversationsCest{
     
     public function redirectIfNotLoggedIn(FunctionalTester $I){
         $I->dontSeeAuthentication();
-        $I->amOnPage( "classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->slug );
+        $I->amOnPage( "classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->module->slug.'/'.$this->lesson->slug );
         $I->seeCurrentUrlEquals('/login');
     }
 
@@ -22,7 +22,7 @@ class ConversationsCest{
         $I->amLoggedAs($user);
         $I->seeAuthentication();
         $I->assertTrue( $user->purchased ($this->lesson->module->course) );
-        $I->amOnPage( "classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->slug );
+        $I->amOnPage( "classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->module->slug.'/'.$this->lesson->slug );
         $I->submitForm('#add-comment-form',['content' => 'test text']);
         $I->seeRecord('conversations',[ 'poster_id' => $user->id, 'content' => 'test text', 'lesson_id' => $this->lesson->id ]);
     }   
@@ -33,7 +33,7 @@ class ConversationsCest{
         $I->amLoggedAs($user);
         $I->seeAuthentication();
         $I->assertTrue( $user->purchased ($this->lesson->module->course) );
-        $I->amOnPage( "classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->slug );
+        $I->amOnPage( "classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->module->slug.'/'.$this->lesson->slug );
         $I->sendAjaxPostRequest( action('ConversationsController@store'), [
             '_token' => csrf_token(),
             'lesson' => $this->lesson->id,
@@ -49,11 +49,11 @@ class ConversationsCest{
         $I->seeAuthentication();
         $I->assertTrue( $user->purchased ($this->lesson->module->course) );
         
-        $I->amOnPage( "/classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->slug );
+        $I->amOnPage( "/classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->module->slug.'/'.$this->lesson->slug );
         $I->submitForm('#add-comment-form',['content' => 'test text']);
         $I->seeRecord('conversations',[ 'poster_id' => $user->id, 'content' => 'test text', 'lesson_id' => $this->lesson->id]);
         
-        $I->amOnPage( "/classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->slug );
+        $I->amOnPage( "/classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->module->slug.'/'.$this->lesson->slug );
         $I->submitForm('#add-comment-form',['content' => 'the reply', 'reply_to' => Conversation::get()->last()->id ]);
         $I->seeRecord('conversations',[ 'poster_id' => $user->id, 'content' => 'the reply', 'lesson_id' => $this->lesson->id ]);
     }   
@@ -64,17 +64,17 @@ class ConversationsCest{
         $I->seeAuthentication();
         $I->assertTrue( $user->purchased ($this->lesson->module->course) );
         
-        $I->amOnPage( "/classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->slug );
+        $I->amOnPage( "/classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->module->slug.'/'.$this->lesson->slug );
         $I->submitForm('#add-comment-form',['content' => 'test text']);
         $I->seeRecord('conversations',[ 'poster_id' => $user->id, 'content' => 'test text', 'lesson_id' => $this->lesson->id]);
         
         $original_comment = Conversation::get()->last()->id ;
-        $I->amOnPage( "/classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->slug );
+        $I->amOnPage( "/classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->module->slug.'/'.$this->lesson->slug );
         $I->submitForm('#add-comment-form',['content' => 'the reply', 'reply_to' => $original_comment]);
         $I->seeRecord('conversations',[ 'poster_id' => $user->id, 'content' => 'the reply', 'lesson_id' => $this->lesson->id ]);
         
         $reply_id = Conversation::get()->last()->id;
-        $I->amOnPage( "/classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->slug );
+        $I->amOnPage( "/classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->module->slug.'/'.$this->lesson->slug );
         $I->submitForm('#add-comment-form',['content' => 'reply to reply', 'reply_to' => $reply_id ]);
         $I->seeRecord('conversations',[ 'poster_id' => $user->id, 'content' => 'reply to reply', 
             'original_reply_to' => $reply_id, 'reply_to' => $original_comment, 'lesson_id' => $this->lesson->id ]);
@@ -102,7 +102,7 @@ class ConversationsCest{
         $I->seeAuthentication();
         $I->assertTrue( $user->purchased ($this->lesson->module->course) );
         
-        $I->amOnPage( "/classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->slug );
+        $I->amOnPage( "/classroom/".$this->lesson->module->course->slug.'/'.$this->lesson->module->slug.'/'.$this->lesson->slug );
         $I->submitForm('#add-comment-form',['content' => 'test text']);
         $I->seeRecord('conversations',[ 'poster_id' => $user->id, 'content' => 'test text', 'lesson_id' => $this->lesson->id]);
         $original_comment = Conversation::get()->last()->id ;
