@@ -9,6 +9,7 @@ $(document).ready(function(){
     $('body').delegate('a.load-remote', 'click', loadRemote);
     $('body').delegate('a.load-more-ajax', 'click', loadMoreComments);
     $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
+    $('body').delegate('span.view-more', 'click', loadMoreComments);
     $(window).scroll(stepsScrollAnimation);
     _.setTranslation( js_translation_map );
     floatingNav();
@@ -405,3 +406,21 @@ jQuery.fn.rotate = function(degrees) {
                  'transform' : 'rotate('+ degrees +'deg)'});
     return $(this);
 };
+
+function moreLess(e) {
+    var expandBox = TweenMax.to(".users-comments", 2, {height: "748px", ease: Linear.easeNone});
+    expandBox.pause();
+    function loadMoreComments(e) {
+        $(".view-more").click(function () {
+            expandBox.play();
+            $(this).removeClass("view-more").addClass("view-less").text("VIEW LESS");
+        });
+    }
+
+    function loadLessComments(e) {
+        $(".view-less").click(function () {
+            expandBox.reverse();
+            $(this).removeClass("view-less").addClass("view-more").text("LOAD MORE");
+        });
+    }
+}

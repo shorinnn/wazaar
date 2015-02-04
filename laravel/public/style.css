@@ -2774,6 +2774,8 @@ header .activate-dropdown:hover ul{
 .users-comments{
 	padding-top: 40px;
 	background: #fff;
+	height: 448px;
+	overflow: hidden;
 	border-radius: 5px;
 }
 
