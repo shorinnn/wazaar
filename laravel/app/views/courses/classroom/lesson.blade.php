@@ -83,7 +83,7 @@
             <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
                 
                 {{ $lesson->comments->links() }}
-                <!--<a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->slug] )}}'>View All Comments Ever</a>-->
+                <a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->module->slug, $lesson->slug] )}}'>View All Comments Ever</a>
             </div>
         </div>
     </div>

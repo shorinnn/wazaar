@@ -168,7 +168,7 @@
                                     </li>
                                     @foreach($module->lessons as $lesson)
                                         <li id="curriculum-lesson-{{$lesson->id}}">
-                                            <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'lesson' => $lesson->slug ] ) }}" 
+                                            <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'module' => $lesson->module->slug, 'lesson' => $lesson->slug ] ) }}" 
                                                @if( $student->isLessonViewed($lesson) )
                                                    class="lesson-1">
                                                @else

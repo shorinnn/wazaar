@@ -67,7 +67,7 @@ Route::group(['prefix' => 'student'], function (){
 });
 
 //Conversations
-Route::get('conversations/lesson/{course}/{slug}', 'ConversationsController@lesson');
+Route::get('conversations/lesson/{course}/{module}/{slug}', 'ConversationsController@lesson');
 Route::get('conversations/replies/{id}/{skip}', 'ConversationsController@replies');
 Route::get('conversations/replies/{id}', 'ConversationsController@replies');
 Route::get('conversations/view-replies/{id}', 'ConversationsController@viewReplies');
@@ -82,7 +82,7 @@ Route::resource('followers', 'FollowersController');
 
 // classroom
 Route::get('classroom/{slug}/dashboard', 'ClassroomController@dashboard');
-Route::get('classroom/{course}/{lesson}', 'ClassroomController@lesson');
+Route::get('classroom/{course}/{module}/{lesson}', 'ClassroomController@lesson');
 
 // Courses Controller
 Route::get('courses/mycourses', 'CoursesController@myCourses');

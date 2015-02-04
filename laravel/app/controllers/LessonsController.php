@@ -56,9 +56,14 @@ class LessonsController extends \BaseController {
             if($lesson!=null && $lesson->module->course->instructor->id == Auth::user()->id){
                 $name = Input::get('name');
                 $lesson->$name = Input::get('value');
-                $lesson->save();
-                $response = ['status' => 'success'];
-                return json_encode($response);
+                if( $lesson->save() ){
+                    $response = ['status' => 'success'];
+                    return json_encode($response);
+                }
+                else{
+                    $response = ['status' => 'error', 'errors' => format_errors( $lesson->errors()->all() ) ];
+                    return json_encode($response);
+                }
             }
             $response = ['status' => 'error', 'errors' =>  trans('crud/errors.cannot_save_object', 'Lesson') ];
             return json_encode($response);

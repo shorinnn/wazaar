@@ -91,24 +91,22 @@ class ConversationsController extends \BaseController {
             return $html;
         }
         
-        public function lesson($course, $slug){
+        public function lesson($course, $module, $slug){
             $course = Course::where('slug', $course)->first();
             $student = Student::find( Auth::user()->id );
             if( $course==null || !$student->purchased( $course ) ){
                 return Redirect::to('/');
             }
-//            $lesson = Lesson::where('slug', $slug)->with('comments.replies')
-//                    ->with('comments.poster')->with(['comments' => function($query){
-//                        $query->orderBy('id','desc');                        
-//                    }])->first();
-            $lesson = Lesson::where('slug', $slug)->first();
+            $module = $course->modules()->where('slug', $module)->first();
+            $lesson = $module->lessons()->where('slug', $slug)->first();
+//            $lesson = Lesson::where('module_id', $module)->where('slug', $slug)->first();
             $comments = $lesson->comments()->orderBy('id','desc')->where('reply_to', null)->paginate( 5 );
             $lesson->comments = $comments;
             if( $lesson==null || $lesson->module->course->id != $course->id ){
                 return Redirect::to('/');
             }            
             
-            return View::make('courses.classroom.conversations.lesson_conversations')->with(compact('course'))->with( compact('lesson') );
+            return View::make('courses.classroom.conversations.lesson_conversations')->with( compact('course') )->with( compact('lesson') );
         }
         
         public function replyTo($id){

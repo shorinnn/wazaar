@@ -376,6 +376,7 @@ class CoursePurchasesSeeder extends Seeder {
         CoursePurchase::create( ['course_id' => 6, 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
         CoursePurchase::create( ['course_id' => 5, 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 2] );
         CoursePurchase::create( ['course_id' => 6, 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
+        CoursePurchase::create( ['course_id' => 5, 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
        
     }
 }
