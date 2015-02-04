@@ -27,7 +27,7 @@ class CourseCategory extends Ardent{
    
    public function afterSave(){
         if( Config::get('custom.use_id_for_slug')==true ) {
-            DB::table( $this->getTable() )->where('id', $this->id)->update( ['slug' => $this->id] );
+            DB::table( $this->getTable() )->where('id', $this->id)->update( ['slug' => PseudoCrypt::hash( $this->id )] );
         }
     }
     
