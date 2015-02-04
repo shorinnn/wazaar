@@ -15,6 +15,8 @@ $(document).ready(function(){
  * parsley events and callbacks for current element
  * @method fieldInstantValidCallback
  * @param {event} e
+ * @param {string} data-instant-valid-callback What function to call if the field is valid on instant check
+ * @param {string} data-instant-invalid-callback What function to call if the field is invalid on instant check
  * @return {bool}  True if the element was valid, false otherwise
  */
 function fieldInstantValidCallback(e){
@@ -43,6 +45,7 @@ function fieldInstantValidCallback(e){
  * Fires a form callback (data-form-valid-callback) if all elements within the form are valid
  * @method formValidCallback
  * @param event e
+ * @param {string} data-form-valid-callback The function to call if the entire form is valid during instant check
  * @returns bool - True on fired, false otherwise
  */
 function formValidCallback(e){
@@ -74,6 +77,7 @@ function formValidCallback(e){
  * attr of e.target) if specified
  * @method formInvalidCallback
  * @param {event} e
+ * @param {string} data-form-invalid-callback The function to call if the entire form is invalid during instant check
  */
 function formInvalidCallback(e){
     if( typeof(e.$element)=='undefined' ){

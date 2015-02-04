@@ -41,6 +41,7 @@ class ShowCourseCest{
     
     public function redirectToDashboardAndIncrementStudentCount(FunctionalTester $I){
         $student = Student::where('username', 'student')->first();
+        CoursePurchase::where('student_id', $student->id)->delete();
         $I->amLoggedAs($student);
         $I->seeAuthentication();
         $I->amOnPage('/courses/app-development');

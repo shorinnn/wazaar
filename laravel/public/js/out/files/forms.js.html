@@ -95,6 +95,8 @@
                             $(&#x27;body&#x27;).delegate(&#x27;.delete-clonable&#x27;, &#x27;click&#x27;, deleteClonable);
                             $(&#x27;body&#x27;).delegate(&#x27;.ajax-updatable&#x27;, &#x27;change&#x27;, updateFieldRemote);
                             $(&#x27;body&#x27;).delegate(&#x27;.set-slider&#x27;, &#x27;change&#x27;, setSlider);
+                            $(&#x27;body&#x27;).delegate(&#x27;.reply-to&#x27;, &#x27;click&#x27;, setReplyTo);
+                            $(&#x27;body&#x27;).delegate(&#x27;.cancel-reply&#x27;, &#x27;click&#x27;, cancelReply);
                         });
                         
                         /**
@@ -102,6 +104,7 @@
                          * Submits forms with .ajax-form class via ajax and fires the data-callback function if specified
                          * @method formAjaxSubmit
                          * @param {type} e Submit event
+                         * @param {string} data-callback What callback to fire after the ajax call succeedes
                          * @returns {Boolean} False
                          */
                         function formAjaxSubmit(e){
@@ -116,7 +119,6 @@
                                 }
                                 restoreSubmitLabel(form);
                                 if( typeof(form.attr(&#x27;data-callback&#x27;))!=&#x27;undefined&#x27; ){
-                                    form[0].reset();
                                     window[form.attr(&#x27;data-callback&#x27;)](result, e);
                                 }
                             });
@@ -151,7 +153,8 @@
                          * Event handler for  .delete-button.&lt;br /&gt;
                          * Fired by click on .delete-button and asks for confirmation
                          * @method confirmDelete
-                         * @param {event} e
+                         * @param {event} e The trigger event
+                         * @param {string} data-message What message to display in the confirmation prompt
                          * @returns {bool} True if confirmed, false otherwise
                          */
                         function confirmDelete(e){
@@ -172,6 +175,7 @@
                          * the slug version of the value
                          * @method updateSlug
                          * @param {Event} e
+                         * @param {string} data-slug-target What input to populate with the slug result  (css selector)
                          * @return {null} null
                          */
                         function updateSlug(e){
@@ -185,6 +189,7 @@
                          * returned by the get call to the resource at data-url
                          * @method populateDropdown
                          * @param {object} elem HTML dropdown
+                         * @param {string} data-target What dropdown to populate (css selector)
                          */
                         function populateDropdown(elem){
                             target = $(elem).attr(&#x27;data-target&#x27;);
@@ -273,14 +278,21 @@
                          * @method deleteItem
                          * @param {json} result The ajax call json response
                          * @param {event} event The original submit event
+                         * @param {string} data-delete What element to remove from page (CSS Selector)
                          */
                         function deleteItem(result, event){
                             identifier = $(event.target).attr(&#x27;data-delete&#x27;);
                             $(identifier).remove();
                         }
-                        var saving_animation = 0;
+                        
+                        /**
+                         * Sends the calling field&#x27;s value to an ajax script
+                         * @param {event} e Event
+                         * @param {string} data-url What URL to PUT the form to
+                         * @param {string} data-name The name of the field being updated
+                         * @method updateFieldRemote
+                         */
                         function updateFieldRemote(e){
-                            
                             url = $(e.target).attr(&#x27;data-url&#x27;);
                             name = $(e.target).attr(&#x27;data-name&#x27;);
                             value = $(e.target).val();
@@ -290,9 +302,20 @@
                                 url: url,
                                 type: &#x27;PUT&#x27;,
                                 data: {name:name, value:value, _token:token},
-                                success: savingAnimation(1)
+                                success: savingAnimation(1),
+                                error: function(e){
+                                    alert( _(&#x27;Request failed: an error occurred&#x27;) );
+                                    console.log(e);
+                                }
                             });
                         }
+                        
+                        /**
+                         * Flag, set to 1 when the &quot;saving&quot; animation runs, 0 when it finishes
+                         * @property saving_animation
+                         * @type Number
+                         */
+                        var saving_animation = 0;
                         
                         /**
                          * Displays a saving animation when called with a 0 param, ends it when called with a 1 param 
@@ -322,6 +345,9 @@
                         /**
                          * Enables AJAX file uploading for the specified element
                          * @param {object} $uploader The file object that is ajaxified
+                         * @param {string} data-dropzone CSS Selector of the element to be used as the uploader&#x27;s dropzone
+                         * @param {string} data-progress-bar CSS selector of the element to be used as the uploader&#x27;s progress bar
+                         * @param {string} data-callback What method to run after upload is complete
                          * @method enableFileUploader
                          */
                         function enableFileUploader($uploader){
@@ -367,6 +393,9 @@
                         /**
                          * Converts the supplied element into a slider object
                          * @param {String} selector The css selector of the element to be converted
+                         * @param {string} data-label CSS selector of the label element that displays the slider value
+                         * @param {string} data-target-input CSS selector of the input to be converted to a slider elements
+                         * @method enableSlider
                          */
                         function enableSlider(selector){
                             var label = $(selector).attr(&#x27;data-label&#x27;);
@@ -379,12 +408,58 @@
                         /**
                          * Sets a slider control&#x27;s value to the value of the calling input
                          * @param {event} e The change event fired by the calling input
+                         * @param {string} data-slider The CSS selector of the slider element
                          * @method setSlider
                          */
                         function setSlider(e){
                             elem = $(e.target).attr(&#x27;data-slider&#x27;);
                             $(elem).slider(&#x27;setValue&#x27;, $(e.target).val() );
                             $(elem).val( $(e.target).val() );
+                        }
+                        
+                        /**
+                         * Sets a form&#x27;s reply_to field to the value specified by data-id attr of the target
+                         * @param {event} e The click event
+                         * @param {string} data-id The id of the comment containing the reply box
+                         * @param {string} data-field The CSS selector of the hidden field containing the reply_to value
+                         * @param {string} data-reply-to The id of the comment the reply is for (can be data-id if replying a top level comment)
+                         * @param {string} data-destination CSS selector of the element that will append the reply after submission
+                         * @method setReplyTo
+                         */
+                        function setReplyTo(e){
+                            e.preventDefault();
+                            id = $(e.target).attr(&#x27;data-id&#x27;);
+                            name = $(e.target).prev(&#x27;.name&#x27;).html();
+                            
+                            //$box = $(e.target).parent().parent().find(&#x27;.replies&#x27;).first();
+                            $box = $(&#x27;.replies-comment-&#x27;+id);
+                            $box.find(&#x27;.comment-form-reply&#x27;).remove();
+                            id =  &#x27;.replies-&#x27; + $box.parent().attr(&#x27;id&#x27;);
+                            
+                            $form = $(&#x27;.comment-form&#x27;).clone();
+                            $form.removeClass(&#x27;comment-form&#x27;);
+                            $form.addClass(&#x27;comment-form-reply&#x27;);
+                            $form.find(&#x27;form&#x27;).attr(&#x27;data-destination&#x27;, id );
+                            $box.append( $form );
+                            $form.prepend(&#x27;&lt;span class=&quot;reply-to-label&quot;&gt;@&#x27;+name+&#x27; &lt;i class=&quot;fa fa-times cancel-reply&quot;&gt;&lt;/i&gt;&lt;/span&gt;&#x27;);
+                            indent = $box.find(&#x27;.reply-to-label&#x27;).outerWidth();
+                            $form.find(&#x27;textarea&#x27;).css(&#x27;text-indent&#x27;, indent );
+                            field = $(e.target).attr(&#x27;data-field&#x27;);
+                            val = $(e.target).attr(&#x27;data-reply-to&#x27;);
+                            $form.find(field).val( val );
+                        }
+                        
+                        /**
+                         * Cancel&#x27;s the reply state of a lesson comment. It removes the &#x27;reply_to&#x27; value
+                         * and the &quot;recipient&quot;&#x27;s name from the comment box
+                         * @param {event} e Click event
+                         * @method cancelReply
+                         */
+                        function cancelReply(e){
+                            $(e.target).parent().parent().find(&#x27;textarea&#x27;).css(&#x27;text-indent&#x27;, &#x27;0px&#x27; );
+                            $(e.target).parent().parent().find(&#x27;.reply-to&#x27;).val(&#x27;0&#x27;);
+                            $(e.target).parent().parent().find(&#x27;form&#x27;).attr(&#x27;data-destination&#x27;,&#x27;.users-comments &gt; .clearfix&#x27;);
+                            $(e.target).parent().remove();
                         }
                             </pre>
                         </div>

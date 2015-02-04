@@ -44,7 +44,8 @@ class ClassroomController extends \BaseController {
                 return Redirect::to('/');
             }            
             $student->viewLesson( $lesson );
-            return View::make('courses.classroom.lesson')->with( compact('course') )->with( compact('lesson') );
+            if(Request::ajax()) return View::make('courses.classroom.lesson_ajax')->with( compact('course') )->with( compact('lesson') );
+            else return View::make('courses.classroom.lesson')->with( compact('course') )->with( compact('lesson') );
         }
 
 }
