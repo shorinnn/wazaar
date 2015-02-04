@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder {
 		 $this->call('BlocksSeeder');
                  $this->call('AnalyticsSeeder');
                  $this->call('ProfileSeeder');
+                 $this->call('TestimonialsSeeder');
 	}
 
 }
@@ -294,22 +295,31 @@ class CoursesSeeder extends Seeder {
         Course::create( ['name' => 'App Development', 'slug' => 'app-development', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 1
                         , 'price' => 300000, 'course_difficulty_id' => 1, 'course_preview_image_id' => 1, 
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
+                        'short_description' => 'Short:  You get a beginner award after completing the course.', 
                         'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create( ['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 1,
-                        'price' => 185000.99, 'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0, 
+                        'price' => 185000.99, 'course_difficulty_id' => '2', 
+                        'description' => 'JS - the best language around.',
+                        'short_description' => 'Short: JS - the.',
+                        'student_count' => 0, 
                         'course_preview_image_id' => 2, 'featured' => 1, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]'
                         ]);
         Course::create( ['name' => 'PHP Primer', 'slug' => 'php-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,
-                        'price' => 99.99, 'course_difficulty_id' => 3, 'description' => 'PHP - the best language around.', 'student_count' => 0,  
+                        'price' => 99.99, 'course_difficulty_id' => 3, 
+                        'description' => 'PHP - the best language around.', 
+                        'short_description' => 'Short: PHP - the best language around.', 
+                        'student_count' => 0,  
                         'course_preview_image_id' => 3, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create( ['name' => 'PHP Primer Revisited', 'slug' => 'php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,   
-                        'price' => 99.99, 'course_difficulty_id' => 3, 'description' => 'PHP - the best language around. REVISITED.', 
+                        'price' => 99.99, 'course_difficulty_id' => 3,
+                        'description' => 'PHP - the best language around. REVISITED.', 
+                        'short_description' => 'Short: REVISITED.', 
                         'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
@@ -317,6 +327,7 @@ class CoursesSeeder extends Seeder {
         Course::create( ['name' => 'Business App Development', 'slug' => 'business-app-development', 'instructor_id' => 4, 'course_category_id' => 2, 'course_subcategory_id' => 2, 
                         'price' => 300000, 'course_difficulty_id' => 1,  'course_preview_image_id' => 4,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
+                        'short_description' => 'Short Create your very first.', 
                         'student_count' => 1, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
@@ -376,6 +387,7 @@ class CoursesSeeder extends Seeder {
                             ・モテボディを手に入れるために必要な理論と実践を、男女別にお届けします。
                             ・このプログラムは谷が実際にクライアントに指導している、効果が実証済みの内容です。・プログラムは「モテボディ理論編」「モテボディ実践編」の２本立てです。
                             ・インタビュー、Q&Aも用意しております。', 
+                        'short_description' => '「モテボディ養成講座（仮）」（フロント）',
                         'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                          'who_is_this_for' => '["モテたい人","最近体型が気になりはじめて、何とかしたいと思っている人","変わりたい希望はあるけど、何をすれば良いのか分からない方"
                              ,"自己流でトレーニングをやっているけど、本当に効果があるのか分からない人","忙しくてジムに通えない人","ジム通いに挫折したことがある人",
@@ -518,6 +530,20 @@ class ProfileSeeder extends Seeder {
                 現在は都内でパーソナルトレーナーとして 著名人や経営者を中心に指導を実施中。
                 また健康に関するセミナーを多数開催。 分かりやすい内容が好評を呼び、 毎回満席になる人気講座となっている。',
             'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg'] );
+       
+    }
+}
+
+class TestimonialsSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('testimonials')->delete();
+        Testimonial::unguard();
+        Testimonial::create( ['course_id' => 5, 'student_id' => '3', 'rating'=>'positive',
+            'content' => 'Dude, your stuff is the bomb! Business App Development is awesome! Really good.'] );
+        Testimonial::create( ['course_id' => 5, 'student_id' => '9', 'rating'=>'positive',
+            'content' => 'I have gotten at least 50 times the value from Business App Development. We\'re loving it.'] );
        
     }
 }

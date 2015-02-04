@@ -8,5 +8,6 @@ return [
     'tracker_url'          => 'http://wazaar.dev/action_tracker',
     'maximum_lesson_files' => 10,
     'course_attachments' => ['.jpg', '.png', '.gif', '.bmp', '.txt', '.pdf'],
-    'use_id_for_slug' => true
+    'use_id_for_slug' => true,
+    'short_desc_max_chars' => 100
 ];

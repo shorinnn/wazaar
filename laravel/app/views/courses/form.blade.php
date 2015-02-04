@@ -132,6 +132,7 @@
                     </div>
             </div>    
         <div>{{ trans('crud/labels.description') }} <div class="description-box">{{ Form::textarea('description') }}</div></div>    
+        <div>{{ trans('crud/labels.short_description') }} <div class="description-box">{{ Form::textarea('short_description') }}</div></div>    
         <div>{{ trans('courses/general.price') }} {{  Form::text( 'price', money_val($course->price) ) }}</div>    
         
         <div>{{ trans('courses/general.affiliate_percentage') }} 

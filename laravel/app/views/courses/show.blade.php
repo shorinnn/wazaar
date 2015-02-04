@@ -23,8 +23,8 @@
                 <div class="clearfix banner-content-wrapper">
                     <div class="number-of-students">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
                     <div class="number-of-reviews">
-                        21 REVIEWS
-                        <span>89%</span>
+                        {{ $course->total_reviews }} {{ singplural($course->total_reviews, 'REVIEWS') }}
+                        <span>{{ $course->reviews_positive_score }}%</span>
                     </div>
                         @if($course->isDiscounted())
                             <div class="white-box">
@@ -82,13 +82,17 @@
                         <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
                     @endif
             	<div class="left-content">
-                    <div class="testimonials">
-                        <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        </p>
-                        <span class="name">Takeshi, muniku</span>
-                    </div>
+                    @if($course->testimonials->count() > 0)
+                        <div class="testimonials">
+                            <p>
+                            {{ $course->testimonials->first()->content }}
+                            </p>
+                            <span class="name">
+                                {{$course->testimonials->first()->student->first_name}}
+                                {{$course->testimonials->first()->student->last_name}}
+                            </span>
+                        </div>
+                    @endif
                     <p class="lead">Description</p>
                     <article class="bottom-margin">
                     {{$course->description}}
@@ -164,12 +168,16 @@
                         <a href="#" class="crash-class clearfix">CRASH CLASS</a>
                         <a href="#" class="price clearfix">¥350,000</a>
                         <div class="testimonials">
+                            @if($course->testimonials->count() > 1)
                         	<h4>Testimonials</h4>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                            </p>
-                            <span class="name">Takeshi, muniku</span>
+                                <p>
+                                 {{ $course->testimonials->last()->content }}
+                                </p>
+                                <span class="name">
+                                    {{$course->testimonials->last()->student->first_name}}
+                                    {{$course->testimonials->last()->student->last_name}}
+                                </span>
+                            @endif
                         </div>
                     </div>
                 </div>

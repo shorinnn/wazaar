@@ -23,6 +23,19 @@ class ClassroomController extends \BaseController {
             return View::make('courses.classroom.dashboard')->with( compact('course') )->with( compact('student') );
         }
         
+        public function testimonial($slug){
+            $course = Course::where('slug', $slug)->first();
+            $student = Student::find( Auth::user()->id );
+            if( $course==null || !$student->purchased( $course ) ){
+                return Redirect::to('/');
+            }
+            //TODO: additional rule for completion
+            $testimonial = $student->testimonials()->where('course_id', $course->id)->first();
+            if($testimonial==null) $testimonial = new Testimonial;
+            return View::make('courses.classroom.testimonial')->with( compact('course') )
+                    ->with( compact('student') )->with( compact('testimonial') );
+        }
+        
         public function lesson($course, $module, $lesson){
             $course = Course::where('slug', $course)->first();
             $student = Student::find( Auth::user()->id );

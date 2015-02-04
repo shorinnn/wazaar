@@ -4,7 +4,7 @@ use LaravelBook\Ardent\Ardent;
 class Course extends Ardent{
 
     protected $dates = ['sale_ends_on'];
-    public $fillable = ['name', 'slug', 'description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
+    public $fillable = ['name', 'slug', 'description', 'short_description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
         'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage'];
     
     public static $rules = [
@@ -17,7 +17,7 @@ class Course extends Ardent{
         'course_subcategory_id' => 'numeric',
         'course_preview_image_id' => 'numeric',
         'course_banner_image_id' => 'numeric',
-        'sale' => 'numeric',
+        'sale' => 'numeric'
     ];
     
     public static $relationsData = array(
@@ -30,6 +30,7 @@ class Course extends Ardent{
         'sales' => array(self::HAS_MANY, 'CoursePurchase'),
         'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
         'modules' => array(self::HAS_MANY, 'Module'),
+        'testimonials' => [ self::HAS_MANY, 'Testimonial' ],
     );
     
     public function upload_preview($path){
@@ -86,6 +87,7 @@ class Course extends Ardent{
     }
     
     public function beforeSave(){
+        if( trim($this->short_description) == '' ) $this->short_description = Str::limit($this->description, Config::get('custom.short_desc_max_chars') );
         if($this->sale_kind=='percentage' && $this->sale  > 100){
             $this->errors()->add(0, trans('courses/general.cant_discount_101_percent') );
             return false;

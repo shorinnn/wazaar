@@ -161,14 +161,22 @@ class CoursesController extends \BaseController {
         }
         
         public function show($slug){
-            if( !$course = Course::where('slug', $slug)->with('instructor')
+            $course = Course::where('slug', $slug)->with('instructor')
                     ->with(['modules.lessons' => function($query){
                         $query->where('published', 'yes');
                         $query->orderBy('order','asc');
                     }])
                     ->with(['modules' => function($query){
                         $query->orderBy('order','asc');
-                    }])->first()){
+                    }])
+                    ->with(['testimonials' => function($query){
+                        $query->limit(2);
+                        $query->where('rating', 'positive');
+                        $query->where('reported', 'no');
+                        $query->orderBy( DB::raw('RAND()') );
+                    }])
+                    ->first();
+            if( $course==null)   {
                 return View::make('site.error_encountered');
             }
             

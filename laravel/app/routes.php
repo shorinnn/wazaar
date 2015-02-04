@@ -78,11 +78,15 @@ Route::resource('conversations', 'ConversationsController');
 Route::resource('wishlist', 'WishlistController');
 // Follow relationships
 Route::resource('followers', 'FollowersController');
+// Testimonials
+Route::resource('testimonials', 'TestimonialsController');
 
 
 // classroom
 Route::get('classroom/{slug}/dashboard', 'ClassroomController@dashboard');
+Route::get('classroom/{slug}/testimonial', 'ClassroomController@testimonial');
 Route::get('classroom/{course}/{module}/{lesson}', 'ClassroomController@lesson');
+Route::get('classroom/{slug}/', 'ClassroomController@dashboard');
 
 // Courses Controller
 Route::get('courses/mycourses', 'CoursesController@myCourses');

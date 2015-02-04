@@ -11,6 +11,7 @@ class Student extends User{
         'profile' => [ self::MORPH_ONE, 'Profile', 'name'=>'owner' ],
         'viewedLessons' => [ self::HAS_MANY, 'ViewedLesson' ],
         'wishlistItems' => [ self::HAS_MANY, 'WishlistItem' ],
+        'testimonials' => [ self::HAS_MANY, 'Testimonial' ],
         'following' => [self::BELONGS_TO_MANY, 'Instructor',  'table' => 'follow_relationships',  'foreignKey' => 'student_id', 'otherKey' => 'instructor_id']
       ];
         
