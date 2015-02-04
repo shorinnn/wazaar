@@ -12,7 +12,9 @@
                 src="{{$course->previewImage->url}}"
             @endif
              class="img-responsive" alt="">
-             <div class="sale-ends">SALE ENDS IN 2 DAYS 15:22:21</div>
+              @if($course->isDiscounted())
+                        <div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>
+              @endif
         </div>
         <h2>{{ $course->name }}</h2>
         <p>{{ $course->description }}
@@ -20,6 +22,7 @@
             <small>Subcategory: 
                 <a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>
             </small>
+            [<a href="{{ action('CoursesController@show', $course->slug) }}">Temporary access link</a>]
         </p>
         <div class="price-tag clear">
              ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}

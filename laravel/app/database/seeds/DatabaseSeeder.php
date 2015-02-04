@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder {
 		 $this->call('ModulesSeeder');
 		 $this->call('LessonsSeeder');
 		 $this->call('BlocksSeeder');
-         $this->call('AnalyticsSeeder');
+                 $this->call('AnalyticsSeeder');
+                 $this->call('ProfileSeeder');
 	}
 
 }
@@ -163,6 +164,17 @@ class UserTableSeeder extends Seeder {
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
         $user->save();
+        $user = new User;
+        $user->ltc_affiliate_id = 2;
+        $user->username = 'Keiji_Tani';
+        $user->email = 'Keiji_Tani@mailinator.com';
+        $user->first_name = 'Keiji';
+        $user->last_name = 'Tani';
+        $user->password = 'pass';
+        $user->password_confirmation = 'pass';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->save();
     }
 }
     
@@ -200,6 +212,10 @@ class AssignedRoleTableSeeder extends Seeder {
         $user = User::where('username', '=', 'wazaarAffiliate')->first();
         $user->attachRole( $studentRole );
         $user->attachRole( $affiliateRole );
+        
+        $user = User::where('username', '=', 'Keiji_Tani')->first();
+        $user->attachRole( $studentRole );
+        $user->attachRole( $instructorRole );
 
     }
 
@@ -354,8 +370,8 @@ class CoursesSeeder extends Seeder {
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         
-        Course::create( ['name' => '女性を一秒で魅了するモテボディの作り方', 'instructor_id' => 4, 'course_category_id' => 6,  'course_subcategory_id' => 6, 
-                        'price' => 300000,  'course_difficulty_id' => 1,  'course_preview_image_id' => 8,
+        Course::create( ['name' => '女性を一秒で魅了するモテボディの作り方', 'instructor_id' => 11, 'course_category_id' => 6,  'course_subcategory_id' => 6, 
+                        'price' => 300000,  'course_difficulty_id' => 1,  'course_preview_image_id' => 9,
                         'description' => '「モテボディ養成講座（仮）」（フロント）
                             ・モテボディを手に入れるために必要な理論と実践を、男女別にお届けします。
                             ・このプログラムは谷が実際にクライアントに指導している、効果が実証済みの内容です。・プログラムは「モテボディ理論編」「モテボディ実践編」の２本立てです。
@@ -378,6 +394,11 @@ class CoursesSeeder extends Seeder {
         $phpPrimer->updateUniques();
         $js = Course::find(2);
         $js->sale = '33';
+        $js->sale_kind = 'percentage';
+        $js->sale_ends_on = date('Y-m-d H:i:s', strtotime('+ 4 day 2 hour'));
+        $js->updateUniques();
+        $js = Course::find(14);
+        $js->sale = '20';
         $js->sale_kind = 'percentage';
         $js->sale_ends_on = date('Y-m-d H:i:s', strtotime('+ 4 day 2 hour'));
         $js->updateUniques();
@@ -413,6 +434,7 @@ class CoursePreviewImagesSeeder extends Seeder {
         CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg'] );
         CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg'] );
         CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg'] );
+        CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/course_preview/demo-course.jpg'] );
        
     }
 }
@@ -471,6 +493,31 @@ class BlocksSeeder extends Seeder {
         DB::table('blocks')->delete();
         Block::unguard();
         Block::create( ['lesson_id' => 1, 'name' => 'Test Block','type' => 'text'] );
+       
+    }
+}
+
+class ProfileSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('user_profiles')->delete();
+        Profile::unguard();
+        Profile::create( ['owner_id' => 11, 'owner_type' => 'Instructor','first_name' => 'Keiji', 'last_name' => 'Tani', 'email' => 'Tani@mailinator.com',
+            'bio' => '谷啓嗣（たにけいじ） １９８６年２月１５日生まれ　A型
+                １０歳から体操競技を始め 大学卒業まで体操競技に打ち込む。
+                その結果、 インターハイや国体の決勝進出 全日本学生選手権への出場を果たすが
+                その過程で腰椎椎間板ヘルニアを発症し 選手生命の危機に瀕する。
+                極度の座骨神経痛により 体を曲げることが全く出来ず、 授業も立って受けることしか出来ない ドン底の状況を経験するが、
+                体操競技を続けたい一心でリハビリに励み 再び競技復帰を果たすことに成功。
+                その経験から運動の力を人々に伝えるために スポーツトレーナーになることを決意する。
+                福岡大学スポーツ科学部を卒業後は イチロー選手や三浦知良選手、 青木功選手や杉山愛選手をクライアントに持つ オリンピックトレーナーのもとに半年以上住み込み、その技術を学ぶ。
+                その後はトレーニングジムや病院、 介護施設などでの勤務を経て、
+                複合型健康増進施設の統括管理者を歴任。
+                これまで、２～１０５歳の プロスポーツ選手からモデルまで 幅広いクライアントを対象に ２０００名以上の指導実績を持つ。
+                現在は都内でパーソナルトレーナーとして 著名人や経営者を中心に指導を実施中。
+                また健康に関するセミナーを多数開催。 分かりやすい内容が好評を呼び、 毎回満席になる人気講座となっている。',
+            'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg'] );
        
     }
 }

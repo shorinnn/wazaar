@@ -125,20 +125,35 @@
                     <div class="your-teacher">
                         <div class="avater">
 	                    	<p>Your Teacher</p>
-                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater.png" alt="" >
-                        </div>
-                        <h3>{{$course->instructor->first_name}} {{$course->instructor->last_name}}<span></span></h3>
-                        <span class="role">Lead programmer, Wazaar</span>
-<!--                        <a href="#" class="follow-button">FOLLOW</a>-->
-                        
-                        {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
-                        <h4>About {{$course->instructor->first_name}}</h4>
-                        <p>
-                        Description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et 
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
-                        </p>
+                                
+                                @if($course->instructor->profile == null)
+                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater.png" alt="" >
+                                    </div>
+                                    <h3>{{$course->instructor->first_name}} {{$course->instructor->last_name}}<span></span></h3>
+                                    <span class="role">Lead programmer, Wazaar</span>
+            <!--                        <a href="#" class="follow-button">FOLLOW</a>-->
+
+                                    {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
+                                    <h4>About {{$course->instructor->first_name}}</h4>
+                                    <p>
+                                    Description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et 
+                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+                                    </p>
+                                @else
+                                 <img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $course->instructor->profile->photo }}" alt="" >
+                                    </div>
+                                    <h3>{{$course->instructor->profile->first_name}} {{$course->instructor->profile->last_name}}<span></span></h3>
+                                    <span class="role">Lead programmer, Wazaar - Dunno where this line comes from</span>
+            <!--                        <a href="#" class="follow-button">FOLLOW</a>-->
+
+                                    {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
+                                    <h4>About {{$course->instructor->profile->first_name}}</h4>
+                                    <p>
+                                   {{ $course->instructor->profile->bio }}
+                                    </p>
+                                @endif
                     </div>
                     <div class="testimonial-block">
                     	<small>You are backed by our</small>
