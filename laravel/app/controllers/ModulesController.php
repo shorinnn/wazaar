@@ -56,9 +56,14 @@ class ModulesController extends \BaseController {
             if($module!=null && $module->course->instructor->id == Auth::user()->id){
                 $name = Input::get('name');
                 $module->$name = Input::get('value');
-                $module->save();
-                $response = ['status' => 'success'];
-                return json_encode($response);
+                if($module->save()){
+                    $response = ['status' => 'success'];
+                    return json_encode($response);
+                }
+                else{
+                    $response = ['status' => 'error', 'errors' => format_errors( $module->errors()->all() ) ];
+                    return json_encode($response);
+                }
             }
             $response = ['status' => 'error', 'errors' => trans('crud/errors.cannot_save_object', 'Module') ];
             return json_encode($response);

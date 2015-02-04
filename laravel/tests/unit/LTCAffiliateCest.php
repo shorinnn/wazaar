@@ -17,9 +17,10 @@ class LTCAffiliateCest{
         $I->assertEquals(8, $ltc->affiliated->count());
     }
     
-    public function get3Sales(UnitTester $I){
+    public function getSales(UnitTester $I){
         $ltc = LTCAffiliate::find(2);
-        $I->assertEquals(3, $ltc->sales->count());
+        $count = CoursePurchase::where('ltc_affiliate_id', 2)->count();
+        $I->assertEquals($count, $ltc->sales->count());
     }
     
 }

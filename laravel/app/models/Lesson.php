@@ -19,6 +19,12 @@ class Lesson extends Ardent{
      public function beforeSave(){
          $this->slug = Str::slug( $this->name );
          if( $this->slug == 'dashboard' ) return false;// the not_in filter not working for "dashboard"????
+         // slug should be unique within this module
+         $id = isset($this->id) ? $this->id : 0;
+         if( Lesson::where('slug', $this->slug)->where('module_id', $this->module_id)->where('id','!=', $id)->count() > 0 ){
+             $this->errors()->add(0, trans('crud/errors.lesson-slug-in-use') );
+             return false;
+         }
      }
     
      public function beforeDelete(){

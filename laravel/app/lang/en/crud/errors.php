@@ -10,4 +10,6 @@ return array(
     'object_doesnt_exist' => ":object doesn't exist",
     'attr_taken' => ":attr is taken",
     'error_occurred' => "An error occurred",
+    'module-slug-in-use' => "You are already using this module name in this course. Please use another one",
+    'lesson-slug-in-use' => "You are already using this lesson name in this module. Please use another one",
 );

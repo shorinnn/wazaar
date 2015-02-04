@@ -35,6 +35,18 @@
     a.load-remote > *{
         pointer-events: none;
     }
+    
+    .overlay-loading{
+        position:absolute;
+        margin-left:auto;
+        margin-right:auto;
+        left:0;
+        right:0;
+        z-index: 10;
+        width:32px;
+        height:32px;
+        background-image:url('http://www.mytreedb.com/uploads/mytreedb/loader/ajax_loader_blue_32.gif');
+    }
 </style>
     <h1>{{ $course->name }}</h1>
     <h2>{{ $lesson->name }}</h2>
@@ -60,7 +72,7 @@
         {{ View::make('courses.classroom.conversations.form')->with( compact('lesson') ) }}
     @endif
     
-        <div class='ajax-content'>
+        <div class='ajax-content fa-animated'>
             {{ View::make('courses.classroom.conversations.all')->withComments( $lesson->comments ) }}
 
            <!-- <a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->slug] )}}' class="load-more-comments load-more-ajax" 
@@ -68,10 +80,10 @@
                data-target='.users-comments' data-skip='2' data-lesson='{{$lesson->id}}'>LOAD MORE</a>
             -->
             <br />
-            <div class="text-center load-remote" data-target='.ajax-content'>
+            <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
                 
                 {{ $lesson->comments->links() }}
-                <!--<a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->slug] )}}'>View All Comments Ever</a>-->
+                <a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->module->slug, $lesson->slug] )}}'>View All Comments Ever</a>
             </div>
         </div>
     </div>

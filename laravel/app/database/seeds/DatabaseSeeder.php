@@ -376,6 +376,7 @@ class CoursePurchasesSeeder extends Seeder {
         CoursePurchase::create( ['course_id' => 6, 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
         CoursePurchase::create( ['course_id' => 5, 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 2] );
         CoursePurchase::create( ['course_id' => 6, 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
+        CoursePurchase::create( ['course_id' => 5, 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
        
     }
 }
@@ -410,6 +411,10 @@ class ModulesSeeder extends Seeder {
         Module::create( ['course_id' => 1, 'name' => 'Second Module', 'order' => 2] );
         Module::create( ['course_id' => 1, 'name' => 'Last Module', 'order' => 3] );
        
+        Module::create( ['course_id' => 5, 'name' => 'First Module', 'order' => 1] );
+        Module::create( ['course_id' => 5, 'name' => 'Second Module', 'order' => 2] );
+        Module::create( ['course_id' => 5, 'name' => 'Last Module', 'order' => 3] );
+       
     }
 }
 
@@ -429,6 +434,16 @@ class LessonsSeeder extends Seeder {
         Lesson::create( ['module_id' => 3, 'name' => 'Now that you know', 'order' => 2, 'description' => '7A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
         Lesson::create( ['module_id' => 3, 'name' => 'We\'re almost done', 'order' => 3, 'description' => '8A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
         Lesson::create( ['module_id' => 3, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '9A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        
+        Lesson::create( ['module_id' => 4, 'name' => 'Welcome', 'order' => 1, 'description' => '1A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 4, 'name' => 'Advanced Stuff', 'order' => 2, 'description' => '2A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 5, 'name' => 'More Advanced Stuff', 'order' => 1, 'description' => '3A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 5, 'name' => 'Second Module Review', 'order' => 2, 'description' => '4A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 5, 'name' => 'Second Module Conclusion', 'order' => 3, 'description' => '5A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 6, 'name' => 'Let\'s recap', 'order' => 1, 'description' => '6A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 6, 'name' => 'Now that you know', 'order' => 2, 'description' => '7A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 6, 'name' => 'We\'re almost done', 'order' => 3, 'description' => '8A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 6, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '9A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
     }
 }
 
