@@ -354,6 +354,23 @@ class CoursesSeeder extends Seeder {
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         
+        Course::create( ['name' => '女性を一秒で魅了するモテボディの作り方', 'instructor_id' => 4, 'course_category_id' => 6,  'course_subcategory_id' => 6, 
+                        'price' => 300000,  'course_difficulty_id' => 1,  'course_preview_image_id' => 8,
+                        'description' => '「モテボディ養成講座（仮）」（フロント）
+                            ・モテボディを手に入れるために必要な理論と実践を、男女別にお届けします。
+                            ・このプログラムは谷が実際にクライアントに指導している、効果が実証済みの内容です。・プログラムは「モテボディ理論編」「モテボディ実践編」の２本立てです。
+                            ・インタビュー、Q&Aも用意しております。', 
+                        'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
+                         'who_is_this_for' => '["モテたい人","最近体型が気になりはじめて、何とかしたいと思っている人","変わりたい希望はあるけど、何をすれば良いのか分からない方"
+                             ,"自己流でトレーニングをやっているけど、本当に効果があるのか分からない人","忙しくてジムに通えない人","ジム通いに挫折したことがある人",
+                             "最速最短で結果を出したい人","無駄な出費をしたくない人","一生ものの知識とスキルを身につけたい人","本気で変わりたい人",
+                             "他人に教えられるくらいの知識を身につけたい人","アツくなりたい人"]',
+                        'what_will_you_achieve' => '["モテボディが手に入る！", "スーツの似合う男性らしいカラダ", "メリハリのある女性らいしいカラダ", 
+                            "割れた腹筋、くびれたお腹", "盛り上がった胸筋、リフトアップしたバスト", "逞しい背中、スラッと美しい背中", "引き締まったお尻、つり上がったヒップ", 
+                            "モテボディを維持する方法", "リバウンドしないカラダと知識", "リバウンドしないダイエットマインド", "若々しさと美しさ", "肌の張り", 
+                            "印象が良くなる。", "行動力がつき、収入が上がる", "エネルギーレベルが高まり、前向きになる。", "体力が上がるので色々なことに挑戦出来る。", 
+                            "他人に教えられる知識と実践方法。"]']);
+        
         $phpPrimer = Course::find(3);
         $phpPrimer->student_count = 242;
         $d = date('Y-m-d H:i:s', strtotime('6 month ago') );

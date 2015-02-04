@@ -9,7 +9,7 @@ class Course extends Ardent{
     
     public static $rules = [
         'name' => 'required|unique:courses',
-        'slug' => 'required|alpha_dash|unique:courses|not_in:index,show,create,store,categories,category,purchase,mycourses,destroy,edit,update,dashboard,curriculum',
+        'slug' => 'alpha_dash|unique:courses|not_in:index,show,create,store,categories,category,purchase,mycourses,destroy,edit,update,dashboard,curriculum',
         'price' => 'numeric',
         'affiliate_percentage' => 'numeric|between:0,70',
         'course_difficulty_id' => 'numeric',
@@ -76,6 +76,12 @@ class Course extends Ardent{
         // delete modules
         foreach($this->modules as $module){
             $module->delete();
+        }
+    }
+    
+    public function afterSave(){
+        if( Config::get('custom.use_id_for_slug')==true ) {
+            DB::table( $this->getTable() )->where('id', $this->id)->update( ['slug' => $this->id] );
         }
     }
     
