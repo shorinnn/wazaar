@@ -10,7 +10,8 @@ class CourseCategoryCest{
 
     public function seeFeaturedAndRegularCourses(FunctionalTester $I){
         $I->amLoggedAs( User::first() );
-        $I->amOnPage('/courses/category/it-technology');
+        $cat = CourseCategory::where('name', 'IT & Technology')->first()->slug;
+        $I->amOnPage('/courses/category/'.$cat);
         $I->see('featured-contents-container');
         $I->see('small-box');
         $I->see('App Development');
@@ -18,26 +19,31 @@ class CourseCategoryCest{
     
     public function getToCourseDetails(FunctionalTester $I){
         $I->amLoggedAs( User::first() );
-        $I->amOnPage('/courses/category/it-technology');
+        $cat = CourseCategory::where('name', 'IT & Technology')->first();
+        $I->amOnPage('/courses/category/'.$cat->slug);
         $I->click('Learn more');
-        $I->seeCurrentUrlEquals('/courses/javascript-primer');
+        $course = Course::where('name','javascript primer')->first()->slug;
+        $I->seeCurrentUrlEquals('/courses/'.$course);
     }
     
     public function getToJSSubcategory(FunctionalTester $I){
         $I->amLoggedAs( User::first() );
-        $I->amOnPage('/courses/category/it-technology');
+        $cat = CourseCategory::where('name', 'IT & Technology')->first();
+        $I->amOnPage('/courses/category/'.$cat->slug);
         $I->click('javascript');
-        $I->seeCurrentUrlEquals('/courses/category/it-technology/javascript');
+        $subcat = CourseSubcategory::where('name', 'javascript')->first()->slug;
+        $I->seeCurrentUrlEquals("/courses/category/$cat->slug/$subcat");
     }
     
     public function seeOnlyPublicCourse(FunctionalTester $I){
         $I->amLoggedAs( User::first() );
-        $I->amOnPage('/courses/category/beauty');
+        $cat = CourseCategory::where('name', 'Beauty')->first()->slug;
+        $I->amOnPage('/courses/category/'.$cat);
         $I->see('Beauty PHP Primer Revisited');
         $course = Course::where('name', 'Beauty PHP Primer Revisited')->first();
         $course->privacy_status = 'private';
         $course->save();
-        $I->amOnPage('/courses/category/beauty');
+        $I->amOnPage('/courses/category/'.$cat);
         $I->dontSee('Beauty Beauty PHP Primer Revisited');
     }
     

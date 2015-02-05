@@ -6,10 +6,10 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Testimonial Here</h1>
-                @if($testimonial==null)
-                    {{ Form::open(['action' => 'TestimonialsController@store']) }}
+                @if($testimonial->id == null)
+                    {{ Form::open(['action' => 'TestimonialsController@store', 'id' => 'testimonial-submit-form']) }}
                 @else
-                    {{ Form::open(['action' => ['TestimonialsController@update', $testimonial->id] ]) }}
+                    {{ Form::open(['action' => ['TestimonialsController@update', $testimonial->id], 'id' => 'testimonial-submit-form' ]) }}
                     <input type='hidden' name='_method' value='PUT' />
                 @endif
                 
@@ -24,7 +24,7 @@
                     
                     <input type='hidden' name='id' value='{{$course->id}}' />
                     <br />
-                    <button type='submit' class='btn btn-primary'>{{ trans('crud/labels.submit') }}</button>
+                    <button type='submit' class='btn btn-primary' name=''>{{ trans('crud/labels.submit') }}</button>
                 {{ Form::close() }}
                 
             </div>
