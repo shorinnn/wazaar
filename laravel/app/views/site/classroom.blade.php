@@ -154,25 +154,9 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="comment clearfix clear">
-                                    <div class="info clearfix clear">
-                                        <span class="name">Bas Mooreland</span>
-                                        <a href="#" class="reply-link">Reply</a>
-                                        <span class="number-of-replies">14 others replied</span>
-                                        <span class="time-of-reply">10 hours ago</span>
-                                    </div>
-                                    <div class="main clearfix clear">
-                                        <img class="img-responsive img-circle" alt="" 
-                                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-2.png">
-                                        <span>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore 
-                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                                        </span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <span class="load-more-comments view-more">LOAD MORE</span>
+                        <span class="load-more-comments">LOAD MORE</span>
                     </div>
                 </div>
                 <div class="row curriculum">

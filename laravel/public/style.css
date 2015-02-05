@@ -2774,8 +2774,6 @@ header .activate-dropdown:hover ul{
 .users-comments{
 	padding-top: 40px;
 	background: #fff;
-	height: 448px;
-	overflow: hidden;
 	border-radius: 5px;
 }
 
@@ -3982,6 +3980,102 @@ select::-ms-expand {
 	text-align: center;
 	margin-bottom: 100px;
 }
+
+/********* Admin >>> members Area *************/
+.members-area{
+	width: 62.5%;
+	margin: 50px auto 0;
+}
+
+.members-area .button-wrapper{
+	position: relative;
+	left: 50%;
+	float: left;
+	clear: both;
+}
+
+.members-area .button-wrapper .submit-button{
+	margin: 0 0 20px;
+	position: relative;
+	left: -50%;
+}
+
+.members-area .button-wrapper .submit-button button + button{
+	margin-left: 20px;
+}
+
+.members-area .member-search-box{
+	width: 34.5%;
+	height: 30px;
+	margin: 0 auto 20px;
+	border: solid 1px #0099ff;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.members-area .member-search-box input[type="search"]{
+	width: 80%;
+	height: 28px;
+	float: left;
+	background: none;
+	border: none;
+	padding: 0 0 0 10px;
+	margin: 0;
+	color: #0099ff;
+	font-size: 12px;
+}
+
+.members-area .member-search-box input[type="search"] ~ button{
+	width: 20%;
+	float: left;
+	height: 28px;
+	background: #058ae2;
+	border: none;
+	font-size: 12px;
+	color: #fff;
+}
+
+.table-wrapper .submit-button{
+	margin: 0 auto;
+	float: none;
+}
+
+.table-wrapper tr td span.label{
+	padding: 5px;
+}
+
+.table-wrapper .dropdown-menu li a{
+	text-transform: lowercase;
+}
+
+.table-wrapper tr td a{
+	height: 30px;
+	width: 98px;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: center;
+	margin: 5px auto;
+	display: block;
+	border-radius: 5px;
+	background: none;
+	line-height: 28px;
+	border-style: solid;
+	border-width: 1px;
+	text-transform: uppercase;
+	border-color: #0669d1;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	-o-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+
+.table-wrapper tr td a:hover{
+	color: #fff;
+	line-height: 28px;
+	text-decoration: none;
+	background: #0669d1;
+}
+
 /************* Page Footer **************/
 footer{
 	clear:both;
