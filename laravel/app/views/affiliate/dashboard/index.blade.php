@@ -84,21 +84,21 @@
                                 Top Tracking Codes <span id="header-tracking-codes-frequency">Today</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu tracking-codes-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.trackingCodes('daily', this); return false;">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.trackingSalesCodes('daily', this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodes('week', this); return false;">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('week', this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodes('month', this); return false;">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('month', this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodes('alltime', this); return false;">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('alltime', this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>
                         <ul id="wrapper-tracking-codes">
-                            {{$trackingCodesView}}
+                            {{$trackingCodesSalesView}}
                         </ul>
                         <a href="#" class="view-all">View All</a>
                     </div>

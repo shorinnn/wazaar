@@ -67,7 +67,7 @@ Route::group(['prefix' => 'student'], function (){
 });
 
 //Conversations
-Route::get('conversations/lesson/{course}/{slug}', 'ConversationsController@lesson');
+Route::get('conversations/lesson/{course}/{module}/{slug}', 'ConversationsController@lesson');
 Route::get('conversations/replies/{id}/{skip}', 'ConversationsController@replies');
 Route::get('conversations/replies/{id}', 'ConversationsController@replies');
 Route::get('conversations/view-replies/{id}', 'ConversationsController@viewReplies');
@@ -78,11 +78,15 @@ Route::resource('conversations', 'ConversationsController');
 Route::resource('wishlist', 'WishlistController');
 // Follow relationships
 Route::resource('followers', 'FollowersController');
+// Testimonials
+Route::resource('testimonials', 'TestimonialsController');
 
 
 // classroom
 Route::get('classroom/{slug}/dashboard', 'ClassroomController@dashboard');
-Route::get('classroom/{course}/{lesson}', 'ClassroomController@lesson');
+Route::get('classroom/{slug}/testimonial', 'ClassroomController@testimonial');
+Route::get('classroom/{course}/{module}/{lesson}', 'ClassroomController@lesson');
+Route::get('classroom/{slug}/', 'ClassroomController@dashboard');
 
 // Courses Controller
 Route::get('courses/mycourses', 'CoursesController@myCourses');
@@ -157,9 +161,12 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('/', 'DashboardController@index');
     Route::get('topcourses/{frequency}', 'DashboardController@topCoursesView');
     Route::get('sales/{frequency}', 'DashboardController@salesView');
-    Route::get('trackingcodes/{frequency}','DashboardController@trackingCodesView');
+    Route::get('trackingcodessales/{frequency}','DashboardController@trackingCodesSalesView');
     Route::get('courseconversions/{frequency}','DashboardController@courseConversionView');
     Route::get('trackingcodeconversions/{frequency}','DashboardController@trackingCodeConversionView');
+    Route::get('course/{id}/stats', 'DashboardController@courseStatistics');
+    Route::get('trackingcode/{code}/stats', 'DashboardController@trackingCodeStatistics');
+
 });
 
 Route::get('test', function (){

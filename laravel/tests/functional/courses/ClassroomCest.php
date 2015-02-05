@@ -43,9 +43,9 @@ class ClassroomCest{
         $I->assertFalse( $user->isLessonViewed($lesson) );
         $I->amLoggedAs($user);
         $I->dontSeeRecord('viewed_lessons', ['student_id' => $user->id, 'lesson_id' => $lesson->id]);
-        $I->amOnPage( action('ClassroomController@lesson', ['course'=>$lesson->module->course->slug, 'lesson'=>$lesson->slug] ) );    
+        $I->amOnPage( action('ClassroomController@lesson', ['course'=>$lesson->module->course->slug, 'module' => $lesson->module->slug, 'lesson'=>$lesson->slug] ) );    
         
-        $I->seeCurrentUrlEquals("/classroom/".$lesson->module->course->slug."/".$lesson->slug);
+        $I->seeCurrentUrlEquals("/classroom/".$lesson->module->course->slug."/".$lesson->module->slug.'/'.$lesson->slug);
         $user = Student::where('username','mac')->first();
         $I->seeRecord('viewed_lessons', ['student_id' => $user->id, 'lesson_id' => $lesson->id]);
         $I->assertTrue( $user->isLessonViewed($lesson) );

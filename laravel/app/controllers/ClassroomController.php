@@ -23,22 +23,28 @@ class ClassroomController extends \BaseController {
             return View::make('courses.classroom.dashboard')->with( compact('course') )->with( compact('student') );
         }
         
-        public function lesson($course, $lesson){
+        public function testimonial($slug){
+            $course = Course::where('slug', $slug)->first();
+            $student = Student::find( Auth::user()->id );
+            if( $course==null || !$student->purchased( $course ) ){
+                return Redirect::to('/');
+            }
+            //TODO: additional rule for completion
+            $testimonial = $student->testimonials()->where('course_id', $course->id)->first();
+            if($testimonial==null) $testimonial = new Testimonial;
+            return View::make('courses.classroom.testimonial')->with( compact('course') )
+                    ->with( compact('student') )->with( compact('testimonial') );
+        }
+        
+        public function lesson($course, $module, $lesson){
             $course = Course::where('slug', $course)->first();
             $student = Student::find( Auth::user()->id );
             if( $course==null || !$student->purchased( $course ) ){
                 return Redirect::to('/');
             }
-            /**
-             * ->with('comments.replies')
-                    ->with('comments.poster')->with(['comments' => function($query){
-                        $query->limit(2);
-                        $query->where('reply_to',null);
-                        $query->orderBy('id','desc');
-                        
-                    }])
-             */
-            $lesson = Lesson::where('slug', $lesson)->with('blocks')->first();
+            $module = $course->modules()->where('slug', $module)->first();
+            $lesson = $module->lessons()->where('slug', $lesson)->with('blocks')->first();
+            //Lesson::where('slug', $lesson)->where( 'module_id', $module )->with('blocks')->first();
             $lesson->comments = $lesson->comments()->orderBy('id','desc')->where('reply_to', null)->with('poster')->paginate( 2 );
             if( $lesson==null || $lesson->module->course->id != $course->id ){
                 return Redirect::to('/');

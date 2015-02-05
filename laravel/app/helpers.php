@@ -1,5 +1,10 @@
 <?php
 
+function singplural($count, $word){
+    if($count==1) return str_singular($word);
+    else return str_plural ($word);
+}
+
 function alphanum($string){
     return preg_replace("/[^a-zA-Z0-9]+/", "", $string);
 }

@@ -27,6 +27,12 @@ class CourseSubcategory extends Ardent{
         return Course::where('course_subcategory_id', $this->id); 
    }
    
+   public function afterSave(){
+        if( Config::get('custom.use_id_for_slug')==true ) {
+            DB::table( $this->getTable() )->where('id', $this->id)->update( ['slug' => PseudoCrypt::hash( $this->id )] );
+        }
+    }
+    
    public function beforeSave(){
        $this->slug = Str::slug( $this->name );
    }

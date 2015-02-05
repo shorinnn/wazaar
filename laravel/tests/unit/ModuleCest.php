@@ -30,5 +30,33 @@ class ModuleCest{
         $I->assertEquals('instructor', $module->course->instructor->username);
     }
     
+    public function failAddingSameSlugToCourse(UnitTester $I){
+        $course = Course::find(1);
+        $module = new Module();
+        $module->name = 'Test Module';
+        $module->course_id = $course->id;
+        $I->assertTrue( $module->save() );
+        
+        $course = Course::find(1);
+        $module = new Module();
+        $module->name = 'Test Module';
+        $module->course_id = $course->id;
+        $I->assertFalse( $module->save() );
+    }
+    
+    public function addSameSlugToNewCourse(UnitTester $I){
+        $course = Course::find(1);
+        $module = new Module();
+        $module->name = 'Test Module';
+        $module->course_id = $course->id;
+        $I->assertTrue( $module->save() );
+        
+        $course = Course::find(2);
+        $module = new Module();
+        $module->name = 'Test Module';
+        $module->course_id = $course->id;
+        $I->assertTrue( $module->save() );
+    }
+    
         
 }

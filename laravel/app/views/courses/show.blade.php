@@ -23,8 +23,8 @@
                 <div class="clearfix banner-content-wrapper">
                     <div class="number-of-students">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
                     <div class="number-of-reviews">
-                        21 REVIEWS
-                        <span>89%</span>
+                        {{ $course->total_reviews }} {{ singplural($course->total_reviews, 'REVIEWS') }}
+                        <span>{{ $course->reviews_positive_score }}%</span>
                     </div>
                         @if($course->isDiscounted())
                             <div class="white-box">
@@ -82,13 +82,17 @@
                         <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
                     @endif
             	<div class="left-content">
-                    <div class="testimonials">
-                        <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        </p>
-                        <span class="name">Takeshi, muniku</span>
-                    </div>
+                    @if($course->testimonials->count() > 0)
+                        <div class="testimonials">
+                            <p>
+                            {{ $course->testimonials->first()->content }}
+                            </p>
+                            <span class="name">
+                                {{$course->testimonials->first()->student->first_name}}
+                                {{$course->testimonials->first()->student->last_name}}
+                            </span>
+                        </div>
+                    @endif
                     <p class="lead">Description</p>
                     <article class="bottom-margin">
                     {{$course->description}}
@@ -125,20 +129,35 @@
                     <div class="your-teacher">
                         <div class="avater">
 	                    	<p>Your Teacher</p>
-                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater.png" alt="" >
-                        </div>
-                        <h3>{{$course->instructor->first_name}} {{$course->instructor->last_name}}<span></span></h3>
-                        <span class="role">Lead programmer, Wazaar</span>
-<!--                        <a href="#" class="follow-button">FOLLOW</a>-->
-                        
-                        {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
-                        <h4>About {{$course->instructor->first_name}}</h4>
-                        <p>
-                        Description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et 
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
-                        </p>
+                                
+                                @if($course->instructor->profile == null)
+                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater.png" alt="" >
+                                    </div>
+                                    <h3>{{$course->instructor->first_name}} {{$course->instructor->last_name}}<span></span></h3>
+                                    <span class="role">Lead programmer, Wazaar</span>
+            <!--                        <a href="#" class="follow-button">FOLLOW</a>-->
+
+                                    {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
+                                    <h4>About {{$course->instructor->first_name}}</h4>
+                                    <p>
+                                    Description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et 
+                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+                                    </p>
+                                @else
+                                 <img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $course->instructor->profile->photo }}" alt="" >
+                                    </div>
+                                    <h3>{{$course->instructor->profile->first_name}} {{$course->instructor->profile->last_name}}<span></span></h3>
+                                    <span class="role">Lead programmer, Wazaar - Dunno where this line comes from</span>
+            <!--                        <a href="#" class="follow-button">FOLLOW</a>-->
+
+                                    {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
+                                    <h4>About {{$course->instructor->profile->first_name}}</h4>
+                                    <p>
+                                   {{ $course->instructor->profile->bio }}
+                                    </p>
+                                @endif
                     </div>
                     <div class="testimonial-block">
                     	<small>You are backed by our</small>
@@ -149,12 +168,16 @@
                         <a href="#" class="crash-class clearfix">CRASH CLASS</a>
                         <a href="#" class="price clearfix">¥350,000</a>
                         <div class="testimonials">
+                            @if($course->testimonials->count() > 1)
                         	<h4>Testimonials</h4>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                            </p>
-                            <span class="name">Takeshi, muniku</span>
+                                <p>
+                                 {{ $course->testimonials->last()->content }}
+                                </p>
+                                <span class="name">
+                                    {{$course->testimonials->last()->student->first_name}}
+                                    {{$course->testimonials->last()->student->last_name}}
+                                </span>
+                            @endif
                         </div>
                     </div>
                 </div>

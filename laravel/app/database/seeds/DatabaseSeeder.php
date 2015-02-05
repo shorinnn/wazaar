@@ -23,7 +23,9 @@ class DatabaseSeeder extends Seeder {
 		 $this->call('ModulesSeeder');
 		 $this->call('LessonsSeeder');
 		 $this->call('BlocksSeeder');
-         $this->call('AnalyticsSeeder');
+                 $this->call('AnalyticsSeeder');
+                 $this->call('ProfileSeeder');
+                 $this->call('TestimonialsSeeder');
 	}
 
 }
@@ -163,6 +165,17 @@ class UserTableSeeder extends Seeder {
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
         $user->save();
+        $user = new User;
+        $user->ltc_affiliate_id = 2;
+        $user->username = 'Keiji_Tani';
+        $user->email = 'Keiji_Tani@mailinator.com';
+        $user->first_name = 'Keiji';
+        $user->last_name = 'Tani';
+        $user->password = 'pass';
+        $user->password_confirmation = 'pass';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->save();
     }
 }
     
@@ -200,6 +213,10 @@ class AssignedRoleTableSeeder extends Seeder {
         $user = User::where('username', '=', 'wazaarAffiliate')->first();
         $user->attachRole( $studentRole );
         $user->attachRole( $affiliateRole );
+        
+        $user = User::where('username', '=', 'Keiji_Tani')->first();
+        $user->attachRole( $studentRole );
+        $user->attachRole( $instructorRole );
 
     }
 
@@ -278,22 +295,31 @@ class CoursesSeeder extends Seeder {
         Course::create( ['name' => 'App Development', 'slug' => 'app-development', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 1
                         , 'price' => 300000, 'course_difficulty_id' => 1, 'course_preview_image_id' => 1, 
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
+                        'short_description' => 'Short:  You get a beginner award after completing the course.', 
                         'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create( ['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 1,
-                        'price' => 185000.99, 'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0, 
+                        'price' => 185000.99, 'course_difficulty_id' => '2', 
+                        'description' => 'JS - the best language around.',
+                        'short_description' => 'Short: JS - the.',
+                        'student_count' => 0, 
                         'course_preview_image_id' => 2, 'featured' => 1, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]'
                         ]);
         Course::create( ['name' => 'PHP Primer', 'slug' => 'php-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,
-                        'price' => 99.99, 'course_difficulty_id' => 3, 'description' => 'PHP - the best language around.', 'student_count' => 0,  
+                        'price' => 99.99, 'course_difficulty_id' => 3, 
+                        'description' => 'PHP - the best language around.', 
+                        'short_description' => 'Short: PHP - the best language around.', 
+                        'student_count' => 0,  
                         'course_preview_image_id' => 3, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create( ['name' => 'PHP Primer Revisited', 'slug' => 'php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,   
-                        'price' => 99.99, 'course_difficulty_id' => 3, 'description' => 'PHP - the best language around. REVISITED.', 
+                        'price' => 99.99, 'course_difficulty_id' => 3,
+                        'description' => 'PHP - the best language around. REVISITED.', 
+                        'short_description' => 'Short: REVISITED.', 
                         'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
@@ -301,6 +327,7 @@ class CoursesSeeder extends Seeder {
         Course::create( ['name' => 'Business App Development', 'slug' => 'business-app-development', 'instructor_id' => 4, 'course_category_id' => 2, 'course_subcategory_id' => 2, 
                         'price' => 300000, 'course_difficulty_id' => 1,  'course_preview_image_id' => 4,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
+                        'short_description' => 'Short Create your very first.', 
                         'student_count' => 1, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
@@ -354,6 +381,24 @@ class CoursesSeeder extends Seeder {
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         
+        Course::create( ['name' => '女性を一秒で魅了するモテボディの作り方', 'instructor_id' => 11, 'course_category_id' => 6,  'course_subcategory_id' => 6, 
+                        'price' => 300000,  'course_difficulty_id' => 1,  'course_preview_image_id' => 9,
+                        'description' => '「モテボディ養成講座（仮）」（フロント）
+                            ・モテボディを手に入れるために必要な理論と実践を、男女別にお届けします。
+                            ・このプログラムは谷が実際にクライアントに指導している、効果が実証済みの内容です。・プログラムは「モテボディ理論編」「モテボディ実践編」の２本立てです。
+                            ・インタビュー、Q&Aも用意しております。', 
+                        'short_description' => '「モテボディ養成講座（仮）」（フロント）',
+                        'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
+                         'who_is_this_for' => '["モテたい人","最近体型が気になりはじめて、何とかしたいと思っている人","変わりたい希望はあるけど、何をすれば良いのか分からない方"
+                             ,"自己流でトレーニングをやっているけど、本当に効果があるのか分からない人","忙しくてジムに通えない人","ジム通いに挫折したことがある人",
+                             "最速最短で結果を出したい人","無駄な出費をしたくない人","一生ものの知識とスキルを身につけたい人","本気で変わりたい人",
+                             "他人に教えられるくらいの知識を身につけたい人","アツくなりたい人"]',
+                        'what_will_you_achieve' => '["モテボディが手に入る！", "スーツの似合う男性らしいカラダ", "メリハリのある女性らいしいカラダ", 
+                            "割れた腹筋、くびれたお腹", "盛り上がった胸筋、リフトアップしたバスト", "逞しい背中、スラッと美しい背中", "引き締まったお尻、つり上がったヒップ", 
+                            "モテボディを維持する方法", "リバウンドしないカラダと知識", "リバウンドしないダイエットマインド", "若々しさと美しさ", "肌の張り", 
+                            "印象が良くなる。", "行動力がつき、収入が上がる", "エネルギーレベルが高まり、前向きになる。", "体力が上がるので色々なことに挑戦出来る。", 
+                            "他人に教えられる知識と実践方法。"]']);
+        
         $phpPrimer = Course::find(3);
         $phpPrimer->student_count = 242;
         $d = date('Y-m-d H:i:s', strtotime('6 month ago') );
@@ -361,6 +406,11 @@ class CoursesSeeder extends Seeder {
         $phpPrimer->updateUniques();
         $js = Course::find(2);
         $js->sale = '33';
+        $js->sale_kind = 'percentage';
+        $js->sale_ends_on = date('Y-m-d H:i:s', strtotime('+ 4 day 2 hour'));
+        $js->updateUniques();
+        $js = Course::find(14);
+        $js->sale = '20';
         $js->sale_kind = 'percentage';
         $js->sale_ends_on = date('Y-m-d H:i:s', strtotime('+ 4 day 2 hour'));
         $js->updateUniques();
@@ -376,6 +426,7 @@ class CoursePurchasesSeeder extends Seeder {
         CoursePurchase::create( ['course_id' => 6, 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
         CoursePurchase::create( ['course_id' => 5, 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 2] );
         CoursePurchase::create( ['course_id' => 6, 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
+        CoursePurchase::create( ['course_id' => 5, 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
        
     }
 }
@@ -395,6 +446,7 @@ class CoursePreviewImagesSeeder extends Seeder {
         CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg'] );
         CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg'] );
         CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg'] );
+        CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/course_preview/demo-course.jpg'] );
        
     }
 }
@@ -409,6 +461,10 @@ class ModulesSeeder extends Seeder {
         Module::create( ['course_id' => 1, 'name' => 'First Module', 'order' => 1] );
         Module::create( ['course_id' => 1, 'name' => 'Second Module', 'order' => 2] );
         Module::create( ['course_id' => 1, 'name' => 'Last Module', 'order' => 3] );
+       
+        Module::create( ['course_id' => 5, 'name' => 'First Module', 'order' => 1] );
+        Module::create( ['course_id' => 5, 'name' => 'Second Module', 'order' => 2] );
+        Module::create( ['course_id' => 5, 'name' => 'Last Module', 'order' => 3] );
        
     }
 }
@@ -429,6 +485,16 @@ class LessonsSeeder extends Seeder {
         Lesson::create( ['module_id' => 3, 'name' => 'Now that you know', 'order' => 2, 'description' => '7A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
         Lesson::create( ['module_id' => 3, 'name' => 'We\'re almost done', 'order' => 3, 'description' => '8A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
         Lesson::create( ['module_id' => 3, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '9A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        
+        Lesson::create( ['module_id' => 4, 'name' => 'Welcome', 'order' => 1, 'description' => '1A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 4, 'name' => 'Advanced Stuff', 'order' => 2, 'description' => '2A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 5, 'name' => 'More Advanced Stuff', 'order' => 1, 'description' => '3A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 5, 'name' => 'Second Module Review', 'order' => 2, 'description' => '4A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 5, 'name' => 'Second Module Conclusion', 'order' => 3, 'description' => '5A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 6, 'name' => 'Let\'s recap', 'order' => 1, 'description' => '6A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 6, 'name' => 'Now that you know', 'order' => 2, 'description' => '7A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 6, 'name' => 'We\'re almost done', 'order' => 3, 'description' => '8A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 6, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '9A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
     }
 }
 
@@ -439,6 +505,45 @@ class BlocksSeeder extends Seeder {
         DB::table('blocks')->delete();
         Block::unguard();
         Block::create( ['lesson_id' => 1, 'name' => 'Test Block','type' => 'text'] );
+       
+    }
+}
+
+class ProfileSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('user_profiles')->delete();
+        Profile::unguard();
+        Profile::create( ['owner_id' => 11, 'owner_type' => 'Instructor','first_name' => 'Keiji', 'last_name' => 'Tani', 'email' => 'Tani@mailinator.com',
+            'bio' => '谷啓嗣（たにけいじ） １９８６年２月１５日生まれ　A型
+                １０歳から体操競技を始め 大学卒業まで体操競技に打ち込む。
+                その結果、 インターハイや国体の決勝進出 全日本学生選手権への出場を果たすが
+                その過程で腰椎椎間板ヘルニアを発症し 選手生命の危機に瀕する。
+                極度の座骨神経痛により 体を曲げることが全く出来ず、 授業も立って受けることしか出来ない ドン底の状況を経験するが、
+                体操競技を続けたい一心でリハビリに励み 再び競技復帰を果たすことに成功。
+                その経験から運動の力を人々に伝えるために スポーツトレーナーになることを決意する。
+                福岡大学スポーツ科学部を卒業後は イチロー選手や三浦知良選手、 青木功選手や杉山愛選手をクライアントに持つ オリンピックトレーナーのもとに半年以上住み込み、その技術を学ぶ。
+                その後はトレーニングジムや病院、 介護施設などでの勤務を経て、
+                複合型健康増進施設の統括管理者を歴任。
+                これまで、２～１０５歳の プロスポーツ選手からモデルまで 幅広いクライアントを対象に ２０００名以上の指導実績を持つ。
+                現在は都内でパーソナルトレーナーとして 著名人や経営者を中心に指導を実施中。
+                また健康に関するセミナーを多数開催。 分かりやすい内容が好評を呼び、 毎回満席になる人気講座となっている。',
+            'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg'] );
+       
+    }
+}
+
+class TestimonialsSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('testimonials')->delete();
+        Testimonial::unguard();
+        Testimonial::create( ['course_id' => 5, 'student_id' => '3', 'rating'=>'positive',
+            'content' => 'Dude, your stuff is the bomb! Business App Development is awesome! Really good.'] );
+        Testimonial::create( ['course_id' => 5, 'student_id' => '9', 'rating'=>'positive',
+            'content' => 'I have gotten at least 50 times the value from Business App Development. We\'re loving it.'] );
        
     }
 }

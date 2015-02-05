@@ -218,7 +218,14 @@ function updateFieldRemote(e){
         url: url,
         type: 'PUT',
         data: {name:name, value:value, _token:token},
-        success: savingAnimation(1),
+        success: function(e){
+            try{
+                response = JSON.parse(e);
+                if(response.status=='error') alert(response.errors);
+            }
+            catch(e){}
+            savingAnimation(1);
+        },
         error: function(e){
             alert( _('Request failed: an error occurred') );
             console.log(e);

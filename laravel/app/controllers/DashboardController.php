@@ -14,13 +14,13 @@ class DashboardController extends BaseController
         //TODO: I'm not sure yet on how to identify if the current logged in user is a student, affiliate or admin, let's test username for now
 
         if ( in_array(Auth::user()->username,['WazaarAffiliate', 'affiliate'])){
-            return $this->affiliateDashboard();
+            return $this->_affiliateDashboard();
         }
         elseif(Auth::user()->username == 'superadmin'){
-            return $this->adminDashboard();
+            return $this->_adminDashboard();
         }
 
-        return $this->studentDashboard();
+        return $this->_studentDashboard();
     }
 
     public function topCoursesView($frequency = '')
@@ -39,7 +39,7 @@ class DashboardController extends BaseController
         }
     }
 
-    public function trackingCodesView($frequency = '')
+    public function trackingCodesSalesView($frequency = '')
     {
         $trackingCodes = $this->analyticsHelper->trackingCodes($frequency);
         if (is_array($trackingCodes)) {
@@ -62,22 +62,22 @@ class DashboardController extends BaseController
             return View::make('analytics.partials.trackingCodeConversions', compact('trackingCodeConversions', 'frequency'))->render();
         }
     }
-    private function affiliateDashboard()
+    private function _affiliateDashboard()
     {
         $topCoursesView = $this->topCoursesView();
         $salesView = $this->salesView();
-        $trackingCodesView = $this->trackingCodesView();
+        $trackingCodesSalesView = $this->trackingCodesSalesView();
         $courseConversionView = $this->courseConversionView();
         $trackingCodeConversionView = $this->trackingCodeConversionView();
-        return View::make('affiliate.dashboard.index', compact('topCoursesView', 'salesView', 'trackingCodesView', 'courseConversionView', 'trackingCodeConversionView'));
+        return View::make('affiliate.dashboard.index', compact('topCoursesView', 'salesView', 'trackingCodesSalesView', 'courseConversionView', 'trackingCodeConversionView'));
     }
 
-    private function adminDashboard()
+    private function _adminDashboard()
     {
         return View::make('administration.dashboard.index');
     }
 
-    private function studentDashboard()
+    private function _studentDashboard()
     {
         return View::make('student.dashboard.index');
     }

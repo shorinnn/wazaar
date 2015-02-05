@@ -12,11 +12,13 @@ return array(
     'upload_your_file' => 'Upload Your File',
     'or_use_existing' => 'Or Use Existing',
     'description' => 'Description',
+    'short_description' => 'Short Description',
     'add_module' => 'Add Module',
     'add_lesson' => 'Add Lesson',
     'edit_text' => 'Edit Text',
     'note' => 'Note',
     'complete' => 'Complete',
     'add_category' => 'Add Category',
-    'add_subcategory' => 'Add Subcategory'
+    'add_subcategory' => 'Add Subcategory',
+    'submit' => 'Submit'
 );
