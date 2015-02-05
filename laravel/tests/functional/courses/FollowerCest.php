@@ -2,14 +2,14 @@
 use \FunctionalTester;
 
 class FollowerCest{
-    
     public function _before(FunctionalTester $I){
         $I->haveEnabledFilters();
     }
 
     public function redirectIfNotLoggedIn(FunctionalTester $I){
+        $course = Course::where('name', 'App Development')->first();
         $I->dontSeeAuthentication();
-        $I->amOnPage('/courses/app-development');
+        $I->amOnPage('/courses/'.$course->slug);
         $I->click('FOLLOW');
         $I->seeCurrentUrlEquals('/login');
     }

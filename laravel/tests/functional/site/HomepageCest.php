@@ -21,7 +21,8 @@ class HomepageCest{
         $I->seeAuthentication();
         $I->amOnPage('/');
         $I->click('View all');
-        $I->seeCurrentUrlEquals('/courses/category/it-technology');
+        $cat = CourseCategory::where('name', 'IT & Technology')->first()->slug;
+        $I->seeCurrentUrlEquals('/courses/category/'.$cat);
     }
     
     public function getToCourseDetails(FunctionalTester $I){
@@ -30,7 +31,8 @@ class HomepageCest{
         $I->seeAuthentication();
         $I->amOnPage('/');
         $I->click('Learn more');
-        $I->seeCurrentUrlEquals('/courses/javascript-primer');
+        $course = Course::where('name', 'Javascript Primer')->first()->slug;
+        $I->seeCurrentUrlEquals('/courses/'.$course);
     }
     
     public function seeBecomeInstructor(FunctionalTester $I){

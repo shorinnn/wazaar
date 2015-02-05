@@ -65,24 +65,27 @@ class MyCourseCest{
         $I->amLoggedAs($instructor);
         $I->amOnPage('/courses/mycourses');
         $I->click('View');
-        $I->seeCurrentUrlEquals('/courses/app-development');
+        $course = Course::where('name','App Development')->first();
+        $I->seeCurrentUrlEquals('/courses/'.$course->slug);
     }
     
     public function seeEditForm(FunctionalTester $I){
         $instructor = Instructor::where('username', 'instructor')->first();
+        $course = Course::where('name','App Development')->first();
         $I->amLoggedAs($instructor);
         $I->amOnPage('/courses/mycourses');
         $I->click('Edit');
-        $I->seeCurrentUrlEquals('/courses/app-development/edit');
+        $I->seeCurrentUrlEquals('/courses/'.$course->slug.'/edit');
         $I->see('Category');
         $I->see('Price');
         $I->see('Update');
     }
     
     public function editCourseName(FunctionalTester $I){
+        $course = Course::where('name','App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('/courses/app-development/edit');
+        $I->amOnPage('/courses/'.$course->slug.'/edit');
         $I->fillField(['name' => 'name'], 'My Updated Title');
         $I->click('Update');
         $I->see('Course Updated');
@@ -90,28 +93,35 @@ class MyCourseCest{
     }
     
       public function failUpdateBadSlug(FunctionalTester $I){
-        $instructor = Instructor::where('username', 'instructor')->first();
-        $I->amLoggedAs($instructor);
-        $I->amOnPage('/courses/app-development/edit');
-        $I->fillField(['name' => 'slug'], 'My Updated Title');
-        $I->click('Update');
-        $I->see('Could not save Course: The slug may only contain letters, numbers, and dashes.');
+          if( !Config::get('custom.use_id_for_slug') ){
+            $course = Course::where('name','App Development')->first();
+            $instructor = Instructor::where('username', 'instructor')->first();
+            $I->amLoggedAs($instructor);
+            $I->amOnPage('/courses/'.$course.'/edit');
+            $I->fillField(['name' => 'slug'], 'My Updated Title');
+            $I->click('Update');
+            $I->see('Could not save Course: The slug may only contain letters, numbers, and dashes.');
+          }
      }
     
       public function failReusingSlug(FunctionalTester $I){
-        $instructor = Instructor::where('username', 'instructor')->first();
-        $I->amLoggedAs($instructor);
-        $I->amOnPage('/courses/app-development/edit');
-        $I->fillField(['name' => 'slug'], 'javascript-primer');
-        $I->click('Update');
-        $I->see('Could not save Course: The slug has already been taken.');
+          if( !Config::get('custom.use_id_for_slug') ){
+            $course = Course::where('name','App Development')->first();
+            $instructor = Instructor::where('username', 'instructor')->first();
+            $I->amLoggedAs($instructor);
+            $I->amOnPage('/courses/'.$course.'/edit');
+            $I->fillField(['name' => 'slug'], 'javascript-primer');
+            $I->click('Update');
+            $I->see('Could not save Course: The slug has already been taken.');
+          }
      }
 
      
      public function setDiscount(FunctionalTester $I){
+        $course = Course::where('name','App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('/courses/app-development/edit');
+        $I->amOnPage('/courses/'.$course->slug.'/edit');
         $I->fillField(['name' => 'sale'], '5');
         $I->click('Update');
         $I->see('Course Updated');
@@ -119,9 +129,10 @@ class MyCourseCest{
     }
     
      public function failNegativeDiscount(FunctionalTester $I){
+        $course = Course::where('name','App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('/courses/app-development/edit');
+        $I->amOnPage('/courses/'.$course->slug.'/edit');
         $I->fillField(['name' => 'sale'], '-5');
         $I->selectOption(['name' => 'sale_kind'], 'amount');
         $I->click('Update');
@@ -129,9 +140,10 @@ class MyCourseCest{
     }
     
      public function failDiscountGreaterThanPrice(FunctionalTester $I){
+        $course = Course::where('name','App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('/courses/app-development/edit');
+        $I->amOnPage('/courses/'.$course->slug.'/edit');
         $I->fillField(['name' => 'sale'], '999999999');
         $I->selectOption(['name' => 'sale_kind'], 'amount');
         $I->click('Update');
@@ -140,9 +152,10 @@ class MyCourseCest{
     }
     
      public function failDiscountGreaterThan100Percent(FunctionalTester $I){
+        $course = Course::where('name','App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('/courses/app-development/edit');
+        $I->amOnPage('/courses/'.$course->slug.'/edit');
         $I->fillField(['name' => 'sale'], '200');
         $I->selectOption(['name' => 'sale_kind'], 'percentage');
         $I->click('Update');

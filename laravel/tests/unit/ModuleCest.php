@@ -31,17 +31,19 @@ class ModuleCest{
     }
     
     public function failAddingSameSlugToCourse(UnitTester $I){
-        $course = Course::find(1);
-        $module = new Module();
-        $module->name = 'Test Module';
-        $module->course_id = $course->id;
-        $I->assertTrue( $module->save() );
-        
-        $course = Course::find(1);
-        $module = new Module();
-        $module->name = 'Test Module';
-        $module->course_id = $course->id;
-        $I->assertFalse( $module->save() );
+        if( !Config::get('custom.short_desc_max_chars') ){
+            $course = Course::find(1);
+            $module = new Module();
+            $module->name = 'Test Module';
+            $module->course_id = $course->id;
+            $I->assertTrue( $module->save() );
+
+            $course = Course::find(1);
+            $module = new Module();
+            $module->name = 'Test Module';
+            $module->course_id = $course->id;
+            $I->assertFalse( $module->save() );
+        }
     }
     
     public function addSameSlugToNewCourse(UnitTester $I){

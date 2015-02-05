@@ -8,18 +8,20 @@ class ProductFeferralsCest{
     }
     
     public function saveReferral(FunctionalTester $I){
+        $course = Course::where('name', 'App Development')->first()->slug;
         $user =  User::where('username','student')->first();
         Auth::login($user);
         $I->dontSeeRecord('course_referrals', ['student_id' => $user->id, 'affiliate_id' => '2']);
-        $I->amOnPage('/courses/app-development/?aid=2');
+        $I->amOnPage('/courses/'.$course.'/?aid=2');
         $I->seeRecord('course_referrals', ['student_id' => $user->id, 'affiliate_id' => '2']);
     }
     
     public function expireReferral(FunctionalTester $I){
+        $course = Course::where('name', 'App Development')->first()->slug;
         $user =  Student::where('username','student')->first();
         Auth::login($user);
         $I->dontSeeRecord('course_referrals', ['student_id' => $user->id, 'affiliate_id' => '2']);
-        $I->amOnPage('/courses/app-development/?aid=2');
+        $I->amOnPage('/courses/'.$course.'/?aid=2');
         $I->seeRecord('course_referrals', ['student_id' => $user->id, 'affiliate_id' => '2']);
         $I->assertEquals(1, $user->courseReferrals()->count());
         $referral = CourseReferral::first();

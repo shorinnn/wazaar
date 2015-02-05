@@ -9,54 +9,60 @@ class ManageCourseCest{
     }
     
     public function seeModule(FunctionalTester $I){
+        $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/app-development/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/curriculum');
         $I->see('Module <span class="module-order">1</span>');
     }
     
     public function addModule(FunctionalTester $I){
+        $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/app-development/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/curriculum');
         $I->seeNumberOfElements('#modules-list > li', 3);
         $I->click('Add Module');
         $I->seeNumberOfElements('#modules-list > li', 4);
     }
     
     public function deleteModule(FunctionalTester $I){
+        $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/app-development/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/curriculum');
         $I->see('Module <span class="module-order">1</span>');
         $I->click('delete-module-1');
-        $I->amOnPage('courses/app-development/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/curriculum');
         $I->dontSee('Module <span class="module-order">1</span>');
     }
     
     public function seeLesson(FunctionalTester $I){
+        $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/app-development/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/curriculum');
         $I->see('Lesson <span class="lesson-order">1</span>');
     }
     
     public function addLesson(FunctionalTester $I){
+        $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/app-development/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/curriculum');
         $I->seeNumberOfElements('#lessons-holder-1 > li', 2);
         $I->click('Add Lesson');
         $I->seeNumberOfElements('#lessons-holder-1 > li', 3);
     }
     
     public function deleteLesson(FunctionalTester $I){
+        $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/app-development/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/curriculum');
         $I->see('Lesson <span class="lesson-order">1</span>');
         $I->click('delete-lesson-1');
-        $I->amOnPage('courses/app-development/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/curriculum');
         $I->dontSee('Lesson <span class="lesson-order">2</span>');
     }
     
@@ -72,9 +78,10 @@ class ManageCourseCest{
     }
     
     public function failViewingCurriculum(FunctionalTester $I){
+        $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'second_instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/app-development/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/curriculum');
         $I->seeCurrentUrlEquals('');
     }
     

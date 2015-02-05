@@ -9,7 +9,8 @@ class WishlistCest{
 
     public function redirectIfNotLoggedIn(FunctionalTester $I){
         $I->dontSeeAuthentication();
-        $I->amOnPage('/courses/app-development');
+        $course = Course::where('name','App Development')->first();
+        $I->amOnPage('/courses/'.$course->slug);
         $I->click('Add to Wishlist');
         $I->seeCurrentUrlEquals('/login');
     }
