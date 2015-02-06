@@ -3983,34 +3983,31 @@ select::-ms-expand {
 
 /********* Admin >>> members Area *************/
 .members-area{
-	width: 62.5%;
 	margin: 50px auto 0;
 }
 
 .members-area .button-wrapper{
 	position: relative;
-	left: 50%;
-	float: left;
 	clear: both;
+	max-width: 312px;
+	margin: 0 auto;
 }
 
 .members-area .button-wrapper .submit-button{
 	margin: 0 0 20px;
-	position: relative;
-	left: -50%;
 }
 
 .members-area .button-wrapper .submit-button button + button{
-	margin-left: 20px;
+	margin-left: 5px;
 }
 
 .members-area .member-search-box{
-	width: 34.5%;
 	height: 30px;
 	margin: 0 auto 20px;
 	border: solid 1px #0099ff;
 	border-radius: 5px;
 	overflow: hidden;
+	max-width: 312px;
 }
 
 .members-area .member-search-box input[type="search"]{
@@ -4035,20 +4032,20 @@ select::-ms-expand {
 	color: #fff;
 }
 
-.table-wrapper .submit-button{
+.members-area .table-wrapper .submit-button{
 	margin: 0 auto;
 	float: none;
 }
 
-.table-wrapper tr td span.label{
+.members-area .table-wrapper tr td span.label{
 	padding: 5px;
 }
 
-.table-wrapper .dropdown-menu li a{
+.members-area .table-wrapper .dropdown-menu li a{
 	text-transform: lowercase;
 }
 
-.table-wrapper tr td a{
+.members-area .table-wrapper tr td a{
 	height: 30px;
 	width: 98px;
 	font-size: 12px;
@@ -4069,11 +4066,59 @@ select::-ms-expand {
 	transition: all 0.2s ease-out;
 }
 
-.table-wrapper tr td a:hover{
+.members-area .table-wrapper tr td a:hover{
 	color: #fff;
 	line-height: 28px;
 	text-decoration: none;
 	background: #0669d1;
+}
+
+.members-area .table-wrapper tr td .btn.btn-danger.delete-button{
+	padding: 4px 20px;
+}
+
+.members-area .table-wrapper tr td .btn.btn-danger.delete-button:focus,
+.members-area .table-wrapper tr td .btn.btn-danger.delete-button:active{
+	outline: none;
+}
+
+.members-area .pagination-container{
+	margin: 50px 0;
+}
+
+.pagination-container ul li:first-of-type,
+.pagination-container ul li:last-of-type{
+	height: 22px;
+	width: 22px;
+}
+
+.pagination-container ul li:first-of-type a,
+.pagination-container ul li:last-of-type a{
+	height: 22px;
+	width: 22px;
+	display: block;
+	margin-top: 9px;
+	background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png");
+	background-repeat: no-repeat;
+}
+
+.members-area .pagination-container ul li:first-of-type a{
+	background-position: center -1px;
+}
+
+.members-area .pagination-container ul li:last-of-type a{
+	background-position: center -31px;
+}
+
+.members-area .pagination-container ul .skip-to{
+	display: none;
+}
+
+.members-area .pagination-container .page-numbers-container{
+	position: relative;
+	clear: both;
+	max-width: 312px;
+	margin: 0 auto;
 }
 
 /************* Page Footer **************/
@@ -4282,7 +4327,15 @@ header .top-menu li{
 @media (max-width:320px){
 	#forgot-form + footer{
 		position: relative;
-	}																								
+	}			
+	
+	.pagination-container ul li + li{
+		margin-left: 7px !important;
+	}
+	
+	.members-area .button-wrapper .submit-button button{
+		width: 91px;
+	}
 }
 
 
