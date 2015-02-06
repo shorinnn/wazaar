@@ -64,18 +64,22 @@
                             <td>
                             	First name, Last name
                             </td>
-                            <td>
+                            <td class="hidden-xs">
                                 @foreach($member->roles as $role)
                                     <span class="label label-info">{{$role->name}}</span>
                                 @endforeach
                             </td>
-                            <td>
-                                {{link_to_action('MembersController@show', trans('crud/labels.view'), $member->id)}}
+                            <td class="view">
+                                    {{link_to_action('MembersController@show', trans('crud/labels.view'), $member->id)}}
+                                <!--<span class="icon-container visible-xs">
+                                	{{link_to_action('MembersController@show', trans('crud/labels.view'), $member->id)}}
+                                    <img class="img-responsive" src="" alt="">
+                                </span>-->
                             </td>
-                            <td>
+                            <td class="edit">
                                 {{link_to_action('MembersController@edit', trans('crud/labels.edit'), $member->id)}} 
                             </td>
-                            <td>
+                            <td class="delete">
                                 {{ Form::open(array('action' => array('MembersController@destroy', $member->id), 'method' => 'delete', 'id'=>'member-form-'.$member->id)) }}
                                 <button class="btn btn-danger delete-button" data-message="Are you sure you want to delete? (msg coming from btn)" type="submit" >{{trans('crud/labels.delete')}}</button>
                                 {{ Form::close() }}

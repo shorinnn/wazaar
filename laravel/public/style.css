@@ -3989,7 +3989,7 @@ select::-ms-expand {
 .members-area .button-wrapper{
 	position: relative;
 	clear: both;
-	max-width: 312px;
+	max-width: 401px;
 	margin: 0 auto;
 }
 
@@ -3998,16 +3998,16 @@ select::-ms-expand {
 }
 
 .members-area .button-wrapper .submit-button button + button{
-	margin-left: 5px;
+	margin-left: 50px;
 }
 
 .members-area .member-search-box{
 	height: 30px;
-	margin: 0 auto 20px;
+	margin: 0 auto 70px;
 	border: solid 1px #0099ff;
 	border-radius: 5px;
 	overflow: hidden;
-	max-width: 312px;
+	max-width: 401px;
 }
 
 .members-area .member-search-box input[type="search"]{
@@ -4024,7 +4024,7 @@ select::-ms-expand {
 
 .members-area .member-search-box input[type="search"] ~ button{
 	width: 20%;
-	float: left;
+	float: right;
 	height: 28px;
 	background: #058ae2;
 	border: none;
@@ -4121,6 +4121,11 @@ select::-ms-expand {
 	margin: 0 auto;
 }
 
+.members-area .icon-container{
+	display: inline-block;
+	height: 50px;
+	width: 50px;
+}
 /************* Page Footer **************/
 footer{
 	clear:both;
@@ -4265,6 +4270,49 @@ footer{
 .small-box{
 	width: 100%;
 }
+
+.members-area .table-wrapper tr td.delete button,
+.members-area .table-wrapper tr td a {
+    border: none;
+    border-radius: 0px;
+    display: block;
+    height: 40px;
+    margin: 5px auto;
+	text-indent: -999px;
+	overflow: hidden;
+    width: 40px;
+}
+
+.members-area .table-wrapper tr td.view a {
+    background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/view-icon.png') no-repeat center center;
+	background-size: contain;
+}
+
+.members-area .table-wrapper tr td.view a:hover{
+    background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/view-icon.png') no-repeat center center;
+	background-size: contain;
+}
+
+.members-area .table-wrapper tr td.edit a {
+    background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/edit-icon.png') no-repeat center center;
+	background-size: contain;
+}
+
+.members-area .table-wrapper tr td.edit a:hover{
+    background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/edit-icon.png') no-repeat center center;
+	background-size: contain;
+}
+
+.members-area .table-wrapper tr td.delete button {
+    background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/delete-icon.png') no-repeat center center;
+	background-size: contain;
+}
+
+.members-area .table-wrapper tr td.delete button:hover{
+    background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/delete-icon.png') no-repeat center center;
+	background-size: contain;
+}
+
 }
 
 @media (max-width:752px){
@@ -4316,6 +4364,15 @@ header .top-menu li{
 		width: 100%;
 		margin-top: 10px;
 	}
+	
+	.members-area .member-search-box,
+	.members-area .button-wrapper{
+		max-width: 312px;
+	}
+	
+	.members-area .button-wrapper .submit-button button + button{
+		margin-left: 5px;
+	}
 }
 
 @media (max-width:380px){
@@ -4336,6 +4393,13 @@ header .top-menu li{
 	.members-area .button-wrapper .submit-button button{
 		width: 91px;
 	}
+	
+	.members-area .table-wrapper tr td.delete button,
+	.members-area .table-wrapper tr td a {
+		height: 33px;
+		width: 33px;
+	}
+
 }
 
 
