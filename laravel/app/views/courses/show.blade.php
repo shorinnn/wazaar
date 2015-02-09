@@ -1,5 +1,10 @@
     @extends('layouts.default')
     @section('content')	
+    <style>
+    .inline-block{
+        display:inline-block;
+    }
+    </style>
         <section class="course-detail-top-section clearfix unauthenticated-homepage cat-box-{{$course->courseCategory->color_scheme}}">
                 @if($course->bannerImage != null)
                     <img src="{{$course->bannerImage->url}}" alt="" class="img-responsive" />
@@ -85,7 +90,7 @@
                     @if($course->testimonials->count() > 0)
                         <div class="testimonials">
                             <p>
-                            {{ $course->testimonials->first()->content }}
+                            {{{ $course->testimonials->first()->content }}}
                             </p>
                             <span class="name">
                                 {{$course->testimonials->first()->student->first_name}}
@@ -165,13 +170,12 @@
                         	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/30-days-coupon.png" alt="">
                         	<p>MONEY BACK GUARANTEE</p>
                         </div>
-                        <a href="#" class="crash-class clearfix">CRASH CLASS</a>
-                        <a href="#" class="price clearfix">¥350,000</a>
+
                         <div class="testimonials">
                             @if($course->testimonials->count() > 1)
                         	<h4>Testimonials</h4>
                                 <p>
-                                 {{ $course->testimonials->last()->content }}
+                                 {{{ $course->testimonials->last()->content }}}
                                 </p>
                                 <span class="name">
                                     {{$course->testimonials->last()->student->first_name}}
@@ -186,34 +190,7 @@
                         <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">
                         Curriculum
                    	</h3>
-<!--                    <div class="clearfix">
-                        <div class="modules module-1 clearfix clear">
-                            <p>Module 1</p>
-                            <span>Introduction to Javascript</span>
-                        </div>
-                        <ul class="lesson-container">
-                            <li class="lessons lesson-1 bordered">
-                                <span>Lesson 1</span>
-                                <p>e.g. what is javascript?</p>
-                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
-                            </li>
-                            <li class="lessons lesson-1 bordered">
-                                <span>Lesson 1</span>
-                                <p>e.g. what is javascript?</p>
-                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
-                            </li>
-                            <li class="lessons lesson-1 bordered">
-                                <span>Lesson 1</span>
-                                <p>e.g. what is javascript?</p>
-                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
-                            </li>
-                            <li class="lessons lesson-1">
-                                <span>Lesson 1</span>
-                                <p>e.g. what is javascript?</p>
-                                <a href="#" class="crash-lesson-button">CRASH LESSON</a>
-                            </li>
-                        </ul>
-                    </div>-->
+
                     @foreach($course->modules as $module)
                     <div class="clearfix">
                         
@@ -238,7 +215,23 @@
                     </div>
                     @endforeach
                 </div>
-            </div>
+            
+            <br />
+            <br />
+            <h3 class="text-center">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">
+            </h3>
+            
+                        <h2 class="text-center">Helpful Student Reviews</h2>
+                        <div class="testimonials clearfix clear_fix clear bottom-testimonials">
+                            @foreach($course->allTestimonials as $testimonial)
+                               {{ View::make('courses.testimonials.testimonial')->with( compact('testimonial') ) }}
+                            @endforeach
+                        </div>
+                        <a href='1' class="load-more-comments load-more-ajax" 
+               data-url='{{ action('TestimonialsController@more') }}' 
+               data-target='.bottom-testimonials' data-skip='2' data-id='{{ $course->id }}' data-post-field="course">LOAD MORE</a>
+            </div>                       
             
             @if(Auth::guest() || !Auth::user()->hasRole('Instructor'))
                 <section class="container-fluid become-an-instructor description">
@@ -254,44 +247,5 @@
                 </section>
             @endif
         </section>
-        <!--
-        <section class="container">
-            
-			<!-- First row begins -->  
-            <!--       
-            <div class="row first-row">
-            	<div class="col-xs-12 col-sm-12 col-md-12">
-               
-                <div class="object big-box">
-                	<div class="price-tag">
-                     ¥ {{ number_format($course->price, Config::get('custom.currency_decimals')) }} {{trans('courses/general.sale')}}
-                	</div>
-                    <img 
-                         @if($course->previewImage==null)
-                            src="http://placehold.it/350x150&text=Preview Unavailable"
-                        @else
-                            src="{{$course->previewImage->url}}"
-                        @endif
-                        alt="" class="hidden-sm hidden-xs img-responsive">
-                    <div>
-                        <p>{{$course->description }}</p>
-                        <div class="next_">
-                        <div class="learn-more">
-                            @if(Auth::guest() || Auth::user()->can_purchase($course) )
-                                {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
-                                <input type='submit' class='btn btn-primary' value='{{ trans("courses/general.purchase") }}' />
-                                {{Form::close()}}
-                            @endif
-                        </div>        
-                      </div>
-                  </div>
-                </div>
-              </div>
-            </div>       
-         
-			<!-- End of First row -->
-            <!--
-        </section>
-        -->
-
+    
     @stop

@@ -77,7 +77,7 @@
 
            <!-- <a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->slug] )}}' class="load-more-comments load-more-ajax" 
                data-url='{{action('ConversationsController@loadMore')}}' 
-               data-target='.users-comments' data-skip='2' data-lesson='{{$lesson->id}}'>LOAD MORE</a>
+               data-target='.users-comments' data-skip='2' data-post-field='lesson' data-id='{{$lesson->id}}'>LOAD MORE</a>
             -->
             <br />
             <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">

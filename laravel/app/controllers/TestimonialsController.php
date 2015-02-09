@@ -30,5 +30,18 @@ class TestimonialsController extends \BaseController {
             $testimonial->updateUniques();
             return Redirect::action('ClassroomController@testimonial', $course->slug);
         }
+        
+        public function more(){
+            $html = '';
+            foreach( Testimonial::where('course_id', Input::get('course') )->orderBy('id', 'desc')
+                    ->skip( Input::get('skip') )->limit(2)->get() as $testimonial ){
+                $html.=  View::make('courses.testimonials.testimonial')->with( compact('testimonial') )->render();
+            }
+            return $html;
+        }
+        
+        public function rate(){
+            return json_encode( ['status' => 'success'] );
+        }
     
 }
