@@ -70,18 +70,28 @@
                                 @endforeach
                             </td>
                             <td class="view">
-                                    {{link_to_action('MembersController@show', trans('crud/labels.view'), $member->id)}}
+                                    <a href="{{ action('MembersController@show', $member->id) }}">
+                                    	<i class="fa fa-eye fa-4"></i>
+                                    	<span>{{ trans('crud/labels.view') }}</span>
+                                    </a>
                                 <!--<span class="icon-container visible-xs">
                                 	{{link_to_action('MembersController@show', trans('crud/labels.view'), $member->id)}}
                                     <img class="img-responsive" src="" alt="">
                                 </span>-->
                             </td>
                             <td class="edit">
-                                {{link_to_action('MembersController@edit', trans('crud/labels.edit'), $member->id)}} 
+                            	<a href="action('MembersController@edit', $member->id)">
+                                	<i class="fa fa-pencil-square-o fa-4"></i>
+                                	<span>{{trans('crud/labels.edit')}}</span>
+                                </a>
                             </td>
                             <td class="delete">
                                 {{ Form::open(array('action' => array('MembersController@destroy', $member->id), 'method' => 'delete', 'id'=>'member-form-'.$member->id)) }}
-                                <button class="btn btn-danger delete-button" data-message="Are you sure you want to delete? (msg coming from btn)" type="submit" >{{trans('crud/labels.delete')}}</button>
+                                <button class="btn btn-danger delete-button" data-message="Are you sure you want to delete? (msg coming from btn)"
+                                type="submit">
+                                	<i class="fa fa-trash fa-4"></i>
+                                	<span>{{trans('crud/labels.delete')}}</span>
+                                </button>
                                 {{ Form::close() }}
                             </td>
                         </tr>

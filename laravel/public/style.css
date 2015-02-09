@@ -4060,10 +4060,16 @@ select::-ms-expand {
 	border-width: 1px;
 	text-transform: uppercase;
 	border-color: #0669d1;
+	overflow: hidden;
 	-webkit-transition: all 0.2s ease-out;
 	-moz-transition: all 0.2s ease-out;
 	-o-transition: all 0.2s ease-out;
 	transition: all 0.2s ease-out;
+}
+
+.members-area .table-wrapper tr td a i,
+.members-area .table-wrapper tr td button i{
+	text-indent: -9999px;
 }
 
 .members-area .table-wrapper tr td a:hover{
@@ -4117,7 +4123,7 @@ select::-ms-expand {
 .members-area .pagination-container .page-numbers-container{
 	position: relative;
 	clear: both;
-	max-width: 312px;
+	max-width: 354px;
 	margin: 0 auto;
 }
 
@@ -4278,12 +4284,40 @@ footer{
     display: block;
     height: 40px;
     margin: 5px auto;
-	text-indent: -999px;
 	overflow: hidden;
     width: 40px;
 }
 
-.members-area .table-wrapper tr td.view a {
+.members-area .table-wrapper tr td.delete button i,
+.members-area .table-wrapper tr td a i{
+	text-indent: 0;
+	line-height: 40px;
+	font-size: 28px;
+}
+
+.members-area .table-wrapper tr td.delete button span,
+.members-area .table-wrapper tr td a span{
+	text-indent: -999px;
+	display: none;
+}
+
+.members-area .table-wrapper tr td a:hover{
+	padding: 0 !important;
+	color: #222;
+	background: none !important;
+}
+
+.members-area .table-wrapper tr td.delete button.btn-danger{
+	background: none;
+	padding: 0 !important;
+	color: #d2322d;
+}
+
+.members-area .table-wrapper tr td.delete button.btn-danger:hover{
+	
+}
+
+/*.members-area .table-wrapper tr td.view a {
     background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/view-icon.png') no-repeat center center;
 	background-size: contain;
 }
@@ -4311,7 +4345,7 @@ footer{
 .members-area .table-wrapper tr td.delete button:hover{
     background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/delete-icon.png') no-repeat center center;
 	background-size: contain;
-}
+}*/
 
 }
 
@@ -4345,6 +4379,12 @@ header .top-menu li{
 .course-detail-top-section .centered-contents .watch-video-button{
 	margin-top: 20px;
 }
+
+.members-area .table-wrapper tr td.delete button i,
+.members-area .table-wrapper tr td a i{
+	font-size: 26px;
+}
+
 }
 
 @media (max-width:520px){
@@ -4373,12 +4413,24 @@ header .top-menu li{
 	.members-area .button-wrapper .submit-button button + button{
 		margin-left: 5px;
 	}
+	
+	.members-area .table-wrapper tr td.delete button i,
+	.members-area .table-wrapper tr td a i{
+		font-size: 24px;
+	}
+
 }
 
 @media (max-width:380px){
 	.category-heading a{
 		float: left;
-	}																								
+	}
+	
+	.members-area .table-wrapper tr td.delete button i,
+	.members-area .table-wrapper tr td a i{
+		font-size: 22px;
+	}
+																								
 }
 
 @media (max-width:320px){
