@@ -115,7 +115,7 @@ class AnalyticsHelper
     {
         $filterQuery = "";
         if (!empty($courseId)){
-            $filterQuery = " AND course_purchases.course_id = '{$courseId}'";
+            $filterQuery = " course_purchases.course_id = '{$courseId}'";
         }
 
         $query = $this->_salesRawQuery($filterQuery);
