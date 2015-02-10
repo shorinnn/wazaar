@@ -42,7 +42,7 @@ class ProfileController extends Controller
         $imagePath = $this->uploadHelper->uploadImage('profilePicture');
 
         if ($imagePath){
-            $awsResult = $this->uploadHelper->moveToAWS($imagePath, 'avatars');
+            $awsResult = $this->uploadHelper->moveToAWS($imagePath, Config::get('wazaar.S3_PROFILES_BUCKET'));
             $pictureUrl = $awsResult->get('ObjectURL');
             $profileData = ['photo' => $pictureUrl];
             $this->userHelper->saveProfile(Auth::id(), $profileData);
