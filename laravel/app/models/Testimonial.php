@@ -2,6 +2,7 @@
 use LaravelBook\Ardent\Ardent;
 
 class Testimonial extends Ardent{
+    public $thumbs = null;
     public $fillable = ['course_id', 'student_id', 'content', 'rating'];
     public static $rules = [
         'course_id' => 'required|exists:courses,id|unique_with:testimonials,student_id',
@@ -12,6 +13,12 @@ class Testimonial extends Ardent{
         'student' => [ self::BELONGS_TO, 'Student', 'table' => 'users', 'foreignKey' => 'student_id' ],
         'course' => [ self::BELONGS_TO, 'Course', 'table' => 'course', 'foreignKey' => 'course_id' ],
       ];
+    
+    public function thumbs(){
+        if( $this->thumbs != null ) return $this->thumbs;
+        $this->thumbs = $this->thumbs_up + $this->thumbs_down;
+        return $this->thumbs;
+    }
     
     public function afterSave(){
         $course = Course::find( $this->course_id );

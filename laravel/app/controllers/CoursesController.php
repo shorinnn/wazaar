@@ -179,7 +179,7 @@ class CoursesController extends \BaseController {
             if( $course==null)   {
                 return View::make('site.error_encountered');
             }
-            
+            $course->allTestimonials = $course->testimonials()->orderBy('id', 'desc')->limit(2)->get();
             if(Input::has('aid')){
                 Cookie::queue("aid-$course->id", Input::get('aid'), 60*24*30);
                 // store this in the DB as well, in case the cookies get deleted
@@ -187,7 +187,6 @@ class CoursesController extends \BaseController {
                     $student = Student::find(Auth::user()->id);
                     $student->saveReferral(Input::get('aid'), $course->id);
                 }
-                
             }
             Return View::make('courses.show')->with(compact('course'))->with(compact('student'));
         }

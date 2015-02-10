@@ -540,10 +540,18 @@ class TestimonialsSeeder extends Seeder {
     {
         DB::table('testimonials')->delete();
         Testimonial::unguard();
-        Testimonial::create( ['course_id' => 5, 'student_id' => '3', 'rating'=>'positive',
+        Testimonial::create( ['course_id' => 5, 'student_id' => '3', 'rating'=>'positive', 'thumbs_up' => 3, 'thumbs_down' => 1,
             'content' => 'Dude, your stuff is the bomb! Business App Development is awesome! Really good.'] );
-        Testimonial::create( ['course_id' => 5, 'student_id' => '9', 'rating'=>'positive',
+        Testimonial::create( ['course_id' => 5, 'student_id' => '9', 'rating'=>'positive', 'thumbs_up' => 0, 'thumbs_down' => 0,
             'content' => 'I have gotten at least 50 times the value from Business App Development. We\'re loving it.'] );
+        Testimonial::create( ['course_id' => 5, 'student_id' => '4', 'rating'=>'positive', 'thumbs_up' => 1, 'thumbs_down' => 1,
+            'content' => 'Testimonial 3'] );
+        Testimonial::create( ['course_id' => 5, 'student_id' => '5', 'rating'=>'positive', 'thumbs_up' => 9, 'thumbs_down' => 9,
+            'content' => 'Testimonial 4'] );
+        Testimonial::create( ['course_id' => 5, 'student_id' => '6', 'rating'=>'positive', 'thumbs_up' => 15, 'thumbs_down' => 251,
+            'content' => 'Some bad spam over here'] );
+        Testimonial::create( ['course_id' => 5, 'student_id' => '7', 'rating'=>'positive', 'thumbs_up' => 100, 'thumbs_down' => 12,
+            'content' => 'Testimonial 6'] );
        
     }
 }

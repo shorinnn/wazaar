@@ -79,6 +79,8 @@ Route::resource('wishlist', 'WishlistController');
 // Follow relationships
 Route::resource('followers', 'FollowersController');
 // Testimonials
+Route::post('testimonials/more', 'TestimonialsController@more');
+Route::post('testimonials/rate', 'TestimonialsController@rate');
 Route::resource('testimonials', 'TestimonialsController');
 
 

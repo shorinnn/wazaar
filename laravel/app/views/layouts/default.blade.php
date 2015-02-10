@@ -7,10 +7,11 @@
 	<title>Wazaar | Home</title>    
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+    <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="{{url('style.css')}}">
     <link rel="stylesheet" href="{{url('css/video-player.css')}}">
     <link rel="stylesheet" href="{{url('css/dashboard.css')}}">
+    <link rel="stylesheet" href="{{url('css/ui-components.css')}}">
     <link rel="stylesheet" href="{{url('plugins/slider/css/slider.css')}}">
     @yield('extra_css')
     <!--[if lt IE 9]>
@@ -51,28 +52,54 @@
           </section>          
         </footer>
     </div>    
-	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>-->
-    <script src="{{url("js/jquery.min.js")}}"></script>
-    <script src="{{url("js/bootstrap.min.js")}}"></script>
-    <script src="{{url("js/lang/parsley/".Config::get('app.locale').".js")}}" /></script>
-    <script src="{{url("js/parsley.min.js")}}"></script>
-    <script src="{{url("js/main.js")}}"></script>
-    <script src="{{url("js/forms.js")}}"></script>
-    <script src="{{url("js/validations.js")}}"></script>
-    <script src="{{url("js/courses.js")}}"></script>
-    <script src="{{url("js/cocoriumTracker.js")}}"></script>
-    <script src="{{url("js/tweenmax.min.js")}}"></script>
-    <script src="{{url("js/Sortable.min.js")}}"></script>
-    <script src="{{url("js/pluralize.js")}}"></script>
-    <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-    <script src="http://www.localeplanet.com/api/translate.js" /></script>
-    <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
-    <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>-->
-    <script>
-         window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
-    </script>
+    @if( getenv('USE_COMMENTABLE_RESOURCES')==true )
+            <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>-->
+        <script src="{{url("js/jquery.min.js")}}"></script>
+        <script src="{{url("js/bootstrap.min.js")}}"></script>
+        <script src="{{url("js/lang/parsley/".Config::get('app.locale').".js")}}" /></script>
+        <script src="{{url("js/parsley.min.js")}}"></script>
+        <script src="{{url("js/main.js")}}"></script>
+        <script src="{{url("js/forms.js")}}"></script>
+        <script src="{{url("js/validations.js")}}"></script>
+        <script src="{{url("js/courses.js")}}"></script>
+        <script src="{{url("js/cocoriumTracker.js")}}"></script>
+        <script src="{{url("js/tweenmax.min.js")}}"></script>
+        <script src="{{url("js/Sortable.min.js")}}"></script>
+        <script src="{{url("js/pluralize.js")}}"></script>
+        <!--<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+        <script src="http://www.localeplanet.com/api/translate.js" /></script>-->
+        <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
+        <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>-->
+        <script>
+             window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
+        </script>
+    @else
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>
+        <script src="{{url("js/jquery.min.js")}}"></script>
+        <script src="{{url("js/bootstrap.min.js")}}"></script>
+        <script src="{{url("js/lang/parsley/".Config::get('app.locale').".js")}}" /></script>
+        <script src="{{url("js/parsley.min.js")}}"></script>
+        <script src="{{url("js/main.js")}}"></script>
+        <script src="{{url("js/forms.js")}}"></script>
+        <script src="{{url("js/validations.js")}}"></script>
+        <script src="{{url("js/courses.js")}}"></script>
+        <script src="{{url("js/cocoriumTracker.js")}}"></script>
+        <script src="{{url("js/tweenmax.min.js")}}"></script>
+        <script src="{{url("js/Sortable.min.js")}}"></script>
+        <script src="{{url("js/pluralize.js")}}"></script>
+        <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+        <script src="http://www.localeplanet.com/api/translate.js" /></script>
+        <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+        <script>
+             window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
+        </script>
+    @endif
+    
     @yield('extra_js')
 	</body>
 </html>

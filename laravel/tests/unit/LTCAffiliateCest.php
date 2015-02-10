@@ -12,9 +12,10 @@ class LTCAffiliateCest{
         LTCAffiliate::boot();
     }
     
-    public function get8Affiliated(UnitTester $I){
+    public function getAffiliated(UnitTester $I){
         $ltc = LTCAffiliate::find(2);
-        $I->assertEquals(8, $ltc->affiliated->count());
+        $count =  User::where('ltc_affiliate_id', 2)->get()->count();
+        $I->assertEquals($count, $ltc->affiliated->count());
     }
     
     public function getSales(UnitTester $I){

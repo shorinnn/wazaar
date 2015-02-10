@@ -5,10 +5,10 @@ $I->wantTo('upload a lesson video');
 
 Auth::attempt(['username' => 'instructor', 'password' => 'pass']);
 $user = Auth::user();
-
+$course = Course::where('name','App Development')->first();
 $I->amLoggedAs($user);
 
-$I->amOnPage('/courses/app-development/curriculum');
+$I->amOnPage('/courses/'.$course->slug.'/curriculum');
 
 $I->click('Add Lesson');
 $I->click('.edit-lesson');

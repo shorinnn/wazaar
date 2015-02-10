@@ -224,6 +224,8 @@ function loadRemote(e){
  * @param {string} data-callback The function to call after the ajax call succeedes
  * @param {string} data-target CSS selector of the element that receives the new content
  * @param {string} data-skip How many items to skip in the fetch query
+ * @param {string} data-post-field The name of the POST field containing the id
+ * @param {string} data-id The ID value
  * @method loadMoreComments
  */
 function loadMoreComments(e){    
@@ -232,6 +234,8 @@ function loadMoreComments(e){
     target = $(e.target).attr('data-target');
     skip = $(e.target).attr('data-skip');
     lesson = $(e.target).attr('data-lesson');
+    post_field = $(e.target).attr('data-post-field');
+    id = $(e.target).attr('data-id');
     elem = $(e.target);
     while(typeof(url)=='undefined'){
         elem = elem.parent();
@@ -240,12 +244,15 @@ function loadMoreComments(e){
         callback = elem.attr('data-callback');  
     }
     $(e.target).html( _('Loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
-    $.post(url,{lesson:lesson, skip:skip}, function(data) {
+    var json_data = {};
+    json_data['skip'] = skip;
+    json_data[post_field] = id;
+    $.post(url, json_data, function(data) {
         $(e.target).attr('href','#');
         $(e.target).html( _('LOAD MORE') );
         if($.trim(data)==''){
             $(e.target).removeClass('load-more-ajax');
-            $(e.target).html( _('No more messages') );
+            $(e.target).html( _('Nothing more to load') );
         }
         $(target).append(data).fadeIn('slow');
         skip = 1 * skip + 1 * 2;
@@ -509,3 +516,43 @@ jQuery.fn.rotate = function(degrees) {
                  'transform' : 'rotate('+ degrees +'deg)'});
     return $(this);
 };
+
+
+function ratedTestimonial(result, e){
+    thumbs = $(e.target).attr('data-total');
+    thumbs_up = $(e.target).attr('data-up');
+    thumbs_down = $(e.target).attr('data-down');
+    id = $(e.target).attr('data-testimonial-id');
+    rate = $(e.target).attr('data-thumb');
+    
+    if( rate=='up') ++thumbs_up;
+    else ++thumbs_down;
+    thumbs++;
+    
+    if(thumbs==1){
+        $('.testimonial-'+id)[0].remove();
+        $('.testimonial-'+id).removeClass('hidden');
+        if( rate=='up' ){
+            $('.testimonial-'+id).find('.fa-thumbs-o-down').remove();
+            $('.testimonial-'+id).find('.thumbs-down-label').remove();
+            $('.testimonial-'+id).find('.not-very').html('very');
+        }
+        else{
+            $('.testimonial-'+id).find('.fa-thumbs-o-up').remove();
+            $('.testimonial-'+id).find('.thumbs-up-label').remove();
+            $('.testimonial-'+id).find('.not-very').html('not');
+        }
+    }
+ 
+ 
+    if( rate =='up'){
+        $('.testimonial-'+id).find('.thumbs-up-label').html(thumbs_up);
+    }
+    else{
+        $('.testimonial-'+id).find('.thumbs-down-label').html(thumbs_down);
+    }
+    $('.testimonial-'+id).find('.thumbs-total-label').html(thumbs);
+
+    $('[data-testimonial-id="'+id+'"]').prop('disabled', true);
+    $('[data-testimonial-id="'+id+'"]').prop('disabled', 'disabled');
+}

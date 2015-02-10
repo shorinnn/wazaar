@@ -8,25 +8,32 @@ class CourseSubcategoryCest{
     }
 
     public function seeFeaturedAndRegularCourses(FunctionalTester $I){
-        $I->amOnPage('/courses/category/it-technology/javascript');
+        $cat = CourseCategory::where('name', 'IT & Technology')->first()->slug;
+        $subcat = CourseSubcategory::where('name', 'javascript')->first()->slug;
+        $I->amOnPage('/courses/category/'.$cat.'/'.$subcat);
         $I->see('featured-contents-container');
         $I->see('small-box');
         $I->see('Javascript Primer');
     }
     
     public function getToCourseDetails(FunctionalTester $I){
-        $I->amOnPage('/courses/category/it-technology/javascript');
+        $cat = CourseCategory::where('name', 'IT & Technology')->first()->slug;
+        $subcat = CourseSubcategory::where('name', 'javascript')->first()->slug;
+        $I->amOnPage('/courses/category/'.$cat.'/'.$subcat);
+        $course = Course::where('name', 'Javascript Primer')->first()->slug;
         $I->click('Learn more');
-        $I->seeCurrentUrlEquals('/courses/javascript-primer');
+        $I->seeCurrentUrlEquals('/courses/'.$course);
     }
     
     public function seeOnlyPublicCourse(FunctionalTester $I){
-        $I->amOnPage('/courses/category/beauty/beauty-subcat');
+        $cat = CourseCategory::where('name', 'Beauty')->first()->slug;
+        $subcat = CourseSubcategory::where('name', 'Beauty Subcat')->first()->slug;
+        $I->amOnPage('/courses/category/'.$cat.'/'.$subcat);
         $I->see('Beauty PHP Primer Revisited');
         $course = Course::where('name', 'Beauty PHP Primer Revisited')->first();
         $course->privacy_status = 'private';
         $course->save();
-        $I->amOnPage('/courses/category/beauty/beauty-subcat');
+        $I->amOnPage('/courses/category/'.$cat.'/'.$subcat);
         $I->dontSee('Beauty Beauty PHP Primer Revisited');
     }
     
