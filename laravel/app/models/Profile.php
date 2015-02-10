@@ -1,6 +1,6 @@
 <?php
 
-class Profile extends LaravelBook\Ardent\Ardent
+class Profile extends ArdentUniqueWith
 {
 /**
  * To implement polymorphism I've introduced a owner relationship

@@ -1,7 +1,6 @@
 <?php
-use LaravelBook\Ardent\Ardent;
 
-class FollowRelationship extends Ardent{
+class FollowRelationship extends ArdentUniqueWith{
     public $fillable = ['instructor_id', 'student_id'];
     
      public static $rules = [
