@@ -23,25 +23,26 @@ class DashboardController extends BaseController
         return $this->_studentDashboard();
     }
 
-    public function topCoursesView($frequency = '')
+    public function topCoursesView($frequency = '', $courseId = '')
     {
-        $topCourses = $this->analyticsHelper->topCourses($frequency);
+        $topCourses = $this->analyticsHelper->topCourses($frequency, $courseId);
         if (is_array($topCourses)) {
             return View::make('analytics.partials.topCourses', compact('topCourses'))->render();
         }
     }
 
-    public function salesView($frequency = '')
+    public function salesView($frequency = '', $courseId = '')
     {
-        $sales = $this->analyticsHelper->sales($frequency);
+        $sales = $this->analyticsHelper->sales($frequency, $courseId);
+
         if (is_array($sales)) {
             return View::make('analytics.partials.sales', compact('sales', 'frequency'))->render();
         }
     }
 
-    public function trackingCodesSalesView($frequency = '')
+    public function trackingCodesSalesView($frequency = '', $courseId = '')
     {
-        $trackingCodes = $this->analyticsHelper->trackingCodes($frequency);
+        $trackingCodes = $this->analyticsHelper->trackingCodes($frequency,$courseId);
         if (is_array($trackingCodes)) {
             return View::make('analytics.partials.trackingCodes', compact('trackingCodes', 'frequency'))->render();
         }
@@ -55,13 +56,30 @@ class DashboardController extends BaseController
         }
     }
 
-    public function trackingCodeConversionView($frequency = '')
+    public function trackingCodeConversionView($frequency = '', $courseId = '')
     {
-        $trackingCodeConversions = $this->analyticsHelper->trackingCodeConversion($frequency);
+        $trackingCodeConversions = $this->analyticsHelper->trackingCodeConversion($frequency, $courseId);
         if (is_array($trackingCodeConversions)) {
             return View::make('analytics.partials.trackingCodeConversions', compact('trackingCodeConversions', 'frequency'))->render();
         }
     }
+
+    public function courseStatistics($courseId)
+    {
+        //TODO: Add filter here to make sure certain group has access to this e.g. Should only allow affiliates group
+        $course = Course::find($courseId);
+
+        if ($course) {
+            $sales = $this->analyticsHelper->sales('week',$courseId);
+            $salesLabelData = $this->analyticsHelper->jsonCoursePurchases($sales);
+
+            $trackingCodesSalesView = $this->trackingCodesSalesView('', $courseId);
+            $salesView = $this->salesView('', $courseId);
+            $trackingCodeConversionView = $this->trackingCodeConversionView('', $courseId);
+            return View::make('analytics.courseStatistics', compact('course','trackingCodesSalesView', 'salesView','trackingCodeConversionView','salesLabelData'));
+        }
+    }
+
     private function _affiliateDashboard()
     {
         $topCoursesView = $this->topCoursesView();
