@@ -524,10 +524,29 @@ function ratedTestimonial(result, e){
     thumbs_down = $(e.target).attr('data-down');
     id = $(e.target).attr('data-testimonial-id');
     rate = $(e.target).attr('data-thumb');
+    already_rated = typeof( $(e.target).attr('data-rated') ) == 'undefined' ? false : $(e.target).attr('data-rated');
     
-    if( rate=='up') ++thumbs_up;
-    else ++thumbs_down;
-    thumbs++;
+    
+    
+    if( !already_rated ){
+        thumbs++;
+        if( rate=='up') ++thumbs_up;
+        else ++thumbs_down;
+    }
+    else{
+        if( rate=='up'){
+             if( already_rated=='negative' ){
+                 --thumbs_down;
+                 ++thumbs_up;
+             }
+        }
+        else{
+            if( already_rated=='positive' ){
+                ++thumbs_down;
+                --thumbs_up;
+            }
+        }
+    }
     if(thumbs==1){
         $('.testimonial-'+id+'-placeholder').hide();
         $('.testimonial-'+id).removeClass('hidden');

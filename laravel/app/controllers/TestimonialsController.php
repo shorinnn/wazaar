@@ -4,7 +4,7 @@ class TestimonialsController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'auth' );
-            $this->beforeFilter( 'csrf', ['only' => [ 'store', 'update', 'destroy' ]] );
+            $this->beforeFilter( 'csrf', ['only' => [ 'store', 'update', 'destroy', 'rate' ]] );
         }
         
         public function store(){
@@ -28,9 +28,7 @@ class TestimonialsController extends \BaseController {
             $testimonial->content = Input::get('content');
             $testimonial->rating = Input::get('rating');
 
-            if( !$testimonial->updateUniques() ){
-                dd( $testimonial->errors() );
-            }
+            $testimonial->updateUniques();
             return Redirect::action('ClassroomController@testimonial', $course->slug);
         }
         
@@ -51,7 +49,12 @@ class TestimonialsController extends \BaseController {
             $rating->rating = Input::get('rating');
             $rating->updateUniques();
             $testimonial->rate( $first_time_rating, $rating->rating, $old_rating );
-            return json_encode( ['status' => 'success'] );
+            if( Request::ajax() ){
+                return json_encode( ['status' => 'success'] );
+            }
+            else{
+                return Redirect::back();
+            }
         }
     
 }

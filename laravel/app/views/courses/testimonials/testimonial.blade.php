@@ -27,26 +27,45 @@
      {{ $testimonial->student->first_name }}
      {{ $testimonial->student->last_name }}
  </span>
- <h4 class="text-center">was this review helpful?</h4>
- <div class="text-center">
-     <form class='inline-block ajax-form' action='{{action('TestimonialsController@rate')}}'
-           data-callback='ratedTestimonial' data-thumb='up' data-total='{{$testimonial->thumbs()}}' 
-         data-up="{{$testimonial->thumbs_up}}" data-down="{{$testimonial->thumbs_down}}" data-testimonial-id='{{$testimonial->id}}'>
-         <button type='submit' class="btn btn-success"  data-testimonial-id='{{$testimonial->id}}'>
-             <i class="fa fa-thumbs-o-up"></i> Yes
-         </button>
-         <input type="hidden" name="rating" value="positive" />
-         <input type="hidden" name="testimonial_id" value="{{$testimonial->id}}" />
-     </form>
-     
-     <form class='inline-block ajax-form' action='{{action('TestimonialsController@rate')}}'
-           data-callback='ratedTestimonial' data-thumb='down' data-total='{{$testimonial->thumbs()}}' 
-         data-up="{{$testimonial->thumbs_up}}" data-down="{{$testimonial->thumbs_down}}" data-testimonial-id='{{$testimonial->id}}'>
-         <button type='submit' class="btn btn-danger"  data-testimonial-id='{{$testimonial->id}}'>
-             <i class="fa fa-thumbs-o-down"></i> No
-         </button>
-         <input type="hidden" name="rating" value="negative" />
-         <input type="hidden" name="testimonial_id" value="{{$testimonial->id}}" />
-     </form>
- </div>
+ 
+ @if( Auth::check() )
+        <h4 class="text-center">was this review helpful?</h4>
+        <div class="text-center">
+            <form method='post' class='inline-block ajax-form' action='{{action('TestimonialsController@rate')}}'
+                  data-callback='ratedTestimonial' data-thumb='up' data-total='{{$testimonial->thumbs()}}' 
+                data-up="{{$testimonial->thumbs_up}}" data-down="{{$testimonial->thumbs_down}}" data-testimonial-id='{{$testimonial->id}}'
+                        @if( $testimonial->ratedBy( Auth::user() ) )
+                            data-rated='{{$testimonial->rated_as}}'
+                        @endif
+                        >
+                <button type='submit' class="btn btn-success"  data-testimonial-id='{{$testimonial->id}}'>
+                    <i class="fa fa-thumbs-o-up"></i> Yes
+                    @if( $testimonial->rated_as=='positive' )
+                        <i class="fa fa-check-circle-o"></i>
+                    @endif
+                </button>
+                <input type="hidden" name="rating" value="positive" />
+                <input type="hidden" name="testimonial_id" value="{{$testimonial->id}}" />
+                <input type='hidden' name='_token' value='{{ csrf_token() }}' />
+            </form>
+
+            <form method='post' class='inline-block ajax-form' action='{{action('TestimonialsController@rate')}}'
+                  data-callback='ratedTestimonial' data-thumb='down' data-total='{{$testimonial->thumbs()}}' 
+                data-up="{{$testimonial->thumbs_up}}" data-down="{{$testimonial->thumbs_down}}" data-testimonial-id='{{$testimonial->id}}'
+                        @if( $testimonial->ratedBy( Auth::user() ) )
+                            data-rated='{{$testimonial->rated_as}}'
+                        @endif
+                        >
+                <button type='submit' class="btn btn-danger"  data-testimonial-id='{{$testimonial->id}}'>
+                    <i class="fa fa-thumbs-o-down"></i> No
+                    @if( $testimonial->rated_as=='negative' )
+                        <i class="fa fa-check-circle-o"></i>
+                    @endif
+                </button>
+                <input type="hidden" name="rating" value="negative" />
+                <input type="hidden" name="testimonial_id" value="{{$testimonial->id}}" />
+                <input type='hidden' name='_token' value='{{ csrf_token() }}' />
+            </form>
+        </div>
+ @endif
  <hr />
