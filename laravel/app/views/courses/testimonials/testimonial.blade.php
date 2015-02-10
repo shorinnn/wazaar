@@ -12,7 +12,7 @@
         </h4>
     @endif
 @else
-    <h4 class="testimonial-{{$testimonial->id}} text-center"><i class="fa fa-question-circle"></i> Be the first to rate this review</h4>
+    <h4 class="testimonial-{{$testimonial->id}}-placeholder text-center"><i class="fa fa-question-circle"></i> Be the first to rate this review</h4>
     <h4 class="testimonial-{{$testimonial->id}} text-center hidden">
         <i class="fa fa-thumbs-o-down"></i> <span class='thumbs-down-label'>{{$testimonial->thumbs_down}}</span>
         <i class="fa fa-thumbs-o-up"></i> <span class='thumbs-up-label'>{{$testimonial->thumbs_up}}</span>
@@ -32,13 +32,21 @@
      <form class='inline-block ajax-form' action='{{action('TestimonialsController@rate')}}'
            data-callback='ratedTestimonial' data-thumb='up' data-total='{{$testimonial->thumbs()}}' 
          data-up="{{$testimonial->thumbs_up}}" data-down="{{$testimonial->thumbs_down}}" data-testimonial-id='{{$testimonial->id}}'>
-         <button type='submit' class="btn btn-success"  data-testimonial-id='{{$testimonial->id}}'><i class="fa fa-thumbs-o-up"></i> Yes</button>
+         <button type='submit' class="btn btn-success"  data-testimonial-id='{{$testimonial->id}}'>
+             <i class="fa fa-thumbs-o-up"></i> Yes
+         </button>
+         <input type="hidden" name="rating" value="positive" />
+         <input type="hidden" name="testimonial_id" value="{{$testimonial->id}}" />
      </form>
      
      <form class='inline-block ajax-form' action='{{action('TestimonialsController@rate')}}'
            data-callback='ratedTestimonial' data-thumb='down' data-total='{{$testimonial->thumbs()}}' 
          data-up="{{$testimonial->thumbs_up}}" data-down="{{$testimonial->thumbs_down}}" data-testimonial-id='{{$testimonial->id}}'>
-         <button type='submit' class="btn btn-danger"  data-testimonial-id='{{$testimonial->id}}'><i class="fa fa-thumbs-o-down"></i> No</button>
+         <button type='submit' class="btn btn-danger"  data-testimonial-id='{{$testimonial->id}}'>
+             <i class="fa fa-thumbs-o-down"></i> No
+         </button>
+         <input type="hidden" name="rating" value="negative" />
+         <input type="hidden" name="testimonial_id" value="{{$testimonial->id}}" />
      </form>
  </div>
  <hr />

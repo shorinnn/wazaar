@@ -27,7 +27,10 @@ class TestimonialsController extends \BaseController {
             }
             $testimonial->content = Input::get('content');
             $testimonial->rating = Input::get('rating');
-            $testimonial->updateUniques();
+
+            if( !$testimonial->updateUniques() ){
+                dd( $testimonial->errors() );
+            }
             return Redirect::action('ClassroomController@testimonial', $course->slug);
         }
         
@@ -41,6 +44,13 @@ class TestimonialsController extends \BaseController {
         }
         
         public function rate(){
+            $rating = TestimonialRating::firstOrNew( ['student_id' => Auth::user()->id, 'testimonial_id' => Input::get('testimonial_id')] );
+            $first_time_rating = ( !$rating->id ) ? true : false;
+            $testimonial = Testimonial::find( Input::get('testimonial_id') );
+            $old_rating = $rating->rating;
+            $rating->rating = Input::get('rating');
+            $rating->updateUniques();
+            $testimonial->rate( $first_time_rating, $rating->rating, $old_rating );
             return json_encode( ['status' => 'success'] );
         }
     

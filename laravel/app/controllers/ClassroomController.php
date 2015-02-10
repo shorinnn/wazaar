@@ -32,7 +32,7 @@ class ClassroomController extends \BaseController {
             //TODO: additional rule for completion
             $testimonial = $student->testimonials()->where('course_id', $course->id)->first();
             if($testimonial==null) $testimonial = new Testimonial;
-            return View::make('testimonials.form')->with( compact('course') )
+            return View::make('courses.testimonials.form')->with( compact('course') )
                     ->with( compact('student') )->with( compact('testimonial') );
         }
         

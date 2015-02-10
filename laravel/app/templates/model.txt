@@ -1,0 +1,8 @@
+<?php
+use LaravelBook\Ardent\Ardent;
+
+class $NAME$ extends Ardent {
+	protected $fillable = [];
+        public static $rules = [];
+        public static $relationsData = [];
+}

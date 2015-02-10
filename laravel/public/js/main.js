@@ -528,31 +528,29 @@ function ratedTestimonial(result, e){
     if( rate=='up') ++thumbs_up;
     else ++thumbs_down;
     thumbs++;
-    
     if(thumbs==1){
-        $('.testimonial-'+id)[0].remove();
+        $('.testimonial-'+id+'-placeholder').hide();
         $('.testimonial-'+id).removeClass('hidden');
         if( rate=='up' ){
-            $('.testimonial-'+id).find('.fa-thumbs-o-down').remove();
-            $('.testimonial-'+id).find('.thumbs-down-label').remove();
+            $('.testimonial-'+id).find('.fa-thumbs-o-down').hide();
+            $('.testimonial-'+id).find('.thumbs-down-label').hide();
+            $('.testimonial-'+id).find('.fa-thumbs-o-up').show();
+            $('.testimonial-'+id).find('.thumbs-up-label').show();
             $('.testimonial-'+id).find('.not-very').html('very');
         }
         else{
-            $('.testimonial-'+id).find('.fa-thumbs-o-up').remove();
-            $('.testimonial-'+id).find('.thumbs-up-label').remove();
+            $('.testimonial-'+id).find('.fa-thumbs-o-up').hide();
+            $('.testimonial-'+id).find('.thumbs-up-label').hide();
+            $('.testimonial-'+id).find('.fa-thumbs-o-down').show();
+            $('.testimonial-'+id).find('.thumbs-down-label').show();
             $('.testimonial-'+id).find('.not-very').html('not');
         }
     }
- 
- 
-    if( rate =='up'){
-        $('.testimonial-'+id).find('.thumbs-up-label').html(thumbs_up);
-    }
-    else{
-        $('.testimonial-'+id).find('.thumbs-down-label').html(thumbs_down);
-    }
+
+    $('.testimonial-'+id).find('.thumbs-up-label').html(thumbs_up);
+    $('.testimonial-'+id).find('.thumbs-down-label').html(thumbs_down);
     $('.testimonial-'+id).find('.thumbs-total-label').html(thumbs);
 
-    $('[data-testimonial-id="'+id+'"]').prop('disabled', true);
-    $('[data-testimonial-id="'+id+'"]').prop('disabled', 'disabled');
+    $('[data-testimonial-id="'+id+'"]').find('.fa-check-circle-o').remove();
+    $(e.target).find('button').append('<i class="fa fa-check-circle-o"></i>');
 }
