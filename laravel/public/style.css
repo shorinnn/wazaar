@@ -3989,7 +3989,8 @@ select::-ms-expand {
 .members-area .button-wrapper{
 	position: relative;
 	clear: both;
-	max-width: 401px;
+	left: 50%;
+	float: left;
 	margin: 0 auto;
 }
 

@@ -619,6 +619,8 @@ input[type='checkbox']{
 /************ Submit buttons ****************/
 .submit-button{
 	float: left;
+	position: relative;
+	left: -50%;
 	margin: 62px 0 0 -70px;
 }
 
