@@ -80,7 +80,7 @@
                                 </span>-->
                             </td>
                             <td class="edit">
-                            	<a href="action('MembersController@edit', $member->id)">
+                            	<a href="{{ action('MembersController@edit', $member->id) }}">
                                 	<i class="fa fa-pencil-square-o fa-4"></i>
                                 	<span>{{trans('crud/labels.edit')}}</span>
                                 </a>
