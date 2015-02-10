@@ -159,11 +159,11 @@ Route::group(['prefix' => 'video'], function(){
 ## Dashboard Group
 Route::group(['prefix' => 'dashboard'], function (){
     Route::get('/', 'DashboardController@index');
-    Route::get('topcourses/{frequency}', 'DashboardController@topCoursesView');
-    Route::get('sales/{frequency}', 'DashboardController@salesView');
-    Route::get('trackingcodessales/{frequency}','DashboardController@trackingCodesSalesView');
-    Route::get('courseconversions/{frequency}','DashboardController@courseConversionView');
-    Route::get('trackingcodeconversions/{frequency}','DashboardController@trackingCodeConversionView');
+    Route::get('topcourses/{frequency}/{courseId?}', 'DashboardController@topCoursesView');
+    Route::get('sales/{frequency}/{courseId?}', 'DashboardController@salesView');
+    Route::get('trackingcodessales/{frequency}/{courseId?}','DashboardController@trackingCodesSalesView');
+    Route::get('courseconversions/{frequency}/{courseId?}','DashboardController@courseConversionView');
+    Route::get('trackingcodeconversions/{frequency}/{courseId?}','DashboardController@trackingCodeConversionView');
     Route::get('course/{id}/stats', 'DashboardController@courseStatistics');
     Route::get('trackingcode/{code}/stats', 'DashboardController@trackingCodeStatistics');
 

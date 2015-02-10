@@ -11,36 +11,36 @@ class AnalyticsHelper
         $this->affiliateId = $affiliateId;
     }
 
-    public function topCourses($frequency = '')
+    public function topCourses($frequency = '', $courseId = '')
     {
         switch($frequency){
-            case 'daily' : return $this->dailyTopCourses(); break;
-            case 'week': return $this->weeklyTopCourses(); break;
-            case 'month': return $this->monthlyTopCourses(); break;
-            case 'alltime' : return $this->allTimeTopCourses(); break;
-            default: return $this->dailyTopCourses();
+            case 'daily' : return $this->dailyTopCourses($courseId); break;
+            case 'week': return $this->weeklyTopCourses($courseId); break;
+            case 'month': return $this->monthlyTopCourses($courseId); break;
+            case 'alltime' : return $this->allTimeTopCourses($courseId); break;
+            default: return $this->dailyTopCourses($courseId);
         }
     }
 
-    public function sales($frequency = '')
+    public function sales($frequency = '', $courseId = '')
     {
         switch($frequency){
-            case 'daily' : return $this->dailySales(); break;
-            case 'week': return $this->weeklySales(); break;
-            case 'month': return $this->monthlySales(); break;
-            case 'alltime' : return $this->allTimeSales(); break;
-            default: return $this->dailySales();
+            case 'daily' : return $this->dailySales($courseId); break;
+            case 'week': return $this->weeklySales($courseId); break;
+            case 'month': return $this->monthlySales($courseId); break;
+            case 'alltime' : return $this->allTimeSales($courseId); break;
+            default: return $this->dailySales($courseId);
         }
     }
 
-    public function trackingCodes($frequency = '')
+    public function trackingCodes($frequency = '', $courseId = null)
     {
         switch($frequency){
-            case 'daily' : return $this->dailyTrackingCodes(); break;
-            case 'week': return $this->weeklyTrackingCodes(); break;
-            case 'month': return $this->monthlyTrackingCodes(); break;
-            case 'alltime' : return $this->allTimeTrackingCodes(); break;
-            default: return $this->dailyTrackingCodes();
+            case 'daily' : return $this->dailyTrackingCodes($courseId); break;
+            case 'week': return $this->weeklyTrackingCodes($courseId); break;
+            case 'month': return $this->monthlyTrackingCodes($courseId); break;
+            case 'alltime' : return $this->allTimeTrackingCodes($courseId); break;
+            default: return $this->dailyTrackingCodes($courseId);
         }
     }
 
@@ -55,111 +55,186 @@ class AnalyticsHelper
         }
     }
 
-    public function trackingCodeConversion($frequency = '')
+    public function trackingCodeConversion($frequency = '', $courseId = null)
     {
         switch($frequency){
-            case 'daily' : return $this->dailyTrackingCodeConversion(); break;
-            case 'week': return $this->weeklyTrackingCodeConversion(); break;
-            case 'month': return $this->monthlyTrackingCodeConversion(); break;
-            case 'alltime' : return $this->allTimeTrackingCodeConversion(); break;
-            default: return $this->dailyTrackingCodeConversion();
+            case 'daily' : return $this->dailyTrackingCodeConversion($courseId); break;
+            case 'week': return $this->weeklyTrackingCodeConversion($courseId); break;
+            case 'month': return $this->monthlyTrackingCodeConversion($courseId); break;
+            case 'alltime' : return $this->allTimeTrackingCodeConversion($courseId); break;
+            default: return $this->dailyTrackingCodeConversion($courseId);
         }
     }
 
 
 
-    public function dailySales()
+    public function dailySales($courseId)
     {
         $dateFilter = $this->_frequencyEquivalence();
-        $query = $this->_salesRawQuery("DATE(course_purchases.created_at) = '{$dateFilter}'");
+        $filterQuery = "DATE(course_purchases.created_at) = '{$dateFilter}'";
+
+        if (!empty($courseId)){
+            $filterQuery .= " AND course_purchases.course_id = '{$courseId}'";
+        }
+
+        $query = $this->_salesRawQuery($filterQuery);
+
         return $this->_transformCoursePurchases($query);
     }
 
-    public function weeklySales()
+    public function weeklySales($courseId)
     {
         $dateFilterStart = $this->_frequencyEquivalence('week');
         $dateFilterEnd = date('Y-m-d');
-        $query = $this->_salesRawQuery("DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'");
+
+        $filterQuery = "DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        if (!empty($courseId)){
+            $filterQuery .= " AND course_purchases.course_id = '{$courseId}'";
+        }
+        $query = $this->_salesRawQuery($filterQuery);
         return $this->_transformCoursePurchases($query);
     }
 
-    public function monthlySales()
+    public function monthlySales($courseId)
     {
         $dateFilterStart = $this->_frequencyEquivalence('month');
         $dateFilterEnd = date('Y-m-d');
-        $query = $this->_salesRawQuery("DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'");
+
+        $filterQuery = "DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        if (!empty($courseId)){
+            $filterQuery .= " AND course_purchases.course_id = '{$courseId}'";
+        }
+        $query = $this->_salesRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
 
-    public function allTimeSales()
+    public function allTimeSales($courseId)
     {
-        $query = $this->_salesRawQuery();
+        $filterQuery = "";
+        if (!empty($courseId)){
+            $filterQuery = " AND course_purchases.course_id = '{$courseId}'";
+        }
+
+        $query = $this->_salesRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
 
-    public function dailyTopCourses()
-{
-    $dateFilter = $this->_frequencyEquivalence();
-    $query = $this->_coursePurchaseRawQuery("DATE(course_purchases.created_at) = '{$dateFilter}'");
-    return $this->_transformCoursePurchases($query);
-}
-
-    public function weeklyTopCourses()
-    {
-        $dateFilterStart = $this->_frequencyEquivalence('week');
-        $dateFilterEnd = date('Y-m-d');
-        $query = $this->_coursePurchaseRawQuery("DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'");
-
-        return $this->_transformCoursePurchases($query);
-    }
-
-    public function monthlyTopCourses()
-    {
-        $dateFilterStart = $this->_frequencyEquivalence('month');
-        $dateFilterEnd = date('Y-m-d');
-        $query = $this->_coursePurchaseRawQuery("DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'");
-
-        return $this->_transformCoursePurchases($query);
-    }
-
-    public function allTimeTopCourses()
-    {
-        $query = $this->_coursePurchaseRawQuery();
-
-        return $this->_transformCoursePurchases($query);
-    }
-
-    public function dailyTrackingCodes()
+    public function dailyTopCourses($courseId)
     {
         $dateFilter = $this->_frequencyEquivalence();
-        $query = $this->_trackingCodesRawQuery("DATE(created_at) = '{$dateFilter}'");
+        $filterQuery = "DATE(course_purchases.created_at) = '{$dateFilter}'";
 
+        if (!empty($courseId)){
+            $filterQuery .= " AND course_id = '{$courseId}'";
+        }
+
+        $query = $this->_coursePurchaseRawQuery($filterQuery);
         return $this->_transformCoursePurchases($query);
     }
 
-    public function weeklyTrackingCodes()
+    public function weeklyTopCourses($courseId)
     {
         $dateFilterStart = $this->_frequencyEquivalence('week');
         $dateFilterEnd = date('Y-m-d');
-        $query = $this->_trackingCodesRawQuery("DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'");
+
+        $filterQuery = "DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        if (!empty($courseId)){
+            $filterQuery .= " AND course_id = '{$courseId}'";
+        }
+
+        $query = $this->_coursePurchaseRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
 
-    public function monthlyTrackingCodes()
+    public function monthlyTopCourses($courseId)
     {
         $dateFilterStart = $this->_frequencyEquivalence('month');
         $dateFilterEnd = date('Y-m-d');
-        $query = $this->_trackingCodesRawQuery("DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'");
+
+        $filterQuery = "DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        if (!empty($courseId)){
+            $filterQuery .= " AND course_id = '{$courseId}'";
+        }
+
+        $query = $this->_coursePurchaseRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
 
-    public function allTimeTrackingCodes()
+    public function allTimeTopCourses($courseId)
     {
-        $query = $this->_trackingCodesRawQuery();
+        $filterQuery = "";
+
+        if (!empty($courseId)){
+            $filterQuery = " AND course_id = '{$courseId}'";
+        }
+
+        $query = $this->_coursePurchaseRawQuery($filterQuery);
+
+        return $this->_transformCoursePurchases($query);
+    }
+
+    public function dailyTrackingCodes($courseId)
+    {
+        $dateFilter = $this->_frequencyEquivalence();
+        $filterQuery = "DATE(created_at) = '{$dateFilter}'";
+
+        if (!empty($courseId)){
+            $filterQuery .= " AND course_id = '{$courseId}'";
+        }
+
+        $query = $this->_trackingCodesRawQuery($filterQuery);
+
+        return $this->_transformCoursePurchases($query);
+    }
+
+    public function weeklyTrackingCodes($courseId)
+    {
+        $dateFilterStart = $this->_frequencyEquivalence('week');
+        $dateFilterEnd = date('Y-m-d');
+
+        $filterQuery = "DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        if (!empty($courseId)){
+            $filterQuery .= " AND course_id = '{$courseId}'";
+        }
+
+        $query = $this->_trackingCodesRawQuery($filterQuery);
+
+        return $this->_transformCoursePurchases($query);
+    }
+
+    public function monthlyTrackingCodes($courseId)
+    {
+        $dateFilterStart = $this->_frequencyEquivalence('month');
+        $dateFilterEnd = date('Y-m-d');
+
+        $filterQuery = "DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        if (!empty($courseId)){
+            $filterQuery .= " AND course_id = '{$courseId}'";
+        }
+
+        $query = $this->_trackingCodesRawQuery($filterQuery);
+
+        return $this->_transformCoursePurchases($query);
+    }
+
+    public function allTimeTrackingCodes($courseId)
+    {
+        $filterQuery = "";
+
+        if (!empty($courseId)){
+            $filterQuery = " course_id = '{$courseId}'";
+        }
+        $query = $this->_trackingCodesRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
@@ -210,7 +285,7 @@ class AnalyticsHelper
         return $this->_transformCoursePurchaseConversion($query);
     }
 
-    public function allTimeCourseConversion($courseId)
+    public function allTimeCourseConversion($courseId = "")
     {
         $filterQuery = "";
 
@@ -222,35 +297,61 @@ class AnalyticsHelper
         return $this->_transformCoursePurchaseConversion($query);
     }
 
-    public function dailyTrackingCodeConversion()
+    public function dailyTrackingCodeConversion($courseId = "")
     {
         $dateFilter = $this->_frequencyEquivalence();
-        $query = $this->_trackingCodeConversionRawQuery("DATE(cp.created_at) = '{$dateFilter}'");
+        $filterQuery = "DATE(cp.created_at) = '{$dateFilter}'";
+
+        if (!empty($courseId)){
+            $filterQuery = "cp.course_id = '{$courseId}'";
+        }
+
+        $query = $this->_trackingCodeConversionRawQuery($filterQuery);
 
         return $this->_transformCoursePurchaseConversion($query);
     }
 
-    public function weeklyTrackingCodeConversion()
+    public function weeklyTrackingCodeConversion($courseId = "")
     {
         $dateFilterStart = $this->_frequencyEquivalence('week');
         $dateFilterEnd = date('Y-m-d');
-        $query = $this->_trackingCodeConversionRawQuery("DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'");
+
+        $filterQuery = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        if (!empty($courseId)){
+            $filterQuery = "cp.course_id = '{$courseId}'";
+        }
+
+        $query = $this->_trackingCodeConversionRawQuery($filterQuery);
 
         return $this->_transformCoursePurchaseConversion($query);
     }
 
-    public function monthlyTrackingCodeConversion()
+    public function monthlyTrackingCodeConversion($courseId = "")
     {
         $dateFilterStart = $this->_frequencyEquivalence('month');
         $dateFilterEnd = date('Y-m-d');
-        $query = $this->_trackingCodeConversionRawQuery("DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'");
+
+        $filterQuery = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        if (!empty($courseId)){
+            $filterQuery = "cp.course_id = '{$courseId}'";
+        }
+
+        $query = $this->_trackingCodeConversionRawQuery($filterQuery);
 
         return $this->_transformCoursePurchaseConversion($query);
     }
 
-    public function allTimeTrackingCodeConversion()
+    public function allTimeTrackingCodeConversion($courseId = "")
     {
-        $query = $this->_trackingCodeConversionRawQuery();
+        $filterQuery = "";
+
+        if (!empty($courseId)){
+            $filterQuery = "cp.course_id = '{$courseId}'";
+        }
+
+        $query = $this->_trackingCodeConversionRawQuery($filterQuery);
 
         return $this->_transformCoursePurchaseConversion($query);
     }
@@ -296,11 +397,11 @@ class AnalyticsHelper
             $criteria .= " AND (course_purchases.ltc_affiliate_id = '{$this->affiliateId}' OR course_purchases.product_affiliate_id = '{$this->affiliateId}' )";
         }
 
-        $sql = "SELECT courses.`name`, SUM(course_purchases.purchase_price) as 'total_purchase'
+        $sql = "SELECT courses.id, courses.`name`, SUM(course_purchases.purchase_price) as 'total_purchase'
                 FROM course_purchases
                 JOIN courses ON courses.id = course_purchases.course_id WHERE course_purchases.id <> 0
                 {$criteria}
-                GROUP BY courses.id
+                GROUP BY courses.id, courses.name
                 ORDER BY total_purchase DESC
                 ";
         return $sql;
@@ -335,10 +436,10 @@ class AnalyticsHelper
             $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
         }
 
-        $sql = "SELECT tracking_code, count(tracking_code) as 'count'
+        $sql = "SELECT course_id, tracking_code, count(tracking_code) as 'count'
                 FROM tracking_code_hits  WHERE id <> 0
                  {$criteria}
-                GROUP BY tracking_code
+                GROUP BY course_id, tracking_code
                 ORDER BY count DESC LIMIT {$limit}";
         return $sql;
     }
