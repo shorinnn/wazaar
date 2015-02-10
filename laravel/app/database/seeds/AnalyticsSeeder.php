@@ -17,7 +17,7 @@ class AnalyticsSeeder extends DatabaseSeeder
                 'student_id' => $faker->randomElement([3,7]),
                 'ltc_affiliate_id' => 2,
                 'product_affiliate_id' => 5,
-                'purchase_price' => $faker->randomFloat(0,50,1000),
+                'purchase_price' => $faker->randomFloat(0,50,800),
                 'tracking_code' => $trackingCode,
                 'created_at' => $date,
                 'updated_at' => $date
