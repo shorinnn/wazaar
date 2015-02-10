@@ -100,7 +100,7 @@
             </div>
 
 
-            <canvas id="myChart" width="400" height="400"></canvas>
+                 <canvas id="myChart" width="980px" height="400"></canvas>
         </div>
     </div>
 @stop
@@ -110,37 +110,27 @@
     <script type="text/javascript" src="{{url('js/analytics.js')}}"></script>
     <script type="text/javascript">
         $(function (){
+
             var data = {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                labels: {{json_encode($salesLabelData['labels'])}},
                 datasets: [
                     {
-                        label: "My First dataset",
-                        fillColor: "rgba(220,220,220,0.2)",
-                        strokeColor: "rgba(220,220,220,1)",
-                        pointColor: "rgba(220,220,220,1)",
+                        label: "Weekly Sales",
+                        fillColor: "rgba(0,220,220,0.2)",
+                        strokeColor: "rgb(0,153,255",
+                        pointColor: "rgb(85,220,164)",
                         pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(220,220,220,1)",
-                        data: [65, 59, 80, 81, 56, 55, 40]
-                    },
-                    {
-                        label: "My Second dataset",
-                        fillColor: "rgba(151,187,205,0.2)",
-                        strokeColor: "rgba(151,187,205,1)",
-                        pointColor: "rgba(151,187,205,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(151,187,205,1)",
-                        data: [28, 48, 40, 19, 86, 27, 90]
+                        pointHighlightFill: "rgb(85,220,164)",
+                        pointHighlightStroke: "rgb(85,220,164)",
+                        multiTooltipTemplate : "<%= label %> $<%=value%>",
+                        data: {{json_encode($salesLabelData['data'])}}
                     }
                 ]
             };
-            var ctx = document.getElementById("myChart").getContext("2d");
-            var myNewChart = new Chart(ctx).PolarArea(data);
+
             // Get context with jQuery - using jQuery's .get() method.
             var ctx = $("#myChart").get(0).getContext("2d");
-            // This will get the first returned node in the jQuery collection.
-            var myNewChart = new Chart(ctx);
+            var myLineChart = new Chart(ctx).Line(data);
         });
     </script>
 @stop

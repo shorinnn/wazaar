@@ -34,6 +34,7 @@ class DashboardController extends BaseController
     public function salesView($frequency = '', $courseId = '')
     {
         $sales = $this->analyticsHelper->sales($frequency, $courseId);
+
         if (is_array($sales)) {
             return View::make('analytics.partials.sales', compact('sales', 'frequency'))->render();
         }
@@ -69,10 +70,13 @@ class DashboardController extends BaseController
         $course = Course::find($courseId);
 
         if ($course) {
+            $sales = $this->analyticsHelper->sales('week',$courseId);
+            $salesLabelData = $this->analyticsHelper->jsonCoursePurchases($sales);
+
             $trackingCodesSalesView = $this->trackingCodesSalesView('', $courseId);
             $salesView = $this->salesView('', $courseId);
             $trackingCodeConversionView = $this->trackingCodeConversionView('', $courseId);
-            return View::make('analytics.courseStatistics', compact('course','trackingCodesSalesView', 'salesView','trackingCodeConversionView'));
+            return View::make('analytics.courseStatistics', compact('course','trackingCodesSalesView', 'salesView','trackingCodeConversionView','salesLabelData'));
         }
     }
 

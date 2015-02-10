@@ -355,6 +355,22 @@ class AnalyticsHelper
 
         return $this->_transformCoursePurchaseConversion($query);
     }
+
+    public function jsonCoursePurchases($sales)
+    {
+        $labels = [];
+        $data = [];
+
+        foreach($sales['data'] as $sale){
+            $labels[] = date('F d, Y', strtotime($sale['created_at']));
+            $data[] =  number_format($sale['total_purchase'],2);
+        }
+
+        $labels = array_reverse($labels);
+        $data = array_reverse($data);
+        return compact('labels', 'data');
+    }
+
     private function _transformCoursePurchases($query)
     {
         $result = DB::select($query);
