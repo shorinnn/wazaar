@@ -55,7 +55,8 @@
 	"require-dev": {
 		"barryvdh/laravel-ide-helper": "1.11.*@dev",
 		"barryvdh/laravel-debugbar": "1.8.*@dev",
-                "way/generators": "~2.0"
+                "way/generators": "~2.0",
+                "fitztrev/laravel-html-minify": "1.*"
 
 	}
 }
