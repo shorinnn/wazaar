@@ -35,12 +35,12 @@
                   data-callback='ratedTestimonial' data-thumb='up' data-total='{{$testimonial->thumbs()}}' 
                 data-up="{{$testimonial->thumbs_up}}" data-down="{{$testimonial->thumbs_down}}" data-testimonial-id='{{$testimonial->id}}'
                         @if( $testimonial->ratedBy( Auth::user() ) )
-                            data-rated='{{$testimonial->rated_as}}'
+                            data-rated='{{$testimonial->current_user_rating->rating}}'
                         @endif
                         >
-                <button type='submit' class="btn btn-success"  data-testimonial-id='{{$testimonial->id}}'>
+                <button type='submit' name="rate-yes" class="btn btn-success"  data-testimonial-id='{{$testimonial->id}}'>
                     <i class="fa fa-thumbs-o-up"></i> Yes
-                    @if( $testimonial->rated_as=='positive' )
+                    @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'positive' )
                         <i class="fa fa-check-circle-o"></i>
                     @endif
                 </button>
@@ -53,12 +53,12 @@
                   data-callback='ratedTestimonial' data-thumb='down' data-total='{{$testimonial->thumbs()}}' 
                 data-up="{{$testimonial->thumbs_up}}" data-down="{{$testimonial->thumbs_down}}" data-testimonial-id='{{$testimonial->id}}'
                         @if( $testimonial->ratedBy( Auth::user() ) )
-                            data-rated='{{$testimonial->rated_as}}'
+                            data-rated='{{ $testimonial->current_user_rating->rating }}'
                         @endif
                         >
-                <button type='submit' class="btn btn-danger"  data-testimonial-id='{{$testimonial->id}}'>
+                <button type='submit'  name="rate-no" class="btn btn-danger"  data-testimonial-id='{{$testimonial->id}}'>
                     <i class="fa fa-thumbs-o-down"></i> No
-                    @if( $testimonial->rated_as=='negative' )
+                    @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'negative' )
                         <i class="fa fa-check-circle-o"></i>
                     @endif
                 </button>

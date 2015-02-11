@@ -1,15 +1,17 @@
 <?php
 
-class Testimonial extends ArdentUniqueWith{
+class Testimonial extends CocoriumArdent{
+    public $autoPurgeRedundantAttributes = true;
     public $thumbs = null;
-    public $rated_as = null;
+    public $current_user_rating = null;
     public $rate_update = false;
+    public $skipped_after_save = false;
     public $fillable = ['course_id', 'student_id', 'content', 'rating'];
+    
     public static $rules = [
         'course_id' => 'required|exists:courses,id|unique_with:testimonials,student_id',
         'student_id' => 'required|exists:users,id'
      ];
-    
     
     public static $relationsData = [
         'student' => [ self::BELONGS_TO, 'Student', 'table' => 'users', 'foreignKey' => 'student_id' ],
@@ -23,11 +25,17 @@ class Testimonial extends ArdentUniqueWith{
         return $this->thumbs;
     }
     
+    public function beforeSave(){
+        $this->clearTransient();
+    }
+    
     public function afterSave(){
         if( $this->rate_update ){
-            $this->rate_update = false;
-            return true;
+            $this->setTransient('rate_update',  false );
+            $this->setTransient('skipped_after_save', true);    
+            return;
         }
+        $this->setTransient('skipped_after_save', false);
         $course = Course::find( $this->course_id );
         $course->total_reviews = $course->testimonials()->where('reported','no')->count();
         if($course->total_reviews == 0 ) $course->reviews_positive_score = 100;
@@ -36,13 +44,14 @@ class Testimonial extends ArdentUniqueWith{
     }
     
     public function rate($first_time_rating, $rating, $old_rating){
+        $this->setTransient('rate_update',  true );
         
         if( $first_time_rating ){ // first time rating
             if( $rating == 'positive' ) $this->thumbs_up++;
             else  $this->thumbs_down++;
         }
         else{ // update rating
-            $this->rate_update = true;
+            
             if($old_rating != $rating){//changed rating
                 if( $rating == 'positive' ){
                     $this->thumbs_up++;
@@ -54,12 +63,13 @@ class Testimonial extends ArdentUniqueWith{
                 }
             }
         }
-        $this->updateUniques();
+        if( $this->updateUniques() ) return true;
+        return false;
     }
     
     public function ratedBy($user){
         if( $rating = $this->ratings()->where('student_id', $user->id)->first() ){
-            $this->rated_as = $rating->rating;
+            $this->current_user_rating = $rating;
             return true;
         }
         return false;

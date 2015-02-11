@@ -1,6 +1,6 @@
 <?php
 
-class TestimonialRating extends ArdentUniqueWith {
+class TestimonialRating extends CocoriumArdent {
 	protected $fillable = ['student_id', 'testimonial_id'];
         public static $rules = [
             'testimonial_id' => 'required|exists:testimonials,id|unique_with:testimonial_ratings,student_id',

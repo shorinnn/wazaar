@@ -1,6 +1,6 @@
 <?php
 
-class CourseReferral extends ArdentUniqueWith{
+class CourseReferral extends CocoriumArdent{
     public $fillable = ['course_id', 'student_id', 'affiliate_id'];
     
     public static $relationsData = array(

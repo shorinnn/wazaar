@@ -518,6 +518,12 @@ jQuery.fn.rotate = function(degrees) {
 };
 
 
+/**
+ * Callback - updates the ThumbsUp/ThumbsDown text after rating a testimonial
+ * @param {json} result The rating json response
+ * @param {event} e The original form submit event
+ * @method ratedTestimonial
+ */
 function ratedTestimonial(result, e){
     thumbs = $(e.target).attr('data-total');
     thumbs_up = $(e.target).attr('data-up');
@@ -525,9 +531,7 @@ function ratedTestimonial(result, e){
     id = $(e.target).attr('data-testimonial-id');
     rate = $(e.target).attr('data-thumb');
     already_rated = typeof( $(e.target).attr('data-rated') ) == 'undefined' ? false : $(e.target).attr('data-rated');
-    
-    
-    
+ 
     if( !already_rated ){
         thumbs++;
         if( rate=='up') ++thumbs_up;

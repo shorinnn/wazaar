@@ -1,7 +1,26 @@
 <?php
 use LaravelBook\Ardent\Ardent;
 
-abstract class ArdentUniqueWith extends Ardent {
+abstract class CocoriumArdent extends Ardent {
+    protected $transientSet = [];
+    
+    public function setTransient($name, $val){
+        $this->$name = $this->attributes[$name] = $val;
+        $this->transientSet[$name] = $name;
+    }
+    
+    public function clearTransient(){
+        if( count( $this->transientSet) > 0){
+            foreach($this->transientSet as $attr){
+                if( isset( $this->attributes[$attr] ) ){
+                    $this->$attr = $this->attributes[$attr];
+                    unset( $this->attributes[$attr] );
+                }
+            }
+        }
+    }
+    
+    
     /**
      * SORIN: Extended this to make it work with unique_with https://github.com/felixkiss/uniquewith-validator
      * @param int   $id

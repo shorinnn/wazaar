@@ -1,6 +1,6 @@
 <?php
 
-class WishlistItem extends ArdentUniqueWith{
+class WishlistItem extends CocoriumArdent{
     public $fillable = ['course_id', 'student_id'];
     public static $rules = [
         'course_id' => 'required|exists:courses,id|unique_with:wishlist_items,student_id',
