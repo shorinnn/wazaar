@@ -19,7 +19,8 @@
 		"intervention/image": "~2.0",
                 "felixkiss/uniquewith-validator": "1.1.*",
 		"jenssegers/agent": "2.1.4",
-                "fzaninotto/faker": "1.4.0"
+                "fzaninotto/faker": "1.4.0",
+                "fitztrev/laravel-html-minify": "1.*"
 	},
 	"autoload": {
 		"classmap": [
@@ -55,8 +56,7 @@
 	"require-dev": {
 		"barryvdh/laravel-ide-helper": "1.11.*@dev",
 		"barryvdh/laravel-debugbar": "1.8.*@dev",
-                "way/generators": "~2.0",
-                "fitztrev/laravel-html-minify": "1.*"
+                "way/generators": "~2.0"
 
 	}
 }

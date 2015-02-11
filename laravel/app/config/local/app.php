@@ -20,7 +20,6 @@ return array(
 			'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 			'Barryvdh\Debugbar\ServiceProvider',
                         'Way\Generators\GeneratorsServiceProvider',
-                        'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider',
 		]
 	)
 
