@@ -207,7 +207,14 @@
                                 @endif
                                     <span>Lesson {{ $lesson->order }}</span>
                                     <p>{{ $lesson->name }}</p>
-                                    <a href="#" class="crash-lesson-button">CRASH LESSON</a>
+                                    {{ Form::open( [ 'action' => ['CoursesController@purchaseLesson', $course->slug, $lesson->id ] ] ) }}
+                                    <!--<a href="#" class="crash-lesson-button">CRASH LESSON</a>-->
+                                    <button class="btn crash-lesson-button pull-right" 
+                                            @if( Auth::guest() || !Auth::user()->can_purchase($course) || !Auth::user()->canPurchaseLesson($lesson) )
+                                            disabled="disabled" 
+                                            @endif
+                                            >CRASH LESSON</button>
+                                    {{ Form::close() }}
                                 </li>
                             @endforeach
                         </ul>

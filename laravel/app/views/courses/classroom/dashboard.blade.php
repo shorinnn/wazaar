@@ -64,7 +64,7 @@
                                     @if( !$student->nextLesson($course))
                                         Completed all lessons - decide what to put here
                                     @else
-                                        <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'lesson' => $student->nextLesson($course)->slug ] ) }}">
+                                        <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'module' => $student->nextLesson($course)->module->slug , 'lesson' => $student->nextLesson($course)->slug ] ) }}">
                                         @if( $student->viewedLessons->count()==0 )
                                             BEGIN <small>FIRST LESSON</small>
                                         @else
@@ -170,15 +170,22 @@
                                     </li>
                                     @foreach($module->lessons as $lesson)
                                         <li id="curriculum-lesson-{{$lesson->id}}">
-                                            <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'module' => $lesson->module->slug, 'lesson' => $lesson->slug ] ) }}" 
-                                               @if( $student->isLessonViewed($lesson) )
-                                                   class="lesson-1 module-lesson">
-                                               @else
-                                                   class="lesson-2 module-lesson">
-                                               @endif
-                                                <span>Lesson {{$j}}</span>
-                                                <p>{{ $lesson->name }}</p>
-                                            </a>
+                                            @if( $student->purchased($course) || $student->purchasedLesson($lesson) )
+                                                <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'module' => $lesson->module->slug, 'lesson' => $lesson->slug ] ) }}" 
+                                                   @if( $student->isLessonViewed($lesson) )
+                                                       class="lesson-1 module-lesson">
+                                                   @else
+                                                       class="lesson-2 module-lesson">
+                                                   @endif
+                                                    <span>Lesson {{$j}}</span>
+                                                    <p>{{ $lesson->name }}</p>
+                                                </a>
+                                            @else
+                                                <a class="lesson-4 module-lesson">
+                                                    <span>Lesson {{$j}}</span>
+                                                    <p>{{ $lesson->name }}</p>
+                                                </a>
+                                            @endif
                                         </li>
                                     <?php ++$j;?>
                                     @endforeach

@@ -38,6 +38,7 @@
                             data-rated='{{$testimonial->current_user_rating->rating}}'
                         @endif
                         >
+                        
                 <button type='submit' name="rate-yes" class="btn btn-success"  data-testimonial-id='{{$testimonial->id}}'>
                     <i class="fa fa-thumbs-o-up"></i> Yes
                     @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'positive' )

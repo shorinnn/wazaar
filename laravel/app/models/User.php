@@ -34,6 +34,18 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     /**
+     * Can the current user purchase the lesson course
+     * @param Lesson $lesson
+     * @return boolean
+     */
+    public function canPurchaseLesson(Lesson $lesson){
+        if($this->id == $lesson->module->course->instructor->id) return false;
+        $student = Student::find($this->id);
+        if( $student->purchasedLesson($lesson) ) return false;
+        return true;
+    }
+    
+    /**
      * Admin cannot delete self
      * @return boolean
      */
