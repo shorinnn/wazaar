@@ -644,6 +644,8 @@ function fullScreen(){
 	  //Slide in the lesson modules on fullscreen
 	  var staggerModules = TweenMax.staggerTo($moduleLessons, 0.3, {left: '0%', ease:Power3.easeInOut}, 0.1);
 
+	 //Remove default browser scrollbar
+	 $('body').css('overflow', 'hidden'); 
 	 //Hide the "View all" button on Full screen
 	 $("#view-all-lessons").hide();
   }
@@ -668,6 +670,8 @@ function fullScreen(){
 	  //And then hide the close button when not in fullscreen mode
 	  $(this).hide();;
 	  $("#view-all-lessons").show();
+
+   	  $('body').css('overflow', 'auto'); 
 		 
 	  //Revert adjusted properties to adapt on normal screen
 	  $('.lessons').height('400px');
