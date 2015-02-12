@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c5fc2ca8ac0f6c5c71ae598ae32720a8",
+    "hash": "51c8fbf26b53e0656282d92f8288a907",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -531,6 +531,59 @@
             "time": "2014-10-26 09:05:09"
         },
         {
+            "name": "fitztrev/laravel-html-minify",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fitztrev/laravel-html-minify.git",
+                "reference": "8005fc4a8489ca0fc44dbf2514e35148eb3a8693"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fitztrev/laravel-html-minify/zipball/8005fc4a8489ca0fc44dbf2514e35148eb3a8693",
+                "reference": "8005fc4a8489ca0fc44dbf2514e35148eb3a8693",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/view": "4.x"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "phpunit/php-code-coverage": ">=1.2.10,<1.3.0",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Fitztrev\\LaravelHtmlMinify": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Trevor Fitzgerald",
+                    "email": "fitztrev@gmail.com"
+                }
+            ],
+            "description": "Minifies the HTML output of Laravel 4 applications",
+            "homepage": "https://github.com/fitztrev/laravel-html-minify",
+            "keywords": [
+                "L4",
+                "blade",
+                "compress",
+                "html",
+                "laravel",
+                "minifier",
+                "minify",
+                "optimization",
+                "performance"
+            ],
+            "time": "2014-07-14 18:21:35"
+        },
+        {
             "name": "fzaninotto/faker",
             "version": "v1.4.0",
             "source": {
@@ -986,16 +1039,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v4.2.16",
+            "version": "v4.2.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "31fe6a5747bbe3c2df21dc4cc8f291e75ab6144f"
+                "reference": "3359de6d6cd322e8a1b251c2f8d9dd42a3e4e232"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/31fe6a5747bbe3c2df21dc4cc8f291e75ab6144f",
-                "reference": "31fe6a5747bbe3c2df21dc4cc8f291e75ab6144f",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/3359de6d6cd322e8a1b251c2f8d9dd42a3e4e232",
+                "reference": "3359de6d6cd322e8a1b251c2f8d9dd42a3e4e232",
                 "shasum": ""
             },
             "require": {
@@ -1006,7 +1059,7 @@
                 "jeremeamia/superclosure": "~1.0.1",
                 "monolog/monolog": "~1.6",
                 "nesbot/carbon": "~1.0",
-                "patchwork/utf8": "1.1.*",
+                "patchwork/utf8": "~1.1",
                 "php": ">=5.4.0",
                 "phpseclib/phpseclib": "0.3.*",
                 "predis/predis": "0.8.*",
@@ -1097,7 +1150,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2014-12-22 20:56:10"
+            "time": "2015-02-11 20:37:15"
         },
         {
             "name": "laravelbook/ardent",
@@ -1504,16 +1557,16 @@
         },
         {
             "name": "patchwork/utf8",
-            "version": "v1.1.28",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tchwork/utf8.git",
-                "reference": "ffa082111aa3cb23cf2479a17e6785ace91da982"
+                "reference": "01f0ed1628db7794e2d4e336f55a09daef4248a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tchwork/utf8/zipball/ffa082111aa3cb23cf2479a17e6785ace91da982",
-                "reference": "ffa082111aa3cb23cf2479a17e6785ace91da982",
+                "url": "https://api.github.com/repos/tchwork/utf8/zipball/01f0ed1628db7794e2d4e336f55a09daef4248a5",
+                "reference": "01f0ed1628db7794e2d4e336f55a09daef4248a5",
                 "shasum": ""
             },
             "require": {
@@ -1523,9 +1576,15 @@
             "suggest": {
                 "ext-iconv": "Use iconv for best performance",
                 "ext-intl": "Use Intl for best performance",
-                "ext-mbstring": "Use Mbstring for best performance"
+                "ext-mbstring": "Use Mbstring for best performance",
+                "ext-wfio": "Use WFIO for UTF-8 filesystem access on Windows"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "Patchwork": "class/",
@@ -1551,7 +1610,7 @@
                 "utf-8",
                 "utf8"
             ],
-            "time": "2015-01-12 08:05:15"
+            "time": "2015-01-29 08:36:50"
         },
         {
             "name": "phpseclib/phpseclib",
@@ -3495,59 +3554,6 @@
             "time": "2015-02-07 22:18:57"
         },
         {
-            "name": "fitztrev/laravel-html-minify",
-            "version": "1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fitztrev/laravel-html-minify.git",
-                "reference": "8005fc4a8489ca0fc44dbf2514e35148eb3a8693"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fitztrev/laravel-html-minify/zipball/8005fc4a8489ca0fc44dbf2514e35148eb3a8693",
-                "reference": "8005fc4a8489ca0fc44dbf2514e35148eb3a8693",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/view": "4.x"
-            },
-            "require-dev": {
-                "mockery/mockery": "dev-master",
-                "phpunit/php-code-coverage": ">=1.2.10,<1.3.0",
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Fitztrev\\LaravelHtmlMinify": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Trevor Fitzgerald",
-                    "email": "fitztrev@gmail.com"
-                }
-            ],
-            "description": "Minifies the HTML output of Laravel 4 applications",
-            "homepage": "https://github.com/fitztrev/laravel-html-minify",
-            "keywords": [
-                "L4",
-                "blade",
-                "compress",
-                "html",
-                "laravel",
-                "minifier",
-                "minify",
-                "optimization",
-                "performance"
-            ],
-            "time": "2014-07-14 18:21:35"
-        },
-        {
             "name": "maximebf/debugbar",
             "version": "v1.10.4",
             "source": {
@@ -3818,7 +3824,6 @@
         "barryvdh/laravel-debugbar": 20
     },
     "prefer-stable": false,
-    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }
