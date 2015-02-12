@@ -152,16 +152,18 @@
                         <span class="load-more-comments">LOAD MORE</span>
                     </div>
                 </div>
-                <div class="row curriculum">
+                <div class="row curriculum" id="curriculum">
                 	<div class="col-md-12">
-                    	<div>
+                    	<div class="clearfix">
                             <p class="lead">Curriculum</p>
+                            <span id="close-button" class="fa fa-times fa-6"></span>
+                            <span id="view-all-lessons">VIEW ALL</span>
                             <!--<div class="view-previous-lessons">view previous lessons</div>-->
                             <ul class="lessons">
                                 <?php $i = $j = 1;  ?>
                                 @foreach($course->modules as $module)
                                     <li>
-                                        <a class="module">
+                                        <a class="module module-lesson">
                                             <span>Module {{$i}}</span>
                                             <p>{{ $module->name }}</p>
                                         </a>
@@ -170,9 +172,9 @@
                                         <li id="curriculum-lesson-{{$lesson->id}}">
                                             <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'module' => $lesson->module->slug, 'lesson' => $lesson->slug ] ) }}" 
                                                @if( $student->isLessonViewed($lesson) )
-                                                   class="lesson-1">
+                                                   class="lesson-1 module-lesson">
                                                @else
-                                                   class="lesson-2">
+                                                   class="lesson-2 module-lesson">
                                                @endif
                                                 <span>Lesson {{$j}}</span>
                                                 <p>{{ $lesson->name }}</p>

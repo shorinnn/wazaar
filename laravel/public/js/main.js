@@ -4,6 +4,9 @@
  */
 // JavaScript Document
 $(document).ready(function(){
+	$(function(){
+		  $('#curriculum .lessons').jScrollPane();
+	  });
     $(".profile-name > li").removeClass("activate-dropdown");
     $('body').delegate('.slide-toggler', 'click', slideToggle);
     $('body').delegate('a.load-remote', 'click', loadRemote);
@@ -14,6 +17,8 @@ $(document).ready(function(){
     _.setTranslation( js_translation_map );
     floatingNav();
     scrollNavigation();
+	fullScreen();
+
 });
 
 /**
@@ -556,3 +561,104 @@ function ratedTestimonial(result, e){
     $('[data-testimonial-id="'+id+'"]').prop('disabled', true);
     $('[data-testimonial-id="'+id+'"]').prop('disabled', 'disabled');
 }
+
+function fullScreen(){
+  //Get the height and width of the browser
+  $browserHeight = $(window).height();
+  $browserWidth = $(window).width();
+  
+  //Properties to animate from
+  var initialState = {
+		  margin: "0% auto 0", 
+		  position: "relative", 
+		  top: "-7%",
+		  left: 0,
+		  right: 0,
+		  bottom: 0,
+		  width: "970px", 
+		  height: "590px", 
+	  }
+  
+  //Properties to animate to
+  var finalState = {
+		  position: "fixed", 
+		  top: "auto",
+		  left: 0,
+		  bottom: 0,
+		  right: 0,
+		  opacity: 1,
+		  margin: "0 auto", 
+		  width: $browserWidth,
+		  height: $browserHeight,
+		  onStart: hideModules,
+		  onReverseComplete: removeBackground,
+		  onComplete: showContents,
+		  ease:Linear.easeNone
+	  }
+  
+  //Initialize and store the animation in a variable
+  var expandCurriculum = TweenMax.fromTo("#curriculum > div", 0.3, initialState, finalState);
+  function hideModules(){
+	  //Hide the lesson modules
+	  $(".lessons li a").css({'position': 'relative','left': '-150%'});
+	  //Give the box a white background before animation starts
+	  TweenMax.to("#curriculum > div", 0, {backgroundColor: '#fff'});
+  }
+  
+  function showContents(){
+	  //show the close button when animation is complete
+	  $("#close-button").show();
+	  
+	  //Get the lesson modules to be animated and store them in a variable
+	  $moduleLessons = $('.module-lesson');
+	  //Adjust some elements' properties to adapt on fullscreen
+	  $('#curriculum > div > div').height($browserHeight);
+	  $('.lessons').height('100%');
+	  $('.jspContainer').height('90%');
+	  $('.jspPane').css({'width': '97%', 'padding': '0 0 0 1%'});
+	  $('.jspVerticalBar').css('right', '1%');
+	  $('.classroom-content .curriculum p.lead').css({'font-size': '22px', 'text-align': 'center', 'margin-bottom': '0'});
+	  $('.classroom-content .curriculum div.view-previous-lessons').css({'line-height': '0', 'height': '32px', 'margin-bottom': '0'});
+	  
+	  //Slide in the lesson modules on fullscreen
+	  var staggerModules = TweenMax.staggerTo($moduleLessons, 0.3, {left: '0%', ease:Power3.easeInOut}, 0.1);
+
+	 //Hide the "View all" button on Full screen
+	 $("#view-all-lessons").hide();
+  }
+  
+  function removeBackground(){
+	  //Remove the white background on animation reverse
+	  TweenMax.to("#curriculum > div", 0, {backgroundColor: 'transparent'});				
+  }
+  
+  //Override the default "Play state" and pause the animation until a button is clicked
+  expandCurriculum.pause();
+  
+  $("#view-all-lessons").click(function(){
+	  //Make the box fullscreen on button click
+	  expandCurriculum.play();
+  });
+  
+  $("#close-button").click(function(){
+	  //Restore to the initial state when the close button is clicked
+	  expandCurriculum.reverse();
+	  
+	  //And then hide the close button when not in fullscreen mode
+	  $(this).hide();;
+	  $("#view-all-lessons").show();
+		 
+	  //Revert adjusted properties to adapt on normal screen
+	  $('.lessons').height('400px');
+	  $('.jspContainer').height('100%');
+	  $('.jspPane').css({'width': '97%', 'padding': '0'});
+	  $('.jspVerticalBar').css({'right': '0%'});
+	  $('.classroom-content .curriculum p.lead').css({'font-size': '18px', 'text-align': 'left', 'margin-bottom': '10px'});
+	  $('.classroom-content .curriculum div.view-previous-lessons').css({'line-height': '64px', 'height': '64px', 'margin-bottom': '10px'});
+
+  });
+  
+}
+ 
+
+
