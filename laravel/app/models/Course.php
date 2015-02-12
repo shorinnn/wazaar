@@ -159,7 +159,7 @@ class Course extends Ardent{
             $future_date = new DateTime($this->sale_ends_on);
             $interval = $future_date->diff($now);
             if($interval->format("%d")>0){
-                $this->discount_ends_in = $interval->format("%d days, %h hours, %i minutes");
+                $this->discount_ends_in = $interval->format("%d days %h:%i:%s");
             }
             else{
                 $this->discount_ends_in = $interval->format("%h:%i:%s");
