@@ -155,9 +155,9 @@
                 <div class="row curriculum" id="curriculum">
                 	<div class="col-md-12">
                     	<div class="clearfix">
-                            <p class="lead">Curriculum</p>
+                            <p class="lead">Curriculum<span id="view-all-lessons">View All</span></p>
                             <span id="close-button" class="fa fa-times fa-6"></span>
-                            <span id="view-all-lessons">VIEW ALL</span>
+                            
                             <!--<div class="view-previous-lessons">view previous lessons</div>-->
                             <ul class="lessons">
                                 <?php $i = $j = 1;  ?>

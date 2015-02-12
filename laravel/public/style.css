@@ -5,6 +5,7 @@ body {
 	font: 16px Lato, Helvetica, sans-serif;
 	margin: 0;
 	padding: 0;
+	overflow: hidden;
 	color: #000;
 }
 
@@ -1600,7 +1601,7 @@ header .activate-dropdown:hover ul{
 	margin-bottom: 10px;
 	top: 0;
 	position: relative;
-	line-height: 47px;
+	line-height: 60px;
 	width: 270px;
 	text-transform: capitalize;
 	-webkit-box-shadow: 0px 5px 0px #f1b90f;
@@ -1622,7 +1623,7 @@ header .activate-dropdown:hover ul{
 .white-box .join-class span{
 	font-size: 22px;
 	position: relative;
-	top: 6px;
+	top: 0;
 	display: inline-block;
 	margin-left: 0px;
 }
@@ -1864,9 +1865,10 @@ header .activate-dropdown:hover ul{
 .left-content .lead{
 	padding: 12px 0 16px 20px;
 	margin: 0;
-	color: #0099ff;
-	font-size: 18px;
+	color: #000;
+	font-size: 14px;
 	background: #fff;
+	font-weight: normal;
 	border-radius: 0 5px 0 0;
 }
 
@@ -1922,7 +1924,7 @@ header .activate-dropdown:hover ul{
 	padding: 15px 0 15px 20px;
 	font-size: 14px;
 	background: #e5f5ff;
-	color: #0099ff;
+	color: #000;
 	border-radius: 5px 0 0 0;
 }
 
@@ -1998,8 +2000,13 @@ header .activate-dropdown:hover ul{
 	font-size: 12px;
 }
 
+#follow-form form{
+	width: 100%;
+	margin: 0 auto;
+}
+
 .main-content-container .main-content
-.sidebar .your-teacher a.follow-button{
+.sidebar .your-teacher button.follow-button{
 	text-align: center;
 	color: #fff;
 	width: 135px;
@@ -2007,6 +2014,7 @@ header .activate-dropdown:hover ul{
 	margin: 40px auto;
 	border-radius: 5px;
 	font-size: 14px;
+	border: none;
 	display: block;
 	line-height: 42px;
 	background: -moz-linear-gradient(left, #63dd81, #84e560, #94e84f);
@@ -2017,7 +2025,7 @@ header .activate-dropdown:hover ul{
 }
 
 .main-content-container .main-content
-.sidebar .your-teacher a.follow-button:hover{
+.sidebar .your-teacher button.follow-button:hover{
 	text-decoration: none;
 	background: -moz-linear-gradient(left, #94e84f, #84e560, #63dd81);
 	background: -webkit-linear-gradient(left, #94e84f, #84e560, #63dd81);
@@ -2038,7 +2046,7 @@ header .activate-dropdown:hover ul{
 .sidebar .your-teacher h4 + p{
 	padding: 0 20px 40px;
 	font-size: 12px;
-	color: #849598;
+	color: #333;
 	line-height: 28px;
 	margin: 0;
 }
@@ -2876,7 +2884,6 @@ header .activate-dropdown:hover ul{
     width: 0;
 }
 
-#view-all-lessons,
 .load-more-comments{
 	display: block;
 	margin-top: 10px;
@@ -2894,10 +2901,19 @@ header .activate-dropdown:hover ul{
 }
 
 #view-all-lessons{
-	margin: 20px 0;
+	display: inline-block;
+	color: #0099ff;
+	text-align: right;
+	font-size: 18px;
+	padding-right: 20px;
+	float: right;
+	cursor: pointer;
 }
 
-#view-all-lessons:hover,
+#view-all-lessons:hover{
+	color: #21618b;
+}
+
 .load-more-comments:hover{
 	background: #21618b;
 }
