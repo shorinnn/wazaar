@@ -2,6 +2,7 @@
 @section('content')
     <div class="wrapper">
         <div class="container affiliate-dashboard dashboard">
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="header clearfix">
@@ -21,6 +22,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row top-activities">
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div>
@@ -29,16 +31,16 @@
                                 Top Courses <span id="header-top-courses-frequency">Today</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu top-courses-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.topCourses('daily', this); return false;">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.topCourses('daily','', this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.topCourses('week', this); return false;">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.topCourses('week','', this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.topCourses('month', this); return false;">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.topCourses('month','', this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.topCourses('alltime', this); return false;">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.topCourses('alltime','', this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>
@@ -57,16 +59,16 @@
                                 Sales <span id="header-sales-frequency">Today</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.sales('daily', this); return false;">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.sales('daily','', this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('week', this); return false;">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('week','', this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('month', this); return false;">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('month','', this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('alltime', this); return false;">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('alltime','', this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>
@@ -274,5 +276,4 @@
 
 @section('extra_js')
     <script type="text/javascript" src="{{url('js/analytics.js')}}"></script>
-
 @stop

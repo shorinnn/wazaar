@@ -1,0 +1,6 @@
+{
+  "name": "Wazaar",
+  "dependencies": {
+    "Chart.js": "~1.0.1"
+  }
+}

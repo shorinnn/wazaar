@@ -1,7 +1,6 @@
 <?php
-use LaravelBook\Ardent\Ardent;
 
-class FollowRelationship extends Ardent{
+class FollowRelationship extends CocoriumArdent{
     public $fillable = ['instructor_id', 'student_id'];
     
      public static $rules = [

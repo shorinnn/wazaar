@@ -34,6 +34,19 @@
                     <br />
                     <div class="row">
                         <div class="col-lg-4">
+                            
+                            <img src="http://shorinnn.com/easteregg/NewIcon.png" style="float:left; height:70px; 
+                                 position:absolute; margin-left:-20px; margin-top:-20px" />
+                            <a href="http://shorinnn.com/easteregg/loc-mouse-mat.png" target="_blank">
+                                <img width="200" src="http://shorinnn.com/easteregg/loc-mouse-mat.png" />
+                            </a><br />
+                            <p style='font-style:italic'><b>LoC Mouse Mat</b><br />Improve your typing speed by 2% with this original designer mouse mat.
+                            First 10 come with a free autograph.</p>
+                            <p>$200.95 (4 left)</p>
+                            <button class="btn btn-danger"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
+                        </div>
+                       
+                        <div class="col-lg-4">
                             <img src="http://shorinnn.com/easteregg/NewIcon.png" style="float:left; height:70px; 
                                  position:absolute; margin-left:-20px; margin-top:-20px" />
                             <a href="http://shorinnn.com/easteregg/team.png" target="_blank">
@@ -53,15 +66,7 @@
                             <p>$350K (out of stock)</p>
                             <button class="btn btn-danger"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
                         </div>
-                        <div class="col-lg-4">
-                            <a href="http://shorinnn.com/easteregg/1.png" target="_blank">
-                                <img width="200" src="http://shorinnn.com/easteregg/1.png" />
-                            </a><br />
-                            <p style='font-style:italic'>Who can say no? Wear this luxurious apparel for maximum support and zero downtime.</p>
-                            <p>$19.188,99 (out of stock)</p>
-                            <button class="btn btn-danger"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
-                        </div>
-                       
+                        
      
                     </div>
                     
@@ -103,7 +108,15 @@
                             <p>$50.000.49 (out of stock)</p>
                             <button class="btn btn-danger"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
                         </div>
-                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                            <a href="http://shorinnn.com/easteregg/1.png" target="_blank">
+                                <img width="200" src="http://shorinnn.com/easteregg/1.png" />
+                            </a><br />
+                            <p style='font-style:italic'>Who can say no? Wear this luxurious apparel for maximum support and zero downtime.</p>
+                            <p>$19.188,99 (out of stock)</p>
+                            <button class="btn btn-danger"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
+                        </div>
+                       
                         <div class="col-lg-4"></div>
                     </div>
                     

@@ -1,7 +1,6 @@
 <?php
-use LaravelBook\Ardent\Ardent;
 
-class WishlistItem extends Ardent{
+class WishlistItem extends CocoriumArdent{
     public $fillable = ['course_id', 'student_id'];
     public static $rules = [
         'course_id' => 'required|exists:courses,id|unique_with:wishlist_items,student_id',

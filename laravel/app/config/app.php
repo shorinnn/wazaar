@@ -128,8 +128,7 @@ return array(
 		'Intervention\Image\ImageServiceProvider',
 		'Felixkiss\UniqueWithValidator\UniqueWithValidatorServiceProvider',
 		'Jenssegers\Agent\AgentServiceProvider',
-            
-
+                'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider',
 	),
 
 	/*

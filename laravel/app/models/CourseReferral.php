@@ -1,7 +1,6 @@
 <?php
-use LaravelBook\Ardent\Ardent;
 
-class CourseReferral extends Ardent{
+class CourseReferral extends CocoriumArdent{
     public $fillable = ['course_id', 'student_id', 'affiliate_id'];
     
     public static $relationsData = array(

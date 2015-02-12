@@ -523,39 +523,60 @@ jQuery.fn.rotate = function(degrees) {
 };
 
 
+/**
+ * Callback - updates the ThumbsUp/ThumbsDown text after rating a testimonial
+ * @param {json} result The rating json response
+ * @param {event} e The original form submit event
+ * @method ratedTestimonial
+ */
 function ratedTestimonial(result, e){
     thumbs = $(e.target).attr('data-total');
     thumbs_up = $(e.target).attr('data-up');
     thumbs_down = $(e.target).attr('data-down');
     id = $(e.target).attr('data-testimonial-id');
     rate = $(e.target).attr('data-thumb');
-    
-    if( rate=='up') ++thumbs_up;
-    else ++thumbs_down;
-    thumbs++;
-    
+    already_rated = typeof( $(e.target).attr('data-rated') ) == 'undefined' ? false : $(e.target).attr('data-rated');
+ 
+    if( !already_rated ){
+        thumbs++;
+        if( rate=='up') ++thumbs_up;
+        else ++thumbs_down;
+    }
+    else{
+        if( rate=='up'){
+             if( already_rated=='negative' ){
+                 --thumbs_down;
+                 ++thumbs_up;
+             }
+        }
+        else{
+            if( already_rated=='positive' ){
+                ++thumbs_down;
+                --thumbs_up;
+            }
+        }
+    }
     if(thumbs==1){
-        $('.testimonial-'+id)[0].remove();
+        $('.testimonial-'+id+'-placeholder').hide();
         $('.testimonial-'+id).removeClass('hidden');
         if( rate=='up' ){
-            $('.testimonial-'+id).find('.fa-thumbs-o-down').remove();
-            $('.testimonial-'+id).find('.thumbs-down-label').remove();
+            $('.testimonial-'+id).find('.fa-thumbs-o-down').hide();
+            $('.testimonial-'+id).find('.thumbs-down-label').hide();
+            $('.testimonial-'+id).find('.fa-thumbs-o-up').show();
+            $('.testimonial-'+id).find('.thumbs-up-label').show();
             $('.testimonial-'+id).find('.not-very').html('very');
         }
         else{
-            $('.testimonial-'+id).find('.fa-thumbs-o-up').remove();
-            $('.testimonial-'+id).find('.thumbs-up-label').remove();
+            $('.testimonial-'+id).find('.fa-thumbs-o-up').hide();
+            $('.testimonial-'+id).find('.thumbs-up-label').hide();
+            $('.testimonial-'+id).find('.fa-thumbs-o-down').show();
+            $('.testimonial-'+id).find('.thumbs-down-label').show();
             $('.testimonial-'+id).find('.not-very').html('not');
         }
     }
- 
- 
-    if( rate =='up'){
-        $('.testimonial-'+id).find('.thumbs-up-label').html(thumbs_up);
-    }
-    else{
-        $('.testimonial-'+id).find('.thumbs-down-label').html(thumbs_down);
-    }
+
+    $('.testimonial-'+id).find('.thumbs-up-label').html(thumbs_up);
+    $('.testimonial-'+id).find('.thumbs-down-label').html(thumbs_down);
     $('.testimonial-'+id).find('.thumbs-total-label').html(thumbs);
 
     $('[data-testimonial-id="'+id+'"]').prop('disabled', true);

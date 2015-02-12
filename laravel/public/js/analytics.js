@@ -1,6 +1,6 @@
 var Analytics = {
-    'topCourses' :  function ($frequency, $elem){
-            $.get('dashboard/topcourses/' + $frequency, function ($html){
+    'topCourses' :  function ($frequency, $courseId, $elem){
+            $.get('/dashboard/topcourses/' + $frequency + '/' + $courseId, function ($html){
                 $('#wrapper-top-courses').html($html);
 
                 $('.top-courses-dropdown a').removeClass('active');
@@ -19,8 +19,8 @@ var Analytics = {
                 }
             });
     },
-    'sales' :  function ($frequency, $elem){
-        $.get('dashboard/sales/' + $frequency, function ($html){
+    'sales' :  function ($frequency, $courseId, $elem){
+        $.get('/dashboard/sales/' + $frequency + '/' + $courseId, function ($html){
             $('#wrapper-sales').html($html);
 
             $('.sales-dropdown a').removeClass('active');
@@ -39,8 +39,8 @@ var Analytics = {
             }
         });
     },
-    'trackingSalesCodes' :  function ($frequency, $elem){
-        $.get('dashboard/trackingcodessales/' + $frequency, function ($html){
+    'trackingSalesCodes' :  function ($frequency, $courseId, $elem){
+        $.get('/dashboard/trackingcodessales/' + $frequency + '/' + $courseId, function ($html){
             $('#wrapper-tracking-codes').html($html);
 
             $('.tracking-codes-dropdown a').removeClass('active');
@@ -59,8 +59,8 @@ var Analytics = {
             }
         });
     },
-    'courseConversions' :  function ($frequency, $elem){
-        $.get('dashboard/courseconversions/' + $frequency, function ($html){
+    'courseConversions' :  function ($frequency, $courseId, $elem){
+        $.get('/dashboard/courseconversions/' + $frequency + '/' + $courseId, function ($html){
             $('#wrapper-course-conversions').html($html);
 
             $('.course-conversions-dropdown a').removeClass('active');
@@ -79,8 +79,8 @@ var Analytics = {
             }
         });
     },
-    'trackingCodeConversions' :  function ($frequency, $elem){
-        $.get('dashboard/trackingcodeconversions/' + $frequency, function ($html){
+    'trackingCodeConversions' :  function ($frequency, $courseId, $elem){
+        $.get('/dashboard/trackingcodeconversions/' + $frequency + '/' + $courseId, function ($html){
             $('#wrapper-tracking-code-conversions').html($html);
 
             $('.tracking-code-conversions-dropdown a').removeClass('active');
