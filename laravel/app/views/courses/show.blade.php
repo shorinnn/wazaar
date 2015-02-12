@@ -107,7 +107,7 @@
                     {{ $course->description }}
                     </article>
                     -->
-                    <p class="lead what-you-will-learn">What you will archieve at the end of the course.</p>
+                    <p class="lead what-you-will-learn">What you will achieve at the end of the course.</p>
                         <article class="bottom-margin what-you-will-learn">
                         <ul>
                         @if($achievements = json2Array($course->what_will_you_achieve))
@@ -140,7 +140,7 @@
                                     </div>
                                     <h3>{{$course->instructor->first_name}} {{$course->instructor->last_name}}<span></span></h3>
                                     <!--<span class="role">Lead programmer, Wazaar</span>-->
-            <!--                        <a href="#" class="follow-button">FOLLOW</a>-->
+            						<!--<a href="#" class="follow-button">FOLLOW</a>-->
 
                                     {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
                                     <h4>About {{$course->instructor->first_name}}</h4>

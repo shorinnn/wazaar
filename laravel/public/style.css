@@ -2,10 +2,12 @@
 /************ Default browser reset styles **************/
 
 body {
-	font: 16px Lato, Helvetica, sans-serif;
+	/*font: 16px Lato, Helvetica, sans-serif;*/
 	margin: 0;
 	padding: 0;
 	color: #000;
+	line-height: 16px !important;
+	font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;
 }
 
 .clear{
@@ -222,6 +224,7 @@ header .profile-name ul a:hover::before{
 	display: block;
 	height: 100%;
 	width: 4px;
+
 	position: absolute;
 	left: 0;
 	background: #0099ff;
@@ -987,7 +990,8 @@ header .activate-dropdown:hover ul{
     height: 42px;
     margin: 49px auto 60px;
     overflow: hidden;
-    padding: 13px 30px 0;
+    padding: 13px 0 0;
+	text-align: center;
     width: 135px;
 }
 /************** Register and Login Page ******************/
@@ -1113,6 +1117,7 @@ header .activate-dropdown:hover ul{
 
 .social-button.google-button{	
 	background-color: #e95141;
+
 	background-position: 20px -52px;
 	margin-top: 20px;
 	border:solid 1px #D94E3B;
@@ -1479,6 +1484,7 @@ header .activate-dropdown:hover ul{
 	color: #fff;
 	margin: 30px 0;
 	font-weight: 200;
+	text-shadow: 1px 1px 0 rgba(51, 51, 51, 0.27);
 }
 
 .course-detail-top-section .centered-contents .breadcrumb{
@@ -1600,15 +1606,15 @@ header .activate-dropdown:hover ul{
 	margin-bottom: 10px;
 	top: 0;
 	position: relative;
-	line-height: 60px;
+	line-height: 64px;
 	width: 270px;
 	text-transform: capitalize;
-	-webkit-box-shadow: 0px 5px 0px #f1b90f;
-    -moz-box-shadow: 0px 5px 0px #f1b90f;
-    box-shadow: 0px 5px 0px #f1b90f;
-	-webkit-transition: all 0.1s;
+	-webkit-box-shadow: 0px 3px 0px #f1b90f;
+    -moz-box-shadow: 0px 3px 0px #f1b90f;
+    box-shadow: 0px 3px 0px #f1b90f;
+	/*-webkit-transition: all 0.1s;
 	-moz-transition: all 0.1s;
-	transition: all 0.1s;
+	transition: all 0.1s;*/
 }
 
 .course-detail-top-section .centered-contents .white-box button[disabled="disabled"]{
@@ -1622,7 +1628,7 @@ header .activate-dropdown:hover ul{
 .white-box .join-class span{
 	font-size: 22px;
 	position: relative;
-	top: 0;
+	top: 0px;
 	display: inline-block;
 	margin-left: 0px;
 }
@@ -1862,12 +1868,11 @@ header .activate-dropdown:hover ul{
 .sidebar .lead,
 .main-content-container .main-content
 .left-content .lead{
-	padding: 12px 0 16px 20px;
+	padding: 12px 0 10px 20px;
 	margin: 0;
-	color: #000;
+	color: #0099ff;
 	font-size: 14px;
 	background: #fff;
-	font-weight: normal;
 	border-radius: 0 5px 0 0;
 }
 
@@ -1878,11 +1883,11 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content
 .left-content article{
-	padding: 30px 20px;
+	padding: 15px 20px;
 	background: #fff;
 	display: block;
-	color: #849598;
-	font-size: 12px;
+	color: #3A3A3A;
+	font-size: 14px;
 	border-radius: 0 0 5px 0;
 	line-height: 28px;
 }
@@ -1899,7 +1904,7 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content
 .left-content article.what-you-will-learn ul li{
-	padding-left: 35px;
+	padding-left: 15px;
 	position: relative;
 }
 
@@ -1923,31 +1928,46 @@ header .activate-dropdown:hover ul{
 	padding: 15px 0 15px 20px;
 	font-size: 14px;
 	background: #e5f5ff;
-	color: #000;
+	color: #0099ff;
 	border-radius: 5px 0 0 0;
 }
 
 .main-content-container .main-content
 .sidebar ul{
-	padding: 0 20px 20px 30px;
+	padding: 0 20px 20px 35px;
 	margin: 0 0 30px;
-	list-style:disc;
+	list-style: none;
 	border-radius: 0 0 0 5px;
 	background: #e5f5ff;
 }
 
+.main-content-container .main-content .sidebar ul li:before {
+    background: #3a3a3a;
+    border-radius: 4px;
+    content: "";
+    display: inline-block;
+    height: 4px;
+    left: -14px;
+	top: 8px;
+    position: absolute;
+    width: 4px;
+}
+
 .main-content-container .main-content
 .sidebar ul li{
-	font-size: 12px;
-	color: #849598;
-	padding-left: 10px;
-	line-height: 28px;
+	font-size: 14px;
+	color: #3A3A3A;
+	position: relative;
+	margin-bottom: 10px;
+	padding-left: 0px;
+	line-height: 23px;
 }
 
 .main-content-container .main-content
 .sidebar .your-teacher{
-	border: solid 1px #e7e7e7;
-	border-radius: 5px;
+	border: solid #e7e7e7;
+	border-width: 1px 0 1px 1px;
+	border-radius: 5px 0 0 5px;
 	background: #fff;
 	overflow: hidden;
 }
@@ -1999,23 +2019,18 @@ header .activate-dropdown:hover ul{
 	font-size: 12px;
 }
 
-#follow-form form{
-	width: 100%;
-	margin: 0 auto;
-}
-
 .main-content-container .main-content
 .sidebar .your-teacher button.follow-button{
 	text-align: center;
 	color: #fff;
 	width: 135px;
 	height: 42px;
-	margin: 40px auto;
+	margin: 10px auto 40px;
 	border-radius: 5px;
 	font-size: 14px;
-	border: none;
 	display: block;
 	line-height: 42px;
+	border: none;
 	background: -moz-linear-gradient(left, #63dd81, #84e560, #94e84f);
 	background: -webkit-linear-gradient(left, #63dd81, #84e560, #94e84f);
 	background: -o-linear-gradient(left, #63dd81, #84e560, #94e84f);
@@ -2031,6 +2046,10 @@ header .activate-dropdown:hover ul{
 	background: -o-linear-gradient(left, #94e84f, #84e560, #63dd81);
 	background: -ms-linear-gradient(left, #94e84f, #84e560, #63dd81);
 	background: linear-gradient(left, #94e84f, #84e560, #63dd81);
+}
+
+#follow-form form{
+	width: 100%;
 }
 
 .main-content-container .main-content
@@ -2894,57 +2913,6 @@ header .activate-dropdown:hover ul{
 	line-height: 32px;
 	font-size: 12px;
 	cursor: pointer;
-	-webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
-}
-
-#view-all-lessons{
-	display: inline-block;
-	color: #0099ff;
-	text-align: right;
-	font-size: 18px;
-	padding-right: 20px;
-	float: right;
-	cursor: pointer;
-}
-
-#view-all-lessons:hover{
-	color: #21618b;
-}
-
-.load-more-comments:hover{
-	background: #21618b;
-}
-
-#close-button {
-    border: 1px solid #ff5b4a;
-    border-radius: 20px;
-    color: #00c;
-    cursor: pointer;
-    display: none;
-    height: 25px;
-	color: #ff5b4a;
-	line-height: 23px;
-    position: absolute;
-    right: 20px;
-    text-align: center;
-    top: 15px;
-	right: 10px;
-    width: 25px;
-}
-
-#curriculum{
-	width: 970px;
-	height: 100%;
-	position: relative;
-	margin: 0 auto;
-	z-index: 999;
-	background-color: transparent;
-}
-
-#curriculum > div{
-	padding: 0;
 }
 
 .classroom-content .curriculum{
@@ -2992,10 +2960,11 @@ header .activate-dropdown:hover ul{
 .classroom-content .curriculum .lessons{
 	width: 98%;
 	float: left;
+	height: 286px;
 	height: 400px;
 	overflow: hidden;
+        overflow-y: scroll;
 	padding: 0;
-	width: 100% !important;
 	/*margin: 0 0 200px;*/
 }
 
@@ -3228,6 +3197,7 @@ select::-ms-expand {
 #step3 .course-level input[type='radio']:hover{
 	border: solid 1px #0099ff !important;
 	color: #0099ff !important;
+
 }
 
 #step3 .course-level label.active,
