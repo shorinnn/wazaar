@@ -12,9 +12,9 @@
 	width: 100% !important;
 }
 
-.jspPane
-{
+.jspPane{
 	position: absolute;
+	width: 97% !important;
 }
 
 .jspVerticalBar
