@@ -2672,6 +2672,7 @@ header .activate-dropdown:hover ul{
 	background: #fff;
 	border-radius: 5px;
 	position: relative;
+	padding-left: 20px;
 	overflow: hidden;
 }
 
@@ -2919,6 +2920,51 @@ header .activate-dropdown:hover ul{
 	padding-top: 40px;
 }
 
+#view-all-lessons{
+	margin: 0;
+	float: right;
+	padding-right: 20px;
+	cursor: pointer;
+}
+
+#view-all-lessons:hover{
+	color: #21618b;
+}
+
+.load-more-comments:hover{
+	background: #21618b;
+}
+
+#close-button {
+    border: 1px solid #ff5b4a;
+    border-radius: 20px;
+    color: #00c;
+    cursor: pointer;
+    display: none;
+    height: 25px;
+	color: #ff5b4a;
+	line-height: 23px;
+    position: absolute;
+    right: 20px;
+    text-align: center;
+    top: 15px;
+	right: 10px;
+    width: 25px;
+}
+
+#curriculum{
+	width: auto;
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+	z-index: 999;
+	background-color: transparent;
+}
+
+#curriculum > div{
+	padding: 0;
+}
+
 .classroom-content .curriculum p.lead{
 	margin-bottom: 10px;
 }
@@ -2958,12 +3004,10 @@ header .activate-dropdown:hover ul{
 }
 
 .classroom-content .curriculum .lessons{
-	width: 98%;
+	width: 100% !important;
 	float: left;
-	height: 286px;
 	height: 400px;
 	overflow: hidden;
-        overflow-y: scroll;
 	padding: 0;
 	/*margin: 0 0 200px;*/
 }

@@ -596,7 +596,7 @@ function fullScreen(){
 		  left: 0,
 		  right: 0,
 		  bottom: 0,
-		  width: "970px", 
+		  width: "100%", 
 		  height: "590px", 
 	  }
   
@@ -637,6 +637,7 @@ function fullScreen(){
 	  $('.lessons').height('100%');
 	  $('.jspContainer').height('90%');
 	  $('.jspPane').css({'padding': '0 0 0 1%'});
+	  $('.classrooms-wrapper').css('background-color', '#fff');
 	  $('.jspVerticalBar').css('right', '1%');
 	  $('.classroom-content .curriculum p.lead').css({'font-size': '22px', 'text-align': 'center', 'margin-bottom': '0'});
 	  $('.classroom-content .curriculum div.view-previous-lessons').css({'line-height': '0', 'height': '32px', 'margin-bottom': '0'});
@@ -677,6 +678,7 @@ function fullScreen(){
 	  $('.lessons').height('400px');
 	  $('.jspContainer').height('100%');
 	  $('.jspPane').css({'padding': '0'});
+	  $('.classrooms-wrapper').css('background-color', '#f8f8f8');
 	  $('.jspVerticalBar').css({'right': '0%'});
 	  $('.classroom-content .curriculum p.lead').css({'font-size': '18px', 'text-align': 'left', 'margin-bottom': '10px'});
 	  $('.classroom-content .curriculum div.view-previous-lessons').css({'line-height': '64px', 'height': '64px', 'margin-bottom': '10px'});
