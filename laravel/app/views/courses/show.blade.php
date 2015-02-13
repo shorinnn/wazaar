@@ -229,6 +229,7 @@
                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">
             </h3>
             
+            @if($course->allTestimonials->count() > 0)
                         <h2 class="text-center">Helpful Student Reviews</h2>
                         <div class="testimonials clearfix clear_fix clear bottom-testimonials">
                             @foreach($course->allTestimonials as $testimonial)
@@ -238,6 +239,8 @@
                         <a href='1' class="load-more-comments load-more-ajax" 
                data-url='{{ action('TestimonialsController@more') }}' 
                data-target='.bottom-testimonials' data-skip='2' data-id='{{ $course->id }}' data-post-field="course">LOAD MORE</a>
+                        
+            @endif
             </div>                       
             
             @if(Auth::guest() || !Auth::user()->hasRole('Instructor'))

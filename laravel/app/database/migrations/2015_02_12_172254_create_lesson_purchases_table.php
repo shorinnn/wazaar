@@ -33,7 +33,7 @@ class CreateLessonPurchasesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('testimonial_ratings');
+		Schema::drop('lesson_purchases');
 	}
 
 }

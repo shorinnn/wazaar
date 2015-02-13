@@ -38,7 +38,7 @@
             <div class="students-attending">
                 {{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}
             </div>   
-            <span class="likes">89%</span>         
+            <span class="likes">{{ $course->reviews_positive_score }}%</span>         
         </div> 
     </div>
 </div>
