@@ -52,8 +52,9 @@ class ClassroomController extends \BaseController {
                 return Redirect::to('/');
             }            
             $student->viewLesson( $lesson );
-            if(Request::ajax()) return View::make('courses.classroom.lesson_ajax')->with( compact('course') )->with( compact('lesson') );
-            else return View::make('courses.classroom.lesson')->with( compact('course') )->with( compact('lesson') );
+            $video = $lesson->blocks()->where('type','video')->first();
+            if(Request::ajax()) return View::make('courses.classroom.lesson_ajax')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
+            else return View::make('courses.classroom.lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
         }
 
 }
