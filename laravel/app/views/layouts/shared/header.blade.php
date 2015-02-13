@@ -43,8 +43,16 @@
             </li>
         </ul>
         <div class="profile-thumbnail">
-            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/thumbnails/top-profile-thumbnail.png" alt="">
-            <span class="notification-number">3</span>
+            <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/thumbnails/top-profile-thumbnail.png" alt="">-->
+            @if( Student::find(Auth::user()->id)->profile)
+                <img style="height: 50px; width: 50px; border-radius: 50px;" 
+                     src="{{ Student::find(Auth::user()->id)->profile->photo }}" alt="">
+                <span class="notification-number">3</span>
+            @else
+                <img style="height: 50px; width: 50px; border-radius: 50px;" 
+                     src="//s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar-placeholder.jpg" alt="">
+                <span class="notification-number">3</span>
+            @endif
         </div>
     </div>
     @else
