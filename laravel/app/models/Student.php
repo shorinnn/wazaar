@@ -114,7 +114,10 @@ class Student extends User{
         if($lesson->module->course->id != $course->id) return false;
         
         // cannot buy the same lesson twice
-        if($this->purchasedLesson($lesson)) return false;
+        if( $this->purchasedLesson($lesson) ) return false;
+        
+// cannot buy lesson if already owns course
+        if( $this->purchased($course) ) return false;
         
         // cannot buy own course
         if($this->id == $course->instructor->id) return false;

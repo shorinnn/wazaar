@@ -222,7 +222,7 @@
                                     <!--<a href="#" class="crash-lesson-button">CRASH LESSON</a>-->
                                     <button class="btn crash-lesson-button pull-right" 
                                             @if( Auth::guest() || !Auth::user()->can_purchase($course) || !Auth::user()->canPurchaseLesson($lesson) )
-                                            disabled="disabled" 
+                                            disabled="disabled" data-crash-disabled='1'
                                             @endif
                                             >CRASH LESSON</button>
                                     {{ Form::close() }}
