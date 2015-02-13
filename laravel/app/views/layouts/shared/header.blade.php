@@ -31,7 +31,7 @@
                         <a class="profile-button" href="/profile">{{trans('site/menus.profile')}}</a>
                     </li>
                     <li>
-                        <a class="courses-button" href="#">{{trans('site/menus.courses')}}</a>
+                        <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
                     </li>
                     <li>
                         <a class="settings-button" href="#">{{trans('site/menus.settings')}}</a>

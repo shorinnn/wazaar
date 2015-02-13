@@ -2,11 +2,11 @@
     @section('content')	
     
         <div class="classrooms-wrapper">
-        	<section class="video-container">
+        	<section class="video-container text-center">
                 <!--<video>
                 
                 </video>-->
-                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/sample-video-poster.jpg" class="img-responsive" alt="">
+                <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/sample-video-poster.jpg" class="img-responsive" alt="">
                 <span class="centered-play-button"></span>
                 <div class="progress">
                   <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
@@ -27,7 +27,16 @@
                         <span class="volume-button"></span>
                         <span class="full-screen-button"></span>
                     </div>
-                </div>
+                </div>-->
+                @if($video)
+                    @if( Agent::isMobile() )
+                    <video height=300 controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
+                                    ->first()->video_url }}" type="video/mp4"></video>
+                    @else
+                    <video height=300 controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                                    ->first()->video_url }}" type="video/mp4"></video>
+                    @endif
+                @endif
             </section>
             <section class="classroom-content container">
             	<div class="row">

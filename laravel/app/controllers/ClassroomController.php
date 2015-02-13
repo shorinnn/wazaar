@@ -20,7 +20,11 @@ class ClassroomController extends \BaseController {
             if( $course==null || ( !$student->purchased( $course ) && $student->lessonPurchases()->where('course_id', $course->id)->get()==null ) ){
                 return Redirect::to('/');
             }
-            return View::make('courses.classroom.dashboard')->with( compact('course') )->with( compact('student') );
+            $video = $student->nextLesson($course);
+            if( $video ) $video = $video->blocks()->where('type','video')->first();
+            $video = $course->videoBlocks();
+            if($video!=null) $video = $video->first();
+            return View::make('courses.classroom.dashboard')->with( compact('course') )->with( compact('student') )->with( compact('video') );
         }
         
         public function testimonial($slug){

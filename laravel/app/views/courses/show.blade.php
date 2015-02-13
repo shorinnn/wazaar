@@ -68,9 +68,20 @@
                         </div>             
                     </div>
                 </div>
-                <div class="video-player">
+                    @if($video == null)
+                    <div class="video-player">
 	                <a href="#" class="watch-video-button">WATCH VIDEO</a>
     				<span class="video-time">10:23</span>            
+                    @else
+                    <div class="video-player" style="background:none; text-align: right">
+                        @if( Agent::isMobile() )
+                            <video controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
+                                        ->first()->video_url }}" type="video/mp4"></video>
+                        @else
+                        <video height="266" controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                                        ->first()->video_url }}" type="video/mp4"></video>
+                        @endif
+                    @endif
                 </div>
                  
             </div>

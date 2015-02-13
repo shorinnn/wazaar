@@ -33,6 +33,14 @@ class Course extends Ardent{
         'testimonials' => [ self::HAS_MANY, 'Testimonial' ],
     );
     
+    public function videoBlocks(){
+        $lesson_ids = [];
+        $module_ids = $this->modules->lists('id');
+        if( count($module_ids)==0 ) return null;
+        $lesson_ids = Lesson::whereIn('module_id', $module_ids)->lists('id');
+        return Block::where('type','video')->whereIn('lesson_id', $lesson_ids)->get();
+    }
+    
     public function upload_preview($path){
         $preview = new CoursePreviewImage();
         $preview->file_path = $path;

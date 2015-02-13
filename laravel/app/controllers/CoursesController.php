@@ -188,8 +188,10 @@ class CoursesController extends \BaseController {
                     $student->saveReferral(Input::get('aid'), $course->id);
                 }
             }
-            Return View::make('courses.show')->with(compact('course'))->with(compact('student'));
-        }
+            $video = $course->videoBlocks();
+            if($video!=null) $video = $video->first();
+            Return View::make('courses.show')->with(compact('course'))->with(compact('student'))->with( compact('video') );
+        } 
         
         public function purchase($slug){
             if(Auth::guest()){
