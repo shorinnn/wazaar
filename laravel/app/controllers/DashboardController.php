@@ -64,6 +64,13 @@ class DashboardController extends BaseController
         }
     }
 
+    public function trackingCodeHitsSalesView($frequency = '', $courseId = '', $trackingCode = '')
+    {
+        $trackingHitsSales = $this->analyticsHelper->trackingCodeHitsSales($frequency, $courseId,$trackingCode)[0];
+        return View::make('analytics.partials.trackingCodeHitsSales', compact('trackingHitsSales', 'frequency'))->render();
+
+    }
+
     public function courseStatistics($courseId)
     {
         //TODO: Add filter here to make sure certain group has access to this e.g. Should only allow affiliates group
@@ -77,6 +84,16 @@ class DashboardController extends BaseController
             $salesView = $this->salesView('', $courseId);
             $trackingCodeConversionView = $this->trackingCodeConversionView('', $courseId);
             return View::make('analytics.courseStatistics', compact('course','trackingCodesSalesView', 'salesView','trackingCodeConversionView','salesLabelData'));
+        }
+    }
+
+    public function courseTrackingCodesStatistics($courseId, $trackingCode)
+    {
+        $course = Course::find($courseId);
+
+        if ($course){
+            $hitsSalesView = $this->trackingCodeHitsSalesView('',$courseId, $trackingCode);
+            return View::make('analytics.courseTrackingCodeStatistics',compact('course', 'trackingCode', 'hitsSalesView'));
         }
     }
 

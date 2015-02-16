@@ -66,6 +66,16 @@ class AnalyticsHelper
         }
     }
 
+    public function trackingCodeHitsSales($frequency = '', $courseId = null, $trackingCode = '')
+    {
+        switch($frequency){
+            case 'daily' : return $this->dailyHitsSales($courseId, $trackingCode); break;
+            case 'week': return $this->weeklyHitsSales($courseId, $trackingCode); break;
+            case 'month': return $this->monthlyHitsSales($courseId, $trackingCode); break;
+            case 'alltime' : return $this->allTimeHitsSales($courseId, $trackingCode); break;
+            default: return $this->dailyHitsSales($courseId, $trackingCode);
+        }
+    }
 
 
     public function dailySales($courseId)
@@ -239,21 +249,64 @@ class AnalyticsHelper
         return $this->_transformCoursePurchases($query);
     }
 
+    public function dailyHitsSales($courseId, $trackingCode)
+    {
+        $dateFilter = $this->_frequencyEquivalence();
+        $filterQuery = " AND DATE(created_at) = '{$dateFilter}'";
 
-    public function dailyCourseConversion($courseId)
-{
-    $dateFilter = $this->_frequencyEquivalence();
-    $filterQuery = "DATE(cp.created_at) = '{$dateFilter}'";
 
-    if (!empty($courseId)){
-        $filterQuery .= " AND cp.course_id = '{$courseId}'";
+        $query = $this->_codeStatisticsRawQuery($trackingCode, $courseId, $filterQuery);
+
+        return DB::select($query);
     }
 
-    $query = $this->_coursePurchaseConversionRawQuery($filterQuery);
+    public function weeklyHitsSales($courseId, $trackingCode)
+    {
+        $dateFilterStart = $this->_frequencyEquivalence('week');
+        $dateFilterEnd = date('Y-m-d');
+
+        $filterQuery = " AND DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        $query = $this->_codeStatisticsRawQuery($trackingCode, $courseId, $filterQuery);
+
+        return DB::select($query);
+    }
+
+    public function monthlyHitsSales($courseId, $trackingCode)
+    {
+        $dateFilterStart = $this->_frequencyEquivalence('month');
+        $dateFilterEnd = date('Y-m-d');
+
+        $filterQuery = " AND DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        $query = $this->_codeStatisticsRawQuery($trackingCode, $courseId, $filterQuery);
+
+        return DB::select($query);
+    }
+
+    public function allTimeHitsSales($courseId, $trackingCode)
+    {
+        $filterQuery = "";
+
+        $query = $this->_codeStatisticsRawQuery($trackingCode, $courseId, $filterQuery);
+
+        return DB::select($query);
+    }
+
+    public function dailyCourseConversion($courseId)
+    {
+        $dateFilter = $this->_frequencyEquivalence();
+        $filterQuery = "DATE(cp.created_at) = '{$dateFilter}'";
+
+        if (!empty($courseId)){
+            $filterQuery .= " AND cp.course_id = '{$courseId}'";
+        }
+
+        $query = $this->_coursePurchaseConversionRawQuery($filterQuery);
 
 
-    return $this->_transformCoursePurchaseConversion($query);
-}
+        return $this->_transformCoursePurchaseConversion($query);
+    }
 
     public function weeklyCourseConversion($courseId)
     {
@@ -535,6 +588,16 @@ class AnalyticsHelper
 
         return $sql;
     }
+
+    private function _codeStatisticsRawQuery($code, $courseId, $criteria = '')
+    {
+        $sql = "SELECT (SELECT count(id) FROM tracking_code_hits WHERE tracking_code = '{$code}' AND course_id = '{$courseId}' {$criteria}) as 'hits',
+			           (SELECT count(id) FROM course_purchases WHERE tracking_code = '{$code}' AND course_id = '{$courseId}' {$criteria}) as 'sales_count',
+                       (SELECT sum(purchase_price) FROM course_purchases WHERE tracking_code = '{$code}' AND course_id = '{$courseId}' {$criteria}) as 'sales_total' ";
+
+        return $sql;
+    }
+
     private function _frequencyEquivalence($frequency = null)
     {
         if ($frequency == 'week'){

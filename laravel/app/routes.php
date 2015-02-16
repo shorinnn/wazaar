@@ -166,14 +166,13 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('trackingcodessales/{frequency}/{courseId?}','DashboardController@trackingCodesSalesView');
     Route::get('courseconversions/{frequency}/{courseId?}','DashboardController@courseConversionView');
     Route::get('trackingcodeconversions/{frequency}/{courseId?}','DashboardController@trackingCodeConversionView');
+    Route::get('trackingcodehitssales/{frequency}/{courseId}/{code}','DashboardController@trackingCodeHitsSalesView');
     Route::get('course/{id}/stats', 'DashboardController@courseStatistics');
+    Route::get('course/{id}/trackingcode/{code}/stats', 'DashboardController@courseTrackingCodesStatistics');
     Route::get('trackingcode/{code}/stats', 'DashboardController@trackingCodeStatistics');
-
 });
 
 Route::get('test', function (){
     Cookie::forget('aid');
+
 });
-
-
-
