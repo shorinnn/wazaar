@@ -29,6 +29,11 @@ return
             'twitter'   => 'Twitter',
             'linkedin'  => 'LinkedIn',
             'youtube'   => 'Youtube'
-        ]
+        ],
+        'updateSuccessful' => 'Profile updated successfully',
+        'profile' => 'Profile',
+        'affiliate' => 'Affiliate',
+        'instructor' => 'Instructor',
+        'student'   => 'Student'
 
     ];

@@ -135,7 +135,7 @@ Route::get('shop', 'SiteController@shop');
 ## Route Group for Profile
 Route::group(['prefix' => 'profile'], function (){
     ## Profile Page /profile
-    Route::get('/', 'ProfileController@index');
+    Route::get('/{type?}', 'ProfileController@index');
     ## POST call to upload a profile picture
     Route::post('upload-profile-picture', 'ProfileController@uploadProfilePicture');
     ## POST call to process additional data for initial profile set-up

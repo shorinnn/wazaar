@@ -16,7 +16,7 @@ class ProfileController extends Controller
         $this->beforeFilter('auth', ['except' => 'polymorphicTest']);
     }
 
-    public function index()
+    public function index($type = 'student')
     {
         $isProfileNew = $this->userHelper->isProfileNew();
 
@@ -25,8 +25,8 @@ class ProfileController extends Controller
             return View::make('profile.new', compact('isProfileNew', 'step'));
         }
         else{
-            $profile = Student::find(Auth::id())->profile; //let's use student profile for now
-            return View::make('profile.index', compact('profile'));
+            $profile = $this->userHelper->getProfileByType($type)->profile;
+            return View::make('profile.index', compact('profile','type'));
         }
     }
 
@@ -77,9 +77,22 @@ class ProfileController extends Controller
             if ($validator->fails()){
                 return Redirect::back()->withInput(Input::all())->with('errors', $validator->messages()->all());
             }
+            $user = $this->userHelper->getProfileByType(Input::get('type'));
+            $data = Input::except('_token','type', 'profilePicture');
 
-            $this->userHelper->saveProfile(Auth::id(), Input::except('_token'));
-            return Redirect::to('profile');
+            if (Input::hasFile('profilePicture')){
+                $imagePath = $this->uploadHelper->uploadImage('profilePicture');
+
+                if ($imagePath) {
+                    $awsResult  = $this->uploadHelper->moveToAWS($imagePath, Config::get('wazaar.S3_PROFILES_BUCKET'));
+                    $pictureUrl = $awsResult->get('ObjectURL');
+                    $data['photo'] = $pictureUrl;
+                }
+            }
+
+            $this->userHelper->saveProfile(Auth::id(), $data , $user);
+            Session::put('success',trans('profile.updateSuccessful'));
+            return Redirect::to('profile/' . Input::get('type'));
         }
     }
 
