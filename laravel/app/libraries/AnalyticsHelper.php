@@ -255,7 +255,7 @@ class AnalyticsHelper
         $filterQuery = " AND DATE(created_at) = '{$dateFilter}'";
 
 
-        $query = $this->_codeStatisticsRawQuery($trackingCode, $courseId, $filterQuery);
+        $query = $this->_codeStatisticsRawQuery($courseId,$trackingCode,  $filterQuery);
 
         return DB::select($query);
     }
@@ -267,7 +267,7 @@ class AnalyticsHelper
 
         $filterQuery = " AND DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        $query = $this->_codeStatisticsRawQuery($trackingCode, $courseId, $filterQuery);
+        $query = $this->_codeStatisticsRawQuery($courseId,$trackingCode, $filterQuery);
 
         return DB::select($query);
     }
@@ -279,7 +279,7 @@ class AnalyticsHelper
 
         $filterQuery = " AND DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        $query = $this->_codeStatisticsRawQuery($trackingCode, $courseId, $filterQuery);
+        $query = $this->_codeStatisticsRawQuery($courseId,$trackingCode, $filterQuery);
 
         return DB::select($query);
     }
@@ -288,7 +288,7 @@ class AnalyticsHelper
     {
         $filterQuery = "";
 
-        $query = $this->_codeStatisticsRawQuery($trackingCode, $courseId, $filterQuery);
+        $query = $this->_codeStatisticsRawQuery($courseId, $trackingCode, $filterQuery);
 
         return DB::select($query);
     }
@@ -589,7 +589,7 @@ class AnalyticsHelper
         return $sql;
     }
 
-    private function _codeStatisticsRawQuery($code, $courseId, $criteria = '')
+    private function _codeStatisticsRawQuery($courseId, $code, $criteria = '')
     {
         $sql = "SELECT (SELECT count(id) FROM tracking_code_hits WHERE tracking_code = '{$code}' AND course_id = '{$courseId}' {$criteria}) as 'hits',
 			           (SELECT count(id) FROM course_purchases WHERE tracking_code = '{$code}' AND course_id = '{$courseId}' {$criteria}) as 'sales_count',

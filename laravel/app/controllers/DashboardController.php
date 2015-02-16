@@ -60,11 +60,12 @@ class DashboardController extends BaseController
     {
         $trackingCodeConversions = $this->analyticsHelper->trackingCodeConversion($frequency, $courseId);
         if (is_array($trackingCodeConversions)) {
+
             return View::make('analytics.partials.trackingCodeConversions', compact('trackingCodeConversions', 'frequency'))->render();
         }
     }
 
-    public function trackingCodeHitsSalesView($frequency = '', $courseId = '', $trackingCode = '')
+    public function trackingCodeHitsSalesView($courseId = '', $trackingCode = '', $frequency = '')
     {
         $trackingHitsSales = $this->analyticsHelper->trackingCodeHitsSales($frequency, $courseId,$trackingCode)[0];
         return View::make('analytics.partials.trackingCodeHitsSales', compact('trackingHitsSales', 'frequency'))->render();
@@ -92,7 +93,7 @@ class DashboardController extends BaseController
         $course = Course::find($courseId);
 
         if ($course){
-            $hitsSalesView = $this->trackingCodeHitsSalesView('',$courseId, $trackingCode);
+            $hitsSalesView = $this->trackingCodeHitsSalesView($courseId, $trackingCode);
             return View::make('analytics.courseTrackingCodeStatistics',compact('course', 'trackingCode', 'hitsSalesView'));
         }
     }

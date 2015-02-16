@@ -170,6 +170,7 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('trackingcodehitssales/{frequency}/{courseId}/{code}','DashboardController@trackingCodeHitsSalesView');
     Route::get('course/{id}/stats', 'DashboardController@courseStatistics');
     Route::get('course/{id}/trackingcode/{code}/stats', 'DashboardController@courseTrackingCodesStatistics');
+    Route::get('course/{id}/trackingcode/{code}/stats/{frequency}','DashboardController@trackingCodeHitsSalesView');
     Route::get('trackingcode/{code}/stats', 'DashboardController@trackingCodeStatistics');
 });
 

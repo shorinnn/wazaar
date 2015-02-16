@@ -2,7 +2,7 @@
     <li>
         <a href="#">
             <span>{{$key+1}}.</span>
-            {{$course['tracking_code']}}
+            <a href="{{url('dashboard/course/'. $course['course_id'] .'/trackingcode/'. $course['tracking_code'] .'/stats')}}">{{$course['tracking_code']}}</a>
             <em>{{number_format($course['purchases'] / $course['hits'] * 100,2)}}%</em>
         </a>
     </li>
