@@ -33,6 +33,14 @@ class Course extends Ardent{
         'testimonials' => [ self::HAS_MANY, 'Testimonial' ],
     );
     
+    public function videoBlocks(){
+        $lesson_ids = [];
+        $module_ids = $this->modules->lists('id');
+        if( count($module_ids)==0 ) return null;
+        $lesson_ids = Lesson::whereIn('module_id', $module_ids)->lists('id');
+        return Block::where('type','video')->whereIn('lesson_id', $lesson_ids)->get();
+    }
+    
     public function upload_preview($path){
         $preview = new CoursePreviewImage();
         $preview->file_path = $path;
@@ -159,7 +167,7 @@ class Course extends Ardent{
             $future_date = new DateTime($this->sale_ends_on);
             $interval = $future_date->diff($now);
             if($interval->format("%d")>0){
-                $this->discount_ends_in = $interval->format("%d days, %h hours, %i minutes");
+                $this->discount_ends_in = $interval->format("%d days %h:%i:%s");
             }
             else{
                 $this->discount_ends_in = $interval->format("%h:%i:%s");

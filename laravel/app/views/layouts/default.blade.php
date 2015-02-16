@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{url('css/video-player.css')}}">
     <link rel="stylesheet" href="{{url('css/dashboard.css')}}">
     <link rel="stylesheet" href="{{url('css/ui-components.css')}}">
+    <link rel="stylesheet" href="{{url('css/jquery.jscrollpane.css')}}">
     <link rel="stylesheet" href="{{url('plugins/slider/css/slider.css')}}">
     @yield('extra_css')
     <!--[if lt IE 9]>
@@ -53,7 +54,7 @@
         </footer>
     </div>    
     @if( getenv('USE_COMMENTABLE_RESOURCES')==true )
-            <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>-->
         <script src="{{url("js/jquery.min.js")}}"></script>
@@ -68,10 +69,12 @@
         <script src="{{url("js/tweenmax.min.js")}}"></script>
         <script src="{{url("js/Sortable.min.js")}}"></script>
         <script src="{{url("js/pluralize.js")}}"></script>
-        <!--<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-        <script src="http://www.localeplanet.com/api/translate.js" /></script>-->
+        <script src="{{url("js/jquery.mousewheel.js")}}"></script>
+        <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
+        <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+        <script src="http://www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
-        <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>-->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
     @else
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
@@ -84,6 +87,8 @@
         <script src="{{url("js/cocoriumTracker.js")}}"></script>
         <script src="{{url("js/Sortable.min.js")}}"></script>
         <script src="{{url("js/pluralize.js")}}"></script>
+        <script src="{{url("js/jquery.mousewheel.js")}}"></script>
+        <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
         <script src="http://www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>

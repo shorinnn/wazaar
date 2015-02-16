@@ -4,7 +4,7 @@ class CoursesController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum'] ] );
-            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy', 'purchase' ]]);
+            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy', 'purchase', 'purchaseLesson' ]]);
         }
 
 	public function index()
@@ -188,8 +188,10 @@ class CoursesController extends \BaseController {
                     $student->saveReferral(Input::get('aid'), $course->id);
                 }
             }
-            Return View::make('courses.show')->with(compact('course'))->with(compact('student'));
-        }
+            $video = $course->videoBlocks();
+            if($video!=null) $video = $video->first();
+            Return View::make('courses.show')->with(compact('course'))->with(compact('student'))->with( compact('video') );
+        } 
         
         public function purchase($slug){
             if(Auth::guest()){
@@ -204,7 +206,24 @@ class CoursesController extends \BaseController {
                 // unset the affiliate cookie
                 Cookie::queue("aid-$course->id", null, -1);
                 return Redirect::action('ClassroomController@dashboard', $slug);
-//                return Redirect::action('CoursesController@show', $slug)->withSuccess( trans('courses/general.purchase_successful') );
+            }
+            else{
+                return Redirect::action('CoursesController@show', $slug)->withError( trans('courses/general.purchase_failed') );
+            }
+            
+        }
+        
+        public function purchaseLesson($slug, $lesson){
+            if(Auth::guest()){
+                Session::set('url.intended', action('CoursesController@show', $slug));
+                return Redirect::to('login')->withError( trans('courses/general.login_to_purchase') );
+            }
+            
+            $course = Course::where('slug', $slug)->first();
+            $student = Student::current(Auth::user());
+            
+            if($student->purchaseLesson($course, $lesson, Cookie::get("aid-$course->id"))){
+                return Redirect::action('ClassroomController@dashboard', $slug);
             }
             else{
                 return Redirect::action('CoursesController@show', $slug)->withError( trans('courses/general.purchase_failed') );

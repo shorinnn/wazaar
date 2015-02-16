@@ -95,6 +95,7 @@ Route::get('courses/mycourses', 'CoursesController@myCourses');
 Route::get('courses/categories', 'CoursesController@categories');
 Route::get('courses/category/{slug}/{subcat}', 'CoursesController@subCategory');
 Route::get('courses/category/{slug}', 'CoursesController@category');
+Route::post('courses/{slug}/purchase/{lesson}', 'CoursesController@purchaseLesson');
 Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
 Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
 

@@ -14,7 +14,7 @@ class AddReviewFieldsToCoursesTable extends Migration {
 	{
 		Schema::table('courses', function(Blueprint $table)
 		{
-			$table->integer('reviews_positive_score')->after('privacy_status')->default(0);
+			$table->integer('reviews_positive_score')->after('privacy_status')->default(100);
 			$table->integer('total_reviews')->after('privacy_status')->default(0);
 		});
 	}

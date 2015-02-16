@@ -2,11 +2,11 @@
     @section('content')	
     
         <div class="classrooms-wrapper">
-        	<section class="video-container">
+        	<section class="video-container text-center">
                 <!--<video>
                 
                 </video>-->
-                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/sample-video-poster.jpg" class="img-responsive" alt="">
+                <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/sample-video-poster.jpg" class="img-responsive" alt="">
                 <span class="centered-play-button"></span>
                 <div class="progress">
                   <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
@@ -27,7 +27,16 @@
                         <span class="volume-button"></span>
                         <span class="full-screen-button"></span>
                     </div>
-                </div>
+                </div>-->
+                @if($video)
+                    @if( Agent::isMobile() )
+                    <video height=300 controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
+                                    ->first()->video_url }}" type="video/mp4"></video>
+                    @else
+                    <video height=300 controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                                    ->first()->video_url }}" type="video/mp4"></video>
+                    @endif
+                @endif
             </section>
             <section class="classroom-content container">
             	<div class="row">
@@ -64,7 +73,7 @@
                                     @if( !$student->nextLesson($course))
                                         Completed all lessons - decide what to put here
                                     @else
-                                        <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'lesson' => $student->nextLesson($course)->slug ] ) }}">
+                                        <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'module' => $student->nextLesson($course)->module->slug , 'lesson' => $student->nextLesson($course)->slug ] ) }}">
                                         @if( $student->viewedLessons->count()==0 )
                                             BEGIN <small>FIRST LESSON</small>
                                         @else
@@ -152,31 +161,40 @@
                         <span class="load-more-comments">LOAD MORE</span>
                     </div>
                 </div>
-                <div class="row curriculum">
+                <div class="row curriculum" id="curriculum">
                 	<div class="col-md-12">
-                    	<div>
-                            <p class="lead">Curriculum</p>
+                    	<div class="clearfix">
+                            <p class="lead">Curriculum<span id="view-all-lessons">View All</span></p>
+                            <span id="close-button" class="fa fa-times fa-6"></span>
+                            
                             <!--<div class="view-previous-lessons">view previous lessons</div>-->
                             <ul class="lessons">
                                 <?php $i = $j = 1;  ?>
                                 @foreach($course->modules as $module)
                                     <li>
-                                        <a class="module">
+                                        <a class="module module-lesson">
                                             <span>Module {{$i}}</span>
                                             <p>{{ $module->name }}</p>
                                         </a>
                                     </li>
                                     @foreach($module->lessons as $lesson)
                                         <li id="curriculum-lesson-{{$lesson->id}}">
-                                            <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'module' => $lesson->module->slug, 'lesson' => $lesson->slug ] ) }}" 
-                                               @if( $student->isLessonViewed($lesson) )
-                                                   class="lesson-1">
-                                               @else
-                                                   class="lesson-2">
-                                               @endif
-                                                <span>Lesson {{$j}}</span>
-                                                <p>{{ $lesson->name }}</p>
-                                            </a>
+                                            @if( $student->purchased($course) || $student->purchasedLesson($lesson) )
+                                                <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'module' => $lesson->module->slug, 'lesson' => $lesson->slug ] ) }}" 
+                                                   @if( $student->isLessonViewed($lesson) )
+                                                       class="lesson-1 module-lesson">
+                                                   @else
+                                                       class="lesson-2 module-lesson">
+                                                   @endif
+                                                    <span>Lesson {{$j}}</span>
+                                                    <p>{{ $lesson->name }}</p>
+                                                </a>
+                                            @else
+                                                <a class="lesson-4 module-lesson">
+                                                    <span>Lesson {{$j}}</span>
+                                                    <p>{{ $lesson->name }}</p>
+                                                </a>
+                                            @endif
                                         </li>
                                     <?php ++$j;?>
                                     @endforeach

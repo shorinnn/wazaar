@@ -17,6 +17,9 @@ class Block extends Ardent{
         'lesson_id' => 'required|exists:lessons,id'
     ];
      
+     public function video(){
+         return Video::find($this->content);
+     }
      public function upload($path){
         $key = 'file-'.uniqid();
         $file = file_get_contents($path);

@@ -7,6 +7,7 @@ class Student extends User{
     public static $relationsData = [
         'ltcAffiliate' => [ self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id' ],
         'purchases' => [ self::HAS_MANY, 'CoursePurchase' ],
+        'lessonPurchases' => [ self::HAS_MANY, 'LessonPurchase' ],
         'courseReferrals' => [ self::HAS_MANY, 'CourseReferral' ],
         'profile' => [ self::MORPH_ONE, 'Profile', 'name'=>'owner' ],
         'viewedLessons' => [ self::HAS_MANY, 'ViewedLesson' ],
@@ -44,6 +45,12 @@ class Student extends User{
         return null;
     }
     
+    public function courses(){
+        $ids = $this->lessonPurchases->lists('course_id');
+        $ids += $this->purchases->lists('course_id');
+        return Course::whereIn('id', $ids)->get();
+    }
+    
     /**
      * Purchased the specified course?
      * @param Course $course
@@ -79,8 +86,59 @@ class Student extends User{
             $purchase->product_affiliate_id = $affiliate->id;
         }
         if($purchase->save()){
-            $course->student_count += 1;
-            $course->updateUniques();
+            // increment counter only if no lessons have already been purchased
+            if( $this->lessonPurchases()->where('course_id', $course->id)->count() == 0 ){
+                $course->student_count += 1;
+                $course->updateUniques();
+            }
+            return true;
+        }
+        else return false;
+    }
+    
+    public function purchasedLesson($lesson){
+        if( in_array ( $lesson->id, $this->lessonPurchases->lists('lesson_id' ) ) ){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Purchase a course
+     * @param Course
+     * @return boolean
+     */
+    public function purchaseLesson(Course $course, $lesson, $affiliate=null){
+        // make sure lesson belongs to this course
+        $lesson = Lesson::find($lesson);
+        if($lesson->module->course->id != $course->id) return false;
+        
+        // cannot buy the same lesson twice
+        if( $this->purchasedLesson($lesson) ) return false;
+        
+// cannot buy lesson if already owns course
+        if( $this->purchased($course) ) return false;
+        
+        // cannot buy own course
+        if($this->id == $course->instructor->id) return false;
+        // if this is the first purchase, set the LTC affiliates
+        if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
+        $purchase = new LessonPurchase();
+        $purchase->lesson_id = $lesson->id;
+        $purchase->course_id = $course->id;
+        $purchase->student_id = $this->id;
+        $purchase->ltc_affiliate_id = $this->ltcAffiliate->id;
+        if($affiliate==null) $purchase->product_affiliate_id = 0;
+        else{
+            $affiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
+            $purchase->product_affiliate_id = $affiliate->id;
+        }
+        if($purchase->save()){
+            // increment counter only if this course hasn't been purchased before
+            if( !$this->purchased($course) ){
+                $course->student_count += 1;
+                $course->updateUniques();
+            }
             return true;
         }
         else return false;
@@ -162,12 +220,21 @@ class Student extends User{
     public function nextLesson(Course $course){ 
         foreach($course->modules as $module){
             foreach($module->lessons as $lesson){
-                if( !$this->isLessonViewed($lesson) ) return $lesson;
+                if( !$this->isLessonViewed($lesson) && ( $this->purchased($course) || $this->purchasedLesson($lesson) ) ) return $lesson;
             }
         }
         return false;
     }
 
+    public function commentName(){
+        if( $this->profile ){
+            return $this->profile->first_name.' '.$this->profile->last_name;
+        }
+        else{
+            if($this->first_name=='') return $this->email;
+            else return $this->first_name.' '.$this->last_name;
+        }
+    }
 
 
 

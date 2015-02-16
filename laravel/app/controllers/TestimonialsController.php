@@ -3,7 +3,7 @@
 class TestimonialsController extends \BaseController {
     
         public function __construct(){
-            $this->beforeFilter( 'auth' );
+            $this->beforeFilter( 'auth', [ 'except' => 'more' ] );
             $this->beforeFilter( 'csrf', ['only' => [ 'store', 'update', 'destroy', 'rate' ]] );
         }
         

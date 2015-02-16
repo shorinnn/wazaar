@@ -9,8 +9,7 @@ class StudentController extends \BaseController {
 	public function mycourses()
 	{    
             $student = Student::find( Auth::user()->id );
-            $purchases = $student->purchases;
-            return View::make('student.mycourses')->with( compact('purchases') );
+            return View::make('student.mycourses')->with( compact('student') );
 	}
         
         

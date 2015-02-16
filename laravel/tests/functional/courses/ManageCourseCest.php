@@ -72,9 +72,10 @@ class ManageCourseCest{
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
         $I->seeRecord('blocks',['name'=>'Test Block']);
-        $I->amOnAction('BlocksController@destroy',[ 'lesson_id'=>1, 'id'=>1 ]);
-        $I->sendAjaxRequest('DELETE', '/lessons/blocks/1/1');
-        $I->dontSeeRecord('blocks',['name'=>'Test Block']);
+        $total = Block::where('lesson_id', 10)->count();
+        $I->amOnAction('BlocksController@destroy',[ 'lesson_id'=>10, 'id'=>1 ]);
+        $I->sendAjaxRequest('DELETE', '/lessons/blocks/10/1');
+        $I->assertEquals( $total-1,  Block::where('lesson_id', 10)->count() );
     }
     
     public function failViewingCurriculum(FunctionalTester $I){

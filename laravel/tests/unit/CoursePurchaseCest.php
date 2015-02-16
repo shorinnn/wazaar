@@ -32,4 +32,26 @@ class CoursePurchaseCest{
         $I->assertEquals(5, $purchase->productAffiliate->id);
     }
     
+    public function purchase(UnitTester $I){
+        $purchase = new CoursePurchase(['course_id' => 1, 'student_id' => 1]);
+        $I->assertTrue( $purchase->save() );
+    }
+    
+    public function failPurchaseBadCourse(UnitTester $I){
+        $purchase = new CoursePurchase(['course_id' => 9999999999, 'student_id' => 1]);
+        $I->assertFalse( $purchase->save() );
+        
+    }
+    public function failPurchaseBadStudent(UnitTester $I){
+        $purchase = new CoursePurchase(['course_id' => 1, 'student_id' => 99999999]);
+        $I->assertFalse( $purchase->save() );
+        
+    }
+    public function failPurchaseAlreadyPurchased(UnitTester $I){
+        $purchase = new CoursePurchase(['course_id' => 1, 'student_id' => 1]);
+        $I->assertTrue( $purchase->save() );
+        $purchase = new CoursePurchase(['course_id' => 1, 'student_id' => 1]);
+        $I->assertFalse( $purchase->save() );
+    }
+
 }

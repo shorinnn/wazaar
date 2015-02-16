@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder {
 		 $this->call('CoursePreviewImagesSeeder');
 		 $this->call('ModulesSeeder');
 		 $this->call('LessonsSeeder');
+                 $this->call('VideosSeeder');
 		 $this->call('BlocksSeeder');
                  $this->call('AnalyticsSeeder');
                  $this->call('ProfileSeeder');
@@ -498,13 +499,46 @@ class LessonsSeeder extends Seeder {
     }
 }
 
+
+class VideosSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('videos')->delete();
+        Video::unguard();
+        Video::create( [ 'original_filename' => '9LoQlTLkj6DCaDdo1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
+                                'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
+        DB::table('video_formats')->delete();
+        VideoFormat::unguard();
+        VideoFormat::insert( [ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4', 'preset_id' => '1421660966371-o9l23s',
+            'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 9, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4' ] );
+        
+        VideoFormat::insert( [ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 9, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );       
+    }
+}
+
 class BlocksSeeder extends Seeder {
 
     public function run()
     {
         DB::table('blocks')->delete();
         Block::unguard();
-        Block::create( ['lesson_id' => 1, 'name' => 'Test Block','type' => 'text'] );
+        Block::create( ['lesson_id' => 10, 'name' => 'Test Block','type' => 'text', 
+            'content' => '"The service was excellent. Dude, your stuff is the bomb! I am really satisfied with my cocorium. 
+                Without cocorium, we would have gone bankrupt by now." - Truda V.'] );
+        Block::create( ['lesson_id' => 10, 'name' => 'Test Block','type' => 'text', 
+            'content' => 'Second text block right here m8'] );
+        Block::create( ['lesson_id' => 10, 'name' => 'First File','type' => 'file', 
+            'content' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-1.png'] );
+        Block::create( ['lesson_id' => 10, 'name' => 'Second File','type' => 'file', 
+            'content' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-1.png'] );
+        Block::create( ['lesson_id' => 10, 'name' => 'Third File','type' => 'file', 
+            'content' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-1.png'] );
+        Block::create( ['lesson_id' => 10, 'name' => 'First Video Ever','type' => 'video', 
+            'content' => '1'] );
        
     }
 }
