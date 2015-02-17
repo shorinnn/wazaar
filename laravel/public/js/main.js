@@ -163,6 +163,15 @@ function prepareLoadRemote(e){
     loadRemote(e);
 }
 
+/**
+ * Sends the form's request as a GET request using the loadRemote function (simulating a link click)
+ * @see loadRemote
+ * @method formToRemoteLink
+ * @param {event} e Click event
+ * @param {string} data-url The url to use in the ajax call
+ * @param {string} data-load-method How to add the new content to the target (load|append|prepend|fade)
+ * @param {string} data-target CSS selector of the element that receives the new content
+ */
 function formToRemoteLink(e){
     url = $(e.target).attr('action');
     url+= '?'+$(e.target).serialize() ;
