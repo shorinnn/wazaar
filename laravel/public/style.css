@@ -27,6 +27,10 @@ body {
 	float: left;
 }
 
+.no-border{
+	border: none !important;
+}
+
 .block{
 	display: block;
 }
@@ -1634,9 +1638,7 @@ header .activate-dropdown:hover ul{
 }
 
 .course-detail-top-section .centered-contents 
-.white-box .join-class:focus,
-.course-detail-top-section .centered-contents 
-.white-box .join-class:active{
+.white-box .join-class.pushdown{
     -webkit-box-shadow: 0px 1px 0px #f1b90f;
     -moz-box-shadow: 0px 1px 0px #f1b90f;
     box-shadow: 0px 1px 0px #f1b90f;
@@ -4161,7 +4163,7 @@ select::-ms-expand {
 }
 
 .members-area .pagination-container{
-	margin: 50px 0;
+	margin: 20px 0 40px;
 }
 
 .pagination-container ul li:first-of-type,
@@ -4204,6 +4206,134 @@ select::-ms-expand {
 	height: 50px;
 	width: 50px;
 }
+
+.members-edit-wrapper.members-area{
+	max-width: 430px;
+	margin: 0 auto;
+}
+
+.members-view-wrapper.members-area.personal-info-table{
+	max-width: 385px;
+}
+
+.members-view-wrapper.members-area.teacher-stats-table,
+.members-view-wrapper.members-area.affiliate-table{
+	max-width: 280px;
+}
+
+.members-edit-wrapper.members-area input[type='text']{
+	height: 30px;
+	width: 250px;
+	border-radius: 5px;
+	border: 1px solid #b0bfc1;
+	color: #b0bec1;
+	font-size: 14px;
+	text-indent: 10px;
+}
+
+.members-edit-wrapper.members-area input[type='submit']{
+	margin-top: 30px;
+}
+
+.members-view-wrapper.members-area{
+	margin: 10px auto 0;
+}
+
+.members-view-wrapper .teacher-table,
+.members-view-wrapper .affiliate-table,
+.members-view-wrapper .personal-info{
+	margin: 20px auto 10px;
+}
+
+.members-view-wrapper .personal-info form
+select option.active{
+	color: green;
+}
+
+.members-view-wrapper .personal-info form
+select option.suspended{
+	color: red;
+}
+
+.members-edit-wrapper .breadcrumb,
+.members-view-wrapper .breadcrumb{
+	background: none;
+	left: 0;
+	float: none;
+}
+
+.members-edit-wrapper table td,
+.members-view-wrapper table td{
+	font-size: 12px;
+	color: #333;
+}
+
+.members-edit-wrapper .breadcrumb .back-to-members,
+.members-view-wrapper .breadcrumb .back-to-members{
+	float: left;
+	height: 30px;
+	line-height: 30px;
+}
+
+.members-edit-wrapper .breadcrumb .edit-button,
+.members-view-wrapper .breadcrumb .edit-button{
+	float: left;
+}
+
+.members-view-wrapper .breadcrumb .send-message{	
+	margin-left: 1%;
+}
+
+.members-view-wrapper .profile-photo{
+	max-width: 200px;
+	height: 120px;
+	margin: 0 auto;
+	background: #0099ff;
+}
+
+.members-edit-wrapper .title,
+.members-view-wrapper .title{
+	font-weight: bold;
+	text-align: right;
+	vertical-align: middle;
+}
+
+.members-view-wrapper .teacher h2,
+.members-view-wrapper .affiliate h2,
+.members-view-wrapper .order-history h2{
+	text-align: center;
+	font-size: 22px;
+	color: #0099ff;
+	margin: 40px auto 15px;
+}
+
+.members-view-wrapper .order-history table td.active{
+	color: green;
+}
+
+.members-view-wrapper .order-history table td.refunded{
+	color: #000;
+}
+
+.members-view-wrapper .order-history table td.processing{
+	color: #0d9eff;
+}
+
+.members-view-wrapper .order-history table td.failed{
+	color: red;
+}
+
+.members-view-wrapper .order-history p.purchased-amount{
+	text-align: center;
+	font-size: 16px;
+}	
+
+.members-view-wrapper .order-history p.purchased-amount span{
+	color: green;
+	padding-left: 10px;
+	font-weight: 500;
+}
+
 /************* Page Footer **************/
 footer{
 	clear:both;

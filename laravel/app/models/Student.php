@@ -48,6 +48,7 @@ class Student extends User{
     public function courses(){
         $ids = $this->lessonPurchases->lists('course_id');
         $ids += $this->purchases->lists('course_id');
+        if(count($ids)==0) return new Illuminate\Database\Eloquent\Collection;
         return Course::whereIn('id', $ids)->get();
     }
     
