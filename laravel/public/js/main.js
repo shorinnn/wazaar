@@ -13,12 +13,17 @@ $(document).ready(function(){
     $('body').delegate('.load-remote a', 'click', prepareLoadRemote);
     $('body').delegate('a.load-more-ajax', 'click', loadMoreComments);
     $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
+	$('button.join-class').mousedown(function(){
+		$(this).addClass('pushdown');
+	});
+	$('button.join-class').mouseup(function(){
+		$(this).removeClass('pushdown');
+	});
     $(window).scroll(stepsScrollAnimation);
     _.setTranslation( js_translation_map );
     floatingNav();
     scrollNavigation();
 	fullScreen();
-
 });
 
 /**
@@ -687,5 +692,3 @@ function fullScreen(){
   
 }
  
-
-

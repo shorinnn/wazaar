@@ -624,9 +624,9 @@ input[type='checkbox']{
 	margin: 62px 0 0 -70px;
 }
 
-button.submit{
-	height: 30px;
-	width: 98px;
+.submit{
+	padding: 7px 15px;
+	display: inline-block;
 	font-size: 12px;
 	font-weight: normal;
 	text-align: center;
@@ -641,30 +641,30 @@ button.submit{
 	transition: all 0.2s ease-out;
 }
 
-button.submit-button-2,
-button.submit-button-1{
+.submit-button-2,
+.submit-button-1{
 	border-color: #0099ff;
 	border-radius: 15px;
 	color: #0099ff;
 }
 
-button.submit-button-2:hover,
-button.submit-button-1:hover{
+.submit-button-2:hover,
+.submit-button-1:hover{
 	background: #0099ff;
 	border-color: #0099ff;
 	color: #fff;
 }
 
-button.submit-button-2:focus,
-button.submit-button-2:active,
-button.submit-button-1:focus,
-button.submit-button-1:active{
+.submit-button-2:focus,
+.submit-button-2:active,
+.submit-button-1:focus,
+.submit-button-1:active{
 	background: #0669d1;
 	border-color: #0669d1;
 	color: #fff;
 }
 
-button.submit-button-2{
+.submit-button-2{
 	border-radius: 5px;
 }
 
