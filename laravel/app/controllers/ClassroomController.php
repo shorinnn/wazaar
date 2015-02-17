@@ -20,7 +20,11 @@ class ClassroomController extends \BaseController {
             if( $course==null || ( !$student->purchased( $course ) && $student->lessonPurchases()->where('course_id', $course->id)->get()==null ) ){
                 return Redirect::to('/');
             }
-            return View::make('courses.classroom.dashboard')->with( compact('course') )->with( compact('student') );
+            $video = $student->nextLesson($course);
+            if( $video ) $video = $video->blocks()->where('type','video')->first();
+            $video = $course->videoBlocks();
+            if($video!=null) $video = $video->first();
+            return View::make('courses.classroom.dashboard')->with( compact('course') )->with( compact('student') )->with( compact('video') );
         }
         
         public function testimonial($slug){
@@ -52,8 +56,9 @@ class ClassroomController extends \BaseController {
                 return Redirect::to('/');
             }            
             $student->viewLesson( $lesson );
-            if(Request::ajax()) return View::make('courses.classroom.lesson_ajax')->with( compact('course') )->with( compact('lesson') );
-            else return View::make('courses.classroom.lesson')->with( compact('course') )->with( compact('lesson') );
+            $video = $lesson->blocks()->where('type','video')->first();
+            if(Request::ajax()) return View::make('courses.classroom.lesson_ajax')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
+            else return View::make('courses.classroom.lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
         }
 
 }

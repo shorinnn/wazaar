@@ -68,9 +68,20 @@
                         </div>             
                     </div>
                 </div>
-                <div class="video-player">
+                    @if($video == null)
+                    <div class="video-player">
 	                <a href="#" class="watch-video-button">WATCH VIDEO</a>
     				<span class="video-time">10:23</span>            
+                    @else
+                    <div class="video-player" style="background:none; text-align: right">
+                        @if( Agent::isMobile() )
+                            <video controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
+                                        ->first()->video_url }}" type="video/mp4"></video>
+                        @else
+                        <video height="266" controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                                        ->first()->video_url }}" type="video/mp4"></video>
+                        @endif
+                    @endif
                 </div>
                  
             </div>
@@ -211,7 +222,7 @@
                                     <!--<a href="#" class="crash-lesson-button">CRASH LESSON</a>-->
                                     <button class="btn crash-lesson-button pull-right" 
                                             @if( Auth::guest() || !Auth::user()->can_purchase($course) || !Auth::user()->canPurchaseLesson($lesson) )
-                                            disabled="disabled" 
+                                            disabled="disabled" data-crash-disabled='1'
                                             @endif
                                             >CRASH LESSON</button>
                                     {{ Form::close() }}
@@ -229,6 +240,7 @@
                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">
             </h3>
             
+            @if($course->allTestimonials->count() > 0)
                         <h2 class="text-center">Helpful Student Reviews</h2>
                         <div class="testimonials clearfix clear_fix clear bottom-testimonials">
                             @foreach($course->allTestimonials as $testimonial)
@@ -238,6 +250,8 @@
                         <a href='1' class="load-more-comments load-more-ajax" 
                data-url='{{ action('TestimonialsController@more') }}' 
                data-target='.bottom-testimonials' data-skip='2' data-id='{{ $course->id }}' data-post-field="course">LOAD MORE</a>
+                        
+            @endif
             </div>                       
             
             @if(Auth::guest() || !Auth::user()->hasRole('Instructor'))

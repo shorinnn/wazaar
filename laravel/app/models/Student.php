@@ -48,6 +48,7 @@ class Student extends User{
     public function courses(){
         $ids = $this->lessonPurchases->lists('course_id');
         $ids += $this->purchases->lists('course_id');
+        if(count($ids)==0) return new Illuminate\Database\Eloquent\Collection;
         return Course::whereIn('id', $ids)->get();
     }
     
@@ -114,7 +115,10 @@ class Student extends User{
         if($lesson->module->course->id != $course->id) return false;
         
         // cannot buy the same lesson twice
-        if($this->purchasedLesson($lesson)) return false;
+        if( $this->purchasedLesson($lesson) ) return false;
+        
+// cannot buy lesson if already owns course
+        if( $this->purchased($course) ) return false;
         
         // cannot buy own course
         if($this->id == $course->instructor->id) return false;
@@ -223,6 +227,15 @@ class Student extends User{
         return false;
     }
 
+    public function commentName(){
+        if( $this->profile ){
+            return $this->profile->first_name.' '.$this->profile->last_name;
+        }
+        else{
+            if($this->first_name=='') return $this->email;
+            else return $this->first_name.' '.$this->last_name;
+        }
+    }
 
 
 

@@ -1,7 +1,11 @@
 <?php
-use LaravelBook\Ardent\Ardent;
 
-class LessonPurchase extends Ardent{
+class LessonPurchase extends CocoriumArdent{
+    public static $rules = [
+        'lesson_id' => 'required|exists:lessons,id|unique_with:lesson_purchases,student_id',
+        'student_id' => 'required|exists:users,id',
+        'course_id' => 'required|exists:courses,id'
+    ];
     
     public static $relationsData = array(
         'lesson' => array(self::BELONGS_TO, 'Lesson'),

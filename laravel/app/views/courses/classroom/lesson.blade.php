@@ -48,21 +48,31 @@
         background-image:url('http://www.mytreedb.com/uploads/mytreedb/loader/ajax_loader_blue_32.gif');
     }
 </style>
-    <h1>{{ $course->name }}</h1>
-    <h2>{{ $lesson->name }}</h2>
+    <h1>Course: {{ $course->name }}</h1>
+    <h2>Lesson: {{ $lesson->name }}</h2>
     
-    <h1>Video block right here after consulting Nigel</h1>
+    @if( $video != null)
+        <div class="text-center" style="border:1px solid gray; padding: 30px; margin:30px; background-color:silver">
+            @if( Agent::isMobile() )
+                <video controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
+                            ->first()->video_url }}" type="video/mp4"></video>
+            @else
+            <video controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                            ->first()->video_url }}" type="video/mp4"></video>
+            @endif
+        </div>
+    @endif
     
     @foreach($lesson->blocks as $block)
         @if($block->type=='text')
-            {{ $block->content }}
+            <div class="well">{{ $block->content }}</div>
         @endif
     @endforeach
     
-    <h4>Files</h4>
+    
     @foreach($lesson->blocks as $block)
         @if($block->type=='file')
-            <p><a href='{{ $block->content }}' target='_blank'>{{ $block->name }}</a></p>
+            <p><a href='{{ $block->content }}' target='_blank'><i class="fa fa-cloud-download"></i> {{ $block->name }}</a></p>
         @endif
     @endforeach
    
@@ -83,7 +93,7 @@
             <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
                 
                 {{ $lesson->comments->links() }}
-                <a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->module->slug, $lesson->slug] )}}'>View All Comments Ever</a>
+                <!--<a href='{{ action('ConversationsController@lesson', [$lesson->module->course->slug, $lesson->module->slug, $lesson->slug] )}}'>View All Comments Ever</a>-->
             </div>
         </div>
     </div>

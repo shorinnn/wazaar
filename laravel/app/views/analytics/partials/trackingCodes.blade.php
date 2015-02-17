@@ -2,7 +2,7 @@
     <li>
         <a href="#">
             <span>{{$key+1}}.</span>
-            {{$code['tracking_code']}}
+            <a href="{{url('dashboard/course/'. $code['course_id'] .'/trackingcode/'. $code['tracking_code'] .'/stats')}}">{{$code['tracking_code']}}</a>
             <em>{{$code['count']}}</em>
         </a>
     </li>

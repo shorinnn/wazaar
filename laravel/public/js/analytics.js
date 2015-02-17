@@ -40,6 +40,7 @@ var Analytics = {
         });
     },
     'trackingSalesCodes' :  function ($frequency, $courseId, $elem){
+
         $.get('/dashboard/trackingcodessales/' + $frequency + '/' + $courseId, function ($html){
             $('#wrapper-tracking-codes').html($html);
 
@@ -84,6 +85,27 @@ var Analytics = {
             $('#wrapper-tracking-code-conversions').html($html);
 
             $('.tracking-code-conversions-dropdown a').removeClass('active');
+            $($elem).addClass('active');
+            if ($frequency == 'daily'){
+                $('#header-tracking-code-conversions-frequency').html('Today');
+            }
+            else if($frequency == 'week'){
+                $('#header-tracking-code-conversions-frequency').html('This Week');
+            }
+            else if($frequency == 'month'){
+                $('#header-tracking-code-conversions-frequency').html('This Month');
+            }
+            else if($frequency == 'alltime'){
+                $('#header-tracking-code-conversions-frequency').html('All Time');
+            }
+        });
+    },
+
+    'trackingCodeStats' :  function ($frequency, $courseId, $code, $elem){
+        $.get('/dashboard/course/' + $courseId + '/trackingcode/' + $code + '/stats/' + $frequency, function ($html){
+            $('#wrapper-tracking-code-stats').html($html);
+
+            $('.tracking-code-hits-dropdown a').removeClass('active');
             $($elem).addClass('active');
             if ($frequency == 'daily'){
                 $('#header-tracking-code-conversions-frequency').html('Today');

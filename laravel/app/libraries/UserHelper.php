@@ -17,18 +17,18 @@ class UserHelper
      * @param array $profileData - Key value of the profile data
      * @param null $profileObject - the User collection if you want to update a particular profile 1 by 1(e.g. Student), leave null if all profiles are to be updated
      */
-    public function saveProfile($userId, $profileData = [], $profileObject = null)
+    public function saveProfile($userId, $profileData = [], $userObject = null)
     {
 
-        if (is_null($profileObject)){
-            $profileObjects = [Student::find($userId), Instructor::find($userId), LTCAffiliate::find($userId)];
+        if (is_null($userObject)){
+            $userObjects = [Student::find($userId), Instructor::find($userId), LTCAffiliate::find($userId)];
         }
         else{
-            $profileObjects = [$profileObject];
+            $userObjects = [$userObject];
         }
-        $profileObjects = [Student::find($userId), Instructor::find($userId), LTCAffiliate::find($userId)];
+        //$userObjects = [Student::find($userId), Instructor::find($userId), LTCAffiliate::find($userId)];
 
-        foreach($profileObjects as $user){
+        foreach($userObjects as $user){
 
             if ($user){
 
@@ -57,6 +57,28 @@ class UserHelper
         }
 
 
+    }
+
+    public function getProfileByType($type, $id = null)
+    {
+        if (is_null($id)){
+            $id = Auth::id();
+        }
+        switch($type){
+            case 'student' :
+                $profile = Student::find($id);
+                break;
+            case 'affiliate' :
+                $profile = LTCAffiliate::find($id);
+                break;
+            case 'instructor' :
+                $profile = Instructor::find($id);
+                break;
+            default:
+                $profile = Student::find($id);
+        }
+
+        return $profile;
     }
 
     public function profileValidationRules()

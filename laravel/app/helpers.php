@@ -359,8 +359,14 @@ function input_except(array $exclude){
 }
 
 function username(){
-    if(trim(Auth::user()->first_name)=='') return Auth::user()->email;
-    else return Auth::user()->first_name;
+    $profile = Student::find( Auth::user()->id )->profile;
+    if( $profile ){
+        return $profile->first_name;
+    }
+    else{
+        if(trim(Auth::user()->first_name)=='') return Auth::user()->email;
+        else return Auth::user()->first_name;
+    }
 }
 
 /**
