@@ -428,3 +428,8 @@ function json2Array($json){
 function money_val($number){
     return number_format($number, Config::get('custom.currency_decimals'), '', '');
 }
+
+function appendToQueryString($key, $val){
+    $params = array_merge( $_GET, array( $key => $val ) );
+    return http_build_query($params);
+}

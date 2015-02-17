@@ -10,6 +10,7 @@ $(document).ready(function(){
     $(".profile-name > li").removeClass("activate-dropdown");
     $('body').delegate('.slide-toggler', 'click', slideToggle);
     $('body').delegate('a.load-remote', 'click', loadRemote);
+    $('body').delegate('.form-to-remote-link', 'submit', formToRemoteLink);
     $('body').delegate('.load-remote a', 'click', prepareLoadRemote);
     $('body').delegate('a.load-more-ajax', 'click', loadMoreComments);
     $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
@@ -140,7 +141,7 @@ function slideToggle(e){
 }
 
 /**
- * Makes the element clicked inside the .load-remote element inherit load-remote
+ * Makes the element clicked inside the .load-remoteelement inherit load-remote
  * properties then fires loadRemote on it
  * @param {event} e Clickevent
  * @param {string} data-url The url to use in the ajax call
@@ -158,8 +159,16 @@ function prepareLoadRemote(e){
         $(e.target).attr('data-load-method', $(e.target).closest('.load-remote').attr('data-load-method'));
     }
     $(e.target).attr('data-target', $(e.target).closest('.load-remote').attr('data-target'));
-    history.pushState({}, '', $(e.target).attr("href"));
+//    history.pushState({}, '', $(e.target).attr("href"));
     loadRemote(e);
+}
+
+function formToRemoteLink(e){
+    url = $(e.target).attr('action');
+    url+= '?'+$(e.target).serialize() ;
+    $(e.target).attr('data-url', url);    
+    loadRemote(e);
+    return false;
 }
 /**
  * Event handler for a.load-remote<br />
@@ -188,6 +197,7 @@ function loadRemote(e){
         loadMethod = $(e.target).attr('data-load-method');
     }
     $(e.target).attr('data-loading', 1);
+    history.pushState({}, '', url);
     if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
         $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
         $(target).load(url, function(){
