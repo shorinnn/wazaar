@@ -35,6 +35,8 @@
             </div>
         </div>
     </div>
+</div>
+<div class="container members-view-wrapper members-area personal-info-table">
 	<div class="row">
     	<div class="col-xs-12 col-sm-12 col-md-12">
             <table class="table personal-info">
@@ -81,9 +83,15 @@
                     <td class="title no-border">{{trans('general.registered')}}:</td>
                     <td class="no-border">{{ $user->created_at }} {{ $user->created_at->diffForHumans() }}</td>
                 </tr>
+                <tr>
+                    <td class="title no-border">Last Logged in:</td>
+                    <td class="no-border">2015-02-14 06:20:16 2 days ago</td>
+                </tr>
             </table>
         </div>	
     </div>
+</div>
+<div class="container members-view-wrapper members-area">
     <div class="row">
     	<div class="col-md-12">
         	<div class="order-history">
@@ -215,6 +223,8 @@
             </div>
         </div>
     </div>
+</div>
+<div class="container members-view-wrapper members-area affiliate-table">
     <div class="row">
     	<div class="col-md-12">
         	<div class="affiliate">
@@ -243,6 +253,8 @@
             </div>
         </div>
     </div>
+</div>
+<div class="container members-view-wrapper members-area teacher-stats-table">
     <div class="row">
     	<div class="col-md-12">
         	<div class="teacher">
@@ -257,103 +269,113 @@
                         <td class="no-border">¥2,185,123</td>
                     </tr>
                 </table>
-                <div class="table-wrapper table-responsive clear">               
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Course Name</th>
-                                <th>Published Date</th>
-                                <th>Sales Amount</th>
-                                <th>Overall Sales Rank</th>
-                                <th>Category Sales Rank</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container members-view-wrapper members-area">
+    <div class="row">
+    	<div class="col-md-12">
+            <div class="table-wrapper table-responsive clear">               
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Course Name</th>
+                            <th>Published Date</th>
+                            <th>Sales Amount</th>
+                            <th>Overall Sales Rank</th>
+                            <th>Category Sales Rank</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>PHP Primer</td>
+                            <td>12/02/2015</td>
+                            <td>¥185,001</td>
+                            <td>4</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>PHP Primer</td>
+                            <td>12/02/2015</td>
+                            <td>¥185,001</td>
+                            <td>4</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>PHP Primer</td>
+                            <td>12/02/2015</td>
+                            <td>¥185,001</td>
+                            <td>4</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>PHP Primer</td>
+                            <td>12/02/2015</td>
+                            <td>¥185,001</td>
+                            <td>4</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>PHP Primer</td>
+                            <td>12/02/2015</td>
+                            <td>¥185,001</td>
+                            <td>4</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>PHP Primer</td>
+                            <td>12/02/2015</td>
+                            <td>¥185,001</td>
+                            <td>4</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>PHP Primer</td>
+                            <td>12/02/2015</td>
+                            <td>¥185,001</td>
+                            <td>4</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>PHP Primer</td>
+                            <td>12/02/2015</td>
+                            <td>¥185,001</td>
+                            <td>4</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>PHP Primer</td>
+                            <td>12/02/2015</td>
+                            <td>¥185,001</td>
+                            <td>4</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>PHP Primer</td>
+                            <td>12/02/2015</td>
+                            <td>¥185,001</td>
+                            <td>4</td>
+                            <td>2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+    </div> 
+    <div class="row">
+    	<div class="col-md-12">     
             <div class="pagination-container clearfix">
             	<div class="page-numbers-container clearfix">
                     <ul class="clearfix">

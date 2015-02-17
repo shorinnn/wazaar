@@ -653,6 +653,7 @@ input[type='checkbox']{
 	background: #0099ff;
 	border-color: #0099ff;
 	color: #fff;
+	text-decoration: none;
 }
 
 .submit-button-2:focus,

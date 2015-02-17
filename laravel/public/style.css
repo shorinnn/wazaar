@@ -4207,6 +4207,34 @@ select::-ms-expand {
 	width: 50px;
 }
 
+.members-edit-wrapper.members-area{
+	max-width: 430px;
+	margin: 0 auto;
+}
+
+.members-view-wrapper.members-area.personal-info-table{
+	max-width: 385px;
+}
+
+.members-view-wrapper.members-area.teacher-stats-table,
+.members-view-wrapper.members-area.affiliate-table{
+	max-width: 280px;
+}
+
+.members-edit-wrapper.members-area input[type='text']{
+	height: 30px;
+	width: 250px;
+	border-radius: 5px;
+	border: 1px solid #b0bfc1;
+	color: #b0bec1;
+	font-size: 14px;
+	text-indent: 10px;
+}
+
+.members-edit-wrapper.members-area input[type='submit']{
+	margin-top: 30px;
+}
+
 .members-view-wrapper.members-area{
 	margin: 10px auto 0;
 }
@@ -4214,7 +4242,6 @@ select::-ms-expand {
 .members-view-wrapper .teacher-table,
 .members-view-wrapper .affiliate-table,
 .members-view-wrapper .personal-info{
-	width: 500px;
 	margin: 20px auto 10px;
 }
 
@@ -4228,18 +4255,27 @@ select option.suspended{
 	color: red;
 }
 
+.members-edit-wrapper .breadcrumb,
 .members-view-wrapper .breadcrumb{
 	background: none;
 	left: 0;
 	float: none;
 }
 
+.members-edit-wrapper table td,
+.members-view-wrapper table td{
+	font-size: 12px;
+	color: #333;
+}
+
+.members-edit-wrapper .breadcrumb .back-to-members,
 .members-view-wrapper .breadcrumb .back-to-members{
 	float: left;
 	height: 30px;
 	line-height: 30px;
 }
 
+.members-edit-wrapper .breadcrumb .edit-button,
 .members-view-wrapper .breadcrumb .edit-button{
 	float: left;
 }
@@ -4255,10 +4291,11 @@ select option.suspended{
 	background: #0099ff;
 }
 
+.members-edit-wrapper .title,
 .members-view-wrapper .title{
 	font-weight: bold;
 	text-align: right;
-	padding-right: 3%;
+	vertical-align: middle;
 }
 
 .members-view-wrapper .teacher h2,
