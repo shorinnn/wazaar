@@ -71,7 +71,7 @@
 }
 
 .top-activities > div > div{
-	height: 339px;
+	min-height: 339px;
 	border: solid 1px #ececec;
 	border-radius: 4px;
 	margin-bottom: 30px;

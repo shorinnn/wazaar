@@ -416,7 +416,7 @@ class AnalyticsHelper
 
         foreach($sales['data'] as $sale){
             $labels[] = date('F d, Y', strtotime($sale['created_at']));
-            $data[] =  number_format($sale['total_purchase'],2);
+            $data[] =  $sale['total_purchase'];
         }
 
         $labels = array_reverse($labels);
