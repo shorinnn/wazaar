@@ -64,11 +64,11 @@
                 @endif
                 <tr>
                     <td class="title no-border">{{trans('general.first_name')}}:</td>
-                    <td class="no-border">{{ $user->first_name }}</td>
+                    <td class="no-border">{{ $user->firstName() }}</td>
                 </tr>
                 <tr>
                     <td class="title no-border">{{trans('general.last_name')}}:</td>
-                    <td class="no-border">{{ $user->last_name }}</td>
+                    <td class="no-border">{{ $user->lastName() }}</td>
                 </tr>
                 <tr>
                     <td class="title no-border">{{trans('general.groups')}}:</td>

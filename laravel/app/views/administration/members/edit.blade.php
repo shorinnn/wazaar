@@ -46,7 +46,7 @@
                             'id' =>'edit-form', 'class' => 'ajax-form'])}}
                 <table class="table personal-info">
                     <tr>
-                        <td class="title no-border">{{trans('general.user')}}</td>
+                        <td class="title no-border">{{trans('general.email')}}</td>
                         <td class="no-border">{{ Form::text('email') }}</td>
                     </tr>
                     @if($user->hasRole('Affiliate'))
@@ -65,11 +65,11 @@
                     @endif
                     <tr>
                         <td class="title no-border">{{trans('general.first_name')}}</td>
-                        <td class="no-border">{{ Form::text('first_name') }}</td>
+                        <td class="no-border">{{ $user->firstName() }}</td>
                     </tr>
                     <tr>
                         <td class="title no-border">{{trans('general.last_name')}}</td>
-                        <td class="no-border">{{ Form::text('last_name') }}</td>
+                        <td class="no-border">{{ $user->lastName() }}</td>
                     </tr>
                     <tr>
                         <td class="title no-border">{{trans('general.groups')}}</td>
