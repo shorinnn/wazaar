@@ -44,7 +44,7 @@ class UserRepository
             $this->attachRoles($user, array_get($input, 'instructor'));
         }
         $this->save_ltc($user, $ltc_cookie);
-        return $user;
+        return User::find($user->id);
     }
     
     /**

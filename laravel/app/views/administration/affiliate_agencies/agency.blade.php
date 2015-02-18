@@ -7,7 +7,7 @@
             @if( $agency->ltcAffiliates->count() == 0 )
                 {{ Form::open(array('action' => ['AffiliateAgenciesController@update', $agency->id], 'method' => 'delete', 
                             'class' => 'ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '#category-'.$agency->id )) }}
-                        <button type="submit" name="delete-category-{{$agency->id}}" class="btn btn-danger btn-mini delete-button" 
+                        <button type="submit" name="delete-agency-{{$agency->id}}" class="btn btn-danger btn-mini delete-button" 
                                 data-message="{{ trans('crud/labels.you-sure-want-delete') }}"><i class="fa fa-trash"></i></button>
                 {{ Form::close() }}
             @else

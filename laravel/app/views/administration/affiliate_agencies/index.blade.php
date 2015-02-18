@@ -245,7 +245,7 @@
     <div class="container">
     	<div class="row">
         	<div class="col-md-12">
-                <form method='post' class='ajax-form' id="add-category-form" data-callback='addToList' data-destination='#items-list'
+                <form method='post' class='ajax-form' id="add-agency-form" data-callback='addToList' data-destination='#items-list'
                       action='{{ action('AffiliateAgenciesController@store') }}'>
                     <input type='hidden' name='_token' value='{{ csrf_token() }}' />
                     <div>

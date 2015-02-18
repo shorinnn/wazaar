@@ -364,8 +364,8 @@ function username(){
         return $profile->first_name;
     }
     else{
-        if(trim(Auth::user()->first_name)=='') return Auth::user()->email;
-        else return Auth::user()->first_name;
+        if( trim( Auth::user()->first_name ) == '' ) return Auth::user()->email;
+        else Auth::user()->first_name;
     }
 }
 

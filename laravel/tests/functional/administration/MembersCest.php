@@ -110,7 +110,6 @@ class MembersCest{
         $I->amOnPage("/administration/members/$student->id/edit");
         $I->seeCurrentUrlEquals("/administration/members/$student->id/edit");
         $I->seeInField('email', 'student@mailinator.com');
-        $I->seeInField('first_name', 'Student');
         $I->submitForm('#edit-form', ['email' => 'studentUPDATED@mailinator.com']);
         $I->see('Updated');
     }
@@ -122,7 +121,6 @@ class MembersCest{
         $I->amOnPage("/administration/members/$student->id/edit");
         $I->seeCurrentUrlEquals("/administration/members/$student->id/edit");
         $I->seeInField('email', 'student@mailinator.com');
-        $I->seeInField('first_name', 'Student');
         $I->submitForm('#edit-form', ['email' => 'studentUPDATED@mailinatorFAIL']);
         $I->dontSee('Updated');
     }

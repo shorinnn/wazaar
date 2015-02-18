@@ -5,6 +5,7 @@ class RegisterCest{
     
     public function _before(FunctionalTester $I){
         $I->haveEnabledFilters();
+        User::boot();
     }
     
     public function failRegistration(FunctionalTester $I){
@@ -21,7 +22,7 @@ class RegisterCest{
         $I->dontSeeAuthentication();
         $I->seeNumberOfElements('input[name=email]', 1);
         $I->submitForm('form', ['username' => 'new_student', 'email' => 'new_student@mailinator.com',
-                                        'password' => 'pass', 'password_confirmation' => 'pass']);
+                                        'password' => 'passpass', 'password_confirmation' => 'passpass']);
         $I->seeAuthentication();
     }
     
@@ -30,7 +31,7 @@ class RegisterCest{
         $I->dontSeeAuthentication();
         $I->seeNumberOfElements('input[name=email]', 1);
         $I->submitForm('form', ['username' => 'new_student', 'email' => 'new_student@mailinator.com',
-                                        'password' => 'pass', 'password_confirmation' => 'pass']);
+                                        'password' => 'passpass', 'password_confirmation' => 'passpass']);
         $I->seeAuthentication();
         $I->assertTrue(Auth::user()->hasRole('Instructor'));
         $I->assertTrue(Auth::user()->hasRole('Student'));
@@ -49,7 +50,7 @@ class RegisterCest{
         $I->dontSeeAuthentication();
         $I->seeNumberOfElements('input[name=email]', 1);
         $I->submitForm('form', ['username' => 'new_student', 'email' => 'new_student@mailinator.com',
-                                        'password' => 'pass', 'password_confirmation' => 'pass']);
+                                        'password' => 'passpass', 'password_confirmation' => 'passpass']);
         $I->seeAuthentication();
         $I->seeRecord('users', array('email' => 'new_student@mailinator.com', 'ltc_affiliate_id' => '2'));
     }
@@ -61,7 +62,7 @@ class RegisterCest{
         $I->dontSeeAuthentication();
         $I->seeNumberOfElements('input[name=email]', 1);
         $I->submitForm('form', ['username' => 'new_student', 'email' => 'new_student@mailinator.com',
-                                        'password' => 'pass', 'password_confirmation' => 'pass']);
+                                        'password' => 'passpass', 'password_confirmation' => 'passpass']);
         $I->seeAuthentication();
         $I->seeRecord('users', array('email' => 'new_student@mailinator.com', 'ltc_affiliate_id' => '5'));
     }
@@ -75,7 +76,7 @@ class RegisterCest{
         $I->dontSeeAuthentication();
         $I->seeNumberOfElements('input[name=email]', 1);
         $I->submitForm('form', ['username' => 'new_student', 'email' => 'new_student@mailinator.com',
-                                        'password' => 'pass', 'password_confirmation' => 'pass']);
+                                        'password' => 'passpass', 'password_confirmation' => 'passpass']);
         $I->seeAuthentication();
         $I->seeRecord('users', array('email' => 'new_student@mailinator.com', 'ltc_affiliate_id' => '2'));
     }

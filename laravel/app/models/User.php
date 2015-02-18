@@ -73,14 +73,15 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     public function firstName(){
-        if( $this->profiles->first() ){
+        
+        if( isset( $this->profiles) && $this->profiles->first() !=null ){
             return $this->profiles->first()->first_name;
         }
         else return $this->first_name;
     }
     
     public function lastName(){
-        if( $this->profiles->first() ){
+        if(  isset( $this->profiles) && $this->profiles->first() !=null){
             return $this->profiles->first()->last_name;
         }
         else return $this->last_name;
