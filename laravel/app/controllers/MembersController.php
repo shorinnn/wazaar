@@ -66,10 +66,12 @@ class MembersController extends \BaseController {
 	public function edit($id)
 	{
             $user = User::find($id);
+            $affiliate_agencies = AffiliateAgency::lists('name', 'id');
+            $affiliate_agencies = ['NULL' => ''] + $affiliate_agencies;
             if($user==null){
                 return Redirect::action('MembersController@index')->withError( trans('crud/errors.object_doesnt_exist', ['object' => 'User' ]) );
             }
-            return View::make('administration.members.edit')->with(compact('user'));
+            return View::make('administration.members.edit')->with( compact('user') )->with( compact('affiliate_agencies') );
 	}
 
 
@@ -86,6 +88,7 @@ class MembersController extends \BaseController {
                 return Redirect::action('MembersController@index')->withError( trans('crud/errors.object_doesnt_exist', ['object' => 'User' ]) );
             }
             $user->status = Input::get('status');
+            $user->affiliate_agency_id = Input::get('affiliate_agency_id') == 0 ? null : Input::get('affiliate_agency_id');
            if( $user->update( input_except(['_method', '_token'] ) ) ){
                 if(Request::ajax()) return json_encode( ['status'=>'success'] );
                 return Redirect::back()->withSuccess( trans('crud/errors.object_updated', ['object'=>'User'] ));

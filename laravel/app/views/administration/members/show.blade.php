@@ -52,6 +52,15 @@
                     <td class="title no-border">{{trans('general.affiliate_id')}}:</td>
                     <td class="no-border">{{ $user->affiliate_id }}</td>
                 </tr>
+                <tr>
+                    <td class="title no-border">{{trans('general.affiliate_agency')}}:</td>
+                    <td class="no-border">
+                        @if( $user->affiliate_agency_id > 0 )
+                            {{AffiliateAgency::find($user->affiliate_agency_id)->name}}
+                        @endif
+                    
+                    </td>
+                </tr>
                 @endif
                 <tr>
                     <td class="title no-border">{{trans('general.first_name')}}:</td>

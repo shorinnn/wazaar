@@ -54,6 +54,14 @@
                         <td class="title no-border">{{trans('general.affiliate_id')}}</td>
                         <td class="no-border">{{ Form::text('affiliate_id') }}</td>
                     </tr>
+                     <tr>
+                        <td class="title no-border">{{trans('general.affiliate_agency')}}</td>
+                        <td class="no-border">
+                            <div>
+                                {{ Form::select('affiliate_agency_id', $affiliate_agencies ) }}
+                            </div>
+                        </td>
+                    </tr>
                     @endif
                     <tr>
                         <td class="title no-border">{{trans('general.first_name')}}</td>
@@ -74,11 +82,9 @@
                     <tr>
                         <td class="title no-border">Status</td>
                         <td class="no-border">
-                            <form>
-                                <div>
-                                    {{ Form::select('status',['Active'=>'Active', 'Suspended'=>'Suspended'] ) }}
-                                </div>
-                            </form>
+                            <div>
+                                {{ Form::select('status',['Active'=>'Active', 'Suspended'=>'Suspended'] ) }}
+                            </div>
                         </td>
                     </tr>
                     <tr class="no-border">
