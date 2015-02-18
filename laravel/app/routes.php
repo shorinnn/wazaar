@@ -49,6 +49,8 @@ Route::get('logout', 'UsersController@logout');
 // Admin Controller
 Route::group(array('prefix'=>'administration'),function(){
     Route::resource('members', 'MembersController');
+    Route::get('affiliate-agencies/affiliates/{id}', 'AffiliateAgenciesController@affiliates');
+    Route::resource('affiliate-agencies', 'AffiliateAgenciesController');
 });
 
 // Course Categories

@@ -20,5 +20,6 @@ return array(
     'complete' => 'Complete',
     'add_category' => 'Add Category',
     'add_subcategory' => 'Add Subcategory',
+    'add_agency' => 'Add Agency',
     'submit' => 'Submit'
 );
