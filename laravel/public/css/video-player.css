@@ -3,6 +3,10 @@
 	position: relative;
 }
 
+.video-container > img{
+	min-width: 100%;
+}
+
 .video-container .centered-play-button {
     background-color: rgba(21, 34, 46, 0.8);
     background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-4.png");
