@@ -2,12 +2,12 @@
 /************ Default browser reset styles **************/
 
 body {
-	/*font: 16px Lato, Helvetica, sans-serif;*/
 	margin: 0;
 	padding: 0;
 	color: #000;
 	line-height: 16px !important;
-	font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;
+	/*font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;*/
+	font: 16px Lato, Helvetica, sans-serif;
 }
 
 .clear{
@@ -2674,7 +2674,7 @@ header .activate-dropdown:hover ul{
 	background: #fff;
 	border-radius: 5px;
 	position: relative;
-	padding-left: 20px;
+	/*padding-left: 20px;*/
 	overflow: hidden;
 }
 
@@ -2710,6 +2710,10 @@ header .activate-dropdown:hover ul{
 	font-size: 12px;
 	color: #849598;
 	font-weight: 200;
+}
+
+.white-box > p {
+    padding-left: 20px;
 }
 
 .classroom-content .white-box ul{
@@ -3072,6 +3076,7 @@ header .activate-dropdown:hover ul{
 	border-radius: 8px;
 	overflow: hidden;
 	cursor: pointer;
+	display: none;
 }
 
 .custom-scrollbar span{

@@ -5,7 +5,7 @@
 // JavaScript Document
 $(document).ready(function(){
 	$(function(){
-		  $('#curriculum .lessons').jScrollPane();
+		  $('.lessons').jScrollPane();
 	  });
     $(".profile-name > li").removeClass("activate-dropdown");
     $('body').delegate('.slide-toggler', 'click', slideToggle);
