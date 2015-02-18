@@ -14,10 +14,32 @@ class MembersController extends \BaseController {
 	 */
 	public function index()
 	{
-            $members = User::paginate(2);
-            Return View::make('administration.members.index')->with(compact('members'));
+            $pagination = Input::get('view') > 0 ? Input::get('view') :  2;
+            
+            $url_filters = [];
+            $params = array_merge( $_GET, array("type" => "student", 'page' => 1));
+            $url_filters['student'] = http_build_query($params);
+            $params = array_merge( $_GET, array("type" => "instructor", 'page' => 1));
+            $url_filters['instructor'] = http_build_query($params);
+            $params = array_merge( $_GET, array("type" => "affiliate", 'page' => 1));
+            $url_filters['affiliate'] = http_build_query($params);
+            
+//            if( !Input::get('type') ) $members = User::with('profiles')->paginate( $pagination );
+//            else $members = Role::where('name', Input::get('type'))->first()->users()->with('profiles')->paginate( $pagination );
+            if( !Input::get('type') ) $members = User::with('profiles');
+            else $members = Role::where('name', Input::get('type'))->first()->users()->with('profiles');
+            
+            if( Input::get('search') )$members = $members->where('email', 'like', '%'.Input::get('search').'%' );
+            
+            $members = $members->paginate( $pagination );
+            
+            if( Request::ajax() ){
+                return View::make('administration.members.partials.table')->with( compact('members') )->with( compact('url_filters') )->render();
+            }
+            Return View::make('administration.members.index')->with(compact('members'))->with( compact('url_filters') );
 	}
-
+        
+     
 
 	/**
 	 * Display the specified resource.
@@ -63,10 +85,13 @@ class MembersController extends \BaseController {
             if($user==null){
                 return Redirect::action('MembersController@index')->withError( trans('crud/errors.object_doesnt_exist', ['object' => 'User' ]) );
             }
+            $user->status = Input::get('status');
            if( $user->update( input_except(['_method', '_token'] ) ) ){
+                if(Request::ajax()) return json_encode( ['status'=>'success'] );
                 return Redirect::back()->withSuccess( trans('crud/errors.object_updated', ['object'=>'User'] ));
             }
             else{
+                if(Request::ajax()) return json_encode( ['status'=>'error', 'errors' => format_errors($user->errors()->all()) ] );
                 return Redirect::back()->withError( trans('crud/errors.cannot_update_object',['object'=>'User']).': '.format_errors($user->errors()->all()));
             }
 	}
