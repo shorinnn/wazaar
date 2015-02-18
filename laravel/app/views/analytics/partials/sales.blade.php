@@ -2,7 +2,6 @@
     <span>(+20%)</span>
 </h2>
 
-@if ($frequency == 'week')
 <ul>
     @foreach($sales['data'] as $sale)
         <li id="monday" class="clearfix">
@@ -14,4 +13,3 @@
         </li>
     @endforeach
 </ul>
-@endif

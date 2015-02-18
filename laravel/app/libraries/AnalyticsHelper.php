@@ -78,9 +78,14 @@ class AnalyticsHelper
     }
 
 
-    public function dailySales($courseId)
+    public function dailySales($courseId, $date = '')
     {
-        $dateFilter = $this->_frequencyEquivalence();
+        if (empty($date)) {
+            $dateFilter = $this->_frequencyEquivalence();
+        }
+        else{
+            $dateFilter = $date;
+        }
         $filterQuery = "DATE(course_purchases.created_at) = '{$dateFilter}'";
 
         if (!empty($courseId)){
@@ -92,10 +97,81 @@ class AnalyticsHelper
         return $this->_transformCoursePurchases($query);
     }
 
-    public function weeklySales($courseId)
+    public function salesLastFewWeeks($numOfWeeks, $courseId = 0)
     {
-        $dateFilterStart = $this->_frequencyEquivalence('week');
-        $dateFilterEnd = date('Y-m-d');
+        $sales = [];
+
+        for ($i = 0; $i <= $numOfWeeks; $i++){
+            $start = date('Y-m-d',strtotime('-' . ($i+1) .  ' week'));
+            $end = date('Y-m-d',strtotime("-$i week"));
+            $label = $i . ( ($i > 1) ? ' weeks' : ' week') . ' ago';
+            if ($i === 0){
+                $label = 'This week';
+            }
+            $sales[] = ['label' => $label, 'start' => $start, 'end' => $end, 'week' =>$this->weeklySales($courseId,$start,$end)];
+        }
+        $salesTotal = 0;
+
+        foreach($sales as $sale){
+            $salesTotal += $sale['week']['sales_total'];
+        }
+
+        return compact('sales', 'salesTotal');
+    }
+
+    public function salesLastFewMonths($numOfMonths, $courseId = 0)
+    {
+        $sales = [];
+
+        for ($i = 0; $i <= $numOfMonths; $i++){
+            $month = date('m',strtotime("-$i month"));
+            $year = date('Y',strtotime("-$i month"));
+            $label = $i . ( ($i > 1) ? ' months' : ' month') . ' ago';
+            if ($i === 0){
+                $label = 'This month';
+            }
+            $sales[] = ['label' => $label, 'month_date' => $month, 'year' => $year, 'month' =>$this->monthlySales($courseId, $month, $year)];
+        }
+        $salesTotal = 0;
+
+        foreach($sales as $sale){
+            $salesTotal += $sale['month']['sales_total'];
+        }
+
+        return compact('sales', 'salesTotal');
+    }
+
+    public function salesLastFewYears($numOfYears, $courseId = 0)
+    {
+        $sales = [];
+
+        for ($i = 0; $i <= $numOfYears; $i++){
+            $year = date('Y',strtotime("-$i year"));
+            $label = $i . ( ($i > 1) ? ' years' : ' year') . ' ago';
+            if ($i === 0){
+                $label = 'This year';
+            }
+            $sales[] = ['label' => $label, 'year_date' => $year, 'year' => $year, 'year' =>$this->allTimeSales($courseId, $year)];
+        }
+        $salesTotal = 0;
+
+        foreach($sales as $sale){
+            $salesTotal += $sale['year']['sales_total'];
+        }
+
+        return compact('sales', 'salesTotal');
+    }
+
+
+    public function weeklySales($courseId, $dateFilterStart = '', $dateFilterEnd = '')
+    {
+        if (empty($dateFilterStart)) {
+            $dateFilterStart = $this->_frequencyEquivalence('week');
+        }
+
+        if (empty($dateFilterEnd)) {
+            $dateFilterEnd = date('Y-m-d');
+        }
 
         $filterQuery = "DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
@@ -106,12 +182,20 @@ class AnalyticsHelper
         return $this->_transformCoursePurchases($query);
     }
 
-    public function monthlySales($courseId)
+    public function monthlySales($courseId, $month = '', $year = '')
     {
-        $dateFilterStart = $this->_frequencyEquivalence('month');
-        $dateFilterEnd = date('Y-m-d');
+        if (empty($month)){
+            $month = date('m');
+        }
 
-        $filterQuery = "DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+        if (empty($year)){
+            $year = date('Y');
+        }
+        //$dateFilterStart = $this->_frequencyEquivalence('month');
+        //$dateFilterEnd = date('Y-m-d');
+
+        //$filterQuery = "DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+        $filterQuery = "YEAR(course_purchases.created_at) = '{$year}' AND MONTH(course_purchases.created_at) = '{$month}'";
 
         if (!empty($courseId)){
             $filterQuery .= " AND course_purchases.course_id = '{$courseId}'";
@@ -121,11 +205,14 @@ class AnalyticsHelper
         return $this->_transformCoursePurchases($query);
     }
 
-    public function allTimeSales($courseId)
+    public function allTimeSales($courseId, $year = '')
     {
-        $filterQuery = "";
+        if (empty($year)){
+            $year = date('Y');
+        }
+        $filterQuery = "YEAR(course_purchases.created_at) = '{$year}'";
         if (!empty($courseId)){
-            $filterQuery = " course_purchases.course_id = '{$courseId}'";
+            $filterQuery .= " AND course_purchases.course_id = '{$courseId}'";
         }
 
         $query = $this->_salesRawQuery($filterQuery);

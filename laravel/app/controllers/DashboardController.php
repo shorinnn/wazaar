@@ -33,10 +33,32 @@ class DashboardController extends BaseController
 
     public function salesView($frequency = '', $courseId = '')
     {
-        $sales = $this->analyticsHelper->sales($frequency, $courseId);
+        switch($frequency){
+            case 'alltime' :
+                $sales = $this->analyticsHelper->salesLastFewYears(5, $courseId);break;
+            case 'week' :
+                $sales = $this->analyticsHelper->salesLastFewWeeks(7,$courseId);break;
+            case 'month' :
+                $sales = $this->analyticsHelper->salesLastFewMonths(7,$courseId);break;
+            default:
+                $sales = $this->analyticsHelper->sales($frequency, $courseId);break;
+        }
+
+
 
         if (is_array($sales)) {
-            return View::make('analytics.partials.sales', compact('sales', 'frequency'))->render();
+            if ($frequency == 'week'){
+                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency'))->render();
+            }
+            elseif($frequency == 'month'){
+                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency'))->render();
+            }
+            elseif($frequency == 'alltime'){
+                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency'))->render();
+            }
+            else {
+                return View::make('analytics.partials.sales', compact('sales', 'frequency'))->render();
+            }
         }
     }
 

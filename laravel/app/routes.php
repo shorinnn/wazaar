@@ -175,6 +175,13 @@ Route::group(['prefix' => 'dashboard'], function (){
 });
 
 Route::get('test', function (){
-    Cookie::forget('aid');
+
+    $aH = new AnalyticsHelper(0);
+
+    $s = $aH->salesLastFewYears(7);
+    echo '<pre>';
+    print_r($s);
+    echo '</pre>';
+    die;
 
 });
