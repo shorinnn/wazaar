@@ -3,11 +3,13 @@
 return array(
     'members' => 'Members',
     'user' => 'User',
+    'email' => 'Email',
     'first_name' => 'First name',
     'last_name' => 'Last name',
     'registered' => 'Registered',
     'groups' => 'Groups',
     'affiliate_id' => 'Affiliate ID',
+    'affiliate_agency' => 'Affiliate Agency',
     'student' => 'Student|Students',
     'published' => 'Published',
     'updated' => 'Updated',

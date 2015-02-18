@@ -9,6 +9,7 @@ class ProductAffiliate extends User{
     public static $relationsData = array(
         'sales' => array(self::HAS_MANY, 'CoursePurchase'),
         'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
+        'affiliateAgency' => array(self::BELONGS_TO, 'AffiliateAgency')
     );
 
 

@@ -91,8 +91,8 @@ class ProfileController extends Controller
             }
 
             $this->userHelper->saveProfile(Auth::id(), $data , $user);
-            Session::put('success',trans('profile.updateSuccessful'));
-            return Redirect::to('profile/' . Input::get('type'));
+//            Session::put('success',trans('profile.updateSuccessful'));
+            return Redirect::to('profile/' . Input::get('type'))->withSuccess( trans('profile.updateSuccessful') );
         }
     }
 

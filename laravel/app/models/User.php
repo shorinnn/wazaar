@@ -14,6 +14,10 @@ class User extends Ardent implements ConfideUserInterface
     use HasRole;
     protected $fillable = ['first_name', 'last_name', 'email', 'username', 'affiliate_id']; 
     
+     public static $relationsData = array(
+        'profiles' => [ self::HAS_MANY, 'Profile', 'foreignKey' => 'owner_id' ],
+     );
+    
     /**
      * Make Ardent and Confide save methods compatible
      */
@@ -66,6 +70,20 @@ class User extends Ardent implements ConfideUserInterface
             $this->errors()->add(0, trans('crud/errors.attr_taken', ['attr' => 'Affiliate ID']) );
             return false;
         }
+    }
+    
+    public function firstName(){
+        if( $this->profiles->first() ){
+            return $this->profiles->first()->first_name;
+        }
+        else return $this->first_name;
+    }
+    
+    public function lastName(){
+        if( $this->profiles->first() ){
+            return $this->profiles->first()->last_name;
+        }
+        else return $this->last_name;
     }
 
 

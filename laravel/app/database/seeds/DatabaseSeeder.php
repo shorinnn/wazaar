@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder {
                  $this->call('AnalyticsSeeder');
                  $this->call('ProfileSeeder');
                  $this->call('TestimonialsSeeder');
+                 $this->call('AffiliateAgenciesSeeder');
 	}
 
 }
@@ -587,5 +588,22 @@ class TestimonialsSeeder extends Seeder {
         Testimonial::create( ['course_id' => 5, 'student_id' => '7', 'rating'=>'positive', 'thumbs_up' => 100, 'thumbs_down' => 12,
             'content' => 'Testimonial 6'] );
        
+    }
+}
+
+class AffiliateAgenciesSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('affiliate_agencies')->delete();
+        AffiliateAgency::unguard();
+        
+        AffiliateAgency::create( ['name' => 'Affiliate Agency 1'] );
+        AffiliateAgency::create( ['name' => 'Affiliate Agency 2'] );
+        AffiliateAgency::create( ['name' => 'Affiliate Agency 3'] );
+        
+        $affiliate = User::find(5);
+        $affiliate->affiliate_agency_id = 1;
+        $affiliate->save();
     }
 }
