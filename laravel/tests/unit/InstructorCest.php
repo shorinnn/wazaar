@@ -24,7 +24,7 @@ class InstructorCest{
     
     public function getFirstCourseSaleCount(UnitTester $I){
         $instructor = Instructor::where('username','instructor')->first();
-        $sales = CoursePurchase::where('course_id', 6)->count();
+        $sales = Purchase::where('product_id', 6)->count();
         $I->assertEquals($sales, $instructor->courses->find(6)->sales->count());
     }
     

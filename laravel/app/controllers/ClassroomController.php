@@ -17,7 +17,8 @@ class ClassroomController extends \BaseController {
                             ->first();
                             
             $student = Student::find( Auth::user()->id );
-            if( $course==null || ( !$student->purchased( $course ) && $student->lessonPurchases()->where('course_id', $course->id)->get()==null ) ){
+            
+            if( $course==null || ( !$student->purchased( $course ) && !$student->purchasedLessonFromCourse( $course ) ) ){
                 return Redirect::to('/');
             }
             $video = $student->nextLesson($course);
@@ -48,7 +49,7 @@ class ClassroomController extends \BaseController {
             }
             $module = $course->modules()->where('slug', $module)->first();
             $lesson = $module->lessons()->where('slug', $lesson)->with('blocks')->first();
-            if( !$student->purchased( $course ) && $student->lessonPurchases()->where('course_id', $course->id)->get()==null ){
+            if( !$student->purchased( $course ) && !$student->purchased( $lesson ) ){
                 return Redirect::to('/');
             }
             $lesson->comments = $lesson->comments()->orderBy('id','desc')->where('reply_to', null)->with('poster')->paginate( 2 );

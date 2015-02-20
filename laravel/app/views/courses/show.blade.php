@@ -40,7 +40,7 @@
                         @endif
         
                         {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
-                         @if(Auth::guest() || Auth::user()->can_purchase($course) )
+                         @if(Auth::guest() || Auth::user()->canPurchase($course) )
                               <button class="join-class">
                          @else 
                               <button class="join-class" disabled="disabled">
@@ -221,7 +221,7 @@
                                     {{ Form::open( [ 'action' => ['CoursesController@purchaseLesson', $course->slug, $lesson->id ] ] ) }}
                                     <!--<a href="#" class="crash-lesson-button">CRASH LESSON</a>-->
                                     <button class="btn crash-lesson-button pull-right" 
-                                            @if( Auth::guest() || !Auth::user()->can_purchase($course) || !Auth::user()->canPurchaseLesson($lesson) )
+                                            @if( Auth::guest() || !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) )
                                             disabled="disabled" data-crash-disabled='1'
                                             @endif
                                             >CRASH LESSON</button>

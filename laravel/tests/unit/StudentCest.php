@@ -20,7 +20,7 @@ class StudentCest{
     
     public function get2Purchases(UnitTester $I){
         $student = Student::where('username','student')->first();
-        $count = CoursePurchase::where('student_id', $student->id)->count();
+        $count = Purchase::where('student_id', $student->id)->count();
         $I->assertEquals($count, $student->purchases->count());
     }
     
@@ -34,7 +34,7 @@ class StudentCest{
     
     public function purchaseIncrementStudentsCount(UnitTester $I){
         $student = Student::where('username','student')->first();
-        CoursePurchase::where('student_id', $student->id)->delete();
+        Purchase::where('student_id', $student->id)->delete();
         $course = Course::find(1);
         $count = $course->student_count;
         $I->assertTrue( $student->purchase( $course ) );
@@ -122,7 +122,7 @@ class StudentCest{
     
     public function viewLesson(UnitTester $I){
         $student = Student::where('username','student')->first();
-        CoursePurchase::where('student_id', $student->id)->delete();
+        Purchase::where('student_id', $student->id)->delete();
         $lesson = Lesson::first();
         $I->assertTrue( $student->purchase( $lesson->module->course ) );
         $I->assertFalse( $student->isLessonViewed($lesson) );
@@ -133,7 +133,7 @@ class StudentCest{
     
     public function increaseLessonViewCounterOnce(UnitTester $I){
         $student = Student::where('username','student')->first();
-        CoursePurchase::where('student_id', $student->id)->delete();
+        Purchase::where('student_id', $student->id)->delete();
         $lesson = Lesson::first();
         $counter = ViewedLesson::where('lesson_id', $lesson->id)->where('student_id', $student->id)->count();
         $I->assertEquals(0, $counter);

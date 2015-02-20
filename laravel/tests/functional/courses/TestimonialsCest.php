@@ -17,7 +17,7 @@ class TestimonialsCest{
     public function redirectFromFormIfNotPurchased(FunctionalTester $I){
         $user = Student::where('username', 'Jeremy')->first();
         $I->amLoggedAs($user);
-        CoursePurchase::where('student_id', $user->id)->delete();
+        Purchase::where('student_id', $user->id)->delete();
         $course = Course::first();
         $I->assertFalse( $user->purchased($course) );
         $I->amOnPage( action('ClassroomController@testimonial', $course->slug ));
@@ -65,7 +65,7 @@ class TestimonialsCest{
     public function failAjaxPostNoPurchase(FunctionalTester $I){
         $user = Student::where('username', 'Jeremy')->first();
         $I->amLoggedAs($user);
-        CoursePurchase::where('student_id', $user->id)->delete();
+        Purchase::where('student_id', $user->id)->delete();
         $course = Course::first();
         $I->assertFalse( $user->purchased($course) );
         $I->sendAjaxPostRequest( action('TestimonialsController@store'), [
@@ -80,7 +80,7 @@ class TestimonialsCest{
     public function failAjaxPosBadCourse(FunctionalTester $I){
         $user = Student::where('username', 'Jeremy')->first();
         $I->amLoggedAs($user);
-        CoursePurchase::where('student_id', $user->id)->delete();
+        Purchase::where('student_id', $user->id)->delete();
         $course = Course::first();
         $I->assertFalse( $user->purchased($course) );
         $I->sendAjaxPostRequest( action('TestimonialsController@store'), [

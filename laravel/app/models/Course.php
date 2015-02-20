@@ -27,7 +27,7 @@ class Course extends Ardent{
         'courseCategory' => array(self::BELONGS_TO, 'CourseCategory'),
         'courseSubcategory' => array(self::BELONGS_TO, 'CourseSubcategory'),
         'courseDifficulty' => array(self::BELONGS_TO, 'CourseDifficulty'),
-        'sales' => array(self::HAS_MANY, 'CoursePurchase'),
+        'sales' => array(self::MORPH_MANY, 'Purchase', 'name' => 'product' ),
         'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
         'modules' => array(self::HAS_MANY, 'Module'),
         'testimonials' => [ self::HAS_MANY, 'Testimonial' ],

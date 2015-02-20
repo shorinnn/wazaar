@@ -6,8 +6,7 @@ class Student extends User{
     
     public static $relationsData = [
         'ltcAffiliate' => [ self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id' ],
-        'purchases' => [ self::HAS_MANY, 'CoursePurchase' ],
-        'lessonPurchases' => [ self::HAS_MANY, 'LessonPurchase' ],
+        'purchases' => [ self::HAS_MANY, 'Purchase' ],
         'courseReferrals' => [ self::HAS_MANY, 'CourseReferral' ],
         'profile' => [ self::MORPH_ONE, 'Profile', 'name'=>'owner' ],
         'viewedLessons' => [ self::HAS_MANY, 'ViewedLesson' ],
@@ -37,7 +36,7 @@ class Student extends User{
     
     public function productAffiliates()
     {
-        return $this->belongsToMany('ProductAffiliate', 'course_purchases', 'student_id', 'product_affiliate_id');
+        return $this->belongsToMany('ProductAffiliate', 'purchases', 'student_id', 'product_affiliate_id');
     }
     
     public static function current(User $user){
@@ -46,103 +45,86 @@ class Student extends User{
     }
     
     public function courses(){
-        $ids = $this->lessonPurchases->lists('course_id');
-        $ids += $this->purchases->lists('course_id');
+        $ids = [];
+        $lessons = $this->purchases()->where('product_type','Lesson')->get();
+        foreach($lessons as $lesson){
+            $ids[] = $lesson->product->module->course->id;
+        }
+        $ids += $this->purchases()->where('product_type','Course')->lists('product_id');
         if(count($ids)==0) return new Illuminate\Database\Eloquent\Collection;
         return Course::whereIn('id', $ids)->get();
     }
     
     /**
-     * Purchased the specified course?
+     * Purchased the specified course/lesson?
+     * @param mixed $product
+     * @return boolean
+     */
+    public function purchased($product){
+        if( in_array ( $product->id, $this->purchases()->where( 'product_type', get_class($product) )->lists('product_id' ) ) ){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Purchase a course/lesson
+     * @param mixed Course/Lesson
+     * @return boolean
+     */
+    public function purchase($product, $affiliate=null){
+        
+        // cannot buy the same course/lesson twice |  cannot buy own course/lesson
+        if( !$this->canPurchase($product) ) return false;
+        // if this is the first purchase, set the LTC affiliates
+        if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
+        $purchase = new Purchase;
+
+//        $purchase->course_id = $course->id;
+        $purchase->student_id = $this->id;
+        $purchase->purchase_price = $product->cost();
+        $purchase->ltc_affiliate_id = $this->ltcAffiliate->id;
+        if($affiliate==null) $purchase->product_affiliate_id = 0;
+        else{
+            $affiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
+            $purchase->product_affiliate_id = $affiliate->id;
+        }
+
+        if( $product->sales()->save( $purchase ) ){
+            // if course - increment counter only if no lessons have already been purchased
+            if( strtolower( get_class($product) ) == 'course' ){
+                $course = $product;
+                if( !$this->purchasedLessonFromCourse($course) ){
+                    $course->student_count += 1;
+                    $course->updateUniques();
+                }
+            }
+            // if lesson - increment counter only if course hasn't already been purchased
+            else{
+                $course = $product->module->course;
+                if( !$this->purchased( $course ) ){
+                    $course->student_count += 1;
+                    $course->updateUniques();
+                }
+            }
+            
+            return true;
+        }
+        else return false;
+    }
+    
+    /**
+     * Returns true if the current student purchased one or more lessons from the supplied course
      * @param Course $course
      * @return boolean
      */
-    public function purchased(Course $course){
-        if( in_array ( $course->id, $this->purchases->lists('course_id' ) ) ){
-            return true;
+    public function purchasedLessonFromCourse(Course $course){
+        foreach( $course->modules as $module){
+            foreach($module->lessons as $lesson){
+                if( $this->purchased( $lesson ) ) return true;
+            }
         }
         return false;
-    }
-    
-    /**
-     * Purchase a course
-     * @param Course
-     * @return boolean
-     */
-    public function purchase(Course $course, $affiliate=null){
-        // cannot buy the same course twice
-        if($this->purchased($course)) return false;
-        
-        // cannot buy own course
-        if($this->id == $course->instructor->id) return false;
-        // if this is the first purchase, set the LTC affiliates
-        if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
-        $purchase = new CoursePurchase;
-        $purchase->course_id = $course->id;
-        $purchase->student_id = $this->id;
-        $purchase->ltc_affiliate_id = $this->ltcAffiliate->id;
-        if($affiliate==null) $purchase->product_affiliate_id = 0;
-        else{
-            $affiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
-            $purchase->product_affiliate_id = $affiliate->id;
-        }
-        if($purchase->save()){
-            // increment counter only if no lessons have already been purchased
-            if( $this->lessonPurchases()->where('course_id', $course->id)->count() == 0 ){
-                $course->student_count += 1;
-                $course->updateUniques();
-            }
-            return true;
-        }
-        else return false;
-    }
-    
-    public function purchasedLesson($lesson){
-        if( in_array ( $lesson->id, $this->lessonPurchases->lists('lesson_id' ) ) ){
-            return true;
-        }
-        return false;
-    }
-    
-    /**
-     * Purchase a course
-     * @param Course
-     * @return boolean
-     */
-    public function purchaseLesson(Course $course, $lesson, $affiliate=null){
-        // make sure lesson belongs to this course
-        $lesson = Lesson::find($lesson);
-        if($lesson->module->course->id != $course->id) return false;
-        
-        // cannot buy the same lesson twice
-        if( $this->purchasedLesson($lesson) ) return false;
-        
-// cannot buy lesson if already owns course
-        if( $this->purchased($course) ) return false;
-        
-        // cannot buy own course
-        if($this->id == $course->instructor->id) return false;
-        // if this is the first purchase, set the LTC affiliates
-        if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
-        $purchase = new LessonPurchase();
-        $purchase->lesson_id = $lesson->id;
-        $purchase->course_id = $course->id;
-        $purchase->student_id = $this->id;
-        $purchase->ltc_affiliate_id = $this->ltcAffiliate->id;
-        if($affiliate==null) $purchase->product_affiliate_id = 0;
-        else{
-            $affiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
-            $purchase->product_affiliate_id = $affiliate->id;
-        }
-        if($purchase->save()){
-            // increment counter only if this course hasn't been purchased before
-            if( !$this->purchased($course) ){
-                $course->student_count += 1;
-                $course->updateUniques();
-            }
-            return true;
-        }
-        else return false;
     }
     
     /**
@@ -221,7 +203,7 @@ class Student extends User{
     public function nextLesson(Course $course){ 
         foreach($course->modules as $module){
             foreach($module->lessons as $lesson){
-                if( !$this->isLessonViewed($lesson) && ( $this->purchased($course) || $this->purchasedLesson($lesson) ) ) return $lesson;
+                if( !$this->isLessonViewed($lesson) && ( $this->purchased( $course ) || $this->purchased( $lesson ) ) ) return $lesson;
             }
         }
         return false;
