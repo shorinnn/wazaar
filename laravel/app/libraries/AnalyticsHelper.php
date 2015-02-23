@@ -86,10 +86,10 @@ class AnalyticsHelper
         else{
             $dateFilter = $date;
         }
-        $filterQuery = "DATE(course_purchases.created_at) = '{$dateFilter}'";
+        $filterQuery = "DATE(purchases.created_at) = '{$dateFilter}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND course_purchases.course_id = '{$courseId}'";
+            $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
 
         $query = $this->_salesRawQuery($filterQuery);
@@ -173,10 +173,10 @@ class AnalyticsHelper
             $dateFilterEnd = date('Y-m-d');
         }
 
-        $filterQuery = "DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+        $filterQuery = "DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND course_purchases.course_id = '{$courseId}'";
+            $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
         $query = $this->_salesRawQuery($filterQuery);
         return $this->_transformCoursePurchases($query);
@@ -194,11 +194,11 @@ class AnalyticsHelper
         //$dateFilterStart = $this->_frequencyEquivalence('month');
         //$dateFilterEnd = date('Y-m-d');
 
-        //$filterQuery = "DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
-        $filterQuery = "YEAR(course_purchases.created_at) = '{$year}' AND MONTH(course_purchases.created_at) = '{$month}'";
+        //$filterQuery = "DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+        $filterQuery = "YEAR(purchases.created_at) = '{$year}' AND MONTH(purchases.created_at) = '{$month}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND course_purchases.course_id = '{$courseId}'";
+            $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
         $query = $this->_salesRawQuery($filterQuery);
 
@@ -210,9 +210,9 @@ class AnalyticsHelper
         if (empty($year)){
             $year = date('Y');
         }
-        $filterQuery = "YEAR(course_purchases.created_at) = '{$year}'";
+        $filterQuery = "YEAR(purchases.created_at) = '{$year}'";
         if (!empty($courseId)){
-            $filterQuery .= " AND course_purchases.course_id = '{$courseId}'";
+            $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
 
         $query = $this->_salesRawQuery($filterQuery);
@@ -223,13 +223,13 @@ class AnalyticsHelper
     public function dailyTopCourses($courseId)
     {
         $dateFilter = $this->_frequencyEquivalence();
-        $filterQuery = "DATE(course_purchases.created_at) = '{$dateFilter}'";
+        $filterQuery = "DATE(purchases.created_at) = '{$dateFilter}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND course_id = '{$courseId}'";
+            $filterQuery .= " AND product_id = '{$courseId}'";
         }
 
-        $query = $this->_coursePurchaseRawQuery($filterQuery);
+        $query = $this->_purchaseRawQuery($filterQuery);
         return $this->_transformCoursePurchases($query);
     }
 
@@ -238,13 +238,13 @@ class AnalyticsHelper
         $dateFilterStart = $this->_frequencyEquivalence('week');
         $dateFilterEnd = date('Y-m-d');
 
-        $filterQuery = "DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+        $filterQuery = "DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND course_id = '{$courseId}'";
+            $filterQuery .= " AND product_id = '{$courseId}'";
         }
 
-        $query = $this->_coursePurchaseRawQuery($filterQuery);
+        $query = $this->_purchaseRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
@@ -254,13 +254,13 @@ class AnalyticsHelper
         $dateFilterStart = $this->_frequencyEquivalence('month');
         $dateFilterEnd = date('Y-m-d');
 
-        $filterQuery = "DATE(course_purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+        $filterQuery = "DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND course_id = '{$courseId}'";
+            $filterQuery .= " AND product_id = '{$courseId}'";
         }
 
-        $query = $this->_coursePurchaseRawQuery($filterQuery);
+        $query = $this->_purchaseRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
@@ -270,10 +270,10 @@ class AnalyticsHelper
         $filterQuery = "";
 
         if (!empty($courseId)){
-            $filterQuery = " AND course_id = '{$courseId}'";
+            $filterQuery = " AND product_id = '{$courseId}'";
         }
 
-        $query = $this->_coursePurchaseRawQuery($filterQuery);
+        $query = $this->_purchaseRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
@@ -284,7 +284,7 @@ class AnalyticsHelper
         $filterQuery = "DATE(created_at) = '{$dateFilter}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND course_id = '{$courseId}'";
+            $filterQuery .= " AND product_id = '{$courseId}'";
         }
 
         $query = $this->_trackingCodesRawQuery($filterQuery);
@@ -300,7 +300,7 @@ class AnalyticsHelper
         $filterQuery = "DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND course_id = '{$courseId}'";
+            $filterQuery .= " AND product_id = '{$courseId}'";
         }
 
         $query = $this->_trackingCodesRawQuery($filterQuery);
@@ -316,7 +316,7 @@ class AnalyticsHelper
         $filterQuery = "DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND course_id = '{$courseId}'";
+            $filterQuery .= " AND product_id = '{$courseId}'";
         }
 
         $query = $this->_trackingCodesRawQuery($filterQuery);
@@ -329,7 +329,7 @@ class AnalyticsHelper
         $filterQuery = "";
 
         if (!empty($courseId)){
-            $filterQuery = " course_id = '{$courseId}'";
+            $filterQuery = " product_id = '{$courseId}'";
         }
         $query = $this->_trackingCodesRawQuery($filterQuery);
 
@@ -386,7 +386,7 @@ class AnalyticsHelper
         $filterQuery = "DATE(cp.created_at) = '{$dateFilter}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND cp.course_id = '{$courseId}'";
+            $filterQuery .= " AND cp.product_id = '{$courseId}'";
         }
 
         $query = $this->_coursePurchaseConversionRawQuery($filterQuery);
@@ -402,7 +402,7 @@ class AnalyticsHelper
         $filterQuery = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND cp.course_id = '{$courseId}'";
+            $filterQuery .= " AND cp.product_id = '{$courseId}'";
         }
 
         $query = $this->_coursePurchaseConversionRawQuery($filterQuery);
@@ -417,7 +417,7 @@ class AnalyticsHelper
         $filterQuery = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND cp.course_id = '{$courseId}'";
+            $filterQuery .= " AND cp.product_id = '{$courseId}'";
         }
 
         $query = $this->_coursePurchaseConversionRawQuery($filterQuery);
@@ -430,7 +430,7 @@ class AnalyticsHelper
         $filterQuery = "";
 
         if (!empty($courseId)){
-            $filterQuery = "cp.course_id = '{$courseId}'";
+            $filterQuery = "cp.product_id = '{$courseId}'";
         }
         $query = $this->_coursePurchaseConversionRawQuery($filterQuery);
 
@@ -443,7 +443,7 @@ class AnalyticsHelper
         $filterQuery = "DATE(cp.created_at) = '{$dateFilter}'";
 
         if (!empty($courseId)){
-            $filterQuery = "cp.course_id = '{$courseId}'";
+            $filterQuery = "cp.product_id = '{$courseId}'";
         }
 
         $query = $this->_trackingCodeConversionRawQuery($filterQuery);
@@ -459,7 +459,7 @@ class AnalyticsHelper
         $filterQuery = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)){
-            $filterQuery = "cp.course_id = '{$courseId}'";
+            $filterQuery = "cp.product_id = '{$courseId}'";
         }
 
         $query = $this->_trackingCodeConversionRawQuery($filterQuery);
@@ -475,7 +475,7 @@ class AnalyticsHelper
         $filterQuery = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)){
-            $filterQuery = "cp.course_id = '{$courseId}'";
+            $filterQuery = "cp.product_id = '{$courseId}'";
         }
 
         $query = $this->_trackingCodeConversionRawQuery($filterQuery);
@@ -488,7 +488,7 @@ class AnalyticsHelper
         $filterQuery = "";
 
         if (!empty($courseId)){
-            $filterQuery = "cp.course_id = '{$courseId}'";
+            $filterQuery = "cp.product_id = '{$courseId}'";
         }
 
         $query = $this->_trackingCodeConversionRawQuery($filterQuery);
@@ -543,19 +543,25 @@ class AnalyticsHelper
     }
 
 
-    private function _coursePurchaseRawQuery($criteria = '')
+    private function _purchaseRawQuery($criteria = '', $type = 'Course')
     {
+
+
         if (!empty($criteria)){
             $criteria = ' AND ' . $criteria;
         }
 
-        if (!$this->isAdmin AND !empty($this->affiliateId)){
-            $criteria .= " AND (course_purchases.ltc_affiliate_id = '{$this->affiliateId}' OR course_purchases.product_affiliate_id = '{$this->affiliateId}' )";
+        if(!empty($type)){
+            $criteria .= " AND product_type='{$type}'";
         }
 
-        $sql = "SELECT courses.id, courses.`name`, SUM(course_purchases.purchase_price) as 'total_purchase'
-                FROM course_purchases
-                JOIN courses ON courses.id = course_purchases.course_id WHERE course_purchases.id <> 0
+        if (!$this->isAdmin AND !empty($this->affiliateId)){
+            $criteria .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
+        }
+
+        $sql = "SELECT courses.id, courses.`name`, SUM(purchases.purchase_price) as 'total_purchase'
+                FROM purchases
+                JOIN courses ON courses.id = purchases.product_id WHERE purchases.id <> 0
                 {$criteria}
                 GROUP BY courses.id, courses.name
                 ORDER BY total_purchase DESC
@@ -570,11 +576,11 @@ class AnalyticsHelper
         }
 
         if (!$this->isAdmin AND !empty($this->affiliateId)){
-            $criteria .= " AND (course_purchases.ltc_affiliate_id = '{$this->affiliateId}' OR course_purchases.product_affiliate_id = '{$this->affiliateId}' )";
+            $criteria .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
         }
 
-        $sql = "SELECT created_at, SUM(course_purchases.purchase_price) as 'total_purchase'
-                FROM course_purchases WHERE id <> 0
+        $sql = "SELECT created_at, SUM(purchases.purchase_price) as 'total_purchase'
+                FROM purchases WHERE id <> 0
                 {$criteria}
                 GROUP BY DATE(created_at)
                 ORDER BY created_at DESC
@@ -612,27 +618,27 @@ class AnalyticsHelper
         if (!$this->isAdmin AND !empty($this->affiliateId)){
             $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
             $criteriaPurchase .= " AND (cp.ltc_affiliate_id = '{$this->affiliateId}' OR cp.product_affiliate_id = '{$this->affiliateId}' )";
-            $criteriaPurchase2 .= " AND (course_purchases.ltc_affiliate_id = '{$this->affiliateId}' OR course_purchases.product_affiliate_id = '{$this->affiliateId}' )";
+            $criteriaPurchase2 .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
         }
 
-        $sql = "SELECT courses.`name`, cp.course_id,
+        $sql = "SELECT courses.`name`, cp.product_id,
                (
-                       SELECT COUNT(course_purchases.id)
-                      FROM course_purchases
-                      WHERE course_purchases.course_id = cp.course_id
+                       SELECT COUNT(purchases.id)
+                      FROM purchases
+                      WHERE purchases.product_id = cp.product_id
                       {$criteriaPurchase2}
                 ) as 'purchases',
                (
                          SELECT COUNT(tracking_code_hits.id)
                         FROM tracking_code_hits
-                        WHERE tracking_code_hits.course_id = cp.course_id
+                        WHERE tracking_code_hits.course_id = cp.product_id
                         {$criteria}
                  ) as 'hits'
-            FROM course_purchases cp
-            JOIN courses ON courses.id = cp.course_id
+            FROM purchases cp
+            JOIN courses ON courses.id = cp.product_id
             WHERE cp.id <> 0
             {$criteriaPurchase}
-            GROUP BY courses.name, cp.course_id
+            GROUP BY courses.name, cp.product_id
             ORDER BY (purchases/hits) DESC
             LIMIT {$limit}";
         return $sql;
@@ -650,14 +656,14 @@ class AnalyticsHelper
         if (!$this->isAdmin AND !empty($this->affiliateId)){
             $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
             $criteriaPurchase .= " AND (cp.ltc_affiliate_id = '{$this->affiliateId}' OR cp.product_affiliate_id = '{$this->affiliateId}' )";
-            $criteriaPurchase2 .= " AND (course_purchases.ltc_affiliate_id = '{$this->affiliateId}' OR course_purchases.product_affiliate_id = '{$this->affiliateId}' )";
+            $criteriaPurchase2 .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
         }
 
-        $sql = "SELECT DISTINCT cp.tracking_code, cp.course_id,
+        $sql = "SELECT DISTINCT cp.tracking_code, cp.product_id,
                (
-                       SELECT COUNT(course_purchases.id)
-                      FROM course_purchases
-                      WHERE course_purchases.tracking_code = cp.tracking_code
+                       SELECT COUNT(purchases.id)
+                      FROM purchases
+                      WHERE purchases.tracking_code = cp.tracking_code
                       {$criteriaPurchase2}
                 ) as 'purchases',
                (
@@ -666,10 +672,10 @@ class AnalyticsHelper
                         WHERE tracking_code_hits.tracking_code = cp.tracking_code
                         {$criteria}
                  ) as 'hits'
-            FROM course_purchases cp
+            FROM purchases cp
             WHERE cp.id <> 0 AND cp.tracking_code <> ''
             {$criteriaPurchase}
-            GROUP BY cp.tracking_code, cp.course_id
+            GROUP BY cp.tracking_code, cp.product_id
             ORDER BY (purchases/hits) DESC
             LIMIT {$limit}";
 
@@ -679,8 +685,8 @@ class AnalyticsHelper
     private function _codeStatisticsRawQuery($courseId, $code, $criteria = '')
     {
         $sql = "SELECT (SELECT count(id) FROM tracking_code_hits WHERE tracking_code = '{$code}' AND course_id = '{$courseId}' {$criteria}) as 'hits',
-			           (SELECT count(id) FROM course_purchases WHERE tracking_code = '{$code}' AND course_id = '{$courseId}' {$criteria}) as 'sales_count',
-                       (SELECT sum(purchase_price) FROM course_purchases WHERE tracking_code = '{$code}' AND course_id = '{$courseId}' {$criteria}) as 'sales_total' ";
+			           (SELECT count(id) FROM purchases WHERE tracking_code = '{$code}' AND course_id = '{$courseId}' {$criteria}) as 'sales_count',
+                       (SELECT sum(purchase_price) FROM purchases WHERE tracking_code = '{$code}' AND course_id = '{$courseId}' {$criteria}) as 'sales_total' ";
 
         return $sql;
     }

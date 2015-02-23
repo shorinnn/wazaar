@@ -98,18 +98,83 @@
 
 
             </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-12 margin-bottom-10">
+                    {{Form::select('courses',[1=>'Course 1', 2=>'Course 2', 'Course 3', 'Course 4', 'Course 5'],'',['id' => 'select-courses', 'multiple' => 'multiple', 'class' => 'form-control', 'placeholder' => 'Compare courses']);}}
+                </div>
+
+            </div>
+            <div class="row">
 
 
-                 <canvas id="myChart" width="980px" height="400"></canvas>
+                    <div class='col-md-2'>
+                        <div class="form-group">
+                            <div class='input-group date' id='start-date'>
+                                <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='col-md-2'>
+                        <div class="form-group">
+                            <div class='input-group date' id='end-date'>
+                                <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" id="btn-update-chart">Update Chart</button>
+                    </div>
+            </div>
+            <canvas id="myChart" width="980px" height="400"></canvas>
         </div>
     </div>
 @stop
 
+@section('extra_css')
+    <link rel="stylesheet" href="{{url('resources/select2-dist/select2.css')}}"/>
+    <link rel="stylesheet" href="{{url('resources/select2-dist/select2-bootstrap.css')}}"/>
+@stop
+
 @section('extra_js')
+    <script src="{{url('resources/select2-dist/select2.min.js')}}"></script>
     <script src="{{url('resources/Chart.js/Chart.js')}}"></script>
+    <script src="{{url('resources/moment/min/moment.min.js')}}"></script>
+    <script src="{{url('resources/datetimepicker/src/js/bootstrap-datetimepicker.js')}}"></script>
     <script type="text/javascript" src="{{url('js/analytics.js')}}"></script>
     <script type="text/javascript">
         $(function (){
+
+
+            $('#start-date').datetimepicker({format: 'MM/DD/YYYY'});
+            $('#end-date').datetimepicker({format: 'MM/DD/YYYY'});
+            $("#start-date").on("dp.change",function (e) {
+                $('#end-date').data("DateTimePicker").minDate(e.date);
+            });
+            $("#end-date").on("dp.change",function (e) {
+                $('#start-date').data("DateTimePicker").maxDate(e.date);
+            });
+
+
+            $("#select-courses").select2({
+                maximumSelectionSize: 5
+            });
+
+
+            $('#btn-update-chart').on('click', function (){
+                var $courses = [];
+                $('#select-courses :selected').each(function(i, selected){
+                    $courses.push($(selected).val());
+                });
+            });
+
+
 
             var data = {
                 labels: {{json_encode($salesLabelData['labels'])}},
