@@ -18,7 +18,7 @@
             </div>
             <div class="button-wrapper">
             	<div class="submit-button">
-                    <a href="{{ action('MembersController@edit', $user->id) }}" class="edit-button submit submit-button-2">
+                    <a href="{{ action('MembersController@edit', $student->id) }}" class="edit-button submit submit-button-2">
                         {{trans('crud/labels.edit')}}
                     </a>            
                     <button type="submit" class="submit submit-button-2 send-message">Send Message</button>   
@@ -31,8 +31,8 @@
 	<div class="row">
     	<div class="col-md-12">
         	<div class="profile-photo">
-                    @if( Student::find($user->id)->profile)
-                        <img src='{{ Student::find($user->id)->profile->photo }}' />
+                    @if( $student->profile )
+                        <img src='{{ Student::find($student->id)->profile->photo }}' />
                     @endif
             </div>
         </div>
@@ -45,18 +45,18 @@
 
                 <tr>
                     <td class="title no-border">{{trans('general.user')}}:</td>
-                    <td class="no-border">{{ $user->email }}</td>
+                    <td class="no-border">{{ $student->email }}</td>
                 </tr>
-                @if($user->hasRole('Affiliate'))
+                @if($student->hasRole('Affiliate'))
                 <tr>
                     <td class="title no-border">{{trans('general.affiliate_id')}}:</td>
-                    <td class="no-border">{{ $user->affiliate_id }}</td>
+                    <td class="no-border">{{ $student->affiliate_id }}</td>
                 </tr>
                 <tr>
                     <td class="title no-border">{{trans('general.affiliate_agency')}}:</td>
                     <td class="no-border">
-                        @if( $user->affiliate_agency_id > 0 )
-                            {{AffiliateAgency::find($user->affiliate_agency_id)->name}}
+                        @if( $student->affiliate_agency_id > 0 )
+                            {{AffiliateAgency::find($student->affiliate_agency_id)->name}}
                         @endif
                     
                     </td>
@@ -64,27 +64,23 @@
                 @endif
                 <tr>
                     <td class="title no-border">{{trans('general.first_name')}}:</td>
-                    <td class="no-border">{{ $user->firstName() }}</td>
+                    <td class="no-border">{{ $student->firstName() }}</td>
                 </tr>
                 <tr>
                     <td class="title no-border">{{trans('general.last_name')}}:</td>
-                    <td class="no-border">{{ $user->lastName() }}</td>
+                    <td class="no-border">{{ $student->lastName() }}</td>
                 </tr>
                 <tr>
                     <td class="title no-border">{{trans('general.groups')}}:</td>
                     <td class="no-border">
-                    @foreach($user->roles as $role)
+                    @foreach($student->roles as $role)
                         <span class="label label-info">{{$role->name}}</span>
                     @endforeach
                     </td>
                 </tr>
                 <tr>
                     <td class="title no-border">{{trans('general.registered')}}:</td>
-                    <td class="no-border">{{ $user->created_at }} {{ $user->created_at->diffForHumans() }}</td>
-                </tr>
-                <tr>
-                    <td class="title no-border">Last Logged in:</td>
-                    <td class="no-border">2015-02-14 06:20:16 2 days ago</td>
+                    <td class="no-border">{{ $student->created_at }} {{ $student->created_at->diffForHumans() }}</td>
                 </tr>
             </table>
         </div>	
@@ -95,136 +91,54 @@
     	<div class="col-md-12">
         	<div class="order-history">
             	<h2>Order History</h2>
-                <p class="purchased-amount">Total Purchased Amout<span>¥185,001</span></p>
+                <p class="purchased-amount">Total Purchased Amount<span>¥ {{ $student->purchases()->sum('purchase_price') }}</span></p>
                 <div class="table-wrapper table-responsive clear">
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Order ID</th>
-                                <th>Course</th>
+                                <th>Item</th>
+                                <th>Item Type</th>
                                 <th>Purchase Amount</th>
                                 <th>Date of Purchase</th>
-                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>1234MDB</td>
-                                <td>PHP Primer</td>
-                                <td>¥185,001</td>
-                                <td>12/02/2015</td>
-                                <td class="active">Active</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>1234MDB</td>
-                                <td>PHP Primer</td>
-                                <td>¥185,001</td>
-                                <td>12/02/2015</td>
-                                <td class="processing">Processing</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>1234MDB</td>
-                                <td>PHP Primer</td>
-                                <td>¥185,001</td>
-                                <td>12/02/2015</td>
-                                <td class="refunded">Refunded</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>1234MDB</td>
-                                <td>PHP Primer</td>
-                                <td>¥185,001</td>
-                                <td>12/02/2015</td>
-                                <td class="failed">Failed</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>1234MDB</td>
-                                <td>PHP Primer</td>
-                                <td>¥185,001</td>
-                                <td>12/02/2015</td>
-                                <td class="failed">Failed</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>1234MDB</td>
-                                <td>PHP Primer</td>
-                                <td>¥185,001</td>
-                                <td>12/02/2015</td>
-                                <td class="failed">Failed</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>1234MDB</td>
-                                <td>PHP Primer</td>
-                                <td>¥185,001</td>
-                                <td>12/02/2015</td>
-                                <td class="failed">Failed</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>1234MDB</td>
-                                <td>PHP Primer</td>
-                                <td>¥185,001</td>
-                                <td>12/02/2015</td>
-                                <td class="failed">Failed</td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>1234MDB</td>
-                                <td>PHP Primer</td>
-                                <td>¥185,001</td>
-                                <td>12/02/2015</td>
-                                <td class="failed">Failed</td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>1234MDB</td>
-                                <td>PHP Primer</td>
-                                <td>¥185,001</td>
-                                <td>12/02/2015</td>
-                                <td class="failed">Failed</td>
-                            </tr>
+                            <?php
+                                $i = 1;
+                            ?>
+                            @foreach($student->purchases as $purchase)
+                                <tr>
+                                    <td> {{ $i }}</td>
+                                    <td>{{ $purchase->id }}</td>
+                                    <td>
+                                        {{ $purchase->product->name }}
+                                    @if( !isset( $purchase->product->module ) )
+                                            <a href='{{ action( 'CoursesController@show', $purchase->product->slug ) }}' target='_blank'>
+                                    @else
+                                            <a href='{{ action( 'CoursesController@show', $purchase->product->module->lesson->course->slug ) }}' 
+                                               target='_blank'>
+                                    @endif
+                                    View
+                                                <i class="fa fa-external-link"></i>
+                                            </a>
+                                    </td>
+                                    <td> {{ get_class( $purchase->product ) }}</td>
+                                    <td>¥{{ number_format($purchase->purchase_price, Config::get('custom.currency_decimals')) }}</td>
+                                    <td> {{ $purchase->created_at }}</td>
+                                </tr>
+                                <?php ++$i ;?>
+                            @endforeach
                         </tbody>
                     </table>
-                </div>
-            </div>
-            <div class="pagination-container clearfix">
-            	<div class="page-numbers-container clearfix">
-                    <ul class="clearfix">
-                        <li>
-                            <a href="#"></a>
-                        </li>
-                        <li>
-                            <a href="#" class="active">1</a>
-                        </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">4</a>
-                        </li>
-                        <li>
-                            <a href="#">5</a>
-                        </li>
-                        <li>
-                            <a href="#"></a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-@if( $user->hasRole('affiliate') )
+@if( $student->hasRole('Affiliate') )
     <div class="container members-view-wrapper members-area affiliate-table">
         <div class="row">
             <div class="col-md-12">
@@ -233,15 +147,19 @@
                     <table class="table affiliate-table">
                         <tr>
                             <td class="title no-border">Affiliate Rank:</td>
-                            <td class="no-border">1221</td>
+                            <td class="no-border"> ? </td>
                         </tr>
                         <tr>
                             <td class="title no-border">Total Sales:</td>
-                            <td class="no-border">¥2,185,123</td>
+                            <td class="no-border">¥ {{ number_format( 
+                                        Purchase::where('product_affiliate_id', $student->id)->sum('purchase_price'), 
+                                        Config::get('custom.currency_decimals')
+                                        ) }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="title no-border">Total Commissions:</td>
-                            <td class="no-border">¥185,001</td>
+                            <td class="no-border">¥ TBC</td>
                         </tr>
                     </table>
                     <div class="button-wrapper">
@@ -257,7 +175,13 @@
     </div>
 @endif
 
-@if( $user->hasRole('instructor') )
+@if( $student->hasRole('Instructor') )
+<?php
+    $instructor = Instructor::with('courses.sales')
+            ->with('courses.modules')->with('courses.modules.lessons')
+            ->with('courses.modules.lessons.sales')->with('courses')->where( 'id', $student->id )->first();
+    $i = 1;
+?>
     <div class="container members-view-wrapper members-area teacher-stats-table">
         <div class="row">
             <div class="col-md-12">
@@ -266,11 +190,11 @@
                     <table class="table teacher-table">
                         <tr>
                             <td class="title no-border">Number of Courses:</td>
-                            <td class="no-border">5</td>
+                            <td class="no-border"> {{ $instructor->courses->count() }}</td>
                         </tr>
                         <tr>
                             <td class="title no-border">Total Sales:</td>
-                            <td class="no-border">¥2,185,123</td>
+                            <td class="no-border">¥{{ number_format( $instructor->totalSales(), Config::get('custom.currency_decimals')) }}</td>
                         </tr>
                     </table>
                 </div>
@@ -293,122 +217,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>PHP Primer</td>
-                                <td>12/02/2015</td>
-                                <td>¥185,001</td>
-                                <td>4</td>
-                                <td>2</td>
-                            </tr>
+                            @foreach($instructor->courses as $course)
+                                <tr>
+                                    <td>{{ $i }}</td>
+                                    <td>
+                                        {{ $course->name }}
+                                        <a href='{{ action( 'CoursesController@show', $course->slug ) }}' target='_blank'>
+                                            View
+                                            <i class="fa fa-external-link"></i>
+                                        </a>
+                                    </td>
+                                    <td>{{ $course->created_at }}</td>
+                                    <td>¥{{ number_format( $course->sales->sum('purchase_price') + $course->lessonSales(), 
+                                                Config::get('custom.currency_decimals')) }}
+                                    </td>
+                                    <td> ? </td>
+                                    <td> ? </td>
+                                </tr>
+                                <?php ++$i;?>
+                            @endforeach
+                            
                         </tbody>
                     </table>
                 </div>
             </div>  
         </div> 
-        <div class="row">
-            <div class="col-md-12">     
-                <div class="pagination-container clearfix">
-                    <div class="page-numbers-container clearfix">
-                        <ul class="clearfix">
-                            <li>
-                                <a href="#"></a>
-                            </li>
-                            <li>
-                                <a href="#" class="active">1</a>
-                            </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li>
-                                <a href="#"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @endif
 

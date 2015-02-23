@@ -50,10 +50,11 @@ class MembersController extends \BaseController {
 	public function show($id)
 	{
             $user = User::find($id);
-            if($user==null){
+            $student = Student::find($id);
+            if($student==null){
                 return Redirect::action('MembersController@index')->withError( trans('crud/errors.object_doesnt_exist', ['object' => 'User' ]) );
             }
-            return View::make('administration.members.show')->with(compact('user'));
+            return View::make('administration.members.show')->with(compact('student'));
 	}
 
 

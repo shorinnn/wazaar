@@ -33,6 +33,17 @@ class Course extends Ardent{
         'testimonials' => [ self::HAS_MANY, 'Testimonial' ],
     );
     
+  
+    public function lessonSales(){
+        $amount = 0;
+        foreach($this->modules as $module){
+            foreach($module->lessons as $lesson){
+                $amount += $lesson->sales->sum('purchase_price');
+            }
+        }
+        return $amount;
+    }
+    
     public function videoBlocks(){
         $lesson_ids = [];
         $module_ids = $this->modules->lists('id');

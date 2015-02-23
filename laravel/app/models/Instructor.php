@@ -12,6 +12,14 @@ class Instructor extends User{
         'followers' => [self::BELONGS_TO_MANY, 'Student',  'table' => 'follow_relationships',  'foreignKey' => 'instructor_id', 'otherKey' => 'student_id']
       ];
     
+    public function totalSales(){
+        $amount = 0;
+        foreach($this->courses as $course){
+             $amount += $course->sales->sum('purchase_price') + $course->lessonSales();
+        }
+        return $amount;
+    }
+    
     public function followed($student_id){
         
         if( in_array( $student_id, $this->followers()->lists('student_id') ) ) return true;
