@@ -428,8 +428,10 @@ class PurchasesSeeder extends Seeder {
         Purchase::create( ['product_id' => 6, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
         Purchase::create( ['product_id' => 5, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 2] );
         Purchase::create( ['product_id' => 6, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
-        Purchase::create( ['product_id' => 5, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
-        Purchase::create( ['product_id' => 10, 'product_type' => 'Lesson', 'student_id' => 8, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
+        Purchase::create( ['product_id' => 5, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5,
+            'purchase_price' => 50] );
+        Purchase::create( ['product_id' => 10, 'product_type' => 'Lesson', 'student_id' => 8, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5,
+            'purchase_price' => 20] );
        
     }
 }

@@ -91,9 +91,11 @@
     	<div class="col-md-12">
         	<div class="order-history">
             	<h2>Order History</h2>
-                <p class="purchased-amount">Total Purchased Amount<span>¥ {{ $student->purchases()->sum('purchase_price') }}</span></p>
+                <p class="purchased-amount">Total Purchased Amount<span>¥ {{ 
+                    number_format($student->purchases()->sum('purchase_price'), Config::get('custom.currency_decimals')) 
+                     }}</span></p>
                 <div class="table-wrapper table-responsive clear">
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped orders-table">
                         <thead>
                             <tr>
                                 <th>#</th>

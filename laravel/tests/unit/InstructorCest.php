@@ -48,5 +48,21 @@ class InstructorCest{
         $I->assertFalse( $instructor->purchased($course) );
     }
     
+    public function getTotalSales(UnitTester $I){
+        $instructor = Instructor::find(4);
+        $courses = $instructor->courses()->lists('id');
+        $course_sales = Purchase::whereIn( 'product_id', $courses )->where( 'product_type','Course' )->sum( 'purchase_price' );
+        $lessons = [];
+        foreach($instructor->courses as $course){
+            foreach($course->modules as $module){
+                foreach($module->lessons as $lesson){
+                    $lessons[] = $lesson->id;
+                }
+            }
+        }
+        $lesson_sales = Purchase::whereIn( 'product_id', $lessons )->where( 'product_type','Lesson' )->sum( 'purchase_price' );
+        $I->assertEquals( $instructor->totalSales(), $course_sales + $lesson_sales);
+    }
+    
     
 }
