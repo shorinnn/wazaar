@@ -136,6 +136,11 @@ Route::filter('instructor', function(){
         if(!Auth::user()->hasRole('Instructor')) return Redirect::to('/');
 });
 
+Route::filter('affiliate', function(){
+    if(Auth::guest()) return Redirect::guest('login');
+    if(!Auth::user()->hasRole('Affiliate')) return Redirect::to('/');
+});
+
 Route::filter('nonInstructor', function()
 {
         if(Auth::check() && Auth::user()->hasRole('Instructor')) return Redirect::to('/');
