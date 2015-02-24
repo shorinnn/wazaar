@@ -34,7 +34,7 @@ class AnalyticsSeeder extends DatabaseSeeder
         }
 
         Purchase::insert($coursePurchases);
-        //TrackingCodeHits::insert($trackingCodeHits);
+        //TrackingCodeHits::insert($trackingCodeHits); TODO: uncomment this
     }
 
     private function _createFakeHits($hits)
