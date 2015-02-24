@@ -62,7 +62,6 @@
                    data-instant-valid-callback="appendGreenBorder" />
 	        <p class="clearfix character-tip"><span class="block">Type in the password again</span></p>
         </div>
-        <input class="form-control" type="hidden" name="instructor" id="instructor" value="{{{ $instructor }}}">
 
         
 

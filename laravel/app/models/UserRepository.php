@@ -19,10 +19,11 @@ class UserRepository
      *
      * @param array $input Array containing 'username', 'email' and 'password'.
      * @param string|null $ltc_cookie The Life Time Commission Affiliate ID or null if none
+     * @param array $roles Additional roles to attach besides Student
      *
      * @return  User User object that may or may not be saved successfully. Check the id to make sure.
      */
-    public function signup($input, $ltc_cookie=null)
+    public function signup($input, $ltc_cookie=null, $roles=false)
     {
         $user = new Student;
 
@@ -41,7 +42,8 @@ class UserRepository
 
         // Save if valid. Password field will be hashed before save
         if($this->save($user)){
-            $this->attachRoles($user, array_get($input, 'instructor'));
+            if( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) $this->attachRoles($user, 1);
+            if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ) $this->attachRoles($user, 2);
         }
         $this->save_ltc($user, $ltc_cookie);
         return User::find($user->id);
@@ -70,16 +72,22 @@ class UserRepository
      * Attaches roles after user registration
      * 
      * @param User $user The user object
-     * @param int $instructor Flag, 0 for no instructor role, 1 otherwise
+     * @param int $instructor Flag, 0 for no additional role, 1 for instructor, 2 for affiliate
      */
     public function attachRoles($user, $instructor=0){
         // assign the default student role
-        $studentRole = Role::where('name','=','Student')->first();
-        $user->attachRole( $studentRole );
+        if( !$user->hasRole('Student') ){
+            $studentRole = Role::where('name','=','Student')->first();
+            $user->attachRole( $studentRole );
+        }
         // user signs up for a instructor account
-        if($instructor){
+        if($instructor==1){
             $instructorRole = Role::where('name','=','Instructor')->first();
             $user->attachRole( $instructorRole );
+        }
+        if($instructor==2){
+            $affiliateRole = Role::where('name','=','Affiliate')->first();
+            $user->attachRole( $affiliateRole );
         }
     }
     

@@ -16,15 +16,18 @@ class UsersController extends Controller
 
     /**
      * Displays the form for account creation
-     *
      * @param mixed $instructor_account If not 0, sign up for a instructor account
      * @return  Illuminate\Http\Response
      */
-    public function create($instructor_account = 0)
+    public function create($instructor_account = '')
     {
-        $instructor = $instructor_account===0 ? 0 : 1;
-        if(Input::old('instructor')) $instructor = Input::old('instructor');
-        return View::make(Config::get('confide::signup_form'))->withInstructor($instructor);
+        if( $instructor_account === 'instructor' ){
+            Cookie::queue("register_instructor", 1, 30);
+        }
+        if( $instructor_account === 'affiliate' ){
+            Cookie::queue("register_affiliate", 1, 30);
+        }
+        return View::make(Config::get('confide::signup_form'));
     }
     
     /**
@@ -34,7 +37,9 @@ class UsersController extends Controller
      */
     public function store()
     {
-        $user = $this->users->signup(Input::all(), Cookie::get('ltc'));
+        $roles['instructor'] = Cookie::get('register_instructor');
+        $roles['affiliate'] = Cookie::get('register_affiliate');
+        $user = $this->users->signup(Input::all(), Cookie::get('ltc'), $roles);
 
         if ($user->id) {
             if (Config::get('confide::signup_email')) {
@@ -48,6 +53,8 @@ class UsersController extends Controller
                     }
                 );
             }
+            Cookie::queue('register_instructor', null, -1);
+            Cookie::queue('register_affiliate', null, -1);
             Cookie::queue('ltc', null, -1);
             Auth::login($user);
             return Redirect::intended('/');
