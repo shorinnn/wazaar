@@ -15,11 +15,10 @@
     border-radius: 8px;
     bottom: 0;
     display: block;
-    height: 16%;
+    height: 100px;
     left: 0;
-    margin: 12% auto;
-    min-height: 20px;
-    min-width: 20px;
+    margin: 20% auto 0;
+    width: 100px;
     position: absolute;
     right: 0;
     top: 0;
@@ -28,30 +27,57 @@
 }
 
 .video-container .progress{
-	width: 100%;
-	height: 3px;
-	margin: 0;
+	height: 5px;
+	border-radius: 0;
+	margin: 0 auto;
 	background: #283644;
 }
 
 .video-container .progress .progress-bar{
-	background: #8cc32c;
-	width: 40%;
+	width: 100%;
+	border: none;
+}
+
+.video-container .progress .progress-bar[value]{
+    -moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	border: none;
+	background: #2a3845;
+	height: 5px;
+}
+
+.video-container .progress .progress-bar[value]::-webkit-progress-value{
+	background: #8dc32c;
+	border: none;
+}
+
+.video-container .progress .progress-bar[value]::-moz-progress-bar{
+	background: #8dc32c;
+	border: none;
+	height: 100%;
 }
 
 .video-container .video-controls{
-	width: 100%;
 	height: 100px;
+	margin: 0 auto;
 	background: #18222b;
 	position: relative;
 }
 
 .video-container .video-controls > div{
 	height: 100%;
-	max-width: 1000px;
-	margin: 0 auto;
+	width: 70%;
+	float: left;
 	padding: 34px 40px;
 	position: relative;
+}
+
+.video-container  .progressTime{
+	float: right;
+	height: 100%;
+	line-height: 100px;
+	color: #fff;
 }
 
 .video-container .video-controls > div > span{
@@ -69,6 +95,10 @@
 	margin-right: 64px;
 }
 
+.video-container .video-controls span.pause-button{
+	background-position: center bottom;
+	margin-right: 64px;
+}
 
 .video-container .video-controls span.volume-button{
 	background-position: center -145px;
@@ -133,4 +163,218 @@
 	left: -3px;
 	top: -11px;
 	border-radius: 16px;
+}
+
+/*** VIDEO CONTROLS CSS ***/
+/* control holder */
+.control{
+  background: #18222b;
+  position:relative;
+  bottom:2px;
+  left:0;
+  margin: 0 auto;
+  height: 100px;
+  z-index:5;
+  display:none;
+}
+/* control top part */
+.topControl{
+  height: 5px;
+  border-bottom:1px solid #404040;
+  background: #283644;
+}
+/* control bottom part */
+.btmControl{
+  clear:both;
+  margin-top: 30px;
+  padding: 0 5%;
+}
+.control div.btn {
+  display: block;
+  float: left;
+  width: 42px;
+  cursor: pointer;
+  height: 33px;
+  background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-4.png");
+  background-repeat: no-repeat;
+}
+.control div.text{
+  font-size:12px;
+  font-weight:bold;
+  line-height:30px;
+  text-align:center;
+  font-family:verdana;
+  width:20px;
+  border:none;
+  color:#777;
+}
+.control div.btnPlay{
+  background-position: center 5px;
+  margin-right: 64px;
+}
+.control div.paused{
+  background-position: center bottom;
+  margin-right: 64px;
+}
+.control div.btnStop{
+  background:url(control.png) no-repeat 0 -60px;
+}
+.control div.spdText{
+  border:none;
+  font-size:14px;
+  line-height:30px;
+  font-style:italic;
+}
+.control div.selected{
+  font-size:15px;
+  color:#ccc;
+}
+.control div.sound{
+  background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/volume-control-icons.png') !important; 
+  background-repeat: no-repeat;
+  border:none;
+  float:left;
+}
+.control div.sound2{
+  background-position: left -92px;
+}
+.control div.sound3{
+  background-position: left -45px;
+}
+.control div.muted{
+  background-position: left 4px;
+}
+.control div.btnFS{
+  background-position: center -281px;
+  float: right;
+}
+.control div.btnLight{
+  background:url(control.png) no-repeat -44px -60px;
+  border-left:1px solid #404040;
+  float:right;
+}
+.control div.lighton{
+  background:url(control.png) no-repeat -44px -30px !important;
+}
+
+/* PROGRESS BAR CSS */
+/* Progress bar */
+.progress {
+  width: 100%;
+  height:10px;
+  position:relative;
+  float:left;
+  cursor:pointer;
+  background: #444; /* fallback */
+  background:-moz-linear-gradient(top,#666,#333);
+  background:-webkit-linear-gradient(top,#666,#333);
+  background:-o-linear-gradient(top,#666,#333);
+  box-shadow:0 2px 3px #333 inset;
+  -moz-box-shadow:0 2px 3px #333 inset;
+  -webkit-box-shadow:0 2px 3px #333 inset;
+  border-radius:10px;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+}
+.progress span {
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  display:block;
+}
+.timeBar{
+  z-index:10;
+  width:0;
+  background: #8dc42c; /* fallback */
+}
+.bufferBar{
+  z-index:5;
+  width:0;
+  background: #777;
+  background:-moz-linear-gradient(top,#999,#666);
+  background:-webkit-linear-gradient(top,#999,#666);
+  background:-o-linear-gradient(top,#999,#666);
+  box-shadow:2px 0 5px #333;
+  -moz-box-shadow:2px 0 5px #333;
+  -webkit-box-shadow:2px 0 5px #333;
+}
+/* time and duration */
+.time{
+  width:15%;
+  float:right;
+  margin-left: 5%;
+  color: #fff;
+  text-align:center;
+  font-size:14px;
+  margin-top: 10px;
+}
+
+/* VOLUME BAR CSS */
+/* volume bar */
+.volume{
+  position: absolute;
+  height: 10px;
+  width: 135px;
+  top: 10px;
+  border-radius: 10px;
+  background: #cacccd;
+}
+.volumeBar{
+  display: block;
+  background: #81b42c;
+  width: 10px;
+  height: 10px;
+  position: relative;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.volumeBar em{
+  display: inline-block;
+  float: right;
+  position: relative;
+  height: 16px;
+  width: 16px;
+  border-radius: 16px;
+  right: -5px;
+  z-index: 999;
+  top: -3px;
+  background: #0382d7;
+}
+
+/* OTHERS CSS */
+/* video screen cover */
+.loading, #init{
+
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:url(loading.gif) no-repeat 50% 50%;
+  z-index:2;
+  display:none;
+}
+.volume-container{
+  height: 36px;
+  float: left;
+  width: 147px;
+  margin-left: 3%;
+  border-radius: 5px;
+  background: #162028;
+  position: relative;
+  display: block;
+}
+
+.volume-container .caret{
+  border-color: #18212a transparent;
+  border-width: 7px 7px 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  margin: 135px auto 0;
 }
