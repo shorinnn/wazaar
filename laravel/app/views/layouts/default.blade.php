@@ -46,7 +46,7 @@
                 <div class="col-md-4 col-sm-12 third-col">
                   <strong>Wazaar</strong><br/>
                   {{trans('site/footer.all-rights-reserved')}}<br/>
-                  &copy; 2014
+                  &copy; {{ date('Y') }}
                 </div>              
               </div>
             </div>

@@ -226,5 +226,11 @@ class CourseCest{
         $course->sale_ends_on = date('Y-m-d H:i:s', time() + 3600);
         $I->assertFalse( $course->updateUniques() );
     }
+    
+    public function getLessonSales(UnitTester $I){
+        $lesson = Lesson::find(10);
+        $lessonSales = Purchase::where( 'product_id', $lesson->id )->where( 'product_type','Lesson' )->sum( 'purchase_price' );
+        $I->assertEquals( $lessonSales, $lesson->module->course->lessonSales() );
+    }
         
 }
