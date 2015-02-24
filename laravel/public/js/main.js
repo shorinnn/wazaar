@@ -4,9 +4,7 @@
  */
 // JavaScript Document
 $(document).ready(function(){
-	$(function(){
-		  $('.lessons').jScrollPane();
-	  });
+    $('.lessons').jScrollPane();
     $(".profile-name > li").removeClass("activate-dropdown");
     $('body').delegate('.slide-toggler', 'click', slideToggle);
     $('body').delegate('a.load-remote', 'click', loadRemote);

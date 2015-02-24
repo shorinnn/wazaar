@@ -157,12 +157,12 @@
 
 #sales-today ul li > span{
 	display: inline-block;
-	width: 70px;
+	width: 80px;
 	float: left;
 }
 
 #sales-today ul li > div{
-	width: 140px;
+	width: 130px;
 	float: left;
 	padding-top: 4px;
 	padding-left: 8px;

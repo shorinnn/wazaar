@@ -110,7 +110,6 @@ class MembersCest{
         $I->amOnPage("/administration/members/$student->id/edit");
         $I->seeCurrentUrlEquals("/administration/members/$student->id/edit");
         $I->seeInField('email', 'student@mailinator.com');
-        $I->seeInField('first_name', 'Student');
         $I->submitForm('#edit-form', ['email' => 'studentUPDATED@mailinator.com']);
         $I->see('Updated');
     }
@@ -122,9 +121,53 @@ class MembersCest{
         $I->amOnPage("/administration/members/$student->id/edit");
         $I->seeCurrentUrlEquals("/administration/members/$student->id/edit");
         $I->seeInField('email', 'student@mailinator.com');
-        $I->seeInField('first_name', 'Student');
         $I->submitForm('#edit-form', ['email' => 'studentUPDATED@mailinatorFAIL']);
         $I->dontSee('Updated');
+    }
+    
+    public function seeOrderDetails(FunctionalTester $I){
+        $user = User::find(1);
+        $I->amLoggedAs($user);
+        $student = User::where('username','sorin')->first();
+        $I->amOnPage("/administration/members/$student->id");
+        $I->see('orders-table');
+        $I->see('¥ 50');
+    }
+    
+    public function notSeeAffiliateDetails(FunctionalTester $I){
+        $user = User::find(1);
+        $I->amLoggedAs($user);
+        $student = User::where('username','sorin')->first();
+        $I->amOnPage("/administration/members/$student->id");
+        $I->see('orders-table');
+        $I->dontSee('Affiliate Rank');
+    }
+    
+    public function seeAffiliateDetails(FunctionalTester $I){
+        $user = User::find(1);
+        $I->amLoggedAs($user);
+        $student = User::where('username','affiliate')->first();
+        $I->amOnPage("/administration/members/$student->id");
+        $I->see('orders-table');
+        $I->see('Affiliate Rank');
+    }
+    
+    public function notSeeInstructorDetails(FunctionalTester $I){
+        $user = User::find(1);
+        $I->amLoggedAs($user);
+        $student = User::where('username','sorin')->first();
+        $I->amOnPage("/administration/members/$student->id");
+        $I->see('orders-table');
+        $I->dontSee('Teacher Stats');
+    }
+    
+    public function seeInstructorDetails(FunctionalTester $I){
+        $user = User::find(1);
+        $I->amLoggedAs($user);
+        $student = User::where('username','instructor')->first();
+        $I->amOnPage("/administration/members/$student->id");
+        $I->see('orders-table');
+        $I->see('Teacher Stats');
     }
     
     

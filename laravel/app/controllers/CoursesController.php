@@ -202,7 +202,7 @@ class CoursesController extends \BaseController {
             $course = Course::where('slug', $slug)->first();
             $student = Student::current(Auth::user());
             
-            if($student->purchase($course, Cookie::get("aid-$course->id"))){
+            if( $student->purchase( $course, Cookie::get( "aid-$course->id" ) ) ){
                 // unset the affiliate cookie
                 Cookie::queue("aid-$course->id", null, -1);
                 return Redirect::action('ClassroomController@dashboard', $slug);
@@ -221,8 +221,8 @@ class CoursesController extends \BaseController {
             
             $course = Course::where('slug', $slug)->first();
             $student = Student::current(Auth::user());
-            
-            if($student->purchaseLesson($course, $lesson, Cookie::get("aid-$course->id"))){
+            $lesson = Lesson::find( $lesson );
+            if( $student->purchase( $lesson, Cookie::get( "aid-$course->id" ) ) ){
                 return Redirect::action('ClassroomController@dashboard', $slug);
             }
             else{

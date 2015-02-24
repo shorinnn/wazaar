@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder {
 		 $this->call('CourseSubcategorySeeder');
 		 $this->call('CourseDifficultySeeder');
 		 $this->call('CoursesSeeder');
-		 $this->call('CoursePurchasesSeeder');
+		 $this->call('PurchasesSeeder');
 		 $this->call('CoursePreviewImagesSeeder');
 		 $this->call('ModulesSeeder');
 		 $this->call('LessonsSeeder');
@@ -419,16 +419,19 @@ class CoursesSeeder extends Seeder {
     }
 }
     
-class CoursePurchasesSeeder extends Seeder {
+class PurchasesSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('course_purchases')->delete();
-        CoursePurchase::unguard();
-        CoursePurchase::create( ['course_id' => 6, 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
-        CoursePurchase::create( ['course_id' => 5, 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 2] );
-        CoursePurchase::create( ['course_id' => 6, 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
-        CoursePurchase::create( ['course_id' => 5, 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
+        DB::table('purchases')->delete();
+        Purchase::unguard();
+        Purchase::create( ['product_id' => 6, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
+        Purchase::create( ['product_id' => 5, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 2] );
+        Purchase::create( ['product_id' => 6, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
+        Purchase::create( ['product_id' => 5, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5,
+            'purchase_price' => 50] );
+        Purchase::create( ['product_id' => 10, 'product_type' => 'Lesson', 'student_id' => 8, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5,
+            'purchase_price' => 20] );
        
     }
 }

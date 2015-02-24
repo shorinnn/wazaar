@@ -9,6 +9,7 @@ class Lesson extends Ardent {
         'module' => array(self::BELONGS_TO, 'Module'),
         'blocks' => array(self::HAS_MANY, 'Block'),
         'comments' => array(self::HAS_MANY, 'Conversation'),
+        'sales' => array(self::MORPH_MANY, 'Purchase', 'name' => 'product' ),
     );
     public static $rules = [
         'module_id' => 'required|exists:modules,id',
@@ -38,6 +39,10 @@ class Lesson extends Ardent {
         foreach ($this->blocks as $block) {
             $block->delete();
         }
+    }
+    
+    public function cost(){
+        return $this->price;
     }
 
 }

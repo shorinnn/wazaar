@@ -14,7 +14,7 @@ class ProductAffiliateCest{
     
     public function getSales(UnitTester $I){
         $pa = ProductAffiliate::find(5);
-        $sales = CoursePurchase::where('product_affiliate_id', 5)->count();
+        $sales = Purchase::where('product_affiliate_id', 5)->count();
         $I->assertEquals($sales, $pa->sales->count());
     }
     

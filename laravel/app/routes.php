@@ -49,6 +49,8 @@ Route::get('logout', 'UsersController@logout');
 // Admin Controller
 Route::group(array('prefix'=>'administration'),function(){
     Route::resource('members', 'MembersController');
+    Route::get('affiliate-agencies/affiliates/{id}', 'AffiliateAgenciesController@affiliates');
+    Route::resource('affiliate-agencies', 'AffiliateAgenciesController');
 });
 
 // Course Categories
@@ -175,6 +177,13 @@ Route::group(['prefix' => 'dashboard'], function (){
 });
 
 Route::get('test', function (){
-    Cookie::forget('aid');
+
+    $aH = new AnalyticsHelper(0);
+
+    $s = $aH->salesLastFewYears(7);
+    echo '<pre>';
+    print_r($s);
+    echo '</pre>';
+    die;
 
 });

@@ -10,7 +10,8 @@ class ConversationsController extends \BaseController {
         public function store(){
             $student = Student::find( Auth::user()->id );
             $lesson = Lesson::find( Input::get('lesson') );
-            if( !$student->purchased($lesson->module->course) ){
+            
+            if( !$student->purchased($lesson->module->course) && !$student->purchased( $lesson ) ){
                  return Redirect::to('/');
             }
             $conv = new Conversation(['poster_id' => Auth::user()->id, 'lesson_id' => Input::get('lesson'), 'content' => Input::get('content') ]);

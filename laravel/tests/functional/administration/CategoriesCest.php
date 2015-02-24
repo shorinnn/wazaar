@@ -5,6 +5,7 @@ class CategoriesCest{
     
     public function _before(FunctionalTester $I){
         $I->haveEnabledFilters();
+        CourseCategory::boot();
     }
     
     public function failDeletingCategoryIfCourses(FunctionalTester $I){

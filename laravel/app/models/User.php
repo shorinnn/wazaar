@@ -26,26 +26,20 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     /**
-     * Can the current user purchase the supplied course
-     * @param Course $course
+     * Can the current user purchase the supplied course/lesson
+     * @param mixed $product Course/Lesson
      * @return boolean
      */
-    public function can_purchase(Course $course){
-        if($this->id == $course->instructor->id) return false;
+    public function canPurchase($product){
         $student = Student::find($this->id);
-        if( $student->purchased($course) ) return false;
-        return true;
-    }
-    
-    /**
-     * Can the current user purchase the lesson course
-     * @param Lesson $lesson
-     * @return boolean
-     */
-    public function canPurchaseLesson(Lesson $lesson){
-        if($this->id == $lesson->module->course->instructor->id) return false;
-        $student = Student::find($this->id);
-        if( $student->purchasedLesson($lesson) ) return false;
+        if( strtolower( get_class($product) ) == 'course' ){
+            if($this->id == $product->instructor->id) return false;
+        }
+        else{
+             if($this->id == $product->module->course->instructor->id) return false;
+             if( $student->purchased( $product->module->course ) ) return false;
+        }
+        if( $student->purchased($product) ) return false;
         return true;
     }
     
@@ -73,14 +67,15 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     public function firstName(){
-        if( $this->profiles->first() ){
+        
+        if( isset( $this->profiles) && $this->profiles->first() !=null ){
             return $this->profiles->first()->first_name;
         }
         else return $this->first_name;
     }
     
     public function lastName(){
-        if( $this->profiles->first() ){
+        if(  isset( $this->profiles) && $this->profiles->first() !=null){
             return $this->profiles->first()->last_name;
         }
         else return $this->last_name;

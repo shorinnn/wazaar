@@ -3,6 +3,7 @@
 return array(
     'members' => 'Members',
     'user' => 'User',
+    'email' => 'Email',
     'first_name' => 'First name',
     'last_name' => 'Last name',
     'registered' => 'Registered',
@@ -26,4 +27,5 @@ return array(
     'cannot_delete_subcategory_has_courses' => 'Cannot delete subcategory because there are associated courses',
     'cannot_delete_category_has_courses' => 'Cannot delete category because there are associated courses',
     'reply' => 'reply|replies',
+    'affiliates' => 'Affiliate|Affiliates'
 );
