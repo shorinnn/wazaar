@@ -129,8 +129,9 @@ class UsersController extends Controller
                 }
                 else{
                     // create user
-                    
-                    $user = $this->users->signupWithGoogle($result, Cookie::get('ltc'));
+                    $roles['instructor'] = Cookie::get('register_instructor');
+                    $roles['affiliate'] = Cookie::get('register_affiliate');
+                    $user = $this->users->signupWithGoogle($result, Cookie::get('ltc'), $roles);
 
                     if(!$user->id){ 
                         // cannot create user
@@ -141,6 +142,8 @@ class UsersController extends Controller
                     }
                     else{
                         Cookie::queue('ltc', null, -1);
+                        Cookie::queue('register_instructor', null, -1);
+                        Cookie::queue('register_affiliate', null, -1);
                         $this->users->saveSocialPicture($user, "G$result[id]", "$result[picture]?sz=150");
                         //user created
                         Auth::login($user);
@@ -229,7 +232,9 @@ class UsersController extends Controller
                 }
                 else{
                     // create user
-                    $user = $this->users->signupWithFacebook($result, Cookie::get('ltc'));
+                    $roles['instructor'] = Cookie::get('register_instructor');
+                    $roles['affiliate'] = Cookie::get('register_affiliate');
+                    $user = $this->users->signupWithFacebook($result, Cookie::get('ltc'), $roles);
                     if(!$user->id){ 
                         // cannot create user
                         $error = $user->errors()->all(':message');
@@ -239,6 +244,8 @@ class UsersController extends Controller
                     }
                     else{
                         Cookie::queue('ltc', null, -1);
+                        Cookie::queue('register_instructor', null, -1);
+                        Cookie::queue('register_affiliate', null, -1);
                         $this->users->saveSocialPicture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
                         //user created
                         Auth::login($user);

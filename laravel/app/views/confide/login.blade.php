@@ -10,8 +10,8 @@
     <div class="container login-page">
         <div class="row">
             <div class="col-md-12">
-                <a href="#" class="fb-button social-button">Sign in with Facebook</a>
-                <a href="#" class="google-button social-button">Sign in with Google</a>
+                <a href="{{ url('login-with-facebook') }}" class="fb-button social-button">Sign in with Facebook</a>
+                <a href="{{url('login-with-google') }}" class="google-button social-button">Sign in with Google</a>
                 <p class="or">Or</p>
             </div>
         </div>

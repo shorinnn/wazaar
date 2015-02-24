@@ -20,7 +20,6 @@ class UserRepository
      * @param array $input Array containing 'username', 'email' and 'password'.
      * @param string|null $ltc_cookie The Life Time Commission Affiliate ID or null if none
      * @param array $roles Additional roles to attach besides Student
-     *
      * @return  User User object that may or may not be saved successfully. Check the id to make sure.
      */
     public function signup($input, $ltc_cookie=null, $roles=false)
@@ -42,8 +41,9 @@ class UserRepository
 
         // Save if valid. Password field will be hashed before save
         if($this->save($user)){
-            if( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) $this->attachRoles($user, 1);
-            if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ) $this->attachRoles($user, 2);
+            $user = $this->attachRoles($user);
+            if( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) $user = $this->attachRoles($user, 1);
+            if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ) $user = $this->attachRoles($user, 2);
         }
         $this->save_ltc($user, $ltc_cookie);
         return User::find($user->id);
@@ -76,7 +76,7 @@ class UserRepository
      */
     public function attachRoles($user, $instructor=0){
         // assign the default student role
-        if( !$user->hasRole('Student') ){
+        if( !$user->hasRole('Student') && $instructor === 0){
             $studentRole = Role::where('name','=','Student')->first();
             $user->attachRole( $studentRole );
         }
@@ -89,16 +89,17 @@ class UserRepository
             $affiliateRole = Role::where('name','=','Affiliate')->first();
             $user->attachRole( $affiliateRole );
         }
+        return $user;
     }
     
     /**
      * Signup a new account with FB Credentials
      * @param array $input User fields
      * @param string|null $ltc_cookie The Life Time Commission Affiliate ID or null if none
-     * 
+     * @param array $roles Additional roles to attach besides Student
      * @return  User User object that may or may not be saved successfully. Check the id to make sure.
      */
-    public function signupWithFacebook($input, $ltc_cookie=null)
+    public function signupWithFacebook($input, $ltc_cookie=null, $roles = false)
     {
         $user = new Student;
 
@@ -117,7 +118,9 @@ class UserRepository
 
         // Save if valid. Password field will be hashed before save
         $this->save($user);
-        $this->attachRoles($user);
+        $user = $this->attachRoles($user);
+        if( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) $user = $this->attachRoles($user, 1);
+        if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ) $user = $this->attachRoles($user, 2);
         $this->save_ltc($user, $ltc_cookie);
         return $user;
     }
@@ -161,9 +164,10 @@ class UserRepository
      * Signup a new account with Google Credentials
      * @param array $input User fields
      * @param string|null $ltc_cookie The Life Time Commission Affiliate ID or null if none
+     * @param array $roles Additional roles to attach besides Student
      * @return  User User object that may or may not be saved successfully. Check the id to make sure.
      */
-    public function signupWithGoogle($input, $ltc_cookie=null)
+    public function signupWithGoogle($input, $ltc_cookie=null, $roles = false)
     {
         $user = new Student;
 
@@ -182,7 +186,9 @@ class UserRepository
 
         // Save if valid. Password field will be hashed before save
         $this->save($user);
-        $this->attachRoles($user);
+        $user = $this->attachRoles($user);
+        if( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) $user = $this->attachRoles($user, 1);
+        if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ) $user = $this->attachRoles($user, 2);
         $this->save_ltc($user, $ltc_cookie);
         return $user;
     }
@@ -346,7 +352,7 @@ class UserRepository
         
         if( $user->hasRole($role->name) ) return false;
 
-        $user->attachRole($role);
+        $user = $user->attachRole($role);
         // default the affiliate ID to the user ID
         $user->affiliate_id = $user->id;
         $user->save();
