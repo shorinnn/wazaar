@@ -52,12 +52,6 @@
                    class='ajax-file-uploader upload' data-progress-bar='.progress-bar-{{$category->id}}' data-callback='replaceElementWithUploaded' />
             </div>
         </form>
-
-<script>
-document.getElementById("file-upload-{{$category->id}}").onchange = function () {
-    document.getElementById("uploadFile").value = this.value;
-};
-</script>
         <div class="progress clear">
             <div class="progress-bar progress-bar-striped active progress-bar-{{$category->id}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                 <span></span>

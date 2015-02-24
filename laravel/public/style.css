@@ -46,6 +46,7 @@ a, input::-moz-focus-inner {
 
 a:hover{
 	outline: none;
+	text-decoration: none;
 }
 
 ul{
@@ -2776,6 +2777,69 @@ header .activate-dropdown:hover ul{
 	margin: 40px 0 20px;
 }
 
+.replies:not(:empty){
+  border:1px solid silver;
+  width:80%;
+  min-width: 600px;
+}
+
+.comment-form-reply{
+  min-width: 500px
+}
+.is-reply-to{
+  font-style: italic;
+  font-size: 12px;
+}
+
+.fa-animated{
+  -webkit-transition: all 0.3s; /* For Safari 3.1 to 6.0 */
+  transition: all 0.3s;
+}
+
+.reply-to-label{
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 2px;
+  background-color: #19B5DA;
+  color: white;
+  position: absolute;
+  z-index: 10;
+  margin-left: 90px;
+  margin-top: 15px;
+}
+a.load-remote > *{
+  pointer-events: none;
+}
+
+.overlay-loading{
+  position:absolute;
+  margin-left:auto;
+  margin-right:auto;
+  left:0;
+  right:0;
+  z-index: 10;
+  width:32px;
+  height:32px;
+  background-image:url('http://www.mytreedb.com/uploads/mytreedb/loader/ajax_loader_blue_32.gif');
+}
+
+.classrooms-wrapper .classroom-course-title{
+  text-align: center;
+  color: #0099ff;
+  margin: 40px 0 20px;
+  font-size: 28px;
+}
+
+.classrooms-wrapper .classroom-lesson-title{
+  text-align: center;
+  font-size: 26px;
+  color: #0099ff;
+  margin: 0 0 30px;
+}
+.video-container > div{
+  margin: 0 !important;
+}
+
 .comment-section {
     margin-top: 20px;
 }
@@ -3084,6 +3148,38 @@ header .activate-dropdown:hover ul{
 	width: 100%;
 	height: 80%;
 	background: #a4da28;
+}
+
+.classroom-content .first-row{
+	margin-top: 50px;
+}
+
+.classroom-content .second-row .files,
+.classroom-content .first-row .well{
+	background: #fff;
+	border: none;
+	padding: 20px;
+}
+
+.classroom-content .first-row .well{
+	color: #849598;
+	line-height: 22px;
+	font-size: 14px;
+}
+
+.classroom-content .second-row .files a{
+	font-size: 14px;
+	color: #0099ff;
+	font-weight: normal;
+}
+
+.classroom-content #add-comment-form button[type='submit']{
+	margin: 20px 10px 20px 14px;
+	outline: none;
+}
+
+.classroom-content #add-comment-form button[type='submit']:focus{
+	outline: none;
 }
 
 /************** Create a Course***********/
@@ -4291,9 +4387,7 @@ select option.suspended{
 
 .members-view-wrapper .profile-photo{
 	max-width: 200px;
-	height: 120px;
 	margin: 0 auto;
-	background: #0099ff;
 }
 
 .members-edit-wrapper .title,
