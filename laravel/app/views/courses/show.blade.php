@@ -152,8 +152,9 @@
                                     <h3>{{$course->instructor->first_name}} {{$course->instructor->last_name}}<span></span></h3>
                                     <!--<span class="role">Lead programmer, Wazaar</span>-->
             						<!--<a href="#" class="follow-button">FOLLOW</a>-->
-
-                                    {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
+                                    @if(Auth::check())
+                                        {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
+                                    @endif
                                     <h4>About {{$course->instructor->first_name}}</h4>
                                     <p>
                                     Description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et 
@@ -168,7 +169,9 @@
                                     <span class="role">Lead programmer, Wazaar - Dunno where this line comes from</span>
             <!--                        <a href="#" class="follow-button">FOLLOW</a>-->
 
-                                    {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
+                                    @if(Auth::check())
+                                        {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
+                                    @endif
                                     <h4>About {{$course->instructor->profile->first_name}}</h4>
                                     <p>
                                    {{ $course->instructor->profile->bio }}

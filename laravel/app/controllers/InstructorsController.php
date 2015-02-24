@@ -15,7 +15,7 @@ class InstructorsController extends \BaseController {
         public function start($user){
             Session::set( 'url.intended', action('InstructorsController@become') );
             if($user=='new-user'){
-                return Redirect::to('register/1');
+                return Redirect::to('register/instructor');
             }
             else{
                 return Redirect::action('UsersController@login');

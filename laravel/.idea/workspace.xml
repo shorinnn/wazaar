@@ -26,7 +26,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://D:/Projects/Wazaar/Project Files/Jp Unauthenticated_Homepage/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="17951" max-vertical-offset="19788">
+            <state vertical-scroll-proportion="-47.115383" vertical-offset="17951" max-vertical-offset="19788">
               <caret line="1128" column="8" selection-start-line="1128" selection-start-column="8" selection-end-line="1128" selection-end-column="8" />
               <folding />
             </state>
@@ -36,8 +36,18 @@
       <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.526316" vertical-offset="8004" max-vertical-offset="8806">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.7276537" vertical-offset="15281" max-vertical-offset="15997">
+              <caret line="784" column="0" selection-start-line="784" selection-start-column="0" selection-end-line="784" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="backup-main js file.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://D:/Projects/Wazaar/Backups/backup-main js file.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="14733" max-vertical-offset="18292">
+              <caret line="879" column="0" selection-start-line="879" selection-start-column="0" selection-end-line="891" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -57,6 +67,9 @@
         <option value="$PROJECT_DIR$/public/js/forms.js" />
         <option value="$PROJECT_DIR$/Floating Nav.js" />
         <option value="D:/Projects/Wazaar/Project Files/Jp Unauthenticated_Homepage/index.html" />
+        <option value="$PROJECT_DIR$/public/js/lol.js" />
+        <option value="$PROJECT_DIR$/public/js/videoskin.js" />
+        <option value="$PROJECT_DIR$/public/js/backup-main js file.js" />
         <option value="$PROJECT_DIR$/public/js/main.js" />
       </list>
     </option>
@@ -93,7 +106,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -146,12 +158,20 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
+    <property name="last_opened_file_path" value="D:/Projects/Wazaar/Backups" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\Wazaar\Backups" />
+      <recent name="C:\wamp\www\wazaar\laravel\public\js" />
+    </key>
   </component>
   <component name="RunManager" selected="Node.js.main.js">
     <configuration default="false" name="main.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="main.js" working-dir="$PROJECT_DIR$/public/js">
@@ -221,7 +241,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -260,10 +280,42 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="8" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://D:/Projects/Wazaar/Project Files/Jp Unauthenticated_Homepage/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="19788">
+          <caret line="1128" column="8" selection-start-line="1128" selection-start-column="8" selection-end-line="1128" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="12570" max-vertical-offset="13379">
+          <caret line="767" column="11" selection-start-line="767" selection-start-column="11" selection-end-line="767" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Projects/Wazaar/Project Files/Jp Unauthenticated_Homepage/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="19788">
+          <caret line="1128" column="8" selection-start-line="1128" selection-start-column="8" selection-end-line="1128" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="8004" max-vertical-offset="8806">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://D:/Projects/Wazaar/Project Files/Jp Unauthenticated_Homepage/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="19788">
@@ -433,16 +485,32 @@
     </entry>
     <entry file="file://D:/Projects/Wazaar/Project Files/Jp Unauthenticated_Homepage/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="17951" max-vertical-offset="19788">
+        <state vertical-scroll-proportion="-47.115383" vertical-offset="17951" max-vertical-offset="19788">
           <caret line="1128" column="8" selection-start-line="1128" selection-start-column="8" selection-end-line="1128" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/backup-main js file.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.95411605" vertical-offset="17483" max-vertical-offset="18292">
+          <caret line="1070" column="0" selection-start-line="1070" selection-start-column="0" selection-end-line="1070" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Projects/Wazaar/Backups/backup-main js file.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="14733" max-vertical-offset="18292">
+          <caret line="879" column="0" selection-start-line="879" selection-start-column="0" selection-end-line="891" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.526316" vertical-offset="8004" max-vertical-offset="8806">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state vertical-scroll-proportion="-2.7276537" vertical-offset="15281" max-vertical-offset="15997">
+          <caret line="784" column="0" selection-start-line="784" selection-start-column="0" selection-end-line="784" selection-end-column="0" />
           <folding />
         </state>
       </provider>

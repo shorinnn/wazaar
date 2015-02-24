@@ -11,7 +11,7 @@
 		border-radius: 5px 5px 0 0;
 		padding: 0;
 		margin: 0;
-		background: #f8f8f8;
+		background: #e2e1e5;
 		border: solid #ccc;
 		border-width: 1px 1px 0 1px;
 	}
@@ -37,7 +37,6 @@
 
     #items-list > li div.options-div{
 		max-width: 69%;
-		display: block;
 		margin: 30px auto 0;
 		color: #0099ff;
 		font-size: 18px;
@@ -148,6 +147,7 @@
 		background: #b0bfc1;
 		border: none;
 		color: #fff;
+		position: relative;
 		float: left;
 		font-size: 12px;
 		height: 30px;
@@ -206,7 +206,7 @@
 		margin: 0 auto 50px;
 		border-radius: 0 0 5px 5px;
 		padding: 0 0 50px;
-		background: #f8f8f8;
+		background: #e2e1e5;
 		border: solid #ccc;
 		border-width: 0 1px 1px 1px;
 	}
@@ -269,5 +269,9 @@
                 enableFileUploader( $(this) );
             });
         });
+		document.getElementById("file-upload-{{$category->id}}").onchange = function () {
+		document.getElementById("uploadFile").value = this.value;
+		};
+
     </script>
 @stop
