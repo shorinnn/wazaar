@@ -19,7 +19,9 @@ class SiteController extends \BaseController {
         }
         
         public function admindash(){
-             Return View::make('TEMPORARYVIEWS.admin_dashboard');
+             Return View::make('TEMPORARYVIEWS.questions');
+             	//Return View::make('confide.account_details');
+            	 //Return View::make('TEMPORARYVIEWS.admin_dashboard');
         }
         
         public function affiliatedash(){

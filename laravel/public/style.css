@@ -3182,6 +3182,345 @@ a.load-remote > *{
 	outline: none;
 }
 
+.classroom-content .accompanying-material h3,
+.classroom-content .additional-lesson-conntent h3{
+	font-size: 18px;
+	font-weight: normal;
+	color: #0099ff;
+	margin: 24px 0 20px;
+}
+
+.classroom-content .additional-lesson-conntent p{
+	font-size: 12px;
+	color: #333;
+	margin: 0 0 15px;
+	line-height: 24px;
+}
+
+.classroom-content .additional-lesson-conntent a.read-more{
+	height: 32px;
+	width: 140px;
+	border-radius: 5px;
+	line-height: 32px;
+	text-align: center;
+	text-transform: uppercase;
+	color: #fff;
+	font-size: 14px;
+	background: #849598;
+	display: block;
+}
+
+.classroom-content .accompanying-material > div{
+	min-height: 40px;
+	background: #ececec;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
+.classroom-content .accompanying-material > div span{
+	display: block;
+	float: left;
+	border-right: solid 1px #b7c4c6;
+	width: 96px;
+	height: 40px;
+	text-indent: 49px;
+	line-height: 40px;
+	font-size: 14px;
+	color: #849598;
+	text-transform: uppercase;
+}
+
+.classroom-content .accompanying-material > div p{
+	float: left;
+	margin: 0;
+	width: 220px;
+	line-height: 40px;
+	font-size: 14px;
+	color: #849598;
+	padding-left: 20px;
+}
+
+.classroom-content .accompanying-material > div a{
+	display: block;
+	float: left;
+	line-height: 32px;
+	height: 32px;
+	border-radius: 5px;
+	color: #fff;
+	text-transform: uppercase;
+	padding-left: 20px;
+	width: 149px;
+	margin-top: 4px;
+	background: #0099ff url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-17.png') no-repeat 106px -214px;
+	font-size: 14px;
+}
+
+.classroom-content .accompanying-material > div.pdf span{
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-17.png') no-repeat 15px -147px;
+}
+
+.classroom-content .accompanying-material > div.zip span{
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-17.png') no-repeat 15px -91px;
+}
+
+.video-container .top-notification-bar{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 32px;
+	background: #92cc2e;
+	line-height: 32px;
+	text-align: center;
+	color: #fff;
+}
+
+.video-container .top-notification-bar span{
+	display: inline-block;
+	width: 16px;
+	height: 15px;
+	margin-right: 10px;
+	position: relative;
+	top: 2px;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-17.png') no-repeat -7px -277px;
+}
+
+/************** Account Details Page ******************/
+.account-details h1{
+	margin: 36px 0 0;
+	font-size: 42px;
+	color: #0099ff;
+	font-weight: 200;
+}
+
+.account-details h1 span{
+	display: block;
+	margin-top: 21px;
+	font-weight: 200;
+	font-size: 14px;
+	color: #18222b;
+}
+
+.account-details .input-form form{
+	width: 65.6%;
+	margin: 94px auto 0;
+}
+
+.account-details .input-form form div{
+	width: 100%;
+	border-bottom: solid 1px #ececec;
+	padding-bottom: 40px;
+}
+
+.account-details .input-form form div input{
+	width: 310px;
+	height: 40px;
+	border-radius: 20px;
+	border: solid 1px #e5e8e9;
+	padding-left: 20px;
+	font-size: 12px;
+	color: #849598;
+	background: #fff;
+	display: block;
+	margin: 0 auto 20px;
+}
+
+.account-details .credit-cards > div > div > button,
+.account-details .input-form form div button{
+	width: 148px;
+	height: 40px;
+	margin: 0 auto;
+	font-size: 12px;
+	color: #fff;
+	display: block;
+	border-radius: 20px;
+	background: #0099ff;
+	border: solid 1px #0099ff;
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+}
+
+.account-details .credit-cards > div > div > button:hover,
+.account-details .input-form form div button:hover{
+	background: #fff;
+	color: #0099ff;
+}
+
+.account-details .bills-table h3,
+.account-details .credit-cards > div > div h3,
+.account-details .input-form form div h3{
+	font-size: 18px;
+	color: #0099ff;
+	font-weight: 200;
+	margin: 40px 0 16px;
+	text-align: center;
+}
+
+.account-details .credit-cards > div > div{
+	width: 65.6%;
+	margin: 0 auto;
+	border-bottom: solid 1px #ececec;
+	padding-bottom: 40px;
+}
+
+.account-details .credit-cards > div > div > div{
+	float: left;
+	width: 310px;
+	height: 255px;
+	border-radius:5px;
+	border: solid 1px #0099ff;
+	background: #d9f0ff;
+	overflow: hidden;
+	margin-bottom: 40px;
+	position: relative;
+}
+
+.account-details .credit-cards > div > div > div + div{
+	float: right;
+}
+
+.account-details .credit-cards > div > div > div h4{
+	font-size: 18px;
+	color: #333;
+	float: left;
+	margin: 20px 0 0 20px;
+}
+
+.account-details .credit-cards > div > div > div span.card-logo{
+	float: right;
+	display: block;
+	width: 60px;
+	height: 39px;
+	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/card-logos.png');
+	background-repeat: no-repeat;
+}
+
+.account-details .credit-cards > div > div > div span.card-logo.mastercard{
+	background-position: right top;
+}
+
+.account-details .credit-cards > div > div > div span.card-logo.american-express{
+	background-position: right bottom;
+}
+
+.account-details .credit-cards > div > div > div p.ending-numbers{
+	font-size: 12px;
+	color: #333;
+	margin: 0;
+	padding: 43px 0 27px 40px;
+	clear: both;
+}
+
+.account-details .credit-cards > div > div > div p.address{
+	font-size: 18px;
+	font-weight: 200;
+	color: #0099ff;
+	margin: 0 0 45px 30px;
+	line-height: 36px;
+}
+
+.account-details .credit-cards > div > div > div div.buttons{
+	position: absolute;
+	bottom: 0;
+	height: 40px;
+	width: 100%;
+}
+
+.account-details .credit-cards > div > div > div div.buttons a{
+	display: block;
+	height: 40px;
+	width: 154px;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+	font-size: 12px;
+}
+
+.account-details .credit-cards > div > div > div div.buttons a.edit-button{
+	background: #0099ff;
+}
+
+.account-details .credit-cards > div > div > div div.buttons a.delete-button{
+	background: #ff5b4a;
+}
+
+.account-details .credit-cards > div > div > button{
+	clear: both;
+}
+
+.account-details .bills-table{
+	width: 65.6%;
+	margin: 0 auto;
+}
+
+.account-details .bills-table .table-head{
+	height: 40px;
+	width: 100%;
+	border: none;
+	background: #c9eaff;
+	border-radius: 5px;
+	margin: 0 0 20px;
+	overflow: hidden;
+}
+
+.account-details .bills-table .table-data{
+	width: 100%;
+	height: 38px;
+	overflow: hidden;
+	border: solid 1px #b0bfc1;
+	border-radius: 5px;
+	margin: 0 0 10px;
+}
+
+.account-details .bills-table .table-data p,
+.account-details .bills-table .table-head p{
+	float: left;
+	font-size: 12px;
+	color: #18222b;
+	margin: 0;
+	line-height: 40px;
+}
+
+.account-details .bills-table .table-data p{
+	line-height: 38px;
+}
+
+.account-details .bills-table .table-data p.invoice-number,
+.account-details .bills-table .table-head p.invoice-number{
+	width: 26.2%;
+	padding-left: 20px;
+}
+
+.account-details .bills-table .table-data p.course,
+.account-details .bills-table .table-head p.course{
+	width: 39.3%;
+}
+
+.account-details .bills-table .table-data p.price,
+.account-details .bills-table .table-head p.price{
+	width: 22.4%;
+}
+
+.account-details .bills-table .table-head p.details{
+	width: 12%;
+}
+
+.account-details .bills-table .table-data a.details{
+	width: 12%;
+	background: #0099ff;
+	color: #fff;
+	font-size: 12px;
+	line-height: 38px;
+	height: 100%;
+	float: right;
+	display: block;
+	text-align: center;
+}
+
+.account-details .bills{
+	padding-bottom: 150px;
+}
 /************** Create a Course***********/
 .create-course h1{
 	color: #0099ff;

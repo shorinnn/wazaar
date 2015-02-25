@@ -711,6 +711,7 @@ function fullScreen(){
 }
 
 function skinVideoControls(){
+    if( $('video').length==0) return;
 	//INITIALIZE
 	var video = $('#myVideo');
 
@@ -728,9 +729,6 @@ function skinVideoControls(){
 		//set video properties
 		$('.current').text(timeFormat(0));
 
-		//start to get video buffering data 
-		setTimeout(startBuffer, 150);
-			
 	});
 	
 	//display current video play time
@@ -762,23 +760,17 @@ function skinVideoControls(){
 	};
 
 	//fullscreen button clicked
-	$('.btnFS').on('click', function() {
-        if(video[0].webkitEnterFullscreen) {
+    $('.btnFS').on('click', function() {
+        if($.isFunction(video[0].webkitEnterFullscreen)) {
             video[0].webkitEnterFullscreen();
         }
-        else if (video[0].mozRequestFullScreen) {
+        else if ($.isFunction(video[0].mozRequestFullScreen)) {
             video[0].mozRequestFullScreen();
-        }
-        else if (video[0].msFullscreenElement) {
-            video[0].msFullscreenElement();
-        }
-        else if (video[0].fullscreenElement) {
-            video[0].fullscreenElement();
         }
         else {
             alert('Your browsers doesn\'t support fullscreen');
         }
-	});
+    });
 	
 	//sound button clicked
 	$('.sound').click(function() {

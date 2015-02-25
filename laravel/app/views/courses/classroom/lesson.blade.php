@@ -14,7 +14,7 @@
                         </video>
                     @else
                     <div class="videoContainer">
-                        <video id="myVideo" preload="auto">
+                        <video id="myVideo" preload="auto" controls>
                             <source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                             ->first()->video_url }}" type="video/mp4">
                         	<p>Your browser does not support the video tag.</p>

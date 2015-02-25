@@ -3,44 +3,64 @@
     
         <div class="classrooms-wrapper">
         	<section class="video-container text-center">
-                <!--<video>
-                
-                </video>-->
-                <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/sample-video-poster.jpg" class="img-responsive" alt="">
-                <span class="centered-play-button"></span>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                    <span class="sr-only">60% Complete</span>
-                  </div>
-                </div>
-                <div class="video-controls">
-                	<div>
-                        <div class="volume-control">
-                            <div>
-                                <div class="volume-bar">
-                                    <span></span>
-                                </div>
-                            </div>
-                            <span class="caret"></span>
-                        </div>
-                    	<span class="play-button"></span>
-                        <span class="volume-button"></span>
-                        <span class="full-screen-button"></span>
-                    </div>
-                </div>-->
+            	<div class="top-notification-bar"><span></span>You have 2 replies / Comments</div>
                 @if($video)
                     @if( Agent::isMobile() )
                     <video height=300 controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
                                     ->first()->video_url }}" type="video/mp4"></video>
                     @else
-                    <video height=300 controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
-                                    ->first()->video_url }}" type="video/mp4"></video>
+                    <div class="videoContainer">
+                        <video id="myVideo" preload="auto" controls>
+                            <source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                            ->first()->video_url }}" type="video/mp4">
+                        	<p>Your browser does not support the video tag.</p>
+                        </video> 
+                        <div>                       
+                            <div class="control">
+                                <div class="topControl">
+                                    <div class="progress">
+                                        <span class="bufferBar"></span>
+                                        <span class="timeBar"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="btmControl clearfix">
+                                    <div class="btnPlay btn" title="Play/Pause video"></div>
+                                    <div class="sound sound2 btn" title="Mute/Unmute sound"></div>
+                                    <div class="volume-container">
+                                        <div class="volume" title="Set volume">
+                                            <span class="volumeBar">
+                                                <em></em>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="btnFS btn" title="Switch to full screen"></div>
+                                    <div class="time">
+                                        <span class="current"></span> / 
+                                        <span class="duration"></span> 
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="loading"></div>
+                    </div>
+                    <span class="centered-play-button"></span>
                     @endif
                 @endif
             </section>
             <section class="classroom-content container">
             	<div class="row">
                 	<div class="col-md-6">
+                    	<div class="additional-lesson-conntent">
+                        	<h3>Additional lesson content</h3>
+                            <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                            </p>
+                            <a href="#" class="read-more">READ MORE</a>
+                        </div>
                     	<div class="header blue clearfix">
                         	<h2>ASK<small>THE TEACHER</small></h2>
                             <div class="avater hidden-xs">
@@ -68,20 +88,39 @@
                         </div>
                     </div>
                 	<div class="col-md-6">
-                    	<div class="header green clearfix">
-                        	<h2>
-                                    @if( !$student->nextLesson($course))
-                                        Completed all lessons - decide what to put here
+                    	<div class="accompanying-material">
+                        	<h3>Accompanying material</h3>
+                        	<div class="pdf">
+                            	<span>pdf</span>
+                                <p>The beginner's manual</p>
+                                <a href="#">Download</a>
+                            </div>
+                        	<div class="zip">
+                            	<span>zip</span>
+                                <p>Sample Script</p>
+                                <a href="#">Download</a>
+                            </div>
+                        	<div class="zip">
+                            	<span>zip</span>
+                                <p>Sample Script</p>
+                                <a href="#">Download</a>
+                            </div>
+                            
+                        </div>
+                        <div class="header green clearfix">
+                            <h2>
+                                @if( !$student->nextLesson($course))
+                                    Completed all lessons - decide what to put here
+                                @else
+                                    <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'module' => $student->nextLesson($course)->module->slug , 'lesson' => $student->nextLesson($course)->slug ] ) }}">
+                                    @if( $student->viewedLessons->count()==0 )
+                                        BEGIN <small>FIRST LESSON</small>
                                     @else
-                                        <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'module' => $student->nextLesson($course)->module->slug , 'lesson' => $student->nextLesson($course)->slug ] ) }}">
-                                        @if( $student->viewedLessons->count()==0 )
-                                            BEGIN <small>FIRST LESSON</small>
-                                        @else
-                                            CONTINUE <small>Where you left off</small>
-                                        @endif
-                                        </a>
+                                        CONTINUE <small>Where you left off</small>
                                     @endif
-                                </h2>
+                                    </a>
+                                @endif
+                            </h2>
                         </div>
                         <p class="lead">In the next lesson you will learn</p>
                         <div class="white-box">
