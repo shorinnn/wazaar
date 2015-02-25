@@ -284,7 +284,7 @@ class AnalyticsHelper
         $filterQuery = "DATE(created_at) = '{$dateFilter}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND product_id = '{$courseId}'";
+            $filterQuery .= " AND course_id = '{$courseId}'";
         }
 
         $query = $this->_trackingCodesRawQuery($filterQuery);
@@ -556,7 +556,8 @@ class AnalyticsHelper
         }
 
         if (!$this->isAdmin AND !empty($this->affiliateId)){
-            $criteria .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
+            //$criteria .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
+            $criteria .= " AND (purchases.product_affiliate_id = '{$this->affiliateId}' )";
         }
 
         $sql = "SELECT courses.id, courses.`name`, SUM(purchases.purchase_price) as 'total_purchase'
@@ -576,7 +577,9 @@ class AnalyticsHelper
         }
 
         if (!$this->isAdmin AND !empty($this->affiliateId)){
-            $criteria .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
+            //$criteria .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
+            $criteria .= " AND (purchases.product_affiliate_id = '{$this->affiliateId}' )";
+
         }
 
         $sql = "SELECT created_at, SUM(purchases.purchase_price) as 'total_purchase'
@@ -617,8 +620,10 @@ class AnalyticsHelper
         $criteriaPurchase2 = $criteria;
         if (!$this->isAdmin AND !empty($this->affiliateId)){
             $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
-            $criteriaPurchase .= " AND (cp.ltc_affiliate_id = '{$this->affiliateId}' OR cp.product_affiliate_id = '{$this->affiliateId}' )";
-            $criteriaPurchase2 .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
+            //$criteriaPurchase .= " AND (cp.ltc_affiliate_id = '{$this->affiliateId}' OR cp.product_affiliate_id = '{$this->affiliateId}' )";
+            //$criteriaPurchase2 .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
+            $criteriaPurchase .= " AND cp.product_affiliate_id = '{$this->affiliateId}'";
+            $criteriaPurchase2 .= " AND purchases.product_affiliate_id = '{$this->affiliateId}'";
         }
 
         $sql = "SELECT courses.`name`, cp.product_id,
@@ -685,8 +690,8 @@ class AnalyticsHelper
     private function _codeStatisticsRawQuery($courseId, $code, $criteria = '')
     {
         $sql = "SELECT (SELECT count(id) FROM tracking_code_hits WHERE tracking_code = '{$code}' AND course_id = '{$courseId}' {$criteria}) as 'hits',
-			           (SELECT count(id) FROM purchases WHERE tracking_code = '{$code}' AND course_id = '{$courseId}' {$criteria}) as 'sales_count',
-                       (SELECT sum(purchase_price) FROM purchases WHERE tracking_code = '{$code}' AND course_id = '{$courseId}' {$criteria}) as 'sales_total' ";
+			           (SELECT count(id) FROM purchases WHERE tracking_code = '{$code}' AND product_id = '{$courseId}' {$criteria}) as 'sales_count',
+                       (SELECT sum(purchase_price) FROM purchases WHERE tracking_code = '{$code}' AND product_id = '{$courseId}' {$criteria}) as 'sales_total' ";
 
         return $sql;
     }

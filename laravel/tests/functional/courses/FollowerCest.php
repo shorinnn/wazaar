@@ -6,12 +6,11 @@ class FollowerCest{
         $I->haveEnabledFilters();
     }
 
-    public function redirectIfNotLoggedIn(FunctionalTester $I){
+    public function notFollowIfNotLoggedIn(FunctionalTester $I){
         $course = Course::where('name', 'App Development')->first();
         $I->dontSeeAuthentication();
         $I->amOnPage('/courses/'.$course->slug);
-        $I->click('FOLLOW');
-        $I->seeCurrentUrlEquals('/login');
+        $I->dontSee('FOLLOW');
     }
     
     public function followInstructor(FunctionalTester $I){

@@ -16,7 +16,7 @@ class ProfileController extends Controller
         $this->beforeFilter('auth', ['except' => 'polymorphicTest']);
     }
 
-    public function index($type = 'student')
+    public function index($type = '')
     {
         $isProfileNew = $this->userHelper->isProfileNew();
 
@@ -25,8 +25,15 @@ class ProfileController extends Controller
             return View::make('profile.new', compact('isProfileNew', 'step'));
         }
         else{
+            if (empty($type)) {
+                $type = $this->userHelper->activeProfileType();
+            }
             $profile = $this->userHelper->getProfileByType($type)->profile;
-            return View::make('profile.index', compact('profile','type'));
+            if (empty($profile)){
+                $profile =  $this->userHelper->createProfileFromType($type);
+            }
+
+            return View::make('profile.index', compact('profile', 'type'));
         }
     }
 

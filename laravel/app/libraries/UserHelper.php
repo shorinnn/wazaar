@@ -88,4 +88,43 @@ class UserHelper
             'last_name' => 'required'
         ];
     }
+
+    public function activeProfileType()
+    {
+        $return = '';
+        if (Auth::user()->hasRole('Student')){
+            $return = 'student';
+        }
+
+        if (Auth::user()->hasRole('Affiliate')){
+            $return = 'affiliate';
+        }
+
+        if (Auth::user()->hasRole('Instructor')){
+            $return = 'instructor';
+        }
+
+        return $return;
+    }
+
+    public function createProfileFromType($type)
+    {
+        $profile = new Profile;
+
+        $profile->email = 'email@email.com';
+        $profile->owner_type = ucfirst($type);
+        $profile->owner_id = Auth::id();
+
+        if ($type == 'student'){
+            return Student::find(Auth::id())->profile()->save($profile);
+        }
+
+        if ($type == 'instructor'){
+            return Instructor::find(Auth::id())->profile()->save($profile);
+        }
+
+        if ($type == 'affiliate'){
+            return LTCAffiliate::find(Auth::id())->profile()->save($profile);
+        }
+    }
 }

@@ -17,8 +17,8 @@
 <div class="container register-page">
 	<div class="row">
     	<div class="col-md-12">
-        	<a href="#" class="fb-button social-button">Sign up with Facebook</a>
-            <a href="#" class="google-button social-button">Sign up with Google</a>
+        	<a href="{{ url('login-with-facebook') }}" class="fb-button social-button">Sign in with Facebook</a>
+                <a href="{{url('login-with-google') }}" class="google-button social-button">Sign in with Google</a>
             <p class="or">Or</p>
         </div>
     </div>
@@ -62,7 +62,6 @@
                    data-instant-valid-callback="appendGreenBorder" />
 	        <p class="clearfix character-tip"><span class="block">Type in the password again</span></p>
         </div>
-        <input class="form-control" type="hidden" name="instructor" id="instructor" value="{{{ $instructor }}}">
 
         
 

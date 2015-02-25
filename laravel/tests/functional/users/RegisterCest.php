@@ -28,12 +28,25 @@ class RegisterCest{
     
     public function registerAsInstructor(FunctionalTester $I){
         $I->amOnPage('/register/instructor');
+        $I->setCookie('register_instructor',1);
         $I->dontSeeAuthentication();
         $I->seeNumberOfElements('input[name=email]', 1);
         $I->submitForm('form', ['username' => 'new_student', 'email' => 'new_student@mailinator.com',
                                         'password' => 'passpass', 'password_confirmation' => 'passpass']);
         $I->seeAuthentication();
         $I->assertTrue(Auth::user()->hasRole('Instructor'));
+        $I->assertTrue(Auth::user()->hasRole('Student'));
+    }
+    
+    public function registerAsAffiliate(FunctionalTester $I){
+        $I->amOnPage('/register/affiliate');
+        $I->setCookie('register_affiliate',1);
+        $I->dontSeeAuthentication();
+        $I->seeNumberOfElements('input[name=email]', 1);
+        $I->submitForm('form', ['username' => 'new_student', 'email' => 'new_student@mailinator.com',
+                                        'password' => 'passpass', 'password_confirmation' => 'passpass']);
+        $I->seeAuthentication();
+        $I->assertTrue(Auth::user()->hasRole('Affiliate'));
         $I->assertTrue(Auth::user()->hasRole('Student'));
     }
     

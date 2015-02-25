@@ -15,7 +15,7 @@ class InstructorsController extends \BaseController {
         public function start($user){
             Session::set( 'url.intended', action('InstructorsController@become') );
             if($user=='new-user'){
-                return Redirect::to('register/1');
+                return Redirect::to('register/instructor');
             }
             else{
                 return Redirect::action('UsersController@login');
@@ -29,7 +29,7 @@ class InstructorsController extends \BaseController {
         
         public function doBecome(){
             $users = new UserRepository();
-            if($users->become( 'Instructor', Auth::user()) ){
+            if($users->become( 'Instructor', Auth::user() ) ){
                 return Redirect::action('InstructorsController@index')->withSuccess( trans('instructors/general.congratulations_become_instructor') );
             }
             else{

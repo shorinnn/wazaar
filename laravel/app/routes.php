@@ -157,33 +157,33 @@ Route::group(['prefix' => 'video'], function(){
     Route::post('sns/callback', 'SnsController@snsCallback');
     Route::get('{id}/json','VideosController@videoAndFormatsJson');
     Route::get('user/archive','VideosController@userArchive');
-
 });
 
 
-## Dashboard Group
+## Affiliate Dashboard Group
 Route::group(['prefix' => 'dashboard'], function (){
-    Route::get('/', 'DashboardController@index');
-    Route::get('topcourses/{frequency}/{courseId?}', 'DashboardController@topCoursesView');
-    Route::get('sales/{frequency}/{courseId?}', 'DashboardController@salesView');
-    Route::get('trackingcodessales/{frequency}/{courseId?}','DashboardController@trackingCodesSalesView');
-    Route::get('courseconversions/{frequency}/{courseId?}','DashboardController@courseConversionView');
-    Route::get('trackingcodeconversions/{frequency}/{courseId?}','DashboardController@trackingCodeConversionView');
-    Route::get('trackingcodehitssales/{frequency}/{courseId}/{code}','DashboardController@trackingCodeHitsSalesView');
-    Route::get('course/{id}/stats', 'DashboardController@courseStatistics');
-    Route::get('course/{id}/trackingcode/{code}/stats', 'DashboardController@courseTrackingCodesStatistics');
-    Route::get('course/{id}/trackingcode/{code}/stats/{frequency}','DashboardController@trackingCodeHitsSalesView');
-    Route::get('trackingcode/{code}/stats', 'DashboardController@trackingCodeStatistics');
+    Route::get('/', 'AffiliateDashboardController@index');
+    Route::get('topcourses/{frequency}/{courseId?}', 'AffiliateDashboardController@topCoursesView');
+    Route::get('sales/{frequency}/{courseId?}', 'AffiliateDashboardController@salesView');
+    Route::get('trackingcodessales/{frequency}/{courseId?}','AffiliateDashboardController@trackingCodesSalesView');
+    Route::get('courseconversions/{frequency}/{courseId?}','AffiliateDashboardController@courseConversionView');
+    Route::get('trackingcodeconversions/{frequency}/{courseId?}','AffiliateDashboardController@trackingCodeConversionView');
+    Route::get('trackingcodehitssales/{frequency}/{courseId}/{code}','AffiliateDashboardController@trackingCodeHitsSalesView');
+    Route::get('course/{id}/stats', 'AffiliateDashboardController@courseStatistics');
+    Route::get('course/{id}/trackingcode/{code}/stats', 'AffiliateDashboardController@courseTrackingCodesStatistics');
+    Route::get('course/{id}/trackingcode/{code}/stats/{frequency}','AffiliateDashboardController@trackingCodeHitsSalesView');
+    Route::get('trackingcode/{code}/stats', 'AffiliateDashboardController@trackingCodeStatistics');
 });
 
 Route::get('test', function (){
 
-    $aH = new AnalyticsHelper(0);
-
-    $s = $aH->salesLastFewYears(7);
-    echo '<pre>';
-    print_r($s);
-    echo '</pre>';
-    die;
-
+    if(Auth::user()->hasRole('Instructor')){
+       echo 'instructor';
+    }
+    if(Auth::user()->hasRole('Student')){
+        echo 'studdent';
+    }
+    if(Auth::user()->hasRole('Affiliate')){
+        echo 'affiliate';
+    }
 });

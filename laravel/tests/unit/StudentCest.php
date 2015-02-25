@@ -83,13 +83,13 @@ class StudentCest{
     
     public function storeProductAffiliate(UnitTester $I){
         $student = Student::where('username','student')->first();
-        $student->save();
         $course = Course::find(1);
+        Purchase::where('student_id', $student->id)->delete();
         $student->purchase($course, 5);
         $student = Student::where('username','student')->first();
         $I->assertTrue( $student->purchased($course) );
         $I->assertEquals(2, $student->ltc_affiliate_id);
-        $I->assertEquals(5, $student->purchases->last()->product_affiliate_id);
+        $I->assertEquals(5, $student->purchases->first()->product_affiliate_id);
     }
     
     public function saveReferralToDB(UnitTester $I){

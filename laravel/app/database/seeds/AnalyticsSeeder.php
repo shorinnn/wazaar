@@ -16,8 +16,8 @@ class AnalyticsSeeder extends DatabaseSeeder
                 'product_id' => $courseId,
                 'product_type' => 'Course',
                 'student_id' => $faker->randomElement([3,7]),
-                'ltc_affiliate_id' => 2,
-                'product_affiliate_id' => 5,
+                'ltc_affiliate_id' => 5,
+                'product_affiliate_id' => 2,
                 'purchase_price' => $faker->randomFloat(0,50,800),
                 'tracking_code' => $trackingCode,
                 'created_at' => $date,
@@ -34,7 +34,7 @@ class AnalyticsSeeder extends DatabaseSeeder
         }
 
         Purchase::insert($coursePurchases);
-        //TrackingCodeHits::insert($trackingCodeHits);
+        //TrackingCodeHits::insert($trackingCodeHits); TODO: uncomment this
     }
 
     private function _createFakeHits($hits)

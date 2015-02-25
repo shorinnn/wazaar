@@ -12,26 +12,26 @@
                     </div>
                     <div class="col-md-5 margin-top-15">
                         <div class="dropdown pull-right">
-                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                            <button class="btn btn-success" type="button" id="dropdownMenu1">
                                 {{trans('profile.' . $type)}} {{trans('profile.profile')}}
-                                <span class="caret"></span>
+                                
                             </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('profile/student')}}">{{trans('profile.student')}}</a></li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('profile/instructor')}}">{{trans('profile.instructor')}}</a></li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('profile/affiliate')}}">{{trans('profile.affiliate')}}</a></li>
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                 </div>
 
                 <hr/>
 
-                {{Form::open(['url' => 'profile/' . $profile->id . '/update', 'class' => 'form-horizontal', 'files' => true])}}
+                {{Form::open(['url' => 'profile/' . @$profile->id . '/update', 'class' => 'form-horizontal', 'files' => true])}}
                     <h4>{{trans('profile.headerPhoto')}}</h4>
                     <hr/>
                     <div class="text-center">
-                        <div class="margin-bottom-15"><img src="{{$profile->photo}}" alt=""/></div>
+                        <div class="margin-bottom-15"><img src="{{@$profile->photo}}" alt=""/></div>
                         <div class="form-group">
                             {{Form::file('profilePicture')}}
                             <span class="label label-warning">{{trans('profile.allowedPictureFormat')}}</span>

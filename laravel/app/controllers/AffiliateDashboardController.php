@@ -1,11 +1,12 @@
 <?php
 
-class DashboardController extends BaseController
+class AffiliateDashboardController extends BaseController
 {
     protected $analyticsHelper;
 
     public function __construct()
     {
+        $this->beforeFilter('affiliate');
         $this->analyticsHelper = new AnalyticsHelper((Auth::user()->username== 'superadmin' ? true : false), Auth::id());
     }
 
@@ -13,14 +14,7 @@ class DashboardController extends BaseController
     {
         //TODO: I'm not sure yet on how to identify if the current logged in user is a student, affiliate or admin, let's test username for now
 
-        if ( in_array(Auth::user()->username,['WazaarAffiliate', 'affiliate'])){
-            return $this->_affiliateDashboard();
-        }
-        elseif(Auth::user()->username == 'superadmin'){
-            return $this->_adminDashboard();
-        }
-
-        return $this->_studentDashboard();
+        return $this->_affiliateDashboard();
     }
 
     public function topCoursesView($frequency = '', $courseId = '')
