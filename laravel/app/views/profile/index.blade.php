@@ -12,9 +12,9 @@
                     </div>
                     <div class="col-md-5 margin-top-15">
                         <div class="dropdown pull-right">
-                            <button class="btn btn-success" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                            <button class="btn btn-success" type="button" id="dropdownMenu1">
                                 {{trans('profile.' . $type)}} {{trans('profile.profile')}}
-                                <span class="caret"></span>
+                                
                             </button>
                             <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('profile/student')}}">{{trans('profile.student')}}</a></li>

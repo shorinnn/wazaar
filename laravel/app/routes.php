@@ -177,12 +177,13 @@ Route::group(['prefix' => 'dashboard'], function (){
 
 Route::get('test', function (){
 
-    $aH = new AnalyticsHelper(0);
-
-    $s = $aH->salesLastFewYears(7);
-    echo '<pre>';
-    print_r($s);
-    echo '</pre>';
-    die;
-
+    if(Auth::user()->hasRole('Instructor')){
+       echo 'instructor';
+    }
+    if(Auth::user()->hasRole('Student')){
+        echo 'studdent';
+    }
+    if(Auth::user()->hasRole('Affiliate')){
+        echo 'affiliate';
+    }
 });

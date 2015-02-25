@@ -91,19 +91,20 @@ class UserHelper
 
     public function activeProfileType()
     {
+        $return = '';
         if (Auth::user()->hasRole('Student')){
-            return 'student';
+            $return = 'student';
         }
 
         if (Auth::user()->hasRole('Affiliate')){
-            return 'affiliate';
+            $return = 'affiliate';
         }
 
         if (Auth::user()->hasRole('Instructor')){
-            return 'instructor';
+            $return = 'instructor';
         }
 
-        return null;
+        return $return;
     }
 
     public function createProfileFromType($type)
