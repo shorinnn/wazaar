@@ -363,10 +363,10 @@ function stepsScrollAnimation(){
  */
 function floatingNav(){
     // this checks the current top position of the nav and stores it in a variable.
-    if( $(".main-nav-section").length == 0 )return false;
-    var max_scroll = $(".main-nav-section").position().top;
+    if( $(".main-nav-section, .fixed-menu").length == 0 )return false;
+    var max_scroll = $(".main-nav-section, .fixed-menu").position().top;
     $(window).scroll(function () {
-        var navbar = $(".main-nav-section");
+        var navbar = $(".main-nav-section, .fixed-menu");
 
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         if (scrollTop > max_scroll && !navbar.is(".filterbuttonFixed")) {
