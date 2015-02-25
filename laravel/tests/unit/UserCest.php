@@ -18,8 +18,9 @@ class UserCest{
         $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 
             'password_confirmation' => 'pass', 'confirmation_code' => 'a'];
         $user = new User($data);
-        $user->save();
+        $I->assertTrue( $user->save() );
         $this->users->attachRoles($user);
+        $user = User::find( $user->id );
         $I->assertTrue($user->hasRole('Student'));
         $I->assertFalse($user->hasRole('Instructor'));
         $I->assertFalse($user->hasRole('Admin'));
@@ -31,6 +32,7 @@ class UserCest{
         $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 'password_confirmation' => 'pass'];
         $user = $this->users->signup($data);
         $I->assertTrue($user->save());
+        $user = User::find( $user->id );
         $I->assertTrue($user->hasRole('Student'));
         $I->assertFalse($user->hasRole('Instructor'));
         $I->assertFalse($user->hasRole('Admin'));
@@ -40,9 +42,10 @@ class UserCest{
     public function makeUserStudentAndInstructor(UnitTester $I){
         User::unguard();
         $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 
-            'password_confirmation' => 'pass', 'instructor' => 1];
-        $user = $this->users->signup($data);
+            'password_confirmation' => 'pass'];
+        $user = $this->users->signup( $data, null, [ 'instructor' => 1 ] );
         $I->assertTrue($user->save());
+        $user = User::find( $user->id );
         $I->assertTrue($user->hasRole('Student'));
         $I->assertTrue($user->hasRole('Instructor'));
         $I->assertFalse($user->hasRole('Admin'));
@@ -54,6 +57,7 @@ class UserCest{
         $data = ['id' => '123', 'email' => 'fbUser@mailinator.com', 'first_name' => 'First', 'last_name' => 'Last', 'link' => 'link'];
         $user = $this->users->signupWithFacebook($data);
         $I->assertTrue($user->save());
+        $user = User::find( $user->id );
         $I->assertTrue($user->hasRole('Student'));
         $I->assertFalse($user->hasRole('Instructor'));
         $I->assertFalse($user->hasRole('Admin'));
@@ -65,6 +69,7 @@ class UserCest{
         $data = ['id' => '123', 'email' => 'fbUser@mailinator.com', 'given_name' => 'First', 'family_name' => 'Last', 'link' => 'link'];
         $user = $this->users->signupWithGoogle($data);
         $I->assertTrue($user->save());
+        $user = User::find( $user->id );
         $I->assertTrue($user->hasRole('Student'));
         $I->assertFalse($user->hasRole('Instructor'));
         $I->assertFalse($user->hasRole('Admin'));

@@ -79,6 +79,8 @@ class UserRepository
         if( !$user->hasRole('Student') && $instructor === 0){
             $studentRole = Role::where('name','=','Student')->first();
             $user->attachRole( $studentRole );
+            $user->affiliate_id = $user->id;
+            $user->save();
         }
         // user signs up for a instructor account
         if($instructor==1){
@@ -349,10 +351,9 @@ class UserRepository
         catch(Exception $e){ 
             throw $e;
         }
-        
         if( $user->hasRole($role->name) ) return false;
 
-        $user = $user->attachRole($role);
+        $user->attachRole($role);
         // default the affiliate ID to the user ID
         $user->affiliate_id = $user->id;
         $user->save();
