@@ -3082,6 +3082,10 @@ a.load-remote > *{
 	/*margin: 0 0 200px;*/
 }
 
+.classroom-content .curriculum .lessons li{
+	/*overflow: hidden;*/
+}
+
 .classroom-content .curriculum .lessons li a{
 	display: block;
 	width: 100%;
@@ -3089,6 +3093,7 @@ a.load-remote > *{
 	border-radius: 5px;
 	line-height: 64px;
 	color: #fff;
+	position: relative;
 	margin-bottom: 10px;
 }
 
