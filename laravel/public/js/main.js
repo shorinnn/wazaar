@@ -784,11 +784,7 @@ function skinVideoControls(){
 	});
 	
 	//VIDEO EVENTS
-	//video canplay event
-	video.on('canplay', function() {
-		$('.loading').fadeOut(100);
-	});
-	
+
 	//video canplaythrough event
 	//solve Chrome cache issue
 	var completeloaded = false;
@@ -802,22 +798,10 @@ function skinVideoControls(){
 		video[0].pause();
 	});
 
-	//video seeking event
-	video.on('seeking', function() {
-		//if video fully loaded, ignore loading screen
-		if(!completeloaded) { 
-			$('.loading').fadeIn(200);
-		}	
-	});
-	
 	//video seeked event
 	video.on('seeked', function() { });
 	
-	//video waiting for more data event
-	video.on('waiting', function() {
-		$('.loading').fadeIn(200);
-	});
-	
+
 	//VIDEO PROGRESS BAR
 	//when video timebar clicked
 	var timeDrag = false;	/* check for drag event */

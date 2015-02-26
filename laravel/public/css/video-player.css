@@ -346,8 +346,7 @@
 
 /* OTHERS CSS */
 /* video screen cover */
-.loading, #init{
-
+/*.loading, #init{
   position:absolute;
   top:0;
   left:0;
@@ -356,7 +355,7 @@
   background:url(loading.gif) no-repeat 50% 50%;
   z-index:2;
   display:none;
-}
+}*/
 
 .volume-container{
   height: 30px;
