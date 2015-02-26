@@ -3521,6 +3521,286 @@ a.load-remote > *{
 .account-details .bills{
 	padding-bottom: 150px;
 }
+
+/************ Questions *****************/
+
+.questions .top-buttons{
+	max-width: 614px;
+	margin: 60px auto 40px;
+}
+
+.questions .top-buttons a{
+	height: 42px;
+	max-width: 150px;
+	float: left;
+	border-radius: 21px;
+	display: block;
+	color: #fff;
+	padding: 0 20px 0 45px;
+	line-height: 42px;
+ 	font-size: 14px;
+	position: relative;
+	background-color: #0099ff;
+	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-17.png');
+	background-repeat: no-repeat;
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+}
+
+.questions .top-buttons a + a{
+	margin-left: 20px;
+}
+
+.questions .top-buttons a:hover{
+	background-color: #0669d1;
+}
+
+.questions .top-buttons a.dashboard-button{
+	background-position: 13px 9px;
+}
+
+.questions .top-buttons a.questions-button{
+	background-position: 15px -319px;
+}
+
+.questions .top-buttons a.comments-button{
+	background-position: 15px -36px;
+}
+
+.questions .top-buttons a.compliments-button{
+	background-position: 15px -367px;
+}
+
+.questions .top-buttons a span.notification{
+	position: absolute;
+	top: -4px;
+	right: -4px;
+	display: block;
+	text-align: center;
+	line-height: 15px;
+	border-radius: 20px;
+	border: solid 2px #fff;
+	font-size: 12px;
+	color:#fff;
+	background: #ff5b4a;
+	height: 20px;
+	width: 20px;
+}
+
+.questions .dropdown-container .menu-dropdown{
+	margin: 0 auto 40px;
+	width: 500px;
+	float: none;
+}
+
+.questions .dropdown-container .menu-dropdown button{
+	width: 100%;
+	border-color: #849598;
+	overflow: hidden;
+	position: relative;
+}
+
+.questions .dropdown-container .menu-dropdown > ul{
+	width: 100%;
+}
+
+.questions .dropdown-container .menu-dropdown button::before{
+    content: "Jump to";
+    height: 36px;
+    position: absolute;
+    left: 0;
+    top: 0;
+	background: #b1bfc1;
+	line-height: 36px;
+    width: 17.5%;
+	text-align: center;
+	font-size: 14px;
+	color: #fff;
+}
+
+.questions .dropdown-container .menu-dropdown button::after{
+	margin-top: 0;
+	top: 10px;
+}
+
+.questions .dropdown-container .menu-dropdown button:hover{
+	border-color: #0099ff;
+}
+
+.questions .users-comments{
+	margin-bottom: 60px;
+}
+
+.questions .users-comments .title{
+	margin: 0 0 30px;
+}
+
+.questions .users-comments .title .lesson-chapter{
+	color: #849598;
+	font-size: 18px;
+	font-weight: 200;
+	text-align: left;
+	float: left;
+	padding-left: 15px;
+}
+
+.questions .users-comments .title .view-in-lesson{
+	float: left;
+	margin-left: 25%;
+	font-size: 14px;
+	color: #0099ff;
+}
+
+.questions .users-comments .reply-button{
+	width: 135px;
+	height: 42px;
+	border-radius: 4px;
+	background: #92cc2e;
+	display: block;
+	margin: 40px auto;
+	line-height: 42px;
+	text-align: center;
+	font-size: 14px;
+	color: #18222b;
+}
+
+.questions .users-comments .mark-as-resolved{
+    background: none repeat scroll 0 0 #0099ff;
+    border-radius: 0 0 5px 5px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+}
+
+.pagination-container ul li:last-of-type a {
+    background-position: center -31px;
+}
+
+.pagination-container ul li:first-of-type a {
+    background-position: center -1px;
+}
+
+.pagination-container .page-numbers-container {
+    clear: both;
+    margin: 0 auto;
+    max-width: 354px;
+    position: relative;
+}
+
+.questions .pagination-container{
+	margin: 40px 0 20px;
+}
+
+.questions .fixed-menu.filterbuttonFixed{
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.questions .fixed-menu{
+	width: 100%;
+	height: 135px;
+	background: #fff;
+	padding-bottom: 8px;
+	border-bottom: solid 1px #ececec;
+}
+
+.questions .fixed-menu > div{
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.questions .fixed-menu > div div.instructor{
+	float: left;
+}
+
+.questions .fixed-menu > div div.instructor img{
+	float: left;
+	margin: 6px 20px 0 0;
+}
+
+.questions .fixed-menu > div div.instructor h3{
+    color: #23313e;
+    font-size: 24px;
+	float: left;
+    font-weight: normal;
+    margin: 40px 0 7px;
+    text-align: center;
+}
+
+.questions .fixed-menu > div div.instructor span{
+    background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-3.png") no-repeat -4px -277px;
+    display: inline-block;
+    height: 20px;
+    margin-left: 7px;
+    position: relative;
+    top: 3px;
+    width: 20px;
+}
+
+.questions .fixed-menu > div div.instructor p{
+	color: #23313e;
+	font-size: 12px;
+}
+
+.questions .fixed-menu .buttons{
+	float: right;
+}
+
+.questions .fixed-menu .buttons a{
+	display: block;
+	color: #fff;
+	font-size: 12px;
+	margin-top: 47px;
+	text-align: center;
+	line-height: 28px;
+	text-transform: uppercase;
+	border-radius: 14px;
+}
+
+.questions .fixed-menu .buttons a.contact-button{
+	width: 123px;
+	height: 28px;
+	float: left;
+	text-decoration: none;
+	background: -moz-linear-gradient(left, #63dd81, #84e560, #94e84f);
+	background: -webkit-linear-gradient(left, #63dd81, #84e560, #94e84f);
+	background: -o-linear-gradient(left, #63dd81, #84e560, #94e84f);
+	background: -ms-linear-gradient(left, #63dd81, #84e560, #94e84f);
+	background: linear-gradient(left, #63dd81, #84e560, #94e84f);
+}
+
+.questions .fixed-menu .buttons a.contact-button:hover{
+	background: -moz-linear-gradient(left, #94e84f, #84e560, #63dd81);
+	background: -webkit-linear-gradient(left, #94e84f, #84e560, #63dd81);
+	background: -o-linear-gradient(left, #94e84f, #84e560, #63dd81);
+	background: -ms-linear-gradient(left, #94e84f, #84e560, #63dd81);
+	background: linear-gradient(left, #94e84f, #84e560, #63dd81);
+}
+
+.questions .fixed-menu .buttons a.follow-button{
+	width: 121px;
+	height: 26px;
+	float: right;
+	line-height: 24px;
+	margin-left: 20px;
+	border: solid 1px #0099ff;
+	background: #0099ff;
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+}
+
+.questions .fixed-menu .buttons a.follow-button:hover{
+	color: #0099ff;
+	background: #fff;
+}
+
+
 /************** Create a Course***********/
 .create-course h1{
 	color: #0099ff;

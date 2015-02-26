@@ -12,6 +12,7 @@ class Student extends User{
         'viewedLessons' => [ self::HAS_MANY, 'ViewedLesson' ],
         'wishlistItems' => [ self::HAS_MANY, 'WishlistItem' ],
         'testimonials' => [ self::HAS_MANY, 'Testimonial' ],
+        'transactions' => [ self::HAS_MANY, 'Transaction' ],
         'following' => [self::BELONGS_TO_MANY, 'Instructor',  'table' => 'follow_relationships',  'foreignKey' => 'student_id', 'otherKey' => 'instructor_id']
       ];
         
@@ -218,6 +219,106 @@ class Student extends User{
             else return $this->first_name.' '.$this->last_name;
         }
     }
+    
+    public function credit( $amount = 0 ){
+        $amount = doubleval($amount);
+        if( $amount < 1 ) return false;
+        return DB::transaction(function() use ($amount){
+            // create the transaction
+              $transaction = new Transaction();
+              $transaction->user_id = $this->id;
+              $transaction->amount = $amount;
+              $transaction->transaction_type = 'student_credit';
+              $transaction->details = trans('transactions.student_credit_transaction');
+              $transaction->status = 'complete';
+              if( $transaction->save() ){
+                  // increase balance
+                  $this->student_balance += $amount;
+                  if( $this->updateUniques() ) return true;
+                  else return false;
+              }
+              return false;
+         });
+    }
+    
+    public function balanceDebit( $amount = 0, $product = null ){
+        $amount = doubleval( $amount );
+        if( $amount < 1 || $product == null ) return false;
+        if( !is_a($product, 'Lesson') && !is_a($product, 'Course') ) return false;
+        if( !$product->id ) return false;
+        if( $amount > $this->student_balance ) return false;
+        return DB::transaction(function() use ($amount, $product ){
+            // create the transaction
+              $transaction = new Transaction();
+              $transaction->user_id = $this->id;
+              $transaction->amount = $amount;
+              $transaction->transaction_type = 'student_balance_debit';
+              $transaction->product_id = $product->id;
+              $transaction->product_type = get_class($product);
+              $transaction->status = 'pending';
+              if( $transaction->save() ){
+                  // increase balance
+                  $this->student_balance -= $amount;
+                  if( $this->updateUniques() ) return $transaction->id;
+                  else return false;
+              }
+              return false;
+         });
+    }
+    
+    public function refundBalanceDebit( $transaction ){
+        if( !is_a($transaction, 'Transaction' ) ) return false;
+        if( $transaction->user->id != $this->id ) return false;
+        if( $transaction->transaction_type != 'student_balance_debit' ) return false;
+        if( $transaction->status != 'pending' ) return false;
+        return DB::transaction(function() use ( $transaction ){
+            // create the transaction
+              $transaction->status = 'failed';
+              if( $transaction->save() ){
+                  $new_transaction = new Transaction();
+                  $new_transaction->user_id = $this->id;
+                  $new_transaction->amount = $transaction->amount;
+                  $new_transaction->transaction_type = 'student_balance_debit_refund';
+                  $new_transaction->details = trans('transactions.student_balance_debit_transaction_failed').' #'.$transaction->id;
+                  $new_transaction->product_id = $transaction->product_id;
+                  $new_transaction->product_type = $transaction->product_type;
+                  $new_transaction->status = 'complete';
+                  if( $new_transaction->save() ){
+                      
+                      $transaction->details = trans('refunded #'.$new_transaction->id);
+                      $transaction->save();
+                      
+                      // increase balance
+                      $this->student_balance += $transaction->amount;
+                      if( $this->updateUniques() ) return $new_transaction->id;
+                      else return false;
+                  }
+              }
+              return false;
+         });
+    }
+    
+     public function debit( $amount = 0, $product = null, $order = null, $reference = null, $gc_fee = 0 ){
+        $amount = doubleval( $amount );
+        if( $amount < 1 || $product == null ) return false;
+        if( !is_a($product, 'Lesson') && !is_a($product, 'Course') ) return false;
+        if( !$product->id ) return false;
+        return DB::transaction(function() use ($amount, $product, $order, $reference, $gc_fee){
+            // create the transaction
+              $transaction = new Transaction();
+              $transaction->user_id = $this->id;
+              $transaction->amount = $amount - $gc_fee;
+              $transaction->transaction_type = 'student_debit';
+              $transaction->details = trans('transactions.student_debit_transaction').' #'.$order;
+              $transaction->product_id = $product->id;
+              $transaction->product_type = get_class($product);
+              $transaction->reference = $reference;
+              $transaction->status = 'complete';
+              $transaction->gc_fee = $gc_fee;
+              if( $transaction->save() ) return true;
+              return false;
+         });
+     }
 
 
 
