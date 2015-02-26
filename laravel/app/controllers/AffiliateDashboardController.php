@@ -7,13 +7,11 @@ class AffiliateDashboardController extends BaseController
     public function __construct()
     {
         $this->beforeFilter('affiliate');
-        $this->analyticsHelper = new AnalyticsHelper((Auth::user()->username== 'superadmin' ? true : false), Auth::id());
+        $this->analyticsHelper = new AnalyticsHelper(false, Auth::id());
     }
 
     public function index()
     {
-        //TODO: I'm not sure yet on how to identify if the current logged in user is a student, affiliate or admin, let's test username for now
-
         return $this->_affiliateDashboard();
     }
 
@@ -100,8 +98,14 @@ class AffiliateDashboardController extends BaseController
             $trackingCodesSalesView = $this->trackingCodesSalesView('', $courseId);
             $salesView = $this->salesView('', $courseId);
             $trackingCodeConversionView = $this->trackingCodeConversionView('', $courseId);
-            return View::make('analytics.courseStatistics', compact('course','trackingCodesSalesView', 'salesView','trackingCodeConversionView','salesLabelData'));
+            $courses = ProductAffiliate::courses(Auth::id());
+            return View::make('analytics.courseStatistics', compact('course','trackingCodesSalesView', 'salesView','trackingCodeConversionView','salesLabelData', 'courses'));
         }
+    }
+
+    public function compareCourses()
+    {
+
     }
 
     public function courseTrackingCodesStatistics($courseId, $trackingCode)

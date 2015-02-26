@@ -62,4 +62,21 @@ class ProductAffiliate extends User{
      }
 
 
+    public static function courses($affiliateId)
+    {
+        if ($affiliateId){
+            $sql = "SELECT DISTINCT courses.id, courses.name, courses.short_description
+                    FROM purchases
+                    JOIN courses ON purchases.product_id = courses.id
+                    WHERE purchases.product_affiliate_id = {$affiliateId}
+                    AND purchases.product_type = 'Course'
+                   ";
+
+            return DB::select($sql);
+        }
+
+        return null;
+    }
+
+
 }

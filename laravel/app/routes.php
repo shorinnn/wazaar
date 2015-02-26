@@ -173,17 +173,11 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('course/{id}/trackingcode/{code}/stats', 'AffiliateDashboardController@courseTrackingCodesStatistics');
     Route::get('course/{id}/trackingcode/{code}/stats/{frequency}','AffiliateDashboardController@trackingCodeHitsSalesView');
     Route::get('trackingcode/{code}/stats', 'AffiliateDashboardController@trackingCodeStatistics');
+    Route::post('course/{courseId}/stats/compare','AffiliateDashboardController@compareCourses');
 });
 
 Route::get('test', function (){
+    $aff = ProductAffiliate::find(2);
 
-    if(Auth::user()->hasRole('Instructor')){
-       echo 'instructor';
-    }
-    if(Auth::user()->hasRole('Student')){
-        echo 'studdent';
-    }
-    if(Auth::user()->hasRole('Affiliate')){
-        echo 'affiliate';
-    }
+    dd($aff->courseReferrals()->count());
 });

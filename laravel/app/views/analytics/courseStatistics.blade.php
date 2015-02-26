@@ -101,7 +101,11 @@
             <hr/>
             <div class="row">
                 <div class="col-lg-12 margin-bottom-10">
-                    {{Form::select('courses',[1=>'Course 1', 2=>'Course 2', 'Course 3', 'Course 4', 'Course 5'],'',['id' => 'select-courses', 'multiple' => 'multiple', 'class' => 'form-control', 'placeholder' => 'Compare courses']);}}
+                    <select name="courses" id="select-courses" class="form-control" multiple="multiple">
+                        @foreach($courses as $affCourse)
+                        <option value="{{$affCourse->id}}">{{$affCourse->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
 
             </div>
@@ -182,20 +186,22 @@
                     {
                         label: "Weekly Sales",
                         fillColor: "rgba(0,220,220,0.2)",
-                        strokeColor: "rgb(0,153,255",
+                        strokeColor: "rgb(0,153,255)",
                         pointColor: "rgb(85,220,164)",
                         pointStrokeColor: "#fff",
                         pointHighlightFill: "rgb(85,220,164)",
                         pointHighlightStroke: "rgb(85,220,164)",
-                        multiTooltipTemplate : "<%= label %> $<%=value%>",
                         data: {{json_encode($salesLabelData['data'])}}
                     }
                 ]
+
             };
 
             // Get context with jQuery - using jQuery's .get() method.
             var ctx = $("#myChart").get(0).getContext("2d");
-            var myLineChart = new Chart(ctx).Line(data,{bezierCurve: false});
+            var myLineChart = new Chart(ctx).Line(data,{
+                bezierCurve: false
+            });
         });
     </script>
 @stop

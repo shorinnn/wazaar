@@ -14,13 +14,8 @@
                         <div class="dropdown pull-right">
                             <button class="btn btn-success" type="button" id="dropdownMenu1">
                                 {{trans('profile.' . $type)}} {{trans('profile.profile')}}
-                                
+
                             </button>
-                            <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('profile/student')}}">{{trans('profile.student')}}</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('profile/instructor')}}">{{trans('profile.instructor')}}</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('profile/affiliate')}}">{{trans('profile.affiliate')}}</a></li>
-                            </ul>-->
                         </div>
                     </div>
                 </div>
