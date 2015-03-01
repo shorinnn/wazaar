@@ -717,7 +717,9 @@ function skinVideoControls(){
 	//Set the width of the control to equal video width
 	if(video){
         var playerWidth = video.innerWidth();
+		var playerHeight = video.innerHeight();
 		$('.control').width(playerWidth);
+		$('.centered-play-button').css('top', (playerHeight/2) - 50);
 	}
 	//remove default control when JS loaded
 	video[0].removeAttribute("controls");
