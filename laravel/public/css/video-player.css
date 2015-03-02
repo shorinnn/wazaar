@@ -176,28 +176,28 @@
 
 /*** VIDEO CONTROLS CSS ***/
 /* control holder */
-.control{
+.video-container .control{
   background: #18222b;
   position:relative;
-	  left:0;
+  left:0;
   margin: 0 auto;
-  height: 100px;
+  height: 65px;
   z-index:5;
   display:none;
 }
 /* control top part */
-.topControl{
+.video-container .topControl{
   height: 5px;
   border-bottom:1px solid #404040;
   background: #283644;
 }
 /* control bottom part */
-.btmControl{
+.video-container .btmControl{
   clear:both;
   margin-top: 30px;
   padding: 0 5%;
 }
-.control div.btn {
+.video-container .control div.btn {
   display: block;
   float: left;
   width: 42px;
@@ -206,7 +206,7 @@
   background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-4.png");
   background-repeat: no-repeat;
 }
-.control div.text{
+.video-container .control div.text{
   font-size:12px;
   font-weight:bold;
   line-height:30px;
@@ -216,58 +216,58 @@
   border:none;
   color:#777;
 }
-.control div.btnPlay{
+.video-container .control div.btnPlay{
   background-position: center 5px;
   margin-right: 64px;
 }
-.control div.paused{
+.video-container .control div.paused{
   background-position: center bottom;
   margin-right: 64px;
 }
-.control div.btnStop{
+.video-container .control div.btnStop{
   background:url(control.png) no-repeat 0 -60px;
 }
-.control div.spdText{
+.video-container .control div.spdText{
   border:none;
   font-size:14px;
   line-height:30px;
   font-style:italic;
 }
-.control div.selected{
+.video-container .control div.selected{
   font-size:15px;
   color:#ccc;
 }
-.control div.sound{
+.video-container .control div.sound{
   background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/volume-control-icons.png') !important; 
   background-repeat: no-repeat;
   border:none;
   float:left;
 }
-.control div.sound2{
+.video-container .control div.sound2{
   background-position: left -92px;
 }
-.control div.sound3{
+.video-container .control div.sound3{
   background-position: left -45px;
 }
-.control div.muted{
+.video-container .control div.muted{
   background-position: left 4px;
 }
-.control div.btnFS{
+.video-container .control div.btnFS{
   background-position: center -281px;
   float: right;
 }
-.control div.btnLight{
+.video-container .control div.btnLight{
   background:url(control.png) no-repeat -44px -60px;
   border-left:1px solid #404040;
   float:right;
 }
-.control div.lighton{
+.video-container .control div.lighton{
   background:url(control.png) no-repeat -44px -30px !important;
 }
 
 /* PROGRESS BAR CSS */
 /* Progress bar */
-.progress {
+.video-container .progress {
   width: 100%;
   height:10px;
   position:relative;
@@ -284,19 +284,19 @@
   -moz-border-radius:10px;
   -webkit-border-radius:10px;
 }
-.progress span {
+.video-container .progress span {
   height:100%;
   position:absolute;
   top:0;
   left:0;
   display:block;
 }
-.timeBar{
+.video-container .timeBar{
   z-index:10;
   width:0;
   background: #8dc42c; /* fallback */
 }
-.bufferBar{
+.video-container .bufferBar{
   z-index:5;
   width:0;
   background: #777;
@@ -308,7 +308,7 @@
   -webkit-box-shadow:2px 0 5px #333;
 }
 /* time and duration */
-.time{
+.video-container .time{
   width:15%;
   float:right;
   margin-left: 5%;
@@ -320,7 +320,7 @@
 
 /* VOLUME BAR CSS */
 /* volume bar */
-.volume{
+.video-container .volume{
   position: absolute;
   height: 10px;
   width: 135px;
@@ -328,7 +328,7 @@
   border-radius: 10px;
   background: #cacccd;
 }
-.volumeBar{
+.video-container .volumeBar{
   display: block;
   background: #81b42c;
   width: 10px;
@@ -339,7 +339,7 @@
   border-radius: 10px;
 }
 
-.volumeBar em{
+.video-container .volumeBar em{
   display: inline-block;
   float: right;
   position: relative;
@@ -365,7 +365,7 @@
   display:none;
 }*/
 
-.volume-container{
+.video-container .volume-container{
   height: 30px;
   float: left;
   padding-left: 12px;
@@ -377,7 +377,7 @@
   display: block;
 }
 
-.volume-container .caret{
+.video-container .volume-container .caret{
   border-color: #18212a transparent;
   border-width: 7px 7px 0;
   position: absolute;
