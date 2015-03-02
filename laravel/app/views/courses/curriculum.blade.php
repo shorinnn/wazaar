@@ -1,11 +1,6 @@
 @extends('layouts.default')
 @section('content')	
 <style>
-    #modules-list > li{
-        border:1px solid gray;
-        background-color:silver;
-        padding:10px;
-    }
     
     .lessons > li{
         background-color: white;
@@ -119,35 +114,54 @@
         }
     }
     </style>
-<h1 class='icon'>{{$course->name}}</h1>    
-<div>
-    <div class="col-lg-6">
-        {{ trans('courses/create.by_the_end') }}
-        @foreach( json2Array($course->what_will_you_achieve) as $skill)
-            <p>{{ $skill }}</p>
-        @endforeach
-    </div>
-    <div class="col-lg-6">
-        {{ trans('courses/curriculum.for_those_who') }}
-        @foreach( json2Array($course->who_is_this_for) as $for)
-            <p>{{ $for }}</p>
-        @endforeach
-    </div>
+    <div class="container course-editor">
+    	<div class="row">
+        	<div class="col-md-12">
+            	<h1 class='icon'>{{$course->name}}</h1>   
+            </div>
+        </div>
+        <div class="row"> 
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="what-to-achieve">
+                    <h3>{{ trans('courses/create.by_the_end') }}</h3>
+                    @foreach( json2Array($course->what_will_you_achieve) as $skill)
+                        <ul>
+                            <li>{{ $skill }}</li>
+                        </ul>
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+            	<div class="who-for">
+                    <h3>{{ trans('courses/curriculum.for_those_who') }}</h3>
+                    @foreach( json2Array($course->who_is_this_for) as $for)
+                    	<ul>
+                        	<li>{{ $for }}</li>
+                        </ul>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-12">
+            	<div class="plan-your-curriculum">
+                    <h2>{{ trans('courses/curriculum.plan_out') }}
+                    <span>{{ trans('courses/curriculum.outline_modules') }}</span>
+                    </h2>
+                    <ul id="modules-list">
+                        @foreach($course->modules()->orderBy('order','ASC')->get() as $module)
+                            {{ View::make('courses.modules.module')->with(compact('module')) }}
+                        @endforeach
+                        <form method='post' class='ajax-form' id="modules-form" data-callback='addModule'
+                              action='{{ action('ModulesController@store',[$course->id] )}}'>
+                            <input type='hidden' name='_token' value='{{ csrf_token() }}' />
+                            <button type='submit' class='add-new-module'>{{ trans('crud/labels.add_module') }}</button>
+                        </form>
+                    </ul>                    
+                </div>
+            </div>
+        </div>
 </div>
-<h3>{{ trans('courses/curriculum.plan_out') }}</h3>
-<h4>{{ trans('courses/curriculum.outline_modules') }}</h4>
-<ul id="modules-list">
-    @foreach($course->modules()->orderBy('order','ASC')->get() as $module)
-        {{ View::make('courses.modules.module')->with(compact('module')) }}
-    @endforeach
-</ul>
-
-<form method='post' class='ajax-form' id="modules-form" data-callback='addModule'
-      action='{{ action('ModulesController@store',[$course->id] )}}'>
-    <input type='hidden' name='_token' value='{{ csrf_token() }}' />
-    <button type='submit' class='btn btn-primary'>{{ trans('crud/labels.add_module') }}</button>
-</form>
-
 @include('videos.archiveModal')
 @stop
 
