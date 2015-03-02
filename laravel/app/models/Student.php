@@ -13,8 +13,33 @@ class Student extends User{
         'wishlistItems' => [ self::HAS_MANY, 'WishlistItem' ],
         'testimonials' => [ self::HAS_MANY, 'Testimonial' ],
         'transactions' => [ self::HAS_MANY, 'Transaction' ],
-        'following' => [self::BELONGS_TO_MANY, 'Instructor',  'table' => 'follow_relationships',  'foreignKey' => 'student_id', 'otherKey' => 'instructor_id']
+        'following' => [self::BELONGS_TO_MANY, 'Instructor',  'table' => 'follow_relationships',  'foreignKey' => 'student_id', 'otherKey' => 'instructor_id'],
+        'sentMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'sender_id' ],
+        'receivedMessagesRel' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'recipient_id' ],
       ];
+    
+    public function receivedMessages(){
+        $mass = [0];
+        $courses = $this->purchases()->where('product_type','Course')->lists('product_id');
+        if( count($courses) > 0){
+            $mass = PrivateMessage::whereIn('course_id', $courses)->where('type','mass_message')->lists('id');
+            if( count($mass) == 0 ){
+                $mass = [0];
+            }
+        }
+        
+        $non_mass = $this->receivedMessagesRel()->lists('id');
+        if( count($non_mass) == 0) $non_mass = [0];
+        
+        $return = PrivateMessage::where(function($query) use($mass, $non_mass){
+            $query->whereIn('id', $mass)->orWhere(function($query) use($non_mass)
+            {
+                $query->whereIn('id', $non_mass);
+            });
+        });
+            
+        return $return;
+    }
         
     public function manyThroughMany($related, $through, $firstKey, $secondKey, $pivotKey)
     {
