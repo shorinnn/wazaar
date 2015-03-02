@@ -9,7 +9,9 @@ class Instructor extends User{
         'coursePreviewImages' => [self::HAS_MANY, 'CoursePreviewImage'],
         'courseBannerImages' => [self::HAS_MANY, 'CourseBannerImage'],
         'profile' => [self::MORPH_ONE, 'Profile', 'name'=>'owner'],
-        'followers' => [self::BELONGS_TO_MANY, 'Student',  'table' => 'follow_relationships',  'foreignKey' => 'instructor_id', 'otherKey' => 'student_id']
+        'followers' => [self::BELONGS_TO_MANY, 'Student',  'table' => 'follow_relationships',  'foreignKey' => 'instructor_id', 'otherKey' => 'student_id'],
+        'sentMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'sender_id' ],
+        'receivedMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'recipient_id' ],
       ];
     
     public function totalSales(){
