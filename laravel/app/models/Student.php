@@ -235,7 +235,7 @@ class Student extends User{
         return false;
     }
 
-    public function commentName(){
+    public function commentName($userType=null){
         if( $this->profile ){
             return $this->profile->first_name.' '.$this->profile->last_name;
         }

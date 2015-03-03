@@ -71,6 +71,7 @@
         <script src="{{url("js/jquery.mousewheel.js")}}"></script>
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
         <script src="{{url("js/main.js")}}"></script>
+        <script src="{{url("js/messages.js")}}"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
         <script src="http://www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
@@ -89,6 +90,7 @@
         <script src="{{url("js/jquery.mousewheel.js")}}"></script>
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
         <script src="{{url("js/main.js")}}"></script>
+        <script src="{{url("js/messages.js")}}"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
         <script src="http://www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>

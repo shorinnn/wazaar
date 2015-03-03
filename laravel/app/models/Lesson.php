@@ -9,6 +9,7 @@ class Lesson extends Ardent {
         'module' => array(self::BELONGS_TO, 'Module'),
         'blocks' => array(self::HAS_MANY, 'Block'),
         'comments' => array(self::HAS_MANY, 'Conversation'),
+        'privateMessages' => array(self::HAS_MANY, 'PrivateMessage'),
         'sales' => array(self::MORPH_MANY, 'Purchase', 'name' => 'product' ),
     );
     public static $rules = [

@@ -37,6 +37,9 @@
                         <a class="settings-button" href="#">{{trans('site/menus.settings')}}</a>
                     </li>
                     <li>
+                        <a class="settings-button" href="{{ action('PrivateMessagesController@index') }}">{{trans('site/menus.messages')}}</a>
+                    </li>
+                    <li>
                         <a class="settings-button" href="{{url('logout')}}">{{trans('site/menus.logout')}}</a>
                     </li>
                 </ul>
