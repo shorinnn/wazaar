@@ -657,7 +657,7 @@ function fullScreen(){
         //Adjust some elements' properties to adapt on fullscreen
         $('#curriculum > div > div').height($browserHeight);
         $('.lessons').height('100%');
-        $(".lessons li a").show().css({'top':'200px', 'opacity': '0'});
+        $("#curriculum .lessons li a").show().css({'top':'200px', 'opacity': '0'});
         TweenMax.staggerTo(('.module-lesson'), 0.7, {top: '0', opacity: '1', ease:Power4.easeOut}, 0.1);
         $('.jspContainer').height('90%');
         $('.jspPane').css({'padding': '0 0 0 1%'});

@@ -18,18 +18,25 @@
 
 
     </div>
-    <h3>{{trans('video.uploadOr')}} <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}">{{trans('video.selectExisting')}}</a></h3>
-    <p>{{trans('video.formatsSupported')}}</p>
-    <p>{{trans('video.maxFileSize')}}</p>
-
-    {{Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])}}
+    <h3><!--{{trans('video.uploadOr')}} -->
         <div class="form-inline">
-            <div class="form-group">
-                <input type="file" name="fileupload" id="fileupload-{{$block->id}}">
+        	<input disabled="disabled" placeholder="" id="uploadFile" style="">
+            <div class="form-group video-upload clear">
+	            <span>Upload Video</span>
+                <input type="file" name="fileupload" class="upload" id="fileupload-{{$block->id}}">
             </div>
-            <hr/>
+            <em>OR</em>
+            <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}">{{trans('video.selectExisting')}}</a></h3>
+            <p class="video-info">{{trans('video.formatsSupported')}}</p>
+            <p class="video-info">{{trans('video.maxFileSize')}}</p>
 
         </div>
+        <!--<div class="video-upload fileUpload btn btn-primary clear">
+            <span>Upload Video</span>
+            <p>Lorem ipsum description here</p>
+        </div>-->
+
+    {{Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])}}
         <!-- Progress Bar -->
         <div class="progress">
             <div id="progress-bar-{{$block->id}}" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
