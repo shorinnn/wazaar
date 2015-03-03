@@ -15,6 +15,7 @@ return array(
     'cant_discount_more_than_price' => 'Discount cannot be greater than original price',
     'no_negative_discounts' => 'Cannot use negative discounts',
     'edit_details' => 'Edit Details',
+	'edit' => 'Edit',
     'manage_lessons' => 'Manage Lessons',
     'max_upload_error' => "You've reached the file upload limit for this lesson",
     'all_my_courses' => "Back to all my courses",
