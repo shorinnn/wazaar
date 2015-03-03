@@ -5,7 +5,6 @@
     .lessons > li{
         background-color: white;
         padding:10px;
-        border-bottom: 1px solid gray;
     }
     .inline-block{
         display:inline-block;
@@ -152,12 +151,12 @@
                         @foreach($course->modules()->orderBy('order','ASC')->get() as $module)
                             {{ View::make('courses.modules.module')->with(compact('module')) }}
                         @endforeach
-                        <form method='post' class='ajax-form' id="modules-form" data-callback='addModule'
-                              action='{{ action('ModulesController@store',[$course->id] )}}'>
-                            <input type='hidden' name='_token' value='{{ csrf_token() }}' />
-                            <button type='submit' class='add-new-module'>{{ trans('crud/labels.add_module') }}</button>
-                        </form>
                     </ul>                    
+                    <form method='post' class='ajax-form' id="modules-form" data-callback='addModule'
+                          action='{{ action('ModulesController@store',[$course->id] )}}'>
+                        <input type='hidden' name='_token' value='{{ csrf_token() }}' />
+                        <button type='submit' class='add-new-module'>{{ trans('crud/labels.add_module') }}</button>
+                    </form>
                 </div>
             </div>
         </div>
