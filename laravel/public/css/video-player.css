@@ -8,8 +8,9 @@
 	min-width: 100%;
 }
 
-.video-container > video{
-	margin-bottom: -2px;
+.video-container video{
+	max-width: 100%;
+	height: auto;
 }
 
 .control-container{
