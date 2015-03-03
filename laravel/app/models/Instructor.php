@@ -88,6 +88,16 @@ class Instructor extends User{
               return false;
          });
      }
+     
+     public function commentName($userType=null){
+        if( $this->profile ){
+            return $this->profile->first_name.' '.$this->profile->last_name;
+        }
+        else{
+            if($this->first_name=='') return $this->email;
+            else return $this->first_name.' '.$this->last_name;
+        }
+    }
 
 
 }

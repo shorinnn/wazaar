@@ -22,7 +22,7 @@
             {{ Form::close() }}
         </div>
     </div>
-        <ul class="lesson-container clearfix" id="lessons-holder-{{$module->id}}">
+        <ul class="lesson-container clearfix lessons" id="lessons-holder-{{$module->id}}">
             @foreach($module->lessons()->orderBy('order','ASC')->get() as $lesson)
                 {{ View::make('courses.lessons.lesson')->with(compact('lesson')) }}
             @endforeach
