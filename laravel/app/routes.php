@@ -14,6 +14,7 @@
 Route::get('/', 'SiteController@index');
 
 // Temporary classroom route for mac to work with
+Route::get('courseditor', 'SiteController@courseditor');
 Route::get('crud', 'SiteController@crud');
 Route::get('enroll', 'SiteController@enroll');
 Route::get('classroom', 'SiteController@classroom');

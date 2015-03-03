@@ -18,33 +18,34 @@
                             <source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                             ->first()->video_url }}" type="video/mp4">
                         	<p>Your browser does not support the video tag.</p>
-                        </video>                        
-                        <div class="control">
-                    
+                        </video> 
+                        <div class="control-container">                       
                             <div class="topControl">
                                 <div class="progress">
                                     <span class="bufferBar"></span>
                                     <span class="timeBar"></span>
                                 </div>
                             </div>
-                            
-                            <div class="btmControl clearfix">
-                                <div class="btnPlay btn" title="Play/Pause video"></div>
-                                <div class="sound sound2 btn" title="Mute/Unmute sound"></div>
-                                <div class="volume-container">
-                                    <div class="volume" title="Set volume">
-                                        <span class="volumeBar">
-                                        	<em></em>
-                                        </span>
+                            <div class="control">
+                                
+                                <div class="btmControl clearfix">
+                                    <div class="btnPlay btn" title="Play/Pause video"></div>
+                                    <div class="sound sound2 btn" title="Mute/Unmute sound"></div>
+                                    <div class="volume-container">
+                                        <div class="volume" title="Set volume">
+                                            <span class="volumeBar">
+                                                <em></em>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="btnFS btn" title="Switch to full screen"></div>
+                                    <div class="time">
+                                        <span class="current"></span> / 
+                                        <span class="duration"></span> 
                                     </div>
                                 </div>
-                                <div class="btnFS btn" title="Switch to full screen"></div>
-                                <div class="time">
-                                    <span class="current"></span> / 
-                                    <span class="duration"></span> 
-                                </div>
+                                
                             </div>
-                            
                         </div>
                         <div class="loading"></div>
                     </div>

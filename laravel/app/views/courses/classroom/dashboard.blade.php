@@ -15,14 +15,14 @@
                             ->first()->video_url }}" type="video/mp4">
                         	<p>Your browser does not support the video tag.</p>
                         </video> 
-                        <div>                       
-                            <div class="control">
-                                <div class="topControl">
-                                    <div class="progress">
-                                        <span class="bufferBar"></span>
-                                        <span class="timeBar"></span>
-                                    </div>
+                        <div class="control-container">                       
+                            <div class="topControl">
+                                <div class="progress">
+                                    <span class="bufferBar"></span>
+                                    <span class="timeBar"></span>
                                 </div>
+                            </div>
+                            <div class="control">
                                 
                                 <div class="btmControl clearfix">
                                     <div class="btnPlay btn" title="Play/Pause video"></div>
