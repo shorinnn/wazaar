@@ -432,3 +432,22 @@ function appendToQueryString($key, $val){
     $params = array_merge( $_GET, array( $key => $val ) );
     return http_build_query($params);
 }
+
+function doPostCurl($url, $data)
+{
+    $ch = curl_init();
+
+    //set the url, number of POST vars, POST data
+    curl_setopt($ch,CURLOPT_URL, $url);
+    curl_setopt($ch,CURLOPT_POST, true);
+    curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+
+    //execute post
+    $result = curl_exec($ch);
+
+    //close connection
+    curl_close($ch);
+
+    return $result;
+}

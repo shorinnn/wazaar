@@ -177,8 +177,74 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::post('course/{courseId}/stats/compare','AffiliateDashboardController@compareCourses');
 });
 
-Route::get('test', function (){
-    $aff = ProductAffiliate::find(2);
+Route::get('test/pay', 'PaymentTestController@pay');
 
-    dd($aff->courseReferrals()->count());
+Route::get('test', function (){
+
+
+
+    $url = "HTTPS://ps.gcsip.nl/wdl/wdl";
+    //$data = "MERCHANTID=9950&ORDERID=12345678&EFFORTID=1&ATTEMPTID=1&PAYMENTREFERENCE=0&ADDITIONALREFERENCE=1234567890&PAYMENTMETHODID=1&PAYMENTPRODUCTID=3&STATUSID=625&STATUSDATE=20120314144539&RECEIVEDDATE=20120314144334&CURRENCYCODE=EUR&AMOUNT=1000&CVVRESULT=0&FRAUDRESULT=A&CCLASTFOURDIGITS=1111&EXPIRYDATE=0113";
+    $data = '<XML>
+    <REQUEST>
+        <ACTION>INSERT_ORDERWITHPAYMENT</ACTION>
+        <META>
+            <MERCHANTID>9950</MERCHANTID>
+            <IPADDRESS>180.191.81.9</IPADDRESS>
+            <VERSION>2.0</VERSION>
+        </META>
+        <PARAMS>
+            <ORDER>
+                <ORDERID>234</ORDERID>
+                <AMOUNT>100</AMOUNT>
+                <CURRENCYCODE>JPY</CURRENCYCODE>
+                <LANGUAGECODE>ja</LANGUAGECODE>
+                <COUNTRYCODE>JP</COUNTRYCODE>
+                <SURNAME>Cruijff</SURNAME>
+                <CITY>Barcelona</CITY>
+                <FIRSTNAME>Johan</FIRSTNAME>
+                <STREET>Nou Camp</STREET>
+                <HOUSENUMBER>14</HOUSENUMBER>
+                <ZIP>1000 AA</ZIP>
+                <STATE>Catalunie</STATE>
+                <STATECODE>NL-NH</STATECODE>
+                <SHIPPINGCITY>TOKYO</SHIPPINGCITY>
+                <SHIPPINGCOUNTRYCODE>LA</SHIPPINGCOUNTRYCODE>
+                <IPADDRESSCUSTOMER>201.11.13.19</IPADDRESSCUSTOMER>
+                <EMAIL>test@yahoo.com</EMAIL>
+                <MERCHANTREFERENCE>INVOICE123456873</MERCHANTREFERENCE>
+            </ORDER>
+            <PAYMENT>
+                <PAYMENTPRODUCTID>1</PAYMENTPRODUCTID>
+                <AMOUNT>100</AMOUNT>
+                <CREDITCARDNUMBER>4263982640269299</CREDITCARDNUMBER>
+                <EXPIRYDATE>0218</EXPIRYDATE>
+                <CURRENCYCODE>JPY</CURRENCYCODE>
+                <COUNTRYCODE>JP</COUNTRYCODE>
+                <LANGUAGECODE>ja</LANGUAGECODE>
+            </PAYMENT>
+        </PARAMS>
+    </REQUEST>
+</XML>';
+    //open connection
+    $ch = curl_init();
+
+    //set the url, number of POST vars, POST data
+    curl_setopt($ch,CURLOPT_URL, $url);
+    curl_setopt($ch,CURLOPT_POST, true);
+    curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+
+    //execute post
+    $result = curl_exec($ch);
+
+    //close connection
+    curl_close($ch);
+
+    $request = simplexml_load_string($result);
+
+    echo '<pre>';
+    print_r($request->REQUEST->RESPONSE);
+    echo '</pre>';
+    die;
 });
