@@ -170,8 +170,7 @@
                                  <img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $course->instructor->profile->photo }}" alt="" >
                                     </div>
                                     <h3>{{$course->instructor->profile->first_name}} {{$course->instructor->profile->last_name}}<span></span></h3>
-                                    <span class="role">Lead programmer, Wazaar - Dunno where this line comes from</span>
-            <!--                        <a href="#" class="follow-button">FOLLOW</a>-->
+       
 
                                     @if(Auth::check())
                                         {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
