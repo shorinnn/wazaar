@@ -47,4 +47,9 @@ class PrivateMessage extends Ardent {
             if( PrivateMessagesMassStatus::where('private_message_id',$this->id)->where('recipient_id', $user_id)->where('status','read')->count()==0) return true;
             return false;
         }
+        
+        public function thread(){
+            if($this->thread_id==0) return $this->id;
+            else return $this->thread_id;
+        }
 }

@@ -59,6 +59,7 @@
         <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>-->
         <script src="{{url("js/jquery.min.js")}}"></script>
         <script src="{{url("js/bootstrap.min.js")}}"></script>
+        <script src="{{url("js/jquery.bootstrap-growl.min.js")}}"></script>
         <script src="{{url("js/lang/parsley/".Config::get('app.locale').".js")}}" /></script>
         <script src="{{url("js/parsley.min.js")}}"></script>
         <script src="{{url("js/forms.js")}}"></script>
@@ -79,6 +80,7 @@
     @else
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="{{url("js/jquery.bootstrap-growl.min.js")}}"></script>
         <script src="{{url("js/lang/parsley/".Config::get('app.locale').".js")}}" /></script>
         <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>
         <script src="{{url("js/forms.js")}}"></script>
