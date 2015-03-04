@@ -54,6 +54,7 @@ return array(
 
 	'locale' => 'ja',
 
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application Fallback Locale
