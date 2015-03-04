@@ -31,4 +31,11 @@ return array(
     'affiliate_percentage' => "Affiliate Percentage",
     'discount' => "Discount",
     'sale_ends_on' => "Sale Ends On",
+    'Description' => '説明',
+    'what_you_will_achieve' => 'このコースで達成できることこのコースで達成できること',
+    'your_teacher' => '担当講師担当講師',
+    'curriculum' => 'カリキュラム',
+    'crash_class' => '受講する受講する',
+    'who_is_this_for?' => 'こんな方におすすめこんな方におすすめ?',
+    'add_to_wishlist' => 'ウィッシュリストに入れるウィッシュリストに入れる',
 );

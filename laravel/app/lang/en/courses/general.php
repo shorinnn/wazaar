@@ -31,4 +31,11 @@ return array(
     'affiliate_percentage' => "Affiliate Percentage",
     'discount' => "Discount",
     'sale_ends_on' => "Sale Ends On",
+    'Description' => 'Description',
+    'what_you_will_achieve' => 'What you will achieve at the end of the course',
+    'your_teacher' => 'Your Teacher',
+    'curriculum' => 'Curriculum',
+    'crash_class' => 'Crash Class',
+    'who_is_this_for?' => 'Who is this for?',
+    'add_to_wishlist' => 'Add To Wishlist',
 );
