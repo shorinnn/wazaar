@@ -27,5 +27,5 @@ return array(
     'cannot_delete_subcategory_has_courses' => 'Cannot delete subcategory because there are associated courses',
     'cannot_delete_category_has_courses' => 'Cannot delete category because there are associated courses',
     'reply' => 'reply|replies',
-    'affiliates' => 'Affiliate|Affiliates'
+    'affiliates' => 'Affiliate|Affiliates',
 );

@@ -58,7 +58,7 @@
                             {{Form::open(['action' => ['WishlistController@store'] ])}}
                             <input type='hidden' name='id' value='{{ $course->id }}' />
                             <!--<a href="#" class="add-to-wishlist">Add to Wishlist</a>-->
-                            <input type='submit' class="add-to-wishlist" value='Add to Wishlist' />
+                            <input type='submit' class="add-to-wishlist" value='{{trans('courses/general.add_to_wishlist')}}' />
                             {{Form::close()}}
                             <ul class="social-icons">
                                     <li><a href="#" class="twitter-icon"></a></li>
@@ -114,7 +114,7 @@
                             </span>
                         </div>
                     @endif
-                    <p class="lead what-you-will-learn">What you will achieve at the end of the course.</p>
+                    <p class="lead what-you-will-learn">{{trans('courses/general.what_you_will_achieve')}}.</p>
                         <article class="bottom-margin what-you-will-learn">
                         <ul>
                         @if($achievements = json2Array($course->what_will_you_achieve))
@@ -124,7 +124,7 @@
                         @endif    
                          </ul>
                     </article>
-                    <p class="lead">Description</p>
+                    <p class="lead">{{ trans('courses/general.Description') }}</p>
                     <article class="bottom-margin">
                     {{$course->description}}
                     </article>
@@ -137,7 +137,7 @@
                 <div class="sidebar">
                     
                     <aside>
-                    	<p class="lead">Who is this for?</p>
+                    	<p class="lead">{{ trans('courses/general.who_is_this_for?') }}</p>
                          @if($who_for = json2Array($course->who_is_this_for))
                         <ul>
                             @foreach($who_for as $who)
@@ -149,7 +149,7 @@
                     
                     <div class="your-teacher">
                         <div class="avater">
-	                    	<p>Your Teacher</p>
+	                    	<p>{{ trans('courses/general.your_teacher')}}</p>
                                 
                                 @if($course->instructor->profile == null)
                                         <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater.png" alt="" >
@@ -206,7 +206,7 @@
                 <div class="curriculum clearfix clear">
                 	<h3 class="text-center">
                         <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">
-                        Curriculum
+                        {{ trans('courses/general.curriculum') }}
                    	</h3>
 
                     @foreach($course->modules as $module)
@@ -231,7 +231,7 @@
                                             @if( Auth::guest() || !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) )
                                             disabled="disabled" data-crash-disabled='1'
                                             @endif
-                                            >CRASH LESSON</button>
+                                            >{{ trans('courses/general.crash_class') }}</button>
                                     {{ Form::close() }}
                                 </li>
                             @endforeach
