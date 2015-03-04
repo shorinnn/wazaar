@@ -2251,6 +2251,10 @@ header .activate-dropdown:hover ul{
 	margin: 8px 0 0;
 }
 
+.main-content-container .main-content .testimonials.top-testimonials > p{
+	margin: 8px 0 0 20px;
+}
+
 .main-content-container .main-content .testimonials > span.name{
 	display: block;
 	font-size: 18px;
@@ -2259,6 +2263,10 @@ header .activate-dropdown:hover ul{
 	padding: 0 172px;
 	text-align: right;
 	margin-top: 20px;
+}
+
+.main-content-container .main-content .sidebar .testimonials > span.name{
+	padding: 0;
 }
 
 .main-content-container .main-content .testimonials p::before,

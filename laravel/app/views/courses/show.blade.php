@@ -104,7 +104,7 @@
                     @endif
             	<div class="left-content">
                     @if($course->testimonials->count() > 0)
-                        <div class="testimonials">
+                        <div class="testimonials top-testimonials">
                             <p>
                             {{{ $course->testimonials->first()->content }}}
                             </p>
