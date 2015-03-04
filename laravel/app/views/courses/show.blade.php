@@ -68,8 +68,12 @@
                         </div>             
                     </div>
                 </div>
-                    @if($video==null || $video->video() == null)
-                    <div class="video-player">
+                    @if(1==1 || $video==null || $video->video() == null)
+                    <div class="video-player"
+                         @if( $course->bannerImage != null)
+                         style="background-image:url('{{$course->bannerImage->url}}') !important"
+                         @endif
+                         >
 	                <a href="#" class="watch-video-button">WATCH VIDEO</a>
     				<span class="video-time">10:23</span>            
                     @else
@@ -87,7 +91,7 @@
             </div>
         </section>
         <section class="main-content-container clearfix">
-            @if($course->bannerImage!=null)
+            @if($course->bannerImage==='has banner bro')
                 <img src='{{$course->bannerImage->url}}' />
             @endif
         	<div class="main-content">
