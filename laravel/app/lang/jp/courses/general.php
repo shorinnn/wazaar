@@ -37,5 +37,5 @@ return array(
     'curriculum' => 'カリキュラム',
     'crash_class' => '受講する受講する',
     'who_is_this_for?' => 'こんな方におすすめこんな方におすすめ?',
-    'add_to_wishlist' => 'ウィッシュリストに入れるウィッシュリストに入れる',
+    'add_to_wishlist' => 'Add to Wishlist',
 );

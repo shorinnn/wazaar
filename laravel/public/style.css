@@ -2247,6 +2247,10 @@ header .activate-dropdown:hover ul{
 	line-height: 28px;
 }
 
+.main-content-container .main-content .sidebar .testimonials > p{
+	margin: 8px 0 0;
+}
+
 .main-content-container .main-content .testimonials > span.name{
 	display: block;
 	font-size: 18px;
