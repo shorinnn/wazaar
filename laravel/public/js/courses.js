@@ -127,6 +127,28 @@ function enableLessonRTE(e){
     });
 }
 
+function enableRTE(selector){
+    tinymce.remove(selector);
+    tinymce.init({
+        autosave_interval: "20s",
+        autosave_restore_when_empty: true,
+        selector: selector,
+        save_onsavecallback: function() {
+            savingAnimation(0);
+            $(selector).closest('form').submit();
+            savingAnimation(1);
+            return true;
+        },
+        
+        plugins: [
+            "advlist autolink autosave lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste save"
+        ],
+        toolbar: "save | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    });
+}
+
 /**
  * Called after the files tab of a lesson is loaded, it ajaxifies the file upload form
  * @param {Event} e The original event containing the calling object
