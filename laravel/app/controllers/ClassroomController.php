@@ -58,7 +58,16 @@ class ClassroomController extends \BaseController {
             }            
             $student->viewLesson( $lesson );
             $video = $lesson->blocks()->where('type','video')->first();
-            if(Request::ajax()) return View::make('courses.classroom.lesson_ajax')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
+            
+            $lesson->ask_teacher_messages = $lesson->privateMessages()->where('type','ask_teacher')->where(function($query){
+                $query->where('sender_id', Auth::user()->id)->orWhere('recipient_id', Auth::user()->id);
+            })->orderBy('id','desc')->paginate( 2 );
+            
+            
+            if(Request::ajax()){
+                if( Input::has('ask') ) return View::make('courses.classroom.lesson_ask_ajax')->with( compact('lesson') );
+                else return View::make('courses.classroom.lesson_comments_ajax')->with( compact('lesson') );
+            }
             else return View::make('courses.classroom.lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
         }
 

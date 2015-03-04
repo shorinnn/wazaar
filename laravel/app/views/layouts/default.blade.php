@@ -59,6 +59,7 @@
         <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>-->
         <script src="{{url("js/jquery.min.js")}}"></script>
         <script src="{{url("js/bootstrap.min.js")}}"></script>
+        <script src="{{url("js/jquery.bootstrap-growl.min.js")}}"></script>
         <script src="{{url("js/lang/parsley/".Config::get('app.locale').".js")}}" /></script>
         <script src="{{url("js/parsley.min.js")}}"></script>
         <script src="{{url("js/forms.js")}}"></script>
@@ -71,6 +72,7 @@
         <script src="{{url("js/jquery.mousewheel.js")}}"></script>
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
         <script src="{{url("js/main.js")}}"></script>
+        <script src="{{url("js/messages.js")}}"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
         <script src="http://www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
@@ -78,6 +80,7 @@
     @else
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="{{url("js/jquery.bootstrap-growl.min.js")}}"></script>
         <script src="{{url("js/lang/parsley/".Config::get('app.locale').".js")}}" /></script>
         <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>
         <script src="{{url("js/forms.js")}}"></script>
@@ -89,6 +92,7 @@
         <script src="{{url("js/jquery.mousewheel.js")}}"></script>
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
         <script src="{{url("js/main.js")}}"></script>
+        <script src="{{url("js/messages.js")}}"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
         <script src="http://www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>

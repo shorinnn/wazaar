@@ -2,6 +2,9 @@
     <div class="info clearfix clear">
         <span class="name"> 
             {{ $comment->poster->commentName() }}
+            @if(Auth::user()->id != $comment->poster->id)
+                <a href="{{ url('private-messages/?send-to='.$comment->poster->id) }}">[PM]</a>
+            @endif
         </span>
         
         <a href="{{ action( 'ConversationsController@replyTo', $comment->id ) }}" class="reply-link reply-to" data-field='.reply-to'

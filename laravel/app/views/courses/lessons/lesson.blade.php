@@ -1,4 +1,9 @@
 <li id="lesson-{{$lesson->id}}">
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+        <span class="sr-only">60% Complete</span>
+      </div>
+    </div>                        
 	<div class="new-lesson gray clearfix">
         <span>{{ trans('general.lesson') }} 
         	<span class="lesson-order">{{ $lesson->order }}</span> 

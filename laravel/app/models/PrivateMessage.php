@@ -33,4 +33,23 @@ class PrivateMessage extends Ardent {
                 if( count($read) > 0) return $query->whereNotIn('id', $read );
             });
         }
+        
+        public function _sender(){
+            if($this->type=='ask_teacher'){
+                if( $this->sender->id == $this->course->instructor->id ) return $this->sender->commentName('instructor');
+                else return $this->sender->commentName('student');
+            }
+            return $this->sender->commentName('student');
+        }
+        
+        public function massUnread($user_id){
+            if($this->type!='mass_message') return false;
+            if( PrivateMessagesMassStatus::where('private_message_id',$this->id)->where('recipient_id', $user_id)->where('status','read')->count()==0) return true;
+            return false;
+        }
+        
+        public function thread(){
+            if($this->thread_id==0) return $this->id;
+            else return $this->thread_id;
+        }
 }

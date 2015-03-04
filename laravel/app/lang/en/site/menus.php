@@ -4,4 +4,5 @@ return array(
 	'courses' => 'Courses',
 	'settings' => 'Settings',
 	'logout' => 'Logout',
+	'messages' => 'Messages',
 );

@@ -16,8 +16,8 @@ $(document).ready(function(){
                 var i = 1;
                 $('span.module-order').each(function(){
                     $(this).html(i);
-                    $(this).next('input.module-order').val(i);
-                    $(this).next('input.module-order').trigger('change');
+                    $(this).parent().parent().find('input.module-order').val(i);
+                    $(this).parent().parent().find('input.module-order').trigger('change');
                     ++i;
                 });
             }
@@ -54,8 +54,8 @@ function reorderLessons(id){
     var i = 1;
     $('#'+id+' span.lesson-order').each(function(){
         $(this).html(i);
-        $(this).next('input.lesson-order').val(i);
-        $(this).next('input.lesson-order').trigger('change');
+        $(this).parent().parent().find('input.lesson-order').val(i);
+        $(this).parent().parent().find('input.lesson-order').trigger('change');
         ++i;
     });
 }

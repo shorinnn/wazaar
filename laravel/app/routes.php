@@ -77,6 +77,10 @@ Route::get('conversations/view-replies/{id}', 'ConversationsController@viewRepli
 Route::get('conversations/reply-to/{id}', 'ConversationsController@replyTo');
 Route::post('conversations/load-more/', 'ConversationsController@loadMore');
 Route::resource('conversations', 'ConversationsController');
+
+// Private Messages
+Route::get('private-messages@thread/{id}', 'PrivateMessagesController@thread');
+Route::resource('private-messages', 'PrivateMessagesController');
 //Wishlist
 Route::resource('wishlist', 'WishlistController');
 // Follow relationships

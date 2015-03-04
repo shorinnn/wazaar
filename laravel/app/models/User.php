@@ -80,6 +80,17 @@ class User extends Ardent implements ConfideUserInterface
         }
         else return $this->last_name;
     }
-
+    
+    public function commentName($user_type){
+        if($user_type=='student') $user = Student::find($this->id);
+        else $user = Instructor::find($this->id);
+        if( $user->profile ){
+            return $user->profile->first_name.' '.$user->profile->last_name;
+        }
+        else{
+            if($user->first_name=='') return $user->email;
+            else return $user->first_name.' '.$user->last_name;
+        }
+    }
 
 }
