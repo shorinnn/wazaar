@@ -1837,7 +1837,8 @@ header .activate-dropdown:hover ul{
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	/*background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/video-poster.jpg") no-repeat center center;*/
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/video-poster.jpg") no-repeat center center;
+	background-size: 100% 100%;
 }
 
 .course-detail-top-section .centered-contents

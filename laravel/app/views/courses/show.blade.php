@@ -76,7 +76,6 @@
                          >
 	                <a href="#" class="watch-video-button">WATCH VIDEO</a>
     				<span class="video-time">10:23</span>
-                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/video-poster.jpg" class="img-responsive">
                     <div class="overlay"></div>            
                     @else
                     <div class="video-player" style="background:none; text-align: right">
