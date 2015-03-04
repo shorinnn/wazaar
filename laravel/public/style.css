@@ -2229,6 +2229,7 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content .testimonials{
 	position: relative;
+	margin-bottom: 25px;
 }
 
 .main-content-container .main-content .testimonials > p{
@@ -2393,7 +2394,6 @@ header .activate-dropdown:hover ul{
 	height: 32px;
 	border-radius: 5px;
 	text-align: center;
-	line-height: 32px;
 	font-size: 12px;
 	margin-right: 18px;
 	margin-top: 3px;
@@ -4514,11 +4514,11 @@ select::-ms-expand {
 }
 
 .unauthenticated-homepage.cat-box-7{
-	background: -moz-linear-gradient(left, #66ab21, #aee072, #66ab21);
-	background: -webkit-linear-gradient(left, #66ab21, #aee072, #66ab21);
-	background: -o-linear-gradient(left, #66ab21, #aee072, #66ab21);
-	background: -ms-linear-gradient(left, #66ab21, #aee072, #66ab21);
-	background: linear-gradient(left, #66ab21, #aee072, #66ab21);
+	background: -moz-radial-gradient(center bottom, #2A8F23, #1C3619);
+	background: -webkit-radial-gradient(center bottom, #2A8F23, #1C3619);
+	background: -o-radial-gradient(center bottom, #2A8F23, #1C3619);
+	background: -ms-radial-gradient(center bottom, #2A8F23, #1C3619);
+	background: radial-gradient(center bottom, #2A8F23, #1C3619);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#8ddd45', endColorstr='#91ce31'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#8ddd45', endColorstr='#91ce31')"; /* IE8 */
 }
