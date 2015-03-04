@@ -1,0 +1,31 @@
+<?php
+
+return array(
+    'members' => 'Members',
+    'user' => 'User',
+    'email' => 'Email',
+    'first_name' => 'First name',
+    'last_name' => 'Last name',
+    'registered' => 'Registered',
+    'groups' => 'Groups',
+    'affiliate_id' => 'Affiliate ID',
+    'affiliate_agency' => 'Affiliate Agency',
+    'student' => 'Student|Students',
+    'published' => 'Published',
+    'updated' => 'Updated',
+    'select' => 'Select',
+    'help' => 'Help',
+    'step' => 'Step',
+    'module' => 'Module',
+    'video' => 'Video',
+    'lesson' => 'Lesson',
+    'add_file' => 'Add File',
+    'details' => 'Details',
+    'lesson_price' => 'Lesson Price',
+    'new_file' => 'New file',
+    'homepage_graphic' => 'Homepage Graphic',
+    'cannot_delete_subcategory_has_courses' => 'Cannot delete subcategory because there are associated courses',
+    'cannot_delete_category_has_courses' => 'Cannot delete category because there are associated courses',
+    'reply' => 'reply|replies',
+    'affiliates' => 'Affiliate|Affiliates'
+);
