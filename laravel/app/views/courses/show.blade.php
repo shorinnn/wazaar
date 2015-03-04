@@ -68,7 +68,7 @@
                         </div>             
                     </div>
                 </div>
-                    @if($video->video() == null)
+                    @if($video==null || $video->video() == null)
                     <div class="video-player">
 	                <a href="#" class="watch-video-button">WATCH VIDEO</a>
     				<span class="video-time">10:23</span>            
