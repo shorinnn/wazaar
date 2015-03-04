@@ -15,7 +15,7 @@
             <input type="hidden" name="course_id" value="{{ $lesson->module->course->id }}" />
             
                 @if( isset($thread) )
-                    <input type="hidden" name="thread_id" value="{{ $thread }}" />
+                        <input type="hidden" name="thread_id" value="{{ $thread }}" />
                 @endif
                 
             <input type="hidden" name="type" value="ask_teacher" />

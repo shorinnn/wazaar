@@ -50,11 +50,19 @@
             @if( Student::find(Auth::user()->id)->profile )
                 <img style="height: 50px; width: 50px; border-radius: 50px;" 
                      src="{{ Student::find(Auth::user()->id)->profile->photo }}" alt="">
-                <span class="notification-number">3</span>
+                @if( Student::find(Auth::user()->id)->receivedMessages()->unread()->count() > 0)
+                    <span class="notification-number">
+                        {{ Student::find(Auth::user()->id)->receivedMessages()->unread()->count()}}
+                    </span>
+                @endif
             @else
                 <img style="height: 50px; width: 50px; border-radius: 50px;" 
                      src="//s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar-placeholder.jpg" alt="">
-                <span class="notification-number">3</span>
+                @if( Student::find(Auth::user()->id)->receivedMessages()->unread()->count() > 0)
+                    <span class="notification-number">
+                        {{ Student::find(Auth::user()->id)->receivedMessages()->unread()->count()}}
+                    </span>
+                @endif
             @endif
         </div>
     </div>

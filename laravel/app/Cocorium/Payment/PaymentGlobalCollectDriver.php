@@ -5,7 +5,10 @@ class PaymentGlobalCollectDriver implements PaymentInterface {
     protected $merchantID;
     protected $IPAddress;
     protected $version;
+
     protected $APIUrl;
+    protected $currency;
+    protected $language;
 
     public function __construct()
     {
@@ -13,6 +16,8 @@ class PaymentGlobalCollectDriver implements PaymentInterface {
         $this->IPAddress = \Config::get('globalcollect.IPAddress','54.173.36.14');
         $this->version = \Config::get('globalcollect.version');
         $this->APIUrl = \Config::get('globalcollect.url');
+        $this->currency = \Config::get('globalcollect.currency');
+        $this->language = \Config::get('globalcollect.language');
     }
 
     public function makeUsingCreditCard($amount, $creditCardDetails, $otherParams = [])
@@ -21,54 +26,32 @@ class PaymentGlobalCollectDriver implements PaymentInterface {
             $action = 'INSERT_ORDERWITHPAYMENT';
             $order = $otherParams['order'];
 
-            $errors = [];
-            $success = false;
+            $orderPayment = "   <ORDER>
+                                    <ORDERID>{$order['orderId']}</ORDERID>
+                                    <AMOUNT>{$amount}</AMOUNT>
+                                    <CURRENCYCODE>{$this->currency}</CURRENCYCODE>
+                                    <LANGUAGECODE>{$this->language}</LANGUAGECODE>
+                                    <COUNTRYCODE>{$order['country']}</COUNTRYCODE>
+                                    <SURNAME>{$order['lastName']}</SURNAME>
+                                    <CITY>{$order['city']}</CITY>
+                                    <FIRSTNAME>{$order['firstName']}</FIRSTNAME>
+                                    <ZIP>{$order['zip']}</ZIP>
+                                    <IPADDRESSCUSTOMER>{$order['ipAddress']}</IPADDRESSCUSTOMER>
+                                    <EMAIL>{$order['email']}</EMAIL>
+                                    <MERCHANTREFERENCE>{$order['reference']}</MERCHANTREFERENCE>
+                                </ORDER>
+                            <PAYMENT>
+                                <PAYMENTPRODUCTID>1</PAYMENTPRODUCTID>
+                                <AMOUNT>{$amount}</AMOUNT>
+                                <CREDITCARDNUMBER>{$creditCardDetails['cardNumber']}</CREDITCARDNUMBER>
+                                <EXPIRYDATE>{$creditCardDetails['cardExpiry']}</EXPIRYDATE>
+                                <CURRENCYCODE>USD</CURRENCYCODE>
+                                <COUNTRYCODE>JP</COUNTRYCODE>
+                                <LANGUAGECODE>ja</LANGUAGECODE>
+                            </PAYMENT>";
 
-            $payment = "<ORDER>
-                            <ORDERID>{$order['orderId']}</ORDERID>
-                            <AMOUNT>{$amount}</AMOUNT>
-                            <CURRENCYCODE>JPY</CURRENCYCODE>
-                            <LANGUAGECODE>ja</LANGUAGECODE>
-                            <COUNTRYCODE>JP</COUNTRYCODE>
-                            <SURNAME>{$order['lastName']}</SURNAME>
-                            <CITY>{$order['city']}</CITY>
-                            <FIRSTNAME>{$order['firstName']}</FIRSTNAME>
-                            <STREET>{$order['street']}</STREET>
-                            <ZIP>{$order['zip']}</ZIP>
-                            <STATE>{$order['state']}</STATE>
-                            <IPADDRESSCUSTOMER>201.11.13.19</IPADDRESSCUSTOMER>
-                            <EMAIL>{$order['email']}</EMAIL>
-                            <MERCHANTREFERENCE>{$order['reference']}</MERCHANTREFERENCE>
-                        </ORDER>
-                    <PAYMENT>
-                        <PAYMENTPRODUCTID>1</PAYMENTPRODUCTID>
-                        <AMOUNT>{$amount}</AMOUNT>
-                        <CREDITCARDNUMBER>{$creditCardDetails['cardNumber']}</CREDITCARDNUMBER>
-                        <EXPIRYDATE>{$creditCardDetails['cardExpiry']}</EXPIRYDATE>
-                        <CURRENCYCODE>JPY</CURRENCYCODE>
-                        <COUNTRYCODE>JP</COUNTRYCODE>
-                        <LANGUAGECODE>ja</LANGUAGECODE>
-                    </PAYMENT>";
-
-            $requestXML = $this->prepareXMLString($action, $payment);
-            $call = doPostCurl($this->APIUrl,$requestXML);
-
-            if (!empty($call)){
-                $callObject = simplexml_load_string($call);
-
-                if (isset($callObject->REQUEST->RESPONSE)){
-                    $responseObject = $callObject->REQUEST->RESPONSE;
-
-                    if (@$responseObject->RESULT == 'OK'){
-                        $success = true;
-                    }
-                    else{
-                        $errors[] = $responseObject->ERROR->MESSAGE;
-                    }
-                }
-            }
-
-            return compact('success', 'errors');
+            $requestXML = $this->_prepareXMLString($action, $orderPayment);
+            return $this->_executeCall($requestXML);
         }
         catch(Exception $ex){
             return ['success' => false, 'errors' => [$ex->getMessage()]];
@@ -78,7 +61,29 @@ class PaymentGlobalCollectDriver implements PaymentInterface {
 
     public function makeUsingBank($amount, $bankDetails, $otherParams = [])
     {
-        // TODO: Implement makeUsingBank() method.
+        try{
+            $orderPayment = "<ORDER>
+                <MERCHANTREFERENCE>ABC1234</MERCHANTREFERENCE>
+                <AMOUNT>234500</AMOUNT>
+                <CURRENCYCODE>COP</CURRENCYCODE>
+                <LANGUAGECODE>en</LANGUAGECODE>
+                <COUNTRYCODE>CO</COUNTRYCODE>
+                <SURNAME>Cruijff</SURNAME>
+                <CITY>Barcelona</CITY>
+                <FIRSTNAME>Johan</FIRSTNAME>
+            </ORDER>
+            <PAYMENT>
+                <PAYMENTPRODUCTID>11</PAYMENTPRODUCTID>
+                <AMOUNT>234500</AMOUNT>
+                <CURRENCYCODE>COP</CURRENCYCODE>
+                <COUNTRYCODE>CO</COUNTRYCODE>
+                <LANGUAGECODE>en</LANGUAGECODE>
+                <HOSTEDINDICATOR>0</HOSTEDINDICATOR>
+            </PAYMENT>";
+        }
+        catch(Exception $ex){
+            return ['success' => false, 'errors' => [$ex->getMessage()]];
+        }
     }
 
     public function makeUsingCheck($amount, $checkDetails, $otherParams = [])
@@ -97,7 +102,37 @@ class PaymentGlobalCollectDriver implements PaymentInterface {
         // TODO: Implement refund() method.
     }
 
-    private function prepareXMLString($action,$paramsXMLString)
+    private function _executeCall($requestXML)
+    {
+        $errors = [];
+        $success = false;
+        $successData = [];
+        $call = doPostCurl($this->APIUrl,$requestXML);
+
+        if (!empty($call)){
+            $callObject = simplexml_load_string($call);
+
+            if (isset($callObject->REQUEST->RESPONSE)){
+                $responseObject = $callObject->REQUEST->RESPONSE;
+
+                if (@$responseObject->RESULT == 'OK'){
+                    $success = true;
+                    $successData = $responseObject->ROW;
+                }
+                else{
+                    $errors[] = $responseObject->ERROR->MESSAGE;
+                }
+            }
+        }
+        if (!$success) {
+            return compact('success', 'errors');
+        }
+        else{
+            return compact('success','successData');
+        }
+    }
+
+    private function _prepareXMLString($action,$paramsXMLString)
     {
         $data = "<XML>
                     <REQUEST>

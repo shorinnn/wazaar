@@ -16,8 +16,8 @@ $(document).ready(function(){
                 var i = 1;
                 $('span.module-order').each(function(){
                     $(this).html(i);
-                    $(this).next('input.module-order').val(i);
-                    $(this).next('input.module-order').trigger('change');
+                    $(this).parent().parent().find('input.module-order').val(i);
+                    $(this).parent().parent().find('input.module-order').trigger('change');
                     ++i;
                 });
             }
@@ -54,8 +54,8 @@ function reorderLessons(id){
     var i = 1;
     $('#'+id+' span.lesson-order').each(function(){
         $(this).html(i);
-        $(this).next('input.lesson-order').val(i);
-        $(this).next('input.lesson-order').trigger('change');
+        $(this).parent().parent().find('input.lesson-order').val(i);
+        $(this).parent().parent().find('input.lesson-order').trigger('change');
         ++i;
     });
 }
@@ -106,6 +106,28 @@ function addLesson(json){
  */
 function enableLessonRTE(e){
     selector = '#'+$(e.target).parent().parent().parent().find('textarea').attr('id');
+    tinymce.remove(selector);
+    tinymce.init({
+        autosave_interval: "20s",
+        autosave_restore_when_empty: true,
+        selector: selector,
+        save_onsavecallback: function() {
+            savingAnimation(0);
+            $(selector).closest('form').submit();
+            savingAnimation(1);
+            return true;
+        },
+        
+        plugins: [
+            "advlist autolink autosave lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste save"
+        ],
+        toolbar: "save | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    });
+}
+
+function enableRTE(selector){
     tinymce.remove(selector);
     tinymce.init({
         autosave_interval: "20s",

@@ -1,12 +1,12 @@
 @if( $comments->first()->type=='ask_teacher' )
 
     {{ View::make('private_messages.partials.ask_teacher_form')->withLesson( $comments->first()->lesson )
-                ->withDestination("#message-content-$id .users-comments > .clearfix")->withThread($comments->first()->thread_id) }}
+                ->withDestination("#message-content-$id .users-comments > .clearfix")->withThread($comments->first()->thread()) }}
                 
 @elseif( $comments->first()->type == 'student_conversation' )
 
     {{ View::make('private_messages.partials.student_form')->withDestination("#message-content-$id .users-comments > .clearfix")
-                ->withThread($comments->first()->thread_id)->withRecipient($comments->first()->sender_id) }}
+                ->withThread($comments->first()->thread())->withRecipient($comments->first()->sender_id) }}
                 
 @endif
 <div class="row">

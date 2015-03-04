@@ -18,3 +18,9 @@ function loadMessage(e){
         $('#'+id).slideToggle('fast');
     }
 }
+
+function postedStudentPM(e){
+    history.pushState({}, '', '/private-messages');
+    $('#start-pm-form').parent().parent().slideToggle();
+    $.bootstrapGrowl( _('Message Sent'),{align:'center', type:'success'} );
+}

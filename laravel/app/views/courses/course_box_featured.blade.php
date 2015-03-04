@@ -19,7 +19,7 @@
         <div class="featured-contents-container">
             <div class="level">{{ $course->courseDifficulty->name }}</div>
             <h2>{{ $course->name }}</h2>
-            <p>{{ Str::limit( $course->short_description, Config::get('custom.short_desc_max_chars') ) }}
+            <p>{{{ Str::limit( strip_tags($course->short_description, Config::get('custom.short_desc_max_chars') ) ) }}}
                 <br />
             <small>Subcategory:
                 <a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>

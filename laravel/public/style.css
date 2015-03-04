@@ -5229,7 +5229,7 @@ select option.suspended{
 	display:inline-block;
 }
 
-.course-categories #save-indicator{
+#save-indicator{
 	border:1px solid black;
 	background-color:white;
 	width:90px;

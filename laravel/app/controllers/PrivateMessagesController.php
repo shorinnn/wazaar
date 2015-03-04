@@ -43,7 +43,11 @@ class PrivateMessagesController extends \BaseController {
                 $pm->course_id = Input::get('course_id');
                 $pm->lesson_id = Input::get('lesson_id');
                 if($course->instructor->id == Auth::user()->id){
-                    
+                    $msg = PrivateMessage::find(Input::get('thread_id'));
+                    if($msg){
+                        if($msg->sender_id != Input::get('recipient_id') ) $pm->recipient_id = $msg->sender_id;
+                        else $pm->recipient_id = $msg->recipient_id;
+                    }
                 }
                 else{
                     $pm->recipient_id = $course->instructor->id;

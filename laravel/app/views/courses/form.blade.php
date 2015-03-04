@@ -131,8 +131,8 @@
                          <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
                     </div>
             </div>    
-        <div>{{ trans('crud/labels.description') }} <div class="description-box">{{ Form::textarea('description') }}</div></div>    
-        <div>{{ trans('crud/labels.short_description') }} <div class="description-box">{{ Form::textarea('short_description') }}</div></div>    
+        <div>{{ trans('crud/labels.description') }} <div class="description-box">{{ Form::textarea('description', null,['id'=>'description'] ) }}</div></div>    
+        <div>{{ trans('crud/labels.short_description') }} <div class="description-box">{{ Form::textarea('short_description', null,['id'=>'short_description'] ) }}</div></div>    
         <div>{{ trans('courses/general.price') }} {{  Form::text( 'price', money_val($course->price) ) }}</div>    
         
         <div>{{ trans('courses/general.affiliate_percentage') }} 
@@ -166,6 +166,9 @@
             enableFileUploader( $('#upload-preview-image') );
             enableFileUploader( $('#upload-banner-image') );
             enableSlider('#affiliate_percentage');
+            $('textarea').each(function(){
+                enableRTE( '#'+$(this).attr('id') );
+            });
         });
 </script>
 @stop
