@@ -22,7 +22,6 @@ Event::listen('payment.made', function ($requestData, $paymentCall){
     PaymentLog::create(
         [
             'user_id' => $requestData['userId'] ,
-            'purchase_id' => $requestData['purchaseId'],
             'success' => $paymentCall['success'],
             'reference' => $reference,
             'response' => $response

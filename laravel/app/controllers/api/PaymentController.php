@@ -12,8 +12,7 @@ class PaymentController extends BaseController
     public function creditCard()
     {
         $rules = [
-            'purchaseId' => 'required|numeric|exists:purchases,id', //purchases.id
-            'userId'     => 'required|numeric|exists:users,id', //users.id
+            'userId'     => 'required|numeric', //users.id
             'email'      => 'required|email', //users.email
             'firstName'  => 'required', //user_profiles.first_name
             'lastName'   => 'required', //user_profiles.last_name
@@ -40,7 +39,7 @@ class PaymentController extends BaseController
 
         $otherParams = [
             'order' => [
-                'orderId'    => $requestData['purchaseId'],
+                'orderId'    => $reference,
                 'email'      => $requestData['email'],
                 'firstName'  => $requestData['firstName'],
                 'lastName'   => $requestData['lastName'],

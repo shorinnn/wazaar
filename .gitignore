@@ -2,3 +2,4 @@
 .idea
 laravel/app/storage/*
 laravel/public/uploads/*
+laravel/.idea/workspace.xml
