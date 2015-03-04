@@ -270,9 +270,60 @@ header .activate-dropdown:hover ul{
     margin-left: 14px;
     padding-top: 22px;
 }
+
+/***************** Background video on Unauthenticated Homepage ******************/
+.bckgrd-video-wrapper{
+	width: 100%;
+}
+
+#bckgrd-video-container{
+	height: 340px;
+	position: relative;
+	overflow: hidden;
+}
+
+#bckgrd-video-container video#bckgrd-video{
+	width: 100%;
+}
+
+#bckgrd-video-container #bckgrd-video-overlay{
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.8);
+	position: absolute;
+}
+
+#bckgrd-video-container #bckgrd-video-overlay .logo{
+	max-width: 165px;
+	margin: 40px auto 30px;
+	display: block;
+}
+
+#bckgrd-video-container #bckgrd-video-overlay #play-button{
+    background-color: rgba(21, 34, 46, 0.9);
+    background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-4.png");
+    background-position: 50% 20px;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    cursor: pointer;
+    height: 60px;
+    margin: 0 auto;
+    width: 60px;
+}
+
+#bckgrd-video-container .centered-play-button {
+    background-position: 50% 20px;
+    height: 60px;
+    top: 179px !important;
+    width: 60px;
+	z-index: 1;
+}
 /************ Top "What do you want to learn" section *************/
 .course-search-section{
 	min-height: 300px;
+	padding-top: 60px;
 	background: -moz-linear-gradient(left, #172735, #0f4d79, #172735);
 	background: -webkit-linear-gradient(left, #172735, #0f4d79, #172735);
 	background: -o-linear-gradient(left, #172735, #0f4d79, #172735);
@@ -1481,11 +1532,11 @@ header .activate-dropdown:hover ul{
 	max-width: 1000px;
 	margin: 0 auto;
 	position: relative;
-	min-height: 450px;
+	min-height: 500px;
 }
 
 .course-detail-top-section .centered-contents h1{
-	font-size: 42px;
+	font-size: 34px;
 	color: #fff;
 	margin: 30px 0;
 	font-weight: 200;
@@ -1779,14 +1830,32 @@ header .activate-dropdown:hover ul{
 	float: left;
 	max-width: 656px;
 	width: 65.6%;
-	min-height: 266px;
+	height: 369px;
 	overflow: hidden;
 	border-radius: 5px 5px 0 0;
 	margin-left: 32px;
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/video-poster.jpg") no-repeat center center;
+	/*background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/video-poster.jpg") no-repeat center center;*/
+}
+
+.course-detail-top-section .centered-contents
+.video-player img{
+	height: 100%;
+}
+
+.course-detail-top-section .centered-contents
+.video-player .overlay{
+	position: relative;
+	height: 369px;
+	max-width: 656px;
+	top: -369px;
+	background: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+	background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+	background: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+	background: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+	background: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
 }
 
 .course-detail-top-section .centered-contents 
@@ -1803,6 +1872,7 @@ header .activate-dropdown:hover ul{
 	position: absolute;
 	bottom: 0;
 	left: 0;
+	z-index: 1;
 }
 
 .course-detail-top-section .centered-contents 
@@ -1817,6 +1887,7 @@ header .activate-dropdown:hover ul{
 	position: absolute;
 	bottom: 0;
 	right: 0;
+	z-index: 1;
 	border-radius: 5px 0 0 0;
 }
 
@@ -1851,7 +1922,7 @@ header .activate-dropdown:hover ul{
 .left-content{
 	width: 65.6%;
 	float: left;
-	padding-top: 37px;
+	/*padding-top: 37px;*/
 	margin-right: 32px;
 }
 
@@ -1889,10 +1960,10 @@ header .activate-dropdown:hover ul{
 	padding: 15px 20px;
 	background: #fff;
 	display: block;
-	color: #3A3A3A;
-	font-size: 14px;
+	color: #555;
+	font-size: 12px;
 	border-radius: 0 0 5px 0;
-	line-height: 28px;
+	line-height: 20px;
 }
 
 .main-content-container .main-content
@@ -1958,12 +2029,12 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content
 .sidebar ul li{
-	font-size: 14px;
-	color: #3A3A3A;
+	font-size: 12px;
+	color: #555;
 	position: relative;
-	margin-bottom: 10px;
+	margin-bottom: 6px;
 	padding-left: 0px;
-	line-height: 23px;
+	line-height: 20px;
 }
 
 .main-content-container .main-content
@@ -2068,7 +2139,7 @@ header .activate-dropdown:hover ul{
 	padding: 0 20px 40px;
 	font-size: 12px;
 	color: #333;
-	line-height: 28px;
+	line-height: 24px;
 	margin: 0;
 }
 
@@ -2261,8 +2332,8 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content
 .curriculum .lesson-container{
-    border-bottom: 1px solid #b0bfc1;
-    border-left: 1px solid #b0bfc1;
+    /*border-bottom: 1px solid #b0bfc1;
+    border-left: 1px solid #b0bfc1;*/
     border-radius: 0 0 0 9px;
     bottom: 1px;
     float: right;
@@ -2289,7 +2360,7 @@ header .activate-dropdown:hover ul{
 .main-content-container .main-content .curriculum .lesson-container li.bordered:before {
     background: #b0bfc1;
     content: "";
-    display: inline-block;
+    display: none;
     height: 1px;
     left: -21px;
     position: absolute;
@@ -2315,7 +2386,7 @@ header .activate-dropdown:hover ul{
 }
 
 .main-content-container .main-content
-.curriculum .lesson-container li a{
+.curriculum .lesson-container li button{
 	display: inline-block;
 	float: right;
 	width: 128px;
@@ -2330,25 +2401,25 @@ header .activate-dropdown:hover ul{
 }
 
 .main-content-container .main-content
-.curriculum .lesson-container li a.crash-lesson-button{
+.curriculum .lesson-container li button.crash-lesson-button{
 	color: #fff;
 	background: #92cc2e;
 }
 
 .main-content-container .main-content
-.curriculum .lesson-container li a.crash-lesson-button:hover{
+.curriculum .lesson-container li button.crash-lesson-button:hover{
 	background: #669810;
 	text-decoration: none;
 }
 
 .main-content-container .main-content
-.curriculum .lesson-container li a.price-button{
+.curriculum .lesson-container li button.price-button{
 	background: #f2c70e;
 	color: #18222b;
 }
 
 .main-content-container .main-content
-.curriculum .lesson-container li a.price-button:hover{
+.curriculum .lesson-container li button.price-button:hover{
 	background: #fbe343;
 	text-decoration: none;
 }
@@ -4443,11 +4514,11 @@ select::-ms-expand {
 }
 
 .unauthenticated-homepage.cat-box-7{
-	background: -moz-linear-gradient(left, #8ddd45, #91ce31);
-	background: -webkit-linear-gradient(left, #8ddd45, #91ce31);
-	background: -o-linear-gradient(left, #8ddd45, #91ce31);
-	background: -ms-linear-gradient(left, #8ddd45, #91ce31);
-	background: linear-gradient(left, #8ddd45, #91ce31);
+	background: -moz-linear-gradient(left, #66ab21, #aee072, #66ab21);
+	background: -webkit-linear-gradient(left, #66ab21, #aee072, #66ab21);
+	background: -o-linear-gradient(left, #66ab21, #aee072, #66ab21);
+	background: -ms-linear-gradient(left, #66ab21, #aee072, #66ab21);
+	background: linear-gradient(left, #66ab21, #aee072, #66ab21);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#8ddd45', endColorstr='#91ce31'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#8ddd45', endColorstr='#91ce31')"; /* IE8 */
 }

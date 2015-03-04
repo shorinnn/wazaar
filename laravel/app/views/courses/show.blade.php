@@ -71,7 +71,9 @@
                     @if($video == null)
                     <div class="video-player">
 	                <a href="#" class="watch-video-button">WATCH VIDEO</a>
-    				<span class="video-time">10:23</span>            
+    				<span class="video-time">10:23</span>
+                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/video-poster.jpg" class="img-responsive">
+                    <div class="overlay"></div>            
                     @else
                     <div class="video-player" style="background:none; text-align: right">
                         @if( Agent::isMobile() )
@@ -109,15 +111,6 @@
                             </span>
                         </div>
                     @endif
-                    <p class="lead">Description</p>
-                    <article class="bottom-margin">
-                    {{$course->description}}
-                    </article>
-                    <!-- <p class="lead">Sub Description</p>
-                    <article class="bottom-margin">
-                    {{ $course->description }}
-                    </article>
-                    -->
                     <p class="lead what-you-will-learn">What you will achieve at the end of the course.</p>
                         <article class="bottom-margin what-you-will-learn">
                         <ul>
@@ -128,6 +121,15 @@
                         @endif    
                          </ul>
                     </article>
+                    <p class="lead">Description</p>
+                    <article class="bottom-margin">
+                    {{$course->description}}
+                    </article>
+                    <!-- <p class="lead">Sub Description</p>
+                    <article class="bottom-margin">
+                    {{ $course->description }}
+                    </article>
+                    -->
                 </div>
                 <div class="sidebar">
                     

@@ -1,15 +1,61 @@
     @extends('layouts.default')
     @section('content')	
+    	<section class="bckgrd-video-wrapper">
+            <div id="bckgrd-video-container">
+            	<section class="video-container text-center">
+                    <div class="videoContainer">
+                        <video id="myVideo" preload="auto" controls>
+                            <source src="http://d378r68ica1xoa.cloudfront.net/MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4" type="video/mp4">
+                        	<p>Your browser does not support the video tag.</p>
+                        </video> 
+                        <div class="control-container">                       
+                            <div class="topControl">
+                                <div class="progress">
+                                    <span class="bufferBar"></span>
+                                    <span class="timeBar"></span>
+                                </div>
+                            </div>
+                            <div class="control">
+                                
+                                <div class="btmControl clearfix">
+                                    <div class="btnPlay btn" title="Play/Pause video"></div>
+                                    <div class="sound sound2 btn" title="Mute/Unmute sound"></div>
+                                    <div class="volume-container">
+                                        <div class="volume" title="Set volume">
+                                            <span class="volumeBar">
+                                                <em></em>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="btnFS btn" title="Switch to full screen"></div>
+                                    <div class="time">
+                                        <span class="current"></span> / 
+                                        <span class="duration"></span> 
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="loading"></div>
+                    </div>
+                    <span class="centered-play-button"></span>
+                </section>
+            	<!--<video id="bckgrd-video" src="videos/dock.mp4" muted="true"></video>-->
+                <div id="bckgrd-video-overlay">
+                    <span class="logo">
+                        <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/logged-out-home-logo.png" alt="">
+                    </span>
+                	<!--<div id="play-button"></div>-->
+                    <!--<div class="color-bubbles">
+                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/color-bubbles.png" alt="" class="img-responsive">
+                    </div>-->
+                </div>
+            </div>        	
+        </section>
         <section class="container-fluid course-search-section unauthenticated-homepage">
         	<div class="container">
             	<div class="row">
                 	<div class="col-md-12">
-                    	<span class="logo">
-                        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/logged-out-home-logo.png" alt="">
-                        </span>
-                        <div class="color-bubbles">
-                        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/color-bubbles.png" alt="" class="img-responsive">
-                        </div>
                     	<p class="lead">Advance <span>Your Career.</span> Discover new skills. 
                         </p>
                         <p class="lead">
