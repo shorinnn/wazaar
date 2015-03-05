@@ -2232,6 +2232,42 @@ header .activate-dropdown:hover ul{
 	margin-bottom: 25px;
 }
 
+.main-content-container .main-content .testimonials.bottom-testimonials{
+	border-radius: 5px;
+	background: #fff;
+}
+
+.main-content-container .main-content .testimonials.bottom-testimonials hr{
+	display: none;
+}
+
+.main-content-container .main-content .testimonials.bottom-testimonials > div{
+	margin-bottom: 50px;
+}
+
+.main-content-container .main-content .testimonials.bottom-testimonials h2{
+	margin: 20px 0;
+	font-size: 18px;
+	color: #0099ff;
+	font-weight: normal;
+}
+
+.main-content-container .main-content .testimonials.bottom-testimonials h4{
+	font-size: 12px;
+	color: #333;
+	margin: 0 0 30px;
+}
+
+.main-content-container .main-content .testimonials.bottom-testimonials > h3{
+	border-top: 1px solid #f8f8f8;
+	margin-top: 50px;
+}
+
+.main-content-container .main-content .testimonials.bottom-testimonials > h3 img{
+	position: relative;
+	top: -1px;
+}
+
 .main-content-container .main-content .testimonials > h4{
 	padding: 0 20px;
 }
@@ -2296,7 +2332,7 @@ header .activate-dropdown:hover ul{
 	margin-top: 30px;
 	width: 100%;
 	background: #fff;
-	border-radius: 5px;
+	border-radius: 5px 5px 0 0;
 }
 
 .main-content-container .main-content .middle-content-wrapper{
@@ -2323,13 +2359,13 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content
 .curriculum h3{
-	padding: 68px 20px 0;
+	padding: 0 20px 0;
 	font-size: 18px;
 	font-weight: normal;
 	color: #0099ff;
 	border-radius: 5px;
 	border-top: solid 1px #fafafa;
-	margin: 60px 0 20px;
+	margin: 20px 0 20px;
 }
 
 .main-content-container .main-content
