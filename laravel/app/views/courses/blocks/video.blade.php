@@ -19,11 +19,12 @@
 
     </div>
     <h3><!--{{trans('video.uploadOr')}} -->
+    {{Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])}}
         <div class="form-inline">
         	<input disabled="disabled" placeholder="" id="uploadFile" style="">
             <div class="form-group video-upload clear">
 	            <span>Upload Video</span>
-
+                <input type="file" name="fileupload" class="upload" id="fileupload-{{$block->id}}">
             </div>
             <em>OR</em>
             <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}">{{trans('video.selectExisting')}}</a></h3>
@@ -36,9 +37,9 @@
             <p>Lorem ipsum description here</p>
         </div>-->
 
-    {{Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])}}
+
         <!-- Progress Bar -->
-        <input type="file" name="fileupload" class="upload" id="fileupload-{{$block->id}}">
+
         <div class="progress">
             <div id="progress-bar-{{$block->id}}" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                 <span><span id="percent-complete-{{$block->id}}"></span>% {{trans('crud/labels.complete')}}</span>
