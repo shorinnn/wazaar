@@ -105,6 +105,7 @@ Route::get('courses/category/{slug}', 'CoursesController@category');
 Route::post('courses/{slug}/purchase/{lesson}', 'CoursesController@purchaseLesson');
 Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
 Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
+Route::get('courses/{slug}/dashboard', 'CoursesController@dashboard');
 
 Route::resource('courses', 'CoursesController');
 // Modules routes

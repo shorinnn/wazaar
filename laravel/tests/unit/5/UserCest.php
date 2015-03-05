@@ -6,6 +6,10 @@ class UserCest{
         $this->users = new UserRepository;
         $this->setupDatabase();
     }
+    public function __destruct()
+    {
+        \DB::disconnect();
+    }
 
     private function setupDatabase() {
         Artisan::call('migrate:refresh');

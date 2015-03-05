@@ -6,6 +6,10 @@ class InstructorTransactionsCest{
     public function _before() {
         $this->setupDatabase();
     }
+    public function __destruct()
+    {
+        \DB::disconnect();
+    }
 
     private function setupDatabase() {
         Artisan::call('migrate:refresh');

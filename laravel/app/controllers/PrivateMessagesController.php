@@ -63,7 +63,9 @@ class PrivateMessagesController extends \BaseController {
                 }
                 else $pm->recipient_id = Input::get('recipient_id');
             }
-            else{}
+            else{
+                $pm->course_id = Input::get('course_id');
+            }
             
             $pm->thread_id = intval(Input::get('thread_id'));
             if( $pm->save() ){
