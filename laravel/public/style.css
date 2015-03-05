@@ -1916,7 +1916,6 @@ header .activate-dropdown:hover ul{
 	padding-top: 15px;
 	border-radius: 0 0 5px 5px;
 	padding-bottom: 80px;
-	background: #fff;
 }
 
 .main-content-container .main-content
@@ -2296,6 +2295,30 @@ header .activate-dropdown:hover ul{
 .curriculum{
 	margin-top: 30px;
 	width: 100%;
+	background: #fff;
+	border-radius: 5px;
+}
+
+.main-content-container .main-content .middle-content-wrapper{
+	background: #fff;
+	border-radius: 0 0 5px 5px;
+}
+
+.main-content-container .main-content .divider{
+	width: 100%;
+	height: 23px;
+	padding-bottom: 40px;
+	background: #f8f8f8;
+}
+
+.main-content-container .main-content .divider span{
+	display: block;
+	width: 0;
+	height: 0;
+	margin: 0 auto;
+	border-left: solid 30px transparent;
+	border-right: solid 30px transparent;
+	border-top: solid 20px #fff;
 }
 
 .main-content-container .main-content
@@ -6379,7 +6402,7 @@ footer{
 	}
 	
 	.course-detail-top-section .centered-contents .video-player{
-		margin: 20px 0 0 0;
+		margin: 20px 20px 0 0;
 		position: relative;
 		width: 100%;
 	}
