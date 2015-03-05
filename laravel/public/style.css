@@ -2265,6 +2265,7 @@ header .activate-dropdown:hover ul{
 	margin-top: 20px;
 }
 
+.main-content-container .main-content .testimonials.top-testimonials > span.name,
 .main-content-container .main-content .sidebar .testimonials > span.name{
 	padding: 0;
 }
@@ -6372,6 +6373,32 @@ footer{
 		float: none;
 	}
 	
+	.course-detail-top-section .centered-contents .banner-content-wrapper{
+		position: relative;
+		margin: 0;
+	}
+	
+	.course-detail-top-section .centered-contents .video-player{
+		margin: 20px 0 0 0;
+		position: relative;
+		width: 100%;
+	}
+
+	.course-detail-top-section .centered-contents .white-box:after, 
+	.course-detail-top-section .centered-contents .white-box:before{
+		background: none;
+	}
+
+	.main-content-container{
+		padding: 0 20px;
+	}
+}
+
+@media (max-width:900px){
+	.course-detail-top-section .centered-contents{
+		padding: 0 0 0 20px;
+	}
+	
 }
 
 @media (max-width:767px){
@@ -6475,7 +6502,22 @@ footer{
 header .top-menu li{ 
 	margin:0px 5px; 
 }
+
+.course-detail-top-section .centered-contents .video-player{
+	margin-right: 0;
+	position: relative;
+	margin-top: 20px;
+	width: 100%;
+	margin-left: 0;
 }
+
+.course-detail-top-section .centered-contents .banner-content-wrapper{
+	position: relative;
+	padding: 0;
+}
+
+}
+
 
 @media (max-width:618px){
 .course-detail-top-section .centered-contents .watch-video-button{
@@ -6487,6 +6529,23 @@ header .top-menu li{
 	font-size: 26px;
 }
 
+.main-content-container .main-content .sidebar .testimonials > p,
+.main-content-container .main-content .testimonials > p{
+	margin: 8px 20px 0;
+}
+
+.main-content-container .main-content .testimonials > span.name{
+	padding: 0 20px;
+}
+
+.main-content-container .main-content{
+	padding: 15px 20px 0;
+}
+
+.course-detail-top-section .centered-contents .video-player{
+	height: 273px;
+}
+
 }
 
 @media (max-width:520px){
@@ -6494,6 +6553,11 @@ header .top-menu li{
 		width: 100%;
 		padding: 0 15px;
 	}
+
+	.main-content-container{
+		padding: 0;
+	}
+
 }
 
 @media (max-width:475px){
@@ -6521,6 +6585,10 @@ header .top-menu li{
 		font-size: 24px;
 	}
 
+	.main-content-container .main-content .curriculum .lesson-container{
+		margin: 0;
+		width: 100%;
+	}
 }
 
 @media (max-width:380px){
@@ -6532,6 +6600,19 @@ header .top-menu li{
 	.members-area .table-wrapper tr td a i{
 		font-size: 22px;
 	}
+	
+	.main-content-container .main-content .curriculum .lesson-container{
+		padding: 0;
+	}
+	
+	.main-content-container .main-content .curriculum .lesson-container li span{
+		margin-left: 10px;
+	}
+	
+	.main-content-container .main-content .curriculum .lesson-container li p{
+		margin: 0 0 0 15px;
+	}
+
 																								
 }
 
