@@ -1,6 +1,6 @@
 <?php
 
-class PaymentController extends BaseController
+class ApiPaymentController extends BaseController
 {
     protected $payment;
 
