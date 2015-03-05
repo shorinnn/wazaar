@@ -255,11 +255,11 @@
                                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">
                             </h3>
 	                        <h2 class="text-center">Helpful Student Reviews</h2>
-                            <div>
                             @foreach($course->allTestimonials as $testimonial)
+                            	<div>
                                {{ View::make('courses.testimonials.testimonial')->with( compact('testimonial') ) }}
+                               </div>
                             @endforeach
-                            </div>
                         </div>
                         <a href='1' class="load-more-comments load-more-ajax" 
                data-url='{{ action('TestimonialsController@more') }}' 

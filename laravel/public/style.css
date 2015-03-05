@@ -1913,7 +1913,6 @@ header .activate-dropdown:hover ul{
 .main-content-container .main-content{
 	max-width: 1000px;
 	margin: 0 auto;
-	padding-top: 15px;
 	border-radius: 0 0 5px 5px;
 	padding-bottom: 80px;
 }
@@ -2338,6 +2337,7 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content .middle-content-wrapper{
 	background: #fff;
+	padding-top: 25px;
 	border-radius: 0 0 5px 5px;
 }
 
