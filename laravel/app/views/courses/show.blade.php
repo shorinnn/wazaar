@@ -102,110 +102,115 @@
                     @if (Session::get('error'))
                         <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
                     @endif
-            	<div class="left-content">
-                    @if($course->testimonials->count() > 0)
-                        <div class="testimonials top-testimonials">
-                            <p>
-                            {{{ $course->testimonials->first()->content }}}
-                            </p>
-                            <span class="name">
-                                {{$course->testimonials->first()->student->first_name}}
-                                {{$course->testimonials->first()->student->last_name}}
-                            </span>
-                        </div>
-                    @endif
-                    <p class="lead what-you-will-learn">{{trans('courses/general.what_you_will_achieve')}}.</p>
-                        <article class="bottom-margin what-you-will-learn">
-                        <ul>
-                        @if($achievements = json2Array($course->what_will_you_achieve))
-                            @foreach($achievements as $achievement)
-                                <li>{{ $achievement }}</li>
-                            @endforeach
-                        @endif    
-                         </ul>
-                    </article>
-                    <p class="lead">{{ trans('courses/general.Description') }}</p>
-                    <article class="bottom-margin">
-                    {{$course->description}}
-                    </article>
-                    <!-- <p class="lead">Sub Description</p>
-                    <article class="bottom-margin">
-                    {{ $course->description }}
-                    </article>
-                    -->
-                </div>
-                <div class="sidebar">
-                    
-                    <aside>
-                    	<p class="lead">{{ trans('courses/general.who_is_this_for?') }}</p>
-                         @if($who_for = json2Array($course->who_is_this_for))
-                        <ul>
-                            @foreach($who_for as $who)
-                                <li>{{$who}}</li>
-                            @endforeach
-                        </ul>
-                         @endif
-                    </aside>
-                    
-                    <div class="your-teacher">
-                        <div class="avater">
-	                    	<p>{{ trans('courses/general.your_teacher')}}</p>
-                                
-                                @if($course->instructor->profile == null)
-                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater.png" alt="" >
-                                    </div>
-                                    <h3>{{$course->instructor->first_name}} {{$course->instructor->last_name}}<span></span></h3>
-                                    <!--<span class="role">Lead programmer, Wazaar</span>-->
-            						<!--<a href="#" class="follow-button">FOLLOW</a>-->
-                                    @if(Auth::check())
-                                        {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
-                                    @endif
-                                    <h4>About {{$course->instructor->first_name}}</h4>
-                                    <p>
-                                    Description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et 
-                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
-                                    </p>
-                                @else
-                                 <img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $course->instructor->profile->photo }}" alt="" >
-                                    </div>
-                                    <h3>{{$course->instructor->profile->first_name}} {{$course->instructor->profile->last_name}}<span></span></h3>
-       
-
-                                    @if(Auth::check())
-                                        {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
-                                    @endif
-                                    <h4>About {{$course->instructor->profile->first_name}}</h4>
-                                    <p>
-                                   {{ $course->instructor->profile->bio }}
-                                    </p>
-                                @endif
-                    </div>
-                    <div class="testimonial-block">
-                    	<small>You are backed by our</small>
-                        <div class="money-back">
-                        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/30-days-coupon.png" alt="">
-                        	<p>MONEY BACK GUARANTEE</p>
-                        </div>
-
-                        <div class="testimonials">
-                            @if($course->testimonials->count() > 1)
-                        	<h4>Testimonials</h4>
+                <div class="middle-content-wrapper clearfix">
+                    <div class="left-content">
+                        @if($course->testimonials->count() > 0)
+                            <div class="testimonials top-testimonials">
                                 <p>
-                                 {{{ $course->testimonials->last()->content }}}
+                                {{{ $course->testimonials->first()->content }}}
                                 </p>
                                 <span class="name">
-                                    {{$course->testimonials->last()->student->first_name}}
-                                    {{$course->testimonials->last()->student->last_name}}
+                                    {{$course->testimonials->first()->student->first_name}}
+                                    {{$course->testimonials->first()->student->last_name}}
                                 </span>
-                            @endif
+                            </div>
+                        @endif
+                        <p class="lead what-you-will-learn">{{trans('courses/general.what_you_will_achieve')}}.</p>
+                            <article class="bottom-margin what-you-will-learn">
+                            <ul>
+                            @if($achievements = json2Array($course->what_will_you_achieve))
+                                @foreach($achievements as $achievement)
+                                    <li>{{ $achievement }}</li>
+                                @endforeach
+                            @endif    
+                             </ul>
+                        </article>
+                        <p class="lead">{{ trans('courses/general.Description') }}</p>
+                        <article class="bottom-margin">
+                        {{$course->description}}
+                        </article>
+                        <!-- <p class="lead">Sub Description</p>
+                        <article class="bottom-margin">
+                        {{ $course->description }}
+                        </article>
+                        -->
+                    </div>
+                    <div class="sidebar">
+                        
+                        <aside>
+                            <p class="lead">{{ trans('courses/general.who_is_this_for?') }}</p>
+                             @if($who_for = json2Array($course->who_is_this_for))
+                            <ul>
+                                @foreach($who_for as $who)
+                                    <li>{{$who}}</li>
+                                @endforeach
+                            </ul>
+                             @endif
+                        </aside>
+                        
+                        <div class="your-teacher">
+                            <div class="avater">
+                                <p>{{ trans('courses/general.your_teacher')}}</p>
+                                    
+                                    @if($course->instructor->profile == null)
+                                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater.png" alt="" >
+                                        </div>
+                                        <h3>{{$course->instructor->first_name}} {{$course->instructor->last_name}}<span></span></h3>
+                                        <!--<span class="role">Lead programmer, Wazaar</span>-->
+                                        <!--<a href="#" class="follow-button">FOLLOW</a>-->
+                                        @if(Auth::check())
+                                            {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
+                                        @endif
+                                        <h4>About {{$course->instructor->first_name}}</h4>
+                                        <p>
+                                        Description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et 
+                                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+                                        </p>
+                                    @else
+                                     <img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $course->instructor->profile->photo }}" alt="" >
+                                        </div>
+                                        <h3>{{$course->instructor->profile->first_name}} {{$course->instructor->profile->last_name}}<span></span></h3>
+           
+    
+                                        @if(Auth::check())
+                                            {{ View::make('courses.followed_form')->withInstructor($course->instructor) }}
+                                        @endif
+                                        <h4>About {{$course->instructor->profile->first_name}}</h4>
+                                        <p>
+                                       {{ $course->instructor->profile->bio }}
+                                        </p>
+                                    @endif
+                        </div>
+                        <div class="testimonial-block">
+                            <small>You are backed by our</small>
+                            <div class="money-back">
+                                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/30-days-coupon.png" alt="">
+                                <p>MONEY BACK GUARANTEE</p>
+                            </div>
+    
+                            <div class="testimonials">
+                                @if($course->testimonials->count() > 1)
+                                <h4>Testimonials</h4>
+                                    <p>
+                                     {{{ $course->testimonials->last()->content }}}
+                                    </p>
+                                    <span class="name">
+                                        {{$course->testimonials->last()->student->first_name}}
+                                        {{$course->testimonials->last()->student->last_name}}
+                                    </span>
+                                @endif
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="divider clear">
+                    <span></span>
                 </div>
                 <div class="curriculum clearfix clear">
                 	<h3 class="text-center">
-                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">
+                        <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">-->
                         {{ trans('courses/general.curriculum') }}
                    	</h3>
 
@@ -240,18 +245,20 @@
                     </div>
                     @endforeach
                 </div>
-            
-            <br />
-            <br />
-            <h3 class="text-center">
-                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">
-            </h3>
+                            <!--<div class="divider clear">
+                    <span></span>
+                </div>-->
             
             @if($course->allTestimonials->count() > 0)
-                        <h2 class="text-center">Helpful Student Reviews</h2>
                         <div class="testimonials clearfix clear_fix clear bottom-testimonials">
+                            <h3 class="text-center">
+                                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">
+                            </h3>
+	                        <h2 class="text-center">Helpful Student Reviews</h2>
                             @foreach($course->allTestimonials as $testimonial)
+                            	<div>
                                {{ View::make('courses.testimonials.testimonial')->with( compact('testimonial') ) }}
+                               </div>
                             @endforeach
                         </div>
                         <a href='1' class="load-more-comments load-more-ajax" 

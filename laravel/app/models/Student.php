@@ -27,7 +27,6 @@ class Student extends User{
                 $mass = [0];
             }
         }
-        
         $non_mass = $this->receivedMessagesRel()->lists('id');
         if( count($non_mass) == 0) $non_mass = [0];
         

@@ -1913,10 +1913,8 @@ header .activate-dropdown:hover ul{
 .main-content-container .main-content{
 	max-width: 1000px;
 	margin: 0 auto;
-	padding-top: 15px;
 	border-radius: 0 0 5px 5px;
 	padding-bottom: 80px;
-	background: #fff;
 }
 
 .main-content-container .main-content
@@ -2233,11 +2231,48 @@ header .activate-dropdown:hover ul{
 	margin-bottom: 25px;
 }
 
+.main-content-container .main-content .testimonials.bottom-testimonials{
+	border-radius: 5px;
+	background: #fff;
+	padding-bottom: 80px;
+}
+
+.main-content-container .main-content .testimonials.bottom-testimonials hr{
+	display: none;
+}
+
+.main-content-container .main-content .testimonials.bottom-testimonials > div{
+	margin-bottom: 50px;
+}
+
+.main-content-container .main-content .testimonials.bottom-testimonials h2{
+	margin: 20px 0;
+	font-size: 18px;
+	color: #0099ff;
+	font-weight: normal;
+}
+
+.main-content-container .main-content .testimonials.bottom-testimonials h4{
+	font-size: 12px;
+	color: #333;
+	margin: 0 0 30px;
+}
+
+.main-content-container .main-content .testimonials.bottom-testimonials > h3{
+	border-top: 1px solid #f8f8f8;
+	margin-top: 50px;
+}
+
+.main-content-container .main-content .testimonials.bottom-testimonials > h3 img{
+	position: relative;
+	top: -1px;
+}
+
 .main-content-container .main-content .testimonials > h4{
 	padding: 0 20px;
 }
 
-.main-content-container .main-content .testimonials > p{
+.main-content-container .main-content .testimonials p{
 	font-size: 12px;
 	color: #849598;
 	text-align: center;
@@ -2247,15 +2282,15 @@ header .activate-dropdown:hover ul{
 	line-height: 28px;
 }
 
-.main-content-container .main-content .sidebar .testimonials > p{
+.main-content-container .main-content .sidebar .testimonials p{
 	margin: 8px 0 0;
 }
 
-.main-content-container .main-content .testimonials.top-testimonials > p{
+.main-content-container .main-content .testimonials.top-testimonials p{
 	margin: 8px 0 0 20px;
 }
 
-.main-content-container .main-content .testimonials > span.name{
+.main-content-container .main-content .testimonials span.name{
 	display: block;
 	font-size: 18px;
 	font-weight: 200;
@@ -2265,7 +2300,8 @@ header .activate-dropdown:hover ul{
 	margin-top: 20px;
 }
 
-.main-content-container .main-content .sidebar .testimonials > span.name{
+.main-content-container .main-content .testimonials.top-testimonials span.name,
+.main-content-container .main-content .sidebar .testimonials span.name{
 	padding: 0;
 }
 
@@ -2295,17 +2331,41 @@ header .activate-dropdown:hover ul{
 .curriculum{
 	margin-top: 30px;
 	width: 100%;
+	background: #fff;
+	border-radius: 5px 5px 0 0;
+}
+
+.main-content-container .main-content .middle-content-wrapper{
+	background: #fff;
+	padding-top: 25px;
+	border-radius: 0 0 5px 5px;
+}
+
+.main-content-container .main-content .divider{
+	width: 100%;
+	height: 23px;
+	padding-bottom: 40px;
+	background: #f8f8f8;
+}
+
+.main-content-container .main-content .divider span{
+	display: block;
+	width: 0;
+	height: 0;
+	margin: 0 auto;
+	border-left: solid 30px transparent;
+	border-right: solid 30px transparent;
+	border-top: solid 20px #fff;
 }
 
 .main-content-container .main-content
 .curriculum h3{
-	padding: 68px 20px 0;
+	padding: 0 20px 0;
 	font-size: 18px;
 	font-weight: normal;
 	color: #0099ff;
 	border-radius: 5px;
-	border-top: solid 1px #fafafa;
-	margin: 60px 0 20px;
+	margin: 20px 0 20px;
 }
 
 .main-content-container .main-content
@@ -6372,6 +6432,32 @@ footer{
 		float: none;
 	}
 	
+	.course-detail-top-section .centered-contents .banner-content-wrapper{
+		position: relative;
+		margin: 0;
+	}
+	
+	.course-detail-top-section .centered-contents .video-player{
+		margin: 20px 20px 0 0;
+		position: relative;
+		width: 100%;
+	}
+
+	.course-detail-top-section .centered-contents .white-box:after, 
+	.course-detail-top-section .centered-contents .white-box:before{
+		background: none;
+	}
+
+	.main-content-container{
+		padding: 0 20px;
+	}
+}
+
+@media (max-width:900px){
+	.course-detail-top-section .centered-contents{
+		padding: 0 0 0 20px;
+	}
+	
 }
 
 @media (max-width:767px){
@@ -6475,7 +6561,22 @@ footer{
 header .top-menu li{ 
 	margin:0px 5px; 
 }
+
+.course-detail-top-section .centered-contents .video-player{
+	margin-right: 0;
+	position: relative;
+	margin-top: 20px;
+	width: 100%;
+	margin-left: 0;
 }
+
+.course-detail-top-section .centered-contents .banner-content-wrapper{
+	position: relative;
+	padding: 0;
+}
+
+}
+
 
 @media (max-width:618px){
 .course-detail-top-section .centered-contents .watch-video-button{
@@ -6487,6 +6588,23 @@ header .top-menu li{
 	font-size: 26px;
 }
 
+.main-content-container .main-content .sidebar .testimonials p,
+.main-content-container .main-content .testimonials p{
+	margin: 8px 20px 0;
+}
+
+.main-content-container .main-content .testimonials span.name{
+	padding: 0 20px;
+}
+
+.main-content-container .main-content{
+	padding: 15px 20px 0;
+}
+
+.course-detail-top-section .centered-contents .video-player{
+	height: 273px;
+}
+
 }
 
 @media (max-width:520px){
@@ -6494,6 +6612,11 @@ header .top-menu li{
 		width: 100%;
 		padding: 0 15px;
 	}
+
+	.main-content-container{
+		padding: 0;
+	}
+
 }
 
 @media (max-width:475px){
@@ -6521,6 +6644,10 @@ header .top-menu li{
 		font-size: 24px;
 	}
 
+	.main-content-container .main-content .curriculum .lesson-container{
+		margin: 0;
+		width: 100%;
+	}
 }
 
 @media (max-width:380px){
@@ -6532,6 +6659,19 @@ header .top-menu li{
 	.members-area .table-wrapper tr td a i{
 		font-size: 22px;
 	}
+	
+	.main-content-container .main-content .curriculum .lesson-container{
+		padding: 0;
+	}
+	
+	.main-content-container .main-content .curriculum .lesson-container li span{
+		margin-left: 10px;
+	}
+	
+	.main-content-container .main-content .curriculum .lesson-container li p{
+		margin: 0 0 0 15px;
+	}
+
 																								
 }
 
