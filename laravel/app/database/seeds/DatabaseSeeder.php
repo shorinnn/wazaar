@@ -646,19 +646,19 @@ class PMSeeder extends Seeder {
         
         PrivateMessage::create( ['sender_id' => '9', 'recipient_id' => 4, 'thread_id' => 0, 'type' => 'ask_teacher', 'course_id' => '5',
             'lesson_id' => 10, 'content' => 'Ask Thy Teachereth'] );
-        PrivateMessage::create( ['sender_id' => '4', 'recipient_id' => 9, 'thread_id' => 34, 'type' => 'ask_teacher', 'course_id' => '5',
+        PrivateMessage::create( ['sender_id' => '4', 'recipient_id' => 9, 'thread_id' => 1, 'type' => 'ask_teacher', 'course_id' => '5',
             'lesson_id' => 10, 'content' => 'teacher answereth'] );
-        PrivateMessage::create( ['sender_id' => '9', 'recipient_id' => 4, 'thread_id' => 34, 'type' => 'ask_teacher', 'course_id' => '5',
+        PrivateMessage::create( ['sender_id' => '9', 'recipient_id' => 4, 'thread_id' => 1, 'type' => 'ask_teacher', 'course_id' => '5',
             'lesson_id' => 10, 'content' => '1'] );
-        PrivateMessage::create( ['sender_id' => '9', 'recipient_id' => 4, 'thread_id' => 34, 'type' => 'ask_teacher', 'course_id' => '5',
+        PrivateMessage::create( ['sender_id' => '9', 'recipient_id' => 4, 'thread_id' => 1, 'type' => 'ask_teacher', 'course_id' => '5',
             'lesson_id' => 10, 'content' => 'thank you men'] );
         PrivateMessage::create( ['sender_id' => '4', 'recipient_id' => NULL, 'thread_id' => 0, 'type' => 'mass_message', 'course_id' => '5',
             'lesson_id' => 10, 'content' => '2'] );
         PrivateMessage::create( ['sender_id' => '4', 'recipient_id' => NULL, 'thread_id' => 0, 'type' => 'mass_message', 'course_id' => '5',
             'lesson_id' => 10, 'content' => 'mass message yall'] );
-        PrivateMessage::create( ['sender_id' => '7', 'recipient_id' => 4, 'thread_id' => 0, 'type' => 'student_conversation', 'course_id' => '0',
+        PrivateMessage::create( ['sender_id' => '7', 'recipient_id' => 9, 'thread_id' => 0, 'type' => 'student_conversation', 'course_id' => '0',
             'lesson_id' => 10, 'content' => 'sup m8?'] );
-        PrivateMessage::create( ['sender_id' => '8', 'recipient_id' => 4, 'thread_id' => 0, 'type' => 'student_conversation', 'course_id' => '0',
+        PrivateMessage::create( ['sender_id' => '8', 'recipient_id' => 9, 'thread_id' => 0, 'type' => 'student_conversation', 'course_id' => '0',
             'lesson_id' => 10, 'content' => 'sup m7+1?'] );
         
     }

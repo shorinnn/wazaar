@@ -191,6 +191,8 @@ function formToRemoteLink(e){
  */
 function loadRemote(e){
     e.preventDefault();
+    var nofollow = $(e.target).attr('data-nofollow');
+    if( typeof(nofollow)!='undefined'&& nofollow==1 ) return false;
     var loading = $(e.target).attr('data-loading');
     if( typeof(loading)!='undefined'&& loading==1 ) return false;
     url = $(e.target).attr('data-url');
