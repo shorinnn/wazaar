@@ -36,6 +36,9 @@ class UploadHelper
             'Body'        =>  $file
         ));
 
+        //remove file
+        //unlink($file);
+
         return $result;
     }
 
