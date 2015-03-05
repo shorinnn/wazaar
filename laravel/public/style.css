@@ -2235,6 +2235,7 @@ header .activate-dropdown:hover ul{
 .main-content-container .main-content .testimonials.bottom-testimonials{
 	border-radius: 5px;
 	background: #fff;
+	padding-bottom: 80px;
 }
 
 .main-content-container .main-content .testimonials.bottom-testimonials hr{
@@ -2272,7 +2273,7 @@ header .activate-dropdown:hover ul{
 	padding: 0 20px;
 }
 
-.main-content-container .main-content .testimonials > p{
+.main-content-container .main-content .testimonials p{
 	font-size: 12px;
 	color: #849598;
 	text-align: center;
@@ -2282,15 +2283,15 @@ header .activate-dropdown:hover ul{
 	line-height: 28px;
 }
 
-.main-content-container .main-content .sidebar .testimonials > p{
+.main-content-container .main-content .sidebar .testimonials p{
 	margin: 8px 0 0;
 }
 
-.main-content-container .main-content .testimonials.top-testimonials > p{
+.main-content-container .main-content .testimonials.top-testimonials p{
 	margin: 8px 0 0 20px;
 }
 
-.main-content-container .main-content .testimonials > span.name{
+.main-content-container .main-content .testimonials span.name{
 	display: block;
 	font-size: 18px;
 	font-weight: 200;
@@ -2300,8 +2301,8 @@ header .activate-dropdown:hover ul{
 	margin-top: 20px;
 }
 
-.main-content-container .main-content .testimonials.top-testimonials > span.name,
-.main-content-container .main-content .sidebar .testimonials > span.name{
+.main-content-container .main-content .testimonials.top-testimonials span.name,
+.main-content-container .main-content .sidebar .testimonials span.name{
 	padding: 0;
 }
 
@@ -2364,7 +2365,6 @@ header .activate-dropdown:hover ul{
 	font-weight: normal;
 	color: #0099ff;
 	border-radius: 5px;
-	border-top: solid 1px #fafafa;
 	margin: 20px 0 20px;
 }
 
@@ -6588,12 +6588,12 @@ header .top-menu li{
 	font-size: 26px;
 }
 
-.main-content-container .main-content .sidebar .testimonials > p,
-.main-content-container .main-content .testimonials > p{
+.main-content-container .main-content .sidebar .testimonials p,
+.main-content-container .main-content .testimonials p{
 	margin: 8px 20px 0;
 }
 
-.main-content-container .main-content .testimonials > span.name{
+.main-content-container .main-content .testimonials span.name{
 	padding: 0 20px;
 }
 
