@@ -37,7 +37,7 @@ class UploadHelper
         ));
 
         //remove file
-        unlink($file);
+        //unlink($file);
 
         return $result;
     }
