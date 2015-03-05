@@ -343,6 +343,52 @@ class Student extends User{
               return false;
          });
      }
+     
+     function grouppedNotifications(){
+         $notifications = [];
+         
+         $notification = [];
+         foreach( $this->receivedMessages()->unread( $this->id )->get() as $pm ){
+             if($pm->type=='student_conversation'){
+                 $notification['pm']['url'] = action('PrivateMessagesController@index');
+                 if( !isset( $notification['pm']['count'] )){
+                     $notification['pm']['count'] = 1;
+                 }
+                 else{
+                     $notification['pm']['count']++;
+                 }
+                 $notification['pm']['senders'][] = $pm->sender->commentName('student');
+ 
+                 $notification['pm']['text'] = 'You have '. $notification['pm']['count'] .' new PM  from ' . implode(', ', $notification['pm']['senders']);
+                 $notifications['pm'] = $notification['pm'];
+             }
+             elseif($pm->type=='mass_message'){
+                 $notification['m'.$pm->course->id]['url'] = action('ClassroomController@dashboard', $pm->course->slug);
+                 if( !isset( $notification['m'.$pm->course->id]['count'] )){
+                     $notification['m'.$pm->course->id]['count'] = 1;
+                 }
+                 else{
+                     $notification['m'.$pm->course->id]['count']++;
+                 }
+ 
+                 $notification['m'.$pm->course->id]['text'] = 'You have '. $notification['m'.$pm->course->id]['count'] .' new announcements in '.$pm->course->name;
+                 $notifications['m'.$pm->course->id] = $notification['m'.$pm->course->id];
+             }
+             else{
+             $notification['a'.$pm->course->id]['url'] = action('ClassroomController@dashboard', $pm->course->slug);
+                 if( !isset( $notification['a'.$pm->course->id]['count'] )){
+                     $notification['a'.$pm->course->id]['count'] = 1;
+                 }
+                 else{
+                     $notification['a'.$pm->course->id]['count']++;
+                 }
+ 
+                 $notification['a'.$pm->course->id]['text'] = 'You have '. $notification['a'.$pm->course->id]['count'] .' teacher responses in '.$pm->course->name;
+                 $notifications['a'.$pm->course->id] = $notification['a'.$pm->course->id];
+             }
+         }
+         return $notifications;
+     }
 
 
 
