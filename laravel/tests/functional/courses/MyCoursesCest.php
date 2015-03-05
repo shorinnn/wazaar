@@ -34,40 +34,39 @@ class MyCourseCest{
         $I->seeCurrentUrlEquals('/courses/mycourses');
     }
     
-    public function seeCoursesViewEditDeletePagination(FunctionalTester $I){
-        $instructor = Instructor::where('username', 'instructor')->first();
-        $I->amLoggedAs($instructor);
-        $I->amOnPage('/courses/mycourses');
-        $I->see('App Development');
-        $I->see('View');
-        $I->see('Edit');
-        $I->see('Delete');
-        $I->seeNumberOfElements('.pagination', 1);
-    }
-    public function deleteCourse(FunctionalTester $I){
-        $instructor = Instructor::where('username', 'instructor')->first();
-        $I->amLoggedAs($instructor);
-        $I->amOnPage('/courses/mycourses');
-        $I->click('#course-form-1 button');
-        $I->see('Course Deleted');
-        $I->seeNumberOfElements('#course-form-1', 0);
-    }
+//    public function seeCoursesViewEditDeletePagination(FunctionalTester $I){
+//        $instructor = Instructor::where('username', 'instructor')->first();
+//        $I->amLoggedAs($instructor);
+//        $I->amOnPage('/courses/mycourses');
+//        $I->see('App Development');
+//        $I->see('Edit');
+//        $I->see('Delete');
+//        $I->seeNumberOfElements('.pagination', 1);
+//    }
+//    public function deleteCourse(FunctionalTester $I){
+//        $instructor = Instructor::where('username', 'instructor')->first();
+//        $I->amLoggedAs($instructor);
+//        $I->amOnPage('/courses/mycourses');
+//        $I->click('#course-form-1 button');
+//        $I->see('Course Deleted');
+//        $I->seeNumberOfElements('#course-form-1', 0);
+//    }
+//    
+//    public function notSeeDeleteButton(FunctionalTester $I){
+//        $instructor = Instructor::where('username', 'instructor')->first();
+//        $I->amLoggedAs($instructor);
+//        $I->amOnPage('/courses/mycourses');
+//        $I->seeNumberOfElements('#course-form-5', 0);
+//    }
     
-    public function notSeeDeleteButton(FunctionalTester $I){
-        $instructor = Instructor::where('username', 'instructor')->first();
-        $I->amLoggedAs($instructor);
-        $I->amOnPage('/courses/mycourses');
-        $I->seeNumberOfElements('#course-form-5', 0);
-    }
-    
-    public function viewCourse(FunctionalTester $I){
-        $instructor = Instructor::where('username', 'instructor')->first();
-        $I->amLoggedAs($instructor);
-        $I->amOnPage('/courses/mycourses');
-        $I->click('View');
-        $course = Course::where('name','App Development')->first();
-        $I->seeCurrentUrlEquals('/courses/'.$course->slug);
-    }
+//    public function viewCourse(FunctionalTester $I){
+//        $instructor = Instructor::where('username', 'instructor')->first();
+//        $I->amLoggedAs($instructor);
+//        $I->amOnPage('/courses/mycourses');
+//        $I->click('View');
+//        $course = Course::where('name','App Development')->first();
+//        $I->seeCurrentUrlEquals('/courses/'.$course->slug);
+//    }
     
     public function seeEditForm(FunctionalTester $I){
         $instructor = Instructor::where('username', 'instructor')->first();

@@ -20,7 +20,7 @@ class LessonPurchaseCest{
         $I->amLoggedAs($user);
         $I->amOnPage( action('CoursesController@show', $course->slug) );
         $I->dontSeeRecord( 'purchases', ['student_id' => $user->id, 'product_type' => 'Lesson'] );
-        $I->click('CRASH LESSON');
+        $I->click('Crash Class');
         $I->seeRecord( 'purchases', ['student_id' => $user->id, 'product_type' => 'Lesson'] );
     }
     
@@ -31,7 +31,7 @@ class LessonPurchaseCest{
         $I->amOnPage( action('CoursesController@show', $course->slug) );
         $I->dontSee('data-crash-disabled');
         $I->dontSeeRecord( 'purchases', ['student_id' => $user->id, 'product_type' => 'Lesson'] );
-        $I->click('CRASH LESSON');
+        $I->click('Crash Class');
         $I->seeRecord( 'purchases', ['student_id' => $user->id, 'product_type' => 'Lesson'] );
         $I->amOnPage( action('CoursesController@show', $course->slug) );
         $I->see('data-crash-disabled');
