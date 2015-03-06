@@ -1,4 +1,8 @@
 @extends('layouts.default')
+@section('page_title')
+    {{ $course->name }} - Edit -
+@stop
+
 @section('content')
 <style>
     #save-indicator{

@@ -12,6 +12,7 @@ $(document).ready(function(){
     $('body').delegate('.load-remote a', 'click', prepareLoadRemote);
     $('body').delegate('a.load-more-ajax', 'click', loadMoreComments);
     $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
+    $('body').delegate('.btnLink', 'click', goTo);
 	$('button.join-class').mousedown(function(){
 		$(this).addClass('pushdown');
 	});
@@ -26,6 +27,10 @@ $(document).ready(function(){
     //homeBckgrdVideo();
 	skinVideoControls();
 });
+
+function goTo(e){
+    window.location = $(e.target).attr('data-url');
+}
 
 /**
  * Returns a slug version of the supplied string

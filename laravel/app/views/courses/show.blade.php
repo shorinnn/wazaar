@@ -1,4 +1,9 @@
     @extends('layouts.default')
+    
+    @section('page_title')
+    {{ $course->name }} -
+    @stop
+    
     @section('content')	
     <style>
     .inline-block{
@@ -230,14 +235,24 @@
                                 @endif
                                     <span>Lesson {{ $lesson->order }}</span>
                                     <p>{{ $lesson->name }}</p>
+                                    @if($lesson->price==0)
+                                    
+                                        <button data-url="{{ action( 'ClassroomController@lesson', 
+                                                [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, '\
+                                                lesson' => $lesson->slug ]) }}"
+                                            class='btn btnLink crash-lesson-button pull-right'>{{ trans('courses/general.crash_class') }}</button>
+                                    @else
+                                    
                                     {{ Form::open( [ 'action' => ['CoursesController@purchaseLesson', $course->slug, $lesson->id ] ] ) }}
                                     <!--<a href="#" class="crash-lesson-button">CRASH LESSON</a>-->
                                     <button class="btn crash-lesson-button pull-right" 
                                             @if( Auth::guest() || !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) )
                                             disabled="disabled" data-crash-disabled='1'
                                             @endif
-                                            >{{ trans('courses/general.crash_class') }}</button>
+                                            >{{ trans('courses/general.purchase') }}</button>
                                     {{ Form::close() }}
+                                    
+                                    @endif
                                 </li>
                             @endforeach
                         </ul>

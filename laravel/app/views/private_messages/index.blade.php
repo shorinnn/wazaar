@@ -1,4 +1,8 @@
 @extends('layouts.default')
+@section('page_title')
+    Private Messages - 
+@stop
+
 @section('content')
         <div class="classrooms-wrapper clearfix">
             @if( Input::has('send-to') )

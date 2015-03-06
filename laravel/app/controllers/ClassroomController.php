@@ -59,15 +59,20 @@ class ClassroomController extends \BaseController {
             }
             $module = $course->modules()->where('slug', $module)->first();
             $lesson = $module->lessons()->where('slug', $lesson)->with('blocks')->first();
+            $video = $lesson->blocks()->where('type','video')->first();
             if( !$student->purchased( $course ) && !$student->purchased( $lesson ) ){
+                // load crash lesson mode if lesson is free
+                if( $lesson->price==0 ){
+                    return View::make('courses.classroom.crash_lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
+                }
                 return Redirect::to('/');
             }
+            
             $lesson->comments = $lesson->comments()->orderBy('id','desc')->where('reply_to', null)->with('poster')->paginate( 2 );
             if( $lesson==null || $lesson->module->course->id != $course->id ){
                 return Redirect::to('/');
             }            
             $student->viewLesson( $lesson );
-            $video = $lesson->blocks()->where('type','video')->first();
             
             $lesson->ask_teacher_messages = $lesson->privateMessages()->where('type','ask_teacher')->where(function($query){
                 $query->where('sender_id', Auth::user()->id)->orWhere('recipient_id', Auth::user()->id);

@@ -1,4 +1,9 @@
     @extends('layouts.default')
+    
+    @section('page_title')
+        {{ $course->name }} Dashboard -
+    @stop
+    
     @section('content')	
     
         <div class="classrooms-wrapper">
