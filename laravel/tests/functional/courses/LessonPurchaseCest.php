@@ -17,27 +17,30 @@ class LessonPurchaseCest{
     public function buyLesson(FunctionalTester $I){
         $course = Course::where('name','Business App Development')->first();
         $user = User::where('username','mac')->first();
+        Db::table('lessons')->update( ['price'=>1] );
         $I->amLoggedAs($user);
         $I->amOnPage( action('CoursesController@show', $course->slug) );
         $I->dontSeeRecord( 'purchases', ['student_id' => $user->id, 'product_type' => 'Lesson'] );
-        $I->click('Crash Class');
+        $I->click('Purchase');
         $I->seeRecord( 'purchases', ['student_id' => $user->id, 'product_type' => 'Lesson'] );
     }
     
     public function seeDisabledCrashAlreadyBoughtLesson(FunctionalTester $I){
+        Db::table('lessons')->update( ['price'=>1] );
         $course = Course::where('name','Business App Development')->first();
         $user = User::where('username','mac')->first();
         $I->amLoggedAs($user);
         $I->amOnPage( action('CoursesController@show', $course->slug) );
         $I->dontSee('data-crash-disabled');
         $I->dontSeeRecord( 'purchases', ['student_id' => $user->id, 'product_type' => 'Lesson'] );
-        $I->click('Crash Class');
+        $I->click('Purchase');
         $I->seeRecord( 'purchases', ['student_id' => $user->id, 'product_type' => 'Lesson'] );
         $I->amOnPage( action('CoursesController@show', $course->slug) );
         $I->see('data-crash-disabled');
     }
     
     public function seeDisabledCrashAlreadyBoughtCourse(FunctionalTester $I){
+        Db::table('lessons')->update( ['price'=>1] );
         $course = Course::where('name','Business App Development')->first();
         $user = User::where('username','sorin')->first();
         $I->amLoggedAs($user);
