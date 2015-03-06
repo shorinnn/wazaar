@@ -7,6 +7,7 @@ class ClassroomController extends \BaseController {
         }
         
         public function dashboard($slug){
+            $student = Student::find( Auth::user()->id );
             $course = Course::where('slug', $slug)->with('modules.lessons.module')->with(['modules.lessons' => function($query){
                                 $query->orderBy('order','ASC');
                                 $query->where('published','yes');
@@ -15,8 +16,10 @@ class ClassroomController extends \BaseController {
                                 $query->orderBy('order','ASC');
                             }])
                             ->first();
+            if($course->payment_type=='subscription'){
+                    $course->modules = $student->subscriptionModules($course)->get();
+                }
             $course->comments = $course->comments()->orderBy('id','desc')->paginate( 2 );
-            $student = Student::find( Auth::user()->id );
             $unread = $student->receivedMessages()->unread( $student->id );
             $student->unreadAnswers = $unread->where('type','ask_teacher')->where('course_id', $course->id)->get();
             $unread = $student->receivedMessages()->unread( $student->id );
@@ -66,6 +69,12 @@ class ClassroomController extends \BaseController {
                     return View::make('courses.classroom.crash_lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
                 }
                 return Redirect::to('/');
+            }
+            // if subscription, see if valid
+            if($course->payment_type=='subscription'){
+                if( !in_array($lesson->module->id, $student->subscriptionModules($course)->lists('id'))){
+                    return Redirect::to('/');
+                }
             }
             
             $lesson->comments = $lesson->comments()->orderBy('id','desc')->where('reply_to', null)->with('poster')->paginate( 2 );

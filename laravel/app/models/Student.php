@@ -114,6 +114,11 @@ class Student extends User{
         $purchase->student_id = $this->id;
         $purchase->purchase_price = $product->cost();
         $purchase->ltc_affiliate_id = $this->ltcAffiliate->id;
+        
+        if( strtolower( get_class($product) ) == 'course' && $product->payment_type=='subscription' ){
+            $purchase->subscription_start = date( 'Y-m-d H:i:s' );
+            $purchase->subscription_end = date( 'Y-m-d H:i:s', strtotime( $purchase->subscription_start.' +1 month' ) );
+        }
         if($affiliate==null) $purchase->product_affiliate_id = 0;
         else{
             $affiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
@@ -121,12 +126,15 @@ class Student extends User{
         }
 
         if( $product->sales()->save( $purchase ) ){
-            // if course - increment counter only if no lessons have already been purchased
+            // if course - increment counter only if no lessons have already been purchased, or if this the first recurring payment
             if( strtolower( get_class($product) ) == 'course' ){
                 $course = $product;
                 if( !$this->purchasedLessonFromCourse($course) ){
-                    $course->student_count += 1;
-                    $course->updateUniques();
+                    if( $course->payment_type=='one_time' || 
+                            $this->purchases()->where('product_id',$course->id)->where('product_type','Course')->count()==1 ){
+                        $course->student_count += 1;
+                        $course->updateUniques();
+                    }
                 }
             }
             // if lesson - increment counter only if course hasn't already been purchased
@@ -393,6 +401,26 @@ class Student extends User{
              }
          }
          return $notifications;
+     }
+     
+     public function subscriptionModules($course){
+         $or = false;
+         $purchases = $this->purchases()->where( 'product_id', $course->id )->where( 'product_type', 'Course' )->get();
+         return Module::where('course_id', $course->id)->where(function($query) use($purchases, $or){
+                        foreach($purchases as $purchase){
+                            $start = explode(' ', $purchase->subscription_start);
+                            $start = $start[0];
+                            $start = explode('-', $start);
+                            $start = "$start[0]-$start[1]-01";
+                            if($or==false){
+                                $query->whereBetween('created_at', [ "$start 00:00:00", "$purchase->subscription_end" ]);
+                                $or = true;
+                            }
+                            else{
+                                $query->orWhereBetween('created_at', [ "$start 00:00:00", "$purchase->subscription_end" ]);
+                            }
+                        }
+                    });
      }
 
 
