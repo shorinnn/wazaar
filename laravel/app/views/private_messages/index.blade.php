@@ -1,10 +1,5 @@
 @extends('layouts.default')
 @section('content')
-<style>
-    .bolded > *{
-        font-weight: bold !important;
-    }
-</style>
         <div class="classrooms-wrapper clearfix">
             @if( Input::has('send-to') )
                 <section class="classroom-content container">

@@ -3,7 +3,17 @@
     
         <div class="classrooms-wrapper">
         	<section class="video-container text-center">
-            	<div class="top-notification-bar"><span></span>You have 2 replies / Comments</div>
+               @if( $student->unreadAnnouncements->count() > 0)
+                    <div class="top-notification-bar">
+                        <span></span>You have {{ $student->unreadAnnouncements->count() }} announcements.
+                    </div>
+                @endif
+                @if($student->unreadAnswers->count() > 0)
+                    <div class="top-notification-bar">
+                        <span></span>You have {{ $student->unreadAnswers->count() }} teacher responses.
+                    </div>
+                @endif
+               
                 @if($video)
                     @if( Agent::isMobile() )
                     <video height=300 controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
@@ -50,6 +60,23 @@
                 @endif
             </section>
             <section class="classroom-content container">
+                
+            	<div class="row">
+                    <div class="col-md-12 additional-lesson-conntent">
+                        <h3>Announcements</h3>
+                        @foreach($student->announcements as $announcement)
+                            <p class='alert alert-info
+                               @if ($announcement->isUnread( $student->id ) )
+                                   bolded
+                               @endif
+                               '>
+                                <small class="pull-right"> {{$announcement->created_at->diffForHumans() }}</small>
+                                {{ $announcement->content }}</p>
+                            
+                            {{ $announcement->markRead( Auth::user()->id ) }}
+                        @endforeach
+                    </div>
+                </div>
             	<div class="row">
                 	<div class="col-md-6">
                     	<div class="additional-lesson-conntent">
@@ -69,6 +96,19 @@
                                 class="img-circle img-responsive">
                             </div>                        	
                         </div>
+                        <div class="white-box">
+                            @foreach($student->answers as $answer)
+                            <p>
+                                <small class="pull-right"> {{$answer->created_at->diffForHumans() }}</small>
+                                <b>{{ $answer->sender->commentName('instructor') }}</b>: <br />
+                                {{ $answer->content }}
+                                <small><a href='{{ action( 'ClassroomController@lesson', 
+                                            [ 'course' => $course->slug, 'module' => $answer->lesson->module->slug, 'lesson' => $answer->lesson->slug ] ) }}#ask-teacher'>[View in lesson]</a></small>
+                            </p>
+                            @endforeach
+                        </div>
+                            <br />
+                            
                         <p class="lead">Lesson Notes</p>
                         <div class="white-box">
                         	<div class="clearfix">
@@ -133,73 +173,20 @@
                         <p class="lead">Classmate conversations</p>
                     </div>
                 </div>
-                <div class="row comment-section clearfix">
-                	<div class="col-md-12">
-                    	<div class="comment-box clearfix">
-                        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-1.png" 
-                            class="img-circle img-responsive" alt="">
-                        	<form>
-                                <textarea></textarea>
-                            </form>
-                        </div>
-                    </div>
+
+            {{ View::make('courses.classroom.conversations.form')->withCourse( $course ) }}
+            
+            <div class='ajax-content fa-animated'>
+                {{ View::make('courses.classroom.conversations.all')->withComments( $course->comments ) }}
+                <br />
+                <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
+                    {{ $course->comments->links() }}
                 </div>
-               <div class="row">
-                	<div class="col-md-12">
-                    	<div class="users-comments">
-                        	<div class="clearfix">
-                                <div class="comment clearfix clear">
-                                    <div class="info clearfix clear">
-                                        <span class="name">Bas Mooreland</span>
-                                        <a href="#" class="reply-link">Reply</a>
-                                        <span class="number-of-replies">14 others replied</span>
-                                        <span class="time-of-reply">10 hours ago</span>
-                                    </div>
-                                    <div class="main clearfix clear">
-                                        <img class="img-responsive img-circle" alt="" 
-                                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-2.png">
-                                        <span>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore 
-                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="comment reply clearfix clear">
-                                    <div class="info clearfix clear">
-                                        <span class="name">Anabelle Jackson</span>
-                                        <a href="#" class="reply-link">Reply</a>
-                                        <span class="time-of-reply">10 hours ago</span>
-                                    </div>
-                                    <div class="main clearfix clear">
-                                        <img class="img-responsive img-circle" alt="" 
-                                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-3.png">
-                                        <span>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore 
-                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="comment clearfix clear">
-                                    <div class="info clearfix clear">
-                                        <span class="name">Bas Mooreland</span>
-                                        <a href="#" class="reply-link">Reply</a>
-                                        <span class="number-of-replies">14 others replied</span>
-                                        <span class="time-of-reply">10 hours ago</span>
-                                    </div>
-                                    <div class="main clearfix clear">
-                                        <img class="img-responsive img-circle" alt="" 
-                                        src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-2.png">
-                                        <span>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore 
-                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="load-more-comments">LOAD MORE</span>
-                    </div>
-                </div>
+            </div>
+                
+        
+               
+            
                 <div class="row curriculum" id="curriculum">
                 	<div class="col-md-12">
                     	<div class="clearfix">

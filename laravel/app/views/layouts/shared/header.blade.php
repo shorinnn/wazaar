@@ -58,18 +58,20 @@
                 <img style="height: 50px; width: 50px; border-radius: 50px;" 
                      src="//s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar-placeholder.jpg" alt="">
             @endif
-            
-            @if( $student->receivedMessages()->unread( $student->id )->count() > 0)
+            <?php
+                $received = $student->receivedMessages()->unread( $student->id )->with('sender.profiles')->with('sender')->with('course')->get();
+            ?>
+            @if( $received->count() > 0)
             <style>
                 .notification-number:hover div {
                     display:block !important;
                 }
             </style>
                 <span class="notification-number">
-                    {{ $student->receivedMessages()->unread( $student->id )->count()}}
+                    {{ $received->count() }}
                     <div style="background-color:white; position:absolute; right:0px; display:none; width: 300px; font-size:12px;">
                         <table class="table table-striped">
-                            @foreach( $student->grouppedNotifications() as $key => $notification)
+                            @foreach( $student->grouppedNotifications( $received ) as $key => $notification)
                             <tr><td>
                                 <a href="{{ $notification['url'] }}">{{ $notification['text'] }}</a>
                                 </td></tr>

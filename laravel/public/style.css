@@ -3418,7 +3418,7 @@ a.load-remote > *{
 }
 
 .video-container .top-notification-bar{
-	position: absolute;
+	/*position: absolute;*/
 	top: 0;
 	width: 100%;
 	height: 32px;
@@ -6739,4 +6739,8 @@ header .top-menu li{
 .margin-bottom-20
 {
 	margin-bottom: 20px;
+}
+
+.bolded, .bolded > *{
+    font-weight: bold !important;
 }

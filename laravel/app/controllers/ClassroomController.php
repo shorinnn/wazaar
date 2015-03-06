@@ -7,7 +7,7 @@ class ClassroomController extends \BaseController {
         }
         
         public function dashboard($slug){
-            $course = Course::where('slug', $slug)->with(['modules.lessons' => function($query){
+            $course = Course::where('slug', $slug)->with('modules.lessons.module')->with(['modules.lessons' => function($query){
                                 $query->orderBy('order','ASC');
                                 $query->where('published','yes');
                             }])
@@ -15,16 +15,26 @@ class ClassroomController extends \BaseController {
                                 $query->orderBy('order','ASC');
                             }])
                             ->first();
-                            
+            $course->comments = $course->comments()->orderBy('id','desc')->paginate( 2 );
             $student = Student::find( Auth::user()->id );
+            $unread = $student->receivedMessages()->unread( $student->id );
+            $student->unreadAnswers = $unread->where('type','ask_teacher')->where('course_id', $course->id)->get();
+            $unread = $student->receivedMessages()->unread( $student->id );
+            $student->unreadAnnouncements = $unread->where('type','mass_message')->where('course_id', $course->id)->get();
+            
+            $student->announcements = $student->receivedMessages()->where('type','mass_message')->where('course_id', $course->id)->orderBy('id','desc')->get();
+            $student->answers = $student->receivedMessages()->where('type','ask_teacher')->where('course_id', $course->id)->orderBy('id','desc')->get();
             
             if( $course==null || ( !$student->purchased( $course ) && !$student->purchasedLessonFromCourse( $course ) ) ){
                 return Redirect::to('/');
             }
             $video = $student->nextLesson($course);
             if( $video ) $video = $video->blocks()->where('type','video')->first();
-            $video = $course->videoBlocks();
-            if($video!=null) $video = $video->first();
+//            $video = $course->videoBlocks();
+//            if($video!=null) $video = $video->first();
+            if(Request::ajax()){
+                return View::make('courses.classroom.course_comments_ajax')->with( compact('course') );
+            }
             return View::make('courses.classroom.dashboard')->with( compact('course') )->with( compact('student') )->with( compact('video') );
         }
         

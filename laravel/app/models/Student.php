@@ -3,6 +3,7 @@
 
 class Student extends User{
     protected $table = 'users';
+    private $purchased;
     
     public static $relationsData = [
         'ltcAffiliate' => [ self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id' ],
@@ -19,6 +20,7 @@ class Student extends User{
       ];
     
     public function receivedMessages(){
+
         $mass = [0];
         $courses = $this->purchases()->where('product_type','Course')->lists('product_id');
         if( count($courses) > 0){
@@ -36,7 +38,6 @@ class Student extends User{
                 $query->whereIn('id', $non_mass);
             });
         });
-            
         return $return;
     }
         
@@ -85,8 +86,12 @@ class Student extends User{
      * @param mixed $product
      * @return boolean
      */
+    
     public function purchased($product){
-        if( in_array ( $product->id, $this->purchases()->where( 'product_type', get_class($product) )->lists('product_id' ) ) ){
+        $product_type = get_class($product);
+        if( !isset( $this->purchased[$product_type])) $this->purchased[$product_type] = $this->purchases()->where( 'product_type', $product_type )->lists('product_id' );
+        
+        if( in_array ( $product->id, $this->purchased[$product_type] ) ){
             return true;
         }
         return false;
@@ -344,11 +349,11 @@ class Student extends User{
          });
      }
      
-     function grouppedNotifications(){
+     function grouppedNotifications( $received ){
          $notifications = [];
-         
          $notification = [];
-         foreach( $this->receivedMessages()->unread( $this->id )->get() as $pm ){
+         //$this->receivedMessages()->unread( $this->id )->get()
+         foreach( $received as $pm ){
              if($pm->type=='student_conversation'){
                  $notification['pm']['url'] = action('PrivateMessagesController@index');
                  if( !isset( $notification['pm']['count'] )){

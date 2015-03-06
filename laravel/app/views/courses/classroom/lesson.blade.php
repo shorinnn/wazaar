@@ -96,7 +96,7 @@
                 </div>
             </section>
 
-            <section class="classroom-content container">
+            <section class="classroom-content container"><a name='ask-teacher'></a>
                 <div class="row classmate-conversations-heading">
                 	<div class="col-md-12">
                         <p class="lead">Ask The Teacher:</p>

@@ -499,7 +499,10 @@ function postedComment(json, e){
         addToList(json, e);
     }
     else{
-        addToList(json, e, true);
+        if( $(e.target).attr('data-reverse') ==1 ){ 
+            addToList(json, e);
+        }
+        else addToList(json, e, true);
     }
 }
 

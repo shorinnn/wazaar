@@ -31,6 +31,7 @@ class Course extends Ardent{
         'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
         'modules' => array(self::HAS_MANY, 'Module'),
         'testimonials' => [ self::HAS_MANY, 'Testimonial' ],
+        'comments' => [self::HAS_MANY, 'Conversation'],
     );
     
   

@@ -25,6 +25,7 @@ class PrivateMessagesController extends \BaseController {
                 }
             })->orderBy('id','desc')->paginate( 2 );
             
+            
             return View::make('private_messages.partials.all_inbox')->withComments( $messages )->with( compact('id') );
         }
         

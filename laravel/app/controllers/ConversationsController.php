@@ -9,12 +9,20 @@ class ConversationsController extends \BaseController {
         
         public function store(){
             $student = Student::find( Auth::user()->id );
-            $lesson = Lesson::find( Input::get('lesson') );
-            
-            if( !$student->purchased($lesson->module->course) && !$student->purchased( $lesson ) ){
-                 return Redirect::to('/');
+            if( Input::has('lesson') ){
+                $lesson = Lesson::find( Input::get('lesson') );
+                if( !$student->purchased($lesson->module->course) && !$student->purchased( $lesson ) ){
+                     return Redirect::to('/');
+                }
+                $conv = new Conversation(['poster_id' => Auth::user()->id, 'lesson_id' => Input::get('lesson'), 'content' => Input::get('content') ]);
             }
-            $conv = new Conversation(['poster_id' => Auth::user()->id, 'lesson_id' => Input::get('lesson'), 'content' => Input::get('content') ]);
+            else{
+                $course = Course::find( Input::get('course') );
+                if( !$student->purchased($course) ){
+                     return Redirect::to('/');
+                }
+                $conv = new Conversation(['poster_id' => Auth::user()->id, 'course_id' => Input::get('course'), 'content' => Input::get('content') ]);
+            }
             if( Input::get('reply_to') > 0) {
                 $original = Conversation::find( Input::get('reply_to') );
                 if($original->reply_to > 0){
@@ -48,7 +56,10 @@ class ConversationsController extends \BaseController {
         public function replies($id, $skip=0){
             $comment = Conversation::find($id);
             $student = Student::find(Auth::user()->id);
-            if( !$student->purchased($comment->lesson->module->course) ){
+            if($comment->lesson_id > 0 && !$student->purchased($comment->lesson->module->course) ){
+                 return Redirect::to('/');
+            }
+            if($comment->course_id > 0 && !$student->purchased($comment->course) ){
                  return Redirect::to('/');
             }
             $html = '';
