@@ -274,12 +274,17 @@ header .activate-dropdown:hover ul{
 /***************** Background video on Unauthenticated Homepage ******************/
 .bckgrd-video-wrapper{
 	width: 100%;
+	background: #121920;
 }
 
 #bckgrd-video-container{
-	height: 340px;
+	min-height: 340px;
 	position: relative;
 	overflow: hidden;
+}
+
+#bckgrd-video-container video{
+	left: 0;
 }
 
 #bckgrd-video-container video#bckgrd-video{
@@ -301,25 +306,6 @@ header .activate-dropdown:hover ul{
 	display: block;
 }
 
-#bckgrd-video-container #bckgrd-video-overlay #play-button{
-    background-color: rgba(21, 34, 46, 0.9);
-    background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-4.png");
-    background-position: 50% 20px;
-    background-repeat: no-repeat;
-    border-radius: 8px;
-    cursor: pointer;
-    height: 60px;
-    margin: 0 auto;
-    width: 60px;
-}
-
-#bckgrd-video-container .centered-play-button {
-    background-position: 50% 20px;
-    height: 60px;
-    top: 179px !important;
-    width: 60px;
-	z-index: 1;
-}
 /************ Top "What do you want to learn" section *************/
 .course-search-section{
 	min-height: 300px;

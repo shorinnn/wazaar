@@ -1,9 +1,11 @@
     @extends('layouts.default')
     @section('content')	
+    <div class="main">
+    </div>
     	<section class="bckgrd-video-wrapper">
             <div id="bckgrd-video-container">
-            	<section class="video-container text-center">
-                    <div class="videoContainer">
+            	<section id="video-container" class="text-center">
+                    <!--<div class="videoContainer">
                         <video id="myVideo" preload="auto" controls>
                             <source src="http://d378r68ica1xoa.cloudfront.net/MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4" type="video/mp4">
                         	<p>Your browser does not support the video tag.</p>
@@ -37,7 +39,7 @@
                             </div>
                         </div>
                         <div class="loading"></div>
-                    </div>
+                    </div>-->
                     <span class="centered-play-button"></span>
                 </section>
             	<!--<video id="bckgrd-video" src="videos/dock.mp4" muted="true"></video>-->
@@ -134,4 +136,6 @@
                 </div>
             </div>
         </section>
+
     @stop
+    

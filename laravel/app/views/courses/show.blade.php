@@ -5,6 +5,7 @@
         display:inline-block;
     }
     </style>
+
         <section class="course-detail-top-section clearfix unauthenticated-homepage cat-box-{{$course->courseCategory->color_scheme}}">
                 @if($course->bannerImage != null)
                     <img src="{{$course->bannerImage->url}}" alt="" class="img-responsive" />

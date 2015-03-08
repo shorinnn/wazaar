@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "51c8fbf26b53e0656282d92f8288a907",
+    "hash": "8351bbff8017e843456d4ebd76be98a1",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -56,16 +56,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "2.7.17",
+            "version": "2.7.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "eddf89846ed0f15e8e2b8cbe6d08125eaa20ad80"
+                "reference": "9dc3bb6dd6e16a7ed2f6fab73c2ee385145e26c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/eddf89846ed0f15e8e2b8cbe6d08125eaa20ad80",
-                "reference": "eddf89846ed0f15e8e2b8cbe6d08125eaa20ad80",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/9dc3bb6dd6e16a7ed2f6fab73c2ee385145e26c0",
+                "reference": "9dc3bb6dd6e16a7ed2f6fab73c2ee385145e26c0",
                 "shasum": ""
             },
             "require": {
@@ -119,20 +119,20 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-01-27 20:14:01"
+            "time": "2015-03-05 00:07:56"
         },
         {
             "name": "aws/aws-sdk-php-laravel",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php-laravel.git",
-                "reference": "36c452e3d61163f58ad7d7ca709074cd640a8c52"
+                "reference": "a114872a916a567f2fba539b8d1709a97b582097"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php-laravel/zipball/36c452e3d61163f58ad7d7ca709074cd640a8c52",
-                "reference": "36c452e3d61163f58ad7d7ca709074cd640a8c52",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php-laravel/zipball/a114872a916a567f2fba539b8d1709a97b582097",
+                "reference": "a114872a916a567f2fba539b8d1709a97b582097",
                 "shasum": ""
             },
             "require": {
@@ -172,7 +172,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2014-05-12 23:31:32"
+            "time": "2015-02-13 19:51:35"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -339,20 +339,20 @@
         },
         {
             "name": "fabpot/goutte",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/Goutte.git",
-                "reference": "b12c3f7ec68d8814b50444cfe142fd0a056557f9"
+                "reference": "65ab61eae03d670b93a9044ad2328eb81aa1bde5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/Goutte/zipball/b12c3f7ec68d8814b50444cfe142fd0a056557f9",
-                "reference": "b12c3f7ec68d8814b50444cfe142fd0a056557f9",
+                "url": "https://api.github.com/repos/FriendsOfPHP/Goutte/zipball/65ab61eae03d670b93a9044ad2328eb81aa1bde5",
+                "reference": "65ab61eae03d670b93a9044ad2328eb81aa1bde5",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/guzzle": "4.*",
+                "guzzlehttp/guzzle": ">=4,<6",
                 "php": ">=5.4.0",
                 "symfony/browser-kit": "~2.1",
                 "symfony/css-selector": "~2.1",
@@ -365,8 +365,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Goutte": "."
+                "psr-4": {
+                    "Goutte\\": "Goutte"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -380,11 +380,11 @@
                 }
             ],
             "description": "A simple PHP Web Scraper",
-            "homepage": "https://github.com/fabpot/Goutte",
+            "homepage": "https://github.com/FriendsOfPHP/Goutte",
             "keywords": [
                 "scraper"
             ],
-            "time": "2014-07-22 13:24:11"
+            "time": "2014-11-28 09:48:17"
         },
         {
             "name": "facebook/webdriver",
@@ -1394,16 +1394,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.12.0",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "1fbe8c2641f2b163addf49cc5e18f144bec6b19f"
+                "reference": "c41c218e239b50446fd883acb1ecfd4b770caeae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1fbe8c2641f2b163addf49cc5e18f144bec6b19f",
-                "reference": "1fbe8c2641f2b163addf49cc5e18f144bec6b19f",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c41c218e239b50446fd883acb1ecfd4b770caeae",
+                "reference": "c41c218e239b50446fd883acb1ecfd4b770caeae",
                 "shasum": ""
             },
             "require": {
@@ -1420,6 +1420,7 @@
                 "phpunit/phpunit": "~4.0",
                 "raven/raven": "~0.5",
                 "ruflin/elastica": "0.90.*",
+                "swiftmailer/swiftmailer": "~5.3",
                 "videlalvaro/php-amqplib": "~2.4"
             },
             "suggest": {
@@ -1436,7 +1437,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12.x-dev"
+                    "dev-master": "1.13.x-dev"
                 }
             },
             "autoload": {
@@ -1462,20 +1463,20 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2014-12-29 21:29:35"
+            "time": "2015-03-05 01:12:12"
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.14.0",
+            "version": "1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "bb87460c995d97fe55b39e65f6ffb7f64b0a941e"
+                "reference": "9b7665041754eaa9bb2622349bc9adbc1cf61cb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/bb87460c995d97fe55b39e65f6ffb7f64b0a941e",
-                "reference": "bb87460c995d97fe55b39e65f6ffb7f64b0a941e",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/9b7665041754eaa9bb2622349bc9adbc1cf61cb8",
+                "reference": "9b7665041754eaa9bb2622349bc9adbc1cf61cb8",
                 "shasum": ""
             },
             "require": {
@@ -1502,13 +1503,13 @@
                 }
             ],
             "description": "A simple API extension for DateTime.",
-            "homepage": "https://github.com/briannesbitt/Carbon",
+            "homepage": "http://carbon.nesbot.com",
             "keywords": [
                 "date",
                 "datetime",
                 "time"
             ],
-            "time": "2015-02-06 05:07:29"
+            "time": "2015-03-04 04:50:11"
         },
         {
             "name": "nikic/php-parser",
@@ -3447,12 +3448,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "c09cb1a5299d0836673a6d1ec7efefcf969f63e4"
+                "reference": "eec2dee64378a1f0e7a12c09ee903b71e87bfe23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/c09cb1a5299d0836673a6d1ec7efefcf969f63e4",
-                "reference": "c09cb1a5299d0836673a6d1ec7efefcf969f63e4",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/eec2dee64378a1f0e7a12c09ee903b71e87bfe23",
+                "reference": "eec2dee64378a1f0e7a12c09ee903b71e87bfe23",
                 "shasum": ""
             },
             "require": {
@@ -3488,7 +3489,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2015-02-07 22:09:58"
+            "time": "2015-02-13 12:10:59"
         },
         {
             "name": "barryvdh/laravel-ide-helper",

@@ -1,0 +1,171 @@
+/*!
+ * jQuery Video Background plugin
+ * https://github.com/georgepaterson/jquery-videobackground
+ *
+ * Copyright 2011, George Paterson
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ *
+ */
+/*
+ * The following styles are for example only.
+ * Styling will likely be project specific. 
+ *
+ */	
+ 
+#video-background {
+	position: relative;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	width: 100%;
+	height: 340px;
+	z-index: 0;
+}
+#video-background video {
+	min-height: 100%; 
+	min-width:100%;
+	width: 100%;
+}
+#page {
+	position: relative; 
+	z-index: 1;
+	width: 960px;
+	color: #FFF;
+	background: transparent url(themes/background.png) repeat top left;
+	border-radius: 5px;
+	margin: 0 auto;
+}
+#main {
+	padding: 10px;
+	margin: 10px 0;
+}
+
+.ui-video-background {
+	height: 60px;
+	width: 60px;
+	border-radius: 5px;
+	margin: 0 auto;
+}
+.ui-video-background-controls {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%
+}
+.ui-video-background-controls li {
+	width: 100%;
+	height: 100%;
+}
+
+.ui-video-background-controls li.ui-video-background-play a{
+	display: block;
+	text-indent: -999px;
+    background-color: rgba(21, 34, 46, 0.9);
+    background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-4.png");
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    cursor: pointer;
+    height: 60px;
+    margin: 0 auto;
+    width: 60px;
+}
+
+.ui-video-background-controls li.ui-video-background-play a.ui-icon.ui-icon-pause{
+    background-position: 50% 20px;
+}
+
+.ui-video-background-controls li.ui-video-background-play a.ui-icon.ui-icon-play{
+	background-position: 50% -953px;
+}
+
+.ui-video-background-controls 
+li.ui-video-background-mute{
+	display: none;
+}
+
+.pull-up-controls{
+    bottom: -50px;
+    height: 45px !important;
+    /*background-color: rgba(0, 0, 0, 0.7) !important;
+    height: 45px !important;
+    margin: 0 auto;
+    right: 0;
+	top: auto !important;*/
+}
+
+.pull-up-controls span.logo{
+	display: none !important;
+}
+
+#bckgrd-video-container:hover #bckgrd-video-overlay{
+	bottom: 0 !important;
+}
+
+#bckgrd-video-container #bckgrd-video-overlay{
+	-webkit-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.pull-up-controls .ui-video-background {
+    height: 100%;
+    width: 100%;
+}
+
+.pull-up-controls .ui-video-background-controls{
+	padding: 0 20px;
+}
+
+.pull-up-controls .ui-video-background-controls li{
+	float: left;
+	width: auto;
+}
+
+.pull-up-controls .ui-video-background-controls 
+li.ui-video-background-mute{
+	float: right !important;
+	display: block;
+}
+
+.pull-up-controls .ui-video-background-controls 
+li.ui-video-background-mute a,
+.pull-up-controls .ui-video-background-controls 
+li.ui-video-background-play a{
+	width: 40px;
+	height: 40px;
+	background-color: transparent;
+	border-radius: 0;
+}
+
+.pull-up-controls .ui-video-background-controls 
+li.ui-video-background-mute a{
+	display: block;
+	text-indent: -999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/volume-control-icons.png');
+}
+
+
+.pull-up-controls .ui-video-background-controls 
+li.ui-video-background-mute a.ui-icon.ui-icon-volume-on{
+	background-position: 50% -38px;
+	margin: 3px auto 0;
+}
+
+.pull-up-controls .ui-video-background-controls 
+li.ui-video-background-mute a.ui-icon.ui-icon-volume-off{
+	background-position: 50% 10px;
+	margin: 3px auto 0;
+}
+
+.pull-up-controls .ui-video-background-controls 
+li a.ui-icon.ui-icon-play{
+	background-position: 50% -963px;
+	margin: 3px auto 0;
+}
+
+.pull-up-controls .ui-video-background-controls 
+li a.ui-icon.ui-icon-pause{
+	background-position: 50% 15px;
+}
