@@ -3,12 +3,12 @@ class MaxPresenter extends Illuminate\Pagination\Presenter {
 
     public function getActivePageWrapper($text)
     {
-        return '<li><a href="" class="active">'.$text.'</a></li>';
+        return '<li class="unavailable"><a href="" class="active" data-nofollow="1">'.$text.'</a></li>';
     }
 
     public function getDisabledTextWrapper($text)
     {
-        return '<li class="unavailable"><a href="">'.$text.'</a></li>';
+        return '<li class="unavailable"><a href="" data-nofollow="1">'.$text.'</a></li>';
     }
 
     public function getPageLinkWrapper($url, $page, $rel = null)

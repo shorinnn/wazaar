@@ -5,6 +5,10 @@ class PrivateMessageCest{
     public function _before() {
         $this->setupDatabase();
     }
+    public function __destruct()
+    {
+        \DB::disconnect();
+    }
 
     private function setupDatabase() {
         Artisan::call('migrate:refresh');
@@ -18,6 +22,7 @@ class PrivateMessageCest{
         Instructor::boot();
         $student = Student::where('username','student')->first();
         $instructor = Instructor::where('username','instructor')->first();
+        $I->assertTrue( $student->purchased( $instructor->courses()->first() ) );
         $message = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $instructor->id, 'content' => 'Question sir!']);
         $message->type = 'ask_teacher';
         $message->course_id = $instructor->courses()->first()->id;
@@ -173,8 +178,8 @@ class PrivateMessageCest{
         $status = new PrivateMessagesMassStatus( [ 'private_message_id' => $message->id, 'recipient_id' => $student2->id, 'status' => 'read' ] );
         $I->assertTrue( $status->save() );
         
-        $I->assertEquals( 2, $student2->receivedMessages()->unread()->count() );
-        $I->assertEquals( 0, $student3->receivedMessages()->unread()->count() );
+        $I->assertEquals( 2, $student2->receivedMessages()->unread( $student2->id )->count() );
+        $I->assertEquals( 0, $student3->receivedMessages()->unread( $student3->id )->count() );
     }
     
     public function countAllTeacherMessages(UnitTester $I){
@@ -223,7 +228,7 @@ class PrivateMessageCest{
         $reply->status = 'read';
         $I->assertTrue( $reply->save() );
         
-        $I->assertEquals( 1, $instructor->receivedMessages()->unread()->count() );
+        $I->assertEquals( 1, $instructor->receivedMessages()->unread( $instructor->id )->count() );
     }
   
    

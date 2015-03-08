@@ -3,4 +3,4 @@
 <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
     {{ $lesson->comments->links() }}
 </div>
-</div>
+<!--</div>-->

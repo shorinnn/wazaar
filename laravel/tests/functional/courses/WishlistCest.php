@@ -11,7 +11,7 @@ class WishlistCest{
         $I->dontSeeAuthentication();
         $course = Course::where('name','App Development')->first();
         $I->amOnPage('/courses/'.$course->slug);
-        $I->click('Add to Wishlist');
+        $I->click('Add To Wishlist');
         $I->seeCurrentUrlEquals('/login');
     }
     
@@ -22,7 +22,7 @@ class WishlistCest{
         $I->seeAuthentication();
         $I->amOnPage('/courses/'.$course->slug);
         $I->dontSeeRecord('wishlist_items',['student_id' => $user->id, 'course_id' => $course->id]);
-        $I->click('Add to Wishlist');
+        $I->click('Add To Wishlist');
         $I->seeRecord('wishlist_items',['student_id' => $user->id, 'course_id' => $course->id]);
     }
     
@@ -33,10 +33,10 @@ class WishlistCest{
         $I->seeAuthentication();
         $I->amOnPage('/courses/'.$course->slug);
         $I->dontSeeRecord('wishlist_items',['student_id' => $user->id, 'course_id' => $course->id]);
-        $I->click('Add to Wishlist');
+        $I->click('Add To Wishlist');
         $I->seeRecord('wishlist_items',['student_id' => $user->id, 'course_id' => $course->id]);
         $I->amOnPage('/courses/'.$course->slug);
-        $I->click('Add to Wishlist');
+        $I->click('Add To Wishlist');
         $item = WishlistItem::where('student_id', $user->id)->where('course_id',$course->id)->count();
         $I->assertEquals(1, $item);
     }
@@ -48,7 +48,7 @@ class WishlistCest{
         $I->seeAuthentication();
         $I->amOnPage('/courses/'.$course->slug);
         $I->dontSeeRecord('wishlist_items',['student_id' => $user->id, 'course_id' => $course->id]);
-        $I->click('Add to Wishlist');
+        $I->click('Add To Wishlist');
         $I->seeRecord('wishlist_items',['student_id' => $user->id, 'course_id' => $course->id]);
         $I->logout();
         $I->amOnPage("/student/$user->email/wishlist");
@@ -62,7 +62,7 @@ class WishlistCest{
         $I->seeAuthentication();
         $I->amOnPage('/courses/'.$course->slug);
         $I->dontSeeRecord('wishlist_items',['student_id' => $user->id, 'course_id' => $course->id]);
-        $I->click('Add to Wishlist');
+        $I->click('Add To Wishlist');
         $I->seeRecord('wishlist_items',['student_id' => $user->id, 'course_id' => $course->id]);
         $I->amOnPage("/student/wishlist");
         $item = WishlistItem::where('student_id', $user->id)->first();
@@ -78,7 +78,7 @@ class WishlistCest{
         $I->seeAuthentication();
         $I->amOnPage('/courses/'.$course->slug);
         $I->dontSeeRecord('wishlist_items',['student_id' => $user->id, 'course_id' => $course->id]);
-        $I->click('Add to Wishlist');
+        $I->click('Add To Wishlist');
         $I->assertEquals(1, WishlistItem::count() );
         $item = WishlistItem::where('student_id', $user->id)->first();
         $I->logout();

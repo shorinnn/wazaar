@@ -2,7 +2,7 @@
 
 class Purchase extends CocoriumArdent{
     public static $rules = [
-        'product_id' => 'required|unique_with:purchases,student_id,product_type',
+        'product_id' => 'required|unique_with:purchases,student_id,product_type,subscription_start',
         'product_type' => 'required|in:Lesson,Course',
         'student_id' => 'required|exists:users,id'
     ];

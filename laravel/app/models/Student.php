@@ -3,6 +3,7 @@
 
 class Student extends User{
     protected $table = 'users';
+    private $purchased;
     
     public static $relationsData = [
         'ltcAffiliate' => [ self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id' ],
@@ -19,6 +20,7 @@ class Student extends User{
       ];
     
     public function receivedMessages(){
+
         $mass = [0];
         $courses = $this->purchases()->where('product_type','Course')->lists('product_id');
         if( count($courses) > 0){
@@ -27,7 +29,6 @@ class Student extends User{
                 $mass = [0];
             }
         }
-        
         $non_mass = $this->receivedMessagesRel()->lists('id');
         if( count($non_mass) == 0) $non_mass = [0];
         
@@ -37,7 +38,6 @@ class Student extends User{
                 $query->whereIn('id', $non_mass);
             });
         });
-            
         return $return;
     }
         
@@ -86,8 +86,12 @@ class Student extends User{
      * @param mixed $product
      * @return boolean
      */
+    
     public function purchased($product){
-        if( in_array ( $product->id, $this->purchases()->where( 'product_type', get_class($product) )->lists('product_id' ) ) ){
+        $product_type = get_class($product);
+        if( !isset( $this->purchased[$product_type])) $this->purchased[$product_type] = $this->purchases()->where( 'product_type', $product_type )->lists('product_id' );
+        
+        if( in_array ( $product->id, $this->purchased[$product_type] ) ){
             return true;
         }
         return false;
@@ -110,6 +114,11 @@ class Student extends User{
         $purchase->student_id = $this->id;
         $purchase->purchase_price = $product->cost();
         $purchase->ltc_affiliate_id = $this->ltcAffiliate->id;
+        
+        if( strtolower( get_class($product) ) == 'course' && $product->payment_type=='subscription' ){
+            $purchase->subscription_start = date( 'Y-m-d H:i:s' );
+            $purchase->subscription_end = date( 'Y-m-d H:i:s', strtotime( $purchase->subscription_start.' +1 month' ) );
+        }
         if($affiliate==null) $purchase->product_affiliate_id = 0;
         else{
             $affiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
@@ -117,12 +126,15 @@ class Student extends User{
         }
 
         if( $product->sales()->save( $purchase ) ){
-            // if course - increment counter only if no lessons have already been purchased
+            // if course - increment counter only if no lessons have already been purchased, or if this the first recurring payment
             if( strtolower( get_class($product) ) == 'course' ){
                 $course = $product;
                 if( !$this->purchasedLessonFromCourse($course) ){
-                    $course->student_count += 1;
-                    $course->updateUniques();
+                    if( $course->payment_type=='one_time' || 
+                            $this->purchases()->where('product_id',$course->id)->where('product_type','Course')->count()==1 ){
+                        $course->student_count += 1;
+                        $course->updateUniques();
+                    }
                 }
             }
             // if lesson - increment counter only if course hasn't already been purchased
@@ -343,6 +355,72 @@ class Student extends User{
               if( $transaction->save() ) return true;
               return false;
          });
+     }
+     
+     function grouppedNotifications( $received ){
+         $notifications = [];
+         $notification = [];
+         //$this->receivedMessages()->unread( $this->id )->get()
+         foreach( $received as $pm ){
+             if($pm->type=='student_conversation'){
+                 $notification['pm']['url'] = action('PrivateMessagesController@index');
+                 if( !isset( $notification['pm']['count'] )){
+                     $notification['pm']['count'] = 1;
+                 }
+                 else{
+                     $notification['pm']['count']++;
+                 }
+                 $notification['pm']['senders'][] = $pm->sender->commentName('student');
+ 
+                 $notification['pm']['text'] = 'You have '. $notification['pm']['count'] .' new PM  from ' . implode(', ', $notification['pm']['senders']);
+                 $notifications['pm'] = $notification['pm'];
+             }
+             elseif($pm->type=='mass_message'){
+                 $notification['m'.$pm->course->id]['url'] = action('ClassroomController@dashboard', $pm->course->slug);
+                 if( !isset( $notification['m'.$pm->course->id]['count'] )){
+                     $notification['m'.$pm->course->id]['count'] = 1;
+                 }
+                 else{
+                     $notification['m'.$pm->course->id]['count']++;
+                 }
+ 
+                 $notification['m'.$pm->course->id]['text'] = 'You have '. $notification['m'.$pm->course->id]['count'] .' new announcements in '.$pm->course->name;
+                 $notifications['m'.$pm->course->id] = $notification['m'.$pm->course->id];
+             }
+             else{
+             $notification['a'.$pm->course->id]['url'] = action('ClassroomController@dashboard', $pm->course->slug);
+                 if( !isset( $notification['a'.$pm->course->id]['count'] )){
+                     $notification['a'.$pm->course->id]['count'] = 1;
+                 }
+                 else{
+                     $notification['a'.$pm->course->id]['count']++;
+                 }
+ 
+                 $notification['a'.$pm->course->id]['text'] = 'You have '. $notification['a'.$pm->course->id]['count'] .' teacher responses in '.$pm->course->name;
+                 $notifications['a'.$pm->course->id] = $notification['a'.$pm->course->id];
+             }
+         }
+         return $notifications;
+     }
+     
+     public function subscriptionModules($course){
+         $or = false;
+         $purchases = $this->purchases()->where( 'product_id', $course->id )->where( 'product_type', 'Course' )->get();
+         return Module::where('course_id', $course->id)->where(function($query) use($purchases, $or){
+                        foreach($purchases as $purchase){
+                            $start = explode(' ', $purchase->subscription_start);
+                            $start = $start[0];
+                            $start = explode('-', $start);
+                            $start = "$start[0]-$start[1]-01";
+                            if($or==false){
+                                $query->whereBetween('created_at', [ "$start 00:00:00", "$purchase->subscription_end" ]);
+                                $or = true;
+                            }
+                            else{
+                                $query->orWhereBetween('created_at', [ "$start 00:00:00", "$purchase->subscription_end" ]);
+                            }
+                        }
+                    });
      }
 
 

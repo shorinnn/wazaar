@@ -3,7 +3,7 @@
 class CoursesController extends \BaseController {
     
         public function __construct(){
-            $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum'] ] );
+            $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'dashboard'] ] );
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy', 'purchase', 'purchaseLesson' ]]);
         }
 
@@ -255,7 +255,21 @@ class CoursesController extends \BaseController {
             if( $course==null || $course->instructor->id != Auth::user()->id ){
                 return Redirect::to('/');
             }
-            return View::make('courses/curriculum')->with(compact('course'));
+            return View::make('courses/instructor/curriculum')->with(compact('course'));
+        }
+        
+        public function dashboard($slug){
+            $course = Course::where('slug',$slug)->first();
+            if( $course==null || $course->instructor->id != Auth::user()->id ){
+                return Redirect::to('/');
+            }
+            $instructor = Instructor::find( Auth::user()->id );
+            $announcements = $instructor->sentMessages()->where('course_id', $course->id)
+                    ->where("type",'mass_message')->orderBy('id','desc')->paginate( 2 );
+            if(Request::ajax()){
+                 return View::make('courses/instructor/dashboard/announcements')->with(compact('course'))->with( compact('announcements') );
+            }
+            return View::make('courses/instructor/dashboard')->with(compact('course'))->with( compact('announcements') );
         }
         
         

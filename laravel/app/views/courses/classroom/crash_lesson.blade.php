@@ -1,11 +1,9 @@
 @extends('layouts.default')
 
-    
 @section('page_title')
     {{ $lesson->name }} - {{ $lesson->module->name }} - {{ $course->name }} -
 @stop
-    
-    
+
 @section('content')
     
         <div class="classrooms-wrapper clearfix">
@@ -82,45 +80,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row classmate-conversations-heading">
-                	<div class="col-md-12">
-                        <p class="lead">Conversations:</p>
-                    </div>
-                </div>
             </section>
-            <section class="classroom-content container">
-            @if( Auth::check() )
-                {{ View::make('courses.classroom.conversations.form')->with( compact('lesson') ) }}
-            @endif
             
-                <div class='ajax-content fa-animated'>
-                    {{ View::make('courses.classroom.conversations.all')->withComments( $lesson->comments ) }}
-                    <br />
-                    <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
-                        
-                        {{ $lesson->comments->links() }}
-                    </div>
-                </div>
-            </section>
-
-            <section class="classroom-content container"><a name='ask-teacher'></a>
-                <div class="row classmate-conversations-heading">
-                	<div class="col-md-12">
-                        <p class="lead">Ask The Teacher:</p>
-                    </div>
-                </div>
-            @if( Auth::check() )
-                {{ View::make('private_messages.partials.ask_teacher_form')->with( compact('lesson') ) }}
-            @endif
-            
-                <div class='ask-content fa-animated'>
-                    {{ View::make('private_messages.all')->withComments( $lesson->ask_teacher_messages ) }}
-                    <br />
-                    <div class="text-center load-remote" data-target='.ask-content' data-load-method="fade">
-                        {{ $lesson->ask_teacher_messages->appends( [ 'ask' => 1 ] )->links() }}
-                    </div>
-                </div>
-            </section>
             <section class="container-fluid become-an-instructor">
                 <div class="container">
                   <div class="row">

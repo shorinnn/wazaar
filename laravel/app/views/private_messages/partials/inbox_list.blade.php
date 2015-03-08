@@ -6,7 +6,7 @@
 </thead>
 <tbody>
     @foreach($messages as $message)
-    @if( ($message->type!='mass_message' && $message->status=='unread') || $message->massUnread(Auth::user()->id) )
+    @if( $message->isUnread( Auth::user()->id) )
         <tr class="message-row message-row-{{$message->id}} bolded">
     @else
         <tr class='message-row message-row-{{$message->id}}'>

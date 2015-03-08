@@ -1,4 +1,8 @@
 @extends('layouts.default')
+@section('page_title')
+    {{ $course->name }} - Edit -
+@stop
+
 @section('content')
 <style>
     #save-indicator{
@@ -133,6 +137,11 @@
             </div>    
         <div>{{ trans('crud/labels.description') }} <div class="description-box">{{ Form::textarea('description', null,['id'=>'description'] ) }}</div></div>    
         <div>{{ trans('crud/labels.short_description') }} <div class="description-box">{{ Form::textarea('short_description', null,['id'=>'short_description'] ) }}</div></div>    
+        
+        
+        <div>{{ trans('courses/general.payment_type') }} 
+            {{ Form::select('payment_type', [ 'one_time' => trans('courses/general.one_time'), 
+                                                        'subscription' =>  trans('courses/general.subscription') ] ) }}</div>    
         <div>{{ trans('courses/general.price') }} {{  Form::text( 'price', money_val($course->price) ) }}</div>    
         
         <div>{{ trans('courses/general.affiliate_percentage') }} 

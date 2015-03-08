@@ -25,7 +25,9 @@ class PrivateMessagesController extends \BaseController {
                 }
             })->orderBy('id','desc')->paginate( 2 );
             
-            return View::make('private_messages.partials.all_inbox')->withComments( $messages )->with( compact('id') );
+            if( Request::ajax() ) return View::make('private_messages.partials.all_inbox')->withComments( $messages )->with( compact('id') );
+            else return View::make('private_messages.thread')->withMessages( $messages )->with( compact('id') );
+             
         }
         
 	public function store()
@@ -63,7 +65,9 @@ class PrivateMessagesController extends \BaseController {
                 }
                 else $pm->recipient_id = Input::get('recipient_id');
             }
-            else{}
+            else{
+                $pm->course_id = Input::get('course_id');
+            }
             
             $pm->thread_id = intval(Input::get('thread_id'));
             if( $pm->save() ){

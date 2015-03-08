@@ -25,11 +25,15 @@ class PrivateMessage extends Ardent {
             if( $this->type == 'mass_message' ){
                 if( ( $this->course==null ) || $this->course->instructor->id != $this->sender_id ) return false;
             }
+            if( $this->type == 'ask_teacher' &&  $this->course->instructor->id != $this->sender_id){
+                $student = Student::find($this->sender_id);
+                if( !$student->purchased($this->course) ) return false;
+            }
         }
         
-        public function scopeUnread($query){
-            return $query->where('status','unread')->where(function($query){
-                $read = DB::table('private_messages_mass_statuses')->lists('private_message_id');
+        public function scopeUnread($query, $user_id=0){
+            return $query->where('status','unread')->where(function($query) use ( $user_id ){
+                $read = DB::table('private_messages_mass_statuses')->where( 'recipient_id',$user_id )->lists('private_message_id');
                 if( count($read) > 0) return $query->whereNotIn('id', $read );
             });
         }
@@ -51,5 +55,23 @@ class PrivateMessage extends Ardent {
         public function thread(){
             if($this->thread_id==0) return $this->id;
             else return $this->thread_id;
+        }
+        
+        public function isUnread($user_id){
+            if( ($this->type!='mass_message' && $this->status=='unread') || $this->massUnread($user_id) ) return true;
+            return false;
+        }
+        
+        public function markRead($user_id){
+            if( $this->type=='mass_message' ){
+                $read = new PrivateMessagesMassStatus( ['private_message_id' => $this->id, 'recipient_id' => $user_id, 'status' => 'read'] );
+                $read->save();
+            }
+            else{
+                if( $this->recipient_id == $user_id ){
+                    $this->status='read';
+                    $this->save();
+                }
+            }
         }
 }
