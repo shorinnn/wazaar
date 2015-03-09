@@ -10,7 +10,7 @@
     <div class="container payment-page course-editor">
         <div class="row">
             <div class="col-md-12">
-                <h1 class='icon'>Payment</h1>
+                <h1 class='icon'>{{trans('payment.payment')}}</h1>
                 <p>You are about to enroll in...</p>
             </div>
         </div>
@@ -18,47 +18,27 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-6">
-
-                    <div class="object small-box small-box-one">
-                        <div class="img-container">
-                            <img src="https://wazaardev.s3.amazonaws.com/course_preview/54905d56385ce.png" class="img-responsive" alt="">
-                        </div>
-                        <div class="next_" style="position: relative; ">
-                           <div style="color:#fff; padding: 15px 0 0 10px;">Course Name Here</div>
-                        </div>
-                        <div>&nbsp;</div>
-                        <div class="row">
-                            <div class="col-md-4"><strong>Price</strong></div>
-                            <div class="col-md-6">10,000</div>
-                        </div>
-                        <div>&nbsp;</div>
-                        <div class="row">
-                            <div class="col-md-4"><strong>Tax(8%)</strong></div>
-                            <div class="col-md-6">800</div>
-                        </div>
-                        <hr/>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li class="active"><a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>4200</span> Total</a>
-                            </li>
-                        </ul>
-                    </div>
-
+                    {{$productPartial}}
                     <hr/>
-
-
-
-
                 </div>
 
                 <div class="col-md-6">
                     <h4>Payment Method</h4>
                     <hr/>
                     <div class="credit-card-wrapper">
-                        <form action="">
+                        @if (count($errors) > 0)
+                            <ul>
+                                @foreach($errors as $err)
+                                    <li class="alert alert-danger">{{$err}}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+                        {{Form::open(['url' => url('payment')])}}
+
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                    Credit Card
+                                    {{Form::radio('paymentOption','cc',true)}}
+                                    {{trans('payment.creditCard')}}
                                 </label>
                             </div>
 
@@ -68,47 +48,43 @@
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h3 class="panel-title">
-                                                    Payment Details
+                                                    {{trans('payment.paymentDetails')}}
                                                 </h3>
-                                                
                                             </div>
                                             <div class="panel-body">
                                                 <form role="form">
                                                     <div class="form-group">
-                                                        <label for="cardNumber">
-                                                            CARD NUMBER</label>
+                                                        {{Form::label('cardNumber',trans('payment.cardNumber'))}}
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number"
-                                                                   required autofocus />
+                                                            {{Form::text('cardNumber','',['class' => 'form-control'])}}
                                                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xs-7 col-md-7">
                                                             <div class="form-group">
-                                                                <label for="expityMonth">
-                                                                    EXPIRY DATE</label>
+                                                                {{Form::label('expiryMonth',trans('payment.expiryDate'))}}
                                                                 <div class="col-xs-6 col-lg-6 pl-ziro">
-                                                                    <input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
+                                                                    {{Form::text('expiryMonth','',['class' => 'form-control', 'placeholder' => trans('payment.MM'), 'required'])}}
                                                                 </div>
                                                                 <div class="col-xs-6 col-lg-6 pl-ziro">
-                                                                    <input type="text" class="form-control" id="expityYear" placeholder="YY" required /></div>
+                                                                    {{Form::text('expiryYear','',['class' => 'form-control', 'placeholder' => trans('payment.YY'), 'required'])}}
+                                                                </div>
+
                                                             </div>
                                                         </div>
                                                         <div class="col-xs-5 col-md-5 pull-right">
                                                             <div class="form-group">
-                                                                <label for="cvCode">
-                                                                    CV CODE</label>
-                                                                <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
+                                                                {{Form::label('cvc', trans('payment.cvCode'))}}
+                                                                {{Form::password('cvc',['class' => 'form-control', 'required'])}}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
-
                                         <br/>
-                                        <a href="http://www.jquery2dotnet.com" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
+                                        <button class="btn btn-success btn-lg btn-block" role="button">{{trans('payment.pay')}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +94,7 @@
 
                     </div>
 
-                    <div class="bank-transfer">
+                    <div class="bank-transfer-wrapper">
 
                     </div>
 
@@ -127,4 +103,3 @@
         </div>
     </div>
 @stop
-

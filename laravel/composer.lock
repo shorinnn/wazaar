@@ -4,8 +4,47 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8351bbff8017e843456d4ebd76be98a1",
+    "hash": "f324ff412a74b1e455de8254136e593f",
     "packages": [
+        {
+            "name": "anlutro/curl",
+            "version": "0.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/anlutro/php-curl.git",
+                "reference": "3744ba5995cc95bc9098667fa160898dfe613f0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/anlutro/php-curl/zipball/3744ba5995cc95bc9098667fa160898dfe613f0a",
+                "reference": "3744ba5995cc95bc9098667fa160898dfe613f0a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "anlutro\\cURL\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Lutro",
+                    "email": "anlutro@gmail.com"
+                }
+            ],
+            "description": "Simple OOP cURL wrapper.",
+            "time": "2014-11-12 14:29:32"
+        },
         {
             "name": "artdarek/oauth-4-laravel",
             "version": "dev-master",
@@ -308,12 +347,12 @@
             "version": "v1.0.10",
             "source": {
                 "type": "git",
-                "url": "https://github.com/d11wtq/boris.git",
+                "url": "https://github.com/borisrepl/boris.git",
                 "reference": "31055b15e2d3fe47f31f6aa8e277f8f3fc7eb483"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/d11wtq/boris/zipball/31055b15e2d3fe47f31f6aa8e277f8f3fc7eb483",
+                "url": "https://api.github.com/repos/borisrepl/boris/zipball/31055b15e2d3fe47f31f6aa8e277f8f3fc7eb483",
                 "reference": "31055b15e2d3fe47f31f6aa8e277f8f3fc7eb483",
                 "shasum": ""
             },
@@ -3450,12 +3489,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "eec2dee64378a1f0e7a12c09ee903b71e87bfe23"
+                "reference": "c09cb1a5299d0836673a6d1ec7efefcf969f63e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/eec2dee64378a1f0e7a12c09ee903b71e87bfe23",
-                "reference": "eec2dee64378a1f0e7a12c09ee903b71e87bfe23",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/c09cb1a5299d0836673a6d1ec7efefcf969f63e4",
+                "reference": "c09cb1a5299d0836673a6d1ec7efefcf969f63e4",
                 "shasum": ""
             },
             "require": {
@@ -3491,7 +3530,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2015-02-13 12:10:59"
+            "time": "2015-02-07 22:09:58"
         },
         {
             "name": "barryvdh/laravel-ide-helper",

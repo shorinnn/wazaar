@@ -185,6 +185,7 @@ Route::group(['prefix' => 'dashboard'], function (){
 ## Payment Form(https)
 Route::group(['prefix' => 'payment'], function (){
     Route::get('/','PaymentController@index');
+    Route::post('/','PaymentController@process');
 });
 
 

@@ -35,11 +35,11 @@ class ApiPaymentController extends BaseController
         }
 
         $requestData = Input::all();
-        $reference = Str::random();
+        $reference = Str::random(10);
 
         $otherParams = [
             'order' => [
-                'orderId'    => $reference,
+                'orderId'    => rand(1,100),
                 'email'      => $requestData['email'],
                 'firstName'  => $requestData['firstName'],
                 'lastName'   => $requestData['lastName'],

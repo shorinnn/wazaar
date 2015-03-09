@@ -202,6 +202,7 @@ return array(
 		'AWS'               => 'Aws\Laravel\AwsFacade',
 		'Image' 			=> 'Intervention\Image\Facades\Image',
 		'Agent'             => 'Jenssegers\Agent\Facades\Agent',
+        'cURL'              => 'anlutro\cURL\Laravel\cURL'
 	),
 
 );
