@@ -34,6 +34,7 @@ class User extends Ardent implements ConfideUserInterface
         $student = Student::find($this->id);
         if( strtolower( get_class($product) ) == 'course' ){
             if($this->id == $product->instructor->id) return false;
+            if($product->payment_type=='subscription') return true;
         }
         else{
              if($this->id == $product->module->course->instructor->id) return false;
