@@ -56,4 +56,22 @@ class PrivateMessage extends Ardent {
             if($this->thread_id==0) return $this->id;
             else return $this->thread_id;
         }
+        
+        public function isUnread($user_id){
+            if( ($this->type!='mass_message' && $this->status=='unread') || $this->massUnread($user_id) ) return true;
+            return false;
+        }
+        
+        public function markRead($user_id){
+            if( $this->type=='mass_message' ){
+                $read = new PrivateMessagesMassStatus( ['private_message_id' => $this->id, 'recipient_id' => $user_id, 'status' => 'read'] );
+                $read->save();
+            }
+            else{
+                if( $this->recipient_id == $user_id ){
+                    $this->status='read';
+                    $this->save();
+                }
+            }
+        }
 }

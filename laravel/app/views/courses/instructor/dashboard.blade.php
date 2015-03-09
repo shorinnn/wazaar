@@ -1,4 +1,7 @@
 @extends('layouts.default')
+@section('page_title')
+    {{ $course->name }} - Dashboard -
+@stop
 @section('content')	
     <div class="container course-editor">
     	<div class="row">

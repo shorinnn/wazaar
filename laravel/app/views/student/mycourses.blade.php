@@ -1,5 +1,9 @@
 @extends('layouts.default')
 
+@section('page_title')
+    My Courses - 
+@stop
+
 @section('content')
 
     @if($student->courses()->count() == 0 )

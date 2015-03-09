@@ -38,4 +38,7 @@ return array(
     'crash_class' => 'Crash Class',
     'who_is_this_for?' => 'Who is this for?',
     'add_to_wishlist' => 'Add To Wishlist',
+    'payment_type' => 'Payment Type',
+    'one_time' => 'One Time',
+    'subscription' => 'Subscription',
 );

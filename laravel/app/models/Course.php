@@ -2,10 +2,20 @@
 use LaravelBook\Ardent\Ardent;
 
 class Course extends Ardent{
+    
+    public $autoPurgeRedundantAttributes = true;
+    function __construct($attributes = array()) {
+        parent::__construct($attributes);
+
+        $this->purgeFilters[] = function($key) {
+          $purge = array( 'discount_ends_in', 'discount_original', 'discount_saved');
+          return ! in_array($key, $purge);
+        };
+      }
 
     protected $dates = ['sale_ends_on'];
     public $fillable = ['name', 'slug', 'description', 'short_description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
-        'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage'];
+        'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage', 'payment_type'];
     
     public static $rules = [
         'name' => 'required|unique:courses',
@@ -31,6 +41,7 @@ class Course extends Ardent{
         'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
         'modules' => array(self::HAS_MANY, 'Module'),
         'testimonials' => [ self::HAS_MANY, 'Testimonial' ],
+        'comments' => [self::HAS_MANY, 'Conversation'],
     );
     
   

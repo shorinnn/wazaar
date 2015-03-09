@@ -4,7 +4,8 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Wazaar | Home</title>    
+	<title>@yield('page_title')
+            Wazaar</title>    
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
     <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="{{url('css/ui-components.css')}}">
     <link rel="stylesheet" href="{{url('css/jquery.jscrollpane.css')}}">
     <link rel="stylesheet" href="{{url('plugins/slider/css/slider.css')}}">
+    <link rel="stylesheet" href="{{url('css/jquery.videobackground.css')}}">
     @yield('extra_css')
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -77,6 +79,9 @@
         <script src="http://www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+        
+        <script src="{{url("js/jquery.videobackground.js")}}"></script>
+
     @else
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
@@ -97,10 +102,28 @@
         <script src="http://www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+
+        <script src="{{url("js/jquery.videobackground.js")}}"></script>
+
     @endif
         <script>
              window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
         </script>
     @yield('extra_js')
+		<script>
+			$(document).ready(function() {
+				$('#video-container').prepend('<div id="video-background" class="full-screen"></div>');
+				$('#video-background').videobackground({
+					videoSource: [['http://vjs.zencdn.net/v/oceans.mp4', 'video/mp4'],
+						['', 'video/webm'], 
+						['', 'video/ogg']], 
+						controlPosition: '#bckgrd-video-overlay',
+						poster: 'video/cat.gif',
+						loadedCallback: function(){
+						$(this).videobackground('mute');
+					}
+				});
+			});
+		</script>
 	</body>
 </html>

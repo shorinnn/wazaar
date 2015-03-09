@@ -6,7 +6,11 @@
             {{ Form::open( [ 'action' => 'ConversationsController@store', 'class' => 'ajax-form', 'data-callback' =>'postedComment', 
                     'data-destination' => '#convo.users-comments > .clearfix', 'id' => 'add-comment-form'] ) }}
             <textarea name="content" class="form-control" placeholder="Share your thoughts"></textarea>
-            <input type="hidden" name="lesson" value="{{ $lesson->id }}" />
+            @if( isset($lesson) )
+                <input type="hidden" name="lesson" value="{{ $lesson->id }}" />
+            @else
+                <input type="hidden" name="course" value="{{ $course->id }}" />
+            @endif
             <input type="hidden" name="reply_to" class='reply-to' value="{{ $replyto or '' }}" />
             <br />
             <button type="submit" class="btn btn-primary">Comment</button>

@@ -12,6 +12,7 @@ $(document).ready(function(){
     $('body').delegate('.load-remote a', 'click', prepareLoadRemote);
     $('body').delegate('a.load-more-ajax', 'click', loadMoreComments);
     $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
+    $('body').delegate('.btnLink', 'click', goTo);
 	$('button.join-class').mousedown(function(){
 		$(this).addClass('pushdown');
 	});
@@ -26,6 +27,10 @@ $(document).ready(function(){
     //homeBckgrdVideo();
 	skinVideoControls();
 });
+
+function goTo(e){
+    window.location = $(e.target).attr('data-url');
+}
 
 /**
  * Returns a slug version of the supplied string
@@ -191,6 +196,8 @@ function formToRemoteLink(e){
  */
 function loadRemote(e){
     e.preventDefault();
+    var nofollow = $(e.target).attr('data-nofollow');
+    if( typeof(nofollow)!='undefined'&& nofollow==1 ) return false;
     var loading = $(e.target).attr('data-loading');
     if( typeof(loading)!='undefined'&& loading==1 ) return false;
     url = $(e.target).attr('data-url');
@@ -497,7 +504,10 @@ function postedComment(json, e){
         addToList(json, e);
     }
     else{
-        addToList(json, e, true);
+        if( $(e.target).attr('data-reverse') ==1 ){ 
+            addToList(json, e);
+        }
+        else addToList(json, e, true);
     }
 }
 

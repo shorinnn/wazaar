@@ -13,7 +13,7 @@
                     
             @else
                 {{ Form::open( [ 'action' => 'PrivateMessagesController@store', 'class' => 'ajax-form', 'data-callback' =>'postedComment', 
-                        'data-destination' => $destination, 'id' => 'ask-comment-form'] ) }}
+                        'data-destination' => $destination, 'id' => 'ask-comment-form', 'data-reverse' => 1] ) }}
             @endif
 
             <textarea name="content" class="form-control" placeholder="What's on your mind?"></textarea>

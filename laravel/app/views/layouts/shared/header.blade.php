@@ -3,6 +3,9 @@
         <a href="{{url('/')}}" class="main-logo"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
                                            class="img-responsive" alt=""></a>
         @if(Auth::check())
+        <?php
+        $student = Student::find(Auth::user()->id);
+        ?>
         <ul>
             <li>
                 <a href="{{url('dashboard')}}">{{trans('site/homepage.dashboard')}}</a>
@@ -18,7 +21,7 @@
             </li>
         </ul>
     </div>
-    <div class="top-profile-info">
+    <div class="top-profile-info">          
         <span class="profile-level">12</span>
         <ul class="profile-name">
             <li class="activate-dropdown">
@@ -47,22 +50,35 @@
         </ul>
         <div class="profile-thumbnail">
             <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/thumbnails/top-profile-thumbnail.png" alt="">-->
-            @if( Student::find(Auth::user()->id)->profile )
+            @if( $student->profile )
                 <img style="height: 50px; width: 50px; border-radius: 50px;" 
                      src="{{ Student::find(Auth::user()->id)->profile->photo }}" alt="">
-                @if( Student::find(Auth::user()->id)->receivedMessages()->unread( Auth::user()->id )->count() > 0)
-                    <span class="notification-number">
-                        {{ Student::find(Auth::user()->id)->receivedMessages()->unread( Auth::user()->id )->count()}}
-                    </span>
-                @endif
+               
             @else
                 <img style="height: 50px; width: 50px; border-radius: 50px;" 
                      src="//s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar-placeholder.jpg" alt="">
-                @if( Student::find(Auth::user()->id)->receivedMessages()->unread( Auth::user()->id )->count() > 0)
-                    <span class="notification-number">
-                        {{ Student::find(Auth::user()->id)->receivedMessages()->unread(  Auth::user()->id )->count()}}
-                    </span>
-                @endif
+            @endif
+            <?php
+                $received = $student->receivedMessages()->unread( $student->id )->with('sender.profiles')->with('sender')->with('course')->get();
+            ?>
+            @if( $received->count() > 0)
+            <style>
+                .notification-number:hover div {
+                    display:block !important;
+                }
+            </style>
+                <span class="notification-number">
+                    {{ $received->count() }}
+                    <div style="background-color:white; position:absolute; right:0px; display:none; width: 300px; font-size:12px;">
+                        <table class="table table-striped">
+                            @foreach( $student->grouppedNotifications( $received ) as $key => $notification)
+                            <tr><td>
+                                <a href="{{ $notification['url'] }}">{{ $notification['text'] }}</a>
+                                </td></tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </span>
             @endif
         </div>
     </div>

@@ -15,7 +15,7 @@ class CreateConversationsTable extends Migration {
 		Schema::create('conversations', function(Blueprint $table)
 		{
                     $table->bigIncrements('id')->unsigned();
-                    $table->bigInteger('lesson_id');
+                    $table->bigInteger('lesson_id')->nullable();
                     $table->bigInteger('poster_id');
                     $table->bigInteger('reply_to')->nullable();
                     $table->text('content');

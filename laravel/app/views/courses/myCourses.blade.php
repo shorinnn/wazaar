@@ -1,4 +1,9 @@
 @extends('layouts.default')
+
+@section('page_title')
+    My Courses - 
+@stop
+
 @section('content')	
     
 @if (Session::get('success'))
