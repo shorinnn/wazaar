@@ -104,8 +104,13 @@
 		var player = $('#video-background video');
 	
 		/*if($('#video-background.full-screen')){
-			$(player[0]).prop('muted', true);
-			$('#video-background').removeClass('full-screen');
+			$.fn.videobackground.defaults.muted = true;
+			that.controls.find('.ui-video-background-play a').on('click', function (event) {
+				event.preventDefault();
+				$('#video-background').removeClass('full-screen');
+				$.fn.videobackground.defaults.muted = false;
+				console.log($.fn.videobackground.defaults);
+			})
 		}
 		
 		else{
@@ -118,7 +123,7 @@
 			});
 		}
 		
-		//Make video restart on initial play.
+		/*//Make video restart on initial play.
 		if($('.ui-video-background-play .restart-video')){
 			$('.ui-video-background-play .restart-video').on('click',
 			function(){
@@ -134,7 +139,7 @@
 		else{
 			return false;
 		}
-		
+		*/
 		
 		/*
 		 * Default play/pause control	
@@ -189,6 +194,13 @@
 				$(this).get(0).play();
 				$(this).toggleClass('paused').text(that.settings.controlText[1]);
 			});
+		}
+		
+		else{
+			that.find('video').on('ended', function () {
+				$('.ui-video-background-play a').addClass('ui-icon-pause');
+				//$(this).toggleClass('paused').text(that.settings.controlText[1]);
+			});			
 		}
 	}
 	/*
@@ -457,16 +469,16 @@
 	 */
 	$.fn.videobackground.defaults = {
 		videoSource: [],
-		poster: false,
-		autoplay: true,
+		poster: null,
+		autoplay: false,
 		preload: 'auto',
-		loop: true,
+		loop: false,
 		controlPosition: null,
 		controlText: ['Play', 'Pause', 'Mute', 'Unmute'],
 		resize: false,
 		preloadHtml: '',
 		preloadCallback: null,
 		loadedCallback: null,
-		resizeTo: 'document'
+		resizeTo: 'document',
 	};
 }(jQuery, document, window));

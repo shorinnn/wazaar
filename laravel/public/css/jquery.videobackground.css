@@ -21,6 +21,7 @@
 	height: 340px;
 	z-index: 0;
 }
+
 #video-background video {
 	min-height: 100%; 
 	min-width:100%;

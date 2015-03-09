@@ -5457,6 +5457,47 @@ select option.suspended{
 	line-height: 31px;
 }
 
+.course-editor .lesson-options #video-player video,
+.course-editor .lesson-options{
+	width: 100%;
+}
+
+#videos-acrhive-modal.modal {
+    z-index: 1041;
+}
+
+.modal-backdrop.fade.in {
+    z-index: 0;
+}
+
+ul.list-unstyled.video-list-thumbs.row li a h2 {
+	font-size: 14px;
+	max-width: 100%;
+	margin-top: 5px;
+	overflow: hidden;
+}
+
+ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
+	font-size: 14px;
+}
+
+#videos-acrhive-modal #modal-body-videos ul.list-unstyled.video-list-thumbs.row{
+	float: none;
+}
+
+#videos-acrhive-modal #modal-body-videos ul.list-unstyled.video-list-thumbs.row h2 label{
+	float: left;
+	margin-left: 0;
+}
+
+#videos-acrhive-modal #modal-body-videos ul.list-unstyled.video-list-thumbs.row h2 .file-name {
+    display: block;
+    float: right;
+    line-height: 20px;
+    max-width: 80%;
+    overflow: hidden;
+}
+
 .course-editor .plan-your-curriculum ul{
 	padding: 0;
 	margin: 0
