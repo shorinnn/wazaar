@@ -5474,6 +5474,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 {
 	font-size: 14px;
 	max-width: 100%;
 	margin-top: 5px;
+	margin-bottom: 5px;
 	overflow: hidden;
 }
 
@@ -5483,6 +5484,10 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 #videos-acrhive-modal #modal-body-videos ul.list-unstyled.video-list-thumbs.row{
 	float: none;
+}
+
+#videos-acrhive-modal #modal-body-videos ul.list-unstyled.video-list-thumbs.row li{
+	margin-bottom: 20px;
 }
 
 #videos-acrhive-modal #modal-body-videos ul.list-unstyled.video-list-thumbs.row h2 label{
