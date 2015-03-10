@@ -175,7 +175,7 @@ function blockFileUploaded(e, data){
         $(e.target).after("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
         return false;
     }
-    $(e.target).parent().parent().append(result.html);
+    $(e.target).parent().parent().parent().append(result.html);
 }
 
 /**
