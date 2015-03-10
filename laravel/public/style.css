@@ -5194,7 +5194,7 @@ select option.suspended{
 
 
 /************* Instructor course editor *******************/
-.instructor-course-editor .course-edit{
+.instructor-course-editor #course-edit{
 	margin-top: 50px;
 }
 
@@ -5205,17 +5205,17 @@ select option.suspended{
     padding: 8px 20px;
 }
 
-.instructor-course-editor .header #myTab{
+.instructor-course-editor .header #instructor-editor{
 	float: right;
 	margin: 0;
 	padding: 0;
 }
 
-.instructor-course-editor .header #myTab li{
+.instructor-course-editor .header #instructor-editor li{
 }
 
-.instructor-course-editor #top-form #create-form > div.course-level label,
-.instructor-course-editor .header #myTab li a {
+#course-edit #top-form #create-form > div.course-level label,
+.instructor-course-editor .header #instructor-editor li a {
     background: #7fccff;
     border-radius: 20px;
     color: #fff;
@@ -5226,20 +5226,30 @@ select option.suspended{
 	box-shadow: none;
 }
 
-.instructor-course-editor #top-form #create-form > div.course-level label.active,
-.instructor-course-editor .header #myTab li.active a{
+#course-edit #top-form #create-form > div.course-level label.active,
+.instructor-course-editor .header #instructor-editor li.active a{
     background: none repeat scroll 0 0 #0099ff;
     text-decoration: none;
 }
 
 .instructor-course-editor .header .all-my-courses{
+    border: none;
+	background: #0099ff;
+    border-radius: 20px;
+    box-shadow: none;
+    color: #fff;
 	float: left;
+    display: block;
+    font-size: 14px;
 	margin: 0;
-	color: #0099ff;
-	font-size: 14px;
+    padding: 8px 20px;
 }
 
-.instructor-course-editor .custom-dropdown{
+.instructor-course-editor .header .all-my-courses:hover{
+	text-decoration: none;
+}
+
+#course-edit .custom-dropdown{
 	width: 345px;
 	border-radius: 5px;
 	float: right;
@@ -5247,24 +5257,24 @@ select option.suspended{
 	border: solid 1px #adadad;
 }
 
-.instructor-course-editor .custom-dropdown::before{
+#course-edit .custom-dropdown::before{
 	background: none;
 }
 
-.instructor-course-editor .custom-dropdown select{
+#course-edit .custom-dropdown select{
 	background: none;
 	color: #b0bec1;
 	font-size: 14px;
 	width: 360px;
 }
 
-.instructor-course-editor #top-form{
+#course-edit #top-form{
 	max-width: 484px;
 	margin: 0 auto;
 }
 
-.instructor-course-editor .payment-section label,
-.instructor-course-editor #top-form #create-form label{
+#course-edit .payment-section label,
+#course-edit #top-form #create-form label{
 	display: inline-block;
 	margin-top: 7px;
 	font-weight: normal;
@@ -5272,13 +5282,13 @@ select option.suspended{
 	color: #849598;
 }
 
-.instructor-course-editor #top-form #create-form > div{
+#course-edit #top-form #create-form > div{
 	margin-bottom: 20px;
 	width: 100%;
 }
 
-.instructor-course-editor .payment-section input[type='text'],
-.instructor-course-editor #top-form #create-form > div input.has-slug{
+#course-edit .payment-section input[type='text'],
+#course-edit #top-form #create-form > div input.has-slug{
 	width: 345px;
 	border-radius: 5px;
 	float: right;
@@ -5290,7 +5300,7 @@ select option.suspended{
 	border: solid 1px #adadad;
 }
 
-.instructor-course-editor #top-form #create-form > div.course-level span{
+#course-edit #top-form #create-form > div.course-level span{
 	display: inline-block;
 	float:left;
 	margin-top: 7px;
@@ -5299,25 +5309,25 @@ select option.suspended{
 	font-size: 16px;
 }
 
-.instructor-course-editor #top-form #create-form > div.course-level label{
+#course-edit #top-form #create-form > div.course-level label{
 	margin: 0;
 	float: left;
 }
 
-.instructor-course-editor #top-form #create-form > div.course-level label + label {
+#course-edit #top-form #create-form > div.course-level label + label {
     margin-left: 24px;
 }
 
-.instructor-course-editor #top-form #create-form > div.course-level div{
+#course-edit #top-form #create-form > div.course-level div{
 	float: right;
 	width: 345px;
 }
 
-.instructor-course-editor #top-form #create-form > div.course-level div label input{
+#course-edit #top-form #create-form > div.course-level div label input{
 	display: none;
 }
 
-.instructor-course-editor  h3{
+#course-edit  h3{
     color: #0099ff;
     font-size: 20px;
     font-weight: 200;
@@ -5325,7 +5335,7 @@ select option.suspended{
     margin: 65px 0 15px;
 }
 
-.uploadFile{
+#course-edit .uploadFile{
 	height: 30px;
 	font-size: 14px;
 	color: #849598;
@@ -5339,8 +5349,8 @@ select option.suspended{
 	border-radius: 5px;
 }
 
-.uploadFile input.upload-banner-image,
-.uploadFile input.upload-preview-image{
+#course-edit .uploadFile input.upload-banner-image,
+#course-edit .uploadFile input.upload-preview-image{
 	border: none;
 	width: 100%;
 	height: 100%;
@@ -5356,7 +5366,7 @@ select option.suspended{
     z-index: 0;
 }
 
-.uploadFile span{
+#course-edit .uploadFile span{
 	display: block;
 	line-height: 30px;
 	text-align: center;
@@ -5373,11 +5383,11 @@ select option.suspended{
     width: 97px;
 }
 
-.uploadFile span:hover{
+#course-edit .uploadFile span:hover{
 	cursor: pointer;
 }
 
-.instructor-course-editor .progress {
+#course-edit .progress {
     background: none repeat scroll 0 0 #ececec;
     height: 6px;
     margin: 15px auto 0;
@@ -5385,7 +5395,7 @@ select option.suspended{
 	max-width: 482px;
 }
 
-.instructor-course-editor .progress-bar {
+#course-edit .progress-bar {
     background: none repeat scroll 0 0 #92cc2e;
     border-radius: 6px;
     height: 100%;
@@ -5393,7 +5403,7 @@ select option.suspended{
     width: 60%;
 }
 
-.instructor-course-editor .use-existing{
+#course-edit .use-existing{
 	display: block;
 	text-align: center;
 	margin: 50px 0;
@@ -5401,48 +5411,70 @@ select option.suspended{
 	color: #000;
 }
 
-.instructor-course-editor .use-existing-preview .radio-buttons{
+#course-edit .use-existing-preview .radio-buttons{
 	float: none;
 	margin: 0;
 }
 
-.instructor-course-editor .use-existing-preview .radio-buttons .radio-checkbox{
+#course-edit .use-existing-preview .radio-buttons .radio-checkbox{
 	margin-bottom: 20px;
 }
 
 .instructor-course-editor .use-existing-preview .radio-buttons img{
 	float: left;
-	margin-left: 10px;
+	height: 194px;
+	width: 194px;
 }
 
-.instructor-course-editor .use-existing-preview .radio-buttons label{
+#course-edit .use-existing-preview .radio-buttons .select-border{
+	height: 194px;
+	width: 194px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/photo_select_border.png') no-repeat center center;
+	opacity: 0;
+}
+
+#course-edit .use-existing-preview .radio-buttons .select-border.display-border{
+	opacity: 1;
+}
+
+#course-edit .use-existing-preview .radio-buttons label{
 	float: left;
+	display: none;
 }
 
-.instructor-course-editor .who-its-for{
+.radio-checked.radio-checkbox > div {
+    height: 194px;
+	position: relative;
+    width: 194px;
+}
+
+#course-edit .who-its-for{
 	margin-top: 50px;
 }
 
-.instructor-course-editor .payment-section {
+#course-edit .payment-section {
     margin: 40px auto 0;
     max-width: 482px;
 }
 
-.instructor-course-editor .payment-section .set-slider{
+#course-edit .payment-section .set-slider{
 	width: 60px;
 	margin-top: 10px;
 }
 
-.instructor-course-editor .payment-section .percentage-slider label{
+#course-edit .payment-section .percentage-slider label{
 	max-width: 100px;
 }
 
-.instructor-course-editor .payment-section .percentage-slider > div{
+#course-edit .payment-section .percentage-slider > div{
 	max-width: 345px;
 	float: right;
 }
 
-.instructor-course-editor .payment-section .submit-button{
+#course-edit .payment-section .submit-button{
 	outline: none;
     border: medium none;
     border-radius: 5px;
@@ -5456,6 +5488,8 @@ select option.suspended{
 	float: none;
 	left: 0;
 }
+
+
 /************* Course Categories ************/
 .course-categories h1{
 	text-align: center;

@@ -124,7 +124,7 @@
 					}
 				});
 				
-				$('#myTab a').click(function (e) {
+				$('#instructor-editor a').click(function (e) {
 				  e.preventDefault()
 				  $(this).tab('show')
 				});

@@ -24,8 +24,8 @@ $(document).ready(function(){
     floatingNav();
     scrollNavigation();
 	fullScreen();
-    //homeBckgrdVideo();
 	skinVideoControls();
+	insertSelectBorder()
 });
 
 function goTo(e){
@@ -826,7 +826,7 @@ function skinVideoControls(){
 	//VIDEO PROGRESS BAR
 	//when video timebar clicked
 	var timeDrag = false;	/* check for drag event */
-	$('.progress').on('mousedown', function(e) {
+	$('.videoContainer .progress').on('mousedown', function(e) {
 		timeDrag = true;
 		updatebar(e.pageX);
 	});
@@ -842,7 +842,7 @@ function skinVideoControls(){
 		}
 	});
 	var updatebar = function(x) {
-		var progress = $('.progress');
+		var progress = $('.videoContainer .progress');
 		
 		//calculate drag position
 		//and update video currenttime
@@ -928,14 +928,10 @@ function skinVideoControls(){
 
 }
 
-/*function homeBckgrdVideo(){
-    var player = $('#bckgrd-video');
-
-    $('#play-button').click(function(){
-        player[0].play();
-        $('#play-button, #bckgrd-video-overlay, .logo').hide();
-    });
-    player.on('ended',function(){
-        $('#play-button, #bckgrd-video-overlay, .logo').show();
-    })
-}*/
+//Add blue border with a checkmark to selected images
+function insertSelectBorder(){
+	$('.instructor-course-editor .use-existing-preview .select-border').on('click', function(){
+		$(this).toggleClass('display-border');	
+		//$(this).siblings('.select-border').toggleClass('hide');	
+	});	
+}

@@ -32,12 +32,12 @@
                     <a href='{{action("CoursesController@myCourses")}}' class="all-my-courses btn btn-link">{{ trans('courses/general.all_my_courses') }}</a>
                 
                     <!-- Nav tabs -->
-                    <ul class="nav nav-pills" id="myTab" role="tablist">
+                    <ul class="nav nav-pills" id="instructor-editor" role="tablist">
                         <li role="presentation" class="active right-twenty-margin">
                             <a href="#course-edit" aria-controls="course-edit" role="tab" data-toggle="tab">Course Edit</a>
                         </li>
                         <li role="presentation">
-                            <a href="#curriculum" aria-controls="curriculum" role="tab" data-toggle="tab">Curriculum</a>
+                            <a href="#curriculum-tab" aria-controls="curriculum-tab" role="tab" data-toggle="tab">Curriculum</a>
                         </li>
                     </ul>
                 </div>
@@ -272,10 +272,60 @@
                             </div>
                        </div>	 
                    </div>        
+                <!-- Curriculum contents here -->
+                <div role="tabpanel" class="tab-pane fade" id="curriculum-tab">
+                    <div class="container course-editor">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class='icon'>{{$course->name}}</h1>   
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="what-to-achieve">
+                                    <h3>{{ trans('courses/create.by_the_end') }}</h3>
+                                    @foreach( json2Array($course->what_will_you_achieve) as $skill)
+                                        <ul>
+                                            <li>{{ $skill }}</li>
+                                        </ul>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="who-for">
+                                    <h3>{{ trans('courses/curriculum.for_those_who') }}</h3>
+                                    @foreach( json2Array($course->who_is_this_for) as $for)
+                                        <ul>
+                                            <li>{{ $for }}</li>
+                                        </ul>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="plan-your-curriculum">
+                                    <h2>{{ trans('courses/curriculum.plan_out') }}
+                                    <span>{{ trans('courses/curriculum.outline_modules') }}</span>
+                                    </h2>
+                                    <ul id="modules-list">
+                                        @foreach($course->modules()->orderBy('order','ASC')->get() as $module)
+                                            {{ View::make('courses.modules.module')->with(compact('module')) }}
+                                        @endforeach
+                                    </ul>                    
+                                    <form method='post' class='ajax-form' id="modules-form" data-callback='addModule'
+                                          action='{{ action('ModulesController@store',[$course->id] )}}'>
+                                        <input type='hidden' name='_token' value='{{ csrf_token() }}' />
+                                        <button type='submit' class='add-new-module'>{{ trans('crud/labels.add_module') }}</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                @include('videos.archiveModal')
+                </div>
                 </div>
                 
-                <!-- Curriculum contents here -->
-                <div role="tabpanel" class="tab-pane fade" id="curriculum">Curriculum contents go here</div>
             </div>
 		</div>
 	</div>
