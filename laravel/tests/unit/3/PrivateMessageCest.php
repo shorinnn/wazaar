@@ -41,6 +41,22 @@ class PrivateMessageCest{
         $I->assertEquals( 1, $instructor->receivedMessages()->count() );
     }
     
+    public function failAskTeacherMessageCourseDisabledIt(UnitTester $I){
+        User::boot();
+        Student::boot();
+        Instructor::boot();
+        $student = Student::where('username','student')->first();
+        $instructor = Instructor::where('username','instructor')->first();
+        $course = $instructor->courses()->first();
+        $course->ask_teacher = 'disabled';
+        $course->updateUniques();
+        $I->assertTrue( $student->purchased( $course ) );
+        $message = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $instructor->id, 'content' => 'Question sir!']);
+        $message->type = 'ask_teacher';
+        $message->course_id = $course->id;
+        $I->assertFalse( $message->save() );
+    }
+    
     public function replyToAskTeacherMessage(UnitTester $I){
         User::boot();
         Student::boot();

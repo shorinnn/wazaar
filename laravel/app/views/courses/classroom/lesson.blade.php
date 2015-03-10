@@ -103,24 +103,27 @@
                 </div>
             </section>
 
-            <section class="classroom-content container"><a name='ask-teacher'></a>
-                <div class="row classmate-conversations-heading">
-                	<div class="col-md-12">
-                        <p class="lead">Ask The Teacher:</p>
+            @if($course->ask_teacher == 'enabled')
+                <section class="classroom-content container"><a name='ask-teacher'></a>
+                    <div class="row classmate-conversations-heading">
+                            <div class="col-md-12">
+                            <p class="lead">Ask The Teacher:</p>
+                        </div>
                     </div>
-                </div>
-            @if( Auth::check() )
-                {{ View::make('private_messages.partials.ask_teacher_form')->with( compact('lesson') ) }}
+                @if( Auth::check() )
+                    {{ View::make('private_messages.partials.ask_teacher_form')->with( compact('lesson') ) }}
+                @endif
+
+                    <div class='ask-content fa-animated'>
+                        {{ View::make('private_messages.all')->withComments( $lesson->ask_teacher_messages ) }}
+                        <br />
+                        <div class="text-center load-remote" data-target='.ask-content' data-load-method="fade">
+                            {{ $lesson->ask_teacher_messages->appends( [ 'ask' => 1 ] )->links() }}
+                        </div>
+                    </div>
+                </section>
             @endif
             
-                <div class='ask-content fa-animated'>
-                    {{ View::make('private_messages.all')->withComments( $lesson->ask_teacher_messages ) }}
-                    <br />
-                    <div class="text-center load-remote" data-target='.ask-content' data-load-method="fade">
-                        {{ $lesson->ask_teacher_messages->appends( [ 'ask' => 1 ] )->links() }}
-                    </div>
-                </div>
-            </section>
             <section class="container-fluid become-an-instructor">
                 <div class="container">
                   <div class="row">

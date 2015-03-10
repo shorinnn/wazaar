@@ -41,4 +41,5 @@ return array(
     'payment_type' => 'Payment Type',
     'one_time' => 'One Time',
     'subscription' => 'Subscription',
+    'enable_ask_coach' => 'Enable Ask Teacher Feature',
 );

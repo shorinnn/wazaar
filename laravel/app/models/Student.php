@@ -238,14 +238,22 @@ class Student extends User{
      * @param Course $course (with pre-ordered module and lesson relationships eargerly loaded)
      * @return mixed False if none, the lesson object otherwise
      */
+    private $_nextLesson = null;
     public function nextLesson(Course $course){ 
-        foreach($course->modules as $module){
-            foreach($module->lessons as $lesson){
-                if( !$this->isLessonViewed($lesson) && ( $this->purchased( $course ) || $this->purchased( $lesson ) ) ) return $lesson;
+        if($this->_nextLesson != null) return $this->_nextLesson;
+        foreach($course->modules()->orderBy('order','asc')->get() as $module){
+            foreach($module->lessons()->orderBy('order','asc')->get() as $lesson){
+                if( !$this->isLessonViewed($lesson) && ( $this->purchased( $course ) || $this->purchased( $lesson ) ) ){
+                    $this->_nextLesson = $lesson;
+                    return $lesson;
+                }
             }
         }
+        $this->_nextLesson = false;
         return false;
     }
+    
+    
 
     public function commentName($userType=null){
         if( $this->profile ){

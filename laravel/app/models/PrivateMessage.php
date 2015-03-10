@@ -28,6 +28,8 @@ class PrivateMessage extends Ardent {
             if( $this->type == 'ask_teacher' &&  $this->course->instructor->id != $this->sender_id){
                 $student = Student::find( $this->sender_id );
                 if( !$student->purchased($this->course) ) return false;
+                // make sure course allows this 
+                if( $this->course->ask_teacher == 'disabled' ) return false;
             }
         }
         

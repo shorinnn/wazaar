@@ -62,6 +62,13 @@
                                             {{ Form::select('privacy_status', [ 'private' => 'Private', 'public' => 'Public']) }}
                                         </span>
                                     </div>    
+                                                
+                                    <div class="clearfix">
+                                    	<label>{{ trans('courses/general.enable_ask_coach') }} </label>
+                                        <span class="custom-dropdown">
+                                            {{ Form::select('ask_teacher', [ 'enabled' => 'Yes', 'disabled' => 'No']) }}
+                                        </span>
+                                    </div>    
                                     
                                     <div class="clearfix">
                                     	<label>{{ trans('courses/general.category') }}</label>                                        

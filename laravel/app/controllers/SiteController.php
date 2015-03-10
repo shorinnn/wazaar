@@ -43,8 +43,6 @@ class SiteController extends \BaseController {
         public function courseditor(){
              Return View::make('TEMPORARYVIEWS.course_editor');
         }
-        
-        
 
 
 
