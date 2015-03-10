@@ -7,10 +7,10 @@ return
     'creditCard' => 'Credit Card',
     'cardNumber' => 'Card Number',
     'expiryDate' => 'Expiry Date',
-    'MM'    => 'MM',
-    'YY' => 'YY',
+    'MMYY'    => 'MMYY',
     'cvCode' => 'CV Code',
     'pay' => 'Pay',
+    'cancel' => 'Cancel',
     'productId' =>
     [
         'required' => 'Payment product was not defined',

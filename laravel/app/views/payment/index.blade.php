@@ -23,9 +23,9 @@
                 </div>
 
                 <div class="col-md-6">
-                    <h4>Payment Method</h4>
-                    <hr/>
-                    <div class="credit-card-wrapper">
+                    {{Form::open(['url' => url('payment')])}}
+                        <h4>Payment Method</h4>
+                        <hr/>
                         @if (count($errors) > 0)
                             <ul>
                                 @foreach($errors as $err)
@@ -33,70 +33,33 @@
                                 @endforeach
                             </ul>
                         @endif
-                        {{Form::open(['url' => url('payment')])}}
+                        @include('payment.panels.payeeInformation')
 
-                            <div class="radio">
-                                <label>
-                                    {{Form::radio('paymentOption','cc',true)}}
-                                    {{trans('payment.creditCard')}}
-                                </label>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Payment Method</h3>
+                            </div>
+                            <div class="panel-body">
+                                @include('payment.panels.creditcard')
                             </div>
 
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-xs-12 col-md-4">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h3 class="panel-title">
-                                                    {{trans('payment.paymentDetails')}}
-                                                </h3>
-                                            </div>
-                                            <div class="panel-body">
-                                                <form role="form">
-                                                    <div class="form-group">
-                                                        {{Form::label('cardNumber',trans('payment.cardNumber'))}}
-                                                        <div class="input-group">
-                                                            {{Form::text('cardNumber','',['class' => 'form-control'])}}
-                                                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-xs-7 col-md-7">
-                                                            <div class="form-group">
-                                                                {{Form::label('expiryMonth',trans('payment.expiryDate'))}}
-                                                                <div class="col-xs-6 col-lg-6 pl-ziro">
-                                                                    {{Form::text('expiryMonth','',['class' => 'form-control', 'placeholder' => trans('payment.MM'), 'required'])}}
-                                                                </div>
-                                                                <div class="col-xs-6 col-lg-6 pl-ziro">
-                                                                    {{Form::text('expiryYear','',['class' => 'form-control', 'placeholder' => trans('payment.YY'), 'required'])}}
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xs-5 col-md-5 pull-right">
-                                                            <div class="form-group">
-                                                                {{Form::label('cvc', trans('payment.cvCode'))}}
-                                                                {{Form::password('cvc',['class' => 'form-control', 'required'])}}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <br/>
-                                        <button class="btn btn-success btn-lg btn-block" role="button">{{trans('payment.pay')}}</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </form>
+                        </div>
 
 
-                    </div>
 
-                    <div class="bank-transfer-wrapper">
 
-                    </div>
+                        <div class="bank-transfer-wrapper">
+
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg btn-block" role="button">{{trans('payment.pay')}}</button>
+                        <button type="button" class="btn btn-danger btn-lg btn-block" role="button">{{trans('payment.cancel')}}</button>
+                    {{Form::close()}}
+
+                    <div>&nbsp;</div>
+
+
+
 
                 </div>
             </div>

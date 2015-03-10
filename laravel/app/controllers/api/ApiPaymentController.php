@@ -2,6 +2,7 @@
 
 class ApiPaymentController extends BaseController
 {
+
     protected $payment;
 
     public function __construct(\Cocorium\Payment\PaymentInterface $payment)
@@ -27,37 +28,37 @@ class ApiPaymentController extends BaseController
 
         $validator = Validator::make(Input::all(), $rules);
 
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return [
-                    'success' => false,
-                    'errors'  => $validator->messages()->all()
-                   ];
+                'success' => false,
+                'errors'  => $validator->messages()->all()
+            ];
         }
 
         $requestData = Input::all();
-        $reference = Str::random(10);
+        $reference   = Str::random(10);
 
         $otherParams = [
             'order' => [
-                'orderId'    => rand(1,100),
-                'email'      => $requestData['email'],
-                'firstName'  => $requestData['firstName'],
-                'lastName'   => $requestData['lastName'],
-                'city'       => @$requestData['city'],
-                'zip'        => @$requestData['zip'],
-                'country'    => @$requestData['country'],
-                'ipAddress'  => $requestData['ipAddress'],
-                'reference'  => $reference
+                'orderId'   => rand(1, 100),
+                'email'     => $requestData['email'],
+                'firstName' => $requestData['firstName'],
+                'lastName'  => $requestData['lastName'],
+                'city'      => @$requestData['city'],
+                'zip'       => @$requestData['zip'],
+                'country'   => @$requestData['country'],
+                'ipAddress' => $requestData['ipAddress'],
+                'reference' => $reference
             ]
         ];
-        $creditCard = [
+        $creditCard  = [
             'cardNumber' => $requestData['cardNumber'],
             'cardExpiry' => $requestData['cardExpiry']
         ];
 
-        $paymentCall = $this->payment->makeUsingCreditCard($requestData['amount'], $creditCard, $otherParams);
-        Event::fire('payment.made',[$requestData, $paymentCall]);
+        $paymentResponse = $this->payment->makeUsingCreditCard($requestData['amount'], $creditCard, $otherParams);
+        Event::fire('payment.made', [$requestData, $paymentResponse]);
 
-        return json_encode($paymentCall);
+        return Response::json($paymentResponse);
     }
 }
