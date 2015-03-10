@@ -72,7 +72,8 @@ class ClassroomController extends \BaseController {
             }
             // if subscription, see if valid
             if($course->payment_type=='subscription'){
-                if( !in_array($lesson->module->id, $student->subscriptionModules($course)->lists('id'))){
+//                if( !in_array($lesson->module->id, $student->subscriptionModules($course)->lists('id'))){
+                if( $student->isLessonSubscribedTo( $lesson ) ){
                     return Redirect::to('/');
                 }
             }

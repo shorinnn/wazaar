@@ -7,22 +7,22 @@ Event::listen('auth.login', function($event)
     return false;
 });
 
-Event::listen('payment.made', function ($requestData, $paymentCall){
+Event::listen('payment.made', function ($requestData, $paymentResponse){
 
     $reference = '';
 
-    if ($paymentCall['success']){
-        $reference = @$paymentCall['successData']->REF;
-        $response = json_encode($paymentCall['successData']);
+    if ($paymentResponse['success']){
+        $reference = @$paymentResponse['successData']->REF;
+        $response = json_encode($paymentResponse['successData']);
     }
     else{
-        $response = json_encode($paymentCall['errors']);
+        $response = json_encode($paymentResponse['errors']);
     }
 
     PaymentLog::create(
         [
             'user_id' => $requestData['userId'] ,
-            'success' => $paymentCall['success'],
+            'success' => $paymentResponse['success'],
             'reference' => $reference,
             'response' => $response
         ]

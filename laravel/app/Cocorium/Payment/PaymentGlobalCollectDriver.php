@@ -1,6 +1,7 @@
 <?php namespace Cocorium\Payment;
 
-class PaymentGlobalCollectDriver implements PaymentInterface {
+class PaymentGlobalCollectDriver implements PaymentInterface
+{
 
     protected $merchantID;
     protected $IPAddress;
@@ -12,19 +13,19 @@ class PaymentGlobalCollectDriver implements PaymentInterface {
 
     public function __construct()
     {
-        $this->merchantID = \Config::get('globalcollect.merchantID',9950);
-        $this->IPAddress = \Config::get('globalcollect.IPAddress','54.173.36.14');
-        $this->version = \Config::get('globalcollect.version');
-        $this->APIUrl = \Config::get('globalcollect.url');
-        $this->currency = \Config::get('globalcollect.currency');
-        $this->language = \Config::get('globalcollect.language');
+        $this->merchantID = \Config::get('globalcollect.merchantID', 9950);
+        $this->IPAddress  = \Config::get('globalcollect.IPAddress', '54.173.36.14');
+        $this->version    = \Config::get('globalcollect.version');
+        $this->APIUrl     = \Config::get('globalcollect.url');
+        $this->currency   = \Config::get('globalcollect.currency');
+        $this->language   = \Config::get('globalcollect.language');
     }
 
     public function makeUsingCreditCard($amount, $creditCardDetails, $otherParams = [])
     {
-        try{
+        try {
             $action = 'INSERT_ORDERWITHPAYMENT';
-            $order = $otherParams['order'];
+            $order  = $otherParams['order'];
 
             $orderPayment = "   <ORDER>
                                     <ORDERID>{$order['orderId']}</ORDERID>
@@ -51,9 +52,9 @@ class PaymentGlobalCollectDriver implements PaymentInterface {
                             </PAYMENT>";
 
             $requestXML = $this->_prepareXMLString($action, $orderPayment);
+
             return $this->_executeCall($requestXML);
-        }
-        catch(Exception $ex){
+        } catch (Exception $ex) {
             return ['success' => false, 'errors' => [$ex->getMessage()]];
         }
 
@@ -61,7 +62,7 @@ class PaymentGlobalCollectDriver implements PaymentInterface {
 
     public function makeUsingBank($amount, $bankDetails, $otherParams = [])
     {
-        try{
+        try {
             $orderPayment = "<ORDER>
                 <MERCHANTREFERENCE>ABC1234</MERCHANTREFERENCE>
                 <AMOUNT>234500</AMOUNT>
@@ -80,8 +81,7 @@ class PaymentGlobalCollectDriver implements PaymentInterface {
                 <LANGUAGECODE>en</LANGUAGECODE>
                 <HOSTEDINDICATOR>0</HOSTEDINDICATOR>
             </PAYMENT>";
-        }
-        catch(Exception $ex){
+        } catch (Exception $ex) {
             return ['success' => false, 'errors' => [$ex->getMessage()]];
         }
     }
@@ -104,35 +104,48 @@ class PaymentGlobalCollectDriver implements PaymentInterface {
 
     private function _executeCall($requestXML)
     {
-        $errors = [];
-        $success = false;
-        $successData = [];
-        $call = doPostCurl($this->APIUrl,$requestXML);
+        $live = \Config::get('globalcollect.live');
 
-        if (!empty($call)){
-            $callObject = simplexml_load_string($call);
+        if ($live) { //live mode
+            $errors      = [];
+            $success     = false;
+            $successData = [];
+            $call        = doPostCurl($this->APIUrl, $requestXML);
 
-            if (isset($callObject->REQUEST->RESPONSE)){
-                $responseObject = $callObject->REQUEST->RESPONSE;
+            if (!empty($call)) {
+                $callObject = simplexml_load_string($call);
 
-                if (@$responseObject->RESULT == 'OK'){
-                    $success = true;
-                    $successData = $responseObject->ROW;
-                }
-                else{
-                    $errors[] = $responseObject->ERROR->MESSAGE;
+                if (isset($callObject->REQUEST->RESPONSE)) {
+                    $responseObject = $callObject->REQUEST->RESPONSE;
+
+                    if (@$responseObject->RESULT == 'OK') {
+                        $success     = true;
+                        $successData = $responseObject->ROW;
+                    } else {
+                        $errors[] = $responseObject->ERROR->MESSAGE;
+                    }
                 }
             }
+        } else { //testing mode
+            $success = 1;//rand(0, 1);
+
+            if ($success) {
+                $resp        = new \stdClass();
+                $resp->REF   = \Str::random(8);
+                $successData = $resp;
+            } else {
+                $errors = ['something went wrong mah man'];
+            }
         }
+
         if (!$success) {
             return compact('success', 'errors');
-        }
-        else{
-            return compact('success','successData');
+        } else {
+            return compact('success', 'successData');
         }
     }
 
-    private function _prepareXMLString($action,$paramsXMLString)
+    private function _prepareXMLString($action, $paramsXMLString)
     {
         $data = "<XML>
                     <REQUEST>
@@ -147,6 +160,7 @@ class PaymentGlobalCollectDriver implements PaymentInterface {
                         </PARAMS>
                     </REQUEST>
                 </XML>";
+
         return $data;
     }
 

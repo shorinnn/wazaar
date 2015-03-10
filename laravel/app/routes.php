@@ -182,18 +182,23 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::post('course/{courseId}/stats/compare','AffiliateDashboardController@compareCourses');
 });
 
-## API Routes
+## Payment Form(https)
+Route::group(['prefix' => 'payment'], function (){
+    Route::get('/','PaymentController@index');
+    Route::post('/','PaymentController@process');
+});
 
+
+## API Routes
 Route::group(['prefix' => 'api'], function(){
     Route::group(['prefix' => 'payment'], function(){
-        Route::post('creditcard','PaymentController@creditCard');
+        Route::post('creditcard','ApiPaymentController@creditCard');
     });
 });
+
 
 Route::get('test/pay', 'PaymentTestController@pay');
 
 Route::get('test', function (){
-
     Event::fire('payment.successful',['wowow' => 'yesyes']);
-
 });

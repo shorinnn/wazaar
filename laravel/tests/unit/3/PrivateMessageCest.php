@@ -13,6 +13,7 @@ class PrivateMessageCest{
     private function setupDatabase() {
         Artisan::call('migrate:refresh');
         Artisan::call('db:seed');
+        DB::table('private_messages')->truncate();
         PrivateMessage::boot();
     }
     
@@ -59,7 +60,7 @@ class PrivateMessageCest{
         $reply->type = 'ask_teacher';
         $reply->course_id = $instructor->courses()->first()->id;
         $reply->thread_id = 1;
-        $reply->reply_to = 1;
+        $reply->reply_to = $message->id;
         $I->assertTrue( $reply->save() );
         
         $I->assertEquals( 1, $student->sentMessages->count() );
@@ -82,7 +83,7 @@ class PrivateMessageCest{
         $reply->type = 'ask_teacher';
         $reply->course_id = $instructor->courses()->first()->id;
         $reply->thread_id = 1;
-        $reply->reply_to = 1;
+        $reply->reply_to = $message->id;
         $I->assertFalse( $reply->save() );
     }
     
@@ -114,7 +115,7 @@ class PrivateMessageCest{
         $reply->type = 'mass_message';
         $reply->course_id = $instructor->courses()->first()->id;
         $reply->thread_id = 1;
-        $reply->reply_to = 1;
+        $reply->reply_to = $message->id;
         $I->assertFalse( $reply->save() );
     }
     
@@ -194,13 +195,14 @@ class PrivateMessageCest{
         $reply->type = 'ask_teacher';
         $reply->course_id = $instructor->courses()->first()->id;
         $reply->thread_id = 1;
-        $reply->reply_to = 1;
+        $reply->reply_to = $message->id;
+        $r2 = $reply->reply_to + 1;
         $I->assertTrue( $reply->save() );
         $reply = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $instructor->id, 'content' => 'Reply sir! 2']);
         $reply->type = 'ask_teacher';
         $reply->course_id = $instructor->courses()->first()->id;
         $reply->thread_id = 1;
-        $reply->reply_to = 2;
+        $reply->reply_to = $r2;
         $I->assertTrue( $reply->save() );
         
         $I->assertEquals( 2, $instructor->receivedMessages()->count() );
@@ -218,13 +220,14 @@ class PrivateMessageCest{
         $reply->type = 'ask_teacher';
         $reply->course_id = $instructor->courses()->first()->id;
         $reply->thread_id = 1;
-        $reply->reply_to = 1;
+        $reply->reply_to = $message->id;
+        $r2 = $message->id + 1;
         $I->assertTrue( $reply->save() );
         $reply = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $instructor->id, 'content' => 'Reply sir! 2']);
         $reply->type = 'ask_teacher';
         $reply->course_id = $instructor->courses()->first()->id;
         $reply->thread_id = 1;
-        $reply->reply_to = 2;
+        $reply->reply_to = $r2;
         $reply->status = 'read';
         $I->assertTrue( $reply->save() );
         

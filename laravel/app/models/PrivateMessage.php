@@ -19,14 +19,14 @@ class PrivateMessage extends Ardent {
         
         public function beforeSave(){
             if( $this->reply_to > 0 ){
-                $original = self::find($this->reply_to);
+                $original = PrivateMessage::find( $this->reply_to );
                 if( $original->recipient_id != $this->sender_id ) return false;
             }
             if( $this->type == 'mass_message' ){
                 if( ( $this->course==null ) || $this->course->instructor->id != $this->sender_id ) return false;
             }
             if( $this->type == 'ask_teacher' &&  $this->course->instructor->id != $this->sender_id){
-                $student = Student::find($this->sender_id);
+                $student = Student::find( $this->sender_id );
                 if( !$student->purchased($this->course) ) return false;
             }
         }
