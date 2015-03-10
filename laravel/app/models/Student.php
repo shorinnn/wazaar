@@ -422,6 +422,13 @@ class Student extends User{
                         }
                     });
      }
+     
+     public function isLessonSubscribedTo($lesson){
+         if( !in_array($lesson->module->id, $this->subscriptionModules($lesson->module->course)->lists('id'))){
+            return false;
+         }
+         return true;
+     }
 
 
 
