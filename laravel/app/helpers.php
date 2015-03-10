@@ -11,6 +11,9 @@ function alphanum($string){
 
 function mimetype($file){
     $finfo = new finfo(FILEINFO_MIME_TYPE);
+    if( is_string($file) ){
+        $file = file_get_contents($file);
+    }
     return $finfo->buffer($file);
 }
 

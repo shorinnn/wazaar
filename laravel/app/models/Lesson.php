@@ -45,5 +45,20 @@ class Lesson extends Ardent {
     public function cost(){
         return $this->price;
     }
-
+    
+    public function lessonAfter(){
+        $found = false;
+        $i = 1;
+        foreach($this->module->course->modules()->orderBy('order','asc')->get() as $module){
+            foreach($module->lessons()->orderBy('order','asc')->get() as $current_lesson){
+                if( $found == true ) {
+                    $current_lesson->lesson_number = $i;
+                    return $current_lesson;
+                }
+                if( $this->id == $current_lesson->id ) $found = true;
+                ++$i;
+            }
+        }
+        return false;
+    }
 }

@@ -87,12 +87,18 @@
                             
                     	<div class="additional-lesson-conntent">
                         	<h3>Additional lesson content</h3>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore 
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                            </p>
-                            <a href="#" class="read-more">READ MORE</a>
+                            @if($nextLesson != false)
+                                @if($nextLesson->blocks()->where('type','text')->first())
+                                    <p> {{ 
+                                            Str::limit( strip_tags( $nextLesson->blocks()->where('type','text')->first()->content), 100)
+                                         }} 
+                                    </p>
+                                    <a href="{{ action( 'ClassroomController@lesson', 
+                                            [ 'course' => $nextLesson->module->course->slug, 
+                                              'module' => $nextLesson->module->slug, 
+                                              'lesson' => $nextLesson->slug ] ) }}" class="read-more">READ MORE</a>
+                                @endif
+                            @endif
                         </div>
                     @if( $course->ask_teacher=='enabled')
                     	<div class="header blue clearfix">
@@ -116,50 +122,72 @@
                         </div>
                     @endif
                         <br />
-                        <p class="lead">Lesson Notes</p>
+                        <p class="lead">Upcoming</p>
                         <div class="white-box">
                         	<div class="clearfix">
-                            	<p class="lead"><span>Lesson 1</span>	Making your first splash page</p>
-                                <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-								tmpor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-                                laboris nisi ut aliquip ex
-                                </p>
-                            	<p class="lead"><span>Lesson 1</span>	Making your first splash page</p>
-                                <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
-								tmpor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                </p>
+                                    <?php
+                                    $upcoming = $nextLesson;
+                                    ?>
+                                @for($i = 0; $i < 3; ++$i)
+                                    <?php
+                                    if($upcoming) {
+                                        $upcoming = $upcoming->lessonAfter();
+                                    }
+                                    ?>
+                                    @if($upcoming)
+                                        <p class="lead">
+                                            <span>Lesson {{$upcoming->lesson_number}} </span>	
+                                            {{$upcoming->name}}
+                                        </p>
+                                        <p
+                                        @if($i==2)
+                                            style='margin-bottom:-34px'
+                                        @endif
+                                        >
+                                             {{$upcoming->description}}
+                                        </p>
+                                    @endif
+                            	@endfor
                             </div>
-                            <span class="view-curriculum">Vieuw full curriculum</span>
+                            <span class="view-curriculum">
+                                <a href='#curriculum'>View full curriculum</a>
+                            </span>
                         </div>
                     </div>
                 	<div class="col-md-6">
                     	<div class="accompanying-material">
-                        	<h3>Accompanying material</h3>
-                        	<div class="pdf">
-                            	<span>pdf</span>
-                                <p>The beginner's manual</p>
-                                <a href="#">Download</a>
-                            </div>
-                        	<div class="zip">
-                            	<span>zip</span>
-                                <p>Sample Script</p>
-                                <a href="#">Download</a>
-                            </div>
-                        	<div class="zip">
-                            	<span>zip</span>
-                                <p>Sample Script</p>
-                                <a href="#">Download</a>
-                            </div>
-                            
+                            <h3>Accompanying material</h3>
+                            @if($nextLesson != false)
+                                @foreach($nextLesson->blocks as $block)
+                                    @if($block->type=='file')
+                                    <?php
+                                        $extension = substr( mime_to_extension( mimetype ( $block->content) ), 1 );
+                                    ?>
+                                        <div 
+                                            @if($extension=='pdf')
+                                                class="pdf"
+                                            @elseif($extension=='zip')
+                                                class="zip"
+                                            @else
+                                                class="pdf"
+                                            @endif
+                                            >
+                                            <span> {{ $extension  }}</span>
+                                            <p>{{ $block->name }}</p>
+                                            <a href="{{ $block->content }}">Download</a>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @endif
+                                                        
                         </div>
                         <div class="header green clearfix">
                             <h2>
-                                @if( !$student->nextLesson($course))
+                                @if( !$nextLesson )
                                     Completed all lessons - decide what to put here
                                 @else
-                                    <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 'module' => $student->nextLesson($course)->module->slug , 'lesson' => $student->nextLesson($course)->slug ] ) }}">
+                                    <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 
+                                        'module' => $nextLesson->module->slug , 'lesson' => $nextLesson->slug ] ) }}">
                                     @if( $student->viewedLessons->count()==0 )
                                         BEGIN <small>FIRST LESSON</small>
                                     @else
@@ -171,7 +199,7 @@
                         </div>
                         <p class="lead">In the next lesson you will learn</p>
                         <div class="white-box">
-                            <p>{{ $student->nextLesson($course)->description or ' finished all lessons ' }}</p>
+                            <p>{{ $nextLesson->description or ' finished all lessons ' }}</p>
                         </div>
                     </div>
                 </div>
@@ -195,6 +223,7 @@
                
             
                 <div class="row curriculum" id="curriculum">
+                    <a name='curriculum'></a>
                 	<div class="col-md-12">
                     	<div class="clearfix">
                             <p class="lead">Curriculum<span id="view-all-lessons">View All</span></p>

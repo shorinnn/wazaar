@@ -31,14 +31,15 @@ class ClassroomController extends \BaseController {
             if( $course==null || ( !$student->purchased( $course ) && !$student->purchasedLessonFromCourse( $course ) ) ){
                 return Redirect::to('/');
             }
-            $video = $student->nextLesson($course);
+            $nextLesson = $video = $student->nextLesson($course);
             if( $video ) $video = $video->blocks()->where('type','video')->first();
 //            $video = $course->videoBlocks();
 //            if($video!=null) $video = $video->first();
             if(Request::ajax()){
                 return View::make('courses.classroom.course_comments_ajax')->with( compact('course') );
             }
-            return View::make('courses.classroom.dashboard')->with( compact('course') )->with( compact('student') )->with( compact('video') );
+            return View::make('courses.classroom.dashboard')->with( compact('course') )->with( compact('student') )->with( compact('video') )
+                    ->with( compact('nextLesson') );
         }
         
         public function testimonial($slug){

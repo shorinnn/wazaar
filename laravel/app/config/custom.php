@@ -7,7 +7,7 @@ return [
     'course_is_new'        => [ 'maximum_students' => 20, 'maximum_months' => 6 ],
     'tracker_url'          => 'http://wazaar.dev/action_tracker',
     'maximum_lesson_files' => 10,
-    'course_attachments' => ['.jpg', '.png', '.gif', '.bmp', '.txt', '.pdf'],
+    'course_attachments' => ['.jpg', '.png', '.gif', '.bmp', '.txt', '.pdf', '.zip'],
     'use_id_for_slug' => true,
     'short_desc_max_chars' => 100
 ];
