@@ -5280,6 +5280,7 @@ select option.suspended{
 	font-weight: normal;
 	font-size: 16px;
 	color: #849598;
+	max-width: 115px;
 }
 
 #course-edit #top-form #create-form > div{

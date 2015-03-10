@@ -170,15 +170,18 @@
                                             </div>
                                         </div>
                                         
-                                        <span class="use-existing-banner">
+                                        <span class="use-existing use-existing-preview">
                                             @if($bannerImages->count() > 0)
-                                            {{ trans('crud/labels.or_use_existing') }}:<br />
+                                            <span class="use-existing">{{ trans('crud/labels.or_use_existing') }}:</span>
+                                        		<div class="row">
+                                            		<div class="radio-buttons clearfix">
                                                 @foreach($bannerImages as $img)
                                                     {{ View::make('courses.preview_image')->with(compact('img')) }}
                                                 @endforeach
+                                                </div>
+                                            </div>
                                             @endif
                                         </span>
-                                     <br class="clear" />
                                     </div>
                             </div>
                         </div>
@@ -279,6 +282,7 @@
                             </div>
                        </div>	 
                    </div>        
+                   
                 <!-- Curriculum contents here -->
                 <div role="tabpanel" class="tab-pane fade" id="curriculum-tab">
                     <div class="container course-editor">
