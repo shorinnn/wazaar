@@ -84,6 +84,7 @@
                 </div>
             	<div class="row">
                 	<div class="col-md-6">
+                            
                     	<div class="additional-lesson-conntent">
                         	<h3>Additional lesson content</h3>
                             <p>
@@ -93,6 +94,7 @@
                             </p>
                             <a href="#" class="read-more">READ MORE</a>
                         </div>
+                    @if( $course->ask_teacher=='enabled')
                     	<div class="header blue clearfix">
                         	<h2>ASK<small>THE TEACHER</small></h2>
                             <div class="avater hidden-xs">
@@ -112,8 +114,8 @@
                             </p>
                             @endforeach
                         </div>
-                            <br />
-                            
+                    @endif
+                        <br />
                         <p class="lead">Lesson Notes</p>
                         <div class="white-box">
                         	<div class="clearfix">

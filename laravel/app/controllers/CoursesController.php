@@ -89,6 +89,7 @@ class CoursesController extends \BaseController {
             $course->sale = Input::get('sale');
             $course->sale_kind = Input::get('sale_kind');
             $course->sale_ends_on = (Input::get('sale_ends_on')) ?  Input::get('sale_ends_on') : null;
+            $course->ask_teacher = Input::get('ask_teacher');
             if($course->updateUniques()){
                 if ( Input::hasFile('preview_image') ){
                     $img = $course->upload_preview( Input::file('preview_image')->getRealPath()); 
