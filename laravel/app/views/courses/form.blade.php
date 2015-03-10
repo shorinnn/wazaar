@@ -23,145 +23,262 @@
 @if (Session::get('error'))
 <div class="alert alert-danger">{{ Session::get('error') }}</div>
 @endif
-<a href='{{action("CoursesController@myCourses")}}' class="all-my-courses btn btn-link">{{ trans('courses/general.all_my_courses') }}</a>
-<div class="table-responsive">
-        {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'id' =>'create-form', 
-                    'files' => true, 'method' => 'PUT', 'class' => 'ajax-form', 'data-callback'=>'formSaved'])}}
+<div class="container instructor-course-editor">
+	<div class="row">
+    	<div class="col-md-12">
 
-        <div>{{ trans('courses/general.privacy_status') }} <span class="custom-dropdown">{{ Form::select('privacy_status', [ 'private' => 'Private', 'public' => 'Public']) }}</span></div>    
-        <div>{{ trans('courses/general.category') }} <span class="custom-dropdown">{{ Form::select('course_category_id', $categories, $course->course_category_id, 
-        ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 
-                        'data-url'=> action('CoursesCategoriesController@subcategories'), 'required']) }}</span></div>   
-        
-        <div>{{ trans('courses/general.subcategory') }} <span class="custom-dropdown">{{ Form::select('course_subcategory_id', $subcategories, $course->course_subcategory_id,
-        ['id'=>'course_subcategory_id'] ) }}</span></div>    
-        <div class="course-level btn-group clearfix" data-toggle="buttons">
-            {{ trans('courses/general.difficulty') }} <br />
-                     @foreach($difficulties as $key=>$difficulty)
-                     <?php
-                        $checked = ($key==$course->course_difficulty_id) ? 'checked="checked"' : '';
-                        $active = ($key==$course->course_difficulty_id) ? 'active' : '';
-                     ?>
-                     	<label class="btn btn-primary {{$active}}">
-                         	<input type='radio' name='course_difficulty_id' id="option{{$key}}" autocomplete="off" value='{{$key}}' 
-                                       required {{$checked}} /> {{$difficulty}}
-                        </label>
-                     @endforeach
+            <div role="tabpanel">
+                <div class="header clearfix">
+                    <a href='{{action("CoursesController@myCourses")}}' class="all-my-courses btn btn-link">{{ trans('courses/general.all_my_courses') }}</a>
+                
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-pills" id="myTab" role="tablist">
+                        <li role="presentation" class="active right-twenty-margin">
+                            <a href="#course-edit" aria-controls="course-edit" role="tab" data-toggle="tab">Course Edit</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#curriculum" aria-controls="curriculum" role="tab" data-toggle="tab">Curriculum</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-
-        <div>{{ trans('crud/labels.name') }} {{ Form::text( 'name', null, ['class' => 'has-slug', 'data-slug-target' => '#slug' ]) }}
-        {{ Form::hidden( 'slug', null, ['id'=>'slug'] ) }}</div>
-        <div>{{ trans('courses/general.preview_image') }}
-            <label for="upload-preview-image">
-                    <div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>
-                </label>
-                <input type="file" id='upload-preview-image' name="preview_image" data-dropzone='.dropzone-preview'
-                   data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' data-target='.use-existing-preview' />
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" aria-valuemin="0" 
-                         aria-valuemax="100" style="width: 0%;">
-                        <span></span>
-                    </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+                  <!-- Tab panes -->
+                <div class="tab-content">
+                    <!-- Course Edit contents here -->
+                    <div role="tabpanel" class="tab-pane fade in active" id="course-edit">
+                    	<div class="row">
+                        	<div class="col-md-12">
+                            	<div id="top-form">
+                                    {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'id' =>'create-form', 
+                                                'files' => true, 'method' => 'PUT', 'class' => 'ajax-form', 'data-callback'=>'formSaved'])}}
+                            
+                                    <div class="clearfix">
+                                    	<label>{{ trans('courses/general.privacy_status') }} </label>
+                                        <span class="custom-dropdown">
+                                            {{ Form::select('privacy_status', [ 'private' => 'Private', 'public' => 'Public']) }}
+                                        </span>
+                                    </div>    
+                                    
+                                    <div class="clearfix">
+                                    	<label>{{ trans('courses/general.category') }}</label>                                        
+                                        <span class="custom-dropdown">
+                                            {{ Form::select('course_category_id', $categories, $course->course_category_id, 
+                                    ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 
+                                                    'data-url'=> action('CoursesCategoriesController@subcategories'), 'required']) }}
+                                                    
+                                        </span>
+                                    </div>   
+                                    
+                                    <div class="clearfix">
+                                    	<label>{{ trans('courses/general.subcategory') }}</label> 
+                                        <span class="custom-dropdown">
+                                            {{ Form::select('course_subcategory_id', $subcategories, $course->course_subcategory_id,
+                                    ['id'=>'course_subcategory_id'] ) }}
+                                        </span>
+                                    </div>    
+                                    <div class="course-level btn-group clearfix" data-toggle="buttons">
+                                        <span>{{ trans('courses/general.difficulty') }}</span>
+                                        	<div>
+                                                 @foreach($difficulties as $key=>$difficulty)
+                                                 <?php
+                                                    $checked = ($key==$course->course_difficulty_id) ? 'checked="checked"' : '';
+                                                    $active = ($key==$course->course_difficulty_id) ? 'active' : '';
+                                                 ?>
+                                                    <label class="btn btn-primary {{$active}}">
+                                                        <input type='radio' name='course_difficulty_id' id="option{{$key}}" 
+                                                        autocomplete="off" value='{{$key}}' 
+                                                        required {{$checked}} /> {{$difficulty}}
+                                                    </label>
+                                                 @endforeach
+                                             </div>
+                                    </div>
+                            
+                                    <div>
+                                        <label>{{ trans('crud/labels.name') }} </label>
+                                        {{ Form::text( 'name', null, ['class' => 'has-slug', 'data-slug-target' => '#slug' ]) }}
+                                        {{ Form::hidden( 'slug', null, ['id'=>'slug'] ) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        	<div class="col-md-12">
+                                <div class="image-upload">
+                                	<h3>{{ trans('courses/general.preview_image') }}</h3>
+                                    <!--<label for="upload-preview-image">
+                                            <div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>
+                                    </label>-->
+                                    <label for="upload-preview-image" class="uploadFile">
+                                    	<input type="file" hidden="" class='upload-preview-image' name="preview_image" data-dropzone='.dropzone-preview'
+                                           data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' data-target='.use-existing-preview' />
+                                    	<span>Upload</span> 
+                                    </label>
+                                    <!--<input disabled="disabled" placeholder="Choose File" id="uploadFile">
+                                    <div class="fileUpload btn btn-primary">
+                                        <span>Browse</span>
+                                        <input type="file" data-callback="replaceElementWithUploaded" data-progress-bar=".progress-bar-1" class="ajax-file-uploader upload" data-replace="#category-graphics-1" data-dropzone="" id="file-upload-1" name="file">
+                                    </div>-->
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" aria-valuemin="0" 
+                                                 aria-valuemax="100" style="width: 0%;">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <span class="use-existing use-existing-preview">
+                                        @if($images->count() > 0)
+                                        <span class="use-existing">{{ trans('crud/labels.or_use_existing') }}:</span>
+                                        	<div class="row">
+                                            	<div class="radio-buttons clearfix">
+                                            @foreach($images as $img)
+                                                {{ View::make('courses.preview_image')->with(compact('img')) }}
+                                            @endforeach
+                                            	</div>
+                                            </div>
+                                        @endif
+                                        </span>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        	<div class="col-md-12">
+                                <div class="image-upload">
+                                	<h3>{{ trans('courses/general.details_page_banner_image') }}</h3>
+                                    <label for="upload-banner-image" class="uploadFile">
+                                            <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
+                                             <input type="file" class='upload-banner-image' name="banner_image" data-dropzone='.dropzone-preview'
+                                             data-progress-bar='.progress-bar-banner' data-callback='courseImageUploaded' 
+                                             data-target='.use-existing-banner' />
+	                                    	<span>Upload</span> 
+                                    </label>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped active progress-bar-banner" role="progressbar" aria-valuenow="0" aria-valuemin="0" 
+                                                 aria-valuemax="100" style="width: 0%;">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        
+                                        <span class="use-existing-banner">
+                                            @if($bannerImages->count() > 0)
+                                            {{ trans('crud/labels.or_use_existing') }}:<br />
+                                                @foreach($bannerImages as $img)
+                                                    {{ View::make('courses.preview_image')->with(compact('img')) }}
+                                                @endforeach
+                                            @endif
+                                        </span>
+                                     <br class="clear" />
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        	<div class="col-md-12">
+                                <div class="who-its-for">
+                                	<h3>{{ trans('courses/general.who_is_this_for') }}</h3>
+                                        @if($values = json2Array($course->who_is_this_for))
+                                        <?php $i = 1;?>
+                                            @foreach($values as $val)
+                                            <div class="clonable-{{time().$i}}">
+                                                 <span>{{$i}}</span>
+                                                 <input type='text' name='who_is_this_for[]' value='{{$val}}' class="clonable clonable-{{time().$i}}" />
+                                                 <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
+                                             </div>
+                                                <?php ++$i; ?>
+                                            @endforeach
+                                        @endif
+                                            <div class="clonable-{{time().$i}}">
+                                                 <span>{{$i}}</span>
+                                                 <input type='text' name='who_is_this_for[]' class="clonable clonable-{{time().$i}}" />
+                                                 <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
+                                             </div>
+                                    </div>    
+                                <div class="what-you-will-achieve">
+                                	<h3>{{ trans('courses/general.what_will_you_achieve') }} </h3>
+                                        @if($values = json2Array($course->what_will_you_achieve))
+                                         <?php $i = 1;?>
+                                            @foreach($values as $val)
+                                            <div class="clonable-{{time().$i}}">
+                                                 <span>{{$i}}</span>
+                                                <input type='text' name='what_will_you_achieve[]' value='{{$val}}' class="clonable clonable-{{time().$i}}"  /><br />
+                                                 <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
+                                             </div>
+                                                <?php ++$i; ?>
+                                            @endforeach
+                                        @endif
+                                            <div class="clonable-{{time().$i}}">
+                                                 <span>{{$i}}</span>
+                                                 <input type='text' name='what_will_you_achieve[]' class="clonable clonable-{{time().$i}}" />
+                                                 <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
+                                            </div>
+                                    </div>    
+                                <div class="description-editor-box">
+                                	<h3>{{ trans('crud/labels.description') }} </h3>
+                                	<div class="description-box">{{ Form::textarea('description', null,['id'=>'description'] ) }}</div>
+                                </div>    
+                                <div>
+                                	<h3>{{ trans('crud/labels.short_description') }} </h3>
+                                	<div class="description-box">{{ Form::textarea('short_description', null,['id'=>'short_description'] ) }}</div>
+                                </div>    
+                                
+                                <div class="payment-section">
+                                    <div class="clear clearfix margin-bottom-20">
+                                    	<label>{{ trans('courses/general.payment_type') }} </label>
+                                        <span class="custom-dropdown">
+                                        {{ Form::select('payment_type', [ 'one_time' => trans('courses/general.one_time'), 
+                                        'subscription' =>  trans('courses/general.subscription') ] ) }}
+                                        </span>
+                                    </div>    
+                                    <div class="clear clearfix margin-bottom-20">
+                                    	<label>{{ trans('courses/general.price') }}</label> 
+                                        {{  Form::text( 'price', money_val($course->price) ) }}
+                                    </div>    
+                                    
+                                    <div class="clear clearfix">
+                                    	<div class="percentage-slider">
+                                            <label>{{ trans('courses/general.affiliate_percentage') }}  </label>   
+                                            <div>                                   
+                                                <input type="text" class='span2 clear right' name='affiliate_percentage' id='affiliate_percentage' 
+                                                    value="{{ $course->affiliate_percentage }}" data-slider-min="0" data-slider-max="70" 
+                                                    data-slider-step="1" data-slider-value="{{ $course->affiliate_percentage }}" 
+                                                    data-slider-orientation="horizontal" 
+                                                    data-slider-selection="after" data-slider-tooltip="show" data-label="#affiliate_percentage_output" 
+                                                    data-target-input='1' />
+                                                
+                                                <input type='number' id='affiliate_percentage_output' class='set-slider clear margin-bottom-20' max="70" min="0"
+                                                       value='{{ $course->affiliate_percentage }}' data-slider='#affiliate_percentage' />%
+                                             </div>
+                                         </div>
+                                        <div class="clear clearfix margin-bottom-20">
+                                        	<label>{{ trans('courses/general.discount') }} </label>
+                                                {{ Form::text('sale', money_val($course->sale)) }}
+                                                <div class="custom-dropdown discount margin-top-20">
+                                                	{{ Form::select('sale_kind', ['amount' => '$', 'percentage' => '%'] ) }}
+                                                </div>
+                                        </div>    
+                                        <div class="clear clearfix margin-bottom-20">
+                                            <label>{{ trans('courses/general.sale_ends_on') }}</label>  
+                                            {{ Form::text('sale_ends_on') }}
+                                        </div>    
+                                        <div class="clear clearfix margin-bottom-20">
+                                               <button type="submit" class="btn btn-primary submit-button">{{ trans('crud/labels.update') }}</button>
+                                        </div>
+                                    </div>
+                                    {{ Form::close() }}
+                                </div>
+                            </div>
+                       </div>	 
+                   </div>        
                 </div>
                 
-                <span class="use-existing use-existing-preview">
-                @if($images->count() > 0)
-                {{ trans('crud/labels.or_use_existing') }}:<br />
-                    @foreach($images as $img)
-                        {{ View::make('courses.preview_image')->with(compact('img')) }}
-                    @endforeach
-                @endif
-                </span>
-            
-        <br class='clear' />
-        </div>
-        <div>{{ trans('courses/general.details_page_banner_image') }}
-            <label for="upload-banner-image">
-                    <div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>
-                </label>
-             <input type="file" id='upload-banner-image' name="banner_image" data-dropzone='.dropzone-preview'
-                   data-progress-bar='.progress-bar-banner' data-callback='courseImageUploaded' data-target='.use-existing-banner' />
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped active progress-bar-banner" role="progressbar" aria-valuenow="0" aria-valuemin="0" 
-                         aria-valuemax="100" style="width: 0%;">
-                        <span></span>
-                    </div>
-                </div>
-                
-                <span class="use-existing-banner">
-                    @if($bannerImages->count() > 0)
-                    {{ trans('crud/labels.or_use_existing') }}:<br />
-                        @foreach($bannerImages as $img)
-                            {{ View::make('courses.preview_image')->with(compact('img')) }}
-                        @endforeach
-                    @endif
-                </span>
-             <br class="clear" />
+                <!-- Curriculum contents here -->
+                <div role="tabpanel" class="tab-pane fade" id="curriculum">Curriculum contents go here</div>
             </div>
-        
-        <div class="who-its-for">{{ trans('courses/general.who_is_this_for') }}<br />
-                @if($values = json2Array($course->who_is_this_for))
-                <?php $i = 1;?>
-                    @foreach($values as $val)
-                    <div class="clonable-{{time().$i}}">
-                         <span>{{$i}}</span>
-                         <input type='text' name='who_is_this_for[]' value='{{$val}}' class="clonable clonable-{{time().$i}}" />
-                         <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
-                     </div>
-                        <?php ++$i; ?>
-                    @endforeach
-                @endif
-                    <div class="clonable-{{time().$i}}">
-                         <span>{{$i}}</span>
-                         <input type='text' name='who_is_this_for[]' class="clonable clonable-{{time().$i}}" />
-                         <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
-                     </div>
-            </div>    
-        <div class="what-you-will-achieve">{{ trans('courses/general.what_will_you_achieve') }} <br />
-                @if($values = json2Array($course->what_will_you_achieve))
-                 <?php $i = 1;?>
-                    @foreach($values as $val)
-                    <div class="clonable-{{time().$i}}">
-                         <span>{{$i}}</span>
-                        <input type='text' name='what_will_you_achieve[]' value='{{$val}}' class="clonable clonable-{{time().$i}}"  /><br />
-                         <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
-                     </div>
-                        <?php ++$i; ?>
-                    @endforeach
-                @endif
-                    <div class="clonable-{{time().$i}}">
-                         <span>{{$i}}</span>
-                         <input type='text' name='what_will_you_achieve[]' class="clonable clonable-{{time().$i}}" />
-                         <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
-                    </div>
-            </div>    
-        <div>{{ trans('crud/labels.description') }} <div class="description-box">{{ Form::textarea('description', null,['id'=>'description'] ) }}</div></div>    
-        <div>{{ trans('crud/labels.short_description') }} <div class="description-box">{{ Form::textarea('short_description', null,['id'=>'short_description'] ) }}</div></div>    
-        
-        
-        <div>{{ trans('courses/general.payment_type') }} 
-            {{ Form::select('payment_type', [ 'one_time' => trans('courses/general.one_time'), 
-                                                        'subscription' =>  trans('courses/general.subscription') ] ) }}</div>    
-        <div>{{ trans('courses/general.price') }} {{  Form::text( 'price', money_val($course->price) ) }}</div>    
-        
-        <div>{{ trans('courses/general.affiliate_percentage') }} 
-            
-                <input type="text" class='span2' name='affiliate_percentage' id='affiliate_percentage' value="{{ $course->affiliate_percentage }}" data-slider-min="0" data-slider-max="70" 
-                       data-slider-step="1" data-slider-value="{{ $course->affiliate_percentage }}" data-slider-orientation="horizontal" 
-                       data-slider-selection="after" data-slider-tooltip="show" data-label="#affiliate_percentage_output" data-target-input='1' />
-                
-                <input type='number' id='affiliate_percentage_output' class='set-slider' max="70" min="0"
-                       value='{{ $course->affiliate_percentage }}' data-slider='#affiliate_percentage' />%
-                
-        <div>{{ trans('courses/general.discount') }} 
-                {{ Form::text('sale', money_val($course->sale)) }}
-                <div class="custom-dropdown discount">{{ Form::select('sale_kind', ['amount' => '$', 'percentage' => '%'] ) }}</div>
-            </div>    
-        <div>{{ trans('courses/general.sale_ends_on') }}  {{ Form::text('sale_ends_on') }}</div>    
-        <div>
-                <button type="submit" class="btn btn-primary">{{ trans('crud/labels.update') }}</button>
-            </div>
-        {{ Form::close() }}
+		</div>
+	</div>
 </div>
 @stop
 

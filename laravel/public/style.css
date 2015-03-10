@@ -5192,6 +5192,270 @@ select option.suspended{
 	font-weight: 500;
 }
 
+
+/************* Instructor course editor *******************/
+.instructor-course-editor .course-edit{
+	margin-top: 50px;
+}
+
+.instructor-course-editor .header {
+    background: #fff;
+    border-radius: 5px;
+    margin: 30px 0;
+    padding: 8px 20px;
+}
+
+.instructor-course-editor .header #myTab{
+	float: right;
+	margin: 0;
+	padding: 0;
+}
+
+.instructor-course-editor .header #myTab li{
+}
+
+.instructor-course-editor #top-form #create-form > div.course-level label,
+.instructor-course-editor .header #myTab li a {
+    background: #7fccff;
+    border-radius: 20px;
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    padding: 8px 20px;
+	border: none;
+	box-shadow: none;
+}
+
+.instructor-course-editor #top-form #create-form > div.course-level label.active,
+.instructor-course-editor .header #myTab li.active a{
+    background: none repeat scroll 0 0 #0099ff;
+    text-decoration: none;
+}
+
+.instructor-course-editor .header .all-my-courses{
+	float: left;
+	margin: 0;
+	color: #0099ff;
+	font-size: 14px;
+}
+
+.instructor-course-editor .custom-dropdown{
+	width: 345px;
+	border-radius: 5px;
+	float: right;
+	margin: 0;
+	border: solid 1px #adadad;
+}
+
+.instructor-course-editor .custom-dropdown::before{
+	background: none;
+}
+
+.instructor-course-editor .custom-dropdown select{
+	background: none;
+	color: #b0bec1;
+	font-size: 14px;
+	width: 360px;
+}
+
+.instructor-course-editor #top-form{
+	max-width: 484px;
+	margin: 0 auto;
+}
+
+.instructor-course-editor .payment-section label,
+.instructor-course-editor #top-form #create-form label{
+	display: inline-block;
+	margin-top: 7px;
+	font-weight: normal;
+	font-size: 16px;
+	color: #849598;
+}
+
+.instructor-course-editor #top-form #create-form > div{
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+.instructor-course-editor .payment-section input[type='text'],
+.instructor-course-editor #top-form #create-form > div input.has-slug{
+	width: 345px;
+	border-radius: 5px;
+	float: right;
+	margin: 0;
+	background: none;
+	padding: 0.5em 2.5em 0.5em 0.5em;
+	font-size: 14px;
+	color:#b0bec1;
+	border: solid 1px #adadad;
+}
+
+.instructor-course-editor #top-form #create-form > div.course-level span{
+	display: inline-block;
+	float:left;
+	margin-top: 7px;
+	color: #849598;
+	font-weight: normal;
+	font-size: 16px;
+}
+
+.instructor-course-editor #top-form #create-form > div.course-level label{
+	margin: 0;
+	float: left;
+}
+
+.instructor-course-editor #top-form #create-form > div.course-level label + label {
+    margin-left: 24px;
+}
+
+.instructor-course-editor #top-form #create-form > div.course-level div{
+	float: right;
+	width: 345px;
+}
+
+.instructor-course-editor #top-form #create-form > div.course-level div label input{
+	display: none;
+}
+
+.instructor-course-editor  h3{
+    color: #0099ff;
+    font-size: 20px;
+    font-weight: 200;
+	text-align: center;
+    margin: 65px 0 15px;
+}
+
+.uploadFile{
+	height: 30px;
+	font-size: 14px;
+	color: #849598;
+	border: solid 1px #849598;
+	width: 482px;
+	display: block;
+	margin: 30px auto 0;
+	position: relative;
+	background: #fff;
+	overflow: hidden;
+	border-radius: 5px;
+}
+
+.uploadFile input.upload-banner-image,
+.uploadFile input.upload-preview-image{
+	border: none;
+	width: 100%;
+	height: 100%;
+    cursor: pointer;
+    font-size: 12px;
+	font-weight: normal;
+    padding: 0;
+    position: absolute;
+    top: 0;
+	left: 0;
+	outline: none;
+	text-indent: 25px;
+    z-index: 0;
+}
+
+.uploadFile span{
+	display: block;
+	line-height: 30px;
+	text-align: center;
+	position: relative;
+    background: #b0bfc1;
+    border: medium none;
+    border-radius: 5px 0 0 5px;
+    color: #fff;
+    font-size: 12px;
+    height: 30px;
+    position: relative;
+    text-transform: uppercase;
+    transition: all 0.2s ease-out 0s;
+    width: 97px;
+}
+
+.uploadFile span:hover{
+	cursor: pointer;
+}
+
+.instructor-course-editor .progress {
+    background: none repeat scroll 0 0 #ececec;
+    height: 6px;
+    margin: 15px auto 0;
+    width: 100%;
+	max-width: 482px;
+}
+
+.instructor-course-editor .progress-bar {
+    background: none repeat scroll 0 0 #92cc2e;
+    border-radius: 6px;
+    height: 100%;
+    overflow: hidden;
+    width: 60%;
+}
+
+.instructor-course-editor .use-existing{
+	display: block;
+	text-align: center;
+	margin: 50px 0;
+	font-size: 24px;
+	color: #000;
+}
+
+.instructor-course-editor .use-existing-preview .radio-buttons{
+	float: none;
+	margin: 0;
+}
+
+.instructor-course-editor .use-existing-preview .radio-buttons .radio-checkbox{
+	margin-bottom: 20px;
+}
+
+.instructor-course-editor .use-existing-preview .radio-buttons img{
+	float: left;
+	margin-left: 10px;
+}
+
+.instructor-course-editor .use-existing-preview .radio-buttons label{
+	float: left;
+}
+
+.instructor-course-editor .who-its-for{
+	margin-top: 50px;
+}
+
+.instructor-course-editor .payment-section {
+    margin: 40px auto 0;
+    max-width: 482px;
+}
+
+.instructor-course-editor .payment-section .set-slider{
+	width: 60px;
+	margin-top: 10px;
+}
+
+.instructor-course-editor .payment-section .percentage-slider label{
+	max-width: 100px;
+}
+
+.instructor-course-editor .payment-section .percentage-slider > div{
+	max-width: 345px;
+	float: right;
+}
+
+.instructor-course-editor .payment-section .submit-button{
+	outline: none;
+    border: medium none;
+    border-radius: 5px;
+    box-shadow: none;
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    padding: 8px 20px;
+	background: #0099ff;
+	margin: 62px 0 0;
+	float: none;
+	left: 0;
+}
 /************* Course Categories ************/
 .course-categories h1{
 	text-align: center;
@@ -5497,9 +5761,10 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 #videos-acrhive-modal #modal-body-videos ul.list-unstyled.video-list-thumbs.row h2 .file-name {
     display: block;
-    float: right;
+    float: left;
     line-height: 20px;
     max-width: 80%;
+	margin-left: 5px;
     overflow: hidden;
 }
 
@@ -6755,7 +7020,7 @@ header .top-menu li{
 
 .margin-top-20
 {
-	margin-top: 20px;
+	margin-top: 20px !important;
 }
 
 .margin-bottom-10

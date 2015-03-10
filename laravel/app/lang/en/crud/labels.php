@@ -10,7 +10,7 @@ return array(
     'you-sure-want-delete' => 'Are you sure you want to delete?',
     'name' => 'Name',
     'upload_your_file' => 'Upload Your File',
-    'or_use_existing' => 'Or Use Existing',
+    'or_use_existing' => 'OR Use Existing',
     'description' => 'Description',
     'short_description' => 'Short Description',
     'add_module' => 'Add Module',
