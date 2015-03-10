@@ -13,6 +13,8 @@ class PaymentController extends BaseController
 
     public function index()
     {
+        
+        
         $validator = Validator::make(Input::all(), $this->paymentHelper->paymentValidationRules(),
             $this->paymentHelper->paymentValidationMessages());
 
@@ -45,6 +47,11 @@ class PaymentController extends BaseController
             $checkoutData)->render();
 
         $payee = Student::find(Auth::id());
+        // sorin: see if student can purchase this
+        if( $payee->canPurchase($product) ) return 'Cannot purchase this (Either you own it, or youve purchased it before)';
+        // sorin: some students might not have a profile (ie, they register, but never go to the profileController)
+        // temp solution until you do your validations: return a new profile object
+        if($payee->profile==null) $payee->profile = new Profile;
 
         return View::make('payment.index', compact('productPartial', 'payee'));
     }
