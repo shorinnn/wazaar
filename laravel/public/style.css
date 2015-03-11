@@ -42,11 +42,12 @@ body {
 a, input::-moz-focus-inner {
    outline: none !important;
    border: 0;
+   text-decoration: none !important;
 }
 
 a:hover{
 	outline: none;
-	text-decoration: none;
+	text-decoration: none !important;
 }
 
 ul{
@@ -6000,6 +6001,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .course-editor #modules-list > li .new-lesson.gray > span{
 	background: #ececec;
 	color: #333;
+	border-radius: 0 0 5px 0;
 }
 
 .course-editor #modules-list > li .progress{
@@ -6204,7 +6206,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	padding-right: 10px;
 }
 .course-editor .lesson-options{
-	display:none;
+	display: block;
 }
 .course-editor .upload-drop-zone {
 	height: 200px;
@@ -6307,20 +6309,28 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	position: relative;
 	float: left;
 	margin: 0 0 22px;
-    padding-top: 12px;
+    padding-top: 20px;
 }
 
 .plan-your-curriculum .lesson-options > div{
 	position: relative;
 }
 
+.plan-your-curriculum .lesson-options > div.lesson-options-buttons{
+	margin: 0 auto;
+	max-width: 41%;
+}
+
 .plan-your-curriculum .lesson-options .buttons{
 	height: 64px;
 	width: 64px;
-	margin-right: 20px;
 	margin-bottom: 20px;
 	border-radius: 64px;
 	float: left;
+}
+
+.plan-your-curriculum .lesson-options .buttons + .buttons{
+	margin-left: 20px;
 }
 
 .plan-your-curriculum .lesson-options .buttons span{
