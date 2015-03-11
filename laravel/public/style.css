@@ -5365,6 +5365,7 @@ select option.suspended{
 	outline: none;
 	text-indent: 25px;
     z-index: 0;
+	opacity: 0;
 }
 
 #course-edit .uploadFile span{
@@ -5485,7 +5486,7 @@ select option.suspended{
     font-size: 14px;
     padding: 8px 20px;
 	background: #0099ff;
-	margin: 62px 0 0;
+	margin: 62px 0;
 	float: none;
 	left: 0;
 }

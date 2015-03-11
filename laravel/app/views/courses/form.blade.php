@@ -119,10 +119,12 @@
                                     <!--<label for="upload-preview-image">
                                             <div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>
                                     </label>-->
+                                     
                                     <label for="upload-preview-image" class="uploadFile">
+                                    	<span>Upload</span>
                                     	<input type="file" hidden="" class='upload-preview-image' name="preview_image" data-dropzone='.dropzone-preview'
                                            data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' data-target='.use-existing-preview' />
-                                    	<span>Upload</span> 
+                                    	
                                     </label>
                                     <!--<input disabled="disabled" placeholder="Choose File" id="uploadFile">
                                     <div class="fileUpload btn btn-primary">
@@ -158,10 +160,11 @@
                                 	<h3>{{ trans('courses/general.details_page_banner_image') }}</h3>
                                     <label for="upload-banner-image" class="uploadFile">
                                             <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
+                                            <span>Upload</span> 
                                              <input type="file" class='upload-banner-image' name="banner_image" data-dropzone='.dropzone-preview'
                                              data-progress-bar='.progress-bar-banner' data-callback='courseImageUploaded' 
                                              data-target='.use-existing-banner' />
-	                                    	<span>Upload</span> 
+	                                    	
                                     </label>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-striped active progress-bar-banner" role="progressbar" aria-valuenow="0" aria-valuemin="0" 
