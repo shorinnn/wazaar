@@ -180,6 +180,11 @@ class CoursesController extends \BaseController {
             if( $course==null)   {
                 return View::make('site.error_encountered');
             }
+            $instructor = $course->instructor;
+            if( $course->assigned_instructor_id != null && $course->details_displays == 'assigned_instructor'){
+                $instructor = $course->assignedInstructor;
+            }
+            
             $course->allTestimonials = $course->testimonials()->orderBy('id', 'desc')->limit(2)->get();
             if(Input::has('aid')){
                 Cookie::queue("aid-$course->id", Input::get('aid'), 60*24*30);
@@ -191,7 +196,7 @@ class CoursesController extends \BaseController {
             }
             $video = $course->videoBlocks();
             if($video!=null) $video = $video->first();
-            Return View::make('courses.show')->with(compact('course'))->with(compact('student'))->with( compact('video') );
+            Return View::make('courses.show')->with(compact('course'))->with(compact('student'))->with( compact('video') )->with( compact('instructor') );
         } 
         
         public function purchase($slug){
