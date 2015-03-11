@@ -24,5 +24,6 @@ return
     [
         'required' => 'Final cost was not defined for payment to continue',
         'numeric' => 'Final cost should be a number'
-    ]
+    ],
+    'cannotPurchase' => 'Sorry you are prohibited to purchase this product. Please make sure that you haven\'t purchased this in the past or you\'re not the instructor of this product'
 ];

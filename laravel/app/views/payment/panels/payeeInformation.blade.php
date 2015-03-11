@@ -6,7 +6,7 @@
         <div class="form-group">
             <label for="">Email</label>
             <div class="input-group">
-                {{Form::email('email',$payee->profile->email,['class' => 'form-control'])}}
+                {{Form::email('email',$student->profile->email,['class' => 'form-control'])}}
                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
             </div>
         </div>
@@ -14,7 +14,7 @@
         <div class="form-group">
             <label for="">First Name</label>
             <div class="input-group">
-                {{Form::text('firstName',$payee->profile->first_name,['class' => 'form-control'])}}
+                {{Form::text('firstName',$student->profile->first_name,['class' => 'form-control'])}}
                 <span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
             </div>
         </div>
@@ -22,7 +22,7 @@
         <div class="form-group">
            <label for="">Last Name</label>
               <div class="input-group">
-                 {{Form::text('lastName',$payee->profile->last_name,['class' => 'form-control'])}}
+                 {{Form::text('lastName',$student->profile->last_name,['class' => 'form-control'])}}
                  <span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
               </div>
         </div>
@@ -30,7 +30,7 @@
         <div class="form-group">
            <label for="">City</label>
               <div class="input-group">
-                 {{Form::text('city',$payee->profile->city,['class' => 'form-control'])}}
+                 {{Form::text('city',$student->profile->city,['class' => 'form-control'])}}
                  <span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
               </div>
         </div>
@@ -38,7 +38,7 @@
         <div class="form-group">
            <label for="">ZIP Code</label>
               <div class="input-group">
-                 {{Form::text('zip',$payee->profile->zip,['class' => 'form-control'])}}
+                 {{Form::text('zip',$student->profile->zip,['class' => 'form-control'])}}
                  <span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
               </div>
         </div>

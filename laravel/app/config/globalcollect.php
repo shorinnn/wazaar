@@ -2,7 +2,7 @@
 
 return
     [
-        'live'       => false,
+        'live'       => true,
         'merchantID' => 9950,
         'IPAddress'  => '54.173.36.14',
         'version'    => '2.0',
