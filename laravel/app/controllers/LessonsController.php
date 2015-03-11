@@ -16,7 +16,7 @@ class LessonsController extends \BaseController {
             }
             
             $lesson->module_id = $module->id;
-            $lesson->name = 'New Lesson';
+//            $lesson->name = 'New Lesson';
             $lesson->order = $module->lessons->count() + 1;
             if($lesson->save()){
                 if(Request::ajax()){
