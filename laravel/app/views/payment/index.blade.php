@@ -27,33 +27,34 @@
                         <h4>Payment Method</h4>
                         <hr/>
                         @if (count($errors) > 0)
+                            <h5>Errors!</h5>
                             <ul>
                                 @foreach($errors as $err)
-                                    <li class="alert alert-danger">{{$err}}</li>
+                                    <li><i class="glyphicon glyphicon-remove"></i> {{$err}}</li>
                                 @endforeach
                             </ul>
                         @endif
-                        @include('payment.panels.payeeInformation')
 
+                        @if (!$renderForm)
+                            <div class="alert alert-danger" role="alert">{{trans('payment.cannotPurchase')}}</div>
+                        @else
+                            @include('payment.panels.payeeInformation')
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Payment Method</h3>
+                                </div>
+                                <div class="panel-body">
+                                    @include('payment.panels.creditcard')
+                                </div>
 
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Payment Method</h3>
                             </div>
-                            <div class="panel-body">
-                                @include('payment.panels.creditcard')
+                            <div class="bank-transfer-wrapper">
+
                             </div>
+                            <button type="submit" class="btn btn-success btn-lg btn-block" role="button">{{trans('payment.pay')}}</button>
+                            <a class="btn btn-danger btn-lg btn-block" href="{{url('courses/cancel-purchase')}}">{{trans('payment.cancel')}}</a>
+                        @endif
 
-                        </div>
-
-
-
-
-                        <div class="bank-transfer-wrapper">
-
-                        </div>
-                        <button type="submit" class="btn btn-success btn-lg btn-block" role="button">{{trans('payment.pay')}}</button>
-                        <button type="button" class="btn btn-danger btn-lg btn-block" role="button">{{trans('payment.cancel')}}</button>
                     {{Form::close()}}
 
                     <div>&nbsp;</div>

@@ -32,6 +32,7 @@ class Course extends Ardent{
     
     public static $relationsData = array(
         'instructor' => array(self::BELONGS_TO, 'Instructor'),
+        'assignedInstructor' => array(self::BELONGS_TO, 'Instructor', 'foreignKey' => 'assigned_instructor_id'),
         'previewImage' => array(self::BELONGS_TO, 'CoursePreviewImage', 'foreignKey' => 'course_preview_image_id'),
         'bannerImage' => array(self::BELONGS_TO, 'CourseBannerImage', 'foreignKey' => 'course_banner_image_id'),
         'courseCategory' => array(self::BELONGS_TO, 'CourseCategory'),

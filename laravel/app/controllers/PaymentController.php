@@ -13,10 +13,7 @@ class PaymentController extends BaseController
 
     public function index()
     {
-        
-        
-        $validator = Validator::make(Input::all(), $this->paymentHelper->paymentValidationRules(),
-            $this->paymentHelper->paymentValidationMessages());
+        $validator = Validator::make(Input::all(), $this->paymentHelper->paymentValidationRules(),$this->paymentHelper->paymentValidationMessages());
 
         if ($validator->fails()) {
             dd($validator->messages()->all());
@@ -31,6 +28,7 @@ class PaymentController extends BaseController
         $balanceUsed          = Input::get('balanceUsed');
         $paymentType          = Input::get('paymentType');
 
+        $renderForm = true;
         //thought Tax Value should also be passed here
         $tax           = .08;
         $taxValue      = $finalCost * $tax;
@@ -43,17 +41,23 @@ class PaymentController extends BaseController
 
         $product                                = $this->_getProductDetailsByTypeAndID($productType, $productID);
         $checkoutData[Str::lower($productType)] = $product;
-        $productPartial                         = View::make('payment.' . Str::lower($productType),
-            $checkoutData)->render();
+        $productPartial                         = View::make('payment.' . Str::lower($productType),$checkoutData)->render();
 
-        $payee = Student::find(Auth::id());
+        $student = Student::find(Auth::id());
+
         // sorin: see if student can purchase this
-        if( $payee->canPurchase($product) ) return 'Cannot purchase this (Either you own it, or youve purchased it before)';
+        if( !$student->canPurchase($product) ) {
+            $renderForm = false;
+        }
         // sorin: some students might not have a profile (ie, they register, but never go to the profileController)
         // temp solution until you do your validations: return a new profile object
-        if($payee->profile==null) $payee->profile = new Profile;
+        //albert: i think we should address the profile issue before they reach the payment part like reminding
+        // them somewhere to fill-up their profile info before they can do a purchase
+        if($student->profile == null) {
+            $student->profile = new Profile;
+        }
 
-        return View::make('payment.index', compact('productPartial', 'payee'));
+        return View::make('payment.index', compact('productPartial', 'student','renderForm'));
     }
 
     public function process()
@@ -64,28 +68,38 @@ class PaymentController extends BaseController
             if ($validator->fails()) {
                 return Redirect::back()->with('errors', $validator->messages()->all());
             } else {
-                $user       = Student::with('profile')->find(Auth::id());
+                $student = Student::current(Auth::user());
+                $product = $this->_getProductDetailsByTypeAndID(Session::get('productType'),
+                    Session::get('productID'));
+
+                if( !$student->canPurchase($product) ) { //for some reason, it happened that student can no longer purchase it during transit
+                    return Redirect::back()->with('errors',[trans('payment.cannotPurchase')]);
+                }
                 $creditCard = [
                     'cardNumber' => Input::get('cardNumber'),
                     'cardExpiry' => Input::get('expiryDate'),
                     'finalCost'  => Session::get('finalCost'),
                 ];
-                $payment    = $this->paymentHelper->processCreditCardPayment($creditCard, $user);
+                $payment    = $this->paymentHelper->processCreditCardPayment($creditCard, $student);
 
                 if ($payment['success']) {
-                    $student = Student::current(Auth::user());
-                    $product = $this->_getProductDetailsByTypeAndID(Session::get('productType'),
-                        Session::get('productID'));
+                    //$paymentRef = $payment['successData']['REF'];
                     //Store Purchase
-                    $student->purchase($product, Cookie::get( "aid-$product->id" ));
-                    //TODO: Bring user to thank you page
+                    $purchase = $student->purchase($product, Cookie::get( "aid-$product->id" ),$payment);
+                    if (!$purchase){
+                        return Redirect::back()->with('errors',[trans('payment.cannotPurchase')]);
+                    }
+                    Session::forget('productType');
+                    Session::forget('productID');
+                    return Redirect::to('courses/purchase-successful')->with('purchaseId', $purchase->id);
                 } else {
-                    return Redirect::back()->with('errors', $payment['errors']);
+                    return Redirect::back()->with('errors', $payment['errors'][0]);
                 }
-
             }
         } else {
             //TODO: Payment session has expired, what to do?
+            //Redirect to home for now
+            return Redirect::home();
         }
     }
 

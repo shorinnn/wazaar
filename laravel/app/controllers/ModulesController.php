@@ -10,7 +10,7 @@ class ModulesController extends \BaseController {
         public function store($course){
             $module = new Module();
             $course = Course::find($course);
-            if($course->instructor->id != Auth::user()->id){
+            if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 $response = ['status' => 'error', 'errors' => trans('crud/errors.error_occurred') ];
                 return json_encode($response);
             }
@@ -42,7 +42,8 @@ class ModulesController extends \BaseController {
         
         public function destroy($course, $id){
             $module = Module::find($id);
-            if($module!=null && $module->course->instructor->id == Auth::user()->id){
+            if($module!=null && ( $module->course->instructor->id == Auth::user()->id 
+                    || $module->course->assigned_instructor_id == Auth::user()->id ) ){
                 $module->delete();
                 $response = ['status' => 'success'];
                 return json_encode($response);
@@ -53,7 +54,8 @@ class ModulesController extends \BaseController {
         
         public function update($course, $id){
             $module = Module::find($id);
-            if($module!=null && $module->course->instructor->id == Auth::user()->id){
+            if($module!=null && ( $module->course->instructor->id == Auth::user()->id 
+                    || $module->course->assigned_instructor_id == Auth::user()->id ) ){
                 $name = Input::get('name');
                 $module->$name = Input::get('value');
                 if($module->save()){
@@ -65,7 +67,7 @@ class ModulesController extends \BaseController {
                     return json_encode($response);
                 }
             }
-            $response = ['status' => 'error', 'errors' => trans('crud/errors.cannot_save_object', 'Module') ];
+            $response = ['status' => 'error', 'errors' => trans('crud/errors.cannot_save_object', ['object' => 'Module']) ];
             return json_encode($response);
         }
         
