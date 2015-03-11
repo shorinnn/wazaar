@@ -19,7 +19,7 @@
                     </div>
                 @endif
                
-                @if($video)
+                @if($video && $video->video()!=null)
                     @if( Agent::isMobile() )
                     <video height=300 controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
                                     ->first()->video_url }}" type="video/mp4"></video>

@@ -15,6 +15,7 @@
     <div class="switch-buttons">
         <label class="switch">
           <input type="checkbox" class="switch-input ajax-updatable"  value='yes'
+                 data-checked-val='yes' data-unchecked-val='no'
                  data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}'
                       data-name='published'
                  @if($lesson->published=='yes')
