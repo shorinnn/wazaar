@@ -61,22 +61,38 @@ class CoursesController extends \BaseController {
         
          public function edit($slug){
             $course = Course::where('slug',$slug)->first();
-            if($course->instructor->id != Auth::user()->id){
+            if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 return Redirect::action('CoursesController@index');
             }
             $difficulties = CourseDifficulty::lists('name', 'id');
             $categories = CourseCategory::lists('name', 'id');
             $subcategories = CourseSubcategory::where('course_category_id',$course->course_category_id)->lists('name','id');
-            $instructor = Instructor::find(Auth::user()->id);
+//            $instructor = Instructor::find(Auth::user()->id);
+            $instructor = $course->instructor;
             $images = $instructor->coursePreviewImages;
             $bannerImages = $instructor->courseBannerImages;
+            
+            $assignedInstructor = $course->assignedInstructor;
+            if($assignedInstructor!=null){
+                $images = $images->merge( $assignedInstructor->coursePreviewImages );
+                $bannerImages = $bannerImages->merge( $assignedInstructor->courseBannerImages );
+            }
+            $instructors =  Instructor::whereHas(
+                'roles', function($q){
+                    $q->where('name', 'instructor');
+                }
+            )->get();
+            $assignableInstructors = ['null' => 'Not Assigned'];
+            foreach($instructors as $i){
+                $assignableInstructors[$i->id] = $i->commentName();
+            }
             return View::make('courses.form')->with(compact('course'))->with(compact('images'))->with(compact('bannerImages'))
-                    ->with(compact('difficulties'))->with(compact('categories'))->with(compact('subcategories'));
+                    ->with(compact('difficulties'))->with(compact('categories'))->with(compact('subcategories'))->with(compact('assignableInstructors'));
         }
         
         public function update($slug){
             $course = Course::where('slug',$slug)->first();
-            if($course->instructor->id != Auth::user()->id){
+            if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 return Redirect::action('CoursesController@index');
             }
             $data = input_except(['_method', '_token']);
@@ -90,6 +106,10 @@ class CoursesController extends \BaseController {
             $course->sale_kind = Input::get('sale_kind');
             $course->sale_ends_on = (Input::get('sale_ends_on')) ?  Input::get('sale_ends_on') : null;
             $course->ask_teacher = Input::get('ask_teacher');
+            $course->details_displays = Input::get('details_displays');
+            $course->assigned_instructor_id = Input::get('assigned_instructor_id');
+            $course->show_bio = Input::get('show_bio');
+            $course->custom_bio = Input::get('custom_bio');
             if($course->updateUniques()){
                 if ( Input::hasFile('preview_image') ){
                     $img = $course->upload_preview( Input::file('preview_image')->getRealPath()); 
@@ -239,7 +259,7 @@ class CoursesController extends \BaseController {
         
         public function destroy($id){
             $course = Course::find($id);
-            if( $course->instructor->id == Auth::user()->id ){
+            if( $course->instructor->id == Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 $course->delete();
                 if(Request::ajax()){
                     $response = ['status' => 'success' ];
@@ -258,7 +278,7 @@ class CoursesController extends \BaseController {
         
         public function curriculum($slug){
             $course = Course::where('slug',$slug)->first();
-            if( $course==null || $course->instructor->id != Auth::user()->id ){
+            if( $course==null || $course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 return Redirect::to('/');
             }
             return View::make('courses/instructor/curriculum')->with(compact('course'));
@@ -266,7 +286,7 @@ class CoursesController extends \BaseController {
         
         public function dashboard($slug){
             $course = Course::where('slug',$slug)->first();
-            if( $course==null || $course->instructor->id != Auth::user()->id ){
+            if( $course==null || $course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 return Redirect::to('/');
             }
             $instructor = Instructor::find( Auth::user()->id );

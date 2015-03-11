@@ -109,6 +109,31 @@
                                         {{ Form::text( 'name', null, ['class' => 'has-slug', 'data-slug-target' => '#slug' ]) }}
                                         {{ Form::hidden( 'slug', null, ['id'=>'slug'] ) }}
                                     </div>
+                                                
+                                    <div>
+                                        <label>{{ trans('crud/labels.assigned_instructor') }} 
+                                            <small>( will refactor so it doesnt list all instructors ever )</small></label>
+                                         <span class="custom-dropdown">
+                                            {{ Form::select( 'assigned_instructor_id', $assignableInstructors) }}
+                                         </span>
+                                    </div>
+                                    <div>
+                                        <label>{{ trans('crud/labels.display_instructor') }} </label>
+                                        <span class="custom-dropdown">
+                                            {{ Form::select( 'details_displays', ['instructor' => 'Course Owner Instructor', 
+                                                                                'assigned_instructor' => 'Assigned Instructor' ] ) }}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <label>{{ trans('crud/labels.display_bio') }} </label> 
+                                        <span class="custom-dropdown">
+                                            {{ Form::select( 'show_bio', ['default' => 'Default Instructor Bio', 'custom' => 'Custom Course Bio' ] ) }}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <label>{{ trans('crud/labels.custom_bio') }} </label>
+                                        {{ Form::textarea( 'custom_bio' ) }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -351,6 +376,8 @@
 <script src="{{url('plugins/uploader/js/jquery.iframe-transport.js')}}"></script>
 <script src="{{url('plugins/uploader/js/jquery.fileupload.js')}}"></script>
 <script src="{{url('plugins/slider/js/bootstrap-slider.js')}}"></script>
+<script src="{{url('js/videoUploader.js')}}" type="text/javascript"></script>
+<script src="{{url('js/videoLookup.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
         $(function (){
             enableFileUploader( $('#upload-preview-image') );
@@ -358,6 +385,12 @@
             enableSlider('#affiliate_percentage');
             $('textarea').each(function(){
                 enableRTE( '#'+$(this).attr('id') );
+            });
+            videoLookup.initialize(function ($lessonId, $videoId){
+                $.post('/lessons/blocks/' + $lessonId + '/video/assign', {videoId : $videoId}, function (){
+
+                    $('#video-link-' + $lessonId).trigger('click');
+                });
             });
         });
 </script>

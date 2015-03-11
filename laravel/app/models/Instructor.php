@@ -5,7 +5,7 @@ class Instructor extends User{
     protected $table = 'users';
 
     public static $relationsData = [
-        'courses' => [self::HAS_MANY, 'Course'],
+        'coursesRel' => [self::HAS_MANY, 'Course'],
         'coursePreviewImages' => [self::HAS_MANY, 'CoursePreviewImage'],
         'courseBannerImages' => [self::HAS_MANY, 'CourseBannerImage'],
         'profile' => [self::MORPH_ONE, 'Profile', 'name'=>'owner'],
@@ -13,6 +13,12 @@ class Instructor extends User{
         'sentMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'sender_id' ],
         'receivedMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'recipient_id' ],
       ];
+    
+    public function courses(){
+        $ids = $this->coursesRel()->lists('id');
+        if( count($ids) ==0 ) return Course::where('assigned_instructor_id', $this->id);
+        else return Course::where('assigned_instructor_id', $this->id)->orWhereIn('id',$ids);
+    }
     
     public function totalSales(){
         $amount = 0;

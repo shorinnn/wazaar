@@ -14,7 +14,7 @@ class BlocksController extends \BaseController {
         
         public function saveText($lesson_id, $block_id){
             $block = Block::find($block_id);
-            if( $block!=null && $block->lesson->id == $lesson_id && $block->lesson->module->course->instructor->id == Auth::user()->id ){
+            if( $block!=null && ($block->lesson->id == $lesson_id || $block->lesson->module->course->instructor->id == Auth::user()->id ) ){
                 $block->content = Input::get('content');
                 $block->save();
                 return json_encode(['status'=>'success']);
@@ -53,7 +53,7 @@ class BlocksController extends \BaseController {
         
         public function destroy($lesson_id, $id){
             $block = Block::find($id);
-            if($block!=null && $block->lesson->module->course->instructor->id == Auth::user()->id){
+            if($block!=null && ($block->lesson->id == $lesson_id || $block->lesson->module->course->instructor->id == Auth::user()->id ) ){
                 $block->delete();
                 $response = ['status' => 'success'];
                 return json_encode($response);
@@ -64,14 +64,14 @@ class BlocksController extends \BaseController {
         
         public function update($lesson_id, $id){
             $block = Block::find($id);
-            if($block!=null && $block->lesson->module->course->instructor->id == Auth::user()->id){
+            if($block!=null && ($block->lesson->id == $lesson_id || $block->lesson->module->course->instructor->id == Auth::user()->id ) ){
                 $name = Input::get('name');
                 $block->$name = Input::get('value');
                 $block->save();
                 $response = ['status' => 'success'];
                 return json_encode($response);
             }
-            $response = ['status' => 'error', 'errors' =>  trans('crud/errors.cannot_save_object', 'Block') ];
+            $response = ['status' => 'error', 'errors' =>  trans('crud/errors.cannot_save_object', ['object'  => 'Block' ]) ];
             return json_encode($response);
         }
 

@@ -105,7 +105,8 @@ function addLesson(json){
  * @method enableLessonRTE
  */
 function enableLessonRTE(e){
-    selector = '#'+$(e.target).parent().parent().parent().find('textarea').attr('id');
+    textarea = $(e.target).parent().parent().parent().parent().find('textarea');
+    selector = '#'+textarea.attr('id');
     tinymce.remove(selector);
     tinymce.init({
         autosave_interval: "20s",
@@ -155,7 +156,8 @@ function enableRTE(selector){
  * @method enableBlockFileUploader
  */
 function enableBlockFileUploader(e){
-    $uploader = $(e.target).parent().parent().parent().find('[type=file]');
+    $uploader = $(e.target).parent().parent().parent().parent().find('[type=file]');
+    console.log($uploader);
     enableFileUploader($uploader);
 }
 

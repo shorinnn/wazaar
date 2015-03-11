@@ -10,7 +10,7 @@ class LessonsController extends \BaseController {
 	public function store($module){
             $lesson = new Lesson();
             $module = Module::find($module);
-            if($module->course->instructor->id != Auth::user()->id){
+            if($module->course->instructor->id != Auth::user()->id && $module->course->assigned_instructor_id != Auth::user()->id){
                 $response = ['status' => 'error', 'errors' => trans('crud/errors.error_occurred') ];
                 return json_encode($response);
             }
@@ -42,7 +42,8 @@ class LessonsController extends \BaseController {
         
         public function destroy($module, $id){
             $lesson = Lesson::find($id);
-            if($lesson!=null && $lesson->module->course->instructor->id == Auth::user()->id){
+            if($lesson!=null && ( $lesson->module->course->instructor->id == Auth::user()->id 
+                    || $lesson->module->course->assigned_instructor_id == Auth::user()->id ) ){
                 $lesson->delete();
                 $response = ['status' => 'success'];
                 return json_encode($response);
@@ -53,7 +54,8 @@ class LessonsController extends \BaseController {
         
         public function update($module, $id){
             $lesson = Lesson::find($id);
-            if($lesson!=null && $lesson->module->course->instructor->id == Auth::user()->id){
+            if($lesson!=null && ( $lesson->module->course->instructor->id == Auth::user()->id 
+                    || $lesson->module->course->assigned_instructor_id == Auth::user()->id ) ){
                 $name = Input::get('name');
                 $lesson->$name = Input::get('value');
                 if( $lesson->save() ){
@@ -71,7 +73,8 @@ class LessonsController extends \BaseController {
         
         public function details($module, $id){
             $lesson = Lesson::find($id);
-            if( $lesson!=null && $lesson->module->course->instructor->id == Auth::user()->id ){
+            if( $lesson!=null && ( $lesson->module->course->instructor->id == Auth::user()->id 
+                    || $lesson->module->course->assigned_instructor_id == Auth::user()->id )  ){
                 return View::make('courses.lessons.details')->with(compact('lesson'));
             }
         }
