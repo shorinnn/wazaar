@@ -83,12 +83,14 @@ class PaymentController extends BaseController
                 $payment    = $this->paymentHelper->processCreditCardPayment($creditCard, $student);
 
                 if ($payment['success']) {
-                    $paymentRef = $payment['successData']['REF'];
+                    //$paymentRef = $payment['successData']['REF'];
                     //Store Purchase
-                    $purchase = $student->purchase($product, Cookie::get( "aid-$product->id" ),$paymentRef);
+                    $purchase = $student->purchase($product, Cookie::get( "aid-$product->id" ),$payment);
                     if (!$purchase){
                         return Redirect::back()->with('errors',[trans('payment.cannotPurchase')]);
                     }
+                    Session::forget('productType');
+                    Session::forget('productID');
                     return Redirect::to('courses/purchase-successful')->with('purchaseId', $purchase->id);
                 } else {
                     return Redirect::back()->with('errors', $payment['errors'][0]);

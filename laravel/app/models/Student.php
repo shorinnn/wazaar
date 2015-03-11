@@ -102,7 +102,7 @@ class Student extends User{
      * @param mixed Course/Lesson
      * @return boolean
      */
-    public function purchase($product, $affiliate=null, $paymentRef = ''){
+    public function purchase($product, $affiliate=null, $paymentData = []){
         
         // cannot buy the same course/lesson twice |  cannot buy own course/lesson
         if( !$this->canPurchase($product) ) return false;
@@ -115,7 +115,7 @@ class Student extends User{
         $purchase->purchase_price = $product->cost();
         $purchase->ltc_affiliate_id = $this->ltcAffiliate->id;
         // albert: added this so it's easy to lookup for the payment process (payment_log)
-        $purchase->payment_ref = $paymentRef;
+        $purchase->payment_ref = $paymentData['successData']['REF'];
         
         if( strtolower( get_class($product) ) == 'course' && $product->payment_type=='subscription' ){
             $purchase->subscription_start = date( 'Y-m-d H:i:s' );
@@ -148,7 +148,7 @@ class Student extends User{
                 }
             }
             
-            return true;
+            return $purchase;
         }
         else return false;
     }
