@@ -37,14 +37,18 @@ class PrivateMessagesController extends \BaseController {
             $pm = new PrivateMessage([ 'sender_id' => Auth::user()->id, 'content' => Input::get('content'), 'type' => Input::get('type') ]);
             $pm->type = Input::get('type');
             if(Input::get('type')=='ask_teacher'){
-                $lesson = Lesson::find( Input::get('lesson_id') );
                 $course = Course::find( Input::get('course_id') );
-                if( $course->instructor->id != Auth::user()->id && !$student->purchased($course) && !$student->purchased( $lesson ) ){
+                $instructor = $course->instructor;
+                if($course->assigned_instructor_id != null){
+                    $instructor = $course->assignedInstructor;
+                }
+                $lesson = Lesson::find( Input::get('lesson_id') );
+                if( $instructor->id != Auth::user()->id && !$student->purchased($course) && !$student->purchased( $lesson ) ){
                      return Redirect::to('/');
                 }
                 $pm->course_id = Input::get('course_id');
                 $pm->lesson_id = Input::get('lesson_id');
-                if($course->instructor->id == Auth::user()->id){
+                if($instructor->id == Auth::user()->id){
                     $msg = PrivateMessage::find(Input::get('thread_id'));
                     if($msg){
                         if($msg->sender_id != Input::get('recipient_id') ) $pm->recipient_id = $msg->sender_id;
@@ -52,7 +56,7 @@ class PrivateMessagesController extends \BaseController {
                     }
                 }
                 else{
-                    $pm->recipient_id = $course->instructor->id;
+                    $pm->recipient_id = $instructor->id;
                 }
             }
             elseif( Input::get('type')=='student_conversation'){
