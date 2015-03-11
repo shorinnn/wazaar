@@ -4,7 +4,8 @@
  */
 $(document).ready(function(){
     $('body').delegate('.add-module', 'click', addModule);    
-    $('body').delegate('.add-lesson', 'click', addLesson);    
+    $('body').delegate('.add-lesson', 'click', addLesson);   
+	activeLessonOption(); 
     
     // Make the modules list sortable
     var el = document.getElementById('modules-list');
@@ -207,4 +208,16 @@ function courseImageUploaded(e, data){
     result = JSON.parse(data.result);
     $(target).append(result.html);
     $(target).find('[type=radio]').click();
+}
+
+/**
+* This call back function adds an active class to the active lesson-option link
+*/
+
+function activeLessonOption(){
+	var lessonOptionButtons = $('.lesson-options .buttons a');
+	lessonOptionButtons.on('click', function (e) {
+		$(this).parent().parent('.lesson-options-buttons').find('.load-remote-cache').not(this).removeClass('active');
+		$(this).addClass('active');
+	})
 }

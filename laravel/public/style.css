@@ -5861,7 +5861,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	background: #fff;
 	padding-left: 20px;
 	font-size: 14px;
-	color: #b0bfc1;
+	color: #777;
 }
 
 .course-editor #modules-list > li .new-module > span{
@@ -6088,20 +6088,32 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .course-editor #modules-list .lesson-options .details p{
 	font-size: 14px;
-	color: #333;
+	color: #0099ff;
+	line-height: 30px;
 	float: left;
+	margin: 0;
+}
+
+.course-editor #modules-list .lesson-options .details .switch-buttons{
+	margin: 0 0 0 39px;
+}
+
+
+.course-editor #modules-list .lesson-options 
+.details .switch-buttons > .switch{
+	margin: 0;
 }
 
 .course-editor #modules-list .lesson-options .details select,
 .course-editor #modules-list .lesson-options .details input,
 .course-editor #modules-list .lesson-options .details textarea{
 	float: right;
-    margin-right: 36%;
+    margin-right: 0%;
     border: 1px solid #b0bfc1;
     border-radius: 5px;
     color: #b0bfc1;
     font-size: 14px;
-    width: 50%;
+    width: 78%;
 }
 
 
@@ -6208,6 +6220,18 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .course-editor .lesson-options{
 	display: block;
 }
+
+.course-editor .lesson-options .files form{
+	max-width: 347px;
+	margin: 0 auto;
+}
+
+.course-editor .lesson-options .details{
+    display: block;
+    margin: 20px auto 0;
+    max-width: 60%;
+}
+
 .course-editor .upload-drop-zone {
 	height: 200px;
 	border-width: 2px;
@@ -6220,7 +6244,9 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	border-style: dashed;
 	border-color: #ccc;
 	line-height: 200px;
-	text-align: center
+	text-align: center;
+	max-width: 347px;
+	margin: 0 auto 10px;
 }
 .course-editor .upload-drop-zone.drop {
 	color: #222;
@@ -6342,6 +6368,11 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	background-color: #ececec;
 	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-18-undone.png');
 	background-repeat: no-repeat;
+}
+
+.plan-your-curriculum .lesson-options .buttons .load-remote-cache.active span{
+	box-shadow:0 0 0 2px #92cc2e;
+	background-color: transparent;
 }
 
 .plan-your-curriculum .lesson-options .buttons.video.active span,

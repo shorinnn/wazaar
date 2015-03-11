@@ -118,7 +118,7 @@
 						['', 'video/webm'], 
 						['', 'video/ogg']], 
 						controlPosition: '#bckgrd-video-overlay',
-						poster: 'video/cat.gif',
+						poster: 'video/laughing_car.gif',
 						loadedCallback: function(){
 						$(this).videobackground('mute');
 					}

@@ -1,9 +1,9 @@
 <li id="lesson-{{$lesson->id}}">
-    <div class="progress">
+<!--<div class="progress">
       <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
         <span class="sr-only">60% Complete</span>
       </div>
-    </div>                        
+    </div>-->                        
 	<div class="new-lesson gray clearfix">
         <span>{{ trans('general.lesson') }} 
         	<span class="lesson-order">{{ $lesson->order }}</span> 
@@ -34,7 +34,7 @@
             <div class="clearfix lesson-options-buttons">
                 <div class="buttons video">
                     <a href='#' id="video-link-{{$lesson->id}}" class='load-remote-cache a-add-video' data-target='.action-panel-{{$lesson->id}} .video'
-                       data-url='{{action('BlocksController@video', [$lesson->id] )}}'>
+                       data-url='{{action('BlocksController@video', [$lesson->id] )}}' data-callback='activeLessonOption'>
                         <!--<i class="fa fa-film"></i>
                         <p>{{ trans('general.video') }}</p>-->
                         <span></span>                                   
@@ -58,7 +58,7 @@
                 </div>
                 <div class="buttons setting">
                     <a href='#' class='load-remote-cache' data-target='.action-panel-{{$lesson->id}} .details' 
-                       data-url='{{action('LessonsController@details', [$lesson->module->id, $lesson->id] )}}'>
+                       data-url='{{action('LessonsController@details', [$lesson->module->id, $lesson->id] )}}' data-callback='activeLessonOption'>
                         <!--<i class="fa fa-cog"></i> 
                         <p>{{ trans('general.details') }}</p>-->
                         <span></span>                                   
