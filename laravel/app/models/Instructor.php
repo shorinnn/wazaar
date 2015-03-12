@@ -14,6 +14,11 @@ class Instructor extends User{
         'receivedMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'recipient_id' ],
       ];
     
+    
+    public function getCoursesAttribute()
+    {
+        return $this->courses()->get();
+    }
     public function courses(){
         $ids = $this->coursesRel()->lists('id');
         if( count($ids) ==0 ) return Course::where('assigned_instructor_id', $this->id);

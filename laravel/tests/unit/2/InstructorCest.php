@@ -36,8 +36,11 @@ class InstructorCest{
         $instructor = Student::where('username','second_instructor')->first();
         $I->assertTrue($instructor->hasRole('Instructor'));
         $course = Course::find(1);
-        $I->assertNotEquals($course->instructor->id, $instructor->id);
-        $instructor->purchase($course);
+        $I->assertNotEquals( $course->instructor->id, $instructor->id );
+        $I->assertNotEquals( $course->assigned_instructor_id, $instructor->id );
+        
+        $paymentData['successData']['REF'] = '123';
+        $instructor->purchase($course, null, $paymentData);
         $instructor = Student::where('username','second_instructor')->first();
         $I->assertTrue( $instructor->purchased($course) );
     }

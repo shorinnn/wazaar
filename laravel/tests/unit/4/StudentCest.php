@@ -15,6 +15,7 @@ class StudentCest{
         Artisan::call('migrate:refresh');
         Artisan::call('db:seed');
         Student::boot();
+        $this->paymentData['successData']['REF'] = '123';
     }
     
     public function getLTCAffiliate(UnitTester $I){
@@ -31,7 +32,7 @@ class StudentCest{
     public function purchaseNewCourse(UnitTester $I){
         $student = Student::where('username','student')->first();
         $course = Course::find(1);
-        $student->purchase($course);
+        $student->purchase($course, null, $this->paymentData);
         $student = Student::where('username','student')->first();
         $I->assertTrue( $student->purchased($course) );
     }
@@ -41,7 +42,7 @@ class StudentCest{
         Purchase::where('student_id', $student->id)->delete();
         $course = Course::find(1);
         $count = $course->student_count;
-        $I->assertTrue( $student->purchase( $course ) );
+        $I->assertNotEquals(false, $student->purchase( $course, null, $this->paymentData ) );
         $student = Student::where('username','student')->first();
         $I->assertTrue( $student->purchased($course) );
         $count++;
@@ -56,7 +57,7 @@ class StudentCest{
         $student = Student::where('username','student')->first();
         $I->assertTrue( $student->purchased($course) );
         $student = Student::where('username','student')->first();
-        $I->assertFalse( $student->purchase($course) );
+        $I->assertFalse( $student->purchase($course, null, $this->paymentData) );
     }
     
     public function keepLTCAffiliate(UnitTester $I){
@@ -65,7 +66,7 @@ class StudentCest{
         $student->save();
         $I->assertEquals(5, $student->ltc_affiliate_id);
         $course = Course::find(1);
-        $student->purchase($course);
+        $student->purchase($course, null, $this->paymentData);
         $student = Student::where('username','student')->first();
         $I->assertTrue( $student->purchased($course) );
         $I->assertEquals(5, $student->ltc_affiliate_id);
@@ -79,7 +80,7 @@ class StudentCest{
         $I->assertEquals(5, $student->ltc_affiliate_id);
         $I->assertEquals(0, $student->purchases->count());
         $course = Course::find(1);
-        $student->purchase($course);
+        $student->purchase($course, null, $this->paymentData);
         $student = Student::where('username','mac')->first();
         $I->assertTrue( $student->purchased($course) );
         $I->assertEquals(2, $student->ltc_affiliate_id);
@@ -89,7 +90,7 @@ class StudentCest{
         $student = Student::where('username','student')->first();
         $course = Course::find(1);
         Purchase::where('student_id', $student->id)->delete();
-        $student->purchase($course, 5);
+        $student->purchase($course, 5, $this->paymentData);
         $student = Student::where('username','student')->first();
         $I->assertTrue( $student->purchased($course) );
         $I->assertEquals(2, $student->ltc_affiliate_id);
@@ -128,7 +129,7 @@ class StudentCest{
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();
         $lesson = Lesson::first();
-        $I->assertTrue( $student->purchase( $lesson->module->course ) );
+        $I->assertNotEquals(false, $student->purchase( $lesson->module->course , null, $this->paymentData) );
         $I->assertFalse( $student->isLessonViewed($lesson) );
         $I->assertTrue( $student->viewLesson( $lesson ) );
         $student = Student::where('username','student')->first();
@@ -141,7 +142,7 @@ class StudentCest{
         $lesson = Lesson::first();
         $counter = ViewedLesson::where('lesson_id', $lesson->id)->where('student_id', $student->id)->count();
         $I->assertEquals(0, $counter);
-        $I->assertTrue( $student->purchase( $lesson->module->course ) );
+        $I->assertNotEquals(false, $student->purchase( $lesson->module->course , null, $this->paymentData ) );
         $I->assertFalse( $student->isLessonViewed($lesson) );
         $I->assertTrue( $student->viewLesson( $lesson ) );
         $student = Student::where('username','student')->first();
