@@ -65,7 +65,7 @@
 
             },
             'successCallBack' : function ($data){
-
+				console.log($data);
                 if ($data.result.videoId !== undefined) {
                     $('#video-player-container-' + $lessonId).find('#video-player').addClass('hide');
                     $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').removeClass('hide');
@@ -82,7 +82,7 @@
 								border: 'solid 1px #b0bfc1'	
 							});
 							$('.plan-your-curriculum .lesson-options .buttons.active span').addClass('processed');*/
-							console.log('Uploaded');
+							console.log('Uploaded'); 
                             $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
                             $('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
                             $('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
