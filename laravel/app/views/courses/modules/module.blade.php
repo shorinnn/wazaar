@@ -18,7 +18,7 @@
             </div>
             {{ Form::open(array('action' => ['ModulesController@destroy', $module->course->id, $module->id], 'method' => 'delete', 
                         'class' => 'ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '#module-'.$module->id )) }}
-                    <button type="submit" name="delete-module-{{$module->id}}" class="delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}">X</button>
+                    <button type="submit" name="delete-module-{{$module->id}}" class="delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}"></button>
             {{ Form::close() }}
         </div>
     </div>

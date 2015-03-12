@@ -5289,6 +5289,7 @@ select option.suspended{
 	width: 100%;
 }
 
+#course-edit #top-form #create-form > div textarea,
 #course-edit .payment-section input[type='text'],
 #course-edit #top-form #create-form > div input.has-slug{
 	width: 345px;
@@ -5300,6 +5301,7 @@ select option.suspended{
 	font-size: 14px;
 	color:#b0bec1;
 	border: solid 1px #adadad;
+	resize: none;
 }
 
 #course-edit #top-form #create-form > div.course-level span{
@@ -5877,13 +5879,16 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .course-editor #modules-list > li .new-lesson > div.buttons > div.menu,
 .course-editor #modules-list > li .new-module > div.buttons > div.menu{
 	float: left;
-	margin: 12px 10px 0 0;
+	height: 18px;
+	width: 20px;
+	margin: 10px 10px 0 0;
 	cursor: move;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/lesson-icons.png') no-repeat 0 -1px;
 }
 
 .course-editor #modules-list > li .new-lesson > div.buttons > div span,
 .course-editor #modules-list > li .new-module > div.buttons > div span{
-	display: block;
+	display: none;
 	width: 18px;
 	height: 4px;
 	border-radius: 3px;
@@ -5895,17 +5900,13 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .course-editor #modules-list > li .new-lesson > div.buttons button.delete-button,
 .course-editor #modules-list > li .new-module > div.buttons button.delete-button{
 	display: block;
-	height: 18px;
-	width: 18px;
+	height: 20px;
+	width: 20px;
 	cursor: pointer;
-	margin-top: 11px;
-	font-size: 10px;
-	border-radius: 18px;
-	color: #ff5c4b;
-	background: none;
+	margin-top: 10px;
 	padding: 0;
 	outline: none;
-	border: solid 1px #ff5c4b;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/lesson-icons.png') no-repeat -30px 0;
 }
 
 .course-editor #modules-list > li .uploaded-file .buttons button,
@@ -5928,12 +5929,12 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .course-editor #modules-list > li .new-lesson > div.buttons button.delete-button,
 .course-editor #modules-list > li .new-module > div.buttons button.delete-button{
-	border: solid 1px #ff5c4b;
+	border: none;
 }
 
 .course-editor #modules-list > li .uploaded-file .buttons button i,
 .course-editor #modules-list > li .new-lesson > div.buttons button i{
-	font-size: 18px;
+	font-size: 21px;
 	color: #849598;
 }
 
@@ -6344,7 +6345,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .plan-your-curriculum .lesson-options > div.lesson-options-buttons{
 	margin: 0 auto;
-	max-width: 41%;
+	max-width: 51%;
 }
 
 .plan-your-curriculum .lesson-options .buttons{
@@ -6401,11 +6402,11 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 
 .plan-your-curriculum .lesson-options .buttons.active{
-	width: 170px;
+	width: 120px;
 	height: 64px;
 	border-radius: 5px;
 	border: solid 1px #b0bfc1;
-	margin-right: 40px;
+	margin-right: 20px;
 	padding-left: 10px;
 	position: relative;
 }
@@ -6422,24 +6423,18 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	margin: 10px 0;
 	font-size: 12px;
 	color: #000;
-	max-width: 108px;
+	max-width: 60px;
 }
 
 .plan-your-curriculum .lesson-options .buttons.active p em{
-	font-style: normal;
 	float: right;
 	display: inline-block;
-	height: 13px;
-	width: 13px;
+	height: 15px;
+	width: 15px;
 	cursor: pointer;
-	border-radius: 13px;
-	border: solid 1px #ff695a;
-	font-size: 10px;
-	color: #ff695a;
-	text-indent: 3.4%;
-	line-height: 9px;
 	position: relative;
 	top: 2px;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/lesson-icons.png') no-repeat -62px -2px;
 }
 
 .plan-your-curriculum .lesson-options .buttons.active div.progress{
@@ -6447,7 +6442,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	margin: 0;
 }
 
-.plan-your-curriculum .lesson-options .buttons.active div.progress + em{
+.plan-your-curriculum .lesson-options .buttons.active em{
 	font-size: 12px;
 	color: #92cc2e;
 	font-style: normal;

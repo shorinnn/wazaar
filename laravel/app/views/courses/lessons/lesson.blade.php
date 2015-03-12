@@ -27,12 +27,19 @@
             </div>
             {{ Form::open(array('action' => ['LessonsController@destroy', $lesson->module->id, $lesson->id], 'method' => 'delete', 
                         'class' => 'ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '#lesson-'.$lesson->id )) }}
-                    <button type="submit" name="delete-lesson-{{$lesson->id}}" class="delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}">X</button>
+                    <button type="submit" name="delete-lesson-{{$lesson->id}}" class="delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}"></button>
             {{ Form::close() }}
         </div>
         <div class="lesson-options lesson-options-{{$lesson->id}} row">
             <div class="clearfix lesson-options-buttons">
-                <div class="buttons video">
+                <div class="buttons video active">
+                    <p>10:36 <em></em></p>
+                    <!--<div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                        <span class="sr-only">60% Complete</span>
+                      </div>
+                    </div>--> 
+                    <em>Processing</em>                                                                  
                     <a href='#' id="video-link-{{$lesson->id}}" class='load-remote-cache a-add-video' data-target='.action-panel-{{$lesson->id}} .video'
                        data-url='{{action('BlocksController@video', [$lesson->id] )}}' data-callback='activeLessonOption'>
                         <!--<i class="fa fa-film"></i>
