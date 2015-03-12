@@ -87,6 +87,70 @@ class PrivateMessageCest{
         $I->assertEquals( 1, $message->replies->count() );
     }
     
+    public function replyToAskTeacherMessageByAssigned(UnitTester $I){
+        User::boot();
+        Student::boot();
+        Instructor::boot();
+        $student = Student::where('username','student')->first();
+        $instructor = Instructor::where('username','instructor')->first();
+        $assigned = Instructor::where('username','second_instructor')->first();
+        $course = $instructor->courses()->first();
+        $course->assigned_instructor_id = $assigned->id;
+        $I->assertTrue( $course->updateUniques() );
+        
+        $message = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $assigned->id, 'content' => 'Question sir!']);
+        $message->type = 'ask_teacher';
+        $message->course_id = $course->id;
+        $I->assertTrue( $message->save() );
+        $I->assertEquals( $student->id, $message->sender->id );
+        $I->assertEquals( $assigned->id, $message->recipient->id );
+        $I->assertEquals( 0, $message->replies->count() );
+        
+        $reply = new PrivateMessage([ 'sender_id' => $assigned->id, 'recipient_id' => $student->id, 'content' => 'Reply from assigned, sir!']);
+        $reply->type = 'ask_teacher';
+        $reply->course_id = $course->id;
+        $reply->thread_id = 1;
+        $reply->reply_to = $message->id;
+        $I->assertTrue( $reply->save() );
+        
+        $I->assertEquals( 1, $student->sentMessages->count() );
+        $I->assertEquals( 1, $student->receivedMessages()->count() );
+        $I->assertEquals( 1, $assigned->sentMessages->count() );
+        $I->assertEquals( 1, $assigned->receivedMessages()->count() );
+        $message = PrivateMessage::first();
+        $I->assertEquals( 1, $message->replies->count() );
+    }
+    
+    public function failReplyToAskTeacherMessageByAssigned(UnitTester $I){
+        User::boot();
+        Student::boot();
+        Instructor::boot();
+        $student = Student::where('username','student')->first();
+        $instructor = Instructor::where('username','instructor')->first();
+        $assigned = Instructor::where('username','second_instructor')->first();
+        $course = $instructor->courses()->first();
+        
+        $message = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $assigned->id, 'content' => 'Question sir!']);
+        $message->type = 'ask_teacher';
+        $message->course_id = $course->id;
+        $I->assertFalse( $message->save() );
+        $I->assertEquals( $student->id, $message->sender->id );
+        $I->assertEquals( $assigned->id, $message->recipient->id );
+        $I->assertEquals( 0, $message->replies->count() );
+        
+        $reply = new PrivateMessage([ 'sender_id' => $assigned->id, 'recipient_id' => $student->id, 'content' => 'Reply from assigned, sir!']);
+        $reply->type = 'ask_teacher';
+        $reply->course_id = $course->id;
+        $reply->thread_id = 1;
+        $reply->reply_to = $message->id;
+        $I->assertFalse( $reply->save() );
+        
+        $I->assertEquals( 0, $student->sentMessages->count() );
+        $I->assertEquals( 0, $student->receivedMessages()->count() );
+        $I->assertEquals( 0, $assigned->sentMessages->count() );
+        $I->assertEquals( 0, $assigned->receivedMessages()->count() );
+    }
+    
     public function failReplyToTeacherWrongSender(UnitTester $I){
         $student = Student::where('username','student')->first();
         $instructor = Instructor::where('username','instructor')->first();
@@ -109,6 +173,28 @@ class PrivateMessageCest{
         $message->type = 'mass_message';
         $message->course_id = $instructor->courses()->first()->id;
         $I->assertTrue( $message->save() );
+    }
+    
+    public function sendTeacherMassMessageFromAssigned(UnitTester $I){
+        $instructor = Instructor::where('username','instructor')->first();
+        $assigned = Instructor::where('username','second_instructor')->first();
+        $course = $instructor->courses()->first();
+        $course->assigned_instructor_id = $assigned->id;
+        $I->assertTrue( $course->updateUniques() );
+        $message = new PrivateMessage([ 'sender_id' => $assigned->id, 'content' => 'Mass Message sir!']);
+        $message->type = 'mass_message';
+        $message->course_id = $course->id;
+        $I->assertTrue( $message->save() );
+    }
+    
+    public function failSendTeacherMassMessageFromAssigned(UnitTester $I){
+        $instructor = Instructor::where('username','instructor')->first();
+        $assigned = Instructor::where('username','second_instructor')->first();
+        $course = $instructor->courses()->first();
+        $message = new PrivateMessage([ 'sender_id' => $assigned->id, 'content' => 'Mass Message sir!']);
+        $message->type = 'mass_message';
+        $message->course_id = $course->id;
+        $I->assertFalse( $message->save() );
     }
     
     public function failMassMessageWrongCourse(UnitTester $I){
