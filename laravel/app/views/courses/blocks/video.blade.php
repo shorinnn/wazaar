@@ -73,7 +73,7 @@
 
                     //Run timer to check for video transcode status
                     $intervalId = setInterval (function() { videoUploader.getVideo($data.result.videoId, function ($video){
-
+					console.log($video);
                         if ($video.transcode_status == 'Complete'){
                             clearInterval($intervalId);
 							/*$('.plan-your-curriculum .lesson-options .buttons.active p, .plan-your-curriculum .lesson-options .buttons.active em').css('display', 'block');
