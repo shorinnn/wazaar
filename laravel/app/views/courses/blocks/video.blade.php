@@ -76,6 +76,13 @@
 
                         if ($video.transcode_status == 'Complete'){
                             clearInterval($intervalId);
+							$('.plan-your-curriculum .lesson-options .buttons.active p,
+							.plan-your-curriculum .lesson-options .buttons.active em').css('display', 'block');
+							$('.plan-your-curriculum .lesson-options .buttons.active').css({
+								width: '120px',
+								border: 'solid 1px #b0bfc1'	
+							});
+							$('.plan-your-curriculum .lesson-options .buttons.active span').addClass('processed');
                             $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
                             $('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
                             $('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);

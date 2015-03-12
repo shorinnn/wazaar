@@ -6403,10 +6403,10 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 
 .plan-your-curriculum .lesson-options .buttons.active{
-	width: 120px;
+	width: 60px;
 	height: 64px;
 	border-radius: 5px;
-	border: solid 1px #b0bfc1;
+	border: none;
 	margin-right: 20px;
 	padding-left: 10px;
 	position: relative;
@@ -6416,8 +6416,11 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	position: absolute;
 	top: -1px;
 	right: -26px;
-	background-color: #92cc2e;
-	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-18-done.png');
+}
+
+.plan-your-curriculum .lesson-options .buttons.active span.processed{
+	background-color: #92cc2e !important;
+	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-18-done.png') !important;
 }
 
 .plan-your-curriculum .lesson-options .buttons.active p{
@@ -6425,6 +6428,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	font-size: 12px;
 	color: #000;
 	max-width: 60px;
+	display: none;
 }
 
 .plan-your-curriculum .lesson-options .buttons.active p em{
@@ -6447,6 +6451,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	font-size: 12px;
 	color: #92cc2e;
 	font-style: normal;
+	display: none;
 }
 
 
