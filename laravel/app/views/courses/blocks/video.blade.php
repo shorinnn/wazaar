@@ -70,9 +70,11 @@
                     $('#video-player-container-' + $lessonId).find('#video-player').addClass('hide');
                     $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').removeClass('hide');
                     $.post('/lessons/blocks/' + $lessonId + '/video', {videoId : $data.result.videoId, blockId : $blockId });
-
+                    console.log('has video id');
                     //Run timer to check for video transcode status
-                    $intervalId = setInterval (function() { videoUploader.getVideo($data.result.videoId, function ($video){
+                    $intervalId = setInterval (function() {
+                        console.log('interval running');
+                        videoUploader.getVideo($data.result.videoId, function ($video){
 					console.log($video);
                         if ($video.transcode_status == 'Complete'){
                             clearInterval($intervalId);
