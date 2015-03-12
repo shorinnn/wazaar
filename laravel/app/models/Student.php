@@ -398,7 +398,7 @@ class Student extends User{
                  $notifications['m'.$pm->course->id] = $notification['m'.$pm->course->id];
              }
              else{
-             $notification['a'.$pm->course->id]['url'] = action('ClassroomController@dashboard', $pm->course->slug);
+                 $notification['a'.$pm->course->id]['url'] = action('ClassroomController@dashboard', $pm->course->slug);
                  if( !isset( $notification['a'.$pm->course->id]['count'] )){
                      $notification['a'.$pm->course->id]['count'] = 1;
                  }
@@ -407,6 +407,10 @@ class Student extends User{
                  }
  
                  $notification['a'.$pm->course->id]['text'] = 'You have '. $notification['a'.$pm->course->id]['count'] .' teacher responses in '.$pm->course->name;
+                 if($pm->course->instructor_id == $this->id || $pm->course->assigned_instructor_id == $this->id){
+                     $notification['a'.$pm->course->id]['url'] = action('CoursesController@dashboard', $pm->course->slug);
+                     $notification['a'.$pm->course->id]['text'] = 'You have '. $notification['a'.$pm->course->id]['count'] .' student questions in '.$pm->course->name;
+                 }
                  $notifications['a'.$pm->course->id] = $notification['a'.$pm->course->id];
              }
          }

@@ -23,9 +23,11 @@ class PrivateMessage extends Ardent {
                 if( $original->recipient_id != $this->sender_id ) return false;
             }
             if( $this->type == 'mass_message' ){
-                if( ( $this->course==null ) || $this->course->instructor->id != $this->sender_id ) return false;
+                if( ( $this->course==null ) || 
+                        ( $this->course->instructor->id != $this->sender_id && $this->course->assigned_instructor_id != $this->sender_id )) return false;
             }
-            if( $this->type == 'ask_teacher' &&  $this->course->instructor->id != $this->sender_id){
+            if( $this->type == 'ask_teacher' &&  $this->course->instructor->id != $this->sender_id
+                    &&  $this->course->assigned_instructor_id != $this->sender_id ){
                 $student = Student::find( $this->sender_id );
                 if( !$student->purchased($this->course) ) return false;
                 // make sure course allows this 

@@ -12,7 +12,7 @@
             <h1 class="classroom-course-title">Course: {{ $course->name }}</h1>
             <h2 class="classroom-lesson-title">Lesson: {{ $lesson->name }}</h2>
         	<section class="video-container">
-            	@if( $video != null)
+            	@if( $video != null && $video->video()!=null)
                 <div class="text-center">
                     @if( Agent::isMobile() )
                         <video controls>

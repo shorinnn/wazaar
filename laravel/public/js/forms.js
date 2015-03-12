@@ -212,6 +212,14 @@ function updateFieldRemote(e){
     url = $(e.target).attr('data-url');
     name = $(e.target).attr('data-name');
     value = $(e.target).val();
+    if( $(e.target).is(':checkbox') ){
+        if( $(e.target).prop('checked') ){
+            value = $(e.target).attr('data-checked-val');
+        }
+        else{
+            value = $(e.target).attr('data-unchecked-val');
+        }
+    }
     token = $('[name="_token"]').first().val();
     savingAnimation(0);
     $.ajax({
