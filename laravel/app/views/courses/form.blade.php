@@ -147,8 +147,10 @@
                                      
                                     <label for="upload-preview-image" class="uploadFile">
                                     	<span>Upload</span>
-                                    	<input type="file" hidden="" class='upload-preview-image' name="preview_image" data-dropzone='.dropzone-preview'
-                                           data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' data-target='.use-existing-preview' />
+                                    	<input type="file" hidden="" class='upload-preview-image' 
+                                               id="upload-preview-image" name="preview_image" data-dropzone='.dropzone-preview'
+                                           data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' 
+                                           data-target='#use-existing-preview > div > .radio-buttons' />
                                     	
                                     </label>
                                     <!--<input disabled="disabled" placeholder="Choose File" id="uploadFile">
@@ -164,7 +166,7 @@
                                         </div>
                                         
                                         
-                                        <span class="use-existing use-existing-preview">
+                                        <span class="use-existing use-existing-preview" id="use-existing-preview">
                                         @if($images->count() > 0)
                                         <span class="use-existing">{{ trans('crud/labels.or_use_existing') }}:</span>
                                         	<div class="row">
@@ -187,8 +189,8 @@
                                             <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
                                             <span>Upload</span> 
                                              <input type="file" class='upload-banner-image' name="banner_image" data-dropzone='.dropzone-preview'
-                                             data-progress-bar='.progress-bar-banner' data-callback='courseImageUploaded' 
-                                             data-target='.use-existing-banner' />
+                                             data-progress-bar='.progress-bar-banner' data-callback='courseImageUploaded' id="upload-banner-image"
+                                             data-target='#use-existing-banner > div > .radio-buttons' />
 	                                    	
                                     </label>
                                         <div class="progress">
@@ -198,7 +200,7 @@
                                             </div>
                                         </div>
                                         
-                                        <span class="use-existing use-existing-preview">
+                                        <span class="use-existing use-existing-preview" id="use-existing-banner">
                                             @if($bannerImages->count() > 0)
                                             <span class="use-existing">{{ trans('crud/labels.or_use_existing') }}:</span>
                                         		<div class="row">
@@ -305,8 +307,8 @@
                                                <button type="submit" class="btn btn-primary submit-button">{{ trans('crud/labels.update') }}</button>
                                         </div>
                                     </div>
-                                    {{ Form::close() }}
                                 </div>
+                                    {{ Form::close() }}
                             </div>
                        </div>	 
                    </div>        
