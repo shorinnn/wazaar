@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="header clearfix">
-                        <h1>Tracking Code: {{$trackingCode}} ({{$course->name}})</h1>
+                        <h1>{{trans('analytics.trackingCode')}}: {{$trackingCode}} ({{$course->name}})</h1>
                     </div>
                 </div>
             </div>
@@ -35,19 +35,19 @@
                     <div>
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop4" type="button">
-                                Top Tracking Codes <span id="header-tracking-codes-frequency">Today</span></button>
+                                {{trans('analytics.topTrackingCodes')}} <span id="header-tracking-codes-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu tracking-code-hits-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.trackingCodeStats('daily',{{$course->id}},'{{$trackingCode}}', this); return false;">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.trackingCodeStats('daily',{{$course->id}},'{{$trackingCode}}', this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodeStats('week',{{$course->id}},'{{$trackingCode}}', this); return false;">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodeStats('week',{{$course->id}},'{{$trackingCode}}', this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodeStats('month',{{$course->id}},'{{$trackingCode}}', this); return false;">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodeStats('month',{{$course->id}},'{{$trackingCode}}', this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodeStats('alltime',{{$course->id}},'{{$trackingCode}}', this); return false;">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodeStats('alltime',{{$course->id}},'{{$trackingCode}}', this); return false;">{{trans('analytics.alltime')}}</a>
                                 </li>
                             </ul>
                         </div>

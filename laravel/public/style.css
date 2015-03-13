@@ -7119,3 +7119,7 @@ header .top-menu li{
 .bolded, .bolded > *{
     font-weight: bold !important;
 }
+
+.gray{
+    color: #cccccc;
+}
