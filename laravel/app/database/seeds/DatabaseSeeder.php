@@ -418,8 +418,7 @@ class CoursesSeeder extends Seeder {
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         
-        Course::create( ['name' => '30〜40代男性必見
-                        ３ヶ月で10キロ痩せてハイパフォーマーになる『体』やり直し講座', 'instructor_id' => 11, 'course_category_id' => 6,  
+        Course::create( ['name' => '３ヶ月で10キロ痩せてハイパフォーマーになる『体』やり直し講座', 'instructor_id' => 11, 'course_category_id' => 6,  
                         'course_subcategory_id' => 6, 
                         'price' => 300000,  'course_difficulty_id' => 1,  'course_preview_image_id' => 9,
                         'description' => '
