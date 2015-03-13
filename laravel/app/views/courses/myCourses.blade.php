@@ -26,56 +26,74 @@
         	<div>
               	@foreach($courses as $course)
             	<div class="course-wrapper">
-                	<div class="top-content course-header course-row-{{$course->id}}">
-                    	<div>
-                        	<h4>{{$course->name}}</h4>
-                        	<span class="label label-primary">{{$course->courseCategory->name or 'No Category'}} ></span>
-                        	<span class="label label-primary">{{$course->courseSubcategory->name or 'No Subcategory'}}</span>
-                        </div>
-                        <div>
-                        <p class="created-date">
-                        Created on: <span>23-04-2014</span>
-                        </p>
-                        {{ link_to_action('CoursesController@edit', trans('courses/general.edit'), $course->slug, [ 'class'=>'edit-button btn btn-primary' ] ) }}
-                        </div>                    
+                	<div class="top-content course-header course-row-{{$course->id}} clearfix">
+                        <div class="row clearfix">
+                            <div class="col-md-6 clearfix">
+                                <div class="clearfix">
+                                    <h4>{{$course->name}}</h4>
+                                    <span class="label label-primary">{{$course->courseCategory->name or 'No Category'}} ></span>
+                                    <span class="label label-primary">{{$course->courseSubcategory->name or 'No Subcategory'}}</span>
+                                </div>
+                        	</div>
+                            <div class="col-md-6 clearfix">
+                                <div class="clearfix">
+                                    <p class="created-date">
+                                    Created on: <span>23-04-2014</span>
+                                    </p>
+                                    {{ link_to_action('CoursesController@edit', trans('courses/general.edit'), $course->slug, [ 'class'=>'edit-button' ] ) }}
+                                </div>
+                        	</div> 
+                        </div>                   
                     </div>
-                    <div class="middle-content course-info course-row-{{$course->id}}">
-                    	<div class="image-container">
-                            @if($course->previewImage!=null)
-                            <a href="{{ $course->previewImage->url }}" target="_blank">
-                                <img src="{{ $course->previewImage->url }}" height="90" />
-                            </a>
-                            @endif                        
-                        </div>
-                        <div class="description">
-                        	<p>
-                            “Thank you so much teacher! I’ve never thought that this course would help me this much in PHP.  
-                            Learned a lot from it!”
-                            </p>
-                            <span class="status-box">
-                            	Status:
-                                <em>Public</em>
-                            </span>
-                        </div>
-                        <div class="buttons">
-                        	<ul>
-                            	<li class="questions">
-                                	<a href="#"><span><i>24</i></span><em>Questions</em></a>
-                                </li>
-                            	<li class="discussions">
-                                	<a href="#"><span><i>254</i></span><em>Discussions</em></a>
-                                </li>
-                            	<li class="assignment">
-                                	<a href="#"><span></span><em>Assignment</em></a>
-                                </li>
-                            	<li class="compliments">
-                                	<a href="#"><span></span><em>Compliments</em></a>
-                                </li>
-                            </ul>
+                    <div class="middle-content course-info course-row-{{$course->id}} clearfix">
+                    	<div class="row clearfix">
+                        	<div class="col-xs-12 col-sm-6 col-md-4 clearfix">
+                                <div class="image-container clearfix">
+                                    @if($course->previewImage!=null)
+                                    <a href="{{ $course->previewImage->url }}" target="_blank">
+                                        <img src="{{ $course->previewImage->url }}" height="90" />
+                                    </a>
+                                    @endif                        
+                                </div>
+                        	</div>
+                        	<div class="hidden-xs hidden-sm col-md-6 clearfix">
+                                <div class="description clearfix">
+                                    <p>
+                                    “Thank you so much teacher! I’ve never thought that this course would help me this much in PHP.  
+                                    Learned a lot from it!”
+                                    </p>
+                                </div>
+                        	</div>
+                        	<div class="col-xs-12 col-sm-6 col-md-2 clearfix">
+                                <div class="buttons clearfix">
+                                    <ul class="clearfix">
+                                        <li class="questions clearfix">
+                                            <a href="#"><span><i>24</i></span><em>Questions</em></a>
+                                        </li>
+                                        <li class="discussions clearfix">
+                                            <a href="#"><span><i>254</i></span><em>Discussions</em></a>
+                                        </li>
+                                        <!--<li class="assignment">
+                                            <a href="#"><span></span><em>Assignment</em></a>
+                                        </li>
+                                        <li class="compliments">
+                                            <a href="#"><span></span><em>Compliments</em></a>
+                                        </li>-->
+                                    </ul>
+                                </div>
+                        	</div>
                         </div>
                     </div>
-                    <div class="bottom-bar">
-                    
+                    <div class="bottom-bar clearfix">
+                    	<div class="row clearfix">
+                            <div class="col-md-12 clearfix">
+                                <span class="status-box">
+                                    Status:
+                                    <em>Public</em>
+                                </span>
+                                <a href="#" class="go-to-dashboard">GO TO DASHBOARD</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                     @endforeach
