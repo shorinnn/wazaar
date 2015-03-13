@@ -11,10 +11,19 @@ function alphanum($string){
 
 function mimetype($file){
     $finfo = new finfo(FILEINFO_MIME_TYPE);
-    if( is_string($file) ){
-        $file = file_get_contents($file);
+    //if( is_string($file) ){
+//    if(  file_exists($file) ){
+//        $file = file_get_contents($file);
+//    }
+//    $return = '';
+    try{
+        $return = $finfo->buffer($file);
     }
-    return $finfo->buffer($file);
+    catch(Exception $e){
+        $file = file_get_contents($file);
+        $return = $finfo->buffer($file);
+    }
+    return $return;
 }
 
 function mime_to_extension($mime){
