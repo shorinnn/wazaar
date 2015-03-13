@@ -284,6 +284,8 @@ function savingAnimation(stop) {
 function enableFileUploader($uploader){
     dropzone = $uploader.attr('data-dropzone');
     var progressbar = $uploader.attr('data-progress-bar');
+    upload_url = $uploader.closest('form').attr('action');
+    console.log( upload_url );
     $uploader.fileupload({
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
