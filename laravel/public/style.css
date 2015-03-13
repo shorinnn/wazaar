@@ -6465,7 +6465,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 
 .instructor-mycourses .course-wrapper{
-	width: 970px;
+	max-width: 970px;
 	height: auto;
 	border: solid 1px #b0bfc1;
 	border-radius: 5px;
@@ -6473,29 +6473,38 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	margin-bottom: 40px;
 }
 
+.instructor-mycourses .course-wrapper div.row{
+	margin: 0;
+}
+
+.instructor-mycourses .course-wrapper div.row > div{
+	padding: 0;
+}
+
 .instructor-mycourses .course-wrapper .top-content{
 	width: 100%;
 	min-height: 38px;
-	border-bottom: solid 1px #b0bfc1;
 }
 
-.instructor-mycourses .course-wrapper .top-content > div{
-	float: left;
-	width: 50%;
+.instructor-mycourses .course-wrapper .top-content .row > div{
+	border-bottom: 1px solid #b0bfc1;
 	height: 38px;
-	padding-left: 19px;
 }
 
-.instructor-mycourses .course-wrapper .top-content > div h4{
+.instructor-mycourses .course-wrapper .top-content .row > div + div > div{
+	float: right;
+}
+
+.instructor-mycourses .course-wrapper .top-content .row > div > div h4{
 	font-size: 14px;
 	color: #333;
-	margin: 0 40px 0 0;
+	margin: 0 40px 0 20px;
 	line-height: 38px;
 	display: inline-block;
 	font-weight: normal;
 }
 
-.instructor-mycourses .course-wrapper .top-content > div .label{
+.instructor-mycourses .course-wrapper .top-content .row > div > div .label{
 	display: inline-block;
 	line-height: 38px;
 	font-size: 12px;
@@ -6511,6 +6520,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	float: left;
 	font-size: 12px;
 	color: #b0bfc1;
+	margin: 0;
 	line-height: 38px;
 }
 
@@ -6527,7 +6537,10 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	height: 32px;
 	border-radius: 5px;
 	font-size: 12px;
+	margin-left: 34px;
 	color: #fff;
+	line-height: 32px;
+	text-align: center;
 	background: #0099ff;
 }
 
@@ -6536,41 +6549,27 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 
 .instructor-mycourses .course-wrapper .middle-content > div{
-	float: left;
 	min-height: 236px;
 }
 
 .instructor-mycourses .course-wrapper .middle-content .image-container{
-	width: 354px;
+	width: 100%;
 	height: 236px;
 	background: #414b57;
 }
 
 .instructor-mycourses .course-wrapper .middle-content .image-container img{
-	max-width: 100%;
+	width: 100%;
 	height: 100%;
 }
 
 .instructor-mycourses .course-wrapper .middle-content .description{
-	width: 439px;
+	width: 100%;
+	min-height: 236px;
 	position: relative;
 	padding: 0 45px 0 60px;
 }
 
-.instructor-mycourses .course-wrapper .middle-content .description .status-box{
-	display: block;
-	padding: 14px 25px;
-	border-radius: 5px 5px 0 0;
-	border: solid #92cc2e;
-	border-width: 1px 1px 0 1px;
-	background: #fff;
-	font-size: 14px;
-	color: #333;
-	position: absolute;
-	bottom: 0;
-	left: 60px;
-	font-weight: 200;
-}
 
 .instructor-mycourses .course-wrapper .middle-content .description .status-box em{
 	font-style: normal;
@@ -6587,7 +6586,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 
 .instructor-mycourses .course-wrapper .middle-content .buttons{
-	width: 175px;
+	width: 100%;
 	border-left: solid 1px #b0bfc1;
 }
 
@@ -6599,7 +6598,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 
 .instructor-mycourses .course-wrapper .middle-content .buttons ul li{
-	height: 59px;
+	height: 118px;
 	width: 100% 
 }
 
@@ -6617,7 +6616,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	width: 30px;
 	float: left;
 	position: relative;
-	margin: 15px 30px 0 20px;
+	margin: 45px 25px 0 15px;
 	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-19.png');
 	background-repeat: no-repeat;
 }
@@ -6656,7 +6655,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	font-size: 14px;
 	color: #333;
 	font-style: normal;
-	line-height: 59px;
+	line-height: 118px;
 }
 
 .instructor-mycourses .course-wrapper .middle-content .buttons ul li:nth-child(2n+2) > a{
@@ -6666,9 +6665,35 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .instructor-mycourses .course-wrapper .bottom-bar{
 	height: 40px;
 	width: 100%;
+	position: relative;
 	background: #92cc2e;
 }
 
+.instructor-mycourses .course-wrapper .bottom-bar .status-box{
+	display: block;
+	padding: 14px 25px;
+	border-radius: 5px 5px 0 0;
+	border: solid #92cc2e;
+	border-width: 1px 1px 0 1px;
+	background: #fff;
+	font-size: 14px;
+	color: #333;
+	position: absolute;
+	top: -45px;
+	left: 39.5%;
+	font-weight: 200;
+}
+
+.instructor-mycourses .course-wrapper .bottom-bar .go-to-dashboard{
+	display: inline-block;
+	float: right;
+	color: #fff;
+	font-size: 14px;
+	line-height: 40px;
+	text-transform: uppercase;
+	padding-right: 45px;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-19.png') no-repeat 139px -218px;
+}
 /************* Page Footer **************/
 footer{
 	clear:both;
@@ -6761,6 +6786,10 @@ footer{
 .big-box > img{
 	width: 53%;
 }
+
+.container.instructor-mycourses{
+	width: 1000px;
+}
 }
 
 @media (max-width:1002px){
@@ -6825,6 +6854,24 @@ footer{
 
 	.main-content-container{
 		padding: 0 20px;
+	}
+	
+	.container.instructor-mycourses{
+		width: 100%;
+	}
+	
+	.instructor-mycourses .course-wrapper .top-content .row > div + div > div{
+		float: left;
+		margin-left: 20px;
+		margin-bottom: 20px;
+	}
+
+	.instructor-mycourses .course-wrapper .top-content .row > div + div{
+		border: none;
+	}
+	
+	.instructor-mycourses .course-wrapper .bottom-bar .status-box{
+		left: 81.5%;
 	}
 }
 
@@ -6910,6 +6957,40 @@ footer{
 	background-size: contain;
 }*/
 
+.instructor-mycourses .course-wrapper .middle-content .buttons{
+	border: none;
+}
+
+.instructor-mycourses .course-wrapper .middle-content .buttons ul{
+	max-width: 140px;
+	margin: 0 auto;
+}
+
+.instructor-mycourses .course-wrapper .middle-content .buttons ul li{
+	width: auto;
+	float: left;
+	height: 70px;
+}
+
+.instructor-mycourses .course-wrapper .middle-content .buttons ul li a{
+	background: none;
+}
+
+.instructor-mycourses .course-wrapper .middle-content .buttons ul li a span{
+	margin: 20px 25px 0 15px;
+}
+
+.instructor-mycourses .course-wrapper .middle-content .buttons ul li a em{
+	display: none;
+}
+
+.instructor-mycourses .course-wrapper .bottom-bar .status-box{
+	left: 37.5%;
+}
+
+.instructor-mycourses .course-wrapper .bottom-bar{
+	margin-top: 35px;
+}
 }
 
 @media (max-width:752px){
@@ -7047,7 +7128,13 @@ header .top-menu li{
 		margin: 0 0 0 15px;
 	}
 
-																								
+	.instructor-mycourses .course-wrapper .top-content .row > div > div h4{
+		margin: 0 10px 0 20px;
+	}
+	
+	.instructor-mycourses .course-wrapper .bottom-bar .status-box{
+		left: 29.5%;
+	}
 }
 
 @media (min-width:320px) and (max-width: 480px) {
