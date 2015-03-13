@@ -32,7 +32,7 @@ class VideosController extends BaseController
             if ($video){
                 $videoId = $video->id;
                 $this->videoHelper->createTranscodingJob($videoId, $videoPath);
-                return Response::json(compact('videoId'));
+                return Response::json(compact('videoId','videoPath'));
             }
         }
         else{
