@@ -755,6 +755,8 @@ P.S
         $js->sale_kind = 'percentage';
         $js->sale_ends_on = date('Y-m-d H:i:s', strtotime('+ 4 day 2 hour'));
         $js->updateUniques();
+        
+        DB::table('courses')->update( [ 'publish_status' => 'approved' ] );
     }
 }
     
