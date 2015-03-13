@@ -287,7 +287,6 @@ function enableFileUploader($uploader){
     upload_url = $uploader.closest('form').attr('action');
     console.log( upload_url );
     $uploader.fileupload({
-                url: upload_url,
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
                 callback = $uploader.attr('data-add-callback');
