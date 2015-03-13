@@ -842,12 +842,12 @@ class LessonsSeeder extends Seeder {
         Lesson::create( ['module_id' => 6, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '9A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
         
         Lesson::create( ['module_id' => 7, 'name' => 'Vegetables', 'order' => 1, 'description' => 'Vegetables', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 7, 'name' => 'Macro Nutrients', 'order' => 4, 'description' => 'Macro Nutrients', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 7, 'name' => 'Tubers', 'order' => 4, 'description' => 'Tubers', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 7, 'name' => 'Macro Nutrients', 'order' => 2, 'description' => 'Macro Nutrients', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 7, 'name' => 'Tubers', 'order' => 3, 'description' => 'Tubers', "published" => 'yes'] );
         
         Lesson::create( ['module_id' => 8, 'name' => 'Arms', 'order' => 1, 'description' => 'Arms', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 8, 'name' => 'Shoulders', 'order' => 4, 'description' => 'Shoulders', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 8, 'name' => 'Legs', 'order' => 4, 'description' => 'Legs', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 8, 'name' => 'Shoulders', 'order' => 2, 'description' => 'Shoulders', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 8, 'name' => 'Legs', 'order' => 3, 'description' => 'Legs', "published" => 'yes'] );
     }
 }
 
