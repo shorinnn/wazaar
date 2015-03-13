@@ -33,6 +33,18 @@ class AnalyticsHelper
         }
     }
 
+    public function salesByDateRangeAndCourse($startDate, $endDate, $courseId)
+    {
+        $filterQuery = "DATE(purchases.created_at) BETWEEN '{$startDate}' AND '{$endDate}'";
+
+        if (!empty($courseId)){
+            $filterQuery .= " AND purchases.product_id = '{$courseId}'";
+        }
+
+        $query = $this->_salesRawQuery($filterQuery);
+
+        return $this->_transformCoursePurchases($query);
+    }
     public function trackingCodes($frequency = '', $courseId = null)
     {
         switch($frequency){
@@ -111,12 +123,30 @@ class AnalyticsHelper
             $sales[] = ['label' => $label, 'start' => $start, 'end' => $end, 'week' =>$this->weeklySales($courseId,$start,$end)];
         }
         $salesTotal = 0;
+        $maxSale = $this->_getMaxSalesValue($sales,'week');
 
+        $i = 0;
         foreach($sales as $sale){
             $salesTotal += $sale['week']['sales_total'];
+            $percentage = ($sale['week']['sales_total'] / $maxSale) * 100;
+            $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i++;
         }
 
         return compact('sales', 'salesTotal');
+    }
+
+    private function _getMaxSalesValue($sales,$frequency)
+    {
+        $max = 0;
+
+        foreach($sales as $sale){
+            if ($sale[$frequency]['sales_total'] > $max){
+                $max = $sale[$frequency]['sales_total'];
+            }
+        }
+
+        return $max;
     }
 
     public function salesLastFewMonths($numOfMonths, $courseId = 0)
@@ -133,9 +163,15 @@ class AnalyticsHelper
             $sales[] = ['label' => $label, 'month_date' => $month, 'year' => $year, 'month' =>$this->monthlySales($courseId, $month, $year)];
         }
         $salesTotal = 0;
+        $maxSale = $this->_getMaxSalesValue($sales,'month');
+
+        $i = 0;
 
         foreach($sales as $sale){
             $salesTotal += $sale['month']['sales_total'];
+            $percentage = ($sale['month']['sales_total'] / $maxSale) * 100;
+            $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i++;
         }
 
         return compact('sales', 'salesTotal');
@@ -154,9 +190,14 @@ class AnalyticsHelper
             $sales[] = ['label' => $label, 'year_date' => $year, 'year' => $year, 'year' =>$this->allTimeSales($courseId, $year)];
         }
         $salesTotal = 0;
+        $maxSale = $this->_getMaxSalesValue($sales,'year');
 
+        $i = 0;
         foreach($sales as $sale){
             $salesTotal += $sale['year']['sales_total'];
+            $percentage = ($sale['year']['sales_total'] / $maxSale) * 100;
+            $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i++;
         }
 
         return compact('sales', 'salesTotal');
@@ -300,7 +341,7 @@ class AnalyticsHelper
         $filterQuery = "DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND product_id = '{$courseId}'";
+            $filterQuery .= " AND course_id = '{$courseId}'";
         }
 
         $query = $this->_trackingCodesRawQuery($filterQuery);
@@ -316,7 +357,7 @@ class AnalyticsHelper
         $filterQuery = "DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)){
-            $filterQuery .= " AND product_id = '{$courseId}'";
+            $filterQuery .= " AND course_id = '{$courseId}'";
         }
 
         $query = $this->_trackingCodesRawQuery($filterQuery);
@@ -496,15 +537,32 @@ class AnalyticsHelper
         return $this->_transformCoursePurchaseConversion($query);
     }
 
-    public function jsonCoursePurchases($sales)
+    public function purchasesLabelData($sales, $dates = [])
     {
         $labels = [];
         $data = [];
 
-        foreach($sales['data'] as $sale){
-            $labels[] = date('F d, Y', strtotime($sale['created_at']));
-            $data[] =  $sale['total_purchase'];
+        if (count($dates) == 0){
+            for($i = 0; $i <= 7; $i++){
+                $dates[] = date('F d, Y',strtotime(Input::get('startDate') . ' -'. $i .' days'));
+            }
         }
+
+        foreach($dates as $date){
+            $saleValue = 0;
+            foreach($sales['data'] as $sale){
+                $purchaseDate = date('F d, Y', strtotime($sale['created_at']));
+
+                if ($purchaseDate == $date){
+                    $saleValue =  $sale['total_purchase'];
+                    break;
+                }
+            }
+
+            $labels[] = $date;
+            $data[] = $saleValue;
+        }
+
 
         $labels = array_reverse($labels);
         $data = array_reverse($data);
@@ -706,6 +764,29 @@ class AnalyticsHelper
         }
 
         return date('Y-m-d');
+    }
+
+    public static function frequencyReadable($frequency)
+    {
+        switch($frequency){
+            case 'week': return trans('analytics.week');
+            case 'month' : return trans('analytics.month');
+            case 'alltime': return trans('analytics.alltime');
+            default:
+                return trans('analytics.today');
+        }
+    }
+
+    public function chartColorCombo($index)
+    {
+        $colorCombo = [
+                            ['#787A40', '#9FBF8C', '#C8AB65'],
+                            ['#E8D0A9','#B7AFA3','#C1DAD6'],
+                            ['#FFFF66','#FFCC00','#FF9900'],
+                            ['#4F2412','#C9A798','#E9E0DB'],
+                            ['#999967','#666666','#CCCCCC'],
+                      ];
+        return $colorCombo[$index];
     }
 
 
