@@ -52,7 +52,7 @@ class VideoHelper
                             $videoFormats = $videoHelper->extractVideoFormatsFromOutputs($videoId,
                                 $transcodeJob['Outputs']);
                             VideoFormat::insert($videoFormats);
-                            unlink($videoPath);
+                            //unlink($videoPath);
                         }
 
                         $job->delete();

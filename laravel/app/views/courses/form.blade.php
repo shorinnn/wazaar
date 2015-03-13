@@ -217,8 +217,8 @@
                         	<div class="col-md-12">
                                 <div class="who-its-for">
                                 	<h3>{{ trans('courses/general.who_is_this_for') }}</h3>
-                                        @if($values = json2Array($course->who_is_this_for))
                                         <?php $i = 1;?>
+                                        @if($values = json2Array($course->who_is_this_for))
                                             @foreach($values as $val)
                                             <div class="clonable-{{time().$i}}">
                                                  <span>{{$i}}</span>

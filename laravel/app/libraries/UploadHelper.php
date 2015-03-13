@@ -18,9 +18,10 @@ class UploadHelper
     {
         $key = Str::random();
 
-        $file      = file_get_contents($file);
         $mime      = mimetype($file);
         $extension = mime_to_extension($mime);
+        $file      = file_get_contents($file);
+
 
         $s3 = AWS::get('s3');
 
