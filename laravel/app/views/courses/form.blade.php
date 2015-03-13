@@ -23,38 +23,95 @@
 @if (Session::get('error'))
 <div class="alert alert-danger">{{ Session::get('error') }}</div>
 @endif
+<div class="container-fluid instructor-course-editor">
+    <div role="tabpanel">
+        <div class="header clearfix">
+            <a href='{{action("CoursesController@myCourses")}}' class="all-my-courses btn btn-link">{{ trans('courses/general.all_my_courses') }}</a>
+        
+            <!-- Nav tabs -->
+            <ul class="nav nav-pills" id="instructor-editor" role="tablist">
+                <li role="presentation" class="active right-twenty-margin">
+                    <a href="#curriculum-tab" aria-controls="curriculum-tab" role="tab" data-toggle="tab">Curriculum</a>
+                </li>
+                <li role="presentation">
+                    <a href="#course-edit" aria-controls="course-edit" role="tab" data-toggle="tab">Course Edit</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 <div class="container instructor-course-editor">
 	<div class="row">
     	<div class="col-md-12">
 
-            <div role="tabpanel">
-                <div class="header clearfix">
-                    <a href='{{action("CoursesController@myCourses")}}' class="all-my-courses btn btn-link">{{ trans('courses/general.all_my_courses') }}</a>
-                
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-pills" id="instructor-editor" role="tablist">
-                        <li role="presentation" class="active right-twenty-margin">
-                            <a href="#course-edit" aria-controls="course-edit" role="tab" data-toggle="tab">Course Edit</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#curriculum-tab" aria-controls="curriculum-tab" role="tab" data-toggle="tab">Curriculum</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
                   <!-- Tab panes -->
                 <div class="tab-content">
+                    <!-- Curriculum contents here -->
+                    <div role="tabpanel" class="tab-pane fade in active" id="curriculum-tab">
+                        <div class="container course-editor">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h1 class='icon'>{{$course->name}}</h1>   
+                                </div>
+                            </div>
+                            <div class="row"> 
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <div class="what-to-achieve">
+                                        <h3>{{ trans('courses/create.by_the_end') }}</h3>
+                                        @foreach( json2Array($course->what_will_you_achieve) as $skill)
+                                            <ul>
+                                                <li>{{ $skill }}</li>
+                                            </ul>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <div class="who-for">
+                                        <h3>{{ trans('courses/curriculum.for_those_who') }}</h3>
+                                        @foreach( json2Array($course->who_is_this_for) as $for)
+                                            <ul>
+                                                <li>{{ $for }}</li>
+                                            </ul>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="plan-your-curriculum">
+                                        <h2>{{ trans('courses/curriculum.plan_out') }}
+                                        <span>{{ trans('courses/curriculum.outline_modules') }}</span>
+                                        </h2>
+                                        <ul id="modules-list">
+                                            @foreach($course->modules()->orderBy('order','ASC')->get() as $module)
+                                                {{ View::make('courses.modules.module')->with(compact('module')) }}
+                                            @endforeach
+                                        </ul>                    
+                                        <form method='post' class='ajax-form' id="modules-form" data-callback='addModule'
+                                              action='{{ action('ModulesController@store',[$course->id] )}}'>
+                                            <input type='hidden' name='_token' value='{{ csrf_token() }}' />
+                                            <button type='submit' class='add-new-module'>{{ trans('crud/labels.add_module') }}</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    @include('videos.archiveModal')
+                    </div>
+                    <!-- Curriculum End -->
+                    
                     <!-- Course Edit contents here -->
-                    <div role="tabpanel" class="tab-pane fade in active" id="course-edit">
-                    	<div class="row">
-                        	<div class="col-md-12">
-                            	<div id="top-form">
+                    <div role="tabpanel" class="tab-pane fade" id="course-edit">
                                     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'id' =>'create-form', 
                                                 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form', 'data-callback'=>'formSaved'])}}
+                     	<div class="row">
+                        	<div class="col-md-12">
+                            	<div id="top-form">
                             
                                     <div class="clearfix">
                                     	<label>{{ trans('courses/general.privacy_status') }} </label>
@@ -312,60 +369,7 @@
                             </div>
                        </div>	 
                    </div>        
-                   
-                <!-- Curriculum contents here -->
-                <div role="tabpanel" class="tab-pane fade" id="curriculum-tab">
-                    <div class="container course-editor">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h1 class='icon'>{{$course->name}}</h1>   
-                            </div>
-                        </div>
-                        <div class="row"> 
-                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                <div class="what-to-achieve">
-                                    <h3>{{ trans('courses/create.by_the_end') }}</h3>
-                                    @foreach( json2Array($course->what_will_you_achieve) as $skill)
-                                        <ul>
-                                            <li>{{ $skill }}</li>
-                                        </ul>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-6">
-                                <div class="who-for">
-                                    <h3>{{ trans('courses/curriculum.for_those_who') }}</h3>
-                                    @foreach( json2Array($course->who_is_this_for) as $for)
-                                        <ul>
-                                            <li>{{ $for }}</li>
-                                        </ul>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="plan-your-curriculum">
-                                    <h2>{{ trans('courses/curriculum.plan_out') }}
-                                    <span>{{ trans('courses/curriculum.outline_modules') }}</span>
-                                    </h2>
-                                    <ul id="modules-list">
-                                        @foreach($course->modules()->orderBy('order','ASC')->get() as $module)
-                                            {{ View::make('courses.modules.module')->with(compact('module')) }}
-                                        @endforeach
-                                    </ul>                    
-                                    <form method='post' class='ajax-form' id="modules-form" data-callback='addModule'
-                                          action='{{ action('ModulesController@store',[$course->id] )}}'>
-                                        <input type='hidden' name='_token' value='{{ csrf_token() }}' />
-                                        <button type='submit' class='add-new-module'>{{ trans('crud/labels.add_module') }}</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                @include('videos.archiveModal')
-                </div>
-                </div>
+               </div>
                 
             </div>
 		</div>
