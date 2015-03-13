@@ -7,7 +7,8 @@ class ClassroomCest{
         $I->haveEnabledFilters();
         $student = Student::where('username','student')->first();
         $lesson = Lesson::first();
-        $student->purchase( $lesson->module->course );
+        $this->paymentData['successData']['REF'] = '123';
+        $student->purchase( $lesson->module->course, null, $this->paymentData );
     }
 
     public function seeNoCourse(FunctionalTester $I){
@@ -20,7 +21,7 @@ class ClassroomCest{
     public function seePurchasedCourse(FunctionalTester $I){
         $user = Student::where('username','mac')->first();
         $lesson = Lesson::first();
-        $user->purchase( $lesson->module->course );
+        $user->purchase( $lesson->module->course, null, $this->paymentData );
         $I->amLoggedAs($user);
         $I->amOnPage('/student/mycourses');
         $I->see('Go To Dashboard');
@@ -29,7 +30,7 @@ class ClassroomCest{
     public function goToCourseDash(FunctionalTester $I){
         $user = Student::where('username','mac')->first();
         $lesson = Lesson::first();
-        $user->purchase( $lesson->module->course );
+        $user->purchase( $lesson->module->course, null, $this->paymentData );
         $I->amLoggedAs($user);
         $I->amOnPage('/student/mycourses');
         $I->click('Go To Dashboard');
@@ -39,7 +40,7 @@ class ClassroomCest{
     public function markLessonViewed(FunctionalTester $I){
         $user = Student::where('username','mac')->first();
         $lesson = Lesson::first();
-        $I->assertTrue( $user->purchase( $lesson->module->course ) );
+        $I->assertNotEquals(false, $user->purchase( $lesson->module->course, null, $this->paymentData ) );
         $I->assertFalse( $user->isLessonViewed($lesson) );
         $I->amLoggedAs($user);
         $I->dontSeeRecord('viewed_lessons', ['student_id' => $user->id, 'lesson_id' => $lesson->id]);

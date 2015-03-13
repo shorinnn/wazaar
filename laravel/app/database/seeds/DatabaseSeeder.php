@@ -418,8 +418,11 @@ class CoursesSeeder extends Seeder {
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         
+        CourseBannerImage::$skip_upload = true;
+        CourseBannerImage::create( ['instructor_id' => 11, 'url' => 'https://wazaar.s3.amazonaws.com/course_preview/banner-55031453941e2.jpg'] );
+        
         Course::create( ['name' => '３ヶ月で10キロ痩せてハイパフォーマーになる『体』やり直し講座', 'instructor_id' => 11, 'course_category_id' => 6,  
-                        'course_subcategory_id' => 6, 
+                        'course_subcategory_id' => 6, 'course_banner_image_id' => 1,
                         'price' => 300000,  'course_difficulty_id' => 1,  'course_preview_image_id' => 9,
                         'description' => '
                             正直に告白します。
@@ -828,7 +831,7 @@ class LessonsSeeder extends Seeder {
         Lesson::create( ['module_id' => 3, 'name' => 'Let\'s recap', 'order' => 1, 'description' => '6A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
         Lesson::create( ['module_id' => 3, 'name' => 'Now that you know', 'order' => 2, 'description' => '7A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
         Lesson::create( ['module_id' => 3, 'name' => 'We\'re almost done', 'order' => 3, 'description' => '8A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 3, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '9A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 3, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '9A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes', 'price'=>2] );
         
         Lesson::create( ['module_id' => 4, 'name' => 'Welcome', 'order' => 1, 'description' => '1A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
         Lesson::create( ['module_id' => 4, 'name' => 'Advanced Stuff', 'order' => 2, 'description' => '2A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
@@ -838,7 +841,7 @@ class LessonsSeeder extends Seeder {
         Lesson::create( ['module_id' => 6, 'name' => 'Let\'s recap', 'order' => 1, 'description' => '6A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
         Lesson::create( ['module_id' => 6, 'name' => 'Now that you know', 'order' => 2, 'description' => '7A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
         Lesson::create( ['module_id' => 6, 'name' => 'We\'re almost done', 'order' => 3, 'description' => '8A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 6, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '9A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
+        Lesson::create( ['module_id' => 6, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '9A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes', 'price'=>2] );
         
         Lesson::create( ['module_id' => 7, 'name' => 'Vegetables', 'order' => 1, 'description' => 'Vegetables', "published" => 'yes'] );
         Lesson::create( ['module_id' => 7, 'name' => 'Macro Nutrients', 'order' => 2, 'description' => 'Macro Nutrients', "published" => 'yes'] );

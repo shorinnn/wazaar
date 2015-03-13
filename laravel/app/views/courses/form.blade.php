@@ -108,7 +108,7 @@
                     <!-- Course Edit contents here -->
                     <div role="tabpanel" class="tab-pane fade" id="course-edit">
                                     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'id' =>'create-form', 
-                                                'files' => true, 'method' => 'PUT', 'class' => 'ajax-form', 'data-callback'=>'formSaved'])}}
+                                         'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'formSaved'])}}
                      	<div class="row">
                         	<div class="col-md-12">
                             	<div id="top-form">

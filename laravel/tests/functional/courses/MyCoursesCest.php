@@ -154,7 +154,7 @@ class MyCourseCest{
         $I->amOnPage('/courses/'.$course->slug.'/edit');
         $I->seeInField(['name' => 'sale'], '0');
 //        $I->fillField(['name' => 'sale'], '5');
-        $I->submitForm('form', ['sale' => '5', 'sale_kind' => 'amount', 'name' => 'sorin']);
+        $I->submitForm('#edit-course-form', ['sale' => '5', 'sale_kind' => 'amount', 'name' => 'sorin']);
         $I->see('Course Updated');
         $course = Course::find( $course->id );
         $I->assertEquals('sorin', $course->name);
@@ -168,9 +168,9 @@ class MyCourseCest{
         $I->amLoggedAs($instructor);
         $I->amOnPage('/courses/'.$course->slug.'/edit');
 //        $I->fillField(['name' => 'sale'], '-5');
-        $I->submitForm('form', ['sale' => '-5', 'sale_kind' => 'amount']);
+        $I->submitForm('#edit-course-form', ['sale' => '-5', 'sale_kind' => 'amount']);
 //        $I->selectOption(['name' => 'sale_kind'], 'amount');
-        $I->click('Update');
+//        $I->click('Update');
         $I->see('Could not save Course');
     }
     
@@ -180,9 +180,9 @@ class MyCourseCest{
         $I->amLoggedAs($instructor);
         $I->amOnPage('/courses/'.$course->slug.'/edit');
 //        $I->fillField(['name' => 'sale'], '999999999');
-        $I->submitForm('form', ['sale' => '999999999', 'sale_kind' => 'amount']);
+        $I->submitForm('#edit-course-form', ['sale' => '999999999', 'sale_kind' => 'amount']);
 //        $I->selectOption(['name' => 'sale_kind'], 'amount');
-        $I->click('Update');
+//        $I->click('Update');
         $I->see('Could not save');
         $I->dontSeeInField(['name' => 'sale'], '999999999.00');
     }
@@ -194,8 +194,8 @@ class MyCourseCest{
         $I->amOnPage('/courses/'.$course->slug.'/edit');
 //        $I->fillField(['name' => 'sale'], '200');
 //        $I->selectOption(['name' => 'sale_kind'], 'percentage');
-        $I->submitForm('form', ['sale' => '200', 'sale_kind' => 'percentage']);
-        $I->click('Update');
+        $I->submitForm('#edit-course-form', ['sale' => '200', 'sale_kind' => 'percentage']);
+//        $I->click('Update');
         $I->see('Could not save');
         $I->dontSeeInField(['name' => 'sale'], '200.00');
     }

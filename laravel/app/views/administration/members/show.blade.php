@@ -179,9 +179,13 @@
 
 @if( $student->hasRole('Instructor') )
 <?php
-    $instructor = Instructor::with('courses.sales')
-            ->with('courses.modules')->with('courses.modules.lessons')
-            ->with('courses.modules.lessons.sales')->with('courses')->where( 'id', $student->id )->first();
+    $instructor = Instructor::where( 'id', $student->id )
+            ->with('coursesRel')
+            ->with('coursesRel.sales')
+            ->with('coursesRel.modules')
+            ->with('coursesRel.modules.lessons')
+            ->with('coursesRel.modules.lessons.sales')
+            ->first();
     $i = 1;
 ?>
     <div class="container members-view-wrapper members-area teacher-stats-table">
@@ -192,7 +196,7 @@
                     <table class="table teacher-table">
                         <tr>
                             <td class="title no-border">Number of Courses:</td>
-                            <td class="no-border"> {{ $instructor->courses->count() }}</td>
+                            <td class="no-border"> {{ $instructor->coursesRel->count() }}</td>
                         </tr>
                         <tr>
                             <td class="title no-border">Total Sales:</td>
@@ -219,7 +223,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($instructor->courses as $course)
+                            @foreach($instructor->coursesRel as $course)
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>
