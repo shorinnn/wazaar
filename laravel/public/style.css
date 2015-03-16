@@ -6460,6 +6460,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	color: #92cc2e;
 	font-style: normal;
 	display: none;
+	line-height: 64px;
 }
 
 

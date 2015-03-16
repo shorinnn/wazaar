@@ -88,7 +88,8 @@
 								$('.plan-your-curriculum .lesson-options .buttons.active span').addClass('processed');
 								$('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
 								$('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
-								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
+								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].thumbnail);
+								//$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
 								//$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
 								//reload video partial
 							}
