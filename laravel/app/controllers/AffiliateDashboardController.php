@@ -19,7 +19,7 @@ class AffiliateDashboardController extends BaseController
     {
         $topCourses = $this->analyticsHelper->topCourses($frequency, $courseId);
         if (is_array($topCourses)) {
-            return View::make('analytics.partials.topCourses', compact('topCourses'))->render();
+            return View::make('analytics.partials.topCourses', compact('topCourses','frequency'))->render();
         }
     }
 
@@ -93,7 +93,7 @@ class AffiliateDashboardController extends BaseController
 
         if ($course) {
             $sales = $this->analyticsHelper->sales('week',$courseId);
-            $salesLabelData = $this->analyticsHelper->jsonCoursePurchases($sales);
+            $salesLabelData = $this->analyticsHelper->purchasesLabelData($sales);
 
             $trackingCodesSalesView = $this->trackingCodesSalesView('', $courseId);
             $salesView = $this->salesView('', $courseId);
@@ -103,9 +103,57 @@ class AffiliateDashboardController extends BaseController
         }
     }
 
-    public function compareCourses()
+    public function compareCourses($defaultCourseId)
     {
+        if (Input::has('courseIds') AND Input::has('startDate') AND Input::has('endDate')) {
+            $courseIds = Input::get('courseIds');
 
+
+
+            $startDate = new \Carbon\Carbon(Input::get('startDate'));
+            $endDate = new Carbon\Carbon(Input::get('endDate'));
+
+
+            $datesDiff = $startDate->diffInDays($endDate);
+
+            $datesArr = [];
+
+            for($i = 0; $i <= $datesDiff; $i++){
+                $datesArr[] = date('F d, Y',strtotime(Input::get('endDate') . ' -'. $i .' days'));
+            }
+
+
+            $idsInArr = explode(',',$courseIds);
+            $idsInArr[] = $defaultCourseId;
+            $courses = Course::whereIn('id', $idsInArr)->get();
+            $dataSets = [];
+
+            $index = 0;
+            $label = '';
+
+            foreach($courses as $course){
+                $sales = $this->analyticsHelper->salesByDateRangeAndCourse($startDate->format('Y-m-d'),$endDate->format('Y-m-d'),$course->id);
+                $salesLabelAndData = $this->analyticsHelper->purchasesLabelData($sales, $datesArr);
+                $colorCombo = $this->analyticsHelper->chartColorCombo($index);
+                $dataSet = [
+                        'label' => $course->name,
+                        'fillColor' =>  $colorCombo[0],
+                        'strokeColor' =>  $colorCombo[1],
+                        'pointColor' => $colorCombo[2],
+                        'pointStrokeColor' =>  $colorCombo[2],
+                        'pointHighlightFill' =>  $colorCombo[2],
+                        'pointHighlightStroke' => $colorCombo[2],
+                        'data' => $salesLabelAndData['data']
+                ];
+                $label = $salesLabelAndData['labels'];
+
+                $dataSets[] = $dataSet;
+                $index++;
+            }
+
+            return Response::json(compact('label','dataSets'));
+
+        }
     }
 
     public function courseTrackingCodesStatistics($courseId, $trackingCode)
@@ -128,13 +176,5 @@ class AffiliateDashboardController extends BaseController
         return View::make('affiliate.dashboard.index', compact('topCoursesView', 'salesView', 'trackingCodesSalesView', 'courseConversionView', 'trackingCodeConversionView'));
     }
 
-    private function _adminDashboard()
-    {
-        return View::make('administration.dashboard.index');
-    }
 
-    private function _studentDashboard()
-    {
-        return View::make('student.dashboard.index');
-    }
 }

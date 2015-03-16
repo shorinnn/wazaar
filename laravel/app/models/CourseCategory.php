@@ -9,15 +9,19 @@ class CourseCategory extends Ardent{
     );
     
     public function homepageCourses(){
-         return $this->allCourses()->orderBy('id','desc')->where('featured',0)->where('privacy_status','public')->limit(6);
+         return $this->allCourses()->orderBy('id','desc')->where('featured',0)
+                 ->where('publish_status','approved')
+                 ->where('privacy_status','public')->limit(6);
     }
     
     public function unauthenticatedHomepageCourses(){
-         return $this->allCourses()->orderBy('id','desc')->where('privacy_status','public')->limit(3);
+         return $this->allCourses()->orderBy('id','desc')
+                 ->where('publish_status','approved')
+                 ->where('privacy_status','public')->limit(3);
     }
 
     public function featuredCourse(){
-        return $this->allCourses()->where('featured',1);
+        return $this->allCourses()->where('featured',1)->where('publish_status','approved');
     }
     
     public function courses($privacy_status = 'public'){

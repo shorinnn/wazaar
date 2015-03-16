@@ -27,7 +27,7 @@ class Instructor extends User{
     
     public function totalSales(){
         $amount = 0;
-        foreach($this->courses as $course){
+        foreach($this->coursesRel as $course){
              $amount += $course->sales->sum('purchase_price') + $course->lessonSales();
         }
         return $amount;

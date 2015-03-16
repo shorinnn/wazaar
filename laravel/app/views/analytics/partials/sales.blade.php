@@ -1,6 +1,4 @@
-<h2>¥{{number_format($sales['sales_total'],2)}}
-    <span>(+20%)</span>
-</h2>
+<h2>¥{{number_format($sales['sales_total'],2)}}</h2>
 
 <ul>
     @foreach($sales['data'] as $sale)

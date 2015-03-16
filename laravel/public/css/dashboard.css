@@ -171,8 +171,16 @@
 #sales-today ul li > div span{
 	display: block;
 	height: 8px;
-	border-radius: 4px 0 0 4px;
+	border-radius: 4px;
 	background: #96cf2d;
+}
+
+#sales-today ul li > div div.progress{
+    display: block;
+    height: 8px;
+    border-radius: 4px;
+    background: #96cf2d;
+    margin-bottom: 0 !important;
 }
 
 #sales-today ul li > em{

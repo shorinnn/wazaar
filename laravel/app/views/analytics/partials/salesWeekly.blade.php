@@ -8,7 +8,7 @@
         <li id="monday" class="clearfix">
             <span>{{$sale['label']}}</span>
             <div>
-                <span></span>
+                <div class="progress" style="width: {{$sale['percentage']}}%"></div>
             </div>
             <em>¥{{number_format($sale['week']['sales_total'],2)}}</em>
         </li>

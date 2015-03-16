@@ -100,19 +100,21 @@ class CoursesController extends \BaseController {
             if( Input::has("course_banner_image_id") ) $course->course_banner_image_id = Input::get("course_banner_image_id");
             
             $course->fill($data);
-            if(!is_array(Input::get('who_is_this_for')) || count(Input::get('who_is_this_for') ==0 )){
-                $course->who_is_this_for = json_encode([]);
-            }
-            else{
+//            if(!is_array(Input::get('who_is_this_for')) || count(Input::get('who_is_this_for') ==0 )){
+//                $course->who_is_this_for = json_encode([]);
+//            }
+//            else{
+//                $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
+//            }
                 $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
-            }
             
-            if(!is_array(Input::get('what_will_you_achieve')) || count(Input::get('what_will_you_achieve') ==0 )){
-                $course->what_will_you_achieve = json_encode([]);
-            }
-            else{
+//            if(!is_array(Input::get('what_will_you_achieve')) || count(Input::get('what_will_you_achieve') ==0 )){
+//                $course->what_will_you_achieve = json_encode([]);
+//            }
+//            else{
+//                $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
+//            }
                 $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
-            }
             $course->sale = Input::get('sale');
             $course->sale_kind = Input::get('sale_kind');
             $course->sale_ends_on = (Input::get('sale_ends_on')) ?  Input::get('sale_ends_on') : null;
@@ -141,7 +143,7 @@ class CoursesController extends \BaseController {
                         return json_encode(['status'=>'success', 'html'=> View::make('courses.preview_image')->with(compact('img'))->render() ]);
                     }
                 }
-                if(Request::ajax()){
+                if( Request::ajax() ){
                     $response = ['status' => 'success', 'url' => action('CoursesController@curriculum', $course->slug) ];
                     return json_encode($response);
                 }
@@ -238,8 +240,8 @@ class CoursesController extends \BaseController {
             
             $course = Course::where('slug', $slug)->first();
             $student = Student::current(Auth::user());
-            
-            if( $student->purchase( $course, Cookie::get( "aid-$course->id" ) ) ){
+            $paymentData['successData']['REF'] = '123';
+            if( $student->purchase( $course, Cookie::get( "aid-$course->id" ), $paymentData ) ){
                 // unset the affiliate cookie
                 Cookie::queue("aid-$course->id", null, -1);
                 return Redirect::action('ClassroomController@dashboard', $slug);
@@ -259,7 +261,8 @@ class CoursesController extends \BaseController {
             $course = Course::where('slug', $slug)->first();
             $student = Student::current(Auth::user());
             $lesson = Lesson::find( $lesson );
-            if( $student->purchase( $lesson, Cookie::get( "aid-$course->id" ) ) ){
+            $paymentData['successData']['REF'] = '123';
+            if( $student->purchase( $lesson, Cookie::get( "aid-$course->id" ), $paymentData ) ){
                 return Redirect::action('ClassroomController@dashboard', $slug);
             }
             else{

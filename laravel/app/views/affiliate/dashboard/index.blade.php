@@ -102,7 +102,8 @@
                         <ul id="wrapper-tracking-codes">
                             {{$trackingCodesSalesView}}
                         </ul>
-                        <a href="#" class="view-all">View All</a>
+
+
                     </div>
                 </div>
             </div>

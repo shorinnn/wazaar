@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="header clearfix">
-                        <h1>Course Statistics : {{$course->name}}</h1>
+                        <h1>{{trans('analytics.courseStats')}} : {{$course->name}}</h1>
                     </div>
                 </div>
             </div>
@@ -18,26 +18,26 @@
                     <div>
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop4" type="button">
-                                Top Tracking Codes <span id="header-tracking-codes-frequency">Today</span></button>
+                                {{trans('analytics.topTrackingCodes')}} <span id="header-tracking-codes-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu tracking-codes-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.trackingSalesCodes('daily',{{$course['id']}}, this); return false;">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.trackingSalesCodes('daily',{{$course['id']}}, this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('week',{{$course['id']}}, this); return false;">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('week',{{$course['id']}}, this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('month',{{$course['id']}}, this); return false;">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('month',{{$course['id']}}, this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('alltime',{{$course['id']}}, this); return false;">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('alltime',{{$course['id']}}, this); return false;">{{trans('analytics.alltime')}}</a>
                                 </li>
                             </ul>
                         </div>
                         <ul id="wrapper-tracking-codes">
                             {{$trackingCodesSalesView}}
                         </ul>
-                        <a href="#" class="view-all">View All</a>
+
                     </div>
                 </div>
 
@@ -45,19 +45,19 @@
                     <div id="sales-today">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                Sales <span id="header-sales-frequency">Today</span></button>
+                                {{trans('analytics.sales')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.sales('daily',{{$course['id']}}, this); return false;">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.sales('daily',{{$course['id']}}, this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('week',{{$course['id']}}, this); return false;">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('week',{{$course['id']}}, this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('month',{{$course['id']}}, this); return false;">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('month',{{$course['id']}}, this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('alltime',{{$course['id']}}, this); return false;">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('alltime',{{$course['id']}}, this); return false;">{{trans('analytics.alltime')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -73,19 +73,19 @@
                     <div>
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop6" type="button">
-                                Tracking Code Converting <span id="header-tracking-code-conversions-frequency">Today</span> </button>
+                                {{trans('analytics.trackingCodeConverting')}} <span id="header-tracking-code-conversions-frequency">{{trans('analytics.today')}}</span> </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu tracking-code-conversions-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.trackingCodeConversions('daily',{{$course['id']}}, this); return false;">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.trackingCodeConversions('daily',{{$course['id']}}, this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('week',{{$course['id']}}, this); return false;">This week</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('week',{{$course['id']}}, this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('month',{{$course['id']}}, this); return false;">This month</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('month',{{$course['id']}}, this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('alltime',{{$course['id']}}, this); return false;">All time</a>
+                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('alltime',{{$course['id']}}, this); return false;">{{trans('analytics.alltime')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -115,7 +115,7 @@
                     <div class='col-md-2'>
                         <div class="form-group">
                             <div class='input-group date' id='start-date'>
-                                <input type='text' class="form-control" />
+                                <input type='text' class="form-control" id="startDate" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
                             </div>
@@ -125,7 +125,7 @@
                     <div class='col-md-2'>
                         <div class="form-group">
                             <div class='input-group date' id='end-date'>
-                                <input type='text' class="form-control" />
+                                <input type='text' class="form-control" id="endDate" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
                             </div>
@@ -137,8 +137,15 @@
                     </div>
             </div>
             <canvas id="myChart" width="980px" height="400"></canvas>
+
+            <div id="chartLegend">
+
+
+            </div>
         </div>
     </div>
+
+    <div id="course-id" data-course-id="{{$course['id']}}"></div>
 @stop
 
 @section('extra_css')
@@ -153,33 +160,8 @@
     <script src="{{url('resources/datetimepicker/src/js/bootstrap-datetimepicker.js')}}"></script>
     <script type="text/javascript" src="{{url('js/analytics.js')}}"></script>
     <script type="text/javascript">
+        var courseId = $('#course-id').attr('data-course-id');
         $(function (){
-
-
-            $('#start-date').datetimepicker({format: 'MM/DD/YYYY'});
-            $('#end-date').datetimepicker({format: 'MM/DD/YYYY'});
-            $("#start-date").on("dp.change",function (e) {
-                $('#end-date').data("DateTimePicker").minDate(e.date);
-            });
-            $("#end-date").on("dp.change",function (e) {
-                $('#start-date').data("DateTimePicker").maxDate(e.date);
-            });
-
-
-            $("#select-courses").select2({
-                maximumSelectionSize: 5
-            });
-
-
-            $('#btn-update-chart').on('click', function (){
-                var $courses = [];
-                $('#select-courses :selected').each(function(i, selected){
-                    $courses.push($(selected).val());
-                });
-            });
-
-
-
             var data = {
                 labels: {{json_encode($salesLabelData['labels'])}},
                 datasets: [
@@ -202,6 +184,55 @@
             var myLineChart = new Chart(ctx).Line(data,{
                 bezierCurve: false
             });
+
+            $('#start-date').datetimepicker({format: 'MM/DD/YYYY'});
+            $('#end-date').datetimepicker({format: 'MM/DD/YYYY'});
+            $("#start-date").on("dp.change",function (e) {
+                $('#end-date').data("DateTimePicker").minDate(e.date);
+            });
+            $("#end-date").on("dp.change",function (e) {
+                $('#start-date').data("DateTimePicker").maxDate(e.date);
+            });
+
+
+            $("#select-courses").select2({
+                maximumSelectionSize: 5
+            });
+
+
+            $('#btn-update-chart').on('click', function (){
+                var $courses = [];
+                $('#select-courses :selected').each(function(i, selected){
+                    $courses.push($(selected).val());
+                });
+
+                var $startDate = $('#startDate').val();
+                var $endDate = $('#endDate').val();
+                $.post('/dashboard/course/'+ courseId +'/stats/compare', {'courseIds' : $courses.join(','),'startDate': $startDate, 'endDate': $endDate }, function (responseData){
+                    myLineChart.destroy();
+                    data.labels = responseData.label;
+                    data.datasets = responseData.dataSets;
+                    myLineChart = new Chart(ctx).Line(data,{
+                        bezierCurve: false
+                    });
+
+                    //console.log(responseData.dataSets);
+                    $('#chartLegend').html('');
+                    for (var $i in responseData.dataSets){
+                        $('#chartLegend').append('<div><span style="background-color: '+ responseData.dataSets[$i].pointColor +'">---</span> '+ responseData.dataSets[$i].label +'</div>')
+                    }
+
+                },'json');
+
+
+
+
+
+            });
+
+
+
+
         });
     </script>
 @stop

@@ -46,7 +46,7 @@
                         @endif
         
                         {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
-                         @if(Auth::guest() || !Student::find(Auth::user()->id)->purchased($course) )
+                         @if(Auth::guest() || Student::find(Auth::user()->id)->canPurchase($course) )
                               <button class="join-class">
                          @else 
                               <button class="join-class" disabled="disabled">

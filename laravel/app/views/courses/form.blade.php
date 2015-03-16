@@ -108,7 +108,7 @@
                     <!-- Course Edit contents here -->
                     <div role="tabpanel" class="tab-pane fade" id="course-edit">
                                     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'id' =>'create-form', 
-                                                'files' => true, 'method' => 'PUT', 'class' => 'ajax-form', 'data-callback'=>'formSaved'])}}
+                                         'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'formSaved'])}}
                      	<div class="row">
                         	<div class="col-md-12">
                             	<div id="top-form">
@@ -224,16 +224,16 @@
                                         
                                         
                                         <span class="use-existing use-existing-preview" id="use-existing-preview">
-                                        @if($images->count() > 0)
                                         <span class="use-existing">{{ trans('crud/labels.or_use_existing') }}:</span>
                                         	<div class="row">
-                                            	<div class="radio-buttons clearfix">
-                                            @foreach($images as $img)
-                                                {{ View::make('courses.preview_image')->with(compact('img')) }}
-                                            @endforeach
-                                            	</div>
+                                                    <div class="radio-buttons clearfix">
+                                                        @if($images->count() > 0)
+                                                            @foreach($images as $img)
+                                                                {{ View::make('courses.preview_image')->with(compact('img')) }}
+                                                            @endforeach
+                                                        @endif
+                                                    </div>
                                             </div>
-                                        @endif
                                         </span>                                    
                                 </div>
                             </div>
@@ -258,16 +258,16 @@
                                         </div>
                                         
                                         <span class="use-existing use-existing-preview" id="use-existing-banner">
-                                            @if($bannerImages->count() > 0)
                                             <span class="use-existing">{{ trans('crud/labels.or_use_existing') }}:</span>
-                                        		<div class="row">
-                                            		<div class="radio-buttons clearfix">
-                                                @foreach($bannerImages as $img)
-                                                    {{ View::make('courses.preview_image')->with(compact('img')) }}
-                                                @endforeach
+                                                <div class="row">
+                                                    <div class="radio-buttons clearfix">
+                                                    @if($bannerImages->count() > 0)
+                                                        @foreach($bannerImages as $img)
+                                                            {{ View::make('courses.preview_image')->with(compact('img')) }}
+                                                        @endforeach
+                                                    @endif
                                                 </div>
                                             </div>
-                                            @endif
                                         </span>
                                     </div>
                             </div>
