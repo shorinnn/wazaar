@@ -82,17 +82,16 @@
 								clearInterval($intervalId);
 								var uploadedVideo = $('#video-player-container-' + $lessonId).find('video');
 								var videoDuration = uploadedVideo[0].duration;
-								console.log(uploadedVideo); 
 								console.log(uploadedVideo[0]); 
 								console.log(uploadedVideo[0].duration); 
-								console.log(uploadedVideo.duration); 
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-player-container').css({
 									display: 'block'	
 								});
 								$('.lesson-options-{{$lessonId}} .buttons.active span').addClass('processed');
 								$('.lesson-options-{{$lessonId}}').find(
 									'#video-player-container').html(
-									"<P>videoDuration</P><I class='fa fa-eye'></I> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
+									"<P></P><I class='fa fa-eye'></I> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
+								$('.lesson-options-{{$lessonId}}').find('#video-player-container p').text(videoDuration);
 								$('#video-player-container-' + $lessonId).addClass('hide')
 								//$('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
 								//$('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
