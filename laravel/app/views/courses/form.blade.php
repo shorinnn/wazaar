@@ -353,13 +353,13 @@
                                             <div>                                   
                                                 <input type="text" class='span2 clear right' name='affiliate_percentage' id='affiliate_percentage' 
                                                     value="{{ $course->affiliate_percentage }}" data-slider-min="0" data-slider-max="70" 
-                                                    data-slider-step="1" data-slider-value="{{ $course->affiliate_percentage }}" 
+                                                    data-slider-step="1" data-slider-value="{{ intval( $course->affiliate_percentage ) }}" 
                                                     data-slider-orientation="horizontal" 
                                                     data-slider-selection="after" data-slider-tooltip="show" data-label="#affiliate_percentage_output" 
                                                     data-target-input='1' />
                                                 
-                                                <input type='number' id='affiliate_percentage_output' class='set-slider clear margin-bottom-20' max="70" min="0"
-                                                       value='{{ $course->affiliate_percentage }}' data-slider='#affiliate_percentage' />%
+                                                <input type='number' id='affiliate_percentage_output' class='set-slider clear margin-bottom-20'
+                                                   max="70" min="0" value='{{ intval( $course->affiliate_percentage ) }}' data-slider='#affiliate_percentage' />%
                                              </div>
                                          </div>
                                         <div class="clear clearfix margin-bottom-20">
