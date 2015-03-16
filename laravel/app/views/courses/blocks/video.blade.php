@@ -65,7 +65,7 @@
 
             },
             'successCallBack' : function ($data){
-				console.log($data);
+				console.log("Output after successcallback");
                 if ($data.result.videoId !== undefined) {
                     $('#video-player-container-' + $lessonId).find('#video-player').addClass('hide');
                     $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').removeClass('hide');
