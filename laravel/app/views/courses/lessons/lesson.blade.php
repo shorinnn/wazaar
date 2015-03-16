@@ -46,6 +46,8 @@
                         <p>{{ trans('general.video') }}</p>-->
                         <span></span>                                   
                     </a>
+                <div id="video-player-container">
+                </div>
                     
                 </div>
                 <div class="buttons text">

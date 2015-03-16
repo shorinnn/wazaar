@@ -6463,8 +6463,15 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	line-height: 64px;
 }
 
-.plan-your-curriculum .lesson-options .buttons.active div[class*='video-player-container']{
-	position: absolute;
+.plan-your-curriculum .lesson-options .buttons.active div[id*=video-player-container]{
+    background: red;
+    display: block;
+    height: 64px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 140px;
+    z-index: 1;
 }
 /************* Instructors - My courses ******************/
 
