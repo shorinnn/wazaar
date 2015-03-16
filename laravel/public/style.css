@@ -6477,11 +6477,18 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 
 .plan-your-curriculum .lesson-options .buttons.active div#video-player-container i{
-	font-size: 26px;
-	color: #92cc2e;
-	text-align: center;
-	visibility: hidden;
-	opacity: 0;
+    bottom: 0;
+    color: #92cc2e;
+    display: block;
+    font-size: 46px;
+    left: 0;
+    margin: 12px auto 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    visibility: hidden;
 	-webkit-transition: all 0.1s;
 	-moz-transition: all 0.1s;
 	transition: all 0.1s;
