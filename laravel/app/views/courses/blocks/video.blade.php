@@ -62,8 +62,8 @@
             },
             'successCallBack' : function ($data){
 				//console.log("Output after successcallback");
-				$('.plan-your-curriculum .lesson-options .buttons.active em').css('display', 'block');
-				$('.plan-your-curriculum .lesson-options .buttons.active').css({
+				$('.lesson-options-{{$lessonId}} .buttons.active em').css('display', 'block');
+				$('.lesson-options-{{$lessonId}} .buttons.active').css({
 					width: '120px',
 					border: 'solid 1px #b0bfc1'	
 				});
@@ -80,10 +80,10 @@
 							if ($video.transcode_status == 'Complete'){
 								clearInterval($intervalId);
 								console.log('Uploaded'); 
-								$('.plan-your-curriculum .lesson-options .buttons.active div#video-player-container').css({
+								$('.lesson-options-{{$lessonId}} .buttons.active div#video-player-container').css({
 									display: 'block'	
 								});
-								$('.plan-your-curriculum .lesson-options .buttons.active span').addClass('processed');
+								$('.lesson-options-{{$lessonId}} .buttons.active span').addClass('processed');
 								$('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
 								$('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].thumbnail);
