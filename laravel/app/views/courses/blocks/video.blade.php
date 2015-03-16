@@ -51,19 +51,6 @@
         var $lessonId = {{$lessonId}};
         var $intervalId = 0;
 		
-		var uploadedVideo = $('#video-player-container-' + $lessonId).find('video');
-		var videoDuration = uploadedVideo[0].duration;
-		var timeFormat = function(seconds){
-			var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);
-			var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
-			return m+":"+s;
-		};
-
-		$('.lesson-options-{{$lessonId}}').find(
-			'#video-player-container').html(
-			"<P></P><I class='fa fa-eye'></I> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
-		$('.lesson-options-{{$lessonId}}').find('#video-player-container p').text(timeFormat(videoDuration));
-		$('#video-player-container-' + $lessonId).addClass('hide')
 
         videoUploader.initialize({
             'fileInputElem' : $('#fileupload-' + $blockId),
@@ -94,15 +81,23 @@
 							console.log($video);
 							if ($video.transcode_status == 'Complete'){
 								clearInterval($intervalId);
+								var uploadedVideo = $('#video-player-container-' + $lessonId).find('video');
+								var videoDuration = uploadedVideo[0].duration;
+								var timeFormat = function(seconds){
+									var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);
+									var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
+									return m+":"+s;
+								};
+								
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-player-container').css({
 									display: 'block'	
 								});
-								$('#video-player-container-' + $lessonId).addClass('hide')
+						
 								$('.lesson-options-{{$lessonId}}').find(
 									'#video-player-container').html(
 									"<P></P><I class='fa fa-eye'></I> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
 								$('.lesson-options-{{$lessonId}}').find('#video-player-container p').text(timeFormat(videoDuration));
-								$('.lesson-options-{{$lessonId}} .buttons.active span').addClass('processed');
+								$('#video-player-container-' + $lessonId).addClass('hide')
 								//$('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
 								//$('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
