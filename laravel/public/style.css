@@ -6500,6 +6500,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .plan-your-curriculum .lesson-options .buttons.active div#video-player-container:hover i{
 	visibility: visible;
 	opacity: 1;
+	background: rgba(0, 0, 0, 0.9);
 }
 
 .plan-your-curriculum .lesson-options .buttons.active div#video-player-container img{
