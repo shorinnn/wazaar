@@ -181,11 +181,21 @@
                                     </div>
                                                 
                                     <div>
-                                        <label>{{ trans('crud/labels.assigned_instructor') }} 
-                                            <small>( will refactor so it doesnt list all instructors ever )</small></label>
-                                         <span class="custom-dropdown">
-                                            {{ Form::select( 'assigned_instructor_id', $assignableInstructors) }}
-                                         </span>
+                                        <label>{{ trans('crud/labels.assigned_instructor') }}
+                                            @if($assignedInstructor!=null)
+                                                <i class="fa fa-check assigned-check"></i>
+                                            @endif
+                                        </label>
+                                            <input type='text' class='delayed-keyup'
+                                                   id='assign-instructor' 
+                                                   data-delay='300'
+                                                   data-callback='assignInstructor'
+                                                   @if($assignedInstructor!=null)
+                                                   value="{{ $assignedInstructor->email }}"
+                                                   @endif
+                                                   />
+                                                    <span></span>
+                                            {{ Form::hidden('assigned_instructor_id', null, [ 'id'=>'assigned_instructor_id' ] ) }}
                                     </div>
                                     <div>
                                         <label>{{ trans('crud/labels.display_instructor') }} </label>
