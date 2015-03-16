@@ -1,4 +1,19 @@
 <div class="text-center">
+    <div id="video-player-container-{{$lessonId}}">
+        <div id="notify-warning-new-video" class="alert alert-warning
+            @if (@$video->transcode_status == Video::STATUS_COMPLETE)
+                hide
+            @endif ">
+            <strong>{{trans('crud/labels.note')}}: </strong>
+            {{trans('video.willAppearHere')}}
+        </div>
+        <div id="video-player" class="@if (!isset($video->formats[0]->video_url)) hide @endif">
+            <video controls>
+                <source id="source-video-url" src="{{@$video->formats[0]->video_url}}">
+                {{trans('video.doesNotSupportHthml5')}}
+            </video>
+        </div>
+    </div>
     <h3><!--{{trans('video.uploadOr')}} -->
     {{Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])}}
         <div class="form-inline">
