@@ -81,7 +81,7 @@
 								clearInterval($intervalId);
 								console.log('Uploaded'); 
 								$('.plan-your-curriculum .lesson-options .buttons.active div#video-player-container').css({
-									display: block	
+									display: 'block'	
 								});
 								$('.plan-your-curriculum .lesson-options .buttons.active span').addClass('processed');
 								$('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')

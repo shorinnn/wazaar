@@ -33,7 +33,6 @@
         <div class="lesson-options lesson-options-{{$lesson->id}} row">
             <div class="clearfix lesson-options-buttons">
                 <div class="buttons video active">
-                    <p>10:36 <!--<em></em>--></p>
                     <!--<div class="progress">
                       <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
                         <span class="sr-only">60% Complete</span>
