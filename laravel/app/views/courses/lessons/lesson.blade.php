@@ -47,7 +47,6 @@
                     </a>
                     <div id="video-player-container">
                     	<p>10:36</p>
-                        <div class="video-thumbnail">Video thumbnail</div>
                         <i class="fa fa-eye"></i>
                     </div>
                     
