@@ -6456,7 +6456,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 
 .plan-your-curriculum .lesson-options .buttons.active div#video-player-container{
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(255, 255, 255, 1);
     height: 70px;
     left: -1px;
     position: absolute;
@@ -6469,12 +6469,38 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	border-radius: 5px;
 }
 
+.plan-your-curriculum .lesson-options .buttons.active div#video-player-container p{
+	margin: 10px 0;
+	font-size: 12px;
+	color: #000;
+	max-width: 60px;
+}
+
 .plan-your-curriculum .lesson-options .buttons.active div#video-player-container i{
 	font-size: 26px;
 	color: #92cc2e;
 	text-align: center;
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
 }
 
+.plan-your-curriculum .lesson-options .buttons.active div#video-player-container:hover i{
+	visibility: visible;
+	opacity: 1;
+}
+
+.plan-your-curriculum .lesson-options .buttons.active div#video-player-container .video-thumbnail {
+    height: 100%;
+    left: 0;
+    line-height: 64px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
 /************* Instructors - My courses ******************/
 
 .instructor-mycourses h1{
