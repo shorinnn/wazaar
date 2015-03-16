@@ -6510,6 +6510,10 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
     width: 100%;
     z-index: -1;
 }
+
+.plan-your-curriculum .lesson-options .video div[id*='video-player-container']{
+	display: none;
+}
 /************* Instructors - My courses ******************/
 
 .instructor-mycourses h1{
