@@ -6500,6 +6500,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .plan-your-curriculum .lesson-options .buttons.active div#video-player-container:hover i{
 	visibility: visible;
 	opacity: 1;
+	background: rgba(0, 0, 0, 0.9);
 }
 
 .plan-your-curriculum .lesson-options .buttons.active div#video-player-container img{
@@ -6509,6 +6510,10 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
     top: 0;
     width: 100%;
     z-index: -1;
+}
+
+.plan-your-curriculum .lesson-options .video div[id*='video-player-container']{
+	display: none;
 }
 /************* Instructors - My courses ******************/
 
