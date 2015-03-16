@@ -59,17 +59,17 @@
 			return m+":"+s;
 		};
 
-		if($('uploadedVideo').attr('src').length != 0){
+		if(uploadedVideo.currentSrc.length == 0){
+			console.log("Has no source");
+			//$('#video-player-container-' + $lessonId).addClass('hide');
+		}
+		else{
 			console.log("Has source");
 			$('.lesson-options-{{$lessonId}}').find(
 				'#video-player-container').html(
 				"<P></P><I class='fa fa-eye'></I> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
 			$('.lesson-options-{{$lessonId}}').find('#video-player-container p').text(timeFormat(videoDuration));
 			//$('#video-player-container-' + $lessonId).addClass('hide')
-		}
-		else{
-			console.log("Has no source");
-			//$('#video-player-container-' + $lessonId).addClass('hide');
 		}
 
         videoUploader.initialize({
