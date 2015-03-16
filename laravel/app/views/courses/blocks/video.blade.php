@@ -62,8 +62,8 @@
             },
             'successCallBack' : function ($data){
 				//console.log("Output after successcallback");
-				$('.plan-your-curriculum .lesson-options .buttons.active em').css('display', 'block');
-				$('.plan-your-curriculum .lesson-options .buttons.active').css({
+				$('.lesson-options-{{$lessonId}} .buttons.active em').css('display', 'block');
+				$('.lesson-options-{{$lessonId}} .buttons.active').css({
 					width: '120px',
 					border: 'solid 1px #b0bfc1'	
 				});
@@ -76,21 +76,23 @@
                     $intervalId = setInterval (function() {
                         console.log('interval running');
                         videoUploader.getVideo($data.result.videoId, function ($video){
-                        console.log($video);
-                        if ($video.transcode_status == 'Complete'){
-                                clearInterval($intervalId);
-                                console.log('Uploaded'); 
-                                $('.plan-your-curriculum .lesson-options .buttons.active div#video-player-container').css({
-                                        display: 'block'	
-                                });
-                                $('.plan-your-curriculum .lesson-options .buttons.active span').addClass('processed');
-                                $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
-                                $('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
-                                $('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].thumbnail);
-                                //$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
-                                //$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
-                                //reload video partial
-                        }
+
+							console.log($video);
+							if ($video.transcode_status == 'Complete'){
+								clearInterval($intervalId);
+								console.log('Uploaded'); 
+								$('.lesson-options-{{$lessonId}} .buttons.active div#video-player-container').css({
+									display: 'block'	
+								});
+								$('.lesson-options-{{$lessonId}} .buttons.active span').addClass('processed');
+								$('.lesson-options-{{$lessonId}}').find('#video-player-container').append('<img src="http://blog.room34.com/wp-content/uploads/underdog/logo.thumbnail.png">');
+								$('#video-player-container-' + $lessonId).addClass('hide')
+								//$('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
+								//$('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
+								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
+								//$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
+								//reload video partial
+							}
                     }) }, 5000);
                 }
             }
