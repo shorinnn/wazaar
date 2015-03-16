@@ -65,7 +65,12 @@
 
             },
             'successCallBack' : function ($data){
-				console.log("Output after successcallback");
+				//console.log("Output after successcallback");
+				$('.plan-your-curriculum .lesson-options .buttons.active em').css('display', 'block');
+				$('.plan-your-curriculum .lesson-options .buttons.active').css({
+					width: '120px',
+					border: 'solid 1px #b0bfc1'	
+				});
                 if ($data.result.videoId !== undefined) {
                     $('#video-player-container-' + $lessonId).find('#video-player').addClass('hide');
                     $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').removeClass('hide');
@@ -74,23 +79,19 @@
                     //Run timer to check for video transcode status
                     $intervalId = setInterval (function() {
                         console.log('interval running');
-						$('.plan-your-curriculum .lesson-options .buttons.active p, .plan-your-curriculum .lesson-options .buttons.active em').css('display', 'block');
-						$('.plan-your-curriculum .lesson-options .buttons.active').css({
-							width: '120px',
-							border: 'solid 1px #b0bfc1'	
-						});
-						$('.plan-your-curriculum .lesson-options .buttons.active span').addClass('processed');
                         videoUploader.getVideo($data.result.videoId, function ($video){
-					console.log($video);
-                        if ($video.transcode_status == 'Complete'){
-                            clearInterval($intervalId);
-							console.log('Uploaded'); 
-                            $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
-                            $('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
-                            $('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
-                            //$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
-                            //reload video partial
-                        }
+							console.log($video);
+							if ($video.transcode_status == 'Complete'){
+								clearInterval($intervalId);
+								console.log('Uploaded'); 
+								$('.plan-your-curriculum .lesson-options .buttons.active em').text("Processed");
+								$('.plan-your-curriculum .lesson-options .buttons.active span').addClass('processed');
+								$('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
+								$('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
+								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
+								//$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
+								//reload video partial
+							}
                     }) }, 5000);
                 }
             }
