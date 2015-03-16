@@ -110,11 +110,27 @@ class Student extends User{
         if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
         $purchase = new Purchase;
 
-//        $purchase->course_id = $course->id;
         $purchase->student_id = $this->id;
         $purchase->purchase_price = $product->cost();
         $purchase->ltc_affiliate_id = $this->ltcAffiliate->id;
         // albert: added this so it's easy to lookup for the payment process (payment_log)
+        $purchase->balance_transaction_id = $paymentData['successData']['balance_transaction_id'];
+        $purchase->original_price = $product->price;
+        if( $product->isDiscounted() ){// TODO: check for lesson
+            $purchase->discount_value = $product->discount_saved;
+            $purchase->discount = ($product->sale_kind=='amount') ? "Yen $product->sale" : "$product->sale%";
+        }
+        
+        $purchase->processor_fee = ($product->sale_kind=='amount') ? "Yen $product->sale" : "$product->sale%";
+        if( $paymentData['successData']['balance_used'] > 0 ){
+            $purchase->balance_used = $paymentData['successData']['balance_used'];
+            $purchase->balance_transaction_id = $paymentData['successData']['balance_transaction_id'];
+        }
+        $purchase->instructor_earnings = 'TODO';
+        $purchase->affiliate_earnings = 'TODO';
+        $purchase->ltc_affiliate_earnings = 'TODO';
+        $purchase->affiliate_agency_earnings = 'TODO';
+        $purchase->site_earnings = 'TODO';
         $purchase->payment_ref = $paymentData['successData']['REF'];
         
         if( strtolower( get_class($product) ) == 'course' && $product->payment_type=='subscription' ){
