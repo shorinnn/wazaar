@@ -6431,12 +6431,11 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-18-done.png') !important;
 }
 
-.plan-your-curriculum .lesson-options .buttons.active p{
+.plan-your-curriculum .lesson-options .buttons.active div#video-player-containe p{
 	margin: 10px 0;
 	font-size: 12px;
 	color: #000;
 	max-width: 60px;
-	display: none;
 }
 
 .plan-your-curriculum .lesson-options .buttons.active p em{
@@ -6463,15 +6462,15 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	line-height: 64px;
 }
 
-.plan-your-curriculum .lesson-options .buttons.active div[id*=video-player-container]{
-    background: red;
-    display: block;
-    height: 64px;
-    left: 0;
+.plan-your-curriculum .lesson-options .buttons.active div#video-player-container{
+    background: rgba(0, 0, 0, 0.9);
+    height: 70px;
+    left: -1px;
     position: absolute;
-    top: 0;
-    width: 140px;
+    top: -4px;
+    width: 148px;
     z-index: 1;
+	display: none;
 }
 /************* Instructors - My courses ******************/
 

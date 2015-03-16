@@ -80,7 +80,9 @@
 							if ($video.transcode_status == 'Complete'){
 								clearInterval($intervalId);
 								console.log('Uploaded'); 
-								$('.plan-your-curriculum .lesson-options .buttons.active em').text("Processed");
+								$('.plan-your-curriculum .lesson-options .buttons.active div#video-player-container').css({
+									display: block	
+								});
 								$('.plan-your-curriculum .lesson-options .buttons.active span').addClass('processed');
 								$('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
 								$('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
