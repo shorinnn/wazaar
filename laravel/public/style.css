@@ -5216,7 +5216,7 @@ select option.suspended{
 .instructor-course-editor .header #instructor-editor li{
 }
 
-#course-edit #create-form  #top-form div.course-level label,
+#course-edit #edit-course-form #top-form div.course-level label,
 .instructor-course-editor .header #instructor-editor li a {
     background: #7fccff;
     border-radius: 20px;
@@ -5228,7 +5228,7 @@ select option.suspended{
 	box-shadow: none;
 }
 
-#course-edit #create-form #top-form div.course-level label.active,
+#course-edit #edit-course-form #top-form div.course-level label.active,
 .instructor-course-editor .header #instructor-editor li.active a{
     background: none repeat scroll 0 0 #0099ff;
     text-decoration: none;
@@ -5270,13 +5270,13 @@ select option.suspended{
 	width: 360px;
 }
 
-#course-edit #create-form #top-form{
+#course-edit #edit-course-form #top-form{
 	max-width: 484px;
 	margin: 0 auto;
 }
 
 #course-edit .payment-section label,
-#course-edit #create-form #top-form label{
+#course-edit #edit-course-form #top-form label{
 	display: inline-block;
 	margin-top: 7px;
 	font-weight: normal;
@@ -5285,14 +5285,14 @@ select option.suspended{
 	max-width: 115px;
 }
 
-#course-edit #create-form #top-form div{
+#course-edit #edit-course-form #top-form div{
 	margin-bottom: 20px;
 	width: 100%;
 }
 
-#course-edit #create-form #top-form div textarea,
+#course-edit #edit-course-form #top-form div textarea,
 #course-edit .payment-section input[type='text'],
-#course-edit #create-form #top-form div input.has-slug{
+#course-edit #edit-course-form #top-form div input.has-slug{
 	width: 345px;
 	border-radius: 5px;
 	float: right;
@@ -5305,7 +5305,7 @@ select option.suspended{
 	resize: none;
 }
 
-#course-edit #create-form #top-form div.course-level span{
+#course-edit #edit-course-form #top-form div.course-level span{
 	display: inline-block;
 	float:left;
 	margin-top: 7px;
@@ -5314,21 +5314,21 @@ select option.suspended{
 	font-size: 16px;
 }
 
-#course-edit #create-form #top-form div.course-level label{
+#course-edit #edit-course-form #top-form div.course-level label{
 	margin: 0;
 	float: left;
 }
 
-#course-edit #create-form #top-form div.course-level label + label {
+#course-edit #edit-course-form #top-form div.course-level label + label {
     margin-left: 24px;
 }
 
-#course-edit #create-form #top-form div.course-level div{
+#course-edit #edit-course-form #top-form div.course-level div{
 	float: right;
 	width: 345px;
 }
 
-#course-edit #create-form #top-form div.course-level div label input{
+#course-edit #edit-course-form #top-form div.course-level div label input{
 	display: none;
 }
 

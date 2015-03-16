@@ -84,7 +84,7 @@
 									display: 'block'	
 								});
 								$('.lesson-options-{{$lessonId}} .buttons.active span').addClass('processed');
-								$('.lesson-options-{{$lessonId}}').find('#video-player-container').append('<img src="$video.formats[0].thumbnail">');
+								$('.lesson-options-{{$lessonId}}').find('#video-player-container').append('<img src="http://blog.room34.com/wp-content/uploads/underdog/logo.thumbnail.png">');
 								$('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
 								$('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
