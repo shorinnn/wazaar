@@ -47,6 +47,7 @@
                     </a>
                     <div id="video-player-container">
                     	<p>10:36</p>
+                        <i class="fa fa-eye"></i>
                     </div>
                     
                 </div>
