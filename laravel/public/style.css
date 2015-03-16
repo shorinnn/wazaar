@@ -6206,6 +6206,11 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	background-color: white;
 	padding:10px;
 }
+
+.course-editor #modules-list .lesson-container li {
+    padding: 10px 0;
+}
+
 .course-editor .inline-block{
 	display:inline-block;
 }
