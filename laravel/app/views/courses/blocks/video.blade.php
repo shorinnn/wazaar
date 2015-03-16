@@ -82,7 +82,10 @@
 								clearInterval($intervalId);
 								var uploadedVideo = $('#video-player-container-' + $lessonId).find('video');
 								var videoDuration = uploadedVideo[0].duration;
-								console.log($video); 
+								console.log(uploadedVideo); 
+								console.log(uploadedVideo[0]); 
+								console.log(uploadedVideo[0].duration); 
+								console.log(uploadedVideo.duration); 
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-player-container').css({
 									display: 'block'	
 								});
