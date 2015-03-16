@@ -65,11 +65,11 @@
 				'#video-player-container').html(
 				"<P></P><I class='fa fa-eye'></I> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
 			$('.lesson-options-{{$lessonId}}').find('#video-player-container p').text(timeFormat(videoDuration));
-			$('#video-player-container-' + $lessonId).addClass('hide')
+			//$('#video-player-container-' + $lessonId).addClass('hide')
 		}
 		else{
 			console.log("Has no source");
-			$('#video-player-container-' + $lessonId).addClass('hide');
+			//$('#video-player-container-' + $lessonId).addClass('hide');
 		}
 
         videoUploader.initialize({
@@ -89,7 +89,7 @@
 					border: 'solid 1px #b0bfc1'	
 				});
                 if ($data.result.videoId !== undefined) {
-                    $('#video-player-container-' + $lessonId).find('#video-player').addClass('hide');
+                    //$('#video-player-container-' + $lessonId).find('#video-player').addClass('hide');
                     $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').removeClass('hide');
                     $.post('/lessons/blocks/' + $lessonId + '/video', {videoId : $data.result.videoId, blockId : $blockId });
                     console.log('has video id');
