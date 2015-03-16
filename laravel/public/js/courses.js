@@ -223,3 +223,10 @@ function activeLessonOption(){
 		$(this).addClass('active');
 	})
 }
+
+
+function submitForApproval(result, event){
+    $('#publish-status-header').html('Publish Status: Pending');
+    deleteItem(result, event);
+    
+}

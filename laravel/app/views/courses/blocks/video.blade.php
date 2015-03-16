@@ -76,21 +76,21 @@
                     $intervalId = setInterval (function() {
                         console.log('interval running');
                         videoUploader.getVideo($data.result.videoId, function ($video){
-							console.log($video);
-							if ($video.transcode_status == 'Complete'){
-								clearInterval($intervalId);
-								console.log('Uploaded'); 
-								$('.plan-your-curriculum .lesson-options .buttons.active div#video-player-container').css({
-									display: 'block'	
-								});
-								$('.plan-your-curriculum .lesson-options .buttons.active span').addClass('processed');
-								$('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
-								$('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
-								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].thumbnail);
-								//$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
-								//$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
-								//reload video partial
-							}
+                        console.log($video);
+                        if ($video.transcode_status == 'Complete'){
+                                clearInterval($intervalId);
+                                console.log('Uploaded'); 
+                                $('.plan-your-curriculum .lesson-options .buttons.active div#video-player-container').css({
+                                        display: 'block'	
+                                });
+                                $('.plan-your-curriculum .lesson-options .buttons.active span').addClass('processed');
+                                $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
+                                $('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
+                                $('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].thumbnail);
+                                //$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
+                                //$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
+                                //reload video partial
+                        }
                     }) }, 5000);
                 }
             }

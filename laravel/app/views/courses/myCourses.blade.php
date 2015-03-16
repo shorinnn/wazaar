@@ -88,8 +88,11 @@
                     	<div class="row clearfix">
                             <div class="col-md-12 clearfix">
                                 <span class="status-box">
-                                    Status:
-                                    <em>Public</em>
+                                    Publish status: 
+                                    <em>{{ ucfirst( $course->publish_status ) }}</em>
+                                    | 
+                                    Privacy:
+                                    <em>{{ ucfirst( $course->privacy_status ) }}</em>
                                 </span>
                                 <a href="#" class="go-to-dashboard">GO TO DASHBOARD</a>
                             </div>
