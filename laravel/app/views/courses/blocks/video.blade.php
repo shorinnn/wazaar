@@ -79,8 +79,8 @@
 
 							console.log($video);
 							if ($video.transcode_status == 'Complete'){
-								clearInterval($video);
-								console.log('Uploaded'); 
+								clearInterval($intervalId);
+								console.log($video); 
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-player-container').css({
 									display: 'block'	
 								});
