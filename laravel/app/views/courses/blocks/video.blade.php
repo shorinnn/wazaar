@@ -59,7 +59,7 @@
 			return m+":"+s;
 		};
 
-		if($('uploadedVideo[0]').attr('src') === undefined){
+		if($('uploadedVideo'[0]).attr('src') === undefined){
 			console.log("Has no source");
 			//$('#video-player-container-' + $lessonId).addClass('hide');
 		}
