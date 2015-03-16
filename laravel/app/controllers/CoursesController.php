@@ -4,7 +4,7 @@ class CoursesController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'dashboard'] ] );
-            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy', 'purchase', 'purchaseLesson' ]]);
+            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
         }
 
 	public function index()
@@ -100,21 +100,8 @@ class CoursesController extends \BaseController {
             if( Input::has("course_banner_image_id") ) $course->course_banner_image_id = Input::get("course_banner_image_id");
             
             $course->fill($data);
-//            if(!is_array(Input::get('who_is_this_for')) || count(Input::get('who_is_this_for') ==0 )){
-//                $course->who_is_this_for = json_encode([]);
-//            }
-//            else{
-//                $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
-//            }
-                $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
-            
-//            if(!is_array(Input::get('what_will_you_achieve')) || count(Input::get('what_will_you_achieve') ==0 )){
-//                $course->what_will_you_achieve = json_encode([]);
-//            }
-//            else{
-//                $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
-//            }
-                $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
+            $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
+            $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
             $course->sale = Input::get('sale');
             $course->sale_kind = Input::get('sale_kind');
             $course->sale_ends_on = (Input::get('sale_ends_on')) ?  Input::get('sale_ends_on') : null;
@@ -160,7 +147,19 @@ class CoursesController extends \BaseController {
             }
         }
         
-        
+        public function submitForApproval($slug){
+            $course = Course::where('slug',$slug)->first();
+            if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
+                return Redirect::action('CoursesController@index');
+            }
+            $course->publish_status = 'pending';
+            $course->updateUniques();
+            if( Request::ajax() ){
+                $response = ['status' => 'success' ];
+                return json_encode($response);
+            }
+            return Redirect::back();
+        }
         
         public function myCourses(){
             $instructor = Instructor::find(Auth::user()->id);

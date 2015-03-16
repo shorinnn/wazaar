@@ -107,6 +107,19 @@
                     
                     <!-- Course Edit contents here -->
                     <div role="tabpanel" class="tab-pane fade" id="course-edit">
+                        <div class="row well">
+                            <h3 id='publish-status-header'>Publish Status: {{ ucfirst( $course->publish_status ) }}</h3>
+                            
+                            @if( $course->publish_status!='approved' && $course->publish_status!='pending' )
+                             {{ Form::model($course, ['action' => ['CoursesController@submitForApproval', $course->slug], 'method' => 'PUT',
+                                     'class' => 'ajax-form',  'data-callback'=>'submitForApproval', 'data-delete' => '#submit-publish-btn'])}}
+                                 <input class='btn btn-danger' id='submit-publish-btn' type='submit' value='Submit for approval' />
+                                 <input type='hidden' name='publish_status' value='pending' />
+                             {{ Form::close() }}
+                            @endif
+                        </div>
+                        
+                        
                                     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'id' =>'create-form', 
                                          'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'formSaved'])}}
                      	<div class="row">

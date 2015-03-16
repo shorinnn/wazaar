@@ -76,6 +76,7 @@
                     $intervalId = setInterval (function() {
                         console.log('interval running');
                         videoUploader.getVideo($data.result.videoId, function ($video){
+
 							console.log($video);
 							if ($video.transcode_status == 'Complete'){
 								clearInterval($intervalId);
