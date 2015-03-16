@@ -1,12 +1,12 @@
 <div class="text-center">
     <div id="video-player-container-{{$lessonId}}">
-        <div id="notify-warning-new-video" class="alert alert-warning
+        <!--<div id="notify-warning-new-video" class="alert alert-warning
             @if (@$video->transcode_status == Video::STATUS_COMPLETE)
                 hide
             @endif ">
             <strong>{{trans('crud/labels.note')}}: </strong>
             {{trans('video.willAppearHere')}}
-        </div>
+        </div>-->
         <div id="video-player" class="@if (!isset($video->formats[0]->video_url)) hide @endif">
             <video controls>
                 <source id="source-video-url" src="{{@$video->formats[0]->video_url}}">
@@ -79,13 +79,15 @@
 
 							console.log($video);
 							if ($video.transcode_status == 'Complete'){
-								clearInterval($intervalId);
+								clearInterval($video);
 								console.log('Uploaded'); 
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-player-container').css({
 									display: 'block'	
 								});
 								$('.lesson-options-{{$lessonId}} .buttons.active span').addClass('processed');
-								$('.lesson-options-{{$lessonId}}').find('#video-player-container').append('<img src="http://blog.room34.com/wp-content/uploads/underdog/logo.thumbnail.png">');
+								$('.lesson-options-{{$lessonId}}').find(
+									'#video-player-container').html(
+									"<P>$video.length</P><I class='fa fa-eye'></I> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
 								$('#video-player-container-' + $lessonId).addClass('hide')
 								//$('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
 								//$('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
