@@ -5292,7 +5292,7 @@ select option.suspended{
 
 #course-edit #edit-course-form #top-form div textarea,
 #course-edit .payment-section input[type='text'],
-#course-edit #edit-course-form #top-form div input.has-slug{
+#course-edit #edit-course-form #top-form div input[type='text']{
 	width: 345px;
 	border-radius: 5px;
 	float: right;

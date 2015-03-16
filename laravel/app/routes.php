@@ -100,6 +100,7 @@ Route::get('classroom/{slug}/', 'ClassroomController@dashboard');
 
 // Courses Controller
 Route::put('courses/{slug}/submit-for-approval', 'CoursesController@submitForApproval');
+Route::get('courses/search-instructor/{email}', 'CoursesController@searchInstructor');
 Route::get('courses/mycourses', 'CoursesController@myCourses');
 Route::get('courses/categories', 'CoursesController@categories');
 Route::get('courses/category/{slug}/{subcat}', 'CoursesController@subCategory');

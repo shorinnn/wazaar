@@ -86,7 +86,7 @@ class CoursesController extends \BaseController {
             foreach($instructors as $i){
                 $assignableInstructors[$i->id] = $i->commentName();
             }
-            return View::make('courses.form')->with(compact('course'))->with(compact('images'))->with(compact('bannerImages'))
+            return View::make('courses.form')->with(compact('course'))->with(compact('images'))->with(compact('bannerImages'))->with(compact('assignedInstructor'))
                     ->with(compact('difficulties'))->with(compact('categories'))->with(compact('subcategories'))->with(compact('assignableInstructors'));
         }
         
@@ -107,7 +107,7 @@ class CoursesController extends \BaseController {
             $course->sale_ends_on = (Input::get('sale_ends_on')) ?  Input::get('sale_ends_on') : null;
             $course->ask_teacher = Input::get('ask_teacher');
             $course->details_displays = Input::get('details_displays');
-            $course->assigned_instructor_id = Input::get('assigned_instructor_id');
+            $course->assigned_instructor_id = Input::get('assigned_instructor_id') == 0 ? null : Input::get('assigned_instructor_id');
             $course->show_bio = Input::get('show_bio');
             $course->custom_bio = Input::get('custom_bio');
             if($course->updateUniques()){
@@ -159,6 +159,13 @@ class CoursesController extends \BaseController {
                 return json_encode($response);
             }
             return Redirect::back();
+        }
+        
+        public function searchInstructor($email){
+            $instructor = Instructor::where('email', $email)->first();
+            if( $instructor==null ) return 0;
+            if( !$instructor->hasRole('Instructor') ) return 0;
+            return $instructor->id;
         }
         
         public function myCourses(){

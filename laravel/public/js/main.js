@@ -3,6 +3,7 @@
  * @class Main 
  */
 // JavaScript Document
+var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 $(document).ready(function(){
     $('#curriculum .lessons').jScrollPane();
     $(".profile-name > li").removeClass("activate-dropdown");
@@ -13,6 +14,7 @@ $(document).ready(function(){
     $('body').delegate('a.load-more-ajax', 'click', loadMoreComments);
     $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
     $('body').delegate('.btnLink', 'click', goTo);
+    $('body').delegate('.delayed-keyup', 'keyup', delayedKeyup);
 	$('button.join-class').mousedown(function(){
 		$(this).addClass('pushdown');
 	});
@@ -935,3 +937,17 @@ function insertSelectBorder(){
 		//$(this).siblings('.select-border').toggleClass('hide');	
 	});	
 }
+
+
+function delayedKeyup(e){
+    delay( window[$(e.target).attr('data-callback')], $(e.target).attr('data-delay'));
+}
+
+var delay = (function () {
+	var timer = 0;
+	return function (callback, ms) {
+		clearTimeout(timer);
+		timer = setTimeout(callback, ms);
+	};
+})();
+
