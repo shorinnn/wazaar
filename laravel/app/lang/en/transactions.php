@@ -6,8 +6,10 @@ return array(
     'student_debit_transaction' => 'Student Debit Transaction For Order',
     'student_balance_debit_transaction_failed' => 'Student Balance Debit Transaction Failed',
     'refunded' => 'Refunded',
-    'instructor_credit_transaction' => 'Instructor Credit Transaction For Order',
+    'instructor_credit_transaction' => 'Instructor Credit Transaction Reference:',
     'instructor_debit_transaction' => 'Instructor Debit Transaction',
-    'affiliate_credit_transaction' => 'Affiliate Credit Transaction For Order',
+    'affiliate_credit_transaction' => 'Affiliate Credit Transaction Reference:',
     'affiliate_debit_transaction' => 'Affiliate Debit Transaction',
+    'ltc_affiliate_credit_transaction' => 'LTC Affiliate Credit Transaction Reference:',
+    'site_earnings' => 'Site Earnings',
 );

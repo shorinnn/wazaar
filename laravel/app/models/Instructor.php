@@ -12,6 +12,7 @@ class Instructor extends User{
         'followers' => [self::BELONGS_TO_MANY, 'Student',  'table' => 'follow_relationships',  'foreignKey' => 'instructor_id', 'otherKey' => 'student_id'],
         'sentMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'sender_id' ],
         'receivedMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'recipient_id' ],
+        'agency' => [self::BELONGS_TO, 'InstructorAgency']
       ];
     
     
@@ -65,7 +66,9 @@ class Instructor extends User{
               $transaction->product_id = $product->id;
               $transaction->product_type = get_class($product);
               $transaction->transaction_type = 'instructor_credit';
-              $transaction->details = trans('transactions.instructor_credit_transaction').' #'.$order;
+              $transaction->details = trans('transactions.instructor_credit_transaction').' '.$order;
+
+              $transaction->reference = $order;
               $transaction->status = 'complete';
               if( $transaction->save() ){
                   // increase balance

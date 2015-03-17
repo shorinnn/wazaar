@@ -8,8 +8,7 @@ class ProductAffiliate extends User{
     protected $roleId = 4;
     public static $relationsData = array(
         'sales' => array(self::HAS_MANY, 'Purchase'),
-        'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
-        'affiliateAgency' => array(self::BELONGS_TO, 'AffiliateAgency')
+        'courseReferrals' => array(self::HAS_MANY, 'CourseReferral')
     );
     
      
@@ -26,8 +25,9 @@ class ProductAffiliate extends User{
               $transaction->product_id = $product->id;
               $transaction->product_type = get_class($product);
               $transaction->transaction_type = 'affiliate_credit';
-              $transaction->details = trans('transactions.affiliate_credit_transaction').' #'.$order;
+              $transaction->details = trans('transactions.affiliate_credit_transaction').' '.$order;
               $transaction->status = 'complete';
+              $transaction->reference = $order;
               if( $transaction->save() ){
                   // increase balance
                   $this->affiliate_balance += $amount;

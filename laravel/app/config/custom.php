@@ -9,5 +9,6 @@ return [
     'maximum_lesson_files' => 10,
     'course_attachments' => ['.jpg', '.png', '.gif', '.bmp', '.txt', '.pdf', '.zip'],
     'use_id_for_slug' => true,
-    'short_desc_max_chars' => 100
+    'short_desc_max_chars' => 100,
+    'earnings' => ['instructor_percentage' => 70, 'site_percentage' => 30, 'ltc_percentage' => '5', 'agency_percentage' => '5']
 ];

@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder {
                  $this->call('AnalyticsSeeder');
                  $this->call('ProfileSeeder');
                  $this->call('TestimonialsSeeder');
-                 $this->call('AffiliateAgenciesSeeder');
+                 $this->call('InstructorAgenciesSeeder');
                  $this->call('PMSeeder');
 	}
 
@@ -983,20 +983,20 @@ class TestimonialsSeeder extends Seeder {
     }
 }
 
-class AffiliateAgenciesSeeder extends Seeder {
+class InstructorAgenciesSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('affiliate_agencies')->delete();
-        AffiliateAgency::unguard();
+        DB::table('instructor_agencies')->delete();
+        InstructorAgency::unguard();
         
-        AffiliateAgency::create( ['name' => 'Affiliate Agency 1'] );
-        AffiliateAgency::create( ['name' => 'Affiliate Agency 2'] );
-        AffiliateAgency::create( ['name' => 'Affiliate Agency 3'] );
+        InstructorAgency::create( ['name' => 'Instructor Agency 1'] );
+        InstructorAgency::create( ['name' => 'Instructor Agency 2'] );
+        InstructorAgency::create( ['name' => 'Instructor Agency 3'] );
         
-        $affiliate = User::find(5);
-        $affiliate->affiliate_agency_id = 1;
-        $affiliate->save();
+        $instructor = User::find(4);
+        $instructor->instructor_agency_id = 1;
+        $instructor->save();
     }
 }
 

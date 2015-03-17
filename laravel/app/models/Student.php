@@ -113,37 +113,41 @@ class Student extends User{
         $purchase->student_id = $this->id;
         $purchase->purchase_price = $product->cost();
         $purchase->ltc_affiliate_id = $this->ltcAffiliate->id;
-        // albert: added this so it's easy to lookup for the payment process (payment_log)
+        
+        /******* Money fields **********/
         $purchase->balance_transaction_id = $paymentData['successData']['balance_transaction_id'];
         $purchase->original_price = $product->price;
-        if( $product->isDiscounted() ){// TODO: check for lesson
+        if( $product->isDiscounted() ){
             $purchase->discount_value = $product->discount_saved;
             $purchase->discount = ($product->sale_kind=='amount') ? "Yen $product->sale" : "$product->sale%";
         }
         
-        $purchase->processor_fee = ($product->sale_kind=='amount') ? "Yen $product->sale" : "$product->sale%";
+        $purchase->processor_fee = $paymentData['successData']['processor_fee'];
+        $purchase->tax = $paymentData['successData']['tax'];
+        
         if( $paymentData['successData']['balance_used'] > 0 ){
             $purchase->balance_used = $paymentData['successData']['balance_used'];
             $purchase->balance_transaction_id = $paymentData['successData']['balance_transaction_id'];
         }
-        $purchase->instructor_earnings = 'TODO';
-        $purchase->affiliate_earnings = 'TODO';
-        $purchase->ltc_affiliate_earnings = 'TODO';
-        $purchase->affiliate_agency_earnings = 'TODO';
-        $purchase->site_earnings = 'TODO';
+        $purchase->instructor_earnings = PurchaseHelper::instructorEarnings($product, $affiliate);
+        $purchase->affiliate_earnings = PurchaseHelper::affiliateEarnings($product, $affiliate);
+        $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product);
+        $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product);
+        $purchase->site_earnings = PurchaseHelper::siteEarnings($product,  $paymentData['successData']['processor_fee'] );
         $purchase->payment_ref = $paymentData['successData']['REF'];
-        
+        /************ Money fields **************/
         if( strtolower( get_class($product) ) == 'course' && $product->payment_type=='subscription' ){
             $purchase->subscription_start = date( 'Y-m-d H:i:s' );
             $purchase->subscription_end = date( 'Y-m-d H:i:s', strtotime( $purchase->subscription_start.' +1 month' ) );
         }
         if($affiliate==null) $purchase->product_affiliate_id = 0;
         else{
-            $affiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
-            $purchase->product_affiliate_id = $affiliate->id;
+            $prodAffiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
+            $purchase->product_affiliate_id = $prodAffiliate->id;
         }
 
         if( $product->sales()->save( $purchase ) ){
+            
             // if course - increment counter only if no lessons have already been purchased, or if this the first recurring payment
             if( strtolower( get_class($product) ) == 'course' ){
                 $course = $product;
@@ -163,6 +167,23 @@ class Student extends User{
                     $course->updateUniques();
                 }
             }
+            
+            // credit instructor
+            $course->instructor->credit( $purchase->instructor_earnings, $product, $purchase->payment_ref );
+            // credit LTC affiliate
+            $this->ltcAffiliate->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref, 'ltc');
+            // credit product affiliate
+            if($affiliate!=null){
+                ProductAffiliate::where('affiliate_id', $affiliate)->first();
+                $prodAffiliate->credit( $purchase->affiliate_earnings, $product, $purchase->payment_ref);
+            }
+            // credit Instructor Agency
+            if( $course->instructor->agency_id > 0){
+//                $course->instructor->agency->credit( $purchase->instructor_agency_earnings, $product, $purchase->payment_ref );
+            }
+            // credit wazaar
+            $wazaar = LTCAffiliate::find(2);
+            $wazaar->credit( $purchase->site_earnings, $product, $purchase->payment_ref, 'wazaar', $purchase->processor_fee );
             
             return $purchase;
         }
