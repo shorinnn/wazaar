@@ -128,6 +128,8 @@
 				  e.preventDefault()
 				  $(this).tab('show')
 				});
+				
+				$('#myModal').modal(options);
 			});
 		</script>
 	</body>
