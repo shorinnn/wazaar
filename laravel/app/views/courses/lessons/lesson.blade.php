@@ -47,7 +47,11 @@
                     </a>
                     <div id="video-player-container">
                     	<p>10:36</p>
-                        <i class="fa fa-eye"></i>
+                        <!--<i class="fa fa-eye"></i>-->
+                        <!-- Button trigger modal -->
+                        <a href="#" class="btn btn-primary btn-lg fa fa-eye" data-toggle="modal" data-target="#myModal">
+                          Launch demo modal
+                        </a>
                         <img src="thumbnail">
                     </div>
                     
@@ -85,10 +89,6 @@
                 </div>
         </div>
     </div> 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

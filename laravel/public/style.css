@@ -6477,7 +6477,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	max-width: 60px;
 }
 
-.plan-your-curriculum .lesson-options .buttons.active div#video-player-container i{
+.plan-your-curriculum .lesson-options .buttons.active div#video-player-container a{
     bottom: 0;
     color: #92cc2e;
     display: block;
@@ -6497,7 +6497,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	transition: all 0.3s;
 }
 
-.plan-your-curriculum .lesson-options .buttons.active div#video-player-container:hover i{
+.plan-your-curriculum .lesson-options .buttons.active div#video-player-container:hover a{
 	visibility: visible;
 	opacity: 1;
 	background: rgba(0, 0, 0, 0.9);
