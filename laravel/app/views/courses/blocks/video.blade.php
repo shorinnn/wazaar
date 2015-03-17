@@ -93,7 +93,8 @@
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-player-container').css({
 									display: 'block'	
 								});
-						
+								
+								$('#uploadedVideoPlayer').append($('#video-player-container-' + $lessonId)).show();
 								$('.lesson-options-{{$lessonId}}').find(
 									'#video-player-container').html(
 									"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
