@@ -94,7 +94,7 @@
 									display: 'block'	
 								});
 								
-								$('#uploadedVideoPlayer').append($('#video-player-container-' + $lessonId)).show();
+								$('#uploadedVideoPlayer').append($('#video-player-container-' + $lessonId)).removeClass('hide');
 								$('.lesson-options-{{$lessonId}}').find(
 									'#video-player-container').html(
 									"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
