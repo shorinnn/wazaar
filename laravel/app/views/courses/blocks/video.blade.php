@@ -100,8 +100,9 @@
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
 
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container a').on('click', function(){
-									$('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).remove();
-									$('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).removeClass('hide').detach().appendTo('#uploadedVideoPlayer');
+									$('#uploadedVideoPlayer').empty().append(
+										$('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).removeClass('hide')
+										);
 								})
 								//$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
 								//reload video partial
