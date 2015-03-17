@@ -100,7 +100,7 @@
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
 
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-player-container a').on('click', function(){
-									$('#lesson-{{$lessonId}} #uploadedVideoPlayer').empty().append(
+									$('#uploadedVideoPlayer').empty().append(
 										$('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).removeClass('hide')
 										);
 								})
