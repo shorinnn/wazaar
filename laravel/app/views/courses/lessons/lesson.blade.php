@@ -45,7 +45,7 @@
                         <p>{{ trans('general.video') }}</p>-->
                         <span></span>                                   
                     </a>
-                    <div id="video-player-container">
+                    <div id="video-thumb-container">
                     	<p>10:36</p>
                         <!--<i class="fa fa-eye"></i>-->
                         <!-- Button trigger modal -->
