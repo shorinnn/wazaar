@@ -12,7 +12,7 @@ class ManageCourseCest{
         $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->see('Module <span class="module-order">1</span>');
     }
     
@@ -20,7 +20,7 @@ class ManageCourseCest{
         $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->seeNumberOfElements('#modules-list > li', 3);
         $I->click('Add Module');
         $I->seeNumberOfElements('#modules-list > li', 4);
@@ -33,7 +33,7 @@ class ManageCourseCest{
         $course->assigned_instructor_id = $second_instructor->id;
         $I->assertTrue( $course->updateUniques() );
         $I->amLoggedAs($second_instructor);
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->seeNumberOfElements('#modules-list > li', 3);
         $I->click('Add Module');
         $I->seeNumberOfElements('#modules-list > li', 4);
@@ -43,10 +43,10 @@ class ManageCourseCest{
         $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->see('Module <span class="module-order">1</span>');
         $I->click('delete-module-1');
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->dontSee('Module <span class="module-order">1</span>');
     }
     public function deleteModuleAsAssigned(FunctionalTester $I){
@@ -56,10 +56,10 @@ class ManageCourseCest{
         $course->assigned_instructor_id = $second_instructor->id;
         $I->assertTrue( $course->updateUniques() );
         $I->amLoggedAs($second_instructor);
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->see('Module <span class="module-order">1</span>');
         $I->click('delete-module-1');
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->dontSee('Module <span class="module-order">1</span>');
     }
     
@@ -67,7 +67,7 @@ class ManageCourseCest{
         $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->see('Lesson <span class="lesson-order">1</span>');
     }
     
@@ -75,7 +75,7 @@ class ManageCourseCest{
         $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->seeNumberOfElements('#lessons-holder-1 > li', 2);
         $I->click('Add Lesson');
         $I->seeNumberOfElements('#lessons-holder-1 > li', 3);
@@ -87,7 +87,7 @@ class ManageCourseCest{
         $course->assigned_instructor_id = $second_instructor->id;
         $I->assertTrue( $course->updateUniques() );
         $I->amLoggedAs($second_instructor);
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->seeNumberOfElements('#lessons-holder-1 > li', 2);
         $I->click('Add Lesson');
         $I->seeNumberOfElements('#lessons-holder-1 > li', 3);
@@ -97,10 +97,10 @@ class ManageCourseCest{
         $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->see('Lesson <span class="lesson-order">1</span>');
         $I->click('delete-lesson-1');
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->dontSee('Lesson <span class="lesson-order">2</span>');
     }
     
@@ -111,10 +111,10 @@ class ManageCourseCest{
         $course->assigned_instructor_id = $second_instructor->id;
         $I->assertTrue( $course->updateUniques() );
         $I->amLoggedAs($second_instructor);
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->see('Lesson <span class="lesson-order">1</span>');
         $I->click('delete-lesson-1');
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->dontSee('Lesson <span class="lesson-order">2</span>');
     }
     
@@ -148,8 +148,8 @@ class ManageCourseCest{
         $course = Course::where('name', 'App Development')->first();
         $instructor = Instructor::where('username', 'second_instructor')->first();
         $I->amLoggedAs($instructor);
-        $I->amOnPage('courses/'.$course->slug.'/curriculum');
-        $I->seeCurrentUrlEquals('');
+        $I->amOnPage('courses/'.$course->slug.'/edit');
+        $I->seeCurrentUrlEquals('/courses');
     }
     
      public function failAddingModule(FunctionalTester $I){

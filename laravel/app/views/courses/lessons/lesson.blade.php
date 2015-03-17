@@ -33,19 +33,24 @@
         <div class="lesson-options lesson-options-{{$lesson->id}} row">
             <div class="clearfix lesson-options-buttons">
                 <div class="buttons video active">
-                    <p>10:36 <em></em></p>
                     <!--<div class="progress">
                       <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
                         <span class="sr-only">60% Complete</span>
                       </div>
                     </div>--> 
-                    <em>Processing</em>                                                                  
+                    <em class="processing">Processing</em>                                                                  
                     <a href='#' id="video-link-{{$lesson->id}}" class='load-remote-cache a-add-video' data-target='.action-panel-{{$lesson->id}} .video'
                        data-url='{{action('BlocksController@video', [$lesson->id] )}}' data-callback='activeLessonOption'>
                         <!--<i class="fa fa-film"></i>
                         <p>{{ trans('general.video') }}</p>-->
                         <span></span>                                   
                     </a>
+                    <div id="video-player-container">
+                    	<p>10:36</p>
+                        <i class="fa fa-eye"></i>
+                        <img src="thumbnail">
+                    </div>
+                    
                 </div>
                 <div class="buttons text">
                     <a href='#' class='load-remote-cache' data-target='.action-panel-{{$lesson->id}} .text' 

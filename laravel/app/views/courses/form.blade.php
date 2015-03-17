@@ -107,8 +107,21 @@
                     
                     <!-- Course Edit contents here -->
                     <div role="tabpanel" class="tab-pane fade" id="course-edit">
+                        <div class="row well">
+                            <h3 id='publish-status-header'>Publish Status: {{ ucfirst( $course->publish_status ) }}</h3>
+                            
+                            @if( $course->publish_status!='approved' && $course->publish_status!='pending' )
+                             {{ Form::model($course, ['action' => ['CoursesController@submitForApproval', $course->slug], 'method' => 'PUT',
+                                     'class' => 'ajax-form',  'data-callback'=>'submitForApproval', 'data-delete' => '#submit-publish-btn'])}}
+                                 <input class='btn btn-danger' id='submit-publish-btn' type='submit' value='Submit for approval' />
+                                 <input type='hidden' name='publish_status' value='pending' />
+                             {{ Form::close() }}
+                            @endif
+                        </div>
+                        
+                        
                                     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'id' =>'create-form', 
-                                                'files' => true, 'method' => 'PUT', 'class' => 'ajax-form', 'data-callback'=>'formSaved'])}}
+                                         'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'formSaved'])}}
                      	<div class="row">
                         	<div class="col-md-12">
                             	<div id="top-form">
@@ -168,11 +181,21 @@
                                     </div>
                                                 
                                     <div>
-                                        <label>{{ trans('crud/labels.assigned_instructor') }} 
-                                            <small>( will refactor so it doesnt list all instructors ever )</small></label>
-                                         <span class="custom-dropdown">
-                                            {{ Form::select( 'assigned_instructor_id', $assignableInstructors) }}
-                                         </span>
+                                        <label>{{ trans('crud/labels.assigned_instructor') }}
+                                            @if($assignedInstructor!=null)
+                                                <i class="fa fa-check assigned-check"></i>
+                                            @endif
+                                        </label>
+                                            <input type='text' class='delayed-keyup'
+                                                   id='assign-instructor' 
+                                                   data-delay='300'
+                                                   data-callback='assignInstructor'
+                                                   @if($assignedInstructor!=null)
+                                                   value="{{ $assignedInstructor->email }}"
+                                                   @endif
+                                                   />
+                                                    <span></span>
+                                            {{ Form::hidden('assigned_instructor_id', null, [ 'id'=>'assigned_instructor_id' ] ) }}
                                     </div>
                                     <div>
                                         <label>{{ trans('crud/labels.display_instructor') }} </label>
@@ -224,16 +247,16 @@
                                         
                                         
                                         <span class="use-existing use-existing-preview" id="use-existing-preview">
-                                        @if($images->count() > 0)
                                         <span class="use-existing">{{ trans('crud/labels.or_use_existing') }}:</span>
                                         	<div class="row">
-                                            	<div class="radio-buttons clearfix">
-                                            @foreach($images as $img)
-                                                {{ View::make('courses.preview_image')->with(compact('img')) }}
-                                            @endforeach
-                                            	</div>
+                                                    <div class="radio-buttons clearfix">
+                                                        @if($images->count() > 0)
+                                                            @foreach($images as $img)
+                                                                {{ View::make('courses.preview_image')->with(compact('img')) }}
+                                                            @endforeach
+                                                        @endif
+                                                    </div>
                                             </div>
-                                        @endif
                                         </span>                                    
                                 </div>
                             </div>
@@ -258,16 +281,16 @@
                                         </div>
                                         
                                         <span class="use-existing use-existing-preview" id="use-existing-banner">
-                                            @if($bannerImages->count() > 0)
                                             <span class="use-existing">{{ trans('crud/labels.or_use_existing') }}:</span>
-                                        		<div class="row">
-                                            		<div class="radio-buttons clearfix">
-                                                @foreach($bannerImages as $img)
-                                                    {{ View::make('courses.preview_image')->with(compact('img')) }}
-                                                @endforeach
+                                                <div class="row">
+                                                    <div class="radio-buttons clearfix">
+                                                    @if($bannerImages->count() > 0)
+                                                        @foreach($bannerImages as $img)
+                                                            {{ View::make('courses.preview_image')->with(compact('img')) }}
+                                                        @endforeach
+                                                    @endif
                                                 </div>
                                             </div>
-                                            @endif
                                         </span>
                                     </div>
                             </div>
@@ -340,13 +363,13 @@
                                             <div>                                   
                                                 <input type="text" class='span2 clear right' name='affiliate_percentage' id='affiliate_percentage' 
                                                     value="{{ $course->affiliate_percentage }}" data-slider-min="0" data-slider-max="70" 
-                                                    data-slider-step="1" data-slider-value="{{ $course->affiliate_percentage }}" 
+                                                    data-slider-step="1" data-slider-value="{{ intval( $course->affiliate_percentage ) }}" 
                                                     data-slider-orientation="horizontal" 
                                                     data-slider-selection="after" data-slider-tooltip="show" data-label="#affiliate_percentage_output" 
                                                     data-target-input='1' />
                                                 
-                                                <input type='number' id='affiliate_percentage_output' class='set-slider clear margin-bottom-20' max="70" min="0"
-                                                       value='{{ $course->affiliate_percentage }}' data-slider='#affiliate_percentage' />%
+                                                <input type='number' id='affiliate_percentage_output' class='set-slider clear margin-bottom-20'
+                                                   max="70" min="0" value='{{ intval( $course->affiliate_percentage ) }}' data-slider='#affiliate_percentage' />%
                                              </div>
                                          </div>
                                         <div class="clear clearfix margin-bottom-20">

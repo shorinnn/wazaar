@@ -1,22 +1,18 @@
 <div class="text-center">
     <div id="video-player-container-{{$lessonId}}">
-
-            <div id="notify-warning-new-video" class="alert alert-warning
-                @if (@$video->transcode_status == Video::STATUS_COMPLETE)
-                    hide
-                @endif
-                    "><strong>{{trans('crud/labels.note')}}: </strong>{{trans('video.willAppearHere')}}</div>
-
-
-
-                    <div id="video-player" class="@if (!isset($video->formats[0]->video_url)) hide @endif">
-                        <video controls>
-                            <source id="source-video-url" src="{{@$video->formats[0]->video_url}}">
-                            {{trans('video.doesNotSupportHthml5')}}
-                        </video>
-                    </div>
-
-
+        <!--<div id="notify-warning-new-video" class="alert alert-warning
+            @if (@$video->transcode_status == Video::STATUS_COMPLETE)
+                hide
+            @endif ">
+            <strong>{{trans('crud/labels.note')}}: </strong>
+            {{trans('video.willAppearHere')}}
+        </div>-->
+        <div id="video-player" class="@if (!isset($video->formats[0]->video_url)) hide @endif">
+            <video controls>
+                <source id="source-video-url" src="{{@$video->formats[0]->video_url}}">
+                {{trans('video.doesNotSupportHthml5')}}
+            </video>
+        </div>
     </div>
     <h3><!--{{trans('video.uploadOr')}} -->
     {{Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])}}
@@ -54,6 +50,8 @@
         var $blockId = {{$block->id}};
         var $lessonId = {{$lessonId}};
         var $intervalId = 0;
+		
+		$('#video-player-container-' + $lessonId).addClass('hide')
 
         videoUploader.initialize({
             'fileInputElem' : $('#fileupload-' + $blockId),
@@ -65,9 +63,14 @@
 
             },
             'successCallBack' : function ($data){
-				console.log($data);
+				//console.log("Output after successcallback");
+				$('.lesson-options-{{$lessonId}} .buttons.active em').css('display', 'block');
+				$('.lesson-options-{{$lessonId}} .buttons.active').css({
+					width: '120px',
+					border: 'solid 1px #b0bfc1'	
+				});
                 if ($data.result.videoId !== undefined) {
-                    $('#video-player-container-' + $lessonId).find('#video-player').addClass('hide');
+                    //$('#video-player-container-' + $lessonId).find('#video-player').addClass('hide');
                     $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').removeClass('hide');
                     $.post('/lessons/blocks/' + $lessonId + '/video', {videoId : $data.result.videoId, blockId : $blockId });
                     console.log('has video id');
@@ -75,22 +78,32 @@
                     $intervalId = setInterval (function() {
                         console.log('interval running');
                         videoUploader.getVideo($data.result.videoId, function ($video){
-					console.log($video);
-                        if ($video.transcode_status == 'Complete'){
-                            clearInterval($intervalId);
-							/*$('.plan-your-curriculum .lesson-options .buttons.active p, .plan-your-curriculum .lesson-options .buttons.active em').css('display', 'block');
-							$('.plan-your-curriculum .lesson-options .buttons.active').css({
-								width: '120px',
-								border: 'solid 1px #b0bfc1'	
-							});
-							$('.plan-your-curriculum .lesson-options .buttons.active span').addClass('processed');*/
-							console.log('Uploaded'); 
-                            $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
-                            $('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
-                            $('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
-                            //$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
-                            //reload video partial
-                        }
+
+							console.log($video);
+							if ($video.transcode_status == 'Complete'){
+								clearInterval($intervalId);
+								var uploadedVideo = $('#video-player-container-' + $lessonId).find('video');
+								var videoDuration = uploadedVideo[0].duration;
+								var timeFormat = function(seconds){
+									var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);
+									var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
+									return m+":"+s;
+								};
+								
+								$('.lesson-options-{{$lessonId}} .buttons.active div#video-player-container').css({
+									display: 'block'	
+								});
+						
+								$('.lesson-options-{{$lessonId}}').find(
+									'#video-player-container').html(
+									"<P></P><I class='fa fa-eye'></I> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
+								$('.lesson-options-{{$lessonId}}').find('#video-player-container p').text(timeFormat(videoDuration));
+								//$('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
+								//$('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
+								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
+								//$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
+								//reload video partial
+							}
                     }) }, 5000);
                 }
             }

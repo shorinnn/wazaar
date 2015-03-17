@@ -346,7 +346,8 @@ function enableSlider(selector){
  */
 function setSlider(e){
     elem = $(e.target).attr('data-slider');
-    $(elem).slider('setValue', $(e.target).val() );
+    val = $(e.target).val() * 1;
+    $(elem).slider('setValue', val );
     $(elem).val( $(e.target).val() );
 }
 

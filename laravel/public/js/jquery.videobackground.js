@@ -470,7 +470,7 @@
 	$.fn.videobackground.defaults = {
 		videoSource: [],
 		poster: null,
-		autoplay: false,
+		autoplay: true,
 		preload: 'auto',
 		loop: false,
 		controlPosition: null,
