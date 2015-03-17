@@ -31,7 +31,7 @@
 
             <div class="row top-activities">
 
-                <div class="col-md-4 col-sm-6 sol-xs-12">
+                <div class="col-md-4 col-sm-6 sol-xs-12 col-md-offset-4">
                     <div>
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop4" type="button">
@@ -59,10 +59,51 @@
                 </div>
 
             </div>
+
+
+            <div class="row">
+
+                <canvas id="myChart" width="980px" height="400"></canvas>
+
+
+            </div>
+
         </div>
     </div>
 @stop
 
 @section('extra_js')
+    <script src="{{url('resources/Chart.js/Chart.js')}}"></script>
+    <script src="{{url('resources/moment/min/moment.min.js')}}"></script>
+    <script src="{{url('resources/datetimepicker/src/js/bootstrap-datetimepicker.js')}}"></script>
     <script type="text/javascript" src="{{url('js/analytics.js')}}"></script>
+    <script type="text/javascript">
+        var courseId = $('#course-id').attr('data-course-id');
+        $(function (){
+            var data = {
+                labels: ["A", "B", "C", "D", "E"],
+                datasets: [
+                    {
+                        label: "Weekly Sales",
+                        fillColor: "rgba(0,220,220,0.2)",
+                        strokeColor: "rgb(0,153,255)",
+                        pointColor: "rgb(85,220,164)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "rgb(85,220,164)",
+                        pointHighlightStroke: "rgb(85,220,164)",
+                        data: [10,20,30,40,50]
+                    }
+                ]
+
+            };
+
+            // Get context with jQuery - using jQuery's .get() method.
+            var ctx = $("#myChart").get(0).getContext("2d");
+            var myLineChart = new Chart(ctx).Line(data,{
+                bezierCurve: false
+            });
+
+
+        });
+    </script>
 @stop

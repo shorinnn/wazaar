@@ -9,9 +9,9 @@ return
     'sales' => 'Sales',
     'trackingCodeConverting' => 'Tracking Code Converting',
     'trackingCode' => 'Tracking Code',
-    'topTrackingCodes' => 'Top Tracking Codes',
-    '' => '',
-    '' => '',
+    'topTrackingCodes' => 'Stats',
+    'topCourses' => 'Top Courses',
+    'topConvertingCourses' => 'Top Converting Courses',
 
     'noCourseConversion' => 'No Course Conversion Found',
     'noTopCourse' => 'No Top Course Found',

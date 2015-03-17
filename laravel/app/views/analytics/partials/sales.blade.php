@@ -1,13 +1,12 @@
-<h2>¥{{number_format($sales['sales_total'],2)}}</h2>
-
+<h2>¥{{number_format($sales['salesTotal'],2)}}</h2>
 <ul>
-    @foreach($sales['data'] as $sale)
+    @foreach($sales['sales'] as $sale)
         <li id="monday" class="clearfix">
-            <span>{{date('l',strtotime($sale['created_at']))}}</span>
+            <span>{{$sale['label']}}</span>
             <div>
-                <span></span>
+                <div class="progress" style="width: {{$sale['percentage']}}%"></div>
             </div>
-            <em>¥{{number_format($sale['total_purchase'],2)}}</em>
+            <em>¥{{number_format($sale['day']['sales_total'],2)}}</em>
         </li>
     @endforeach
 </ul>

@@ -17,20 +17,20 @@
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div>
                         <div class="dropdown-wrapper">
-                            <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop4" type="button">
+                            <button class="btn btn-default">
                                 {{trans('analytics.topTrackingCodes')}} <span id="header-tracking-codes-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu tracking-codes-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.trackingSalesCodes('daily',{{$course['id']}}, this); return false;">{{trans('analytics.today')}}</a>
+                                    <a class="active with-today" href="#" onclick="Analytics.trackingSalesCodes('daily',{{$course['id']}}, this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('week',{{$course['id']}}, this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                    <a class="with-weekly" href="#" onclick="Analytics.trackingSalesCodes('week',{{$course['id']}}, this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('month',{{$course['id']}}, this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                    <a class="with-monthly" href="#" onclick="Analytics.trackingSalesCodes('month',{{$course['id']}}, this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('alltime',{{$course['id']}}, this); return false;">{{trans('analytics.alltime')}}</a>
+                                    <a class="with-alltime" href="#" onclick="Analytics.trackingSalesCodes('alltime',{{$course['id']}}, this); return false;">{{trans('analytics.alltime')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -72,20 +72,20 @@
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div>
                         <div class="dropdown-wrapper">
-                            <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop6" type="button">
+                            <button class="btn btn-default">
                                 {{trans('analytics.trackingCodeConverting')}} <span id="header-tracking-code-conversions-frequency">{{trans('analytics.today')}}</span> </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu tracking-code-conversions-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.trackingCodeConversions('daily',{{$course['id']}}, this); return false;">{{trans('analytics.today')}}</a>
+                                    <a class="active with-today" href="#" onclick="Analytics.trackingCodeConversions('daily',{{$course['id']}}, this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('week',{{$course['id']}}, this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                    <a class="with-weekly" href="#" onclick="Analytics.trackingCodeConversions('week',{{$course['id']}}, this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('month',{{$course['id']}}, this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                    <a class="with-monthly" href="#" onclick="Analytics.trackingCodeConversions('month',{{$course['id']}}, this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('alltime',{{$course['id']}}, this); return false;">{{trans('analytics.alltime')}}</a>
+                                    <a class="with-alltime" href="#" onclick="Analytics.trackingCodeConversions('alltime',{{$course['id']}}, this); return false;">{{trans('analytics.alltime')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -99,6 +99,32 @@
 
             </div>
             <hr/>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                        <th>Tracking Code</th>
+                        <th>Sales (¥)</th>
+                        <th>Clicks</th>
+                        <th>Purchase</th>
+                        <th>Conversion</th>
+                        </thead>
+                        <tbody>
+                            @foreach($trackingCodes['data'] as $code)
+                                <tr>
+                                    <td>{{$code['tracking_code']}}</td>
+                                    <td>{{$code['purchases_total']}}</td>
+                                    <td>{{$code['hits']}}</td>
+                                    <td>{{$code['purchases']}}</td>
+                                    <td>{{number_format($code['purchases']/$code['hits']*100,0)}}%</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-lg-12 margin-bottom-10">
                     <select name="courses" id="select-courses" class="form-control" multiple="multiple">
@@ -109,6 +135,10 @@
                 </div>
 
             </div>
+
+
+
+
             <div class="row">
 
 
@@ -136,9 +166,12 @@
                         <button class="btn btn-primary" id="btn-update-chart">Update Chart</button>
                     </div>
             </div>
-            <canvas id="myChart" width="980px" height="400"></canvas>
 
-            <div id="chartLegend">
+
+
+            <div class="row">
+
+            <canvas id="myChart" width="980px" height="400"></canvas>
 
 
             </div>

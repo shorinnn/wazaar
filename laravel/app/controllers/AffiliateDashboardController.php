@@ -33,7 +33,7 @@ class AffiliateDashboardController extends BaseController
             case 'month' :
                 $sales = $this->analyticsHelper->salesLastFewMonths(7,$courseId);break;
             default:
-                $sales = $this->analyticsHelper->sales($frequency, $courseId);break;
+                $sales = $this->analyticsHelper->salesLastFewDays(7, $courseId);break;
         }
 
 
@@ -99,7 +99,9 @@ class AffiliateDashboardController extends BaseController
             $salesView = $this->salesView('', $courseId);
             $trackingCodeConversionView = $this->trackingCodeConversionView('', $courseId);
             $courses = ProductAffiliate::courses(Auth::id());
-            return View::make('analytics.courseStatistics', compact('course','trackingCodesSalesView', 'salesView','trackingCodeConversionView','salesLabelData', 'courses'));
+            $trackingCodes = $this->analyticsHelper->trackingCodesByCourse($courseId);
+
+            return View::make('analytics.courseStatistics', compact('course','trackingCodesSalesView', 'salesView','trackingCodeConversionView','salesLabelData', 'courses', 'trackingCodes'));
         }
     }
 

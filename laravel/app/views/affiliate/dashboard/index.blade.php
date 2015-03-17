@@ -27,20 +27,20 @@
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div>
                         <div class="dropdown-wrapper">
-                            <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop2" type="button">
-                                Top Courses <span id="header-top-courses-frequency">Today</span></button>
+                            <button class="btn btn-default" type="button">
+                                {{trans('analytics.topCourses')}} <span id="header-top-courses-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu top-courses-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.topCourses('daily','', this); return false;">Today</a>
+                                    <a class="active with-today" href="#" onclick="Analytics.topCourses('daily','', this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.topCourses('week','', this); return false;">This week</a>
+                                    <a class="with-weekly" href="#" onclick="Analytics.topCourses('week','', this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.topCourses('month','', this); return false;">This month</a>
+                                    <a class="with-monthly" href="#" onclick="Analytics.topCourses('month','', this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.topCourses('alltime','', this); return false;">All time</a>
+                                    <a class="with-alltime" href="#" onclick="Analytics.topCourses('alltime','', this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>
@@ -56,19 +56,19 @@
                     <div id="sales-today">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                Sales <span id="header-sales-frequency">Today</span></button>
+                                {{trans('analytics.sales')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.sales('daily','', this); return false;">Today</a>
+                                    <a class="active" href="#" onclick="Analytics.sales('daily','', this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('week','', this); return false;">This week</a>
+                                    <a class="" href="#" onclick="Analytics.sales('week','', this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('month','', this); return false;">This month</a>
+                                    <a class="" href="#" onclick="Analytics.sales('month','', this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('alltime','', this); return false;">All time</a>
+                                    <a class="" href="#" onclick="Analytics.sales('alltime','', this); return false;">{{trans('analytics.alltime')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -82,20 +82,20 @@
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div>
                         <div class="dropdown-wrapper">
-                            <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop4" type="button">
-                                Top Tracking Codes <span id="header-tracking-codes-frequency">Today</span></button>
+                            <button class="btn btn-default">
+                                {{trans('analytics.topTrackingCodes')}} <span id="header-tracking-codes-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu tracking-codes-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.trackingSalesCodes('daily',0, this); return false;">Today</a>
+                                    <a class="active with-today" href="#" onclick="Analytics.trackingSalesCodes('daily',0, this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('week',0, this); return false;">This week</a>
+                                    <a class="with-weekly" href="#" onclick="Analytics.trackingSalesCodes('week',0, this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('month',0, this); return false;">This month</a>
+                                    <a class="with-monthly" href="#" onclick="Analytics.trackingSalesCodes('month',0, this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingSalesCodes('alltime',0, this); return false;">All time</a>
+                                    <a class="with-alltime" href="#" onclick="Analytics.trackingSalesCodes('alltime',0, this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>
@@ -111,20 +111,20 @@
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div>
                         <div class="dropdown-wrapper">
-                            <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop5" type="button">
-                                Top Converting Courses <span id="header-course-conversions-frequency">Today</span></button>
+                            <button class="btn btn-default">
+                                {{trans('analytics.topConvertingCourses')}} <span id="header-course-conversions-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop5" role="menu" class="dropdown-menu course-conversions-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.courseConversions('daily', this); return false;">Today</a>
+                                    <a class="active with-today" href="#" onclick="Analytics.courseConversions('daily', 0,this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.courseConversions('week', this); return false;">This week</a>
+                                    <a class="with-weekly" href="#" onclick="Analytics.courseConversions('week', 0,this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.courseConversions('month', this); return false;">This month</a>
+                                    <a class="with-monthly" href="#" onclick="Analytics.courseConversions('month', 0,this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.courseConversions('alltime', this); return false;">All time</a>
+                                    <a class="with-alltime" href="#" onclick="Analytics.courseConversions('alltime', 0,this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>
@@ -144,20 +144,20 @@
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div>
                         <div class="dropdown-wrapper">
-                            <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop6" type="button">
-                                Tracking Code Converting <span id="header-tracking-code-conversions-frequency">Today</span> </button>
+                            <button class="btn btn-default">
+                                {{trans('analytics.trackingCodeConverting')}} <span id="header-tracking-code-conversions-frequency">{{trans('analytics.today')}}</span> </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu tracking-code-conversions-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.trackingCodeConversions('daily', this); return false;">Today</a>
+                                    <a class="active with-today" href="#" onclick="Analytics.trackingCodeConversions('daily',0, this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('week', this); return false;">This week</a>
+                                    <a class="with-weekly" href="#" onclick="Analytics.trackingCodeConversions('week', 0,this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('month', this); return false;">This month</a>
+                                    <a class="with-monthly" href="#" onclick="Analytics.trackingCodeConversions('month', 0,this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.trackingCodeConversions('alltime', this); return false;">All time</a>
+                                    <a class="with-alltime" href="#" onclick="Analytics.trackingCodeConversions('alltime', 0,this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>

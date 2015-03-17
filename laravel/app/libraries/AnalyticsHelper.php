@@ -149,6 +149,34 @@ class AnalyticsHelper
         return $max;
     }
 
+    public function salesLastFewDays($numOfDays, $courseId = 0)
+    {
+        $sales = [];
+
+        for ($i = 0; $i <= $numOfDays; $i++){
+            $day = date('l',strtotime("-$i day"));
+            $date = date('Y-m-d',strtotime("-$i day"));
+            $label = $day;
+            if ($i === 0){
+                $label = 'Today';
+            }
+            $sales[] = ['label' => $label, 'date' => $date, 'day' =>$this->courseDailySales($courseId, $date)];
+        }
+        $salesTotal = 0;
+        $maxSale = $this->_getMaxSalesValue($sales,'day');
+
+        $i = 0;
+
+        foreach($sales as $sale){
+            $salesTotal += $sale['day']['sales_total'];
+            $percentage = ($sale['day']['sales_total'] / $maxSale) * 100;
+            $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i++;
+        }
+
+        return compact('sales', 'salesTotal');
+    }
+
     public function salesLastFewMonths($numOfMonths, $courseId = 0)
     {
         $sales = [];
@@ -232,10 +260,6 @@ class AnalyticsHelper
         if (empty($year)){
             $year = date('Y');
         }
-        //$dateFilterStart = $this->_frequencyEquivalence('month');
-        //$dateFilterEnd = date('Y-m-d');
-
-        //$filterQuery = "DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
         $filterQuery = "YEAR(purchases.created_at) = '{$year}' AND MONTH(purchases.created_at) = '{$month}'";
 
         if (!empty($courseId)){
@@ -252,6 +276,21 @@ class AnalyticsHelper
             $year = date('Y');
         }
         $filterQuery = "YEAR(purchases.created_at) = '{$year}'";
+        if (!empty($courseId)){
+            $filterQuery .= " AND purchases.product_id = '{$courseId}'";
+        }
+
+        $query = $this->_salesRawQuery($filterQuery);
+
+        return $this->_transformCoursePurchases($query);
+    }
+
+    public function courseDailySales($courseId, $date = '')
+    {
+        if (empty($date)){
+            $date = date('Y-m-d');
+        }
+        $filterQuery = "DATE(purchases.created_at) = '{$date}'";
         if (!empty($courseId)){
             $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
@@ -707,6 +746,12 @@ class AnalyticsHelper
         return $sql;
     }
 
+    public function trackingCodesByCourse($courseId){
+        $criteria = "cp.product_id = '$courseId'";
+        $query = $this->_trackingCodeConversionRawQuery($criteria,0);
+        return $this->_transformCoursePurchaseConversion($query);
+    }
+
     private function _trackingCodeConversionRawQuery($criteria = '', $limit = 10)
     {
 
@@ -729,6 +774,12 @@ class AnalyticsHelper
                       WHERE purchases.tracking_code = cp.tracking_code
                       {$criteriaPurchase2}
                 ) as 'purchases',
+                (
+                       SELECT SUM(purchases.purchase_price)
+                      FROM purchases
+                      WHERE purchases.tracking_code = cp.tracking_code
+                      {$criteriaPurchase2}
+                ) as 'purchases_total',
                (
                          SELECT COUNT(tracking_code_hits.id)
                         FROM tracking_code_hits
@@ -740,7 +791,11 @@ class AnalyticsHelper
             {$criteriaPurchase}
             GROUP BY cp.tracking_code, cp.product_id
             ORDER BY (purchases/hits) DESC
-            LIMIT {$limit}";
+           ";
+
+        if ($limit > 0){
+            $sql .= " LIMIT {$limit}";
+        }
 
         return $sql;
     }
