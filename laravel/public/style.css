@@ -6512,6 +6512,9 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
     z-index: -1;
 }
 
+.plan-your-curriculum #uploadedVideoPlayer video{
+	width: 100%;
+}
 /*.plan-your-curriculum .lesson-options .video div[id*='video-player-container']{
 	display: none;
 }*/
