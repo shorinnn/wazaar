@@ -50,7 +50,8 @@
         var $blockId = {{$block->id}};
         var $lessonId = {{$lessonId}};
         var $intervalId = 0;
-				
+		
+		$('#video-player-container-' + $lessonId).addClass('hide')		
         videoUploader.initialize({
             'fileInputElem' : $('#fileupload-' + $blockId),
             'progressCallBack' : function ($data, $progressPercentage){
@@ -98,7 +99,6 @@
 								$('.lesson-options-{{$lessonId}}').find('#video-player-container p').text(timeFormat(videoDuration));
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
 
-								$('#video-player-container-' + $lessonId).addClass('hide')
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-player-container a').on('click', function(){
 									$('#lesson-{{$lessonId}} #uploadedVideoPlayer').empty().append(
 										$('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).removeClass('hide')
