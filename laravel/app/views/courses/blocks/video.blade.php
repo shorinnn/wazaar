@@ -50,9 +50,7 @@
         var $blockId = {{$block->id}};
         var $lessonId = {{$lessonId}};
         var $intervalId = 0;
-		
-		$('#video-player-container-' + $lessonId).addClass('hide')
-
+				
         videoUploader.initialize({
             'fileInputElem' : $('#fileupload-' + $blockId),
             'progressCallBack' : function ($data, $progressPercentage){
@@ -98,8 +96,14 @@
 									'#video-player-container').html(
 									"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
 								$('.lesson-options-{{$lessonId}}').find('#video-player-container p').text(timeFormat(videoDuration));
-								$('#lesson-{{$lessonId}} #uploadedVideoPlayer').empty().append($('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).removeClass('hide'));
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
+
+								$('#video-player-container-' + $lessonId).addClass('hide')
+								$('.lesson-options-{{$lessonId}} .buttons.active div#video-player-container a').on('click', function(){
+									$('#lesson-{{$lessonId}} #uploadedVideoPlayer').empty().append(
+										$('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).removeClass('hide')
+										);
+								})
 								//$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
 								//reload video partial
 							}
