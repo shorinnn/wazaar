@@ -129,7 +129,7 @@
 				  $(this).tab('show')
 				});
 				
-				$('.bs-example-modal-lg').modal(options);
+				$('#myModal').modal(options);
 			});
 		</script>
 	</body>

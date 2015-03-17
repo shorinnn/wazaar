@@ -47,7 +47,7 @@
                     </a>
                     <div id="video-player-container">
                     	<p>10:36</p>
-                        <i class="fa fa-eye" data-toggle="modal" data-target=".bs-example-modal-lg"></i>
+                        <i class="fa fa-eye" data-toggle="modal" data-target="#myModal"></i>
                         <img src="thumbnail">
                     </div>
                     
@@ -85,7 +85,7 @@
                 </div>
         </div>
     </div> 
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           ...
