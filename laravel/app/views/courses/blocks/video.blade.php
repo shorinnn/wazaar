@@ -100,7 +100,7 @@
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
 
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container a').on('click', function(){
-									$('#uploadedVideoPlayer').empty();
+									//$('#uploadedVideoPlayer').empty();
 									$('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).removeClass('hide').detach().appendTo('#uploadedVideoPlayer');
 								})
 								//$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
