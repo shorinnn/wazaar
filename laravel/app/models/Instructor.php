@@ -12,7 +12,7 @@ class Instructor extends User{
         'followers' => [self::BELONGS_TO_MANY, 'Student',  'table' => 'follow_relationships',  'foreignKey' => 'instructor_id', 'otherKey' => 'student_id'],
         'sentMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'sender_id' ],
         'receivedMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'recipient_id' ],
-        'agency' => [self::BELONGS_TO, 'InstructorAgency']
+        'agency' => [self::BELONGS_TO, 'InstructorAgency', 'foreignKey' => 'instructor_agency_id']
       ];
     
     
@@ -55,7 +55,7 @@ class Instructor extends User{
     
     public function credit( $amount = 0, $product = null, $order = null ){
         $amount = doubleval($amount);
-        if( $amount < 1 ) return false;
+        if( $amount <= 0 ) return false;
         if( !is_a($product, 'Lesson') && !is_a($product, 'Course') ) return false;
         if( !$product->id ) return false;
         return DB::transaction(function() use ($amount, $product, $order){
