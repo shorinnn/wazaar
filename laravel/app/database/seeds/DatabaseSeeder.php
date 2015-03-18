@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder {
                  $this->call('AnalyticsSeeder');
                  $this->call('ProfileSeeder');
                  $this->call('TestimonialsSeeder');
-                 $this->call('AffiliateAgenciesSeeder');
+                 $this->call('InstructorAgenciesSeeder');
                  $this->call('PMSeeder');
 	}
 
@@ -53,6 +53,10 @@ class RoleTableSeeder extends Seeder {
         $affiliate = new Role;
         $affiliate->name = 'Affiliate';
         $affiliate->save();
+        
+        $agency = new Role;
+        $agency->name = 'InstructorAgency';
+        $agency->save();
     }
 
 }
@@ -983,20 +987,32 @@ class TestimonialsSeeder extends Seeder {
     }
 }
 
-class AffiliateAgenciesSeeder extends Seeder {
+class InstructorAgenciesSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('affiliate_agencies')->delete();
-        AffiliateAgency::unguard();
+        $agencyRole = Role::where('name','=','InstructorAgency')->first();
+        $agency1 = new User( [ 'username' => 'InstructorAgency1', 'email'=>'agency@mailinator.com','password' => 'pass', 
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ] );
+        $agency1->password = 'pass';
+        $agency1->password_confirmation = 'pass';
+        $agency1->save();
+        $agency1->attachRole( $agencyRole );
+
+        $agency2 = new User(['username' => 'InstructorAgency2', 'email'=>'agency2@mailinator.com','password' => 'pass', 
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ]);
+        $agency2->password = 'pass';
+        $agency2->password_confirmation = 'pass';
+        $agency2->save();
+        $agency2->attachRole( $agencyRole );
         
-        AffiliateAgency::create( ['name' => 'Affiliate Agency 1'] );
-        AffiliateAgency::create( ['name' => 'Affiliate Agency 2'] );
-        AffiliateAgency::create( ['name' => 'Affiliate Agency 3'] );
-        
-        $affiliate = User::find(5);
-        $affiliate->affiliate_agency_id = 1;
-        $affiliate->save();
+        $agency3 = new User(['username' => 'InstructorAgency3', 'email'=>'agency3@mailinator.com','password' => 'pass', 
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ]);
+        $agency3->password = 'pass';
+        $agency3->password_confirmation = 'pass';
+        $agency3->save();
+        $agency3->attachRole( $agencyRole );      
+
     }
 }
 

@@ -128,6 +128,7 @@
 				  e.preventDefault()
 				  $(this).tab('show')
 				});
+				
 			});
 		</script>
 	</body>

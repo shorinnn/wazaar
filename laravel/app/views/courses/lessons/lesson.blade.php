@@ -45,9 +45,13 @@
                         <p>{{ trans('general.video') }}</p>-->
                         <span></span>                                   
                     </a>
-                    <div id="video-player-container">
+                    <div id="video-thumb-container">
                     	<p>10:36</p>
-                        <i class="fa fa-eye"></i>
+                        <!--<i class="fa fa-eye"></i>-->
+                        <!-- Button trigger modal -->
+                        <a href="#" class="btn btn-primary btn-lg fa fa-eye" data-toggle="modal" data-target="#myModal">
+                          Launch demo modal
+                        </a>
                         <img src="thumbnail">
                     </div>
                     
@@ -85,7 +89,22 @@
                 </div>
         </div>
     </div> 
-    <!--<div class="course-create-options clearfix">
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Video title</h4>
+          </div>
+          <div class="modal-body" id="uploadedVideoPlayer">
+          </div>
+        </div>
+      </div>
+    </div>    
+    
+<!--<div class="course-create-options clearfix">
         <div>
             <div class="buttons video active">
                 <p>10:36 <em>x</em></p>

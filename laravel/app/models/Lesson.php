@@ -61,4 +61,8 @@ class Lesson extends Ardent {
         }
         return false;
     }
+    
+    public function isDiscounted(){
+        return false;
+    }
 }

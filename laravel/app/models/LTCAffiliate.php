@@ -10,16 +10,15 @@ class LTCAffiliate extends User{
     public static $relationsData = array(
         'affiliated' => array(self::HAS_MANY, 'User', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id'),
         'sales' => array(self::HAS_MANY, 'Purchase', 'foreignKey' => 'ltc_affiliate_id'),
-        'profile' => array(self::MORPH_ONE, 'Profile', 'name'=>'owner'),
-        'affiliateAgency' => array(self::BELONGS_TO, 'AffiliateAgency')
+        'profile' => array(self::MORPH_ONE, 'Profile', 'name'=>'owner')
     );
     
-    public function credit( $amount = 0, $product = null, $order = null ){
+    public function credit( $amount = 0, $product = null, $order = null, $ltcOrWazaar = '', $processor_fee = 0 ){
         $amount = doubleval($amount);
-        if( $amount < 1 ) return false;
+        if( $amount <= 0 ) return false;
         if( !is_a($product, 'Lesson') && !is_a($product, 'Course') ) return false;
         if( !$product->id ) return false;
-        return DB::transaction(function() use ($amount, $product, $order){
+        return DB::transaction(function() use ($amount, $product, $order, $ltcOrWazaar, $processor_fee){
             // create the transaction
               $transaction = new Transaction();
               $transaction->user_id = $this->id;
@@ -27,7 +26,16 @@ class LTCAffiliate extends User{
               $transaction->product_id = $product->id;
               $transaction->product_type = get_class($product);
               $transaction->transaction_type = 'affiliate_credit';
-              $transaction->details = trans('transactions.affiliate_credit_transaction').' #'.$order;
+              $transaction->reference = $order;
+              if($this->id == 2) $transaction->transaction_type = 'site_credit';
+              $transaction->details = trans('transactions.affiliate_credit_transaction').' '.$order;
+              if( $ltcOrWazaar == 'ltc'){
+                  $transaction->details = trans('transactions.ltc_affiliate_credit_transaction').' '.$order;
+              }
+              if( $ltcOrWazaar == 'wazaar'){
+                  $transaction->details = trans('transactions.site_earnings').' '.$order;
+                  $transaction->gc_fee = $processor_fee;
+              }
               $transaction->status = 'complete';
               if( $transaction->save() ){
                   // increase balance

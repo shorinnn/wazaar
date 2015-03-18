@@ -51,8 +51,7 @@
         var $lessonId = {{$lessonId}};
         var $intervalId = 0;
 		
-		$('#video-player-container-' + $lessonId).addClass('hide')
-
+		$('#video-player-container-' + $lessonId).addClass('hide')		
         videoUploader.initialize({
             'fileInputElem' : $('#fileupload-' + $blockId),
             'progressCallBack' : function ($data, $progressPercentage){
@@ -90,17 +89,21 @@
 									return m+":"+s;
 								};
 								
-								$('.lesson-options-{{$lessonId}} .buttons.active div#video-player-container').css({
+								var videoVariable = $('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).html();
+								
+								$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container').css({
 									display: 'block'	
 								});
-						
+								
 								$('.lesson-options-{{$lessonId}}').find(
-									'#video-player-container').html(
-									"<P></P><I class='fa fa-eye'></I> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
-								$('.lesson-options-{{$lessonId}}').find('#video-player-container p').text(timeFormat(videoDuration));
-								//$('#video-player-container-' + $lessonId).find('#notify-warning-new-video').addClass('hide')
-								//$('#video-player-container-' + $lessonId).find('#video-player').removeClass('hide');
+									'#video-thumb-container').html(
+									"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
+								$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text(timeFormat(videoDuration));
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
+
+								$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container a').on('click', function(){
+									$('#uploadedVideoPlayer').html(videoVariable);
+								})
 								//$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
 								//reload video partial
 							}
