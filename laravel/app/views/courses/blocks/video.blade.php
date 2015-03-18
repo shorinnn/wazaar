@@ -89,7 +89,7 @@
 									return m+":"+s;
 								};
 								
-								var videoVariable = $('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).removeClass('hide').html();
+								var videoVariable = $('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).html();
 								
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container').css({
 									display: 'block'	
