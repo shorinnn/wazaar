@@ -409,7 +409,7 @@ class AnalyticsHelper
         $filterQuery = "";
 
         if (!empty($courseId)){
-            $filterQuery = " product_id = '{$courseId}'";
+            $filterQuery = " course_id = '{$courseId}'";
         }
         $query = $this->_trackingCodesRawQuery($filterQuery);
 
@@ -746,8 +746,15 @@ class AnalyticsHelper
         return $sql;
     }
 
-    public function trackingCodesByCourse($courseId){
+    public function trackingCodesByCourse($courseId, $startDate = '', $endDate = ''){
         $criteria = "cp.product_id = '$courseId'";
+        if (!empty($startDate) AND !empty($endDate)){
+            $criteria .= " AND cp.created_at BETWEEN '{$startDate}' AND '{$endDate}'";
+        }
+
+        if (!empty($startDate) AND empty($endDate)){
+            $criteria .= " AND cp.created_at = '{$startDate}'";
+        }
         $query = $this->_trackingCodeConversionRawQuery($criteria,0);
         return $this->_transformCoursePurchaseConversion($query);
     }

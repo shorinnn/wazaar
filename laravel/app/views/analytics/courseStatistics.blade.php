@@ -101,33 +101,14 @@
             <hr/>
 
             <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-striped">
-                        <thead>
-                        <th>Tracking Code</th>
-                        <th>Sales (¥)</th>
-                        <th>Clicks</th>
-                        <th>Purchase</th>
-                        <th>Conversion</th>
-                        </thead>
-                        <tbody>
-                            @foreach($trackingCodes['data'] as $code)
-                                <tr>
-                                    <td>{{$code['tracking_code']}}</td>
-                                    <td>{{$code['purchases_total']}}</td>
-                                    <td>{{$code['hits']}}</td>
-                                    <td>{{$code['purchases']}}</td>
-                                    <td>{{number_format($code['purchases']/$code['hits']*100,0)}}%</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="col-md-12" id="wrapper-tracking-codes-table">
+                    {{$trackingCodesTableView}}
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-12 margin-bottom-10">
-                    <select name="courses" id="select-courses" class="form-control" multiple="multiple">
+                    <select name="courses" id="select-courses" class="form-control" multiple="multiple" placeholder="Compare with other courses">
                         @foreach($courses as $affCourse)
                         <option value="{{$affCourse->id}}">{{$affCourse->name}}</option>
                         @endforeach
@@ -145,7 +126,7 @@
                     <div class='col-md-2'>
                         <div class="form-group">
                             <div class='input-group date' id='start-date'>
-                                <input type='text' class="form-control" id="startDate" />
+                                <input type='text' class="form-control" id="startDate" value="{{date('m/d/Y',strtotime('-7 days'))}}" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
                             </div>
@@ -155,7 +136,7 @@
                     <div class='col-md-2'>
                         <div class="form-group">
                             <div class='input-group date' id='end-date'>
-                                <input type='text' class="form-control" id="endDate" />
+                                <input type='text' class="form-control" id="endDate" value="{{date('m/d/Y')}}" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
                             </div>
@@ -175,6 +156,8 @@
 
 
             </div>
+
+            <div id="chartLegend"></div>
         </div>
     </div>
 

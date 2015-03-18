@@ -8,8 +8,9 @@
             </a>
         </li>
     @endforeach
-
-    <li><a href="#" class="view-all">{{trans('analytics.viewAll')}}</a></li>
+    @if (count($trackingCodes['data']) == 10)
+        <li><a href="#" class="view-all">{{trans('analytics.viewAll')}}</a></li>
+    @endif
 @else
     <div class="margin-top-15">
         <center class="gray">{{trans('analytics.noTrackingCode')}} {{AnalyticsHelper::frequencyReadable($frequency)}}</center>

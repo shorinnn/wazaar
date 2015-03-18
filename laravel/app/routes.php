@@ -183,6 +183,7 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('course/{id}/trackingcode/{code}/stats/{frequency}','AffiliateDashboardController@trackingCodeHitsSalesView');
     Route::get('trackingcode/{code}/stats', 'AffiliateDashboardController@trackingCodeStatistics');
     Route::post('course/{courseId}/stats/compare','AffiliateDashboardController@compareCourses');
+    Route::get('trackingcodetable/{frequency}/{courseId}','AffiliateDashboardController@trackingCodesTableView');
 });
 
 ## Payment Form(https)
