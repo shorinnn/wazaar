@@ -102,7 +102,7 @@
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
 
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container a').on('click', function(){
-									$('#uploadedVideoPlayer').html('videoVariable');
+									$('#uploadedVideoPlayer').html(videoVariable);
 								})
 								//$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
 								//reload video partial
