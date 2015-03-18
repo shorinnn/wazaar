@@ -89,6 +89,8 @@
 									return m+":"+s;
 								};
 								
+								var videoVariable = $('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).removeClass('hide').html();
+								
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container').css({
 									display: 'block'	
 								});
@@ -100,9 +102,7 @@
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
 
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container a').on('click', function(){
-									$('#uploadedVideoPlayer').html("").append(
-										$('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).removeClass('hide')
-										);
+									$('#uploadedVideoPlayer').html('videoVariable');
 								})
 								//$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
 								//reload video partial
