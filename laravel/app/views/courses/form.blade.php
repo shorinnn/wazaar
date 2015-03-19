@@ -416,6 +416,30 @@
                 enableRTE( '#'+$(this).attr('id') );
             });
             videoLookup.initialize(function ($lessonId, $videoId){
+				var uploadedVideo = $('#video-player-container-' + $lessonId).find('video');
+				var videoDuration = uploadedVideo[0].duration;
+				var timeFormat = function(seconds){
+					var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);
+					var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
+					return m+":"+s;
+				};
+				
+				console.log($lessonId);
+				console.log(uploadedVideo);
+				videoUploader.getVideo($videoId, function ($video){ 
+					console.log($video[0]);
+					
+					$('.lesson-options-' + $lessonId).find('#video-thumb-container').css({
+						display: 'block'	
+					});
+					
+					$('.lesson-options-' + $lessonId).find(
+						'#video-thumb-container').html(
+						"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
+						
+					$('.lesson-options-' + $lessonId).find('#video-thumb-container p').text(timeFormat(videoDuration));				
+				});
+
                 $.post('/lessons/blocks/' + $lessonId + '/video/assign', {videoId : $videoId}, function (){
 
                     $('#video-link-' + $lessonId).trigger('click');

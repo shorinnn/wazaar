@@ -46,7 +46,19 @@
 
 <script type="text/javascript">
     $(function (){
-
+		//console.log("{{$video->formats[0]->video_url->transcode_status}}");
+		@if($video->transcode_status == Video::STATUS_COMPLETE)
+			console.log("Video transcoded");
+			$('.lesson-options-' + $lessonId).find('#video-thumb-container').css({
+				display: 'block'	
+			});
+			
+			$('.lesson-options-{{$lessonId}}').find(
+				'#video-thumb-container').html(
+				"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text(timeFormat(videoDuration));
+		@endif
+		
         var $blockId = {{$block->id}};
         var $lessonId = {{$lessonId}};
         var $intervalId = 0;
@@ -94,7 +106,6 @@
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container').css({
 									display: 'block'	
 								});
-								
 								
 								$('.lesson-options-{{$lessonId}}').find(
 									'#video-thumb-container').html(
