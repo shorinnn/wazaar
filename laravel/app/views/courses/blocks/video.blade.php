@@ -47,7 +47,7 @@
 <script type="text/javascript">
     $(function (){
 
-		@if ({{@$video->formats[0]->video_url}}->transcode_status == Video::STATUS_COMPLETE)
+		@if (@$video->formats[0]->video_url->transcode_status == Video::STATUS_COMPLETE)
 			$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container').css({
 				display: 'block'	
 			});
