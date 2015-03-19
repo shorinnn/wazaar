@@ -38,7 +38,7 @@
 
         <div class="progress">
             <div id="progress-bar-{{$block->id}}" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                <span><span id="percent-complete-{{$block->id}}"></span>% <!--{{trans('crud/labels.complete')}}--></span>
+                <span><span id="percent-complete-{{$block->id}}"></span> <!--{{trans('crud/labels.complete')}}--></span>
             </div>
         </div>
     {{Form::close()}}
@@ -70,7 +70,7 @@
             'fileInputElem' : $('#fileupload-' + $blockId),
             'progressCallBack' : function ($data, $progressPercentage){
                 $('#progress-bar-' + $blockId).css('width', $progressPercentage + '%');
-                $('#percent-complete-' + $blockId).html($progressPercentage);
+                $('#percent-complete-' + $blockId).html($progressPercentage + '%');
             },
             'failCallBack' : function ($data){
 
@@ -104,6 +104,8 @@
 								};
 								
 								var videoVariable = $('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).html();
+								
+								$('#lesson-{{$lessonId}} > .new-lesson').removeClass('gray').addClass('green');
 								
 								$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container').css({
 									display: 'block'	

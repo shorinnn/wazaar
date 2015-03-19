@@ -325,7 +325,9 @@ function loadRemoteCache(e){
     
     if(elem.attr('data-loaded') == '1' ) return false;// content already loaded, just redisplay it
     
-    $(target).html( _('') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader-2.gif" />');
+    $(target).html( _('') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader-2.gif" />').css(
+	'text-align', 'center');
+	
     $(target).load(url, function(){
         elem.attr('data-loaded','1');
         if( typeof(callback)!= 'undefined'){
