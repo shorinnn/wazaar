@@ -22,23 +22,27 @@ class AnalyticsHelper
         }
     }
 
-    public function sales($frequency = '', $courseId = '')
+    public function sales($frequency = '', $courseId = '', $trackingCode = '')
     {
         switch($frequency){
-            case 'daily' : return $this->dailySales($courseId); break;
-            case 'week': return $this->weeklySales($courseId); break;
+            case 'daily' : return $this->dailySales($courseId,$trackingCode); break;
+            case 'week': return $this->weeklySales($courseId,'','',$trackingCode); break;
             case 'month': return $this->monthlySales($courseId); break;
             case 'alltime' : return $this->allTimeSales($courseId); break;
             default: return $this->dailySales($courseId);
         }
     }
 
-    public function salesByDateRangeAndCourse($startDate, $endDate, $courseId)
+    public function salesByDateRangeAndCourse($startDate, $endDate, $courseId, $trackingCode = '')
     {
         $filterQuery = "DATE(purchases.created_at) BETWEEN '{$startDate}' AND '{$endDate}'";
 
         if (!empty($courseId)){
             $filterQuery .= " AND purchases.product_id = '{$courseId}'";
+        }
+
+        if (!empty($trackingCode)){
+            $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
         }
 
         $query = $this->_salesRawQuery($filterQuery);
@@ -90,7 +94,7 @@ class AnalyticsHelper
     }
 
 
-    public function dailySales($courseId, $date = '')
+    public function dailySales($courseId, $date = '', $trackingCode = '')
     {
         if (empty($date)) {
             $dateFilter = $this->_frequencyEquivalence();
@@ -104,12 +108,16 @@ class AnalyticsHelper
             $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
 
+        if (!empty($trackingCode)){
+            $filterQuery .= "And purchases.tracking_code = '{$trackingCode}'";
+        }
+
         $query = $this->_salesRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
 
-    public function salesLastFewWeeks($numOfWeeks, $courseId = 0)
+    public function salesLastFewWeeks($numOfWeeks, $courseId = 0, $trackingCode = '')
     {
         $sales = [];
 
@@ -120,7 +128,7 @@ class AnalyticsHelper
             if ($i === 0){
                 $label = 'This week';
             }
-            $sales[] = ['label' => $label, 'start' => $start, 'end' => $end, 'week' =>$this->weeklySales($courseId,$start,$end)];
+            $sales[] = ['label' => $label, 'start' => $start, 'end' => $end, 'week' =>$this->weeklySales($courseId,$start,$end, $trackingCode)];
         }
         $salesTotal = 0;
         $maxSale = $this->_getMaxSalesValue($sales,'week');
@@ -149,7 +157,7 @@ class AnalyticsHelper
         return $max;
     }
 
-    public function salesLastFewDays($numOfDays, $courseId = 0)
+    public function salesLastFewDays($numOfDays, $courseId = 0, $trackingCode = '')
     {
         $sales = [];
 
@@ -160,7 +168,7 @@ class AnalyticsHelper
             if ($i === 0){
                 $label = 'Today';
             }
-            $sales[] = ['label' => $label, 'date' => $date, 'day' =>$this->courseDailySales($courseId, $date)];
+            $sales[] = ['label' => $label, 'date' => $date, 'day' =>$this->courseDailySales($courseId, $date, $trackingCode)];
         }
         $salesTotal = 0;
         $maxSale = $this->_getMaxSalesValue($sales,'day');
@@ -177,7 +185,7 @@ class AnalyticsHelper
         return compact('sales', 'salesTotal');
     }
 
-    public function salesLastFewMonths($numOfMonths, $courseId = 0)
+    public function salesLastFewMonths($numOfMonths, $courseId = 0, $trackingCode = '')
     {
         $sales = [];
 
@@ -188,7 +196,7 @@ class AnalyticsHelper
             if ($i === 0){
                 $label = 'This month';
             }
-            $sales[] = ['label' => $label, 'month_date' => $month, 'year' => $year, 'month' =>$this->monthlySales($courseId, $month, $year)];
+            $sales[] = ['label' => $label, 'month_date' => $month, 'year' => $year, 'month' =>$this->monthlySales($courseId, $month, $year,$trackingCode)];
         }
         $salesTotal = 0;
         $maxSale = $this->_getMaxSalesValue($sales,'month');
@@ -205,7 +213,7 @@ class AnalyticsHelper
         return compact('sales', 'salesTotal');
     }
 
-    public function salesLastFewYears($numOfYears, $courseId = 0)
+    public function salesLastFewYears($numOfYears, $courseId = 0, $trackingCode = '')
     {
         $sales = [];
 
@@ -215,7 +223,7 @@ class AnalyticsHelper
             if ($i === 0){
                 $label = 'This year';
             }
-            $sales[] = ['label' => $label, 'year_date' => $year, 'year' => $year, 'year' =>$this->allTimeSales($courseId, $year)];
+            $sales[] = ['label' => $label, 'year_date' => $year, 'year' => $year, 'year' =>$this->allTimeSales($courseId, $year, $trackingCode)];
         }
         $salesTotal = 0;
         $maxSale = $this->_getMaxSalesValue($sales,'year');
@@ -232,7 +240,7 @@ class AnalyticsHelper
     }
 
 
-    public function weeklySales($courseId, $dateFilterStart = '', $dateFilterEnd = '')
+    public function weeklySales($courseId, $dateFilterStart = '', $dateFilterEnd = '', $trackingCode = '')
     {
         if (empty($dateFilterStart)) {
             $dateFilterStart = $this->_frequencyEquivalence('week');
@@ -247,11 +255,16 @@ class AnalyticsHelper
         if (!empty($courseId)){
             $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
+
+        if (!empty($trackingCode)){
+            $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
+        }
+
         $query = $this->_salesRawQuery($filterQuery);
         return $this->_transformCoursePurchases($query);
     }
 
-    public function monthlySales($courseId, $month = '', $year = '')
+    public function monthlySales($courseId, $month = '', $year = '', $trackingCode = '')
     {
         if (empty($month)){
             $month = date('m');
@@ -265,12 +278,17 @@ class AnalyticsHelper
         if (!empty($courseId)){
             $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
+
+        if (!empty($trackingCode)){
+            $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
+        }
+
         $query = $this->_salesRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
 
-    public function allTimeSales($courseId, $year = '')
+    public function allTimeSales($courseId, $year = '', $trackingCode = '')
     {
         if (empty($year)){
             $year = date('Y');
@@ -280,12 +298,16 @@ class AnalyticsHelper
             $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
 
+        if (!empty($trackingCode)){
+            $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
+        }
+
         $query = $this->_salesRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
 
-    public function courseDailySales($courseId, $date = '')
+    public function courseDailySales($courseId, $date = '', $trackingCode = '')
     {
         if (empty($date)){
             $date = date('Y-m-d');
@@ -293,6 +315,10 @@ class AnalyticsHelper
         $filterQuery = "DATE(purchases.created_at) = '{$date}'";
         if (!empty($courseId)){
             $filterQuery .= " AND purchases.product_id = '{$courseId}'";
+        }
+
+        if (!empty($trackingCode)){
+            $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
         }
 
         $query = $this->_salesRawQuery($filterQuery);

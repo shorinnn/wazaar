@@ -23,17 +23,17 @@ class AffiliateDashboardController extends BaseController
         }
     }
 
-    public function salesView($frequency = '', $courseId = '')
+    public function salesView($frequency = '', $courseId = '', $trackingCode = '')
     {
         switch($frequency){
             case 'alltime' :
-                $sales = $this->analyticsHelper->salesLastFewYears(5, $courseId);break;
+                $sales = $this->analyticsHelper->salesLastFewYears(5, $courseId,$trackingCode);break;
             case 'week' :
-                $sales = $this->analyticsHelper->salesLastFewWeeks(7,$courseId);break;
+                $sales = $this->analyticsHelper->salesLastFewWeeks(7,$courseId,$trackingCode);break;
             case 'month' :
-                $sales = $this->analyticsHelper->salesLastFewMonths(7,$courseId);break;
+                $sales = $this->analyticsHelper->salesLastFewMonths(7,$courseId,$trackingCode);break;
             default:
-                $sales = $this->analyticsHelper->salesLastFewDays(7, $courseId);break;
+                $sales = $this->analyticsHelper->salesLastFewDays(7, $courseId,$trackingCode);break;
         }
 
 
@@ -88,7 +88,6 @@ class AffiliateDashboardController extends BaseController
 
     public function courseStatistics($courseId)
     {
-        //TODO: Add filter here to make sure certain group has access to this e.g. Should only allow affiliates group
         $course = Course::find($courseId);
 
         if ($course) {
@@ -125,6 +124,57 @@ class AffiliateDashboardController extends BaseController
 
         $trackingCodes = $this->analyticsHelper->trackingCodesByCourse($courseId, $startDate, $endDate);
         return View::make('analytics.partials.trackingCodesTable',compact('trackingCodes'))->render();
+    }
+
+    public function compareTrackingCodes($trackingCode)
+    {
+        if (Input::has('trackingCodes') AND Input::has('startDate') AND Input::has('endDate')) {
+            $trackingCodes = Input::get('trackingCodes');
+
+            $startDate = new \Carbon\Carbon(Input::get('startDate'));
+            $endDate = new Carbon\Carbon(Input::get('endDate'));
+
+
+            $datesDiff = $startDate->diffInDays($endDate);
+
+            $datesArr = [];
+
+            for($i = 0; $i <= $datesDiff; $i++){
+                $datesArr[] = date('F d, Y',strtotime(Input::get('endDate') . ' -'. $i .' days'));
+            }
+
+
+            $codesInArr = explode(',',$trackingCodes);
+            $codesInArr[] = $trackingCode;
+            //$courses = Tracki::whereIn('id', $codesInArr)->get();
+            $dataSets = [];
+
+            $index = 0;
+            $label = '';
+
+            foreach($codesInArr as $code){
+                $sales = $this->analyticsHelper->salesByDateRangeAndCourse($startDate->format('Y-m-d'),$endDate->format('Y-m-d'),0,$code);
+                $salesLabelAndData = $this->analyticsHelper->purchasesLabelData($sales, $datesArr);
+                $colorCombo = $this->analyticsHelper->chartColorCombo($index);
+                $dataSet = [
+                    'label' => $code,
+                    'fillColor' =>  $colorCombo[0],
+                    'strokeColor' =>  $colorCombo[1],
+                    'pointColor' => $colorCombo[2],
+                    'pointStrokeColor' =>  $colorCombo[2],
+                    'pointHighlightFill' =>  $colorCombo[2],
+                    'pointHighlightStroke' => $colorCombo[2],
+                    'data' => $salesLabelAndData['data']
+                ];
+                $label = $salesLabelAndData['labels'];
+
+                $dataSets[] = $dataSet;
+                $index++;
+            }
+
+            return Response::json(compact('label','dataSets'));
+
+        }
     }
 
     public function compareCourses($defaultCourseId)
@@ -184,7 +234,12 @@ class AffiliateDashboardController extends BaseController
 
         if ($course){
             $hitsSalesView = $this->trackingCodeHitsSalesView($courseId, $trackingCode);
-            return View::make('analytics.courseTrackingCodeStatistics',compact('course', 'trackingCode', 'hitsSalesView'));
+            $salesView = $this->salesView('', $courseId,$trackingCode);
+            $trackingCodes = TrackingCodeHits::distinct()->select('tracking_code')->where('affiliate_id', Auth::id())->get();
+            $sales = $this->analyticsHelper->sales('week',$courseId,$trackingCode);
+            $salesLabelData = $this->analyticsHelper->purchasesLabelData($sales);
+
+            return View::make('analytics.courseTrackingCodeStatistics',compact('course', 'trackingCode', 'hitsSalesView', 'salesView','trackingCodes','salesLabelData'));
         }
     }
 

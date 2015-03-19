@@ -1,4 +1,4 @@
-<h2>¥{{number_format($sales['salesTotal'],2)}}
+<h2>¥{{number_format($sales['salesTotal'])}}
 
 </h2>
 
@@ -10,7 +10,7 @@
             <div>
                 <div class="progress" style="width: {{$sale['percentage']}}%"></div>
             </div>
-            <em>¥{{number_format($sale['year']['sales_total'],2)}}</em>
+            <em>¥{{number_format($sale['year']['sales_total'])}}</em>
         </li>
     @endforeach
 </ul>

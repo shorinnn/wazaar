@@ -13,7 +13,7 @@
             <td>{{$code['purchases_total']}}</td>
             <td>{{$code['hits']}}</td>
             <td>{{$code['purchases']}}</td>
-            <td>{{number_format($code['purchases']/$code['hits']*100,0)}}%</td>
+            <td>{{number_format($code['purchases']/$code['hits']*100)}}%</td>
         </tr>
     @endforeach
     </tbody>
