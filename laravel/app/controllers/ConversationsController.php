@@ -12,13 +12,15 @@ class ConversationsController extends \BaseController {
             if( Input::has('lesson') ){
                 $lesson = Lesson::find( Input::get('lesson') );
                 if( !$student->purchased($lesson->module->course) && !$student->purchased( $lesson ) ){
+                     if(Request::ajax()) return json_encode(['status'=>'error']);
                      return Redirect::to('/');
                 }
                 $conv = new Conversation(['poster_id' => Auth::user()->id, 'lesson_id' => Input::get('lesson'), 'content' => Input::get('content') ]);
             }
             else{
                 $course = Course::find( Input::get('course') );
-                if( !$student->purchased($course) ){
+                if( !$student->purchased($course) && Auth::user()->id !=$course->instructor_id && Auth::user()->id != $course->assigned_instructor_id ){
+                     if(Request::ajax()) return json_encode(['status'=>'error']);
                      return Redirect::to('/');
                 }
                 $conv = new Conversation(['poster_id' => Auth::user()->id, 'course_id' => Input::get('course'), 'content' => Input::get('content') ]);

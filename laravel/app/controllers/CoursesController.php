@@ -170,7 +170,11 @@ class CoursesController extends \BaseController {
         
         public function myCourses(){
             $instructor = Instructor::find(Auth::user()->id);
-            $courses = $instructor->courses()->paginate(10);
+            $courses = $instructor->courses()
+                    ->with( [ 'dashboardComments' => function($query){
+                        $query->where('instructor_read', 'no');
+                    } ] )
+                    ->paginate(10);
             Return View::make('courses.myCourses')->with(compact('courses'));
         }
         
@@ -246,16 +250,30 @@ class CoursesController extends \BaseController {
             
             $course = Course::where('slug', $slug)->first();
             $student = Student::current(Auth::user());
-            $paymentData['successData']['REF'] = '123';
-            if( $student->purchase( $course, Cookie::get( "aid-$course->id" ), $paymentData ) ){
-                // unset the affiliate cookie
-                Cookie::queue("aid-$course->id", null, -1);
-                return Redirect::action('ClassroomController@dashboard', $slug);
+            $purchaseData = [];
+            $purchaseData['productID'] = $course->id;
+            $purchaseData['productType'] = 'Course';
+            $purchaseData['originalCost'] = $course->price;
+            $purchaseData['discount'] = 0;
+            if( $course->isDiscounted() ){
+                $purchaseData['discount'] = $course->discount_saved;
             }
-            else{
-                return Redirect::action('CoursesController@show', $slug)->withError( trans('courses/general.purchase_failed') );
+            $purchaseData['balanceUsed'] = 0;
+            $purchaseData['balanceTransactionID'] = '';
+            if( $student->student_balance > 0 ){
+                $transaction = $student->balanceDebit( $student->student_balance, $course);
+                if ( !$transaction ){
+                    return "Balance debit failed";
+                }
+                $purchaseData['balanceUsed'] = $student->student_balance;
+                $purchaseData['balanceTransactionID'] = $transaction;
             }
+            $purchaseData['finalCost'] = $course->cost() - $purchaseData['balanceUsed'];
+            $purchaseData['paymentType'] = $course->payment_type;
             
+            Session::put('data',  json_encode($purchaseData) ) ;
+            
+            return Redirect::action('PaymentController@index');            
         }
         
         public function purchaseLesson($slug, $lesson){
@@ -310,10 +328,22 @@ class CoursesController extends \BaseController {
                 return Redirect::to('/');
             }
             $instructor = Instructor::find( Auth::user()->id );
+            
+            if( Input::get('paginate')=='announcements' ) Paginator::setCurrentPage( Input::get('page') );
+            else Paginator::setCurrentPage(1);
             $announcements = $instructor->sentMessages()->where('course_id', $course->id)
                     ->where("type",'mass_message')->orderBy('id','desc')->paginate( 2 );
+            if( Input::get('paginate')=='discussions' ) Paginator::setCurrentPage( Input::get('page') );
+            else Paginator::setCurrentPage(1);
+            $course->comments = $course->dashboardComments()->where( 'instructor_read', 'no' )->orderBy( 'id','desc' )->paginate(2);
+            
             if(Request::ajax()){
-                 return View::make('courses/instructor/dashboard/announcements')->with(compact('course'))->with( compact('announcements') );
+                if(Input::get('paginate') =='announcements'){
+                    return View::make('courses/instructor/dashboard/announcements')->with(compact('course'))->with( compact('announcements') );
+                }
+                if(Input::get('paginate') =='discussions'){
+                    return View::make('courses/instructor/dashboard/discussions')->with(compact('course'));
+                }
             }
             return View::make('courses/instructor/dashboard')->with(compact('course'))->with( compact('announcements') );
         }

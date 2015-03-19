@@ -13,32 +13,24 @@
         <div class="row">
         	<div class="col-md-12">
             	<div class="plan-your-curriculum">
-                    
-                    <div role="tabpanel">
-
-                      <!-- Nav tabs -->
-                      <ul class="nav nav-tabs" role="tablist" id='myTab'>
-                        <li role="presentation" class="active"><a href="#announcements" aria-controls="announcements" role="tab" data-toggle="tab">Announcements</a></li>
-                        <li role="presentation"><a href="#questions" aria-controls="questions" role="tab" data-toggle="tab">Questions</a></li>
-                        <li role="presentation"><a href="#" aria-controls="?" role="tab" data-toggle="tab">?</a></li>
-                        <li role="presentation"><a href="#" aria-controls="?" role="tab" data-toggle="tab">?</a></li>
-                      </ul>
-
-                      <!-- Tab panes -->
-                      <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="announcements">   
-                            
+           
+                     
+                        <h4>Announcements Tab</h4>
+                        <div style="border:1px solid silver; margin:10px;"  class="tab-pane active" id="announcements">   
                             {{ View::make('courses/instructor/dashboard/announcements')->with(compact('course'))->with( compact('announcements') ) }}
                             
                         </div>
                           
-                        <div role="tabpanel" class="tab-pane" id="questions">...</div>
-                        <div role="tabpanel" class="tab-pane" id="?">...</div>
-                        <div role="tabpanel" class="tab-pane" id="?">...</div>
-                      </div>
-
-                    </div>
+                        <h4>Questions Tab</h4>
+                        <div style="border:1px solid silver; margin:10px;"  class="tab-pane" id="questions">
+                            
+                        </div>
                     
+                        <h4>Discussions Tab</h4>
+                        <div style="border:1px solid silver; margin:10px;" class="tab-pane" id="discussions">
+                            {{ View::make('courses/instructor/dashboard/discussions')->with(compact('course')) }}
+                        </div>
+
                     
                 </div>
             </div>

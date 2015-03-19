@@ -68,10 +68,23 @@
                                 <div class="buttons clearfix">
                                     <ul class="clearfix">
                                         <li class="questions clearfix">
-                                            <a href="#"><span><i>24</i></span><em>Questions</em></a>
+                                            <a href="{{ action( 'CoursesController@dashboard', $course->slug ) }}?tab=questions">
+                                                <span>
+                                                    @if( $course->questions->count() > 0 )
+                                                        <i>{{ $course->questions->count() }}</i>
+                                                    @endif
+                                                </span>
+                                                <em>Questions</em></a>
                                         </li>
                                         <li class="discussions clearfix">
-                                            <a href="#"><span><i>254</i></span><em>Discussions</em></a>
+                                            <a href="{{ action( 'CoursesController@dashboard', $course->slug ) }}?tab=comments">
+                                                <span>
+                                                @if( $course->dashboardComments->count() > 0 )
+                                                    <i>{{ $course->dashboardComments->count() }}</i>
+                                                @endif
+                                                </span>
+                                                <em>Discussions</em>
+                                            </a>
                                         </li>
                                         <!--<li class="assignment">
                                             <a href="#"><span></span><em>Assignment</em></a>
@@ -94,7 +107,7 @@
                                     Privacy:
                                     <em>{{ ucfirst( $course->privacy_status ) }}</em>
                                 </span>
-                                <a href="#" class="go-to-dashboard">GO TO DASHBOARD</a>
+                                <a href="{{ action( 'CoursesController@dashboard', $course->slug ) }}" class="go-to-dashboard">GO TO DASHBOARD</a>
                             </div>
                         </div>
                     </div>
