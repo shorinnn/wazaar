@@ -423,8 +423,10 @@
 					var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
 					return m+":"+s;
 				};
-
+				
+				console.log("Step one");
 				videoUploader.getVideo($videoId, function ($video){ 
+					console.log("Step two");
 					$('.lesson-options-' + $lessonId).find(
 						'#video-thumb-container').html(
 						"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
