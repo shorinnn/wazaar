@@ -1,3 +1,8 @@
+<style>
+    .lesson-no-video{
+        display:none;
+    }
+</style>
 <li id="lesson-{{$lesson->id}}">
 <!--<div class="progress">
       <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
@@ -31,7 +36,11 @@
             {{ Form::close() }}
         </div>
         <div class="lesson-options lesson-options-{{$lesson->id}} row">
-            <div class="clearfix lesson-options-buttons">
+            <div class="clearfix lesson-options-buttons
+                 @if($lesson->blocks()->where('type','video')->count() == 0)
+                    lesson-no-video
+                 @endif
+                 ">
                 <div class="buttons video active">
                     <!--<div class="progress">
                       <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">

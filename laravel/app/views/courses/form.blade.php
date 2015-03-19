@@ -409,6 +409,8 @@
 <script src="{{url('js/videoLookup.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
         $(function (){
+            $('.lesson-no-video .video .a-add-video').click();
+            
             enableFileUploader( $('#upload-preview-image') );
             enableFileUploader( $('#upload-banner-image') );
             enableSlider('#affiliate_percentage');
@@ -437,12 +439,14 @@
 						'#video-thumb-container').html(
 						"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
 						
-					$('.lesson-options-' + $lessonId).find('#video-thumb-container p').text(timeFormat(videoDuration));				
+					$('.lesson-options-' + $lessonId).find('#video-thumb-container p').text(timeFormat(videoDuration));
+                                        $('#lesson-'+$lessonId+ '.lesson-no-video').removeClass('lesson-no-video');
 				});
 
                 $.post('/lessons/blocks/' + $lessonId + '/video/assign', {videoId : $videoId}, function (){
 
                     $('#video-link-' + $lessonId).trigger('click');
+                    $('#lesson-'+$lessonId+ '.lesson-no-video').removeClass('lesson-no-video');
                 });
             });
         });

@@ -23,8 +23,6 @@ class CoursesController extends \BaseController {
             $bannerImages = $instructor->courseBannerImages;
          
             return View::make('courses.create')->with(compact('difficulties'))->with(compact('categories'));
-//            return View::make('courses.form')->with(compact('course'))->with(compact('images'))->with(compact('bannerImages'))
-//                    ->with(compact('difficulties'))->with(compact('categories'))->with(compact('subcategories'));
         }
         
         public function store(){
@@ -282,16 +280,29 @@ class CoursesController extends \BaseController {
                 return Redirect::to('login')->withError( trans('courses/general.login_to_purchase') );
             }
             
-            $course = Course::where('slug', $slug)->first();
+            $lesson = Lesson::where('slug', $lesson)->first();
             $student = Student::current(Auth::user());
-            $lesson = Lesson::find( $lesson );
-            $paymentData['successData']['REF'] = '123';
-            if( $student->purchase( $lesson, Cookie::get( "aid-$course->id" ), $paymentData ) ){
-                return Redirect::action('ClassroomController@dashboard', $slug);
+            $purchaseData = [];
+            $purchaseData['productID'] = $lesson->id;
+            $purchaseData['productType'] = 'Lesson';
+            $purchaseData['originalCost'] = $lesson->price;
+            $purchaseData['discount'] = 0;
+            $purchaseData['balanceUsed'] = 0;
+            $purchaseData['balanceTransactionID'] = '';
+            if( $student->student_balance > 0 ){
+                $transaction = $student->balanceDebit( $student->student_balance, $lesson);
+                if ( !$transaction ){
+                    return "Balance debit failed";
+                }
+                $purchaseData['balanceUsed'] = $student->student_balance;
+                $purchaseData['balanceTransactionID'] = $transaction;
             }
-            else{
-                return Redirect::action('CoursesController@show', $slug)->withError( trans('courses/general.purchase_failed') );
-            }
+            $purchaseData['finalCost'] = $lesson->cost() - $purchaseData['balanceUsed'];
+            $purchaseData['paymentType'] = "one_time";
+            
+            Session::put('data',  json_encode($purchaseData) ) ;
+            
+            return Redirect::action('PaymentController@index');
             
         }
         
