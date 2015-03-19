@@ -429,7 +429,7 @@
 				videoUploader.getVideo($videoId, function ($video){ 
 					console.log($video[0]);
 					
-					$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container').css({
+					$('.lesson-options-' + $lessonId).find('#video-thumb-container').css({
 						display: 'block'	
 					});
 					
