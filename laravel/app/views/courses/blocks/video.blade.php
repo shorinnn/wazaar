@@ -56,6 +56,8 @@
         var $lessonId = {{$lessonId}};
         var $intervalId = 0;
 
+		var videoVariable = $('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).html();
+
 		@if(@$video->transcode_status == Video::STATUS_COMPLETE)
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').css('display', 'block');
 			
@@ -103,7 +105,6 @@
 									return m+":"+s;
 								};
 								
-								var videoVariable = $('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).html();
 								
 								$('#lesson-{{$lessonId}} > .new-lesson').removeClass('gray').addClass('green');
 								
