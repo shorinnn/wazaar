@@ -173,7 +173,7 @@ Route::group(['prefix' => 'video'], function(){
 Route::group(['prefix' => 'dashboard'], function (){
     Route::get('/', 'AffiliateDashboardController@index');
     Route::get('topcourses/{frequency}/{courseId?}', 'AffiliateDashboardController@topCoursesView');
-    Route::get('sales/{frequency}/{courseId?}', 'AffiliateDashboardController@salesView');
+    Route::get('sales/{frequency}/{courseId?}/{trackingCode?}', 'AffiliateDashboardController@salesView');
     Route::get('trackingcodessales/{frequency}/{courseId?}','AffiliateDashboardController@trackingCodesSalesView');
     Route::get('courseconversions/{frequency}/{courseId?}','AffiliateDashboardController@courseConversionView');
     Route::get('trackingcodeconversions/{frequency}/{courseId?}','AffiliateDashboardController@trackingCodeConversionView');
@@ -183,6 +183,7 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('course/{id}/trackingcode/{code}/stats/{frequency}','AffiliateDashboardController@trackingCodeHitsSalesView');
     Route::get('trackingcode/{code}/stats', 'AffiliateDashboardController@trackingCodeStatistics');
     Route::post('course/{courseId}/stats/compare','AffiliateDashboardController@compareCourses');
+    Route::post('trackingcodes/{trackingCode}/stats/compare','AffiliateDashboardController@compareTrackingCodes');
     Route::get('trackingcodetable/{frequency}/{courseId}','AffiliateDashboardController@trackingCodesTableView');
 });
 

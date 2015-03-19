@@ -15,7 +15,7 @@
     <div class="col-md-5">
         <div class="big-text">
             @if ($trackingHitsSales->hits > 0)
-            {{number_format($trackingHitsSales->sales_count / $trackingHitsSales->hits * 100,2)}}
+            {{number_format($trackingHitsSales->sales_count / $trackingHitsSales->hits * 100)}}
             @else
                 0
             @endif

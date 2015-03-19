@@ -1,4 +1,4 @@
-<h2>¥{{number_format($sales['salesTotal'],2)}}</h2>
+<h2>¥{{number_format($sales['salesTotal'])}}</h2>
 <ul>
     @foreach($sales['sales'] as $sale)
         <li id="monday" class="clearfix">
@@ -6,7 +6,7 @@
             <div>
                 <div class="progress" style="width: {{$sale['percentage']}}%"></div>
             </div>
-            <em>¥{{number_format($sale['day']['sales_total'],2)}}</em>
+            <em>¥{{number_format($sale['day']['sales_total'])}}</em>
         </li>
     @endforeach
 </ul>

@@ -45,25 +45,27 @@
 </div>
 
 <script type="text/javascript">
+    var timeFormat = function(seconds){
+        var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);
+        var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
+        return m+":"+s;
+    };
+
     $(function (){
-		console.log({{$video->formats[0]->video_url->transcode_status}});
-		@if(@$video->transcode_status == Video::STATUS_COMPLETE)
-			console.log("Video transcoded");
-			$('.lesson-options-' + $lessonId).find('#video-thumb-container').css({
-				display: 'block'	
-			});
-			
-			$('.lesson-options-{{$lessonId}}').find(
-				'#video-thumb-container').html(
-				"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
-			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text(timeFormat(videoDuration));
-		@endif
-		
         var $blockId = {{$block->id}};
         var $lessonId = {{$lessonId}};
         var $intervalId = 0;
+
+		@if(@$video->transcode_status == Video::STATUS_COMPLETE)
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').css('display', 'block');
+			
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='{{$video->formats[0]->thumbnail}}'/>");
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text("{{$video->formats[0]->duration}}");
+		@endif
 		
-		$('#video-player-container-' + $lessonId).addClass('hide')		
+
+		
+		$('#video-player-container-' + $lessonId).addClass('hide');
         videoUploader.initialize({
             'fileInputElem' : $('#fileupload-' + $blockId),
             'progressCallBack' : function ($data, $progressPercentage){

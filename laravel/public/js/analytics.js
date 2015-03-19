@@ -19,8 +19,8 @@ var Analytics = {
                 }
             });
     },
-    'sales' :  function ($frequency, $courseId, $elem){
-        $.get('/dashboard/sales/' + $frequency + '/' + $courseId, function ($html){
+    'sales' :  function ($frequency, $courseId, $trackingCode, $elem){
+        $.get('/dashboard/sales/' + $frequency + '/' + $courseId + '/' + $trackingCode, function ($html){
             $('#wrapper-sales').html($html);
 
             $('.sales-dropdown a').removeClass('active');
@@ -41,8 +41,9 @@ var Analytics = {
                 $('#header-sales-frequency').html('All Time');
                 $('.with-alltime').trigger('click');
             }
-
-            Analytics.trackingCodeTable($frequency, $courseId);
+            if ($('#wrapper-tracking-codes-table').length == 1) {
+                Analytics.trackingCodeTable($frequency, $courseId);
+            }
         });
     },
 

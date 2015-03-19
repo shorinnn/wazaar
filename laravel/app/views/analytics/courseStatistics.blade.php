@@ -48,16 +48,16 @@
                                 {{trans('analytics.sales')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.sales('daily',{{$course['id']}}, this); return false;">{{trans('analytics.today')}}</a>
+                                    <a class="active" href="#" onclick="Analytics.sales('daily',{{$course['id']}},'', this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('week',{{$course['id']}}, this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('week',{{$course['id']}},'', this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('month',{{$course['id']}}, this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('month',{{$course['id']}},'', this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="#" href="#" onclick="Analytics.sales('alltime',{{$course['id']}}, this); return false;">{{trans('analytics.alltime')}}</a>
+                                    <a class="#" href="#" onclick="Analytics.sales('alltime',{{$course['id']}},'', this); return false;">{{trans('analytics.alltime')}}</a>
                                 </li>
                             </ul>
                         </div>
