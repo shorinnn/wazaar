@@ -431,6 +431,7 @@
 				console.log(uploadedVideo);
 				videoUploader.getVideo($videoId, function ($video){ 
 					console.log($video[0]);
+                                        $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
 					
 					$('.lesson-options-' + $lessonId).find('#video-thumb-container').css({
 						display: 'block'	
@@ -441,11 +442,9 @@
 						"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
 						
 					$('.lesson-options-' + $lessonId).find('#video-thumb-container p').text(timeFormat(videoDuration));
-                                        $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
 				});
 
                 $.post('/lessons/blocks/' + $lessonId + '/video/assign', {videoId : $videoId}, function (){
-                    console
                     $('#video-link-' + $lessonId).trigger('click');
                     $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
                 });
