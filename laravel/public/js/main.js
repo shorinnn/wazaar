@@ -325,8 +325,13 @@ function loadRemoteCache(e){
     
     if(elem.attr('data-loaded') == '1' ) return false;// content already loaded, just redisplay it
     
-    $(target).html( _('') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader-2.gif" />').css(
-	'text-align', 'center');
+    var loadingGif = $(target).html( _('') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader-2.gif" />').css({
+	textAlign: 'center',
+	marginBottom: 0,
+	marginTop: '10px'
+	});
+	
+	TweenMax.to(loadingGif, 1.5, {marginBottom: '40px', ease: Bounce.easeOut});
 	
     $(target).load(url, function(){
         elem.attr('data-loaded','1');
