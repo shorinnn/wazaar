@@ -424,9 +424,10 @@
 					return m+":"+s;
 				};
 				
-				console.log("Step one");
+				console.log($lessonId);
+				console.log(uploadedVideo);
 				videoUploader.getVideo($videoId, function ($video){ 
-					console.log("Step two");
+					console.log($video);
 					$('.lesson-options-' + $lessonId).find(
 						'#video-thumb-container').html(
 						"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
