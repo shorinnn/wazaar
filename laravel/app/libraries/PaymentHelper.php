@@ -49,17 +49,17 @@ class PaymentHelper
         ];
     }
 
-    public function processCreditCardPayment($creditCard, $user)
+    public function processCreditCardPayment($creditCard, $payee, $student)
     {
         $paymentURL = $this->url . 'payment/creditcard';
         $data       = [
             'amount'     => $creditCard['finalCost'], //purchases.purchase_price
-            'userId'     => $user->id, //users.id
-            'email'      => $user->email, //users.email
-            'firstName'  => $user->profile->first_name, //user_profiles.first_name
-            'lastName'   => $user->profile->last_name, //user_profiles.last_name
-            'city'       => $user->profile->city,
-            'zip'        => $user->profile->zip,
+            'userId'     => $student->id, //users.id
+            'email'      => $payee['email'], //users.email
+            'firstName'  => $payee['firstName'], //user_profiles.first_name
+            'lastName'   => $payee['lastName'], //user_profiles.last_name
+            'city'       => $payee['city'],
+            'zip'        => $payee['zip'],
             'country'    => 'JP',
             'cardNumber' => $creditCard['cardNumber'],
             'cardExpiry' => $creditCard['cardExpiry'],

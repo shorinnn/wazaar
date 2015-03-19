@@ -9,7 +9,7 @@
         <div>&nbsp;</div>
         <div class="row">
             <div class="col-md-4"><strong>Price</strong></div>
-            <div class="col-md-6">¥ {{number_format($costWithNoTax)}}</div>
+            <div class="col-md-6">¥ {{number_format($finalCost)}}</div>
         </div>
         <div>&nbsp;</div>
         <div class="row">
@@ -18,7 +18,7 @@
         </div>
         <hr/>
         <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="#"><span class="badge pull-right">¥ {{number_format($finalCost)}}</span> Total</a>
+            <li class="active"><a href="#"><span class="badge pull-right">¥ {{number_format($amountToPay)}}</span> Total</a>
             </li>
         </ul>
     </div>
