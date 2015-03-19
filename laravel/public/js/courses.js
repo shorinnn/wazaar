@@ -97,7 +97,7 @@ function addModule(json){
  */
 function addLesson(json){
     $('#lessons-holder-'+json.module).append(json.html);
-    $('#lessons-holder-'+json.module+' .lesson-no-video .a-add-video').click();
+//    $('#lessons-holder-'+json.module+' .lesson-no-video .a-add-video').click();
     reorderLessons( 'lessons-holder-'+json.module );
 }
 
