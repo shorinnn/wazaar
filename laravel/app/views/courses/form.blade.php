@@ -410,6 +410,7 @@
 <script type="text/javascript">
         $(function (){
             $('.lesson-no-video .video .a-add-video').click();
+            $('.lesson-no-video .video .a-add-video').attr('data-loaded', 1);
             
             enableFileUploader( $('#upload-preview-image') );
             enableFileUploader( $('#upload-banner-image') );

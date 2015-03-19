@@ -37,7 +37,7 @@
         </div>
         <div class="lesson-options lesson-options-{{$lesson->id}} row">
             <div class="clearfix lesson-options-buttons
-                 @if($lesson->blocks()->where('type','video')->count() == 0)
+                 @if($lesson->blocks()->where('type','video')->where( 'content','!=','' )->count() == 0)
                     lesson-no-video
                  @endif
                  ">
