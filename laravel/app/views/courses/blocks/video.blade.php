@@ -46,7 +46,7 @@
 
 <script type="text/javascript">
     $(function (){
-		console.log("{{$video->formats[0]->video_url->transcode_status}}");
+		//console.log("{{$video->formats[0]->video_url->transcode_status}}");
 		@if($video->transcode_status == Video::STATUS_COMPLETE)
 			console.log("Video transcoded");
 			$('.lesson-options-' + $lessonId).find('#video-thumb-container').css({
