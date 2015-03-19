@@ -129,10 +129,10 @@ class Student extends User{
             $purchase->balance_used = $paymentData['successData']['balance_used'];
             $purchase->balance_transaction_id = $paymentData['successData']['balance_transaction_id'];
         }
-        $purchase->instructor_earnings = PurchaseHelper::instructorEarnings($product, $affiliate);
-        $purchase->affiliate_earnings = PurchaseHelper::affiliateEarnings($product, $affiliate);
-        $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product);
-        $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product);
+        $purchase->instructor_earnings = PurchaseHelper::instructorEarnings($product, $purchase->processor_fee, $affiliate);
+        $purchase->affiliate_earnings = PurchaseHelper::affiliateEarnings($product, $purchase->processor_fee, $affiliate);
+        $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product, $purchase->processor_fee);
+        $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product, $purchase->processor_fee);
         $purchase->site_earnings = PurchaseHelper::siteEarnings($product,  $paymentData['successData']['processor_fee'] );
         $purchase->payment_ref = $paymentData['successData']['REF'];
         /************ Money fields **************/
@@ -178,8 +178,8 @@ class Student extends User{
                 $prodAffiliate->credit( $purchase->affiliate_earnings, $product, $purchase->payment_ref);
             }
             // credit Instructor Agency
-            if( $course->instructor->agency_id > 0){
-//                $course->instructor->agency->credit( $purchase->instructor_agency_earnings, $product, $purchase->payment_ref );
+            if( $course->instructor->instructor_agency_id > 0){
+                $course->instructor->agency->credit( $purchase->instructor_agency_earnings, $product, $purchase->payment_ref );
             }
             // credit wazaar
             $wazaar = LTCAffiliate::find(2);

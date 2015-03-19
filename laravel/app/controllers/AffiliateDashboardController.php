@@ -99,18 +99,38 @@ class AffiliateDashboardController extends BaseController
             $salesView = $this->salesView('', $courseId);
             $trackingCodeConversionView = $this->trackingCodeConversionView('', $courseId);
             $courses = ProductAffiliate::courses(Auth::id());
-            $trackingCodes = $this->analyticsHelper->trackingCodesByCourse($courseId);
+            $trackingCodesTableView = $this->trackingCodesTableView('', $courseId);
 
-            return View::make('analytics.courseStatistics', compact('course','trackingCodesSalesView', 'salesView','trackingCodeConversionView','salesLabelData', 'courses', 'trackingCodes'));
+            return View::make('analytics.courseStatistics', compact('course','trackingCodesSalesView', 'salesView','trackingCodeConversionView','salesLabelData', 'courses', 'trackingCodesTableView'));
         }
+    }
+
+    public function trackingCodesTableView($frequency = '', $courseId = 0)
+    {
+        $startDate = '';
+        $endDate = '';
+
+        switch($frequency){
+            case 'daily':
+                $startDate = date('Y-m-d');
+                break;
+            case 'weekly':
+                $startDate = date('Y-m-d',strtotime('-7 days'));
+                $endDate = date('Y-m-d');
+                break;
+            case 'monthly':
+                $startDate = date('Y-m-d', strtotime('-1 month'));
+                $endDate = date('Y-m-d');
+        }
+
+        $trackingCodes = $this->analyticsHelper->trackingCodesByCourse($courseId, $startDate, $endDate);
+        return View::make('analytics.partials.trackingCodesTable',compact('trackingCodes'))->render();
     }
 
     public function compareCourses($defaultCourseId)
     {
         if (Input::has('courseIds') AND Input::has('startDate') AND Input::has('endDate')) {
             $courseIds = Input::get('courseIds');
-
-
 
             $startDate = new \Carbon\Carbon(Input::get('startDate'));
             $endDate = new Carbon\Carbon(Input::get('endDate'));

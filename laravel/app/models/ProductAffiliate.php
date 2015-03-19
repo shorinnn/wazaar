@@ -14,7 +14,7 @@ class ProductAffiliate extends User{
      
     public function credit( $amount = 0, $product = null, $order = null ){
         $amount = doubleval($amount);
-        if( $amount < 1 ) return false;
+        if( $amount <= 0 ) return false;
         if( !is_a($product, 'Lesson') && !is_a($product, 'Course') ) return false;
         if( !$product->id ) return false;
         return DB::transaction(function() use ($amount, $product, $order){

@@ -41,10 +41,17 @@ var Analytics = {
                 $('#header-sales-frequency').html('All Time');
                 $('.with-alltime').trigger('click');
             }
+
+            Analytics.trackingCodeTable($frequency, $courseId);
         });
-
-
     },
+
+    'trackingCodeTable' : function ($frequency, $courseId){
+        $.get('/dashboard/trackingcodetable/' + $frequency + '/' + $courseId, function ($html){
+            $('#wrapper-tracking-codes-table').html($html);
+        });
+    },
+
     'trackingSalesCodes' :  function ($frequency, $courseId, $elem){
 
         $.get('/dashboard/trackingcodessales/' + $frequency + '/' + $courseId, function ($html){
