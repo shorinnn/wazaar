@@ -178,6 +178,15 @@
 
             };
 
+            $('#start-date').datetimepicker({format: 'MM/DD/YYYY'});
+            $('#end-date').datetimepicker({format: 'MM/DD/YYYY'});
+            $("#start-date").on("dp.change",function (e) {
+                $('#end-date').data("DateTimePicker").minDate(e.date);
+            });
+            $("#end-date").on("dp.change",function (e) {
+                $('#start-date').data("DateTimePicker").maxDate(e.date);
+            });
+
             // Get context with jQuery - using jQuery's .get() method.
             var ctx = $("#myChart").get(0).getContext("2d");
             var myLineChart = new Chart(ctx).Line(data,{

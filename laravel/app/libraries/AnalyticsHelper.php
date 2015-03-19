@@ -873,6 +873,7 @@ class AnalyticsHelper
                             ['#FFFF66','#FFCC00','#FF9900'],
                             ['#4F2412','#C9A798','#E9E0DB'],
                             ['#999967','#666666','#CCCCCC'],
+                            ['#999967','#666666','#000000'],
                       ];
         return $colorCombo[$index];
     }
