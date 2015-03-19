@@ -51,7 +51,7 @@
         var $intervalId = 0;
 
 		@if(@$video->transcode_status == Video::STATUS_COMPLETE)
-			console.log("Video transcoded");
+			console.log($lessonId);
 			$('.lesson-options-' + $lessonId).find('#video-thumb-container').css('display', 'block');
 			
 			$('.lesson-options-' + $lessonId).find(
