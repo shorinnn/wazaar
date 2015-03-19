@@ -432,6 +432,8 @@
 				videoUploader.getVideo($videoId, function ($video){ 
 					console.log($video[0]);
                                         $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
+                                        console.log('#lesson-'+$lessonId+'.lesson-no-video');
+                                        console.log($('#lesson-'+$lessonId).find('.lesson-no-video').length);
 					
 					$('.lesson-options-' + $lessonId).find('#video-thumb-container').css({
 						display: 'block'	
