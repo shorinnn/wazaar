@@ -328,10 +328,10 @@ function loadRemoteCache(e){
     var loadingGif = $(target).html( _('') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader-2.gif" />').css({
 	textAlign: 'center',
 	marginBottom: 0,
-	marginTop: '10px'
+	marginTop: 0
 	});
 	
-	TweenMax.to(loadingGif, 1.5, {marginBottom: '40px', ease: Bounce.easeOut});
+	TweenMax.to(loadingGif, 1, {marginBottom: '20px', ease: Bounce.easeOut});
 	
     $(target).load(url, function(){
         elem.attr('data-loaded','1');
