@@ -52,9 +52,7 @@
 
 		@if(@$video->transcode_status == Video::STATUS_COMPLETE)
 			console.log("Video transcoded");
-			$('.lesson-options-' + $lessonId).find('#video-thumb-container').css({
-				display: 'block'	
-			});
+			$('.lesson-options-' + $lessonId).find('#video-thumb-container').css('display', 'block');
 			
 			$('.lesson-options-' + $lessonId).find(
 				'#video-thumb-container').html(
