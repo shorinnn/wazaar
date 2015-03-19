@@ -6458,7 +6458,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .plan-your-curriculum .lesson-options .buttons.active div#video-thumb-container{
     background: rgba(255, 255, 255, 1);
     height: 70px;
-    left: -1px;
+    right: -28px;
     position: absolute;
     top: -4px;
     width: 148px;
