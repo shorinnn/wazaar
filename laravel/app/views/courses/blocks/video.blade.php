@@ -95,9 +95,10 @@
 									display: 'block'	
 								});
 								
+								
 								$('.lesson-options-{{$lessonId}}').find(
 									'#video-thumb-container').html(
-									"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='http://www.univeg.com/assets/images/static_pages/tomatoes.jpg'/>");
+									"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
 								$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text(timeFormat(videoDuration));
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
 
