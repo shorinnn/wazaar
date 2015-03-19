@@ -16,7 +16,7 @@ class PaymentController extends BaseController
         $validator = Validator::make(Input::all(), $this->paymentHelper->paymentValidationRules(),$this->paymentHelper->paymentValidationMessages());
 
         if ($validator->fails()) {
-            dd($validator->messages()->all());
+            return Redirect::back()->withErrors($validator->messages())->withInput(Input::all());
         }
 
         $productType          = Input::get('productType');
@@ -30,12 +30,14 @@ class PaymentController extends BaseController
 
         $renderForm = true;
         //thought Tax Value should also be passed here
-        $tax           = .08;
+        $tax           = Config::get('wazaar.TAX');
         $taxValue      = $finalCost * $tax;
-        $costWithNoTax = $finalCost - $taxValue;
+
+
+        $amountToPay = $finalCost + $taxValue;
 
         $checkoutData = compact('productType', 'productID', 'finalCost', 'originalCost', 'discount', 'costWithNoTax',
-            'taxValue', 'balanceTransactionID', 'balanceUsed', 'paymentType');
+            'taxValue', 'balanceTransactionID', 'balanceUsed', 'paymentType','amountToPay', 'tax');
         //Put the values into a session for use during submission to payment center
         Session::put($checkoutData);
 
@@ -54,7 +56,7 @@ class PaymentController extends BaseController
         //albert: i think we should address the profile issue before they reach the payment part like reminding
         // them somewhere to fill-up their profile info before they can do a purchase
         if($student->profile == null) {
-            $student->profile = new Profile;
+           return Redirect::to('profile');
         }
 
         return View::make('payment.index', compact('productPartial', 'student','renderForm'));
@@ -78,13 +80,22 @@ class PaymentController extends BaseController
                 $creditCard = [
                     'cardNumber' => Input::get('cardNumber'),
                     'cardExpiry' => Input::get('expiryDate'),
-                    'finalCost'  => Session::get('finalCost'),
+                    'finalCost'  => Session::get('amountToPay')
                 ];
-                $payment    = $this->paymentHelper->processCreditCardPayment($creditCard, $student);
+
+                $payee = Input::only('firstName', 'lastName', 'email','city','zip');
+
+                $payment    = $this->paymentHelper->processCreditCardPayment($creditCard, $payee, $student);
 
                 if ($payment['success']) {
                     //$paymentRef = $payment['successData']['REF'];
                     //Store Purchase
+                    $payment['successData']->processor_fee = 0;
+                    $payment['successData']->tax = Session::get('taxValue');
+                    $payment['successData']->amount_sent_to_processor = Session::get('amountToPay');
+                    $payment['successData']->balance_transaction_id = Session::get('balanceTransactionID');
+
+                    dd($payment);
                     $purchase = $student->purchase($product, Cookie::get( "aid-$product->id" ),$payment);
                     if (!$purchase){
                         return Redirect::back()->with('errors',[trans('payment.cannotPurchase')]);

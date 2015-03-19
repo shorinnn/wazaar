@@ -134,7 +134,7 @@ class PaymentGlobalCollectDriver implements PaymentInterface
                 $resp->REF   = \Str::random(8);
                 $successData = $resp;
             } else {
-                $errors = ['something went wrong mah man'];
+                $errors[] = ['something went wrong mah man'];
             }
         }
 
