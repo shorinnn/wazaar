@@ -45,6 +45,12 @@
 </div>
 
 <script type="text/javascript">
+    var timeFormat = function(seconds){
+        var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);
+        var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
+        return m+":"+s;
+    };
+    
     $(function (){
         var $blockId = {{$block->id}};
         var $lessonId = {{$lessonId}};
