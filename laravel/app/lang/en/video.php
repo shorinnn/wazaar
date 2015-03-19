@@ -8,7 +8,7 @@ return [
     'uploadOr' => 'Upload Video OR',
     'selectExisting' => 'Select From Existing',
     'formatsSupported' => 'Formats supported: mp4, avi, wmv',
-    'maxFileSize' => 'Max file size: 2GB',
+    'maxFileSize' => 'Max file size: 1GB',
     'myVideos' => 'My Videos',
     'useVideo' => 'Use Video'
 ];
