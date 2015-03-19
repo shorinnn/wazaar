@@ -96,6 +96,8 @@
 
 							console.log($video);
 							if ($video.transcode_status == 'Complete'){
+                                                            
+                                                                $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
 								clearInterval($intervalId);
 								var uploadedVideo = $('#video-player-container-' + $lessonId).find('video');
 								var videoDuration = uploadedVideo[0].duration;
