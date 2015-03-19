@@ -542,7 +542,8 @@ input[type='checkbox']{
 
 .switch-label:before, .switch-label:after {
   position: absolute;
-  top: 7px;
+  top: 9px;
+  text-transform: capitalize;
   -webkit-transition: inherit;
   -moz-transition: inherit;
   -o-transition: inherit;

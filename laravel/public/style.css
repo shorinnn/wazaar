@@ -6115,7 +6115,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
     margin-right: 0%;
     border: 1px solid #b0bfc1;
     border-radius: 5px;
-    color: #b0bfc1;
+    color: #849598;
     font-size: 14px;
     width: 78%;
 }
@@ -6381,7 +6381,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .plan-your-curriculum .lesson-options .buttons .load-remote-cache.active span{
 	box-shadow:0 0 0 2px #92cc2e;
-	background-color: #fff;
+	background-color: #ececec;
 	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-18-undone.png');
 }
 
