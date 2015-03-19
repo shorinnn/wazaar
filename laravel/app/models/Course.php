@@ -43,8 +43,20 @@ class Course extends Ardent{
         'modules' => array(self::HAS_MANY, 'Module'),
         'testimonials' => [ self::HAS_MANY, 'Testimonial' ],
         'comments' => [self::HAS_MANY, 'Conversation'],
+        'messages' => [self::HAS_MANY, 'PrivateMessage'],
     );
     
+    public function dashboardComments(){
+        return $this->comments()->where( 'lesson_id', null );
+    }
+    
+    public function questions(){
+        return $this->messages()->where( 'type', 'ask_teacher' )->where('status', 'unread')
+            ->where(function($query){
+                $query->where('recipient_id', $this->instructor_id)
+                        ->orWhere('recipient_id', $this->assigned_instructor_id);
+            });
+    }
   
     public function lessonSales(){
         $amount = 0;

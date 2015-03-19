@@ -19,8 +19,8 @@ class PaymentHelper
             'finalCost'     => 'required|numeric',
             'originalCost'  => 'required|numeric',
             'discount'      => 'required|numeric',
-            'taxPercentage' => 'required',
-            'taxValue'      => 'required'
+//            'taxPercentage' => 'required',
+//            'taxValue'      => 'required'
         ];
     }
 

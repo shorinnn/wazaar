@@ -10,7 +10,7 @@
                                             @endforeach
                                         </div>
                                     <div class="text-center load-remote" data-target='#announcements' data-load-method="fade">
-                                        {{$announcements->links()}}
+                                        {{$announcements->appends( ['paginate'=>'announcements'] )->links()}}
                                     </div>
                                     </div>                        
                                 </div>

@@ -19,7 +19,7 @@
         <img class="img-responsive img-circle" alt="" 
              src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-2.png">
         <span>
-            {{ $message->content }}
+            {{{ $message->content }}}
             {{ $message->markRead( Auth::user()->id ) }}
         </span>
     </div>

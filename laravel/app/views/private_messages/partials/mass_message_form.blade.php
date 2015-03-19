@@ -1,4 +1,4 @@
-<div class="row comment-section clearfix comment-form">
+<div class="row comment-section clearfix">
     <div class="col-md-12">
         <div class="comment-box clearfix">
             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-1.png" 

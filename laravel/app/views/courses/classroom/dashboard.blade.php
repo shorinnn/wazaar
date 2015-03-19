@@ -203,6 +203,7 @@
                         </div>
                     </div>
                 </div>
+                <a name='conversations'></a>
                 <div class="row classmate-conversations-heading">
                 	<div class="col-md-12">
                         <p class="lead">Classmate conversations</p>

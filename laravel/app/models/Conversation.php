@@ -17,4 +17,17 @@ class Conversation extends Ardent{
         'original' => array(self::BELONGS_TO, 'Conversation', 'foreignKey' => 'original_reply_to', 'otherKey' => 'id')
     );       
 
+    private $_comments = null;
+    public function page(){
+        if( $this->_comments == null){
+            $this->_comments = $this->course->comments()->where( 'lesson_id', null )->select('id')->orderBy('id','desc')->lists('id');
+        }
+        $startIndex = array_search($this->id, $this->_comments);
+        return floor($startIndex / 2 ) + 1;
+    }
+    
+    public function markRead(){
+        $this->instructor_read = 'yes';
+        $this->updateUniques();
+    }
 }

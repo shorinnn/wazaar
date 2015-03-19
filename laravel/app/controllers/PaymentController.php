@@ -13,20 +13,25 @@ class PaymentController extends BaseController
 
     public function index()
     {
-        $validator = Validator::make(Input::all(), $this->paymentHelper->paymentValidationRules(),$this->paymentHelper->paymentValidationMessages());
+        $student = Student::find(Auth::id());
+        $paymentData = json_decode( Session::pull('data') , true);
+        $validator = Validator::make( $paymentData, $this->paymentHelper->paymentValidationRules(),$this->paymentHelper->paymentValidationMessages());
 
         if ($validator->fails()) {
+            $transaction = Transaction::find( $paymentData['balanceTransactionID'] );
+            if( $transaction != null ){
+                $student->refundBalanceDebit( $transaction );// refund the balance amount used
+            }
             return Redirect::back()->withErrors($validator->messages())->withInput(Input::all());
         }
-
-        $productType          = Input::get('productType');
-        $productID            = Input::get('productID');
-        $finalCost            = Input::get('finalCost');
-        $originalCost         = Input::get('originalCost');
-        $discount             = Input::get('discount');
-        $balanceTransactionID = Input::get('balanceTransactionID');
-        $balanceUsed          = Input::get('balanceUsed');
-        $paymentType          = Input::get('paymentType');
+        $productType          = $paymentData['productType'];
+        $productID            = $paymentData['productID'];
+        $finalCost            = $paymentData['finalCost'];
+        $originalCost         = $paymentData['originalCost'];
+        $discount             = $paymentData['discount'];
+        $balanceTransactionID = $paymentData['balanceTransactionID'];
+        $balanceUsed          = $paymentData['balanceUsed'];
+        $paymentType          = $paymentData['paymentType'];
 
         $renderForm = true;
         //thought Tax Value should also be passed here
@@ -45,7 +50,7 @@ class PaymentController extends BaseController
         $checkoutData[Str::lower($productType)] = $product;
         $productPartial                         = View::make('payment.' . Str::lower($productType),$checkoutData)->render();
 
-        $student = Student::find(Auth::id());
+        
 
         // sorin: see if student can purchase this
         if( !$student->canPurchase($product) ) {
@@ -56,6 +61,10 @@ class PaymentController extends BaseController
         //albert: i think we should address the profile issue before they reach the payment part like reminding
         // them somewhere to fill-up their profile info before they can do a purchase
         if($student->profile == null) {
+            $transaction = Transaction::find( $paymentData['balanceTransactionID'] );
+            if( $transaction != null ){
+                $student->refundBalanceDebit( $transaction );// refund the balance amount used
+            }
            return Redirect::to('profile');
         }
 
