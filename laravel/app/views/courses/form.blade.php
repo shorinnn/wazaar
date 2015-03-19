@@ -427,7 +427,12 @@
 				console.log($lessonId);
 				console.log(uploadedVideo);
 				videoUploader.getVideo($videoId, function ($video){ 
-					console.log($video);
+					console.log($video[0]);
+					
+					$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container').css({
+						display: 'block'	
+					});
+					
 					$('.lesson-options-' + $lessonId).find(
 						'#video-thumb-container').html(
 						"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
