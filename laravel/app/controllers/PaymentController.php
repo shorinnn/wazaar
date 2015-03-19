@@ -14,7 +14,7 @@ class PaymentController extends BaseController
     public function index()
     {
         $student = Student::find(Auth::id());
-        $paymentData = json_decode( Session::get('data') , true);
+        $paymentData = json_decode( Session::pull('data') , true);
         $validator = Validator::make( $paymentData, $this->paymentHelper->paymentValidationRules(),$this->paymentHelper->paymentValidationMessages());
 
         if ($validator->fails()) {
