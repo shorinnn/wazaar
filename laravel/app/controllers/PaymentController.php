@@ -118,7 +118,8 @@ class PaymentController extends BaseController
                     }
                     Session::forget('productType');
                     Session::forget('productID');
-                    return Redirect::to('courses/purchase-successful')->with('purchaseId', $purchase->id);
+                    $redirectUrl = 'courses/' . $product->slug . '/purchased';
+                    return Redirect::to($redirectUrl)->with('purchaseId', $purchase->id);
                 } else {
                     return Redirect::back()->with('errors', $payment['errors'][0]);
                 }
