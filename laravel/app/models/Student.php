@@ -13,12 +13,14 @@ class Student extends User{
         'viewedLessons' => [ self::HAS_MANY, 'ViewedLesson' ],
         'wishlistItems' => [ self::HAS_MANY, 'WishlistItem' ],
         'testimonials' => [ self::HAS_MANY, 'Testimonial' ],
-        'transactions' => [ self::HAS_MANY, 'Transaction' ],
+        'allTransactions' => [ self::HAS_MANY, 'Transaction', 'foreignKey'=>'user_id' ],
         'following' => [self::BELONGS_TO_MANY, 'Instructor',  'table' => 'follow_relationships',  'foreignKey' => 'student_id', 'otherKey' => 'instructor_id'],
         'sentMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'sender_id' ],
         'receivedMessagesRel' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'recipient_id' ],
       ];
-    
+    public function getTransactionsAttribute(){
+        return $this->allTransactions()->where('transaction_type', 'LIKE', "%student%")->get();
+    }
     public function receivedMessages(){
 
         $mass = [0];
@@ -147,6 +149,12 @@ class Student extends User{
         }
 
         if( $product->sales()->save( $purchase ) ){
+            // mark the balanceDebit transaction successful
+            if( $purchase->balance_transaction_id >0 ){
+                $transaction = Transaction::find( $purchase->balance_transaction_id );
+                $transaction->status = 'complete';
+                $transaction->updateUniques();
+            }
             
             // if course - increment counter only if no lessons have already been purchased, or if this the first recurring payment
             if( strtolower( get_class($product) ) == 'course' ){
@@ -187,7 +195,14 @@ class Student extends User{
             
             return $purchase;
         }
-        else return false;
+        else{
+            // mark the balanceDebit transaction successful
+            if( $purchase->balance_transaction_id >0 ){
+                $transaction = Transaction::find( $purchase->balance_transaction_id );
+                $this->refundBalanceDebit( $transaction );
+            }
+            return false;
+        }
     }
     
     /**

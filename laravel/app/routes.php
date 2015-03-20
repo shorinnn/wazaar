@@ -12,6 +12,7 @@
 */
 // Site routes
 Route::get('/', 'SiteController@index');
+Route::get('/dash', 'SiteController@dashboard');
 
 // Temporary classroom route for mac to work with
 Route::get('courseditor', 'SiteController@courseditor');

@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder {
                  $this->call('TestimonialsSeeder');
                  $this->call('InstructorAgenciesSeeder');
                  $this->call('PMSeeder');
+                 $this->call('TransactionsSeeder');
 	}
 
 }
@@ -1042,4 +1043,22 @@ class PMSeeder extends Seeder {
         
     }
        
+}
+
+
+class TransactionsSeeder extends Seeder {
+
+    public function run()
+    {
+        Transaction::unguard();
+        Transaction::create( ['user_id' => 9, 'transaction_type' => 'student_balance_debit', 'amount' => 500,
+            'product_type' => 'Course', 'product_id' => 1, 'status' => 'complete' ] );
+        Transaction::create( ['user_id' => 9, 'transaction_type' => 'student_debit', 'amount' => 1500,
+            'product_type' => 'Course', 'product_id' => 1, 'status' => 'complete' ] );
+        Transaction::create( ['user_id' => 9, 'transaction_type' => 'student_credit', 'amount' => 100, 'status' => 'complete' ] );
+        $transaction = Transaction::create( ['user_id' => 9, 'transaction_type' => 'student_balance_debit', 'amount' => 100,
+            'product_type' => 'Lesson', 'product_id' => 2, 'status' => 'pending' ] );
+        $student = Student::find(9);
+        $student->refundBalanceDebit( $transaction ); 
+    }
 }
