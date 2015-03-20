@@ -35,5 +35,29 @@
                 </div>
             </div>
         </div>
+        
+    <div class="modal fade" id="reply-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Reply</h4>
+            </div>
+            <div class="modal-body clearfix">
+
+                <form method="post" action="{{ action( 'CoursesController@reply' ) }}" class="ajax-form"
+                      id='reply-form'
+                      data-callback='instructorReplied'>
+                    <textarea class='form-control' name="reply" id="reply-form-reply"></textarea>
+                    <input type="hidden" name="id" id="reply-form-id" />
+                    <input type="hidden" name="type" id="reply-form-type" />
+                    <button type='submit' class="btn btn-primary">Reply</button>
+                </form>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+        
 </div>
 @stop

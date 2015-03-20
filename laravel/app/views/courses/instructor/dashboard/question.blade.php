@@ -1,5 +1,7 @@
-<div class="comment clearfix clear comment-{{ $question->id }}" id="pm-{{$question->id}}">
+<div class="comment clearfix clear question-{{ $question->id }}" id="question-{{$question->id}}" style="border:1px solid silver; padding:20px">
     <div class="info clearfix clear">
+        <h5>Lesson: {{ $question->lesson->name }}</h5>
+        
         <span class="name"> 
             {{ $question->sender->commentName('student') }}
         </span>
@@ -20,4 +22,14 @@
             <br />
         </span>
     </div>
+    <form method="post" action="{{ action('CoursesController@markResolved') }}" class="ajax-form" data-callback="deleteItem" 
+          data-delete="#question-{{$question->id}}">
+        <button type="submit" class="btn btn-primary">Mark As Resolved</button>
+        <input type="hidden" name="id" value="{{$question->id}}" />
+        <input type="hidden" name="type" value="question" />
+    </form>
+    
+    <button class="btn btn-primary show-reply-form" data-type='question' data-id='{{$question->id}}'
+            data-delete='#question-{{$question->id}}'
+            >Reply</button>
 </div>

@@ -4,7 +4,8 @@
  */
 $(document).ready(function(){
     $('body').delegate('.add-module', 'click', addModule);    
-    $('body').delegate('.add-lesson', 'click', addLesson);   
+    $('body').delegate('.add-lesson', 'click', addLesson);    
+    $('body').delegate('.show-reply-form', 'click', showReplyForm);    
 	activeLessonOption(); 
     
     // Make the modules list sortable
@@ -242,4 +243,17 @@ function assignInstructor(e){
             $('#assign-instructor').prev('label').append('<i class="fa fa-check assigned-check"></i>');
         }
     });
+}
+
+function showReplyForm(e){
+    $('#reply-form').attr('data-delete', $(e.target).attr('data-delete'));
+    $('#reply-form-id').val( $(e.target).attr('data-id') );
+    $('#reply-form-type').val( $(e.target).attr('data-type') );
+    $('#reply-form-reply').val('');
+    $('#reply-modal').modal('show');
+}
+
+function instructorReplied(result, event){
+    deleteItem(result, event);
+    $('#reply-modal').modal('hide');
 }
