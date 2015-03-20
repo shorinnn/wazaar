@@ -1,7 +1,7 @@
 @if ($course)
     <div class="object small-box small-box-one">
         <div class="img-container">
-            <img src="{{$course->previewImage->url}}" class="img-responsive" alt="">
+            <img src="{{@$course->previewImage->url}}" class="img-responsive" alt="">
         </div>
         <div class="next_" style="position: relative; ">
             <div style="color:#fff; padding: 15px 0 0 10px;">{{$course->name}}</div>

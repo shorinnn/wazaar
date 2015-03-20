@@ -13,8 +13,13 @@ class PaymentController extends BaseController
 
     public function index()
     {
+        if (!Session::has('data')){
+            //return Redirect::to('/');
+        }
+
         $student = Student::find(Auth::id());
         $paymentData = json_decode( Session::pull('data') , true);
+
         $validator = Validator::make( $paymentData, $this->paymentHelper->paymentValidationRules(),$this->paymentHelper->paymentValidationMessages());
 
         if ($validator->fails()) {
@@ -24,6 +29,10 @@ class PaymentController extends BaseController
             }
             return Redirect::back()->withErrors($validator->messages())->withInput(Input::all());
         }
+
+        Session::put('data', json_encode($paymentData));//had to store it back to session just in case an error happens along the way
+
+
         $productType          = $paymentData['productType'];
         $productID            = $paymentData['productID'];
         $finalCost            = $paymentData['finalCost'];
@@ -34,23 +43,21 @@ class PaymentController extends BaseController
         $paymentType          = $paymentData['paymentType'];
 
         $renderForm = true;
-        //thought Tax Value should also be passed here
         $tax           = Config::get('wazaar.TAX');
-        $taxValue      = $finalCost * $tax;
+        $taxValue      = ceil($finalCost * $tax);
 
 
-        $amountToPay = $finalCost + $taxValue;
+        $amountToPay = ceil($finalCost + $taxValue);
 
         $checkoutData = compact('productType', 'productID', 'finalCost', 'originalCost', 'discount', 'costWithNoTax',
-            'taxValue', 'balanceTransactionID', 'balanceUsed', 'paymentType','amountToPay', 'tax');
+                                'taxValue', 'balanceTransactionID', 'balanceUsed', 'paymentType','amountToPay', 'tax');
         //Put the values into a session for use during submission to payment center
         Session::put($checkoutData);
-
         $product                                = $this->_getProductDetailsByTypeAndID($productType, $productID);
         $checkoutData[Str::lower($productType)] = $product;
         $productPartial                         = View::make('payment.' . Str::lower($productType),$checkoutData)->render();
 
-        
+
 
         // sorin: see if student can purchase this
         if( !$student->canPurchase($product) ) {
@@ -80,8 +87,7 @@ class PaymentController extends BaseController
                 return Redirect::back()->with('errors', $validator->messages()->all());
             } else {
                 $student = Student::current(Auth::user());
-                $product = $this->_getProductDetailsByTypeAndID(Session::get('productType'),
-                    Session::get('productID'));
+                $product = $this->_getProductDetailsByTypeAndID(Session::get('productType'),Session::get('productID'));
 
                 if( !$student->canPurchase($product) ) { //for some reason, it happened that student can no longer purchase it during transit
                     return Redirect::back()->with('errors',[trans('payment.cannotPurchase')]);
@@ -92,6 +98,7 @@ class PaymentController extends BaseController
                     'finalCost'  => Session::get('amountToPay')
                 ];
 
+
                 $payee = Input::only('firstName', 'lastName', 'email','city','zip');
 
                 $payment    = $this->paymentHelper->processCreditCardPayment($creditCard, $payee, $student);
@@ -99,12 +106,12 @@ class PaymentController extends BaseController
                 if ($payment['success']) {
                     //$paymentRef = $payment['successData']['REF'];
                     //Store Purchase
-                    $payment['successData']->processor_fee = 0;
-                    $payment['successData']->tax = Session::get('taxValue');
-                    $payment['successData']->amount_sent_to_processor = Session::get('amountToPay');
-                    $payment['successData']->balance_transaction_id = Session::get('balanceTransactionID');
+                    $payment['successData']['processor_fee'] = 0;
+                    $payment['successData']['tax'] = Session::get('taxValue');
+                    $payment['successData']['amount_sent_to_processor'] = Session::get('amountToPay');
+                    $payment['successData']['balance_transaction_id'] = Session::get('balanceTransactionID');
+                    $payment['successData']['balance_used'] = Session::get('balanceUsed');
 
-                    dd($payment);
                     $purchase = $student->purchase($product, Cookie::get( "aid-$product->id" ),$payment);
                     if (!$purchase){
                         return Redirect::back()->with('errors',[trans('payment.cannotPurchase')]);
@@ -131,7 +138,6 @@ class PaymentController extends BaseController
         } elseif ($type == 'Lesson') {
             $obj = Lesson::find($id);
         }
-
         return $obj;
     }
 }
