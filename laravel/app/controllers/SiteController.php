@@ -1,12 +1,22 @@
 <?php
 
 class SiteController extends \BaseController {
+    
+        public function __construct(){
+            $this->beforeFilter( 'auth', [ 'only' => ['dashboard'] ] );
+        }
 
 	public function index()
 	{                 
             $categories = CourseCategory::with('featuredCourse')->get();
             if(Auth::user()) Return View::make('site.homepage_authenticated')->with(compact('categories'));
             else Return View::make('site.homepage_unauthenticated')->with(compact('categories'));
+	}
+        
+	public function dashboard()
+	{                 
+            $student = Student::find( Auth::user()->id );
+            return View::make('site.dashboard')->with( compact('student') );
 	}
         
 	public function classroom()
