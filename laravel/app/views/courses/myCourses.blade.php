@@ -59,8 +59,11 @@
                         	<div class="hidden-xs hidden-sm col-md-6 clearfix">
                                 <div class="description clearfix">
                                     <p>
-                                    “Thank you so much teacher! I’ve never thought that this course would help me this much in PHP.  
-                                    Learned a lot from it!”
+                                    @if($course->testimonials()->where('rating','positive')->where('reported','no')->first() != null)
+                                        “{{ $course->testimonials()->where('rating','positive')->where('reported','no')->first()->content }}”
+                                    @else
+                                        Your students are going to love “{{ $course->name }}”!
+                                    @endif
                                     </p>
                                 </div>
                         	</div>
