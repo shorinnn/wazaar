@@ -23,7 +23,7 @@
                           
                         <h4>Questions Tab</h4>
                         <div style="border:1px solid silver; margin:10px;"  class="tab-pane" id="questions">
-                            
+                            {{ View::make('courses/instructor/dashboard/questions')->with(compact('course')) }}
                         </div>
                     
                         <h4>Discussions Tab</h4>

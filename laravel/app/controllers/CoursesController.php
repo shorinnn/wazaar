@@ -348,16 +348,34 @@ class CoursesController extends \BaseController {
             else Paginator::setCurrentPage(1);
             $course->comments = $course->dashboardComments()->where( 'instructor_read', 'no' )->orderBy( 'id','desc' )->paginate(2);
             
+            if( Input::get('paginate')=='questions' ) Paginator::setCurrentPage( Input::get('page') );
+            else Paginator::setCurrentPage(1);
+            $course->questions = $course->questions()->paginate(2);
+            
             if(Request::ajax()){
-                if(Input::get('paginate') =='announcements'){
+                if(Input::get('paginate') == 'announcements'){
                     return View::make('courses/instructor/dashboard/announcements')->with(compact('course'))->with( compact('announcements') );
                 }
-                if(Input::get('paginate') =='discussions'){
+                if(Input::get('paginate') == 'discussions'){
                     return View::make('courses/instructor/dashboard/discussions')->with(compact('course'));
+                }
+                if(Input::get('paginate') == 'questions'){
+                    return View::make('courses/instructor/dashboard/questions')->with(compact('course'));
                 }
             }
             return View::make('courses/instructor/dashboard')->with(compact('course'))->with( compact('announcements') );
         }
         
+        public function viewDiscussion($id){
+            $comment = Conversation::find($id);
+            $course = $comment->course;
+            if( $course==null || $course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
+                return Redirect::to('/');
+            }
+            $page = $comment->page();
+            
+            $comment->markRead();
+            return Redirect::to( action('ClassroomController@dashboard', $course->slug)."?page=$page#conversations" );
+        }
         
 }

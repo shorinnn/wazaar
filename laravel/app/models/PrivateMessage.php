@@ -80,4 +80,12 @@ class PrivateMessage extends Ardent {
                 }
             }
         }
+        private $_questions = null;
+        public function inboxPage(){
+            if( $this->_questions == null){
+                $this->_questions = self::where('recipient_id', $this->recipient_id )->select('id')->orderBy('id','desc')->lists('id');
+            }
+            $startIndex = array_search($this->id, $this->_questions);
+            return floor($startIndex / 2 ) + 1;
+        }
 }

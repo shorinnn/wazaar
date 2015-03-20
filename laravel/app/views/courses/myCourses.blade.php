@@ -77,7 +77,7 @@
                                                 <em>Questions</em></a>
                                         </li>
                                         <li class="discussions clearfix">
-                                            <a href="{{ action( 'CoursesController@dashboard', $course->slug ) }}?tab=comments">
+                                            <a href="{{ action( 'CoursesController@dashboard', $course->slug ) }}?tab=discussions">
                                                 <span>
                                                 @if( $course->dashboardComments->count() > 0 )
                                                     <i>{{ $course->dashboardComments->count() }}</i>
