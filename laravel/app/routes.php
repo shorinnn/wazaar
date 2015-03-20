@@ -99,6 +99,7 @@ Route::get('classroom/{course}/{module}/{lesson}', 'ClassroomController@lesson')
 Route::get('classroom/{slug}/', 'ClassroomController@dashboard');
 
 // Courses Controller
+Route::get('courses/view-discussion/{id}', 'CoursesController@viewDiscussion');
 Route::put('courses/{slug}/submit-for-approval', 'CoursesController@submitForApproval');
 Route::get('courses/search-instructor/{email}', 'CoursesController@searchInstructor');
 Route::get('courses/mycourses', 'CoursesController@myCourses');
