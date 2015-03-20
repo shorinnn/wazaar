@@ -20,7 +20,7 @@
         	<input disabled="disabled" placeholder="" id="uploadFile" style="">
             <div class="form-group video-upload clear">
 	            <span>Upload Video</span>
-                <input type="file" name="fileupload" class="upload" id="fileupload-{{$block->id}}">
+                <input type="file" name="fileupload" class="upload" id="fileupload-{{$lessonId}}">
             </div>
             <em>OR</em>
             <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}">{{trans('video.selectExisting')}}</a></h3>
@@ -37,8 +37,8 @@
         <!-- Progress Bar -->
 
         <div class="progress">
-            <div id="progress-bar-{{$block->id}}" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                <span><span id="percent-complete-{{$block->id}}"></span> <!--{{trans('crud/labels.complete')}}--></span>
+            <div id="progress-bar-{{$lessonId}}" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                <span><span id="percent-complete-{{$lessonId}}"></span> <!--{{trans('crud/labels.complete')}}--></span>
             </div>
         </div>
     {{Form::close()}}
@@ -69,10 +69,10 @@
 		
 		$('#video-player-container-' + $lessonId).addClass('hide');
         videoUploader.initialize({
-            'fileInputElem' : $('#fileupload-' + $blockId),
+            'fileInputElem' : $('#fileupload-' + $lessonId),
             'progressCallBack' : function ($data, $progressPercentage){
-                $('#progress-bar-' + $blockId).css('width', $progressPercentage + '%');
-                $('#percent-complete-' + $blockId).html($progressPercentage + '%');
+                $('#progress-bar-' + $lessonId).css('width', $progressPercentage + '%');
+                $('#percent-complete-' + $lessonId).html($progressPercentage + '%');
             },
             'failCallBack' : function ($data){
 
