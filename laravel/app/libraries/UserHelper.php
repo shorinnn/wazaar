@@ -127,4 +127,21 @@ class UserHelper
             return LTCAffiliate::find(Auth::id())->profile()->save($profile);
         }
     }
+
+    public function profilesByType($type)
+    {
+        $profiles = [
+            'student' => [
+                'student'
+            ],
+            'instructor' => [
+                'instructor', 'student'
+            ],
+            'affiliate' => [
+                'affiliate', 'student'
+            ]
+        ];
+
+        return $profiles[$type];
+    }
 }
