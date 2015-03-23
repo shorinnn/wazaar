@@ -9,6 +9,7 @@ $(document).ready(function(){
     $(".profile-name > li").removeClass("activate-dropdown");
     $('body').delegate('.slide-toggler', 'click', slideToggle);
     $('body').delegate('a.load-remote', 'click', loadRemote);
+    $('body').delegate('a.link-to-remote', 'click', linkToRemote);
     $('body').delegate('.form-to-remote-link', 'submit', formToRemoteLink);
     $('body').delegate('.load-remote a', 'click', prepareLoadRemote);
     $('body').delegate('a.load-more-ajax', 'click', loadMoreComments);
@@ -185,6 +186,44 @@ function formToRemoteLink(e){
     $(e.target).attr('data-url', url);    
     loadRemote(e);
     return false;
+}
+
+
+function linkToRemote(e){
+    e.preventDefault();
+    
+    var nofollow = $(e.target).attr('data-nofollow');
+    if( typeof(nofollow)!='undefined'&& nofollow==1 ) return false;
+    
+    var loading = $(e.target).attr('data-loading');
+    if( typeof(loading)!='undefined'&& loading==1 ) return false;
+    
+    url = $(e.target).attr('data-url');
+    var callback = $(e.target).attr('data-callback');
+    elem = $(e.target);
+    while(typeof(url)=='undefined'){
+        elem = elem.parent();
+        url = elem.attr('data-url');
+        callback = elem.attr('data-callback');  
+    }
+    
+    $(elem).attr('data-old-label', $(elem).html() );
+    $(elem).html( '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $.get(url, function(result){
+        $(e.target).attr('data-loading', 0);
+        $(elem).html( $(elem).attr('data-old-label') );
+        result = JSON.parse(result);
+        if(result.status == 'success' ){
+            if( typeof(callback)!= 'undefined'){
+                window[callback](e);
+            }
+        }
+        else{
+            console.log( result );
+            $.bootstrapGrowl( _('An Error Occurred.'),{align:'center', type:'danger'} );
+        }
+    });
+
 }
 /**
  * Event handler for a.load-remote<br />

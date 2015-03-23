@@ -11,5 +11,5 @@ return [
     'use_id_for_slug' => true,
     'short_desc_max_chars' => 100,
     'earnings' => ['instructor_percentage' => 70, 'site_percentage' => 30, 'ltc_percentage' => 5, 'agency_percentage' => 5],
-    'cashout' => [ 'fee' => 1.5, 'threshold' => 50 ]
+    'cashout' => [ 'fee' => 15, 'threshold' => 50 ]
 ];
