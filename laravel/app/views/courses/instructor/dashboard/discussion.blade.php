@@ -1,5 +1,8 @@
-<div class="comment clearfix clear comment-{{ $comment->id }}" id="pm-{{$comment->id}}">
+<div class="comment clearfix clear discussion-{{ $comment->id }}" id="discussion-{{$comment->id}}" style="border:1px solid silver; padding:20px">
     <div class="info clearfix clear">
+        @if($comment->lesson !=null )
+            <h5>Lesson: {{ $question->lesson->name }}</h5>
+        @endif
         <span class="name"> 
             @if($comment->poster->id == Course::find($comment->course_id)->instructor->id
             ||
@@ -28,4 +31,15 @@
             <br />
         </span>
     </div>
+    
+    <form method="post" action="{{ action('CoursesController@markResolved') }}" class="ajax-form" data-callback="deleteItem" 
+          data-delete="#discussion-{{$comment->id}}">
+        <button type="submit" class="btn btn-primary">Mark As Resolved</button>
+        <input type="hidden" name="id" value="{{$comment->id}}" />
+        <input type="hidden" name="type" value="discussion" />
+    </form>
+    
+    {{ Form::close() }}
+    <button class="btn btn-primary  show-reply-form" data-type='discussion' data-id='{{$comment->id}}'
+            data-delete='#discussion-{{$comment->id}}'>Reply</button>
 </div>

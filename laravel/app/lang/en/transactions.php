@@ -16,6 +16,7 @@ return array(
     'agency_credit_transaction' => 'Instructor Agency Credit Transaction Reference:',
     'agency_debit_transaction' => 'Instructor Agency Debit Transaction',
     'public_student_credit' => 'Credit',
+    'public_student_debit' => 'Debit',
     'public_student_balance_debit' => 'Balance Debit',
     'public_student_balance_debit_refund' => 'Balance Debit Refund',
 );

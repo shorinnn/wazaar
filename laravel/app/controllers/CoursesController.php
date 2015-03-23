@@ -378,4 +378,73 @@ class CoursesController extends \BaseController {
             return Redirect::to( action('ClassroomController@dashboard', $course->slug)."?page=$page#conversations" );
         }
         
+        public function markResolved(){
+            if(Input::get('type')=='question'){
+                $object = PrivateMessage::find(Input::get('id'));                
+                if( $object->course->instructor_id != Auth::user()->id && $object->course->assigned_instructor_id != Auth::user()->id ){
+                    return json_encode( [ 'status' => 'error' ] );
+                }
+                if( $object->recipient_id != $object->course->instructor_id && $object->recipient_id != $object->course->assigned_instructor_id ){
+                    return json_encode( [ 'status' => 'error' ] );
+                }
+                $object->status = 'read';
+            }
+            else{
+                $object = Conversation::find(Input::get('id'));
+                if( $object->course->instructor_id != Auth::user()->id && $object->course->assigned_instructor_id != Auth::user()->id ){
+                    return json_encode( [ 'status' => 'error' ] );
+                }
+                $object->instructor_read = 'yes';
+            }
+                 
+            if($object->updateUniques())            return json_encode( [ 'status' => 'success' ] );
+            else return json_encode( [ 'status' => 'error' ] );
+        }
+        
+        public function reply(){
+            if(Input::get('type')=='question'){
+                $object = PrivateMessage::find(Input::get('id'));                
+                if( $object->course->instructor_id != Auth::user()->id && $object->course->assigned_instructor_id != Auth::user()->id ){
+                    return json_encode( [ 'status' => 'error' ] );
+                }
+                if( $object->recipient_id != $object->course->instructor_id && $object->recipient_id != $object->course->assigned_instructor_id ){
+                    return json_encode( [ 'status' => 'error' ] );
+                }
+                $object->status = 'read';
+                if( !$object->updateUniques() ){
+                    return json_encode( [ 'status' => 'error' ] );
+                }
+                $reply = new PrivateMessage([ 'sender_id' => Auth::user()->id, 'type' => 'ask_teacher' ]);
+                $reply->content = Input::get('reply');
+                $reply->recipient_id = $object->sender_id;  
+                $reply->course_id = $object->course_id;  
+                $reply->lesson_id = $object->lesson_id;  
+                $reply->thread_id = ($object->thread_id > 0) ? $object->thread_id : $object->id;  
+            }
+            else{
+                $object = Conversation::find(Input::get('id'));
+                if( $object->course->instructor_id != Auth::user()->id && $object->course->assigned_instructor_id != Auth::user()->id ){
+                    return json_encode( [ 'status' => 'error' ] );
+                }
+                $object->instructor_read = 'yes';
+                if( !$object->updateUniques() ){
+                    return json_encode( [ 'status' => 'error' ] );
+                }
+                
+                $reply = new Conversation(['poster_id' => Auth::user()->id, 'course_id' => $object->course_id ]);
+                $reply->content = Input::get('reply');
+                $reply->instructor_read = 'yes';
+                if($object->reply_to > 0){
+                    $reply->reply_to = $object->reply_to;
+                    $reply->original_reply_to = $object->id;
+                }
+                else{
+                    $reply->reply_to = $object->id;
+                }
+            }
+            
+            if($reply->save())            return json_encode( [ 'status' => 'success' ] );
+            else return json_encode( [ 'status' => 'error', 'errors' => format_errors( $reply->errors()->all() ) ] );
+        }
+        
 }
