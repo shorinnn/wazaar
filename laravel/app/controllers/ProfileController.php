@@ -33,7 +33,10 @@ class ProfileController extends Controller
                 $profile =  $this->userHelper->createProfileFromType($type);
             }
 
-            return View::make('profile.index', compact('profile', 'type'));
+            $trueType = $this->userHelper->activeProfileType();
+
+            $availableProfiles = $this->userHelper->profilesByType($trueType);
+            return View::make('profile.index', compact('profile', 'type','availableProfiles'));
         }
     }
 

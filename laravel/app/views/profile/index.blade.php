@@ -16,12 +16,20 @@
                         <h3>{{trans('profile.pageTitle')}}</h3>
                     </div>
                     <div class="col-md-5 margin-top-15">
-                        <div class="dropdown pull-right">
-                            <button class="btn btn-success" type="button" id="dropdownMenu1">
-                                {{trans('profile.' . $type)}} {{trans('profile.profile')}}
 
+                        <div class="dropdown">
+                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                {{trans('profile.' . $type)}} {{trans('profile.profile')}}
+                                <span class="caret"></span>
                             </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                @foreach($availableProfiles as $p)
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('profile/' . $p)}}">{{trans('profile.' . $p)}} {{trans('profile.profile')}}</a></li>
+                                @endforeach
+
+                            </ul>
                         </div>
+
                     </div>
                 </div>
 

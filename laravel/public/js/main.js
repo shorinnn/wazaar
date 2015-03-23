@@ -331,8 +331,6 @@ function loadRemoteCache(e){
 	marginTop: 0
 	});
 	
-	TweenMax.to(loadingGif, 1, {marginBottom: '20px', ease: Bounce.easeOut});
-	
     $(target).load(url, function(){
         elem.attr('data-loaded','1');
         if( typeof(callback)!= 'undefined'){
