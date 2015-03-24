@@ -4281,7 +4281,7 @@ select::-ms-expand {
 
 .unauthenticated-homepage.course-search-section .course-search-form{
 	margin-top: 60px;
-	margin-bottom: 40px;
+	margin-bottom: 25px;
 	position: relative;
 	overflow: visible;
 }
@@ -4312,7 +4312,7 @@ select::-ms-expand {
 .unauthenticated-homepage.course-search-section 
 .discover-wazaar-button{
 	display: block;
-	margin: 58px auto 25px;
+	margin: 43px auto 25px;
 	font-size: 14px;
 	color: #18222b;
 	height: 41px;
@@ -4719,17 +4719,30 @@ select::-ms-expand {
 }
 	
 /* Tiny Carousel */
+
+.unauthenticated-homepage.thumb-carousel-section {
+    overflow: hidden;
+    padding: 15px 0;
+	background: -moz-linear-gradient(left, #172735, #0f4d79, #172735);
+	background: -webkit-linear-gradient(left, #172735, #0f4d79, #172735);
+	background: -o-linear-gradient(left, #172735, #0f4d79, #172735);
+	background: -ms-linear-gradient(left, #172735, #0f4d79, #172735);
+	background: linear-gradient(left, #172735, #0f4d79, #172735);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0f4d79', endColorstr='#172735'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0f4d79', endColorstr='#172735')"; /* IE8 */
+}
+
 #slider1 {
     height: 383pxs;
     margin: 0;
     position: relative;
     padding: 0;
-	overflow: hidden;
+	overflow-y: visible;
 }
 
 #slider1 .viewport {
     height: 383px;
-	overflow:hidden;
+	overflow-y: visible;
     position: relative;
 }
 
@@ -4739,7 +4752,7 @@ select::-ms-expand {
     display: block;
     position: absolute;
     top: 50%;
-	z-index:1;
+	z-index:10;
     left: 0;
     width: 35px;
     height: 35px;
@@ -4778,6 +4791,7 @@ select::-ms-expand {
     width: 240px;
     left: 0;
     top: 0;
+	min-width: 1900px;
 }
 
 #slider1 .overview li {

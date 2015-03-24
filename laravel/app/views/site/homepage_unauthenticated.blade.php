@@ -76,7 +76,7 @@
             </div>
         </section>
         
-        <section class="thumb-carousel-section">
+        <section class="thumb-carousel-section unauthenticated-homepage">
             <div id="slider1">
                 <a class="buttons prev" href="#">&#60;</a>
                 <div class="viewport">
@@ -134,8 +134,6 @@
                                         <p>Dancing with Jerken on the top of the iceberg..</p>
                                   	</a>                                                                
                                 </div>
-                            </div>
-                            <div class="column-2">
                             	<div class="big-box-holders box-holders left clearfix">
                                 	<a href="#" class="big-boxes boxes clear">
                                     	<span></span>
