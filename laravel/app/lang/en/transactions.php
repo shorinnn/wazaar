@@ -19,4 +19,5 @@ return array(
     'public_student_debit' => 'Debit',
     'public_student_balance_debit' => 'Balance Debit',
     'public_student_balance_debit_refund' => 'Balance Debit Refund',
+    'cashout_fee' => 'Cashout fee',
 );

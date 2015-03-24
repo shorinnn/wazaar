@@ -86,7 +86,9 @@ class User extends Ardent implements ConfideUserInterface
     
     public function commentName($user_type){
         if($user_type=='student') $user = Student::find($this->id);
-        else $user = Instructor::find($this->id);
+        else if($user_type=='instructor') $user = Instructor::find($this->id);
+        else if($user_type=='instructor_agency') $user = InstructorAgency::find($this->id);
+        else $user = LTCAffiliate::find($this->id);
         if( $user->profile ){
             return $user->profile->first_name.' '.$user->profile->last_name;
         }

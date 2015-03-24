@@ -21,7 +21,8 @@
 		"jenssegers/agent": "2.1.4",
                 "fzaninotto/faker": "1.4.0",
                 "fitztrev/laravel-html-minify": "1.*",
-		"anlutro/curl": "0.6.*"
+		"anlutro/curl": "0.6.*",
+                "indatus/dispatcher" : "1.4"
 	},
 	"autoload": {
 		"classmap": [

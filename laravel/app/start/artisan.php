@@ -12,4 +12,8 @@
 */
 
 Artisan::add(new CheckTranscodedVideoStatusCommand);
+Artisan::add(new InstructorCashoutCommand);
+Artisan::add(new AffiliateCashoutCommand);
+Artisan::add(new InstructorAgencyCashoutCommand);
+Artisan::add(new StudentBalanceDebitRefundCommand);
 

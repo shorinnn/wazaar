@@ -50,6 +50,9 @@ Route::get('logout', 'UsersController@logout');
 
 // Admin Controller
 Route::group(array('prefix'=>'administration'),function(){
+    Route::post('withdrawals/reject', 'WithdrawalsController@reject');
+    Route::post('withdrawals/complete', 'WithdrawalsController@complete');
+    Route::resource('withdrawals', 'WithdrawalsController');
     Route::resource('members', 'MembersController');
     Route::resource('submissions', 'SubmissionsController');
     Route::get('affiliate-agencies/affiliates/{id}', 'AffiliateAgenciesController@affiliates');
