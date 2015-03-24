@@ -8,7 +8,7 @@ class PaymentHelper
     public function __construct()
     {
         //TODO: Use a config to store the url
-        $this->url = 'http://wazaar.dev/api/';
+        $this->url = Config::get('wazaar.API_URL');
     }
 
     public function paymentValidationRules()
@@ -47,6 +47,16 @@ class PaymentHelper
             'city'       => 'required',
             'zip'        => 'required'
         ];
+    }
+
+    public function processCreateProfileFromOrderId($orderId)
+    {
+        $createURL = $this->url . 'payment/profile/create';
+        $data = [
+          'orderId' => $orderId
+        ];
+
+        return $this->_executeCurl($createURL, $data);
     }
 
     public function processCreditCardPayment($creditCard, $payee, $student)
