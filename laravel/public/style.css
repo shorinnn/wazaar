@@ -4791,7 +4791,6 @@ select::-ms-expand {
     width: 240px;
     left: 0;
     top: 0;
-	min-width: 1900px;
 }
 
 #slider1 .overview li {
