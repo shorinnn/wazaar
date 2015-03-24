@@ -40,7 +40,7 @@ class ApiPaymentController extends BaseController
 
         $otherParams = [
             'order' => [
-                'orderId'   => rand(1, 100),
+                'orderId'   => time(),
                 'email'     => $requestData['email'],
                 'firstName' => $requestData['firstName'],
                 'lastName'  => $requestData['lastName'],
