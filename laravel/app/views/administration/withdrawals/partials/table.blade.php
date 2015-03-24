@@ -2,8 +2,38 @@
     <div class="row">
     	<div class="col-md-12">
             <div class="table-wrapper table-responsive clear">
-               
+               <form method='post' id='withdrawForm' action='{{action('WithdrawalsController@update')}}'>
+               <input type='hidden' name='_token' value='{{ csrf_token() }}' />
                 <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                <div class='checkbox-buttons'>
+                                    <div class="checkbox-item"> 
+                                        <div class="checkbox-checkbox checkbox-checked"> 
+                                            <input id="checkbox" class="checkbox-toggler" data-target=".cb-togglable" autocomplete="off" type="checkbox"> 
+                                            <label for="checkbox" class="small-checkbox"> </label> 
+                                        </div> 
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                Request Type
+                            </th>
+                            <th>
+                                User
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>
+                                Timestamp
+                            </th>
+                            <th>
+                                Reference
+                            </th>
+                        </tr>
+                    </thead>
                     <tbody>
                         @foreach($requests as $request)
                         <tr>
@@ -11,7 +41,9 @@
                                 <div class='checkbox-buttons'>
                                     <div class="checkbox-item"> 
                                         <div class="checkbox-checkbox checkbox-checked"> 
-                                            <input id="checkbox-{{$request->id}}" autocomplete="off" value='{{$request->id}}' type="checkbox"> 
+                                            <input id="checkbox-{{$request->id}}" class="cb-togglable"
+                                                   name="request[{{$request->id}}]"
+                                                   autocomplete="off" value='{{$request->id}}' type="checkbox"> 
                                             <label for="checkbox-{{$request->id}}" class="small-checkbox"> </label> 
                                         </div> 
                                     </div>
@@ -41,23 +73,25 @@
                                 {{ $request->created_at->diffForHumans() }}
                             </td>
                             <td>
-                                <form method='post' class='ajax-form' action='{{action('WithdrawalsController@complete')}}'>
-                                    <input type='text' name='reference' placeholder="Reference" />  <br />
-                                    <input type='hidden' name='transaction' value='{{$request->id}}' />
-                                    <button type='submit' class='btn btn-primary delete-button'
-                                        data-message='Mark transaction complete?'>Complete</button>
-                                </form>
-                                <form method='post' class='ajax-form' action='{{action('WithdrawalsController@reject')}}'>
-                                    <input type='hidden' name='transaction' value='{{$request->id}}' />
-                                <button type='submit' class='btn btn-danger delete-button'
-                                        data-message='Mark transaction as failed and refund balance?'>Reject</button>
-                                </form>
+                                <input type="text" name="reference[{{$request->id}}]" placeholder="Reference" />
                             </td>
                             
                         </tr>
                         @endforeach
+                        <tr>
+                            <td colspan="6">
+                                <button type='button' class='btn btn-primary' onclick="processWithdrawal(this)"
+                                        data-mode='complete'
+                                        data-message='Mark transaction complete?'>Complete Selected</button>
+                                <button type='button' class='btn btn-danger' onclick="processWithdrawal(this)"
+                                        data-mode='reject'
+                                        data-message='Mark transaction as failed and refund balance?'>Reject Selected</button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
+                   <input type="hidden" name="action" id='action' />
+               </form>
             </div>
         </div>
     </div>

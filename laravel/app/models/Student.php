@@ -18,9 +18,11 @@ class Student extends User{
         'sentMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'sender_id' ],
         'receivedMessagesRel' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'recipient_id' ],
       ];
+    
     public function getTransactionsAttribute(){
-        return $this->allTransactions()->where('transaction_type', 'LIKE', "%student%")->get();
+        return $this->allTransactions()->where('transaction_type', 'LIKE', "%student%");
     }
+    
     public function receivedMessages(){
 
         $mass = [0];

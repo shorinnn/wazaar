@@ -50,8 +50,7 @@ Route::get('logout', 'UsersController@logout');
 
 // Admin Controller
 Route::group(array('prefix'=>'administration'),function(){
-    Route::post('withdrawals/reject', 'WithdrawalsController@reject');
-    Route::post('withdrawals/complete', 'WithdrawalsController@complete');
+    Route::post('withdrawals/update', 'WithdrawalsController@update');
     Route::resource('withdrawals', 'WithdrawalsController');
     Route::resource('members', 'MembersController');
     Route::resource('submissions', 'SubmissionsController');
@@ -152,6 +151,7 @@ Route::get('shop', 'SiteController@shop');
 
 ## Route Group for Profile
 Route::group(['prefix' => 'profile'], function (){
+    Route::get('finance', 'ProfileController@finance');
     ## Profile Page /profile
     Route::get('/{type?}', 'ProfileController@index');
     ## POST call to upload a profile picture

@@ -66,7 +66,7 @@ class ProductAffiliate extends User{
                         $fee_transaction->amount = $fee;
                         $fee_transaction->transaction_type = 'cashout_fee';
                         $fee_transaction->details = trans('transactions.cashout_fee'). ' #'.$transaction->id;
-                        $fee_transaction->reference = $transaction->id;
+                        $fee_transaction->reference = 'withdraw-'.$transaction->id;
                         $fee_transaction->status = 'pending';
                         $fee_transaction->gc_fee = 0;
                         if( !$fee_transaction->save() ){

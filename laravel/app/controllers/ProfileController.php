@@ -105,6 +105,22 @@ class ProfileController extends Controller
             return Redirect::to('profile/' . Input::get('type'))->withSuccess( trans('profile.updateSuccessful') );
         }
     }
+    
+    public function finance(){
+        $user = Student::find( Auth::user()->id );
+        if(Input::get('show')=='instructor' && Auth::user()->hasRole('Instructor')){
+            $user = Instructor::find( Auth::user()->id );
+        }
+        if(Input::get('show')=='affiliate' && Auth::user()->hasRole('Affiliate')){
+            $user = LTCAffiliate::find( Auth::user()->id );
+        }
+        if(Input::get('show')=='agency' && Auth::user()->hasRole('InstructorAgency')){
+            $user = InstructorAgency::find( Auth::user()->id );
+        }
+        $user->paginated_transactions = $user->transactions->orderBy('id','desc')->paginate( 2 );
+
+        return View::make('profile.finances')->with( compact('user') );
+    }
 
 
     

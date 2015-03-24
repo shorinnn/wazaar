@@ -7,4 +7,38 @@ class Transaction extends Ardent {
         public static $relationsData = [
             'user' => [self::BELONGS_TO, 'User']
         ];
+        
+        public function reverseDebit(){
+            // create refund transaction
+            return DB::transaction(function(){
+                // get the fee transaction
+                $fee = Transaction::where('reference', 'withdraw-'.$this->id)->first();
+                $amount = $fee->amount + $this->amount;
+                
+                $refund = new Transaction();
+                $refund->user_id = $this->user_id;
+                $refund->transaction_type = $this->transaction_type.'_refund';
+                $refund->details = "Refunded #$this->id & #$fee->id";
+                $refund->amount = $amount;
+                $refund->status = 'complete';
+                $refund->save();
+
+                
+                // mark them as rejected
+                $this->status = $fee->status = 'failed';
+                $this->details = $fee->details = 'Failed. Refunded by #'.$refund->id;
+
+                $fee->updateUniques();
+                $this->updateUniques();
+
+                // restore balance
+                if($this->transaction_type == 'instructor_debit') $field = 'instructor_balance';
+                elseif($this->transaction_type=='affiliate_debit') $field = 'affiliate_balance';
+                else $field = 'agency_balance';
+                
+                $this->user->$field += $amount;
+                $this->user->updateUniques();
+            });
+            
+        }
 }
