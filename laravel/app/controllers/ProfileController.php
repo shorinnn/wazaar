@@ -81,29 +81,35 @@ class ProfileController extends Controller
 
     public function update($id)
     {
-        if ($id){
-            $validator = Validator::make(Input::only('first_name', 'last_name'),$this->userHelper->profileValidationRules());
+        try{
+            if ($id){
+                $validator = Validator::make(Input::only('first_name', 'last_name'),$this->userHelper->profileValidationRules());
 
-            if ($validator->fails()){
-                return Redirect::back()->withInput(Input::all())->with('errors', $validator->messages()->all());
-            }
-            $user = $this->userHelper->getProfileByType(Input::get('type'));
-            $data = Input::except('_token','type', 'profilePicture');
-
-            if (Input::hasFile('profilePicture')){
-                $imagePath = $this->uploadHelper->uploadImage('profilePicture');
-
-                if ($imagePath) {
-                    $awsResult  = $this->uploadHelper->moveToAWS($imagePath, Config::get('wazaar.S3_PROFILES_BUCKET'));
-                    $pictureUrl = $awsResult->get('ObjectURL');
-                    $data['photo'] = $pictureUrl;
+                if ($validator->fails()){
+                    return Redirect::back()->withInput(Input::all())->with('errors', $validator->messages()->all());
                 }
-            }
+                $user = $this->userHelper->getProfileByType(Input::get('type'));
+                $data = Input::except('_token','type', 'profilePicture');
 
-            $this->userHelper->saveProfile(Auth::id(), $data , $user);
+                if (Input::hasFile('profilePicture')){
+                    $imagePath = $this->uploadHelper->uploadImage('profilePicture');
+
+                    if ($imagePath) {
+                        $awsResult  = $this->uploadHelper->moveToAWS($imagePath, Config::get('wazaar.S3_PROFILES_BUCKET'));
+                        $pictureUrl = $awsResult->get('ObjectURL');
+                        $data['photo'] = $pictureUrl;
+                    }
+                }
+
+                $this->userHelper->saveProfile(Auth::id(), $data , $user);
 //            Session::put('success',trans('profile.updateSuccessful'));
-            return Redirect::to('profile/' . Input::get('type'))->withSuccess( trans('profile.updateSuccessful') );
+                return Redirect::to('profile/' . Input::get('type'))->withSuccess( trans('profile.updateSuccessful') );
+            }
         }
+        catch(Exception $ex){
+            return Redirect::back()->withInput(Input::all())->with('errors', [$ex->getMessage()]);
+        }
+
     }
     
     public function finance(){

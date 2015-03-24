@@ -20,7 +20,7 @@ class UploadHelper
 
         $mime      = mimetype($file);
         $extension = mime_to_extension($mime);
-        $file      = file_get_contents($file);
+        $fileContents      = file_get_contents($file);
 
 
         $s3 = AWS::get('s3');
@@ -34,11 +34,11 @@ class UploadHelper
             'Bucket'      =>  $bucket,
             'ContentType' =>  $mime,
             'Key'         =>  $prefixSegment . '/' . $key . $extension,
-            'Body'        =>  $file
+            'Body'        =>  $fileContents
         ));
 
         //remove file
-        //unlink($file);
+        unlink($file);
 
         return $result;
     }

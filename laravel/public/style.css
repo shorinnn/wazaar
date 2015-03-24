@@ -4281,6 +4281,7 @@ select::-ms-expand {
 
 .unauthenticated-homepage.course-search-section .course-search-form{
 	margin-top: 60px;
+	margin-bottom: 40px;
 	position: relative;
 	overflow: visible;
 }
@@ -4300,13 +4301,18 @@ select::-ms-expand {
 .unauthenticated-homepage.course-search-section .down-arrow{
 	display: block;
 	text-align: center;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
+}
+
+.container-fluid.course-search-section.unauthenticated-homepage.discover-wazaar{
+    min-height: 1px;
+    padding-top: 0;
 }
 
 .unauthenticated-homepage.course-search-section 
 .discover-wazaar-button{
 	display: block;
-	margin: 50px auto 25px;
+	margin: 58px auto 25px;
 	font-size: 14px;
 	color: #18222b;
 	height: 41px;
@@ -4714,16 +4720,16 @@ select::-ms-expand {
 	
 /* Tiny Carousel */
 #slider1 {
-    height: 1%;
+    height: 383pxs;
     margin: 0;
-    overflow: hidden;
     position: relative;
     padding: 0;
+	overflow: hidden;
 }
 
 #slider1 .viewport {
     height: 383px;
-    overflow: hidden;
+	overflow:hidden;
     position: relative;
 }
 
@@ -4791,6 +4797,9 @@ select::-ms-expand {
 	border: solid 1px #162d3e;
 	display: block;
 	position: relative;
+	-webkit-transition: all 0.3s ease-in-out 0s;
+	-moz-transition: all 0.3s ease-in-out 0s;
+	transition: all 0.3s ease-in-out 0s;
 }
 
 #slider1 .overview li div .boxes span{
@@ -4807,9 +4816,15 @@ select::-ms-expand {
     border-radius: 5px;
 	opacity: 0;
 	visibility: hidden;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
+	-webkit-transition: all 0.3s ease-in-out 0s;
+	-moz-transition: all 0.3s ease-in-out 0s;
+	transition: all 0.3s ease-in-out 0s;
+}
+
+#slider1 .overview li div .boxes:hover{
+	transform: scale(1.2);
+	position: relative;
+	z-index: 1;
 }
 
 #slider1 .overview li div .boxes:hover span{
@@ -4820,13 +4835,13 @@ select::-ms-expand {
 #slider1 .overview li div .boxes p{
 	margin:0;
 	position: absolute;
-	bottom: 20px;
+	bottom: 10px;
 	left:0;
 	font-weight: 200;
 	padding: 0 20px;
 	width: 100%;
 	color: #fff;
-	text-align: center;
+	text-align: left;
 }
 
 #slider1 .overview li div .boxes img{

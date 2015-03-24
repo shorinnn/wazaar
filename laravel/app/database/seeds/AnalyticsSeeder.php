@@ -15,7 +15,7 @@ class AnalyticsSeeder extends DatabaseSeeder
             $coursePurchases[] = [
                 'product_id' => $courseId,
                 'product_type' => 'Course',
-                'student_id' => $faker->randomElement([3,7]),
+                'student_id' => $faker->randomElement([4,7]),
                 'ltc_affiliate_id' => 5,
                 'product_affiliate_id' => 2,
                 'purchase_price' => $faker->randomFloat(0,50,800),
