@@ -91,6 +91,21 @@ class PaymentGlobalCollectDriver implements PaymentInterface
         // TODO: Implement makeUsingCheck() method.
     }
 
+    public function createPaymentProfileFromOrder($orderId)
+    {
+        try{
+            $orderXML = "
+                <PAYMENT>
+                    <ORDERID>{$orderId}</ORDERID>
+                </PAYMENT>
+            ";
+            $requestXML = $this->_prepareXMLString('CONVERT_PAYMENTTOPROFILE',$orderXML);
+            return $this->_executeCall($requestXML);
+        }
+        catch(Exception $ex){
+            return ['success' => false, 'errors' => [$ex->getMessage()]];
+        }
+    }
 
     public function cancel()
     {

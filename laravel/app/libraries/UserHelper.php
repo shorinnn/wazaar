@@ -139,9 +139,10 @@ class UserHelper
             ],
             'affiliate' => [
                 'affiliate', 'student'
-            ]
+            ],
+            '' => []
         ];
 
-        return $profiles[$type];
+        return @$profiles[$type];
     }
 }

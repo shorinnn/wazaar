@@ -202,6 +202,7 @@ Route::group(['prefix' => 'payment'], function (){
 Route::group(['prefix' => 'api'], function(){
     Route::group(['prefix' => 'payment'], function(){
         Route::post('creditcard','ApiPaymentController@creditCard');
+        Route::post('profile/create','ApiPaymentController@createProfile');
     });
 });
 

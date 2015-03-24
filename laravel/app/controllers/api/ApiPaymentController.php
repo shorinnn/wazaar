@@ -61,4 +61,25 @@ class ApiPaymentController extends BaseController
 
         return Response::json($paymentResponse);
     }
+
+    public function createProfile()
+    {
+        $rules = [
+          'orderId' => 'required'
+        ];
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return [
+                'success' => false,
+                'errors'  => $validator->messages()->all()
+            ];
+        }
+
+        $orderId = Input::get('orderId');
+        $response = $this->payment->createPaymentProfileFromOrder($orderId);
+
+        return Response::json($response);
+    }
 }

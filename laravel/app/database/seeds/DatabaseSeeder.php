@@ -84,6 +84,23 @@ class UserTableSeeder extends Seeder {
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
         $user->save();
+
+        //albert: added this for my testing
+        $user = new User;
+        $user->ltc_affiliate_id = 2;
+        $user->username = 'albert';
+        $user->email = 'albert@mailinator.com';
+        $user->first_name = 'Albert';
+        $user->last_name = 'Maranian';
+        $user->password = 'pass';
+        $user->password_confirmation = 'pass';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->save();
+        Profile::unguard();
+        Profile::create( ['owner_id' => $user->id, 'owner_type' => 'Student','first_name' => 'Albert', 'last_name' => 'Maranian', 'email' => 'albert@mailinator.com']);
+        //albert
+
         $user = new User;
         $user->ltc_affiliate_id = 2;
         $user->username = 'student';
@@ -95,6 +112,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
         $user->save();
+
         $user = new User;
         $user->ltc_affiliate_id = 2;
         $user->username = 'instructor';
@@ -232,6 +250,9 @@ class AssignedRoleTableSeeder extends Seeder {
         $user = User::where('username', '=', 'student')->first();
         $studentRole = Role::where('name','=','Student')->first();
         $user->attachRole( $studentRole );
+        $user = User::where('username', '=', 'albert')->first();
+        $studentRole = Role::where('name','=','Student')->first();
+        $user->attachRole( $studentRole );
         $user = User::where('username', '=', 'mac')->first();
         $user->attachRole( $studentRole );
         $user = User::where('username', '=', 'jeremy')->first();
@@ -335,14 +356,14 @@ class CoursesSeeder extends Seeder {
         Course::unguard();
         // IT Courses
         Course::create( ['name' => 'App Development', 'slug' => 'app-development', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 1
-                        , 'price' => 300000, 'course_difficulty_id' => 1, 'course_preview_image_id' => 1, 
+                        , 'price' => rand(1,100), 'course_difficulty_id' => 1, 'course_preview_image_id' => 1,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
                         'short_description' => 'Short:  You get a beginner award after completing the course.', 
                         'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create( ['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 1,
-                        'price' => 185000.99, 'course_difficulty_id' => '2', 
+                        'price' => rand(1,100), 'course_difficulty_id' => '2',
                         'description' => 'JS - the best language around.',
                         'short_description' => 'Short: JS - the.',
                         'student_count' => 0, 
@@ -351,7 +372,7 @@ class CoursesSeeder extends Seeder {
                         'what_will_you_achieve' => '["Something", "Something Else!"]'
                         ]);
         Course::create( ['name' => 'PHP Primer', 'slug' => 'php-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,
-                        'price' => 99.99, 'course_difficulty_id' => 3, 
+                        'price' => rand(1,100), 'course_difficulty_id' => 3,
                         'description' => 'PHP - the best language around.', 
                         'short_description' => 'Short: PHP - the best language around.', 
                         'student_count' => 0,  
@@ -359,7 +380,7 @@ class CoursesSeeder extends Seeder {
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create( ['name' => 'PHP Primer Revisited', 'slug' => 'php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,   
-                        'price' => 99.99, 'course_difficulty_id' => 3,
+                        'price' => rand(1,100), 'course_difficulty_id' => 3,
                         'description' => 'PHP - the best language around. REVISITED.', 
                         'short_description' => 'Short: REVISITED.', 
                         'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
@@ -367,7 +388,7 @@ class CoursesSeeder extends Seeder {
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         // Business Courses
         Course::create( ['name' => 'Business App Development', 'slug' => 'business-app-development', 'instructor_id' => 4, 'course_category_id' => 2, 'course_subcategory_id' => 2, 
-                        'price' => 300000, 'course_difficulty_id' => 1,  'course_preview_image_id' => 4,
+                        'price' => rand(1,100), 'course_difficulty_id' => 1,  'course_preview_image_id' => 4,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
                         'short_description' => 'Short Create your very first.', 
                         'student_count' => 1, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
@@ -375,7 +396,7 @@ class CoursesSeeder extends Seeder {
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         // Investments Courses
         Course::create( ['name' => 'Investments App Development', 'slug' => 'investments-app-development', 'instructor_id' => 4, 'course_category_id' => 3,  'course_subcategory_id' => 3, 
-                        'price' => 300000, 'course_difficulty_id' => 1, 'course_preview_image_id' => 5,
+                        'price' => rand(1,100), 'course_difficulty_id' => 1, 'course_preview_image_id' => 5,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
                         'student_count' => 2, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
@@ -386,38 +407,38 @@ class CoursesSeeder extends Seeder {
                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         // Music Courses
-        Course::create( ['name' => 'Music App Development', 'slug' => 'music-app-development',  'instructor_id' => 4,'course_category_id' => 4, 'course_subcategory_id' => 4,  'price' => 300000, 
+        Course::create( ['name' => 'Music App Development', 'slug' => 'music-app-development',  'instructor_id' => 4,'course_category_id' => 4, 'course_subcategory_id' => 4,  'price' => rand(1,100),
                         'course_difficulty_id' => 1, 'course_preview_image_id' => 6, 'affiliate_percentage' => 0,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
                         'student_count' => 0, 'privacy_status' => 'public',
                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         // Beauty Courses
-        Course::create( ['name' => 'Beauty App Development', 'slug' => 'beauty-app-development', 'instructor_id' => 4, 'course_category_id' => 5, 'course_subcategory_id' => 5,  'price' => 300000, 
+        Course::create( ['name' => 'Beauty App Development', 'slug' => 'beauty-app-development', 'instructor_id' => 4, 'course_category_id' => 5, 'course_subcategory_id' => 5,  'price' => rand(1,100),
                         'course_difficulty_id' => 1,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
                         'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
-        Course::create( ['name' => 'Beauty Javascript Primer', 'slug' => 'beauty-javascript-primer', 'instructor_id' => 4, 'course_category_id' => 5,  'course_subcategory_id' => 5, 'price' => 185000.99, 
+        Course::create( ['name' => 'Beauty Javascript Primer', 'slug' => 'beauty-javascript-primer', 'instructor_id' => 4, 'course_category_id' => 5,  'course_subcategory_id' => 5, 'price' => rand(1,100),
                         'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0, 
                         'privacy_status' => 'public', 'affiliate_percentage' => 0,
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create( ['name' => 'Beauty PHP Primer', 'slug' => 'beauty-php-primer', 'instructor_id' => 4, 'course_category_id' => 5,   'course_subcategory_id' => 5, 
-                        'price' => 99.99, 'course_difficulty_id' => 3, 'affiliate_percentage' => 0,
+                        'price' => rand(1,100), 'course_difficulty_id' => 3, 'affiliate_percentage' => 0,
                                  'description' => 'PHP - the best language around.', 'student_count' => 0,  'course_preview_image_id' => 7,
                         'privacy_status' => 'public',
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create( ['name' => 'Beauty PHP Primer Revisited', 'slug' => 'beauty-php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 5,  'course_subcategory_id' => 5, 
-                        'price' => 99.99, 'course_difficulty_id' => 3, 'affiliate_percentage' => 0,
+                        'price' => rand(1,100), 'course_difficulty_id' => 3, 'affiliate_percentage' => 0,
                                  'description' => 'PHP - the best language around. REVISITED.', 'student_count' => 0, 'privacy_status' => 'public',
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
                         'what_will_you_achieve' => '["Something", "Something Else!"]']);
         // Health Courses
         Course::create( ['name' => 'Health App Development', 'slug' => 'health-app-development', 'instructor_id' => 4, 'course_category_id' => 6,  'course_subcategory_id' => 6, 
-                        'price' => 300000,  'course_difficulty_id' => 1,  'course_preview_image_id' => 8,
+                        'price' => rand(1,100),  'course_difficulty_id' => 1,  'course_preview_image_id' => 8,
                         'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
                         'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
                          'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
@@ -428,7 +449,7 @@ class CoursesSeeder extends Seeder {
         
         Course::create( ['name' => '３ヶ月で10キロ痩せてハイパフォーマーになる『体』やり直し講座', 'instructor_id' => 11, 'course_category_id' => 6,  
                         'course_subcategory_id' => 6, 'course_banner_image_id' => 1,
-                        'price' => 300000,  'course_difficulty_id' => 1,  'course_preview_image_id' => 9,
+                        'price' => rand(1,100),  'course_difficulty_id' => 1,  'course_preview_image_id' => 9,
                         'description' => '
                             正直に告白します。
 <br /><br />
