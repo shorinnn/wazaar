@@ -12,9 +12,22 @@ class Instructor extends User{
         'followers' => [self::BELONGS_TO_MANY, 'Student',  'table' => 'follow_relationships',  'foreignKey' => 'instructor_id', 'otherKey' => 'student_id'],
         'sentMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'sender_id' ],
         'receivedMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'recipient_id' ],
-        'agency' => [self::BELONGS_TO, 'InstructorAgency', 'foreignKey' => 'instructor_agency_id']
+        'agency' => [self::BELONGS_TO, 'InstructorAgency', 'foreignKey' => 'instructor_agency_id'],
+        'allTransactions' => [ self::HAS_MANY, 'Transaction', 'foreignKey'=>'user_id' ],
       ];
     
+    public function getTransactionsAttribute(){
+//        return $this->allTransactions()->where('transaction_type', 'LIKE', "%instructor%")->orWhere(function($query){
+//            $query->where('user_id', $this->id)->where('transaction_type','cashout_fee');
+//        });
+        $types = [
+            'instructor_credit',
+            'instructor_debit',
+            'instructor_debit_refund',
+            'cashout_fee'
+        ];
+        return $this->allTransactions()->whereIn('transaction_type', $types);
+    }
     
     public function getCoursesAttribute()
     {
@@ -109,7 +122,7 @@ class Instructor extends User{
                             $fee_transaction->amount = $fee;
                             $fee_transaction->transaction_type = 'cashout_fee';
                             $fee_transaction->details = trans('transactions.cashout_fee'). ' #'.$transaction->id;
-                            $fee_transaction->reference = $transaction->id;
+                            $fee_transaction->reference = 'withdraw-'.$transaction->id;
                             $fee_transaction->status = 'pending';
                             $fee_transaction->gc_fee = 0;
                             

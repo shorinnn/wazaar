@@ -6,8 +6,19 @@ class InstructorAgency extends Ardent {
         protected $table = 'users';
         
         public static $relationsData = [
-            'instructors' => [self::HAS_MANY, 'Instructor', 'table' => 'users' ]
+            'instructors' => [self::HAS_MANY, 'Instructor', 'table' => 'users' ],
+            'allTransactions' => [ self::HAS_MANY, 'Transaction', 'foreignKey'=>'user_id' ],
         ];
+        
+    public function getTransactionsAttribute(){
+        $types = [
+            'instructor_agency_credit',
+            'instructor_agency_debit',
+            'instructor_agency_debit_refund',
+            'cashout_fee'
+        ];
+        return $this->allTransactions()->whereIn('transaction_type', $types);
+    }
         
         public function credit( $amount = 0, $product = null, $order = null ){
         $amount = doubleval($amount);
@@ -22,7 +33,7 @@ class InstructorAgency extends Ardent {
               $transaction->product_id = $product->id;
               $transaction->product_type = get_class($product);
               $transaction->transaction_type = 'instructor_agency_credit';
-              $transaction->details = trans('transactions.agency_credit_transaction').' '.$order;
+              $transaction->details = trans('transactions.instructor_agency_credit_transaction').' '.$order;
 
               $transaction->reference = $order;
               $transaction->status = 'complete';
@@ -50,9 +61,9 @@ class InstructorAgency extends Ardent {
               $transaction->user_id = $this->id;
               $transaction->amount = $cashout;
               $transaction->transaction_type = 'instructor_agency_debit';
-              $transaction->details = trans('transactions.agency_debit_transaction');
+              $transaction->details = trans('transactions.instructor_agency_debit_transaction');
               $transaction->reference = $reference;
-              $transaction->status = 'complete';
+              $transaction->status = 'pending';
               $transaction->gc_fee = 0;
               if( $transaction->save() ){
                   // increase balance
@@ -64,7 +75,7 @@ class InstructorAgency extends Ardent {
                         $fee_transaction->amount = $fee;
                         $fee_transaction->transaction_type = 'cashout_fee';
                         $fee_transaction->details = trans('transactions.cashout_fee'). ' #'.$transaction->id;
-                        $fee_transaction->reference = $transaction->id;
+                        $fee_transaction->reference = 'withdraw-'.$transaction->id;
                         $fee_transaction->status = 'pending';
                         $fee_transaction->gc_fee = 0;
 

@@ -10,8 +10,20 @@ class LTCAffiliate extends User{
     public static $relationsData = array(
         'affiliated' => array(self::HAS_MANY, 'User', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id'),
         'sales' => array(self::HAS_MANY, 'Purchase', 'foreignKey' => 'ltc_affiliate_id'),
-        'profile' => array(self::MORPH_ONE, 'Profile', 'name'=>'owner')
+        'profile' => array(self::MORPH_ONE, 'Profile', 'name'=>'owner'),
+        'allTransactions' => [ self::HAS_MANY, 'Transaction', 'foreignKey'=>'user_id' ],
     );
+    
+    public function getTransactionsAttribute(){
+        $types = [
+            'affiliate_credit',
+            'affiliate_debit',
+            'affiliate_debit_refund',
+            'cashout_fee'
+        ];
+        return $this->allTransactions()->whereIn('transaction_type', $types);
+    }
+    
     
     public function credit( $amount = 0, $product = null, $order = null, $ltcOrWazaar = '', $processor_fee = 0 ){
         $amount = doubleval($amount);
@@ -75,7 +87,7 @@ class LTCAffiliate extends User{
                         $fee_transaction->amount = $fee;
                         $fee_transaction->transaction_type = 'cashout_fee';
                         $fee_transaction->details = trans('transactions.cashout_fee'). ' #'.$transaction->id;
-                        $fee_transaction->reference = $transaction->id;
+                        $fee_transaction->reference = 'withdraw-'.$transaction->id;
                         $fee_transaction->status = 'pending';
                         $fee_transaction->gc_fee = 0;
                         if( !$fee_transaction->save() ){

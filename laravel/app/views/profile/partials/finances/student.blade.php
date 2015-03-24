@@ -1,37 +1,8 @@
-@extends('layouts.default')
-
-@section('page_title')
-    Dashboard - 
-@stop
-
-@section('content')
-
 <div class='row'>
     <div class='col-lg-12' style='border:1px solid silver'>
-        <h3>My Courses</h3>
-        @if($student->courses()->count() == 0 )
-            <p>You have no courses.</p>
-        @else
-            <p>Here are your courses:</p>
-            @foreach($student->courses() as $course)
-            <p>
-                <span class="label label-info">{{$course->courseCategory->name}} >
-                {{$course->courseSubcategory->name}}</span>
-                {{$course->name}} - <a href='{{ action("ClassroomController@dashboard", $course->slug )}}'>Go To Dashboard</a></p>
-            @endforeach
-        @endif
-    </div>
-    <div class='col-lg-6' style='border:1px solid silver'>
-        <h3>My Balance</h3>
-        ¥{{ number_format($student->student_balance, Config::get('custom.currency_decimals')) }}
-        
-        <h3>My Payment Method</h3>
-        Card: **** **** **** UWOT M8<br />
-        Exp: 20/20<br />
-        Name: Nigel DoesThis
-    </div>
-    <div class='col-lg-6' style='border:1px solid silver'>
-        <h3>My Transactions</h3>
+        <h3>My Student Balance</h3>
+        ¥{{ number_format($user->student_balance, Config::get('custom.currency_decimals')) }}
+        <h3>My Student Transactions</h3>
         <table class='table table-striped table-condensed'>
             <thead>
                 <tr>
@@ -44,7 +15,7 @@
                     <th>Timestamp</th>
                 </tr>
             </thead>
-            @foreach($transactions as $transaction)
+            @foreach($user->paginated_transactions as $transaction)
                 <tr>
                     <td>
                         {{ $transaction->id }}
@@ -68,7 +39,6 @@
                 </tr>
             @endforeach
         </table>
-        {{ $transactions->links() }}
+        {{ $user->paginated_transactions->appends( [ 'show' => Input::get('show') ] )->links() }}
     </div>
 </div>
-@stop

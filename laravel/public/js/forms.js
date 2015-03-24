@@ -3,6 +3,7 @@
  * @class Forms 
  */
 $(document).ready(function(){
+    $('body').delegate('.checkbox-toggler', 'change', checkboxToggler);    
     $('body').delegate('form', 'submit', submittedFormButton);    
     $('body').delegate('.delete-button', 'click', confirmDelete);
     $('body').delegate('.has-slug', 'keyup', updateSlug);
@@ -394,4 +395,9 @@ function cancelReply(e){
     $(e.target).parent().parent().find('.reply-to').val('0');
     $(e.target).parent().parent().find('form').attr('data-destination','.users-comments > .clearfix');
     $(e.target).parent().remove();
+}
+
+function checkboxToggler(e){
+    target = $(e.target).attr('data-target');
+    $(target).prop('checked', this.checked);
 }

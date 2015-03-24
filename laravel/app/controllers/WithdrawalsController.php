@@ -17,6 +17,16 @@ class WithdrawalsController extends \BaseController {
                 }
                 return View::make('administration.withdrawals.index')->with( compact('requests') );
 	}
+        
+        public function update(){
+            if( Input::get('action')=='complete'){
+                WithdrawalsHelper::complete( Input::get('request'), Input::get('reference') );
+            }
+            if( Input::get('action')=='reject'){
+                WithdrawalsHelper::reject( Input::get('request') );
+            }
+            return Redirect::back();
+        }
 
 
 }
