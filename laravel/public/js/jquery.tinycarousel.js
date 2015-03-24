@@ -128,7 +128,7 @@
             self.slideCurrent = self.options.start || 0;
             slidesVisible = Math.ceil(viewportSize / slideSize);
 
-            $overview.append($slides.slice(0, slidesVisible).clone().addClass("mirrored"));
+            //$overview.append($slides.slice(0, slidesVisible).clone().addClass("mirrored"));
             $overview.css(sizeLabel.toLowerCase(), slideSize * (self.slidesTotal + slidesVisible));
 
             _setButtons();
