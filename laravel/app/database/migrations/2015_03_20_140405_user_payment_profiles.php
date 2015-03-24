@@ -16,7 +16,7 @@ class UserPaymentProfiles extends Migration {
 		    $table->increments('id');
             $table->integer('user_id');
             $table->string('profile_token');
-            $table->string('');
+            //$table->string('');
 		    $table->timestamps();
 		});
 	}
