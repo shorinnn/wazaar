@@ -49,7 +49,7 @@
                     </div>--> 
                     <em class="processing">Processing</em>                                                                  
                     <a href='#' id="video-link-{{$lesson->id}}" class='load-remote-cache a-add-video' data-target='.action-panel-{{$lesson->id}} .video'
-                       data-url='{{action('BlocksController@video', [$lesson->id] )}}' data-callback='activeLessonOption'>
+                       data-url='{{action('BlocksController@video', [$lesson->id] )}}' data-callback='enableVideoOption'>
                         <!--<i class="fa fa-film"></i>
                         <p>{{ trans('general.video') }}</p>-->
                         <span></span>                                   
@@ -83,7 +83,7 @@
                 </div>
                 <div class="buttons setting">
                     <a href='#' class='load-remote-cache' data-target='.action-panel-{{$lesson->id}} .details' 
-                       data-url='{{action('LessonsController@details', [$lesson->module->id, $lesson->id] )}}' data-callback='activeLessonOption'>
+                       data-url='{{action('LessonsController@details', [$lesson->module->id, $lesson->id] )}}' data-callback='enableSettingOption'>
                         <!--<i class="fa fa-cog"></i> 
                         <p>{{ trans('general.details') }}</p>-->
                         <span></span>                                   

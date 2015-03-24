@@ -79,6 +79,7 @@
         <script src="http://www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+		<script src="{{url("js/jquery.tinycarousel.js")}}"></script>
         
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
 
@@ -102,6 +103,7 @@
         <script src="http://www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+		<script src="{{url("js/jquery.tinycarousel.js")}}"></script>
 
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
 
@@ -128,6 +130,9 @@
 				  e.preventDefault()
 				  $(this).tab('show')
 				});
+				
+				$('#slider1').tinycarousel();
+				
 				
 			});
 		</script>

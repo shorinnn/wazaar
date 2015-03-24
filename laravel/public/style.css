@@ -4712,6 +4712,168 @@ select::-ms-expand {
 	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-16.png') no-repeat center top;
 }
 	
+/* Tiny Carousel */
+#slider1 {
+    height: 1%;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+}
+
+#slider1 .viewport {
+    height: 383px;
+    overflow: hidden;
+    position: relative;
+}
+
+#slider1 .buttons {
+    background: #C01313;
+    border-radius: 35px;
+    display: block;
+    position: absolute;
+    top: 50%;
+	z-index:1;
+    left: 0;
+    width: 35px;
+    height: 35px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 35px;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+#slider1 .next {
+    right: 10px !important;
+    left: auto;
+    top: 50%;
+}
+
+#slider1 .prev {
+    left: 10px !important;
+}
+
+#slider1 .buttons:hover {
+    color: #C01313;
+    background: #fff;
+}
+
+#slider1 .disable {
+    visibility: hidden;
+}
+
+#slider1 .overview {
+    list-style: none;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    width: 240px;
+    left: 0;
+    top: 0;
+}
+
+#slider1 .overview li {
+    float: left;
+    margin: 0 20px 0 0;
+    padding: 0;
+    height: 100%;
+    border: none;
+    width: 100%;
+ }
+#slider1 .overview li .column-2,
+#slider1 .overview li .column-1{
+	float: left;
+}
+
+#slider1 .overview li div .boxes{
+	border: solid 1px #162d3e;
+	display: block;
+	position: relative;
+}
+
+#slider1 .overview li div .boxes span{
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom:0;
+	margin: 0 auto;
+    background-color: rgba(21, 34, 46, 0.8);
+    background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-4.png");
+    background-repeat: no-repeat;
+    border-radius: 5px;
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+#slider1 .overview li div .boxes:hover span{
+	opacity: 1;
+	visibility: visible;
+}
+
+#slider1 .overview li div .boxes p{
+	margin:0;
+	position: absolute;
+	bottom: 20px;
+	left:0;
+	font-weight: 200;
+	padding: 0 20px;
+	width: 100%;
+	color: #fff;
+	text-align: center;
+}
+
+#slider1 .overview li div .boxes img{
+	height: 100%;
+	width: 100%;
+}
+
+#slider1 .overview li div .small-boxes{
+	width: 211px;
+	height: 128px;
+}
+
+#slider1 .overview li div .small-boxes span{
+	width: 44px;
+	height: 44px;
+	margin-top: 32px;
+    background-position: 50% 12px;
+}
+
+#slider1 .overview li div .small-boxes p{
+	font-size: 14px;
+}
+
+#slider1 .overview li div .big-boxes{
+	width: 422px;
+	height: 255px;
+}
+
+#slider1 .overview li div .big-boxes span{
+	width: 60px;
+	height: 60px;
+	margin-top: 98px;
+    background-position: 50% 20px;
+}
+
+#slider1 .overview li div .big-boxes p{
+	font-size: 18px;
+}
+
+#slider1 .overview li div .big-box-holders{
+	width: 422px;
+}
+
+#slider1 .overview li div .small-box-holders{
+	width: 211px;
+}
+
 /******** Enroll Page***********/
 .wrapper.enroll{
 	background: #fff;

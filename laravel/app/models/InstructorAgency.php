@@ -36,23 +36,44 @@ class InstructorAgency extends Ardent {
          });
     }
     
-    public function debit( $amount = 0, $reference = null, $gc_fee = 0 ){
+    public function debit( $amount = 0, $reference = null ){
         $amount = doubleval( $amount );
-        if( $amount > $this->instructor_balance ) return false;
-        return DB::transaction(function() use ($amount, $reference, $gc_fee){
+        if( $amount > $this->agency_balance ) return false;
+        if( $amount < Config::get('custom.cashout.threshold') ) return false;
+        
+        return DB::transaction(function() use ($amount, $reference){
+              $fee = Config::get('custom.cashout.fee');
+              $cashout = $amount - $fee;
+              
             // create the transaction
               $transaction = new Transaction();
               $transaction->user_id = $this->id;
-              $transaction->amount = $amount - $gc_fee;
-              $transaction->transaction_type = 'instructor_debit';
-              $transaction->details = trans('transactions.instructor_debit_transaction');
+              $transaction->amount = $cashout;
+              $transaction->transaction_type = 'instructor_agency_debit';
+              $transaction->details = trans('transactions.agency_debit_transaction');
               $transaction->reference = $reference;
               $transaction->status = 'complete';
-              $transaction->gc_fee = $gc_fee;
+              $transaction->gc_fee = 0;
               if( $transaction->save() ){
                   // increase balance
                   $this->agency_balance -= $amount;
-                  if( $this->updateUniques() ) return $transaction->id;
+                  if( $this->updateUniques() ){
+                       // store the fee
+                        $fee_transaction = new Transaction();
+                        $fee_transaction->user_id = $this->id;
+                        $fee_transaction->amount = $fee;
+                        $fee_transaction->transaction_type = 'cashout_fee';
+                        $fee_transaction->details = trans('transactions.cashout_fee'). ' #'.$transaction->id;
+                        $fee_transaction->reference = $transaction->id;
+                        $fee_transaction->status = 'pending';
+                        $fee_transaction->gc_fee = 0;
+
+                        if( !$fee_transaction->save() ){
+                            return false;
+                        }
+                        
+                      return $transaction->id;
+                  }
                   else return false;
               }
               return false;

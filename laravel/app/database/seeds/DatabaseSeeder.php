@@ -123,6 +123,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->instructor_balance = 60;
         $user->save();
         $user = new User;
         $user->affiliate_id = '5';
@@ -135,6 +136,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->affiliate_balance = 70;
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 2;
@@ -190,6 +192,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->instructor_balance = 80;
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 2;
@@ -1018,6 +1021,7 @@ class InstructorAgenciesSeeder extends Seeder {
             'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ] );
         $agency1->password = 'pass';
         $agency1->password_confirmation = 'pass';
+        $agency1->agency_balance = 200;
         $agency1->save();
         $agency1->attachRole( $agencyRole );
 

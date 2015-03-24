@@ -129,7 +129,12 @@ function enableLessonRTE(e){
         ],
         toolbar: "save | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
     });
-}
+	
+	var actionPanel = $(e.target).parent().parent().parent().parent().find('div[class*="action-panel"]');
+	TweenMax.fromTo(actionPanel, 3, {marginBottom: '40px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 },
+		{marginBottom: '0px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 });
+	
+} 
 
 function enableRTE(selector){
     tinymce.remove(selector);
@@ -162,7 +167,35 @@ function enableBlockFileUploader(e){
     $uploader = $(e.target).parent().parent().parent().parent().find('[type=file]');
     console.log($uploader);
     enableFileUploader($uploader);
+	
+	var actionPanel = $(e.target).parent().parent().parent().parent().find('div[class*="action-panel"]');
+	TweenMax.fromTo(actionPanel, 3, {marginBottom: '40px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 },
+		{marginBottom: '0px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 });
+	
 }
+
+/**
+ * Called after the Video tab of a lesson is loaded, it ajaxifies the file upload form
+ * 
+ * 
+ */
+function enableVideoOption(e){
+	var actionPanel = $(e.target).parent().parent().parent().parent().find('div[class*="action-panel"]');
+	TweenMax.fromTo(actionPanel, 3, {marginBottom: '40px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 },
+		{marginBottom: '0px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 });
+}
+
+/**
+ * Called after the Settings tab of a lesson is loaded, it ajaxifies the file upload form
+ * 
+ * 
+ */
+function enableSettingOption(e){
+	var actionPanel = $(e.target).parent().parent().parent().parent().find('div[class*="action-panel"]');
+	TweenMax.fromTo(actionPanel, 3, {marginBottom: '40px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 },
+		{marginBottom: '0px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 });
+}
+
 
 /**
  * Called after the lesson file has been uploaded, it resets the progress bar 
