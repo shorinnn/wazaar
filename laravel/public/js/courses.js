@@ -133,7 +133,6 @@ function enableLessonRTE(e){
 	var actionPanel = $(e.target).parent().parent().parent().parent().find('div[class*="action-panel"]');
 	TweenMax.fromTo(actionPanel, 3, {marginBottom: '40px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 },
 		{marginBottom: '0px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 });
-	console.log($(e.target).parent().parent().parent().parent());
 	
 } 
 
@@ -172,7 +171,6 @@ function enableBlockFileUploader(e){
 	var actionPanel = $(e.target).parent().parent().parent().parent().find('div[class*="action-panel"]');
 	TweenMax.fromTo(actionPanel, 3, {marginBottom: '40px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 },
 		{marginBottom: '0px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 });
-	console.log($(e.target).parent().parent().parent().parent());
 	
 }
 
@@ -185,7 +183,6 @@ function enableVideoOption(e){
 	var actionPanel = $(e.target).parent().parent().parent().parent().find('div[class*="action-panel"]');
 	TweenMax.fromTo(actionPanel, 3, {marginBottom: '40px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 },
 		{marginBottom: '0px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 });
-	console.log($(e.target).parent().parent().parent().parent());
 }
 
 /**
@@ -197,7 +194,6 @@ function enableSettingOption(e){
 	var actionPanel = $(e.target).parent().parent().parent().parent().find('div[class*="action-panel"]');
 	TweenMax.fromTo(actionPanel, 3, {marginBottom: '40px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 },
 		{marginBottom: '0px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 });
-	console.log($(e.target).parent().parent().parent().parent());
 }
 
 
