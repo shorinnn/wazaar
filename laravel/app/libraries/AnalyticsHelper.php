@@ -136,7 +136,9 @@ class AnalyticsHelper
         $i = 0;
         foreach($sales as $sale){
             $salesTotal += $sale['week']['sales_total'];
-            $percentage = ($sale['week']['sales_total'] / $maxSale) * 100;
+            // avoid division by zero
+            if($maxSale == 0) $percentage = 0;
+            else $percentage = ($sale['week']['sales_total'] / $maxSale) * 100;
             $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
             $i++;
         }
@@ -177,7 +179,9 @@ class AnalyticsHelper
 
         foreach($sales as $sale){
             $salesTotal += $sale['day']['sales_total'];
-            $percentage = ($sale['day']['sales_total'] / $maxSale) * 100;
+            // avoid division by zero
+            if($maxSale == 0) $percentage = 0;
+            else $percentage = ($sale['day']['sales_total'] / $maxSale) * 100;
             $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
             $i++;
         }
@@ -205,7 +209,9 @@ class AnalyticsHelper
 
         foreach($sales as $sale){
             $salesTotal += $sale['month']['sales_total'];
-            $percentage = ($sale['month']['sales_total'] / $maxSale) * 100;
+            // avoid division by zero
+            if($maxSale == 0) $percentage = 0;
+            else $percentage = ($sale['month']['sales_total'] / $maxSale) * 100;
             $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
             $i++;
         }
@@ -231,7 +237,9 @@ class AnalyticsHelper
         $i = 0;
         foreach($sales as $sale){
             $salesTotal += $sale['year']['sales_total'];
-            $percentage = ($sale['year']['sales_total'] / $maxSale) * 100;
+            // avoid division by zero
+            if($maxSale == 0) $percentage = 0;
+            else $percentage = ($sale['year']['sales_total'] / $maxSale) * 100;
             $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
             $i++;
         }
