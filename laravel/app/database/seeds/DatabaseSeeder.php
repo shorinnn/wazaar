@@ -1096,8 +1096,10 @@ class FrontpageVideosSeeder extends Seeder {
         FrontpageVideo::unguard();
         for($i = 0; $i<2; ++$i){
             for($j = 0; $j < 9; ++$j){
-                $type = ($j == 8) ? 'big' : 'small';
-                $id = ($j == 0) ? ($i+1) : 0;
+                $type = ($j == 0) ? 'big' : 'small';
+                $id = 0;
+                if($i==0 && $j == 0 ) $id = 1;
+                if($i==1 && $j == 0 ) $id = 2;
                 FrontpageVideo::create( ['course_id' => $id, 'type' => $type] );
             }
         }
