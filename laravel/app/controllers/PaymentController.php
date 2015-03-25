@@ -119,7 +119,9 @@ class PaymentController extends BaseController
                     $payment['successData']['balance_transaction_id'] = Session::get('balanceTransactionID');
                     $payment['successData']['balance_used'] = Session::get('balanceUsed');
 
-                    $purchase = $student->purchase($product, Cookie::get( "aid-$product->id" ),$payment);
+                    // cookie name contains only the course id, so if this is a lesson, fetch the course id
+                    $cookie_id = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
+                    $purchase = $student->purchase($product, Cookie::get( "aid-$cookie_id" ),$payment);
                     if (!$purchase){
                         return Redirect::back()->with('errors',[trans('payment.cannotPurchase')]);
                     }

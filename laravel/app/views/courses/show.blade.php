@@ -45,19 +45,36 @@
                                 <!--<div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>-->
                         @endif
         
-                        {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
-                          @if(Auth::guest() || Student::find(Auth::user()->id)->canPurchase($course) )
-                              <button class="join-class">
-                         @else 
-                              <button class="join-class" disabled="disabled">
-                         @endif
-                        <span>{{ trans("courses/general.enroll_for") }} ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</span>
-                            </button>
-                       
-                        {{Form::close()}}
-                        @if($course->isDiscounted())
-                            <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
-                                You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
+                        @if($course->cost() > 0)
+                            {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                             @if(Auth::guest() || Student::find(Auth::user()->id)->canPurchase($course) )
+                                  <button class="join-class">
+                             @else 
+                                  <button class="join-class" disabled="disabled">
+                             @endif
+                            <span>{{ trans("courses/general.enroll_for") }} ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</span>
+                                </button>
+
+                            {{Form::close()}}
+                            @if($course->isDiscounted())
+                                <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
+                                    You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
+                            @endif
+                        @else
+                             {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
+                             @if(Auth::guest() || Student::find(Auth::user()->id)->canPurchase($course) )
+                                  <button class="join-class">
+                             @else 
+                                  <button class="join-class" disabled="disabled">
+                             @endif
+                            <span>{{ trans("courses/general.enroll_for_free") }}</span>
+                                </button>
+
+                            {{Form::close()}}
+                            @if($course->isDiscounted())
+                                <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
+                                    You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
+                            @endif
                         @endif
                         <!--<a href="#" class="crash-class">CRASH CLASS</a>-->
                         <div class="clearfix wishlist-and-social">
@@ -243,10 +260,14 @@
                                     <p>{{ $lesson->name }}</p>
                                     @if($lesson->price==0)
                                     
-                                        <button data-url="{{ action( 'ClassroomController@lesson', 
-                                                [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, '\
-                                                lesson' => $lesson->slug ]) }}"
-                                            class='btn btnLink crash-lesson-button pull-right'>{{ trans('courses/general.crash_class') }}</button>
+                                    {{ Form::open( [ 'action' => ['CoursesController@crashLesson', $course->slug, $lesson->slug ] ] ) }}
+                                        <button type="submit" class='btn crash-lesson-button pull-right'
+                                        @if( Auth::guest() || !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) )
+                                            disabled="disabled" data-crash-disabled='1'
+                                        @endif
+                                                >{{ trans('courses/general.crash_class') }}</button>
+                                    {{ Form::close() }}
+                                    
                                     @else
                                     
                                     {{ Form::open( [ 'action' => ['CoursesController@purchaseLesson', $course->slug, $lesson->id ] ] ) }}

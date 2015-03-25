@@ -16,7 +16,8 @@ class SiteController extends \BaseController {
 	public function dashboard()
 	{                 
             $student = Student::find( Auth::user()->id );
-            return View::make('site.dashboard')->with( compact('student') );
+            $transactions = $student->transactions->orderBy('id','desc')->paginate(2);
+            return View::make('site.dashboard')->with( compact('student', 'transactions') );
 	}
         
 	public function classroom()
