@@ -24,10 +24,6 @@ class SubmissionsController extends \BaseController {
             }
             Return View::make('administration.submissions.index')->with( compact('submissions') );
 	}
-        
-     
-
-	
 
 	/**
 	 * Update the specified resource in storage.

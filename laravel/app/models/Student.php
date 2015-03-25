@@ -206,6 +206,65 @@ class Student extends User{
             return false;
         }
     }
+    /**
+     * Crash a free course/lesson
+     * @param mixed Course/Lesson
+     * @return boolean
+     */
+    public function crash($product, $affiliate=null ){
+        // cannot buy the same course/lesson twice |  cannot buy own course/lesson
+        if( !$this->canPurchase($product) ) return false;
+        // if this is the first purchase, set the LTC affiliates
+        if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
+        $purchase = new Purchase;
+        
+        $purchase->free_product = 'yes';
+
+        $purchase->student_id = $this->id;
+        $purchase->purchase_price = $product->cost();
+        $purchase->ltc_affiliate_id = $this->ltcAffiliate->id;
+        
+        /******* Money fields **********/
+        $purchase->original_price = $product->price;
+        if( $product->isDiscounted() ){
+            $purchase->discount_value = $product->discount_saved;
+            $purchase->discount = ($product->sale_kind=='amount') ? "Yen $product->sale" : "$product->sale%";
+        }
+        /************ Money fields **************/
+
+        if($affiliate==null) $purchase->product_affiliate_id = 0;
+        else{
+            $prodAffiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
+            $purchase->product_affiliate_id = $prodAffiliate->id;
+        }
+
+        if( $product->sales()->save( $purchase ) ){
+            
+            // if course - increment counter only if no lessons have already been purchased, or if this the first recurring payment
+            if( strtolower( get_class($product) ) == 'course' ){
+                $course = $product;
+                if( !$this->purchasedLessonFromCourse($course) ){
+                    if( $course->payment_type=='one_time' || 
+                            $this->purchases()->where('product_id',$course->id)->where('product_type','Course')->count()==1 ){
+                        $course->student_count += 1;
+                        $course->updateUniques();
+                    }
+                }
+            }
+            // if lesson - increment counter only if course hasn't already been purchased
+            else{
+                $course = $product->module->course;
+                if( !$this->purchased( $course ) ){
+                    $course->student_count += 1;
+                    $course->updateUniques();
+                }
+            }
+            return $purchase;
+        }
+        else{
+            return false;
+        }
+    }
     
     /**
      * Returns true if the current student purchased one or more lessons from the supplied course

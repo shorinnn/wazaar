@@ -305,6 +305,34 @@ class CoursesController extends \BaseController {
             return Redirect::action('PaymentController@index');
             
         }
+                
+        public function crashLesson($slug, $lesson){
+            if(Auth::guest()){
+                Session::set('url.intended', action('CoursesController@show', $slug));
+                return Redirect::to('login')->withError( trans('courses/general.login_to_purchase') );
+            }
+            
+            $lesson = Lesson::where('slug', $lesson)->first();
+            $student = Student::current(Auth::user());
+            $student->crash( $lesson,  Cookie::get( "aid-".$lesson->module->course->id ) );
+            
+            return Redirect::action( 'ClassroomController@lesson', 
+                                                [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, 
+                                                    'lesson' => $lesson->slug ]);
+        }
+        
+        public function crashCourse($slug){
+            if(Auth::guest()){
+                Session::set('url.intended', action('CoursesController@show', $slug));
+                return Redirect::to('login')->withError( trans('courses/general.login_to_purchase') );
+            }
+            
+            $course = Course::where('slug', $slug)->first();
+            $student = Student::current(Auth::user());
+            $student->crash( $course,  Cookie::get( "aid-".$course->id ) );
+            
+            return Redirect::action( 'ClassroomController@dashboard', [ 'course' => $course->slug ]);
+        }
         
         public function destroy($id){
             $course = Course::find($id);

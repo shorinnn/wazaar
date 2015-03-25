@@ -56,6 +56,7 @@ Route::group(array('prefix'=>'administration'),function(){
     Route::resource('submissions', 'SubmissionsController');
     Route::get('affiliate-agencies/affiliates/{id}', 'AffiliateAgenciesController@affiliates');
     Route::resource('affiliate-agencies', 'AffiliateAgenciesController');
+    Route::resource('frontpage-videos', 'FrontpageVideosController');
 });
 
 // Course Categories
@@ -112,6 +113,8 @@ Route::get('courses/categories', 'CoursesController@categories');
 Route::get('courses/category/{slug}/{subcat}', 'CoursesController@subCategory');
 Route::get('courses/category/{slug}', 'CoursesController@category');
 Route::post('courses/{slug}/purchase/{lesson}', 'CoursesController@purchaseLesson');
+Route::post('courses/{slug}/crash/{lesson}', 'CoursesController@crashLesson');
+Route::post('courses/{slug}/crash/', 'CoursesController@crashCourse');
 Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
 Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
 Route::get('courses/{slug}/dashboard', 'CoursesController@dashboard');
