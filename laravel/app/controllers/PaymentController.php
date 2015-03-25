@@ -105,7 +105,7 @@ class PaymentController extends BaseController
 
                 if ($payment['success']) {
                     //dd($payment);
-                    $orderId = $payment['successData']['ORERID'];
+                    $orderId = $payment['successData']['ORDERID'];
                     $createProfile = $this->paymentHelper->processCreateProfileFromOrderId($orderId);
                     echo '<pre>';
                     print_r($createProfile);
