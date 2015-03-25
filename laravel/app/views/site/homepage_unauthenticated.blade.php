@@ -83,6 +83,59 @@
                     <ul class="overview">
                         <li>
                         	<div class="column-1">
+                                    @foreach( $frontpageVideos as $set)
+                                        @if( cycle(1, 2, 3) == 1)
+                                            <div class="big-box-holders box-holders left clearfix">
+                                            @if( cycle('a','b') == 'a')
+                                                <a href="#" class="small-boxes boxes left">
+                                                    <span></span>
+                                                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                                    <p>Dancing with Jerken on the top of the iceberg..</p>
+                                                </a>
+                                                    <a href="#" class="small-boxes boxes left">
+                                                    <span></span>
+                                                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg"> 
+                                                    <p>Dancing with Jerken on the top of the iceberg..</p>
+                                                </a>
+                                                    <a href="#" class="big-boxes boxes clear">
+                                                    <span></span>
+                                                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">    
+                                                    <p>Dancing with Jerken on the top of the iceberg..</p>
+                                                </a>
+                                            @else
+                                                 <a href="#" class="big-boxes boxes clear">
+                                                    <span></span>
+                                                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">    
+                                                    <p>Dancing with Jerken on the top of the iceberg..</p>
+                                                </a>
+                                                <a href="#" class="small-boxes boxes left">
+                                                    <span></span>
+                                                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                                    <p>Dancing with Jerken on the top of the iceberg..</p>
+                                                </a>
+                                                    <a href="#" class="small-boxes boxes left">
+                                                    <span></span>
+                                                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg"> 
+                                                    <p>Dancing with Jerken on the top of the iceberg..</p>
+                                                </a>
+                                            @endif
+                                            </div>
+                                        @else
+                                            <div class="small-box-holders box-holders left clearfix">
+                                                
+                                                @foreach($set as $vid)
+                                                    <a href="#" class="small-boxes boxes clear">
+                                                        <span></span>
+                                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">   
+                                                        <p> ??? </p>
+                                                    </a>
+                                                @endforeach
+                                                          
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                    
+                                    <!--
                             	<div class="big-box-holders box-holders left clearfix">
                                 	<a href="#" class="small-boxes boxes left">
                                     	<span></span>
@@ -184,7 +237,7 @@
                                     	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
                                         <p>Dancing with Jerken on the top of the iceberg..</p>
                                     </a>                                
-                                </div>                            
+                                </div>      -->                      
                             </div>
                         </li>
                     </ul>
