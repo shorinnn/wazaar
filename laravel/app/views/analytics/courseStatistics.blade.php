@@ -2,12 +2,14 @@
 @section('content')
 
     <div class="wrapper">
-        <div class="container">
+        <div class="container course-statistics">
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="header clearfix">
-                        <h1>{{trans('analytics.courseStats')}} : {{$course->name}}</h1>
+                        <h1>{{trans('analytics.courseStats')}} 
+                        	<p>{{$course->name}}</p>
+                        </h1>
                     </div>
                 </div>
             </div>
@@ -98,7 +100,6 @@
 
 
             </div>
-            <hr/>
 
             <div class="row">
                 <div class="col-md-12" id="wrapper-tracking-codes-table">
@@ -107,7 +108,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-12 margin-bottom-10">
+                <div class="col-lg-12 margin-bottom-10 margin-top-20">
                     <select name="courses" id="select-courses" class="form-control" multiple="multiple" placeholder="Compare with other courses">
                         @foreach($courses as $affCourse)
                         <option value="{{$affCourse->id}}">{{$affCourse->name}}</option>
@@ -120,10 +121,12 @@
 
 
 
-            <div class="row">
+            <div class="row margin-bottom-20">
 
-
-                    <div class='col-md-2'>
+					<div class="col-md-3">
+                    	<h4 class="date-range-header">Date Range</h4>
+                    </div>
+                    <div class='col-md-3'>
                         <div class="form-group">
                             <div class='input-group date' id='start-date'>
                                 <input type='text' class="form-control" id="startDate" value="{{date('m/d/Y',strtotime('-7 days'))}}" />
@@ -133,7 +136,7 @@
                         </div>
                     </div>
 
-                    <div class='col-md-2'>
+                    <div class='col-md-3'>
                         <div class="form-group">
                             <div class='input-group date' id='end-date'>
                                 <input type='text' class="form-control" id="endDate" value="{{date('m/d/Y')}}" />
@@ -143,7 +146,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <button class="btn btn-primary" id="btn-update-chart">Update Chart</button>
                     </div>
             </div>
@@ -152,7 +155,7 @@
 
             <div class="row">
 
-            <canvas id="myChart" width="980px" height="400"></canvas>
+            <canvas id="myChart" width="980px" height="400" class="margin-bottom-20"></canvas>
 
 
             </div>
