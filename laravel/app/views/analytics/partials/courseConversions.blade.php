@@ -11,6 +11,7 @@
     @endforeach
 @else
     <div class="margin-top-15">
-        <center class="gray">{{trans('analytics.noCourseConversion')}} {{AnalyticsHelper::frequencyReadable($frequency)}}</center>
+        <center class="gray">{{trans('analytics.noCourseConversion')}} 
+            {{strtolower ( AnalyticsHelper::frequencyReadable($frequency) ) }}</center>
     </div>
 @endif
