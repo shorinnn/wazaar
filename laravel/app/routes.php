@@ -56,6 +56,7 @@ Route::group(array('prefix'=>'administration'),function(){
     Route::resource('submissions', 'SubmissionsController');
     Route::get('affiliate-agencies/affiliates/{id}', 'AffiliateAgenciesController@affiliates');
     Route::resource('affiliate-agencies', 'AffiliateAgenciesController');
+    Route::resource('frontpage-videos', 'FrontpageVideosController');
 });
 
 // Course Categories
