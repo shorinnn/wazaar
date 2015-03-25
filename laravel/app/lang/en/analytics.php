@@ -21,7 +21,7 @@ return
     'salesTotal' => 'Sales Total',
     'conversion' => 'Conversion',
     'viewAll' => 'View All',
-    'noTrackingCode' => 'No t racking codes found',
+    'noTrackingCode' => 'No tracking codes found',
     'month' => 'Month',
     'week' => 'Week',
     'alltime' => 'All Time',
