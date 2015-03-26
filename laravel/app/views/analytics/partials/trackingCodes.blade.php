@@ -12,7 +12,7 @@
         <li><a href="#" class="view-all">{{trans('analytics.viewAll')}}</a></li>
     @endif
 @else
-    <div class="margin-top-15">
+    <div class="clearfix no-data-found">
         <center class="gray">{{trans('analytics.noTrackingCode')}} 
             {{ strtolower( AnalyticsHelper::frequencyReadable($frequency) ) }}</center>
     </div>

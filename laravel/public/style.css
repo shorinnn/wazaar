@@ -331,8 +331,9 @@ header .activate-dropdown:hover ul{
 
 .course-search-section .course-search-form{
 	max-width: 482px;
-	margin: 0 auto;
-	overflow: hidden;
+	margin: 0 auto 25px;
+	overflow: visible;
+	position: relative;
 }
 
 .course-search-section .course-search-form form{
@@ -712,24 +713,30 @@ header .activate-dropdown:hover ul{
   	border-radius: 5px 0 0 5px;
   	padding: 10px;  
   	margin-top: 0;
-	margin-bottom: 60px;
-	float: right;
+	position: absolute;
+	right: 0;
+	bottom: 50px;
 }
 
 .small-box p{ 
 	font-size:12px;
 	color:#fff;
-	float:left;
 	clear:both;
   	min-height:50px;    
   	text-align:left;
-  	margin-left:20px;
-  	margin-right:20px;
+  	margin-left:10px;
+  	margin-right:10px;
   	line-height:16px;
+}
+
+.small-box p .subcategory{
+	display: block;
+	margin: 5px 0;
 }
 
 .small-box .next_{
   	width:100%;
+	min-width: 100%;
 	height: 40px;
 	background: rgba(0, 0, 0, 0.5);
   	clear:both;
@@ -740,6 +747,10 @@ header .activate-dropdown:hover ul{
 
 .small-box .img-container{
 	position: relative;
+}
+
+.small-box .course-box-content{
+	height: 225px;
 }
 
 .small-box .img-container .sale-ends{
@@ -804,7 +815,7 @@ header .activate-dropdown:hover ul{
   	float:left;
   	clear:both;    
   	text-align:left;
-  	padding-left:20px;
+  	padding:0 10px;
 }
 
 .small-box .new-tag{
@@ -4425,6 +4436,7 @@ select::-ms-expand {
 	background: #fff;
 	border-radius: 5px;
 	color: #18222b;
+	font-size: 12px;
 	text-align: center;
 	line-height: 42px;
 	position: relative;
@@ -4724,7 +4736,7 @@ select::-ms-expand {
 
 .unauthenticated-homepage.thumb-carousel-section {
     overflow: hidden;
-    padding: 15px 0;
+    padding: 20px 0 25px;
 	background: -moz-linear-gradient(left, #172735, #0f4d79, #172735);
 	background: -webkit-linear-gradient(left, #172735, #0f4d79, #172735);
 	background: -o-linear-gradient(left, #172735, #0f4d79, #172735);
@@ -4850,13 +4862,14 @@ select::-ms-expand {
 #slider1 .overview li div .boxes p{
 	margin:0;
 	position: absolute;
-	bottom: 10px;
+	bottom: 0;
 	left:0;
 	font-weight: 200;
-	padding: 0 20px;
+	padding: 5px 20px;
 	width: 100%;
 	color: #fff;
 	text-align: left;
+	background-color: rgba(24, 36, 46, 0.8);
 }
 
 #slider1 .overview li div .boxes img{

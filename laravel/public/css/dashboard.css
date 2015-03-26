@@ -90,6 +90,14 @@ h4.date-range-header{
 	text-decoration: none;
 }
 
+.top-activities center {
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+}
+
 .top-activities > div > div{
 	height: 390px;
 	border: solid 1px #ececec;
@@ -99,6 +107,9 @@ h4.date-range-header{
 	overflow: hidden;
 	padding: 0;
 	position: relative;
+}
+
+.top-activities .no-data-found{
 }
 
 .top-activities > div button{

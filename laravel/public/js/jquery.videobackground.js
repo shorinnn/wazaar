@@ -476,7 +476,7 @@
 		preload: 'auto',
 		loop: false,
 		controlPosition: null,
-		controlText: ['Play', 'Pause', 'Mute', 'Unmute'],
+		controlText: ['', '', '', ''],
 		resize: false,
 		preloadHtml: '',
 		preloadCallback: null,

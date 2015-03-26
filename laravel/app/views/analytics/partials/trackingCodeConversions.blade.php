@@ -9,7 +9,7 @@
         </li>
     @endforeach
 @else
-    <div class="margin-top-15">
+    <div class="clearfix no-data-found">
         <center class="gray">{{trans('analytics.noTrackingCodeConversion')}} 
             {{ strtolower( AnalyticsHelper::frequencyReadable($frequency) ) }}</center>
     </div>
