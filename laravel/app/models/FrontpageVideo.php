@@ -19,11 +19,16 @@ class FrontpageVideo extends Ardent {
             $vids = FrontpageVideo::with('course')->get();
             $randoms = Course::orderBy('id','rand')->limit( $vids->count() )->get();
             foreach($vids as $vid){
-                if($vid->course_id == 0 ) $vid = $randoms->pull( 0 );
-                $aux['name'] = $vid->name;
+                if($vid->course_id == 0 ){
+                    $vid->course = $randoms->random( 1 );
+                }
+                $aux['id'] = $vid->course->id;
+                $aux['name'] = $vid->course->name;
                 $aux['url'] = 'url';
-                if($vid->course_preview_image_id == null)                $aux['img'] = "http://placehold.it/350x150&text=Preview Unavailable";
-                else                $aux['img'] = $vid->previewImage->url;
+                if($vid->course->course_preview_image_id == null)                
+                    $aux['thumb'] = "http://placehold.it/350x150&text=Preview Unavailable";
+                else                
+                    $aux['thumb'] = $vid->course->previewImage->url;
                 $arr[] = $aux;
             }
             return array_chunk( $arr, 3 );

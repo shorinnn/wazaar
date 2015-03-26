@@ -28,7 +28,6 @@ class PaymentGlobalCollectDriver implements PaymentInterface
             $order  = $otherParams['order'];
 
             $orderPayment = "   <ORDER>
-                                    <ORDERID>{$order['orderId']}</ORDERID>
                                     <AMOUNT>{$amount}</AMOUNT>
                                     <CURRENCYCODE>{$this->currency}</CURRENCYCODE>
                                     <LANGUAGECODE>{$this->language}</LANGUAGECODE>
@@ -135,7 +134,7 @@ class PaymentGlobalCollectDriver implements PaymentInterface
 
                     if (@$responseObject->RESULT == 'OK') {
                         $success     = true;
-                        $successData = $responseObject->ROW;
+                        $successData = $responseObject;
                     } else {
                         $errors[] = $responseObject->ERROR->MESSAGE;
                     }

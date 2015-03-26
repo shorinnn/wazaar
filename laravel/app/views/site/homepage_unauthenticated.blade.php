@@ -1,5 +1,10 @@
     @extends('layouts.default')
     @section('content')	
+    <style>
+        .boxes p{
+              background-color: rgba(128, 128, 128, 0.40);
+        }
+    </style>
     <div class="main">
     </div>
     	<section class="bckgrd-video-wrapper">
@@ -87,36 +92,36 @@
                                         @if( cycle(1, 2, 3) == 1)
                                             <div class="big-box-holders box-holders left clearfix">
                                             @if( cycle('a','b') == 'a')
-                                                <a href="#" class="small-boxes boxes left">
+                                                <a href="#" class="small-boxes boxes left course-tile-{{$set[0]['id']}}">
                                                     <span></span>
-                                                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                                    <p>Dancing with Jerken on the top of the iceberg..</p>
+                                                    <img src="{{ $set[0]['thumb'] }}">   
+                                                    <p>{{ $set[0]['name'] }}</p>
                                                 </a>
-                                                    <a href="#" class="small-boxes boxes left">
+                                                    <a href="#" class="small-boxes boxes left course-tile-{{$set[1]['id']}}">
                                                     <span></span>
-                                                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg"> 
-                                                    <p>Dancing with Jerken on the top of the iceberg..</p>
+                                                    <img src="{{ $set[1]['thumb'] }}">   
+                                                    <p>{{ $set[1]['name'] }}</p>
                                                 </a>
-                                                    <a href="#" class="big-boxes boxes clear">
+                                                    <a href="#" class="big-boxes boxes clear course-tile-{{$set[2]['id']}}">
                                                     <span></span>
-                                                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">    
-                                                    <p>Dancing with Jerken on the top of the iceberg..</p>
+                                                    <img src="{{ $set[2]['thumb'] }}">   
+                                                    <p>{{ $set[2]['name'] }}</p>
                                                 </a>
                                             @else
-                                                 <a href="#" class="big-boxes boxes clear">
+                                                 <a href="#" class="big-boxes boxes clear course-tile-{{$set[0]['id']}}">
                                                     <span></span>
-                                                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">    
-                                                    <p>Dancing with Jerken on the top of the iceberg..</p>
+                                                    <img src="{{ $set[0]['thumb'] }}">   
+                                                    <p>{{ $set[0]['name'] }}</p>
                                                 </a>
-                                                <a href="#" class="small-boxes boxes left">
+                                                <a href="#" class="small-boxes boxes left course-tile-{{$set[1]['id']}}">
                                                     <span></span>
-                                                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                                    <p>Dancing with Jerken on the top of the iceberg..</p>
+                                                    <img src="{{ $set[1]['thumb'] }}">   
+                                                    <p>{{ $set[1]['name'] }}</p>
                                                 </a>
-                                                    <a href="#" class="small-boxes boxes left">
+                                                    <a href="#" class="small-boxes boxes left course-tile-{{$set[2]['id']}}">
                                                     <span></span>
-                                                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg"> 
-                                                    <p>Dancing with Jerken on the top of the iceberg..</p>
+                                                    <img src="{{ $set[2]['thumb'] }}">   
+                                                    <p>{{ $set[2]['name'] }}</p>
                                                 </a>
                                             @endif
                                             </div>
@@ -124,10 +129,10 @@
                                             <div class="small-box-holders box-holders left clearfix">
                                                 
                                                 @foreach($set as $vid)
-                                                    <a href="#" class="small-boxes boxes clear">
+                                                    <a href="#" class="small-boxes boxes clear course-tile-{{$vid['id']}}">
                                                         <span></span>
-                                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">   
-                                                        <p> ??? </p>
+                                                        <img src="{{ $vid['thumb'] }}">   
+                                                        <p>{{ $vid['name'] }}</p>
                                                     </a>
                                                 @endforeach
                                                           

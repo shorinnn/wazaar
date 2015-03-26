@@ -10,6 +10,7 @@
     @endforeach
 @else
    <div class="clearfix no-data-found">
-       <center class="gray">{{trans('analytics.noTopCourse')}} {{AnalyticsHelper::frequencyReadable($frequency)}}</center>
+       <center class="gray">{{trans('analytics.noTopCourse')}} 
+           {{ strtolower( AnalyticsHelper::frequencyReadable($frequency) ) }}</center>
    </div>
 @endif

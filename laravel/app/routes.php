@@ -216,5 +216,7 @@ Route::group(['prefix' => 'api'], function(){
 Route::get('test/pay', 'PaymentTestController@pay');
 
 Route::get('test', function (){
-    Event::fire('payment.successful',['wowow' => 'yesyes']);
+    //Event::fire('payment.successful',['wowow' => 'yesyes']);
+    $ah = new AdminHelper();
+
 });
