@@ -100,6 +100,8 @@ class PaymentGlobalCollectDriver implements PaymentInterface
             $orderXML = "
                 <PAYMENT>
                     <ORDERID>{$orderId}</ORDERID>
+                     <EFFORTID>1</EFFORTID>
+                     <ATTEMPTID>1</ATTEMPTID>
                 </PAYMENT>
             ";
             $requestXML = $this->_prepareXMLString('CONVERT_PAYMENTTOPROFILE',$orderXML);
