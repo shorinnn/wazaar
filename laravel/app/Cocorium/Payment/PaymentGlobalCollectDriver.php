@@ -96,8 +96,6 @@ class PaymentGlobalCollectDriver implements PaymentInterface
             $orderXML = "
                 <PAYMENT>
                     <ORDERID>{$orderId}</ORDERID>
-                    <ATTEMPTID>1</ATTEMPTID>
-                    <EFFORTID>1</EFFORTID>
                 </PAYMENT>
             ";
             $requestXML = $this->_prepareXMLString('CONVERT_PAYMENTTOPROFILE',$orderXML);
@@ -136,7 +134,7 @@ class PaymentGlobalCollectDriver implements PaymentInterface
 
                     if (@$responseObject->RESULT == 'OK') {
                         $success     = true;
-                        $successData = $responseObject->ROW;
+                        $successData = $responseObject;
                     } else {
                         $errors[] = $responseObject->ERROR->MESSAGE;
                     }
