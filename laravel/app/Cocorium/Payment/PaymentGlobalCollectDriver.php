@@ -39,8 +39,10 @@ class PaymentGlobalCollectDriver implements PaymentInterface
                                     <IPADDRESSCUSTOMER>{$order['ipAddress']}</IPADDRESSCUSTOMER>
                                     <EMAIL>{$order['email']}</EMAIL>
                                     <MERCHANTREFERENCE>{$order['reference']}</MERCHANTREFERENCE>
+
                                 </ORDER>
                             <PAYMENT>
+                                <HOSTEDINDICATOR>1</HOSTEDINDICATOR>
                                 <PAYMENTPRODUCTID>1</PAYMENTPRODUCTID>
                                 <AMOUNT>{$amount}</AMOUNT>
                                 <CREDITCARDNUMBER>{$creditCardDetails['cardNumber']}</CREDITCARDNUMBER>
@@ -48,6 +50,8 @@ class PaymentGlobalCollectDriver implements PaymentInterface
                                 <CURRENCYCODE>USD</CURRENCYCODE>
                                 <COUNTRYCODE>JP</COUNTRYCODE>
                                 <LANGUAGECODE>ja</LANGUAGECODE>
+                                <EFFORTID>1</EFFORTID>
+                                <ATTEMPTID>1</ATTEMPTID>
                             </PAYMENT>";
 
             $requestXML = $this->_prepareXMLString($action, $orderPayment);
