@@ -28,6 +28,7 @@ class PaymentGlobalCollectDriver implements PaymentInterface
             $order  = $otherParams['order'];
 
             $orderPayment = "   <ORDER>
+                                    <ORDERTYPE>1</ORDERTYPE>
                                     <AMOUNT>{$amount}</AMOUNT>
                                     <CURRENCYCODE>{$this->currency}</CURRENCYCODE>
                                     <LANGUAGECODE>{$this->language}</LANGUAGECODE>
