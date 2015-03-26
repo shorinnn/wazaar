@@ -52,16 +52,16 @@
                                             'method' => 'PUT', 'id'=>'approve-form-'.$course->id, 'class' => 'ajax-form',
                                         'data-callback' => 'deleteItem', 'data-delete' => '#row-'.$course->id] ) }}
                                     <input type="hidden" name="value" value="approved" />
-                                    <button type="submit" class="btn btn-primary delete-button" 
+                                    <button type="submit" name='approve-course' class="btn btn-primary delete-button" 
                                             data-message="Are you sure you want to approve?">Approve</button>
                                 {{ Form::close() }}
                             </td>
                             <td>
                             {{ Form::open( ['action' => array('SubmissionsController@update', $course->id), 
-                                            'method' => 'PUT', 'id'=>'approve-form-'.$course->id, 'class' => 'ajax-form',
+                                            'method' => 'PUT', 'id'=>'reject-form-'.$course->id, 'class' => 'ajax-form',
                                         'data-callback' => 'deleteItem', 'data-delete' => '#row-'.$course->id] ) }}
                                     <input type="hidden" name="value" value="rejected" />
-                                    <button type="submit" class="btn btn-danger delete-button" 
+                                    <button type="submit" name='reject-course'  class="btn btn-danger delete-button" 
                                             data-message="Are you sure you want to reject?">Reject</button>
                                 {{ Form::close() }}
                             </td>

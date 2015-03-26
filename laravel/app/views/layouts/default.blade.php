@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{url('css/jquery.jscrollpane.css')}}">
     <link rel="stylesheet" href="{{url('plugins/slider/css/slider.css')}}">
     <link rel="stylesheet" href="{{url('css/jquery.videobackground.css')}}">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/css/select2.min.css" rel="stylesheet" />
+
     @yield('extra_css')
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -82,6 +84,7 @@
 		<script src="{{url("js/jquery.tinycarousel.js")}}"></script>
         
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
 
     @else
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -106,6 +109,7 @@
 		<script src="{{url("js/jquery.tinycarousel.js")}}"></script>
 
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
 
     @endif
         <script>

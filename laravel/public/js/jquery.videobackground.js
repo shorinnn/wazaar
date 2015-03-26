@@ -123,23 +123,25 @@
 			});
 		}
 		
-		/*//Make video restart on initial play.
+		//Make video restart on initial play.
 		if($('.ui-video-background-play .restart-video')){
 			$('.ui-video-background-play .restart-video').on('click',
 			function(){
 				$('.ui-video-background-play a').removeClass('restart-video');
+				//$('.ui-video-background-play a').removeClass('ui-icon-pause').addClass('ui-icon-play');
+				//$('.ui-video-background-mute a')
 				console.log(player[0]);
-				player[0].pause();
+				//player[0].pause();
 				player[0].currentTime = '0';
-				player[0].play();
-			})			
+				//player[0].play();
+				})			
 			
 		}
 		
 		else{
 			return false;
 		}
-		*/
+		
 		
 		/*
 		 * Default play/pause control	
@@ -474,7 +476,7 @@
 		preload: 'auto',
 		loop: false,
 		controlPosition: null,
-		controlText: ['', '', '', ''],
+		controlText: ['Play', 'Pause', 'Mute', 'Unmute'],
 		resize: false,
 		preloadHtml: '',
 		preloadCallback: null,

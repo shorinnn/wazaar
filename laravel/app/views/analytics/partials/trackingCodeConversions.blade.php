@@ -10,6 +10,7 @@
     @endforeach
 @else
     <div class="margin-top-15">
-        <center class="gray">{{trans('analytics.noTrackingCodeConversion')}} {{AnalyticsHelper::frequencyReadable($frequency)}}</center>
+        <center class="gray">{{trans('analytics.noTrackingCodeConversion')}} 
+            {{ strtolower( AnalyticsHelper::frequencyReadable($frequency) ) }}</center>
     </div>
 @endif

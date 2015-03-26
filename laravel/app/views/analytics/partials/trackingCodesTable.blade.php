@@ -1,4 +1,6 @@
-<table class="table table-striped">
+
+<div class="table-wrapper table-responsive">
+<table class="table table-bordered table-striped">
     <thead>
     <th>Tracking Code</th>
     <th>Sales (¥)</th>
@@ -18,3 +20,4 @@
     @endforeach
     </tbody>
 </table>
+</div>

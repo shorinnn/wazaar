@@ -1,7 +1,7 @@
 <?php
 use LaravelBook\Ardent\Ardent;
 
-class InstructorAgency extends Ardent {
+class InstructorAgency extends User {
     
         protected $table = 'users';
         

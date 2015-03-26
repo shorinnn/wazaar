@@ -167,7 +167,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!--<div class="row">
                 <div class="col-md-12">
                     <div class="white-row">
 
@@ -258,10 +258,10 @@
                         <h4>Javascript Primer</h4>
                         <span>00:12:15</span>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
-        <section class="container-fluid become-an-instructor affiliate">
+        <!--<section class="container-fluid become-an-instructor affiliate">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
@@ -271,7 +271,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>-->
     </div>
 @stop
 

@@ -45,6 +45,8 @@ a, input::-moz-focus-inner {
    text-decoration: none !important;
 }
 
+a:focus,
+a:active,
 a:hover{
 	outline: none;
 	text-decoration: none !important;

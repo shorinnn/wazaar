@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder {
                  $this->call('InstructorAgenciesSeeder');
                  $this->call('PMSeeder');
                  $this->call('TransactionsSeeder');
+                 $this->call('FrontpageVideosSeeder');
 	}
 
 }
@@ -1100,5 +1101,22 @@ class TransactionsSeeder extends Seeder {
             'product_type' => 'Lesson', 'product_id' => 2, 'status' => 'pending' ] );
         $student = Student::find(9);
         $student->refundBalanceDebit( $transaction ); 
+    }
+}
+
+class FrontpageVideosSeeder extends Seeder {
+
+    public function run()
+    {
+        FrontpageVideo::unguard();
+        for($i = 0; $i<2; ++$i){
+            for($j = 0; $j < 9; ++$j){
+                $type = ($j == 0) ? 'big' : 'small';
+                $id = 0;
+                if($i==0 && $j == 0 ) $id = 1;
+                if($i==1 && $j == 0 ) $id = 2;
+                FrontpageVideo::create( ['course_id' => $id, 'type' => $type] );
+            }
+        }
     }
 }
