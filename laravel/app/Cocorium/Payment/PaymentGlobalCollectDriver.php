@@ -136,7 +136,7 @@ class PaymentGlobalCollectDriver implements PaymentInterface
 
                     if (@$responseObject->RESULT == 'OK') {
                         $success     = true;
-                        $successData = $responseObject;
+                        $successData = $responseObject->ROW;
                     } else {
                         $errors[] = $responseObject->ERROR->MESSAGE;
                     }
