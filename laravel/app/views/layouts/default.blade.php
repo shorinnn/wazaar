@@ -135,7 +135,7 @@
 				  $(this).tab('show')
 				});
 				
-				//$('#slider1').tinycarousel();
+				$('#slider1').tinycarousel();
 				
 				
 			});
