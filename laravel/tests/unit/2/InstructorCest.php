@@ -28,7 +28,7 @@ class InstructorCest{
     
     public function getFirstCourseSaleCount(UnitTester $I){
         $instructor = Instructor::where('username','instructor')->first();
-        $sales = Purchase::where('product_id', 6)->count();
+        $sales = Purchase::where('product_id', 6)->where( 'product_type','Course' )->count();
         $I->assertEquals($sales, $instructor->courses->find(6)->sales->count());
     }
     
@@ -40,6 +40,10 @@ class InstructorCest{
         $I->assertNotEquals( $course->assigned_instructor_id, $instructor->id );
         
         $paymentData['successData']['REF'] = '123';
+        $paymentData['successData']['processor_fee'] = '123';
+        $paymentData['successData']['tax'] = '123';
+        $paymentData['successData']['balance_used'] = '0';
+        $paymentData['successData']['balance_transaction_id'] = '0';
         $instructor->purchase($course, null, $paymentData);
         $instructor = Student::where('username','second_instructor')->first();
         $I->assertTrue( $instructor->purchased($course) );
@@ -47,10 +51,11 @@ class InstructorCest{
     
     public function failbuyingOwnCourse(UnitTester $I){
         $instructor = Student::where('username','instructor')->first();
+        Purchase::where('student_id', $instructor->id)->delete();
         $I->assertTrue($instructor->hasRole('Instructor'));
         $course = Course::find(1);
         $I->assertEquals($course->instructor->id, $instructor->id);
-        $instructor->purchase($course);
+        $I->assertFalse( $instructor->purchase($course) );
         $instructor = Student::where('username','instructor')->first();
         $I->assertFalse( $instructor->purchased($course) );
     }

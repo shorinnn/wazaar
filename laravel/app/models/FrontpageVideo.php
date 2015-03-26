@@ -17,7 +17,7 @@ class FrontpageVideo extends Ardent {
         public static function grid(){
             $arr = [];
             $vids = FrontpageVideo::with('course')->get();
-            $randoms = Course::orderBy('id','rand')->limit( $vids->count() )->get();
+            $randoms = Course::where('privacy_status','public')->where('publish_status','approved')->orderBy('id','rand')->limit( $vids->count() )->get();
             foreach($vids as $vid){
                 if($vid->course_id == 0 ){
                     $vid->course = $randoms->random( 1 );

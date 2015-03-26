@@ -54,8 +54,8 @@ Route::group(array('prefix'=>'administration'),function(){
     Route::resource('withdrawals', 'WithdrawalsController');
     Route::resource('members', 'MembersController');
     Route::resource('submissions', 'SubmissionsController');
-    Route::get('affiliate-agencies/affiliates/{id}', 'AffiliateAgenciesController@affiliates');
-    Route::resource('affiliate-agencies', 'AffiliateAgenciesController');
+    Route::get('instructor-agencies/instructors/{id}', 'InstructorAgenciesController@instructors');
+    Route::resource('instructor-agencies', 'InstructorAgenciesController');
     Route::resource('frontpage-videos', 'FrontpageVideosController');
 });
 

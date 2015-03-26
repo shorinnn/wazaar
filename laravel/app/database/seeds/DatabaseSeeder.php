@@ -88,23 +88,7 @@ class UserTableSeeder extends Seeder {
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
 
-        //albert: added this for my testing
-        $user = new User;
-        $user->ltc_affiliate_id = 2;
-        $user->username = 'albert';
-        $user->email = 'albert@mailinator.com';
-        $user->first_name = 'Albert';
-        $user->last_name = 'Maranian';
-        $user->password = 'pass';
-        $user->password_confirmation = 'pass';
-        $user->confirmation_code = md5(uniqid(mt_rand(), true));
-        $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
-        $user->save();
-        Profile::unguard();
-        Profile::create( ['owner_id' => $user->id, 'owner_type' => 'Student','first_name' => 'Albert', 'last_name' => 'Maranian', 'email' => 'albert@mailinator.com']);
-        //albert
-
+        
         $user = new User;
         $user->ltc_affiliate_id = 2;
         $user->username = 'student';
@@ -255,6 +239,24 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
+        
+        //albert: added this for my testing
+        $user = new User;
+        $user->ltc_affiliate_id = 2;
+        $user->username = 'albert';
+        $user->email = 'albert@mailinator.com';
+        $user->first_name = 'Albert';
+        $user->last_name = 'Maranian';
+        $user->password = 'pass';
+        $user->password_confirmation = 'pass';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->save();
+        Profile::unguard();
+        Profile::create( ['owner_id' => $user->id, 'owner_type' => 'Student','first_name' => 'Albert', 'last_name' => 'Maranian', 'email' => 'albert@mailinator.com']);
+        //albert
+
     }
 }
     
@@ -1054,6 +1056,8 @@ class InstructorAgenciesSeeder extends Seeder {
         $agency3->password_confirmation = 'pass';
         $agency3->save();
         $agency3->attachRole( $agencyRole );      
+        
+        DB::table('users')->where('username','instructor')->update(['instructor_agency_id' => $agency1->id]);
 
     }
 }
