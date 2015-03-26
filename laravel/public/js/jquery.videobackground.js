@@ -27,7 +27,6 @@
 			}
 		}
 	}
-	
 	/*
 	 * Preload function.
 	 * Allows for HTML and JavaScript designated in settings to be used while the video is preloading.
@@ -90,7 +89,6 @@
 			controller.toggleClass('ui-icon-volume-on ui-icon-volume-off').text(that.settings.controlText[3]);
 		}
 	}
-	
 	/*
 	 * Loaded events function.
 	 * When the video is loaded we have some default HTML and JavaScript to trigger.	
@@ -101,22 +99,23 @@
 		 * Trigger the resize method based if the browser is resized.
 		 *
 		 */
+		 
 		var player = $('#video-background video');
-	
-		/*if($('#video-background.full-screen')){
-			$.fn.videobackground.defaults.muted = true;
-			that.controls.find('.ui-video-background-play a').on('click', function (event) {
-				event.preventDefault();
-				$('#video-background').removeClass('full-screen');
-				$.fn.videobackground.defaults.muted = false;
-				console.log($.fn.videobackground.defaults);
-			})
-		}
 		
-		else{
-			return false;
-		}*/
-		
+		that.find('video').on('ended', function(){
+			if (that.settings.loop) {
+				$(this).get(0).play();
+				$(this).toggleClass('paused').text(that.settings.controlText[1]);
+			}
+			
+			else{
+				$('.ui-video-background-play a').addClass('ui-icon-pause').removeClass('ui-icon-play');
+				//$(this).toggleClass('paused').text(that.settings.controlText[1]);
+			}
+			
+		});
+
+		 
 		if (that.settings.resize) {
 			$(window).on('resize', function () {
 				resize(that);
@@ -134,6 +133,17 @@
 				//player[0].pause();
 				player[0].currentTime = '0';
 				//player[0].play();
+				console.log(player[0].volume);
+				if (player[0].volume === 0) {
+					//player[0].volume = 1;
+					console.log(player[0].volume);
+				}
+				
+				/*if(that.settings.muted){
+					that.settings.muted = false;
+					console.log(that.settings.muted);	
+				}*/
+				
 				})			
 			
 		}
@@ -150,7 +160,7 @@
 		that.controls.find('.ui-video-background-play a').on('click', function (event) {
 			event.preventDefault();
 			play(that);
-			
+
 			//Animate video size and position on user play to default video size
 			$('.ui-video-background-controls li').show();
 			var playerHeight = player[0].videoHeight;
@@ -175,9 +185,8 @@
 				margin: '0 auto',
 				ease:Power4.easeOut,
 			});
-		});
-		
 
+		});
 		/*
 		 * Default mute/unmute control	
 		 *
@@ -197,10 +206,10 @@
 				$(this).toggleClass('paused').text(that.settings.controlText[1]);
 			});
 		}
-		
+
 		else{
 			that.find('video').on('ended', function () {
-				$('.ui-video-background-play a').addClass('ui-icon-pause');
+				//$('.ui-video-background-play a').addClass('ui-icon-pause');
 				//$(this).toggleClass('paused').text(that.settings.controlText[1]);
 			});			
 		}
@@ -293,7 +302,7 @@
 						 *
 						 */
 						that.controls = $('<ul class="ui-video-background-controls"><li class="ui-video-background-play">'
-							+ '<a class="ui-icon ui-icon-pause  restart-video" href="#">' + that.settings.controlText[1] + '</a>'
+							+ '<a class="ui-icon ui-icon-pause restart-video" href="#">' + that.settings.controlText[1] + '</a>'
 							+ '</li><li class="ui-video-background-mute">'
 							+ '<a class="ui-icon ui-icon-volume-on" href="#">' + that.settings.controlText[2] + '</a>'
 							+ '</li></ul>');
@@ -316,6 +325,7 @@
 									that.find('video').get(0).play();
 								}
 								loaded(that);
+
 							});
 						} else {
 							that.find('video').on('canplaythrough', function () {
@@ -475,6 +485,7 @@
 		autoplay: true,
 		preload: 'auto',
 		loop: false,
+		muted: false,
 		controlPosition: null,
 		controlText: ['', '', '', ''],
 		resize: false,
