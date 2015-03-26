@@ -92,33 +92,33 @@
                                         @if( cycle(1, 2, 3) == 1)
                                             <div class="big-box-holders box-holders left clearfix">
                                             @if( cycle('a','b') == 'a')
-                                                <a href="#" class="small-boxes boxes left">
+                                                <a href="#" class="small-boxes boxes left course-tile-{{$set[0]['id']}}">
                                                     <span></span>
                                                     <img src="{{ $set[0]['thumb'] }}">   
                                                     <p>{{ $set[0]['name'] }}</p>
                                                 </a>
-                                                    <a href="#" class="small-boxes boxes left">
+                                                    <a href="#" class="small-boxes boxes left course-tile-{{$set[1]['id']}}">
                                                     <span></span>
                                                     <img src="{{ $set[1]['thumb'] }}">   
                                                     <p>{{ $set[1]['name'] }}</p>
                                                 </a>
-                                                    <a href="#" class="big-boxes boxes clear">
+                                                    <a href="#" class="big-boxes boxes clear course-tile-{{$set[2]['id']}}">
                                                     <span></span>
                                                     <img src="{{ $set[2]['thumb'] }}">   
                                                     <p>{{ $set[2]['name'] }}</p>
                                                 </a>
                                             @else
-                                                 <a href="#" class="big-boxes boxes clear">
+                                                 <a href="#" class="big-boxes boxes clear course-tile-{{$set[0]['id']}}">
                                                     <span></span>
                                                     <img src="{{ $set[0]['thumb'] }}">   
                                                     <p>{{ $set[0]['name'] }}</p>
                                                 </a>
-                                                <a href="#" class="small-boxes boxes left">
+                                                <a href="#" class="small-boxes boxes left course-tile-{{$set[1]['id']}}">
                                                     <span></span>
                                                     <img src="{{ $set[1]['thumb'] }}">   
                                                     <p>{{ $set[1]['name'] }}</p>
                                                 </a>
-                                                    <a href="#" class="small-boxes boxes left">
+                                                    <a href="#" class="small-boxes boxes left course-tile-{{$set[2]['id']}}">
                                                     <span></span>
                                                     <img src="{{ $set[2]['thumb'] }}">   
                                                     <p>{{ $set[2]['name'] }}</p>
@@ -129,7 +129,7 @@
                                             <div class="small-box-holders box-holders left clearfix">
                                                 
                                                 @foreach($set as $vid)
-                                                    <a href="#" class="small-boxes boxes clear">
+                                                    <a href="#" class="small-boxes boxes clear course-tile-{{$vid['id']}}">
                                                         <span></span>
                                                         <img src="{{ $vid['thumb'] }}">   
                                                         <p>{{ $vid['name'] }}</p>

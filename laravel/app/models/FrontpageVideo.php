@@ -22,6 +22,7 @@ class FrontpageVideo extends Ardent {
                 if($vid->course_id == 0 ){
                     $vid->course = $randoms->random( 1 );
                 }
+                $aux['id'] = $vid->course->id;
                 $aux['name'] = $vid->course->name;
                 $aux['url'] = 'url';
                 if($vid->course->course_preview_image_id == null)                
