@@ -74,6 +74,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'superadmin';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
         $user->username = 'WazaarAffiliate';
@@ -83,6 +84,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'random';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
 
         //albert: added this for my testing
@@ -96,6 +98,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         Profile::unguard();
         Profile::create( ['owner_id' => $user->id, 'owner_type' => 'Student','first_name' => 'Albert', 'last_name' => 'Maranian', 'email' => 'albert@mailinator.com']);
@@ -111,6 +114,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
 
         $user = new User;
@@ -123,6 +127,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->instructor_balance = 60;
         $user->save();
         $user = new User;
@@ -137,6 +142,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
         $user->affiliate_balance = 70;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 2;
@@ -148,6 +154,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 2;
@@ -159,6 +166,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 2;
@@ -170,6 +178,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 2;
@@ -181,6 +190,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 2;
@@ -193,6 +203,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
         $user->instructor_balance = 80;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 2;
@@ -204,6 +215,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         
         $user = new User;
@@ -216,6 +228,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 2;
@@ -227,6 +240,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 2;
@@ -238,6 +252,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
     }
 }
