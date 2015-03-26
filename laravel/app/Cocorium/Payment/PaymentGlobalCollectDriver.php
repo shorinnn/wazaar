@@ -1,5 +1,8 @@
 <?php namespace Cocorium\Payment;
 
+use Guzzle\Log\MonologLogAdapter;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 class PaymentGlobalCollectDriver implements PaymentInterface
 {
 
@@ -181,8 +184,15 @@ class PaymentGlobalCollectDriver implements PaymentInterface
                         </PARAMS>
                     </REQUEST>
                 </XML>";
-
+        $this->_logXML($data);
         return $data;
+    }
+
+    private function _logXML($xmlString)
+    {
+        $logger = new Logger('Payment XML Logger');
+        $logger->pushHandler(new StreamHandler(storage_path() . DIRECTORY_SEPARATOR . 'payment.log'), Logger::INFO);
+        $logger->addInfo($xmlString);
     }
 
 
