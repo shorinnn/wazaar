@@ -1,5 +1,8 @@
 <?php namespace Cocorium\Payment;
 
+use Guzzle\Log\MonologLogAdapter;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 class PaymentGlobalCollectDriver implements PaymentInterface
 {
 
@@ -28,6 +31,7 @@ class PaymentGlobalCollectDriver implements PaymentInterface
             $order  = $otherParams['order'];
 
             $orderPayment = "   <ORDER>
+                                    <ORDERTYPE>1</ORDERTYPE>
                                     <AMOUNT>{$amount}</AMOUNT>
                                     <CURRENCYCODE>{$this->currency}</CURRENCYCODE>
                                     <LANGUAGECODE>{$this->language}</LANGUAGECODE>
@@ -39,8 +43,10 @@ class PaymentGlobalCollectDriver implements PaymentInterface
                                     <IPADDRESSCUSTOMER>{$order['ipAddress']}</IPADDRESSCUSTOMER>
                                     <EMAIL>{$order['email']}</EMAIL>
                                     <MERCHANTREFERENCE>{$order['reference']}</MERCHANTREFERENCE>
+
                                 </ORDER>
                             <PAYMENT>
+                                <HOSTEDINDICATOR>1</HOSTEDINDICATOR>
                                 <PAYMENTPRODUCTID>1</PAYMENTPRODUCTID>
                                 <AMOUNT>{$amount}</AMOUNT>
                                 <CREDITCARDNUMBER>{$creditCardDetails['cardNumber']}</CREDITCARDNUMBER>
@@ -48,6 +54,8 @@ class PaymentGlobalCollectDriver implements PaymentInterface
                                 <CURRENCYCODE>USD</CURRENCYCODE>
                                 <COUNTRYCODE>JP</COUNTRYCODE>
                                 <LANGUAGECODE>ja</LANGUAGECODE>
+                                <EFFORTID>1</EFFORTID>
+                                <ATTEMPTID>1</ATTEMPTID>
                             </PAYMENT>";
 
             $requestXML = $this->_prepareXMLString($action, $orderPayment);
@@ -96,6 +104,8 @@ class PaymentGlobalCollectDriver implements PaymentInterface
             $orderXML = "
                 <PAYMENT>
                     <ORDERID>{$orderId}</ORDERID>
+                     <EFFORTID>1</EFFORTID>
+                     <ATTEMPTID>1</ATTEMPTID>
                 </PAYMENT>
             ";
             $requestXML = $this->_prepareXMLString('CONVERT_PAYMENTTOPROFILE',$orderXML);
@@ -174,8 +184,15 @@ class PaymentGlobalCollectDriver implements PaymentInterface
                         </PARAMS>
                     </REQUEST>
                 </XML>";
-
+        $this->_logXML($data);
         return $data;
+    }
+
+    private function _logXML($xmlString)
+    {
+        $logger = new Logger('Payment XML Logger');
+        $logger->pushHandler(new StreamHandler(storage_path() . DIRECTORY_SEPARATOR . 'payment.log'), Logger::INFO);
+        $logger->addInfo($xmlString);
     }
 
 
