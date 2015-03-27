@@ -26,7 +26,7 @@ class FrontpageVideo extends Ardent {
                 $aux['name'] = $vid->course->name;
                 $aux['url'] = 'url';
                 if($vid->course->course_preview_image_id == null)                
-                    $aux['thumb'] = "http://placehold.it/350x150&text=Preview Unavailable";
+                    $aux['thumb'] = "http://placehold.it/350x150&text=".trans('general.preview-unavailable');
                 else                
                     $aux['thumb'] = $vid->course->previewImage->url;
                 $arr[] = $aux;

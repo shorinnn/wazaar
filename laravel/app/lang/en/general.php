@@ -31,4 +31,8 @@ return array(
     'instructors' => 'Instructor|Instructors',
     'password' => 'Password',
     'password_confirmation' => 'Password Confirmation',
+    'preview-unavailable' => 'Preview Unavailable',
+    'login' => 'Login',
+    'register' => 'Register',
+    'load-more' => 'Load More',
 );

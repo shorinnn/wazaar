@@ -2,21 +2,24 @@
     @if($testimonial->thumbs_up > $testimonial->thumbs_down)
     <h4 class="testimonial-{{$testimonial->id}} text-center">
         <i class="fa fa-thumbs-o-up"></i> <span class='thumbs-up-label'>{{$testimonial->thumbs_up}}</span>
-        of <span class='thumbs-total-label'>{{$testimonial->thumbs()}}</span> found this review very helpful
+        of <span class='thumbs-total-label'>{{$testimonial->thumbs()}}</span> {{trans('courses/general.found-this-review-very-helpful')}}
     </h4>
     @else
         <h4 class="testimonial-{{$testimonial->id}} text-center">
             <i class="fa fa-thumbs-o-down"></i> 
             <span class='thumbs-down-label'>{{$testimonial->thumbs_down}}</span>
-            of  <span class='thumbs-total-label'>{{$testimonial->thumbs()}}</span> found this review not helpful
+            of  <span class='thumbs-total-label'>{{$testimonial->thumbs()}}</span> {{trans('courses/general.found-this-review-not-helpful')}}
         </h4>
     @endif
 @else
-    <h4 class="testimonial-{{$testimonial->id}}-placeholder text-center"><i class="fa fa-question-circle"></i> Be the first to rate this review</h4>
+    <h4 class="testimonial-{{$testimonial->id}}-placeholder text-center"><i class="fa fa-question-circle"></i> {{trans('courses/general.be-the-first-to-rate-this-review')}}</h4>
     <h4 class="testimonial-{{$testimonial->id}} text-center hidden">
         <i class="fa fa-thumbs-o-down"></i> <span class='thumbs-down-label'>{{$testimonial->thumbs_down}}</span>
         <i class="fa fa-thumbs-o-up"></i> <span class='thumbs-up-label'>{{$testimonial->thumbs_up}}</span>
-        of  <span class='thumbs-total-label'>{{$testimonial->thumbs()}}</span> found this review <span class='not-very'>very</span> helpful
+        {{trans('courses/general.of')}}  <span class='thumbs-total-label'>{{$testimonial->thumbs()}}</span> 
+        {{trans('courses/general.found-this-review')}}
+        <span class='not-very'>{{trans('courses/general.very')}}</span> 
+        {{trans('courses/general.helpful')}}
     </h4>
 @endif
 
@@ -29,7 +32,7 @@
  </span>
  
  @if( Auth::check() )
-        <h4 class="text-center">was this review helpful?</h4>
+        <h4 class="text-center">{{trans('courses/general.was-this-review-helpful')}}?</h4>
         <div class="text-center">
             <form method='post' class='inline-block ajax-form' action='{{action('TestimonialsController@rate')}}'
                   data-callback='ratedTestimonial' data-thumb='up' data-total='{{$testimonial->thumbs()}}' 
@@ -40,7 +43,7 @@
                         >
                         
                 <button type='submit' name="rate-yes" class="btn btn-success"  data-testimonial-id='{{$testimonial->id}}'>
-                    <i class="fa fa-thumbs-o-up"></i> Yes
+                    <i class="fa fa-thumbs-o-up"></i> {{trans('courses/general.yes')}}
                     @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'positive' )
                         <i class="fa fa-check-circle-o"></i>
                     @endif
@@ -58,7 +61,7 @@
                         @endif
                         >
                 <button type='submit'  name="rate-no" class="btn btn-danger"  data-testimonial-id='{{$testimonial->id}}'>
-                    <i class="fa fa-thumbs-o-down"></i> No
+                    <i class="fa fa-thumbs-o-down"></i> {{trans('courses/general.no')}}
                     @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'negative' )
                         <i class="fa fa-check-circle-o"></i>
                     @endif

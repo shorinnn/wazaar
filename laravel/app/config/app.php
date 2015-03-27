@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'ja',
 
 
 	/*
@@ -66,7 +66,7 @@ return array(
 	|
 	*/
 
-	'fallback_locale' => 'jp',
+	'fallback_locale' => 'ja',
 
 	/*
 	|--------------------------------------------------------------------------

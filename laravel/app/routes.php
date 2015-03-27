@@ -65,6 +65,7 @@ Route::group(['prefix' => 'administration'], function (){
     Route::post('coursecategories/graphics_url/{category}', 'CoursesCategoriesController@graphics_url');
     Route::resource('coursecategories', 'CoursesCategoriesController');
     Route::resource('coursesubcategories', 'CoursesSubcategoriesController');
+    Route::resource('course-difficulties', 'CourseDifficultiesController');
 });
 
 // Students

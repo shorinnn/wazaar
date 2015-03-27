@@ -9,8 +9,8 @@
 @section('content')
     
         <div class="classrooms-wrapper clearfix">
-            <h1 class="classroom-course-title">Course: {{ $course->name }}</h1>
-            <h2 class="classroom-lesson-title">Lesson: {{ $lesson->name }}</h2>
+            <h1 class="classroom-course-title">{{trans('courses/general.Course')}}: {{ $course->name }}</h1>
+            <h2 class="classroom-lesson-title">{{trans('courses/general.lesson')}}: {{ $lesson->name }}</h2>
         	<section class="video-container">
             	@if( $video != null && $video->video()!=null)
                 <div class="text-center">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="row classmate-conversations-heading">
                 	<div class="col-md-12">
-                        <p class="lead">Conversations:</p>
+                        <p class="lead">{{trans('conversations/general.Conversations')}}:</p>
                     </div>
                 </div>
             </section>
@@ -107,7 +107,7 @@
                 <section class="classroom-content container"><a name='ask-teacher'></a>
                     <div class="row classmate-conversations-heading">
                             <div class="col-md-12">
-                            <p class="lead">Ask The Teacher:</p>
+                            <p class="lead">{{trans('conversations/general.ask-the-teacher')}}:</p>
                         </div>
                     </div>
                 @if( Auth::check() )
@@ -128,8 +128,8 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-xs-12">
-                      <h1>BECOME</h1>
-                      <h2>AN INSTRUCTOR</h2>
+                      <h1>{{trans('site/homepage.become')}}</h1>
+                      <h2>{{trans('site/homepage.an-instructor')}}</h2>
                       <a href="{{ action('InstructorsController@become') }}"><span>{{trans('site/homepage.get-started')}}</span></a>
                     </div>
                   </div>

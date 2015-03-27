@@ -8,15 +8,15 @@
             
             @if( Auth::check() )
                 
-                <p class='alert alert-info'>Click the button below to start the wonderful adventure!</p>
+                <p class='alert alert-info'>{{ trans('instructors/general.click-to-start') }}!</p>
                 {{ Form::open(['action' => ["InstructorsController@become"], 'id' => 'become-form']) }}
                     <input type='submit' class='btn btn-primary' value='{{ trans('site/homepage.get-started') }}' />
                 {{Form::close()}}
             @else
-                <h1>To become an instructor</h1>
-                <a href='{{ action('InstructorsController@start', 'new-user') }}'>Register</a> 
+                <h1>{{ trans('instructors/general.to-become') }}</h1>
+                <a href='{{ action('InstructorsController@start', 'new-user') }}'>{{ trans('general.register') }}</a> 
                 or
-                <a href='{{ action('InstructorsController@start', 'existing-user') }}'>Login and upgrade your account</a> 
+                <a href='{{ action('InstructorsController@start', 'existing-user') }}'>{{ trans('instructors/general.login-and-upgrade') }}</a> 
             @endif
         </div>
     </div>       
