@@ -1,10 +1,10 @@
 @extends('layouts.default')
 @section('content')	
 
-<button class='btn btn-primary add-grid' onclick='addGrid()' data-cur-val='{{$videos->count()}}'>Add grid</button>
-<button class='btn btn-primary remove-grid btn-danger' onclick='deleteGrid("first")'>Delete first grid (9 videos)</button>
+<button class='btn btn-primary add-grid' onclick='addGrid()' data-cur-val='{{$videos->count()}}'>{{ trans('frontpage-videos.add-grid') }}</button>
+<button class='btn btn-primary remove-grid btn-danger' onclick='deleteGrid("first")'>{{ trans('frontpage-videos.delete-first-grid') }}</button>
 {{ Form::open([ 'action' => ['FrontpageVideosController@update', 0], 'method' => 'PUT', 'class'=>'ajax-form',  'data-callback'=>'formSaved' ] ) }}
-<center><button type='submit' class='btn btn-primary'>Update</button></center>
+<center><button type='submit' class='btn btn-primary'>{{ trans('crud/labels.update') }}</button></center>
 <table class="table table-striped table-bordered" style='width: 50%; margin-left:auto; margin-right: auto' id='grid-table'>
     <?php
     $i = 0;
@@ -14,10 +14,10 @@
         {{ View::make('administration.frontpage_videos.partials.video')->with( compact( 'video', 'i', 'courses' ) )}}
     @endforeach
 </table>
-<center><button type='submit' class='btn btn-primary'>Update</button></center>
+<center><button type='submit' class='btn btn-primary'>{{ trans('crud/labels.update') }}</button></center>
 {{ Form::close() }}
-<button class='btn btn-primary add-grid' onclick='addGrid()' data-cur-val='{{$videos->count()}}'>Add grid</button>
-<button class='btn btn-primary remove-grid btn-danger' onclick='deleteGrid("last")'>Delete last grid (9 videos)</button>
+<button class='btn btn-primary add-grid' onclick='addGrid()' data-cur-val='{{$videos->count()}}'>{{ trans('frontpage-videos.add-grid') }}</button>
+<button class='btn btn-primary remove-grid btn-danger' onclick='deleteGrid("last")'>{{ trans('frontpage-videos.delete-last-grid') }}</button>
 
 @stop
 
@@ -28,7 +28,7 @@
         $('.add-grid').html( '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /> '+_('Please wait'));
         $.post(COCORIUM_APP_PATH+'administration/frontpage-videos', { i : $('.add-grid').attr('data-cur-val') },function(result){
             $('.add-grid').html( $('.add-grid').attr('data-old-label') );
-            $('.add-grid').attr('data-cur-val', $('.add-grid').attr('data-cur-val') * 1 + 9 );
+            $('.add-grid').attr('data-cur-val', $('.add-grid').attr('data-cur-val') * 1 + 6 );
             $('#grid-table tbody').append(result);
             $('.select2').select2();
              $('html, body').animate({
@@ -41,12 +41,11 @@
         if(which=='first'){
             start_id = $('#grid-table tbody tr').first().attr('data-id');
             start = 1;
-            end = start + 8;
+            end = start + 5;
         }
         else{
-//            $('#grid-table tbody tr').last().attr('data-id');
             end = $('#grid-table tbody tr').last().attr('data-row-cur-val');
-            start = end - 8;
+            start = end - 5;
             start_id = $('[data-row-cur-val="'+start+'"]').attr('data-id');
         }
         
@@ -65,7 +64,7 @@
                  $(this).attr('data-row-cur-val', i);
                  ++i;
              });
-            $('.add-grid').attr('data-cur-val', $('.add-grid').attr('data-cur-val') * 1 - 9 );
+            $('.add-grid').attr('data-cur-val', $('.add-grid').attr('data-cur-val') * 1 - 6 );
             
         });
     }

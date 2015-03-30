@@ -25,6 +25,6 @@ return array(
     'dashboard' => '月Dashboardせ',
     'completed-all' => '月Completed all lessonsせ',
     'continue' => '月Continueせ',
-    'where-left-off' => '月Where you left offせ',
+    'where-you-left-off' => '月Where you left offせ',
     'finished-all' => '月Finished all lessonsせ',
 );

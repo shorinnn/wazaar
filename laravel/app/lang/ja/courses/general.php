@@ -55,4 +55,7 @@ return array(
     'no' => '月Noせ',
     'testimonials' => '月Testimonialsせ',
     'Course' => '月Courseせ',
+    'my-courses' => '月My Courseせ',
+    'you-have-no-courses' => '月You have no courseせ',
+    'go-to-dashboard' => '月Go to Dashboardせ',
 );
