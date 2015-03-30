@@ -14,6 +14,7 @@ class InstructorTransactionsCest{
     private function setupDatabase() {
         Artisan::call('migrate:refresh');
         Artisan::call('db:seed');
+        DB::table('users')->update( ['instructor_balance' => 0] );
         Instructor::boot();
     }
     
@@ -25,8 +26,7 @@ class InstructorTransactionsCest{
         $I->assertEquals( 100, $instructor->instructor_balance );
         
         $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 100, 'gc_fee' => 0, 
-            'product_id' => $course->id, 'product_type' => 'Course',
-            'details' => 'Instructor Credit Transaction For Order #1', 'status' => 'complete' ] );
+            'product_id' => $course->id, 'product_type' => 'Course', 'status' => 'complete' ] );
     }
     
     public function failCreditBadAmount(UnitTester $I){
@@ -43,18 +43,18 @@ class InstructorTransactionsCest{
         $instructor->instructor_balance = 100;
         $instructor->updateUniques();
         $I->assertEquals( 100, $instructor->instructor_balance );
-        $instructor->debit( 100, 'ref', 5 );
+        $instructor->debit( 100, 'ref');
         $I->assertEquals( 0, $instructor->instructor_balance );
         $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit', 
-            'reference' => 'ref', 'status' => 'complete', 'gc_fee' => 5, 'amount' => 95 ] );
+            'reference' => 'ref', 'status' => 'pending',  'amount' => 100  - Config::get('custom.cashout.fee') ] );
     }
     
     public function failDebitLowBalance(UnitTester $I){
         $instructor = Instructor::find(4);
-        $I->assertFalse( $instructor->debit( 100, 'ref', 5) );
+        $I->assertFalse( $instructor->debit( 100, 'ref') );
         $I->assertEquals( 0, $instructor->student_balance );
         $I->dontSeeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit', 
-            'reference' => 'ref', 'status' => 'complete', 'gc_fee' => 5 ] );
+            'reference' => 'ref', 'status' => 'pending' ] );
     }
     
     

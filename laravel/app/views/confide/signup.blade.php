@@ -3,10 +3,10 @@
 <section class="container-fluid register-page top-blue-section">
 	<div class="row">
     	<div class="col-md-12">
-        	<h1>Register</h1>
-            <span>and earn</span>
+        	<h1>{{ trans('general.login') }}</h1>
+            <span>{{ trans('site/register.and-earn') }}</span>
             <em>500¥</em>
-            <p>credit</p>
+            <p>{{ trans('site/register.credit') }}</p>
         </div>
     </div>
 </section>
@@ -17,9 +17,10 @@
 <div class="container register-page">
 	<div class="row">
     	<div class="col-md-12">
-        	<a href="{{ url('login-with-facebook') }}" class="fb-button social-button">Sign in with Facebook</a>
-                <a href="{{url('login-with-google') }}" class="google-button social-button">Sign in with Google</a>
-            <p class="or">Or</p>
+        	<a href="{{ url('login-with-facebook') }}" class="fb-button social-button">{{ trans('site/login.sign-in-with-fb') }}</a>
+                <a href="{{url('login-with-google') }}" class="google-button social-button">{{ trans('site/login.sign-in-with-google') }}</a>
+                <p class="or"></p>
+
         </div>
     </div>
 </div>

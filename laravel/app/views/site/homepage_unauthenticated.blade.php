@@ -63,7 +63,10 @@
         	<div class="container">
             	<div class="row">
                 	<div class="col-md-12">
-                    	<p class="lead">Advance <span>Your Career.</span> Discover new skills. 
+                    	<p class="lead">
+                            {{trans('site/homepage.advance')}} 
+                            <span>{{trans('site/homepage.your-career')}}.</span> 
+                            {{trans('site/homepage.discover-new-skills')}}. 
                         </p>
                         <p class="lead">
                         {{trans('site/homepage.learn-what-you-didnt')}}                       
@@ -312,11 +315,11 @@
         <section class="container unauthenticated-homepage" id="the-world-is-yours">
         	<div class="row">
             	<div class="col-md-12">
-                	<h3>The world is yours to conquer.
-                    	<span>Create yourself.</span>
+                	<h3>{{ trans('site/homepage.the-world-is-yours') }}.
+                    	<span>{{ trans('site/homepage.create-yourself') }}.</span>
                     </h3>
-                    <a href="#" class="sign-up">Sign up now</a>
-                    <span class="get-reward">Get 500¥ Credit!</span>
+                    <a href="#" class="sign-up">{{ trans('site/homepage.sign-up-now') }}</a>
+                    <span class="get-reward">{{ trans('site/homepage.get-credit') }}!</span>
                 </div>
             </div>
         </section>

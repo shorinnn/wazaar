@@ -34,7 +34,11 @@
                 <div class="clearfix banner-content-wrapper">
                     <div class="number-of-students">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
                     <div class="number-of-reviews">
-                        {{ $course->total_reviews }} {{ singplural($course->total_reviews, 'REVIEWS') }}
+                        {{ $course->total_reviews }} 
+                        {{-- singplural($course->total_reviews, 'REVIEWS') --}}
+                        
+                        {{ Lang::choice( 'courses/general.reviews', $course->total_reviews) }}
+                        
                         <span>{{ $course->reviews_positive_score }}%</span>
                     </div>
                         @if($course->isDiscounted())
@@ -220,7 +224,7 @@
     
                             <div class="testimonials">
                                 @if($course->testimonials->count() > 1)
-                                <h4>Testimonials</h4>
+                                <h4> {{ trans('courses/general.testimonials') }}</h4>
                                     <p>
                                      {{{ $course->testimonials->last()->content }}}
                                     </p>
@@ -246,7 +250,7 @@
                     <div class="clearfix">
                         
                             <div class="modules module-1 clearfix clear">
-                                <p>Module {{ $module->order }}</p>
+                                <p>{{trans('courses/general.module')}} {{ $module->order }}</p>
                                 <span>{{ $module->name }}</span>
                             </div>                        
                         <ul class="lesson-container">
@@ -256,7 +260,7 @@
                                 @else
                                     <li class="lessons lesson-1 bordered">
                                 @endif
-                                    <span>Lesson {{ $lesson->order }}</span>
+                                    <span>{{trans('courses/general.lesson')}} {{ $lesson->order }}</span>
                                     <p>{{ $lesson->name }}</p>
                                     @if($lesson->price==0)
                                     
@@ -296,7 +300,7 @@
                             <h3 class="text-center">
                                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">
                             </h3>
-	                        <h2 class="text-center">Helpful Student Reviews</h2>
+	                        <h2 class="text-center">{{ trans('courses/general.helpful-student-reviews') }}</h2>
                             @foreach($course->allTestimonials as $testimonial)
                             	<div>
                                {{ View::make('courses.testimonials.testimonial')->with( compact('testimonial') ) }}
@@ -305,7 +309,9 @@
                         </div>
                         <a href='1' class="load-more-comments load-more-ajax" 
                data-url='{{ action('TestimonialsController@more') }}' 
-               data-target='.bottom-testimonials' data-skip='2' data-id='{{ $course->id }}' data-post-field="course">LOAD MORE</a>
+               data-target='.bottom-testimonials' data-skip='2' data-id='{{ $course->id }}' data-post-field="course">
+                            {{ trans('general.load-more') }}
+                        </a>
                         
             @endif
             </div>                       
@@ -315,8 +321,8 @@
                     <div class="container">
                       <div class="row">
                         <div class="col-xs-12">
-                          <h1>BECOME</h1>
-                          <h2>AN INSTRUCTOR</h2>
+                          <h1>{{ trans('site/homepage.become') }}</h1>
+                          <h2>{{ trans('site/homepage.an-instructor') }}</h2>
                           <a href="{{ action('InstructorsController@become') }}"><span>{{trans('site/homepage.get-started')}}</span></a>
                         </div>
                       </div>

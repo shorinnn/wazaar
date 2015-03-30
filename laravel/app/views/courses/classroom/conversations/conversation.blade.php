@@ -3,18 +3,21 @@
         <span class="name"> 
             {{ $comment->poster->commentName() }}
             @if(Auth::user()->id != $comment->poster->id)
-                <a href="{{ url('private-messages/?send-to='.$comment->poster->id) }}">[PM]</a>
+                <a href="{{ url('private-messages/?send-to='.$comment->poster->id) }}">[{{ trans('conversations/general.pm') }}]</a>
             @endif
         </span>
         
         <a href="{{ action( 'ConversationsController@replyTo', $comment->id ) }}" class="reply-link reply-to" data-field='.reply-to'
-           data-id='{{ $comment->reply_to or $comment->id }}' data-reply-to="{{$comment->id}}">Reply</a>
+           data-id='{{ $comment->reply_to or $comment->id }}' data-reply-to="{{$comment->id}}">
+            {{ trans('conversations/general.Reply') }}
+        </a>
         
        
         @if($comment->reply_to == 0)
         <a class="number-of-replies load-remote" data-url='{{action('ConversationsController@replies', ['id' => $comment->id, 'skip' => 1])}}' 
            href='{{action('ConversationsController@viewReplies', $comment->id)}}' target="_blank" data-load-method='prepend'
-           data-target='.comment-{{$comment->id}} > .replies' data-callback="collapseComments">{{ $comment->replies->count() }} {{Lang::choice('general.reply', $comment->replies->count() )}}
+           data-target='.comment-{{$comment->id}} > .replies' data-callback="collapseComments">{{ $comment->replies->count() }}
+            {{Lang::choice('general.reply', $comment->replies->count() )}}
             @if($comment->replies->count() > 0)
                 <i class='fa fa-arrow-down fa-animated'></i>
             @endif
@@ -31,7 +34,7 @@
             @if($comment->original_reply_to > 0)
                 <p class='is-reply-to'>
                     {{ '@'.$comment->original->poster->commentName() }}
-                 - originally posted {{ $comment->original->created_at->diffForHumans() }}
+                 - {{ trans('conversations/general.originally_posted') }} {{ $comment->original->created_at->diffForHumans() }}
                 </p>
             @endif
             {{ $comment->content }}

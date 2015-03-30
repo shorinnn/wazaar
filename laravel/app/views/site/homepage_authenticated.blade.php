@@ -57,8 +57,8 @@
             	<div class="container">
                   <div class="row">
                     <div class="col-xs-12">
-                      <h1>BECOME</h1>
-                      <h2>AN INSTRUCTOR</h2>
+                      <h1>{{ trans('site/homepage.become') }}</h1>
+                      <h2>{{ trans('site/homepage.an-instructor') }}</h2>
                       <a href="{{ action('InstructorsController@become') }}"><span>{{trans('site/homepage.get-started')}}</span></a>
                     </div>
                   </div>

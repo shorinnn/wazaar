@@ -7,20 +7,21 @@
         <div class="img-container">
         <img 
             @if($course->course_preview_image_id == null)
-                src="http://placehold.it/350x150&text=Preview Unavailable"
+                src="http://placehold.it/350x150&text={{ trans('general.preview-unavailable') }}"
             @else
                 src="{{$course->previewImage->url}}"
             @endif
              class="img-responsive" alt="">
               @if($course->isDiscounted())
-                        <div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>
+                        <div class="sale-ends">
+                        {{ trans('courses/general.sale_ends_in') }} {{$course->discount_ends_in}}</div>
               @endif
         </div>
         <div class="course-box-content clearfix">
             <h2>{{ $course->name }}</h2>
             <p>{{{ Str::limit( strip_tags( $course->short_description, Config::get('custom.short_desc_max_chars') ) ) }}}
             	<span class="subcategory">
-                    <small>Subcategory: 
+                    <small>{{ trans('courses/general.subcategory') }}: 
                         <a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>
                     </small>
                 </span>

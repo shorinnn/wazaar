@@ -30,11 +30,11 @@ class CourseSubmissionCest{
         $I->dontSee('Business App Development');
     }
     public function notSeeRejected(FunctionalTester $I){
-        $course = Course::where('name','Business App Development')->first();
+        $course = Course::where('name','Beauty PHP Primer Revisited')->first();
         $course->publish_status = 'rejected';
         $course->updateUniques();
         $I->amOnPage('/');
-        $I->dontSee('Business App Development');
+        $I->dontSee('Beauty PHP Primer Revisited');
     }
     
     public function adminApprove(FunctionalTester $I){

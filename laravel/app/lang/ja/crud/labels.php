@@ -21,5 +21,10 @@ return array(
     'add_category' => 'Add Category',
     'add_subcategory' => 'Add Subcategory',
     'add_agency' => 'Add Agency',
-    'submit' => 'Submit'
+    'add_difficulty' => 'Add Difficulty',
+    'submit' => 'Submit',    
+    'custom_bio' => 'Custom Bio',
+    'display_bio' => 'Display Bio',
+    'assigned_instructor' => 'Assign Instructor',
+    'display_instructor' => 'Display Instructor',
 );
