@@ -215,7 +215,8 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('trackingcodetable/{frequency}/{courseId}','AffiliateDashboardController@trackingCodesTableView');
 
     /******* SUPER ADMIN RELATED **************************/
-    Route::get('users/count/{frequency?}','AdminDashboardController');
+    Route::get('users/count/{frequency?}','AdminDashboardController@userCountView');
+    Route::get('admin/sales/count/{frequency?}','AdminDashboardController@salesCountView');
 });
 
 ## Payment Form(https)

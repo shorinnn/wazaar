@@ -5,14 +5,14 @@ class AdminHelper
     public function userStats($frequency)
     {
         switch($frequency){
-            case 'today' : return $this->_userPastFewDays();break;
-            case 'week'  : return $this->_weeklyUsers();break;
-            case 'month' : return $this->_monthlyUsers();break;
-            case 'alltime' : return $this->_yearlyUsers();break;
+            case 'today' : return $this->_usersLastFewDays();break;
+            case 'week'  : return $this->_usersLastFewWeeks();break;
+            case 'month' : return $this->_usersLastFewMonths();break;
+            case 'alltime' : return $this->salesLastFewYears();break;
         }
     }
 
-    private function _userPastFewDays($numOfDays = 7)
+    private function _usersLastFewDays($numOfDays = 7)
     {
         $users = [];
 
@@ -24,30 +24,142 @@ class AdminHelper
                 $label = 'Today';
             }
 
-            $users[] = ['label' => $label, 'date' => $date, 'day' =>$this->_dailyUsers($date)];
+            $users[] = ['label' => $label, 'date' => $date, 'today' =>$this->_dailyUsers($date)];
         }
 
         $usersTotal = 0;
         $max = 0;
         $grandTotal = 0;
         //expects $max and $grandTotal during extraction
-        extract($this->_getMaxCount($users,'day'));
+        extract($this->_getMaxCount($users,'today'));
 
         $i = 0;
         foreach($users as $user)
         {
-            $usersTotal += $user['day']['total_users'];
+            $usersTotal += $user['today']['total_users'];
 
             // avoid division by zero
             if ($max == 0) {
                 $percentage = 0;
             } else {
-                $percentage = ($user['day']['total_users'] / $grandTotal) * 100;
+                $percentage = ($user['today']['total_users'] / $grandTotal) * 100;
             }
 
             $users[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
             $i++;
         }
+        return compact('users', 'usersTotal');
+    }
+
+    private function _usersLastFewWeeks($numOfWeeks = 7)
+    {
+        $users = [];
+
+        for ($i = 0; $i <= $numOfWeeks; $i++){
+
+            $startDate = date('Y-m-d',strtotime('-' . ($i+1) .  ' week'));
+            $endDate = date('Y-m-d',strtotime("-$i week"));
+            $label = $i . ( ($i > 1) ? ' weeks' : ' week') . ' ago';
+
+            if ($i === 0){
+                $label = 'This Week';
+            }
+
+            $users[] = ['label' => $label, 'start' => $startDate, 'end' => $endDate, 'week' =>$this->_weeklyUsers($startDate, $endDate)];
+        }
+
+        $usersTotal = 0;
+        $max = 0;
+        $grandTotal = 0;
+        //expects $max and $grandTotal during extraction
+        extract($this->_getMaxCount($users,'week'));
+
+        $i = 0;
+        foreach($users as $user)
+        {
+            $usersTotal += $user['week']['total_users'];
+
+            // avoid division by zero
+            if ($max == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($user['week']['total_users'] / $grandTotal) * 100;
+            }
+
+            $users[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i++;
+        }
+        return compact('users', 'usersTotal');
+    }
+
+    private function _usersLastFewMonths($numOfMonths = 7)
+    {
+        $users = [];
+
+        for ($i = 0; $i <= $numOfMonths; $i++){
+            $month = date('m',strtotime("-$i month"));
+            $year = date('Y',strtotime("-$i month"));
+            $label = $i . ( ($i > 1) ? ' months' : ' month') . ' ago';
+            if ($i === 0){
+                $label = 'This month';
+            }
+            $users[] = ['label' => $label, 'month_date' => $month, 'year' => $year, 'month' =>$this->_monthlyUsers($year,$month)];
+        }
+
+        $usersTotal = 0;
+        $max = 0;
+        $grandTotal = 0;
+        //expects $max and $grandTotal during extraction
+        extract($this->_getMaxCount($users,'month'));
+
+        $i = 0;
+
+
+
+        foreach($users as $user){
+            $usersTotal += $user['month']['total_users'];
+            // avoid division by zero
+            if($max === 0) $percentage = 0;
+            else $percentage = ($user['month']['total_users'] / $max) * 100;
+            $users[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i++;
+        }
+
+
+        return compact('users', 'usersTotal');
+    }
+
+    public function salesLastFewYears($numOfYears = 7)
+    {
+        $users = [];
+
+        for ($i = 0; $i <= $numOfYears; $i++){
+            $year = date('Y',strtotime("-$i year"));
+            $label = $i . ( ($i > 1) ? ' years' : ' year') . ' ago';
+            if ($i === 0){
+                $label = 'This year';
+            }
+            $users[] = ['label' => $label, 'year' => $year, 'alltime' => $this->_yearlyUsers($year)];
+        }
+
+        $usersTotal = 0;
+        $max = 0;
+        $grandTotal = 0;
+        //expects $max and $grandTotal during extraction
+        extract($this->_getMaxCount($users,'alltime'));
+
+        $i = 0;
+
+        foreach($users as $user){
+            $usersTotal += $user['alltime']['total_users'];
+            // avoid division by zero
+            if($max === 0) $percentage = 0;
+            else $percentage = ($user['alltime']['total_users'] / $max) * 100;
+            $users[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i++;
+        }
+
+
         return compact('users', 'usersTotal');
     }
 
@@ -57,23 +169,22 @@ class AdminHelper
         return $this->_userStatsData($filter);
     }
 
-
-
-
-
-    private function _weeklyUsers()
+    private function _weeklyUsers($start, $end)
     {
-
+        $filter = " AND DATE(created_at) BETWEEN '{$start}' AND '{$end}'";
+        return $this->_userStatsData($filter);
     }
 
-    private function _monthlyUsers()
+    private function _monthlyUsers($year, $month)
     {
-
+        $filter = " AND YEAR(created_at) = '{$year}' AND MONTH(created_at) = '{$month}'";
+        return $this->_userStatsData($filter);
     }
 
-    private function _yearlyUsers()
+    private function _yearlyUsers($year)
     {
-
+        $filter = " AND YEAR(created_at) = '{$year}'";
+        return $this->_userStatsData($filter);
     }
 
     private function _getMaxCount($users,$frequency)

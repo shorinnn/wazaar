@@ -25,26 +25,26 @@
 
             <div class="row top-activities">
                 <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div>
+                    <div class="with-progress-bar">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default" type="button">
-                                {{trans('analytics.newUsers')}} <span id="header-top-courses-frequency">{{trans('analytics.today')}}</span></button>
+                                {{trans('analytics.newUsers')}} <span id="header-user-stats-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu top-courses-dropdown">
                                 <li>
-                                    <a class="active with-today" href="#" onclick="Analytics.topCourses('daily','', this); return false;">Today</a>
+                                    <a class="active with-today" href="#" onclick="AdminDashboard.UserStats('today', this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="with-weekly" href="#" onclick="Analytics.topCourses('week','', this); return false;">This week</a>
+                                    <a class="with-weekly" href="#" onclick="AdminDashboard.UserStats('week', this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="with-monthly" href="#" onclick="Analytics.topCourses('month','', this); return false;">This month</a>
+                                    <a class="with-monthly" href="#" onclick="AdminDashboard.UserStats('month', this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="with-alltime" href="#" onclick="Analytics.topCourses('alltime','', this); return false;">All time</a>
+                                    <a class="with-alltime" href="#" onclick="AdminDashboard.UserStats('alltime', this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>
-                        <ul id="wrapper-top-courses">
+                        <ul id="wrapper-user-stats">
 
                             {{$userCountView}}
 
@@ -56,7 +56,7 @@
                     <div id="sales-today">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                {{trans('analytics.sales')}} /  <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
+                                {{trans('analytics.sales')}}(¥)  <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
                                     <a class="active" href="#" onclick="Analytics.sales('daily','','', this); return false;">{{trans('analytics.today')}}</a>
@@ -74,36 +74,33 @@
                         </div>
 
                         <div id="wrapper-sales">
-                            {{@$salesView}}
+                            {{$salesTotalView}}
                         </div>
 
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div>
+                    <div class="with-progress-bar">
                         <div class="dropdown-wrapper">
-                            <button class="btn btn-default">
-                                {{trans('analytics.topTrackingCodes')}} <span id="header-tracking-codes-frequency">{{trans('analytics.today')}}</span></button>
+                            <button class="btn btn-default">{{trans('analytics.salesCount')}} <span id="header-sales-count-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu tracking-codes-dropdown">
                                 <li>
-                                    <a class="active with-today" href="#" onclick="Analytics.trackingSalesCodes('daily',0, this); return false;">Today</a>
+                                    <a class="active with-today" href="#" onclick="AdminDashboard.SalesCount('daily', this); return false;">Today</a>
                                 </li>
                                 <li>
-                                    <a class="with-weekly" href="#" onclick="Analytics.trackingSalesCodes('week',0, this); return false;">This week</a>
+                                    <a class="with-weekly" href="#" onclick="AdminDashboard.SalesCount('week', this); return false;">This week</a>
                                 </li>
                                 <li>
-                                    <a class="with-monthly" href="#" onclick="Analytics.trackingSalesCodes('month',0, this); return false;">This month</a>
+                                    <a class="with-monthly" href="#" onclick="AdminDashboard.SalesCount('month', this); return false;">This month</a>
                                 </li>
                                 <li>
-                                    <a class="with-alltime" href="#" onclick="Analytics.trackingSalesCodes('alltime',0, this); return false;">All time</a>
+                                    <a class="with-alltime" href="#" onclick="AdminDashboard.SalesCount('alltime', this); return false;">All time</a>
                                 </li>
                             </ul>
                         </div>
-                        <ul id="wrapper-tracking-codes">
-                            {{@$trackingCodesSalesView}}
+                        <ul id="wrapper-sales-count">
+                            {{$salesCountView}}
                         </ul>
-
-
                     </div>
                 </div>
             </div>
@@ -117,4 +114,5 @@
 
 @section('extra_js')
     <script type="text/javascript" src="{{url('js/analytics.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/admin.dashboard.js')}}"></script>
 @stop

@@ -130,34 +130,33 @@ class AnalyticsHelper
             }
             $sales[] = ['label' => $label, 'start' => $start, 'end' => $end, 'week' =>$this->weeklySales($courseId,$start,$end, $trackingCode)];
         }
+
         $salesTotal = 0;
+        $salesCount = 0;
         $maxSale = $this->_getMaxSalesValue($sales,'week');
+        $maxCount = $this->_getMaxSalesCount($sales, 'week');
 
         $i = 0;
         foreach($sales as $sale){
             $salesTotal += $sale['week']['sales_total'];
+            $salesCount += $sale['week']['sales_count'];
             // avoid division by zero
             if($maxSale == 0) $percentage = 0;
             else $percentage = ($sale['week']['sales_total'] / $maxSale) * 100;
             $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+
+            // avoid division by zero
+            if($maxCount == 0) $percentage = 0;
+            else $percentage = ($sale['week']['sales_count'] / $maxCount) * 100;
+            $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
+
             $i++;
         }
 
-        return compact('sales', 'salesTotal');
+        return compact('sales', 'salesTotal', 'salesCount');
     }
 
-    private function _getMaxSalesValue($sales,$frequency)
-    {
-        $max = 0;
 
-        foreach($sales as $sale){
-            if ($sale[$frequency]['sales_total'] > $max){
-                $max = $sale[$frequency]['sales_total'];
-            }
-        }
-
-        return $max;
-    }
 
     public function salesLastFewDays($numOfDays, $courseId = 0, $trackingCode = '')
     {
@@ -173,20 +172,30 @@ class AnalyticsHelper
             $sales[] = ['label' => $label, 'date' => $date, 'day' =>$this->courseDailySales($courseId, $date, $trackingCode)];
         }
         $salesTotal = 0;
+        $salesCount = 0;
+
         $maxSale = $this->_getMaxSalesValue($sales,'day');
+        $maxCount = $this->_getMaxSalesCount($sales,'day');
 
         $i = 0;
 
         foreach($sales as $sale){
             $salesTotal += $sale['day']['sales_total'];
+            $salesCount += $sale['day']['sales_count'];
             // avoid division by zero
             if($maxSale == 0) $percentage = 0;
             else $percentage = ($sale['day']['sales_total'] / $maxSale) * 100;
             $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+
+            // avoid division by zero
+            if($maxCount == 0) $percentage = 0;
+            else $percentage = ($sale['day']['sales_count'] / $maxCount) * 100;
+            $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
+
             $i++;
         }
 
-        return compact('sales', 'salesTotal');
+        return compact('sales', 'salesTotal','salesCount');
     }
 
     public function salesLastFewMonths($numOfMonths, $courseId = 0, $trackingCode = '')
@@ -203,20 +212,30 @@ class AnalyticsHelper
             $sales[] = ['label' => $label, 'month_date' => $month, 'year' => $year, 'month' =>$this->monthlySales($courseId, $month, $year,$trackingCode)];
         }
         $salesTotal = 0;
+        $salesCount = 0;
+
         $maxSale = $this->_getMaxSalesValue($sales,'month');
+        $maxCount = $this->_getMaxSalesCount($sales,'month');
 
         $i = 0;
 
         foreach($sales as $sale){
             $salesTotal += $sale['month']['sales_total'];
+            $salesCount += $sale['month']['sales_count'];
             // avoid division by zero
             if($maxSale == 0) $percentage = 0;
             else $percentage = ($sale['month']['sales_total'] / $maxSale) * 100;
             $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+
+            // avoid division by zero
+            if($maxCount == 0) $percentage = 0;
+            else $percentage = ($sale['month']['sales_count'] / $maxCount) * 100;
+            $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
+
             $i++;
         }
 
-        return compact('sales', 'salesTotal');
+        return compact('sales', 'salesTotal','salesCount');
     }
 
     public function salesLastFewYears($numOfYears, $courseId = 0, $trackingCode = '')
@@ -232,21 +251,56 @@ class AnalyticsHelper
             $sales[] = ['label' => $label, 'year_date' => $year, 'year' =>$this->allTimeSales($courseId, $year, $trackingCode)];
         }
         $salesTotal = 0;
+        $salesCount = 0;
+
         $maxSale = $this->_getMaxSalesValue($sales,'year');
+        $maxCount = $this->_getMaxSalesCount($sales,'year');
 
         $i = 0;
         foreach($sales as $sale){
             $salesTotal += $sale['year']['sales_total'];
+            $salesCount += $sale['year']['sales_count'];
             // avoid division by zero
             if($maxSale == 0) $percentage = 0;
             else $percentage = ($sale['year']['sales_total'] / $maxSale) * 100;
             $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+
+            // avoid division by zero
+            if($maxCount == 0) $percentage = 0;
+            else $percentage = ($sale['year']['sales_count'] / $maxCount) * 100;
+            $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
+
             $i++;
         }
 
-        return compact('sales', 'salesTotal');
+        return compact('sales', 'salesTotal', 'salesCount');
     }
 
+    private function _getMaxSalesValue($sales,$frequency)
+    {
+        $max = 0;
+
+        foreach($sales as $sale){
+            if ($sale[$frequency]['sales_total'] > $max){
+                $max = $sale[$frequency]['sales_total'];
+            }
+        }
+
+        return $max;
+    }
+
+    private function _getMaxSalesCount($sales,$frequency)
+    {
+        $max = 0;
+
+        foreach($sales as $sale){
+            if ($sale[$frequency]['sales_count'] > $max){
+                $max = $sale[$frequency]['sales_count'];
+            }
+        }
+
+        return $max;
+    }
 
     public function weeklySales($courseId, $dateFilterStart = '', $dateFilterEnd = '', $trackingCode = '')
     {
@@ -652,7 +706,8 @@ class AnalyticsHelper
         $output = [
             'data' => $result,
             'count' => count($result),
-            'sales_total' => array_sum(array_column($result,'total_purchase'))
+            'sales_total' => array_sum(array_column($result,'total_purchase')),
+            'sales_count' => array_sum(array_column($result,'total_count')),
         ];
 
         return $output;
@@ -713,7 +768,7 @@ class AnalyticsHelper
 
         }
 
-        $sql = "SELECT created_at, SUM(purchases.purchase_price) as 'total_purchase'
+        $sql = "SELECT created_at, SUM(purchases.purchase_price) as 'total_purchase', COUNT(purchases.id) as 'total_count'
                 FROM purchases WHERE id <> 0
                 {$criteria}
                 GROUP BY DATE(created_at)
