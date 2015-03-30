@@ -1113,7 +1113,7 @@ class FrontpageVideosSeeder extends Seeder {
     public function run()
     {
         FrontpageVideo::unguard();
-        for($i = 0; $i<2; ++$i){
+        for($i = 0; $i<4; ++$i){
             for($j = 0; $j < 6; ++$j){
                 $type = ($j == 0) ? 'big' : 'small';
                 $id = 0;
