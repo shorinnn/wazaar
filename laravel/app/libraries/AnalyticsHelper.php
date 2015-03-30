@@ -229,7 +229,7 @@ class AnalyticsHelper
             if ($i === 0){
                 $label = 'This year';
             }
-            $sales[] = ['label' => $label, 'year_date' => $year, 'year' => $year, 'year' =>$this->allTimeSales($courseId, $year, $trackingCode)];
+            $sales[] = ['label' => $label, 'year_date' => $year, 'year' =>$this->allTimeSales($courseId, $year, $trackingCode)];
         }
         $salesTotal = 0;
         $maxSale = $this->_getMaxSalesValue($sales,'year');

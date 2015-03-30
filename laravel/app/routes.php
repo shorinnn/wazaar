@@ -179,9 +179,26 @@ Route::group(['prefix' => 'video'], function(){
 });
 
 
-## Affiliate Dashboard Group
+##Dashboard Group
 Route::group(['prefix' => 'dashboard'], function (){
-    Route::get('/', 'AffiliateDashboardController@index');
+    Route::get('/', function (){
+        $app = app();
+
+        if (Auth::user()->hasRole('Admin')){
+            $controller = $app->make('AdminDashboardController');
+            return $controller->callAction('index', $parameters = array());
+        }
+        elseif(Auth::user()->hasRole('Affiliate')){
+            $controller = $app->make('AffiliateDashboardController');
+            return $controller->callAction('index', $parameters = array());
+        }
+        elseif(Auth::user()->hasRole('Student')){
+            $controller = $app->make('StudentDashboardController');
+            return $controller->callAction('index', $parameters = array());
+        }
+    });
+
+    /***** AFFILIATE RELATED ******************************/
     Route::get('topcourses/{frequency}/{courseId?}', 'AffiliateDashboardController@topCoursesView');
     Route::get('sales/{frequency}/{courseId?}/{trackingCode?}', 'AffiliateDashboardController@salesView');
     Route::get('trackingcodessales/{frequency}/{courseId?}','AffiliateDashboardController@trackingCodesSalesView');
@@ -195,6 +212,9 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::post('course/{courseId}/stats/compare','AffiliateDashboardController@compareCourses');
     Route::post('trackingcodes/{trackingCode}/stats/compare','AffiliateDashboardController@compareTrackingCodes');
     Route::get('trackingcodetable/{frequency}/{courseId}','AffiliateDashboardController@trackingCodesTableView');
+
+    /******* SUPER ADMIN RELATED **************************/
+    Route::get('users/count/{frequency?}','AdminDashboardController');
 });
 
 ## Payment Form(https)
@@ -218,5 +238,11 @@ Route::get('test/pay', 'PaymentTestController@pay');
 Route::get('test', function (){
     //Event::fire('payment.successful',['wowow' => 'yesyes']);
     $ah = new AdminHelper();
+
+    $x = $ah->userStats('today');
+    echo '<pre>';
+    print_r($x);
+    echo '</pre>';
+    die;
 
 });
