@@ -19,7 +19,7 @@
 
 #lesson-video-overlay{
 	position: absolute;
-	top: 0;
+	bottom: 102px;
 	left: 0;
 	width: 100%;
 	background: rgba(0, 0, 0, 0.7);
@@ -30,20 +30,26 @@
 	height: 100%;
 }
 
+#lesson-video-overlay > div h4,
 #lesson-video-overlay > div h3{
 	font-weight: 200;
 	color: #fff;
 	font-size: 42px;
-	margin: 35px 0 13px;
 	text-align: left;
 	max-width: 44%;
+	margin-left: 20px;
+}
+
+#lesson-video-overlay > div h4{
+	margin: 35px 0 13px 20px;
+	font-size: 28px;
 }
 
 #lesson-video-overlay > div p{
 	font-size: 18px;
 	color: #fff;
 	font-weight: 200;
-	margin: 0 0 15px;
+	margin: 0 0 15px 20px;
 	max-width: 44%;
 	text-align: left;
 	line-height: 26px;

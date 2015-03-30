@@ -3403,7 +3403,7 @@ a.load-remote > *{
 
 .classroom-content .accompanying-material > div a{
 	display: block;
-	float: left;
+	float: right;
 	line-height: 32px;
 	height: 32px;
 	border-radius: 5px;
@@ -3412,6 +3412,7 @@ a.load-remote > *{
 	padding-left: 20px;
 	width: 149px;
 	margin-top: 4px;
+	margin-right: 4px;
 	background: #0099ff url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-17.png') no-repeat 106px -214px;
 	font-size: 14px;
 }
@@ -4938,14 +4939,17 @@ select::-ms-expand {
 
 #video-grid .small-box-holders .small-boxes{
 	width: 100%;
+	height: 128px;
 }
 
 #video-grid .big-box-holders .small-boxes{
 	width: 50%;
+	height: 128px;
 }
 
 #video-grid .big-box-holders .big-boxes{
 	width: 100%;
+	height: 256px;
 }
 
 #video-grid .carousel-control{
