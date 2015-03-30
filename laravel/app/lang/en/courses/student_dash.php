@@ -25,6 +25,6 @@ return array(
     'dashboard' => 'Dashboard',
     'completed-all' => 'Completed all lessons',
     'continue' => 'Continue',
-    'where-left-off' => 'Where you left off',
+    'where-you-left-off' => 'Where you left off',
     'finished-all' => 'Finished all lessons',
 );

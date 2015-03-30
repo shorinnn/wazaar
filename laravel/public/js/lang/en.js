@@ -1,6 +1,9 @@
 var js_translation_map = {
-    "loading..." : "Loading...",
+    "LOAD MORE" : "LOAD MORE",
+    "loading..." : "loading...",
+    "Loading..." : "荷重...",
     "processing..." : "Processing...",
+    "Processing..." : "Processing...",
     "saving" : "Saving",
     "Upload complete. Processing" : "Upload complete. Processing",
     "File upload failed." : "File upload failed.",

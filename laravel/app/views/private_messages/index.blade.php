@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('page_title')
-    Private Messages - 
+    {{ trans('conversations/general.private-messages') }} - 
 @stop
 
 @section('content')

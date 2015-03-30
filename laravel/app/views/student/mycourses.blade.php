@@ -1,20 +1,21 @@
 @extends('layouts.default')
 
 @section('page_title')
-    My Courses - 
+    {{ trans('courses/general.my-courses') }} - 
 @stop
 
 @section('content')
 
     @if($student->courses()->count() == 0 )
-        <h1>You have no courses.</h1>
+        <h1>{{ trans('courses/general.you-have-no-courses') }}</h1>
     @else
-        <h1>Here are your courses:</h1>
+        <h1>{{ trans('courses/general.my-courses') }}:</h1>
         @foreach($student->courses() as $course)
         <p>
-            <span class="label label-info">{{$course->courseCategory->name}} >
-            {{$course->courseSubcategory->name}}</span>
-            {{$course->name}} - <a href='{{ action("ClassroomController@dashboard", $course->slug )}}'>Go To Dashboard</a></p>
+            <span class="label label-info">{{ $course->courseCategory->name }} >
+            {{ $course->courseSubcategory->name }}</span>
+            {{ $course->name }} - <a href='{{ action("ClassroomController@dashboard", $course->slug ) }}'>
+            {{ trans('courses/general.go-to-dashboard') }}</a></p>
         @endforeach
     @endif
    

@@ -84,7 +84,7 @@
             </div>
         </section>
         
-        <section class="thumb-carousel-section unauthenticated-homepage">
+<!--        <section class="thumb-carousel-section unauthenticated-homepage">
             <div id="slider1">
                 <a class="buttons prev" href="#">&#60;</a>
                 <div class="viewport">
@@ -142,124 +142,88 @@
                                             </div>
                                         @endif
                                     @endforeach
-                                    
-                                    <!--
-                            	<div class="big-box-holders box-holders left clearfix">
-                                	<a href="#" class="small-boxes boxes left">
-                                    	<span></span>
-                                    	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>
-                                	<a href="#" class="small-boxes boxes left">
-                                    	<span></span>
-                                    	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg"> 
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>
-                                	<a href="#" class="big-boxes boxes clear">
-                                    	<span></span>
-                                       	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">    
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>
-                                </div>
-                            	<div class="small-box-holders box-holders left clearfix">
-                                	<a href="#" class="small-boxes boxes clear">
-                                    	<span></span>
-                                       	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">   
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>
-                                	<a href="#" class="small-boxes boxes clear">
-                                    	<span></span>
-                                       	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">  
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>
-                                	<a href="#" class="small-boxes boxes clear">
-                                    	<span></span>
-                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">  
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>                                
-                                </div>
-                            	<div class="small-box-holders box-holders left clearfix">
-                                	<a href="#" class="small-boxes boxes clear">
-                                    	<span></span>
-                                         <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">   
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>
-                                	<a href="#" class="small-boxes boxes clear">
-                                    	<span></span>
-                                    	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>
-                                	<a href="#" class="small-boxes boxes clear">
-                                    	<span></span>
-                                      	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                  	</a>                                                                
-                                </div>
-                            	<div class="big-box-holders box-holders left clearfix">
-                                	<a href="#" class="big-boxes boxes clear">
-                                    	<span></span>
-                                    	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>
-                                	<a href="#" class="small-boxes boxes left">
-                                    	<span></span>
-                                    	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>
-                                	<a href="#" class="small-boxes boxes left"> 
-                                    	<span></span>                                   	
-                                    	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-									</a>                                                                
-                                </div>
-                            	<div class="small-box-holders box-holders left clearfix">
-                                	<a href="#" class="small-boxes boxes clear">
-                                    	<span></span>
-                                    	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>
-                                	<a href="#" class="small-boxes boxes clear">
-                                    	<span></span>
-                                    	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>
-                                	<a href="#" class="small-boxes boxes clear">
-                                    	<span></span>
-                                    	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>                                                                
-                                </div>
-                            	<div class="big-box-holders box-holders left clearfix">
-                                	<a href="#" class="small-boxes boxes left">
-                                    	<span></span>
-                                    	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>
-                                	<a href="#" class="small-boxes boxes left">
-                                    	<span></span>
-                                    	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>
-                                	<a href="#" class="big-boxes boxes clear">
-                                    	<span></span>
-                                    	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                        <p>Dancing with Jerken on the top of the iceberg..</p>
-                                    </a>                                
-                                </div>      -->                      
+                                          
                             </div>
                         </li>
                     </ul>
                 </div>
                 <a class="buttons next" href="#">&#62;</a>
             </div>        
-        </section>
+        </section>-->
 
         <section>
         <div id="video-grid" class="carousel slide" data-ride="carousel">
         
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
-            <div class="item active">
+            <?php $first = true;?>
+                    @foreach($frontpageVideos as $set)
+                        @if( cycle(1, 2, 3, 4, ':first') == 1 ) 
+                            <div class="item 
+                                 <?php 
+                                 if($first){
+                                     echo 'active';
+                                     $first = false;
+                                 }?>">
+                                <div class="container-fluid">
+                                    <div class="row">
+                        @endif
+
+                                          @if( cycle('x', 'y', ':second') == 'x')
+                                            <div class="col-xs-4 col-sm-4 col-md-4 big-box-holders box-holders clearfix">
+                                                @if( cycle('a','b', ':third') == 'a')
+                                                    <a href="#" class="small-boxes boxes left course-tile-{{$set[0]['id']}}">
+                                                        <span class="hidden-xs"></span>
+                                                        <img class="img-responsive" src="{{ $set[0]['thumb'] }}">
+                                                        <p class="hidden-xs">{{ $set[0]['name'] }}</p>
+                                                    </a>
+                                                    <a href="#" class="small-boxes boxes left course-tile-{{$set[1]['id']}}">
+                                                        <span class="hidden-xs"></span>
+                                                        <img class="img-responsive"  src="{{ $set[1]['thumb'] }}"> 
+                                                        <p class="hidden-xs">{{ $set[1]['name'] }}</p>
+                                                    </a>
+                                                    <a href="#" class="big-boxes boxes clear  course-tile-{{$set[2]['id']}}">
+                                                        <span class="hidden-xs"></span>
+                                                       <img class="img-responsive"  src="{{ $set[2]['thumb'] }}"> 
+                                                        <p class="hidden-xs">{{ $set[2]['name'] }}</p>
+                                                    </a>
+                                                @else
+                                                    <a href="#" class="big-boxes boxes clear  course-tile-{{$set[2]['id']}}">
+                                                        <span class="hidden-xs"></span>
+                                                       <img class="img-responsive"  src="{{ $set[2]['thumb'] }}"> 
+                                                        <p class="hidden-xs">{{ $set[2]['name'] }}</p>
+                                                    </a>
+                                                    <a href="#" class="small-boxes boxes left course-tile-{{$set[0]['id']}}">
+                                                        <span class="hidden-xs"></span>
+                                                        <img class="img-responsive" src="{{ $set[0]['thumb'] }}">
+                                                        <p class="hidden-xs">{{ $set[0]['name'] }}</p>
+                                                    </a>
+                                                    <a href="#" class="small-boxes boxes left course-tile-{{$set[1]['id']}}">
+                                                        <span class="hidden-xs"></span>
+                                                        <img class="img-responsive"  src="{{ $set[1]['thumb'] }}"> 
+                                                        <p class="hidden-xs">{{ $set[1]['name'] }}</p>
+                                                    </a>
+                                                @endif
+                                            </div>
+                                            @else
+                                                <div class="col-xs-2 col-sm-2 col-md-2 small-box-holders box-holders left clearfix">
+                                                    @foreach($set as $vid)
+                                                        <a href="#" class="small-boxes boxes clear course-tile-{{$vid['id']}}">
+                                                            <span class="hidden-xs"></span>
+                                                            <img class="img-responsive" src="{{ $vid['thumb'] }}">   
+                                                            <p class="hidden-xs">{{ $vid['name'] }}</p>
+                                                        </a>
+                                                    @endforeach                                                              
+                                                </div>
+                                            @endif
+                        @if( cycle(1, 2, 3, 4, ':fourth') == 4 ) 
+                                    </div>
+                               </div>
+                           </div>
+                        @endif
+                    @endforeach
+                   
+<!--            <div class="item">
                 <div class="container-fluid">
                     <div class="row">
                             <div class="col-xs-4 col-sm-4 col-md-4 big-box-holders box-holders clearfix">
@@ -332,81 +296,7 @@
                             </div>
                     </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="container-fluid">
-                    <div class="row">
-                            <div class="col-xs-4 col-sm-4 col-md-4 big-box-holders box-holders clearfix">
-                                <a href="#" class="small-boxes boxes left">
-                                    <span class="hidden-xs"></span>
-                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
-                                </a>
-                                <a href="#" class="small-boxes boxes left">
-                                    <span class="hidden-xs"></span>
-                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg"> 
-                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
-                                </a>
-                                <a href="#" class="big-boxes boxes clear">
-                                    <span class="hidden-xs"></span>
-                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">    
-                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
-                                </a>
-                            </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 small-box-holders box-holders left clearfix">
-                                <a href="#" class="small-boxes boxes clear">
-                                    <span class="hidden-xs"></span>
-                                     <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">   
-                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
-                                </a>
-                                <a href="#" class="small-boxes boxes clear">
-                                    <span class="hidden-xs"></span>
-                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
-                                </a>
-                                <a href="#" class="small-boxes boxes clear">
-                                    <span class="hidden-xs"></span>
-                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
-                                </a>                                                                
-                            </div>
-                            <div class="col-xs-4 col-sm-4 col-md-4 big-box-holders box-holders left clearfix">
-                                <a href="#" class="big-boxes boxes clear">
-                                    <span class="hidden-xs"></span>
-                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
-                                </a>
-                                <a href="#" class="small-boxes boxes left">
-                                    <span class="hidden-xs"></span>
-                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
-                                </a>
-                                <a href="#" class="small-boxes boxes left"> 
-                                    <span class="hidden-xs"></span>
-                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
-                                </a>                                                                
-                            </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 small-box-holders box-holders left clearfix">
-                                <a href="#" class="small-boxes boxes clear">
-                                    <span class="hidden-xs"></span>
-                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
-                                </a>
-                                <a href="#" class="small-boxes boxes clear">
-                                    <span class="hidden-xs"></span>
-                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
-                                </a>
-                                <a href="#" class="small-boxes boxes clear">
-                                    <span class="hidden-xs"></span>
-                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
-                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
-                                </a>                                                                
-                            </div>
-                    </div>
-                </div>
-            </div>
+            </div>-->
           </div>
         
           <!-- Controls -->

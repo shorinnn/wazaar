@@ -70,7 +70,7 @@
                 
             	<div class="row">
                     <div class="col-md-12 additional-lesson-conntent">
-                        <h3>{{ Lang::choice('courses/student_dash.announcements', 2) }}</h3>
+                        <h3 style="text-transform: capitalize">{{ Lang::choice('courses/student_dash.announcements', 2) }}</h3>
                         @foreach($student->announcements as $announcement)
                             <p class='alert alert-info
                                @if ($announcement->isUnread( $student->id ) )

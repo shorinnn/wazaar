@@ -1,8 +1,8 @@
 <table class="table table-bordered table-striped">
     <thead>
-    <th>From</th>
-    <th>Message</th>
-    <th>Sent</th>
+    <th> {{ trans('conversations/general.from') }} </th>
+    <th> {{ trans('conversations/general.message') }} </th>
+    <th> {{ trans('conversations/general.sent') }} </th>
 </thead>
 <tbody>
     @foreach($messages as $message)
