@@ -251,6 +251,173 @@
             </div>        
         </section>
 
+        <section>
+        <div id="video-grid" class="carousel slide" data-ride="carousel">
+        
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <div class="container-fluid">
+                    <div class="row">
+                            <div class="col-xs-4 col-sm-4 col-md-4 big-box-holders box-holders clearfix">
+                                <a href="#" class="small-boxes boxes left">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes left">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg"> 
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="big-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">    
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2 small-box-holders box-holders left clearfix">
+                                <a href="#" class="small-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                     <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">   
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>                                                                
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 big-box-holders box-holders left clearfix">
+                                <a href="#" class="big-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes left">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes left"> 
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>                                                                
+                            </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2 small-box-holders box-holders left clearfix">
+                                <a href="#" class="small-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>                                                                
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="container-fluid">
+                    <div class="row">
+                            <div class="col-xs-4 col-sm-4 col-md-4 big-box-holders box-holders clearfix">
+                                <a href="#" class="small-boxes boxes left">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes left">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg"> 
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="big-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">    
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2 small-box-holders box-holders left clearfix">
+                                <a href="#" class="small-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                     <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">   
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>                                                                
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 big-box-holders box-holders left clearfix">
+                                <a href="#" class="big-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes left">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes left"> 
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>                                                                
+                            </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2 small-box-holders box-holders left clearfix">
+                                <a href="#" class="small-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>
+                                <a href="#" class="small-boxes boxes clear">
+                                    <span class="hidden-xs"></span>
+                                    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/thumb-carousel-sample.jpg">
+                                    <p class="hidden-xs">Dancing with Jerken on the top of the iceberg..</p>
+                                </a>                                                                
+                            </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        
+          <!-- Controls -->
+          <a class="left carousel-control" href="#video-grid" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#video-grid" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        </section>
+
         <section class="container-fluid course-search-section unauthenticated-homepage discover-wazaar">
         	<div class="row">
             	<div class="col-md-12">

@@ -440,6 +440,7 @@ function floatingNav(){
  */ 
 function scrollNavigation(){
     $('a[href*=#]').each(function() {
+		if( $(this).attr("href")=="#video-grid") return;
         if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
             && location.hostname == this.hostname
             && this.hash.replace(/#/,'') ) {

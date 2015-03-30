@@ -4820,6 +4820,7 @@ select::-ms-expand {
 	float: left;
 }
 
+#video-grid .boxes,
 #slider1 .overview li div .boxes{
 	border: solid 1px #162d3e;
 	display: block;
@@ -4829,6 +4830,7 @@ select::-ms-expand {
 	transition: all 0.3s ease-in-out 0s;
 }
 
+#video-grid .boxes span,
 #slider1 .overview li div .boxes span{
 	display: block;
 	position: absolute;
@@ -4848,17 +4850,20 @@ select::-ms-expand {
 	transition: all 0.3s ease-in-out 0s;
 }
 
+#video-grid .boxes:hover,
 #slider1 .overview li div .boxes:hover{
 	transform: scale(1.2);
 	position: relative;
 	z-index: 1;
 }
 
+#video-grid .boxes:hover span,
 #slider1 .overview li div .boxes:hover span{
 	opacity: 1;
 	visibility: visible;
 }
 
+#video-grid .boxes p,
 #slider1 .overview li div .boxes p{
 	margin:0;
 	position: absolute;
@@ -4872,16 +4877,17 @@ select::-ms-expand {
 	background-color: rgba(24, 36, 46, 0.8);
 }
 
+#video-grid .boxes img,
 #slider1 .overview li div .boxes img{
 	height: 100%;
 	width: 100%;
 }
 
 #slider1 .overview li div .small-boxes{
-	width: 211px;
-	height: 128px;
+	max-width: 200px;
 }
 
+#video-grid .small-boxes span,
 #slider1 .overview li div .small-boxes span{
 	width: 44px;
 	height: 44px;
@@ -4889,15 +4895,16 @@ select::-ms-expand {
     background-position: 50% 12px;
 }
 
+#video-grid .small-boxes p,
 #slider1 .overview li div .small-boxes p{
 	font-size: 14px;
 }
 
 #slider1 .overview li div .big-boxes{
-	width: 422px;
-	height: 255px;
+	max-width: 400px;
 }
 
+#video-grid .big-boxes span,
 #slider1 .overview li div .big-boxes span{
 	width: 60px;
 	height: 60px;
@@ -4905,6 +4912,7 @@ select::-ms-expand {
     background-position: 50% 20px;
 }
 
+#video-grid .big-boxes p,
 #slider1 .overview li div .big-boxes p{
 	font-size: 18px;
 }
@@ -4917,6 +4925,41 @@ select::-ms-expand {
 	width: 211px;
 }
 
+.carousel-inner .container-fluid,
+.carousel-inner .container-fluid .row > div{
+	padding: 0;
+}
+
+#video-grid .small-box-holders .small-boxes{
+	width: 100%;
+}
+
+#video-grid .big-box-holders .small-boxes{
+	width: 50%;
+}
+
+#video-grid .big-box-holders .big-boxes{
+	width: 100%;
+}
+
+#video-grid .carousel-control{
+	width: 5%;
+	max-height: 95%;
+	z-index: 88;
+}
+
+#video-grid{
+	background: -moz-linear-gradient(left, #172735, #0f4d79, #172735);
+	background: -webkit-linear-gradient(left, #172735, #0f4d79, #172735);
+	background: -o-linear-gradient(left, #172735, #0f4d79, #172735);
+	background: -ms-linear-gradient(left, #172735, #0f4d79, #172735);
+	background: linear-gradient(left, #172735, #0f4d79, #172735);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0f4d79', endColorstr='#172735'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0f4d79', endColorstr='#172735')"; /* IE8 */	
+}
+
+#video-grid .carousel-inner{
+}
 /******** Enroll Page***********/
 .wrapper.enroll{
 	background: #fff;
