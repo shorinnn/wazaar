@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="{{url('css/jquery.jscrollpane.css')}}">
     <link rel="stylesheet" href="{{url('plugins/slider/css/slider.css')}}">
     <link rel="stylesheet" href="{{url('css/jquery.videobackground.css')}}">
-    <link rel="stylesheet" href="{{url('css/slick.css')}}">
-    <link rel="stylesheet" href="{{url('css/slick-theme.css')}}">
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/css/select2.min.css" rel="stylesheet" />
 
     @yield('extra_css')
@@ -84,7 +82,6 @@
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
 		<script src="{{url("js/jquery.tinycarousel.js")}}"></script>
-		<script src="{{url("js/slick.js")}}"></script>
         
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
@@ -110,7 +107,6 @@
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
 		<script src="{{url("js/jquery.tinycarousel.js")}}"></script>
-		<script src="{{url("js/slick.js")}}"></script>
 
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>

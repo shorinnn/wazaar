@@ -56,6 +56,13 @@
                         </div>
                         <div class="loading"></div>
                     </div>
+                    <div id="lesson-video-overlay">
+                    	<div>
+                        	<h3>{{ $course->name }}</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                        </div>
+                    </div>
                     <span class="centered-play-button"></span>
                     @endif
                 </div>

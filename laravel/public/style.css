@@ -2759,6 +2759,7 @@ header .activate-dropdown:hover ul{
 	display: block;
 	font-size: 20px;
 	color: #fff;
+	font-weight: 200;
 }
 
 .classroom-content .header.blue{
@@ -3025,7 +3026,7 @@ a.load-remote > *{
 }
 
 .users-comments > div{
-	max-width: 828px;
+	width: 85.8%;
 	margin: auto;
 }
 
@@ -3097,6 +3098,7 @@ a.load-remote > *{
 	font-size: 14px;
 	color: #fff;
 	line-height: 24px;
+	width: 87.9%;
 	max-width: 731px;
 	position: relative;
 }
@@ -3328,9 +3330,13 @@ a.load-remote > *{
 	font-weight: normal;
 }
 
-.classroom-content #add-comment-form button[type='submit']{
+.classroom-content .comment-box button[type="submit"]{
 	margin: 20px 10px 20px 14px;
 	outline: none;
+    background: #0099ff;
+    border-color: #0099ff;
+    color: #fff;
+    text-decoration: none;
 }
 
 .classroom-content #add-comment-form button[type='submit']:focus{
@@ -3842,8 +3848,8 @@ a.load-remote > *{
 
 .pagination-container .page-numbers-container {
     clear: both;
-    margin: 0 auto;
-    max-width: 354px;
+    margin: auto;
+	display: table;
     position: relative;
 }
 
