@@ -232,12 +232,14 @@
     <div class="container course-categories">
     	<div class="row">
         	<div class="col-md-12">
-                <h1 class='icon'>Affiliate Agencies</h1>    
+                <h1 class='icon'>Instructor Agencies</h1>    
                 
                 <ul id='items-list'>
-                    @foreach(AffiliateAgency::all() as $agency)
-                        {{ View::make('administration.affiliate_agencies.agency')->with( compact('agency') ) }}
+                    
+                    @foreach(InstructorAgency::all() as $agency)
+                        {{ View::make('administration.instructor_agencies.agency')->with( compact('agency') ) }}
                     @endforeach
+                     
                 </ul>            
             </div>
         </div>
@@ -246,10 +248,12 @@
     	<div class="row">
         	<div class="col-md-12">
                 <form method='post' class='ajax-form' id="add-agency-form" data-callback='addToList' data-destination='#items-list'
-                      action='{{ action('AffiliateAgenciesController@store') }}'>
+                      action='{{ action('InstructorAgenciesController@store') }}'>
                     <input type='hidden' name='_token' value='{{ csrf_token() }}' />
                     <div>
-                        <input type='text' name='name' placeholder="{{ trans('name') }}" />
+                        <input type='text' name='email' placeholder="{{ trans('general.email') }}" />
+                        <input type='password' name='password' placeholder="{{ trans('general.password') }}" />
+                        <input type='password' name='password_confirmation' placeholder="{{ trans('general.password_confirmation') }}" />
                         <button type='submit' class='btn btn-primary'>{{ trans('crud/labels.add_agency') }}</button>
                     </div>
                 </form>

@@ -15,6 +15,10 @@ class SubscriptionCest{
         Artisan::call('migrate:refresh');
         Artisan::call('db:seed');
         $this->paymentData['successData']['REF'] = '123';
+        $this->paymentData['successData']['processor_fee'] = '123';
+        $this->paymentData['successData']['tax'] = '123';
+        $this->paymentData['successData']['balance_used'] = '0';
+        $this->paymentData['successData']['balance_transaction_id'] = '0';
     }
     
     public function subscribeToCourse(UnitTester $I){

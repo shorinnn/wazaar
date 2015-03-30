@@ -10,7 +10,7 @@
                 {{ Form::open( [ 'action' => 'PrivateMessagesController@store', 'class' => 'ajax-form', 'data-callback' =>'postedComment', 
                         'data-destination' => '#ask-teacher.users-comments > .clearfix', 'id' => 'ask-comment-form'] ) }}
             @endif
-            <textarea name="content" class="form-control" placeholder="What's on your mind?"></textarea>
+            <textarea name="content" class="form-control" placeholder="{{trans('conversations/general.whats-on-your-mind')}}?"></textarea>
             <input type="hidden" name="lesson_id" value="{{ $lesson->id }}" />
             <input type="hidden" name="course_id" value="{{ $lesson->module->course->id }}" />
             
@@ -21,7 +21,7 @@
             <input type="hidden" name="type" value="ask_teacher" />
             
             <br />
-            <button type="submit" class="btn btn-primary">Comment</button>
+            <button type="submit" class="btn btn-primary">{{trans('conversations/general.comment')}}</button>
             {{ Form::close() }}
         </div>
     </div>

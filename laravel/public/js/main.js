@@ -544,7 +544,8 @@ function postedComment(json, e){
         count = count.split(' ');
         count = count[0];
         count_number = count = count * 1 + 1 * 1;
-        count += ' ' + pluralize( _('reply'), count_number );
+        //count += ' ' + pluralize( _('reply'), count_number );
+        count += ' ' + ( _('reply') );
         $(e.target).closest('.comment-form-reply').parent().parent().parent().find('.number-of-replies').first().html( count );
 //        $(e.target).closest('.comment-form-reply').parent().parent().parent().find('.number-of-replies').click();
         $(e.target).closest('.comment-form-reply').remove();
@@ -645,14 +646,14 @@ function ratedTestimonial(result, e){
             $('.testimonial-'+id).find('.thumbs-down-label').hide();
             $('.testimonial-'+id).find('.fa-thumbs-o-up').show();
             $('.testimonial-'+id).find('.thumbs-up-label').show();
-            $('.testimonial-'+id).find('.not-very').html('very');
+            $('.testimonial-'+id).find('.not-very').html( _('very') );
         }
         else{
             $('.testimonial-'+id).find('.fa-thumbs-o-up').hide();
             $('.testimonial-'+id).find('.thumbs-up-label').hide();
             $('.testimonial-'+id).find('.fa-thumbs-o-down').show();
             $('.testimonial-'+id).find('.thumbs-down-label').show();
-            $('.testimonial-'+id).find('.not-very').html('not');
+            $('.testimonial-'+id).find('.not-very').html( _('not') );
         }
     }
 

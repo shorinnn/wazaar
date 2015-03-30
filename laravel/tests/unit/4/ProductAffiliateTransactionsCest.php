@@ -14,6 +14,8 @@ class ProductAffiliateTransactionsCest{
     private function setupDatabase() {
         Artisan::call('migrate:refresh');
         Artisan::call('db:seed');
+        DB::table('users')->update( ['affiliate_balance' => 0] );
+        DB::table('transactions')->truncate();
         ProductAffiliate::boot();
     }
     
@@ -25,8 +27,7 @@ class ProductAffiliateTransactionsCest{
         $I->assertEquals( 100, $affiliate->affiliate_balance );
         
         $I->seeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'affiliate_credit', 'amount' => 100, 'gc_fee' => 0, 
-            'product_id' => $course->id, 'product_type' => 'Course',
-            'details' => 'Affiliate Credit Transaction For Order #1', 'status' => 'complete' ] );
+            'product_id' => $course->id, 'product_type' => 'Course', 'status' => 'complete' ] );
     }
     
     public function failCreditBadAmount(UnitTester $I){
@@ -46,7 +47,7 @@ class ProductAffiliateTransactionsCest{
         $affiliate->debit( 100, 'ref', 5 );
         $I->assertEquals( 0, $affiliate->affiliate_balance );
         $I->seeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'affiliate_debit', 
-            'reference' => 'ref', 'status' => 'complete', 'gc_fee' => 5, 'amount' => 95] );
+            'reference' => 'ref', 'status' => 'pending', 'amount' => 100 - Config::get('custom.cashout.fee') ] );
     }
     
     public function failDebitLowBalance(UnitTester $I){
@@ -54,7 +55,7 @@ class ProductAffiliateTransactionsCest{
         $I->assertFalse( $affiliate->debit( 100, 'ref', 5) );
         $I->assertEquals( 0, $affiliate->student_balance );
         $I->dontSeeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'affiliate_debit', 
-            'reference' => 'ref', 'status' => 'complete', 'gc_fee' => 5 ] );
+            'reference' => 'ref', 'status' => 'pending' ] );
     }
     
     

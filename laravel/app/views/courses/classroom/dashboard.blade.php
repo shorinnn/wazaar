@@ -1,7 +1,7 @@
     @extends('layouts.default')
     
     @section('page_title')
-        {{ $course->name }} Dashboard -
+        {{ $course->name }} {{ trans('courses/student_dash.dashboard') }} -
     @stop
     
     @section('content')	
@@ -10,12 +10,14 @@
         	<section class="video-container text-center">
                @if( $student->unreadAnnouncements->count() > 0)
                     <div class="top-notification-bar">
-                        <span></span>You have {{ $student->unreadAnnouncements->count() }} announcements.
+                        <span></span>{{ trans('courses/student_dash.you-have') }} {{ $student->unreadAnnouncements->count() }} 
+                        {{ Lang::choice('courses/student_dash.announcements', $student->unreadAnnouncements->count() ) }}.
                     </div>
                 @endif
                 @if($student->unreadAnswers->count() > 0)
                     <div class="top-notification-bar">
-                        <span></span>You have {{ $student->unreadAnswers->count() }} teacher responses.
+                        <span></span>{{ trans('courses/student_dash.you-have') }} {{ $student->unreadAnswers->count() }} 
+                        {{ Lang::choice('courses/student_dash.teacher-responses',  $student->unreadAnswers->count()) }}.
                     </div>
                 @endif
                
@@ -68,7 +70,7 @@
                 
             	<div class="row">
                     <div class="col-md-12 additional-lesson-conntent">
-                        <h3>Announcements</h3>
+                        <h3>{{ Lang::choice('courses/student_dash.announcements', 2) }}</h3>
                         @foreach($student->announcements as $announcement)
                             <p class='alert alert-info
                                @if ($announcement->isUnread( $student->id ) )
@@ -86,7 +88,7 @@
                 	<div class="col-md-6">
                             
                     	<div class="additional-lesson-conntent">
-                        	<h3>Additional lesson content</h3>
+                        	<h3>{{ trans('courses/student_dash.additional-lesson-content') }}</h3>
                             @if($nextLesson != false)
                                 @if($nextLesson->blocks()->where('type','text')->first())
                                     <p> {{ 
@@ -96,15 +98,16 @@
                                     <a href="{{ action( 'ClassroomController@lesson', 
                                             [ 'course' => $nextLesson->module->course->slug, 
                                               'module' => $nextLesson->module->slug, 
-                                              'lesson' => $nextLesson->slug ] ) }}" class="read-more">READ MORE</a>
+                                              'lesson' => $nextLesson->slug ] ) }}" class="read-more">{{ trans('courses/student_dash.read-more') }}</a>
                                 @endif
                             @endif
                         </div>
                     @if( $course->ask_teacher=='enabled')
                     	<div class="header blue clearfix">
-                        	<h2>ASK<small>THE TEACHER</small></h2>
+                        	<h2>{{ trans('courses/student_dash.ask') }}
+                                    <small>{{ trans('courses/student_dash.the-teacher') }}</small></h2>
                             <div class="avater hidden-xs">
-                            	<p class="quote">You can ask me anything!</p>
+                            	<p class="quote">{{ trans('courses/student_dash.you-can-ask-anything') }}!</p>
                                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater-2.png" 
                                 class="img-circle img-responsive">
                             </div>                        	
@@ -116,13 +119,14 @@
                                 <b>{{ $answer->sender->commentName('instructor') }}</b>: <br />
                                 {{ $answer->content }}
                                 <small><a href='{{ action( 'ClassroomController@lesson', 
-                                            [ 'course' => $course->slug, 'module' => $answer->lesson->module->slug, 'lesson' => $answer->lesson->slug ] ) }}#ask-teacher'>[View in lesson]</a></small>
+                                            [ 'course' => $course->slug, 'module' => $answer->lesson->module->slug, 'lesson' => $answer->lesson->slug ] ) }}#ask-teacher'>
+                                        [{{ trans('courses/student_dash.view-in-lesson') }}]</a></small>
                             </p>
                             @endforeach
                         </div>
                     @endif
                         <br />
-                        <p class="lead">Upcoming</p>
+                        <p class="lead">{{ trans('courses/student_dash.upcoming') }}</p>
                         <div class="white-box">
                         	<div class="clearfix">
                                     <?php
@@ -136,7 +140,7 @@
                                     ?>
                                     @if($upcoming)
                                         <p class="lead">
-                                            <span>Lesson {{$upcoming->lesson_number}} </span>	
+                                            <span>{{ trans('courses/general.lesson') }} {{$upcoming->lesson_number}} </span>	
                                             {{$upcoming->name}}
                                         </p>
                                         <p
@@ -150,13 +154,13 @@
                             	@endfor
                             </div>
                             <span class="view-curriculum">
-                                <a href='#curriculum'>View full curriculum</a>
+                                <a href='#curriculum'>{{ trans('courses/student_dash.view-full-curriculum') }}</a>
                             </span>
                         </div>
                     </div>
                 	<div class="col-md-6">
                     	<div class="accompanying-material">
-                            <h3>Accompanying material</h3>
+                            <h3>{{ trans('courses/student_dash.accompanying-material') }}</h3>
                             @if($nextLesson != false)
                                 @foreach($nextLesson->blocks as $block)
                                     @if($block->type=='file')
@@ -174,7 +178,7 @@
                                             >
                                             <span> {{ $extension  }}</span>
                                             <p>{{ $block->name }}</p>
-                                            <a href="{{ $block->content }}">Download</a>
+                                            <a href="{{ $block->content }}">{{ trans('courses/student_dash.download') }}</a>
                                         </div>
                                     @endif
                                 @endforeach
@@ -184,29 +188,31 @@
                         <div class="header green clearfix">
                             <h2>
                                 @if( !$nextLesson )
-                                    Completed all lessons - decide what to put here
+                                    Completed all lessons
                                 @else
                                     <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 
                                         'module' => $nextLesson->module->slug , 'lesson' => $nextLesson->slug ] ) }}">
                                     @if( $student->viewedLessons->count()==0 )
-                                        BEGIN <small>FIRST LESSON</small>
+                                        {{ trans('courses/student_dash.begin') }} 
+                                        <small>{{ trans('courses/student_dash.first-lesson') }}</small>
                                     @else
-                                        CONTINUE <small>Where you left off</small>
+                                        {{ trans('courses/student_dash.continue') }} 
+                                        <small>{{ trans('courses/student_dash.where-you-left-off') }}</small>
                                     @endif
                                     </a>
                                 @endif
                             </h2>
                         </div>
-                        <p class="lead">In the next lesson you will learn</p>
+                        <p class="lead">{{ trans('courses/student_dash.in-the-next-lesson') }}</p>
                         <div class="white-box">
-                            <p>{{ $nextLesson->description or ' finished all lessons ' }}</p>
+                            <p>{{ $nextLesson->description or trans('courses/student_dash.finished-all') }}</p>
                         </div>
                     </div>
                 </div>
                 <a name='conversations'></a>
                 <div class="row classmate-conversations-heading">
                 	<div class="col-md-12">
-                        <p class="lead">Classmate conversations</p>
+                        <p class="lead">{{ trans('courses/student_dash.classmate-conversations') }}</p>
                     </div>
                 </div>
 
@@ -227,7 +233,8 @@
                     <a name='curriculum'></a>
                 	<div class="col-md-12">
                     	<div class="clearfix">
-                            <p class="lead">Curriculum<span id="view-all-lessons">View All</span></p>
+                            <p class="lead">{{ trans('courses/student_dash.curriculum') }}
+                                <span id="view-all-lessons">{{ trans('courses/student_dash.view-all') }}</span></p>
                             <span id="close-button" class="fa fa-times fa-6"></span>
                             
                             <!--<div class="view-previous-lessons">view previous lessons</div>-->
@@ -236,7 +243,7 @@
                                 @foreach($course->modules as $module)
                                     <li>
                                         <a class="module module-lesson">
-                                            <span>Module {{$i}}</span>
+                                            <span>{{ trans('courses/general.module') }} {{$i}}</span>
                                             <p>{{ $module->name }}</p>
                                         </a>
                                     </li>
@@ -249,12 +256,12 @@
                                                    @else
                                                        class="lesson-2 module-lesson">
                                                    @endif
-                                                    <span>Lesson {{$j}}</span>
+                                                    <span>{{ trans('courses/general.lesson') }} {{$j}}</span>
                                                     <p>{{ $lesson->name }}</p>
                                                 </a>
                                             @else
                                                 <a class="lesson-4 module-lesson">
-                                                    <span>Lesson {{$j}}</span>
+                                                    <span>{{ trans('courses/general.lesson') }} {{$j}}</span>
                                                     <p>{{ $lesson->name }}</p>
                                                 </a>
                                             @endif
@@ -277,8 +284,8 @@
                     <div class="container">
                       <div class="row">
                         <div class="col-xs-12">
-                          <h1>BECOME</h1>
-                          <h2>AN INSTRUCTOR</h2>
+                          <h1>{{ trans('site/homepage.become') }}</h1>
+                          <h2>{{ trans('site/homepage.an-instructor') }}</h2>
                           <a href="{{ action('InstructorsController@become') }}"><span>{{trans('site/homepage.get-started')}}</span></a>
                         </div>
                       </div>

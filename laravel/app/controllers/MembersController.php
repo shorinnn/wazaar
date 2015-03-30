@@ -67,12 +67,12 @@ class MembersController extends \BaseController {
 	public function edit($id)
 	{
             $user = User::find($id);
-            $affiliate_agencies = AffiliateAgency::lists('name', 'id');
-            $affiliate_agencies = ['NULL' => ''] + $affiliate_agencies;
+            $instructor_agencies = InstructorAgency::all()->lists('username', 'id');
+            $instructor_agencies = ['NULL' => ''] + $instructor_agencies;
             if($user==null){
                 return Redirect::action('MembersController@index')->withError( trans('crud/errors.object_doesnt_exist', ['object' => 'User' ]) );
             }
-            return View::make('administration.members.edit')->with( compact('user') )->with( compact('affiliate_agencies') );
+            return View::make('administration.members.edit')->with( compact('user') )->with( compact('instructor_agencies') );
 	}
 
 

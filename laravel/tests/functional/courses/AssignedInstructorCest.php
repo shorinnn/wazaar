@@ -7,7 +7,13 @@ class AssignedInstructorCest{
         $I->haveEnabledFilters();
         $student = Student::where('username','student')->first();
         $lesson = Lesson::first();
-        $student->purchase( $lesson->module->course );
+        $data = [];
+        $data['successData']['REF'] = '123';
+        $data['successData']['processor_fee'] = '5';
+        $data['successData']['tax'] = '10';
+        $data['successData']['balance_used'] = '10';
+        $data['successData']['balance_transaction_id'] = '0';
+        $student->purchase( $lesson->module->course, null, $data );
     }
 
     public function seeAskTeacherMessage(FunctionalTester $I){

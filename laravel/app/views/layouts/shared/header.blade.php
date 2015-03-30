@@ -8,7 +8,7 @@
         ?>
         <ul>
             <li>
-                <a href="{{url('dash')}}">{{trans('site/homepage.dashboard')}}</a>
+                <a href="{{url('dashboard')}}">{{trans('site/homepage.dashboard')}}</a>
             </li>
             @if($student->hasRole('Affiliate'))
                 <li>
@@ -92,10 +92,10 @@
         
         <ul>
             <li>
-                <a href="{{url('login')}}">Login</a> 
+                <a href="{{url('login')}}"> {{trans('general.login')}}</a> 
             </li>
             <li>
-                <a href="{{url('register')}}">Register</a>
+                <a href="{{url('register')}}"> {{ trans('general.register') }}</a>
             </li>
         </ul>
     @endif

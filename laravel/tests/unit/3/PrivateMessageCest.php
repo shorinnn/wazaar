@@ -23,6 +23,14 @@ class PrivateMessageCest{
         Instructor::boot();
         $student = Student::where('username','student')->first();
         $instructor = Instructor::where('username','instructor')->first();
+        
+        $paymentData['successData']['REF'] = '123';
+        $paymentData['successData']['processor_fee'] = '123';
+        $paymentData['successData']['tax'] = '123';
+        $paymentData['successData']['balance_used'] = '0';
+        $paymentData['successData']['balance_transaction_id'] = '0';
+        $student->purchase( $instructor->courses()->first(), null, $paymentData);
+        
         $I->assertTrue( $student->purchased( $instructor->courses()->first() ) );
         $message = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $instructor->id, 'content' => 'Question sir!']);
         $message->type = 'ask_teacher';
@@ -50,6 +58,13 @@ class PrivateMessageCest{
         $course = $instructor->courses()->first();
         $course->ask_teacher = 'disabled';
         $course->updateUniques();
+        $paymentData['successData']['REF'] = '123';
+        $paymentData['successData']['processor_fee'] = '123';
+        $paymentData['successData']['tax'] = '123';
+        $paymentData['successData']['balance_used'] = '0';
+        $paymentData['successData']['balance_transaction_id'] = '0';
+        $student->purchase( $course, null, $paymentData);
+        
         $I->assertTrue( $student->purchased( $course ) );
         $message = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $instructor->id, 'content' => 'Question sir!']);
         $message->type = 'ask_teacher';
@@ -63,6 +78,14 @@ class PrivateMessageCest{
         Instructor::boot();
         $student = Student::where('username','student')->first();
         $instructor = Instructor::where('username','instructor')->first();
+        
+        $paymentData['successData']['REF'] = '123';
+        $paymentData['successData']['processor_fee'] = '123';
+        $paymentData['successData']['tax'] = '123';
+        $paymentData['successData']['balance_used'] = '0';
+        $paymentData['successData']['balance_transaction_id'] = '0';
+        $student->purchase( $instructor->courses()->first(), null, $paymentData);
+        
         $message = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $instructor->id, 'content' => 'Question sir!']);
         $message->type = 'ask_teacher';
         $message->course_id = $instructor->courses()->first()->id;
@@ -94,6 +117,14 @@ class PrivateMessageCest{
         $student = Student::where('username','student')->first();
         $instructor = Instructor::where('username','instructor')->first();
         $assigned = Instructor::where('username','second_instructor')->first();
+        
+        $paymentData['successData']['REF'] = '123';
+        $paymentData['successData']['processor_fee'] = '123';
+        $paymentData['successData']['tax'] = '123';
+        $paymentData['successData']['balance_used'] = '0';
+        $paymentData['successData']['balance_transaction_id'] = '0';
+        $student->purchase( $instructor->courses()->first(), null, $paymentData);
+        
         $course = $instructor->courses()->first();
         $course->assigned_instructor_id = $assigned->id;
         $I->assertTrue( $course->updateUniques() );
@@ -130,6 +161,13 @@ class PrivateMessageCest{
         $assigned = Instructor::where('username','second_instructor')->first();
         $course = $instructor->courses()->first();
         
+        $paymentData['successData']['REF'] = '123';
+        $paymentData['successData']['processor_fee'] = '123';
+        $paymentData['successData']['tax'] = '123';
+        $paymentData['successData']['balance_used'] = '0';
+        $paymentData['successData']['balance_transaction_id'] = '0';
+        $student->purchase( $instructor->courses()->first(), null, $paymentData);
+        
         $message = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $assigned->id, 'content' => 'Question sir!']);
         $message->type = 'ask_teacher';
         $message->course_id = $course->id;
@@ -154,6 +192,14 @@ class PrivateMessageCest{
     public function failReplyToTeacherWrongSender(UnitTester $I){
         $student = Student::where('username','student')->first();
         $instructor = Instructor::where('username','instructor')->first();
+        
+        $paymentData['successData']['REF'] = '123';
+        $paymentData['successData']['processor_fee'] = '123';
+        $paymentData['successData']['tax'] = '123';
+        $paymentData['successData']['balance_used'] = '0';
+        $paymentData['successData']['balance_transaction_id'] = '0';
+        $student->purchase( $instructor->courses()->first(), null, $paymentData);
+        
         $message = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $instructor->id, 'content' => 'Question sir!']);
         $message->type = 'ask_teacher';
         $message->course_id = $instructor->courses()->first()->id;
@@ -288,6 +334,14 @@ class PrivateMessageCest{
     public function countAllTeacherMessages(UnitTester $I){
         $student = Student::where('username','student')->first();
         $instructor = Instructor::where('username','instructor')->first();
+        
+        $paymentData['successData']['REF'] = '123';
+        $paymentData['successData']['processor_fee'] = '123';
+        $paymentData['successData']['tax'] = '123';
+        $paymentData['successData']['balance_used'] = '0';
+        $paymentData['successData']['balance_transaction_id'] = '0';
+        $student->purchase( $instructor->courses()->first(), null, $paymentData);
+        
         $message = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $instructor->id, 'content' => 'Question sir!']);
         $message->type = 'ask_teacher';
         $message->course_id = $instructor->courses()->first()->id;
@@ -313,6 +367,14 @@ class PrivateMessageCest{
     public function countAllUnreadTeacherMessages(UnitTester $I){
         $student = Student::where('username','student')->first();
         $instructor = Instructor::where('username','instructor')->first();
+        
+        $paymentData['successData']['REF'] = '123';
+        $paymentData['successData']['processor_fee'] = '123';
+        $paymentData['successData']['tax'] = '123';
+        $paymentData['successData']['balance_used'] = '0';
+        $paymentData['successData']['balance_transaction_id'] = '0';
+        $student->purchase( $instructor->courses()->first(), null, $paymentData);
+        
         $message = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $instructor->id, 'content' => 'Question sir!']);
         $message->type = 'ask_teacher';
         $message->course_id = $instructor->courses()->first()->id;

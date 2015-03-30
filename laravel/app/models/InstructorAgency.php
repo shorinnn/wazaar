@@ -10,6 +10,20 @@ class InstructorAgency extends User {
             'allTransactions' => [ self::HAS_MANY, 'Transaction', 'foreignKey'=>'user_id' ],
         ];
         
+        public static function all( $columns = []){
+            return self::whereHas(
+                    'roles', function($q){
+                    $q->where('name', 'InstructorAgency');
+                }
+            )->get();
+        }
+        public static function first( $columns = []){
+            return self::whereHas(
+                    'roles', function($q){
+                    $q->where('name', 'InstructorAgency');
+                }
+            )->first();
+        }
     public function getTransactionsAttribute(){
         $types = [
             'instructor_agency_credit',

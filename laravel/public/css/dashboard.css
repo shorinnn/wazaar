@@ -99,7 +99,7 @@ h4.date-range-header{
 }
 
 .top-activities > div > div{
-	height: 390px;
+	height: 480px;
 	border: solid 1px #ececec;
 	border-radius: 4px;
 	margin-bottom: 30px;
@@ -180,38 +180,38 @@ h4.date-range-header{
 	color: #333;
 }
 
-#sales-today ul{
-	padding: 0 20px 0 9px;
-	margin: 0;
+#sales-today ul, .with-progress-bar ul{
+	padding: 0 20px 0 9px !important;
+	margin: 0 !important;
 }
 
-#sales-today ul li{
+#sales-today ul li, .with-progress-bar ul li{
 	color: #849598;
 	margin: 14px 0;
 	font-size: 12px;
 }
 
-#sales-today ul li > span{
+#sales-today ul li > span, .with-progress-bar ul li > span{
 	display: inline-block;
 	width: 80px;
 	float: left;
 }
 
-#sales-today ul li > div{
+#sales-today ul li > div, .with-progress-bar  ul li > div{
 	width: 130px;
 	float: left;
 	padding-top: 4px;
 	padding-left: 8px;
 }
 
-#sales-today ul li > div span{
+#sales-today ul li > div span, .with-progress-bar  ul li > div span{
 	display: block;
 	height: 8px;
 	border-radius: 4px;
 	background: #96cf2d;
 }
 
-#sales-today ul li > div div.progress{
+#sales-today ul li > div div.progress, .with-progress-bar ul li > div div.progress{
     display: block;
     height: 8px;
     border-radius: 4px;
@@ -219,7 +219,7 @@ h4.date-range-header{
     margin-bottom: 0 !important;
 }
 
-#sales-today ul li > em{
+#sales-today ul li > em, .with-progress-bar ul li > em{
 	font-style: normal;
 	width: 60px;
 	float: left;
@@ -227,23 +227,23 @@ h4.date-range-header{
 	display: inline-block;
 }
 
-#sales-today ul li#monday > div span{
+#sales-today ul li#monday > div span, .with-progress-bar ul li#monday > div span{
 	width: 60%;
 }
 
-#sales-today ul li#tuesday > div span{
+#sales-today ul li#tuesday > div span, .with-progress-bar ul li#tuesday > div span{
 	width: 40%;
 }
 
-#sales-today ul li#wednesday > div span{
+#sales-today ul li#wednesday > div span, .with-progress-bar ul li#wednesday > div span{
 	width: 40%;
 }
 
-#sales-today ul li#thursday > div span{
+#sales-today ul li#thursday > div span, .with-progress-bar ul li#thursday > div span{
 	width: 60%;
 }
 
-#sales-today ul li#friday > div span{
+#sales-today ul li#friday > div span, .with-progress-bar ul li#friday > div span{
 	width: 90%;
 }
 

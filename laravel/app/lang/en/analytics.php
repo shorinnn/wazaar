@@ -25,5 +25,7 @@ return
     'month' => 'Month',
     'week' => 'Week',
     'alltime' => 'All Time',
-    'today' => 'Today'
+    'today' => 'Today',
+
+    'salesCount' => 'Sales Count'
 ];

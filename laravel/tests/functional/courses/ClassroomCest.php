@@ -8,6 +8,11 @@ class ClassroomCest{
         $student = Student::where('username','student')->first();
         $lesson = Lesson::first();
         $this->paymentData['successData']['REF'] = '123';
+        $this->paymentData['successData']['REF'] = '123';
+        $this->paymentData['successData']['processor_fee'] = '5';
+        $this->paymentData['successData']['tax'] = '10';
+        $this->paymentData['successData']['balance_used'] = '10';
+        $this->paymentData['successData']['balance_transaction_id'] = '0';
         $student->purchase( $lesson->module->course, null, $this->paymentData );
     }
 

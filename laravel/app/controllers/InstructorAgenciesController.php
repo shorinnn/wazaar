@@ -1,6 +1,6 @@
 <?php
 
-class AffiliateAgenciesController extends \BaseController {
+class InstructorAgenciesController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter('admin', ['except' => 'subcategories']);
@@ -9,22 +9,30 @@ class AffiliateAgenciesController extends \BaseController {
 
 	public function index()
 	{
-		Return View::make('administration.affiliate_agencies.index');
+		Return View::make('administration.instructor_agencies.index');
 	}
 
 	public function store()
 	{
-            $agency = new AffiliateAgency;
-            $agency->name = Input::get('name');
+            $agency = new InstructorAgency;
+            $agency->username = 'ag-'.time();
+            $agency->email = Input::get('email');
+            $agency->password = Input::get('password');
+            $agency->password_confirmation = Input::get('password_confirmation');
+            $agencyRole = Role::where('name','=','InstructorAgency')->first();
             if(Request::ajax()){
                 if( $agency->save() ) {
+                    $agency->attachRole( $agencyRole );
                     return json_encode ( [ 'status'=>'success', 
-                                           'html' => View::make('administration.affiliate_agencies.agency')->with(compact('agency'))->render() ] );
+                                           'html' => View::make('administration.instructor_agencies.agency')->with(compact('agency'))->render() ] );
                 }
                 else return json_encode( [ 'status'=>'error', 'errors' => format_errors($agency->errors()->all()) ] );
             }
             else{
-                if( $agency->save() ) return Redirect::back();
+                if( $agency->save() ){
+                    $agency->attachRole( $agencyRole );
+                    return Redirect::back();
+                }
                 else return Redirect::back()->withErrors( format_errors( $agency->errors()->all() ) );
             }
 	}
@@ -32,7 +40,7 @@ class AffiliateAgenciesController extends \BaseController {
 	
 	public function update($id)
 	{
-            $agency = AffiliateAgency::find($id);
+            $agency = InstructorAgency::find($id);
             $name = Input::get('name');
             $agency->$name = Input::get('value');
             $agency->save();
@@ -43,7 +51,7 @@ class AffiliateAgenciesController extends \BaseController {
 
 	public function destroy($id)
 	{
-            $agency = AffiliateAgency::find($id);
+            $agency = InstructorAgency::find($id);
             if( $agency->delete() ) $response = ['status' => 'success'];
             else $response = ['status' => 'error', 'errors' => format_errors( $agency->errors()->all() ) ];
             
@@ -51,9 +59,9 @@ class AffiliateAgenciesController extends \BaseController {
             else return Redirect::back();
 	}
         
-        public function affiliates($id){
-            $affiliates = AffiliateAgency::find($id)->ltcAffiliates;
-            return View::make('administration.affiliate_agencies.affiliates')->with( compact('affiliates') )->render();
+        public function instructors($id){
+            $instructors = InstructorAgency::find($id)->instructors;
+            return View::make('administration.instructor_agencies.instructor')->with( compact('instructors') )->render();
         }
 
 }

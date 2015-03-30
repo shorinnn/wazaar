@@ -3,16 +3,16 @@
     <section class="container-fluid login-page top-blue-section">
         <div class="row">
             <div class="col-md-12">
-                <h1>Login</h1>
+                <h1>{{ trans('general.login') }}</h1>
             </div>
         </div>
 	</section>
     <div class="container login-page">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ url('login-with-facebook') }}" class="fb-button social-button">Sign in with Facebook</a>
-                <a href="{{url('login-with-google') }}" class="google-button social-button">Sign in with Google</a>
-                <p class="or">Or</p>
+                <a href="{{ url('login-with-facebook') }}" class="fb-button social-button">{{ trans('site/login.sign-in-with-fb') }}</a>
+                <a href="{{url('login-with-google') }}" class="google-button social-button">{{ trans('site/login.sign-in-with-google') }}</a>
+                <p class="or">{{ trans('site/login.or') }}</p>
             </div>
         </div>
     </div>
