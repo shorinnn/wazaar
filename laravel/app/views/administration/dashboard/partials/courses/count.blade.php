@@ -51,7 +51,7 @@
         <tr>
             <td>{{$index+1}}</td>
             <td>{{$course->course_name}}</td>
-            <td>{{$course->category_name}}</td>
+            <td><a href="{{url('dashboard/admin/category/' . $course->course_category_id . '/' . $freeCourse)}}">{{$course->category_name}}</a></td>
             <td>{{$course->sales_count}}</td>
             <td>¥{{number_format($course->total_sales)}}</td>
         </tr>

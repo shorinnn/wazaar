@@ -31,7 +31,7 @@ class AdminHelper
         return $this->_topAffiliates($filter)->paginate(Config::get('wazaar.PAGINATION'));
     }
 
-    public function topCourses($freeProduct = 'no', $categoryId = 0, $startDate = '', $endDate = '')
+    public function topCourses($freeProduct = 'no', $categoryId = 0, $startDate = '', $endDate = '', $paginate = true)
     {
         $filter = '';
 
@@ -45,8 +45,14 @@ class AdminHelper
             $filter .= " AND purchases.created_at BETWEEN '{$startDate}' AND '{$endDate}'";
         }
 
+        $topCourses = $this->_topCourses($freeProduct, $filter);
 
-        return $this->_topCourses($freeProduct, $filter)->paginate(Config::get('wazaar.PAGINATION'));
+        if ($paginate) {
+            return $topCourses->paginate(Config::get('wazaar.PAGINATION'));
+        }
+        else{
+            return $topCourses;
+        }
     }
 
 

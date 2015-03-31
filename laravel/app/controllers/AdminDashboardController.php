@@ -16,11 +16,12 @@ class AdminDashboardController extends BaseController
     public function index()
     {
         ## Possible filters for Top Affiliates
-        $affiliateId = 0;
+        $affiliateId = Input::get('affiliateId');
         $taStartDate = '';
         $taEndDate = '';
-        if (Input::has('affiliateId') AND Input::has('taStartDate')){
-            $affiliateId = Input::get('affiliateId');
+
+        if (Input::has('taStartDate') AND Input::has('taEndDate')){
+
             $taStartDate = Input::get('taStartDate');
             $taEndDate = Input::get('taEndDate');
         }
@@ -66,6 +67,22 @@ class AdminDashboardController extends BaseController
         $salesCountView = $this->salesCountView();
 
         return View::make('administration.dashboard.index', compact('userCountView', 'salesTotalView', 'salesCountView', 'topAffiliates', 'affiliateId', 'taStartDate', 'taEndDate','topCoursesFreeView', 'topCoursesPaidView'));
+    }
+
+    public function topCoursesByCategory($categoryId = 0, $freeCourse = 'no')
+    {
+        ## Possible filters for Top Courses Free
+        $startDate = '';
+        $endDate = '';
+
+        if (Input::has('startDate') AND Input::has('endDate')){
+            $startDate = Input::get('startDate');
+            $endDate = Input::get('endDate');
+        }
+
+        $courses = $this->adminHelper->topCourses($freeCourse,$categoryId,$startDate,$endDate);
+
+        return View::make('administration.dashboard.coursesByCategory',compact('categoryId', 'freeCourse', 'courses', 'startDate', 'endDate'));
     }
 
     private function _topCoursesView($freeCourse = 'no', $courses, $categoryId, $startDate, $endDate)

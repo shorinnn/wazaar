@@ -218,6 +218,7 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('users/count/{frequency?}','AdminDashboardController@userCountView');
     Route::get('admin/sales/count/{frequency?}','AdminDashboardController@salesCountView');
     Route::any('admin','AdminDashboardController@index');
+    Route::any('admin/category/{categoryId}/{freeCourse}','AdminDashboardController@topCoursesByCategory');
 });
 
 ## Payment Form(https)

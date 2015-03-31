@@ -131,9 +131,17 @@
 
     <script type="text/javascript">
         $(function(){
-           $('#affiliateId').select2({
-               placeholder: "Select an Affiliate"
-           });
+            $('#affiliateId').select2({
+                placeholder: "Select an Affiliate"
+            });
+
+            $('#tcyCategoryId').select2({
+                placeholder: "Select a Category"
+            });
+
+            $('#tcnCategoryId').select2({
+                placeholder: "Select a Category"
+            });
 
             $('#startDate, #tcyStartDate, #tcnStartDate').datetimepicker({format: 'MM/DD/YYYY'});
             $('#endDate, #tcyEndDate, #tcnEndDate').datetimepicker({format: 'MM/DD/YYYY'});
