@@ -135,8 +135,11 @@
 				  $(this).tab('show')
 				});
 				
-				$('#slider1').tinycarousel();
 				
+				$('.carousel').carousel({
+				  interval: false,
+				  wrap: false
+				})				
 				
 			});
 		</script>

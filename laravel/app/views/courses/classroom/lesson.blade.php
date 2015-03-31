@@ -9,8 +9,8 @@
 @section('content')
     
         <div class="classrooms-wrapper clearfix">
-            <h1 class="classroom-course-title">{{trans('courses/general.Course')}}: {{ $course->name }}</h1>
-            <h2 class="classroom-lesson-title">{{trans('courses/general.lesson')}}: {{ $lesson->name }}</h2>
+            <!--<h1 class="classroom-course-title">{{trans('courses/general.Course')}}: {{ $course->name }}</h1>
+            <h2 class="classroom-lesson-title">{{trans('courses/general.lesson')}}: {{ $lesson->name }}</h2>-->
         	<section class="video-container">
             	@if( $video != null && $video->video()!=null)
                 <div class="text-center">
@@ -55,6 +55,14 @@
                             </div>
                         </div>
                         <div class="loading"></div>
+                    </div>
+                    <div id="lesson-video-overlay">
+                    	<div>
+                        	<h4>{{ $course->name }}</h4>
+                        	<h3>{{ $lesson->name }}</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                        </div>
                     </div>
                     <span class="centered-play-button"></span>
                     @endif

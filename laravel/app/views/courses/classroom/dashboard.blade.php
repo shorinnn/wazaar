@@ -62,6 +62,14 @@
                         </div>
                         <div class="loading"></div>
                     </div>
+                    <div id="lesson-video-overlay">
+                    	<div>
+                        	<h4>Course Name</h4>
+                        	<h3>Lesson Name</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                        </div>
+                    </div>
                     <span class="centered-play-button"></span>
                     @endif
                 @endif
@@ -70,7 +78,7 @@
                 
             	<div class="row">
                     <div class="col-md-12 additional-lesson-conntent">
-                        <h3>{{ Lang::choice('courses/student_dash.announcements', 2) }}</h3>
+                        <h3 style="text-transform: capitalize">{{ Lang::choice('courses/student_dash.announcements', 2) }}</h3>
                         @foreach($student->announcements as $announcement)
                             <p class='alert alert-info
                                @if ($announcement->isUnread( $student->id ) )
@@ -84,9 +92,8 @@
                         @endforeach
                     </div>
                 </div>
-            	<div class="row">
-                	<div class="col-md-6">
-                            
+                <div class="row">
+					<div class="col-md-12">
                     	<div class="additional-lesson-conntent">
                         	<h3>{{ trans('courses/student_dash.additional-lesson-content') }}</h3>
                             @if($nextLesson != false)
@@ -101,7 +108,41 @@
                                               'lesson' => $nextLesson->slug ] ) }}" class="read-more">{{ trans('courses/student_dash.read-more') }}</a>
                                 @endif
                             @endif
+                        </div>                   
+                    </div>
+                    <div class="col-md-12">
+                    	<div class="accompanying-material">
+                            <h3>{{ trans('courses/student_dash.accompanying-material') }}</h3>
+                            @if($nextLesson != false)
+                                @foreach($nextLesson->blocks as $block)
+                                    @if($block->type=='file')
+                                    <?php
+                                        $extension = substr( mime_to_extension( mimetype ( $block->content) ), 1 );
+                                    ?>
+                                        <div 
+                                            @if($extension=='pdf')
+                                                class="pdf"
+                                            @elseif($extension=='zip')
+                                                class="zip"
+                                            @else
+                                                class="pdf"
+                                            @endif
+                                            >
+                                            <span> {{ $extension  }}</span>
+                                            <p>{{ $block->name }}</p>
+                                            <a href="{{ $block->content }}">{{ trans('courses/student_dash.download') }}</a>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @endif
+                                                        
                         </div>
+                    
+                    </div>                
+                </div>
+            	<div class="row">
+                	<div class="col-md-6">
+                            
                     @if( $course->ask_teacher=='enabled')
                     	<div class="header blue clearfix">
                         	<h2>{{ trans('courses/student_dash.ask') }}
@@ -159,32 +200,6 @@
                         </div>
                     </div>
                 	<div class="col-md-6">
-                    	<div class="accompanying-material">
-                            <h3>{{ trans('courses/student_dash.accompanying-material') }}</h3>
-                            @if($nextLesson != false)
-                                @foreach($nextLesson->blocks as $block)
-                                    @if($block->type=='file')
-                                    <?php
-                                        $extension = substr( mime_to_extension( mimetype ( $block->content) ), 1 );
-                                    ?>
-                                        <div 
-                                            @if($extension=='pdf')
-                                                class="pdf"
-                                            @elseif($extension=='zip')
-                                                class="zip"
-                                            @else
-                                                class="pdf"
-                                            @endif
-                                            >
-                                            <span> {{ $extension  }}</span>
-                                            <p>{{ $block->name }}</p>
-                                            <a href="{{ $block->content }}">{{ trans('courses/student_dash.download') }}</a>
-                                        </div>
-                                    @endif
-                                @endforeach
-                            @endif
-                                                        
-                        </div>
                         <div class="header green clearfix">
                             <h2>
                                 @if( !$nextLesson )

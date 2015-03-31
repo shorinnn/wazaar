@@ -31,8 +31,8 @@ class FrontpageVideosController extends \BaseController {
             $html = '';
             $i = Input::get('i');
             $courses = Course::where('publish_status','approved')->where('privacy_status','public')->orderBy('name','ASC')->get();
-            for($j = 0; $j < 9; ++$j){
-                $type = ($j == 8) ? 'big' : 'small';
+            for($j = 0; $j < 6; ++$j){
+                $type = ($j == 0) ? 'big' : 'small';
                 $id = ($j == 0) ? ($i+1) : 0;
                 $video = FrontpageVideo::create( ['course_id' => $id, 'type' => $type] );
                 ++$i;

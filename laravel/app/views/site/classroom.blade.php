@@ -59,7 +59,7 @@
                     </div>
                 	<div class="col-md-6">
                     	<div class="header green clearfix">
-                        	<h2>BEGIN<small>FIRST LESSON</small></h2>
+                        	<h2>NEXT LESSON<small>LESSON TITLE </small></h2>
                         </div>
                         <p class="lead">In the next lesson you will learn</p>
                         <div class="white-box">

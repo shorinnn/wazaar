@@ -60,4 +60,7 @@ return array(
     'no' => 'No',
     'testimonials' => 'Testimonials',
     'Course' => 'Course',
+    'my_courses' => 'My Course',
+    'you-have-no-courses' => 'You have no course',
+    'go-to-dashboard' => 'Go to Dashboard', 
 );

@@ -440,6 +440,7 @@ function floatingNav(){
  */ 
 function scrollNavigation(){
     $('a[href*=#]').each(function() {
+		if( $(this).attr("href")=="#video-grid") return;
         if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
             && location.hostname == this.hostname
             && this.hash.replace(/#/,'') ) {
@@ -778,6 +779,13 @@ function skinVideoControls(){
 		var playerHeight = video.innerHeight();
 		$('.control').width(playerWidth);
 		$('.centered-play-button').css('top', (playerHeight/2) - 50);
+		$('#lesson-video-overlay').css({
+			height: playerHeight	
+		});
+		$('#lesson-video-overlay > div').css({
+			width: playerWidth
+		});
+
 	}
 	//remove default control when JS loaded
 	video[0].removeAttribute("controls");
@@ -804,6 +812,7 @@ function skinVideoControls(){
 	video.on('click', function() { playpause(); } );
 	$('.btnPlay, .centered-play-button').on('click', function() {
         playpause();
+		$('#lesson-video-overlay').hide();
     });
 
     $('#bckgrd-video-container .centered-play-button').on('click', function() {
