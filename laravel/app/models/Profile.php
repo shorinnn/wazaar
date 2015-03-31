@@ -16,4 +16,9 @@ class Profile extends CocoriumArdent
     public static $relationsData = array(
         'owner' => array(self::MORPH_TO),
      );
+
+    public function getFullNameAttribute()
+    {
+        return $this->attributes['last_name'] . ' ' . $this->attributes['first_name'];
+    }
 }

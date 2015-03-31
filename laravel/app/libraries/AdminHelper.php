@@ -12,6 +12,89 @@ class AdminHelper
         }
     }
 
+    public function topAffiliates($affiliateId = 0, $startDate = '', $endDate = '')
+    {
+        $filter = '';
+
+        if (!empty($affiliateId)){
+            $filter .= " AND purchases.product_affiliate_id = '{$affiliateId}'";
+        }
+
+        if (!empty($startDate) AND !empty($endDate)){
+            $startDate =  date('Y-m-d',strtotime($startDate));
+            $endDate =  date('Y-m-d',strtotime($endDate));
+            $filter .= " AND purchases.created_at BETWEEN '{$startDate}' AND '{$endDate}'";
+        }
+
+
+
+        return $this->_topAffiliates($filter)->paginate(Config::get('wazaar.PAGINATION'));
+    }
+
+    public function topCourses($freeProduct = 'no', $categoryId = 0, $startDate = '', $endDate = '', $paginate = true)
+    {
+        $filter = '';
+
+        if (!empty($categoryId)){
+            $filter .= " AND courses.course_category_id = '{$categoryId}'";
+        }
+
+        if (!empty($startDate) AND !empty($endDate)){
+            $startDate =  date('Y-m-d',strtotime($startDate));
+            $endDate =  date('Y-m-d',strtotime($endDate));
+            $filter .= " AND purchases.created_at BETWEEN '{$startDate}' AND '{$endDate}'";
+        }
+
+        $topCourses = $this->_topCourses($freeProduct, $filter);
+
+        if ($paginate) {
+            return $topCourses->paginate(Config::get('wazaar.PAGINATION'));
+        }
+        else{
+            return $topCourses;
+        }
+    }
+
+
+
+
+    /**************************************** PRIVATE METHODS *********************************************************/
+
+    private function _topCourses($freeProduct = 'no', $filter = '')
+    {
+        return DB::table('purchases')
+                ->select(
+                            DB::raw("SUM(purchase_price) as total_sales"),
+                            DB::raw("COUNT(purchases.id) as sales_count"),
+                            'purchases.product_id as course_id',
+                            'courses.name as course_name',
+                            'courses.course_category_id',
+                            'course_categories.name as category_name'
+                        )
+                ->join('courses', 'courses.id', '=', 'purchases.product_id')
+                ->join('course_categories', 'course_categories.id' , '=', 'courses.course_category_id')
+                ->whereRaw("purchases.`product_type` = 'Course' AND purchases.`free_product` = '{$freeProduct}' {$filter}")
+                ->groupBy('purchases.product_id')
+                ->orderByRaw('total_sales DESC, sales_count DESC');
+    }
+
+    private function _topAffiliates($filter = '')
+    {
+        return  DB::table('purchases')
+                ->select(
+                          DB::raw("SUM(purchase_price) as total_sales"),
+                          DB::raw("COUNT(purchases.id) as sales_count"),
+                         'product_affiliate_id',
+                          DB::raw("CONCAT(`user_profiles`.last_name, ' ', user_profiles.first_name) as full_name"),
+                         'users.username'
+                        )
+                ->join('users','users.id', '=', 'purchases.product_affiliate_id')
+                ->join('user_profiles','user_profiles.owner_id', '=', 'users.id', 'LEFT')
+                ->whereRaw("purchases.id <> 0 {$filter}")
+                ->groupBy('product_affiliate_id', 'username')
+                ->orderByRaw('total_sales DESC, sales_count DESC');
+    }
+
     private function _usersLastFewDays($numOfDays = 7)
     {
         $users = [];
@@ -202,7 +285,6 @@ class AdminHelper
         return compact('max', 'grandTotal');
     }
 
-
     private function _userStatsData($filter = '')
     {
         $sql = "SELECT count(id) as total_users, DATE(created_at) FROM users WHERE id <> 0 {$filter} group by DATE(created_at)";
@@ -210,7 +292,6 @@ class AdminHelper
 
         return $this->_transformUserCount($users);
     }
-
 
     private function _datesInArrayByFrequency($frequency = '')
     {
