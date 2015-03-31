@@ -151,7 +151,7 @@
             </div>        
         </section>-->
 
-        <section>
+        <section class="unauthenticated-homepage thumb-carousel-section">
         <div id="video-grid" class="carousel slide" data-ride="carousel">
         
           <!-- Wrapper for slides -->

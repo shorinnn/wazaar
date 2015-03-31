@@ -4744,6 +4744,7 @@ select::-ms-expand {
 .unauthenticated-homepage.thumb-carousel-section {
     overflow: hidden;
     padding: 20px 0 25px;
+	position: relative;
 	background: -moz-linear-gradient(left, #172735, #0f4d79, #172735);
 	background: -webkit-linear-gradient(left, #172735, #0f4d79, #172735);
 	background: -o-linear-gradient(left, #172735, #0f4d79, #172735);
@@ -4753,82 +4754,13 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0f4d79', endColorstr='#172735')"; /* IE8 */
 }
 
-#slider1 {
-    height: 383pxs;
-    margin: 0;
-    position: relative;
-    padding: 0;
-	overflow-y: visible;
-}
-
-#slider1 .viewport {
-    height: 383px;
-	overflow-y: visible;
-    position: relative;
-}
-
-#slider1 .buttons {
-    background: #C01313;
-    border-radius: 35px;
-    display: block;
-    position: absolute;
-    top: 50%;
-	z-index:10;
-    left: 0;
-    width: 35px;
-    height: 35px;
-    color: #fff;
-    font-weight: bold;
-    text-align: center;
-    line-height: 35px;
-    text-decoration: none;
-    font-size: 22px;
-}
-
-#slider1 .next {
-    right: 10px !important;
-    left: auto;
-    top: 50%;
-}
-
-#slider1 .prev {
-    left: 10px !important;
-}
-
-#slider1 .buttons:hover {
-    color: #C01313;
-    background: #fff;
-}
-
-#slider1 .disable {
-    visibility: hidden;
-}
-
-#slider1 .overview {
-    list-style: none;
-    position: absolute;
-    padding: 0;
-    margin: 0;
-    width: 240px;
-    left: 0;
-    top: 0;
-}
-
-#slider1 .overview li {
-    float: left;
-    margin: 0 20px 0 0;
-    padding: 0;
-    height: 100%;
-    border: none;
+#video-grid{
+    margin: 0 auto;
+    max-width: 1600px;
     width: 100%;
- }
-#slider1 .overview li .column-2,
-#slider1 .overview li .column-1{
-	float: left;
 }
 
-#video-grid .boxes,
-#slider1 .overview li div .boxes{
+#video-grid .boxes{
 	border: solid 1px #162d3e;
 	display: block;
 	position: relative;
@@ -4837,8 +4769,7 @@ select::-ms-expand {
 	transition: all 0.3s ease-in-out 0s;
 }
 
-#video-grid .boxes span,
-#slider1 .overview li div .boxes span{
+#video-grid .boxes span{
 	display: block;
 	position: absolute;
 	left: 0;
@@ -4857,21 +4788,18 @@ select::-ms-expand {
 	transition: all 0.3s ease-in-out 0s;
 }
 
-#video-grid .boxes:hover,
-#slider1 .overview li div .boxes:hover{
+#video-grid .boxes:hover{
 	transform: scale(1.2);
 	position: relative;
 	z-index: 1;
 }
 
-#video-grid .boxes:hover span,
-#slider1 .overview li div .boxes:hover span{
+#video-grid .boxes:hover span{
 	opacity: 1;
 	visibility: visible;
 }
 
-#video-grid .boxes p,
-#slider1 .overview li div .boxes p{
+#video-grid .boxes p{
 	margin:0;
 	position: absolute;
 	bottom: 0;
@@ -4884,52 +4812,42 @@ select::-ms-expand {
 	background-color: rgba(24, 36, 46, 0.8);
 }
 
-#video-grid .boxes img,
-#slider1 .overview li div .boxes img{
+#video-grid .boxes img{
 	height: 100%;
 	width: 100%;
 }
 
-#slider1 .overview li div .small-boxes{
-	max-width: 200px;
-}
-
-#video-grid .small-boxes span,
-#slider1 .overview li div .small-boxes span{
+#video-grid .small-boxes span{
 	width: 44px;
 	height: 44px;
 	margin-top: 32px;
     background-position: 50% 12px;
 }
 
-#video-grid .small-boxes p,
-#slider1 .overview li div .small-boxes p{
+#video-grid .small-boxes p{
 	font-size: 14px;
 }
 
-#slider1 .overview li div .big-boxes{
-	max-width: 400px;
-}
-
-#video-grid .big-boxes span,
-#slider1 .overview li div .big-boxes span{
+#video-grid .big-boxes span{
 	width: 60px;
 	height: 60px;
 	margin-top: 98px;
     background-position: 50% 20px;
 }
 
-#video-grid .big-boxes p,
-#slider1 .overview li div .big-boxes p{
+#video-grid .big-boxes p{
 	font-size: 18px;
 }
 
-#slider1 .overview li div .big-box-holders{
-	width: 422px;
+.big-box-holders{
+	width: 536px;
 }
 
-#slider1 .overview li div .small-box-holders{
-	width: 211px;
+.small-box-holders{
+	width: 268px;
+}
+
+.carousel-inner .container-fluid .row{
 }
 
 .carousel-inner .container-fluid,
@@ -4938,24 +4856,29 @@ select::-ms-expand {
 }
 
 #video-grid .small-box-holders .small-boxes{
-	width: 100%;
-	height: 128px;
+	width: 268px;
+	height: 144px;
 }
 
 #video-grid .big-box-holders .small-boxes{
-	width: 50%;
-	height: 128px;
+	width: 268px;
+	height: 144px;
 }
 
 #video-grid .big-box-holders .big-boxes{
-	width: 100%;
-	height: 256px;
+	width: 536px;
+	height: 288px;
 }
 
 #video-grid .carousel-control{
 	width: 5%;
 	max-height: 95%;
 	z-index: 88;
+	background: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+	background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+	background: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+	background: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+	background: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
 }
 
 #video-grid{
@@ -4969,6 +4892,7 @@ select::-ms-expand {
 }
 
 #video-grid .carousel-inner{
+	overflow: visible;
 }
 /******** Enroll Page***********/
 .wrapper.enroll{
