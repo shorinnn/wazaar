@@ -105,6 +105,11 @@
                 </div>
             </div>
 
+            @include('administration.dashboard.partials.user.topAffiliates')
+            <hr/>
+            {{$topCoursesFreeView}}
+            <hr/>
+            {{$topCoursesPaidView}}
 
         </div>
     </div>
@@ -112,7 +117,48 @@
     </div>
 @stop
 
+@section('extra_css')
+    <link rel="stylesheet" href="{{url('resources/select2-dist/select2.css')}}"/>
+    <link rel="stylesheet" href="{{url('resources/select2-dist/select2-bootstrap.css')}}"/>
+@stop
+
 @section('extra_js')
+    <script type="text/javascript" src="{{url('resources/select2-dist/select2.min.js')}}"></script>
     <script type="text/javascript" src="{{url('js/analytics.js')}}"></script>
     <script type="text/javascript" src="{{url('js/admin.dashboard.js')}}"></script>
+    <script src="{{url('resources/moment/min/moment.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('resources/datetimepicker/src/js/bootstrap-datetimepicker.js')}}"></script>
+
+    <script type="text/javascript">
+        $(function(){
+           $('#affiliateId').select2({
+               placeholder: "Select an Affiliate"
+           });
+
+            $('#startDate, #tcyStartDate, #tcnStartDate').datetimepicker({format: 'MM/DD/YYYY'});
+            $('#endDate, #tcyEndDate, #tcnEndDate').datetimepicker({format: 'MM/DD/YYYY'});
+            $("#startDate").on("dp.change",function (e) {
+                $('#endDate').data("DateTimePicker").minDate(e.date);
+            });
+            $("#endDate").on("dp.change",function (e) {
+                $('#startDate').data("DateTimePicker").maxDate(e.date);
+            });
+
+            $("#tcyStartDate").on("dp.change",function (e) {
+                $('#tcyEndDate').data("DateTimePicker").minDate(e.date);
+            });
+            $("#tcyEndDate").on("dp.change",function (e) {
+                $('#tcyStartDate').data("DateTimePicker").maxDate(e.date);
+            });
+
+            $("#tcnStartDate").on("dp.change",function (e) {
+                $('#tcnEndDate').data("DateTimePicker").minDate(e.date);
+            });
+            $("#tcnEndDate").on("dp.change",function (e) {
+                $('#tcnStartDate').data("DateTimePicker").maxDate(e.date);
+            });
+
+
+        });
+    </script>
 @stop

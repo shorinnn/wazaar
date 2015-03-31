@@ -217,6 +217,7 @@ Route::group(['prefix' => 'dashboard'], function (){
     /******* SUPER ADMIN RELATED **************************/
     Route::get('users/count/{frequency?}','AdminDashboardController@userCountView');
     Route::get('admin/sales/count/{frequency?}','AdminDashboardController@salesCountView');
+    Route::any('admin','AdminDashboardController@index');
 });
 
 ## Payment Form(https)
@@ -238,13 +239,10 @@ Route::group(['prefix' => 'api'], function(){
 Route::get('test/pay', 'PaymentTestController@pay');
 
 Route::get('test', function (){
-    //Event::fire('payment.successful',['wowow' => 'yesyes']);
-    $ah = new AdminHelper();
 
-    $x = $ah->userStats('today');
+    $affiliateIds = Profile::select('owner_id')->where('owner_type', 'Affiliate')->get()->toArray();
     echo '<pre>';
-    print_r($x);
+    print_r($affiliateIds);
     echo '</pre>';
     die;
-
 });

@@ -12,6 +12,7 @@ return [
     'AWS_WEB_DOMAIN' => 'd378r68ica1xoa.cloudfront.net',
     'S3_PROFILES_BUCKET' => 'profile_pictures',
     'TAX' => '.08',
-    'API_URL' => 'http://cocorium.com/api/'
+    'API_URL' => 'http://cocorium.com/api/',
+    'PAGINATION' => 5
 
 ];
