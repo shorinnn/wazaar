@@ -176,9 +176,26 @@
             });
 
 
-            $('.pagination-top-affiliates .pagination a').on('click', function ($e){
+            $('.affiliates-table-and-pagination').on('click', '.pagination-top-affiliates .pagination a',function ($e){
                 $e.preventDefault();
-                console.log($(this).attr('href'));
+
+                var $loc = $(this).attr('href');
+
+                $.post($loc, function ($resp){
+                    $('.affiliates-table-and-pagination').html($resp.html);
+                },'json');
+            });
+
+            $('#btn-apply-filter-affiliates').on('click', function (){
+                var $formData = $('#form-affiliates').serialize();
+
+                var $btn = $(this);
+                $btn.button('loading');
+
+                $.post('/dashboard/admin/affiliatestable', $formData, function ($resp){
+                    $('.affiliates-table-and-pagination').html($resp.html);
+                    $btn.button('reset');
+                },'json');
             });
 
 

@@ -226,8 +226,9 @@ Route::group(['prefix' => 'dashboard'], function (){
     /******* SUPER ADMIN RELATED **************************/
     Route::get('users/count/{frequency?}','AdminDashboardController@userCountView');
     Route::get('admin/sales/count/{frequency?}','AdminDashboardController@salesCountView');
-    Route::any('admin','AdminDashboardController@index');
+    Route::get('admin','AdminDashboardController@index');
     Route::any('admin/category/{categoryId}/{freeCourse}','AdminDashboardController@topCoursesByCategory');
+    Route::any('admin/affiliatestable','AdminDashboardController@topAffiliatesTableView');
 });
 
 ## Payment Form(https)

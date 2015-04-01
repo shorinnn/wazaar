@@ -15,19 +15,8 @@ class AdminDashboardController extends BaseController
 
     public function index()
     {
-        ## Possible filters for Top Affiliates
-        $affiliateId = Input::get('affiliateId');
-        $taStartDate = '';
-        $taEndDate = '';
 
-        if (Input::has('taStartDate') AND Input::has('taEndDate')){
-
-            $taStartDate = Input::get('taStartDate');
-            $taEndDate = Input::get('taEndDate');
-        }
-
-        Paginator::setPageName('page_aff');
-        $topAffiliatesTable = $this->topAffiliatesTableView($affiliateId,$taStartDate, $taEndDate);
+        $topAffiliatesTable = $this->topAffiliatesTableView();
 
         ## Possible filters for Top Courses Free
         $tcyStartDate = '';
@@ -66,15 +55,34 @@ class AdminDashboardController extends BaseController
         $salesTotalView =  Route::dispatch(Request::create('dashboard/sales/daily', 'GET'))->getContent();
         $salesCountView = $this->salesCountView();
 
-        return View::make('administration.dashboard.index', compact('userCountView', 'salesTotalView', 'salesCountView', 'topAffiliatesTable', 'affiliateId', 'taStartDate', 'taEndDate','topCoursesFreeView', 'topCoursesPaidView'));
+        return View::make('administration.dashboard.index', compact('userCountView', 'salesTotalView', 'salesCountView', 'topAffiliatesTable', 'affiliateId', 'topCoursesFreeView', 'topCoursesPaidView'));
     }
 
 
-    public function topAffiliatesTableView($affiliateId,$taStartDate, $taEndDate)
+    public function topAffiliatesTableView($affiliateId = 0,$taStartDate = '', $taEndDate = '')
     {
+        $sortOrder = 0;
+
+        if (Input::has('taStartDate') OR Input::has('affiliateId')){
+            $affiliateId = Input::get('affiliateId');
+            $taStartDate = Input::get('taStartDate');
+            $taEndDate = Input::get('taEndDate');
+            $sortOrder = Input::get('sortOrder');
+        }
+
         Paginator::setPageName('page_aff');
-        $topAffiliates = $this->adminHelper->topAffiliates($affiliateId,$taStartDate, $taEndDate);
-        return View::make('administration.dashboard.partials.user.tableWithPagination',compact('topAffiliates', 'affiliateId', 'taStartDate', 'taEndDate'))->render();
+        $topAffiliates = $this->adminHelper->topAffiliates($affiliateId,$taStartDate, $taEndDate,$sortOrder);
+        $topAffiliates->setBaseUrl('dashboard/admin/affiliatestable');
+
+        $view = View::make('administration.dashboard.partials.user.tableWithPagination',compact('topAffiliates', 'affiliateId', 'taStartDate', 'taEndDate'))->render();
+
+
+        if (Input::has('taStartDate') OR Input::has('affiliateId') OR Input::has('page_aff')){
+            return Response::json(['html' => $view]);
+        }
+        else {
+            return $view;
+        }
     }
 
     public function topCoursesByCategory($categoryId = 0, $freeCourse = 'no')
