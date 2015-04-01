@@ -128,7 +128,7 @@ class Student extends User{
         
         $purchase->processor_fee = $paymentData['successData']['processor_fee'];
         $purchase->tax = $paymentData['successData']['tax'];
-        $purchase->gift_id = $paymentData['successData']['gift_id'];
+        $purchase->gift_id = $paymentData['successData']['giftID'];
         if( $paymentData['successData']['balance_used'] > 0 ){
             $purchase->balance_used = $paymentData['successData']['balance_used'];
             $purchase->balance_transaction_id = $paymentData['successData']['balance_transaction_id'];
