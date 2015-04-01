@@ -251,7 +251,7 @@ class CoursesController extends \BaseController {
             $purchaseData = [];
             // gift
             if(Input::get('gid') !=''){
-                $gift = Input::find( PseudoCrypt::unhash(Input::get('gid')) );
+                $gift = Gift::find( PseudoCrypt::unhash(Input::get('gid')) );
                 if($gift && $gift->affiliate_id == Input::get('aid')){
                     $purchaseData['giftID'] = $gift->id;
                 }
