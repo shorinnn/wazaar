@@ -2775,6 +2775,12 @@ header .activate-dropdown:hover ul{
 	border-radius: 5px;
 	margin-top: 60px;
 	padding: 0 20px;
+	text-align: center;
+	background: -moz-linear-gradient(left, #6ddf77, #8fe754, #acee36);
+	background: -webkit-linear-gradient(left, #6ddf77, #8fe754, #acee36);
+	background: -o-linear-gradient(left, #6ddf77, #8fe754, #acee36);
+	background: -ms-linear-gradient(left, #6ddf77, #8fe754, #acee36);
+	background: linear-gradient(left, #6ddf77, #8fe754, #acee36);
 }
 
 .next-lesson-button h2,
@@ -3078,7 +3084,7 @@ a.load-remote > *{
 
 .comment-section .comment-box img{
 	position: absolute;
-	left: 20px;
+	left: 10px;
 	top: 9px;
 }
 
@@ -3102,6 +3108,7 @@ a.load-remote > *{
 .users-comments > div{
 	width: 85.8%;
 	margin: auto;
+	padding-bottom: 33px;
 }
 
 .users-comments .comment{
@@ -3171,7 +3178,7 @@ a.load-remote > *{
 	padding: 16px 20px;
 	font-size: 14px;
 	color: #fff;
-	line-height: 24px;
+	line-height: 28px;
 	width: 87.9%;
 	max-width: 731px;
 	position: relative;
@@ -3405,7 +3412,7 @@ a.load-remote > *{
 }
 
 .classroom-content .comment-box button[type="submit"]{
-	margin: 20px 10px 20px 14px;
+	margin: 20px 10px 10px;
 	outline: none;
     background: #0099ff;
     border-color: #0099ff;
