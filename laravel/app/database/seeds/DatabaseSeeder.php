@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder {
                  $this->call('PMSeeder');
                  $this->call('TransactionsSeeder');
                  $this->call('FrontpageVideosSeeder');
+                 $this->call('GiftSeeder');
 	}
 
 }
@@ -1121,6 +1122,22 @@ class FrontpageVideosSeeder extends Seeder {
                 if($i==1 && $j == 0 ) $id = 2;
                 FrontpageVideo::create( ['course_id' => $id, 'type' => $type] );
             }
+        }
+    }
+}
+
+class GiftSeeder extends Seeder {
+
+    public function run()
+    {
+        $affiliate = User::where('username','affiliate')->first();
+        $course = Course::where('name','Business App Development')->first();
+        for($i = 0; $i<4; ++$i){
+            $g = new Gift();
+            $g->affiliate_id = $affiliate->id;
+            $g->course_id = $course->id;
+            $g->text = "Buy this and get gift # $i";
+            $g->save();
         }
     }
 }

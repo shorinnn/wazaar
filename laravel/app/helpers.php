@@ -17,10 +17,12 @@ function mimetype($file){
 //    }
 //    $return = '';
     try{
+        $info = pathinfo($file);
+        $file = file_get_contents($file);
         $return = $finfo->buffer($file);
     }
     catch(Exception $e){
-        $file = file_get_contents($file);
+        
         $return = $finfo->buffer($file);
     }
     return $return;

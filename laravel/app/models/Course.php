@@ -44,6 +44,7 @@ class Course extends Ardent{
         'testimonials' => [ self::HAS_MANY, 'Testimonial' ],
         'comments' => [self::HAS_MANY, 'Conversation'],
         'messages' => [self::HAS_MANY, 'PrivateMessage'],
+        'gifts' => [self::HAS_MANY, 'Gift'],
     );
     
     public function dashboardComments(){

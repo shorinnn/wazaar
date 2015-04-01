@@ -10,7 +10,11 @@
         display:inline-block;
     }
     </style>
-
+@if(Auth::user()->hasRole('Affiliate'))
+<div style="background-color:silver;" class='text-center'>
+    <a href='{{ action('AffiliateController@promote', $course->slug)}}' class='btn btn-warning btn-sm'>{{ trans('courses/promote.promote') }}</a>
+</div>
+@endif
         <section class="course-detail-top-section clearfix unauthenticated-homepage cat-box-{{$course->courseCategory->color_scheme}}">
                 @if($course->bannerImage != null)
                     <img src="{{$course->bannerImage->url}}" alt="" class="img-responsive" />

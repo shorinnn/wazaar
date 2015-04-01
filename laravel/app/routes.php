@@ -68,6 +68,14 @@ Route::group(['prefix' => 'administration'], function (){
     Route::resource('course-difficulties', 'CourseDifficultiesController');
 });
 
+// Affiliate promote links
+Route::group(['prefix' => 'affiliate'], function (){
+    Route::get('promote/{course}', 'AffiliateController@promote');
+    Route::post('gifts/{gift}/files', 'GiftsController@files');
+    Route::resource('gifts', 'GiftsController');
+    Route::resource('giftsfile', 'GiftsFileController');
+});
+
 // Students
 Route::group(['prefix' => 'student'], function (){
     Route::get('mycourses', 'StudentController@mycourses');
