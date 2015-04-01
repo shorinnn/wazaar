@@ -105,12 +105,21 @@
                 </div>
             </div>
 
-            @include('administration.dashboard.partials.user.topAffiliates')
-            <hr/>
-            {{$topCoursesFreeView}}
-            <hr/>
-            {{$topCoursesPaidView}}
+            <div class="top-affiliates-wrapper">
+                @include('administration.dashboard.partials.user.topAffiliates')
+            </div>
 
+            <hr/>
+
+            <div class="top-courses-free-wrapper">
+                {{$topCoursesFreeView}}
+            </div>
+
+            <hr/>
+
+            <div class="top-courses-purchased-wrapper">
+                {{$topCoursesPaidView}}
+            </div>
         </div>
     </div>
 
@@ -164,6 +173,12 @@
             });
             $("#tcnEndDate").on("dp.change",function (e) {
                 $('#tcnStartDate').data("DateTimePicker").maxDate(e.date);
+            });
+
+
+            $('.pagination-top-affiliates .pagination a').on('click', function ($e){
+                $e.preventDefault();
+                console.log($(this).attr('href'));
             });
 
 
