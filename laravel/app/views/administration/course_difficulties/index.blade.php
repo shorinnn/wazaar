@@ -6,7 +6,7 @@
     <div class="container course-categories">
     	<div class="row">
         	<div class="col-md-12">
-                <h1 class='icon'>Course Difficulties</h1>    
+                <h1 class='icon'>{{ trans('administration.course-difficulties') }}</h1>    
                 
                 <ul id='items-list'>
                     @foreach(CourseDifficulty::all() as $difficulty)
@@ -23,7 +23,7 @@
                       action='{{ action('CourseDifficultiesController@store') }}'>
                     <input type='hidden' name='_token' value='{{ csrf_token() }}' />
                     <div>
-                        <input type='text' name='name' placeholder="{{ trans('name') }}" />
+                        <input type='text' name='name' placeholder="{{ trans('crud/labels.name') }}" />
                         <button type='submit' class='btn btn-primary'>{{ trans('crud/labels.add_difficulty') }}</button>
                     </div>
                 </form>

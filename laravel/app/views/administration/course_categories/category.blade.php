@@ -19,7 +19,7 @@
                data-url='{{action('CoursesCategoriesController@update', $category->id )}}' data-name='description'>{{$category->description}}</textarea>
         <br />
         <br />
-        Color Scheme:
+        {{ trans('administration.color-scheme') }}:
         <br />
         <form class="clearfix">
             <div class="radio-buttons clearfix">
@@ -47,7 +47,7 @@
             <input type='hidden' name='_token' value='{{ csrf_token() }}' />
             <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
             <div class="fileUpload btn btn-primary">
-            <span>Browse</span>
+            <span>{{ trans('administration.browse') }}</span>
             <input type='file' name='file' id='file-upload-{{$category->id}}' data-dropzone='' data-replace='#category-graphics-{{$category->id}}'
                    class='ajax-file-uploader upload' data-progress-bar='.progress-bar-{{$category->id}}' data-callback='replaceElementWithUploaded' />
             </div>
