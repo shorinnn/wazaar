@@ -136,11 +136,8 @@
 				});
 				
 				
-				$('.carousel').carousel({
-				  interval: false,
-				  wrap: false
-				})				
-				
+				$('.carousel').carousel()	
+								
 			});
 		</script>
 	</body>

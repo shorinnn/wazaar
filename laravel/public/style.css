@@ -4797,7 +4797,7 @@ select::-ms-expand {
 	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-16.png') no-repeat center top;
 }
 	
-/* Tiny Carousel */
+/* Video Grid Carousel */
 
 .unauthenticated-homepage.thumb-carousel-section {
     overflow: hidden;
@@ -4810,6 +4810,22 @@ select::-ms-expand {
 	background: linear-gradient(left, #172735, #0f4d79, #172735);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0f4d79', endColorstr='#172735'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0f4d79', endColorstr='#172735')"; /* IE8 */
+}
+
+#video-grid .item {
+  opacity: 0;
+  transition-property: opacity;
+}
+
+#video-grid .active {
+  opacity: 1;
+}
+
+#video-grid .active.left,
+#video-grid .active.right {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
 }
 
 #video-grid{
