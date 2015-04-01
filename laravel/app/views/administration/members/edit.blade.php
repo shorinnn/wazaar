@@ -82,7 +82,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="title no-border">Status</td>
+                        <td class="title no-border">{{trans('administration.status')}}</td>
                         <td class="no-border">
                             <div>
                                 {{ Form::select('status',['Active'=>'Active', 'Suspended'=>'Suspended'] ) }}

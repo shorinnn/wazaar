@@ -12,7 +12,7 @@ class AdminHelper
         }
     }
 
-    public function topAffiliates($affiliateId = 0, $startDate = '', $endDate = '')
+    public function topAffiliates($affiliateId = 0, $startDate = '', $endDate = '', $sortOrder = 0)
     {
         $filter = '';
 
@@ -26,9 +26,15 @@ class AdminHelper
             $filter .= " AND purchases.created_at BETWEEN '{$startDate}' AND '{$endDate}'";
         }
 
+        $sortOrders = [
+            '',
+            'total_sales ASC',
+            'total_sales DESC',
+            'sales_count ASC',
+            'sales_count DESC',
+        ];
 
-
-        return $this->_topAffiliates($filter)->paginate(Config::get('wazaar.PAGINATION'));
+        return $this->_topAffiliates($filter, $sortOrders[$sortOrder])->paginate(Config::get('wazaar.PAGINATION'));
     }
 
     public function topCourses($freeProduct = 'no', $categoryId = 0, $startDate = '', $endDate = '', $paginate = true)
@@ -78,8 +84,11 @@ class AdminHelper
                 ->orderByRaw('total_sales DESC, sales_count DESC');
     }
 
-    private function _topAffiliates($filter = '')
+    private function _topAffiliates($filter = '', $sortOrder = '')
     {
+        if (empty($sortOrder)){
+            $sortOrder = 'total_sales DESC, sales_count DESC';
+        }
         return  DB::table('purchases')
                 ->select(
                           DB::raw("SUM(purchase_price) as total_sales"),
@@ -92,7 +101,7 @@ class AdminHelper
                 ->join('user_profiles','user_profiles.owner_id', '=', 'users.id', 'LEFT')
                 ->whereRaw("purchases.id <> 0 {$filter}")
                 ->groupBy('product_affiliate_id', 'username')
-                ->orderByRaw('total_sales DESC, sales_count DESC');
+                ->orderByRaw($sortOrder);
     }
 
     private function _usersLastFewDays($numOfDays = 7)
@@ -325,5 +334,16 @@ class AdminHelper
         ];
 
         return $output;
+    }
+
+    public static function sortOptions()
+    {
+        return [
+          '0' => trans('admin.dashboard.sortOrder'),
+          '1' => trans('admin.dashboard.salesTotalASC'),
+          '2' => trans('admin.dashboard.salesTotalDESC'),
+          '3' => trans('admin.dashboard.salesCountASC'),
+          '4' => trans('admin.dashboard.salesCountDESC'),
+        ];
     }
 }

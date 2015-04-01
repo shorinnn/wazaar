@@ -65,4 +65,28 @@ class Lesson extends Ardent {
     public function isDiscounted(){
         return false;
     }
+    
+    public function next(){
+        // get next lesson in module
+        $next = Lesson::where('module_id', $this->module->id)->where('order','>',$this->order)->orderBy('order','asc')->first();
+        if( $next ) return $next;
+        // get lesson in next module
+        $nextModule = Module::where('course_id', $this->module->course_id)->where('order','>',$this->module->order)->first();
+        if($nextModule==null) return false;
+        $next = Lesson::where('module_id',$nextModule->id)->orderBy('order','asc')->first();
+        if($next) return $next;
+        return false;
+    }
+    
+    public function prev(){
+        // get next lesson in module
+        $prev = Lesson::where('module_id', $this->module->id)->where('order','<',$this->order)->orderBy('order','desc')->first();
+        if( $prev ) return $prev;
+        // get lesson in next module
+        $prevModule = Module::where('course_id', $this->module->course_id)->where('order','<',$this->module->order)->first();
+        if($prevModule==null) return false;
+        $prev = Lesson::where('module_id',$prevModule->id)->orderBy('order','desc')->first();
+        if($prev) return $prev;
+        return false;
+    }
 }

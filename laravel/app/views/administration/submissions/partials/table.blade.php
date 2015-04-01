@@ -16,7 +16,7 @@
                      <div class="activate-dropdown">
                         <button aria-expanded="false" data-toggle="dropdown" 
                                 class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
-                            View
+                            {{ trans('crud/labels.view') }}
                         </button>
                         <ul id="table-header-dropdown"
                             data-target='.ajax-content' data-load-method="fade"
@@ -44,7 +44,7 @@
                             </td>
                             <td>
                                 <a href="{{action('CoursesController@show', $course->slug)}}" target="_blank">
-                                    View
+                                    {{ trans('crud/labels.view') }}
                                 </a>
                             </td>
                             <td>
@@ -53,7 +53,7 @@
                                         'data-callback' => 'deleteItem', 'data-delete' => '#row-'.$course->id] ) }}
                                     <input type="hidden" name="value" value="approved" />
                                     <button type="submit" name='approve-course' class="btn btn-primary delete-button" 
-                                            data-message="Are you sure you want to approve?">Approve</button>
+                                            data-message="{{ trans('administration.sure-approve') }}?">{{ trans('administration.approve') }}</button>
                                 {{ Form::close() }}
                             </td>
                             <td>
@@ -62,7 +62,7 @@
                                         'data-callback' => 'deleteItem', 'data-delete' => '#row-'.$course->id] ) }}
                                     <input type="hidden" name="value" value="rejected" />
                                     <button type="submit" name='reject-course'  class="btn btn-danger delete-button" 
-                                            data-message="Are you sure you want to reject?">Reject</button>
+                                            data-message="{{ trans('administration.sure-reject') }}?">{{ trans('administration.reject') }}</button>
                                 {{ Form::close() }}
                             </td>
                         </tr>

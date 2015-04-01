@@ -12,5 +12,6 @@ var js_translation_map = {
     "Message Sent" : "Message Sent",
     "reply" : "reply",
     "Copy to clipboard" : "Copy to clipboard",
-    "Copied!" : "Copied!"
+    "Copied!" : "Copied!",
+    "Please fill in the reference fields" : "Please fill in the reference fields"
 };

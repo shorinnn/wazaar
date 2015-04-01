@@ -65,4 +65,7 @@ return array(
     'go-to-dashboard' => 'Go to Dashboard', 
     'you-have-enrolled' => 'You have enrolled in', 
     'begin-my-learning' => 'Begin My Learning', 
+    'NEXT-LESSON' => 'NEXT LESSON', 
+    'PREV-LESSON' => 'PREVIOUS LESSON', 
+    'ask-teacher' => 'Ask Teacher', 
 );
