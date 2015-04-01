@@ -810,9 +810,11 @@ header .activate-dropdown:hover ul{
   
 .small-box h2{
   	font-size:18px;
-  	color:#fff;
-  	font-weight: normal;  
+  	color:#333;
+  	font-weight: bold;
+	margin: 10px 0 8px;  
   	float:left;
+	line-height: 24px;
   	clear:both;    
   	text-align:left;
   	padding:0 10px;
@@ -2734,8 +2736,6 @@ header .activate-dropdown:hover ul{
 	display: none;
 }
 
-.next-lesson-button,
-.previous-lesson-button,
 #show-teacher-questions{
 	display: inline-block;
 	padding: 10px 20px;
@@ -2759,6 +2759,7 @@ header .activate-dropdown:hover ul{
 .next-lesson-button:hover,
 .previous-lesson-button:hover,
 #show-teacher-questions:hover{
+	color: #fff !important;
 	background: -moz-linear-gradient(left, #acee36, #8fe754, #6ddf77);
 	background: -webkit-linear-gradient(left, #acee36, #8fe754, #6ddf77);
 	background: -o-linear-gradient(left, #acee36, #8fe754, #6ddf77);
@@ -2768,13 +2769,28 @@ header .activate-dropdown:hover ul{
 
 .next-lesson-button,
 .previous-lesson-button{
-	width: auto !important;
+	width: 100%;
+	min-height: 100px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	margin-top: 60px;
+	padding: 0 20px;
 }
 
-.next-lesson-button span,
-.previous-lesson-button span{
+.next-lesson-button h2,
+.previous-lesson-button h2{
+	font-size: 45px;
+	color: #fff;
+	font-weight: 200;
+	margin: 15px 0 20px;
+}
+
+.next-lesson-button h2 small,
+.previous-lesson-button h2 small{
 	display: block;
-	font-size: 14px;
+	font-size: 20px;
+	color: #fff;
+	font-weight: 200;
 }
 
 .classrooms-wrapper .become-an-instructor{
@@ -4812,21 +4828,49 @@ select::-ms-expand {
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0f4d79', endColorstr='#172735')"; /* IE8 */
 }
 
-#video-grid .item {
-  opacity: 0;
-  transition-property: opacity;
+/*.carousel {
+    height: 400px;
+    overflow: hidden;
+}
+.carousel .item {
+    -webkit-transition: opacity 1.5s;
+    -moz-transition: opacity 1.5s;
+    -ms-transition: opacity 1.5s;
+    -o-transition: opacity 1.5s;
+    transition: opacity 1.5s;
+}
+.carousel .active.left, .carousel .active.right {
+    left:0;
+    opacity:0;
+    z-index:2;
+}
+.carousel .next, .carousel .prev {
+    left:0;
+    opacity:1;
+    z-index:1;
 }
 
-#video-grid .active {
-  opacity: 1;
-}
-
-#video-grid .active.left,
-#video-grid .active.right {
-  left: 0;
-  opacity: 0;
-  z-index: 1;
-}
+@media all and (transform-3d), (-webkit-transform-3d) {
+    .carousel-fade .carousel-inner > .item.next,
+    .carousel-fade .carousel-inner > .item.active.right {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.prev,
+    .carousel-fade .carousel-inner > .item.active.left {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.next.left,
+    .carousel-fade .carousel-inner > .item.prev.right,
+    .carousel-fade .carousel-inner > .item.active {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+}*/
 
 #video-grid{
     margin: 0 auto;
