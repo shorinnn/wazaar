@@ -41,11 +41,11 @@ class ClassroomController extends \BaseController {
             if( $video ) $video = $video->blocks()->where('type','video')->first();
 //            $video = $course->videoBlocks();
 //            if($video!=null) $video = $video->first();
+            $gift = $student->purchases()->where('product_id', $course->id)->where('product_type','course')->first()->gift;
             if(Request::ajax()){
                 return View::make('courses.classroom.course_comments_ajax')->with( compact('course') );
             }
-            return View::make('courses.classroom.dashboard')->with( compact('course') )->with( compact('student') )->with( compact('video') )
-                    ->with( compact('nextLesson') );
+            return View::make('courses.classroom.dashboard')->with( compact('course', 'student', 'video', 'nextLesson', 'gift') );
         }
         
         public function testimonial($slug){

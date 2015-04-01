@@ -312,6 +312,11 @@ class CoursesController extends \BaseController {
             return Redirect::action('PaymentController@index');
             
         }
+        
+        public function purchased($slug){
+            $course = Course::where('slug', $slug)->first();
+            return View::make('courses.purchased')->with( compact('course') );
+        }
                 
         public function crashLesson($slug, $lesson){
             if(Auth::guest()){

@@ -125,6 +125,7 @@ Route::post('courses/{slug}/purchase/{lesson}', 'CoursesController@purchaseLesso
 Route::post('courses/{slug}/crash/{lesson}', 'CoursesController@crashLesson');
 Route::post('courses/{slug}/crash/', 'CoursesController@crashCourse');
 Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
+Route::get('courses/{slug}/purchased', 'CoursesController@purchased');
 Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
 Route::get('courses/{slug}/dashboard', 'CoursesController@dashboard');
 
