@@ -10,7 +10,7 @@
     <div class='col-md-2'>
         <div class="form-group">
             <div class='input-group date' id='start-date'>
-                <input type='text' class="form-control" id="{{$objNames['startDate']}}" name="{{$objNames['startDate']}}" value="{{!empty($startDate) ? $startDate : ''}}" />
+                <input type='text' class="form-control" id="{{$objNames['startDate']}}" name="{{$objNames['startDate']}}" placeholder="{{trans('analytics.alltime')}}" value="{{!empty($startDate) ? $startDate : 'All Time'}}" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
             </div>
@@ -20,7 +20,7 @@
     <div class='col-md-2'>
         <div class="form-group">
             <div class='input-group date' id='end-date'>
-                <input type='text' class="form-control" id="{{$objNames['endDate']}}" name="{{$objNames['endDate']}}" value="{{!empty($endDate) ? $endDate : ''}}"/>
+                <input type='text' class="form-control" id="{{$objNames['endDate']}}" name="{{$objNames['endDate']}}" placeholder="{{trans('analytics.alltime')}}" value="{{!empty($endDate) ? $endDate : 'All Time'}}"/>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
             </div>
@@ -38,25 +38,29 @@
     </div>
 </div>
 {{Form::close()}}
-<table class="table table-striped">
-    <tbody>
-    <th>Rank</th>
-    <th>Course</th>
-    <th>Category</th>
-    <th>Sales(#)</th>
-    <th>Sales(¥)</th>
-    </tbody>
-    <tbody>
-    @foreach($courses as $index => $course)
-        <tr>
-            <td>{{$index+1}}</td>
-            <td>{{$course->course_name}}</td>
-            <td><a href="{{url('dashboard/admin/category/' . $course->course_category_id . '/' . $freeCourse)}}">{{$course->category_name}}</a></td>
-            <td>{{$course->sales_count}}</td>
-            <td>¥{{number_format($course->total_sales)}}</td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
-<?php Paginator::setPageName('page_' . $freeCourse); ?>
-{{$courses->appends($appendThis)->links()}}
+
+<div class="table-and-pagination">
+    <table class="table table-striped">
+        <tbody>
+        <th>Rank</th>
+        <th>Course</th>
+        <th>Category</th>
+        <th>Sales(#)</th>
+        <th>Sales(¥)</th>
+        </tbody>
+        <tbody>
+        @foreach($courses as $index => $course)
+            <tr>
+                <td>{{$index+1}}</td>
+                <td>{{$course->course_name}}</td>
+                <td><a href="{{url('dashboard/admin/category/' . $course->course_category_id . '/' . $freeCourse)}}">{{$course->category_name}}</a></td>
+                <td>{{$course->sales_count}}</td>
+                <td>¥{{number_format($course->total_sales)}}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <?php Paginator::setPageName('page_' . $freeCourse); ?>
+    {{$courses->appends($appendThis)->links()}}
+</div>
+

@@ -68,6 +68,14 @@ Route::group(['prefix' => 'administration'], function (){
     Route::resource('course-difficulties', 'CourseDifficultiesController');
 });
 
+// Affiliate promote links
+Route::group(['prefix' => 'affiliate'], function (){
+    Route::get('promote/{course}', 'AffiliateController@promote');
+    Route::post('gifts/{gift}/files', 'GiftsController@files');
+    Route::resource('gifts', 'GiftsController');
+    Route::resource('giftsfile', 'GiftsFileController');
+});
+
 // Students
 Route::group(['prefix' => 'student'], function (){
     Route::get('mycourses', 'StudentController@mycourses');
@@ -117,6 +125,7 @@ Route::post('courses/{slug}/purchase/{lesson}', 'CoursesController@purchaseLesso
 Route::post('courses/{slug}/crash/{lesson}', 'CoursesController@crashLesson');
 Route::post('courses/{slug}/crash/', 'CoursesController@crashCourse');
 Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
+Route::get('courses/{slug}/purchased', 'CoursesController@purchased');
 Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
 Route::get('courses/{slug}/dashboard', 'CoursesController@dashboard');
 

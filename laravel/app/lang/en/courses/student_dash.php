@@ -27,4 +27,5 @@ return array(
     'continue' => 'Continue',
     'where-you-left-off' => 'Where you left off',
     'finished-all' => 'Finished all lessons',
+    'your-gift' => 'Your Gift',
 );

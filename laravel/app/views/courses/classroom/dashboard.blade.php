@@ -75,6 +75,23 @@
                 @endif
             </section>
             <section class="classroom-content container">
+                @if( $gift !=null)
+                    <div class="row">
+                    <div class="col-md-12 additional-lesson-conntent">
+                        <h3 style="text-transform: capitalize">{{ trans('courses/student_dash.your-gift') }}</h3>
+                        <div class='alert alert-info'>
+                            {{ $gift->text }}
+                        
+                            @foreach($gift->files as $file)
+                                <p class='well well-sm'>
+                                    {{$file->name}}
+                                    <a href='{{$file->url}}' class='btn btn-primary pull-right'>{{ trans('courses/student_dash.download') }}</a>
+                                </p>
+                            @endforeach
+                            </div>
+                    </div>
+                </div>
+                @endif
                 
             	<div class="row">
                     <div class="col-md-12 additional-lesson-conntent">

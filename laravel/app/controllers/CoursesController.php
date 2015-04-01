@@ -249,6 +249,13 @@ class CoursesController extends \BaseController {
             $course = Course::where('slug', $slug)->first();
             $student = Student::current(Auth::user());
             $purchaseData = [];
+            // gift
+            if(Input::get('gid') !=''){
+                $gift = Gift::find( PseudoCrypt::unhash(Input::get('gid')) );
+                if($gift && $gift->affiliate_id == Input::get('aid')){
+                    $purchaseData['giftID'] = $gift->id;
+                }
+            }
             $purchaseData['productID'] = $course->id;
             $purchaseData['productType'] = 'Course';
             $purchaseData['originalCost'] = $course->price;
@@ -304,6 +311,11 @@ class CoursesController extends \BaseController {
             
             return Redirect::action('PaymentController@index');
             
+        }
+        
+        public function purchased($slug){
+            $course = Course::where('slug', $slug)->first();
+            return View::make('courses.purchased')->with( compact('course') );
         }
                 
         public function crashLesson($slug, $lesson){

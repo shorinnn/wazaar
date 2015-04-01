@@ -128,7 +128,7 @@ class Student extends User{
         
         $purchase->processor_fee = $paymentData['successData']['processor_fee'];
         $purchase->tax = $paymentData['successData']['tax'];
-        
+        $purchase->gift_id = $paymentData['successData']['giftID'];
         if( $paymentData['successData']['balance_used'] > 0 ){
             $purchase->balance_used = $paymentData['successData']['balance_used'];
             $purchase->balance_transaction_id = $paymentData['successData']['balance_transaction_id'];
@@ -139,6 +139,7 @@ class Student extends User{
         $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product, $purchase->processor_fee);
         $purchase->site_earnings = PurchaseHelper::siteEarnings($product,  $paymentData['successData']['processor_fee'] );
         $purchase->payment_ref = $paymentData['successData']['REF'];
+        $purchase->order_id = $paymentData['successData']['ORDERID'];
         /************ Money fields **************/
         if( strtolower( get_class($product) ) == 'course' && $product->payment_type=='subscription' ){
             $purchase->subscription_start = date( 'Y-m-d H:i:s' );

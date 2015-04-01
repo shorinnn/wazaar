@@ -10,5 +10,7 @@ var js_translation_map = {
     "Request failed: an error occurred" : "荷Request failed: an error occurred荷",
     "Nothing more to load" : "フNothing more to loadた",
     "Message Sent" : "フMessage Sentた",
-    "reply" : "節reply約"
+    "reply" : "節reply約",
+    "Copy to clipboard" : "節Copy to clipboard約",
+    "Copied!" : "節Copied!約"
 };

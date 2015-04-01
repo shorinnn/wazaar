@@ -10,5 +10,7 @@ var js_translation_map = {
     "Request failed: an error occurred" : "Request failed: an error occurred",
     "Nothing more to load" : "Nothing more to load",
     "Message Sent" : "Message Sent",
-    "reply" : "reply"
+    "reply" : "reply",
+    "Copy to clipboard" : "Copy to clipboard",
+    "Copied!" : "Copied!"
 };

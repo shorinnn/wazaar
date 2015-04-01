@@ -5,6 +5,12 @@
 // JavaScript Document
 var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 $(document).ready(function(){
+    
+    
+    
+    $('.tooltipable').tooltip();
+    enableClipboard();
+
     $('#curriculum .lessons').jScrollPane();
     $(".profile-name > li").removeClass("activate-dropdown");
     $('body').delegate('.slide-toggler', 'click', slideToggle);
@@ -31,6 +37,26 @@ $(document).ready(function(){
 	insertSelectBorder();
 	askTeacherQuestion();
 });
+
+function enableClipboard(){
+    var client = new ZeroClipboard($(".clipboardable"));
+    $('.clipboardable').closest('.tooltipable').attr('title', _('Copy to clipboard') );
+    $('.clipboardable').closest('.tooltipable').on('mouseout', function(){
+        $(this).attr('title', _('Copy to clipboard') );
+        $(this).attr('data-original-title', _('Copy to clipboard') );
+    });
+    
+    client.on( "ready", function( readyEvent ) {
+      client.on( "aftercopy", function( event ) {
+        // `this` === `client`
+        // `event.target` === the element that was clicked
+        $(event.target).closest('.tooltipable').attr('title', _('Copied!') );
+        $(event.target).closest('.tooltipable').attr('data-original-title', _('Copied!') );
+        $(event.target).closest('.tooltipable').tooltip('show');
+      } );      
+    } );
+    $('.tooltipable').tooltip();
+}
 
 function goTo(e){
     window.location = $(e.target).attr('data-url');
@@ -1006,6 +1032,7 @@ var delay = (function () {
 	};
 })();
 
+
 function askTeacherQuestion(){
 	$('#show-teacher-questions').on('click', function(){
 		/*var containerHeight = $('#lesson-ask-teacher-section').height();
@@ -1014,4 +1041,3 @@ function askTeacherQuestion(){
 		$('#lesson-ask-teacher-section').toggleClass('hide-teacher-questions');
 	});
 }
-

@@ -85,6 +85,7 @@
         
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
+        <script src="{{url("plugins/zero-clipboard/ZeroClipboard.min.js")}}"></script>
 
     @else
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -110,6 +111,8 @@
 
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
+        <script src="{{url("plugins/zero-clipboard/ZeroClipboard.min.js")}}"></script>
+        
 
     @endif
         <script>
