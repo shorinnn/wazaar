@@ -27,4 +27,5 @@ return array(
     'continue' => '月Continueせ',
     'where-you-left-off' => '月Where you left offせ',
     'finished-all' => '月Finished all lessonsせ',
+    'your-gift' => '月Your Giftせ',
 );

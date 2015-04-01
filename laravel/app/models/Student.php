@@ -139,6 +139,7 @@ class Student extends User{
         $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product, $purchase->processor_fee);
         $purchase->site_earnings = PurchaseHelper::siteEarnings($product,  $paymentData['successData']['processor_fee'] );
         $purchase->payment_ref = $paymentData['successData']['REF'];
+        $purchase->order_id = $paymentData['successData']['ORDERID'];
         /************ Money fields **************/
         if( strtolower( get_class($product) ) == 'course' && $product->payment_type=='subscription' ){
             $purchase->subscription_start = date( 'Y-m-d H:i:s' );

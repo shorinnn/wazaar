@@ -58,4 +58,9 @@ return array(
     'my-courses' => '月My Courseせ',
     'you-have-no-courses' => '月You have no courseせ',
     'go-to-dashboard' => '月Go to Dashboardせ',
+    'you-have-enrolled' => '月You have enrolled inせ', 
+    'begin-my-learning' => '月Begin My Learningせ', 
+    'NEXT-LESSON' => '月NEXT LESSONせ', 
+    'PREV-LESSON' => '月PREVIOUS LESSONせ',
+    'ask-teacher' => '月Ask Teacherせ',  
 );

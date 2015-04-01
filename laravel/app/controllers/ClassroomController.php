@@ -41,11 +41,11 @@ class ClassroomController extends \BaseController {
             if( $video ) $video = $video->blocks()->where('type','video')->first();
 //            $video = $course->videoBlocks();
 //            if($video!=null) $video = $video->first();
+            $gift = $student->purchases()->where('product_id', $course->id)->where('product_type','course')->first()->gift;
             if(Request::ajax()){
                 return View::make('courses.classroom.course_comments_ajax')->with( compact('course') );
             }
-            return View::make('courses.classroom.dashboard')->with( compact('course') )->with( compact('student') )->with( compact('video') )
-                    ->with( compact('nextLesson') );
+            return View::make('courses.classroom.dashboard')->with( compact('course', 'student', 'video', 'nextLesson', 'gift') );
         }
         
         public function testimonial($slug){
@@ -95,12 +95,13 @@ class ClassroomController extends \BaseController {
                 $query->where('sender_id', Auth::user()->id)->orWhere('recipient_id', Auth::user()->id);
             })->orderBy('id','desc')->paginate( 2 );
             
-            
+            $nextLesson = $lesson->next();
+            $prevLesson = $lesson->prev();
             if(Request::ajax()){
                 if( Input::has('ask') ) return View::make('courses.classroom.lesson_ask_ajax')->with( compact('lesson') );
                 else return View::make('courses.classroom.lesson_comments_ajax')->with( compact('lesson') );
             }
-            else return View::make('courses.classroom.lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
+            else return View::make('courses.classroom.lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson') );
         }
 
 }
