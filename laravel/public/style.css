@@ -3116,7 +3116,7 @@ a.load-remote > *{
 }
 
 .users-comments .comment .info{
-	margin-left: 14.3%;
+	margin-left: 14%;
 	padding-bottom: 9px;
 }
 
@@ -3138,7 +3138,7 @@ a.load-remote > *{
 
 .users-comments .comment .info span.time-of-reply{
 	float: right;
-	margin-right: 2.3%;
+	margin-right: 3.5%;
 }
 
 .users-comments .comment .info a.reply-link,
@@ -3175,7 +3175,7 @@ a.load-remote > *{
 	min-height: 80px;
 	border-radius: 10px;
 	background: #b0bfc1;
-	padding: 16px 20px;
+	padding: 10px 20px;
 	font-size: 14px;
 	color: #fff;
 	line-height: 28px;
