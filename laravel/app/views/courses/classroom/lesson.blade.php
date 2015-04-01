@@ -110,9 +110,18 @@
                     </div>
                 </div>
             </section>
-
+            
+			<section class="classroom-content container">
+            	<div class="row">
+                	<div class="col-md-12">
+                		<span id="show-teacher-questions">Ask Teacher</span>                    
+                    </div>
+                </div>
+            </section>
+            
             @if($course->ask_teacher == 'enabled')
-                <section class="classroom-content container"><a name='ask-teacher'></a>
+                <section class="classroom-content container" id="lesson-ask-teacher-section">
+                	<a name='ask-teacher'></a>
                     <div class="row classmate-conversations-heading">
                             <div class="col-md-12">
                             <p class="lead">{{trans('conversations/general.ask-the-teacher')}}:</p>
@@ -125,11 +134,26 @@
                     <div class='ask-content fa-animated'>
                         {{ View::make('private_messages.all')->withComments( $lesson->ask_teacher_messages ) }}
                         <br />
+                        
                         <div class="text-center load-remote" data-target='.ask-content' data-load-method="fade">
                             {{ $lesson->ask_teacher_messages->appends( [ 'ask' => 1 ] )->links() }}
                         </div>
                     </div>
                 </section>
+                <div class="clearfix container">
+                	<div class="row">
+                    	<div class="col-md-12">
+                            <a href="#" class="previous-lesson-button left">
+                                PREVIOUS LESSON
+                                <span>LESSON NAME</span>
+                            </a>
+                            <a href="#" class="previous-lesson-button right">
+                                NEXT LESSON
+                                <span>LESSON NAME</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             @endif
             
             <section class="container-fluid become-an-instructor">

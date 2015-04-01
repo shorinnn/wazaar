@@ -31,7 +31,11 @@ class DatabaseSeeder extends Seeder {
                  $this->call('PMSeeder');
                  $this->call('TransactionsSeeder');
                  $this->call('FrontpageVideosSeeder');
+<<<<<<< HEAD
                  $this->call('GiftSeeder');
+=======
+         $this->call('AffiliateUsersSeeder');
+>>>>>>> c4faee836f0bc3ed3a612df37cf42c00dc56911c
 	}
 
 }
@@ -68,6 +72,8 @@ class UserTableSeeder extends Seeder {
 
     public function run()
     {
+
+
         DB::table('users')->delete();
         $user = new User;
         $user->username = 'superadmin';
@@ -79,6 +85,7 @@ class UserTableSeeder extends Seeder {
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
+
         $user->username = 'WazaarAffiliate';
         $user->affiliate_id = '2';
         $user->email = 'wazaarAffiliate@wazaar.jp';
@@ -89,7 +96,9 @@ class UserTableSeeder extends Seeder {
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
 
-        
+
+
+
         $user = new User;
         $user->ltc_affiliate_id = 2;
         $user->username = 'student';
@@ -116,6 +125,8 @@ class UserTableSeeder extends Seeder {
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->instructor_balance = 60;
         $user->save();
+        Profile::create( ['owner_id' => $user->id, 'owner_type' => 'Affiliate','first_name' => 'Instructor', 'last_name' => 'McInstructor', 'email' => 'instructor@mailinator.com']);
+
         $user = new User;
         $user->affiliate_id = '5';
         $user->ltc_affiliate_id = 2;
@@ -953,6 +964,8 @@ class ProfileSeeder extends Seeder {
     {
         DB::table('user_profiles')->delete();
         Profile::unguard();
+        Profile::create( ['owner_id' => 2, 'owner_type' => 'Affiliate','first_name' => 'Wazaar', 'last_name' => 'Affiliate', 'email' => 'wazaarAffiliate@wazaar.jp', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 'created_at' => \Carbon\Carbon::now()]);
+        Profile::create( ['owner_id' => 5, 'owner_type' => 'Instructor','first_name' => 'Wazaar', 'last_name' => 'Instructor', 'email' => 'wazaarInstructor@wazaar.jp', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 'created_at' => \Carbon\Carbon::now()]);
         Profile::create( ['owner_id' => 11, 'owner_type' => 'Instructor','first_name' => 'Keiji', 'last_name' => 'Tani', 'email' => 'Tani@mailinator.com',
             'bio' => '谷啓嗣（たにけいじ） <br />
 1986年2月15日生まれ　香川県出身<br />
@@ -993,7 +1006,7 @@ class ProfileSeeder extends Seeder {
 谷の指導を求めるパーソナルトレーニングは<br />
 半年先まで予約が埋まっている。',
             'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg'] );
-       
+
     }
 }
 

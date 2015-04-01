@@ -34,7 +34,8 @@ $(document).ready(function(){
     scrollNavigation();
 	fullScreen();
 	skinVideoControls();
-	insertSelectBorder()
+	insertSelectBorder();
+	askTeacherQuestion();
 });
 
 function enableClipboard(){
@@ -1032,3 +1033,11 @@ var delay = (function () {
 })();
 
 
+function askTeacherQuestion(){
+	$('#show-teacher-questions').on('click', function(){
+		/*var containerHeight = $('#lesson-ask-teacher-section').height();
+		TweenMax.fromTo("#lesson-ask-teacher-section", 0.7, {}, {});*/
+		
+		$('#lesson-ask-teacher-section').toggleClass('hide-teacher-questions');
+	});
+}

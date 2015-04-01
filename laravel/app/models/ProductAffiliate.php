@@ -98,5 +98,15 @@ class ProductAffiliate extends User{
         return null;
     }
 
+    public static function profileLists()
+    {
+        $profiles = Profile::where('owner_type', 'Affiliate')->get();
+
+        if ($profiles){
+            return [''] + $profiles->lists('full_name','owner_id');
+        }
+
+        return [];
+    }
 
 }
