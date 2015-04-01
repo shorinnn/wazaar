@@ -10,7 +10,7 @@
         display:inline-block;
     }
     </style>
-@if(Auth::user()->hasRole('Affiliate'))
+@if(Auth::check() && Auth::user()->hasRole('Affiliate'))
 <div style="background-color:silver;" class='text-center'>
     <a href='{{ action('AffiliateController@promote', $course->slug)}}' class='btn btn-warning btn-sm'>{{ trans('courses/promote.promote') }}</a>
 </div>
@@ -62,7 +62,8 @@
                              @endif
                             <span>{{ trans("courses/general.enroll_for") }} ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</span>
                                 </button>
-
+                             <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
+                             <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
                             {{Form::close()}}
                             @if($course->isDiscounted())
                                 <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 

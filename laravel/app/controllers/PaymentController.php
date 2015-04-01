@@ -41,6 +41,8 @@ class PaymentController extends BaseController
         $balanceTransactionID = $paymentData['balanceTransactionID'];
         $balanceUsed          = $paymentData['balanceUsed'];
         $paymentType          = $paymentData['paymentType'];
+        // sorin: gift id 
+        $giftID          = isset( $paymentData['giftID'] )? $paymentData['giftID'] : null;
 
         $renderForm = true;
         $tax           = Config::get('wazaar.TAX');
@@ -50,7 +52,7 @@ class PaymentController extends BaseController
         $amountToPay = ceil($finalCost + $taxValue);
 
         $checkoutData = compact('productType', 'productID', 'finalCost', 'originalCost', 'discount', 'costWithNoTax',
-                                'taxValue', 'balanceTransactionID', 'balanceUsed', 'paymentType','amountToPay', 'tax');
+                                'taxValue', 'balanceTransactionID', 'balanceUsed', 'paymentType','amountToPay', 'tax', 'giftID');
         //Put the values into a session for use during submission to payment center
         Session::put($checkoutData);
         $product                                = $this->_getProductDetailsByTypeAndID($productType, $productID);
@@ -120,6 +122,7 @@ class PaymentController extends BaseController
                     $payment['successData']['amount_sent_to_processor'] = Session::get('amountToPay');
                     $payment['successData']['balance_transaction_id'] = Session::get('balanceTransactionID');
                     $payment['successData']['balance_used'] = Session::get('balanceUsed');
+                    $payment['successData']['giftID'] = Session::get('giftID');
 
                     // cookie name contains only the course id, so if this is a lesson, fetch the course id
                     $cookie_id = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
@@ -129,6 +132,7 @@ class PaymentController extends BaseController
                     }
                     Session::forget('productType');
                     Session::forget('productID');
+                    Session::forget('giftID');
                     $redirectUrl = 'courses/' . $product->slug . '/purchased';
                     return Redirect::to($redirectUrl)->with('purchaseId', $purchase->id);
                 } else {

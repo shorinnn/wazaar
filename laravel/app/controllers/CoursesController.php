@@ -249,6 +249,13 @@ class CoursesController extends \BaseController {
             $course = Course::where('slug', $slug)->first();
             $student = Student::current(Auth::user());
             $purchaseData = [];
+            // gift
+            if(Input::get('gid') !=''){
+                $gift = Input::find( PseudoCrypt::unhash(Input::get('gid')) );
+                if($gift && $gift->affiliate_id == Input::get('aid')){
+                    $purchaseData['giftID'] = $gift->id;
+                }
+            }
             $purchaseData['productID'] = $course->id;
             $purchaseData['productType'] = 'Course';
             $purchaseData['originalCost'] = $course->price;
