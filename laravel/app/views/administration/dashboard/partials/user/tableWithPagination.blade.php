@@ -20,5 +20,5 @@
 </table>
 <div class="pagination-top-affiliates">
     <?php Paginator::setPageName('page_aff'); ?>
-    {{$topAffiliates->appends(Input::only('startDate','endDate','affiliateId'))->links()}}
+    {{$topAffiliates->appends(Input::only('taStartDate','taEndDate','affiliateId','sortOrder'))->links()}}
 </div>

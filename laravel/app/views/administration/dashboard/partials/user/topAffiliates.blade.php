@@ -1,10 +1,10 @@
 <h3>Top Affiliates</h3>
 <hr/>
-{{Form::open(['action' => 'AdminDashboardController@index'])}}
+{{Form::open(['id' => 'form-affiliates'])}}
 <div class="row margin-bottom-20">
 
-    <div class="col-md-2">
-        <h4 class="date-range-header">Date Range</h4>
+    <div class="col-md-1">
+        <h4 class="date-range-header">Filter</h4>
     </div>
 
     <div class='col-md-2'>
@@ -27,17 +27,24 @@
         </div>
     </div>
 
-    <div class='col-md-3'>
+    <div class='col-md-2'>
         <div class="form-group">
-            {{Form::select('affiliateId',ProductAffiliate::profileLists(),$affiliateId,['class' => 'form-control', 'id' => 'affiliateId'])}}
+            {{Form::select('affiliateId',ProductAffiliate::profileLists(),0,['class' => 'form-control', 'id' => 'affiliateId'])}}
         </div>
     </div>
 
-    <div class="col-md-3">
-        <button type="button" class="btn btn-primary" id="btn-update-chart">Apply Filter</button>
+    <div class='col-md-3'>
+        <div class="form-group">
+            {{Form::select('sortOrder', AdminHelper::sortOptions() ,0,['class' => 'form-control', 'id' => 'sortOrder'])}}
+        </div>
+    </div>
+
+
+    <div class="col-md-2">
+        <button type="button" class="btn btn-primary" id="btn-apply-filter-affiliates" data-loading-text="Loading...">Apply Filter</button>
     </div>
 </div>
 {{Form::close()}}
-<div class="table-and-pagination">
+<div class="affiliates-table-and-pagination">
     {{$topAffiliatesTable}}
 </div>
