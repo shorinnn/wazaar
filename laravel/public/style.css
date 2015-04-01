@@ -2719,6 +2719,64 @@ header .activate-dropdown:hover ul{
 	background: #f8f8f8;
 }
 
+#lesson-ask-teacher-section{
+	opacity: 1;
+	visibility: visible;
+	overflow: hidden;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.hide-teacher-questions{
+	opacity: 0 !important;
+	visibility: hidden !important;
+	display: none;
+}
+
+.next-lesson-button,
+.previous-lesson-button,
+#show-teacher-questions{
+	display: inline-block;
+	padding: 10px 20px;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 5px;
+	margin-top: 20px;
+	cursor: pointer;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+	width: 100%;
+	text-align: center;
+	background: -moz-linear-gradient(left, #6ddf77, #8fe754, #acee36);
+	background: -webkit-linear-gradient(left, #6ddf77, #8fe754, #acee36);
+	background: -o-linear-gradient(left, #6ddf77, #8fe754, #acee36);
+	background: -ms-linear-gradient(left, #6ddf77, #8fe754, #acee36);
+	background: linear-gradient(left, #6ddf77, #8fe754, #acee36);
+}
+
+.next-lesson-button:hover,
+.previous-lesson-button:hover,
+#show-teacher-questions:hover{
+	background: -moz-linear-gradient(left, #acee36, #8fe754, #6ddf77);
+	background: -webkit-linear-gradient(left, #acee36, #8fe754, #6ddf77);
+	background: -o-linear-gradient(left, #acee36, #8fe754, #6ddf77);
+	background: -ms-linear-gradient(left, #acee36, #8fe754, #6ddf77);
+	background: linear-gradient(left, #acee36, #8fe754, #6ddf77);
+}
+
+.next-lesson-button,
+.previous-lesson-button{
+	width: auto !important;
+}
+
+.next-lesson-button span,
+.previous-lesson-button span{
+	display: block;
+	font-size: 14px;
+}
+
 .classrooms-wrapper .become-an-instructor{
 	background: #fff;
 }
