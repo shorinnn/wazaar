@@ -95,12 +95,13 @@ class ClassroomController extends \BaseController {
                 $query->where('sender_id', Auth::user()->id)->orWhere('recipient_id', Auth::user()->id);
             })->orderBy('id','desc')->paginate( 2 );
             
-            
+            $nextLesson = $lesson->next();
+            $prevLesson = $lesson->prev();
             if(Request::ajax()){
                 if( Input::has('ask') ) return View::make('courses.classroom.lesson_ask_ajax')->with( compact('lesson') );
                 else return View::make('courses.classroom.lesson_comments_ajax')->with( compact('lesson') );
             }
-            else return View::make('courses.classroom.lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
+            else return View::make('courses.classroom.lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson') );
         }
 
 }

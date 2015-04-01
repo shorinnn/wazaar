@@ -90,37 +90,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="row classmate-conversations-heading">
-                	<div class="col-md-12">
-                        <p class="lead">{{trans('conversations/general.Conversations')}}:</p>
-                    </div>
-                </div>
-            </section>
-            <section class="classroom-content container">
-            @if( Auth::check() )
-                {{ View::make('courses.classroom.conversations.form')->with( compact('lesson') ) }}
-            @endif
-            
-                <div class='ajax-content fa-animated'>
-                    {{ View::make('courses.classroom.conversations.all')->withComments( $lesson->comments ) }}
-                    <br />
-                    <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
-                        
-                        {{ $lesson->comments->links() }}
-                    </div>
-                </div>
-            </section>
-            
-			<section class="classroom-content container">
-            	<div class="row">
-                	<div class="col-md-12">
-                		<span id="show-teacher-questions">Ask Teacher</span>                    
-                    </div>
-                </div>
+                
             </section>
             
             @if($course->ask_teacher == 'enabled')
-                <section class="classroom-content container" id="lesson-ask-teacher-section">
+                @if( $lesson->ask_teacher_messages->count() == 0)
+                    <section class="classroom-content container">
+                        <div class="row">
+                                <div class="col-md-12">
+                                        <span id="show-teacher-questions">{{ trans('courses/general.ask-teacher') }}</span>                    
+                            </div>
+                        </div>
+                    </section>
+                @endif
+                <section class="classroom-content container
+                         @if( $lesson->ask_teacher_messages->count() == 0)
+                             hide-teacher-questions
+                         @endif
+                         " id="lesson-ask-teacher-section">
                 	<a name='ask-teacher'></a>
                     <div class="row classmate-conversations-heading">
                             <div class="col-md-12">
@@ -140,21 +127,62 @@
                         </div>
                     </div>
                 </section>
-                <div class="clearfix container">
-                	<div class="row">
-                    	<div class="col-md-12">
-                            <a href="#" class="previous-lesson-button left">
-                                PREVIOUS LESSON
-                                <span>LESSON NAME</span>
-                            </a>
-                            <a href="#" class="previous-lesson-button right">
-                                NEXT LESSON
-                                <span>LESSON NAME</span>
-                            </a>
-                        </div>
+                
+            @endif
+            
+            
+            <section class="classroom-content container">
+                <div class="row classmate-conversations-heading">
+                	<div class="col-md-12">
+                        <p class="lead">{{trans('conversations/general.Conversations')}}:</p>
                     </div>
                 </div>
+                
+            @if( Auth::check() )
+                {{ View::make('courses.classroom.conversations.form')->with( compact('lesson') ) }}
             @endif
+            
+                <div class='ajax-content fa-animated'>
+                    {{ View::make('courses.classroom.conversations.all')->withComments( $lesson->comments ) }}
+                    <br />
+                    <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
+                        
+                        {{ $lesson->comments->links() }}
+                    </div>
+                </div>
+            </section>
+            
+            <div class="clearfix container">
+                    <div class="row">
+                    <div class="col-md-12">
+                        @if( $prevLesson )
+                        <a href="{{ action('ClassroomController@lesson',[
+                            'course' => $prevLesson->module->course->slug, 
+                                              'module' => $prevLesson->module->slug, 
+                                              'lesson' => $prevLesson->slug 
+                        ]) }}"  class="previous-lesson-button left">
+                            {{ trans('courses/general.PREV-LESSON')}}
+                            <span>{{ $prevLesson->name }}</span>
+                        </a>
+                        @endif
+                        
+                        @if( $nextLesson )
+                        <a href="{{ action('ClassroomController@lesson',[
+                            'course' => $nextLesson->module->course->slug, 
+                                              'module' => $nextLesson->module->slug, 
+                                              'lesson' => $nextLesson->slug 
+                        ]) }}" class="previous-lesson-button right">
+                            {{ trans('courses/general.NEXT-LESSON')}}
+                            <span>{{ $nextLesson->name }}</span>
+                        </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
             
             <section class="container-fluid become-an-instructor">
                 <div class="container">
