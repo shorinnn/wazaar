@@ -109,7 +109,7 @@ class PaymentController extends BaseController
 //                    echo '<pre>';
 //                    print_r($payment);
 //                    echo '</pre>';
-                    $orderId = $payment['successData']['ROW']['ORDERID'];
+                    $orderId = $payment['successData']['ORDERID'];
                     $createProfile = $this->paymentHelper->processCreateProfileFromOrderId($orderId);
 //                    echo '<pre>';
 //                    print_r($createProfile);
