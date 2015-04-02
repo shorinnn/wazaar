@@ -154,26 +154,31 @@
             
             <div class="clearfix container">
                     <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         @if( $prevLesson )
                         <a href="{{ action('ClassroomController@lesson',[
                             'course' => $prevLesson->module->course->slug, 
                                               'module' => $prevLesson->module->slug, 
                                               'lesson' => $prevLesson->slug 
                         ]) }}"  class="previous-lesson-button left">
-                            {{ trans('courses/general.PREV-LESSON')}}
-                            <span>{{ $prevLesson->name }}</span>
+                            <h2>
+                                {{ trans('courses/general.PREV-LESSON')}}
+                                <small>{{ $prevLesson->name }}</small>
+                            </h2>
                         </a>
                         @endif
-                        
+                    </div>
+                    <div class="col-md-6">
                         @if( $nextLesson )
                         <a href="{{ action('ClassroomController@lesson',[
                             'course' => $nextLesson->module->course->slug, 
                                               'module' => $nextLesson->module->slug, 
                                               'lesson' => $nextLesson->slug 
                         ]) }}" class="previous-lesson-button right">
-                            {{ trans('courses/general.NEXT-LESSON')}}
-                            <span>{{ $nextLesson->name }}</span>
+                            <h2>
+                                {{ trans('courses/general.NEXT-LESSON')}}
+                                <small>{{ $nextLesson->name }}</small>
+                            </h2>
                         </a>
                         @endif
                     </div>

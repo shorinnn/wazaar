@@ -810,9 +810,11 @@ header .activate-dropdown:hover ul{
   
 .small-box h2{
   	font-size:18px;
-  	color:#fff;
-  	font-weight: normal;  
+  	color:#333;
+  	font-weight: bold;
+	margin: 10px 0 8px;  
   	float:left;
+	line-height: 24px;
   	clear:both;    
   	text-align:left;
   	padding:0 10px;
@@ -2734,8 +2736,6 @@ header .activate-dropdown:hover ul{
 	display: none;
 }
 
-.next-lesson-button,
-.previous-lesson-button,
 #show-teacher-questions{
 	display: inline-block;
 	padding: 10px 20px;
@@ -2759,6 +2759,7 @@ header .activate-dropdown:hover ul{
 .next-lesson-button:hover,
 .previous-lesson-button:hover,
 #show-teacher-questions:hover{
+	color: #fff !important;
 	background: -moz-linear-gradient(left, #acee36, #8fe754, #6ddf77);
 	background: -webkit-linear-gradient(left, #acee36, #8fe754, #6ddf77);
 	background: -o-linear-gradient(left, #acee36, #8fe754, #6ddf77);
@@ -2768,13 +2769,34 @@ header .activate-dropdown:hover ul{
 
 .next-lesson-button,
 .previous-lesson-button{
-	width: auto !important;
+	width: 100%;
+	min-height: 100px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	margin-top: 60px;
+	padding: 0 20px;
+	text-align: center;
+	background: -moz-linear-gradient(left, #6ddf77, #8fe754, #acee36);
+	background: -webkit-linear-gradient(left, #6ddf77, #8fe754, #acee36);
+	background: -o-linear-gradient(left, #6ddf77, #8fe754, #acee36);
+	background: -ms-linear-gradient(left, #6ddf77, #8fe754, #acee36);
+	background: linear-gradient(left, #6ddf77, #8fe754, #acee36);
 }
 
-.next-lesson-button span,
-.previous-lesson-button span{
+.next-lesson-button h2,
+.previous-lesson-button h2{
+	font-size: 45px;
+	color: #fff;
+	font-weight: 200;
+	margin: 15px 0 20px;
+}
+
+.next-lesson-button h2 small,
+.previous-lesson-button h2 small{
 	display: block;
-	font-size: 14px;
+	font-size: 20px;
+	color: #fff;
+	font-weight: 200;
 }
 
 .classrooms-wrapper .become-an-instructor{
@@ -3062,7 +3084,7 @@ a.load-remote > *{
 
 .comment-section .comment-box img{
 	position: absolute;
-	left: 20px;
+	left: 10px;
 	top: 9px;
 }
 
@@ -3086,6 +3108,7 @@ a.load-remote > *{
 .users-comments > div{
 	width: 85.8%;
 	margin: auto;
+	padding-bottom: 33px;
 }
 
 .users-comments .comment{
@@ -3093,7 +3116,7 @@ a.load-remote > *{
 }
 
 .users-comments .comment .info{
-	margin-left: 14.3%;
+	margin-left: 14%;
 	padding-bottom: 9px;
 }
 
@@ -3115,7 +3138,7 @@ a.load-remote > *{
 
 .users-comments .comment .info span.time-of-reply{
 	float: right;
-	margin-right: 2.3%;
+	margin-right: 3.5%;
 }
 
 .users-comments .comment .info a.reply-link,
@@ -3152,10 +3175,10 @@ a.load-remote > *{
 	min-height: 80px;
 	border-radius: 10px;
 	background: #b0bfc1;
-	padding: 16px 20px;
+	padding: 10px 20px;
 	font-size: 14px;
 	color: #fff;
-	line-height: 24px;
+	line-height: 28px;
 	width: 87.9%;
 	max-width: 731px;
 	position: relative;
@@ -3389,7 +3412,7 @@ a.load-remote > *{
 }
 
 .classroom-content .comment-box button[type="submit"]{
-	margin: 20px 10px 20px 14px;
+	margin: 20px 10px 10px;
 	outline: none;
     background: #0099ff;
     border-color: #0099ff;
@@ -4797,7 +4820,7 @@ select::-ms-expand {
 	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-16.png') no-repeat center top;
 }
 	
-/* Tiny Carousel */
+/* Video Grid Carousel */
 
 .unauthenticated-homepage.thumb-carousel-section {
     overflow: hidden;
@@ -4811,6 +4834,50 @@ select::-ms-expand {
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0f4d79', endColorstr='#172735'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#0f4d79', endColorstr='#172735')"; /* IE8 */
 }
+
+/*.carousel {
+    height: 400px;
+    overflow: hidden;
+}
+.carousel .item {
+    -webkit-transition: opacity 1.5s;
+    -moz-transition: opacity 1.5s;
+    -ms-transition: opacity 1.5s;
+    -o-transition: opacity 1.5s;
+    transition: opacity 1.5s;
+}
+.carousel .active.left, .carousel .active.right {
+    left:0;
+    opacity:0;
+    z-index:2;
+}
+.carousel .next, .carousel .prev {
+    left:0;
+    opacity:1;
+    z-index:1;
+}
+
+@media all and (transform-3d), (-webkit-transform-3d) {
+    .carousel-fade .carousel-inner > .item.next,
+    .carousel-fade .carousel-inner > .item.active.right {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.prev,
+    .carousel-fade .carousel-inner > .item.active.left {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.next.left,
+    .carousel-fade .carousel-inner > .item.prev.right,
+    .carousel-fade .carousel-inner > .item.active {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+}*/
 
 #video-grid{
     margin: 0 auto;
