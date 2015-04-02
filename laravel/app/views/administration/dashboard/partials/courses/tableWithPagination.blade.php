@@ -9,8 +9,8 @@
     <tbody>
     @foreach($courses as $index => $course)
         <tr>
-            <td>{{$index+1}}</td>
-            <td>{{$course->course_name}}</td>
+            <td>{{( ($pageNumber-1) * Config::get('wazaar.PAGINATION')) + ($index + 1)}}</td>
+            <td><a href="{{url('courses/' . $course->slug)}}" target="_blank"> {{$course->course_name}}</a></td>
             <td><a href="{{url('dashboard/admin/category/' . $course->course_category_id . '/' . $freeCourse)}}">{{$course->category_name}}</a></td>
             <td>{{$course->sales_count}}</td>
             <td>¥{{number_format($course->total_sales)}}</td>
@@ -18,5 +18,7 @@
     @endforeach
     </tbody>
 </table>
-<?php Paginator::setPageName('page_' . $freeCourse); ?>
-{{$courses->appends($appendThis)->links()}}
+
+<div class="pagination-top-courses">
+    {{$courses->appends(Input::except('_token'))->links()}}
+</div>

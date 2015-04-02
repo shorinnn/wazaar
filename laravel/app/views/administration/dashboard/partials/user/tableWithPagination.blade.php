@@ -9,7 +9,7 @@
     <tbody>
     @foreach($topAffiliates as $index => $aff)
         <tr>
-            <td>{{$index+1}}</td>
+            <td>{{( ($pageNumber-1) * Config::get('wazaar.PAGINATION')) + ($index + 1)}}</td>
             <td>{{$aff->username}}</td>
             <td>{{$aff->full_name}}</td>
             <td>{{$aff->sales_count}}</td>
@@ -19,6 +19,5 @@
     </tbody>
 </table>
 <div class="pagination-top-affiliates">
-    <?php Paginator::setPageName('page_aff'); ?>
     {{$topAffiliates->appends(Input::only('taStartDate','taEndDate','affiliateId','sortOrder'))->links()}}
 </div>

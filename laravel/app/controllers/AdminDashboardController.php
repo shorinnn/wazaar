@@ -15,53 +15,22 @@ class AdminDashboardController extends BaseController
 
     public function index()
     {
-
-        $topAffiliatesTable = $this->topAffiliatesTableView();
-
-        ## Possible filters for Top Courses Free
-        $tcyStartDate = '';
-        $tcyEndDate = '';
-        $tcyCategoryId = Input::get('tcyCategoryId');
-
-        if (Input::has('tcyStartDate') AND Input::has('tcyEndDate')){
-            $tcyStartDate = Input::get('tcyStartDate');
-            $tcyEndDate = Input::get('tcyEndDate');
-        }
-
-
-        Paginator::setPageName('page_yes');
-        $topCoursesFree = $this->adminHelper->topCourses('yes',$tcyCategoryId,$tcyStartDate,$tcyEndDate);
-
-        ## Possible filters for Top Courses Paid
-        $tcnStartDate = '';
-        $tcnEndDate = '';
-        $tcnCategoryId = Input::get('tcnCategoryId');
-
-        if (Input::has('tcnStartDate') AND Input::has('tcnEndDate')){
-            $tcnStartDate = Input::get('tcnStartDate');
-            $tcnEndDate = Input::get('tcnEndDate');
-        }
-
-        Paginator::setPageName('page_no');
-        $topCoursesPaid = $this->adminHelper->topCourses('no',$tcnCategoryId,$tcnStartDate,$tcnEndDate);
-
-
-
-        $topCoursesFreeView = $this->_topCoursesView('yes', $topCoursesFree, $tcyCategoryId, $tcyStartDate, $tcyEndDate);
-
-        $topCoursesPaidView = $this->_topCoursesView('no',$topCoursesPaid, $tcnCategoryId, $tcnStartDate, $tcnEndDate);
-
         $userCountView = $this->userCountView();
         $salesTotalView =  Route::dispatch(Request::create('dashboard/sales/daily', 'GET'))->getContent();
         $salesCountView = $this->salesCountView();
 
-        return View::make('administration.dashboard.index', compact('userCountView', 'salesTotalView', 'salesCountView', 'topAffiliatesTable', 'affiliateId', 'topCoursesFreeView', 'topCoursesPaidView'));
+        $topAffiliatesTable = $this->topAffiliatesTableView(0,'','',false);
+        $topCoursesFreeView = $this->_topCoursesView('yes',false);
+        $topCoursesPaidView = $this->_topCoursesView('no',false);
+
+        return View::make('administration.dashboard.index', compact('userCountView', 'salesTotalView', 'salesCountView', 'topAffiliatesTable', 'topCoursesFreeView', 'topCoursesPaidView'));
     }
 
 
-    public function topAffiliatesTableView($affiliateId = 0,$taStartDate = '', $taEndDate = '')
+    public function topAffiliatesTableView($affiliateId = 0,$taStartDate = '', $taEndDate = '', $returnAsJson = true)
     {
         $sortOrder = 0;
+        $pageNumber = Input::has('page') ? Input::get('page') : 1;
 
         if (Input::has('taStartDate') OR Input::has('affiliateId')){
             $affiliateId = Input::get('affiliateId');
@@ -70,14 +39,37 @@ class AdminDashboardController extends BaseController
             $sortOrder = Input::get('sortOrder');
         }
 
-        Paginator::setPageName('page_aff');
         $topAffiliates = $this->adminHelper->topAffiliates($affiliateId,$taStartDate, $taEndDate,$sortOrder);
         $topAffiliates->setBaseUrl('dashboard/admin/affiliatestable');
 
-        $view = View::make('administration.dashboard.partials.user.tableWithPagination',compact('topAffiliates', 'affiliateId', 'taStartDate', 'taEndDate'))->render();
+        $view = View::make('administration.dashboard.partials.user.tableWithPagination',compact('topAffiliates', 'affiliateId', 'taStartDate', 'taEndDate', 'pageNumber'))->render();
 
 
-        if (Input::has('taStartDate') OR Input::has('affiliateId') OR Input::has('page_aff')){
+        if ($returnAsJson){
+            return Response::json(['html' => $view]);
+        }
+        else {
+            return $view;
+        }
+    }
+
+    public function topCoursesTableView($freeCourse = 'no', $categoryId = 0, $startDate = '', $endDate = '', $returnAsJson = true)
+    {
+        $pageNumber = Input::has('page') ? Input::get('page') : 1;
+        $sortOrder = 0;
+        if (Input::has('categoryId') OR Input::has('startDate') OR Input::has('endDate')){
+            $categoryId = Input::get('categoryId');
+            $startDate = Input::get('startDate');
+            $endDate = Input::get('endDate');
+            $sortOrder = Input::get('sortOrder');
+        }
+
+        $courses = $this->adminHelper->topCourses($freeCourse,$categoryId,$startDate,$endDate,true, $sortOrder);
+        $courses->setBaseUrl('dashboard/admin/courses/' . $freeCourse);
+
+        $view = View::make('administration.dashboard.partials.courses.tableWithPagination',compact('courses', 'freeCourse', 'pageNumber'))->render();
+
+        if ($returnAsJson){
             return Response::json(['html' => $view]);
         }
         else {
@@ -101,19 +93,10 @@ class AdminDashboardController extends BaseController
         return View::make('administration.dashboard.coursesByCategory',compact('categoryId', 'freeCourse', 'courses', 'startDate', 'endDate'));
     }
 
-    private function _topCoursesView($freeCourse = 'no', $courses, $categoryId, $startDate, $endDate)
+    private function _topCoursesView($freeCourse = 'no', $returnAsJson = true)
     {
-        if ($freeCourse == 'no'){
-            $objNames = ['categoryId' => 'tcnCategoryId', 'startDate' => 'tcnStartDate', 'endDate' => 'tcnEndDate'];
-        }
-        else{
-            $objNames = ['categoryId' => 'tcyCategoryId', 'startDate' => 'tcyStartDate', 'endDate' => 'tcyEndDate'];
-        }
-
-        $appendThis = [$objNames['categoryId'] => $categoryId,$objNames['startDate'] => $startDate, $objNames['endDate'] => $endDate];
-
-        $data = compact('freeCourse', 'courses', 'categoryId', 'startDate', 'endDate', 'objNames','appendThis');
-
+        $topCoursesTableView = $this->topCoursesTableView($freeCourse,0,'','',$returnAsJson);
+        $data = compact('freeCourse', 'topCoursesTableView');
         return View::make('administration.dashboard.partials.courses.count', $data)->render();
     }
 

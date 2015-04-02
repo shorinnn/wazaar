@@ -37,7 +37,7 @@ class AdminHelper
         return $this->_topAffiliates($filter, $sortOrders[$sortOrder])->paginate(Config::get('wazaar.PAGINATION'));
     }
 
-    public function topCourses($freeProduct = 'no', $categoryId = 0, $startDate = '', $endDate = '', $paginate = true)
+    public function topCourses($freeProduct = 'no', $categoryId = 0, $startDate = '', $endDate = '', $paginate = true, $sortOrder = 0)
     {
         $filter = '';
 
@@ -51,7 +51,16 @@ class AdminHelper
             $filter .= " AND purchases.created_at BETWEEN '{$startDate}' AND '{$endDate}'";
         }
 
-        $topCourses = $this->_topCourses($freeProduct, $filter);
+        $sortOrders = [
+            '',
+            'total_sales ASC',
+            'total_sales DESC',
+            'sales_count ASC',
+            'sales_count DESC',
+        ];
+
+        $topCourses = $this->_topCourses($freeProduct, $filter, $sortOrders[$sortOrder]);
+
 
         if ($paginate) {
             return $topCourses->paginate(Config::get('wazaar.PAGINATION'));
@@ -66,8 +75,12 @@ class AdminHelper
 
     /**************************************** PRIVATE METHODS *********************************************************/
 
-    private function _topCourses($freeProduct = 'no', $filter = '')
+    private function _topCourses($freeProduct = 'no', $filter = '', $sortOrder = '')
     {
+        if (empty($sortOrder)){
+            $sortOrder = 'total_sales DESC, sales_count DESC';
+        }
+
         return DB::table('purchases')
                 ->select(
                             DB::raw("SUM(purchase_price) as total_sales"),
@@ -75,13 +88,14 @@ class AdminHelper
                             'purchases.product_id as course_id',
                             'courses.name as course_name',
                             'courses.course_category_id',
+                            'courses.slug',
                             'course_categories.name as category_name'
                         )
                 ->join('courses', 'courses.id', '=', 'purchases.product_id')
                 ->join('course_categories', 'course_categories.id' , '=', 'courses.course_category_id')
                 ->whereRaw("purchases.`product_type` = 'Course' AND purchases.`free_product` = '{$freeProduct}' {$filter}")
                 ->groupBy('purchases.product_id')
-                ->orderByRaw('total_sales DESC, sales_count DESC');
+                ->orderByRaw($sortOrder);
     }
 
     private function _topAffiliates($filter = '', $sortOrder = '')
