@@ -1156,17 +1156,17 @@ header .activate-dropdown:hover ul{
 	background-position: 20px 9px;
 	margin-top: 53px;
 	border:solid 1px #35528e;
-	-webkit-box-shadow: 0px 5px 0px #203e7c;
+	/*-webkit-box-shadow: 0px 5px 0px #203e7c;
     -moz-box-shadow: 0px 5px 0px #203e7c;
-    box-shadow: 0px 5px 0px #203e7c;
+    box-shadow: 0px 5px 0px #203e7c;*/
 }
 
 .social-button.fb-button:focus,
 .social-button.fb-button:active{
-    -webkit-box-shadow: 0px 1px 0px #203e7c;
+    /*-webkit-box-shadow: 0px 1px 0px #203e7c;
     -moz-box-shadow: 0px 1px 0px #203e7c;
     box-shadow: 0px 1px 0px #203e7c;
-    top:7px;
+    top:7px;*/
 }
 
 .social-button.fb-button:hover{
@@ -1175,21 +1175,20 @@ header .activate-dropdown:hover ul{
 
 .social-button.google-button{	
 	background-color: #e95141;
-
 	background-position: 20px -52px;
 	margin-top: 20px;
 	border:solid 1px #D94E3B;
-	-webkit-box-shadow: 0px 5px 0px #84261a;
+	/*-webkit-box-shadow: 0px 5px 0px #84261a;
     -moz-box-shadow: 0px 5px 0px #84261a;
-    box-shadow: 0px 5px 0px #84261a;
+    box-shadow: 0px 5px 0px #84261a;*/
 }
 
 .social-button.google-button:focus,
 .social-button.google-button:active{
-    -webkit-box-shadow: 0px 1px 0px #84261a;
+    /*-webkit-box-shadow: 0px 1px 0px #84261a;
     -moz-box-shadow: 0px 1px 0px #84261a;
     box-shadow: 0px 1px 0px #84261a;
-    top:7px;
+    top:7px;*/
 }
 
 .social-button.google-button:hover{
@@ -1325,9 +1324,9 @@ header .activate-dropdown:hover ul{
 	color: #fff;
 	position: relative;
 	border: solid 1px #87bc2b;
-	-webkit-box-shadow: 0px 5px 0px #689814;
+	/*-webkit-box-shadow: 0px 5px 0px #689814;
     -moz-box-shadow: 0px 5px 0px #689814;
-    box-shadow: 0px 5px 0px #689814;
+    box-shadow: 0px 5px 0px #689814;*/
 	-webkit-transition: all 0.1s;
 	-moz-transition: all 0.1s;
 	transition: all 0.1s;
@@ -1337,10 +1336,10 @@ header .activate-dropdown:hover ul{
 #register-form .form-group button:focus,
 #login-form .form-group button:active,
 #register-form .form-group button:active{
-    -webkit-box-shadow: 0px 1px 0px #689814;
+    /*-webkit-box-shadow: 0px 1px 0px #689814;
     -moz-box-shadow: 0px 1px 0px #689814;
     box-shadow: 0px 1px 0px #689814;
-    top:7px;
+    top:7px;*/
 	outline: none;
 }
 
@@ -2737,28 +2736,55 @@ header .activate-dropdown:hover ul{
 }
 
 #show-teacher-questions{
-	display: inline-block;
-	padding: 10px 20px;
+	display: block;
+	padding: 0 20px;
 	color: #fff;
-	font-size: 18px;
 	border-radius: 5px;
-	margin-top: 20px;
+	margin: 15px auto 0;
 	cursor: pointer;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
 	width: 100%;
-	text-align: center;
-	background: -moz-linear-gradient(left, #6ddf77, #8fe754, #acee36);
-	background: -webkit-linear-gradient(left, #6ddf77, #8fe754, #acee36);
-	background: -o-linear-gradient(left, #6ddf77, #8fe754, #acee36);
-	background: -ms-linear-gradient(left, #6ddf77, #8fe754, #acee36);
-	background: linear-gradient(left, #6ddf77, #8fe754, #acee36);
+	height: 80px;
+	text-align: left;
+	font-weight: 200;
+	position: relative;
+	background: -moz-linear-gradient(left, #08aded, #06a8f2, #029efa);
+	background: -webkit-linear-gradient(left, #08aded, #06a8f2, #029efa);
+	background: -ms-linear-gradient(left, #08aded, #06a8f2, #029efa);
+	background: -o-linear-gradient(left, #08aded, #06a8f2, #029efa);
+	background: linear-gradient(left, #08aded, #06a8f2, #029efa);
 }
 
-.next-lesson-button:hover,
-.previous-lesson-button:hover,
-#show-teacher-questions:hover{
+#show-teacher-questions em{
+	font-style: normal;
+	font-size: 36px;
+	display: block;
+	float: left;
+	line-height: 78px;
+}
+
+#show-teacher-questions span{
+	font-size: 24px;
+	display: block;
+	float: left;
+	line-height: 80px;
+	margin-left: 10px;
+	font-style: normal;
+}
+
+#show-teacher-questions img{
+	float: right;
+	margin-top: 15px;
+}
+
+.next-lesson-button:focus,
+.previous-lesson-button:focus,
+#show-teacher-questions:focus,
+.next-lesson-button:target,
+.previous-lesson-button:target,
+#show-teacher-questions:target{
 	color: #fff !important;
 	background: -moz-linear-gradient(left, #acee36, #8fe754, #6ddf77);
 	background: -webkit-linear-gradient(left, #acee36, #8fe754, #6ddf77);
@@ -2776,11 +2802,22 @@ header .activate-dropdown:hover ul{
 	margin-top: 60px;
 	padding: 0 20px;
 	text-align: center;
+ 	-webkit-transition: all 0.3s; /* For Safari 3.1 to 6.0 */
+	transition: all 0.3s;
 	background: -moz-linear-gradient(left, #6ddf77, #8fe754, #acee36);
 	background: -webkit-linear-gradient(left, #6ddf77, #8fe754, #acee36);
 	background: -o-linear-gradient(left, #6ddf77, #8fe754, #acee36);
 	background: -ms-linear-gradient(left, #6ddf77, #8fe754, #acee36);
 	background: linear-gradient(left, #6ddf77, #8fe754, #acee36);
+}
+
+.next-lesson-button:hover,
+.previous-lesson-button:hover{
+	box-shadow: 0px 0px 0px 2px #1aa12a;
+}
+
+#show-teacher-questions:hover{
+	box-shadow: 0px 0px 0px 2px #077cac;
 }
 
 .next-lesson-button h2,
@@ -2804,13 +2841,13 @@ header .activate-dropdown:hover ul{
 }
 
 .classmate-conversations-heading {
-    margin-top: 40px;
+    margin-top: 15px;
 }
 
 .classmate-conversations-heading p.lead,
 .classroom-content .col-md-6 > p.lead,
 .classroom-content .col-md-12 p.lead{
-	padding: 15px 0 15px 20px;
+	padding: 8px 0 8px 20px;
 	margin: 0 0 1px;
 	color: #0099ff;
 	font-size: 18px;
@@ -3069,10 +3106,11 @@ a.load-remote > *{
 }
 .video-container > div{
   margin: 0 !important;
+  position: relative;
 }
 
 .comment-section {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .comment-section .comment-box{
@@ -3109,6 +3147,10 @@ a.load-remote > *{
 	width: 85.8%;
 	margin: auto;
 	padding-bottom: 33px;
+}
+
+#convo {
+    display: none;
 }
 
 .users-comments .comment{
@@ -3403,6 +3445,7 @@ a.load-remote > *{
 	color: #849598;
 	line-height: 22px;
 	font-size: 14px;
+	margin-bottom: 15px;
 }
 
 .classroom-content .second-row .files a{
@@ -5158,9 +5201,9 @@ select::-ms-expand {
 	line-height: 60px;
 	width: 312px;
 	text-transform: capitalize;
-	-webkit-box-shadow: 0px 5px 0px #f1b90f;
+	/*-webkit-box-shadow: 0px 5px 0px #f1b90f;
     -moz-box-shadow: 0px 5px 0px #f1b90f;
-    box-shadow: 0px 5px 0px #f1b90f;
+    box-shadow: 0px 5px 0px #f1b90f;*/
 	-webkit-transition: all 0.1s;
 	-moz-transition: all 0.1s;
 	transition: all 0.1s;
@@ -5168,10 +5211,10 @@ select::-ms-expand {
 
 .course-enroll-wrapper > form button.add-to-order:focus,
 .course-enroll-wrapper > form button.add-to-order:active{
-    -webkit-box-shadow: 0px 1px 0px #f1b90f;
+    /*-webkit-box-shadow: 0px 1px 0px #f1b90f;
     -moz-box-shadow: 0px 1px 0px #f1b90f;
     box-shadow: 0px 1px 0px #f1b90f;
-    top:7px;
+    top:7px;*/
 	outline: none;
 }
 

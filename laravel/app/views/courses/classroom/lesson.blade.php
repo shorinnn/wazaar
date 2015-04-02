@@ -90,6 +90,7 @@
                         </div>
                     </div>
                 </div>
+
                 
             </section>
             
@@ -97,8 +98,13 @@
                 @if( $lesson->ask_teacher_messages->count() == 0)
                     <section class="classroom-content container">
                         <div class="row">
-                                <div class="col-md-12">
-                                        <span id="show-teacher-questions">{{ trans('courses/general.ask-teacher') }}</span>                    
+                                <div class="col-md-6 col-md-offset-3">
+                                        <span id="show-teacher-questions">
+                                        	<em>{{ trans('courses/general.ask') }}</em>
+                                            <span>[Teacher Name]</span>
+                                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater-2.png" 
+                                            class="img-circle img-responsive hidden-xs">
+                                        </span>                    
                             </div>
                         </div>
                     </section>
@@ -162,7 +168,7 @@
                                               'lesson' => $prevLesson->slug 
                         ]) }}"  class="previous-lesson-button left">
                             <h2>
-                                {{ trans('courses/general.PREV-LESSON')}}
+                                {{ trans('courses/general.prev-lesson')}}
                                 <small>{{ $prevLesson->name }}</small>
                             </h2>
                         </a>
@@ -176,7 +182,7 @@
                                               'lesson' => $nextLesson->slug 
                         ]) }}" class="previous-lesson-button right">
                             <h2>
-                                {{ trans('courses/general.NEXT-LESSON')}}
+                                {{ trans('courses/general.next-lesson')}}
                                 <small>{{ $nextLesson->name }}</small>
                             </h2>
                         </a>

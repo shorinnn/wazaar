@@ -12,6 +12,7 @@ return array(
     'Conversations' => 'Conversations',
     'ask-the-teacher' => 'Ask The Teacher',
     'whats-on-your-mind' => "What's on your mind",
+	'type-in-your-question' => 'Type in your question',
     'comment' => 'Comment',
     'from' => 'From',
     'message' => 'Message',
