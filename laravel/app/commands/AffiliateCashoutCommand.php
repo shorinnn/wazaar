@@ -51,10 +51,19 @@ class AffiliateCashoutCommand extends ScheduledCommand {
 	 */
 	public function fire()
 	{
+            //$affiliates = LTCAffiliate::where('affiliate_balance', '>=', Config::get( 'custom.cashout.threshold' ) )->get();
+            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
+            
             // get all affiliates that meet the threshold
-            $affiliates = LTCAffiliate::where('affiliate_balance', '>=', Config::get( 'custom.cashout.threshold' ) )->get();
+            $affiliates = LTCAffiliate::whereHas('allTransactions', function($query) use ($cutoffDate){
+                $query->where('transaction_type','affiliate_credit')->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate );
+            })->get();
             foreach( $affiliates as $affiliate ){
-                $affiliate->debit( $affiliate->affiliate_balance );
+                $transactions = $affiliate->allTransactions()->where('transaction_type','affiliate_credit')->whereNull('cashed_out_on')
+                        ->where('created_at', '<=', $cutoffDate )->get();
+                if( $transactions->sum('amount') >= Config::get('custom.cashout.threshold') ){
+                    $affiliate->debit( $transactions->sum('amount'), null, $transactions );
+                }
             }
 	}
 

@@ -93,13 +93,13 @@ class Instructor extends User{
          });
     }
     
-    public function debit( $amount = 0, $reference = null  ){
+    public function debit( $amount = 0, $reference = null, $transactions_to_mark = null ){
         $amount = doubleval( $amount );
         
         if( $amount > $this->instructor_balance ) return false;
         if( $amount < Config::get('custom.cashout.threshold') ) return false;
         
-        return DB::transaction(function() use ($amount, $reference ){
+        return DB::transaction(function() use ($amount, $reference, $transactions_to_mark ){
               $fee = Config::get('custom.cashout.fee');
               $cashout = $amount - $fee;
               
@@ -128,6 +128,11 @@ class Instructor extends User{
                             
                             if( !$fee_transaction->save() ){
                                 return false;
+                            }
+                            // mark transactions as complete
+                            foreach($transactions_to_mark as $t){
+                                $t->cashed_out_on = date('Y-m-d H:i:s');
+                                if( !$t->updateUniques() ) return false;
                             }
                       return $transaction->id;
                   }
