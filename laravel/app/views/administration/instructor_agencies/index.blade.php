@@ -232,7 +232,7 @@
     <div class="container course-categories">
     	<div class="row">
         	<div class="col-md-12">
-                <h1 class='icon'>Instructor Agencies</h1>    
+                <h1 class='icon'>{{ trans('administration.instructor-agencies' )}}</h1>    
                 
                 <ul id='items-list'>
                     

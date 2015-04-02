@@ -8,21 +8,21 @@
                        .submit-button-active
                        @endif
                        "
-                       data-url="?{{ $url_filters['student'] }}" data-target='.ajax-content' data-load-method="fade">Students</a>
+                       data-url="?{{ $url_filters['student'] }}" data-target='.ajax-content' data-load-method="fade">{{trans('administration.students')}}</a>
                     
                     <a href="?{{ $url_filters['instructor'] }}" class="submit submit-button-2 load-remote
                        @if(Input::get('type')=='instructor')
                        .submit-button-active
                        @endif
                        "
-                       data-url="?{{ $url_filters['instructor'] }}"data-target='.ajax-content' data-load-method="fade">Teachers</a>
+                       data-url="?{{ $url_filters['instructor'] }}"data-target='.ajax-content' data-load-method="fade">{{trans('administration.teachers')}}</a>
                     
                     <a href="?{{ $url_filters['affiliate'] }}" class="submit submit-button-2 load-remote
                        @if(Input::get('type')=='affiliate')
                        .submit-button-active
                        @endif
                        "
-                       data-url="?{{ $url_filters['affiliate'] }}" data-target='.ajax-content' data-load-method="fade">Affiliates</a>
+                       data-url="?{{ $url_filters['affiliate'] }}" data-target='.ajax-content' data-load-method="fade">{{trans('administration.affiliates')}}</a>
                 </div>
             </div>
         </div>
@@ -32,8 +32,8 @@
             <div class="member-search-box clearfix clear">
                 <form method="get" action="{{ action( 'MembersController@index' ) }}" class="form-to-remote-link"
                        data-target='.ajax-content' data-load-method="fade">
-                    <input type="search" name="search" placeholder="Search for user (username or email)" value="{{Input::get('search')}}" />
-                    <button>Search</button>
+                    <input type="search" name="search" placeholder="{{trans('administration.search-for-user')}}" value="{{Input::get('search')}}" />
+                    <button>{{trans('administration.search')}}</button>
                 </form>
             </div>
         </div>
@@ -45,7 +45,7 @@
                      <div class="activate-dropdown">
                         <button aria-expanded="false" data-toggle="dropdown" 
                                 class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
-                            View
+                            {{ trans('crud/labels.view') }}
                         </button>
                         <ul id="table-header-dropdown"
                             data-target='.ajax-content' data-load-method="fade"

@@ -18,19 +18,19 @@
                                 </div>
                             </th>
                             <th>
-                                Request Type
+                                {{ trans('administration.request-type') }}
                             </th>
                             <th>
-                                User
+                                {{ trans('administration.user') }}
                             </th>
                             <th>
-                                Amount
+                                {{ trans('administration.amount') }}
                             </th>
                             <th>
-                                Timestamp
+                                {{ trans('administration.timestamp') }}
                             </th>
                             <th>
-                                Reference
+                                {{ trans('administration.reference') }}
                             </th>
                         </tr>
                     </thead>
@@ -63,9 +63,9 @@
                                 @endif
                             </td>
                             <td>
-                                Before Fee:
+                                {{ trans('administration.before-fee') }}:
                                     ¥{{ number_format( ( $request->amount + Config::get('custom.cashout.fee') ), Config::get('custom.currency_decimals')) }}<br />
-                                After Fee: 
+                                {{ trans('administration.after-fee') }}: 
                                     ¥{{ number_format( $request->amount, Config::get('custom.currency_decimals')) }}
                                 
                             </td>
@@ -73,7 +73,7 @@
                                 {{ $request->created_at->diffForHumans() }}
                             </td>
                             <td>
-                                <input type="text" name="reference[{{$request->id}}]" placeholder="Reference" />
+                                <input type="text" name="reference[{{$request->id}}]" placeholder="{{ trans('administration.reference') }}" />
                             </td>
                             
                         </tr>
@@ -82,10 +82,10 @@
                             <td colspan="6">
                                 <button type='button' class='btn btn-primary' onclick="processWithdrawal(this)"
                                         data-mode='complete'
-                                        data-message='Mark transaction complete?'>Complete Selected</button>
+                                        data-message='{{ trans('administration.mark-transaction-complete') }}?'>{{ trans('administration.complete-selected') }}</button>
                                 <button type='button' class='btn btn-danger' onclick="processWithdrawal(this)"
                                         data-mode='reject'
-                                        data-message='Mark transaction as failed and refund balance?'>Reject Selected</button>
+                                        data-message='{{ trans('administration.mark-transaction-failed') }}?'>{{ trans('administration.reject-selected') }}</button>
                             </td>
                         </tr>
                     </tbody>

@@ -31,11 +31,8 @@ class DatabaseSeeder extends Seeder {
                  $this->call('PMSeeder');
                  $this->call('TransactionsSeeder');
                  $this->call('FrontpageVideosSeeder');
-<<<<<<< HEAD
                  $this->call('GiftSeeder');
-=======
-         $this->call('AffiliateUsersSeeder');
->>>>>>> c4faee836f0bc3ed3a612df37cf42c00dc56911c
+                 $this->call('AffiliateUsersSeeder');
 	}
 
 }

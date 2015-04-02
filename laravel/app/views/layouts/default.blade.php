@@ -8,7 +8,7 @@
             Wazaar</title>    
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
-    <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{url('style.css')}}">
     <link rel="stylesheet" href="{{url('css/video-player.css')}}">
     <link rel="stylesheet" href="{{url('css/dashboard.css')}}">
@@ -139,11 +139,19 @@
 				});
 				
 				
-				$('.carousel').carousel({
-				  interval: false,
-				  wrap: false
-				})				
-				
+				$('#video-grid').carousel({
+					interval: false
+				});	
+						
+				$('#video-grid').on('slide.bs.carousel', function () {
+				  console.log('Is Sliding');
+				  TweenMax.fromTo(".carousel .next, .carousel .prev", 0.3, {opacity: 0}, {opacity: 1});
+				  TweenMax.fromTo('.carousel .active.right, .carousel .active.left', 0.3, {opacity: 1}, {opacity: 0});
+				})		
+
+				$('#video-grid').on('slid.bs.carousel', function () {
+				  console.log('Has Slided');
+				})		
 			});
 		</script>
 	</body>
