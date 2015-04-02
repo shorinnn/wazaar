@@ -13,6 +13,6 @@ return [
     'S3_PROFILES_BUCKET' => 'profile_pictures',
     'TAX' => '.08',
     'API_URL' => 'http://cocorium.com/api/',
-    'PAGINATION' => 2
+    'PAGINATION' => 10
 
 ];

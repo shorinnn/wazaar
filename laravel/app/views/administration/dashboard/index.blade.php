@@ -129,6 +129,7 @@
 @section('extra_css')
     <link rel="stylesheet" href="{{url('resources/select2-dist/select2.css')}}"/>
     <link rel="stylesheet" href="{{url('resources/select2-dist/select2-bootstrap.css')}}"/>
+    <link rel="stylesheet" href="{{url('resources/datetimepicker/build/css/bootstrap-datetimepicker.css')}}"/>
 @stop
 
 @section('extra_js')
@@ -136,7 +137,9 @@
     <script type="text/javascript" src="{{url('js/analytics.js')}}"></script>
     <script type="text/javascript" src="{{url('js/admin.dashboard.js')}}"></script>
     <script src="{{url('resources/moment/min/moment.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('resources/datetimepicker/src/js/bootstrap-datetimepicker.js')}}"></script>
+
+    <script type="text/javascript" src="{{url('resources/datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
+    <!--<script type="text/javascript" src="{{url('plugins/datepicker/js/bootstrap-datepicker.js')}}"></script>-->
 
     <script type="text/javascript">
         $(function(){
@@ -152,8 +155,9 @@
                 placeholder: "Select a Category"
             });
 
-            $('#startDate, #tcyStartDate, #tcnStartDate').datetimepicker({format: 'MM/DD/YYYY'});
-            $('#endDate, #tcyEndDate, #tcnEndDate').datetimepicker({format: 'MM/DD/YYYY'});
+
+            $('#startDate, #startDate-yes, #startDate-no').datetimepicker({format: 'MM/DD/YYYY'});
+            $('#endDate, #endDate-yes, #endDate-no').datetimepicker({format: 'MM/DD/YYYY'});
             $("#startDate").on("dp.change",function (e) {
                 $('#endDate').data("DateTimePicker").minDate(e.date);
             });
@@ -161,18 +165,18 @@
                 $('#startDate').data("DateTimePicker").maxDate(e.date);
             });
 
-            $("#tcyStartDate").on("dp.change",function (e) {
-                $('#tcyEndDate').data("DateTimePicker").minDate(e.date);
+            $("#startDate-yes").on("dp.change",function (e) {
+                $('#endDate-yes').data("DateTimePicker").minDate(e.date);
             });
-            $("#tcyEndDate").on("dp.change",function (e) {
-                $('#tcyStartDate').data("DateTimePicker").maxDate(e.date);
+            $("#endDate-yes").on("dp.change",function (e) {
+                $('#startDate-yes').data("DateTimePicker").maxDate(e.date);
             });
 
-            $("#tcnStartDate").on("dp.change",function (e) {
-                $('#tcnEndDate').data("DateTimePicker").minDate(e.date);
+            $("#startDate-no").on("dp.change",function (e) {
+                $('#endDate-no').data("DateTimePicker").minDate(e.date);
             });
-            $("#tcnEndDate").on("dp.change",function (e) {
-                $('#tcnStartDate').data("DateTimePicker").maxDate(e.date);
+            $("#endDate-no").on("dp.change",function (e) {
+                $('#startDate-no').data("DateTimePicker").maxDate(e.date);
             });
 
 
@@ -197,6 +201,51 @@
                     $btn.button('reset');
                 },'json');
             });
+
+            $('.courses-table-and-pagination-yes').on('click', '.pagination-top-courses .pagination a',function ($e){
+                $e.preventDefault();
+
+                var $loc = $(this).attr('href');
+
+                $.post($loc, function ($resp){
+                    $('.courses-table-and-pagination-yes').html($resp.html);
+                },'json');
+            });
+
+            $('.courses-table-and-pagination-no').on('click', '.pagination-top-courses .pagination a',function ($e){
+                $e.preventDefault();
+
+                var $loc = $(this).attr('href');
+
+                $.post($loc, function ($resp){
+                    $('.courses-table-and-pagination-no').html($resp.html);
+                },'json');
+            });
+
+            $('#btn-apply-filter-courses-yes').on('click', function (){
+                var $formData = $('#form-courses-yes').serialize();
+
+                var $btn = $(this);
+                $btn.button('loading');
+
+                $.post('/dashboard/admin/courses/yes', $formData, function ($resp){
+                    $('.courses-table-and-pagination-yes').html($resp.html);
+                    $btn.button('reset');
+                },'json');
+            });
+
+            $('#btn-apply-filter-courses-no').on('click', function (){
+                var $formData = $('#form-courses-no').serialize();
+
+                var $btn = $(this);
+                $btn.button('loading');
+
+                $.post('/dashboard/admin/courses/no', $formData, function ($resp){
+                    $('.courses-table-and-pagination-no').html($resp.html);
+                    $btn.button('reset');
+                },'json');
+            });
+
 
 
         });

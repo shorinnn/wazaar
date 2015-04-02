@@ -27,5 +27,6 @@ return
     'alltime' => 'All Time',
     'today' => 'Today',
 
-    'salesCount' => 'Sales Count'
+    'salesCount' => 'Sales Count',
+    'newUsers'   => 'New Users'
 ];

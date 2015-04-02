@@ -42,6 +42,7 @@ class LTCAffiliate extends User{
               if($this->id == 2) $transaction->transaction_type = 'site_credit';
               $transaction->details = trans('transactions.affiliate_credit_transaction').' '.$order;
               if( $ltcOrWazaar == 'ltc'){
+                  $transaction->is_ltc = 'yes';
                   $transaction->details = trans('transactions.ltc_affiliate_credit_transaction').' '.$order;
               }
               if( $ltcOrWazaar == 'wazaar'){
@@ -59,12 +60,12 @@ class LTCAffiliate extends User{
          });
     }
     
-    public function debit( $amount = 0, $reference = null ){
+    public function debit( $amount = 0, $reference = null, $transactions_to_mark = null ){
         $amount = doubleval( $amount );
         if( $amount > $this->affiliate_balance ) return false;
         if( $amount < Config::get('custom.cashout.threshold') ) return false;
         
-        return DB::transaction(function() use ($amount, $reference){
+        return DB::transaction(function() use ($amount, $reference, $transactions_to_mark){
               $fee = Config::get('custom.cashout.fee');
               $cashout = $amount - $fee;
               
@@ -94,6 +95,15 @@ class LTCAffiliate extends User{
                             return false;
                         }
                         
+                      // mark transactions as complete
+                       $debits = [];
+                       foreach($transactions_to_mark as $t){
+                           $t->cashed_out_on = date('Y-m-d H:i:s');
+                           if( !$t->updateUniques() ) return false;
+                           $debits[] = $t->id;
+                       }
+                       $transaction->debits = json_encode($debits);
+                       $transaction->updateUniques();
                       return $transaction->id;
                   }
                   else return false;
