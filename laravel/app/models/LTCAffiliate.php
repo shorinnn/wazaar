@@ -96,10 +96,14 @@ class LTCAffiliate extends User{
                         }
                         
                       // mark transactions as complete
+                       $debits = [];
                        foreach($transactions_to_mark as $t){
                            $t->cashed_out_on = date('Y-m-d H:i:s');
                            if( !$t->updateUniques() ) return false;
+                           $debits[] = $t->id;
                        }
+                       $transaction->debits = json_encode($debits);
+                       $transaction->updateUniques();
                       return $transaction->id;
                   }
                   else return false;

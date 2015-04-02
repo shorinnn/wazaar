@@ -34,7 +34,12 @@ class CashoutCest{
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->assertEquals( 0, $instructor->instructor_balance );
 
-        $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit', 'amount' => $amount, 'status' => 'pending'] );
+        
+        $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit', 
+            'amount' => $amount, 'status' => 'pending'] );
+        $debits = '["1","2"]';
+        $credit = Transaction::find(3);
+        $I->assertEquals( $debits, $credit->debits );
         $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'cashout_fee', 'amount' => Config::get('custom.cashout.fee'), 'status' => 'pending'] );
         
         $credits = $instructor->allTransactions()->where('transaction_type','instructor_credit')->get();
@@ -52,9 +57,9 @@ class CashoutCest{
         Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
             'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
         Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
-            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
-        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
             'product_type' => 'Course', 'status' => 'complete' ]);
+        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
         $instructor->instructor_balance = 150;
         $instructor->updateUniques();
         $I->assertEquals( 150, $instructor->instructor_balance );
@@ -65,7 +70,12 @@ class CashoutCest{
         $instructor = Instructor::where('username', 'instructor')->first();
         $I->assertEquals( 50, $instructor->instructor_balance );
 
-        $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit', 'amount' => $amount, 'status' => 'pending'] );
+        
+        $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit', 'amount' => $amount, 
+            'status' => 'pending' ] );
+        $debits = '["1","3"]';
+        $credit = Transaction::find(4);
+        $I->assertEquals( $debits, $credit->debits );
         $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'cashout_fee', 'amount' => Config::get('custom.cashout.fee'), 'status' => 'pending'] );
         
         $I->assertEquals(2 , $instructor->allTransactions()->where('transaction_type','instructor_credit')->whereNotNull('cashed_out_on')->count() );
@@ -117,7 +127,12 @@ class CashoutCest{
         $agency = InstructorAgency::where('username', 'InstructorAgency1')->first();
         $I->assertEquals( 0, $agency->agency_balance );
 
-        $I->seeRecord('transactions', ['user_id' => $agency->id, 'transaction_type' => 'instructor_agency_debit', 'amount' => $amount, 'status' => 'pending'] );
+        
+        $I->seeRecord('transactions', ['user_id' => $agency->id, 'transaction_type' => 'instructor_agency_debit', 'amount' => $amount, 
+            'status' => 'pending'] );
+        $debits = '["1","2"]';
+        $credit = Transaction::find(3);
+        $I->assertEquals( $debits, $credit->debits );
         $I->seeRecord('transactions', ['user_id' => $agency->id, 'transaction_type' => 'cashout_fee', 'amount' => Config::get('custom.cashout.fee'), 'status' => 'pending'] );
         
         $credits = $agency->allTransactions()->where('transaction_type','instructor_agency_credit')->get();
@@ -127,7 +142,7 @@ class CashoutCest{
        
     }
     
-    public function instructorAgencyCashout2OutOf3(UnitTester $I){
+        public function instructorAgencyCashout2OutOf3(UnitTester $I){
         $agency = InstructorAgency::where('username', 'InstructorAgency1')->first();
         Transaction::truncate();
         Transaction::unguard();
@@ -135,9 +150,9 @@ class CashoutCest{
         Transaction::create([ 'user_id' => $agency->id, 'transaction_type' => 'instructor_agency_credit', 'amount' => 50, 'product_id' => 1, 
             'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
         Transaction::create([ 'user_id' => $agency->id, 'transaction_type' => 'instructor_agency_credit', 'amount' => 50, 'product_id' => 1, 
-            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
-        Transaction::create([ 'user_id' => $agency->id, 'transaction_type' => 'instructor_agency_credit', 'amount' => 50, 'product_id' => 1, 
             'product_type' => 'Course', 'status' => 'complete' ]);
+        Transaction::create([ 'user_id' => $agency->id, 'transaction_type' => 'instructor_agency_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
         $agency->agency_balance = 150;
         $agency->updateUniques();
         $I->assertEquals( 150, $agency->agency_balance );
@@ -147,8 +162,12 @@ class CashoutCest{
         Artisan::call( 'cocorium:instructor-agency-cashout' );
         $agency = InstructorAgency::where('username', 'InstructorAgency1')->first();
         $I->assertEquals( 50, $agency->agency_balance );
-
-        $I->seeRecord('transactions', ['user_id' => $agency->id, 'transaction_type' => 'instructor_agency_debit', 'amount' => $amount, 'status' => 'pending'] );
+        
+        $I->seeRecord('transactions', ['user_id' => $agency->id, 'transaction_type' => 'instructor_agency_debit', 'amount' => $amount, 
+            'status' => 'pending' ] );
+        $debits = '["1","3"]';
+        $credit = Transaction::find(4);
+        $I->assertEquals( $debits, $credit->debits );
         $I->seeRecord('transactions', ['user_id' => $agency->id, 'transaction_type' => 'cashout_fee', 'amount' => Config::get('custom.cashout.fee'), 'status' => 'pending'] );
         
         $I->assertEquals(2 , $agency->allTransactions()->where('transaction_type','instructor_agency_credit')->whereNotNull('cashed_out_on')->count() );
@@ -198,8 +217,12 @@ class CashoutCest{
         Artisan::call( 'cocorium:affiliate-cashout' );
         $affiliate = LTCAffiliate::where('username', 'affiliate')->first();
         $I->assertEquals( 0, $affiliate->affiliate_balance );
-
-        $I->seeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'affiliate_debit', 'amount' => $amount, 'status' => 'pending'] );
+        
+        $I->seeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'affiliate_debit', 'amount' => $amount, 
+            'status' => 'pending' ] );
+        $debits = '["1","2"]';
+        $credit = Transaction::find(3);
+        $I->assertEquals( $debits, $credit->debits );
         $I->seeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'cashout_fee', 'amount' => Config::get('custom.cashout.fee'), 'status' => 'pending'] );
         
         $credits = $affiliate->allTransactions()->where('transaction_type','affiliate_credit')->get();
@@ -217,9 +240,9 @@ class CashoutCest{
         Transaction::create([ 'user_id' => $affiliate->id, 'transaction_type' => 'affiliate_credit', 'amount' => 50, 'product_id' => 1, 
             'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
         Transaction::create([ 'user_id' => $affiliate->id, 'transaction_type' => 'affiliate_credit', 'amount' => 50, 'product_id' => 1, 
-            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
-        Transaction::create([ 'user_id' => $affiliate->id, 'transaction_type' => 'affiliate_credit', 'amount' => 50, 'product_id' => 1, 
             'product_type' => 'Course', 'status' => 'complete' ]);
+        Transaction::create([ 'user_id' => $affiliate->id, 'transaction_type' => 'affiliate_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
         $affiliate->affiliate_balance = 150;
         $affiliate->updateUniques();
         $I->assertEquals( 150, $affiliate->affiliate_balance );
@@ -230,7 +253,12 @@ class CashoutCest{
         $affiliate = LTCAffiliate::where('username', 'affiliate')->first();
         $I->assertEquals( 50, $affiliate->affiliate_balance );
 
-        $I->seeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'affiliate_debit', 'amount' => $amount, 'status' => 'pending'] );
+        $debits = json_encode( [1, 3] );
+        $I->seeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'affiliate_debit', 'amount' => $amount, 
+            'status' => 'pending'] );
+        $debits = '["1","3"]';
+        $credit = Transaction::find(4);
+        $I->assertEquals( $debits, $credit->debits );
         $I->seeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'cashout_fee', 'amount' => Config::get('custom.cashout.fee'), 'status' => 'pending'] );
         
         $I->assertEquals(2 , $affiliate->allTransactions()->where('transaction_type','affiliate_credit')->whereNotNull('cashed_out_on')->count() );

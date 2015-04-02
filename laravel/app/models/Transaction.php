@@ -36,6 +36,12 @@ class Transaction extends Ardent {
                 elseif($this->transaction_type=='affiliate_debit') $field = 'affiliate_balance';
                 else $field = 'agency_balance';
                 
+                // mark debits as not addressed, so they get addressed on next cashout request
+                $credits = json_decode( $this->debits, true);
+                if(count($credits) > 0){
+                    DB::table('transactions')->whereIn('id', $credits)->update( [ 'cashed_out_on' => null] );
+                }
+                
                 $this->user->$field += $amount;
                 $this->user->updateUniques();
             });
