@@ -67,5 +67,8 @@ return array(
     'begin-my-learning' => 'Begin My Learning', 
     'NEXT-LESSON' => 'NEXT LESSON', 
     'PREV-LESSON' => 'PREVIOUS LESSON', 
+    'next-lesson' => 'Next Lesson', 
+    'prev-lesson' => 'Previous Lesson', 
     'ask-teacher' => 'Ask Teacher', 
+    'ask' => 'Ask',
 );

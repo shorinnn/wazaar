@@ -51,11 +51,19 @@ class InstructorAgencyCashoutCommand extends ScheduledCommand {
 	 */
 	public function fire()
 	{
-            // get all agencies that meet the threshold
-            $agencies = InstructorAgency::where('agency_balance', '>=', Config::get( 'custom.cashout.threshold' ) )->get();
+            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
+            
+            // get all affiliates that meet the threshold
+            $agencies = InstructorAgency::whereHas('allTransactions', function($query) use ($cutoffDate){
+                $query->where('transaction_type','instructor_agency_credit')->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate );
+            })->get();
             
             foreach( $agencies as $agency ){
-                $res = $agency->debit( $agency->agency_balance );
+                $transactions = $agency->allTransactions()->where('transaction_type','instructor_agency_credit')->whereNull('cashed_out_on')
+                        ->where('created_at', '<=', $cutoffDate )->get();
+                if( $transactions->sum('amount') >= Config::get('custom.cashout.threshold') ){
+                    $agency->debit( $transactions->sum('amount'), null, $transactions );
+                }
             }
 	}
 

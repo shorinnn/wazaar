@@ -1,8 +1,8 @@
 <?php
 
 return array(
-	'sign-in-with-fb' => '月Sign in with Facebookせ', 
-	'sign-in-with-google' => '月Sign in with Googleせ', 
-	'or' => '月Orせ', 
+	'sign-in-with-fb' => 'Sign in with Facebook', 
+	'sign-in-with-google' => 'Sign in with Google', 
+	'or' => 'Or', 
     
 );

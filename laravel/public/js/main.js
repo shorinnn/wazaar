@@ -804,8 +804,10 @@ function skinVideoControls(){
 	if(video){
         var playerWidth = video.innerWidth();
 		var playerHeight = video.innerHeight();
+		console.log('Player height is' + playerHeight);
+		console.log('Player Width is' + playerWidth);
 		$('.control').width(playerWidth);
-		$('.centered-play-button').css('top', (playerHeight/2) - 50);
+		//$('.centered-play-button').css('top', (playerHeight/2) - 50);
 		$('#lesson-video-overlay').css({
 			height: playerHeight	
 		});

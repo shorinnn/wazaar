@@ -52,9 +52,20 @@ class InstructorCashoutCommand extends ScheduledCommand {
 	public function fire()
 	{
             // get all instructors that meet the threshold
-            $instructors = Instructor::where('instructor_balance', '>=', Config::get( 'custom.cashout.threshold' ) )->get();
+            //$instructors = Instructor::where('instructor_balance', '>=', Config::get( 'custom.cashout.threshold' ) )->get();
+            
+            $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
+            
+            $instructors = Instructor::whereHas('allTransactions', function($query) use ($cutoffDate){
+                $query->where('transaction_type','instructor_credit')->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate );
+            })->get();
+            
             foreach( $instructors as $instructor ){
-                $instructor->debit( $instructor->instructor_balance );
+                $transactions = $instructor->allTransactions()->where('transaction_type','instructor_credit')->whereNull('cashed_out_on')
+                        ->where('created_at', '<=', $cutoffDate )->get();
+                if( $transactions->sum('amount') >= Config::get('custom.cashout.threshold') ){
+                    $instructor->debit( $transactions->sum('amount'), null, $transactions );
+                }
             }
 	}
 
