@@ -9,7 +9,7 @@
         </li>
     @endforeach
     @if (count($trackingCodes['data']) == 10)
-        <li><a href="#" class="view-all">{{trans('analytics.viewAll')}}</a></li>
+        <li><a href="{{url('dashboard/trackingcodes/all')}}" class="view-all">{{trans('analytics.viewAll')}}</a></li>
     @endif
 @else
     <div class="clearfix no-data-found">

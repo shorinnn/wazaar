@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <div class="header clearfix">
                         <img alt="" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/thumbnails/top-profile-thumbnail.png">
-                        <p class="lead">Welcome Jerome</p>
+                        <p class="lead">Welcome </p>
                         <ul>
                             <li class="right-twenty-margin">
                                 <a href="#" class="active">Dashboard</a>
