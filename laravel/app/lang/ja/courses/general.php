@@ -63,4 +63,6 @@ return array(
     'NEXT-LESSON' => '月NEXT LESSONせ', 
     'PREV-LESSON' => '月PREVIOUS LESSONせ',
     'ask-teacher' => '月Ask Teacherせ',  
+    'ask' => '月Askせ',
+    'teacher' => '月Teacherせ',
 );

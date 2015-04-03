@@ -100,10 +100,15 @@
                         <div class="row">
                                 <div class="col-md-6 col-md-offset-3">
                                         <span id="show-teacher-questions">
-                                        	<em>{{ trans('courses/general.ask') }}</em>
-                                            <span>[Teacher Name]</span>
-                                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater-2.png" 
-                                            class="img-circle img-responsive hidden-xs">
+                                            <em>{{ trans('courses/general.ask') }}</em>
+                                            @if($instructor->profile == null)
+                                                <span>{{ trans('courses/general.teacher') }}</span>
+                                                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater-2.png" 
+                                                class="img-circle img-responsive hidden-xs">
+                                            @else
+                                                <span>{{$instructor->profile->first_name}}</span>
+                                                <img height="50" src="{{ $instructor->profile->photo }}" class="img-circle hidden-xs">
+                                            @endif
                                         </span>                    
                             </div>
                         </div>
