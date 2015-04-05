@@ -33,7 +33,7 @@
                                     <span class="timeBar"></span>
                                 </div>
                             </div>
-                            <div class="control">
+                            <div class="control clearfix">
                                 
                                 <div class="btmControl clearfix">
                                     <div class="btnPlay btn" title="Play/Pause video"></div>
@@ -114,6 +114,7 @@
                              hide-teacher-questions
                          @endif
                          " id="lesson-ask-teacher-section">
+                	<div>
                 	<a name='ask-teacher'></a>
                     <div class="row classmate-conversations-heading">
                             <div class="col-md-12">
@@ -132,6 +133,7 @@
                             {{ $lesson->ask_teacher_messages->appends( [ 'ask' => 1 ] )->links() }}
                         </div>
                     </div>
+                   	</div>
                 </section>
                 
             @endif
