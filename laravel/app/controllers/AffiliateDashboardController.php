@@ -228,6 +228,12 @@ class AffiliateDashboardController extends BaseController
         }
     }
 
+    public function trackingCodesAll()
+    {
+        $trackingCodes = $this->analyticsHelper->trackingCodesAll();
+        return View::make('analytics.trackingCodes',compact('trackingCodes'));
+    }
+
     public function courseTrackingCodesStatistics($courseId, $trackingCode)
     {
         $course = Course::find($courseId);

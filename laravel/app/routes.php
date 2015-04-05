@@ -222,6 +222,7 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::post('course/{courseId}/stats/compare','AffiliateDashboardController@compareCourses');
     Route::post('trackingcodes/{trackingCode}/stats/compare','AffiliateDashboardController@compareTrackingCodes');
     Route::get('trackingcodetable/{frequency}/{courseId}','AffiliateDashboardController@trackingCodesTableView');
+    Route::get('trackingcodes/all', 'AffiliateDashboardController@trackingCodesAll');
 
     /******* SUPER ADMIN RELATED **************************/
     Route::get('users/count/{frequency?}','AdminDashboardController@userCountView');

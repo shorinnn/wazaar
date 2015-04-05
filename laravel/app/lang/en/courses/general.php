@@ -71,4 +71,5 @@ return array(
     'prev-lesson' => 'Previous Lesson', 
     'ask-teacher' => 'Ask Teacher', 
     'ask' => 'Ask',
+    'teacher' => 'Teacher',
 );

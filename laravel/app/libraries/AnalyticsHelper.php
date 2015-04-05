@@ -449,7 +449,7 @@ class AnalyticsHelper
     public function dailyTrackingCodes($courseId)
     {
         $dateFilter = $this->_frequencyEquivalence();
-        $filterQuery = "DATE(created_at) = '{$dateFilter}'";
+        $filterQuery = "DATE(tracking_code_hits.created_at) = '{$dateFilter}'";
 
         if (!empty($courseId)){
             $filterQuery .= " AND course_id = '{$courseId}'";
@@ -465,7 +465,7 @@ class AnalyticsHelper
         $dateFilterStart = $this->_frequencyEquivalence('week');
         $dateFilterEnd = date('Y-m-d');
 
-        $filterQuery = "DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+        $filterQuery = "DATE(tracking_code_hits.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)){
             $filterQuery .= " AND course_id = '{$courseId}'";
@@ -481,7 +481,7 @@ class AnalyticsHelper
         $dateFilterStart = $this->_frequencyEquivalence('month');
         $dateFilterEnd = date('Y-m-d');
 
-        $filterQuery = "DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+        $filterQuery = "DATE(tracking_code_hits.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)){
             $filterQuery .= " AND course_id = '{$courseId}'";
@@ -489,6 +489,12 @@ class AnalyticsHelper
 
         $query = $this->_trackingCodesRawQuery($filterQuery);
 
+        return $this->_transformCoursePurchases($query);
+    }
+
+    public function trackingCodesAll()
+    {
+        $query = $this->_trackingCodesRawQuery('',0);
         return $this->_transformCoursePurchases($query);
     }
 
@@ -787,11 +793,17 @@ class AnalyticsHelper
             $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
         }
 
-        $sql = "SELECT course_id, tracking_code, count(tracking_code) as 'count'
-                FROM tracking_code_hits  WHERE id <> 0
+        $sql = "SELECT course_id, tracking_code, count(tracking_code) as 'count', courses.name as 'course_name'
+                FROM tracking_code_hits
+                JOIN courses ON courses.id = tracking_code_hits.course_id WHERE tracking_code_hits.id <> 0
                  {$criteria}
                 GROUP BY course_id, tracking_code
-                ORDER BY count DESC LIMIT {$limit}";
+                ";
+
+        if ($limit > 0){
+            $sql .= " ORDER BY count DESC LIMIT {$limit}";
+        }
+
         return $sql;
     }
 
