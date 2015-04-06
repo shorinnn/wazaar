@@ -25,12 +25,12 @@ class LTCAffiliate extends User{
     }
     
     
-    public function credit( $amount = 0, $product = null, $order = null, $ltcOrWazaar = '', $processor_fee = 0 ){
+    public function credit( $amount = 0, $product = null, $order = null, $ltcOrWazaarOrST = '', $processor_fee = 0 ){
         $amount = doubleval($amount);
         if( $amount <= 0 ) return false;
         if( !is_a($product, 'Lesson') && !is_a($product, 'Course') ) return false;
         if( !$product->id ) return false;
-        return DB::transaction(function() use ($amount, $product, $order, $ltcOrWazaar, $processor_fee){
+        return DB::transaction(function() use ($amount, $product, $order, $ltcOrWazaarOrST, $processor_fee){
             // create the transaction
               $transaction = new Transaction();
               $transaction->user_id = $this->id;
@@ -39,13 +39,18 @@ class LTCAffiliate extends User{
               $transaction->product_type = get_class($product);
               $transaction->transaction_type = 'affiliate_credit';
               $transaction->reference = $order;
-              if($this->id == 2) $transaction->transaction_type = 'site_credit';
+//              if($this->id == 2) $transaction->transaction_type = 'site_credit';
               $transaction->details = trans('transactions.affiliate_credit_transaction').' '.$order;
-              if( $ltcOrWazaar == 'ltc'){
+              if( $ltcOrWazaarOrST == 'ltc'){
                   $transaction->is_ltc = 'yes';
                   $transaction->details = trans('transactions.ltc_affiliate_credit_transaction').' '.$order;
               }
-              if( $ltcOrWazaar == 'wazaar'){
+              if( $ltcOrWazaarOrST == 'st'){
+                  $transaction->is_second_tier = 'yes';
+                  $transaction->details = trans('transactions.second_tier_affiliate_credit_transaction').' '.$order;
+              }
+              if( $ltcOrWazaarOrST == 'wazaar'){
+                  $transaction->transaction_type = 'site_credit';
                   $transaction->details = trans('transactions.site_earnings').' '.$order;
                   $transaction->gc_fee = $processor_fee;
               }

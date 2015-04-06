@@ -14,6 +14,7 @@ return array(
     'affiliate_debit_transaction' =>'月Affiliate Debit Transactionせ',
     'affiliate_debit_refund_transaction' =>'月Affiliate Debit Refund Transactionせ',
     'ltc_affiliate_credit_transaction' =>'月LTC Affiliate Credit Transaction Reference:せ',
+    'second_tier_affiliate_credit_transaction' => '月Second Tier Affiliate Credit Transaction Reference:せ',
     'site_earnings' =>'月Site Earningsせ',
     'instructor_agency_credit_transaction' =>'月Instructor Agency Credit Transaction Reference:せ',
     'instructor_agency_debit_transaction' =>'月Instructor Agency Debit Transactionせ',
