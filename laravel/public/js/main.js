@@ -1038,8 +1038,8 @@ var delay = (function () {
 function askTeacherQuestion(){
 	var containerHeight = $('#lesson-ask-teacher-section').height();
 	var containerWidth = $('#lesson-ask-teacher-section').width();
-	var containerBox = TweenMax.fromTo('#lesson-ask-teacher-section', 0.1, {height: 0, width: 0}, {height: containerHeight, width: containerWidth});
-	var tweenBox = TweenMax.to('#lesson-ask-teacher-section > div', 0.5, {transform: 'scale(1)'});
+	var containerBox = TweenMax.fromTo('.no-teacher-questions', 0.2, {height: 0, width: 0}, {height: containerHeight, width: containerWidth});
+	var tweenBox = TweenMax.to('.no-teacher-questions > div', 0.2, {transform: 'scale(1)'});
 	tweenBox.pause();
 	containerBox.pause();
 	$('#show-teacher-questions').on('click', function(){
@@ -1047,7 +1047,8 @@ function askTeacherQuestion(){
 		//$('#lesson-ask-teacher-section').toggleClass('hide-teacher-questions');
 		if($('#lesson-ask-teacher-section').hasClass('hide-teacher-questions')){
 			$('#lesson-ask-teacher-section').removeClass('hide-teacher-questions');
-			tweenBox.play();	
+			tweenBox.play();
+			//tweenBox.delay(0.5);	
 			containerBox.play();
 		}
 		else{

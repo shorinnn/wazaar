@@ -116,7 +116,7 @@
                 @endif
                 <section class="classroom-content container
                          @if( $lesson->ask_teacher_messages->count() == 0)
-                             hide-teacher-questions
+                             hide-teacher-questions no-teacher-questions
                          @endif
                          " id="lesson-ask-teacher-section">
                 	<div>
@@ -130,7 +130,10 @@
                     {{ View::make('private_messages.partials.ask_teacher_form')->with( compact('lesson') ) }}
                 @endif
 
-                    <div class='ask-content fa-animated'>
+                    <div class='ask-content fa-animated                          
+                    	 @if( $lesson->ask_teacher_messages->count() == 0)
+                             hide
+                         @endif'>
                         {{ View::make('private_messages.all')->withComments( $lesson->ask_teacher_messages ) }}
                         <br />
                         
