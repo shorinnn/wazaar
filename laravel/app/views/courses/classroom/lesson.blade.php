@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="btnFS btn" title="Switch to full screen"></div>
                                     <div class="time">
-                                        <span class="current"></span> / 
+                                        <span class="current"></span>
                                         <span class="duration"></span> 
                                     </div>
                                 </div>

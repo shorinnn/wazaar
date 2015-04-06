@@ -338,8 +338,12 @@ header .activate-dropdown:hover ul{
 
 .course-search-section .course-search-form form{
 	border: solid 1px #fff;
+	overflow: hidden;
 	height: 40px;
 	border-radius: 5px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 .course-search-section .course-search-form img{
@@ -388,6 +392,8 @@ header .activate-dropdown:hover ul{
 	border-radius: 0 5px 5px 0;
 	width: 11%;
 	float: left;
+	position: relative;
+	right: -1px;
 	background: #0669d1 url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/search-lens.png) no-repeat center 8px;
 }
 
@@ -4868,7 +4874,7 @@ select::-ms-expand {
 
 .unauthenticated-homepage.thumb-carousel-section {
     overflow: hidden;
-    padding: 20px 0 25px;
+    padding: 29px 0 29px;
 	position: relative;
 	background: -moz-linear-gradient(left, #172735, #0f4d79, #172735);
 	background: -webkit-linear-gradient(left, #172735, #0f4d79, #172735);
@@ -4925,7 +4931,7 @@ select::-ms-expand {
 
 #video-grid{
     margin: 0 auto;
-    max-width: 1600px;
+    max-width: 1596px;
     width: 100%;
 }
 
@@ -5009,14 +5015,15 @@ select::-ms-expand {
 }
 
 .big-box-holders{
-	width: 536px;
+	width: 532px;
 }
 
 .small-box-holders{
-	width: 268px;
+	width: 266px;
 }
 
 .carousel-inner .container-fluid .row{
+	margin: 0;
 }
 
 .carousel-inner .container-fluid,
@@ -5025,18 +5032,18 @@ select::-ms-expand {
 }
 
 #video-grid .small-box-holders .small-boxes{
-	width: 268px;
-	height: 144px;
+	width: 266px;
+	height: 146px;
 }
 
 #video-grid .big-box-holders .small-boxes{
-	width: 268px;
-	height: 144px;
+	width: 266px;
+	height: 146px;
 }
 
 #video-grid .big-box-holders .big-boxes{
-	width: 536px;
-	height: 288px;
+	width: 532px;
+	height: 292px;
 }
 
 #video-grid .carousel-control{
@@ -5062,6 +5069,14 @@ select::-ms-expand {
 
 #video-grid .carousel-inner{
 	overflow: visible;
+}
+
+.carousel-control.right{
+	right: -2px;
+}
+
+.carousel-control.left{
+	left: -2px;
 }
 /******** Enroll Page***********/
 .wrapper.enroll{
@@ -7199,6 +7214,12 @@ footer{
 /*****************************************/
 
 /*************** Media Query fixes **************************/
+@media (max-width: 1600px) {
+	.carousel-inner .container-fluid .row{
+		margin: 0 -15px 0 -15px;
+	}
+}
+
 @media (min-width: 1200px) {
   .container {
     width: 1000px !important;

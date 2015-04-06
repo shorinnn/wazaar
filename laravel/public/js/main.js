@@ -28,6 +28,18 @@ $(document).ready(function(){
 	$('button.join-class').mouseup(function(){
 		$(this).removeClass('pushdown');
 	});
+	$('.course-search-section .course-search-form input').on('focus', function(){
+		$('.course-search-section .course-search-form form').css({
+			border: 'solid 1px #abd82a',
+			boxShadow: '0px 0px 7px 1px #abd82a'
+		});
+	});
+	$('.course-search-section .course-search-form input').on('blur', function(){
+		$('.course-search-section .course-search-form form').css({
+			border: 'solid 1px #fff',
+			boxShadow: 'none'
+		});
+	});
     $(window).scroll(stepsScrollAnimation);
     _.setTranslation( js_translation_map );
     floatingNav();
@@ -833,7 +845,7 @@ function skinVideoControls(){
 		var maxduration = video[0].duration;
 		var perc = 100 * currentPos / maxduration;
 		$('.timeBar').css('width',perc+'%');	
-		$('.current').text(timeFormat(currentPos));	
+		$('.current').text(timeFormat(currentPos) + ' / ');	
 	});
 	
 	//CONTROLS EVENTS

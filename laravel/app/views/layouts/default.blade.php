@@ -146,14 +146,8 @@
 				});	
 						
 				$('#video-grid').on('slide.bs.carousel', function () {
-				  console.log('Is Sliding');
-				  TweenMax.fromTo(".carousel .next, .carousel .prev", 0.3, {opacity: 0}, {opacity: 1});
-				  TweenMax.fromTo('.carousel .active.right, .carousel .active.left', 0.3, {opacity: 1}, {opacity: 0});
 				})		
 
-				$('#video-grid').on('slid.bs.carousel', function () {
-				  console.log('Has Slided');
-				})		
 			});
 		</script>
 	</body>
