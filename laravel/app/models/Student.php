@@ -134,8 +134,10 @@ class Student extends User{
             $purchase->balance_used = $paymentData['successData']['balance_used'];
             $purchase->balance_transaction_id = $paymentData['successData']['balance_transaction_id'];
         }
+        
         $purchase->instructor_earnings = PurchaseHelper::instructorEarnings($product, $purchase->processor_fee, $affiliate);
         $purchase->affiliate_earnings = PurchaseHelper::affiliateEarnings($product, $purchase->processor_fee, $affiliate);
+        $purchase->second_tier_affiliate_earnings = PurchaseHelper::secondTierAffiliateEarnings($product, $purchase->processor_fee, $affiliate);
         $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product, $purchase->processor_fee);
         $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product, $purchase->processor_fee);
         $purchase->site_earnings = PurchaseHelper::siteEarnings($product,  $paymentData['successData']['processor_fee'] );
@@ -183,9 +185,18 @@ class Student extends User{
             // credit instructor
             $course->instructor->credit( $purchase->instructor_earnings, $product, $purchase->payment_ref );
             // credit LTC affiliate
-            $this->ltcAffiliate->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref, 'ltc');
+            if( $purchase->ltc_affiliate_earnings > 0){
+                $this->ltcAffiliate->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref, 'ltc');
+            }
+            
+            // credit second tier affiliate
+            if( $purchase->second_tier_affiliate_earnings > 0){
+                $secondTier = ProductAffiliate::where('affiliate_id', $affiliate)->first()->ltcAffiliate;
+                $secondTier->credit( $purchase->second_tier_affiliate_earnings, $product, $purchase->payment_ref, 'st');
+            }
+            
             // credit product affiliate
-            if($affiliate!=null){
+            if($affiliate!=null &&  $purchase->affiliate_earnings > 0){
                 ProductAffiliate::where('affiliate_id', $affiliate)->first();
                 $prodAffiliate->credit( $purchase->affiliate_earnings, $product, $purchase->payment_ref);
             }

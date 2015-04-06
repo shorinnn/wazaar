@@ -14,6 +14,7 @@ return array(
     'affiliate_debit_transaction' => 'Affiliate Debit Transaction',
     'affiliate_debit_refund_transaction' => 'Affiliate Debit Refund Transaction',
     'ltc_affiliate_credit_transaction' => 'LTC Affiliate Credit Transaction Reference:',
+    'second_tier_affiliate_credit_transaction' => 'Second Tier Affiliate Credit Transaction Reference:',
     'site_earnings' => 'Site Earnings',
     'instructor_agency_credit_transaction' => 'Instructor Agency Credit Transaction Reference:',
     'instructor_agency_debit_transaction' => 'Instructor Agency Debit Transaction',

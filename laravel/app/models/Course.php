@@ -21,7 +21,7 @@ class Course extends Ardent{
         'name' => 'required|unique:courses',
         'slug' => 'alpha_dash|unique:courses|not_in:index,show,create,store,categories,category,purchase,mycourses,destroy,edit,update,dashboard,curriculum',
         'price' => 'numeric',
-        'affiliate_percentage' => 'numeric|between:0,70',
+        'affiliate_percentage' => 'numeric|between:0,68',
         'course_difficulty_id' => 'numeric',
         'course_category_id' => 'numeric',
         'course_subcategory_id' => 'numeric',
