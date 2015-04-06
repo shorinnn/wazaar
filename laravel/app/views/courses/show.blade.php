@@ -136,7 +136,7 @@
                     @endif
                 <div class="middle-content-wrapper clearfix">
                     <div class="left-content">
-                        @if($course->testimonials->count() > 0)
+                        <!--@if($course->testimonials->count() > 0)
                             <div class="testimonials top-testimonials">
                                 <p>
                                 {{{ $course->testimonials->first()->content }}}
@@ -146,7 +146,7 @@
                                     {{$course->testimonials->first()->student->last_name}}
                                 </span>
                             </div>
-                        @endif
+                        @endif-->
                         <p class="lead what-you-will-learn">{{trans('courses/general.what_you_will_achieve')}}.</p>
                             <article class="bottom-margin what-you-will-learn">
                             <ul>
