@@ -19,4 +19,7 @@ return array(
     'sent' => 'Sent',
     'private-messages' => 'Private Messages',
     'pm-for' => 'PM for',
+    'view-in-inbox' => 'View in inbox',
+    'lesson' => 'Lesson',
+    'mark-as-resolved' => 'Mark As Resolved',
 );
