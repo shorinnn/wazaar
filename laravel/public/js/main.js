@@ -1038,7 +1038,7 @@ var delay = (function () {
 function askTeacherQuestion(){
 	var containerHeight = $('#lesson-ask-teacher-section').height();
 	var containerWidth = $('#lesson-ask-teacher-section').width();
-	var containerBox = TweenMax.fromTo('#lesson-ask-teacher-section', 0.5, {height: 0, width: 0}, {height: containerHeight, width: containerWidth});
+	var containerBox = TweenMax.fromTo('#lesson-ask-teacher-section', 0.1, {height: 0, width: 0}, {height: containerHeight, width: containerWidth});
 	var tweenBox = TweenMax.to('#lesson-ask-teacher-section > div', 0.5, {transform: 'scale(1)'});
 	tweenBox.pause();
 	containerBox.pause();

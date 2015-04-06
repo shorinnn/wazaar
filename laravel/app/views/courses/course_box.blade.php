@@ -1,4 +1,5 @@
 <div class="col-xs-12 col-sm-6 col-md-4">
+	<a href="{{ action('CoursesController@show', $course->slug) }}">
     <div class="object small-box small-box-one">
         <!--<div class="level">{{ $course->courseDifficulty->name }}</div>-->
         <!--@if($course->isNew())
@@ -22,10 +23,9 @@
             <p>{{{ Str::limit( strip_tags( $course->short_description, Config::get('custom.short_desc_max_chars') ) ) }}}
             	<span class="subcategory">
                     <small>{{ trans('courses/general.subcategory') }}: 
-                        <a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>
+                        <!--<a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>-->
                     </small>
                 </span>
-                [<a href="{{ action('CoursesController@show', $course->slug) }}">Temporary access link</a>]
             </p>
             <div class="price-tag clear">
                  ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
@@ -44,4 +44,5 @@
             <span class="likes">{{ $course->reviews_positive_score }}%</span>         
         </div> 
     </div>
+    </a>
 </div>
