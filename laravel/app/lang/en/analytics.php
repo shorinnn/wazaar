@@ -28,5 +28,7 @@ return
     'today' => 'Today',
 
     'salesCount' => 'Sales Count',
-    'newUsers'   => 'New Users'
+    'newUsers'   => 'New Users',
+
+    'ltcRegistrations' => 'LTC Registrations'
 ];

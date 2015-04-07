@@ -223,6 +223,7 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::post('trackingcodes/{trackingCode}/stats/compare','AffiliateDashboardController@compareTrackingCodes');
     Route::get('trackingcodetable/{frequency}/{courseId}','AffiliateDashboardController@trackingCodesTableView');
     Route::get('trackingcodes/all', 'AffiliateDashboardController@trackingCodesAll');
+    Route::get('ltcregistrations/{frequency}','AffiliateDashboardController@ltcRegistrationsView');
 
     /******* SUPER ADMIN RELATED **************************/
     Route::get('users/count/{frequency?}','AdminDashboardController@userCountView');
@@ -253,9 +254,11 @@ Route::get('test/pay', 'PaymentTestController@pay');
 
 Route::get('test', function (){
 
-    $affiliateIds = Profile::select('owner_id')->where('owner_type', 'Affiliate')->get()->toArray();
+    $an = new AnalyticsHelper(false);
+
+    $affs = $an->affiliatesLastFewYears(2);
     echo '<pre>';
-    print_r($affiliateIds);
+    print_r($affs);
     echo '</pre>';
     die;
 });

@@ -147,11 +147,15 @@
     </div>
 
     <div id="tracking-code" data-tracking-code="{{$trackingCode}}"></div>
+    <div id="ajax-loader-wrapper" class="hidden">
+        <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+    </div>
 @stop
 
 @section('extra_css')
     <link rel="stylesheet" href="{{url('resources/select2-dist/select2.css')}}"/>
     <link rel="stylesheet" href="{{url('resources/select2-dist/select2-bootstrap.css')}}"/>
+    <link rel="stylesheet" href="{{url('resources/datetimepicker/build/css/bootstrap-datetimepicker.css')}}"/>
 @stop
 
 @section('extra_js')

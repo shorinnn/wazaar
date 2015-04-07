@@ -31,16 +31,16 @@
                                 {{trans('analytics.topCourses')}} <span id="header-top-courses-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu top-courses-dropdown">
                                 <li>
-                                    <a class="active with-today" href="#" onclick="Analytics.topCourses('daily','', this); return false;">Today</a>
+                                    <a class="active with-today" href="#" onclick="Analytics.topCourses('daily','', this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-weekly" href="#" onclick="Analytics.topCourses('week','', this); return false;">This week</a>
+                                    <a class="with-weekly" href="#" onclick="Analytics.topCourses('week','', this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-monthly" href="#" onclick="Analytics.topCourses('month','', this); return false;">This month</a>
+                                    <a class="with-monthly" href="#" onclick="Analytics.topCourses('month','', this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-alltime" href="#" onclick="Analytics.topCourses('alltime','', this); return false;">All time</a>
+                                    <a class="with-alltime" href="#" onclick="Analytics.topCourses('alltime','', this); return false;">{{trans('analytics.allTime')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -86,16 +86,16 @@
                                 {{trans('analytics.topTrackingCodes')}} <span id="header-tracking-codes-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu tracking-codes-dropdown">
                                 <li>
-                                    <a class="active with-today" href="#" onclick="Analytics.trackingSalesCodes('daily',0, this); return false;">Today</a>
+                                    <a class="active with-today" href="#" onclick="Analytics.trackingSalesCodes('daily',0, this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-weekly" href="#" onclick="Analytics.trackingSalesCodes('week',0, this); return false;">This week</a>
+                                    <a class="with-weekly" href="#" onclick="Analytics.trackingSalesCodes('week',0, this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-monthly" href="#" onclick="Analytics.trackingSalesCodes('month',0, this); return false;">This month</a>
+                                    <a class="with-monthly" href="#" onclick="Analytics.trackingSalesCodes('month',0, this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-alltime" href="#" onclick="Analytics.trackingSalesCodes('alltime',0, this); return false;">All time</a>
+                                    <a class="with-alltime" href="#" onclick="Analytics.trackingSalesCodes('alltime',0, this); return false;">{{trans('analytics.allTime')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -115,16 +115,16 @@
                                 {{trans('analytics.topConvertingCourses')}} <span id="header-course-conversions-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop5" role="menu" class="dropdown-menu course-conversions-dropdown">
                                 <li>
-                                    <a class="active with-today" href="#" onclick="Analytics.courseConversions('daily', 0,this); return false;">Today</a>
+                                    <a class="active with-today" href="#" onclick="Analytics.courseConversions('daily', 0,this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-weekly" href="#" onclick="Analytics.courseConversions('week', 0,this); return false;">This week</a>
+                                    <a class="with-weekly" href="#" onclick="Analytics.courseConversions('week', 0,this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-monthly" href="#" onclick="Analytics.courseConversions('month', 0,this); return false;">This month</a>
+                                    <a class="with-monthly" href="#" onclick="Analytics.courseConversions('month', 0,this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-alltime" href="#" onclick="Analytics.courseConversions('alltime', 0,this); return false;">All time</a>
+                                    <a class="with-alltime" href="#" onclick="Analytics.courseConversions('alltime', 0,this); return false;">{{trans('analytics.allTime')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -134,13 +134,33 @@
                         </ul>
                     </div>
                 </div>
+
                 <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div id="customize">
-                        <a href="#">
-                            <span>Customize</span>
-                        </a>
+                    <div class="with-progress-bar">
+                        <div class="dropdown-wrapper">
+                            <button class="btn btn-default">
+                                {{trans('analytics.ltcRegistrations')}} <span id="header-ltc-registrations-frequency">{{trans('analytics.today')}}</span> </button>
+                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu tracking-code-conversions-dropdown">
+                                <li>
+                                    <a class="active with-today" href="#" onclick="Analytics.ltcRegistrations('daily',this); return false;">{{trans('analytics.today')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-weekly" href="#" onclick="Analytics.ltcRegistrations('week', this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-monthly" href="#" onclick="Analytics.ltcRegistrations('month', this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-alltime" href="#" onclick="Analytics.ltcRegistrations('alltime', this); return false;">{{trans('analytics.allTime')}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul id="wrapper-ltc-registrations">
+                            {{$ltcRegistrationsView}}
+                        </ul>
                     </div>
                 </div>
+
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div>
                         <div class="dropdown-wrapper">
@@ -148,16 +168,16 @@
                                 {{trans('analytics.trackingCodeConverting')}} <span id="header-tracking-code-conversions-frequency">{{trans('analytics.today')}}</span> </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu tracking-code-conversions-dropdown">
                                 <li>
-                                    <a class="active with-today" href="#" onclick="Analytics.trackingCodeConversions('daily',0, this); return false;">Today</a>
+                                    <a class="active with-today" href="#" onclick="Analytics.trackingCodeConversions('daily',0, this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-weekly" href="#" onclick="Analytics.trackingCodeConversions('week', 0,this); return false;">This week</a>
+                                    <a class="with-weekly" href="#" onclick="Analytics.trackingCodeConversions('week', 0,this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-monthly" href="#" onclick="Analytics.trackingCodeConversions('month', 0,this); return false;">This month</a>
+                                    <a class="with-monthly" href="#" onclick="Analytics.trackingCodeConversions('month', 0,this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-alltime" href="#" onclick="Analytics.trackingCodeConversions('alltime', 0,this); return false;">All time</a>
+                                    <a class="with-alltime" href="#" onclick="Analytics.trackingCodeConversions('alltime', 0,this); return false;">{{trans('analytics.allTime')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -167,6 +187,12 @@
                     </div>
                 </div>
             </div>
+
+
+            <div id="ajax-loader-wrapper" class="hidden">
+                <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+            </div>
+
             <!--<div class="row">
                 <div class="col-md-12">
                     <div class="white-row">
