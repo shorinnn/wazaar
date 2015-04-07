@@ -35,4 +35,13 @@ return array(
     'login' => 'Login',
     'register' => 'Register',
     'load-more' => 'Load More',
+    'about' => 'About',
+    'no-bio-available' => 'No Bio Available',
+    'you-are-backed-by-our' => 'You are backed by our',
+    'money-back-guarantee' => 'MONEY BACK GUARANTEE',
+    'follow' => 'FOLLOW',
+    'unfollow' => 'UNFOLLOW',
+    'you-are-following' => 'You are following',
+    'wishlist' => 'wishlist',
+    'testimonial' => 'Testimonial',
 );
