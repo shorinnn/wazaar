@@ -10,7 +10,7 @@
                         <div class="clearfix">
                             <p class="lead"> {{ $category->name }} <small>{{ $category->description }}</small></p>
                             
-                            <a href="{{ action('CoursesController@category', $category->slug) }}">View all</a>
+                            <a href="{{ action('CoursesController@category', $category->slug) }}">{{ trans('site/homepage.view-all') }}</a>
                         </div>
                     </div>
                 </div>

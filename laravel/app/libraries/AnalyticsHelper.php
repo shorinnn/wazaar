@@ -2,34 +2,99 @@
 
 class AnalyticsHelper
 {
+
     protected $affiliateId;
     protected $isAdmin;
 
     public function __construct($isAdmin, $affiliateId = 0)
     {
-        $this->isAdmin = $isAdmin;
+        $this->isAdmin     = $isAdmin;
         $this->affiliateId = $affiliateId;
+    }
+
+    private function dailyLtcRegistration($affiliateId, $dateFilter = '')
+    {
+        if (empty($dateFilter)) {
+            $dateFilter = $this->_frequencyEquivalence();
+        }
+
+        $filterQuery = " AND DATE(users.created_at) = '{$dateFilter}'";
+        return $this->_affiliates($affiliateId, $filterQuery);
+    }
+
+    private function weeklyLtcRegistration($affiliateId, $dateFilterStart, $dateFilterEnd)
+    {
+        $filterQuery = " AND DATE(users.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+        return $this->_affiliates($affiliateId, $filterQuery);
+    }
+
+    private function monthlyLtcRegistration($affiliateId, $month, $year)
+    {
+        $filterQuery = " AND MONTH(users.created_at) = '{$month}' AND YEAR(users.created_at) = '{$year}'";
+        return $this->_affiliates($affiliateId, $filterQuery);
+    }
+
+
+    private function allTimeLtcRegistration($affiliateId, $year)
+    {
+        $filterQuery = " AND YEAR(users.created_at) = '{$year}'";
+        return $this->_affiliates($affiliateId, $filterQuery);
+    }
+
+    private function _affiliates($affiliateId, $filter = '')
+    {
+        $sql = "SELECT count(id) as affiliates_count FROM users WHERE ltc_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
+        $result = DB::select($sql);
+
+        $result = array_map(function ($val) {
+            return json_decode(json_encode($val), true);
+        }, $result);
+        $output = [
+            'data'        => $result,
+            'count'       => count($result),
+            'affiliates_count' => array_sum(array_column($result, 'affiliates_count')),
+        ];
+
+        return $output;
     }
 
     public function topCourses($frequency = '', $courseId = '')
     {
-        switch($frequency){
-            case 'daily' : return $this->dailyTopCourses($courseId); break;
-            case 'week': return $this->weeklyTopCourses($courseId); break;
-            case 'month': return $this->monthlyTopCourses($courseId); break;
-            case 'alltime' : return $this->allTimeTopCourses($courseId); break;
-            default: return $this->dailyTopCourses($courseId);
+        switch ($frequency) {
+            case 'daily' :
+                return $this->dailyTopCourses($courseId);
+                break;
+            case 'week':
+                return $this->weeklyTopCourses($courseId);
+                break;
+            case 'month':
+                return $this->monthlyTopCourses($courseId);
+                break;
+            case 'alltime' :
+                return $this->allTimeTopCourses($courseId);
+                break;
+            default:
+                return $this->dailyTopCourses($courseId);
         }
     }
 
     public function sales($frequency = '', $courseId = '', $trackingCode = '')
     {
-        switch($frequency){
-            case 'daily' : return $this->dailySales($courseId,$trackingCode); break;
-            case 'week': return $this->weeklySales($courseId,'','',$trackingCode); break;
-            case 'month': return $this->monthlySales($courseId); break;
-            case 'alltime' : return $this->allTimeSales($courseId); break;
-            default: return $this->dailySales($courseId);
+        switch ($frequency) {
+            case 'daily' :
+                return $this->dailySales($courseId, $trackingCode);
+                break;
+            case 'week':
+                return $this->weeklySales($courseId, '', '', $trackingCode);
+                break;
+            case 'month':
+                return $this->monthlySales($courseId);
+                break;
+            case 'alltime' :
+                return $this->allTimeSales($courseId);
+                break;
+            default:
+                return $this->dailySales($courseId);
         }
     }
 
@@ -37,11 +102,11 @@ class AnalyticsHelper
     {
         $filterQuery = "DATE(purchases.created_at) BETWEEN '{$startDate}' AND '{$endDate}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
 
-        if (!empty($trackingCode)){
+        if (!empty($trackingCode)) {
             $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
         }
 
@@ -49,47 +114,84 @@ class AnalyticsHelper
 
         return $this->_transformCoursePurchases($query);
     }
+
     public function trackingCodes($frequency = '', $courseId = null)
     {
-        switch($frequency){
-            case 'daily' : return $this->dailyTrackingCodes($courseId); break;
-            case 'week': return $this->weeklyTrackingCodes($courseId); break;
-            case 'month': return $this->monthlyTrackingCodes($courseId); break;
-            case 'alltime' : return $this->allTimeTrackingCodes($courseId); break;
-            default: return $this->dailyTrackingCodes($courseId);
+        switch ($frequency) {
+            case 'daily' :
+                return $this->dailyTrackingCodes($courseId);
+                break;
+            case 'week':
+                return $this->weeklyTrackingCodes($courseId);
+                break;
+            case 'month':
+                return $this->monthlyTrackingCodes($courseId);
+                break;
+            case 'alltime' :
+                return $this->allTimeTrackingCodes($courseId);
+                break;
+            default:
+                return $this->dailyTrackingCodes($courseId);
         }
     }
 
     public function courseConversion($frequency = '', $courseId = null)
     {
-        switch($frequency){
-            case 'daily' : return $this->dailyCourseConversion($courseId); break;
-            case 'week': return $this->weeklyCourseConversion($courseId); break;
-            case 'month': return $this->monthlyCourseConversion($courseId); break;
-            case 'alltime' : return $this->allTimeCourseConversion($courseId); break;
-            default: return $this->dailyCourseConversion($courseId);
+        switch ($frequency) {
+            case 'daily' :
+                return $this->dailyCourseConversion($courseId);
+                break;
+            case 'week':
+                return $this->weeklyCourseConversion($courseId);
+                break;
+            case 'month':
+                return $this->monthlyCourseConversion($courseId);
+                break;
+            case 'alltime' :
+                return $this->allTimeCourseConversion($courseId);
+                break;
+            default:
+                return $this->dailyCourseConversion($courseId);
         }
     }
 
     public function trackingCodeConversion($frequency = '', $courseId = null)
     {
-        switch($frequency){
-            case 'daily' : return $this->dailyTrackingCodeConversion($courseId); break;
-            case 'week': return $this->weeklyTrackingCodeConversion($courseId); break;
-            case 'month': return $this->monthlyTrackingCodeConversion($courseId); break;
-            case 'alltime' : return $this->allTimeTrackingCodeConversion($courseId); break;
-            default: return $this->dailyTrackingCodeConversion($courseId);
+        switch ($frequency) {
+            case 'daily' :
+                return $this->dailyTrackingCodeConversion($courseId);
+                break;
+            case 'week':
+                return $this->weeklyTrackingCodeConversion($courseId);
+                break;
+            case 'month':
+                return $this->monthlyTrackingCodeConversion($courseId);
+                break;
+            case 'alltime' :
+                return $this->allTimeTrackingCodeConversion($courseId);
+                break;
+            default:
+                return $this->dailyTrackingCodeConversion($courseId);
         }
     }
 
     public function trackingCodeHitsSales($frequency = '', $courseId = null, $trackingCode = '')
     {
-        switch($frequency){
-            case 'daily' : return $this->dailyHitsSales($courseId, $trackingCode); break;
-            case 'week': return $this->weeklyHitsSales($courseId, $trackingCode); break;
-            case 'month': return $this->monthlyHitsSales($courseId, $trackingCode); break;
-            case 'alltime' : return $this->allTimeHitsSales($courseId, $trackingCode); break;
-            default: return $this->dailyHitsSales($courseId, $trackingCode);
+        switch ($frequency) {
+            case 'daily' :
+                return $this->dailyHitsSales($courseId, $trackingCode);
+                break;
+            case 'week':
+                return $this->weeklyHitsSales($courseId, $trackingCode);
+                break;
+            case 'month':
+                return $this->monthlyHitsSales($courseId, $trackingCode);
+                break;
+            case 'alltime' :
+                return $this->allTimeHitsSales($courseId, $trackingCode);
+                break;
+            default:
+                return $this->dailyHitsSales($courseId, $trackingCode);
         }
     }
 
@@ -98,17 +200,16 @@ class AnalyticsHelper
     {
         if (empty($date)) {
             $dateFilter = $this->_frequencyEquivalence();
-        }
-        else{
+        } else {
             $dateFilter = $date;
         }
         $filterQuery = "DATE(purchases.created_at) = '{$dateFilter}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
 
-        if (!empty($trackingCode)){
+        if (!empty($trackingCode)) {
             $filterQuery .= "And purchases.tracking_code = '{$trackingCode}'";
         }
 
@@ -121,167 +222,208 @@ class AnalyticsHelper
     {
         $sales = [];
 
-        for ($i = 0; $i <= $numOfWeeks; $i++){
-            $start = date('Y-m-d',strtotime('-' . ($i+1) .  ' week'));
-            $end = date('Y-m-d',strtotime("-$i week"));
-            $label = $i . ( ($i > 1) ? ' weeks' : ' week') . ' ago';
-            if ($i === 0){
+        for ($i = 0; $i <= $numOfWeeks; $i ++) {
+            $start = date('Y-m-d', strtotime('-' . ($i + 1) . ' week'));
+            $end   = date('Y-m-d', strtotime("-$i week"));
+            $label = $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
+            if ($i === 0) {
                 $label = 'This week';
             }
-            $sales[] = ['label' => $label, 'start' => $start, 'end' => $end, 'week' =>$this->weeklySales($courseId,$start,$end, $trackingCode)];
+            $sales[] = [
+                'label' => $label,
+                'start' => $start,
+                'end'   => $end,
+                'week'  => $this->weeklySales($courseId, $start, $end, $trackingCode)
+            ];
         }
 
         $salesTotal = 0;
         $salesCount = 0;
-        $maxSale = $this->_getMaxSalesValue($sales,'week');
-        $maxCount = $this->_getMaxSalesCount($sales, 'week');
+        $maxSale    = $this->_getMaxSalesValue($sales, 'week');
+        $maxCount   = $this->_getMaxSalesCount($sales, 'week');
 
         $i = 0;
-        foreach($sales as $sale){
+        foreach ($sales as $sale) {
             $salesTotal += $sale['week']['sales_total'];
             $salesCount += $sale['week']['sales_count'];
             // avoid division by zero
-            if($maxSale == 0) $percentage = 0;
-            else $percentage = ($sale['week']['sales_total'] / $maxSale) * 100;
+            if ($maxSale == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['week']['sales_total'] / $maxSale) * 100;
+            }
             $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
 
             // avoid division by zero
-            if($maxCount == 0) $percentage = 0;
-            else $percentage = ($sale['week']['sales_count'] / $maxCount) * 100;
+            if ($maxCount == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['week']['sales_count'] / $maxCount) * 100;
+            }
             $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
 
-            $i++;
+            $i ++;
         }
 
         return compact('sales', 'salesTotal', 'salesCount');
     }
-
 
 
     public function salesLastFewDays($numOfDays, $courseId = 0, $trackingCode = '')
     {
         $sales = [];
 
-        for ($i = 0; $i <= $numOfDays; $i++){
-            $day = date('l',strtotime("-$i day"));
-            $date = date('Y-m-d',strtotime("-$i day"));
+        for ($i = 0; $i <= $numOfDays; $i ++) {
+            $day   = date('l', strtotime("-$i day"));
+            $date  = date('Y-m-d', strtotime("-$i day"));
             $label = $day;
-            if ($i === 0){
+            if ($i === 0) {
                 $label = 'Today';
             }
-            $sales[] = ['label' => $label, 'date' => $date, 'day' =>$this->courseDailySales($courseId, $date, $trackingCode)];
+            $sales[] = [
+                'label' => $label,
+                'date'  => $date,
+                'day'   => $this->courseDailySales($courseId, $date, $trackingCode)
+            ];
         }
         $salesTotal = 0;
         $salesCount = 0;
 
-        $maxSale = $this->_getMaxSalesValue($sales,'day');
-        $maxCount = $this->_getMaxSalesCount($sales,'day');
+        $maxSale  = $this->_getMaxSalesValue($sales, 'day');
+        $maxCount = $this->_getMaxSalesCount($sales, 'day');
 
         $i = 0;
 
-        foreach($sales as $sale){
+        foreach ($sales as $sale) {
             $salesTotal += $sale['day']['sales_total'];
             $salesCount += $sale['day']['sales_count'];
             // avoid division by zero
-            if($maxSale == 0) $percentage = 0;
-            else $percentage = ($sale['day']['sales_total'] / $maxSale) * 100;
+            if ($maxSale == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['day']['sales_total'] / $maxSale) * 100;
+            }
             $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
 
             // avoid division by zero
-            if($maxCount == 0) $percentage = 0;
-            else $percentage = ($sale['day']['sales_count'] / $maxCount) * 100;
+            if ($maxCount == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['day']['sales_count'] / $maxCount) * 100;
+            }
             $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
 
-            $i++;
+            $i ++;
         }
 
-        return compact('sales', 'salesTotal','salesCount');
+        return compact('sales', 'salesTotal', 'salesCount');
     }
 
     public function salesLastFewMonths($numOfMonths, $courseId = 0, $trackingCode = '')
     {
         $sales = [];
 
-        for ($i = 0; $i <= $numOfMonths; $i++){
-            $month = date('m',strtotime("-$i month"));
-            $year = date('Y',strtotime("-$i month"));
-            $label = $i . ( ($i > 1) ? ' months' : ' month') . ' ago';
-            if ($i === 0){
+        for ($i = 0; $i <= $numOfMonths; $i ++) {
+            $month = date('m', strtotime("-$i month"));
+            $year  = date('Y', strtotime("-$i month"));
+            $label = $i . (($i > 1) ? ' months' : ' month') . ' ago';
+            if ($i === 0) {
                 $label = 'This month';
             }
-            $sales[] = ['label' => $label, 'month_date' => $month, 'year' => $year, 'month' =>$this->monthlySales($courseId, $month, $year,$trackingCode)];
+            $sales[] = [
+                'label'      => $label,
+                'month_date' => $month,
+                'year'       => $year,
+                'month'      => $this->monthlySales($courseId, $month, $year, $trackingCode)
+            ];
         }
         $salesTotal = 0;
         $salesCount = 0;
 
-        $maxSale = $this->_getMaxSalesValue($sales,'month');
-        $maxCount = $this->_getMaxSalesCount($sales,'month');
+        $maxSale  = $this->_getMaxSalesValue($sales, 'month');
+        $maxCount = $this->_getMaxSalesCount($sales, 'month');
 
         $i = 0;
 
-        foreach($sales as $sale){
+        foreach ($sales as $sale) {
             $salesTotal += $sale['month']['sales_total'];
             $salesCount += $sale['month']['sales_count'];
             // avoid division by zero
-            if($maxSale == 0) $percentage = 0;
-            else $percentage = ($sale['month']['sales_total'] / $maxSale) * 100;
+            if ($maxSale == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['month']['sales_total'] / $maxSale) * 100;
+            }
             $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
 
             // avoid division by zero
-            if($maxCount == 0) $percentage = 0;
-            else $percentage = ($sale['month']['sales_count'] / $maxCount) * 100;
+            if ($maxCount == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['month']['sales_count'] / $maxCount) * 100;
+            }
             $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
 
-            $i++;
+            $i ++;
         }
 
-        return compact('sales', 'salesTotal','salesCount');
+        return compact('sales', 'salesTotal', 'salesCount');
     }
 
     public function salesLastFewYears($numOfYears, $courseId = 0, $trackingCode = '')
     {
         $sales = [];
 
-        for ($i = 0; $i <= $numOfYears; $i++){
-            $year = date('Y',strtotime("-$i year"));
-            $label = $i . ( ($i > 1) ? ' years' : ' year') . ' ago';
-            if ($i === 0){
+        for ($i = 0; $i <= $numOfYears; $i ++) {
+            $year  = date('Y', strtotime("-$i year"));
+            $label = $i . (($i > 1) ? ' years' : ' year') . ' ago';
+            if ($i === 0) {
                 $label = 'This year';
             }
-            $sales[] = ['label' => $label, 'year_date' => $year, 'year' =>$this->allTimeSales($courseId, $year, $trackingCode)];
+            $sales[] = [
+                'label'     => $label,
+                'year_date' => $year,
+                'year'      => $this->allTimeSales($courseId, $year, $trackingCode)
+            ];
         }
         $salesTotal = 0;
         $salesCount = 0;
 
-        $maxSale = $this->_getMaxSalesValue($sales,'year');
-        $maxCount = $this->_getMaxSalesCount($sales,'year');
+        $maxSale  = $this->_getMaxSalesValue($sales, 'year');
+        $maxCount = $this->_getMaxSalesCount($sales, 'year');
 
         $i = 0;
-        foreach($sales as $sale){
+        foreach ($sales as $sale) {
             $salesTotal += $sale['year']['sales_total'];
             $salesCount += $sale['year']['sales_count'];
             // avoid division by zero
-            if($maxSale == 0) $percentage = 0;
-            else $percentage = ($sale['year']['sales_total'] / $maxSale) * 100;
+            if ($maxSale == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['year']['sales_total'] / $maxSale) * 100;
+            }
             $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
 
             // avoid division by zero
-            if($maxCount == 0) $percentage = 0;
-            else $percentage = ($sale['year']['sales_count'] / $maxCount) * 100;
+            if ($maxCount == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['year']['sales_count'] / $maxCount) * 100;
+            }
             $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
 
-            $i++;
+            $i ++;
         }
 
         return compact('sales', 'salesTotal', 'salesCount');
     }
 
-    private function _getMaxSalesValue($sales,$frequency)
+    private function _getMaxSalesValue($sales, $frequency)
     {
         $max = 0;
 
-        foreach($sales as $sale){
-            if ($sale[$frequency]['sales_total'] > $max){
+        foreach ($sales as $sale) {
+            if ($sale[$frequency]['sales_total'] > $max) {
                 $max = $sale[$frequency]['sales_total'];
             }
         }
@@ -289,12 +431,12 @@ class AnalyticsHelper
         return $max;
     }
 
-    private function _getMaxSalesCount($sales,$frequency)
+    private function _getMaxSalesCount($sales, $frequency)
     {
         $max = 0;
 
-        foreach($sales as $sale){
-            if ($sale[$frequency]['sales_count'] > $max){
+        foreach ($sales as $sale) {
+            if ($sale[$frequency]['sales_count'] > $max) {
                 $max = $sale[$frequency]['sales_count'];
             }
         }
@@ -314,34 +456,35 @@ class AnalyticsHelper
 
         $filterQuery = "DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
 
-        if (!empty($trackingCode)){
+        if (!empty($trackingCode)) {
             $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
         }
 
         $query = $this->_salesRawQuery($filterQuery);
+
         return $this->_transformCoursePurchases($query);
     }
 
     public function monthlySales($courseId, $month = '', $year = '', $trackingCode = '')
     {
-        if (empty($month)){
+        if (empty($month)) {
             $month = date('m');
         }
 
-        if (empty($year)){
+        if (empty($year)) {
             $year = date('Y');
         }
         $filterQuery = "YEAR(purchases.created_at) = '{$year}' AND MONTH(purchases.created_at) = '{$month}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
 
-        if (!empty($trackingCode)){
+        if (!empty($trackingCode)) {
             $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
         }
 
@@ -352,15 +495,15 @@ class AnalyticsHelper
 
     public function allTimeSales($courseId, $year = '', $trackingCode = '')
     {
-        if (empty($year)){
+        if (empty($year)) {
             $year = date('Y');
         }
         $filterQuery = "YEAR(purchases.created_at) = '{$year}'";
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
 
-        if (!empty($trackingCode)){
+        if (!empty($trackingCode)) {
             $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
         }
 
@@ -371,15 +514,15 @@ class AnalyticsHelper
 
     public function courseDailySales($courseId, $date = '', $trackingCode = '')
     {
-        if (empty($date)){
+        if (empty($date)) {
             $date = date('Y-m-d');
         }
         $filterQuery = "DATE(purchases.created_at) = '{$date}'";
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND purchases.product_id = '{$courseId}'";
         }
 
-        if (!empty($trackingCode)){
+        if (!empty($trackingCode)) {
             $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
         }
 
@@ -390,25 +533,26 @@ class AnalyticsHelper
 
     public function dailyTopCourses($courseId)
     {
-        $dateFilter = $this->_frequencyEquivalence();
+        $dateFilter  = $this->_frequencyEquivalence();
         $filterQuery = "DATE(purchases.created_at) = '{$dateFilter}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND product_id = '{$courseId}'";
         }
 
         $query = $this->_purchaseRawQuery($filterQuery);
+
         return $this->_transformCoursePurchases($query);
     }
 
     public function weeklyTopCourses($courseId)
     {
         $dateFilterStart = $this->_frequencyEquivalence('week');
-        $dateFilterEnd = date('Y-m-d');
+        $dateFilterEnd   = date('Y-m-d');
 
         $filterQuery = "DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND product_id = '{$courseId}'";
         }
 
@@ -420,11 +564,11 @@ class AnalyticsHelper
     public function monthlyTopCourses($courseId)
     {
         $dateFilterStart = $this->_frequencyEquivalence('month');
-        $dateFilterEnd = date('Y-m-d');
+        $dateFilterEnd   = date('Y-m-d');
 
         $filterQuery = "DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND product_id = '{$courseId}'";
         }
 
@@ -437,7 +581,7 @@ class AnalyticsHelper
     {
         $filterQuery = "";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery = " AND product_id = '{$courseId}'";
         }
 
@@ -448,10 +592,10 @@ class AnalyticsHelper
 
     public function dailyTrackingCodes($courseId)
     {
-        $dateFilter = $this->_frequencyEquivalence();
+        $dateFilter  = $this->_frequencyEquivalence();
         $filterQuery = "DATE(tracking_code_hits.created_at) = '{$dateFilter}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND course_id = '{$courseId}'";
         }
 
@@ -463,11 +607,11 @@ class AnalyticsHelper
     public function weeklyTrackingCodes($courseId)
     {
         $dateFilterStart = $this->_frequencyEquivalence('week');
-        $dateFilterEnd = date('Y-m-d');
+        $dateFilterEnd   = date('Y-m-d');
 
         $filterQuery = "DATE(tracking_code_hits.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND course_id = '{$courseId}'";
         }
 
@@ -479,11 +623,11 @@ class AnalyticsHelper
     public function monthlyTrackingCodes($courseId)
     {
         $dateFilterStart = $this->_frequencyEquivalence('month');
-        $dateFilterEnd = date('Y-m-d');
+        $dateFilterEnd   = date('Y-m-d');
 
         $filterQuery = "DATE(tracking_code_hits.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND course_id = '{$courseId}'";
         }
 
@@ -494,7 +638,8 @@ class AnalyticsHelper
 
     public function trackingCodesAll()
     {
-        $query = $this->_trackingCodesRawQuery('',0);
+        $query = $this->_trackingCodesRawQuery('', 0);
+
         return $this->_transformCoursePurchases($query);
     }
 
@@ -502,7 +647,7 @@ class AnalyticsHelper
     {
         $filterQuery = "";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery = " course_id = '{$courseId}'";
         }
         $query = $this->_trackingCodesRawQuery($filterQuery);
@@ -512,11 +657,11 @@ class AnalyticsHelper
 
     public function dailyHitsSales($courseId, $trackingCode)
     {
-        $dateFilter = $this->_frequencyEquivalence();
+        $dateFilter  = $this->_frequencyEquivalence();
         $filterQuery = " AND DATE(created_at) = '{$dateFilter}'";
 
 
-        $query = $this->_codeStatisticsRawQuery($courseId,$trackingCode,  $filterQuery);
+        $query = $this->_codeStatisticsRawQuery($courseId, $trackingCode, $filterQuery);
 
         return DB::select($query);
     }
@@ -524,11 +669,11 @@ class AnalyticsHelper
     public function weeklyHitsSales($courseId, $trackingCode)
     {
         $dateFilterStart = $this->_frequencyEquivalence('week');
-        $dateFilterEnd = date('Y-m-d');
+        $dateFilterEnd   = date('Y-m-d');
 
         $filterQuery = " AND DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        $query = $this->_codeStatisticsRawQuery($courseId,$trackingCode, $filterQuery);
+        $query = $this->_codeStatisticsRawQuery($courseId, $trackingCode, $filterQuery);
 
         return DB::select($query);
     }
@@ -536,11 +681,11 @@ class AnalyticsHelper
     public function monthlyHitsSales($courseId, $trackingCode)
     {
         $dateFilterStart = $this->_frequencyEquivalence('month');
-        $dateFilterEnd = date('Y-m-d');
+        $dateFilterEnd   = date('Y-m-d');
 
         $filterQuery = " AND DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        $query = $this->_codeStatisticsRawQuery($courseId,$trackingCode, $filterQuery);
+        $query = $this->_codeStatisticsRawQuery($courseId, $trackingCode, $filterQuery);
 
         return DB::select($query);
     }
@@ -556,10 +701,10 @@ class AnalyticsHelper
 
     public function dailyCourseConversion($courseId)
     {
-        $dateFilter = $this->_frequencyEquivalence();
+        $dateFilter  = $this->_frequencyEquivalence();
         $filterQuery = "DATE(cp.created_at) = '{$dateFilter}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND cp.product_id = '{$courseId}'";
         }
 
@@ -572,10 +717,10 @@ class AnalyticsHelper
     public function weeklyCourseConversion($courseId)
     {
         $dateFilterStart = $this->_frequencyEquivalence('week');
-        $dateFilterEnd = date('Y-m-d');
-        $filterQuery = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+        $dateFilterEnd   = date('Y-m-d');
+        $filterQuery     = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND cp.product_id = '{$courseId}'";
         }
 
@@ -587,10 +732,10 @@ class AnalyticsHelper
     public function monthlyCourseConversion($courseId)
     {
         $dateFilterStart = $this->_frequencyEquivalence('month');
-        $dateFilterEnd = date('Y-m-d');
-        $filterQuery = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+        $dateFilterEnd   = date('Y-m-d');
+        $filterQuery     = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery .= " AND cp.product_id = '{$courseId}'";
         }
 
@@ -603,7 +748,7 @@ class AnalyticsHelper
     {
         $filterQuery = "";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery = "cp.product_id = '{$courseId}'";
         }
         $query = $this->_coursePurchaseConversionRawQuery($filterQuery);
@@ -613,10 +758,10 @@ class AnalyticsHelper
 
     public function dailyTrackingCodeConversion($courseId = "")
     {
-        $dateFilter = $this->_frequencyEquivalence();
+        $dateFilter  = $this->_frequencyEquivalence();
         $filterQuery = "DATE(cp.created_at) = '{$dateFilter}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery = "cp.product_id = '{$courseId}'";
         }
 
@@ -628,11 +773,11 @@ class AnalyticsHelper
     public function weeklyTrackingCodeConversion($courseId = "")
     {
         $dateFilterStart = $this->_frequencyEquivalence('week');
-        $dateFilterEnd = date('Y-m-d');
+        $dateFilterEnd   = date('Y-m-d');
 
         $filterQuery = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery = "cp.product_id = '{$courseId}'";
         }
 
@@ -644,11 +789,11 @@ class AnalyticsHelper
     public function monthlyTrackingCodeConversion($courseId = "")
     {
         $dateFilterStart = $this->_frequencyEquivalence('month');
-        $dateFilterEnd = date('Y-m-d');
+        $dateFilterEnd   = date('Y-m-d');
 
         $filterQuery = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery = "cp.product_id = '{$courseId}'";
         }
 
@@ -661,7 +806,7 @@ class AnalyticsHelper
     {
         $filterQuery = "";
 
-        if (!empty($courseId)){
+        if (!empty($courseId)) {
             $filterQuery = "cp.product_id = '{$courseId}'";
         }
 
@@ -673,47 +818,47 @@ class AnalyticsHelper
     public function purchasesLabelData($sales, $dates = [])
     {
         $labels = [];
-        $data = [];
+        $data   = [];
 
-        if (count($dates) == 0){
-            for($i = 0; $i <= 7; $i++){
-                $dates[] = date('F d, Y',strtotime(Input::get('startDate') . ' -'. $i .' days'));
+        if (count($dates) == 0) {
+            for ($i = 0; $i <= 7; $i ++) {
+                $dates[] = date('F d, Y', strtotime(Input::get('startDate') . ' -' . $i . ' days'));
             }
         }
 
-        foreach($dates as $date){
+        foreach ($dates as $date) {
             $saleValue = 0;
-            foreach($sales['data'] as $sale){
+            foreach ($sales['data'] as $sale) {
                 $purchaseDate = date('F d, Y', strtotime($sale['created_at']));
 
-                if ($purchaseDate == $date){
-                    $saleValue =  $sale['total_purchase'];
+                if ($purchaseDate == $date) {
+                    $saleValue = $sale['total_purchase'];
                     break;
                 }
             }
 
             $labels[] = $date;
-            $data[] = $saleValue;
+            $data[]   = $saleValue;
         }
 
 
         $labels = array_reverse($labels);
-        $data = array_reverse($data);
+        $data   = array_reverse($data);
+
         return compact('labels', 'data');
     }
 
     private function _transformCoursePurchases($query)
     {
         $result = DB::select($query);
-        $result = array_map(function($val)
-                {
-                            return json_decode(json_encode($val), true);
-                }, $result);
+        $result = array_map(function ($val) {
+            return json_decode(json_encode($val), true);
+        }, $result);
         $output = [
-            'data' => $result,
-            'count' => count($result),
-            'sales_total' => array_sum(array_column($result,'total_purchase')),
-            'sales_count' => array_sum(array_column($result,'total_count')),
+            'data'        => $result,
+            'count'       => count($result),
+            'sales_total' => array_sum(array_column($result, 'total_purchase')),
+            'sales_count' => array_sum(array_column($result, 'total_count')),
         ];
 
         return $output;
@@ -722,12 +867,11 @@ class AnalyticsHelper
     private function _transformCoursePurchaseConversion($query)
     {
         $result = DB::select($query);
-        $result = array_map(function($val)
-        {
+        $result = array_map(function ($val) {
             return json_decode(json_encode($val), true);
         }, $result);
         $output = [
-            'data' => $result,
+            'data'  => $result,
             'count' => count($result)
         ];
 
@@ -739,15 +883,15 @@ class AnalyticsHelper
     {
 
 
-        if (!empty($criteria)){
+        if (!empty($criteria)) {
             $criteria = ' AND ' . $criteria;
         }
 
-        if(!empty($type)){
+        if (!empty($type)) {
             $criteria .= " AND product_type='{$type}'";
         }
 
-        if (!$this->isAdmin AND !empty($this->affiliateId)){
+        if (!$this->isAdmin AND !empty($this->affiliateId)) {
             //$criteria .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
             $criteria .= " AND (purchases.product_affiliate_id = '{$this->affiliateId}' )";
         }
@@ -759,16 +903,17 @@ class AnalyticsHelper
                 GROUP BY courses.id, courses.name
                 ORDER BY total_purchase DESC
                 ";
+
         return $sql;
     }
 
     private function _salesRawQuery($criteria = '')
     {
-        if (!empty($criteria)){
+        if (!empty($criteria)) {
             $criteria = ' AND ' . $criteria;
         }
 
-        if (!$this->isAdmin AND !empty($this->affiliateId)){
+        if (!$this->isAdmin AND !empty($this->affiliateId)) {
             //$criteria .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
             $criteria .= " AND (purchases.product_affiliate_id = '{$this->affiliateId}' )";
 
@@ -780,16 +925,17 @@ class AnalyticsHelper
                 GROUP BY DATE(created_at)
                 ORDER BY created_at DESC
                 ";
+
         return $sql;
     }
 
     private function _trackingCodesRawQuery($criteria = '', $limit = 10)
     {
-        if (!empty($criteria)){
+        if (!empty($criteria)) {
             $criteria = ' AND ' . $criteria;
         }
 
-        if (!$this->isAdmin AND !empty($this->affiliateId)){
+        if (!$this->isAdmin AND !empty($this->affiliateId)) {
             $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
         }
 
@@ -800,7 +946,7 @@ class AnalyticsHelper
                 GROUP BY course_id, tracking_code
                 ";
 
-        if ($limit > 0){
+        if ($limit > 0) {
             $sql .= " ORDER BY count DESC LIMIT {$limit}";
         }
 
@@ -810,13 +956,13 @@ class AnalyticsHelper
     private function _coursePurchaseConversionRawQuery($criteria = '', $limit = 10)
     {
 
-        if (!empty($criteria)){
+        if (!empty($criteria)) {
             $criteria = ' AND ' . $criteria;
         }
 
-        $criteriaPurchase = $criteria;
+        $criteriaPurchase  = $criteria;
         $criteriaPurchase2 = $criteria;
-        if (!$this->isAdmin AND !empty($this->affiliateId)){
+        if (!$this->isAdmin AND !empty($this->affiliateId)) {
             $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
             //$criteriaPurchase .= " AND (cp.ltc_affiliate_id = '{$this->affiliateId}' OR cp.product_affiliate_id = '{$this->affiliateId}' )";
             //$criteriaPurchase2 .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
@@ -844,32 +990,35 @@ class AnalyticsHelper
             GROUP BY courses.name, cp.product_id
             ORDER BY (purchases/hits) DESC
             LIMIT {$limit}";
+
         return $sql;
     }
 
-    public function trackingCodesByCourse($courseId, $startDate = '', $endDate = ''){
+    public function trackingCodesByCourse($courseId, $startDate = '', $endDate = '')
+    {
         $criteria = "cp.product_id = '$courseId'";
-        if (!empty($startDate) AND !empty($endDate)){
+        if (!empty($startDate) AND !empty($endDate)) {
             $criteria .= " AND cp.created_at BETWEEN '{$startDate}' AND '{$endDate}'";
         }
 
-        if (!empty($startDate) AND empty($endDate)){
+        if (!empty($startDate) AND empty($endDate)) {
             $criteria .= " AND cp.created_at = '{$startDate}'";
         }
-        $query = $this->_trackingCodeConversionRawQuery($criteria,0);
+        $query = $this->_trackingCodeConversionRawQuery($criteria, 0);
+
         return $this->_transformCoursePurchaseConversion($query);
     }
 
     private function _trackingCodeConversionRawQuery($criteria = '', $limit = 10)
     {
 
-        if (!empty($criteria)){
+        if (!empty($criteria)) {
             $criteria = ' AND ' . $criteria;
         }
 
-        $criteriaPurchase = $criteria;
+        $criteriaPurchase  = $criteria;
         $criteriaPurchase2 = $criteria;
-        if (!$this->isAdmin AND !empty($this->affiliateId)){
+        if (!$this->isAdmin AND !empty($this->affiliateId)) {
             $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
             $criteriaPurchase .= " AND (cp.ltc_affiliate_id = '{$this->affiliateId}' OR cp.product_affiliate_id = '{$this->affiliateId}' )";
             $criteriaPurchase2 .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
@@ -901,7 +1050,7 @@ class AnalyticsHelper
             ORDER BY (purchases/hits) DESC
            ";
 
-        if ($limit > 0){
+        if ($limit > 0) {
             $sql .= " LIMIT {$limit}";
         }
 
@@ -917,12 +1066,177 @@ class AnalyticsHelper
         return $sql;
     }
 
+
+
+
+    public function affiliatesLastFewDays($affiliateId = 0, $numOfDays = 7)
+    {
+        $affiliates = [];
+
+        for ($i = 0; $i <= $numOfDays; $i ++) {
+            $day   = date('l', strtotime("-$i day"));
+            $date  = date('Y-m-d', strtotime("-$i day"));
+            $label = $day;
+            if ($i === 0) {
+                $label = 'Today';
+            }
+            $affiliates[] = [
+                'label' => $label,
+                'date'  => $date,
+                'day'   => $this->dailyLtcRegistration($affiliateId, $date)
+            ];
+        }
+
+
+
+        $affTotal = $this->_getAffiliatesTotal($affiliates, 'day');
+
+        $i = 0;
+
+        foreach ($affiliates as $aff) {
+            // avoid division by zero
+            if ($affTotal == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($aff['day']['affiliates_count'] / $affTotal) * 100;
+            }
+
+            $affiliates[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i ++;
+        }
+
+        return compact('affiliates', 'affTotal');
+    }
+
+    public function affiliatesLastFewWeeks($affiliateId, $numOfWeeks = 7)
+    {
+        $affiliates = [];
+
+        for ($i = 0; $i <= $numOfWeeks; $i ++) {
+            $start = date('Y-m-d', strtotime('-' . ($i + 1) . ' week'));
+            $end   = date('Y-m-d', strtotime("-$i week"));
+            $label = $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
+            if ($i === 0) {
+                $label = 'This week';
+            }
+            $affiliates[] = [
+                'label' => $label,
+                'start' => $start,
+                'end'   => $end,
+                'week'  => $this->weeklyLtcRegistration($affiliateId, $start,$end)
+            ];
+        }
+
+        $affTotal = $this->_getAffiliatesTotal($affiliates, 'week');
+
+        $i = 0;
+
+        foreach ($affiliates as $aff) {
+            // avoid division by zero
+            if ($affTotal == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($aff['week']['affiliates_count'] / $affTotal) * 100;
+            }
+
+            $affiliates[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i ++;
+        }
+
+        return compact('affiliates', 'affTotal');
+    }
+
+    public function affiliatesLastFewMonths($affiliateId, $numOfMonths = 7)
+    {
+        $affiliates = [];
+
+        for ($i = 0; $i <= $numOfMonths; $i ++) {
+            $month = date('m', strtotime("-$i month"));
+            $year  = date('Y', strtotime("-$i month"));
+            $label = $i . (($i > 1) ? ' months' : ' month') . ' ago';
+            if ($i === 0) {
+                $label = 'This month';
+            }
+            $affiliates[] = [
+                'label'      => $label,
+                'month_date' => $month,
+                'year'       => $year,
+                'month'      => $this->monthlyLtcRegistration($affiliateId,$month,$year)
+            ];
+        }
+        $affTotal = $this->_getAffiliatesTotal($affiliates, 'month');
+
+        $i = 0;
+
+        foreach ($affiliates as $aff) {
+            // avoid division by zero
+            if ($affTotal == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($aff['month']['affiliates_count'] / $affTotal) * 100;
+            }
+
+            $affiliates[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i ++;
+        }
+
+        return compact('affiliates', 'affTotal');
+    }
+
+    public function affiliatesLastFewYears($affiliateId, $numOfYears = 7)
+    {
+        $affiliates = [];
+
+        for ($i = 0; $i <= $numOfYears; $i ++) {
+            $year  = date('Y', strtotime("-$i year"));
+            $label = $i . (($i > 1) ? ' years' : ' year') . ' ago';
+            if ($i === 0) {
+                $label = 'This year';
+            }
+            $affiliates[] = [
+                'label'     => $label,
+                'year_date' => $year,
+                'year'      => $this->allTimeLtcRegistration($affiliateId,$year)
+            ];
+        }
+
+        $affTotal = $this->_getAffiliatesTotal($affiliates, 'year');
+
+        $i = 0;
+
+        foreach ($affiliates as $aff) {
+            // avoid division by zero
+            if ($affTotal == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($aff['year']['affiliates_count'] / $affTotal) * 100;
+            }
+
+            $affiliates[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i ++;
+        }
+
+        return compact('affiliates', 'affTotal');
+    }
+
+    private function _getAffiliatesTotal($affiliates, $frequency)
+    {
+        $totalAff = 0;
+
+        foreach ($affiliates as $aff) {
+                $totalAff += $aff[$frequency]['affiliates_count'];
+        }
+
+        return $totalAff;
+    }
+
+
     private function _frequencyEquivalence($frequency = null)
     {
-        if ($frequency == 'week'){
+        if ($frequency == 'week') {
             return date('Y-m-d', strtotime('-1 week'));
         }
-        if ($frequency == 'month'){
+        if ($frequency == 'month') {
             return date('Y-m-d', strtotime('-1 month'));
         }
 
@@ -931,10 +1245,13 @@ class AnalyticsHelper
 
     public static function frequencyReadable($frequency)
     {
-        switch($frequency){
-            case 'week': return trans('analytics.week');
-            case 'month' : return trans('analytics.month');
-            case 'alltime': return trans('analytics.alltime');
+        switch ($frequency) {
+            case 'week':
+                return trans('analytics.week');
+            case 'month' :
+                return trans('analytics.month');
+            case 'alltime':
+                return trans('analytics.alltime');
             default:
                 return trans('analytics.today');
         }
@@ -943,16 +1260,16 @@ class AnalyticsHelper
     public function chartColorCombo($index)
     {
         $colorCombo = [
-                            ['#787A40', '#9FBF8C', '#C8AB65'],
-                            ['#E8D0A9','#B7AFA3','#C1DAD6'],
-                            ['#FFFF66','#FFCC00','#FF9900'],
-                            ['#4F2412','#C9A798','#E9E0DB'],
-                            ['#999967','#666666','#CCCCCC'],
-                            ['#999967','#666666','#000000'],
-                      ];
+            ['#787A40', '#9FBF8C', '#C8AB65'],
+            ['#E8D0A9', '#B7AFA3', '#C1DAD6'],
+            ['#FFFF66', '#FFCC00', '#FF9900'],
+            ['#4F2412', '#C9A798', '#E9E0DB'],
+            ['#999967', '#666666', '#CCCCCC'],
+            ['#999967', '#666666', '#000000'],
+        ];
+
         return $colorCombo[$index];
     }
-
 
 
 }

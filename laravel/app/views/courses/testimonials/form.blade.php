@@ -5,7 +5,7 @@
     <section class="classroom-content container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Testimonial Here</h1>
+                <h1>{{ trans('general.testimonial') }}</h1>
                 @if($testimonial->id == null)
                     {{ Form::open(['action' => 'TestimonialsController@store', 'id' => 'testimonial-submit-form']) }}
                 @else
@@ -15,11 +15,11 @@
                 
                     <textarea name='content' class='form-control'>{{ $testimonial->content or '' }}</textarea>
                     @if($testimonial->rating=='negative')
-                        <input type='radio' name='rating' value='positive'/>[ Thumbs Up Icon ]
-                        <input type='radio' name='rating' value='negative' checked="checked"  />[ Thumbs Down Icon ]
+                        <input type='radio' name='rating' value='positive'/><i class="fa fa-thumbs-o-up"></i>
+                        <input type='radio' name='rating' value='negative' checked="checked"  /><i class="fa fa-thumbs-o-down"></i>
                     @else
-                        <input type='radio' name='rating' value='positive' checked="checked" />[ Thumbs Up Icon ]
-                        <input type='radio' name='rating' value='negative' />[ Thumbs Down Icon ]
+                        <input type='radio' name='rating' value='positive' checked="checked" /><i class="fa fa-thumbs-o-up"></i>
+                        <input type='radio' name='rating' value='negative' /><i class="fa fa-thumbs-o-down"></i>
                     @endif
                     
                     <input type='hidden' name='id' value='{{$course->id}}' />

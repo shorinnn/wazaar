@@ -22,9 +22,9 @@
                 <h2>{{ $course->name }}</h2>
                 <p>{{{ Str::limit( strip_tags($course->short_description, Config::get('custom.short_desc_max_chars') ) ) }}}
                     <br />
-                <small>{{ trans('courses/general.subcategory') }}: 
-                    <!--<a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>-->
-                </small>
+<!--                <small>{{ trans('courses/general.subcategory') }}: 
+                    <a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>
+                </small>-->
                 </p>
                 <div class="next_">
                     <div class="learn-more">

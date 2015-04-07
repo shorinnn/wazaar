@@ -5,7 +5,14 @@
                 <span>{{$key+1}}.</span>
 
                 <a href="{{url('dashboard/course/'. $course['product_id'] .'/stats')}}">{{$course['name']}}</a>
-                <em>{{number_format($course['purchases'] / $course['hits'] * 100,2)}}%</em>
+
+                <em>
+                    @if ($course['purchases'] == 0 OR $course['hits'] == 0)
+                        0
+                    @else
+                        {{number_format($course['purchases'] / $course['hits'] * 100,2)}}
+                    @endif
+                        %</em>
             </a>
         </li>
     @endforeach

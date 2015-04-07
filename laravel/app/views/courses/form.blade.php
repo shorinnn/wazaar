@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('page_title')
-    {{ $course->name }} - Edit -
+    {{ $course->name }} - {{ trans('courses/general.edit') }} -
 @stop
 
 @section('content')
@@ -31,10 +31,10 @@
             <!-- Nav tabs -->
             <ul class="nav nav-pills" id="instructor-editor" role="tablist">
                 <li role="presentation" class="active right-twenty-margin">
-                    <a href="#curriculum-tab" aria-controls="curriculum-tab" role="tab" data-toggle="tab">Curriculum</a>
+                    <a href="#curriculum-tab" aria-controls="curriculum-tab" role="tab" data-toggle="tab">{{ trans('courses/general.curriculum') }}</a>
                 </li>
                 <li role="presentation">
-                    <a href="#course-edit" aria-controls="course-edit" role="tab" data-toggle="tab">Course Edit</a>
+                    <a href="#course-edit" aria-controls="course-edit" role="tab" data-toggle="tab">{{ trans('courses/general.course-edit') }}</a>
                 </li>
             </ul>
         </div>
@@ -108,12 +108,15 @@
                     <!-- Course Edit contents here -->
                     <div role="tabpanel" class="tab-pane fade" id="course-edit">
                         <div class="row well">
-                            <h3 id='publish-status-header'>Publish Status: {{ ucfirst( $course->publish_status ) }}</h3>
+                            <h3 id='publish-status-header'>
+                                {{ trans('courses/general.publish-status') }}: 
+                                {{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}</h3>
                             
                             @if( $course->publish_status!='approved' && $course->publish_status!='pending' )
                              {{ Form::model($course, ['action' => ['CoursesController@submitForApproval', $course->slug], 'method' => 'PUT',
                                      'class' => 'ajax-form',  'data-callback'=>'submitForApproval', 'data-delete' => '#submit-publish-btn'])}}
-                                 <input class='btn btn-danger' id='submit-publish-btn' type='submit' value='Submit for approval' />
+                                 <input class='btn btn-danger' id='submit-publish-btn' type='submit' 
+                                        value='{{ trans('courses/statuses.submit-for-approval')}}' />
                                  <input type='hidden' name='publish_status' value='pending' />
                              {{ Form::close() }}
                             @endif
@@ -129,14 +132,15 @@
                                     <div class="clearfix">
                                     	<label>{{ trans('courses/general.privacy_status') }} </label>
                                         <span class="custom-dropdown">
-                                            {{ Form::select('privacy_status', [ 'private' => 'Private', 'public' => 'Public']) }}
+                                            {{ Form::select('privacy_status', [ 'private' => trans('courses/statuses.private'), 
+                                        'public' => trans('courses/statuses.public')]) }}
                                         </span>
                                     </div>    
                                                 
                                     <div class="clearfix">
-                                    	<label>{{ trans('courses/general.enable_ask_coach') }} </label>
+                                    	<label>{{ trans('courses/curriculum.enable-ask-coach') }} </label>
                                         <span class="custom-dropdown">
-                                            {{ Form::select('ask_teacher', [ 'enabled' => 'Yes', 'disabled' => 'No']) }}
+                                            {{ Form::select('ask_teacher', [ 'enabled' => trans('courses/curriculum.yes'), 'disabled' => trans('courses/curriculum.no')]) }}
                                         </span>
                                     </div>    
                                     
@@ -200,14 +204,17 @@
                                     <div>
                                         <label>{{ trans('crud/labels.display_instructor') }} </label>
                                         <span class="custom-dropdown">
-                                            {{ Form::select( 'details_displays', ['instructor' => 'Course Owner Instructor', 
-                                                                                'assigned_instructor' => 'Assigned Instructor' ] ) }}
+                                            {{ Form::select( 'details_displays', 
+                                                ['instructor' => trans('courses/curriculum.course-owner-instructor'), 
+                                                'assigned_instructor' => trans('courses/curriculum.assigned-instructor') ] ) }}
                                         </span>
                                     </div>
                                     <div>
                                         <label>{{ trans('crud/labels.display_bio') }} </label> 
                                         <span class="custom-dropdown">
-                                            {{ Form::select( 'show_bio', ['default' => 'Default Instructor Bio', 'custom' => 'Custom Course Bio' ] ) }}
+                                            {{ Form::select( 'show_bio', 
+                                                ['default' => trans('courses/curriculum.default-instructor-bio'), 
+                                                'custom' => trans('courses/curriculum.custom-course-bio') ] ) }}
                                         </span>
                                     </div>
                                     <div>
@@ -226,7 +233,7 @@
                                     </label>-->
                                      
                                     <label for="upload-preview-image" class="uploadFile">
-                                    	<span>Upload</span>
+                                    	<span>{{ trans('courses/curriculum.upload') }}</span>
                                     	<input type="file" hidden="" class='upload-preview-image' 
                                                id="upload-preview-image" name="preview_image" data-dropzone='.dropzone-preview'
                                            data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' 
@@ -267,7 +274,7 @@
                                 	<h3>{{ trans('courses/general.details_page_banner_image') }}</h3>
                                     <label for="upload-banner-image" class="uploadFile">
                                             <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
-                                            <span>Upload</span> 
+                                            <span>{{ trans('courses/curriculum.upload') }}</span> 
                                              <input type="file" class='upload-banner-image' name="banner_image" data-dropzone='.dropzone-preview'
                                              data-progress-bar='.progress-bar-banner' data-callback='courseImageUploaded' id="upload-banner-image"
                                              data-target='#use-existing-banner > div > .radio-buttons' />
@@ -346,7 +353,7 @@
                                 
                                 <div class="payment-section">
                                     <div class="clear clearfix margin-bottom-20">
-                                    	<label>{{ trans('courses/general.payment_type') }} </label>
+                                    	<label>{{ trans('courses/curriculum.payment-type') }} </label>
                                         <span class="custom-dropdown">
                                         {{ Form::select('payment_type', [ 'one_time' => trans('courses/general.one_time'), 
                                         'subscription' =>  trans('courses/general.subscription') ] ) }}

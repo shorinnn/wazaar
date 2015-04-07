@@ -14,15 +14,15 @@
     <p>{{ trans('general.published') }}</p> 
     <div class="switch-buttons">
         <label class="switch">
-          <input type="checkbox" class="switch-input ajax-updatable"  value='yes'
-                 data-checked-val='yes' data-unchecked-val='no'
+          <input type="checkbox" class="switch-input ajax-updatable"  value='{{ trans('courses/curriculum.yes') }}'
+                 data-checked-val='{{ trans('courses/curriculum.yes') }}' data-unchecked-val='{{ trans('courses/curriculum.no') }}'
                  data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}'
                       data-name='published'
                  @if($lesson->published=='yes')
                      checked="checked"
                  @endif
                  />
-          <span data-off="No" data-on="Yes" class="switch-label"></span>
+          <span data-off="{{ trans('courses/curriculum.no') }}" data-on="{{ trans('courses/curriculum.yes') }}" class="switch-label"></span>
           <span class="switch-handle"></span>
         </label>
     </div>    

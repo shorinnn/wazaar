@@ -100,7 +100,7 @@
                         </div>             
                     </div>
                 </div>
-                    @if(1==1 || $video==null || $video->video() == null)
+                    @if( $video==null || $video->video() == null)
                     <div class="video-player"
                          @if( $course->bannerImage != null)
                          style="background-image:url('{{$course->bannerImage->url}}') !important"
@@ -112,10 +112,10 @@
                     @else
                     <div class="video-player" style="background:none; text-align: right">
                         @if( Agent::isMobile() )
-                            <video controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
+                            <video id='myVideo' controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
                                         ->first()->video_url }}" type="video/mp4"></video>
                         @else
-                        <video height="266" controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                        <video id='myVideo'  height="266" controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                         ->first()->video_url }}" type="video/mp4"></video>
                         @endif
                     @endif
@@ -193,12 +193,12 @@
                                         @if(Auth::check())
                                             {{ View::make('courses.followed_form')->withInstructor($instructor) }}
                                         @endif
-                                        <h4>About {{$instructor->first_name}}</h4>
+                                        <h4>{{ trans('general.about') }} {{$instructor->first_name}}</h4>
                                         <p>
                                             @if( $course->show_bio=='custom' )
                                                 {{ $course->custom_bio }}
                                             @else
-                                                No bio available
+                                                {{ trans('general.no-bio-available') }}
                                             @endif
                                         </p>
                                     @else
@@ -210,7 +210,7 @@
                                         @if(Auth::check())
                                             {{ View::make('courses.followed_form')->withInstructor($instructor) }}
                                         @endif
-                                        <h4>About {{$instructor->profile->first_name}}</h4>
+                                        <h4>{{ trans('general.about') }} {{$instructor->profile->first_name}}</h4>
                                         <p>
                                             @if( $course->show_bio=='custom' )
                                                 {{ $course->custom_bio }}
@@ -221,10 +221,10 @@
                                     @endif
                         </div>
                         <div class="testimonial-block">
-                            <small>You are backed by our</small>
+                            <small>{{ trans('general.you-are-backed-by-our') }}</small>
                             <div class="money-back">
                                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/30-days-coupon.png" alt="">
-                                <p>MONEY BACK GUARANTEE</p>
+                                <p>{{ trans('general.money-back-guarantee') }}</p>
                             </div>
     
                             <div class="testimonials">
@@ -337,3 +337,14 @@
         </section>
     
     @stop
+    
+    @if(Input::has('autoplay'))
+        @section('extra_js')
+            <script>
+                $(function(){
+                    var video = $('#myVideo');
+                    video[0].play();
+                });
+            </script>
+        @stop
+    @endif

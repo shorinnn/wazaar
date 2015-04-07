@@ -13,5 +13,9 @@ var js_translation_map = {
     "reply" : "reply",
     "Copy to clipboard" : "Copy to clipboard",
     "Copied!" : "Copied!",
-    "Please fill in the reference fields" : "Please fill in the reference fields"
+    "Please fill in the reference fields" : "Please fill in the reference fields",
+    'today' : 'Today',
+    'thisWeek' : 'This Week',
+    'thisMonth' : 'This Month',
+    'allTime' : 'All Time'
 };
