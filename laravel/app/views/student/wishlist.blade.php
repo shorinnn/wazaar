@@ -8,7 +8,7 @@
 </style>
 
     @if($wishlist->count() == 0)
-        <h1>There are no items on this wishlist.</h1>
+        <h1>{{ trans('general.no-items-on-wishlist') }}</h1>
     @else
         <h1>{{$student->first_name}} {{$student->last_name}} {{ trans('general.wishlist') }}:</h1>
         @foreach($wishlist as $item)

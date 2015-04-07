@@ -44,4 +44,5 @@ return array(
     'you-are-following' => 'You are following',
     'wishlist' => 'wishlist',
     'testimonial' => 'Testimonial',
+    'no-items-on-wishlist' => 'There are no items on this wishlist.',
 );

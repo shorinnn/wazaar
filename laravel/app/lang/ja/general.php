@@ -44,4 +44,5 @@ return array(
     'you-are-following' => '月You are followingせ',
     'wishlist' => '月wishlistせ',
     'testimonial' => '月Testimonialせ',
+    'no-items-on-wishlist' => '月There are no items on this wishlist.せ',
 );

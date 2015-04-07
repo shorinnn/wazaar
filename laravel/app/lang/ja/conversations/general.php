@@ -12,6 +12,7 @@ return array(
     'Conversations' => '月Conversationsせ',
     'ask-the-teacher' => '月Ask The Teacherせ',
     'whats-on-your-mind' => "月What's on your mindせ",
+    'type-in-your-question' => '月Type in your questionせ',
     'comment' => '月Commentせ',
     'from' => '月Fromせ',
     'message' => '月Messageせ',
