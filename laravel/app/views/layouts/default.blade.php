@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="{{url('css/jquery.videobackground.css')}}">
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/css/select2.min.css" rel="stylesheet" />
 
+    <!-- Example assets -->
+    <link rel="stylesheet" href="{{url('css/slick.css')}}">
+    <link rel="stylesheet" href="{{url('css/slick-theme.css')}}">
+
     @yield('extra_css')
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -78,6 +82,7 @@
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
         <script src="{{url("js/main.js")}}"></script>
         <script src="{{url("js/messages.js")}}"></script>
+        <script src="{{url("js/slick.js")}}"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
         <script src="http://www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
@@ -105,6 +110,7 @@
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
         <script src="{{url("js/main.js")}}"></script>
         <script src="{{url("js/messages.js")}}"></script>
+        <script src="{{url("js/slick.js")}}"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
         <script src="http://www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
@@ -147,6 +153,47 @@
 						
 				$('#video-grid').on('slide.bs.carousel', function () {
 				})		
+
+				$('.responsive').slick({
+		     	  dots: false,
+				  arrows: false,
+				  infinite: true,
+				  autoplay: true,
+				  fade: false,
+				  speed: 1000,
+				  pauseOnHover: true,
+				  autoplaySpeed: 8000,
+				  slidesToShow: 3,
+				  slidesToScroll: 3,
+				  responsive: [
+					{
+					  breakpoint: 1024,
+					  settings: {
+						slidesToShow: 3,
+						slidesToScroll: 3,
+						infinite: true,
+						dots: true
+					  }
+					},
+					{
+					  breakpoint: 600,
+					  settings: {
+						slidesToShow: 2,
+						slidesToScroll: 2
+					  }
+					},
+					{
+					  breakpoint: 480,
+					  settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1
+					  }
+					}
+					// You can unslick at a given breakpoint now by adding:
+					// settings: "unslick"
+					// instead of a settings object
+				  ]		
+				});		
 
 			});
 		</script>

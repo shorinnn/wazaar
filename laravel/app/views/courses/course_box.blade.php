@@ -43,6 +43,7 @@
             </div>   
             <span class="likes">{{ $course->reviews_positive_score }}%</span>         
         </div> 
+	    <span class="box-overlay"></span>
     </div>
     </a>
 </div>

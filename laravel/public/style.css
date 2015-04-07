@@ -397,6 +397,35 @@ header .activate-dropdown:hover ul{
 	background: #0669d1 url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/search-lens.png) no-repeat center 8px;
 }
 
+.course-search-section .top-category-carousel{
+	max-width: 484px;
+	margin-top: 20px;
+}
+
+.course-search-section .top-category-carousel .slick-slide{
+	color: rgba(255, 255, 255, 0.5);
+	text-align: center;
+	margin: 0 5px;
+}
+
+.course-search-section .top-category-carousel .slick-slide h3{
+	font-size: 18px;
+	font-weight: 200;
+	margin-bottom: 12px;
+}
+
+.course-search-section .top-category-carousel .slick-slide ul{
+	margin: 0;
+	padding: 0;
+}
+
+.course-search-section .top-category-carousel .slick-slide ul li{
+	font-size: 16px;
+	font-weight: 200;
+	margin-bottom: 7px;
+}
+
+
 /************** Progress bar ******************/
 .progress-bar-container{
 	border-bottom: solid 1px #ececec;
@@ -4605,6 +4634,27 @@ select::-ms-expand {
 	margin-top: 60px;
 	overflow: hidden;
 	/*background: rgba(255, 255, 255, 0.3);*/
+}
+
+.course-enroll-wrapper .small-box .box-overlay,
+.unauthenticated-homepage .small-box .box-overlay{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.3);
+	top: 0;
+	left: 0;
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: all 0.3s ease-in-out 0s;
+	-moz-transition: all 0.3s ease-in-out 0s;
+	transition: all 0.3s ease-in-out 0s;
+}
+
+.course-enroll-wrapper .small-box:hover .box-overlay,
+.unauthenticated-homepage .small-box:hover .box-overlay{
+	opacity: 1;
+	visibility: visible;
 }
 
 .course-enroll-wrapper .small-box .level,
