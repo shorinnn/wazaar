@@ -162,7 +162,7 @@
 				  fade: false,
 				  speed: 1000,
 				  pauseOnHover: true,
-				  autoplaySpeed: 8000,
+				  autoplaySpeed: 5000,
 				  slidesToShow: 3,
 				  slidesToScroll: 3,
 				  responsive: [
@@ -172,7 +172,7 @@
 						slidesToShow: 3,
 						slidesToScroll: 3,
 						infinite: true,
-						dots: true
+						dots: false
 					  }
 					},
 					{
