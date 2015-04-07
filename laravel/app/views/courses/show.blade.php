@@ -100,7 +100,7 @@
                         </div>             
                     </div>
                 </div>
-                    @if(1==1 || $video==null || $video->video() == null)
+                    @if( $video==null || $video->video() == null)
                     <div class="video-player"
                          @if( $course->bannerImage != null)
                          style="background-image:url('{{$course->bannerImage->url}}') !important"
@@ -112,10 +112,10 @@
                     @else
                     <div class="video-player" style="background:none; text-align: right">
                         @if( Agent::isMobile() )
-                            <video controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
+                            <video id='myVideo' controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
                                         ->first()->video_url }}" type="video/mp4"></video>
                         @else
-                        <video height="266" controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                        <video id='myVideo'  height="266" controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                         ->first()->video_url }}" type="video/mp4"></video>
                         @endif
                     @endif
@@ -136,7 +136,7 @@
                     @endif
                 <div class="middle-content-wrapper clearfix">
                     <div class="left-content">
-                        @if($course->testimonials->count() > 0)
+                        <!--@if($course->testimonials->count() > 0)
                             <div class="testimonials top-testimonials">
                                 <p>
                                 {{{ $course->testimonials->first()->content }}}
@@ -146,7 +146,7 @@
                                     {{$course->testimonials->first()->student->last_name}}
                                 </span>
                             </div>
-                        @endif
+                        @endif-->
                         <p class="lead what-you-will-learn">{{trans('courses/general.what_you_will_achieve')}}.</p>
                             <article class="bottom-margin what-you-will-learn">
                             <ul>
@@ -337,3 +337,14 @@
         </section>
     
     @stop
+    
+    @if(Input::has('autoplay'))
+        @section('extra_js')
+            <script>
+                $(function(){
+                    var video = $('#myVideo');
+                    video[0].play();
+                });
+            </script>
+        @stop
+    @endif

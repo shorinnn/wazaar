@@ -7,12 +7,12 @@
                 {{ Form::open( [ 'action' => 'PrivateMessagesController@store', 'class' => 'ajax-form', 'data-callback' =>'postedComment', 
                         'data-destination' => $destination, 'id' => 'ask-comment-form'] ) }}
 
-            <textarea name="content" class="form-control" placeholder="What's on your mind?"></textarea>
+            <textarea name="content" class="form-control" placeholder="{{trans('conversations/general.whats-on-your-mind') }}?"></textarea>
              
             <input type="hidden" name="type" value="mass_message" />
             <input type="hidden" name="course_id" value="{{$course->id}}" />
             <br />
-            <button type="submit" class="btn btn-primary">Comment</button>
+            <button type="submit" class="btn btn-primary">{{trans('conversations/general.comment') }}</button>
             {{ Form::close() }}
         </div>
     </div>

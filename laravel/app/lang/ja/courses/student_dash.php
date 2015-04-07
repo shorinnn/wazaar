@@ -28,4 +28,8 @@ return array(
     'where-you-left-off' => '月Where you left offせ',
     'finished-all' => '月Finished all lessonsせ',
     'your-gift' => '月Your Giftせ',
+    'congratulations' => '月Congratulationsせ',
+    'you-bought-the-course' => '月You bought the courseせ',
+    'you-have-enrolled-in' => '月You have enrolled inせ',
+    'begin-my-learning' => '月Begin my learningせ',
 );

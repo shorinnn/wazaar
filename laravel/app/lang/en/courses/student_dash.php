@@ -28,4 +28,8 @@ return array(
     'where-you-left-off' => 'Where you left off',
     'finished-all' => 'Finished all lessons',
     'your-gift' => 'Your Gift',
+    'congratulations' => 'Congratulations',
+    'you-bought-the-course' => 'You bought the course',
+    'you-have-enrolled-in' => 'You have enrolled in',
+    'begin-my-learning' => 'Begin my learning',
 );

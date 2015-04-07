@@ -28,6 +28,18 @@ $(document).ready(function(){
 	$('button.join-class').mouseup(function(){
 		$(this).removeClass('pushdown');
 	});
+	$('.course-search-section .course-search-form input').on('focus', function(){
+		$('.course-search-section .course-search-form form').css({
+			border: 'solid 1px #abd82a',
+			boxShadow: '0px 0px 7px 1px #abd82a'
+		});
+	});
+	$('.course-search-section .course-search-form input').on('blur', function(){
+		$('.course-search-section .course-search-form form').css({
+			border: 'solid 1px #fff',
+			boxShadow: 'none'
+		});
+	});
     $(window).scroll(stepsScrollAnimation);
     _.setTranslation( js_translation_map );
     floatingNav();
@@ -806,13 +818,13 @@ function skinVideoControls(){
 		var playerHeight = video.innerHeight();
 		console.log('Player height is' + playerHeight);
 		console.log('Player Width is' + playerWidth);
-		$('.control').width(playerWidth);
+		$('.control').css('max-width',playerWidth);
 		//$('.centered-play-button').css('top', (playerHeight/2) - 50);
-		$('#lesson-video-overlay').css({
+		/*$('#lesson-video-overlay').css({
 			height: playerHeight	
-		});
+		});*/
 		$('#lesson-video-overlay > div').css({
-			width: playerWidth
+			maxWidth: playerWidth
 		});
 
 	}
@@ -833,7 +845,7 @@ function skinVideoControls(){
 		var maxduration = video[0].duration;
 		var perc = 100 * currentPos / maxduration;
 		$('.timeBar').css('width',perc+'%');	
-		$('.current').text(timeFormat(currentPos));	
+		$('.current').text(timeFormat(currentPos) + ' / ');	
 	});
 	
 	//CONTROLS EVENTS
@@ -1036,10 +1048,26 @@ var delay = (function () {
 
 
 function askTeacherQuestion(){
+	var containerHeight = $('#lesson-ask-teacher-section').height();
+	var containerWidth = $('#lesson-ask-teacher-section').width();
+	var containerBox = TweenMax.fromTo('.no-teacher-questions', 0.2, {height: 0, width: 0}, {height: containerHeight, width: containerWidth});
+	var tweenBox = TweenMax.to('.no-teacher-questions > div', 0.2, {transform: 'scale(1)'});
+	tweenBox.pause();
+	containerBox.pause();
 	$('#show-teacher-questions').on('click', function(){
-		/*var containerHeight = $('#lesson-ask-teacher-section').height();
-		TweenMax.fromTo("#lesson-ask-teacher-section", 0.7, {}, {});*/
+
+		//$('#lesson-ask-teacher-section').toggleClass('hide-teacher-questions');
+		if($('#lesson-ask-teacher-section').hasClass('hide-teacher-questions')){
+			$('#lesson-ask-teacher-section').removeClass('hide-teacher-questions');
+			tweenBox.play();
+			//tweenBox.delay(0.5);	
+			containerBox.play();
+		}
+		else{
+			$('#lesson-ask-teacher-section').addClass('hide-teacher-questions');
+			tweenBox.reverse();
+			containerBox.reverse();		
+		}
 		
-		$('#lesson-ask-teacher-section').toggleClass('hide-teacher-questions');
 	});
 }

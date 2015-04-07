@@ -19,10 +19,10 @@
         <div class="form-inline">
         	<input disabled="disabled" placeholder="" id="uploadFile" style="">
             <div class="form-group video-upload clear">
-	            <span>Upload Video</span>
+	            <span>{{ trans('video.upload-video') }}</span>
                 <input type="file" name="fileupload" class="upload" id="fileupload-{{$lessonId}}">
             </div>
-            <em>OR</em>
+            <em> {{ trans('site/login.or') }}</em>
             <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}">{{trans('video.selectExisting')}}</a></h3>
             <!--<p class="video-info">{{trans('video.formatsSupported')}}</p>-->
             <p class="video-info">{{trans('video.maxFileSize')}}</p>

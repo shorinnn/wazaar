@@ -28,9 +28,9 @@
                 $checked = $i==$category->color_scheme ? 'checked="checked"' : '' ;
                 ?>
                 <div class="radio-checkbox radio-checked">
-                <input id="color-scheme-{{$i}}" {{$checked}} type='radio' name='color_scheme' value='{{$i}}'  class='ajax-updatable' 
+                <input id="color-scheme-{{$category->id}}-{{$i}}" {{$checked}} type='radio' name='color_scheme[{{$category->id}}]' value='{{$i}}'  class='ajax-updatable' 
                data-url='{{action('CoursesCategoriesController@update', $category->id )}}' data-name='color_scheme' />
-               <label for="color-scheme-{{$i}}" class="small-radio"></label>
+               <label for="color-scheme-{{$category->id}}-{{$i}}" class="small-radio"></label>
                 <div class='color-scheme-thumb unauthenticated-homepage cat-box-{{$i}}'></div>
                 </div>
             @endfor

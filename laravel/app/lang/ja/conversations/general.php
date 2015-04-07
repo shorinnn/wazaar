@@ -18,5 +18,8 @@ return array(
     'sent' => '月Sentせ',
     'private-messages' => '月Private Messagesせ',
     'pm-for' => '月PM forせ',
+    'view-in-inbox' => '月View in inboxせ',
+    'lesson' => '月Lessonせ',
+    'mark-as-resolved' => '月Mark As Resolvedせ',
     
 );

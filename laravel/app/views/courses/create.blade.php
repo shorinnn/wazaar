@@ -18,7 +18,6 @@
             <form method='post' class='ajax-form' id="create-form" data-callback='followRedirect' 
                   action='{{action('CoursesController@store')}}' data-parsley-validate>
         <div id='step1' class="animated-step">
-            <h1>TOP</h1>
         	<div>
                     <h2>{{ trans('courses/create.enter_course_name') }}</h2>
                     <input type='hidden' name='_token' value='{{csrf_token()}}' />
@@ -29,7 +28,6 @@
         </div>
 <!--    <form method='post' class='ajax-form' id='edit-course-details-form' data-callback='followRedirect' data-parsley-validate >-->
         <div id='step2' class='# hidden animated-step'>
-            <h1>TOP</h1>
 	        <h2>{{ trans('courses/create.what_category_is_in') }}</h2>
             <div class="ui-select">
             {{ Form::select('course_category_id', $categories, null,  
@@ -49,7 +47,6 @@
             <!--<input type='hidden' name='_method' value='PUT' />-->
                    
             <div id='step3' class='# hidden animated-step'>
-                <h1>TOP</h1>
                 <h1>{{ trans('courses/create.set_objectives') }}
                    <small>{{ trans('courses/create.this_helps_creating') }}</small>
                 </h1> 

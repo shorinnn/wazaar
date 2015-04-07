@@ -42,10 +42,13 @@ class ClassroomController extends \BaseController {
 //            $video = $course->videoBlocks();
 //            if($video!=null) $video = $video->first();
             $gift = $student->purchases()->where('product_id', $course->id)->where('product_type','course')->first()->gift;
+            
+            $instructor = $course->instructor;
+            if($course->assigned_instructor_id > 0) $instructor = $course->assignedInstructor;
             if(Request::ajax()){
                 return View::make('courses.classroom.course_comments_ajax')->with( compact('course') );
             }
-            return View::make('courses.classroom.dashboard')->with( compact('course', 'student', 'video', 'nextLesson', 'gift') );
+            return View::make('courses.classroom.dashboard')->with( compact('course', 'student', 'video', 'nextLesson', 'gift', 'instructor') );
         }
         
         public function testimonial($slug){
@@ -72,7 +75,7 @@ class ClassroomController extends \BaseController {
             $video = $lesson->blocks()->where('type','video')->first();
             if( !$student->purchased( $course ) && !$student->purchased( $lesson ) ){
                 // load crash lesson mode if lesson is free
-                if( $lesson->price==0 ){
+                if( $lesson->price==0 ){                    
                     return View::make('courses.classroom.crash_lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
                 }
                 return Redirect::to('/');
@@ -97,11 +100,15 @@ class ClassroomController extends \BaseController {
             
             $nextLesson = $lesson->next();
             $prevLesson = $lesson->prev();
+            
+            $instructor = $course->instructor;
+            if($course->assigned_instructor_id > 0) $instructor = $course->assignedInstructor;
+            
             if(Request::ajax()){
                 if( Input::has('ask') ) return View::make('courses.classroom.lesson_ask_ajax')->with( compact('lesson') );
                 else return View::make('courses.classroom.lesson_comments_ajax')->with( compact('lesson') );
             }
-            else return View::make('courses.classroom.lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson') );
+            else return View::make('courses.classroom.lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'instructor') );
         }
 
 }

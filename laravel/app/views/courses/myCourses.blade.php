@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('page_title')
-    My Courses - 
+    {{ trans('courses/general.my-courses') }} - 
 @stop
 
 @section('content')	
@@ -17,7 +17,7 @@
 	<div class="row">
     	<div class="col-md-12">
         	<div>
-            	<h1>My Courses</h1>
+            	<h1>{{ trans('courses/general.my-courses') }}</h1>
             </div>
         </div>
     </div>
@@ -31,14 +31,14 @@
                             <div class="col-md-6 clearfix">
                                 <div class="clearfix">
                                     <h4>{{$course->name}}</h4>
-                                    <span class="label label-primary">{{$course->courseCategory->name or 'No Category'}} ></span>
-                                    <span class="label label-primary">{{$course->courseSubcategory->name or 'No Subcategory'}}</span>
+                                    <span class="label label-primary">{{$course->courseCategory->name or ' - '}} ></span>
+                                    <span class="label label-primary">{{$course->courseSubcategory->name or ' - '}}</span>
                                 </div>
                         	</div>
                             <div class="col-md-6 clearfix">
                                 <div class="clearfix">
                                     <p class="created-date">
-                                    Created on: <span>23-04-2014</span>
+                                    {{ trans('courses/general.created-on') }}: <span>23-04-2014</span>
                                     </p>
                                     {{ link_to_action('CoursesController@edit', trans('courses/general.edit'), $course->slug, [ 'class'=>'edit-button' ] ) }}
                                 </div>
@@ -62,7 +62,7 @@
                                     @if($course->testimonials()->where('rating','positive')->where('reported','no')->first() != null)
                                         “{{ $course->testimonials()->where('rating','positive')->where('reported','no')->first()->content }}”
                                     @else
-                                        Your students are going to love “{{ $course->name }}”!
+                                    {{ trans('courses/general.your-students-are-going-to-love') }} “{{ $course->name }}”!
                                     @endif
                                     </p>
                                 </div>
@@ -77,7 +77,7 @@
                                                         <i>{{ $course->questions->count() }}</i>
                                                     @endif
                                                 </span>
-                                                <em>Questions</em></a>
+                                                <em>{{ trans('courses/general.questions') }}</em></a>
                                         </li>
                                         <li class="discussions clearfix">
                                             <a href="{{ action( 'CoursesController@dashboard', $course->slug ) }}?tab=discussions">
@@ -86,7 +86,7 @@
                                                     <i>{{ $course->dashboardComments->count() }}</i>
                                                 @endif
                                                 </span>
-                                                <em>Discussions</em>
+                                                <em>{{ trans('courses/general.discussions') }}</em>
                                             </a>
                                         </li>
                                         <!--<li class="assignment">
@@ -104,13 +104,15 @@
                     	<div class="row clearfix">
                             <div class="col-md-12 clearfix">
                                 <span class="status-box">
-                                    Publish status: 
-                                    <em>{{ ucfirst( $course->publish_status ) }}</em>
+                                    {{ trans('courses/general.publish-status') }}: 
+                                    <em>{{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}</em>
                                     | 
-                                    Privacy:
-                                    <em>{{ ucfirst( $course->privacy_status ) }}</em>
+                                    {{ trans('courses/general.privacy') }}:
+                                    <em>{{ ucfirst( trans( 'courses/statuses.'.$course->privacy_status ) ) }}</em>
                                 </span>
-                                <a href="{{ action( 'CoursesController@dashboard', $course->slug ) }}" class="go-to-dashboard">GO TO DASHBOARD</a>
+                                <a href="{{ action( 'CoursesController@dashboard', $course->slug ) }}" class="go-to-dashboard">
+                                    {{ trans('courses/general.go-to-dashboard') }}
+                                </a>
                             </div>
                         </div>
                     </div>

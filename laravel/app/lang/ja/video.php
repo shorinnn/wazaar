@@ -1,14 +1,15 @@
 <?php
 
 return [
-    'title' => 'Videos',
-    'uploadHere' => 'Upload videos here',
-    'willAppearHere' => 'Your video will appear here when it\'s processed successfully',
-    'doesNotSupportHtml5' => 'Your browser does not support HTML 5.',
-    'uploadOr' => 'Upload Video OR',
-    'selectExisting' => 'Select From Existing',
-    'formatsSupported' => 'Formats supported: mp4, avi, wmv',
-    'maxFileSize' => 'Max file size: 2GB',
-    'myVideos' => 'My Videos',
-    'useVideo' => 'Use Video'
+    'title' => '月Videosせ',
+    'uploadHere' => '月Upload videos hereせ',
+    'willAppearHere' => '月Your video will appear here when it\'s processed successfullyせ',
+    'doesNotSupportHtml5' => '月Your browser does not support HTML 5.せ',
+    'upload-video' => '月Upload Videoせ',
+    'uploadOr' => '月Upload Video ORせ',
+    'selectExisting' => '月Select From Existingせ',
+    'formatsSupported' => '月Formats supported: mp4, avi, wmvせ',
+    'maxFileSize' => '月Max file size: 2GBせ',
+    'myVideos' => '月My Videosせ',
+    'useVideo' => '月Use Videoせ'
 ];

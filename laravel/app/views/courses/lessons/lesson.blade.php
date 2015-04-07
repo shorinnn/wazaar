@@ -19,9 +19,14 @@
         <input type="text" class="ajax-updatable" value="{{$lesson->name}}"
                data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}' data-name='name'  />
         <div class="buttons"> 
-            <!--<i class="sortable-handle fa fa-bars"></i>-->     
+            <!--<i class="sortable-handle fa fa-bars"></i>-->   
+            <a target="_blank" href="{{ action('ClassroomController@lesson',[
+                'course' => $lesson->module->course->slug,
+                'module' => $lesson->module->slug,
+                'slug' => $lesson->slug
+            ])}}">
             <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button>
-            
+            </a>
             <button type="button" class="btn btn-primary slide-toggler edit-lesson" data-target=".lesson-options-{{$lesson->id}}">
                 <i class="fa fa-pencil-square-o" data-target=".lesson-options-{{$lesson->id}}"></i>
             </button>

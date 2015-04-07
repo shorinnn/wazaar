@@ -24,7 +24,7 @@ class FrontpageVideo extends Ardent {
                 }
                 $aux['id'] = $vid->course->id;
                 $aux['name'] = $vid->course->name;
-                $aux['url'] = 'url';
+                $aux['url'] = action( 'CoursesController@show', $vid->course->slug ).'?autoplay=true';
                 if($vid->course->course_preview_image_id == null)                
                     $aux['thumb'] = "http://placehold.it/350x150&text=".trans('general.preview-unavailable');
                 else                

@@ -62,6 +62,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>-->
         <script src="{{url("js/jquery.min.js")}}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script src="{{url("js/bootstrap.min.js")}}"></script>
         <script src="{{url("js/jquery.bootstrap-growl.min.js")}}"></script>
         <script src="{{url("js/lang/parsley/".Config::get('app.locale').".js")}}" /></script>
@@ -89,6 +90,7 @@
 
     @else
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="{{url("js/jquery.bootstrap-growl.min.js")}}"></script>
         <script src="{{url("js/lang/parsley/".Config::get('app.locale').".js")}}" /></script>
@@ -144,14 +146,8 @@
 				});	
 						
 				$('#video-grid').on('slide.bs.carousel', function () {
-				  console.log('Is Sliding');
-				  TweenMax.fromTo(".carousel .next, .carousel .prev", 0.3, {opacity: 0}, {opacity: 1});
-				  TweenMax.fromTo('.carousel .active.right, .carousel .active.left', 0.3, {opacity: 1}, {opacity: 0});
 				})		
 
-				$('#video-grid').on('slid.bs.carousel', function () {
-				  console.log('Has Slided');
-				})		
 			});
 		</script>
 	</body>

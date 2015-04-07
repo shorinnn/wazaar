@@ -33,7 +33,7 @@
                                     <span class="timeBar"></span>
                                 </div>
                             </div>
-                            <div class="control">
+                            <div class="control clearfix">
                                 
                                 <div class="btmControl clearfix">
                                     <div class="btnPlay btn" title="Play/Pause video"></div>
@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="btnFS btn" title="Switch to full screen"></div>
                                     <div class="time">
-                                        <span class="current"></span> / 
+                                        <span class="current"></span>
                                         <span class="duration"></span> 
                                     </div>
                                 </div>
@@ -100,10 +100,15 @@
                         <div class="row">
                                 <div class="col-md-6 col-md-offset-3">
                                         <span id="show-teacher-questions">
-                                        	<em>{{ trans('courses/general.ask') }}</em>
-                                            <span>[Teacher Name]</span>
-                                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater-2.png" 
-                                            class="img-circle img-responsive hidden-xs">
+                                            <em>{{ trans('courses/general.ask') }}</em>
+                                            @if($instructor->profile == null)
+                                                <span>{{ trans('courses/general.teacher') }}</span>
+                                                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater-2.png" 
+                                                class="img-circle img-responsive hidden-xs">
+                                            @else
+                                                <span>{{$instructor->profile->first_name}}</span>
+                                                <img height="50" src="{{ $instructor->profile->photo }}" class="img-circle hidden-xs">
+                                            @endif
                                         </span>                    
                             </div>
                         </div>
@@ -111,9 +116,10 @@
                 @endif
                 <section class="classroom-content container
                          @if( $lesson->ask_teacher_messages->count() == 0)
-                             hide-teacher-questions
+                             hide-teacher-questions no-teacher-questions
                          @endif
                          " id="lesson-ask-teacher-section">
+                	<div>
                 	<a name='ask-teacher'></a>
                     <div class="row classmate-conversations-heading">
                             <div class="col-md-12">
@@ -124,7 +130,10 @@
                     {{ View::make('private_messages.partials.ask_teacher_form')->with( compact('lesson') ) }}
                 @endif
 
-                    <div class='ask-content fa-animated'>
+                    <div class='ask-content fa-animated                          
+                    	 @if( $lesson->ask_teacher_messages->count() == 0)
+                             hide
+                         @endif'>
                         {{ View::make('private_messages.all')->withComments( $lesson->ask_teacher_messages ) }}
                         <br />
                         
@@ -132,6 +141,7 @@
                             {{ $lesson->ask_teacher_messages->appends( [ 'ask' => 1 ] )->links() }}
                         </div>
                     </div>
+                   	</div>
                 </section>
                 
             @endif

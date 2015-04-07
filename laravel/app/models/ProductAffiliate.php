@@ -8,7 +8,8 @@ class ProductAffiliate extends User{
     protected $roleId = 4;
     public static $relationsData = array(
         'sales' => array(self::HAS_MANY, 'Purchase'),
-        'courseReferrals' => array(self::HAS_MANY, 'CourseReferral')
+        'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
+        'ltcAffiliate' => [ self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id' ],
     );
     
      

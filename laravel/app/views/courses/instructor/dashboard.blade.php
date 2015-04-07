@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('page_title')
-    {{ $course->name }} - Dashboard -
+    {{ $course->name }} - {{ trans('courses/dashboard.dashboard') }} -
 @stop
 @section('content')	
     <div class="container course-editor">
@@ -15,18 +15,18 @@
             	<div class="plan-your-curriculum">
            
                      
-                        <h4>Announcements Tab</h4>
+                        <h4>{{ trans('courses/dashboard.announcements-tab') }}</h4>
                         <div style="border:1px solid silver; margin:10px;"  class="tab-pane active" id="announcements">   
                             {{ View::make('courses/instructor/dashboard/announcements')->with(compact('course'))->with( compact('announcements') ) }}
                             
                         </div>
                           
-                        <h4>Questions Tab</h4>
+                        <h4>{{ trans('courses/dashboard.questions-tab') }}</h4>
                         <div style="border:1px solid silver; margin:10px;"  class="tab-pane" id="questions">
                             {{ View::make('courses/instructor/dashboard/questions')->with(compact('course')) }}
                         </div>
                     
-                        <h4>Discussions Tab</h4>
+                        <h4>{{ trans('courses/dashboard.discussions-tab') }}</h4>
                         <div style="border:1px solid silver; margin:10px;" class="tab-pane" id="discussions">
                             {{ View::make('courses/instructor/dashboard/discussions')->with(compact('course')) }}
                         </div>
@@ -41,7 +41,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Reply</h4>
+                <h4 class="modal-title">{{ trans('conversations/general.reply') }}</h4>
             </div>
             <div class="modal-body clearfix">
 
@@ -51,7 +51,7 @@
                     <textarea class='form-control' name="reply" id="reply-form-reply"></textarea>
                     <input type="hidden" name="id" id="reply-form-id" />
                     <input type="hidden" name="type" id="reply-form-type" />
-                    <button type='submit' class="btn btn-primary">Reply</button>
+                    <button type='submit' class="btn btn-primary">{{ trans('conversations/general.reply') }}</button>
                 </form>
 
             </div>

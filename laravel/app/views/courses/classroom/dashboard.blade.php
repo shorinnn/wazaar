@@ -162,13 +162,22 @@
                             
                     @if( $course->ask_teacher=='enabled')
                     	<div class="header blue clearfix">
+                            @if($instructor->profile == null)
                         	<h2>{{ trans('courses/student_dash.ask') }}
                                     <small>{{ trans('courses/student_dash.the-teacher') }}</small></h2>
-                            <div class="avater hidden-xs">
-                            	<p class="quote">{{ trans('courses/student_dash.you-can-ask-anything') }}!</p>
-                                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater-2.png" 
-                                class="img-circle img-responsive">
-                            </div>                        	
+                                <div class="avater hidden-xs">
+                                    <p class="quote">{{ trans('courses/student_dash.you-can-ask-anything') }}!</p>
+                                    <img height="50" src="//s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar-placeholder.jpg" 
+                                    class="img-circle">
+                                </div>
+                            @else
+                                <h2>{{ trans('courses/student_dash.ask') }}
+                                    <small>{{ $instructor->profile->first_name }}</small></h2>
+                                <div class="avater hidden-xs">
+                                    <p class="quote">{{ trans('courses/student_dash.you-can-ask-anything') }}!</p>
+                                    <img height="50" src="{{ $instructor->profile->photo }}" class="img-circle">
+                                </div>
+                            @endif
                         </div>
                         <div class="white-box">
                             @foreach($student->answers as $answer)
