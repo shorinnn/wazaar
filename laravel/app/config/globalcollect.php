@@ -9,7 +9,7 @@ return
         'url'        => 'HTTPS://ps.gcsip.nl/wdl/wdl',
         'currency'   => 'USD',
         'country'    => 'JP',
-        'language'   => 'ja',
+        'language'   => 'en',
         'creditCardCompanies' => [
                                     1 => 'Visa',
                                     2 => 'American Express',

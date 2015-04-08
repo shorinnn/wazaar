@@ -50,9 +50,7 @@ class PaymentGlobalCollectDriver implements PaymentInterface
                                 <AMOUNT>{$amount}</AMOUNT>
                                 <CURRENCYCODE>USD</CURRENCYCODE>
                                 <COUNTRYCODE>JP</COUNTRYCODE>
-                                <LANGUAGECODE>ja</LANGUAGECODE>
-                                <EFFORTID>1</EFFORTID>
-                                <ATTEMPTID>1</ATTEMPTID>
+                                <LANGUAGECODE>{$this->language}</LANGUAGECODE>
                                 <RETURNURL>{$returnUrl}</RETURNURL>
                             </PAYMENT>";
 

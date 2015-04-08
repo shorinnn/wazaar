@@ -110,6 +110,11 @@ class PaymentController extends BaseController
 
                 $payee   = Input::only('firstName', 'lastName', 'email', 'city', 'zip');
                 $payment = $this->paymentHelper->processCreditCardPayment($paymentDetails, $payee, $student);
+
+                echo '<pre>';
+                print_r($payment);
+                echo '</pre>';
+                die;
             }
         }
     }
