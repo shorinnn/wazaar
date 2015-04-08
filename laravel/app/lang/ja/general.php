@@ -45,4 +45,5 @@ return array(
     'wishlist' => '月wishlistせ',
     'testimonial' => '月Testimonialせ',
     'no-items-on-wishlist' => '月There are no items on this wishlist.せ',
+    'virus-found-in-uploaded-file' => '月File upload failed because a virus was detected.せ',
 );
