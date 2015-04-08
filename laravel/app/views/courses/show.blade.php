@@ -37,14 +37,14 @@
                 </div>
                 <div class="clearfix banner-content-wrapper">
                     <div class="number-of-students">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
-                    <div class="number-of-reviews">
+                    <a href="#bottom-student-reviews" class="number-of-reviews">
                         {{ $course->total_reviews }} 
                         {{-- singplural($course->total_reviews, 'REVIEWS') --}}
                         
                         {{ Lang::choice( 'courses/general.reviews', $course->total_reviews) }}
                         
                         <span>{{ $course->reviews_positive_score }}%</span>
-                    </div>
+                    </a>
                         @if($course->isDiscounted())
                             <div class="white-box">
                                 <div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>
@@ -147,8 +147,9 @@
                                 </span>
                             </div>
                         @endif-->
-                        <p class="lead what-you-will-learn">{{trans('courses/general.what_you_will_achieve')}}.</p>
-                            <article class="bottom-margin what-you-will-learn">
+                        <div class="misc-container-1">
+                        	<p class="lead what-you-will-learn">{{trans('courses/general.what_you_will_achieve')}}.</p>
+                            <article class="what-you-will-learn">
                             <ul>
                             @if($achievements = json2Array($course->what_will_you_achieve))
                                 @foreach($achievements as $achievement)
@@ -156,7 +157,8 @@
                                 @endforeach
                             @endif    
                              </ul>
-                        </article>
+                        	</article>
+                        </div>
                         <p class="lead">{{ trans('courses/general.Description') }}</p>
                         <article class="bottom-margin">
                         {{$course->description}}
@@ -170,14 +172,16 @@
                     <div class="sidebar">
                         
                         <aside>
-                            <p class="lead">{{ trans('courses/general.who_is_this_for?') }}</p>
-                             @if($who_for = json2Array($course->who_is_this_for))
-                            <ul>
-                                @foreach($who_for as $who)
-                                    <li>{{$who}}</li>
-                                @endforeach
-                            </ul>
-                             @endif
+                        	<div class="misc-container-2">
+                                <p class="lead">{{ trans('courses/general.who_is_this_for?') }}</p>
+                                 @if($who_for = json2Array($course->who_is_this_for))
+                                <ul>
+                                    @foreach($who_for as $who)
+                                        <li>{{$who}}</li>
+                                    @endforeach
+                                </ul>
+                                 @endif
+                             </div>
                         </aside>
                         
                         <div class="your-teacher">
@@ -296,15 +300,15 @@
                     </div>
                     @endforeach
                 </div>
-                            <!--<div class="divider clear">
+                <div class="divider clear">
                     <span></span>
-                </div>-->
+                </div>
             
             @if($course->allTestimonials->count() > 0)
-                        <div class="testimonials clearfix clear_fix clear bottom-testimonials">
-                            <h3 class="text-center">
+                        <div id="bottom-student-reviews" class="testimonials clearfix clear_fix clear bottom-testimonials">
+                            <!--<h3 class="text-center">
                                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">
-                            </h3>
+                            </h3>-->
 	                        <h2 class="text-center">{{ trans('courses/general.helpful-student-reviews') }}</h2>
                             @foreach($course->allTestimonials as $testimonial)
                             	<div>

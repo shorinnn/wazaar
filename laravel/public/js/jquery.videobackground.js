@@ -101,7 +101,7 @@
 		 */
 		 
 		var player = $('#video-background video');
-		
+		console.log(player[0].volume);
 		that.find('video').on('ended', function(){
 			if (that.settings.loop) {
 				$(this).get(0).play();
@@ -123,33 +123,25 @@
 		}
 		
 		//Make video restart on initial play.
-		if($('.ui-video-background-play .restart-video')){
+		if($('.ui-video-background-play a').hasClass('restart-video')){
+			if (player[0].volume === 1) {
+				player[0].volume = 0;
+			}
 			$('.ui-video-background-play .restart-video').on('click',
 			function(){
 				$('.ui-video-background-play a').removeClass('restart-video');
-				//$('.ui-video-background-play a').removeClass('ui-icon-pause').addClass('ui-icon-play');
-				//$('.ui-video-background-mute a')
-				console.log(player[0]);
-				//player[0].pause();
 				player[0].currentTime = '0';
-				//player[0].play();
-				console.log(player[0].volume);
 				if (player[0].volume === 0) {
-					//player[0].volume = 1;
-					console.log(player[0].volume);
-				}
-				
-				/*if(that.settings.muted){
-					that.settings.muted = false;
-					console.log(that.settings.muted);	
-				}*/
-				
-				})			
+					player[0].volume = 1;
+				}				
+			})			
 			
 		}
 		
 		else{
-			return false;
+			if (player[0].volume === 0){
+				player[0].volume = 1;
+			}
 		}
 		
 		
@@ -484,8 +476,7 @@
 		poster: null,
 		autoplay: true,
 		preload: 'auto',
-		loop: false,
-		muted: false,
+		loop: true,
 		controlPosition: null,
 		controlText: ['', '', '', ''],
 		resize: false,

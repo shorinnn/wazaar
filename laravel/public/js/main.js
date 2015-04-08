@@ -28,18 +28,6 @@ $(document).ready(function(){
 	$('button.join-class').mouseup(function(){
 		$(this).removeClass('pushdown');
 	});
-	$('.course-search-section .course-search-form input').on('focus', function(){
-		$('.course-search-section .course-search-form form').css({
-			border: 'solid 1px #abd82a',
-			boxShadow: '0px 0px 7px 1px #abd82a'
-		});
-	});
-	$('.course-search-section .course-search-form input').on('blur', function(){
-		$('.course-search-section .course-search-form form').css({
-			border: 'solid 1px #fff',
-			boxShadow: 'none'
-		});
-	});
     $(window).scroll(stepsScrollAnimation);
     _.setTranslation( js_translation_map );
     floatingNav();
@@ -48,6 +36,8 @@ $(document).ready(function(){
 	skinVideoControls();
 	insertSelectBorder();
 	askTeacherQuestion();
+	searchFormFocusStyle();
+	videoGrid();
 });
 
 function enableClipboard(){
@@ -1070,4 +1060,35 @@ function askTeacherQuestion(){
 		}
 		
 	});
+}
+
+function searchFormFocusStyle(){
+	$('.course-search-section .course-search-form input').on('focus', function(){
+		$('.course-search-section .course-search-form form').css({
+			border: 'solid 1px #abd82a',
+			boxShadow: '0px 0px 7px 1px #abd82a'
+		});
+		$(this).attr("placeholder","");
+	});
+	$('.course-search-section .course-search-form input').on('blur', function(){
+		$('.course-search-section .course-search-form form').css({
+			border: 'solid 1px #fff',
+			boxShadow: 'none'
+		});
+		$(this).attr("placeholder","E.g. Javascript, online business, etc ...");
+	});
+	
+}
+
+function videoGrid(){
+	/*$('#video-grid .boxes img').on('mouseenter', function(){
+		var currentThumb = $(this);
+		TweenMax.to(currentThumb, 0.2, {zIndex: 4})
+	});	
+
+
+	$('#video-grid .boxes img').on('mouseleave', function(){
+		var currentThumb = $(this);
+		TweenMax.to(currentThumb, 0.2, {zIndex: 4})
+	});	*/
 }

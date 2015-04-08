@@ -397,30 +397,34 @@ header .activate-dropdown:hover ul{
 	background: #0669d1 url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/search-lens.png) no-repeat center 8px;
 }
 
-.course-search-section .top-category-carousel{
+.course-search-section .top-categories-slider-container{
 	max-width: 484px;
 	margin-top: 20px;
 }
 
-.course-search-section .top-category-carousel .slick-slide{
+.course-search-section .top-categories-slider-container .top-categories-slider{
+	display: none;
+}
+
+.course-search-section .top-categories-slider-container .slick-slide{
 	color: rgba(255, 255, 255, 0.5);
 	text-align: center;
 	margin: 0 5px;
 }
 
-.course-search-section .top-category-carousel .slick-slide h3{
+.course-search-section .top-categories-slider-container .slick-slide h3{
 	font-size: 18px;
 	font-weight: 200;
 	margin-bottom: 12px;
 }
 
-.course-search-section .top-category-carousel .slick-slide ul{
+.course-search-section .top-categories-slider-container .slick-slide ul{
 	margin: 0;
 	padding: 0;
 }
 
-.course-search-section .top-category-carousel .slick-slide ul li{
-	font-size: 16px;
+.course-search-section .top-categories-slider-container .slick-slide ul li{
+	font-size: 14px;
 	font-weight: 200;
 	margin-bottom: 7px;
 }
@@ -1637,6 +1641,7 @@ header .activate-dropdown:hover ul{
 	width: 312px;
     font-size: 12px;
     padding: 7px 20px 7px;
+	display: block;
 }
 
 .course-detail-top-section .centered-contents .number-of-reviews span{
@@ -1987,7 +1992,15 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content
 .left-content .lead.what-you-will-learn{
-	background: #e5f5ff;
+	background-color: transparent;
+}
+
+.main-content-container .main-content
+.left-content .misc-container-1{
+	border: solid #e7e7e7;
+	border-width: 1px 1px 1px 0;
+	border-radius: 0 5px 5px 0;
+	margin-bottom: 30px;
 }
 
 .main-content-container .main-content
@@ -1995,15 +2008,19 @@ header .activate-dropdown:hover ul{
 	padding: 15px 20px;
 	background: #fff;
 	display: block;
-	color: #555;
+	color: #333;
 	font-size: 12px;
 	border-radius: 0 0 5px 0;
 	line-height: 20px;
 }
 
 .main-content-container .main-content
+.left-content .misc-container-1 article{
+}
+
+.main-content-container .main-content
 .left-content article.what-you-will-learn{
-	background: #e5f5ff;
+	background-color: transparent;
 }
 
 .main-content-container .main-content
@@ -2036,18 +2053,24 @@ header .activate-dropdown:hover ul{
 .sidebar .lead{
 	padding: 15px 0 15px 20px;
 	font-size: 14px;
-	background: #e5f5ff;
+	background-color: transparent;
 	color: #0099ff;
-	border-radius: 5px 0 0 0;
+}
+
+.main-content-container .main-content
+.sidebar .misc-container-2{
+	border: solid #e7e7e7;
+	margin-bottom: 30px;
+	border-width: 1px 0 1px 1px;
+	border-radius: 5px 0 0 5px;
 }
 
 .main-content-container .main-content
 .sidebar ul{
 	padding: 0 20px 20px 35px;
-	margin: 0 0 30px;
+	margin: 0;
 	list-style: none;
-	border-radius: 0 0 0 5px;
-	background: #e5f5ff;
+	background-color: transparent;
 }
 
 .main-content-container .main-content .sidebar ul li:before {
@@ -2065,7 +2088,7 @@ header .activate-dropdown:hover ul{
 .main-content-container .main-content
 .sidebar ul li{
 	font-size: 12px;
-	color: #555;
+	color: #333;
 	position: relative;
 	margin-bottom: 6px;
 	padding-left: 0px;
@@ -2271,6 +2294,7 @@ header .activate-dropdown:hover ul{
 	border-radius: 5px;
 	background: #fff;
 	padding-bottom: 80px;
+	margin-top: 30px;
 }
 
 .main-content-container .main-content .testimonials.bottom-testimonials hr{
@@ -2453,9 +2477,8 @@ header .activate-dropdown:hover ul{
     border-left: 1px solid #b0bfc1;*/
     border-radius: 0 0 0 9px;
     bottom: 1px;
-    float: right;
-    margin: 0 86px 0 0;
-    padding: 0 0 0 20px;
+    margin: 0 auto 0;
+    padding: 0;
     position: relative;
     width: 80.7%;
 }
@@ -3313,7 +3336,8 @@ a.load-remote > *{
 }
 
 .load-more-comments:hover{
-	background: #21618b;
+	background: #0189e3;
+	color: #fff;
 }
 
 #close-button {
@@ -4641,14 +4665,14 @@ select::-ms-expand {
 	position: absolute;
 	height: 100%;
 	width: 100%;
-	background: rgba(255, 255, 255, 0.3);
+	background: rgba(255, 255, 255, 0.2);
 	top: 0;
 	left: 0;
 	opacity: 0;
 	visibility: hidden;
-	-webkit-transition: all 0.3s ease-in-out 0s;
-	-moz-transition: all 0.3s ease-in-out 0s;
-	transition: all 0.3s ease-in-out 0s;
+	-webkit-transition: all 0s ease-in-out 0s;
+	-moz-transition: all 0s ease-in-out 0s;
+	transition: all 0s ease-in-out 0s;
 }
 
 .course-enroll-wrapper .small-box:hover .box-overlay,
@@ -4986,12 +5010,14 @@ select::-ms-expand {
 }
 
 #video-grid .boxes{
-	border: solid 1px #162d3e;
 	display: block;
 	position: relative;
-	-webkit-transition: all 0.3s ease-in-out 0s;
-	-moz-transition: all 0.3s ease-in-out 0s;
-	transition: all 0.3s ease-in-out 0s;
+	z-index:0;
+}
+
+#video-grid .boxes:hover{
+	position: relative;
+	z-index: 3;
 }
 
 #video-grid .boxes span{
@@ -5001,6 +5027,7 @@ select::-ms-expand {
 	top: 0;
 	right: 0;
 	bottom:0;
+	z-index: 5;
 	margin: 0 auto;
     background-color: rgba(21, 34, 46, 0.8);
     background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-4.png");
@@ -5013,15 +5040,28 @@ select::-ms-expand {
 	transition: all 0.3s ease-in-out 0s;
 }
 
-#video-grid .boxes:hover{
-	transform: scale(1.2);
-	position: relative;
-	z-index: 1;
-}
-
 #video-grid .boxes:hover span{
 	opacity: 1;
 	visibility: visible;
+	transform: scale(1.2);
+}
+
+#video-grid .boxes img{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	-webkit-transition: all 0.3s ease-in-out 0s;
+	-moz-transition: all 0.3s ease-in-out 0s;
+	transition: all 0.3s ease-in-out 0s;
+	border: solid 1px #162d3e;
+}
+
+#video-grid .boxes:hover img{
+	transform: scale(1.2);
+	position: relative;
 }
 
 #video-grid .boxes p{
@@ -5029,17 +5069,20 @@ select::-ms-expand {
 	position: absolute;
 	bottom: 0;
 	left:0;
+	z-index: 5;
 	font-weight: 200;
 	padding: 5px 20px;
 	width: 100%;
 	color: #fff;
 	text-align: left;
 	background-color: rgba(24, 36, 46, 0.8);
+	-webkit-transition: all 0.3s ease-in-out 0s;
+	-moz-transition: all 0.3s ease-in-out 0s;
+	transition: all 0.3s ease-in-out 0s;
 }
 
-#video-grid .boxes img{
-	height: 100%;
-	width: 100%;
+#video-grid .boxes:hover p{
+	transform: scale(1.2);
 }
 
 #video-grid .small-boxes span{
@@ -5053,6 +5096,10 @@ select::-ms-expand {
 	font-size: 14px;
 }
 
+#video-grid .small-boxes:hover p{
+	bottom: -13px;
+}
+
 #video-grid .big-boxes span{
 	width: 60px;
 	height: 60px;
@@ -5062,6 +5109,10 @@ select::-ms-expand {
 
 #video-grid .big-boxes p{
 	font-size: 18px;
+}
+
+#video-grid .big-boxes:hover p{
+	bottom: -26px;
 }
 
 .big-box-holders{

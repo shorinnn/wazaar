@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="{{url('plugins/slider/css/slider.css')}}">
     <link rel="stylesheet" href="{{url('css/jquery.videobackground.css')}}">
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/css/select2.min.css" rel="stylesheet" />
-
-    <!-- Example assets -->
     <link rel="stylesheet" href="{{url('css/slick.css')}}">
     <link rel="stylesheet" href="{{url('css/slick-theme.css')}}">
 
@@ -137,7 +135,7 @@
 						controlPosition: '#bckgrd-video-overlay',
 						poster: '',
 						loadedCallback: function(){
-						$(this).videobackground('mute');
+							$(this).videobackground('');
 					}
 				});
 				
@@ -148,13 +146,14 @@
 				
 				
 				$('#video-grid').carousel({
-					interval: false
+					interval: false,
+					wrap: false
 				});	
 						
 				$('#video-grid').on('slide.bs.carousel', function () {
 				})		
 
-				$('.responsive').slick({
+				$('.top-categories-slider').show().slick({
 		     	  dots: false,
 				  arrows: false,
 				  infinite: true,

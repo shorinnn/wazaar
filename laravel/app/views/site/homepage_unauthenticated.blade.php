@@ -78,8 +78,8 @@
                             </form>
                             <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/sample-search-category.png" 
                             alt="" class="img-responsive">-->
-                            <div class="top-category-carousel">
-                                <div class="responsive">
+                            <div class="top-categories-slider-container">
+                                <div class="top-categories-slider">
                                     <a href="#">
                                         <h3>IT & Tech</h3>
                                         <ul>
