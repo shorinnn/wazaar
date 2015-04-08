@@ -10,8 +10,92 @@
                             	<input type="search" placeholder="E.g. Javascript, online business, etc ..." name="course-search">
                                 <button></button>
                             </form>
-                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/sample-search-category.png" 
-                            alt="" class="img-responsive">
+                            <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/sample-search-category.png" 
+                            alt="" class="img-responsive">-->
+                            <div class="top-category-carousel">
+                                <div class="responsive">
+                                    <a href="#">
+                                        <h3>IT & Tech</h3>
+                                        <ul>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        </ul>
+                                    </a>
+                                    <a href="">
+                                        <h3>Business</h3>
+                                        <ul>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        </ul>
+                                    </a>
+                                    <a href="#">
+                                        <h3>Investments</h3>
+                                        <ul>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        </ul>
+                                    </a>
+                                    <a href="">
+                                        <h3>Music</h3>
+                                        <ul>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        </ul>
+                                    </a>
+                                    <a href="#">
+                                        <h3>Health</h3>
+                                        <ul>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        </ul>
+                                    </a>
+                                    <a href="">
+                                        <h3>Category</h3>
+                                        <ul>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        </ul>
+                                    </a>
+                                    <a href="#">
+                                        <h3>Category</h3>
+                                        <ul>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        </ul>
+                                    </a>
+                                    <a href="">
+                                        <h3>Category</h3>
+                                        <ul>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        </ul>
+                                    </a>
+                                    <a href="#">
+                                        <h3>Category</h3>
+                                        <ul>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        </ul>
+                                    </a>
+                                    <a href="">
+                                        <h3>Category</h3>
+                                        <ul>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        	<li>Sub category</li>
+                                        </ul>
+                                    </a>
+                                </div>                            
+                            </div>
                         </div>
                     </div>
                 </div>

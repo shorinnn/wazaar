@@ -21,11 +21,11 @@
         <div class="course-box-content clearfix">
             <h2>{{ $course->name }}</h2>
             <p>{{{ Str::limit( strip_tags( $course->short_description, Config::get('custom.short_desc_max_chars') ) ) }}}
-            	<span class="subcategory">
+<!--            	<span class="subcategory">
                     <small>{{ trans('courses/general.subcategory') }}: 
-                        <!--<a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>-->
+                        <a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>
                     </small>
-                </span>
+                </span>-->
             </p>
             <div class="price-tag clear">
                  ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
@@ -43,6 +43,7 @@
             </div>   
             <span class="likes">{{ $course->reviews_positive_score }}%</span>         
         </div> 
+	    <span class="box-overlay"></span>
     </div>
     </a>
 </div>
