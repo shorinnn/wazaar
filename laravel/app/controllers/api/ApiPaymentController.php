@@ -25,7 +25,8 @@ class ApiPaymentController extends BaseController
             'amount'     => 'required|numeric', //purchases.purchase_price
             'ipAddress'  => 'required',
             'paymentProductId' => 'required',
-            'reference' => 'required'
+            'reference' => 'required',
+            'returnUrl' => 'required'
         ];
 
         $validator = Validator::make(Input::all(), $rules);
@@ -51,13 +52,14 @@ class ApiPaymentController extends BaseController
                 'country'   => @$requestData['country'],
                 'ipAddress' => $requestData['ipAddress'],
                 'reference' => $reference
+
             ]
         ];
         /*$creditCard  = [
             'cardNumber' => $requestData['cardNumber'],
             'cardExpiry' => $requestData['cardExpiry']
         ];*/
-        $returnUrl = url('payment/callback/' . $reference);
+        $returnUrl =  $requestData['returnUrl'];
 
         $paymentResponse = $this->payment->makeUsingCreditCard($requestData['amount'], $requestData['paymentProductId'], $returnUrl, $otherParams);
         Event::fire('payment.made', [$requestData, $paymentResponse]);

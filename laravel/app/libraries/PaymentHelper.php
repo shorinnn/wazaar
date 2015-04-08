@@ -75,7 +75,8 @@ class PaymentHelper
             //'cardExpiry' => $paymentDetails['cardExpiry'],
             'ipAddress'  => Request::ip(),
             'paymentProductId' => $paymentDetails['paymentProductId'],
-            'reference' => $paymentDetails['reference']
+            'reference' => $paymentDetails['reference'],
+            'returnUrl' => url('payment/callback/' . $paymentDetails['reference'])
         ];
 
         return $this->_executeCurl($paymentURL, $data);
