@@ -9,5 +9,15 @@ return
         'url'        => 'HTTPS://ps.gcsip.nl/wdl/wdl',
         'currency'   => 'USD',
         'country'    => 'JP',
-        'language'   => 'ja'
+        'language'   => 'ja',
+        'creditCardCompanies' => [
+                                    1 => 'Visa',
+                                    2 => 'American Express',
+                                    3 => 'MasterCard',
+                                    117 => 'Maestro',
+                                    124 => 'Laser',
+                                    125 => 'JCB',
+                                    128 => 'Discover',
+                                    132 => 'Diners Club'
+                                 ]
     ];

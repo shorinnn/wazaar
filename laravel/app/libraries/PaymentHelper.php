@@ -38,9 +38,9 @@ class PaymentHelper
     public function creditCardValidationRules()
     {
         return [
-            'cardNumber' => 'required',
-            'expiryDate' => 'required',
-            'cvc'        => 'required',
+            //'cardNumber' => 'required',
+            //'expiryDate' => 'required',
+            //'cvc'        => 'required',
             'firstName'  => 'required',
             'lastName'   => 'required',
             'email'      => 'required|email',
@@ -59,11 +59,11 @@ class PaymentHelper
         return $this->_executeCurl($createURL, $data);
     }
 
-    public function processCreditCardPayment($creditCard, $payee, $student)
+    public function processCreditCardPayment($paymentDetails, $payee, $student)
     {
         $paymentURL = $this->url . 'payment/creditcard';
         $data       = [
-            'amount'     => $creditCard['finalCost'], //purchases.purchase_price
+            'amount'     => $paymentDetails['finalCost'], //purchases.purchase_price
             'userId'     => $student->id, //users.id
             'email'      => $payee['email'], //users.email
             'firstName'  => $payee['firstName'], //user_profiles.first_name
@@ -71,9 +71,11 @@ class PaymentHelper
             'city'       => $payee['city'],
             'zip'        => $payee['zip'],
             'country'    => 'JP',
-            'cardNumber' => $creditCard['cardNumber'],
-            'cardExpiry' => $creditCard['cardExpiry'],
-            'ipAddress'  => Request::ip()
+            //'cardNumber' => $paymentDetails['cardNumber'],
+            //'cardExpiry' => $paymentDetails['cardExpiry'],
+            'ipAddress'  => Request::ip(),
+            'paymentProductId' => $paymentDetails['paymentProductId'],
+            'reference' => $paymentDetails['reference']
         ];
 
         return $this->_executeCurl($paymentURL, $data);
