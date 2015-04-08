@@ -62,6 +62,24 @@ class PaymentGlobalCollectDriver implements PaymentInterface
         }
 
     }
+
+    public function getOrderStatus($orderId)
+    {
+        $action = 'GET_ORDERSTATUS';
+        try{
+            $orderXML = "
+                <PAYMENT>
+                    <ORDERID>{$orderId}</ORDERID>
+                </PAYMENT>
+            ";
+            $requestXML = $this->_prepareXMLString($action,$orderXML);
+            return $this->_executeCall($requestXML);
+        }
+        catch(Exception $ex){
+            return ['success' => false, 'errors' => [$ex->getMessage()]];
+        }
+    }
+
     /*public function makeUsingCreditCard($amount, $creditCardDetails, $otherParams = [])
     {
         try {

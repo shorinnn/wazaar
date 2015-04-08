@@ -87,4 +87,25 @@ class ApiPaymentController extends BaseController
 
         return Response::json($response);
     }
+
+    public function getOrderStatus()
+    {
+        $rules = [
+            'orderId' => 'required'
+        ];
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return [
+                'success' => false,
+                'errors'  => $validator->messages()->all()
+            ];
+        }
+
+        $orderId = Input::get('orderId');
+        $response = $this->payment->getOrderStatus($orderId);
+
+        return Response::json($response);
+    }
 }

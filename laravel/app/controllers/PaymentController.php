@@ -111,12 +111,33 @@ class PaymentController extends BaseController
                 $payee   = Input::only('firstName', 'lastName', 'email', 'city', 'zip');
                 $payment = $this->paymentHelper->processCreditCardPayment($paymentDetails, $payee, $student);
 
-                echo '<pre>';
-                print_r($payment);
-                echo '</pre>';
-                die;
+                if (isset($payment['successData'])){
+                    $paymentRequest = [
+                        'wazaar_reference' => $reference,
+                        'gc_order_id' => $payment['successData']['ORDERID'],
+                        'gc_reference' => $payment['successData']['REF'],
+                        'gc_mac' => $payment['successData']['MAC'],
+                        'gc_return_mac' => $payment['successData']['RETURNMAC'],
+                        'gc_status_id' => $payment['successData']['STATUSID']
+                    ];
+
+                    GCPaymentRequests::create($paymentRequest);
+
+                    return Redirect::to('payment/do-payment/' . $reference);
+                }
+
             }
         }
+    }
+
+    public function renderGCForm()
+    {
+        
+    }
+
+    public function paymentReturn($reference)
+    {
+
     }
 
     public function process__()

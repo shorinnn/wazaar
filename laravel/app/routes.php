@@ -183,7 +183,7 @@ Route::group(['prefix' => 'profile'], function (){
 Route::group(['prefix' => 'video'], function(){
     Route::get('add','VideosController@add');
     Route::post('upload', 'VideosController@doUpload');
-    Route::post('sns/callback', 'SnsController@snsCallback');
+    Route::any('sns/callback', 'SnsController@snsCallback');
     Route::get('{id}/json','VideosController@videoAndFormatsJson');
     Route::get('user/archive','VideosController@userArchive');
 });
@@ -238,6 +238,8 @@ Route::group(['prefix' => 'dashboard'], function (){
 Route::group(['prefix' => 'payment'], function (){
     Route::get('/','PaymentController@index');
     Route::post('/','PaymentController@process');
+    Route::get('callback/{reference}','PaymentController@paymentReturn');
+    Route::get('do-payment/{reference}','PaymentController@renderGCForm');
 });
 
 
@@ -246,6 +248,7 @@ Route::group(['prefix' => 'api'], function(){
     Route::group(['prefix' => 'payment'], function(){
         Route::post('creditcard','ApiPaymentController@creditCard');
         Route::post('profile/create','ApiPaymentController@createProfile');
+        Route::post('order/status','ApiPaymentController@getOrderStatus');
     });
 });
 
