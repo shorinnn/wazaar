@@ -186,36 +186,36 @@
                                           @if( cycle('x', 'y', ':second') == 'x')
                                             <div class="col-xs-4 col-sm-4 col-md-4 big-box-holders box-holders clearfix">
                                                 @if( cycle('a','b', ':third') == 'a')
-                                                    <a href="{{$set[0]['url']}}" class="small-boxes boxes left course-tile-{{$set[0]['id']}}">
+                                                    <a href="{{$set[2]['url']}}" class="small-boxes boxes left course-tile-{{$set[2]['id']}}">
                                                         <span class="hidden-xs"></span>
-                                                        <img class="img-responsive" src="{{ $set[0]['thumb'] }}">
-                                                        <p class="hidden-xs">{{ $set[0]['name'] }}</p>
+                                                        <img class="img-responsive" src="{{ $set[2]['thumb'] }}">
+                                                        <p class="hidden-xs">{{ $set[2]['name'] }}</p>
                                                     </a>
                                                     <a href="{{$set[1]['url']}}" class="small-boxes boxes left course-tile-{{$set[1]['id']}}">
                                                         <span class="hidden-xs"></span>
                                                         <img class="img-responsive"  src="{{ $set[1]['thumb'] }}"> 
                                                         <p class="hidden-xs">{{ $set[1]['name'] }}</p>
                                                     </a>
-                                                    <a href="{{$set[2]['url']}}" class="big-boxes boxes clear  course-tile-{{$set[2]['id']}}">
+                                                    <a href="{{$set[0]['url']}}" class="big-boxes boxes clear  course-tile-{{$set[0]['id']}}">
                                                         <span class="hidden-xs"></span>
-                                                       <img class="img-responsive"  src="{{ $set[2]['thumb'] }}"> 
-                                                        <p class="hidden-xs">{{ $set[2]['name'] }}</p>
+                                                       <img class="img-responsive"  src="{{ $set[0]['thumb'] }}"> 
+                                                        <p class="hidden-xs">{{ $set[0]['name'] }}</p>
                                                     </a>
                                                 @else
-                                                    <a href="{{$set[2]['url']}}" class="big-boxes boxes clear  course-tile-{{$set[2]['id']}}">
+                                                    <a href="{{$set[0]['url']}}" class="big-boxes boxes clear  course-tile-{{$set[2]['id']}}">
                                                         <span class="hidden-xs"></span>
-                                                       <img class="img-responsive"  src="{{ $set[2]['thumb'] }}"> 
-                                                        <p class="hidden-xs">{{ $set[2]['name'] }}</p>
-                                                    </a>
-                                                    <a href="{{$set[0]['url']}}" class="small-boxes boxes left course-tile-{{$set[0]['id']}}">
-                                                        <span class="hidden-xs"></span>
-                                                        <img class="img-responsive" src="{{ $set[0]['thumb'] }}">
+                                                       <img class="img-responsive"  src="{{ $set[0]['thumb'] }}"> 
                                                         <p class="hidden-xs">{{ $set[0]['name'] }}</p>
                                                     </a>
                                                     <a href="{{$set[1]['url']}}" class="small-boxes boxes left course-tile-{{$set[1]['id']}}">
                                                         <span class="hidden-xs"></span>
                                                         <img class="img-responsive"  src="{{ $set[1]['thumb'] }}"> 
                                                         <p class="hidden-xs">{{ $set[1]['name'] }}</p>
+                                                    </a>
+                                                    <a href="{{$set[2]['url']}}" class="small-boxes boxes left course-tile-{{$set[2]['id']}}">
+                                                        <span class="hidden-xs"></span>
+                                                        <img class="img-responsive" src="{{ $set[2]['thumb'] }}">
+                                                        <p class="hidden-xs">{{ $set[2]['name'] }}</p>
                                                     </a>
                                                 @endif
                                             </div>

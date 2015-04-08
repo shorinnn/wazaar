@@ -19,6 +19,22 @@ class CoursePreviewImage extends Ardent{
         $extension = mime_to_extension($mime);
         if( !in_array( $extension, Config::get('custom.course_preview_image.allowed_types') ) ) return false;
         
+        // upload hi-res
+        Image::make($this->file_path)
+                ->resize( Config::get('custom.course_preview_image.hi_res_width'),
+                          Config::get('custom.course_preview_image.hi_res_height') )->save();
+        
+        $file = file_get_contents($this->file_path);
+        $s3 = AWS::get('s3');
+        $result = $s3->putObject(array(
+            'ACL'    => 'public-read',
+            'Bucket' => $_ENV['AWS_BUCKET'],
+            'ContentType' => $mime,
+            'Key'    => 'course_preview/hi-res-'.$key.$extension,
+            'Body'   => $file
+        ));
+        
+        // upload regular
         Image::make($this->file_path)
                 ->resize( Config::get('custom.course_preview_image.width'),
                           Config::get('custom.course_preview_image.height') )->save();
