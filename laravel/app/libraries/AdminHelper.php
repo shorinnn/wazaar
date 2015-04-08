@@ -11,6 +11,13 @@ class AdminHelper
             case 'alltime' : return $this->salesLastFewYears();break;
         }
     }
+    
+    public function affiliateRank($affiliateID){
+        $affiliates = $this->_topAffiliates('','total_sales DESC')->lists('product_affiliate_id');
+        $index = array_search($affiliateID, $affiliates);
+        if($index===false) return '-';
+        return $index + 1;
+    }
 
     public function topAffiliates($affiliateId = 0, $startDate = '', $endDate = '', $sortOrder = 0)
     {
@@ -35,6 +42,13 @@ class AdminHelper
         ];
 
         return $this->_topAffiliates($filter, $sortOrders[$sortOrder])->paginate(Config::get('wazaar.PAGINATION'));
+    }
+    
+    public function courseRank($courseId, $categoryId){
+        $courses = $this->topCourses('no', $categoryId, '','', false, 2)->lists('course_id');
+        $index = array_search($courseId, $courses);
+        if($index===false) return '-';
+        return $index + 1;
     }
 
     public function topCourses($freeProduct = 'no', $categoryId = 0, $startDate = '', $endDate = '', $paginate = true, $sortOrder = 0)

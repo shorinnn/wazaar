@@ -45,4 +45,5 @@ return array(
     'wishlist' => 'wishlist',
     'testimonial' => 'Testimonial',
     'no-items-on-wishlist' => 'There are no items on this wishlist.',
+    'virus-found-in-uploaded-file' => 'File upload failed because a virus was detected.',
 );

@@ -80,86 +80,16 @@
                             alt="" class="img-responsive">-->
                             <div class="top-categories-slider-container">
                                 <div class="top-categories-slider">
-                                    <a href="#">
-                                        <h3>IT & Tech</h3>
-                                        <ul>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        </ul>
-                                    </a>
-                                    <a href="">
-                                        <h3>Business</h3>
-                                        <ul>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        </ul>
-                                    </a>
-                                    <a href="#">
-                                        <h3>Investments</h3>
-                                        <ul>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        </ul>
-                                    </a>
-                                    <a href="">
-                                        <h3>Music</h3>
-                                        <ul>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        </ul>
-                                    </a>
-                                    <a href="#">
-                                        <h3>Health</h3>
-                                        <ul>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        </ul>
-                                    </a>
-                                    <a href="">
-                                        <h3>Category</h3>
-                                        <ul>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        </ul>
-                                    </a>
-                                    <a href="#">
-                                        <h3>Category</h3>
-                                        <ul>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        </ul>
-                                    </a>
-                                    <a href="">
-                                        <h3>Category</h3>
-                                        <ul>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        </ul>
-                                    </a>
-                                    <a href="#">
-                                        <h3>Category</h3>
-                                        <ul>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        </ul>
-                                    </a>
-                                    <a href="">
-                                        <h3>Category</h3>
-                                        <ul>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        	<li>Sub category</li>
-                                        </ul>
-                                    </a>
+                                    @foreach($categories as $category)
+                                        <a href="{{ action('CoursesController@category', $category->slug) }}">
+                                            <h3>{{ $category->name }}</h3>
+                                            <ul>
+                                                @foreach($category->courseSubcategories()->limit(3)->get() as $sub)
+                                                    <li>{{ $sub->name }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </a>
+                                    @endforeach
                                 </div>                            
                             </div>
                         </div>
@@ -256,36 +186,36 @@
                                           @if( cycle('x', 'y', ':second') == 'x')
                                             <div class="col-xs-4 col-sm-4 col-md-4 big-box-holders box-holders clearfix">
                                                 @if( cycle('a','b', ':third') == 'a')
-                                                    <a href="{{$set[0]['url']}}" class="small-boxes boxes left course-tile-{{$set[0]['id']}}">
+                                                    <a href="{{$set[2]['url']}}" class="small-boxes boxes left course-tile-{{$set[2]['id']}}">
                                                         <span class="hidden-xs"></span>
-                                                        <img class="img-responsive" src="{{ $set[0]['thumb'] }}">
-                                                        <p class="hidden-xs">{{ $set[0]['name'] }}</p>
+                                                        <img class="img-responsive" src="{{ $set[2]['thumb'] }}">
+                                                        <p class="hidden-xs">{{ $set[2]['name'] }}</p>
                                                     </a>
                                                     <a href="{{$set[1]['url']}}" class="small-boxes boxes left course-tile-{{$set[1]['id']}}">
                                                         <span class="hidden-xs"></span>
                                                         <img class="img-responsive"  src="{{ $set[1]['thumb'] }}"> 
                                                         <p class="hidden-xs">{{ $set[1]['name'] }}</p>
                                                     </a>
-                                                    <a href="{{$set[2]['url']}}" class="big-boxes boxes clear  course-tile-{{$set[2]['id']}}">
+                                                    <a href="{{$set[0]['url']}}" class="big-boxes boxes clear  course-tile-{{$set[0]['id']}}">
                                                         <span class="hidden-xs"></span>
-                                                       <img class="img-responsive"  src="{{ $set[2]['thumb'] }}"> 
-                                                        <p class="hidden-xs">{{ $set[2]['name'] }}</p>
+                                                       <img class="img-responsive"  src="{{ $set[0]['thumb'] }}"> 
+                                                        <p class="hidden-xs">{{ $set[0]['name'] }}</p>
                                                     </a>
                                                 @else
-                                                    <a href="{{$set[2]['url']}}" class="big-boxes boxes clear  course-tile-{{$set[2]['id']}}">
+                                                    <a href="{{$set[0]['url']}}" class="big-boxes boxes clear  course-tile-{{$set[2]['id']}}">
                                                         <span class="hidden-xs"></span>
-                                                       <img class="img-responsive"  src="{{ $set[2]['thumb'] }}"> 
-                                                        <p class="hidden-xs">{{ $set[2]['name'] }}</p>
-                                                    </a>
-                                                    <a href="{{$set[0]['url']}}" class="small-boxes boxes left course-tile-{{$set[0]['id']}}">
-                                                        <span class="hidden-xs"></span>
-                                                        <img class="img-responsive" src="{{ $set[0]['thumb'] }}">
+                                                       <img class="img-responsive"  src="{{ $set[0]['thumb'] }}"> 
                                                         <p class="hidden-xs">{{ $set[0]['name'] }}</p>
                                                     </a>
                                                     <a href="{{$set[1]['url']}}" class="small-boxes boxes left course-tile-{{$set[1]['id']}}">
                                                         <span class="hidden-xs"></span>
                                                         <img class="img-responsive"  src="{{ $set[1]['thumb'] }}"> 
                                                         <p class="hidden-xs">{{ $set[1]['name'] }}</p>
+                                                    </a>
+                                                    <a href="{{$set[2]['url']}}" class="small-boxes boxes left course-tile-{{$set[2]['id']}}">
+                                                        <span class="hidden-xs"></span>
+                                                        <img class="img-responsive" src="{{ $set[2]['thumb'] }}">
+                                                        <p class="hidden-xs">{{ $set[2]['name'] }}</p>
                                                     </a>
                                                 @endif
                                             </div>

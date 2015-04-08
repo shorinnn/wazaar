@@ -14,8 +14,16 @@
                         </h3>
                     </div>
                     <div class="panel-body">
+                        @foreach(Config::get('globalcollect.creditCardCompanies') as $productId => $label)
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="paymentProductId" value="{{$productId}}">
+                                {{$label}}
+                            </label>
+                        </div>
+                        @endforeach
 
-                            <div class="form-group">
+                            {{--<div class="form-group">
                                 {{Form::label('cardNumber',trans('payment.cardNumber'))}}
                                 <div class="input-group">
                                     {{Form::text('cardNumber','',['class' => 'form-control'])}}
@@ -39,7 +47,7 @@
                                         {{Form::password('cvc',['class' => 'form-control', 'required'])}}
                                     </div>
                                 </div>
-                            </div>
+                            </div>--}}
 
                     </div>
                 </div>

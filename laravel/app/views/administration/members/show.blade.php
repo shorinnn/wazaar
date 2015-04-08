@@ -53,15 +53,7 @@
                     <td class="title no-border">{{trans('general.affiliate_id')}}:</td>
                     <td class="no-border">{{ $student->affiliate_id }}</td>
                 </tr>
-                <tr>
-                    <td class="title no-border">{{trans('general.affiliate_agency')}}:</td>
-                    <td class="no-border">
-                        @if( $student->affiliate_agency_id > 0 )
-                            {{AffiliateAgency::find($student->affiliate_agency_id)->name}}
-                        @endif
-                    
-                    </td>
-                </tr>
+                
                 @endif
                 <tr>
                     <td class="title no-border">{{trans('general.first_name')}}:</td>
@@ -150,7 +142,9 @@
                     <table class="table affiliate-table">
                         <tr>
                             <td class="title no-border">{{ trans('administration.affiliate-rank') }}:</td>
-                            <td class="no-border"> ? </td>
+                            <td class="no-border">
+                                {{ $adminHelper->affiliateRank( $student->id ) }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="title no-border">{{ trans('administration.total-sales') }}:</td>
@@ -162,7 +156,11 @@
                         </tr>
                         <tr>
                             <td class="title no-border">{{ trans('administration.total-commissions') }}:</td>
-                            <td class="no-border">¥ TBC</td>
+                            <td class="no-border">¥ {{ number_format( 
+                                        Transaction::where('user_id', $student->id)->where('transaction_type','affiliate_credit')->sum('amount'), 
+                                        Config::get('custom.currency_decimals')
+                                        )
+                                }}</td>
                         </tr>
                     </table>
                     <div class="button-wrapper">
@@ -238,8 +236,8 @@
                                     <td>¥{{ number_format( $course->sales->sum('purchase_price') + $course->lessonSales(), 
                                                 Config::get('custom.currency_decimals')) }}
                                     </td>
-                                    <td> ? </td>
-                                    <td> ? </td>
+                                    <td> {{ $adminHelper->courseRank($course->id, 0) }} </td>
+                                    <td> {{ $adminHelper->courseRank($course->id, $course->course_category_id) }} </td>
                                 </tr>
                                 <?php ++$i;?>
                             @endforeach

@@ -20,10 +20,13 @@ class ApiPaymentController extends BaseController
             'city'       => 'required',
             'zip'        => 'required',
             'country'    => 'required',
-            'cardNumber' => 'required',
-            'cardExpiry' => 'required|max:4',
+            //'cardNumber' => 'required',
+            //'cardExpiry' => 'required|max:4',
             'amount'     => 'required|numeric', //purchases.purchase_price
-            'ipAddress'  => 'required'
+            'ipAddress'  => 'required',
+            'paymentProductId' => 'required',
+            'reference' => 'required',
+            'returnUrl' => 'required'
         ];
 
         $validator = Validator::make(Input::all(), $rules);
@@ -36,7 +39,7 @@ class ApiPaymentController extends BaseController
         }
 
         $requestData = Input::all();
-        $reference   = Str::random(10);
+        $reference   = $requestData['reference'];
 
         $otherParams = [
             'order' => [
@@ -49,14 +52,16 @@ class ApiPaymentController extends BaseController
                 'country'   => @$requestData['country'],
                 'ipAddress' => $requestData['ipAddress'],
                 'reference' => $reference
+
             ]
         ];
-        $creditCard  = [
+        /*$creditCard  = [
             'cardNumber' => $requestData['cardNumber'],
             'cardExpiry' => $requestData['cardExpiry']
-        ];
+        ];*/
+        $returnUrl =  $requestData['returnUrl'];
 
-        $paymentResponse = $this->payment->makeUsingCreditCard($requestData['amount'], $creditCard, $otherParams);
+        $paymentResponse = $this->payment->makeUsingCreditCard($requestData['amount'], $requestData['paymentProductId'], $returnUrl, $otherParams);
         Event::fire('payment.made', [$requestData, $paymentResponse]);
 
         return Response::json($paymentResponse);
@@ -79,6 +84,27 @@ class ApiPaymentController extends BaseController
 
         $orderId = Input::get('orderId');
         $response = $this->payment->createPaymentProfileFromOrder($orderId);
+
+        return Response::json($response);
+    }
+
+    public function getOrderStatus()
+    {
+        $rules = [
+            'orderId' => 'required'
+        ];
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return [
+                'success' => false,
+                'errors'  => $validator->messages()->all()
+            ];
+        }
+
+        $orderId = Input::get('orderId');
+        $response = $this->payment->getOrderStatus($orderId);
 
         return Response::json($response);
     }

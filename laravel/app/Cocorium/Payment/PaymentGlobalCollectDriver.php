@@ -24,7 +24,7 @@ class PaymentGlobalCollectDriver implements PaymentInterface
         $this->language   = \Config::get('globalcollect.language');
     }
 
-    public function makeUsingCreditCard($amount, $creditCardDetails, $otherParams = [])
+    public function makeUsingCreditCard($amount, $productId, $returnUrl = '', $otherParams = [])
     {
         try {
             $action = 'INSERT_ORDERWITHPAYMENT';
@@ -43,7 +43,62 @@ class PaymentGlobalCollectDriver implements PaymentInterface
                                     <IPADDRESSCUSTOMER>{$order['ipAddress']}</IPADDRESSCUSTOMER>
                                     <EMAIL>{$order['email']}</EMAIL>
                                     <MERCHANTREFERENCE>{$order['reference']}</MERCHANTREFERENCE>
+                                </ORDER>
+                            <PAYMENT>
+                                <HOSTEDINDICATOR>1</HOSTEDINDICATOR>
+                                <PAYMENTPRODUCTID>{$productId}</PAYMENTPRODUCTID>
+                                <AMOUNT>{$amount}</AMOUNT>
+                                <CURRENCYCODE>USD</CURRENCYCODE>
+                                <COUNTRYCODE>JP</COUNTRYCODE>
+                                <LANGUAGECODE>{$this->language}</LANGUAGECODE>
+                                <RETURNURL>{$returnUrl}</RETURNURL>
+                            </PAYMENT>";
 
+            $requestXML = $this->_prepareXMLString($action, $orderPayment);
+
+            return $this->_executeCall($requestXML);
+        } catch (Exception $ex) {
+            return ['success' => false, 'errors' => [$ex->getMessage()]];
+        }
+
+    }
+
+    public function getOrderStatus($orderId)
+    {
+        $action = 'GET_ORDERSTATUS';
+        try{
+            $orderXML = "
+                <PAYMENT>
+                    <ORDERID>{$orderId}</ORDERID>
+                </PAYMENT>
+            ";
+            $requestXML = $this->_prepareXMLString($action,$orderXML);
+            return $this->_executeCall($requestXML);
+        }
+        catch(Exception $ex){
+            return ['success' => false, 'errors' => [$ex->getMessage()]];
+        }
+    }
+
+    /*public function makeUsingCreditCard($amount, $creditCardDetails, $otherParams = [])
+    {
+        try {
+            $action = 'INSERT_ORDERWITHPAYMENT';
+            $order  = $otherParams['order'];
+
+            $orderPayment = "   <ORDER>
+                                    <ORDERTYPE>1</ORDERTYPE>
+                                    <AMOUNT>{$amount}</AMOUNT>
+                                    <CURRENCYCODE>{$this->currency}</CURRENCYCODE>
+                                    <LANGUAGECODE>{$this->language}</LANGUAGECODE>
+                                    <COUNTRYCODE>{$order['country']}</COUNTRYCODE>
+                                    <SURNAME>{$order['lastName']}</SURNAME>
+                                    <CITY>{$order['city']}</CITY>
+                                    <FIRSTNAME>{$order['firstName']}</FIRSTNAME>
+                                    <ZIP>{$order['zip']}</ZIP>
+                                    <IPADDRESSCUSTOMER>{$order['ipAddress']}</IPADDRESSCUSTOMER>
+                                    <EMAIL>{$order['email']}</EMAIL>
+                                    <MERCHANTREFERENCE>{$order['reference']}</MERCHANTREFERENCE>
                                 </ORDER>
                             <PAYMENT>
                                 <HOSTEDINDICATOR>1</HOSTEDINDICATOR>
@@ -65,7 +120,7 @@ class PaymentGlobalCollectDriver implements PaymentInterface
             return ['success' => false, 'errors' => [$ex->getMessage()]];
         }
 
-    }
+    }*/
 
     public function makeUsingBank($amount, $bankDetails, $otherParams = [])
     {

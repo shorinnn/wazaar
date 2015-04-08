@@ -11,21 +11,30 @@ class GiftsFileController extends \BaseController {
             if(!Input::hasFile('file')) return json_encode(['status'=>'error', 'errors' => '1'.trans('crud/errors.error_occurred') ]); 
             $gift = Gift::find($gift);
             if($gift->affiliate_id != Auth::user()->id){
-                if(Request::ajax()) return json_encode(['status'=>'error', 'errors' => '1'.trans('crud/errors.error_occurred') ]); 
+                if(Request::ajax()) return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred') ]); 
                 return Redirect::back();
             }
             $file = new GiftFile();
             $file->gift_id = $gift->id;
+            // scan for viruses!
+            if ( App::environment( 'production' ) ){
+                $scan_result = shell_exec('clamscan '.Input::file('file')->getRealPath() );
+                if( strpos($scan_result, 'FOUND') ){
+                    @unlink( Input::file('file')->getRealPath() );
+                    return json_encode(['status'=>'error', 'errors' => trans('general.virus-found-in-uploaded-file') ]); 
+                }
+            }
+            
             if( $file->upload( Input::file('file')->getRealPath() ) ){
                 if($file->save()){
                     return json_encode(['status'=>'success', 'html' => View::make('affiliate/promote.partials.file')->with(compact('file'))->render() ]);
                 }
                 else{
-                    return json_encode(['status'=>'error', 'errors' => '2'.trans('crud/errors.error_occurred') ]); 
+                    return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred') ]); 
                 }
             }
             else{
-                return json_encode(['status'=>'error', 'errors' => '3'.trans('crud/errors.error_occurred') ]); 
+                return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred') ]); 
             }
         }
         

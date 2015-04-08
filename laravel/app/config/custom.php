@@ -2,7 +2,8 @@
 return [
     'currency_decimals'    => 0,
     'html_row_classes'     => [ 'first', 'second', 'third', 'fourth', 'fifth' ],
-    'course_preview_image' => [ 'width' => '312', 'height' => '176', 'allowed_types' => ['.jpg', '.png', '.gif', '.bmp'] ],
+    'course_preview_image' => [ 'width' => '312', 'height' => '176', 'hi_res_width' => '624', 'hi_res_height' => '252', 
+                                'allowed_types' => ['.jpg', '.png', '.gif', '.bmp'] ],
     'course_banner_image'  => [ 'width' => '656', 'height' => '266', 'allowed_types' => ['.jpg', '.png', '.gif', '.bmp'] ],
     'course_is_new'        => [ 'maximum_students' => 20, 'maximum_months' => 6 ],
     'tracker_url'          => 'http://wazaar.dev/action_tracker',
