@@ -25,10 +25,17 @@ class FrontpageVideo extends Ardent {
                 $aux['id'] = $vid->course->id;
                 $aux['name'] = $vid->course->name;
                 $aux['url'] = action( 'CoursesController@show', $vid->course->slug ).'?autoplay=true';
-                if($vid->course->course_preview_image_id == null)                
+                if($vid->course->previewImage == null || $vid->course->previewImage->url ==null ){                
                     $aux['thumb'] = "http://placehold.it/350x150&text=".trans('general.preview-unavailable');
-                else                
+                }
+                else{                
                     $aux['thumb'] = $vid->course->previewImage->url;
+                    if( $vid->type == 'big' ){
+                        $url = str_replace('course_preview/', 'course_preview/hi-res-', $vid->course->previewImage->url);
+                        $file_headers = @get_headers($url);
+                        $aux['thumb'] = $url;
+                    }
+                }
                 $arr[] = $aux;
             }
             return array_chunk( $arr, 3 );
