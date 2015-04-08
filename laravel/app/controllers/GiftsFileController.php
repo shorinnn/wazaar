@@ -11,7 +11,7 @@ class GiftsFileController extends \BaseController {
             if(!Input::hasFile('file')) return json_encode(['status'=>'error', 'errors' => '1'.trans('crud/errors.error_occurred') ]); 
             $gift = Gift::find($gift);
             if($gift->affiliate_id != Auth::user()->id){
-                if(Request::ajax()) return json_encode(['status'=>'error', 'errors' => '1'.trans('crud/errors.error_occurred') ]); 
+                if(Request::ajax()) return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred') ]); 
                 return Redirect::back();
             }
             $file = new GiftFile();
@@ -21,7 +21,7 @@ class GiftsFileController extends \BaseController {
                 $scan_result = shell_exec('clamscan '.Input::file('file')->getRealPath() );
                 if( strpos($scan_result, 'FOUND') ){
                     @unlink( Input::file('file')->getRealPath() );
-                    return json_encode(['status'=>'error', 'errors' => ('general.virus-found-in-uploaded-file') ]); 
+                    return json_encode(['status'=>'error', 'errors' => trans('general.virus-found-in-uploaded-file') ]); 
                 }
             }
             
