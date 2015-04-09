@@ -3335,6 +3335,8 @@ a.load-remote > *{
 	color: #21618b;
 }
 
+.load-more-comments:active,
+.load-more-comments:focus,
 .load-more-comments:hover{
 	background: #0189e3;
 	color: #fff;

@@ -37,7 +37,6 @@ $(document).ready(function(){
 	insertSelectBorder();
 	askTeacherQuestion();
 	searchFormFocusStyle();
-	videoGrid();
 });
 
 function enableClipboard(){
@@ -348,13 +347,18 @@ function loadMoreComments(e){
         url = elem.attr('data-url');
         target = elem.attr('data-target');
         callback = elem.attr('data-callback');  
-    }
-    $(e.target).html( _('Loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    }  
+	var count = 0;
+	animationInterval = setInterval(function(){
+	  count++;
+	  document.getElementById('load-more-ajax-button').innerHTML = "Loading." + new Array(count % 4).join('.');
+	}, 500);
     var json_data = {};
     json_data['skip'] = skip;
     json_data[post_field] = id;
     $.post(url, json_data, function(data) {
         $(e.target).attr('href','#');
+		clearInterval(animationInterval);
         $(e.target).html( _('LOAD MORE') );
         if($.trim(data)==''){
             $(e.target).removeClass('load-more-ajax');
@@ -1080,15 +1084,3 @@ function searchFormFocusStyle(){
 	
 }
 
-function videoGrid(){
-	/*$('#video-grid .boxes img').on('mouseenter', function(){
-		var currentThumb = $(this);
-		TweenMax.to(currentThumb, 0.2, {zIndex: 4})
-	});	
-
-
-	$('#video-grid .boxes img').on('mouseleave', function(){
-		var currentThumb = $(this);
-		TweenMax.to(currentThumb, 0.2, {zIndex: 4})
-	});	*/
-}
