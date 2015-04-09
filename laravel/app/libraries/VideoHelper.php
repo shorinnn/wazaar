@@ -62,6 +62,44 @@ class VideoHelper
         });
     }
 
+    public function createTranscodingJobFromKey($videoId, $key)
+    {
+        Queue::push(function ($job) use ($videoId, $key) {
+            //move the video to s3 input bucket
+            $videoHelper = new VideoHelper;
+            //$response    = $videoHelper->prepareForTranscoding($videoPath);
+            //we'll proceed if the url to input video was successfully created
+
+            if (!empty($key)) {
+                $inputKey = $key;
+                $presets  = Config::get('wazaar.AWS_VIDEO_PRESETS');
+
+                if (is_array($presets)) {
+                    $presetIds    = array_keys($presets);
+                    $transcodeJob = $videoHelper->doTranscoding($inputKey, $presetIds);
+
+                    if (isset($transcodeJob['Job']['Id'])) {
+                        $jobId = $transcodeJob['Job']['Id'];
+
+                        $video                   = Video::find($videoId);
+                        $video->input_key        = $inputKey;
+                        $video->transcode_job_id = $jobId;
+                        $video->transcode_status = $transcodeJob['Job']['Status'];
+                        $video->save(); //update video record
+                        if ($transcodeJob['Job']['Status'] == Video::STATUS_COMPLETE) {
+                            $videoFormats = $videoHelper->extractVideoFormatsFromOutputs($videoId,
+                                $transcodeJob['Outputs']);
+                            VideoFormat::insert($videoFormats);
+
+                        }
+
+                        $job->delete();
+                    }
+                }
+            }
+        });
+    }
+
     public function extractVideoFormatsFromOutputs($videoId, $outputs)
     {
         $videoFormats = [];

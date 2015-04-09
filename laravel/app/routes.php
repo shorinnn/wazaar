@@ -183,6 +183,7 @@ Route::group(['prefix' => 'profile'], function (){
 Route::group(['prefix' => 'video'], function(){
     Route::get('add','VideosController@add');
     Route::post('upload', 'VideosController@doUpload');
+    Route::post('add-by-filename','VideosController@addVideoByFilename');
     Route::any('sns/callback', 'SnsController@snsCallback');
     Route::get('{id}/json','VideosController@videoAndFormatsJson');
     Route::get('user/archive','VideosController@userArchive');
@@ -256,12 +257,5 @@ Route::group(['prefix' => 'api'], function(){
 Route::get('test/pay', 'PaymentTestController@pay');
 
 Route::get('test', function (){
-
-    $an = new AnalyticsHelper(false);
-
-    $affs = $an->affiliatesLastFewYears(2);
-    echo '<pre>';
-    print_r($affs);
-    echo '</pre>';
-    die;
+   dd(Config::get('aws::config.key'));
 });
