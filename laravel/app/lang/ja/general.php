@@ -46,4 +46,8 @@ return array(
     'testimonial' => '月Testimonialせ',
     'no-items-on-wishlist' => '月There are no items on this wishlist.せ',
     'virus-found-in-uploaded-file' => '月File upload failed because a virus was detected.せ',
+    'password-updated' => '月Password Updatedせ',
+    'password-updated-failed' => '月Password Update failedせ',
+    'please-fill-in-all-fields' => '月Please fill in all fieldsせ',
+    'old-password-not-valid' => '月Old password is not validせ',
 );

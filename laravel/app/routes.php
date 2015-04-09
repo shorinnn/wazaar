@@ -164,7 +164,10 @@ Route::get('shop', 'SiteController@shop');
 
 ## Route Group for Profile
 Route::group(['prefix' => 'profile'], function (){
+    Route::get('settings', 'ProfileController@settings');
+    Route::put('settings', 'ProfileController@updateSettings');
     Route::get('finance', 'ProfileController@finance');
+    
     ## Profile Page /profile
     Route::get('/{type?}', 'ProfileController@index');
     ## POST call to upload a profile picture
@@ -173,8 +176,7 @@ Route::group(['prefix' => 'profile'], function (){
     Route::post('store-new-profile', 'ProfileController@storeNewProfile');
     ##
     Route::post('{id}/update', 'ProfileController@update');
-    ## Polymorphic Test
-    Route::get('polymorphic-test', 'ProfileController@polymorphicTest');
+    
 
 });
 

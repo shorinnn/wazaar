@@ -46,4 +46,8 @@ return array(
     'testimonial' => 'Testimonial',
     'no-items-on-wishlist' => 'There are no items on this wishlist.',
     'virus-found-in-uploaded-file' => 'File upload failed because a virus was detected.',
+    'password-updated' => 'Password Updated',
+    'password-updated-failed' => 'Password Update failed',
+    'please-fill-in-all-fields' => 'Please fill in all fields',
+    'old-password-not-valid' => 'Old password is not valid',
 );

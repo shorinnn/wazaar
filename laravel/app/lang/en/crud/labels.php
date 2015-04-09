@@ -27,4 +27,7 @@ return array(
     'display_bio' => 'Display Bio',
     'assigned_instructor' => 'Assign Instructor',
     'display_instructor' => 'Display Instructor',
+    'old-password' => 'Old Password',
+    'new-password' => 'New Password',
+    'password-confirmation' => 'Password Confirmation',
 );

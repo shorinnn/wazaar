@@ -17,5 +17,6 @@ var js_translation_map = {
     'today' : 'Today',
     'thisWeek' : 'This Week',
     'thisMonth' : 'This Month',
-    'allTime' : 'All Time'
+    'allTime' : 'All Time',
+    'Password updated' : 'Password updated'
 };
