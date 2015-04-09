@@ -73,13 +73,15 @@ class ClassroomController extends \BaseController {
             $module = $course->modules()->where('slug', $module)->first();
             $lesson = $module->lessons()->where('slug', $lesson)->with('blocks')->first();
             $video = $lesson->blocks()->where('type','video')->first();
-            if( !$student->purchased( $course ) && !$student->purchased( $lesson ) ){
-                // load crash lesson mode if lesson is free
-                if( $lesson->price==0 ){                    
-                    return View::make('courses.classroom.crash_lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
-                }
+//            if( !$student->purchased( $course ) && !$student->purchased( $lesson ) ){
+            $purchase = $student->purchases()->where('product_type','Lesson')->where('product_id', $lesson->id)->first();
+            if( !$student->purchased($course) && $purchase==null && $lesson->price > 0 ){
                 return Redirect::to('/');
             }
+            if( ($purchase==null && $lesson->price==0) || ( !$student->purchased($course) && $purchase->free_product=='yes') ){
+                return View::make('courses.classroom.crash_lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
+            }
+            
             // if subscription, see if valid
             if($course->payment_type=='subscription'){
 //                if( !in_array($lesson->module->id, $student->subscriptionModules($course)->lists('id'))){
