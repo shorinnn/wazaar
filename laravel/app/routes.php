@@ -111,6 +111,8 @@ Route::group( array('domain' => Config::get('app.base_url') ), function(){
 
 
     // classroom
+    Route::get('classroom/resource/{id}', 'ClassroomController@resource');
+    Route::get('classroom/gift/{id}', 'ClassroomController@gift');
     Route::get('classroom/{slug}/dashboard', 'ClassroomController@dashboard');
     Route::get('classroom/{slug}/testimonial', 'ClassroomController@testimonial');
     Route::get('classroom/{course}/{module}/{lesson}', 'ClassroomController@lesson');

@@ -11,7 +11,7 @@
             
             @if($student->hasRole('Affiliate'))
                 <li>
-                    <a href="{{ action('AffiliateDashboardController@index') }}">Affiliate{{trans('site/homepage.dashboard')}}</a>
+                    <a href="#">Affiliate{{trans('site/homepage.dashboard')}}</a>
                 </li>
             @endif
             <li>
