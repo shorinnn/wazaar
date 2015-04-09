@@ -15,12 +15,21 @@
         </div>
     </div>
     <h3><!--{{trans('video.uploadOr')}} -->
-    {{Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])}}
+    {{--Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])--}}
+    {{--Form::open(['url' => '//s3-ap-southeast-1.amazonaws.com/videosinput', 'id' => '', 'files' => true])--}}
+    <form action="//s3-ap-southeast-1.amazonaws.com/videosinput" enctype="multipart/form-data" method="POST">
+        <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
+        <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
+        <input type="hidden" name="acl" value="private">
+        <input type="hidden" name="success_action_status" value="201">
+        <input type="hidden" name="policy" value="{{$awsPolicySig['base64Policy']}}">
+        <input type="hidden" name="signature" value="{{$awsPolicySig['signature']}}">
+
         <div class="form-inline">
         	<input disabled="disabled" placeholder="" id="uploadFile" style="">
             <div class="form-group video-upload clear">
 	            <span>{{ trans('video.upload-video') }}</span>
-                <input type="file" name="fileupload" class="upload" id="fileupload-{{$lessonId}}">
+                <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
             </div>
             <em> {{ trans('site/login.or') }}</em>
             <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}">{{trans('video.selectExisting')}}</a></h3>
@@ -28,11 +37,6 @@
             <p class="video-info">{{trans('video.maxFileSize')}}</p>
 
         </div>
-        <!--<div class="video-upload fileUpload btn btn-primary clear">
-            <span>Upload Video</span>
-            <p>Lorem ipsum description here</p>
-        </div>-->
-
 
         <!-- Progress Bar -->
 
@@ -41,7 +45,7 @@
                 <span><span id="percent-complete-{{$lessonId}}"></span> <!--{{trans('crud/labels.complete')}}--></span>
             </div>
         </div>
-    {{Form::close()}}
+   </form>
 </div>
 
 <script type="text/javascript">
@@ -84,15 +88,15 @@
 					width: '120px',
 					border: 'solid 1px #b0bfc1'	
 				});
-                if ($data.result.videoId !== undefined) {
+                if ($data.videoId !== undefined) {
                     //$('#video-player-container-' + $lessonId).find('#video-player').addClass('hide');
                     $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').removeClass('hide');
-                    $.post('/lessons/blocks/' + $lessonId + '/video', {videoId : $data.result.videoId, blockId : $blockId });
+                    $.post('/lessons/blocks/' + $lessonId + '/video', {videoId : $data.videoId, blockId : $blockId });
                     console.log('has video id');
                     //Run timer to check for video transcode status
                     $intervalId = setInterval (function() {
                         console.log('interval running');
-                        videoUploader.getVideo($data.result.videoId, function ($video){
+                        videoUploader.getVideo($data.videoId, function ($video){
 
 							console.log($video);
 							if ($video.transcode_status == 'Complete'){

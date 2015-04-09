@@ -164,7 +164,10 @@ Route::get('shop', 'SiteController@shop');
 
 ## Route Group for Profile
 Route::group(['prefix' => 'profile'], function (){
+    Route::get('settings', 'ProfileController@settings');
+    Route::put('settings', 'ProfileController@updateSettings');
     Route::get('finance', 'ProfileController@finance');
+    
     ## Profile Page /profile
     Route::get('/{type?}', 'ProfileController@index');
     ## POST call to upload a profile picture
@@ -173,8 +176,7 @@ Route::group(['prefix' => 'profile'], function (){
     Route::post('store-new-profile', 'ProfileController@storeNewProfile');
     ##
     Route::post('{id}/update', 'ProfileController@update');
-    ## Polymorphic Test
-    Route::get('polymorphic-test', 'ProfileController@polymorphicTest');
+    
 
 });
 
@@ -183,6 +185,7 @@ Route::group(['prefix' => 'profile'], function (){
 Route::group(['prefix' => 'video'], function(){
     Route::get('add','VideosController@add');
     Route::post('upload', 'VideosController@doUpload');
+    Route::post('add-by-filename','VideosController@addVideoByFilename');
     Route::any('sns/callback', 'SnsController@snsCallback');
     Route::get('{id}/json','VideosController@videoAndFormatsJson');
     Route::get('user/archive','VideosController@userArchive');
@@ -256,12 +259,5 @@ Route::group(['prefix' => 'api'], function(){
 Route::get('test/pay', 'PaymentTestController@pay');
 
 Route::get('test', function (){
-
-    $an = new AnalyticsHelper(false);
-
-    $affs = $an->affiliatesLastFewYears(2);
-    echo '<pre>';
-    print_r($affs);
-    echo '</pre>';
-    die;
+   dd(Config::get('aws::config.key'));
 });

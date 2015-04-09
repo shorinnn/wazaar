@@ -27,4 +27,7 @@ return array(
     'display_bio' => '月Display Bioせ',
     'assigned_instructor' => '月Assign Instructorせ',
     'display_instructor' => '月Display Instructorせ',
+    'old-password' => '月Old Passwordせ',
+    'new-password' => '月New Passwordせ',
+    'password-confirmation' => '月Password Confirmationせ',
 );

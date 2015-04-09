@@ -13,5 +13,6 @@ var js_translation_map = {
     "reply" : "節reply約",
     "Copy to clipboard" : "節Copy to clipboard約",
     "Copied!" : "節Copied!約",
-    "Please fill in the reference fields" : "節Please fill in the reference fields約"
+    "Please fill in the reference fields" : "節Please fill in the reference fields約",
+    'Password updated' : '節Password updated約'
 };

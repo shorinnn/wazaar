@@ -109,4 +109,36 @@ class UploadHelper
             mkdir($uploadsPath);
         }
     }
+
+
+
+    public static function AWSPolicyAndSignature()
+    {
+        $bucket = getenv('AWS_VIDEO_INPUT_BUCKET');
+        $accesskey = Config::get('aws::config.key');
+        $secret = Config::get('aws::config.secret');
+
+        $policy = json_encode(array(
+            'expiration' => date('Y-m-d\TG:i:s\Z', strtotime('+6 hours')),
+            'conditions' => array(
+                array(
+                    'bucket' => $bucket
+                ),
+                array(
+                    'acl' => 'private'
+                ),
+                array(
+                    'starts-with',
+                    '$key',
+                    ''
+                ),
+                array(
+                    'success_action_status' => '201'
+                )
+            )
+        ));
+        $base64Policy = base64_encode($policy);
+        $signature = base64_encode(hash_hmac("sha1", $base64Policy, $secret, $raw_output = true));
+        return compact('base64Policy','signature');
+    }
 }

@@ -12,19 +12,21 @@
                             </form>
                             <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/sample-search-category.png" 
                             alt="" class="img-responsive">-->
-                            <div class="top-category-carousel">
-                                <div class="responsive">
-                                    @foreach($categories as $category)
-                                        <a href="{{ action('CoursesController@category', $category->slug) }}">
-                                            <h3>{{ $category->name }}</h3>
-                                            <ul>
-                                                @foreach($category->courseSubcategories()->limit(3)->get() as $sub)
-                                                    <li>{{ $sub->name }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </a>
-                                    @endforeach
-                                </div>                            
+                            <div class="top-categories-slider-container">
+                                <div class="top-categories-slider">
+                                    <!--<div class="responsive">-->
+                                        @foreach($categories as $category)
+                                            <a href="{{ action('CoursesController@category', $category->slug) }}">
+                                                <h3>{{ $category->name }}</h3>
+                                                <ul>
+                                                    @foreach($category->courseSubcategories()->limit(3)->get() as $sub)
+                                                        <li>{{ $sub->name }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </a>
+                                        @endforeach
+                                    <!--</div>-->                            
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -42,7 +42,7 @@
                         <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
                     </li>
                     <li>
-                        <a class="settings-button" href="#">{{trans('site/menus.settings')}}</a>
+                        <a class="settings-button" href="{{ action('ProfileController@settings')}}">{{trans('site/menus.settings')}}</a>
                     </li>
                     <li>
                         <a class="settings-button" href="{{ action('PrivateMessagesController@index') }}">{{trans('site/menus.messages')}}</a>

@@ -132,7 +132,7 @@ class PaymentController extends BaseController
 
     public function renderGCForm()
     {
-        
+
     }
 
     public function paymentReturn($reference)

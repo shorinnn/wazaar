@@ -33,7 +33,17 @@ var videoUploader = {
         }).on('fileuploadfail', function ($e, $data) {
             videoUploader.failCallBack($data);
         }).on('fileuploaddone', function ($e,$data){
-            videoUploader.successCallBack($data);
+            if ($data.jqXHR.status == 201){
+                //console.log($data);
+                //console.log($data.files[0].name);
+                if ($data.files[0].name !== undefined){
+                    $.post('/video/add-by-filename',{videoFilename: $data.uniqueKey + '-' + $data.files[0].name}, function ($response){
+                        videoUploader.successCallBack($response);
+                    },'json')
+                }
+            }
+
+
         });
     },
     'getVideo' : function ($videoId, $callBack){

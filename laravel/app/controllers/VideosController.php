@@ -40,6 +40,23 @@ class VideosController extends BaseController
         }
     }
 
+    public function addVideoByFilename()
+    {
+        if (Input::has('videoFilename')){
+            $filename = Input::get('videoFilename');
+            $video = Video::create([
+                'original_filename' => $filename,
+                'created_by_id' => Auth::id()
+            ]);
+
+            if ($video) {
+                $videoId = $video->id;
+                $this->videoHelper->createTranscodingJobFromKey($videoId,$filename);
+                return Response::json(compact('videoId'));
+            }
+        }
+    }
+
     public function videoAndFormatsJson($videoId)
     {
         $video = Video::getByIdAndPreset($videoId);

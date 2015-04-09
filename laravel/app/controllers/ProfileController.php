@@ -12,8 +12,7 @@ class ProfileController extends Controller
         $this->users = $users;
         $this->userHelper = $userHelper;
         $this->uploadHelper = $uploadHelper;
-        // sorin:  temporarily allow the polymorhicTest action for guests
-        $this->beforeFilter('auth', ['except' => 'polymorphicTest']);
+        $this->beforeFilter( 'auth' );
     }
 
     public function index($type = '')
@@ -130,38 +129,19 @@ class ProfileController extends Controller
 
 
     
-    /**
-     * @owner: Sorin
-     * Testing some polymorphic relationships
-     * http://wazaar.dev/profile/polymorphic-test
-     */
-    public function polymorphicTest(){
-        // get a student
-        $student = Student::find(4);
-        // create a profile for him
-        if($student->profile()->count()==0){
-            $profile = new Profile;
-            $profile->first_name = "Student";
-            $profile->last_name = "McProfile";
-            $student->profile()->save( $profile );
+    public function settings(){
+        return View::make('profile.settings');
+    }
+    
+    public function updateSettings(){
+        $repo = new UserRepository;
+        if( $repo->updatePassword( Auth::user(), Input::all() ) ){
+            if( Request::ajax() ) return json_encode ( [ 'status'=>'success'] );
+            return Redirect::back()->withSuccess( trans('general.password-updated') );
         }
-        // echo some profile data
-        echo 'Profile ID <b>'.$student->profile->id  . '</b> Profile First name <b>'. $student->profile->first_name.'</b>';
-        
-        // get the same user who's also an instructor
-        $instructor = Instructor::find(4);
-        if($instructor->profile()->count()==0){
-            $profile = new Profile;
-            $profile->first_name = "Instructor";
-            $profile->last_name = "ProfileInstr";
-            $instructor->profile()->save( $profile );
+        else{
+            if( Request::ajax() ) return json_encode ( [ 'status'=>'error', 'errors' => format_errors( $repo->errors ) ] );
+            return Redirect::back()->withError( format_errors( $repo->errors ) );
         }
-        // echo some profile data
-        echo '<br />Profile ID <b>'.$instructor->profile->id  . '</b> Profile First name <b>'. $instructor->profile->first_name.'</b>';
-        
-        // get a profile and fetch user info from it (reverse relationship)
-        $profile = Profile::first();
-        // echo the username
-        echo '<br />Username: <b>'.$profile->owner->username.'</b>';
     }
 }
