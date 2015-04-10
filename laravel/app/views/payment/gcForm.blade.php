@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1 class='icon'>{{trans('payment.payment')}}</h1>
-                <p>Please enter your payment information below</p>
+                <p>Please enter your payment information below (Note: Please wait for the form to appear, it may take a few seconds)</p>
             </div>
         </div>
 

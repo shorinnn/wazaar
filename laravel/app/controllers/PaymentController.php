@@ -88,7 +88,8 @@ class PaymentController extends BaseController
     {
         if (Session::has('productType') AND Session::has('productID')) {
 
-            $validator = Validator::make(Input::all(), $this->paymentHelper->creditCardValidationRules(), $this->paymentHelper->creditCardValidationMessages());
+            $validator = Validator::make(Input::all(), $this->paymentHelper->creditCardValidationRules(),
+                $this->paymentHelper->creditCardValidationMessages());
 
             if ($validator->fails()) {
                 return Redirect::back()->with('errors', $validator->messages()->all());
@@ -111,17 +112,18 @@ class PaymentController extends BaseController
                 $payee   = Input::only('firstName', 'lastName', 'email', 'city', 'zip');
                 $payment = $this->paymentHelper->processCreditCardPayment($paymentDetails, $payee, $student);
 
-                if (isset($payment['successData'])){
+                if (isset($payment['successData'])) {
 
                     $paymentRequest = [
                         'wazaar_reference' => $reference,
-                        'gc_order_id' => $payment['successData']['ORDERID'],
-                        'gc_form_action' => $payment['successData']['FORMACTION'],
-                        'gc_form_method' => $payment['successData']['FORMMETHOD'],
-                        'gc_reference' => $payment['successData']['REF'],
-                        'gc_mac' => $payment['successData']['MAC'],
-                        'gc_return_mac' => $payment['successData']['RETURNMAC'],
-                        'gc_status_id' => $payment['successData']['STATUSID']
+                        'gc_order_id'      => $payment['successData']['ORDERID'],
+                        'gc_form_action'   => $payment['successData']['FORMACTION'],
+                        'gc_form_method'   => $payment['successData']['FORMMETHOD'],
+                        'gc_reference'     => $payment['successData']['REF'],
+                        'gc_mac'           => $payment['successData']['MAC'],
+                        'gc_return_mac'    => $payment['successData']['RETURNMAC'],
+                        'gc_status_id'     => $payment['successData']['STATUSID'],
+                        'variables'        => json_encode(Session::all())
                     ];
 
                     GCPaymentRequests::create($paymentRequest);
@@ -135,21 +137,76 @@ class PaymentController extends BaseController
 
     public function renderGCForm($reference)
     {
-        $paymentRequest = GCPaymentRequests::where('wazaar_reference',$reference)->first();
+        $paymentRequest = GCPaymentRequests::where('wazaar_reference', $reference)->first();
 
-        if ($paymentRequest){
-            return View::make('payment.gcForm',compact('paymentRequest'));
+        if ($paymentRequest) {
+            return View::make('payment.gcForm', compact('paymentRequest'));
         }
 
     }
 
     public function paymentReturn($reference)
     {
-        $paymentRequest = GCPaymentRequests::where('wazaar_reference',$reference)->first();
+        $paymentRequest = GCPaymentRequests::where('wazaar_reference', $reference)->first();
 
-        if ($paymentRequest){
+        if ($paymentRequest) {
+
             $orderStatus = $this->paymentHelper->getOrderStatus($paymentRequest->gc_order_id);
-            dd($orderStatus);
+
+            $statusId  = 0;
+            $productId = 0;
+            $redirectUrl = '';
+
+            if (isset($orderStatus['successData']['STATUSID'])) {
+                $statusId  = (int) $orderStatus['successData']['STATUSID'];
+                $productId = (int) $orderStatus['successData']['PAYMENTPRODUCTID'];
+            }
+
+            if ($statusId >= 800 && $productId <> 11) {
+                //successful payment
+
+                $payment = [];
+                $variables                                          = json_decode($paymentRequest->variables, true);
+
+                $student = Student::current(Auth::user());
+                $product = $this->_getProductDetailsByTypeAndID($variables['productType'], $variables['productID']);
+
+                if (!$student->canPurchase($product)) { //for some reason, it happened that student can no longer purchase it during transit
+                    //return Redirect::back()->with('errors', [trans('payment.cannotPurchase')]);
+                    $redirectUrl = url('payment',['errors' => [trans('payment.cannotPurchase')]]);
+                }
+
+                $payment['successData']['ORDERID']                  = $paymentRequest->gc_order_id;
+                $payment['successData']['REF']                      = $paymentRequest->gc_reference;
+                $payment['successData']['processor_fee']            = 0;
+                $payment['successData']['tax']                      = $variables['taxValue'];
+                $payment['successData']['amount_sent_to_processor'] = $variables['amountToPay'];
+                $payment['successData']['balance_transaction_id']   = $variables['balanceTransactionID'];
+                $payment['successData']['balance_used']             = $variables['balanceUsed'];
+                $payment['successData']['giftID']                   = $variables['giftID'];
+
+                $cookie_id = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
+                $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $payment);
+                if (!$purchase) {
+                    $redirectUrl = url('payment',['errors' => [trans('payment.cannotPurchase')]]);
+                }
+                Session::forget('productType');
+                Session::forget('productID');
+                Session::forget('giftID');
+                $redirectUrl = url('courses/' . $product->slug . '/purchased?purchaseId=' . $purchase->id);
+                if (strtolower(get_class($product)) == 'lesson') {
+                    // if lesson was purchased, use the course slug
+                    $redirectUrl = url('courses/' . $product->module->course->slug . '/purchased?purchaseId=' . $purchase->id);
+                }
+                //dd($redirectUrl);
+                //return Redirect::to($redirectUrl)->with('purchaseId', $purchase->id);
+
+
+            } else {
+                //payment did not work as planned, failed
+                $redirectUrl = url('payment/?canceled=true');
+            }
+            return View::make('payment.callback',compact('redirectUrl'));
             //return View::make('payment.gcForm',compact('paymentRequest'));
         }
     }

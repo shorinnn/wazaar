@@ -23,6 +23,7 @@ class CreateGcPaymentRequestsTable extends Migration {
             $table->string('gc_return_mac');
             $table->integer('gc_status_id');
             $table->boolean('is_processed');
+            $table->text('variables');
 		    $table->timestamps();
 		});
 	}
