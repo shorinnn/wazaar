@@ -73,13 +73,15 @@ class ClassroomController extends \BaseController {
             $module = $course->modules()->where('slug', $module)->first();
             $lesson = $module->lessons()->where('slug', $lesson)->with('blocks')->first();
             $video = $lesson->blocks()->where('type','video')->first();
-            if( !$student->purchased( $course ) && !$student->purchased( $lesson ) ){
-                // load crash lesson mode if lesson is free
-                if( $lesson->price==0 ){                    
-                    return View::make('courses.classroom.crash_lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
-                }
+//            if( !$student->purchased( $course ) && !$student->purchased( $lesson ) ){
+            $purchase = $student->purchases()->where('product_type','Lesson')->where('product_id', $lesson->id)->first();
+            if( !$student->purchased($course) && $purchase==null && $lesson->price > 0 ){
                 return Redirect::to('/');
             }
+            if( (!$student->purchased($course) && $purchase==null && $lesson->price==0) || ( !$student->purchased($course) && $purchase->free_product=='yes') ){
+                return View::make('courses.classroom.crash_lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
+            }
+            
             // if subscription, see if valid
             if($course->payment_type=='subscription'){
 //                if( !in_array($lesson->module->id, $student->subscriptionModules($course)->lists('id'))){
@@ -109,6 +111,47 @@ class ClassroomController extends \BaseController {
                 else return View::make('courses.classroom.lesson_comments_ajax')->with( compact('lesson') );
             }
             else return View::make('courses.classroom.lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'instructor') );
+        }
+        
+        public function resource($id){
+            $id = PseudoCrypt::unhash($id);
+            $block = Block::find($id);
+            if( $block==null ){
+                if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
+                return Redirect::to('/?1');
+            }
+            
+            $student = Student::find(Auth::user()->id);
+            $course = $block->lesson->module->course;
+            $lesson = $block->lesson;
+            $purchase = $student->purchases()->where('product_type','Lesson')->where('product_id', $lesson->id)->first();
+            
+            
+            if( !$student->purchased($course) && $purchase==null && $lesson->price > 0 ){
+                if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
+                return Redirect::to('/?1');
+            }
+            if( (!$student->purchased($course) && $purchase==null && $lesson->price==0) || ( !$student->purchased($course) && $purchase->free_product=='yes') ){
+                if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
+                return Redirect::to('/?2');
+            }
+            header('location: '.$block->presignedUrl());
+        }
+        public function gift($id){
+            $id = PseudoCrypt::unhash($id);
+            $gift = GiftFile::find($id);
+            if( $gift==null ){
+                if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
+                return Redirect::to('/?1');
+            }
+            
+            $student = Student::find(Auth::user()->id);
+            
+            if( !in_array($id, $student->purchases()->lists('gift_id') ) ){
+                if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
+                return Redirect::to('/?1');
+            }
+            header('location: '.$gift->presignedUrl());
         }
 
 }

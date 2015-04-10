@@ -360,4 +360,20 @@ class UserRepository
         return true;
     }
     
+    public function updatePassword($user, $data){
+        if( !isset($data['old_password'], $data['new_password'], $data['password_confirmation'] ) ){
+            $this->errors = [ trans('general.please-fill-in-all-fields') ];
+            return false;
+        }
+        if( !Hash::check( $data['old_password'], $user->password ) ){
+            $this->errors = [ trans('general.old-password-not-valid') ];
+            return false;
+        }
+        $user->password = $data['new_password'];
+        $user->password_confirmation = $data['password_confirmation'];
+        if( $user->updateUniques() ) return true;
+        $this->errors = $user->errors()->all();
+        return false;
+    }
+    
 }

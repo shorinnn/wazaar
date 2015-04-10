@@ -20,6 +20,19 @@ class Block extends Ardent{
      public function video(){
          return Video::find($this->content);
      }
+     
+     public function presignedUrl(){
+        $client = AWS::get('s3');
+        // Get a command object from the client and pass in any options
+        // available in the GetObject command (e.g. ResponseContentDisposition)
+        $command = $client->getCommand('GetObject', array(
+            'Bucket' => $_ENV['AWS_BUCKET'],
+            'Key' => $this->key
+        ));
+        // Create a signed URL from the command object that will last for
+        // 10 minutes from the current time
+        return $command->createPresignedUrl('+10 minutes');
+     }
      public function upload($path){
         $key = 'file-'.uniqid();
         $file = file_get_contents($path);
@@ -29,13 +42,15 @@ class Block extends Ardent{
         
         $s3 = AWS::get('s3');
         $result = $s3->putObject(array(
-            'ACL'    => 'public-read',
+//            'ACL'    => 'public-read',
             'Bucket' => $_ENV['AWS_BUCKET'],
             'ContentType' => $mime,
             'ContentDisposition' => 'attachment',
             'Key'    => 'course_uploads/'.$key.$extension,
             'Body'   => $file
         ));
+        $this->key = 'course_uploads/'.$key.$extension;
+        $this->mime = $mime;
         $this->content =  $result->get('ObjectURL');
         return true;
     }

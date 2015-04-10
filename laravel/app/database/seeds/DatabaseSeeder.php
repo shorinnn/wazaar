@@ -943,12 +943,12 @@ class BlocksSeeder extends Seeder {
                 Without cocorium, we would have gone bankrupt by now." - Truda V.'] );
         Block::create( ['lesson_id' => 10, 'name' => 'Test Block','type' => 'text', 
             'content' => 'Second text block right here m8'] );
-        Block::create( ['lesson_id' => 10, 'name' => 'First File','type' => 'file', 
-            'content' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-1.png'] );
-        Block::create( ['lesson_id' => 10, 'name' => 'Second File','type' => 'file', 
-            'content' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-1.png'] );
-        Block::create( ['lesson_id' => 10, 'name' => 'Third File','type' => 'file', 
-            'content' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-1.png'] );
+        Block::create( ['lesson_id' => 10, 'name' => 'First File','type' => 'file', 'mime' => 'image/jpeg', 'key' => 'course_uploads/file-5526bab93ea21.jpg',
+            'content' => 'https://wazaardev.s3.amazonaws.com/course_uploads/file-5526bab93ea21.jpg'] );
+        Block::create( ['lesson_id' => 10, 'name' => 'Second File','type' => 'file', 'mime' => 'image/jpeg', 'key' => 'course_uploads/file-5526bab93ea21.jpg',
+            'content' => 'https://wazaardev.s3.amazonaws.com/course_uploads/file-5526bab93ea21.jpg'] );
+        Block::create( ['lesson_id' => 10, 'name' => 'Third File','type' => 'file', 'mime' => 'image/jpeg', 'key' => 'course_uploads/file-5526bab93ea21.jpg',
+            'content' => 'https://wazaardev.s3.amazonaws.com/course_uploads/file-5526bab93ea21.jpg'] );
         Block::create( ['lesson_id' => 10, 'name' => 'First Video Ever','type' => 'video', 
             'content' => '1'] );
        

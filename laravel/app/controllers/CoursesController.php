@@ -485,6 +485,6 @@ class CoursesController extends \BaseController {
             
             if($reply->save())            return json_encode( [ 'status' => 'success' ] );
             else return json_encode( [ 'status' => 'error', 'errors' => format_errors( $reply->errors()->all() ) ] );
-        }
+        }        
         
 }

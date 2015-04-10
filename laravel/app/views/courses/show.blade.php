@@ -316,7 +316,7 @@
                                </div>
                             @endforeach
                         </div>
-                        <a href='1' class="load-more-comments load-more-ajax" 
+                        <a href='1' id="load-more-ajax-button" class="load-more-comments load-more-ajax" 
                data-url='{{ action('TestimonialsController@more') }}' 
                data-target='.bottom-testimonials' data-skip='2' data-id='{{ $course->id }}' data-post-field="course">
                             {{ trans('general.load-more') }}
