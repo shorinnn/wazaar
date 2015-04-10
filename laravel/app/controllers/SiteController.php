@@ -7,24 +7,9 @@ class SiteController extends \BaseController {
         }
 
 	public function index()
-	{
-//            $client = AWS::get('s3');
-//            // Get a command object from the client and pass in any options
-//            // available in the GetObject command (e.g. ResponseContentDisposition)
-//            $command = $client->getCommand('GetObject', array(
-//                'Bucket' => $_ENV['AWS_BUCKET'],
-//                'Key' => 'course_uploads/file-5526bab93ea21.jpg'
-//            ));
-//            // Create a signed URL from the command object that will last for
-//            // 10 minutes from the current time
-//            $link =  $command->createPresignedUrl('+10 minutes');
-//            echo "Denied : https://wazaardev.s3.amazonaws.com/course_uploads/file-5526bab93ea21.jpg"; 
-//            echo "<br />Approved: $link"; 
-//            echo "<br />Denied: http://d3hkpu7v8z21q.cloudfront.net/course_uploads/file-5526bab93ea21.jpg"; 
-//            $approved = str_replace('https://wazaardev.s3.amazonaws.com', 'http://d3hkpu7v8z21q.cloudfront.net', $link);
-//            echo "<br />Approved: $approved"; 
-//            exit();
-//            dd($link);
+	{ 
+            var_dump( App::environment( 'production' ) );
+            
             $frontpageVideos  = FrontpageVideo::grid();
             $categories = CourseCategory::with('featuredCourse')->get();
             if(Auth::user()) Return View::make('site.homepage_authenticated')->with(compact('categories'));
