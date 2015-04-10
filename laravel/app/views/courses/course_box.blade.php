@@ -10,7 +10,7 @@
             @if($course->course_preview_image_id == null)
                 src="http://placehold.it/350x150&text={{ trans('general.preview-unavailable') }}"
             @else
-                src="{{$course->previewImage->url}}"
+                src="{{ cloudfrontUrl( $course->previewImage->url ) }}"
             @endif
              class="img-responsive" alt="">
               @if($course->isDiscounted())

@@ -35,6 +35,7 @@ class FrontpageVideo extends Ardent {
                         $file_headers = @get_headers($url);
                         $aux['thumb'] = $url;
                     }
+                    $aux['thumb'] = cloudfrontUrl( $aux['thumb'] );
                 }
                 $arr[] = $aux;
             }

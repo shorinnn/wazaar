@@ -142,14 +142,14 @@ class ClassroomController extends \BaseController {
             $gift = GiftFile::find($id);
             if( $gift==null ){
                 if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
-                return Redirect::to('/?1');
+                return Redirect::to('/?3');
             }
             
             $student = Student::find(Auth::user()->id);
             
-            if( !in_array($id, $student->purchases()->lists('gift_id') ) ){
+            if( !in_array($gift->gift_id, $student->purchases()->lists('gift_id') ) ){
                 if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
-                return Redirect::to('/?1');
+                return Redirect::to('/?4');
             }
             header('location: '.$gift->presignedUrl());
         }
