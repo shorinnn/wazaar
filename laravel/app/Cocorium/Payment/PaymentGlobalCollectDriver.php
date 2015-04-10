@@ -68,13 +68,12 @@ class PaymentGlobalCollectDriver implements PaymentInterface
         $action = 'GET_ORDERSTATUS';
         try{
             $orderXML = "
-                <PAYMENT>
                     <ORDER>
                         <ORDERID>{$orderId}</ORDERID>
                     </ORDER>
-                </PAYMENT>
             ";
             $requestXML = $this->_prepareXMLString($action,$orderXML);
+
             return $this->_executeCall($requestXML);
         }
         catch(Exception $ex){
