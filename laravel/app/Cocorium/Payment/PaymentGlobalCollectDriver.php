@@ -69,7 +69,9 @@ class PaymentGlobalCollectDriver implements PaymentInterface
         try{
             $orderXML = "
                 <PAYMENT>
-                    <ORDERID>{$orderId}</ORDERID>
+                    <ORDER>
+                        <ORDERID>{$orderId}</ORDERID>
+                    </ORDER>
                 </PAYMENT>
             ";
             $requestXML = $this->_prepareXMLString($action,$orderXML);

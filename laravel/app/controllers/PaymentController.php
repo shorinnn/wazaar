@@ -88,7 +88,7 @@ class PaymentController extends BaseController
     {
         if (Session::has('productType') AND Session::has('productID')) {
 
-            $validator = Validator::make(Input::all(), $this->paymentHelper->creditCardValidationRules());
+            $validator = Validator::make(Input::all(), $this->paymentHelper->creditCardValidationRules(), $this->paymentHelper->creditCardValidationMessages());
 
             if ($validator->fails()) {
                 return Redirect::back()->with('errors', $validator->messages()->all());
@@ -112,9 +112,12 @@ class PaymentController extends BaseController
                 $payment = $this->paymentHelper->processCreditCardPayment($paymentDetails, $payee, $student);
 
                 if (isset($payment['successData'])){
+
                     $paymentRequest = [
                         'wazaar_reference' => $reference,
                         'gc_order_id' => $payment['successData']['ORDERID'],
+                        'gc_form_action' => $payment['successData']['FORMACTION'],
+                        'gc_form_method' => $payment['successData']['FORMMETHOD'],
                         'gc_reference' => $payment['successData']['REF'],
                         'gc_mac' => $payment['successData']['MAC'],
                         'gc_return_mac' => $payment['successData']['RETURNMAC'],
@@ -130,14 +133,25 @@ class PaymentController extends BaseController
         }
     }
 
-    public function renderGCForm()
+    public function renderGCForm($reference)
     {
+        $paymentRequest = GCPaymentRequests::where('wazaar_reference',$reference)->first();
+
+        if ($paymentRequest){
+            return View::make('payment.gcForm',compact('paymentRequest'));
+        }
 
     }
 
     public function paymentReturn($reference)
     {
+        $paymentRequest = GCPaymentRequests::where('wazaar_reference',$reference)->first();
 
+        if ($paymentRequest){
+            $orderStatus = $this->paymentHelper->getOrderStatus($paymentRequest->gc_order_id);
+            dd($orderStatus);
+            //return View::make('payment.gcForm',compact('paymentRequest'));
+        }
     }
 
     public function process__()
