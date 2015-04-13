@@ -1,6 +1,6 @@
 <style>
     .lesson-no-video{
-        /*display:none;*/
+        display:none;
     }
 </style>
 <li id="lesson-{{$lesson->id}}">

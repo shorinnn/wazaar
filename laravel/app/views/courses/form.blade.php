@@ -416,8 +416,8 @@
 <script src="{{url('js/videoLookup.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
         $(function (){
-//            $('.lesson-no-video .video .a-add-video').click();
-//            $('.lesson-no-video .video .a-add-video').attr('data-loaded', 1);
+           $('.lesson-no-video .video .a-add-video').click();
+	       $('.lesson-no-video .video .a-add-video').attr('data-loaded', 1);
             
             enableFileUploader( $('#upload-preview-image') );
             enableFileUploader( $('#upload-banner-image') );
@@ -452,7 +452,7 @@
 
                 $.post('/lessons/blocks/' + $lessonId + '/video/assign', {videoId : $videoId}, function (){
                     $('#video-link-' + $lessonId).trigger('click');
-//                    $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
+                    $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
                 });
             });
         });
