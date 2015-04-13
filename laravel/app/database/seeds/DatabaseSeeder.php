@@ -322,17 +322,17 @@ class CourseCategorySeeder extends Seeder {
     {
         DB::table('course_categories')->delete();
         CourseCategory::unguard();
-        CourseCategory::create( ['name' => 'IT & Technology', 'slug' => 'it-technology', 'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-7.png',
+        CourseCategory::create( ['name' => 'IT & Technology', 'slug' => 'it-technology', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-7.png',
                                  'description' => 'Programming, Javascript, C++, etc...', 'courses_count' => 0, 'color_scheme' => 1 ]);
-        CourseCategory::create( ['name' => 'Business', 'slug' => 'business',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-14.png',
+        CourseCategory::create( ['name' => 'Business', 'slug' => 'business',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-14.png',
                                  'description' => 'Beez Kneez', 'courses_count' => 0, 'color_scheme' => 8 ]);
-        CourseCategory::create( ['name' => 'Investments', 'slug' => 'investments',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-12.png',
+        CourseCategory::create( ['name' => 'Investments', 'slug' => 'investments',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-12.png',
                                  'description' => 'Mo money', 'courses_count' => 0, 'color_scheme' => 6 ]);
-        CourseCategory::create( ['name' => 'Music', 'slug' => 'music',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-8.png',
+        CourseCategory::create( ['name' => 'Music', 'slug' => 'music',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-8.png',
                                  'description' => 'Tokyo Square, nom sayin', 'courses_count' => 0, 'color_scheme' => 2 ]);
-        CourseCategory::create( ['name' => 'Beauty', 'slug' => 'beauty',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-9.png',
+        CourseCategory::create( ['name' => 'Beauty', 'slug' => 'beauty',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-9.png',
                                  'description' => 'Stop being ugly', 'courses_count' => 0, 'color_scheme' => 3 ]);
-        CourseCategory::create( ['name' => 'Health', 'slug' => 'health',  'graphics_url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-13.png',
+        CourseCategory::create( ['name' => 'Health', 'slug' => 'health',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
                                  'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
        
     }
@@ -848,7 +848,7 @@ class CoursePreviewImagesSeeder extends Seeder {
         CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg'] );
         CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg'] );
         CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg'] );
-        CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/course_preview/demo-course.jpg'] );
+        CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/demo-course.jpg'] );
        
     }
 }
@@ -943,12 +943,12 @@ class BlocksSeeder extends Seeder {
                 Without cocorium, we would have gone bankrupt by now." - Truda V.'] );
         Block::create( ['lesson_id' => 10, 'name' => 'Test Block','type' => 'text', 
             'content' => 'Second text block right here m8'] );
-        Block::create( ['lesson_id' => 10, 'name' => 'First File','type' => 'file', 
-            'content' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-1.png'] );
-        Block::create( ['lesson_id' => 10, 'name' => 'Second File','type' => 'file', 
-            'content' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-1.png'] );
-        Block::create( ['lesson_id' => 10, 'name' => 'Third File','type' => 'file', 
-            'content' => 'https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-1.png'] );
+        Block::create( ['lesson_id' => 10, 'name' => 'First File','type' => 'file', 'mime' => 'image/jpeg', 'key' => 'course_uploads/file-5526bab93ea21.jpg',
+            'content' => 'https://wazaardev.s3.amazonaws.com/course_uploads/file-5526bab93ea21.jpg'] );
+        Block::create( ['lesson_id' => 10, 'name' => 'Second File','type' => 'file', 'mime' => 'image/jpeg', 'key' => 'course_uploads/file-5526bab93ea21.jpg',
+            'content' => 'https://wazaardev.s3.amazonaws.com/course_uploads/file-5526bab93ea21.jpg'] );
+        Block::create( ['lesson_id' => 10, 'name' => 'Third File','type' => 'file', 'mime' => 'image/jpeg', 'key' => 'course_uploads/file-5526bab93ea21.jpg',
+            'content' => 'https://wazaardev.s3.amazonaws.com/course_uploads/file-5526bab93ea21.jpg'] );
         Block::create( ['lesson_id' => 10, 'name' => 'First Video Ever','type' => 'video', 
             'content' => '1'] );
        

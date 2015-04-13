@@ -18,12 +18,12 @@ $category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthentica
                 </div>
                     <div class="col-md-6 hidden-xs">
                     <img class="hidden-xs img-responsive right"
-                    src="{{ $category->graphics_url }}" alt="">
+                    src="{{ cloudfrontUrl( $category->graphics_url ) }}" alt="">
                 </div>
             @else
                 <div class="col-md-6 hidden-xs">
                     <img class="hidden-xs img-responsive left"
-                    src="{{ $category->graphics_url }}" alt="">
+                    src="{{ cloudfrontUrl( $category->graphics_url ) }}" alt="">
                 </div>
                 <div class="col-md-6">
                     <h3>{{ $category->name }}</h3>

@@ -1,18 +1,17 @@
 <div class="row">
     <div class="top-menu clearfix">
-        <a href="{{url('/')}}" class="main-logo"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
-                                           class="img-responsive" alt=""></a>
+        <a href="{{ action('SiteController@index') }}" class="main-logo">
+            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
+           class="img-responsive" alt=""></a>
         @if(Auth::check())
         <?php
         $student = Student::find(Auth::user()->id);
         ?>
         <ul>
-            <li>
-                <a href="{{url('dashboard')}}">{{trans('site/homepage.dashboard')}}</a>
-            </li>
+            
             @if($student->hasRole('Affiliate'))
                 <li>
-                    <a href="{{url('dashboard')}}">Affiliate{{trans('site/homepage.dashboard')}}</a>
+                    <a href="#">Affiliate{{trans('site/homepage.dashboard')}}</a>
                 </li>
             @endif
             <li>
@@ -36,7 +35,7 @@
                 </button>
                 <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
                     <li>
-                        <a class="profile-button" href="/profile">{{trans('site/menus.profile')}}</a>
+                        <a class="profile-button" href="{{ action('ProfileController@index') }}">{{trans('site/menus.profile')}}</a>
                     </li>
                     <li>
                         <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
@@ -48,7 +47,7 @@
                         <a class="settings-button" href="{{ action('PrivateMessagesController@index') }}">{{trans('site/menus.messages')}}</a>
                     </li>
                     <li>
-                        <a class="settings-button" href="{{url('logout')}}">{{trans('site/menus.logout')}}</a>
+                        <a class="settings-button" href="{{ action('UsersController@logout') }}">{{trans('site/menus.logout')}}</a>
                     </li>
                 </ul>
             </li>
@@ -92,10 +91,10 @@
         
         <ul>
             <li>
-                <a href="{{url('login')}}"> {{trans('general.login')}}</a> 
+                <a href="{{ action('UsersController@login') }}"> {{trans('general.login')}}</a> 
             </li>
             <li>
-                <a href="{{url('register')}}"> {{ trans('general.register') }}</a>
+                <a href="{{ action('UsersController@create') }}"> {{ trans('general.register') }}</a>
             </li>
         </ul>
     @endif

@@ -7,6 +7,23 @@ class GiftFile extends Ardent {
     public static $relationsData = [
         'gift' => [self::BELONGS_TO, 'Gift']
     ];
+    
+    public function presignedUrl(){
+        $client = AWS::get('s3');
+        // Get a command object from the client and pass in any options
+        // available in the GetObject command (e.g. ResponseContentDisposition)
+        $command = $client->getCommand('GetObject', array(
+            'Bucket' => $_ENV['AWS_BUCKET'],
+            'Key' => $this->key
+        ));
+        // Create a signed URL from the command object that will last for
+        // 10 minutes from the current time
+        $url = $command->createPresignedUrl('+10 minutes');
+        return cloudfrontUrl($url);
+//        $signed = explode('.com/', $url);
+//        $signed = '//'.getenv('CLOUDFRONT_DOMAIN').'/'.$signed[1];
+//        return $signed;
+     }
         
     public function upload($path){
         $key = 'gift-file-'.uniqid();
@@ -16,7 +33,7 @@ class GiftFile extends Ardent {
         
         $s3 = AWS::get('s3');
         $result = $s3->putObject(array(
-            'ACL'    => 'public-read',
+//            'ACL'    => 'public-read',
             'Bucket' => $_ENV['AWS_BUCKET'],
             'ContentType' => $mime,
             'ContentDisposition' => 'attachment',
@@ -24,6 +41,8 @@ class GiftFile extends Ardent {
             'Body'   => $file
         ));
         $this->url =  $result->get('ObjectURL');
+        $this->key = 'course_uploads/'.$key.$extension;
+        $this->mime = $mime;
         return true;
     }
     

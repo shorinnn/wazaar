@@ -3210,7 +3210,7 @@ a.load-remote > *{
 }
 
 #convo {
-    display: none;
+    /*display: none;*/
 }
 
 .users-comments .comment{

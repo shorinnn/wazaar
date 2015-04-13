@@ -68,11 +68,12 @@ class PaymentGlobalCollectDriver implements PaymentInterface
         $action = 'GET_ORDERSTATUS';
         try{
             $orderXML = "
-                <PAYMENT>
-                    <ORDERID>{$orderId}</ORDERID>
-                </PAYMENT>
+                    <ORDER>
+                        <ORDERID>{$orderId}</ORDERID>
+                    </ORDER>
             ";
             $requestXML = $this->_prepareXMLString($action,$orderXML);
+
             return $this->_executeCall($requestXML);
         }
         catch(Exception $ex){
@@ -199,7 +200,13 @@ class PaymentGlobalCollectDriver implements PaymentInterface
 
                     if (@$responseObject->RESULT == 'OK') {
                         $success     = true;
-                        $successData = $responseObject->ROW;
+                        if (isset($responseObject->ROW)) {
+                            $successData = $responseObject->ROW;
+                        }
+                        elseif(isset($responseObject->STATUS)){
+                            $successData = $responseObject->STATUS;
+                        }
+
                     } else {
                         $errors[] = $responseObject->ERROR->MESSAGE;
                     }

@@ -45,8 +45,32 @@ class PaymentHelper
             'lastName'   => 'required',
             'email'      => 'required|email',
             'city'       => 'required',
-            'zip'        => 'required'
+            'zip'        => 'required',
+            'paymentProductId' => 'required'
         ];
+    }
+
+    public function creditCardValidationMessages()
+    {
+        return [
+            'firstName.required'  => trans('payment.validation.firstName.required'),
+            'lastName.required'   => trans('payment.validation.lastName.required'),
+            'email.required'      => trans('payment.validation.email.required'),
+            'email.validFormat'      => trans('payment.validation.email.validFormat'),
+            'city.required'       => trans('payment.validation.email.validFormat'),
+            'zip.required'        => trans('payment.validation.firstName.required'),
+            'paymentProductId.required' => trans('payment.validation.paymentProductId.required')
+        ];
+    }
+
+    public function getOrderStatus($orderId)
+    {
+        $createURL = $this->url . 'payment/order/status';
+        $data = [
+            'orderId' => $orderId
+        ];
+
+        return $this->_executeCurl($createURL, $data);
     }
 
     public function processCreateProfileFromOrderId($orderId)

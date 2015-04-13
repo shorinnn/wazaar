@@ -85,7 +85,8 @@
                             @foreach($gift->files as $file)
                                 <p class='well well-sm'>
                                     {{$file->name}}
-                                    <a href='{{$file->url}}' class='btn btn-primary pull-right'>{{ trans('courses/student_dash.download') }}</a>
+                                    <a href='{{ action('ClassroomController@gift', PseudoCrypt::hash($file->id) ) }}' 
+                                       class='btn btn-primary pull-right'>{{ trans('courses/student_dash.download') }}</a>
                                 </p>
                             @endforeach
                             </div>
@@ -134,7 +135,7 @@
                                 @foreach($nextLesson->blocks as $block)
                                     @if($block->type=='file')
                                     <?php
-                                        $extension = substr( mime_to_extension( mimetype ( $block->content) ), 1 );
+                                        $extension = substr( mime_to_extension( $block->mime ), 1 );
                                     ?>
                                         <div 
                                             @if($extension=='pdf')
@@ -147,7 +148,9 @@
                                             >
                                             <span> {{ $extension  }}</span>
                                             <p>{{ $block->name }}</p>
-                                            <a href="{{ $block->content }}">{{ trans('courses/student_dash.download') }}</a>
+                                            <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}">
+                                                {{ trans('courses/student_dash.download') }}</a>
+                                            
                                         </div>
                                     @endif
                                 @endforeach

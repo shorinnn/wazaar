@@ -1,5 +1,11 @@
 <?php
 
+function cloudfrontUrl($url){
+    if( !App::environment( 'production' ) ) return $url;
+    $url = explode('.com/', $url);
+    return '//'.getenv('CLOUDFRONT_DOMAIN').'/'.$url[1];
+}
+
 function singplural($count, $word){
     if($count==1) return str_singular($word);
     else return str_plural ($word);

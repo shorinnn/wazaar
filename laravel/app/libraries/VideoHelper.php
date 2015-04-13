@@ -64,7 +64,7 @@ class VideoHelper
 
     public function createTranscodingJobFromKey($videoId, $key)
     {
-        Queue::push(function ($job) use ($videoId, $key) {
+        //Queue::push(function ($job) use ($videoId, $key) {
             //move the video to s3 input bucket
             $videoHelper = new VideoHelper;
             //$response    = $videoHelper->prepareForTranscoding($videoPath);
@@ -93,11 +93,11 @@ class VideoHelper
 
                         }
 
-                        $job->delete();
+                        //$job->delete();
                     }
                 }
             }
-        });
+        //});
     }
 
     public function extractVideoFormatsFromOutputs($videoId, $outputs)
