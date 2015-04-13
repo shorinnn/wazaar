@@ -17,7 +17,7 @@
                         @foreach(Config::get('globalcollect.creditCardCompanies') as $productId => $label)
                         <div class="radio">
                             <label>
-                                <input type="radio" name="paymentProductId" value="{{$productId}}">
+                                <input type="radio" name="paymentProductId" value="{{$productId}}" class="radio-credit-card" />
                                 {{$label}}
                             </label>
                         </div>

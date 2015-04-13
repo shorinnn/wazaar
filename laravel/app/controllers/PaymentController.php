@@ -92,7 +92,7 @@ class PaymentController extends BaseController
                 $this->paymentHelper->creditCardValidationMessages());
 
             if ($validator->fails()) {
-                return Redirect::back()->with('errors', $validator->messages()->all());
+                return Response::json(['success' => false, 'errors' => $validator->messages()->all()]); //Redirect::back()->with('errors', $validator->messages()->all());
             } else {
                 $paymentProductId = Input::get('paymentProductId');
                 $reference        = Str::random(8);
@@ -101,7 +101,7 @@ class PaymentController extends BaseController
                 $product = $this->_getProductDetailsByTypeAndID(Session::get('productType'), Session::get('productID'));
 
                 if (!$student->canPurchase($product)) { //for some reason, it happened that student can no longer purchase it during transit
-                    return Redirect::back()->with('errors', [trans('payment.cannotPurchase')]);
+                    return Response::json(['success' => false, 'errors' => [trans('payment.cannotPurchase')]]);//return Redirect::back()->with('errors', [trans('payment.cannotPurchase')]);
                 }
                 $paymentDetails = [
                     'reference'        => $reference,
@@ -127,8 +127,9 @@ class PaymentController extends BaseController
                     ];
 
                     GCPaymentRequests::create($paymentRequest);
+                    return Response::json(['success' => true, 'redirectUrl' => $payment['successData']['FORMACTION']]);
+                    //return Redirect::to('payment/do-payment/' . $reference);
 
-                    return Redirect::to('payment/do-payment/' . $reference);
                 }
 
             }
