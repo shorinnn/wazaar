@@ -107,10 +107,10 @@ class ClassroomController extends \BaseController {
             if($course->assigned_instructor_id > 0) $instructor = $course->assignedInstructor;
             
             if(Request::ajax()){
-                if( Input::has('ask') ) return View::make('courses.classroom.lesson_ask_ajax')->with( compact('lesson') );
-                else return View::make('courses.classroom.lesson_comments_ajax')->with( compact('lesson') );
+                if( Input::has('ask') ) return View::make('courses.classroom.lesson_ask_ajax')->with( compact('lesson','student') );
+                else return View::make('courses.classroom.lesson_comments_ajax')->with( compact('lesson','student') );
             }
-            else return View::make('courses.classroom.lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'instructor') );
+            else return View::make('courses.classroom.lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'instructor', 'student') );
         }
         
         public function resource($id){

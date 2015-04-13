@@ -10,8 +10,11 @@
         <span class="time-of-reply">{{ $question->created_at->diffForHumans() }}</span>
     </div>
     <div class="main clearfix clear">
-        <img class="img-responsive img-circle" alt="" 
-             src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-2.png">
+<!--        <img class="img-responsive img-circle" alt="" 
+             src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-2.png">-->
+            <img style="height: 50px; width: 50px; border-radius: 50px;"  class="img-circle img-responsive"
+             src="{{cloudfrontUrl( $question->sender->commentPicture('student') ) }}" alt="">
+
         <span>
             {{{ $question->content }}}
             <br />

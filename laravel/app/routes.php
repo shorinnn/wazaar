@@ -78,6 +78,8 @@ Route::group( array('domain' => 'instructors.'.Config::get('app.base_url') ), fu
         Route::resource('gifts', 'GiftsController');
         Route::resource('giftsfile', 'GiftsFileController');
     });
+    
+    Route::post('private-messages/massStore', 'PrivateMessagesController@massStore');
 });
 
 Route::group( array('domain' => Config::get('app.base_url') ), function(){
@@ -119,8 +121,6 @@ Route::group( array('domain' => Config::get('app.base_url') ), function(){
     Route::get('classroom/{slug}/', 'ClassroomController@dashboard');
 
     // Courses Controller
-    Route::post('courses/mark-resolved', 'CoursesController@markResolved');
-    Route::post('courses/reply', 'CoursesController@reply');
     Route::get('courses/view-discussion/{id}', 'CoursesController@viewDiscussion');
     Route::put('courses/{slug}/submit-for-approval', 'CoursesController@submitForApproval');
     Route::get('courses/search-instructor/{email}', 'CoursesController@searchInstructor');
@@ -140,6 +140,10 @@ Route::group( array('domain' => 'instructors.'.Config::get('app.base_url') ), fu
     Route::get('courses/mycourses', 'CoursesController@myCourses');
     Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
     Route::get('courses/{slug}/dashboard', 'CoursesController@dashboard');
+    
+    
+    Route::post('courses/mark-resolved', 'CoursesController@markResolved');
+    Route::post('courses/reply', 'CoursesController@reply');
 
     Route::resource('courses', 'CoursesController');
     // Modules routes

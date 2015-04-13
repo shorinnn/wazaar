@@ -106,11 +106,12 @@
                                             <em>{{ trans('courses/general.ask') }}</em>
                                             @if($instructor->profile == null)
                                                 <span>{{ trans('courses/general.teacher') }}</span>
-                                                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater-2.png" 
-                                                class="img-circle img-responsive hidden-xs">
+                                                <img class="img-circle img-responsive hidden-xs" 
+                                                src="{{ cloudfrontUrl('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater-2.png') }} " 
+                                                />
                                             @else
                                                 <span>{{$instructor->profile->first_name}}</span>
-                                                <img height="50" src="{{ $instructor->profile->photo }}" class="img-circle hidden-xs">
+                                                <img height="50" src="{{ cloudfrontUrl( $instructor->profile->photo ) }}" class="img-circle hidden-xs">
                                             @endif
                                         </span>                    
                             </div>
@@ -130,14 +131,14 @@
                         </div>
                     </div>
                 @if( Auth::check() )
-                    {{ View::make('private_messages.partials.ask_teacher_form')->with( compact('lesson') ) }}
+                    {{ View::make('private_messages.partials.ask_teacher_form')->with( compact('lesson', 'student') ) }}
                 @endif
 
                     <div class='ask-content fa-animated                          
                     	 @if( $lesson->ask_teacher_messages->count() == 0)
                              hide
                          @endif'>
-                        {{ View::make('private_messages.all')->withComments( $lesson->ask_teacher_messages ) }}
+                        {{ View::make('private_messages.all')->withComments( $lesson->ask_teacher_messages )->withStudent( $student ) }}
                         <br />
                         
                         <div class="text-center load-remote" data-target='.ask-content' data-load-method="fade">
@@ -158,11 +159,11 @@
                 </div>
                 
             @if( Auth::check() )
-                {{ View::make('courses.classroom.conversations.form')->with( compact('lesson') ) }}
+                {{ View::make('courses.classroom.conversations.form')->with( compact('lesson','student') ) }}
             @endif
             
                 <div class='ajax-content fa-animated'>
-                    {{ View::make('courses.classroom.conversations.all')->withComments( $lesson->comments ) }}
+                    {{ View::make('courses.classroom.conversations.all')->withComments( $lesson->comments )->withStudent('student') }}
                     <br />
                     <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
                         

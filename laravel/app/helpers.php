@@ -1,7 +1,7 @@
 <?php
 
 function cloudfrontUrl($url){
-    if( !App::environment( 'production' ) ) return $url;
+//    if( !App::environment( 'production' ) ) return $url;
     $url = explode('.com/', $url);
     return '//'.getenv('CLOUDFRONT_DOMAIN').'/'.$url[1];
 }
