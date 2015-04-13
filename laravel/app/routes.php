@@ -201,16 +201,17 @@ Route::group( array('domain' => Config::get('app.base_url') ), function(){
 
 
 
-## Route Group Videos Manager
-Route::group(['prefix' => 'video'], function(){
-    Route::get('add','VideosController@add');
-    Route::post('upload', 'VideosController@doUpload');
-    Route::post('add-by-filename','VideosController@addVideoByFilename');
-    Route::any('sns/callback', 'SnsController@snsCallback');
-    Route::get('{id}/json','VideosController@videoAndFormatsJson');
-    Route::get('user/archive','VideosController@userArchive');
+Route::group( array('domain' => 'instructors.'.Config::get('app.base_url') ), function(){
+    ## Route Group Videos Manager
+    Route::group(['prefix' => 'video'], function(){
+        Route::get('add','VideosController@add');
+        Route::post('upload', 'VideosController@doUpload');
+        Route::post('add-by-filename','VideosController@addVideoByFilename');
+        Route::any('sns/callback', 'SnsController@snsCallback');
+        Route::get('{id}/json','VideosController@videoAndFormatsJson');
+        Route::get('user/archive','VideosController@userArchive');
+    });
 });
-
 
 ##Dashboard Group
 Route::group(['prefix' => 'dashboard'], function (){
