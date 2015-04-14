@@ -97,5 +97,18 @@ class User extends Ardent implements ConfideUserInterface
             else return $user->first_name.' '.$user->last_name;
         }
     }
+    
+    public function commentPicture($user_type){
+        if($user_type=='student') $user = Student::find($this->id);
+        else if($user_type=='instructor') $user = Instructor::find($this->id);
+        else if($user_type=='instructor_agency') $user = InstructorAgency::find($this->id);
+        else $user = LTCAffiliate::find($this->id);
+        if( $user->profile ){
+            return $user->profile->photo;
+        }
+        else{
+            return '//s3-ap-northeast-1.amazonaws.com/profile_pictures/avatar-placeholder.jpg';
+        }
+    }
 
 }

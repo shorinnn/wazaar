@@ -53,14 +53,13 @@
             </li>
         </ul>
         <div class="profile-thumbnail">
-            <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/thumbnails/top-profile-thumbnail.png" alt="">-->
             @if( $student->profile )
                 <img style="height: 50px; width: 50px; border-radius: 50px;" 
-                     src="{{ Student::find(Auth::user()->id)->profile->photo }}" alt="">
+                     src="{{ cloudfrontUrl( Student::find(Auth::user()->id)->profile->photo ) }}" alt="">
                
             @else
                 <img style="height: 50px; width: 50px; border-radius: 50px;" 
-                     src="//s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar-placeholder.jpg" alt="">
+                     src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/profile_pictures/avatar-placeholder.jpg")}}" alt="">
             @endif
             <?php
                 $received = $student->receivedMessages()->unread( $student->id )->with('sender.profiles')->with('sender')->with('course')->get();

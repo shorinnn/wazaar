@@ -38,7 +38,7 @@ class ConversationsController extends \BaseController {
             if( $conv->save() ){
                 if( Request::ajax() ){
                     return json_encode( ['status'=>'success', 
-                        'html' => View::make('courses.classroom.conversations.conversation')->withComment( $conv )->render()  ]);
+                        'html' => View::make('courses.classroom.conversations.conversation')->withComment( $conv )->withStudent($student)->render()  ]);
                 }
                 else{
                     return Redirect::back();

@@ -17,8 +17,15 @@
         <span class="time-of-reply">{{ $comment->created_at->diffForHumans() }}</span>
     </div>
     <div class="main clearfix clear">
-        <img class="img-responsive img-circle" alt="" 
-             src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-2.png">
+<!--        <img class="img-responsive img-circle" alt="" 
+             src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/comment-avater-2.png">-->
+            @if( $comment->poster && $comment->poster->profile )
+                <img style="height: 50px; width: 50px; border-radius: 50px;"  class="img-circle img-responsive"
+                     src="{{cloudfrontUrl( $comment->poster->profile->photo ) }}" alt="">
+            @else
+                <img style="height: 50px; width: 50px; border-radius: 50px;"  class="img-circle img-responsive"
+                     src="{{cloudfrontUrl('//s3-ap-northeast-1.amazonaws.com/profile_pictures/avatar-placeholder.jpg')}}" alt="">
+            @endif
         <span>
             {{{ $comment->content }}}
             <br />

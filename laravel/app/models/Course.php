@@ -54,8 +54,8 @@ class Course extends Ardent{
     public function questions(){
         return $this->messages()->where( 'type', 'ask_teacher' )->where('status', 'unread')
             ->where(function($query){
-                $query->where('recipient_id', $this->instructor_id)
-                        ->orWhere('recipient_id', $this->assigned_instructor_id);
+                $query->where('recipient_id', '>', 0)->where('recipient_id', $this->instructor_id)
+                        ->orWhere('recipient_id', $this->assigned_instructor_id)->where('recipient_id', '>', 0);
             });
     }
   
