@@ -194,55 +194,42 @@ Route::group( array('domain' => Config::get('app.base_url') ), function(){
         ##
         Route::post('{id}/update', 'ProfileController@update');
     });
+});
 
-
-
-## Route Group Videos Manager
-Route::group(['prefix' => 'video'], function(){
-    Route::get('add','VideosController@add');
-    Route::post('upload', 'VideosController@doUpload');
-    Route::post('add-by-filename','VideosController@addVideoByFilename');
-    Route::any('sns/callback', 'SnsController@snsCallback');
-    Route::get('{id}/json','VideosController@videoAndFormatsJson');
-    Route::get('user/archive','VideosController@userArchive');
+Route::group( array('domain' => 'affiliates.'. Config::get('app.base_url') ), function(){
+    Route::group(['prefix' => 'dashboard'], function (){
+        Route::get('/','AffiliateDashboardController@index');
+        Route::get('topcourses/{frequency}/{courseId?}', 'AffiliateDashboardController@topCoursesView');
+        Route::get('sales/{frequency}/{courseId?}/{trackingCode?}', 'AffiliateDashboardController@salesView');
+        Route::get('trackingcodessales/{frequency}/{courseId?}','AffiliateDashboardController@trackingCodesSalesView');
+        Route::get('courseconversions/{frequency}/{courseId?}','AffiliateDashboardController@courseConversionView');
+        Route::get('trackingcodeconversions/{frequency}/{courseId?}','AffiliateDashboardController@trackingCodeConversionView');
+        Route::get('trackingcodehitssales/{frequency}/{courseId}/{code}','AffiliateDashboardController@trackingCodeHitsSalesView');
+        Route::get('course/{id}/stats', 'AffiliateDashboardController@courseStatistics');
+        Route::get('course/{id}/trackingcode/{code}/stats', 'AffiliateDashboardController@courseTrackingCodesStatistics');
+        Route::get('course/{id}/trackingcode/{code}/stats/{frequency}','AffiliateDashboardController@trackingCodeHitsSalesView');
+        Route::get('trackingcode/{code}/stats', 'AffiliateDashboardController@trackingCodeStatistics');
+        Route::post('course/{courseId}/stats/compare','AffiliateDashboardController@compareCourses');
+        Route::post('trackingcodes/{trackingCode}/stats/compare','AffiliateDashboardController@compareTrackingCodes');
+        Route::get('trackingcodetable/{frequency}/{courseId}','AffiliateDashboardController@trackingCodesTableView');
+        Route::get('trackingcodes/all', 'AffiliateDashboardController@trackingCodesAll');
+        Route::get('ltcregistrations/{frequency}','AffiliateDashboardController@ltcRegistrationsView');
+    });
 });
 
 
-##Dashboard Group
+//Had to put this outside of the domain classification
+
+##Admin Dashboard Group
 Route::group(['prefix' => 'dashboard'], function (){
-    Route::get('/', function (){
-        $app = app();
 
-        if (Auth::user()->hasRole('Admin')){
-            $controller = $app->make('AdminDashboardController');
-            return $controller->callAction('index', $parameters = array());
-        }
-        elseif(Auth::user()->hasRole('Affiliate')){
-            $controller = $app->make('AffiliateDashboardController');
-            return $controller->callAction('index', $parameters = array());
-        }
-        elseif(Auth::user()->hasRole('Student')){
-            $controller = $app->make('StudentDashboardController');
-            return $controller->callAction('index', $parameters = array());
-        }
-    });
+    Route::get('/', 'AdminDashboardController@index');
 
-    /***** AFFILIATE RELATED ******************************/
-    Route::get('topcourses/{frequency}/{courseId?}', 'AffiliateDashboardController@topCoursesView');
+
+    /***** AFFILIATE RELATED *****************************/
+
     Route::get('sales/{frequency}/{courseId?}/{trackingCode?}', 'AffiliateDashboardController@salesView');
-    Route::get('trackingcodessales/{frequency}/{courseId?}','AffiliateDashboardController@trackingCodesSalesView');
-    Route::get('courseconversions/{frequency}/{courseId?}','AffiliateDashboardController@courseConversionView');
-    Route::get('trackingcodeconversions/{frequency}/{courseId?}','AffiliateDashboardController@trackingCodeConversionView');
-    Route::get('trackingcodehitssales/{frequency}/{courseId}/{code}','AffiliateDashboardController@trackingCodeHitsSalesView');
-    Route::get('course/{id}/stats', 'AffiliateDashboardController@courseStatistics');
-    Route::get('course/{id}/trackingcode/{code}/stats', 'AffiliateDashboardController@courseTrackingCodesStatistics');
-    Route::get('course/{id}/trackingcode/{code}/stats/{frequency}','AffiliateDashboardController@trackingCodeHitsSalesView');
-    Route::get('trackingcode/{code}/stats', 'AffiliateDashboardController@trackingCodeStatistics');
-    Route::post('course/{courseId}/stats/compare','AffiliateDashboardController@compareCourses');
-    Route::post('trackingcodes/{trackingCode}/stats/compare','AffiliateDashboardController@compareTrackingCodes');
-    Route::get('trackingcodetable/{frequency}/{courseId}','AffiliateDashboardController@trackingCodesTableView');
-    Route::get('trackingcodes/all', 'AffiliateDashboardController@trackingCodesAll');
-    Route::get('ltcregistrations/{frequency}','AffiliateDashboardController@ltcRegistrationsView');
+
 
     /******* SUPER ADMIN RELATED **************************/
     Route::get('users/count/{frequency?}','AdminDashboardController@userCountView');
@@ -253,28 +240,31 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::any('admin/courses/{freeCourse}','AdminDashboardController@topCoursesTableView');
 });
 
-    ## Payment Form(https)
-    Route::group(['prefix' => 'payment'], function (){
-        Route::get('/','PaymentController@index');
-        Route::post('/','PaymentController@process');
-        Route::get('callback/{reference}','PaymentController@paymentReturn');
-        Route::get('do-payment/{reference}','PaymentController@renderGCForm');
+
+## Payment Form(https)
+Route::group(['prefix' => 'payment'], function (){
+    Route::get('/','PaymentController@index');
+    Route::post('/','PaymentController@process');
+    Route::get('callback/{reference}','PaymentController@paymentReturn');
+    Route::get('do-payment/{reference}','PaymentController@renderGCForm');
+});
+
+
+## API Routes
+Route::group(['prefix' => 'api'], function(){
+    Route::group(['prefix' => 'payment'], function(){
+        Route::post('creditcard','ApiPaymentController@creditCard');
+        Route::post('profile/create','ApiPaymentController@createProfile');
+        Route::post('order/status','ApiPaymentController@getOrderStatus');
     });
+});
 
-
-    ## API Routes
-    Route::group(['prefix' => 'api'], function(){
-        Route::group(['prefix' => 'payment'], function(){
-            Route::post('creditcard','ApiPaymentController@creditCard');
-            Route::post('profile/create','ApiPaymentController@createProfile');
-            Route::post('order/status','ApiPaymentController@getOrderStatus');
-        });
-    });
-
-
-    Route::get('test/pay', 'PaymentTestController@pay');
-
-    Route::get('test', function (){
-       dd(Config::get('aws::config.key'));
-    });
+## Route Group Videos Manager
+Route::group(['prefix' => 'video'], function(){
+    Route::get('add','VideosController@add');
+    Route::post('upload', 'VideosController@doUpload');
+    Route::post('add-by-filename','VideosController@addVideoByFilename');
+    Route::any('sns/callback', 'SnsController@snsCallback');
+    Route::get('{id}/json','VideosController@videoAndFormatsJson');
+    Route::get('user/archive','VideosController@userArchive');
 });

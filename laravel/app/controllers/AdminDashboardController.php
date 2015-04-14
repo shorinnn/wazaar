@@ -15,8 +15,11 @@ class AdminDashboardController extends BaseController
 
     public function index()
     {
+        $app = app();
+        $controller = $app->make('AffiliateDashboardController');
+
         $userCountView = $this->userCountView();
-        $salesTotalView =  Route::dispatch(Request::create('dashboard/sales/daily', 'GET'))->getContent();
+        $salesTotalView =  $controller->callAction('salesView', $parameters = array());
         $salesCountView = $this->salesCountView();
 
         $topAffiliatesTable = $this->topAffiliatesTableView(0,'','',false);
