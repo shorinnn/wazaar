@@ -260,10 +260,10 @@
                     </div>
                 </div>
 
-            {{ View::make('courses.classroom.conversations.form')->withCourse( $course ) }}
+            {{ View::make('courses.classroom.conversations.form')->with(compact('course', 'student') ) }}
             
             <div class='ajax-content fa-animated'>
-                {{ View::make('courses.classroom.conversations.all')->withComments( $course->comments ) }}
+                {{ View::make('courses.classroom.conversations.all')->withComments( $course->comments )->withStudent( $student ) }}
                 <br />
                 <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
                     {{ $course->comments->links() }}

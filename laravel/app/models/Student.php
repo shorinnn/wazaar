@@ -37,6 +37,7 @@ class Student extends User{
         if( count($non_mass) == 0) $non_mass = [0];
         
         $return = PrivateMessage::where(function($query) use($mass, $non_mass){
+            $query->where('sender_id', '!=', $this->id);
             $query->whereIn('id', $mass)->orWhere(function($query) use($non_mass)
             {
                 $query->whereIn('id', $non_mass);

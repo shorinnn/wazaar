@@ -8,7 +8,7 @@
             @if( Input::has('send-to') )
                 <section class="classroom-content container">
                      <div>
-                         {{ View::make('private_messages.partials.student_form')->withRecipient( Input::get('send-to') )->withNew(1) }}
+                         {{ View::make('private_messages.partials.student_form')->withStudent($student)->withRecipient( Input::get('send-to') )->withNew(1) }}
                      </div>
                     <br />
                 </section>
