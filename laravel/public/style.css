@@ -3184,6 +3184,9 @@ a.load-remote > *{
 	position: absolute;
 	left: 10px;
 	top: 9px;
+	width: 80px;
+	height: 80px;
+	border-radius: 80px;
 }
 
 .comment-section .comment-box form textarea{
@@ -3193,7 +3196,7 @@ a.load-remote > *{
 	resize: none;
 	border: none;
 	float: right;
-	height: 80px;
+	height: 78px;
 	border-radius: 5px;
 }
 
@@ -3269,6 +3272,9 @@ a.load-remote > *{
 .users-comments .comment .main img{
 	float: left;
 	margin-right: 2%;
+	width: 80px;
+	height: 80px;
+	border-radius: 80px;
 }
 
 .users-comments .comment .main span{
@@ -5741,7 +5747,7 @@ select option.suspended{
 }
 
 #course-edit #edit-course-form #top-form{
-	max-width: 484px;
+	max-width: 524px;
 	margin: 0 auto;
 }
 
@@ -5752,7 +5758,8 @@ select option.suspended{
 	font-weight: normal;
 	font-size: 16px;
 	color: #849598;
-	max-width: 115px;
+	width: 155px;
+	text-align: right;
 }
 
 #course-edit #edit-course-form #top-form div{
@@ -5782,11 +5789,14 @@ select option.suspended{
 	color: #849598;
 	font-weight: normal;
 	font-size: 16px;
+	width: 155px;
+	text-align: right;
 }
 
 #course-edit #edit-course-form #top-form div.course-level label{
 	margin: 0;
 	float: left;
+	width: auto;
 }
 
 #course-edit #edit-course-form #top-form div.course-level label + label {
@@ -5815,7 +5825,7 @@ select option.suspended{
 	font-size: 14px;
 	color: #849598;
 	border: solid 1px #849598;
-	width: 482px;
+	width: 524px;
 	display: block;
 	margin: 30px auto 0;
 	position: relative;
@@ -5868,7 +5878,7 @@ select option.suspended{
     height: 6px;
     margin: 15px auto 0;
     width: 100%;
-	max-width: 482px;
+	max-width: 524px;
 }
 
 #course-edit .progress-bar {
@@ -5933,7 +5943,7 @@ select option.suspended{
 
 #course-edit .payment-section {
     margin: 40px auto 0;
-    max-width: 482px;
+    max-width: 524px;
 }
 
 #course-edit .payment-section .set-slider{
@@ -5942,7 +5952,7 @@ select option.suspended{
 }
 
 #course-edit .payment-section .percentage-slider label{
-	max-width: 100px;
+	/*max-width: 100px;*/
 }
 
 #course-edit .payment-section .percentage-slider > div{
@@ -5961,8 +5971,9 @@ select option.suspended{
     padding: 8px 20px;
 	background: #0099ff;
 	margin: 62px 0;
-	float: none;
+	float: right;
 	left: 0;
+	position: relative;
 }
 
 

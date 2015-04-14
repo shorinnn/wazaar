@@ -131,8 +131,8 @@ function enableLessonRTE(e){
     });
 	
 	var actionPanel = $(e.target).parent().parent().parent().parent().find('div[class*="action-panel"]');
-	TweenMax.fromTo(actionPanel, 3, {marginBottom: '40px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 },
-		{marginBottom: '0px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 });
+	TweenMax.fromTo(actionPanel, 0.5, {marginBottom: '40px'},
+		{marginBottom: '0px'});
 	
 } 
 
