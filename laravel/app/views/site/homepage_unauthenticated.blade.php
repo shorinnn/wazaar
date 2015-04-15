@@ -64,12 +64,7 @@
             	<div class="row">
                 	<div class="col-md-12">
                     	<p class="lead">
-                            {{trans('site/homepage.advance')}} 
-                            <span>{{trans('site/homepage.your-career')}}.</span> 
-                            {{trans('site/homepage.discover-new-skills')}}. 
-                        </p>
-                        <p class="lead">
-                        {{trans('site/homepage.learn-what-you-didnt')}}                       
+                            <span>{{trans('site/homepage.what-do-you-want-to-learn')}}</span> 
                         </p>
                         <div class="course-search-form">
                         	<form>

@@ -18,6 +18,7 @@ return array(
 	'an-instructor' => 'AN INSTRUCTOR',
 	'view-all' => 'View all',
 	'beginner' => 'Beginner',
+	'what-do-you-want-to-learn' => 'What do you want to learn?',
 	'advance-your-career' => 'Advance Your Career. Discover new skills.',
 	'learn-what-you-didnt' => 'Learn what you never got a chance to learn at school.',
 	'discover-wazaar' => 'Discover Wazaar',

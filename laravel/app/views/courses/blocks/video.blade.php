@@ -72,9 +72,11 @@
 
 		
 		$('#video-player-container-' + $lessonId).addClass('hide');
+		$('.course-editor #modules-list > li .progress').addClass('hide');
         videoUploader.initialize({
             'fileInputElem' : $('#fileupload-' + $lessonId),
             'progressCallBack' : function ($data, $progressPercentage){
+				$('#progress-bar-' + $lessonId).parent('.progress').removeClass('hide');
                 $('#progress-bar-' + $lessonId).css('width', $progressPercentage + '%');
                 $('#percent-complete-' + $lessonId).html($progressPercentage + '%');
             },

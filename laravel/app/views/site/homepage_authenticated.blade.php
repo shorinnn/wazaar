@@ -4,7 +4,7 @@
         	<div class="container">
             	<div class="row">
                 	<div class="col-md-12">
-                    	<p class="lead">{{trans('site/homepage.what-do-you-want-to-learn')}}</p>
+                    	<p class="lead"><span>{{trans('site/homepage.what-do-you-want-to-learn')}}</span></p>
                         <div class="course-search-form">
                         	<form>
                             	<input type="search" placeholder="E.g. Javascript, online business, etc ..." name="course-search">
