@@ -7,7 +7,7 @@
         <?php
         $student = Student::find(Auth::user()->id);
         ?>
-        <ul>
+        <ul class="logged-in-top-menu">
             
             @if($student->hasRole('Affiliate'))
                 <li>
@@ -24,77 +24,83 @@
                 <a href="#">{{trans('site/homepage.expert')}}</a>
             </li>
         </ul>
-    </div>
-    <div class="top-profile-info">          
-        <span class="profile-level">12</span>
-        <ul class="profile-name">
-            <li class="activate-dropdown">
-                <button aria-expanded="false" data-toggle="dropdown" 
-                        class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
-                    {{ username() }}
-                </button>
-                <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
-                    <li>
-                        <a class="profile-button" href="{{ action('ProfileController@index') }}">{{trans('site/menus.profile')}}</a>
-                    </li>
-                    <li>
-                        <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
-                    </li>
-                    <li>
-                        <a class="settings-button" href="{{ action('ProfileController@settings')}}">{{trans('site/menus.settings')}}</a>
-                    </li>
-                    <li>
-                        <a class="settings-button" href="{{ action('PrivateMessagesController@index') }}">{{trans('site/menus.messages')}}</a>
-                    </li>
-                    <li>
-                        <a class="settings-button" href="{{ action('UsersController@logout') }}">{{trans('site/menus.logout')}}</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <div class="profile-thumbnail">
-            @if( $student->profile )
-                <img style="height: 50px; width: 50px; border-radius: 50px;" 
-                     src="{{ cloudfrontUrl( Student::find(Auth::user()->id)->profile->photo ) }}" alt="">
-               
-            @else
-                <img style="height: 50px; width: 50px; border-radius: 50px;" 
-                     src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/profile_pictures/avatar-placeholder.jpg")}}" alt="">
-            @endif
-            <?php
-                $received = $student->receivedMessages()->unread( $student->id )->with('sender.profiles')->with('sender')->with('course')->get();
-            ?>
-            @if( $received->count() > 0)
-            <style>
-                .notification-number:hover div {
-                    display:block !important;
+        <div class="top-profile-info">          
+            <span class="profile-level">12</span>
+            <ul class="profile-name">
+                <li class="activate-dropdown">
+                    <button aria-expanded="false" data-toggle="dropdown" 
+                            class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
+                        {{ username() }}
+                    </button>
+                    <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
+                        <li>
+                            <a class="profile-button" href="{{ action('ProfileController@index') }}">{{trans('site/menus.profile')}}</a>
+                        </li>
+                        <li>
+                            <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
+                        </li>
+                        <li>
+                            <a class="settings-button" href="{{ action('ProfileController@settings')}}">{{trans('site/menus.settings')}}</a>
+                        </li>
+                        <li>
+                            <a class="settings-button" href="{{ action('PrivateMessagesController@index') }}">{{trans('site/menus.messages')}}</a>
+                        </li>
+                        <li>
+                            <a class="settings-button" href="{{ action('UsersController@logout') }}">{{trans('site/menus.logout')}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="profile-thumbnail">
+                @if( $student->profile )
+                    <img style="height: 50px; width: 50px; border-radius: 50px;" 
+                         src="{{ cloudfrontUrl( Student::find(Auth::user()->id)->profile->photo ) }}" alt="">
+                   
+                @else
+                    <img style="height: 50px; width: 50px; border-radius: 50px;" 
+                         src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/profile_pictures/avatar-placeholder.jpg")}}" alt="">
+                @endif
+                <?php
+                    $received = $student->receivedMessages()->unread( $student->id )->with('sender.profiles')->with('sender')->with('course')->get();
+                ?>
+                @if( $received->count() > 0)
+                <style>
+                    .notification-number:hover div {
+                        display:block !important;
+                    }
+                </style>
+                    <span class="notification-number">
+                        {{ $received->count() }}
+                        <div style="background-color:white; position:absolute; right:0px; display:none; width: 300px; font-size:12px;">
+                            <table class="table table-striped">
+                                @foreach( $student->grouppedNotifications( $received ) as $key => $notification)
+                                <tr><td>
+                                    <a href="{{ $notification['url'] }}">{{ $notification['text'] }}</a>
+                                    </td></tr>
+                                @endforeach
+                            </table>
+                        </div>
+                    </span>
+                @endif
+            </div>
+        </div>
+        @else
+            
+			<style>
+                .top-menu .main-logo {
+                    display:none;
                 }
             </style>
-                <span class="notification-number">
-                    {{ $received->count() }}
-                    <div style="background-color:white; position:absolute; right:0px; display:none; width: 300px; font-size:12px;">
-                        <table class="table table-striped">
-                            @foreach( $student->grouppedNotifications( $received ) as $key => $notification)
-                            <tr><td>
-                                <a href="{{ $notification['url'] }}">{{ $notification['text'] }}</a>
-                                </td></tr>
-                            @endforeach
-                        </table>
-                    </div>
-                </span>
-            @endif
-        </div>
+            
+            <ul class="logged-out">
+                <li>
+                    <a href="{{ action('UsersController@login') }}"> {{trans('general.login')}}</a> 
+                </li>
+                <li class="register-button">
+                    <a href="{{ action('UsersController@create') }}"> {{ trans('general.register') }}</a>
+                </li>
+            </ul>
+        @endif
+
     </div>
-    @else
-        
-        
-        <ul>
-            <li>
-                <a href="{{ action('UsersController@login') }}"> {{trans('general.login')}}</a> 
-            </li>
-            <li>
-                <a href="{{ action('UsersController@create') }}"> {{ trans('general.register') }}</a>
-            </li>
-        </ul>
-    @endif
 </div>

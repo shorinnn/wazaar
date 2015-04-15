@@ -69,25 +69,24 @@ header{
 header .main-logo{
 	float: left;
 	display: block;
-	margin: 10px 0;
+	margin: 10px 60px 10px 0;
 }
 
 header .top-menu{
-	float: left;
 }
 
-header .top-menu ul{
+header .top-menu .logged-in-top-menu{
 	padding: 0;
 	margin: 0;
 	float: left;
 }
 
-header .top-menu li{
+header .top-menu .logged-in-top-menu li{
 	display: inline-block;
-	margin: 0 25px;
+	margin: 0 50px 0 0;
 }
 
-header .top-menu li a{
+header .top-menu .logged-in-top-menu li a{
 	color: #fff;
 	font-size: 14px;
 	text-transform: uppercase;
@@ -97,7 +96,7 @@ header .top-menu li a{
 	position: relative;
 }
 
-header .top-menu li a:hover::after{
+header .top-menu .logged-in-top-menu li a:hover::after{
 	content: '';
 	display: block;
 	height: 3px;
@@ -105,6 +104,36 @@ header .top-menu li a:hover::after{
 	width: 100%;
 	position: absolute;
 	bottom: 0;
+}
+
+header .top-menu .logged-out{
+	float: right;
+	margin-top: 18px;
+	margin-right: 6%;
+}
+
+header .top-menu .logged-out li{
+	float: left;
+}
+
+header .top-menu .logged-out li a{
+	font-size: 14px;
+	color: #fff;
+	display: inline-block;
+	padding: 11px 20px;
+}
+
+header .top-menu .logged-out li.log-in-button a{
+	
+}
+
+header .top-menu .logged-out li.register-button a{
+	border-radius: 5px;
+	background: #0099ff;
+}
+
+header .top-menu .logged-out li.register-button a:hover{
+	background: #36d2ff;
 }
 
 /****************** Profile details and notifications inside the top blue bar **************************/
@@ -115,7 +144,7 @@ header .top-profile-info{
 header .profile-level{
 	font-size: 14px;
 	color: #fff;
-	display: block;
+	display: none;
 	float: left;
 	padding-left: 30px;
 	height: 25px;
@@ -131,9 +160,9 @@ header .profile-name{
 }
 
 header .profile-name > li{
-	width: 135px;
+	width: auto;
 	height: 32px;
-	margin-left: 20px;
+	/*margin-left: 20px;*/
 	border-radius: 4px;
 	background: #1f364b;
 	position: relative;
@@ -150,7 +179,7 @@ header .profile-name > li button{
 	font-size: 14px;
 	text-decoration: none;
 	display: block;
-	padding-left: 20px;
+	padding: 0 40px 0 20px;
 	background: none !important;
 	height: 100%;
 	width: 100%;
@@ -171,9 +200,9 @@ header .profile-name > li button::after{
     content: "";
     height: 0;
     margin-top: -3px;
-    position: absolute;
-    right: 71px;
-    top: 58%;
+    position: relative;
+    right: -8px;
+    top: 12px;
     width: 0;
 }
 
@@ -375,31 +404,48 @@ header .activate-dropdown:hover ul{
 
 .course-search-section .course-search-form input{
 	width: 89%;
-	height: 37px;
+	height: 100%;
 	border: none;
 	float: left;
 	padding: 0;
 	font-size: 12px;
 	color: #fff;
 	text-indent: 18px;
-	background: none;
+	background: #fff;
 	outline: none;
+	line-height: 37px;
+}
+
+.course-search-section .course-search-form input::-webkit-input-placeholder {
+   color: #333;
+}
+
+.course-search-section .course-search-form input:-moz-placeholder {
+	color: #333;
+}
+
+.course-search-section .course-search-form input::-moz-placeholder {
+	color: #333;
+}
+
+.course-search-section .course-search-form input:-ms-input-placeholder {  
+	color: #333;
 }
 
 .course-search-section .course-search-form button{
-	height: 38px;
+	height: 100%;
 	border: none;
 	border-radius: 0 5px 5px 0;
 	width: 11%;
 	float: left;
 	position: relative;
 	right: -1px;
-	background: #0669d1 url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/search-lens.png) no-repeat center 8px;
+	background: #0669d1 url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/search-lens.png) no-repeat center 55%;
 }
 
 .course-search-section .top-categories-slider-container{
 	max-width: 484px;
-	margin-top: 20px;
+	margin: 20px auto 0;
 }
 
 .course-search-section .top-categories-slider-container .top-categories-slider{
@@ -4488,7 +4534,7 @@ select::-ms-expand {
 	margin: 0;
 }
 
-.unauthenticated-homepage.course-search-section p.lead span{
+.course-search-section p.lead span{
 	color: #c3f31e;
 }
 
@@ -4667,6 +4713,9 @@ select::-ms-expand {
 	margin-top: 60px;
 	overflow: hidden;
 	/*background: rgba(255, 255, 255, 0.3);*/
+	-webkit-transition: all 0.2s ease-in-out 0s;
+	-moz-transition: all 0.2s ease-in-out 0s;
+	transition: all 0.2s ease-in-out 0s;
 }
 
 .course-enroll-wrapper .small-box .box-overlay,
@@ -4684,10 +4733,9 @@ select::-ms-expand {
 	transition: all 0s ease-in-out 0s;
 }
 
-.course-enroll-wrapper .small-box:hover .box-overlay,
-.unauthenticated-homepage .small-box:hover .box-overlay{
-	opacity: 1;
-	visibility: visible;
+.course-enroll-wrapper .small-box:hover,
+.unauthenticated-homepage .small-box:hover{
+	box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.4)
 }
 
 .course-enroll-wrapper .small-box .level,
@@ -6845,6 +6893,9 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	margin-top: 10px;
 }
 
+.plan-your-curriculum .lesson-options > div[class*="action-panel"]{
+}
+
 .plan-your-curriculum .lesson-options > div.lesson-options-buttons{
 	margin: 0 auto;
 	max-width: 51%;
@@ -7329,6 +7380,91 @@ footer{
 /*****************************************/
 
 /*************** Media Query fixes **************************/
+
+@media (max-width: 2600px) and (min-width: 2400px){
+	.course-search-section .course-search-form{
+		max-width: none;
+		width: 100%;
+	}
+	
+	.course-search-section .course-search-form form{
+		height: 65px;
+	}
+	
+	.course-search-section .course-search-form input{
+		font-size: 22px;
+		line-height: 22px;
+	}
+
+}
+
+@media (max-width: 2400px) and (min-width: 2200px){
+	.course-search-section .course-search-form{
+		max-width: none;
+		width: 90%;
+	}
+	
+	.course-search-section .course-search-form form{
+		height: 60px;
+	}
+	
+	.course-search-section .course-search-form input{
+		font-size: 20px;
+		line-height: 20px;
+	}
+
+}
+
+@media (max-width: 2200px) and (min-width: 2000px){
+	.course-search-section .course-search-form{
+		max-width: none;
+		width: 80%;
+	}
+	
+	.course-search-section .course-search-form form{
+		height: 55px;
+	}
+	
+	.course-search-section .course-search-form input{
+		font-size: 18px;
+		line-height: 18px;
+	}
+
+}
+
+@media (max-width: 2000px) and (min-width: 1800px){
+	.course-search-section .course-search-form{
+		max-width: none;
+		width: 70%;
+	}
+	
+	.course-search-section .course-search-form form{
+		height: 50px;
+	}
+	
+	.course-search-section .course-search-form input{
+		font-size: 16px;
+		line-height: 16px;
+	}
+
+}
+
+@media (max-width: 1800px) and (min-width: 1600px){
+	.course-search-section .course-search-form{
+		max-width: none;
+		width: 60%;
+	}
+	
+	.course-search-section .course-search-form form{
+		height: 45px;
+	}
+	
+	.course-search-section .course-search-form input{
+		font-size: 14px;
+		line-height: 14px;
+	}
+}
+
 @media (max-width: 1600px) {
 	.carousel-inner .container-fluid .row{
 		margin: 0 -15px 0 -15px;

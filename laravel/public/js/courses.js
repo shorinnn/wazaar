@@ -130,9 +130,9 @@ function enableLessonRTE(e){
         toolbar: "save | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
     });
 	
-	var actionPanel = $(e.target).parent().parent().parent().parent().find('div[class*="action-panel"]');
-	TweenMax.fromTo(actionPanel, 0.5, {marginBottom: '40px'},
-		{marginBottom: '0px'});
+	var actionPanel = $(e.target).parent().parent().parent().siblings('div[class*="action-panel"]');
+	var actionPanelHeight = $(actionPanel).height();
+	TweenMax.fromTo(actionPanel, 0.3, {marginBottom: '40px'}, {marginBottom: '0px'});
 	
 } 
 
@@ -168,9 +168,9 @@ function enableBlockFileUploader(e){
     console.log($uploader);
     enableFileUploader($uploader);
 	
-	var actionPanel = $(e.target).parent().parent().parent().parent().find('div[class*="action-panel"]');
-	TweenMax.fromTo(actionPanel, 3, {marginBottom: '40px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 },
-		{marginBottom: '0px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 });
+	var actionPanel = $(e.target).parent().parent().parent().siblings('div[class*="action-panel"]');
+	var actionPanelHeight = $(actionPanel).height();
+	TweenMax.fromTo(actionPanel, 0.3, {marginBottom: '40px'}, {marginBottom: '0px'});
 	
 }
 
@@ -180,9 +180,9 @@ function enableBlockFileUploader(e){
  * 
  */
 function enableVideoOption(e){
-	var actionPanel = $(e.target).parent().parent().parent().parent().find('div[class*="action-panel"]');
-	TweenMax.fromTo(actionPanel, 3, {marginBottom: '40px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 },
-		{marginBottom: '0px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 });
+	var actionPanel = $(e.target).parent().parent().parent().siblings('div[class*="action-panel"]');
+	var actionPanelHeight = $(actionPanel).height();
+	TweenMax.fromTo(actionPanel, 0.3, {marginBottom: '40px'}, {marginBottom: '0px'});
 }
 
 /**
@@ -191,9 +191,9 @@ function enableVideoOption(e){
  * 
  */
 function enableSettingOption(e){
-	var actionPanel = $(e.target).parent().parent().parent().parent().find('div[class*="action-panel"]');
-	TweenMax.fromTo(actionPanel, 3, {marginBottom: '40px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 },
-		{marginBottom: '0px', ease: Elastic. easeOut.config( 1.5,0.5),y: 0 });
+	var actionPanel = $(e.target).parent().parent().parent().siblings('div[class*="action-panel"]');
+	var actionPanelHeight = $(actionPanel).height();
+	TweenMax.fromTo(actionPanel, 0.3, {marginBottom: '40px'}, {marginBottom: '0px'});
 }
 
 
