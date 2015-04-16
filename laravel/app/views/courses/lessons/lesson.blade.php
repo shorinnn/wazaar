@@ -53,25 +53,33 @@
                       </div>
                     </div>--> 
                     <em class="processing">Processing</em>                                                                  
-                    <a href='#' id="video-link-{{$lesson->id}}" class='load-remote-cache a-add-video' data-target='.action-panel-{{$lesson->id}} .video'
+                    <a href='#' id="video-link-{{$lesson->id}}" class='load-remote-cache a-add-video
+                       @if($lesson->blocks()->where('type','video')->count() > 0)
+                        done
+                       @endif
+                       ' data-target='.action-panel-{{$lesson->id}} .video'
                        data-url='{{action('BlocksController@video', [$lesson->id] )}}' data-callback='enableVideoOption'>
                         <!--<i class="fa fa-film"></i>
                         <p>{{ trans('general.video') }}</p>-->
                         <span></span>                                   
                     </a>
-                    <div id="video-thumb-container">
-                    	<p>10:36</p>
-                        <!--<i class="fa fa-eye"></i>-->
-                        <!-- Button trigger modal -->
-                        <a href="#" class="btn btn-primary btn-lg fa fa-eye" data-toggle="modal" data-target="#myModal">
-                          Launch demo modal
-                        </a>
-                        <img src="thumbnail">
+                    <div id="video-thumb-container"
+                        @if($lesson->blocks()->where('type','video')->count() > 0)
+                        style='display:block'
+                       @endif
+                       >
+                    	<P>{{$lesson->blocks()->where('type','video')->first()->formats[0]->duration}}</P>
+                        <a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> 
+                        <img src='{{$lesson->blocks()->where('type','video')->first()->formats[0]->thumbnail}}'/>
                     </div>
                     
                 </div>
                 <div class="buttons text">
-                    <a href='#' class='load-remote-cache' data-target='.action-panel-{{$lesson->id}} .text' 
+                    <a href='#' class='load-remote-cache
+                       @if($lesson->blocks()->where('type','text')->count() > 0)
+                        done
+                       @endif
+                       ' data-target='.action-panel-{{$lesson->id}} .text' 
                        data-url='{{action('BlocksController@text', [$lesson->id] )}}' data-callback='enableLessonRTE'>
                         <!--<i class="fa fa-file-text-o"></i>
                         <p>{{ trans('crud/labels.edit_text') }}</p>-->
@@ -79,7 +87,11 @@
                     </a>
                 </div>
                 <div class="buttons file">
-                    <a href='#' class='load-remote-cache' data-target='.action-panel-{{$lesson->id}} .files' 
+                    <a href='#' class='load-remote-cache
+                       @if($lesson->blocks()->where('type','file')->count() > 0)
+                        done
+                       @endif
+                       ' data-target='.action-panel-{{$lesson->id}} .files' 
                        data-url='{{action('BlocksController@files', [$lesson->id] )}}' data-callback='enableBlockFileUploader'>
                         <!--<i class="fa fa-file-o"></i>
                         <p>{{ trans('general.add_file') }}</p>-->
@@ -87,7 +99,11 @@
                     </a>
                 </div>
                 <div class="buttons setting">
-                    <a href='#' class='load-remote-cache' data-target='.action-panel-{{$lesson->id}} .details' 
+                    <a href='#' class='load-remote-cache
+                       @if($lesson->description!='' || $lesson->price>0 || $lesson->published=='yes')
+                        done
+                       @endif
+                       ' data-target='.action-panel-{{$lesson->id}} .details' 
                        data-url='{{action('LessonsController@details', [$lesson->module->id, $lesson->id] )}}' data-callback='enableSettingOption'>
                         <!--<i class="fa fa-cog"></i> 
                         <p>{{ trans('general.details') }}</p>-->
