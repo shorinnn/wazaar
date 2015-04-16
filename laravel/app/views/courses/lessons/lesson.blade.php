@@ -64,13 +64,18 @@
                         <span></span>                                   
                     </a>
                     <div id="video-thumb-container"
-                        @if($lesson->blocks()->where('type','video')->count() > 0)
+                       @if($lesson->blocks()->where('type','video')->count() > 0)
                         style='display:block'
                        @endif
                        >
-                    	<P>{{$lesson->blocks()->where('type','video')->first()->formats[0]->duration}}</P>
+                       @if( 
+                            $lesson->blocks()->where('type','video')->where('content','>','0')->count() > 0
+                            && $lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()->formats()->count() > 0
+                        )
+                    	<P>{{$lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()->formats[0]->duration }}</P>
                         <a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> 
-                        <img src='{{$lesson->blocks()->where('type','video')->first()->formats[0]->thumbnail}}'/>
+                        <img src='{{$lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()->formats[0]->thumbnail }}'/>
+                       @endif
                     </div>
                     
                 </div>
