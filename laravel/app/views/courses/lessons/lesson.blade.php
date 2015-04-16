@@ -81,7 +81,8 @@
                 </div>
                 <div class="buttons text">
                     <a href='#' class='load-remote-cache
-                       @if($lesson->blocks()->where('type','text')->count() > 0)
+                       @if($lesson->blocks()->where('type','text')->count() > 0 && 
+                       strip_tags( $lesson->blocks()->where('type','text')->first()->content)  != '')
                         done
                        @endif
                        ' data-target='.action-panel-{{$lesson->id}} .text' 
