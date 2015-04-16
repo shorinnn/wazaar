@@ -61,9 +61,13 @@
         var $intervalId = 0;
 
 		var videoVariable = $('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).html();
-		if (isset($video->id)){
+		@if (isset($video->formats[0]->video_url))
 			$('#video-link-' + $lessonId).removeClass('active').addClass('done');
-		}
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').css('display', 'block');
+			
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='{{$video->formats[0]->thumbnail}}'/>");
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text("{{$video->formats[0]->duration}}");
+		@endif
 		
 		@if(@$video->transcode_status == Video::STATUS_COMPLETE)
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').css('display', 'block');
