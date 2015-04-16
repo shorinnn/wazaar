@@ -6919,7 +6919,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-18-undone.png');
 }
 
-.plan-your-curriculum .lesson-options .buttons .load-remote-cache.active span{
+.plan-your-curriculum .lesson-options .buttons .load-remote-cache.done span{
 	background-color: #92cc2e;
 	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-18-done.png');
 }

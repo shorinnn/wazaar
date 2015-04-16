@@ -61,7 +61,10 @@
         var $intervalId = 0;
 
 		var videoVariable = $('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).html();
-
+		if (isset($video->id)){
+			$('#video-link-' + $lessonId).removeClass('active').addClass('done');
+		}
+		
 		@if(@$video->transcode_status == Video::STATUS_COMPLETE)
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').css('display', 'block');
 			
