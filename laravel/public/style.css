@@ -6528,7 +6528,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .course-editor #modules-list > li .progress{
 	height: 6px;
-	margin: 0 0 5px;
+	margin: 0 0 20px;
 	width: 100%;
 	border-radius: 6px;
 	overflow: visible;
@@ -6727,7 +6727,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	  border-radius: 0 5px 5px 0;
 }
 
-.course-editor #modules-list > li .video-upload + em{
+.course-editor #modules-list > li .or-text{
 	font-style: normal;
 	display: block;
 	margin: 10px 0;

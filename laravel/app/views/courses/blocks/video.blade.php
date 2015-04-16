@@ -32,20 +32,21 @@
 	            <span>{{ trans('video.upload-video') }}</span>
                 <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
             </div>
-            <em> {{ trans('site/login.or') }}</em>
+            <!-- Progress Bar -->
+    
+            <div class="progress">
+                <div id="progress-bar-{{$lessonId}}" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    <span><span id="percent-complete-{{$lessonId}}"></span> <!--{{trans('crud/labels.complete')}}--></span>
+                </div>
+            </div>
+
+            <em class="or-text"> {{ trans('site/login.or') }}</em>
             <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}">{{trans('video.selectExisting')}}</a></h3>
             <!--<p class="video-info">{{trans('video.formatsSupported')}}</p>-->
             <p class="video-info">{{trans('video.maxFileSize')}}</p>
 
         </div>
 
-        <!-- Progress Bar -->
-
-        <div class="progress">
-            <div id="progress-bar-{{$lessonId}}" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                <span><span id="percent-complete-{{$lessonId}}"></span> <!--{{trans('crud/labels.complete')}}--></span>
-            </div>
-        </div>
    </form>
 </div>
 
@@ -123,6 +124,7 @@
 							console.log($video);
 							if ($video.transcode_status == 'Complete'){
                                 console.log('Transcoding complete');
+								$('#video-link-' + $lessonId).addClass('done');
 								$('#video-transcoding-indicator').css('display', 'none');
                                 $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
 								clearInterval($intervalId);
