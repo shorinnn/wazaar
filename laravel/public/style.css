@@ -6558,7 +6558,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	font-size: 14px;
 	color: #333;
 	text-align: center;
-	display: block;
+	display: none;
 	margin: 15px;
 }
 
@@ -6575,6 +6575,19 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	border: none;
 	margin: 0 auto 22px;
 	position: relative;
+}
+
+
+.course-editor #modules-list > li .show-videos-archive-modal {
+    background: #0099ff;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    font-size: 18px;
+    height: 60px;
+    line-height: 60px;
+    width: 222px;
+	text-align: center;
 }
 
 .course-editor #modules-list > li .video-upload span{
@@ -6882,7 +6895,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .plan-your-curriculum .lesson-options{
 	position: relative;
 	float: left;
-	margin: 0 0 15px;
+	margin: 0 0 18px;
     padding-top: 20px;
 }
 

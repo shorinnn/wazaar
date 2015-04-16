@@ -94,7 +94,7 @@
             },
             'successCallBack' : function ($data){
 				console.log("Video transcoding");
-				$('#video-transcoding-indicator').show();
+				$('#video-transcoding-indicator').css('display', 'block');
 				
 				function videoTranscodingAnimation(){
 					var count = 0;
@@ -123,7 +123,7 @@
 							console.log($video);
 							if ($video.transcode_status == 'Complete'){
                                 console.log('Transcoding complete');
-								$('#video-transcoding-indicator').hide();
+								$('#video-transcoding-indicator').css('display', 'none');
                                 $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
 								clearInterval($intervalId);
 								var uploadedVideo = $('#video-player-container-' + $lessonId).find('video');
