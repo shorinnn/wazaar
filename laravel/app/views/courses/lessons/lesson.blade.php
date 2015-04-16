@@ -9,7 +9,13 @@
         <span class="sr-only">60% Complete</span>
       </div>
     </div>-->                        
-	<div class="new-lesson gray clearfix">
+	<div class="new-lesson
+                 @if($lesson->blocks()->where('type','video')->where( 'content','!=','' )->count() > 0)
+                    green
+                 @else
+                 	gray
+                 @endif
+        clearfix">
         <span>{{ trans('general.lesson') }} 
         	<span class="lesson-order">{{ $lesson->order }}</span> 
         </span>
