@@ -27,6 +27,7 @@
 
         <div class="form-inline">
         	<input disabled="disabled" placeholder="" id="uploadFile" style="">
+		    <span id="video-transcoding-indicator">Video Currently Processing</span>
             <div class="form-group video-upload clear">
 	            <span>{{ trans('video.upload-video') }}</span>
                 <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
@@ -93,6 +94,17 @@
             },
             'successCallBack' : function ($data){
 				console.log("Video transcoding");
+				$('#video-transcoding-indicator').show();
+				
+				function videoTranscodingAnimation(){
+					var count = 0;
+					animationInterval = setInterval(function(){
+					  count++;
+					  document.getElementById('video-transcoding-indicator').innerHTML = "Video Currently Processing." + new Array(count % 4).join('.');
+					}, 500);	
+				}
+				videoTranscodingAnimation();
+				$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<em>Processing</em>");
 				$('.lesson-options-{{$lessonId}} .buttons.active em').css('display', 'block');
 				$('.lesson-options-{{$lessonId}} .buttons.active').css({
 					width: '120px',
@@ -110,8 +122,9 @@
 
 							console.log($video);
 							if ($video.transcode_status == 'Complete'){
-                                                            console.log('Transcoding complete');
-                                                            $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
+                                console.log('Transcoding complete');
+								$('#video-transcoding-indicator').hide();
+                                $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
 								clearInterval($intervalId);
 								var uploadedVideo = $('#video-player-container-' + $lessonId).find('video');
 								var videoDuration = uploadedVideo[0].duration;
