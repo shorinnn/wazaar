@@ -61,6 +61,7 @@
         var $intervalId = 0;
 
 		var videoVariable = $('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).html();
+		
 		@if (isset($video->formats[0]->video_url))
 			$('#video-link-' + $lessonId).removeClass('active').addClass('done');
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').css('display', 'block');
@@ -91,7 +92,7 @@
 
             },
             'successCallBack' : function ($data){
-				//console.log("Output after successcallback");
+				console.log("Video transcoding");
 				$('.lesson-options-{{$lessonId}} .buttons.active em').css('display', 'block');
 				$('.lesson-options-{{$lessonId}} .buttons.active').css({
 					width: '120px',
@@ -109,7 +110,7 @@
 
 							console.log($video);
 							if ($video.transcode_status == 'Complete'){
-                                                            console.log('#lesson-'+$lessonId);
+                                                            console.log('Transcoding complete');
                                                             $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
 								clearInterval($intervalId);
 								var uploadedVideo = $('#video-player-container-' + $lessonId).find('video');
