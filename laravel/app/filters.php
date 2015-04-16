@@ -127,21 +127,21 @@ Route::filter('csrf', function()
 
 Route::filter('admin', function()
 {
-	if (Auth::guest()) return Redirect::to('/');
-        if(!Auth::user()->hasRole('Admin')) return Redirect::to('/');
+	if (Auth::guest()) return Redirect::action('SiteController@index');
+        if(!Auth::user()->hasRole('Admin')) return Redirect::action('SiteController@index');
 });
 
 Route::filter('instructor', function(){
         if(Auth::guest()) return Redirect::guest('login');
-        if(!Auth::user()->hasRole('Instructor')) return Redirect::to('/');
+        if(!Auth::user()->hasRole('Instructor')) return Redirect::action('SiteController@index');
 });
 
 Route::filter('affiliate', function(){
     if(Auth::guest()) return Redirect::guest('login');
-    if(!Auth::user()->hasRole('Affiliate')) return Redirect::to('/');
+    if(!Auth::user()->hasRole('Affiliate')) return Redirect::action('SiteController@index');
 });
 
 Route::filter('nonInstructor', function()
 {
-        if(Auth::check() && Auth::user()->hasRole('Instructor')) return Redirect::to('/');
+        if(Auth::check() && Auth::user()->hasRole('Instructor')) return Redirect::action('SiteController@index');
 });
