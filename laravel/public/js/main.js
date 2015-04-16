@@ -21,6 +21,8 @@ $(document).ready(function(){
     $('body').delegate('a.load-more-ajax', 'click', loadMoreComments);
     $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
     $('body').delegate('.btnLink', 'click', goTo);
+	$('body').delegate('#video-grid .boxes', 'mouseenter', videoGridBoxIn);
+	$('body').delegate('#video-grid .boxes', 'mouseleave', videoGridBoxOut);
     $('body').delegate('.delayed-keyup', 'keyup', delayedKeyup);
 	$('button.join-class').mousedown(function(){
 		$(this).addClass('pushdown');
@@ -28,6 +30,8 @@ $(document).ready(function(){
 	$('button.join-class').mouseup(function(){
 		$(this).removeClass('pushdown');
 	});
+	
+	
     $(window).scroll(stepsScrollAnimation);
     _.setTranslation( js_translation_map );
     floatingNav();
@@ -38,6 +42,14 @@ $(document).ready(function(){
 	askTeacherQuestion();
 	searchFormFocusStyle();
 });
+
+function videoGridBoxIn(){
+	TweenMax.to($(this), 0.3, {zIndex: 9, scale: '1.2'});
+}
+
+function videoGridBoxOut(){
+	TweenMax.to($(this), 0.3, {zIndex: 3, scale: '1'});
+}
 
 function enableClipboard(){
     var client = new ZeroClipboard($(".clipboardable"));
@@ -1084,4 +1096,6 @@ function searchFormFocusStyle(){
 	});
 	
 }
+
+
 
