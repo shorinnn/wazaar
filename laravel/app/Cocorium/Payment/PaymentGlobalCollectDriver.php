@@ -202,9 +202,9 @@ class PaymentGlobalCollectDriver implements PaymentInterface
                             $successData = $responseObject->ROW;
                         }
                         elseif(isset($responseObject->STATUS)){
-                            $successData = $responseObject->STATUS;
+                            $successData = $responseObject;
                         }
-                        $successData['fullResponse'] = $responseObject;
+
 
                     } else {
                         $errors[] = $responseObject->ERROR->MESSAGE;
