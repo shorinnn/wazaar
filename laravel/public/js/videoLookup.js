@@ -2,13 +2,14 @@ var videoLookup = {
     'initialize' : function ($callback){
         var $lessonId = 0;
 
-        $('#modules-list').on('click', '.show-videos-archive-modal', function (){
-
+        $('#modules-list').on('click', '.show-videos-archive-modal', function ($e){
+            $e.preventDefault();
             $lessonId = $(this).attr('data-lesson-id');
+            $('#videoFilter').val('');
             $('#videos-acrhive-modal').modal('show');
 
             $.get('/video/user/archive', function ($html){
-                $('#modal-body-videos').html($html);
+                $('.video-list-container').html($html);
             });
         });
 
@@ -22,6 +23,23 @@ var videoLookup = {
             var $videoId = $('input[name=radioVideoId]:checked').val();
             $('#videos-acrhive-modal').modal('hide');
             $callback($lessonId, $videoId);
+        });
+
+        $('#modal-body-videos').on('click', '.videos-lookup-pagination-wrapper .page-numbers-container ul li a', function($e){
+            $e.preventDefault();
+
+            var $url = $(this).attr('href');
+
+            $.get($url, function($html){
+                $('.video-list-container').html($html);
+            });
+
+        });
+
+        $('#modal-body-videos').on('click','#btnGoFilterVideo',function(){
+            $.post('/video/user/archive', {filter: $('#videoFilter').val()}, function ($html){
+                $('.video-list-container').html($html);
+            });
         });
     }
 }

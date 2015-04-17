@@ -237,7 +237,7 @@ Route::group( array('domain' => 'instructors.'.Config::get('app.base_url') ), fu
         Route::post('add-by-filename','VideosController@addVideoByFilename');
         Route::any('sns/callback', 'SnsController@snsCallback');
         Route::get('{id}/json','VideosController@videoAndFormatsJson');
-        Route::get('user/archive','VideosController@userArchive');
+        Route::any('user/archive','VideosController@userArchive');
     });
 });
 
@@ -284,7 +284,7 @@ Route::group(['prefix' => 'api'], function(){
 Route::get('test', function(){
     $p = new PaymentHelper;
 
-    $r = $p->getOrderStatus('1000002585');
+    $r = $p->processCreateProfileFromOrderId('1000002585');
     echo '<pre>';
     print_r($r);
     echo '</pre>';
