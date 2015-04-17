@@ -27,6 +27,7 @@ class InstructorAgency extends User {
     public function getTransactionsAttribute(){
         $types = [
             'instructor_agency_credit',
+            'instructor_agency_credit_reverse',
             'instructor_agency_debit',
             'instructor_agency_debit_refund',
             'cashout_fee'
@@ -34,16 +35,17 @@ class InstructorAgency extends User {
         return $this->allTransactions()->whereIn('transaction_type', $types);
     }
         
-        public function credit( $amount = 0, $product = null, $order = null ){
+        public function credit( $amount = 0, $product = null, $order = null, $purchase_id ){
         $amount = doubleval($amount);
         if( $amount <= 0 ) return false;
         if( !is_a($product, 'Lesson') && !is_a($product, 'Course') ) return false;
         if( !$product->id ) return false;
-        return DB::transaction(function() use ($amount, $product, $order){
+        return DB::transaction(function() use ($amount, $product, $order, $purchase_id){
             // create the transaction
               $transaction = new Transaction();
               $transaction->user_id = $this->id;
               $transaction->amount = $amount;
+              $transaction->purchase_id = $purchase_id;
               $transaction->product_id = $product->id;
               $transaction->product_type = get_class($product);
               $transaction->transaction_type = 'instructor_agency_credit';
@@ -60,6 +62,41 @@ class InstructorAgency extends User {
               return false;
          });
     }
+    
+    public function creditReverse( $transaction ){
+        if( $transaction->transaction_type!='instructor_agency_credit' || $transaction->user_id != $this->id || $transaction->status!='complete' ){
+            return false;
+        }
+        $old = $transaction;
+        return DB::transaction(function() use ($old){
+            // create the transaction
+              $transaction = new Transaction();
+              $transaction->user_id = $this->id;
+              $transaction->amount = $old->amount;
+              $transaction->purchase_id = $old->purchase_id;
+              $transaction->product_id = $old->product_id;
+              $transaction->product_type = $old->product_type;
+              $transaction->transaction_type = 'instructor_agency_credit_reverse';
+              $transaction->details = trans('transactions.instructor_agency_credit_reverse_transaction').' '.$old->reference;
+
+//              $transaction->reference = $order;
+              $transaction->status = 'complete';
+              if( $transaction->save() ){
+                  // increase balance
+                  $this->agency_balance -= $old->amount;
+                  if( $this->updateUniques() ){
+                      $old->status = 'failed';
+                      $old->details .= ' | '.trans('transactions.refunded').' #'.$transaction->id;
+                      if( $old->updateUniques() ){
+                          return $transaction->id;
+                      }
+                  }
+                  else return false;
+              }
+              return false;
+         });
+    }
+    
     
     public function debit( $amount = 0, $reference = null, $transactions_to_mark = null ){
         $amount = doubleval( $amount );

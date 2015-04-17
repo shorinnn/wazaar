@@ -49,5 +49,15 @@ return array(
     'sure-approve' => '月Are you sure you want to approveせ',
     'sure-reject' => '月Are you sure you want to rejectせ',
     'instructor-agencies' => '月Instructor Agenciesせ',
-    
+    'refund' => '月Refundせ',
+    'sure-refund' => '月Are you sure you want to refundせ',
+    'refund-history' => '月Refund Historyせ',
+    'date-of-refund' => '月Date of Refundせ',
+    'refund-id' => '月Refund IDせ',
+    'paid' => '月Paidせ',
+    'tax' => '月Taxせ',
+    'processor-fee' => '月Processor Feeせ',
+    'paid-from-balance' => '月Paid From Balanceせ',
+    'refundable' => '月Refundableせ',
+    'refunded' => '月Refundedせ',
 );
