@@ -281,3 +281,13 @@ Route::group(['prefix' => 'api'], function(){
     });
 });
 
+Route::get('test', function(){
+    $p = new PaymentHelper;
+
+    $r = $p->getOrderStatus('1000002585');
+    echo '<pre>';
+    print_r($r);
+    echo '</pre>';
+    die;
+
+});

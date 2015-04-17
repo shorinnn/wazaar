@@ -53,6 +53,7 @@
                                 <div class="panel-body" id="panel-credit-card">
                                     @include('payment.panels.creditcard')
                                     <iframe class="hidden" id="frame-gc-form" height="200" width="430" src="" frameBorder="0">Browser not compatible.</iframe>
+
                                 </div>
 
                             </div>

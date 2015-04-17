@@ -17,7 +17,7 @@ class SnsController extends BaseController {
         $postBody = file_get_contents('php://input');
         $postObject = json_decode($postBody, true);
 
-        Log::alert('triggered ' . $postBody);
+        //Log::alert('triggered ' . $postBody);
 
         if (!isset($postObject['Message'])){
             return false;
