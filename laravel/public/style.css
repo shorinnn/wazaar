@@ -385,20 +385,21 @@ header .activate-dropdown:hover ul{
 	content: '';
 	display: block;
 	width: 100px;
-	height: 39px;
-	top: 120px;
+	height: 40px;
+	top: 0;
 	position: absolute;
-	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/misc-icons.png);
 	background-repeat: no-repeat;
+	background-position: center 50%;
+	background-size: contain;
 }
 
 .course-search-section .course-search-form::before{
-	background-position: left center;
+	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/search-form-left-icons.png);
 	left: 145px;
 }
 
 .course-search-section .course-search-form::after{
-	background-position: right center;
+	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/search-form-right-icons.png);
 	right: 145px;
 }
 
@@ -409,7 +410,7 @@ header .activate-dropdown:hover ul{
 	float: left;
 	padding: 0;
 	font-size: 12px;
-	color: #fff;
+	color: #333;
 	text-indent: 18px;
 	background: #fff;
 	outline: none;
@@ -4539,7 +4540,7 @@ select::-ms-expand {
 }
 
 .unauthenticated-homepage.course-search-section .course-search-form{
-	margin-top: 60px;
+	margin-top: 35px;
 	margin-bottom: 25px;
 	position: relative;
 	overflow: visible;
@@ -5069,12 +5070,6 @@ select::-ms-expand {
 #video-grid .boxes{
 	display: block;
 	position: relative;
-	z-index:0;
-}
-
-#video-grid .boxes:hover{
-	position: relative;
-	z-index: 3;
 }
 
 #video-grid .boxes span{
@@ -5100,7 +5095,6 @@ select::-ms-expand {
 #video-grid .boxes:hover span{
 	opacity: 1;
 	visibility: visible;
-	transform: scale(1.2);
 }
 
 #video-grid .boxes img{
@@ -5117,7 +5111,6 @@ select::-ms-expand {
 }
 
 #video-grid .boxes:hover img{
-	transform: scale(1.2);
 	position: relative;
 }
 
@@ -5139,7 +5132,6 @@ select::-ms-expand {
 }
 
 #video-grid .boxes:hover p{
-	transform: scale(1.2);
 }
 
 #video-grid .small-boxes span{
@@ -5154,7 +5146,6 @@ select::-ms-expand {
 }
 
 #video-grid .small-boxes:hover p{
-	bottom: -13px;
 }
 
 #video-grid .big-boxes span{
@@ -5169,7 +5160,6 @@ select::-ms-expand {
 }
 
 #video-grid .big-boxes:hover p{
-	bottom: -26px;
 }
 
 .big-box-holders{
@@ -6539,7 +6529,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .course-editor #modules-list > li .progress{
 	height: 6px;
-	margin: 0 0 5px;
+	margin: 0 0 20px;
 	width: 100%;
 	border-radius: 6px;
 	overflow: visible;
@@ -6564,6 +6554,15 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	margin: 0 auto;
 	width: 100%;
 }
+
+#video-transcoding-indicator{
+	font-size: 14px;
+	color: #333;
+	text-align: center;
+	display: none;
+	margin: 15px;
+}
+
 .course-editor #modules-list > li .video-upload{
 	width: 222px;
 	height: 60px;
@@ -6577,6 +6576,19 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	border: none;
 	margin: 0 auto 22px;
 	position: relative;
+}
+
+
+.course-editor #modules-list > li .show-videos-archive-modal {
+    background: #0099ff;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    font-size: 18px;
+    height: 60px;
+    line-height: 60px;
+    width: 222px;
+	text-align: center;
 }
 
 .course-editor #modules-list > li .video-upload span{
@@ -6716,10 +6728,11 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	  border-radius: 0 5px 5px 0;
 }
 
-.course-editor #modules-list > li .video-upload + em{
+.course-editor #modules-list > li .or-text{
 	font-style: normal;
 	display: block;
 	margin: 10px 0;
+	color: #ccc;
 	text-align: center;
 }
 
@@ -6884,7 +6897,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .plan-your-curriculum .lesson-options{
 	position: relative;
 	float: left;
-	margin: 0 0 15px;
+	margin: 0 0 18px;
     padding-top: 20px;
 }
 
@@ -6930,6 +6943,12 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-18-undone.png');
 }
 
+.plan-your-curriculum .lesson-options .buttons .load-remote-cache.done span{
+	box-shadow:0 0 0 2px #92cc2e;
+	background-color: #92cc2e;
+	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-18-done.png');
+}
+
 .plan-your-curriculum .lesson-options .buttons.video.active span,
 .plan-your-curriculum .lesson-options .buttons.video span{
 	background-position: -48px center;
@@ -6969,6 +6988,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	position: absolute;
 	top: -1px;
 	right: -26px;
+	z-index: 2;
 }
 
 .plan-your-curriculum .lesson-options .buttons.active span.processed{
@@ -7002,10 +7022,10 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .plan-your-curriculum .lesson-options .buttons.active div#video-thumb-container{
     background: rgba(255, 255, 255, 1);
-    height: 70px;
-    right: -28px;
+    height: 66px;
+    right: -6px;
     position: absolute;
-    top: -4px;
+    top: -2px;
     width: 148px;
     z-index: 1;
 	display: none;
@@ -7020,6 +7040,14 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	font-size: 12px;
 	color: #92cc2e;
 	max-width: 60px;
+}
+
+.plan-your-curriculum .lesson-options .buttons.active div#video-thumb-container em{
+	font-size: 12px;
+	color: #92cc2e;
+	font-style: normal;
+	line-height: 66px;
+	text-indent: 20px;
 }
 
 .plan-your-curriculum .lesson-options .buttons.active div#video-thumb-container a{
@@ -7396,6 +7424,19 @@ footer{
 		line-height: 22px;
 	}
 
+	.course-search-section .course-search-form::before,
+	.course-search-section .course-search-form::after{
+		height: 65px;
+		width: 180px;
+	}
+
+	.course-search-section .course-search-form:before{
+		left: -205px;
+	}
+	
+	.course-search-section .course-search-form:after {
+  		right: -205px;
+	}
 }
 
 @media (max-width: 2400px) and (min-width: 2200px){
@@ -7413,6 +7454,19 @@ footer{
 		line-height: 20px;
 	}
 
+	.course-search-section .course-search-form::before,
+	.course-search-section .course-search-form::after{
+		height: 60px;
+		width: 160px;
+	}
+
+	.course-search-section .course-search-form:before{
+		left: -185px;
+	}
+	
+	.course-search-section .course-search-form:after {
+  		right: -185px;
+	}
 }
 
 @media (max-width: 2200px) and (min-width: 2000px){
@@ -7430,6 +7484,19 @@ footer{
 		line-height: 18px;
 	}
 
+	.course-search-section .course-search-form::before,
+	.course-search-section .course-search-form::after{
+		height: 55px;
+		width: 140px;
+	}
+
+	.course-search-section .course-search-form:before{
+		left: -165px;
+	}
+	
+	.course-search-section .course-search-form:after {
+  		right: -165px;
+	}
 }
 
 @media (max-width: 2000px) and (min-width: 1800px){
@@ -7445,6 +7512,20 @@ footer{
 	.course-search-section .course-search-form input{
 		font-size: 16px;
 		line-height: 16px;
+	}
+
+	.course-search-section .course-search-form::before,
+	.course-search-section .course-search-form::after{
+		height: 50px;
+		width: 120px;
+	}
+	
+	.course-search-section .course-search-form:before{
+		left: -145px;
+	}
+	
+	.course-search-section .course-search-form:after {
+  		right: -145px;
 	}
 
 }
@@ -7463,6 +7544,12 @@ footer{
 		font-size: 14px;
 		line-height: 14px;
 	}
+	
+	.course-search-section .course-search-form::before,
+	.course-search-section .course-search-form::after{
+		height: 45px;
+	}
+
 }
 
 @media (max-width: 1600px) {

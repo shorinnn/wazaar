@@ -111,7 +111,7 @@
                                                 />
                                             @else
                                                 <span>{{$instructor->profile->first_name}}</span>
-                                                <img height="50" src="{{ cloudfrontUrl( $instructor->profile->photo ) }}" class="img-circle hidden-xs">
+                                                <img src="{{ cloudfrontUrl( $instructor->profile->photo ) }}" class="img-circle hidden-xs">
                                             @endif
                                         </span>                    
                             </div>

@@ -27,24 +27,26 @@
 
         <div class="form-inline">
         	<input disabled="disabled" placeholder="" id="uploadFile" style="">
+		    <span id="video-transcoding-indicator">Video Currently Processing</span>
             <div class="form-group video-upload clear">
 	            <span>{{ trans('video.upload-video') }}</span>
                 <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
             </div>
-            <em> {{ trans('site/login.or') }}</em>
+            <!-- Progress Bar -->
+    
+            <div class="progress">
+                <div id="progress-bar-{{$lessonId}}" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    <span><span id="percent-complete-{{$lessonId}}"></span> <!--{{trans('crud/labels.complete')}}--></span>
+                </div>
+            </div>
+
+            <em class="or-text"> {{ trans('site/login.or') }}</em>
             <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}">{{trans('video.selectExisting')}}</a></h3>
             <!--<p class="video-info">{{trans('video.formatsSupported')}}</p>-->
             <p class="video-info">{{trans('video.maxFileSize')}}</p>
 
         </div>
 
-        <!-- Progress Bar -->
-
-        <div class="progress">
-            <div id="progress-bar-{{$lessonId}}" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                <span><span id="percent-complete-{{$lessonId}}"></span> <!--{{trans('crud/labels.complete')}}--></span>
-            </div>
-        </div>
    </form>
 </div>
 
@@ -61,7 +63,15 @@
         var $intervalId = 0;
 
 		var videoVariable = $('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).html();
-
+		
+		@if (isset($video->formats[0]->video_url))
+			$('#video-link-' + $lessonId).removeClass('active').addClass('done');
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').css('display', 'block');
+			
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='{{$video->formats[0]->thumbnail}}'/>");
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text("{{$video->formats[0]->duration}}");
+		@endif
+		
 		@if(@$video->transcode_status == Video::STATUS_COMPLETE)
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').css('display', 'block');
 			
@@ -84,7 +94,18 @@
 
             },
             'successCallBack' : function ($data){
-				//console.log("Output after successcallback");
+				console.log("Video transcoding");
+				$('#video-transcoding-indicator').css('display', 'block');
+				
+				function videoTranscodingAnimation(){
+					var count = 0;
+					animationInterval = setInterval(function(){
+					  count++;
+					  document.getElementById('video-transcoding-indicator').innerHTML = "Video Currently Processing." + new Array(count % 4).join('.');
+					}, 500);	
+				}
+				videoTranscodingAnimation();
+				$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<em>Processing</em>");
 				$('.lesson-options-{{$lessonId}} .buttons.active em').css('display', 'block');
 				$('.lesson-options-{{$lessonId}} .buttons.active').css({
 					width: '120px',
@@ -102,8 +123,10 @@
 
 							console.log($video);
 							if ($video.transcode_status == 'Complete'){
-                                                            console.log('#lesson-'+$lessonId);
-                                                            $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
+                                console.log('Transcoding complete');
+								$('#video-link-' + $lessonId).addClass('done');
+								$('#video-transcoding-indicator').css('display', 'none');
+                                $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
 								clearInterval($intervalId);
 								var uploadedVideo = $('#video-player-container-' + $lessonId).find('video');
 								var videoDuration = uploadedVideo[0].duration;
