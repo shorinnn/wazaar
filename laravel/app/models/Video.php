@@ -41,7 +41,7 @@ class Video extends \LaravelBook\Ardent\Ardent
         return $video;
     }
 
-    public static function getByOwnerIdAndPreset($userId, $presetId = null)
+    public static function getByOwnerIdAndPreset($userId, $presetId = null, $filter = '')
     {
         if (empty($presetId)){
             $presetId = self::getPresetIdByAgent();
@@ -49,6 +49,12 @@ class Video extends \LaravelBook\Ardent\Ardent
         $video = Video::with('formats')->where('created_by_id', $userId)->whereHas('formats', function ($q) use($presetId) {
             $q->where('preset_id', $presetId);
         });
+
+        if (!empty($filter)){
+            $video = $video->where('original_filename', 'LIKE', "%". $filter ."%");
+        }
+
+        $video = $video->paginate(6);
 
         return $video;
     }
