@@ -53,6 +53,7 @@ Route::group( array('domain' => Config::get('app.base_url') ), function(){
     Route::group(array('prefix'=>'administration'),function(){
         Route::post('withdrawals/update', 'WithdrawalsController@update');
         Route::resource('withdrawals', 'WithdrawalsController');
+        Route::post('members/refund', 'MembersController@refund');
         Route::resource('members', 'MembersController');
         Route::resource('submissions', 'SubmissionsController');
         Route::get('instructor-agencies/instructors/{id}', 'InstructorAgenciesController@instructors');

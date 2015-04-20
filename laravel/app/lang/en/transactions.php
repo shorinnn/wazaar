@@ -25,4 +25,9 @@ return array(
     'public_student_balance_debit_refund_transaction' => 'Balance Debit Refund',
     'cashout_fee_transaction' => 'Cashout fee',
     'cashout_fee' => 'Cashout fee',
+    
+    'instructor_credit_reverse_transaction' => 'Instructor Credit Reverse Transaction Reference:',
+    'affiliate_credit_reverse_transaction' => 'Affiliate Credit Reverse Transaction Reference:',
+    'instructor_agency_credit_reverse_transaction' => 'Instructor Agency Credit Reverse Transaction Reference:',
+    'site_credit_reverse_transaction' => 'Site Credit Reverse Transaction Reference:',
 );

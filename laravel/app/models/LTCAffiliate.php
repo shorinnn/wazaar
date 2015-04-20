@@ -17,6 +17,7 @@ class LTCAffiliate extends User{
     public function getTransactionsAttribute(){
         $types = [
             'affiliate_credit',
+            'affiliate_credit_reverse',
             'affiliate_debit',
             'affiliate_debit_refund',
             'cashout_fee'
@@ -25,12 +26,12 @@ class LTCAffiliate extends User{
     }
     
     
-    public function credit( $amount = 0, $product = null, $order = null, $ltcOrWazaarOrST = '', $processor_fee = 0 ){
+    public function credit( $amount = 0, $product = null, $order = null, $ltcOrWazaarOrST = '', $processor_fee = 0, $purchase_id = 0 ){
         $amount = doubleval($amount);
         if( $amount <= 0 ) return false;
         if( !is_a($product, 'Lesson') && !is_a($product, 'Course') ) return false;
         if( !$product->id ) return false;
-        return DB::transaction(function() use ($amount, $product, $order, $ltcOrWazaarOrST, $processor_fee){
+        return DB::transaction(function() use ($amount, $product, $order, $ltcOrWazaarOrST, $processor_fee, $purchase_id){
             // create the transaction
               $transaction = new Transaction();
               $transaction->user_id = $this->id;
@@ -38,6 +39,7 @@ class LTCAffiliate extends User{
               $transaction->product_id = $product->id;
               $transaction->product_type = get_class($product);
               $transaction->transaction_type = 'affiliate_credit';
+              $transaction->purchase_id = $purchase_id;
               $transaction->reference = $order;
 //              if($this->id == 2) $transaction->transaction_type = 'site_credit';
               $transaction->details = trans('transactions.affiliate_credit_transaction').' '.$order;
@@ -64,6 +66,53 @@ class LTCAffiliate extends User{
               return false;
          });
     }
+    
+    public function creditReverse( $transaction,  $ltcOrWazaarOrST=''){
+        if( 
+                ( $ltcOrWazaarOrST=='ltc' && $transaction->is_ltc != 'yes' )
+                || ( $ltcOrWazaarOrST=='st' && $transaction->is_second_tier != 'yes' )
+                || ( $ltcOrWazaarOrST=='wazaar' && ( $transaction->is_ltc=='yes' || $transaction->is_second_tier == 'yes' ) )
+                || $transaction->user_id != $this->id 
+                || $transaction->status!='complete' ){
+            return false;
+        }
+        $old = $transaction;
+        return DB::transaction(function() use ($old, $ltcOrWazaarOrST){
+            // create the transaction
+              $transaction = new Transaction();
+              $transaction->user_id = $this->id;
+              $transaction->amount = $old->amount;
+              $transaction->gc_fee = $old->gc_fee;
+              $transaction->is_ltc = $old->is_ltc;
+              $transaction->is_second_tier = $old->is_second_tier;
+              $transaction->purchase_id = $old->purchase_id;
+              $transaction->product_id = $old->product_id;
+              $transaction->product_type = $old->product_type;
+              $transaction->transaction_type = 'affiliate_credit_reverse';
+              $transaction->details = trans('transactions.instructor_credit_reverse_transaction').' '.$old->reference;
+              if($ltcOrWazaarOrST=='wazaar'){
+                  $transaction->transaction_type = 'site_credit_reverse';
+                  $transaction->details = trans('transactions.site_credit_reverse_transaction').' '.$old->reference;
+              }
+
+//              $transaction->reference = $order;
+              $transaction->status = 'complete';
+              if( $transaction->save() ){
+                  // increase balance
+                  $this->affiliate_balance -= $old->amount;
+                  if( $this->updateUniques() ){
+                      $old->status = 'failed';
+                      $old->details .= ' | '.trans('transactions.refunded').' #'.$transaction->id;
+                      if( $old->updateUniques() ){
+                          return $transaction->id;
+                      }
+                  }
+                  else return false;
+              }
+              return false;
+         });
+    }
+    
     
     public function debit( $amount = 0, $reference = null, $transactions_to_mark = null ){
         $amount = doubleval( $amount );

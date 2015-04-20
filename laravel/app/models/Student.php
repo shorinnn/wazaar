@@ -8,6 +8,7 @@ class Student extends User{
     public static $relationsData = [
         'ltcAffiliate' => [ self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id' ],
         'purchases' => [ self::HAS_MANY, 'Purchase' ],
+        'refunds' => [ self::HAS_MANY, 'PurchaseRefund' ],
         'courseReferrals' => [ self::HAS_MANY, 'CourseReferral' ],
         'profile' => [ self::MORPH_ONE, 'Profile', 'name'=>'owner' ],
         'viewedLessons' => [ self::HAS_MANY, 'ViewedLesson' ],
@@ -93,7 +94,7 @@ class Student extends User{
      */
     
     public function purchased($product){
-        if( Auth::check() && Auth::user()->hasRole('Admin')) return true;
+//        if( Auth::check() && Auth::user()->hasRole('Admin')) return true;
         $product_type = get_class($product);
         if( !isset( $this->purchased[$product_type])) $this->purchased[$product_type] = $this->purchases()->where( 'product_type', $product_type )->lists('product_id' );
         
@@ -153,6 +154,9 @@ class Student extends User{
         else{
             $prodAffiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
             $purchase->product_affiliate_id = $prodAffiliate->id;
+            if( $prodAffiliate->ltcAffiliate != null){
+                $purchase->second_tier_affiliate_id = $prodAffiliate->ltcAffiliate->id;
+            }
         }
 
         if( $product->sales()->save( $purchase ) ){
@@ -184,30 +188,30 @@ class Student extends User{
             }
             
             // credit instructor
-            $course->instructor->credit( $purchase->instructor_earnings, $product, $purchase->payment_ref );
+            $course->instructor->credit( $purchase->instructor_earnings, $product, $purchase->payment_ref, $purchase->id );
             // credit LTC affiliate
             if( $purchase->ltc_affiliate_earnings > 0){
-                $this->ltcAffiliate->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref, 'ltc');
+                $this->ltcAffiliate->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref, 'ltc', 0, $purchase->id);
             }
             
             // credit second tier affiliate
             if( $purchase->second_tier_affiliate_earnings > 0){
                 $secondTier = ProductAffiliate::where('affiliate_id', $affiliate)->first()->ltcAffiliate;
-                $secondTier->credit( $purchase->second_tier_affiliate_earnings, $product, $purchase->payment_ref, 'st');
+                $secondTier->credit( $purchase->second_tier_affiliate_earnings, $product, $purchase->payment_ref, 'st', 0, $purchase->id);
             }
             
             // credit product affiliate
             if($affiliate!=null &&  $purchase->affiliate_earnings > 0){
                 ProductAffiliate::where('affiliate_id', $affiliate)->first();
-                $prodAffiliate->credit( $purchase->affiliate_earnings, $product, $purchase->payment_ref);
+                $prodAffiliate->credit( $purchase->affiliate_earnings, $product, $purchase->payment_ref, $purchase->id);
             }
             // credit Instructor Agency
             if( $course->instructor->instructor_agency_id > 0){
-                $course->instructor->agency->credit( $purchase->instructor_agency_earnings, $product, $purchase->payment_ref );
+                $course->instructor->agency->credit( $purchase->instructor_agency_earnings, $product, $purchase->payment_ref, $purchase->id);
             }
             // credit wazaar
             $wazaar = LTCAffiliate::find(2);
-            $wazaar->credit( $purchase->site_earnings, $product, $purchase->payment_ref, 'wazaar', $purchase->processor_fee );
+            $wazaar->credit( $purchase->site_earnings, $product, $purchase->payment_ref, 'wazaar', $purchase->processor_fee, $purchase->id);
             
             return $purchase;
         }
@@ -444,7 +448,7 @@ class Student extends User{
         if( !is_a($transaction, 'Transaction' ) ) return false;
         if( $transaction->user->id != $this->id ) return false;
         if( $transaction->transaction_type != 'student_balance_debit' ) return false;
-        if( $transaction->status != 'pending' ) return false;
+//        if( $transaction->status != 'pending' ) return false;
         return DB::transaction(function() use ( $transaction ){
             // create the transaction
               $transaction->status = 'failed';

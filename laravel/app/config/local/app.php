@@ -21,6 +21,7 @@ return array(
 			'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 			'Barryvdh\Debugbar\ServiceProvider',
                         'Way\Generators\GeneratorsServiceProvider',
+                        'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
 		]
 	)
 

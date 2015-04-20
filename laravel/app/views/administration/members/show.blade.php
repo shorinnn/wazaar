@@ -97,6 +97,7 @@
                                 <th>{{ trans('administration.item-type') }}</th>
                                 <th>{{ trans('administration.purchase-amount') }}</th>
                                 <th>{{ trans('administration.date-of-purchase') }}</th>
+                                <th>{{ trans('administration.refund') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -104,7 +105,7 @@
                                 $i = 1;
                             ?>
                             @foreach($student->purchases as $purchase)
-                                <tr>
+                                <tr id='row-{{ $purchase->id }}'>
                                     <td> {{ $i }}</td>
                                     <td>{{ $purchase->id }}</td>
                                     <td>
@@ -120,8 +121,87 @@
                                             </a>
                                     </td>
                                     <td> {{ trans('administration.'.get_class( $purchase->product ) ) }}</td>
-                                    <td>¥{{ number_format($purchase->purchase_price, Config::get('custom.currency_decimals')) }}</td>
+                                    <td>
+                                        {{ trans('administration.paid')}} 
+                                            ¥{{ number_format($purchase->purchase_price, Config::get('custom.currency_decimals')) }}<br />
+                                        
+                                        {{ trans('administration.tax')}} 
+                                            ¥{{ number_format($purchase->tax, Config::get('custom.currency_decimals')) }}<br />
+                                            
+                                        {{ trans('administration.processor-fee')}}
+                                            ¥{{ number_format($purchase->processor_fee, Config::get('custom.currency_decimals')) }}<br />
+                                            
+                                        {{ trans('administration.paid-from-balance')}} 
+                                            ¥{{ number_format($purchase->balance_used, Config::get('custom.currency_decimals')) }}<br />
+                                            
+                                        {{ trans('administration.refundable')}} 
+                                            ¥{{ number_format($purchase->purchase_price + $purchase->tax - $purchase->balance_used, 
+                                                        Config::get('custom.currency_decimals')) }}<br />
+                                    
+                                    
+                                    </td>
                                     <td> {{ $purchase->created_at }}</td>
+                                    <td>
+                                         {{ Form::open( ['action' => array('MembersController@refund'), 
+                                            'method' => 'POST', 'id'=>'refund-form-'.$purchase->id, 'class' => 'ajax-form',
+                                        'data-callback' => 'deleteItem', 'data-delete' => '#row-'.$purchase->id] ) }}
+                                    <input type="hidden" name="purchase" value="{{ $purchase->id }}" />
+                                    <button type="submit" name='refund-purchase'  class="btn btn-danger delete-button" 
+                                    data-message="{{ trans('administration.sure-refund') }}?">{{ trans('administration.refund') }}</button>
+                                {{ Form::close() }}
+                                    </td>
+                                </tr>
+                                <?php ++$i ;?>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    	<div class="col-md-12">
+        	<div class="order-history">
+            	<h2>{{ trans('administration.refund-history') }}</h2>
+                <div class="table-wrapper table-responsive clear">
+                    <table class="table table-bordered table-striped orders-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ trans('administration.refund-id') }}</th>
+                                <th>{{ trans('administration.order-id') }}</th>
+                                <th>{{ trans('administration.item') }}</th>
+                                <th>{{ trans('administration.item-type') }}</th>
+                                <th>{{ trans('administration.purchase-amount') }}</th>
+                                <th>{{ trans('administration.date-of-refund') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $i = 1;
+                            ?>
+                            @foreach($student->refunds as $refund)
+                                <tr id='row-{{ $refund->id }}'>
+                                    <td> {{ $i }}</td>
+                                    <td>{{ $refund->id }}</td>
+                                    <td>{{ $refund->purchase_id }}</td>
+                                    <td>
+                                    {{ $refund->product->name }}
+                                    @if( !isset( $refund->product->module ) )
+                                            <a href='{{ action( 'CoursesController@show', $refund->product->slug ) }}' target='_blank'>
+                                    @else
+                                            <a href='{{ action( 'CoursesController@show', $refund->product->module->lesson->course->slug ) }}' 
+                                               target='_blank'>
+                                    @endif
+                                    {{ trans('crud/labels.view') }}
+                                                <i class="fa fa-external-link"></i>
+                                            </a>
+                                    </td>
+                                    <td> {{ trans('administration.'.get_class( $refund->product ) ) }}</td>
+                                    <td>
+                                        {{ trans('administration.refunded')}} 
+                                            ¥{{ number_format($refund->purchase_price + $refund->tax  - $refund->balance_used, 
+                                                        Config::get('custom.currency_decimals')) }}
+                                    </td>
+                                    <td> {{ $refund->created_at }}</td>
                                 </tr>
                                 <?php ++$i ;?>
                             @endforeach
