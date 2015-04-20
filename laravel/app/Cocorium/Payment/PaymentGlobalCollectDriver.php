@@ -180,6 +180,23 @@ class PaymentGlobalCollectDriver implements PaymentInterface
         // TODO: Implement refund() method.
     }
 
+    public function invalidateToken($token)
+    {
+        try{
+            $requestXML = "
+                <PROFILE>
+                    <PROFILETOKEN>{$token}</PROFILETOKEN>
+                </PROFILE>
+            ";
+            $requestXML = $this->_prepareXMLString('INVALIDATE_PROFILE',$requestXML);
+            return $this->_executeCall($requestXML);
+        }
+        catch(Exception $ex){
+            return ['success' => false, 'errors' => [$ex->getMessage()]];
+        }
+
+    }
+
     private function _executeCall($requestXML)
     {
         $live = \Config::get('globalcollect.live');
