@@ -78,7 +78,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			return Redirect::guest( action('UsersController@login') );
 		}
 	}
 });
@@ -132,12 +132,12 @@ Route::filter('admin', function()
 });
 
 Route::filter('instructor', function(){
-        if(Auth::guest()) return Redirect::guest('login');
+        if(Auth::guest()) return Redirect::guest( action('UsersController@login') );
         if(!Auth::user()->hasRole('Instructor')) return Redirect::action('SiteController@index');
 });
 
 Route::filter('affiliate', function(){
-    if(Auth::guest()) return Redirect::guest('login');
+    if(Auth::guest()) return Redirect::guest( action('UsersController@login') );
     if(!Auth::user()->hasRole('Affiliate')) return Redirect::action('SiteController@index');
 });
 
