@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class AddShortDescriptionToCoursesTable extends Migration {
+class AddCourseRequirementsToCoursesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,9 +14,10 @@ class AddShortDescriptionToCoursesTable extends Migration {
 	{
 		Schema::table('courses', function(Blueprint $table)
 		{
-			$table->string('short_description')->after('description')->nullable();
+			$table->text('requirements')->nullable()->after('what_will_you_achieve');
 		});
 	}
+
 
 	/**
 	 * Reverse the migrations.
@@ -27,7 +28,7 @@ class AddShortDescriptionToCoursesTable extends Migration {
 	{
 		Schema::table('courses', function(Blueprint $table)
 		{
-			$table->dropColumn('short_description');
+			$table->dropColumn('requirements');
 		});
 	}
 

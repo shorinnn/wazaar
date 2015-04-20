@@ -3,7 +3,7 @@
 class CoursesCategoriesController extends \BaseController {
     
         public function __construct(){
-            $this->beforeFilter('admin', ['except' => 'subcategories']);
+            $this->beforeFilter('admin', ['except' => ['subcategories','subcategories_instructor' ] ] );
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update','destroy' ]]);
         }
         
@@ -47,6 +47,14 @@ class CoursesCategoriesController extends \BaseController {
         }
         
 	public function subcategories()
+	{
+            if(Input::get('id') < 1) return array();
+            $id = Input::get('id');
+            $category = CourseCategory::find($id);
+            return $category->courseSubcategories;
+	}
+        
+	public function subcategories_instructor()
 	{
             if(Input::get('id') < 1) return array();
             $id = Input::get('id');

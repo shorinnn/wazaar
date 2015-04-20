@@ -81,6 +81,7 @@ Route::group( array('domain' => 'instructors.'.Config::get('app.base_url') ), fu
     });
     
     Route::post('private-messages/massStore', 'PrivateMessagesController@massStore');
+    Route::get('coursecategories/subcategories_instructor', 'CoursesCategoriesController@subcategories_instructor');
 });
 
 Route::group( array('domain' => Config::get('app.base_url') ), function(){

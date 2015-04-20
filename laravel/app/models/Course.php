@@ -15,7 +15,7 @@ class Course extends Ardent{
 
     protected $dates = ['sale_ends_on'];
     public $fillable = ['name', 'slug', 'description', 'short_description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
-        'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage', 'payment_type'];
+        'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage', 'payment_type', 'requirements'];
     
     public static $rules = [
         'name' => 'required|unique:courses',
@@ -124,13 +124,24 @@ class Course extends Ardent{
         }
     }
     
-    public function afterSave(){
-        if( Config::get('custom.use_id_for_slug')==true ) {
-            DB::table( $this->getTable() )->where('id', $this->id)->update( ['slug' => PseudoCrypt::hash( $this->id ) ] );
-        }
-    }
+//    public function afterSave(){
+//        if( Config::get('custom.use_id_for_slug')==true ) {
+//            DB::table( $this->getTable() )->where('id', $this->id)->update( ['slug' => PseudoCrypt::hash( $this->id ) ] );
+//        }
+//    }
     
     public function beforeSave(){
+        if( Config::get('custom.use_id_for_slug')==true ) {
+            if( !$this->id ){
+                $id = DB::table('courses')->orderBy('id','desc')->first();
+                if( $id == null ) $id = 1;
+                else $id = $id->id + 1;
+                $this->slug = PseudoCrypt::hash( $id );
+            }
+        }
+        else{
+            $this->slug = Str::slug($this->name);
+        }
         if( trim($this->short_description) == '' ) $this->short_description = Str::limit($this->description, Config::get('custom.short_desc_max_chars') );
         if($this->sale_kind=='percentage' && $this->sale  > 100){
             $this->errors()->add(0, trans('courses/general.cant_discount_101_percent') );
