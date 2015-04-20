@@ -60,4 +60,5 @@ return array(
     'paid-from-balance' => 'Paid From Balance',
     'refundable' => 'Refundable',
     'refunded' => 'Refunded',
+    'not-refundable' => 'Not Refundable',
 );

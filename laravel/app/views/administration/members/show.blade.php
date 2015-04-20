@@ -142,13 +142,15 @@
                                     </td>
                                     <td> {{ $purchase->created_at }}</td>
                                     <td>
-                                         {{ Form::open( ['action' => array('MembersController@refund'), 
-                                            'method' => 'POST', 'id'=>'refund-form-'.$purchase->id, 'class' => 'ajax-form',
-                                        'data-callback' => 'deleteItem', 'data-delete' => '#row-'.$purchase->id] ) }}
-                                    <input type="hidden" name="purchase" value="{{ $purchase->id }}" />
-                                    <button type="submit" name='refund-purchase'  class="btn btn-danger delete-button" 
-                                    data-message="{{ trans('administration.sure-refund') }}?">{{ trans('administration.refund') }}</button>
-                                {{ Form::close() }}
+                                        @if( $purchase->refundable() )
+                                                 {{ Form::open( ['action' => array('MembersController@refund'), 
+                                                    'method' => 'POST', 'id'=>'refund-form-'.$purchase->id, 'class' => 'ajax-form',
+                                                'data-callback' => 'completeRefund', 'data-delete' => '#row-'.$purchase->id] ) }}
+                                            <input type="hidden" name="purchase" value="{{ $purchase->id }}" />
+                                            <button type="submit" name='refund-purchase'  class="btn btn-danger delete-button" 
+                                            data-message="{{ trans('administration.sure-refund') }}?">{{ trans('administration.refund') }}</button>
+                                            {{ Form::close() }}
+                                        @endif
                                     </td>
                                 </tr>
                                 <?php ++$i ;?>
@@ -162,7 +164,7 @@
         	<div class="order-history">
             	<h2>{{ trans('administration.refund-history') }}</h2>
                 <div class="table-wrapper table-responsive clear">
-                    <table class="table table-bordered table-striped orders-table">
+                    <table class="table table-bordered table-striped refunds-table">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -179,30 +181,7 @@
                                 $i = 1;
                             ?>
                             @foreach($student->refunds as $refund)
-                                <tr id='row-{{ $refund->id }}'>
-                                    <td> {{ $i }}</td>
-                                    <td>{{ $refund->id }}</td>
-                                    <td>{{ $refund->purchase_id }}</td>
-                                    <td>
-                                    {{ $refund->product->name }}
-                                    @if( !isset( $refund->product->module ) )
-                                            <a href='{{ action( 'CoursesController@show', $refund->product->slug ) }}' target='_blank'>
-                                    @else
-                                            <a href='{{ action( 'CoursesController@show', $refund->product->module->lesson->course->slug ) }}' 
-                                               target='_blank'>
-                                    @endif
-                                    {{ trans('crud/labels.view') }}
-                                                <i class="fa fa-external-link"></i>
-                                            </a>
-                                    </td>
-                                    <td> {{ trans('administration.'.get_class( $refund->product ) ) }}</td>
-                                    <td>
-                                        {{ trans('administration.refunded')}} 
-                                            ¥{{ number_format($refund->purchase_price + $refund->tax  - $refund->balance_used, 
-                                                        Config::get('custom.currency_decimals')) }}
-                                    </td>
-                                    <td> {{ $refund->created_at }}</td>
-                                </tr>
+                                {{ View::make('administration.members.partials.refund')->with( compact('refund', 'i') )}}
                                 <?php ++$i ;?>
                             @endforeach
                         </tbody>
@@ -331,4 +310,13 @@
 @endif
 
 
+@stop
+
+@section('extra_js')
+<script>
+    function completeRefund(result, event){
+        deleteItem(result, event);
+        $('.refunds-table > tbody').append( result.html );
+    }
+</script>
 @stop

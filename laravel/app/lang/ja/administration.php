@@ -60,4 +60,5 @@ return array(
     'paid-from-balance' => '月Paid From Balanceせ',
     'refundable' => '月Refundableせ',
     'refunded' => '月Refundedせ',
+    'not-refundable' => '月Not Refundableせ',
 );

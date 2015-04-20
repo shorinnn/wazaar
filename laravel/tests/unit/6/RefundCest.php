@@ -113,7 +113,7 @@ class RefundCest{
         
         // refund the purchase
         $purchase = Purchase::orderBy('id','desc')->first();
-        $I->assertTrue( $purchase->refund() );
+        $I->assertNotEquals(false, $purchase->refund() );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'failed'] );
@@ -236,7 +236,7 @@ class RefundCest{
         
         // refund the purchase
         $purchase = Purchase::orderBy('id','desc')->first();
-        $I->assertTrue( $purchase->refund() );
+        $I->assertNotEquals(false, $purchase->refund() );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'failed'] );
@@ -355,7 +355,7 @@ class RefundCest{
         
         // refund the purchase
         $purchase = Purchase::orderBy('id','desc')->first();
-        $I->assertTrue( $purchase->refund() );
+        $I->assertNotEquals(false, $purchase->refund() );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'failed'] );
@@ -476,7 +476,7 @@ class RefundCest{
         
         // refund the purchase
         $purchase = Purchase::orderBy('id','desc')->first();
-        $I->assertTrue( $purchase->refund() );
+        $I->assertNotEquals(false, $purchase->refund() );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'failed'] );

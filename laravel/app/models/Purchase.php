@@ -23,9 +23,17 @@ class Purchase extends CocoriumArdent{
             if( Lesson::find($this->product_id)==null ) return false;
         }
     }
-    
-    public function refund(){
+    public function refundable(){
         if( $this->purchase_price==0 ) return false;
+        
+        $now = new DateTime();
+        $purchased  = new DateTime( $this->created_at );
+        $dDiff = $now->diff($purchased);
+        if( $dDiff->days > 30) return false;
+        return true;
+    }
+    public function refund(){
+        if( !$this->refundable() ) return false;
         
         $data =  $this->toArray();
         $data['purchase_id'] = $data['id'];
@@ -99,7 +107,7 @@ class Purchase extends CocoriumArdent{
             
             // delete the original purchase
             $this->delete();
-            return true;
+            return $refund;
         }
         return false;
     }

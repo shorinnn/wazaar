@@ -49,30 +49,6 @@ class MembersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-            
-//                DB::table('purchases')->truncate();
-//                DB::table('transactions')->truncate();
-//
-//
-//                $course = Course::first();
-//                $course->price = 105;
-//                $course->affiliate_percentage = 0;
-//                $course->updateUniques();
-//                $course->instructor->instructor_agency_id = null;
-//                $course->instructor->updateUniques();
-//                 $student = Student::where('username','sorin')->first();
-//
-//                $data = [];
-//                $data['successData']['REF'] = '123';
-//                $data['successData']['processor_fee'] = '5';
-//                $data['successData']['tax'] = '10';
-//                $data['successData']['giftID'] = null;
-//                $data['successData']['ORDERID'] = 1;
-//                $data['successData']['balance_used'] = '10';
-//                $data['successData']['balance_transaction_id'] = '0';
-//                $res = $student->purchase($course, null, $data);
-//                dd( $res );
-
             $user = User::find($id);
             $student = Student::find($id);
             $adminHelper = new AdminHelper();
@@ -149,8 +125,23 @@ class MembersController extends \BaseController {
         
         public function refund(){
             $purchase = Purchase::find( Input::get('purchase') );
-            $purchase->refund();
-            return json_encode( [ 'status' => 'success'] );
+            $refund = $purchase->refund();
+            if(!$refund){
+                if( !Request::ajax() ){
+                    return Redirect::back();
+                }
+                else{
+                    return json_encode( [ 'status' => 'error', 'errors' => trans('administration.not-refundable') ] );
+                }
+            }
+            if( !Request::ajax() ){
+                return Redirect::back();
+            }
+            else {
+                $i = $refund->student->refunds()->count();
+                $html = View::make('administration.members.partials.refund')->with( compact('refund', 'i') )->render();
+                return json_encode( [ 'status' => 'success', 'html' => $html ] );
+            }
         }
 
 
