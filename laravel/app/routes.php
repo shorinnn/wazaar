@@ -281,12 +281,14 @@ Route::group(['prefix' => 'api'], function(){
         Route::post('profile/create','ApiPaymentController@createProfile');
         Route::post('order/status','ApiPaymentController@getOrderStatus');
     });
+
+    Route::post('profile/invalidate','ApiPaymentController@invalidateToken');
 });
 
 Route::get('test', function(){
     $p = new PaymentHelper;
 
-    $r = $p->processCreateProfileFromOrderId('1000002585');
+    $r = $p->invalidateProfile('6756453f-b992-468b-a033-1c9291db4cb4');
     echo '<pre>';
     print_r($r);
     echo '</pre>';

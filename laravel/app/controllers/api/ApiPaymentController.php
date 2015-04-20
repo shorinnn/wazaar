@@ -108,4 +108,12 @@ class ApiPaymentController extends BaseController
 
         return Response::json($response);
     }
+
+    public function invalidateToken()
+    {
+        $token = Input::get('profileToken');
+        $response = $this->payment->invalidateToken($token);
+
+        return Response::json($response);
+    }
 }

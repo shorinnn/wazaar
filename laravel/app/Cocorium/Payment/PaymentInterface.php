@@ -9,4 +9,5 @@ interface PaymentInterface {
     public function createPaymentProfileFromOrder($orderId);
     public function cancel();
     public function refund();
+    public function invalidateToken($token);
 }
