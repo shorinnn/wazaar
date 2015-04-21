@@ -2582,14 +2582,4 @@ class FunctionalTester extends \Codeception\Actor
     public function fail($message) {
         return $this->scenario->runStep(new \Codeception\Step\Action('fail', func_get_args()));
     }
-    
-     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
-     *
-     *
-     * @see \Codeception\Module\FunctionalHelper::refresh_user()
-     */
-    public function refreshAuthenticatedUser($user) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('refresh_user', func_get_args()));
-    }
 }

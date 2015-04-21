@@ -10,7 +10,14 @@
 | and give it the Closure to execute when that URI is requested.
 |   
 */
-Route::group( array('domain' => Config::get('app.base_url') ), function(){
+$domain = Config::get('app.base_url');
+$instructorSubdomain = 'instructors.'.Config::get('app.base_url');
+$affiliateSubdomain = 'affiliates.'. Config::get('app.base_url');
+// workaround for codeception functional tests with subdomains
+if( !isset($_SERVER['HTTP_HOST'])){
+    $domain = $instructorSubdomain = $affiliateSubdomain = Request::getHost();
+}
+Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
     Route::get('/dash', 'SiteController@dashboard');
@@ -72,7 +79,7 @@ Route::group( array('domain' => Config::get('app.base_url') ), function(){
 });
 
 // Affiliate promote links
-Route::group( array('domain' => 'instructors.'.Config::get('app.base_url') ), function(){
+Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::group(['prefix' => 'affiliate'], function (){
         Route::get('promote/{course}', 'AffiliateController@promote');
         Route::post('gifts/{gift}/files', 'GiftsController@files');
@@ -84,7 +91,7 @@ Route::group( array('domain' => 'instructors.'.Config::get('app.base_url') ), fu
     Route::get('coursecategories/subcategories_instructor', 'CoursesCategoriesController@subcategories_instructor');
 });
 
-Route::group( array('domain' => Config::get('app.base_url') ), function(){
+Route::group( array('domain' => $domain ), function(){
     // Students
     Route::group(['prefix' => 'student'], function (){
         Route::get('mycourses', 'StudentController@mycourses');
@@ -138,7 +145,7 @@ Route::group( array('domain' => Config::get('app.base_url') ), function(){
     Route::get('courses/{slug}', 'CoursesController@show');
 });
 
-Route::group( array('domain' => 'instructors.'.Config::get('app.base_url') ), function(){
+Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::get('courses/mycourses', 'CoursesController@myCourses');
     Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
     Route::get('courses/{slug}/dashboard', 'CoursesController@dashboard');
@@ -171,7 +178,7 @@ Route::group( array('domain' => 'instructors.'.Config::get('app.base_url') ), fu
     });
 });
 
-Route::group( array('domain' => Config::get('app.base_url') ), function(){
+Route::group( array('domain' => $domain ), function(){
     // Instructors routes
     Route::get('instructors', 'InstructorsController@index');
     Route::get('instructors/start/{user}', 'InstructorsController@start');
@@ -185,7 +192,7 @@ Route::group( array('domain' => Config::get('app.base_url') ), function(){
 
 ## Route Group for Profile
 
-Route::group( array('domain' => Config::get('app.base_url') ), function(){
+Route::group( array('domain' => $domain ), function(){
     Route::group(['prefix' => 'profile'], function (){
         Route::get('settings', 'ProfileController@settings');
         Route::put('settings', 'ProfileController@updateSettings');
@@ -203,7 +210,7 @@ Route::group( array('domain' => Config::get('app.base_url') ), function(){
 });
 
 
-Route::group( array('domain' => 'affiliates.'. Config::get('app.base_url') ), function(){
+Route::group( array('domain' => $affiliateSubdomain ), function(){
     Route::group(['prefix' => 'dashboard'], function (){
         Route::get('/','AffiliateDashboardController@index');
         Route::get('topcourses/{frequency}/{courseId?}', 'AffiliateDashboardController@topCoursesView');
@@ -231,7 +238,7 @@ Route::group( array('domain' => 'affiliates.'. Config::get('app.base_url') ), fu
 
 
 
-Route::group( array('domain' => 'instructors.'.Config::get('app.base_url') ), function(){
+Route::group( array('domain' => $instructorSubdomain ), function(){
     ## Route Group Videos Manager
     Route::group(['prefix' => 'video'], function(){
         Route::get('add','VideosController@add');

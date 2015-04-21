@@ -147,7 +147,7 @@
                                                     'method' => 'POST', 'id'=>'refund-form-'.$purchase->id, 'class' => 'ajax-form',
                                                 'data-callback' => 'completeRefund', 'data-delete' => '#row-'.$purchase->id] ) }}
                                             <input type="hidden" name="purchase" value="{{ $purchase->id }}" />
-                                            <button type="submit" name='refund-purchase'  class="btn btn-danger delete-button" 
+                                            <button type="submit" name='refund-purchase'  class="btn btn-danger delete-button refund-purchase-{{$purchase->id}}" 
                                             data-message="{{ trans('administration.sure-refund') }}?">{{ trans('administration.refund') }}</button>
                                             {{ Form::close() }}
                                         @endif
