@@ -60,7 +60,8 @@
 		"barryvdh/laravel-ide-helper": "1.11.*@dev",
 		"barryvdh/laravel-debugbar": "1.8.*@dev",
                 "way/generators": "~2.0", 
-                "xethron/migrations-generator": "dev-master"
+                "xethron/migrations-generator": "dev-master",
+                "codeception/robo-paracept":"@dev"
 
 	}
 }
