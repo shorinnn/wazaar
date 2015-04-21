@@ -133,7 +133,6 @@ function enableLessonRTE(e){
 	var actionPanel = $(e.target).parent().parent().parent().siblings('div[class*="action-panel"]');
 	var actionPanelHeight = $(actionPanel).height();
 	TweenMax.fromTo(actionPanel, 0.3, {marginBottom: '40px'}, {marginBottom: '0px'});
-	
 } 
 
 function enableRTE(selector){
@@ -171,7 +170,6 @@ function enableBlockFileUploader(e){
 	var actionPanel = $(e.target).parent().parent().parent().siblings('div[class*="action-panel"]');
 	var actionPanelHeight = $(actionPanel).height();
 	TweenMax.fromTo(actionPanel, 0.3, {marginBottom: '40px'}, {marginBottom: '0px'});
-	
 }
 
 /**
@@ -255,7 +253,11 @@ function activeLessonOption(){
 	var lessonOptionButtons = $('.lesson-options .buttons a');
 	lessonOptionButtons.on('click', function (e) {
 		$(this).parent().parent('.lesson-options-buttons').find('.load-remote-cache').not(this).removeClass('active');
+		$(this).parent().parent('.lesson-options-buttons').find('.load-remote-cache').not(this).removeClass('active-done');
 		$(this).addClass('active');
+		if($(this).hasClass('done')){
+			$(this).removeClass('active').addClass('active-done');
+		}
 	});
 }
 
