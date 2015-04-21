@@ -70,8 +70,9 @@ class VideosController extends BaseController
      */
     public function userArchive()
     {
+        $filter = Input::has('filter') ? Input::get('filter') : '';
         $videoOwnerId = Auth::id();
-        $videos = Video::getByOwnerIdAndPreset($videoOwnerId);
+        $videos = Video::getByOwnerIdAndPreset($videoOwnerId,null,$filter);
 
         return View::make('videos.partials.videoThumbs',compact('videos'));
     }

@@ -34,15 +34,16 @@ class CoursesController extends \BaseController {
             $course->slug = Str::slug(Input::get('name'));
             if($course->save()){
                 // notify followers
-                Instructor::find( Auth::user()->id )->notifyFollowers( $course );
+//                Instructor::find( Auth::user()->id )->notifyFollowers( $course );
                 
                 if(Request::ajax()){
+//                    dd($course);
                     return $this->update( $course->slug );
-                    $response = ['status' => 'success', 'url' => 'http://google.ro' ];
-                    return json_encode($response);
-                    
-                    $response = ['status' => 'success', 'updateAction' => action('CoursesController@update', $course->slug) ];
-                    return json_encode($response);
+//                    $response = ['status' => 'success', 'url' => 'http://google.ro' ];
+//                    return json_encode($response);
+//                    
+//                    $response = ['status' => 'success', 'updateAction' => action('CoursesController@update', $course->slug) ];
+//                    return json_encode($response);
                 }
                 return Redirect::action('CoursesController@show', $course->slug)
                         ->withSuccess( trans('crud/errors.object_created',['object' => 'Course']) );
@@ -90,6 +91,7 @@ class CoursesController extends \BaseController {
         
         public function update($slug){
             $course = Course::where('slug',$slug)->first();
+            
             if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 return Redirect::action('CoursesController@index');
             }
@@ -100,6 +102,7 @@ class CoursesController extends \BaseController {
             $course->fill($data);
             $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
             $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
+            $course->requirements = json_encode(array_filter(Input::get('requirements')));
             $course->sale = Input::get('sale');
             $course->sale_kind = Input::get('sale_kind');
             $course->sale_ends_on = (Input::get('sale_ends_on')) ?  Input::get('sale_ends_on') : null;
@@ -129,7 +132,7 @@ class CoursesController extends \BaseController {
                     }
                 }
                 if( Request::ajax() ){
-                    $response = ['status' => 'success', 'url' => action('CoursesController@curriculum', $course->slug) ];
+                    $response = ['status' => 'success', 'url' => action('CoursesController@edit', $course->slug) ];
                     return json_encode($response);
                 }
                 return Redirect::action('CoursesController@edit', $course->slug)

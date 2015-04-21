@@ -25,4 +25,9 @@ return array(
     'public_student_balance_debit_refund_transaction' =>'月Balance Debit Refundせ',
     'cashout_fee_transaction' =>'月Cashout feeせ',
     'cashout_fee' =>'月Cashout feeせ',
+    
+    'instructor_credit_reverse_transaction' => '月Instructor Credit Reverse Transaction Reference:せ',
+    'affiliate_credit_reverse_transaction' => '月Affiliate Credit Reverse Transaction Reference:せ',
+    'instructor_agency_credit_reverse_transaction' => '月Instructor Agency Credit Reverse Transaction Reference:せ',
+    'site_credit_reverse_transaction' => '月Site Credit Reverse Transaction Reference:せ',
 );

@@ -18,9 +18,7 @@ class PaymentHelper
             'productType'   => 'required',
             'finalCost'     => 'required|numeric',
             'originalCost'  => 'required|numeric',
-            'discount'      => 'required|numeric',
-//            'taxPercentage' => 'required',
-//            'taxValue'      => 'required'
+            'discount'      => 'required|numeric'
         ];
     }
 
@@ -38,9 +36,6 @@ class PaymentHelper
     public function creditCardValidationRules()
     {
         return [
-            //'cardNumber' => 'required',
-            //'expiryDate' => 'required',
-            //'cvc'        => 'required',
             'firstName'  => 'required',
             'lastName'   => 'required',
             'email'      => 'required|email',
@@ -73,6 +68,16 @@ class PaymentHelper
         return $this->_executeCurl($createURL, $data);
     }
 
+    public function invalidateProfile($token)
+    {
+        $createURL = $this->url . 'profile/invalidate';
+        $data = [
+            'profileToken' => $token
+        ];
+
+        return $this->_executeCurl($createURL, $data);
+    }
+
     public function processCreateProfileFromOrderId($orderId)
     {
         $createURL = $this->url . 'payment/profile/create';
@@ -95,8 +100,6 @@ class PaymentHelper
             'city'       => $payee['city'],
             'zip'        => $payee['zip'],
             'country'    => 'JP',
-            //'cardNumber' => $paymentDetails['cardNumber'],
-            //'cardExpiry' => $paymentDetails['cardExpiry'],
             'ipAddress'  => Request::ip(),
             'paymentProductId' => $paymentDetails['paymentProductId'],
             'reference' => $paymentDetails['reference'],

@@ -53,6 +53,7 @@ Route::group( array('domain' => Config::get('app.base_url') ), function(){
     Route::group(array('prefix'=>'administration'),function(){
         Route::post('withdrawals/update', 'WithdrawalsController@update');
         Route::resource('withdrawals', 'WithdrawalsController');
+        Route::post('members/refund', 'MembersController@refund');
         Route::resource('members', 'MembersController');
         Route::resource('submissions', 'SubmissionsController');
         Route::get('instructor-agencies/instructors/{id}', 'InstructorAgenciesController@instructors');
@@ -80,6 +81,7 @@ Route::group( array('domain' => 'instructors.'.Config::get('app.base_url') ), fu
     });
     
     Route::post('private-messages/massStore', 'PrivateMessagesController@massStore');
+    Route::get('coursecategories/subcategories_instructor', 'CoursesCategoriesController@subcategories_instructor');
 });
 
 Route::group( array('domain' => Config::get('app.base_url') ), function(){
@@ -237,7 +239,7 @@ Route::group( array('domain' => 'instructors.'.Config::get('app.base_url') ), fu
         Route::post('add-by-filename','VideosController@addVideoByFilename');
         Route::any('sns/callback', 'SnsController@snsCallback');
         Route::get('{id}/json','VideosController@videoAndFormatsJson');
-        Route::get('user/archive','VideosController@userArchive');
+        Route::any('user/archive','VideosController@userArchive');
     });
 });
 
@@ -279,5 +281,17 @@ Route::group(['prefix' => 'api'], function(){
         Route::post('profile/create','ApiPaymentController@createProfile');
         Route::post('order/status','ApiPaymentController@getOrderStatus');
     });
+
+    Route::post('profile/invalidate','ApiPaymentController@invalidateToken');
 });
 
+Route::get('test', function(){
+    $p = new PaymentHelper;
+
+    $r = $p->invalidateProfile('6756453f-b992-468b-a033-1c9291db4cb4');
+    echo '<pre>';
+    print_r($r);
+    echo '</pre>';
+    die;
+
+});

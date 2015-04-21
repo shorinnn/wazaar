@@ -49,5 +49,16 @@ return array(
     'sure-approve' => 'Are you sure you want to approve',
     'sure-reject' => 'Are you sure you want to reject',
     'instructor-agencies' => 'Instructor Agencies',
-    
+    'refund' => 'Refund',
+    'sure-refund' => 'Are you sure you want to refund',
+    'refund-history' => 'Refund History',
+    'date-of-refund' => 'Date of Refund',
+    'refund-id' => 'Refund ID',
+    'paid' => 'Paid',
+    'tax' => 'Tax',
+    'processor-fee' => 'Processor Fee',
+    'paid-from-balance' => 'Paid From Balance',
+    'refundable' => 'Refundable',
+    'refunded' => 'Refunded',
+    'not-refundable' => 'Not Refundable',
 );

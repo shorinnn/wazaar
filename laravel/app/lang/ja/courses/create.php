@@ -16,4 +16,5 @@ return array(
     'make_it_results' => '月Make it results basedせ',
     'for_your_student_if' => '月This course is for your student if your student is...せ',
     'start_creating_curriculum' => '月Start Creating Curriculumせ',
+    'course-requirements' => '月Course Requirementsせ',
 );

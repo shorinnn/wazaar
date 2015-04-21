@@ -148,12 +148,22 @@
                             </div>
                         @endif-->
                         <div class="misc-container-1">
-                        	<p class="lead what-you-will-learn">{{trans('courses/general.what_you_will_achieve')}}.</p>
+                            <p class="lead what-you-will-learn">{{trans('courses/general.what_you_will_achieve')}}.</p>
                             <article class="what-you-will-learn">
                             <ul>
                             @if($achievements = json2Array($course->what_will_you_achieve))
                                 @foreach($achievements as $achievement)
                                     <li>{{ $achievement }}</li>
+                                @endforeach
+                            @endif    
+                             </ul>
+                        	</article>
+                            <p class="lead what-you-will-learn">{{trans('courses/create.course-requirements')}}.</p>
+                            <article class="what-you-will-learn">
+                            <ul>
+                            @if($requirements = json2Array($course->requirements))
+                                @foreach($requirements as $requirement)
+                                    <li>{{ $requirement }}</li>
                                 @endforeach
                             @endif    
                              </ul>

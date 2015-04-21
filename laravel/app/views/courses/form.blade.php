@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="row"> 
-                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="col-xs-12 col-sm-12 col-md-4">
                                     <div class="what-to-achieve">
                                         <h3>{{ trans('courses/create.by_the_end') }}</h3>
                                         @foreach( json2Array($course->what_will_you_achieve) as $skill)
@@ -69,10 +69,20 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="col-xs-12 col-sm-12 col-md-4">
                                     <div class="who-for">
                                         <h3>{{ trans('courses/curriculum.for_those_who') }}</h3>
                                         @foreach( json2Array($course->who_is_this_for) as $for)
+                                            <ul>
+                                                <li>{{ $for }}</li>
+                                            </ul>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                    <div class="who-for">
+                                        <h3>{{ trans('courses/create.course-requirements') }}</h3>
+                                        @foreach( json2Array($course->requirements) as $for)
                                             <ul>
                                                 <li>{{ $for }}</li>
                                             </ul>
@@ -149,7 +159,7 @@
                                         <span class="custom-dropdown">
                                             {{ Form::select('course_category_id', $categories, $course->course_category_id, 
                                     ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 
-                                                    'data-url'=> action('CoursesCategoriesController@subcategories'), 'required']) }}
+                                                    'data-url'=> action('CoursesCategoriesController@subcategories_instructor'), 'required']) }}
                                                     
                                         </span>
                                     </div>   
@@ -339,6 +349,25 @@
                                             <div class="clonable-{{time().$i}}">
                                                  <span>{{$i}}</span>
                                                  <input type='text' name='what_will_you_achieve[]' class="clonable clonable-{{time().$i}}" />
+                                                 <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
+                                            </div>
+                                    </div>    
+                                <div class="what-you-will-achieve">
+                                	<h3>{{ trans('courses/create.course-requirements') }} </h3>
+                                        @if($values = json2Array($course->requirements))
+                                         <?php $i = 1;?>
+                                            @foreach($values as $val)
+                                            <div class="clonable-{{time().$i}}">
+                                                 <span>{{$i}}</span>
+                                                <input type='text' name='requirements[]' data-clonable-max='5' value='{{$val}}' class="clonable clonable-{{time().$i}}"  /><br />
+                                                 <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
+                                             </div>
+                                                <?php ++$i; ?>
+                                            @endforeach
+                                        @endif
+                                            <div class="clonable-{{time().$i}}">
+                                                 <span>{{$i}}</span>
+                                                 <input type='text' name='requirements[]' data-clonable-max='5' class="clonable clonable-{{time().$i}}" />
                                                  <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
                                             </div>
                                     </div>    

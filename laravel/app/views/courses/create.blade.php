@@ -32,7 +32,7 @@
             <div class="ui-select">
             {{ Form::select('course_category_id', $categories, null,  
                         ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 
-                        'data-url'=> action('CoursesCategoriesController@subcategories'), 'required']) }}
+                        'data-url'=> action('CoursesCategoriesController@subcategories_instructor'), 'required']) }}
             </div>
             <h2>{{ trans('courses/create.what_sub_category') }}</h2>
             	<div class="ui-select">
@@ -71,6 +71,14 @@
                      <h2>{{ trans('courses/create.for_your_student_if') }}</h2>
                      <div>
                          <input type='text' name='who_is_this_for[]'  class="clonable" required /><br />
+                         <span>1</span>
+                     </div>
+                     <a href="#" class="help-tip">{{ trans('general.help') }}</a>
+                 </div>
+                 <div class="who-its-for">
+                     <h2>{{ trans('courses/create.course-requirements') }}</h2>
+                     <div>
+                         <input type='text' name='requirements[]' data-clonable-max='5' class="clonable" required /><br />
                          <span>1</span>
                      </div>
                      <a href="#" class="help-tip">{{ trans('general.help') }}</a>

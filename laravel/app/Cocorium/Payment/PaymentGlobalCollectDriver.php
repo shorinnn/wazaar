@@ -160,8 +160,6 @@ class PaymentGlobalCollectDriver implements PaymentInterface
             $orderXML = "
                 <PAYMENT>
                     <ORDERID>{$orderId}</ORDERID>
-                     <EFFORTID>1</EFFORTID>
-                     <ATTEMPTID>1</ATTEMPTID>
                 </PAYMENT>
             ";
             $requestXML = $this->_prepareXMLString('CONVERT_PAYMENTTOPROFILE',$orderXML);
@@ -180,6 +178,23 @@ class PaymentGlobalCollectDriver implements PaymentInterface
     public function refund()
     {
         // TODO: Implement refund() method.
+    }
+
+    public function invalidateToken($token)
+    {
+        try{
+            $requestXML = "
+                <PROFILE>
+                    <PROFILETOKEN>{$token}</PROFILETOKEN>
+                </PROFILE>
+            ";
+            $requestXML = $this->_prepareXMLString('INVALIDATE_PROFILE',$requestXML);
+            return $this->_executeCall($requestXML);
+        }
+        catch(Exception $ex){
+            return ['success' => false, 'errors' => [$ex->getMessage()]];
+        }
+
     }
 
     private function _executeCall($requestXML)
@@ -206,6 +221,7 @@ class PaymentGlobalCollectDriver implements PaymentInterface
                         elseif(isset($responseObject->STATUS)){
                             $successData = $responseObject->STATUS;
                         }
+
 
                     } else {
                         $errors[] = $responseObject->ERROR->MESSAGE;

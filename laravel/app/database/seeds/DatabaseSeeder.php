@@ -262,8 +262,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmed = 1;
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
-        Profile::unguard();
-        Profile::create( ['owner_id' => $user->id, 'owner_type' => 'Student','first_name' => 'Albert', 'last_name' => 'Maranian', 'email' => 'albert@mailinator.com']);
+
         //albert
 
     }
@@ -961,6 +960,8 @@ class ProfileSeeder extends Seeder {
     {
         DB::table('user_profiles')->delete();
         Profile::unguard();
+
+        Profile::create( ['owner_id' => User::where('username','albert')->first()->id , 'owner_type' => 'Student','first_name' => 'Albert', 'last_name' => 'Maranian', 'email' => 'albert@mailinator.com']);
         Profile::create( ['owner_id' => 2, 'owner_type' => 'Affiliate','first_name' => 'Wazaar', 'last_name' => 'Affiliate', 'email' => 'wazaarAffiliate@wazaar.jp', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 'created_at' => \Carbon\Carbon::now()]);
         Profile::create( ['owner_id' => 5, 'owner_type' => 'Instructor','first_name' => 'Wazaar', 'last_name' => 'Instructor', 'email' => 'wazaarInstructor@wazaar.jp', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 'created_at' => \Carbon\Carbon::now()]);
         Profile::create( ['owner_id' => 11, 'owner_type' => 'Instructor','first_name' => 'Keiji', 'last_name' => 'Tani', 'email' => 'Tani@mailinator.com',

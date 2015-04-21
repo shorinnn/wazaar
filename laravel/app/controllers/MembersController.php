@@ -122,6 +122,27 @@ class MembersController extends \BaseController {
                 return Redirect::back()->withError( trans('crud/errors.cannot_delete_object',['object'=>'User']).': '.format_errors($user->errors()->all()));
             }
 	}
+        
+        public function refund(){
+            $purchase = Purchase::find( Input::get('purchase') );
+            $refund = $purchase->refund();
+            if(!$refund){
+                if( !Request::ajax() ){
+                    return Redirect::back();
+                }
+                else{
+                    return json_encode( [ 'status' => 'error', 'errors' => trans('administration.not-refundable') ] );
+                }
+            }
+            if( !Request::ajax() ){
+                return Redirect::back();
+            }
+            else {
+                $i = $refund->student->refunds()->count();
+                $html = View::make('administration.members.partials.refund')->with( compact('refund', 'i') )->render();
+                return json_encode( [ 'status' => 'success', 'html' => $html ] );
+            }
+        }
 
 
 }

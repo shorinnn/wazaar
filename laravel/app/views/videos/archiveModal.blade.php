@@ -8,6 +8,16 @@
             <div class="modal-body clearfix">
 
                 <div id="modal-body-videos">
+                    <div class="row">
+                        <div class="form-group">
+                            <input type="text" name="videoFilter" id="videoFilter" placeholder="Filter" class="form-control">
+                            <button id="btnGoFilterVideo">Go</button>
+                        </div>
+                    </div>
+
+                    <div class="video-list-container">
+
+                    </div>
 
                 </div>
 
