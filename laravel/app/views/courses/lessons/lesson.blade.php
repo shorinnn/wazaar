@@ -122,6 +122,23 @@
                         <span></span>                                   
                     </a>
                 </div>
+                <div class="buttons">
+                    <p>{{ trans('general.published') }}</p> 
+                    <div class="switch-buttons">
+                        <label class="switch">
+                          <input type="checkbox" class="switch-input ajax-updatable"  value='{{ trans('courses/curriculum.yes') }}'
+                                 data-checked-val='{{ trans('courses/curriculum.yes') }}' data-unchecked-val='{{ trans('courses/curriculum.no') }}'
+                                 data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}'
+                                      data-name='published'
+                                 @if($lesson->published=='yes')
+                                     checked="checked"
+                                 @endif
+                                 />
+                          <span data-off="{{ trans('courses/curriculum.no') }}" data-on="{{ trans('courses/curriculum.yes') }}" class="switch-label"></span>
+                          <span class="switch-handle"></span>
+                        </label>
+                    </div>
+                </div>
             </div>
                 <div class="col-lg-12 action-panel-{{$lesson->id}}">
                     <div class="video"></div>
