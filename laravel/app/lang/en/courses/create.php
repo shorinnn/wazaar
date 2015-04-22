@@ -12,7 +12,7 @@ return array(
     'set_objectives' => 'Set Your Course Objectives',
     'this_helps_creating' => 'This helps you with creating a great course that people will talk about and love',
     'course_level' => 'Course Level',
-    'by_the_end' => 'By the end of the course your students will be able to...',
+    'by_the_end' => 'By the end of the course, your students will be able to...',
     'make_it_results' => 'Make it results based',
     'for_your_student_if' => 'This course is for your student if your student is...',
     'start_creating_curriculum' => 'Start Creating Curriculum',

@@ -285,7 +285,7 @@
                         <div class="row">
                         	<div class="col-md-12">
                                 <div class="image-upload">
-                                	<h3>{{ trans('courses/general.details_page_banner_image') }}</h3>
+                                	<h3>{{ trans('courses/general.course_description_video_image') }}</h3>
                                     <label for="upload-banner-image" class="uploadFile">
                                             <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
                                             <span>{{ trans('courses/curriculum.upload') }}</span> 
@@ -338,7 +338,7 @@
                                              </div>
                                     </div>    
                                 <div class="what-you-will-achieve">
-                                	<h3>{{ trans('courses/general.what_will_you_achieve') }} </h3>
+                                	<h3>{{ trans('courses/general.by_the_end') }} </h3>
                                         @if($values = json2Array($course->what_will_you_achieve))
                                          <?php $i = 1;?>
                                             @foreach($values as $val)
@@ -419,11 +419,14 @@
                                                 	{{ Form::select('sale_kind', ['amount' => '$', 'percentage' => '%'], null,['class'=>'turnintodropdown'] ) }}
                                                 </label>
                                         </div>    
-                                        <div class="clear clearfix margin-bottom-20">
+                                        <div class="clear clearfix margin-bottom-20 input-group date">
                                             <label class="label-name">{{ trans('courses/general.sale_ends_on') }}</label>  
-                                            {{ Form::text('sale_ends_on') }}
-                                        </div>    
-                                        <div class="clear clearfix margin-bottom-20">
+                                            {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datepicker']) }}
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>  
+        								<div class="clear clearfix margin-bottom-20">
                                                <button type="submit" class="btn btn-primary submit-button">{{ trans('crud/labels.update') }}</button>
                                         </div>
                                     </div>

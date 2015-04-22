@@ -2680,6 +2680,7 @@ header .activate-dropdown:hover ul{
   border-radius: 4px;
   resize: none;
   width: 630px;
+  margin: 0 auto;
   height: 150px;
   font-size: 14px;
   color: #555;
@@ -5823,6 +5824,12 @@ select option.suspended{
 	resize: none;
 }
 
+#course-edit .payment-section input[type='text'].sales-end-calender,
+#course-edit #edit-course-form #top-form div input[type='text'].sales-end-calender{
+	width: 305px;
+	border-radius: 5px 0 0 5px;
+}
+
 #course-edit #edit-course-form #top-form div textarea::-webkit-input-placeholder,
 #course-edit .payment-section input[type='text']::-webkit-input-placeholder,
 #course-edit #edit-course-form #top-form div input[type='text']::-webkit-input-placeholder{
@@ -5885,8 +5892,13 @@ select option.suspended{
     margin: 65px 0 15px;
 }
 
+.well{
+}
+
 .well h3{
 	color: #333 !important;
+	margin: 0 !important;
+	padding: 10px 19px;
 }
 
 .well h3 .approved{

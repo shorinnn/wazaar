@@ -23,7 +23,7 @@
                data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}' data-name='order' /> 
         
         <input type="text" class="ajax-updatable" value="{{$lesson->name}}"
-               data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}' data-name='name'  />
+               data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}' placeholder="Enter lesson name" data-name='name'  />
         <div class="buttons"> 
             <!--<i class="sortable-handle fa fa-bars"></i>-->   
             <a target="_blank" href="{{ action('ClassroomController@lesson',[
