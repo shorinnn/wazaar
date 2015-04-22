@@ -58,7 +58,6 @@ return array(
     'my-courses' => 'マイコース',
     'you-have-no-courses' => 'コースがありません',
     'go-to-dashboard' => 'ダッシュボードへ',
-    'you-have-enrolled' => '月You have enrolled inせPlease provide more context', 
     'begin-my-learning' => '月Begin My LearningせPlease provide more context', 
     'next-lesson' => '次のレッスン', 
     'prev-lesson' => '前のレッスン',
