@@ -1,5 +1,4 @@
 <?php
-
 return array(
 
 	/*
@@ -12,11 +11,16 @@ return array(
 	| you may specify any of the other wonderful drivers provided here.
 	|
 	| Supported: "file", "cookie", "database", "apc",
-	|            "memcached", "redis", "array"
+	|            "memcached", "redis", "array", "dynamo"
 	|
 	*/
 
 	'driver' => 'file',
+        'dynamo_gc' => false,
+        'dynamo_hash' => 'session_id',
+        'dynamo_aws_region' => 'us-east-1',
+        'dynamo_aws_key' => 'AKIAIPBPNFBWG72FDHXA',
+        'dynamo_aws_secret' => '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',
 
 	/*
 	|--------------------------------------------------------------------------
