@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'dashboard' => '月Dashboardせ',
-    'announcements-tab' => '月Announcements Tabせ',
-    'questions-tab' => '月Questions Tabせ',
-    'discussions-tab' => '月Discussions Tabせ',
+    'dashboard' => 'ダッシュボード',
+    'announcements-tab' => '通知タブ',
+    'questions-tab' => '質問タブ',
+    'discussions-tab' => '会話タブ',
     
 ];

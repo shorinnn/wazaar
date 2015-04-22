@@ -1,8 +1,8 @@
 <?php
 return array(
-	'profile' => '月Profileせ',
-	'courses' => '月Coursesせ',
-	'settings' => '月Settingsせ',
-	'logout' => '月Logoutせ',
-	'messages' => '月Messagesせ',
+	'profile' => 'プロフィール',
+	'courses' => 'コース',
+	'settings' => '設定',
+	'logout' => 'ログアウト',
+	'messages' => 'メッセージ',
 );

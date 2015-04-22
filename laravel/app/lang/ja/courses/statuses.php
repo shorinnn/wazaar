@@ -1,10 +1,10 @@
 <?php
 return [
-    'public' => '月publicせ',
-    'private' => '月privateせ',
-    'approved' => '月approvedせ',
-    'pending' => '月pendingせ',
-    'rejected' => '月rejectedせ',
-    'unsubmitted' => '月unsubmittedせ',
-    'submit-for-approval' => '月Submit for approvalせ',
+    'public' => '月publicせplease provide more context',
+    'private' => '月privateせplease provide more context',
+    'approved' => '承認済み',
+    'pending' => 'please provide more context',
+    'rejected' => '月rejectedせplease provide more context',
+    'unsubmitted' => '月unsubmittedせplease provide more context',
+    'submit-for-approval' => '承認申請する',
     ];

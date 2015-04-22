@@ -1,15 +1,15 @@
 <?php
 
 return [
-    'title' => '月Videosせ',
-    'uploadHere' => '月Upload videos hereせ',
-    'willAppearHere' => '月Your video will appear here when it\'s processed successfullyせ',
-    'doesNotSupportHtml5' => '月Your browser does not support HTML 5.せ',
-    'upload-video' => '月Upload Videoせ',
-    'uploadOr' => '月Upload Video ORせ',
-    'selectExisting' => '月Select From Existingせ',
-    'formatsSupported' => '月Formats supported: mp4, avi, wmvせ',
-    'maxFileSize' => '月Max file size: 2GBせ',
-    'myVideos' => '月My Videosせ',
-    'useVideo' => '月Use Videoせ'
+    'title' => '動画',
+    'uploadHere' => 'ここに動画をアップロード',
+    'willAppearHere' => '手順を完了すると、ここに動画が表示されます',
+    'doesNotSupportHtml5' => 'このブラウザはHTML5をサポートしていません',
+    'upload-video' => '動画をアップロード',
+    'uploadOr' => '動画をアップロードする、または',
+    'selectExisting' => '既存のファイルを選択',
+    'formatsSupported' => '対応フォーマット: mp4, avi, wmv',
+    'maxFileSize' => 'ファイルサイズの上限: 2GB',
+    'myVideos' => 'マイ動画',
+    'useVideo' => '動画を使用する'
 ];
