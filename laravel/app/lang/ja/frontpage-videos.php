@@ -1,9 +1,9 @@
 <?php
 
 return array(
-    'add-grid' => '月Add Gridせ',
-    'delete-first-grid' => '月Delete first grid (6 videos)せ',
-    'delete-last-grid' => '月Delete last grid (6 videos)せ',
-    'big' => '月Bigせ',
-    'random' => '月Randomせ',
+    'add-grid' => 'グリッドを追加',
+    'delete-first-grid' => '最初のグリッドを削除 (6つの動画)',
+    'delete-last-grid' => '最後のグリッドを削除(6つの動画)',
+    'big' => '月BigせPlease provide more context',
+    'random' => 'ランダム',
 );
