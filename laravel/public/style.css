@@ -1779,10 +1779,10 @@ header .activate-dropdown:hover ul{
 
 .course-detail-top-section .centered-contents 
 .white-box .join-class.pushdown{
-    -webkit-box-shadow: 0px 1px 0px #f1b90f;
+/*    -webkit-box-shadow: 0px 1px 0px #f1b90f;
     -moz-box-shadow: 0px 1px 0px #f1b90f;
     box-shadow: 0px 1px 0px #f1b90f;
-    top:7px;
+    top:7px;*/
 	outline: none;
 }
 
@@ -1790,6 +1790,11 @@ header .activate-dropdown:hover ul{
 .white-box .join-class:hover{
 	background: #ffe63a;
 	text-decoration: none;
+}
+
+.course-detail-top-section .centered-contents 
+.white-box .join-class:focus{
+	outline: none;
 }
 
 .course-detail-top-section .centered-contents 
@@ -4658,7 +4663,7 @@ select::-ms-expand {
 }
 
 .unauthenticated-homepage .course-listing-container{
-	padding: 120px 0 40px;
+	padding: 50px 0 40px;
 }
 
 .unauthenticated-homepage .course-listing-container h3{
@@ -5766,7 +5771,7 @@ select option.suspended{
 
 #course-edit .custom-dropdown select{
 	background: none;
-	color: #b0bec1;
+	color: #000;
 	font-size: 14px;
 	width: 360px;
 }
@@ -5802,7 +5807,7 @@ select option.suspended{
 	background: none;
 	padding: 0.5em 2.5em 0.5em 0.5em;
 	font-size: 14px;
-	color:#b0bec1;
+	color:#000;
 	border: solid 1px #adadad;
 	resize: none;
 }
@@ -5843,6 +5848,23 @@ select option.suspended{
     font-weight: 200;
 	text-align: center;
     margin: 65px 0 15px;
+}
+
+.well h3{
+	color: #333 !important;
+}
+
+.well h3 .approved{
+	color: #2bbd0a;
+	font-style: normal;
+}
+
+.well h3 .rejected{
+	color: #eb102f;
+}
+
+.well h3 .pending{
+	color: #eb102f;
 }
 
 #course-edit .uploadFile{
@@ -6367,15 +6389,26 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .course-editor #modules-list > li .new-lesson > input[type="text"],
 .course-editor #modules-list > li .new-module > input[type="text"]{
-	width: 79.3%;
 	float: left;
-	height: 38px;
-	border: none;
+	border: solid 1px #fff;
+	height: 34px;
+	outline: none;
+	line-height: 34px;
+	margin: 2px;
 	background: #fff;
 	padding-left: 20px;
 	font-size: 14px;
 	color: #666;
 }
+
+.course-editor #modules-list > li .new-lesson > input[type="text"]{
+	width: 65.8%;
+}
+
+.course-editor #modules-list > li .new-module > input[type="text"]{
+	width: 79%;
+}
+
 
 .course-editor #modules-list > li .new-lesson > input[type="text"]:hover,
 .course-editor #modules-list > li .new-module > input[type="text"]:hover{
@@ -6393,20 +6426,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .course-editor #modules-list > li .new-lesson > input[type="text"]:focus,
 .course-editor #modules-list > li .new-module > input[type="text"]:focus{
-	background: #fff;
 	border: solid 1px #ddd;
-	height: 34px;
-	outline: none;
-	margin: 2px;
-	line-height: 34px;
-}
-
-.course-editor #modules-list > li .new-lesson > input[type="text"]:focus{
-	width: 65.8%;
-}
-
-.course-editor #modules-list > li .new-module > input[type="text"]:focus{
-	width: 79%;
 }
 
 .course-editor #modules-list > li .new-module > span{
@@ -6529,10 +6549,6 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	border-radius: 5px;
 }
 
-.course-editor #modules-list > li .new-lesson > input[type="text"]{
-	width: 66.3%;
-}
-
 .course-editor #modules-list > li .new-lesson > span{
 	background: #ececec;
 }
@@ -6596,8 +6612,18 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	border: none;
 	margin: 0 auto 22px;
 	position: relative;
+	-webkit-box-shadow: 0px 4px 0px #6a9f0e;
+    -moz-box-shadow: 0px 4px 0px #6a9f0e;
+    box-shadow: 0px 4px 0px #6a9f0e;
 }
 
+.course-editor #modules-list > li .video-upload:hover{
+	background: #a4e13b;
+}
+
+.course-editor #modules-list > li .video-upload:focus{
+	background: #85c01e;
+}
 
 .course-editor #modules-list > li .show-videos-archive-modal {
     border-radius: 5px;
@@ -6662,6 +6688,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	margin-bottom: 20px;
 }
 
+.plan-your-curriculum .lesson-options .buttons > p,
 .course-editor #modules-list .lesson-options .details p{
 	font-size: 14px;
 	color: #0099ff;
@@ -6682,6 +6709,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .course-editor #modules-list .lesson-options .details select,
 .course-editor #modules-list .lesson-options .details input,
+.plan-your-curriculum .lesson-options .buttons .switch-buttons input,
 .course-editor #modules-list .lesson-options .details textarea{
 	float: right;
     margin-right: 0%;
@@ -6699,6 +6727,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
     resize: none;
 }
 
+.plan-your-curriculum .lesson-options .buttons .switch-buttons input,
 .course-editor #modules-list .lesson-options .details select,
 .course-editor #modules-list .lesson-options .details input{
     height: 30px;
@@ -6931,7 +6960,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .plan-your-curriculum .lesson-options > div.lesson-options-buttons{
 	margin: 0 auto 30px;
-	max-width: 51%;
+	max-width: 62%;
 }
 
 .plan-your-curriculum .lesson-options .buttons{
@@ -6942,11 +6971,25 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	float: left;
 }
 
+.plan-your-curriculum .lesson-options .buttons .switch-buttons{
+	margin: 0 0 0 10px;
+}
+
+.plan-your-curriculum .lesson-options .buttons.publish{
+	width: auto;
+	height: auto;
+	margin-top: 16px;
+}
+	
+.plan-your-curriculum .lesson-options .buttons .switch-buttons > .switch{
+	margin: 0;
+}
+
 .plan-your-curriculum .lesson-options .buttons + .buttons{
 	margin-left: 20px;
 }
 
-.plan-your-curriculum .lesson-options .buttons span{
+.plan-your-curriculum .lesson-options .buttons a span{
 	display: block;
 	height: 64px;
 	width: 64px;

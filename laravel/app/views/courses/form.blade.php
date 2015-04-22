@@ -119,8 +119,9 @@
                     <div role="tabpanel" class="tab-pane fade" id="course-edit">
                         <div class="row well">
                             <h3 id='publish-status-header'>
-                                {{ trans('courses/general.publish-status') }}: 
-                                {{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}</h3>
+                                {{ trans('courses/general.approval-status') }}: 
+                                <span class="approved">{{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}</span>
+                            </h3>
                             
                             @if( $course->publish_status!='approved' && $course->publish_status!='pending' )
                              {{ Form::model($course, ['action' => ['CoursesController@submitForApproval', $course->slug], 'method' => 'PUT',

@@ -76,6 +76,7 @@ return array(
     'questions' => 'Questions',
     'discussions' => 'Discussions',
     'publish-status' => 'Publish Status',
+    'approval-status' => 'Approval Status',
     'privacy' => 'Privacy',
     'go-to-dashboard' => 'Go To Dashboard',
     'course-edit' => 'Course Edit',

@@ -140,7 +140,8 @@
 				});
 				
 				$('#instructor-editor a').click(function (e) {
-				  e.preventDefault()
+				  e.preventDefault();
+				  history.pushState( null, null, $(this).attr('href') );
 				  $(this).tab('show')
 				});
 				

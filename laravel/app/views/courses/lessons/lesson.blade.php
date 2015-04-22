@@ -122,7 +122,7 @@
                         <span></span>                                   
                     </a>
                 </div>
-                <div class="buttons">
+                <div class="buttons publish">
                     <p>{{ trans('general.published') }}</p> 
                     <div class="switch-buttons">
                         <label class="switch">

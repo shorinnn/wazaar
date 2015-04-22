@@ -95,16 +95,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "2.8.0",
+            "version": "2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "526a52732b11154aa937ec1e160668d7f7b83afc"
+                "reference": "9715c747724a10c0ba0e3bae741b165730cd1953"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/526a52732b11154aa937ec1e160668d7f7b83afc",
-                "reference": "526a52732b11154aa937ec1e160668d7f7b83afc",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/9715c747724a10c0ba0e3bae741b165730cd1953",
+                "reference": "9715c747724a10c0ba0e3bae741b165730cd1953",
                 "shasum": ""
             },
             "require": {
@@ -158,7 +158,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-04-09 18:58:17"
+            "time": "2015-04-16 22:25:42"
         },
         {
             "name": "aws/aws-sdk-php-laravel",
@@ -347,12 +347,12 @@
             "version": "v1.0.10",
             "source": {
                 "type": "git",
-                "url": "https://github.com/d11wtq/boris.git",
+                "url": "https://github.com/borisrepl/boris.git",
                 "reference": "31055b15e2d3fe47f31f6aa8e277f8f3fc7eb483"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/d11wtq/boris/zipball/31055b15e2d3fe47f31f6aa8e277f8f3fc7eb483",
+                "url": "https://api.github.com/repos/borisrepl/boris/zipball/31055b15e2d3fe47f31f6aa8e277f8f3fc7eb483",
                 "reference": "31055b15e2d3fe47f31f6aa8e277f8f3fc7eb483",
                 "shasum": ""
             },
