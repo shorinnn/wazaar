@@ -3,7 +3,7 @@
 <section class="container-fluid register-page top-blue-section">
 	<div class="row">
     	<div class="col-md-12">
-        	<h1>{{ trans('general.login') }}</h1>
+        	<h1>{{ trans('general.register') }}</h1>
             <span>{{ trans('site/register.and-earn') }}</span>
             <em>500¥</em>
             <p>{{ trans('site/register.credit') }}</p>

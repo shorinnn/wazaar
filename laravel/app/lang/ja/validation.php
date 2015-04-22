@@ -49,7 +49,7 @@ return array(
 	"mimes"                => ":attributeのファイルタイプを:valuesにしてください",
 	"min"                  => array(
 		"numeric" => ":attributeは:min以上にしてください",
-		"file"    => :"attributeは:minキロバイト以上にしてください",
+		"file"    => ":attributeは:minキロバイト以上にしてください",
 		"string"  => ":attributeは:min文字以上にしてください",
 		"array"   => ":attributeは:min項目以上にしてください",
 	),

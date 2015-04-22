@@ -65,7 +65,6 @@ return array(
     'my_courses' => 'My Course',
     'you-have-no-courses' => 'You have no course',
     'go-to-dashboard' => 'Go to Dashboard', 
-    'you-have-enrolled' => 'You have enrolled in', 
     'begin-my-learning' => 'Begin My Learning', 
     'next-lesson' => 'Next Lesson', 
     'prev-lesson' => 'Previous Lesson', 
