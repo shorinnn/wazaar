@@ -16,7 +16,12 @@ return array(
 	|
 	*/
 
-	'driver' => 'file',
+	'driver' => 'dynamo',
+        'dynamo_gc' => true,
+        'dynamo_hash' => 'session_id',
+        'dynamo_aws_region' => 'us-east-1',
+        'dynamo_aws_key' => 'AKIAIPBPNFBWG72FDHXA',
+        'dynamo_aws_secret' => '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',
 
 	/*
 	|--------------------------------------------------------------------------

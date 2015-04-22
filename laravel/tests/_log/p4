@@ -1,0 +1,7 @@
+tests/functional/administration/MembersCest.php
+tests/functional/courses/ClassroomCest.php
+tests/functional/courses/LessonPurchaseCest.php
+tests/functional/courses/WishlistCest.php
+tests/functional/users/ForgotPasswordCest.php
+vendor/codeception/codeception/tests/data/included/jazz/pianist/tests/functional/PianistCept.php
+vendor/stack/builder/tests/functional/SilexApplicationTest.php

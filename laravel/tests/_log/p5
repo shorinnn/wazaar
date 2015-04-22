@@ -1,0 +1,6 @@
+tests/functional/administration/RefundCest.php
+tests/functional/courses/ConversationsCest.php
+tests/functional/courses/ManageCourseCest.php
+tests/functional/site/ActionTrackerCest.php
+tests/functional/users/LoginCest.php
+vendor/codeception/codeception/tests/data/included/jazz/tests/functional/DemoCept.php

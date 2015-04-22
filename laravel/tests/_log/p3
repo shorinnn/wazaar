@@ -1,0 +1,7 @@
+tests/functional/administration/InstructorAgenciesCest.php
+tests/functional/courses/AssignedInstructorCest.php
+tests/functional/courses/FollowerCest.php
+tests/functional/courses/TestimonialsCest.php
+tests/functional/users/BecomeInstructorCest.php
+tests/functional/users/RegisterCest.php
+vendor/facebook/webdriver/tests/functional/FileUploadTest.php

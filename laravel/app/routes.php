@@ -17,6 +17,7 @@ $affiliateSubdomain = 'affiliates.'. Config::get('app.base_url');
 if( !isset($_SERVER['HTTP_HOST'])){
     $domain = $instructorSubdomain = $affiliateSubdomain = Request::getHost();
 }
+
 Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
