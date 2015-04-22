@@ -1,4 +1,4 @@
-<tr id='row-{{ $refund->id }}'>
+<tr id='row-{{ $refund->id }} refunded-{{$refund->purchase_id}}'>
     <td> {{ $i }}</td>
     <td>{{ $refund->id }}</td>
     <td>{{ $refund->purchase_id }}</td>

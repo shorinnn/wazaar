@@ -19,6 +19,18 @@ class WithdrawalsCest{
     
     
     public function completeFirst(FunctionalTester $I){
+        $transaction = new Transaction();
+        $transaction->user_id = 4;
+        $transaction->amount = 60;
+        $transaction->purchase_id = 1;
+        $transaction->product_id = 1;
+        $transaction->product_type = 'Course';
+        $transaction->transaction_type = 'instructor_credit';
+        $transaction->details = trans('transactions.instructor_credit_reverse_transaction');
+        $transaction->status = 'complete';
+        $transaction->created_at = date('Y-m-d H:i:s', strtotime('-2 month'));
+        $transaction->save();
+        
         Artisan::call( 'cocorium:instructor-cashout' );
         $admin = User::first();
         $I->amLoggedAs( $admin );
@@ -37,6 +49,18 @@ class WithdrawalsCest{
     }
     
     public function rejectFirst(FunctionalTester $I){
+        $transaction = new Transaction();
+        $transaction->user_id = 4;
+        $transaction->amount = 60;
+        $transaction->purchase_id = 1;
+        $transaction->product_id = 1;
+        $transaction->product_type = 'Course';
+        $transaction->transaction_type = 'instructor_credit';
+        $transaction->details = trans('transactions.instructor_credit_reverse_transaction');
+        $transaction->status = 'complete';
+        $transaction->created_at = date('Y-m-d H:i:s', strtotime('-2 month'));
+        $transaction->save();
+        
         Artisan::call( 'cocorium:instructor-cashout' );
         $admin = User::first();
         $I->amLoggedAs( $admin );
