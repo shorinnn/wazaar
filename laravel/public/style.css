@@ -5734,6 +5734,14 @@ select option.suspended{
 	box-shadow: none;
 }
 
+#course-edit #edit-course-form #top-form div.course-level label{
+	background: #b0bfc1;
+}
+
+#course-edit #edit-course-form #top-form div.course-level label:hover{
+	background: #849598;
+}
+
 #course-edit #edit-course-form #top-form div.course-level label.active,
 .instructor-course-editor .header #instructor-editor li.active a{
     background: none repeat scroll 0 0 #0099ff;
@@ -5759,14 +5767,17 @@ select option.suspended{
 
 #course-edit .custom-dropdown{
 	width: 345px;
-	border-radius: 5px;
 	float: right;
 	margin: 0;
-	border: solid 1px #adadad;
+	padding: 0;
+	overflow: visible;
 }
 
+#course-edit .custom-dropdown::after,
 #course-edit .custom-dropdown::before{
 	background: none;
+	border: none;
+	content: '';
 }
 
 #course-edit .custom-dropdown select{
@@ -5781,8 +5792,8 @@ select option.suspended{
 	margin: 0 auto;
 }
 
-#course-edit .payment-section label,
-#course-edit #edit-course-form #top-form label{
+#course-edit .payment-section .label-name,
+#course-edit #edit-course-form #top-form .label-name{
 	display: inline-block;
 	margin-top: 7px;
 	font-weight: normal;
@@ -5792,7 +5803,7 @@ select option.suspended{
 	text-align: right;
 }
 
-#course-edit #edit-course-form #top-form div{
+#course-edit #edit-course-form #top-form > div{
 	margin-bottom: 20px;
 	width: 100%;
 }

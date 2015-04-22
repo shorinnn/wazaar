@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{url('style.css')}}">
     <link rel="stylesheet" href="{{url('css/video-player.css')}}">
     <link rel="stylesheet" href="{{url('css/dashboard.css')}}">
+    <link rel="stylesheet" href="{{url('css/generic.css')}}">
+    <link rel="stylesheet" href="{{url('css/select-style.css')}}">
     <link rel="stylesheet" href="{{url('css/ui-components.css')}}">
     <link rel="stylesheet" href="{{url('css/jquery.jscrollpane.css')}}">
     <link rel="stylesheet" href="{{url('plugins/slider/css/slider.css')}}">
@@ -90,6 +92,7 @@
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
         <script src="{{url("plugins/zero-clipboard/ZeroClipboard.min.js")}}"></script>
+        <script src="{{url("js/select.js")}}"></script>
 
     @else
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -118,6 +121,7 @@
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
         <script src="{{url("plugins/zero-clipboard/ZeroClipboard.min.js")}}"></script>
+        <script src="{{url("js/select.js")}}"></script>
         
 
     @endif

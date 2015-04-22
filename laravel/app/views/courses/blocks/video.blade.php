@@ -48,7 +48,7 @@
             {{ trans('site/login.or') }}</em>
             <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}"
                @if ( Video::where('created_by_id', Lesson::find($lessonId)->module->course->instructor_id)->count() > 0)
-                   style='display:block;'
+                   style='display:inline-block;'
                @endif            
             >
             {{trans('video.selectExisting')}}</a></h3>
