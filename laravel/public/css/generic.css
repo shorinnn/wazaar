@@ -9,8 +9,6 @@
 /* Mobile Grid Styles */
 
 @media handheld, only screen and (max-width: 780px) {
-body {font-size: 16px;-webkit-text-size-adjust: none;}
-.row, body, .container {width: 100%;min-width: 0;margin-left: 0px;margin-right: 0px;padding-left: 0px;padding-right: 0px;}
 .row .sixcol, .row .twelvecol {width: auto;float: none;margin-left: 0px;margin-right: 0px;}
 }
 

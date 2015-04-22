@@ -25,6 +25,7 @@ return array(
     'subcategory' => "Subcategory",
     'difficulty' => "Difficulty",
     'preview_image' => "Preview Image",
+	'course_listing_image' => "Course Listings Image",
     'details_page_banner_image' => "Details Page Banner Image",
     'who_is_this_for' => "Who Is This For",
     'what_will_you_achieve' => "What you will achieve at the end of the course ",

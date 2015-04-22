@@ -11,7 +11,7 @@
 
 .activetrigger,
 .trigger {
-	padding: 0 0 0 20px;
+	padding: 0 0 0 10px;
 	display: block;
 	border: 1px solid #adadad;
 	color: #000;
@@ -111,7 +111,7 @@
 	font-weight: normal;
 	text-align: left;	
 	color: #000;
-	padding: 7px 5px 7px 20px;
+	padding: 7px 5px 7px 10px;
 	overflow: hidden;
 	position: relative;
 	-webkit-transition: padding-left 0.3s;
@@ -148,7 +148,7 @@
 }
 
 .dropcontainer ul li:first-child {
-	display: none;
+	display: block;
 }
 
 .dropcontainer ul li:last-child {

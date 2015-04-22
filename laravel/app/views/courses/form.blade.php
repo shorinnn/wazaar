@@ -55,7 +55,10 @@
                         <div class="container course-editor">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h1 class='icon'>{{$course->name}}</h1>   
+                                    <h1 class='icon'>
+                                    	<span>Course Editor</span>
+                                   		{{$course->name}}
+                                    </h1>   
                                 </div>
                             </div>
                             <div class="row"> 
@@ -90,6 +93,7 @@
                                     </div>
                                 </div>
                             </div>
+	                        <span class="course-editor-horizontal-line"></span>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="plan-your-curriculum">
@@ -190,7 +194,7 @@
                             
                                     <div>
                                        <label class="label-name">{{ trans('crud/labels.name') }} </label>
-                                        {{ Form::text( 'name', null, ['class' => 'has-slug', 'data-slug-target' => '#slug' ]) }}
+                                        {{ Form::text( 'name', null, ['class' => 'has-slug', 'placeholder'=>'Course Name', 'data-slug-target' => '#slug' ]) }}
                                         {{ Form::hidden( 'slug', null, ['id'=>'slug'] ) }}
                                     </div>
                                                 
@@ -201,7 +205,7 @@
                                             @endif
                                         </label>
                                             <input type='text' class='delayed-keyup'
-                                                   id='assign-instructor' 
+                                                   id='assign-instructor' placeholder="Enter instructor username/email."
                                                    data-delay='300'
                                                    data-callback='assignInstructor'
                                                    @if($assignedInstructor!=null)
@@ -229,7 +233,7 @@
                                     </div>
                                     <div>
                                         <label class="label-name">{{ trans('crud/labels.custom_bio') }} </label>
-                                        {{ Form::textarea( 'custom_bio' ) }}
+                                        {{ Form::textarea( 'custom_bio', null, ['placeholder'=>'Enter bio to display on course description page.'] ) }}
                                     </div>
                                 </div>
                             </div>
@@ -237,7 +241,7 @@
                         <div class="row">
                         	<div class="col-md-12">
                                 <div class="image-upload">
-                                	<h3>{{ trans('courses/general.preview_image') }}</h3>
+                                	<h3>{{ trans('courses/general.course_listings_image') }}</h3>
                                     <!--<label for="upload-preview-image">
                                             <div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>
                                     </label>-->

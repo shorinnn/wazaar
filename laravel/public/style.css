@@ -5823,6 +5823,30 @@ select option.suspended{
 	resize: none;
 }
 
+#course-edit #edit-course-form #top-form div textarea::-webkit-input-placeholder,
+#course-edit .payment-section input[type='text']::-webkit-input-placeholder,
+#course-edit #edit-course-form #top-form div input[type='text']::-webkit-input-placeholder{
+   color: #000;
+}
+
+#course-edit #edit-course-form #top-form div textarea:-moz-placeholder ,
+#course-edit .payment-section input[type='text']:-moz-placeholder ,
+#course-edit #edit-course-form #top-form div input[type='text']:-moz-placeholder {
+	color: #000;
+}
+
+#course-edit #edit-course-form #top-form div textarea::-moz-placeholder,
+#course-edit .payment-section input[type='text']::-moz-placeholder,
+#course-edit #edit-course-form #top-form div input[type='text']::-moz-placeholder{
+	color: #000;
+}
+
+#course-edit #edit-course-form #top-form div textarea:-ms-input-placeholder ,
+#course-edit .payment-section input[type='text']:-ms-input-placeholder ,
+#course-edit #edit-course-form #top-form div input[type='text']:-ms-input-placeholder {
+	color: #000;
+}
+
 #course-edit #edit-course-form #top-form div.course-level span{
 	display: inline-block;
 	float:left;
@@ -6276,7 +6300,7 @@ select option.suspended{
 	font-size: 14px;
 	font-weight: 200;
 	color: #18222b;
-	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .course-editor .what-to-achieve h3,
@@ -6284,7 +6308,7 @@ select option.suspended{
 	font-size: 18px;
 	font-weight: 200;
 	color: #0099ff;
-	margin: 65px 0 15px;
+	margin: 95px 0 15px;
 }
 
 .course-editor .what-to-achieve ul,
@@ -6930,6 +6954,14 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .course-editor .video-list-thumbs > li > a:hover .duration{
 	background-color:#000;
 	transition:all 500ms ease;
+}
+
+.course-editor .course-editor-horizontal-line{
+	clear: both;
+	height: 1px;
+	margin: 55px 0 45px;
+	display: block;
+	background: #ececec;
 }
 
 .plan-your-curriculum {
