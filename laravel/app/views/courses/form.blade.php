@@ -339,6 +339,7 @@
                                     </div>    
                                 <div class="what-you-will-achieve">
                                 	<h3>{{ trans('courses/create.by_the_end') }} </h3>
+                                    <p class="tip">{{ trans('courses/curriculum.result-based') }}</p>
                                         @if($values = json2Array($course->what_will_you_achieve))
                                          <?php $i = 1;?>
                                             @foreach($values as $val)

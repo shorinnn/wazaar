@@ -27,7 +27,14 @@
 
         <div class="form-inline">
         	<!--<input disabled="disabled" placeholder="" id="uploadFile" style="">-->
-		    <span id="video-transcoding-indicator">Video Currently Processing</span>
+		    <!--<span id="video-transcoding-indicator">Video Currently Processing</span>-->
+                    @if (!isset($video->formats[0]->video_url))
+                        <span id="video-transcoding-indicator">Video Currently Processing</span>
+                    @else
+                   		<span id="video-transcoding-indicator">Current video: 
+                        	<a href="#" class="video-title">{{$video->original_filename}}</a>
+                        </span> 
+                    @endif
             <div class="form-group video-upload clear">
 	            <span>{{ trans('video.upload-video') }}</span>
                 <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
