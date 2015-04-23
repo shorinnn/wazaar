@@ -38,12 +38,16 @@ class InstructorCest{
         $course = Course::find(1);
         $I->assertNotEquals( $course->instructor->id, $instructor->id );
         $I->assertNotEquals( $course->assigned_instructor_id, $instructor->id );
+//        $I->assertNotEquals( $course->assigned_instructor_id, $instructor->id );
+        $I->assertNull( $course->assigned_instructor_id );
         
         $paymentData['successData']['REF'] = '123';
+        $paymentData['successData']['ORDERID'] = '123';
         $paymentData['successData']['processor_fee'] = '123';
         $paymentData['successData']['tax'] = '123';
         $paymentData['successData']['balance_used'] = '0';
         $paymentData['successData']['balance_transaction_id'] = '0';
+        $paymentData['successData']['giftID'] = null;
         $instructor->purchase($course, null, $paymentData);
         $instructor = Student::where('username','second_instructor')->first();
         $I->assertTrue( $instructor->purchased($course) );

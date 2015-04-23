@@ -43,7 +43,7 @@ class InstructorTransactionsCest{
         $instructor->instructor_balance = 100;
         $instructor->updateUniques();
         $I->assertEquals( 100, $instructor->instructor_balance );
-        $instructor->debit( 100, 'ref');
+        $instructor->debit( 100, 'ref', []);
         $I->assertEquals( 0, $instructor->instructor_balance );
         $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit', 
             'reference' => 'ref', 'status' => 'pending',  'amount' => 100  - Config::get('custom.cashout.fee') ] );
