@@ -137,15 +137,15 @@ class CourseCest{
         $I->assertTrue( $course->updateUniques() );
     }
     
-    public function set70AffiliatePercentage(UnitTester $I){
+    public function set68AffiliatePercentage(UnitTester $I){
         $course = Course::find(1);
-        $course->affiliate_percentage = 70;
+        $course->affiliate_percentage = 68;
         $I->assertTrue( $course->updateUniques() );
     }
     
-    public function notSet71AffiliatePercentage(UnitTester $I){
+    public function notSet69AffiliatePercentage(UnitTester $I){
         $course = Course::find(1);
-        $course->affiliate_percentage = 71;
+        $course->affiliate_percentage = 69;
         $I->assertFalse( $course->updateUniques() );
     }
     
