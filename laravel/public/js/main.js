@@ -816,7 +816,7 @@ function fullScreen(){
 function skinVideoControls(){
 	//INITIALIZE
 	var video = $('#myVideo');
-    if( $('video').length == 0) return;
+    if($('#myVideo').length == 0) return;
 
 	//Set the width of the control to equal video width
 	if(video){

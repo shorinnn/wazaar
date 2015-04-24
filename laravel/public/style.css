@@ -779,10 +779,11 @@ header .activate-dropdown:hover ul{
 	background-image: none !important;
 	background-color: #ffffff !important;
  	border-radius:5px;
-  	height:350px;
+  	height:440px;
   	background-repeat:no-repeat;
   	position:relative;
   	margin-top:30px;
+	box-shadow: 0px 0px 0px 1px #8b9095;
   	display:inline-table;
 }
 
@@ -829,6 +830,7 @@ header .activate-dropdown:hover ul{
 	margin-right: 11px;
 	position: relative;
 	top: -2px;
+	font-weight: normal;
 }
 
 .small-box p{ 
@@ -1267,9 +1269,9 @@ header .activate-dropdown:hover ul{
 	background-position: 20px 9px;
 	margin-top: 53px;
 	border:solid 1px #35528e;
-	/*-webkit-box-shadow: 0px 5px 0px #203e7c;
-    -moz-box-shadow: 0px 5px 0px #203e7c;
-    box-shadow: 0px 5px 0px #203e7c;*/
+	-webkit-box-shadow: 0px 3px 0px #203e7c;
+    -moz-box-shadow: 0px 3px 0px #203e7c;
+    box-shadow: 0px 3px 0px #203e7c;
 }
 
 .social-button.fb-button:focus,
@@ -1289,9 +1291,9 @@ header .activate-dropdown:hover ul{
 	background-position: 20px -52px;
 	margin-top: 20px;
 	border:solid 1px #D94E3B;
-	/*-webkit-box-shadow: 0px 5px 0px #84261a;
-    -moz-box-shadow: 0px 5px 0px #84261a;
-    box-shadow: 0px 5px 0px #84261a;*/
+	-webkit-box-shadow: 0px 3px 0px #84261a;
+    -moz-box-shadow: 0px 3px 0px #84261a;
+    box-shadow: 0px 3px 0px #84261a;
 }
 
 .social-button.google-button:focus,
@@ -2059,10 +2061,11 @@ header .activate-dropdown:hover ul{
 .sidebar .lead,
 .main-content-container .main-content
 .left-content .lead{
-	padding: 12px 0 10px 20px;
+	padding: 12px 0 10px 40px;
 	margin: 0;
 	color: #0099ff;
-	font-size: 14px;
+	font-size: 18px;
+	font-weight: normal;
 	background: #fff;
 	border-radius: 0 5px 0 0;
 }
@@ -2082,7 +2085,7 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content
 .left-content article{
-	padding: 15px 20px;
+	padding: 15px 20px 15px 40px;
 	background: #fff;
 	display: block;
 	color: #333;
@@ -4768,7 +4771,7 @@ select::-ms-expand {
 .course-enroll-wrapper .small-box:hover,
 .unauthenticated-homepage .small-box:hover{
 	/*border-color: #8b9095;*/
-	box-shadow: 0px 0px 0px 2px #8b9095;
+	box-shadow: 0px 0px 0px 3px #8b9095;
 }
 
 .course-enroll-wrapper .small-box .level,
@@ -7041,7 +7044,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .plan-your-curriculum .lesson-options > div.lesson-options-buttons{
 	margin: 0 auto 30px;
-	max-width: 70%;
+	max-width: 62%;
 }
 
 .plan-your-curriculum .lesson-options .buttons{
