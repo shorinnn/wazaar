@@ -255,9 +255,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="divider clear">
-                    <span></span>
-                </div>
                 <div class="curriculum clearfix clear">
                 	<h3 class="text-center">
                         <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">-->

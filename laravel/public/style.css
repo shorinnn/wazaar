@@ -776,15 +776,34 @@ header .activate-dropdown:hover ul{
 .small-box{
   	background-repeat:no-repeat;
   	background-position:top left;
+	background-image: none !important;
+	background-color: #ffffff !important;
  	border-radius:5px;
-  	height:350px;
+  	height:440px;
   	background-repeat:no-repeat;
   	position:relative;
   	margin-top:30px;
+	box-shadow: 0px 0px 0px 1px #8b9095;
   	display:inline-table;
 }
 
-.small-box .price-tag{
+.small-box .price-tag-container{
+	position: absolute;
+	bottom: 40px;
+	padding: 10px 20px;
+	border-bottom: solid 1px #44505b;
+	background: #23313e;
+	width: 100%;
+}
+
+.small-box .price-tag-container .price-tag-discount-percent{
+	float: left;
+	font-size: 18px;
+	font-weight: 200;
+	color: #fff;
+}
+
+.small-box .price-tag-container .price-tag{
 	/*background: -moz-linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
 	background: -webkit-linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
 	background: -o-linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
@@ -792,26 +811,35 @@ header .activate-dropdown:hover ul{
 	background: linear-gradient(top, #fdeb4b, #f8d946, #f3c841);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fdeb4b', endColorstr='#f3c841'); /* IE6 & IE7 */
 	/*-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fdeb4b', endColorstr='#f3c841')"; /* IE8 */
-	background: rgba(0, 0, 0, 0.3);
-  	color:#f2f2f2;
-  	font-size:13px;
+  	color:#92cc2e;
+  	font-size:18px;
+	font-weight: bold;
   	display:inline-table;
   	border-radius: 5px 0 0 5px;
-  	padding: 10px;  
   	margin-top: 0;
-	position: absolute;
-	right: 0;
-	bottom: 50px;
+	float: right;
+	position: relative;
+	top: 1px;
+}
+
+.small-box .price-tag-container .price-tag .prev-price{
+	text-decoration: line-through;
+	color: #fff;
+	font-size: 12px;
+	display: inline-block;
+	margin-right: 11px;
+	position: relative;
+	top: -2px;
+	font-weight: normal;
 }
 
 .small-box p{ 
 	font-size:12px;
-	color:#fff;
+	color:#18222b;
 	clear:both;
   	min-height:50px;    
   	text-align:left;
-  	margin-left:10px;
-  	margin-right:10px;
+  	margin:0 20px 20px;
   	line-height:16px;
 }
 
@@ -824,7 +852,7 @@ header .activate-dropdown:hover ul{
   	width:100%;
 	min-width: 100%;
 	height: 40px;
-	background: rgba(0, 0, 0, 0.5);
+	background: #23313e;
   	clear:both;
 	position: absolute;
 	bottom: 0;
@@ -896,14 +924,13 @@ header .activate-dropdown:hover ul{
   
 .small-box h2{
   	font-size:18px;
-  	color:#333;
-  	font-weight: bold;
-	margin: 10px 0 8px;  
+  	color:#18222b;
+  	font-weight: normal;
+	margin: 20px;  
   	float:left;
 	line-height: 24px;
   	clear:both;    
   	text-align:left;
-  	padding:0 10px;
 }
 
 .small-box .new-tag{
@@ -1242,9 +1269,9 @@ header .activate-dropdown:hover ul{
 	background-position: 20px 9px;
 	margin-top: 53px;
 	border:solid 1px #35528e;
-	/*-webkit-box-shadow: 0px 5px 0px #203e7c;
-    -moz-box-shadow: 0px 5px 0px #203e7c;
-    box-shadow: 0px 5px 0px #203e7c;*/
+	-webkit-box-shadow: 0px 3px 0px #203e7c;
+    -moz-box-shadow: 0px 3px 0px #203e7c;
+    box-shadow: 0px 3px 0px #203e7c;
 }
 
 .social-button.fb-button:focus,
@@ -1264,9 +1291,9 @@ header .activate-dropdown:hover ul{
 	background-position: 20px -52px;
 	margin-top: 20px;
 	border:solid 1px #D94E3B;
-	/*-webkit-box-shadow: 0px 5px 0px #84261a;
-    -moz-box-shadow: 0px 5px 0px #84261a;
-    box-shadow: 0px 5px 0px #84261a;*/
+	-webkit-box-shadow: 0px 3px 0px #84261a;
+    -moz-box-shadow: 0px 3px 0px #84261a;
+    box-shadow: 0px 3px 0px #84261a;
 }
 
 .social-button.google-button:focus,
@@ -2034,22 +2061,23 @@ header .activate-dropdown:hover ul{
 .sidebar .lead,
 .main-content-container .main-content
 .left-content .lead{
-	padding: 12px 0 10px 20px;
-	margin: 0;
+	padding: 12px 0 10px 40px;
+	margin: 1px 0;
 	color: #0099ff;
-	font-size: 14px;
+	font-size: 18px;
+	font-weight: normal;
 	background: #fff;
-	border-radius: 0 5px 0 0;
+	border-radius: 5px;
 }
 
 .main-content-container .main-content
 .left-content .lead.what-you-will-learn{
-	background-color: transparent;
+	/*background-color: transparent;*/
 }
 
 .main-content-container .main-content
 .left-content .misc-container-1{
-	border: solid #e7e7e7;
+	/*border: solid #e7e7e7;*/
 	border-width: 1px 1px 1px 0;
 	border-radius: 0 5px 5px 0;
 	margin-bottom: 30px;
@@ -2057,13 +2085,14 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content
 .left-content article{
-	padding: 15px 20px;
+	padding: 15px 20px 15px 40px;
 	background: #fff;
 	display: block;
 	color: #333;
 	font-size: 12px;
-	border-radius: 0 0 5px 0;
+	border-radius: 5px;
 	line-height: 20px;
+	margin-bottom: 40px;
 }
 
 .main-content-container .main-content
@@ -2072,7 +2101,7 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content
 .left-content article.what-you-will-learn{
-	background-color: transparent;
+	/*background-color: transparent;*/
 }
 
 .main-content-container .main-content
@@ -2103,26 +2132,24 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content
 .sidebar .lead{
-	padding: 15px 0 15px 20px;
+	padding: 14px 0 15px 20px;
 	font-size: 14px;
-	background-color: transparent;
 	color: #0099ff;
 }
 
 .main-content-container .main-content
 .sidebar .misc-container-2{
-	border: solid #e7e7e7;
-	margin-bottom: 30px;
-	border-width: 1px 0 1px 1px;
+	margin-bottom: 40px;
 	border-radius: 5px 0 0 5px;
 }
 
 .main-content-container .main-content
 .sidebar ul{
-	padding: 0 20px 20px 35px;
+	padding: 15px 20px 20px 35px;
 	margin: 0;
+	border-radius: 5px;
 	list-style: none;
-	background-color: transparent;
+	background-color: #fff;
 }
 
 .main-content-container .main-content .sidebar ul li:before {
@@ -2149,9 +2176,7 @@ header .activate-dropdown:hover ul{
 
 .main-content-container .main-content
 .sidebar .your-teacher{
-	border: solid #e7e7e7;
-	border-width: 1px 0 1px 1px;
-	border-radius: 5px 0 0 5px;
+	border-radius: 5px;
 	background: #fff;
 	overflow: hidden;
 }
@@ -2256,7 +2281,8 @@ header .activate-dropdown:hover ul{
 .main-content-container .main-content
 .sidebar .testimonial-block{
 	margin-top: 30px;
-	padding-right: 20px;
+	padding: 20px;
+	background: #fff;
 }
 
 .main-content-container .main-content
@@ -2292,6 +2318,7 @@ header .activate-dropdown:hover ul{
 	text-indent: 77px;
 	text-transform: uppercase;
 	color: #849598;
+	font-size: 14px;
 }
 
 .main-content-container .main-content
@@ -2449,7 +2476,7 @@ header .activate-dropdown:hover ul{
 }
 
 .main-content-container .main-content .middle-content-wrapper{
-	background: #fff;
+	/*background: #fff;*/
 	padding-top: 25px;
 	border-radius: 0 0 5px 5px;
 }
@@ -4742,7 +4769,8 @@ select::-ms-expand {
 
 .course-enroll-wrapper .small-box:hover,
 .unauthenticated-homepage .small-box:hover{
-	box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.4)
+	/*border-color: #8b9095;*/
+	box-shadow: 0px 0px 0px 3px #8b9095;
 }
 
 .course-enroll-wrapper .small-box .level,
@@ -7015,7 +7043,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .plan-your-curriculum .lesson-options > div.lesson-options-buttons{
 	margin: 0 auto 30px;
-	max-width: 70%;
+	max-width: 62%;
 }
 
 .plan-your-curriculum .lesson-options .buttons{

@@ -30,15 +30,25 @@
 		    <!--<span id="video-transcoding-indicator">Video Currently Processing</span>-->
                     @if (!isset($video->formats[0]->video_url))
                         <span id="video-transcoding-indicator">Video Currently Processing</span>
+						<style>
+							.course-editor #modules-list > li .video-upload{
+								font-size: 16px !important;
+							}
+                        </style>
+                        <div class="form-group video-upload clear">
+                            <span>{{ trans('video.upload-new-video') }}</span>
+                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
+                        </div>
                     @else
-                   		<span id="video-transcoding-indicator">Current video: 
-                        	<a href="#" class="video-title">{{$video->original_filename}}</a>
+                   		<span id="video-transcoding-indicator" style="display: block;">Current video: 
+                        	<a href="#" class="video-title" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="videoModal.show(this, event)">{{$video->original_filename}}</a>
                         </span> 
+                        <div class="form-group video-upload clear">
+                            <span>{{ trans('video.upload-video') }}</span>
+                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
+                        </div>
                     @endif
-            <div class="form-group video-upload clear">
-	            <span>{{ trans('video.upload-video') }}</span>
-                <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
-            </div>
+                    
             <!-- Progress Bar -->
     
             <div class="progress">
