@@ -14,7 +14,7 @@
             </video>
         </div>
     </div>
-    <h3><!--{{trans('video.uploadOr')}} -->
+    <h3 class="no-margin"><!--{{trans('video.uploadOr')}} -->
     {{--Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])--}}
     {{--Form::open(['url' => '//s3-ap-southeast-1.amazonaws.com/videosinput', 'id' => '', 'files' => true])--}}
     <form action="//s3-ap-southeast-1.amazonaws.com/videosinput" enctype="multipart/form-data" method="POST">
@@ -26,12 +26,24 @@
         <input type="hidden" name="signature" value="{{$awsPolicySig['signature']}}">
 
         <div class="form-inline">
-        	<input disabled="disabled" placeholder="" id="uploadFile" style="">
-		    <span id="video-transcoding-indicator">Video Currently Processing</span>
-            <div class="form-group video-upload clear">
-	            <span>{{ trans('video.upload-video') }}</span>
-                <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
-            </div>
+        	<!--<input disabled="disabled" placeholder="" id="uploadFile" style="">-->
+		    <!--<span id="video-transcoding-indicator">Video Currently Processing</span>-->
+                    @if (!isset($video->formats[0]->video_url))
+                        <span id="video-transcoding-indicator">Video Currently Processing</span>
+                        <div class="form-group video-upload clear">
+                            <span>{{ trans('video.upload-new-video') }}</span>
+                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
+                        </div>
+                    @else
+                   		<span id="video-transcoding-indicator" style="display: block;">Current video: 
+                        	<a href="#" class="video-title">{{$video->original_filename}}</a>
+                        </span> 
+                        <div class="form-group video-upload clear">
+                            <span>{{ trans('video.upload-video') }}</span>
+                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
+                        </div>
+                    @endif
+                    
             <!-- Progress Bar -->
     
             <div class="progress">
@@ -40,8 +52,18 @@
                 </div>
             </div>
 
-            <em class="or-text"> {{ trans('site/login.or') }}</em>
-            <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}">{{trans('video.selectExisting')}}</a></h3>
+            <em class="or-text"
+               @if ( Video::where('created_by_id', Lesson::find($lessonId)->module->course->instructor_id)->count() > 0)
+                   style='display:block;'
+               @endif
+            > 
+            {{ trans('site/login.or') }}</em>
+            <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}"
+               @if ( Video::where('created_by_id', Lesson::find($lessonId)->module->course->instructor_id)->count() > 0)
+                   style='display:inline-block;'
+               @endif            
+            >
+            {{trans('video.selectExisting')}}</a></h3>
             <!--<p class="video-info">{{trans('video.formatsSupported')}}</p>-->
             <p class="video-info">{{trans('video.maxFileSize')}}</p>
 

@@ -16,11 +16,12 @@ class StudentCest{
         Artisan::call('db:seed');
         Student::boot();
         $this->paymentData['successData']['REF'] = '123';
-        $this->paymentData['successData']['REF'] = '123';
+        $this->paymentData['successData']['ORDERID'] = '123';
         $this->paymentData['successData']['processor_fee'] = '123';
         $this->paymentData['successData']['tax'] = '123';
         $this->paymentData['successData']['balance_used'] = '0';
         $this->paymentData['successData']['balance_transaction_id'] = '0';
+        $this->paymentData['successData']['giftID'] = null;
     }
     
     public function getLTCAffiliate(UnitTester $I){
@@ -57,6 +58,8 @@ class StudentCest{
     
     public function denyDuplicatePurchases(UnitTester $I){
         $student = Student::where('username','student')->first();
+        Purchase::where('student_id', $student->id)->delete();
+        Transaction::where('user_id', $student->id)->delete();
         $course = Course::find(1);
         $I->assertNotEquals(false,  $student->purchase($course, null, $this->paymentData) );
         $student = Student::where('username','student')->first();

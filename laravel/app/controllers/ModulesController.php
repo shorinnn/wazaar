@@ -16,7 +16,7 @@ class ModulesController extends \BaseController {
             }
             
             $module->course_id = $course->id;
-            $module->name = 'New Module';
+            $module->name = '';
             $module->order = $course->modules->count() + 1;
             if($module->save()){
                 if(Request::ajax()){

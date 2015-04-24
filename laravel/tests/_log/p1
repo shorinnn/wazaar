@@ -1,0 +1,7 @@
+tests/functional/AddLessonVideoCept.php
+tests/functional/administration/SubcategoriesCest.php
+tests/functional/courses/CourseSubcategoryCest.php
+tests/functional/courses/MyCoursesCest.php
+tests/functional/site/HomepageCest.php
+tests/functional/users/LogoutCest.php
+vendor/codeception/codeception/tests/data/included/shire/tests/functional/HobbitCept.php

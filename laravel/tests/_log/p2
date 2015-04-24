@@ -1,0 +1,7 @@
+tests/functional/administration/CategoriesCest.php
+tests/functional/administration/WithdrawalsCest.php
+tests/functional/courses/CourseSubmissionCest.php
+tests/functional/courses/ShowCourseCest.php
+tests/functional/site/HomepageTileCest.php
+tests/functional/users/ProductReferralsCest.php
+vendor/facebook/webdriver/tests/functional/BaseTest.php

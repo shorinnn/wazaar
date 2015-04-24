@@ -30,7 +30,7 @@ return array(
     'category-sales-rank' => 'Category Sales Rank',
     'status' => 'Status',
     'course-categories' => 'Course Categories',
-    'color-scheme' => 'Status',
+    'color-scheme' => 'Color Scheme',
     'browse' => 'Browse',
     'course-difficulties' => 'Course Difficulties',
     'request-type' => 'Request Type',
@@ -60,4 +60,5 @@ return array(
     'paid-from-balance' => 'Paid From Balance',
     'refundable' => 'Refundable',
     'refunded' => 'Refunded',
+    'not-refundable' => 'Not Refundable',
 );

@@ -14,7 +14,7 @@ class AddShortDescriptionToCoursesTable extends Migration {
 	{
 		Schema::table('courses', function(Blueprint $table)
 		{
-			$table->string('short_description')->after('description');
+			$table->string('short_description')->after('description')->nullable();
 		});
 	}
 

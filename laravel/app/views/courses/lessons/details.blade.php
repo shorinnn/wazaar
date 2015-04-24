@@ -10,7 +10,7 @@
                       data-name='price' value="{{ $lesson->price }}" /><br />
 </div>
 
-<div class="clear clearfix">
+<!--<div class="clear clearfix">
     <p>{{ trans('general.published') }}</p> 
     <div class="switch-buttons">
         <label class="switch">
@@ -26,7 +26,7 @@
           <span class="switch-handle"></span>
         </label>
     </div>    
-    <!--{{ Form::select( 'published', ['no'=>'No', 'yes'=>'Yes'], $lesson->published, ['data-name'=>'published', 'class'=>'ajax-updatable', 
-                'data-url'=> action('LessonsController@update', [$lesson->module->id, $lesson->id] )] ) }}-->
-</div>
+    {{ Form::select( 'published', ['no'=>'No', 'yes'=>'Yes'], $lesson->published, ['data-name'=>'published', 'class'=>'ajax-updatable', 
+                'data-url'=> action('LessonsController@update', [$lesson->module->id, $lesson->id] )] ) }}
+</div>-->
 

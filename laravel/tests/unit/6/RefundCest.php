@@ -19,10 +19,10 @@ class RefundCest{
         Config::set('custom.earnings.ltc_percentage', 5);
         Config::set('custom.earnings.agency_percentage', 2);
         Config::set('custom.earnings.second_tier_percentage', 2);
-        
-        DB::table('purchases')->truncate();
-        DB::table('purchase_refunds')->truncate();
-        DB::table('transactions')->truncate();
+        $user = User::where('username','sorin')->first();
+        DB::table('purchases')->where('student_id', $user->id)->delete();
+        DB::table('purchase_refunds')->where('student_id', $user->id)->delete();
+        DB::table('transactions')->where('user_id', $user->id)->delete();
     }
     
     public function purchaseThenRefundWithBalance(UnitTester $I){
@@ -112,8 +112,8 @@ class RefundCest{
                 + $purchase->site_earnings, $ltc->affiliate_balance);
         
         // refund the purchase
-        $purchase = Purchase::first();
-        $I->assertTrue( $purchase->refund() );
+        $purchase = Purchase::orderBy('id','desc')->first();
+        $I->assertNotEquals(false, $purchase->refund() );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'failed'] );
@@ -137,8 +137,8 @@ class RefundCest{
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit_reverse', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'complete', 'gc_fee' => 5] );
         
-        $I->dontSeeRecord( 'purchases',[ 'id' => 1 ] );
-        $I->seeRecord( 'purchase_refunds',[ 'purchase_id' => 1 ] );
+        $I->dontSeeRecord( 'purchases',[ 'id' => $purchase->id ] );
+        $I->seeRecord( 'purchase_refunds',[ 'purchase_id' => $purchase->id ] );
         
         $student = Student::where('username','sorin')->first();
         $affiliate = ProductAffiliate::find(5);
@@ -235,8 +235,8 @@ class RefundCest{
                 + $purchase->site_earnings, $ltc->affiliate_balance);
         
         // refund the purchase
-        $purchase = Purchase::first();
-        $I->assertTrue( $purchase->refund() );
+        $purchase = Purchase::orderBy('id','desc')->first();
+        $I->assertNotEquals(false, $purchase->refund() );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'failed'] );
@@ -260,8 +260,8 @@ class RefundCest{
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit_reverse', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'complete', 'gc_fee' => 5] );
         
-        $I->dontSeeRecord( 'purchases',[ 'id' => 1 ] );
-        $I->seeRecord( 'purchase_refunds',[ 'purchase_id' => 1 ] );
+        $I->dontSeeRecord( 'purchases',[ 'id' => $purchase->id ] );
+        $I->seeRecord( 'purchase_refunds',[ 'purchase_id' => $purchase->id ] );
         
         $student = Student::where('username','sorin')->first();
         $affiliate = ProductAffiliate::find(5);
@@ -354,8 +354,8 @@ class RefundCest{
                 + $purchase->site_earnings, $ltc->affiliate_balance);
         
         // refund the purchase
-        $purchase = Purchase::first();
-        $I->assertTrue( $purchase->refund() );
+        $purchase = Purchase::orderBy('id','desc')->first();
+        $I->assertNotEquals(false, $purchase->refund() );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'failed'] );
@@ -371,8 +371,8 @@ class RefundCest{
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit_reverse', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'complete', 'gc_fee' => 5] );
         
-        $I->dontSeeRecord( 'purchases',[ 'id' => 1 ] );
-        $I->seeRecord( 'purchase_refunds',[ 'purchase_id' => 1 ] );
+        $I->dontSeeRecord( 'purchases',[ 'id' => $purchase->id ] );
+        $I->seeRecord( 'purchase_refunds',[ 'purchase_id' => $purchase->id ] );
         
         $student = Student::where('username','sorin')->first();
         $affiliate = ProductAffiliate::find(5);
@@ -475,8 +475,8 @@ class RefundCest{
                 + $purchase->site_earnings, $ltc->affiliate_balance);
         
         // refund the purchase
-        $purchase = Purchase::first();
-        $I->assertTrue( $purchase->refund() );
+        $purchase = Purchase::orderBy('id','desc')->first();
+        $I->assertNotEquals(false, $purchase->refund() );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'failed'] );
@@ -504,8 +504,8 @@ class RefundCest{
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit_reverse', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'complete', 'gc_fee' => 5] );
         
-        $I->dontSeeRecord( 'purchases',[ 'id' => 1 ] );
-        $I->seeRecord( 'purchase_refunds',[ 'purchase_id' => 1 ] );
+        $I->dontSeeRecord( 'purchases',[ 'id' => $purchase->id ] );
+        $I->seeRecord( 'purchase_refunds',[ 'purchase_id' => $purchase->id ] );
         
         $student = Student::where('username','sorin')->first();
         $affiliate = ProductAffiliate::find(5);

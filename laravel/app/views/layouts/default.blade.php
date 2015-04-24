@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{url('style.css')}}">
     <link rel="stylesheet" href="{{url('css/video-player.css')}}">
     <link rel="stylesheet" href="{{url('css/dashboard.css')}}">
+    <link rel="stylesheet" href="{{url('css/generic.css')}}">
+    <link rel="stylesheet" href="{{url('css/select-style.css')}}">
     <link rel="stylesheet" href="{{url('css/ui-components.css')}}">
     <link rel="stylesheet" href="{{url('css/jquery.jscrollpane.css')}}">
     <link rel="stylesheet" href="{{url('plugins/slider/css/slider.css')}}">
@@ -19,6 +21,7 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{url('css/slick.css')}}">
     <link rel="stylesheet" href="{{url('css/slick-theme.css')}}">
+    <link rel="stylesheet" href="{{url('css/datepicker.css')}}">
 
     @yield('extra_css')
     <!--[if lt IE 9]>
@@ -90,6 +93,8 @@
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
         <script src="{{url("plugins/zero-clipboard/ZeroClipboard.min.js")}}"></script>
+        <script src="{{url("js/select.js")}}"></script>
+        <script src="{{url("js/bootstrap-datepicker.js")}}"></script>
 
     @else
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -118,6 +123,8 @@
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
         <script src="{{url("plugins/zero-clipboard/ZeroClipboard.min.js")}}"></script>
+        <script src="{{url("js/select.js")}}"></script>
+        <script src="{{url("js/bootstrap-datepicker.js")}}"></script>
         
 
     @endif
@@ -127,6 +134,7 @@
     @yield('extra_js')
 		<script>
 			$(document).ready(function() {
+
 				$('#video-container').prepend('<div id="video-background" class="full-screen"></div>');
 				$('#video-background').videobackground({
 					videoSource: [['http://vjs.zencdn.net/v/oceans.mp4', 'video/mp4'],
@@ -135,12 +143,13 @@
 						controlPosition: '#bckgrd-video-overlay',
 						poster: '',
 						loadedCallback: function(){
-							$(this).videobackground('');
+						$(this).videobackground('');
 					}
 				});
 				
-				$('#instructor-editor a').click(function (e) {
-				  e.preventDefault()
+				$('#instructor-editor a').click(function(e) {
+				  e.preventDefault();
+				  history.pushState( null, null, $(this).attr('href') );
 				  $(this).tab('show')
 				});
 				
@@ -152,7 +161,7 @@
 						
 				$('#video-grid').on('slide.bs.carousel', function () {
 				})		
-
+				 
 				$('.top-categories-slider').show().slick({
 		     	  dots: false,
 				  arrows: false,
@@ -193,6 +202,8 @@
 					// instead of a settings object
 				  ]		
 				});		
+				
+				$('.datepicker').datepicker();
 
 			});
 		</script>

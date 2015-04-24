@@ -108,7 +108,7 @@
             </div>
             <div class="dropdown-container clearfix">
                 <div class="menu-dropdown dropdown-1">
-                    <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
+                    <button aria-expanded="false" value="" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
                         Dropdown if you want to...
                     </button>
                     <ul aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">

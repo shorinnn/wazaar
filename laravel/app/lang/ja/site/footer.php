@@ -1,7 +1,7 @@
 <?php
 
 return array(
-	'phone' => '月Phoneせ',
-	'mail' => '月Mailせ',
-	'all-rights-reserved' => '月All rights reservedせ'
+	'phone' => '電話番号',
+	'mail' => 'メールアドレス',
+	'all-rights-reserved' => '無断転載を禁じます'
 );

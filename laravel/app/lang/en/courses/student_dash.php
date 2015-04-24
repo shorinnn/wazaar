@@ -33,3 +33,4 @@ return array(
     'you-have-enrolled-in' => 'You have enrolled in',
     'begin-my-learning' => 'Begin my learning',
 );
+

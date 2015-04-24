@@ -1,9 +1,9 @@
 <?php
 
 return array(
-    'congratulations_become_instructor' => '月Congratulations on becoming an instructor!せ',
-    'already_instructor' => '月You already are an instructorせ',
-    'click-to-start' => '月Click the button below to start the wonderful adventureせ',
-    'to-become' => '月To become an instructorせ',
-    'login-and-upgrade' => '月Login and upgrade your accountせ',
+    'congratulations_become_instructor' => 'おめでとうございます。講師になりました',
+    'already_instructor' => 'すでに講師として登録されています',
+    'click-to-start' => '下のリンクをクリックして、驚きでいっぱいの冒険を始めましょう',
+    'to-become' => '講師になるには、',
+    'login-and-upgrade' => 'ログインしてアカウントをアップグレードしてください',
 );

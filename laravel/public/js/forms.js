@@ -143,10 +143,15 @@ function cloneInput(e){
     keynum = e.which;
     keychar = String.fromCharCode(keynum);
     charcheck = /[a-zA-Z0-9]/;
-
     if( !charcheck.test(keychar) ) return;   
     $elem = $(e.target);
+    max = parseInt( $elem.attr('data-clonable-max') ); 
     if( $.trim($elem.val()) == '' && $elem.parent().next('.clonable').length==0 ){
+        name = $elem.attr('name');
+        if(max > 0 && $('[name="'+name+'"]').length >= max){
+            return;
+        }
+        
         var $destination = $elem.parent();
         var clone = $elem.clone();
         clone.removeAttr('id');

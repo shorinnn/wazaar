@@ -2,15 +2,15 @@
 
 return array(
 
-	'fb_email_already_registered' => '月Your email address is already registered. Please enter your Wazaar password to link Facebookせ',
-	'link' => '月Linkせ',
-	'password_not_valid' => '月The password entered is not validせ',
-	'facebook_linked' => '月Your accounts have been linked and you will be able to log in with Facebook from now onせ',
-	'forgot_password' => '月Forgot password? Click here to get a validation code.せ',
-	'send' => '月Sendせ',
-	'code_sent' => '月A validation code has been emailed to you. You can enter that in the password field above.せ',
-	'social_confirmation_subject' => '月Your Confirmation Codeせ',
-        'google_email_already_registered' => '月Your email address is already registered. Please enter your Wazaar password to link Googleせ',
-        'google_linked' => '月Your accounts have been linked and you will be able to log in with Google from now onせ',
+	'fb_email_already_registered' => 'Eメールアドレスが既に登録されています。Facebookと連携するには、Wazaarのパスワードを入力します',
+	'link' => '連携する',
+	'password_not_valid' => '入力されたパスワードが有効ではありません',
+	'facebook_linked' => 'アカウントの連携が完了しました。Facebookアカウントからもログインできます',
+	'forgot_password' => 'パスワードをお忘れですか? ここをクリックして認証コードを受け取ることができます',
+	'send' => '送信',
+	'code_sent' => '認証コードがメールで送信されました。パスワード欄に受領したコードを入力してログインできます',
+	'social_confirmation_subject' => '認証コード',
+        'google_email_already_registered' => 'Eメールアドレスが既に登録されています。Googleと連携するには、Wazaarのパスワードを入力します',
+        'google_linked' => 'アカウントの連携が完了しました。Googleアカウントからもログインできます',
 
 );

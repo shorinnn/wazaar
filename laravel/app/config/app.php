@@ -133,6 +133,7 @@ return array(
                 'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider',
                 'Cocorium\CocoriumServiceProvider',
                 'Indatus\Dispatcher\ServiceProvider',
+                'Cocorium\DynamoSessionServiceProvider',
 	),
 
 	/*

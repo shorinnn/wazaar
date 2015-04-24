@@ -1,0 +1,19 @@
+
+/* Flexible Grid */
+
+.sixcol {margin-right: 3.09090%;float: left;min-height: 1px;}
+.row .sixcol {width: 48.45455%;}
+.row .twelvecol {width: 100%;float: left;}
+.last {margin-right: 0px;}
+
+/* Mobile Grid Styles */
+
+@media handheld, only screen and (max-width: 780px) {
+.row .sixcol, .row .twelvecol {width: auto;float: none;margin-left: 0px;margin-right: 0px;}
+}
+
+/* 720px and below */
+
+@media (max-width: 720px) {
+.trigger, .activetrigger, .dropcontainer ul, .trigger_demo2, .activetrigger_demo2, .dropcontainer_demo2 ul {width: 100% !important;}
+}

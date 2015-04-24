@@ -4,6 +4,7 @@
 @stop
 
 @section('content')
+
 <style>
     #save-indicator{
         border:1px solid black;
@@ -17,6 +18,7 @@
         padding-right: 10px;
     }
 </style>
+
 @if (Session::get('success'))
 <div class="alert alert-success">{{ Session::get('success') }}</div>
 @endif
@@ -55,11 +57,14 @@
                         <div class="container course-editor">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h1 class='icon'>{{$course->name}}</h1>   
+                                    <h1 class='icon'>
+                                    	<span>Course Editor</span>
+                                   		{{$course->name}}
+                                    </h1>   
                                 </div>
                             </div>
                             <div class="row"> 
-                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="col-xs-12 col-sm-12 col-md-4">
                                     <div class="what-to-achieve">
                                         <h3>{{ trans('courses/create.by_the_end') }}</h3>
                                         @foreach( json2Array($course->what_will_you_achieve) as $skill)
@@ -69,7 +74,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                <div class="col-xs-12 col-sm-12 col-md-4">
                                     <div class="who-for">
                                         <h3>{{ trans('courses/curriculum.for_those_who') }}</h3>
                                         @foreach( json2Array($course->who_is_this_for) as $for)
@@ -79,7 +84,18 @@
                                         @endforeach
                                     </div>
                                 </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                    <div class="who-for">
+                                        <h3>{{ trans('courses/create.course-requirements') }}</h3>
+                                        @foreach( json2Array($course->requirements) as $for)
+                                            <ul>
+                                                <li>{{ $for }}</li>
+                                            </ul>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
+	                        <span class="course-editor-horizontal-line"></span>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="plan-your-curriculum">
@@ -109,8 +125,9 @@
                     <div role="tabpanel" class="tab-pane fade" id="course-edit">
                         <div class="row well">
                             <h3 id='publish-status-header'>
-                                {{ trans('courses/general.publish-status') }}: 
-                                {{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}</h3>
+                                {{ trans('courses/general.approval-status') }}: 
+                                <span class="approved">{{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}</span>
+                            </h3>
                             
                             @if( $course->publish_status!='approved' && $course->publish_status!='pending' )
                              {{ Form::model($course, ['action' => ['CoursesController@submitForApproval', $course->slug], 'method' => 'PUT',
@@ -130,36 +147,35 @@
                             	<div id="top-form">
                             
                                     <div class="clearfix">
-                                    	<label>{{ trans('courses/general.privacy_status') }} </label>
-                                        <span class="custom-dropdown">
-                                            {{ Form::select('privacy_status', [ 'private' => trans('courses/statuses.private'), 
-                                        'public' => trans('courses/statuses.public')]) }}
-                                        </span>
+                                    	<label class="label-name">{{ trans('courses/general.privacy_status') }} </label>
+                                        <label class="custom-dropdown label">
+                                        {{ Form::select('privacy_status', [ 'private' => trans('courses/statuses.private'), 
+                                        'public' => trans('courses/statuses.public')], null,['class'=>'turnintodropdown']) }}
+                                        </label>
                                     </div>    
                                                 
                                     <div class="clearfix">
-                                    	<label>{{ trans('courses/curriculum.enable-ask-coach') }} </label>
-                                        <span class="custom-dropdown">
-                                            {{ Form::select('ask_teacher', [ 'enabled' => trans('courses/curriculum.yes'), 'disabled' => trans('courses/curriculum.no')]) }}
-                                        </span>
+                                    	<label class="label-name">{{ trans('courses/curriculum.enable-ask-coach') }} </label>
+                                        <label class="custom-dropdown label">
+                                            {{ Form::select('ask_teacher', [ 'enabled' => trans('courses/curriculum.yes'), 'disabled' => trans('courses/curriculum.no')], null,['class'=>'turnintodropdown']) }}
+                                        </label>
                                     </div>    
                                     
                                     <div class="clearfix">
-                                    	<label>{{ trans('courses/general.category') }}</label>                                        
-                                        <span class="custom-dropdown">
-                                            {{ Form::select('course_category_id', $categories, $course->course_category_id, 
-                                    ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 
-                                                    'data-url'=> action('CoursesCategoriesController@subcategories'), 'required']) }}
+                                    	<label class="label-name">{{ trans('courses/general.category') }}</label>                                        
+                                        <label class="custom-dropdown label">
+                                            {{ Form::select('course_category_id', $categories, $course->course_category_id, ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 
+                                                    'data-url'=> action('CoursesCategoriesController@subcategories_instructor'), 'required', 'class'=>'turnintodropdown']) }}
                                                     
-                                        </span>
+                                        </label>
                                     </div>   
                                     
                                     <div class="clearfix">
-                                    	<label>{{ trans('courses/general.subcategory') }}</label> 
-                                        <span class="custom-dropdown">
+                                    	<label class="label-name">{{ trans('courses/general.subcategory') }}</label> 
+                                        <label class="custom-dropdown label">
                                             {{ Form::select('course_subcategory_id', $subcategories, $course->course_subcategory_id,
-                                    ['id'=>'course_subcategory_id'] ) }}
-                                        </span>
+                                    ['id'=>'course_subcategory_id', 'class'=>'turnintodropdown']) }}
+                                        </label>
                                     </div>    
                                     <div class="course-level btn-group clearfix" data-toggle="buttons">
                                         <span>{{ trans('courses/general.difficulty') }}</span>
@@ -179,19 +195,19 @@
                                     </div>
                             
                                     <div>
-                                        <label>{{ trans('crud/labels.name') }} </label>
-                                        {{ Form::text( 'name', null, ['class' => 'has-slug', 'data-slug-target' => '#slug' ]) }}
+                                       <label class="label-name">{{ trans('crud/labels.name') }} </label>
+                                        {{ Form::text( 'name', null, ['class' => 'has-slug', 'placeholder'=>'Course Name', 'data-slug-target' => '#slug' ]) }}
                                         {{ Form::hidden( 'slug', null, ['id'=>'slug'] ) }}
                                     </div>
                                                 
                                     <div>
-                                        <label>{{ trans('crud/labels.assigned_instructor') }}
+                                        <label class="label-name">{{ trans('crud/labels.assigned_instructor') }}
                                             @if($assignedInstructor!=null)
                                                 <i class="fa fa-check assigned-check"></i>
                                             @endif
                                         </label>
                                             <input type='text' class='delayed-keyup'
-                                                   id='assign-instructor' 
+                                                   id='assign-instructor' placeholder="Enter instructor username/email."
                                                    data-delay='300'
                                                    data-callback='assignInstructor'
                                                    @if($assignedInstructor!=null)
@@ -202,24 +218,24 @@
                                             {{ Form::hidden('assigned_instructor_id', null, [ 'id'=>'assigned_instructor_id' ] ) }}
                                     </div>
                                     <div>
-                                        <label>{{ trans('crud/labels.display_instructor') }} </label>
-                                        <span class="custom-dropdown">
+                                        <label class="label-name">{{ trans('crud/labels.display_instructor') }} </label>
+                                        <label class="custom-dropdown label">
                                             {{ Form::select( 'details_displays', 
                                                 ['instructor' => trans('courses/curriculum.course-owner-instructor'), 
-                                                'assigned_instructor' => trans('courses/curriculum.assigned-instructor') ] ) }}
-                                        </span>
+                                                'assigned_instructor' => trans('courses/curriculum.assigned-instructor') ], null,['class'=>'turnintodropdown'] ) }}
+                                        </label>
                                     </div>
                                     <div>
-                                        <label>{{ trans('crud/labels.display_bio') }} </label> 
-                                        <span class="custom-dropdown">
+                                        <label class="label-name">{{ trans('crud/labels.display_bio') }} </label> 
+                                        <label class="custom-dropdown label">
                                             {{ Form::select( 'show_bio', 
                                                 ['default' => trans('courses/curriculum.default-instructor-bio'), 
-                                                'custom' => trans('courses/curriculum.custom-course-bio') ] ) }}
-                                        </span>
+                                                'custom' => trans('courses/curriculum.custom-course-bio') ], null,['class'=>'turnintodropdown'] ) }}
+                                        </label>
                                     </div>
                                     <div>
-                                        <label>{{ trans('crud/labels.custom_bio') }} </label>
-                                        {{ Form::textarea( 'custom_bio' ) }}
+                                        <label class="label-name">{{ trans('crud/labels.custom_bio') }} </label>
+                                        {{ Form::textarea( 'custom_bio', null, ['placeholder'=>'Enter bio to display on course description page.'] ) }}
                                     </div>
                                 </div>
                             </div>
@@ -227,7 +243,7 @@
                         <div class="row">
                         	<div class="col-md-12">
                                 <div class="image-upload">
-                                	<h3>{{ trans('courses/general.preview_image') }}</h3>
+                                	<h3>{{ trans('courses/general.course_listings_image') }}</h3>
                                     <!--<label for="upload-preview-image">
                                             <div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>
                                     </label>-->
@@ -271,7 +287,7 @@
                         <div class="row">
                         	<div class="col-md-12">
                                 <div class="image-upload">
-                                	<h3>{{ trans('courses/general.details_page_banner_image') }}</h3>
+                                	<h3>{{ trans('courses/general.course_description_video_image') }}</h3>
                                     <label for="upload-banner-image" class="uploadFile">
                                             <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
                                             <span>{{ trans('courses/curriculum.upload') }}</span> 
@@ -324,7 +340,8 @@
                                              </div>
                                     </div>    
                                 <div class="what-you-will-achieve">
-                                	<h3>{{ trans('courses/general.what_will_you_achieve') }} </h3>
+                                	<h3>{{ trans('courses/create.by_the_end') }} </h3>
+                                    <p class="tip">{{ trans('courses/curriculum.result-based') }}</p>
                                         @if($values = json2Array($course->what_will_you_achieve))
                                          <?php $i = 1;?>
                                             @foreach($values as $val)
@@ -342,6 +359,25 @@
                                                  <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
                                             </div>
                                     </div>    
+                                <div class="what-you-will-achieve">
+                                	<h3>{{ trans('courses/create.course-requirements') }} </h3>
+                                        @if($values = json2Array($course->requirements))
+                                         <?php $i = 1;?>
+                                            @foreach($values as $val)
+                                            <div class="clonable-{{time().$i}}">
+                                                 <span>{{$i}}</span>
+                                                <input type='text' name='requirements[]' data-clonable-max='5' value='{{$val}}' class="clonable clonable-{{time().$i}}"  /><br />
+                                                 <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
+                                             </div>
+                                                <?php ++$i; ?>
+                                            @endforeach
+                                        @endif
+                                            <div class="clonable-{{time().$i}}">
+                                                 <span>{{$i}}</span>
+                                                 <input type='text' name='requirements[]' data-clonable-max='5' class="clonable clonable-{{time().$i}}" />
+                                                 <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
+                                            </div>
+                                    </div>    
                                 <div class="description-editor-box">
                                 	<h3>{{ trans('crud/labels.description') }} </h3>
                                 	<div class="description-box">{{ Form::textarea('description', null,['id'=>'description'] ) }}</div>
@@ -353,20 +389,20 @@
                                 
                                 <div class="payment-section">
                                     <div class="clear clearfix margin-bottom-20">
-                                    	<label>{{ trans('courses/curriculum.payment-type') }} </label>
-                                        <span class="custom-dropdown">
+                                    	<label class="label-name">{{ trans('courses/curriculum.payment-type') }} </label>
+                                        <label class="custom-dropdown label">
                                         {{ Form::select('payment_type', [ 'one_time' => trans('courses/general.one_time'), 
-                                        'subscription' =>  trans('courses/general.subscription') ] ) }}
-                                        </span>
+                                        'subscription' =>  trans('courses/general.subscription') ], null,['class'=>'turnintodropdown'] ) }}
+                                        </label>
                                     </div>    
                                     <div class="clear clearfix margin-bottom-20">
-                                    	<label>{{ trans('courses/general.price') }}</label> 
+                                    	<label class="label-name">{{ trans('courses/general.price') }}</label> 
                                         {{  Form::text( 'price', money_val($course->price) ) }}
                                     </div>    
                                     
                                     <div class="clear clearfix">
                                     	<div class="percentage-slider">
-                                            <label>{{ trans('courses/general.affiliate_percentage') }}  </label>   
+                                            <label class="label-name">{{ trans('courses/general.affiliate_percentage') }}  </label>   
                                             <div>                                   
                                                 <input type="text" class='span2 clear right' name='affiliate_percentage' id='affiliate_percentage' 
                                                     value="{{ $course->affiliate_percentage }}" data-slider-min="0" data-slider-max="68" 
@@ -380,17 +416,20 @@
                                              </div>
                                          </div>
                                         <div class="clear clearfix margin-bottom-20">
-                                        	<label>{{ trans('courses/general.discount') }} </label>
+                                        	<label class="label-name">{{ trans('courses/general.discount') }} </label>
                                                 {{ Form::text('sale', money_val($course->sale)) }}
-                                                <div class="custom-dropdown discount margin-top-20">
-                                                	{{ Form::select('sale_kind', ['amount' => '$', 'percentage' => '%'] ) }}
-                                                </div>
+                                                <label class="custom-dropdown label discount margin-top-20">
+                                                	{{ Form::select('sale_kind', ['amount' => '$', 'percentage' => '%'], null,['class'=>'turnintodropdown'] ) }}
+                                                </label>
                                         </div>    
-                                        <div class="clear clearfix margin-bottom-20">
-                                            <label>{{ trans('courses/general.sale_ends_on') }}</label>  
-                                            {{ Form::text('sale_ends_on') }}
-                                        </div>    
-                                        <div class="clear clearfix margin-bottom-20">
+                                        <div class="clear clearfix margin-bottom-20 input-group date">
+                                            <label class="label-name">{{ trans('courses/general.sale_ends_on') }}</label>  
+                                            {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datepicker']) }}
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>  
+        								<div class="clear clearfix margin-bottom-20">
                                                <button type="submit" class="btn btn-primary submit-button">{{ trans('crud/labels.update') }}</button>
                                         </div>
                                     </div>

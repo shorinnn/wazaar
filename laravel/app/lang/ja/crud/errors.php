@@ -1,15 +1,15 @@
 <?php
 
 return array(
-    'object_updated' => ':object Updated',
-    'object_created' => ':object Created',
-    'cannot_update_object' => 'Could not update :object',
-    'cannot_save_object' => 'Could not save :object',
-    'object_deleted' => ':object Deleted',
-    'cannot_delete_object' => 'Cannot delete :object',
-    'object_doesnt_exist' => ":object doesn't exist",
-    'attr_taken' => ":attr is taken",
-    'error_occurred' => "An error occurred",
-    'module-slug-in-use' => "You are already using this module name in this course. Please use another one",
-    'lesson-slug-in-use' => "You are already using this lesson name in this module. Please use another one",
+    'object_updated' => ':objectが更新されました',
+    'object_created' => ':objectが作成されました',
+    'cannot_update_object' => ':objectを更新できませんでした',
+    'cannot_save_object' => ':objectを保存できませんでした',
+    'object_deleted' => ':objectを削除しました',
+    'cannot_delete_object' => ':objectを削除できませんでした',
+    'object_doesnt_exist' => ":objectがありません",
+    'attr_taken' => ":attr is taken please provide more context",
+    'error_occurred' => "エラーが発生しました",
+    'module-slug-in-use' => "このモジュール名をコースで既に使用しています。他の名前を入力してください",
+    'lesson-slug-in-use' => "このレッスン名を既にモジュールで使用しています。他の名前を入力してください",
 );

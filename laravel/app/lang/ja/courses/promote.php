@@ -1,12 +1,12 @@
 <?php
 
 return array(
-    'promote' => '月Promoteせ',
-    'your-link' => '月Your Linkせ',
-    'copy' => '月Copyせ',
-    'add-gift' => '月Add Giftせ',
-    'what-to-say' => '月What do you want to say to your buyersせ',
-    'link' => '月Linkせ',
-    'add-file' => '月Add Fileせ',
-    'new-gift' => '月New Giftせ',
+    'promote' => '月Promoteせplease provide more context',
+    'your-link' => 'please provide more context',
+    'copy' => 'コピーする',
+    'add-gift' => 'ギフトを追加',
+    'what-to-say' => '購入者へのメッセージ',
+    'link' => 'リンク',
+    'add-file' => 'ファイルを追加',
+    'new-gift' => '新しいギフト',
 );

@@ -94,7 +94,7 @@ class Student extends User{
      */
     
     public function purchased($product){
-//        if( Auth::check() && Auth::user()->hasRole('Admin')) return true;
+        if( Auth::check() && Auth::user()->hasRole('Admin')) return true;
         $product_type = get_class($product);
         if( !isset( $this->purchased[$product_type])) $this->purchased[$product_type] = $this->purchases()->where( 'product_type', $product_type )->lists('product_id' );
         

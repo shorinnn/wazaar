@@ -44,7 +44,7 @@ class LTCTransactionsCest{
         $affiliate->affiliate_balance = 100;
         $affiliate->updateUniques();
         $I->assertEquals( 100, $affiliate->affiliate_balance );
-        $affiliate->debit( 100, 'ref', 5 );
+        $affiliate->debit( 100, 'ref', [] );
         $I->assertEquals( 0, $affiliate->affiliate_balance );
         $I->seeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'affiliate_debit', 
             'reference' => 'ref', 'status' => 'pending',  'amount' => 100 -  Config::get('custom.cashout.fee') ] );
@@ -52,7 +52,7 @@ class LTCTransactionsCest{
     
     public function failDebitLowBalance(UnitTester $I){
         $affiliate = LTCAffiliate::find(4);
-        $I->assertFalse( $affiliate->debit( 100, 'ref', 5) );
+        $I->assertFalse( $affiliate->debit( 100, 'ref', []) );
         $I->assertEquals( 0, $affiliate->student_balance );
         $I->dontSeeRecord('transactions', ['user_id' => $affiliate->id, 'transaction_type' => 'affiliate_debit', 
             'reference' => 'ref', 'status' => 'pending' ] );
