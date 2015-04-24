@@ -53,7 +53,6 @@ Route::group( array('domain' => Config::get('app.base_url') ), function(){
     Route::group(array('prefix'=>'administration'),function(){
         Route::post('withdrawals/update', 'WithdrawalsController@update');
         Route::resource('withdrawals', 'WithdrawalsController');
-        Route::post('members/refund', 'MembersController@refund');
         Route::resource('members', 'MembersController');
         Route::resource('submissions', 'SubmissionsController');
         Route::get('instructor-agencies/instructors/{id}', 'InstructorAgenciesController@instructors');
@@ -287,10 +286,11 @@ Route::group(['prefix' => 'api'], function(){
 Route::get('test', function(){
     $p = new PaymentHelper;
 
-    $r = $p->invalidateProfile('6756453f-b992-468b-a033-1c9291db4cb4');
-    echo '<pre>';
-    print_r($r);
-    echo '</pre>';
-    die;
+    //$p->invalidateProfile('a98e39d4-c257-4395-af7a-e9f7bc9e8966');
+
+    /*$r = $p->processCreateProfileFromOrderId('1000002587');
+    dd($r);*/
+
+    dd($p->processCreateProfileFromOrderId('1000002588'));
 
 });
