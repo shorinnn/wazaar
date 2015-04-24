@@ -444,6 +444,8 @@
 		</div>
 	</div>
 </div>
+
+@include('videos.playerModal')
 @stop
 
 @section('extra_js')
@@ -453,6 +455,7 @@
 <script src="{{url('plugins/slider/js/bootstrap-slider.js')}}"></script>
 <script src="{{url('js/videoUploader.js')}}" type="text/javascript"></script>
 <script src="{{url('js/videoLookup.js')}}" type="text/javascript"></script>
+<script src="{{url('js/videoModal.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
         $(function (){
            $('.lesson-no-video .video .a-add-video').click();
