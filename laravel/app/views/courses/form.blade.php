@@ -4,6 +4,7 @@
 @stop
 
 @section('content')
+
 <style>
     #save-indicator{
         border:1px solid black;
@@ -17,6 +18,7 @@
         padding-right: 10px;
     }
 </style>
+
 @if (Session::get('success'))
 <div class="alert alert-success">{{ Session::get('success') }}</div>
 @endif
