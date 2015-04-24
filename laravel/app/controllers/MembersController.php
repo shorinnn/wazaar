@@ -91,7 +91,7 @@ class MembersController extends \BaseController {
                 return Redirect::action('MembersController@index')->withError( trans('crud/errors.object_doesnt_exist', ['object' => 'User' ]) );
             }
             $user->status = Input::get('status');
-            $user->affiliate_agency_id = Input::get('affiliate_agency_id') == 0 ? null : Input::get('affiliate_agency_id');
+            $user->instructor_agency_id = Input::get('instructor_agency_id') == 0 ? null : Input::get('instructor_agency_id');
            if( $user->update( input_except(['_method', '_token'] ) ) ){
                 if(Request::ajax()) return json_encode( ['status'=>'success'] );
                 return Redirect::back()->withSuccess( trans('crud/errors.object_updated', ['object'=>'User'] ));

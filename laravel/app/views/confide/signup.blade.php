@@ -39,12 +39,10 @@
 	        <p class="clearfix character-tip"><em class="left"></em><span class="block">You're almost there...</span></p>
         </div>
         <p class="js-error-message"></p>
-        @if (Session::get('error'))
+        @if (Session::has('error'))
             <div class="alert alert-error alert-danger">
             	<span>ERROR</span>
-                @if (is_array(Session::get('error')))
-                    {{ head(Session::get('error')) }}
-                @endif
+                {{Session::get('error')}}
             </div>
         @endif
         <div class="form-group">

@@ -19,10 +19,13 @@ class LessonPurchaseCest{
         Db::table('lessons')->update( ['price'=>1] );
         $course = Course::where('name','Business App Development')->orderBy('id','asc')->first();
         $user = Student::where('username','mac')->first();
+        Purchase::where('student_id', $user->id)->delete();
         $data = [];
         $data['successData']['REF'] = '123';
+        $data['successData']['ORDERID'] = '123';
         $data['successData']['processor_fee'] = '5';
         $data['successData']['tax'] = '10';
+        $data['successData']['giftID'] = null;
         $data['successData']['balance_used'] = '10';
         $data['successData']['balance_transaction_id'] = '0';
         $lesson = Lesson::find(10);

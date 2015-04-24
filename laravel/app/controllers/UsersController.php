@@ -41,7 +41,7 @@ class UsersController extends Controller
         $roles['affiliate'] = Cookie::get('register_affiliate');
         $user = $this->users->signup(Input::all(), Cookie::get('ltc'), $roles);
 
-        if ($user->id) {
+        if ( $user!=null && $user->id) {
             if (Config::get('confide::signup_email')) {
                 Mail::send(
                     Config::get('confide::email_account_confirmation'),
@@ -59,11 +59,12 @@ class UsersController extends Controller
             Auth::login($user);
             return Redirect::intended('/');
         } else {
-            $error = $user->errors()->all(':message');
-
-            return Redirect::action('UsersController@create')
-                ->withInput(Input::except('password'))
-                ->with('error', $error);
+            $error = implode('<br />',$user->errors()->all());
+            $input = Input::all();
+            unset($input['password']);
+            return Redirect::back()->with('error', $error)->withInput( $input );//Redirect::action('UsersController@create')
+                //->withInput(Input::except('password'))
+                //->with('error', $error);
         }
     }
 
@@ -97,9 +98,10 @@ class UsersController extends Controller
             } else {
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
             }
-
+            $input = Input::all();
+            unset($input['password']);
             return Redirect::action('UsersController@login')
-                ->withInput(Input::except('password'))
+                ->withInput($input)
                 ->with('error', $err_msg);
         }
     }

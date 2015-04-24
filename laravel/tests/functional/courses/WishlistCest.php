@@ -52,7 +52,7 @@ class WishlistCest{
         $I->seeRecord('wishlist_items',['student_id' => $user->id, 'course_id' => $course->id]);
         $I->logout();
         $I->amOnPage("/student/$user->email/wishlist");
-        $I->see("$user->first_name $user->last_name's wishlist");
+        $I->see("$user->first_name $user->last_name wishlist");
     }
     
     public function deleteWishlistItem(FunctionalTester $I){
@@ -83,7 +83,8 @@ class WishlistCest{
         $item = WishlistItem::where('student_id', $user->id)->first();
         $I->logout();
         $user = Student::where('username', 'sorin')->first();
-        $I->sendAjaxPostRequest(action('WishlistController@destroy', $item->id), ['_action' => 'DELETE', '_token' =>  csrf_token() ]);
+        //$I->sendAjaxPostRequest(action('WishlistController@destroy', $item->id), ['_action' => 'DELETE', '_token' =>  csrf_token() ]);
+        $I->sendAjaxRequest('DELETE',action('WishlistController@destroy', $item->id), ['_action' => 'DELETE', '_token' =>  csrf_token() ]);
         $I->assertEquals(1, WishlistItem::count() );        
     }
     

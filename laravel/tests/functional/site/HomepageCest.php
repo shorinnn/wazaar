@@ -30,7 +30,7 @@ class HomepageCest{
         $I->amLoggedAs($user);
         $I->seeAuthentication();
         $I->amOnPage('/');
-        $I->click('Learn more');
+        $I->click('.big-box > a');
         $course = Course::where('name', 'Javascript Primer')->first()->slug;
         $I->seeCurrentUrlEquals('/courses/'.$course);
     }

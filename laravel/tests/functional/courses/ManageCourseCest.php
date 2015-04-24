@@ -46,7 +46,8 @@ class ManageCourseCest{
         $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->see('Module <span class="module-order">1</span>');
         $I->click('delete-module-1');
-        $I->amOnPage('courses/'.$course->slug.'/edit');
+//        $I->amOnPage('courses/'.$course->slug.'/edit');
+        $I->seeCurrentUrlEquals('/courses/'.$course->slug.'/edit');
         $I->dontSee('Module <span class="module-order">1</span>');
     }
     public function deleteModuleAsAssigned(FunctionalTester $I){
@@ -59,7 +60,8 @@ class ManageCourseCest{
         $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->see('Module <span class="module-order">1</span>');
         $I->click('delete-module-1');
-        $I->amOnPage('courses/'.$course->slug.'/edit');
+//        $I->amOnPage('courses/'.$course->slug.'/edit');
+        $I->seeCurrentUrlEquals('/courses/'.$course->slug.'/edit');
         $I->dontSee('Module <span class="module-order">1</span>');
     }
     
@@ -100,8 +102,8 @@ class ManageCourseCest{
         $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->see('Lesson <span class="lesson-order">1</span>');
         $I->click('delete-lesson-1');
-        $I->amOnPage('courses/'.$course->slug.'/edit');
-        $I->dontSee('Lesson <span class="lesson-order">2</span>');
+        $I->seeCurrentUrlEquals('/courses/'.$course->slug.'/edit');
+        $I->dontSee('delete-lesson-1');
     }
     
     public function deleteLessonAsAssigned(FunctionalTester $I){
@@ -114,8 +116,9 @@ class ManageCourseCest{
         $I->amOnPage('courses/'.$course->slug.'/edit');
         $I->see('Lesson <span class="lesson-order">1</span>');
         $I->click('delete-lesson-1');
-        $I->amOnPage('courses/'.$course->slug.'/edit');
-        $I->dontSee('Lesson <span class="lesson-order">2</span>');
+//        $I->amOnPage('courses/'.$course->slug.'/edit');
+        $I->seeCurrentUrlEquals('/courses/'.$course->slug.'/edit');
+        $I->dontSee('delete-lesson-1');
     }
     
 
@@ -125,7 +128,7 @@ class ManageCourseCest{
         $I->amLoggedAs($instructor);
         $I->seeRecord('blocks',['name'=>'Test Block']);
         $total = Block::where('lesson_id', 10)->count();
-        $I->amOnAction('BlocksController@destroy',[ 'lesson_id'=>10, 'id'=>1 ]);
+//        $I->amOnAction('BlocksController@destroy',[ 'lesson_id'=>10, 'id'=>1 ]);
         $I->sendAjaxRequest('DELETE', '/lessons/blocks/10/1');
         $I->assertEquals( $total-1,  Block::where('lesson_id', 10)->count() );
     }
@@ -139,7 +142,7 @@ class ManageCourseCest{
         $I->amLoggedAs($second_instructor);
         $I->seeRecord('blocks',['name'=>'Test Block']);
         $total = Block::where('lesson_id', 10)->count();
-        $I->amOnAction('BlocksController@destroy',[ 'lesson_id'=>10, 'id'=>1 ]);
+//        $I->amOnAction('BlocksController@destroy',[ 'lesson_id'=>10, 'id'=>1 ]);
         $I->sendAjaxRequest('DELETE', '/lessons/blocks/10/1');
         $I->assertEquals( $total-1,  Block::where('lesson_id', 10)->count() );
     }
@@ -157,7 +160,8 @@ class ManageCourseCest{
         $I->amLoggedAs($instructor);
         $course = Course::find(1);
         $I->assertEquals(3, $course->modules()->count());
-        $I->sendAjaxRequest('POST', 'blocks/1');
+//        $I->sendAjaxRequest('POST', 'blocks/1');
+        $I->sendAjaxRequest('POST', action('ModulesController@store',1));
         $I->assertEquals(3, $course->modules()->count());
     }
     
@@ -185,7 +189,7 @@ class ManageCourseCest{
         $I->amLoggedAs($instructor);
         $module = Module::find(1);
         $I->assertEquals(2, $module->lessons()->count());
-        $I->sendAjaxRequest('DELETE', 'modules/1/lessons/1');
+        $I->sendAjaxRequest('DELETE', 'modules/'.$module->id.'/lessons/'.$module->lessons()->first()->id);
         $I->assertEquals(2, $module->lessons()->count());
     }
     
@@ -193,8 +197,8 @@ class ManageCourseCest{
         $instructor = Instructor::where('username', 'second_instructor')->first();
         $I->amLoggedAs($instructor);
         $I->seeRecord('blocks',['name'=>'Test Block']);
-        $I->amOnAction('BlocksController@destroy',[ 'lesson_id'=>1, 'id'=>1 ]);
-        $I->sendAjaxRequest('DELETE', '/lessons/blocks/1/1');
+//        $I->amOnAction('BlocksController@destroy',[ 'lesson_id'=>1, 'id'=>1 ]);
+        $I->sendAjaxRequest('DELETE', '/lessons/blocks/10/1');
         $I->seeRecord('blocks',['name'=>'Test Block']);
     }
     

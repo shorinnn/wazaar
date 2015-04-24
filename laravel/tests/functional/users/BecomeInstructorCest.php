@@ -32,7 +32,7 @@ class BecomeInstructorCest{
         $I->haveDisabledFilters();
         $I->click('Get Started');
         $user = User::where('username','student')->first();
-        $user = $I->refreshAuthenticatedUser( $user );
+//        $user = $I->refreshAuthenticatedUser( $user );
         Auth::login($user);
         $I->assertTrue( Auth::user()->hasRole('Instructor') );
         $I->seeCurrentUrlEquals('/instructors');
@@ -54,7 +54,7 @@ class BecomeInstructorCest{
         $I->haveDisabledFilters();
         $I->click('Get Started');
         $user = User::where('username','student')->first();
-        $user = $I->refreshAuthenticatedUser( $user );
+//        $user = $I->refreshAuthenticatedUser( $user );
         Auth::login($user);
         $I->assertTrue( Auth::user()->hasRole('Instructor') );
         $I->seeCurrentUrlEquals('/instructors');
