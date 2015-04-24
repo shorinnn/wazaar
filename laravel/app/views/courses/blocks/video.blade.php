@@ -36,7 +36,7 @@
                         </div>
                     @else
                    		<span id="video-transcoding-indicator" style="display: block;">Current video: 
-                        	<a href="#" class="video-title">{{$video->original_filename}}</a>
+                        	<a href="#" class="video-title" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="videoModal.show(this, event)">{{$video->original_filename}}</a>
                         </span> 
                         <div class="form-group video-upload clear">
                             <span>{{ trans('video.upload-video') }}</span>
