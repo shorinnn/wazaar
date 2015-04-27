@@ -100,6 +100,7 @@
                         </div>             
                     </div>
                 </div>
+                        
                     @if( $video==null || $video->video() == null)
                     <div class="video-player"
                          @if( $course->bannerImage != null)
