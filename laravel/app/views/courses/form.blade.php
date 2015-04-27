@@ -476,10 +476,10 @@
 					return m+":"+s;
 				};
 				
-				console.log($lessonId);
-				console.log(uploadedVideo);
+				//console.log($lessonId);
+				//console.log(uploadedVideo);
 				videoUploader.getVideo($videoId, function ($video){ 
-					console.log($video[0]);
+					console.log($video);
 					
 					$('.lesson-options-' + $lessonId).find('#video-thumb-container').css({
 						display: 'block'	
@@ -489,7 +489,7 @@
 						'#video-thumb-container').html(
 						"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
 						
-					$('.lesson-options-' + $lessonId).find('#video-thumb-container p').text(timeFormat(videoDuration));
+					$('.lesson-options-' + $lessonId).find('#video-thumb-container p').text($video.formats[0].duration);
 				});
 
                 $.post('/lessons/blocks/' + $lessonId + '/video/assign', {videoId : $videoId}, function (){

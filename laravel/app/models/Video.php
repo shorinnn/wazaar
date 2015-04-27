@@ -54,7 +54,8 @@ class Video extends \LaravelBook\Ardent\Ardent
             $video = $video->where('original_filename', 'LIKE', "%". $filter ."%");
         }
 
-        $video = $video->paginate(6);
+        //TODO: Set config values for the numbers below
+        $video = $video->remember(10)->paginate(6);
 
         return $video;
     }

@@ -6,7 +6,7 @@ var videoLookup = {
             $e.preventDefault();
             $lessonId = $(this).attr('data-lesson-id');
             $('#videoFilter').val('');
-            $('#videos-acrhive-modal').modal('show');
+            $('#videos-archive-modal').modal('show');
 
             $.get('/video/user/archive', function ($html){
                 $('.video-list-container').html($html);
@@ -21,7 +21,7 @@ var videoLookup = {
             $('#btn-use-video').addClass('disabled');
 
             var $videoId = $('input[name=radioVideoId]:checked').val();
-            $('#videos-acrhive-modal').modal('hide');
+            $('#videos-archive-modal').modal('hide');
             $callback($lessonId, $videoId);
         });
 
@@ -36,7 +36,8 @@ var videoLookup = {
 
         });
 
-        $('#modal-body-videos').on('click','#btnGoFilterVideo',function(){
+        $('#modal-body-videos').on('keyup','#videoFilter',function(){
+            $('.video-list-container').html($('#ajax-loader-wrapper').html());
             $.post('/video/user/archive', {filter: $('#videoFilter').val()}, function ($html){
                 $('.video-list-container').html($html);
             });

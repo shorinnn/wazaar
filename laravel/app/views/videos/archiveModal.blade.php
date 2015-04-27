@@ -1,4 +1,4 @@
-<div class="modal fade" id="videos-acrhive-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div class="modal fade" id="videos-archive-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,12 +11,12 @@
                     <div class="row">
                         <div class="form-group">
                             <input type="text" name="videoFilter" id="videoFilter" placeholder="Filter" class="form-control">
-                            <button id="btnGoFilterVideo">Go</button>
+                            <!--<button id="btnGoFilterVideo">Go</button>-->
                         </div>
                     </div>
 
                     <div class="video-list-container">
-
+                        <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                     </div>
 
                 </div>
@@ -29,3 +29,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div id="ajax-loader-wrapper" class="hidden">
+    <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+</div>
