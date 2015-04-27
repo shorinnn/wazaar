@@ -29,7 +29,7 @@
         	<!--<input disabled="disabled" placeholder="" id="uploadFile" style="">-->
 		    <!--<span id="video-transcoding-indicator">Video Currently Processing</span>-->
                     @if (!isset($video->formats[0]->video_url))
-                        <h4>{{trans('video.noImage')}}</h4>
+                        
                         <span id="video-transcoding-indicator">Video Currently Processing</span>
 						<style>
 							.course-editor #modules-list > li .video-upload{
@@ -41,10 +41,7 @@
                             <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
                         </div>
                     @else
-                        <div align="center">
-                            <h4>{{trans('video.previewImage')}}</h4>
-                            <img src="{{$video->formats[0]->thumbnail}}" alt=""/>
-                        </div>
+
                    		<span id="video-transcoding-indicator" style="display: block;">Current video: 
                         	<a href="#" class="video-title" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="videoModal.show(this, event)">{{$video->original_filename}}</a>
                         </span> 

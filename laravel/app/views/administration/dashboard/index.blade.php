@@ -162,6 +162,7 @@
 
             $('#startDate, #startDate-yes, #startDate-no').datetimepicker({format: 'MM/DD/YYYY'});
             $('#endDate, #endDate-yes, #endDate-no').datetimepicker({format: 'MM/DD/YYYY'});
+
             $("#startDate").on("dp.change",function (e) {
                 $('#endDate').data("DateTimePicker").minDate(e.date);
             });
@@ -181,6 +182,27 @@
             });
             $("#endDate-no").on("dp.change",function (e) {
                 $('#startDate-no').data("DateTimePicker").maxDate(e.date);
+            });
+
+            $("#startDate-no").on("click",function (e) {
+                $('#startDate-no').data("DateTimePicker").show();
+            });
+            $("#startDate-yes").on("click",function (e) {
+                $('#startDate-yes').data("DateTimePicker").show();
+            });
+
+            $("#endDate-no").on("click",function (e) {
+                $('#endDate-no').data("DateTimePicker").show();
+            });
+            $("#endDate-yes").on("click",function (e) {
+                $('#endDate-yes').data("DateTimePicker").show();
+            });
+
+            $("#endDate").on("click",function (e) {
+                $('#endDate').data("DateTimePicker").show();
+            });
+            $("#startDate").on("click",function (e) {
+                $('#startDate').data("DateTimePicker").show();
             });
 
 

@@ -210,11 +210,19 @@
 
             $('#start-date').datetimepicker({format: 'MM/DD/YYYY'});
             $('#end-date').datetimepicker({format: 'MM/DD/YYYY'});
+
             $("#start-date").on("dp.change",function (e) {
                 $('#end-date').data("DateTimePicker").minDate(e.date);
             });
             $("#end-date").on("dp.change",function (e) {
                 $('#start-date').data("DateTimePicker").maxDate(e.date);
+            });
+
+            $("#start-date").on("click",function (e) {
+                $('#start-date').data("DateTimePicker").show();
+            });
+            $("#end-date").on("click",function (e) {
+                $('#end-date').data("DateTimePicker").show();
             });
 
 
