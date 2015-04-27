@@ -6727,10 +6727,8 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
     border-radius: 5px;
     color: #0099ff;
     display: none;
+	padding: 15px 5px;
     font-size: 18px;
-    height: 60px;
-    line-height: 60px;
-    width: 222px;
 	text-align: center;
 }
 
@@ -6879,6 +6877,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	display: none;
 	margin: 0;
 	color: #ccc;
+	font-size: 20px;
 	text-align: center;
 }
 
