@@ -1,3 +1,4 @@
+
 <div class="text-center">
     <div id="video-player-container-{{$lessonId}}">
         <!--<div id="notify-warning-new-video" class="alert alert-warning
@@ -33,7 +34,7 @@
                         	<a href="#" class="video-title" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="videoModal.show(this, event)">{{$video->original_filename}}</a>
                         </span> 
                         <div class="form-group video-upload clear">
-                            <span>{{ trans('video.upload-video') }}</span>
+                            <span>{{ trans('video.upload-new-video') }}</span>
                             <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
                         </div>
                         
@@ -45,7 +46,8 @@
 							}
                         </style>
                         <div class="form-group video-upload clear">
-                            <span>{{ trans('video.upload-new-video') }}</span>
+                        	<span>{{ trans('video.upload-video') }}</span>
+                   
                             <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
                         </div>
 
