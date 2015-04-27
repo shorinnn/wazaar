@@ -685,6 +685,19 @@ header .activate-dropdown:hover ul{
 	border-radius:5px;
   	background-repeat:no-repeat;
   	position:relative;
+	box-shadow: 0 0 0 1px #333;
+	overflow: hidden;
+	background: #fff !important;
+	-webkit-transition: box-shadow 0.3s ;
+	-moz-transition: box-shadow 0.3s;
+	transition: box-shadow 0.3s;
+}
+
+.big-box:hover{
+	-webkit-transition: box-shadow 0s;
+	-moz-transition: box-shadow 0s;
+	transition: box-shadow 0s;
+	box-shadow: 0px 0px 0px 2px #333;
 }
 
 .big-box .price-tag{
@@ -720,7 +733,10 @@ header .activate-dropdown:hover ul{
 }
 
 .big-box p{ 
-	font-size:12px;color:#fff;float:right;clear:both;
+	font-size:12px;
+	color:#18222b;
+	float:right;
+	clear:both;
  	min-height:100px;
   	max-width:450px;
   	width:100%;
@@ -754,7 +770,7 @@ header .activate-dropdown:hover ul{
   
 .big-box h2{
   	font-size:32px;
-  	color:#fff;
+  	color:#18222b;
   	font-weight:200;
   	font-family:lato;
   	float:right;
@@ -775,6 +791,7 @@ header .activate-dropdown:hover ul{
   	float:right; 
   	position:absolute;
   	top:12px;right:12px;
+	border: 1px solid #0099ff;
 }
 
 .small-box{
@@ -788,7 +805,11 @@ header .activate-dropdown:hover ul{
   	position:relative;
   	margin-top:30px;
 	box-shadow: 0px 0px 0px 1px #333;
+	overflow: hidden;
   	display:inline-table;
+	-webkit-transition: box-shadow 0.3s ;
+	-moz-transition: box-shadow 0.3s;
+	transition: box-shadow 0.3s;
 }
 
 .small-box .price-tag-container{
@@ -4749,9 +4770,6 @@ select::-ms-expand {
 	margin-top: 60px;
 	overflow: hidden;
 	/*background: rgba(255, 255, 255, 0.3);*/
-	-webkit-transition: box-shadow 1s ;
-	-moz-transition: box-shadow 1s;
-	transition: box-shadow 1s;
 }
 
 /*.course-enroll-wrapper .small-box .box-overlay,
@@ -4770,12 +4788,12 @@ select::-ms-expand {
 }*/
 
 .course-enroll-wrapper .small-box:hover,
-.unauthenticated-homepage .small-box:hover{
+.small-box:hover{
 	/*border-color: #8b9095;*/
 	-webkit-transition: box-shadow 0s;
 	-moz-transition: box-shadow 0s;
 	transition: box-shadow 0s;
-	box-shadow: 0px 0px 0px 3px #333;
+	box-shadow: 0px 0px 0px 2px #333;
 }
 
 .course-enroll-wrapper .small-box .level,
