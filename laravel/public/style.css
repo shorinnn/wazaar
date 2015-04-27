@@ -6694,7 +6694,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	color: #333;
 	text-align: center;
 	display: none;
-	margin: 15px;
+	margin: 0 15px 15px;
 }
 
 .course-editor #modules-list > li .video-upload{
