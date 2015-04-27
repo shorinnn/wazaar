@@ -132,7 +132,7 @@ function enableLessonRTE(e){
 	
 	var actionPanel = $(e.target).parent().parent().parent().siblings('div[class*="action-panel"]');
 	var actionPanelHeight = $(actionPanel).height();
-	TweenMax.fromTo(actionPanel, 0.3, {marginBottom: '40px', padding: '10px'}, {marginBottom: '0px', padding: '30px 0 0'});
+	TweenMax.fromTo(actionPanel, 0.3, {marginBottom: '40px', padding: '10px'}, {marginBottom: '0px', padding: '30px 10px 10px'});
 } 
 
 function enableRTE(selector){

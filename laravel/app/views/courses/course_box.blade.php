@@ -28,9 +28,22 @@
                 </span>-->
             </p>
             <div class="price-tag-container clearfix">
-            	<div class="price-tag-discount-percent">-65%</div>
+                @if($course->isDiscounted())
+                    <div class="price-tag-discount-percent">
+                        -
+                        @if($course->sale_kind=='amount')
+                        ¥
+                        @endif
+                        {{ $course->sale }}
+                        @if($course->sale_kind=='percentage')
+                        %
+                        @endif
+                    </div>
+                @endif
                 <div class="price-tag">
-                	<span class="prev-price">$35,000</span>
+                    @if($course->isDiscounted())
+                	<span class="prev-price"> ¥ {{ number_format( $course->discount_original, Config::get('custom.currency_decimals') ) }}</span>
+                    @endif
                      ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
                     @if($course->isDiscounted())
                         {{trans('courses/general.sale')}}
