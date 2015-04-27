@@ -160,7 +160,7 @@ var Analytics = {
     },
 
     'trackingCodeStats' :  function ($frequency, $courseId, $code, $elem){
-        
+
         $.get('/dashboard/course/' + $courseId + '/trackingcode/' + $code + '/stats/' + $frequency, function ($html){
             $('#wrapper-tracking-code-stats').html($html);
 

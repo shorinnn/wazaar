@@ -196,6 +196,13 @@
                 $('#start-date').data("DateTimePicker").maxDate(e.date);
             });
 
+            $("#start-date").on("click",function (e) {
+                $('#start-date').data("DateTimePicker").show();
+            });
+            $("#end-date").on("click",function (e) {
+                $('#end-date').data("DateTimePicker").show();
+            });
+
             // Get context with jQuery - using jQuery's .get() method.
             var ctx = $("#myChart").get(0).getContext("2d");
             var myLineChart = new Chart(ctx).Line(data,{
