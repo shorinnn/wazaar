@@ -40,7 +40,7 @@
                                 {{trans('analytics.topTrackingCodes')}} <span id="header-tracking-codes-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu tracking-code-hits-dropdown">
                                 <li>
-                                    <a class="active with-daily" href="#" onclick="Analytics.trackingCodeStats('daily',{{$course->id}},'{{$trackingCode}}', this); return false;">{{trans('analytics.today')}}</a>
+                                    <a class="active with-today" href="#" onclick="Analytics.trackingCodeStats('daily',{{$course->id}},'{{$trackingCode}}', this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
                                     <a class="with-weekly" href="#" onclick="Analytics.trackingCodeStats('week',{{$course->id}},'{{$trackingCode}}', this); return false;">{{trans('analytics.thisWeek')}}</a>
