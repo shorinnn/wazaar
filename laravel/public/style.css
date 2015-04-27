@@ -6772,7 +6772,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .course-editor #modules-list > li .video-info{
 	font-size: 14px;
 	color: #b0bfc1;
-	margin: 0px;
+	margin: 0 0 5px;
 	text-align: center;
 }
 
