@@ -35,6 +35,10 @@ body {
 	display: block;
 }
 
+.inline{
+	display: inline;
+}
+
 .hide{
 	display: none;
 }
@@ -783,7 +787,7 @@ header .activate-dropdown:hover ul{
   	background-repeat:no-repeat;
   	position:relative;
   	margin-top:30px;
-	box-shadow: 0px 0px 0px 1px #8b9095;
+	box-shadow: 0px 0px 0px 1px #333;
   	display:inline-table;
 }
 
@@ -923,10 +927,10 @@ header .activate-dropdown:hover ul{
 }
   
 .small-box h2{
-  	font-size:18px;
+  	font-size:14px;
   	color:#18222b;
-  	font-weight: normal;
-	margin: 20px;  
+  	font-weight: bold;
+	margin: 20px 20px 13px;  
   	float:left;
 	line-height: 24px;
   	clear:both;    
@@ -4711,14 +4715,12 @@ select::-ms-expand {
 
 .unauthenticated-homepage .course-listing-container a.learn-more{
 	display: inline-block;
-	width: 100px;
-	height: 42px;
+	padding: 15px 20px;
 	background: #fff;
 	border-radius: 5px;
 	color: #18222b;
 	font-size: 12px;
 	text-align: center;
-	line-height: 42px;
 	position: relative;
 }
 
@@ -4747,12 +4749,12 @@ select::-ms-expand {
 	margin-top: 60px;
 	overflow: hidden;
 	/*background: rgba(255, 255, 255, 0.3);*/
-	-webkit-transition: all 0.2s ease-in-out 0s;
-	-moz-transition: all 0.2s ease-in-out 0s;
-	transition: all 0.2s ease-in-out 0s;
+	-webkit-transition: box-shadow 1s ;
+	-moz-transition: box-shadow 1s;
+	transition: box-shadow 1s;
 }
 
-.course-enroll-wrapper .small-box .box-overlay,
+/*.course-enroll-wrapper .small-box .box-overlay,
 .unauthenticated-homepage .small-box .box-overlay{
 	position: absolute;
 	height: 100%;
@@ -4765,12 +4767,15 @@ select::-ms-expand {
 	-webkit-transition: all 0s ease-in-out 0s;
 	-moz-transition: all 0s ease-in-out 0s;
 	transition: all 0s ease-in-out 0s;
-}
+}*/
 
 .course-enroll-wrapper .small-box:hover,
 .unauthenticated-homepage .small-box:hover{
 	/*border-color: #8b9095;*/
-	box-shadow: 0px 0px 0px 3px #8b9095;
+	-webkit-transition: box-shadow 0s;
+	-moz-transition: box-shadow 0s;
+	transition: box-shadow 0s;
+	box-shadow: 0px 0px 0px 3px #333;
 }
 
 .course-enroll-wrapper .small-box .level,
@@ -6914,7 +6919,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .course-editor .lesson-options .details{
     display: block;
-    margin: 20px auto 0;
+    margin: 0 auto 0;
     max-width: 60%;
 }
 
@@ -7028,7 +7033,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .plan-your-curriculum .lesson-options{
 	position: relative;
 	float: left;
-	margin: 0 0 18px;
+	margin: 0;
     padding-top: 12px;
 }
 
@@ -7039,10 +7044,11 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .plan-your-curriculum .lesson-options > div[class*="action-panel"]{
 	margin-top: 0;
+	padding: 10px;
 }
 
 .plan-your-curriculum .lesson-options > div.lesson-options-buttons{
-	margin: 0 auto 30px;
+	margin: 0 auto;
 	max-width: 62%;
 }
 

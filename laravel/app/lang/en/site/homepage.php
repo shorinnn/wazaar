@@ -13,6 +13,7 @@ return array(
 	'finish-course-alert' => 'You haven’t finished creating your course! Launch and finish it!',
 	'learn-more' => 'Learn more',
 	'get-started' => 'Get Started',
+	'browse-category' => 'Browse Category',
 	'be-an-instructor' => 'BECOME AN INSTRUCTOR',
         'become' => 'BECOME',
 	'an-instructor' => 'AN INSTRUCTOR',

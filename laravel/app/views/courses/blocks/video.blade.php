@@ -49,6 +49,7 @@
                         </div>
                     @endif
                     
+                    <p class="video-info">{{trans('video.maxFileSize')}}</p>
             <!-- Progress Bar -->
     
             <div class="progress">
@@ -59,7 +60,7 @@
 
             <em class="or-text"
                @if ( Video::where('created_by_id', Lesson::find($lessonId)->module->course->instructor_id)->count() > 0)
-                   style='display:block;'
+                   style='display:inline;'
                @endif
             > 
             {{ trans('site/login.or') }}</em>
@@ -70,7 +71,7 @@
             >
             {{trans('video.selectExisting')}}</a></h3>
             <!--<p class="video-info">{{trans('video.formatsSupported')}}</p>-->
-            <p class="video-info">{{trans('video.maxFileSize')}}</p>
+            
 
         </div>
 
