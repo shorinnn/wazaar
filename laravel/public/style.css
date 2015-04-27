@@ -5118,6 +5118,45 @@ select::-ms-expand {
     }
 }*/
 
+/************ scrollable course listings **********/
+.scrollable-course-listings-wrapper{
+	background: #111;
+}
+
+.scrollable-course-listings-container{
+	padding: 30px 0 0;
+}
+
+.scrollable-course-listings-container .scrollable-course-listings{
+	display: none;
+}
+
+.scrollable-course-listings-container .sample-course-listing{
+	height: 440px;
+	width: 313px;
+	background: red;
+	border-radius: 5px;
+	display: block;
+}
+
+.scrollable-course-listings-container .browse-more-block{
+	position: relative;
+	text-align: center;
+}
+
+.scrollable-course-listings-container .sample-course-listing .browse-more{
+	display: inline-block;
+	padding: 15px 20px;
+	background: #fff;
+	border-radius: 5px;
+	color: #18222b;
+	font-size: 12px;
+	text-align: center;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 #video-grid{
     margin: 0 auto;
     max-width: 1596px;

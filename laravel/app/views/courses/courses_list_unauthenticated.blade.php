@@ -32,7 +32,7 @@ $category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthentica
                     </p>
                     <a href="{{ action('CoursesController@category', $category->slug) }}" class="learn-more">{{ trans('site/homepage.learn-more') }}</a>
                     <i class="fa fa-arrow-down fa-1"></i>
-                    <a href="{{ action('UsersController@create') }}" class="sign-up">{{ trans('site/homepage.sign-up-and-earn') }}</a>
+                    <!--<a href="{{ action('UsersController@create') }}" class="sign-up">{{ trans('site/homepage.sign-up-and-earn') }}</a>-->
                 </div>
             @endif
             </div>
