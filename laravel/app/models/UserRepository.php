@@ -44,9 +44,11 @@ class UserRepository
             $user = $this->attachRoles($user);
             if( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) $user = $this->attachRoles($user, 1);
             if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ) $user = $this->attachRoles($user, 2);
+            $this->save_ltc($user, $ltc_cookie);
+            return User::find($user->id);
         }
-        $this->save_ltc($user, $ltc_cookie);
-        return User::find($user->id);
+        else return $user;
+        
     }
     
     /**

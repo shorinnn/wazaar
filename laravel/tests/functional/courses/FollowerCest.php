@@ -53,7 +53,8 @@ class FollowerCest{
         $I->amLoggedAs($user);
         $rel = FollowRelationship::first();
         $I->assertEquals(1, FollowRelationship::count() );
-        $I->sendAjaxPostRequest('/followers/', ['_method' => 'DELETE', 'instructor_id' => $rel->instructor_id, '_token' => csrf_token() ]);
+//        $I->sendAjaxPostRequest('/followers/', ['_method' => 'DELETE', 'instructor_id' => $rel->instructor_id, '_token' => csrf_token() ]);
+        $I->sendAjaxRequest('DELETE', '/followers/'.$rel->instructor_id, ['_method' => 'DELETE', 'instructor_id' => $rel->instructor_id, '_token' => csrf_token() ]);
         $I->assertEquals(1, FollowRelationship::count() );
         
     }

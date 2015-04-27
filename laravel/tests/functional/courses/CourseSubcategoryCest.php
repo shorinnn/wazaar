@@ -21,7 +21,8 @@ class CourseSubcategoryCest{
         $subcat = CourseSubcategory::where('name', 'javascript')->first()->slug;
         $I->amOnPage('/courses/category/'.$cat.'/'.$subcat);
         $course = Course::where('name', 'Javascript Primer')->first()->slug;
-        $I->click('Learn more');
+//        $I->click('Learn more');
+        $I->click('.big-box > a');
         $I->seeCurrentUrlEquals('/courses/'.$course);
     }
     

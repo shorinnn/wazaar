@@ -46,9 +46,11 @@ class LessonsController extends \BaseController {
                     || $lesson->module->course->assigned_instructor_id == Auth::user()->id ) ){
                 $lesson->delete();
                 $response = ['status' => 'success'];
+                if(!Request::ajax()) return Redirect::back();
                 return json_encode($response);
             }
-            $response = ['status' => 'error', 'errors' =>  trans('crud/errors.cannot_delete_object', 'Lesson')  ];
+            if(!Request::ajax()) return Redirect::back();
+            $response = ['status' => 'error', 'errors' =>  trans('crud/errors.cannot_delete_object', ['object' => 'Lesson'])  ];
             return json_encode($response);
         }
         

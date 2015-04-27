@@ -21,6 +21,8 @@ class ForgotPasswordCest{
     }
 
     public function succedeIfUserExists(FunctionalTester $I) {
+        Config::set('queue.default','sync');
+        
         $I->amOnPage('/forgot-password');
         $I->seeNumberOfElements('input[name=email]', 1);
         $I->submitForm('#forgot-form', ['email' => 'student@mailinator.com']);

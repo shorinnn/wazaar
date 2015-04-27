@@ -203,7 +203,6 @@
                                         </div>
                                         <h3>{{$instructor->first_name}} {{$instructor->last_name}}<span></span></h3>
                                         <!--<span class="role">Lead programmer, Wazaar</span>-->
-                                        <!--<a href="#" class="follow-button">FOLLOW</a>-->
                                         @if(Auth::check())
                                             {{ View::make('courses.followed_form')->withInstructor($instructor) }}
                                         @endif

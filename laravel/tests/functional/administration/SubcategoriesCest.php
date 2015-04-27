@@ -59,7 +59,7 @@ class SubcategoriesCest{
         $user = User::where('username', 'superadmin')->first();
         $I->amLoggedAs($user);
         $I->seeAuthentication();
-        $I->amOnPage('/administration/coursesubcategories');
+//        $I->amOnPage('/administration/coursesubcategories');
         $I->sendAjaxRequest('PUT', action('CoursesSubcategoriesController@update', 1), 
                                    ['name' => 'name', 'value' => 'Edited now!!!', '_method' => 'PUT', '_token' => csrf_token()] );
         $I->seeRecord('course_subcategories', [ 'name' => 'Edited now!!!' ] );
