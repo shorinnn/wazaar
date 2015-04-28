@@ -31,7 +31,7 @@
 @stop
 
 @section('extra_css')
-    
+
     <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/1.10.6/integration/bootstrap/3/dataTables.bootstrap.css"/>
 @stop
 

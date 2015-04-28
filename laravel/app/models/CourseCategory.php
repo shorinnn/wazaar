@@ -17,7 +17,7 @@ class CourseCategory extends Ardent{
     public function unauthenticatedHomepageCourses(){
          return $this->allCourses()->orderBy('id','desc')
                  ->where('publish_status','approved')
-                 ->where('privacy_status','public')->limit(3);
+                 ->where('privacy_status','public')->limit(11);
     }
 
     public function featuredCourse(){

@@ -5118,6 +5118,81 @@ select::-ms-expand {
     }
 }*/
 
+/************ scrollable course listings **********/
+.scrollable-course-listings-wrapper{
+	background: #111;
+}
+
+.scrollable-course-listings-container{
+	padding: 30px 0 0;
+}
+
+.scrollable-course-listings-container .scrollable-course-listings{
+	display: none;
+}
+
+.scrollable-course-listings-container .sample-course-listing{
+	height: 440px;
+	width: 313px;
+	background: red;
+	border-radius: 5px;
+	display: block;
+}
+
+.scrollable-course-listings-container .browse-more-block{
+	position: relative;
+	text-align: center;
+}
+
+.scrollable-course-listings-container .sample-course-listing .browse-more{
+	display: inline-block;
+	padding: 15px 20px;
+	background: #fff;
+	border-radius: 5px;
+	color: #18222b;
+	font-size: 12px;
+	text-align: center;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.scrollable-course-listings-container  .slick-prev:hover,
+.scrollable-course-listings-container  .slick-next:hover,
+.scrollable-course-listings-container  .slick-prev,
+.scrollable-course-listings-container  .slick-next{
+	height: 110px;
+	width: 70px;
+	top: 50%;
+	transform: translateY(-50%);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+}
+
+.scrollable-course-listings-container  .slick-prev.slick-disabled,
+.scrollable-course-listings-container  .slick-next.slick-disabled{
+	opacity: 0.4;
+}
+
+.scrollable-course-listings-container .slick-prev::before, 
+.scrollable-course-listings-container .slick-next::before{
+	content: '';
+}
+
+.scrollable-course-listings-container .slick-prev:hover,
+.scrollable-course-listings-container .slick-prev{
+	left: -8%;
+	background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/left-arrow.png");
+}
+
+.scrollable-course-listings-container .slick-next:hover,
+.scrollable-course-listings-container .slick-next{
+	right: -8%;
+	background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/right-arrow.png");
+}
+
+/****************************************************/
 #video-grid{
     margin: 0 auto;
     max-width: 1596px;
@@ -6694,7 +6769,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	color: #333;
 	text-align: center;
 	display: none;
-	margin: 15px;
+	margin: 0 15px 15px;
 }
 
 .course-editor #modules-list > li .video-upload{
@@ -6772,7 +6847,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .course-editor #modules-list > li .video-info{
 	font-size: 14px;
 	color: #b0bfc1;
-	margin: 0px;
+	margin: 0 0 5px;
 	text-align: center;
 }
 
