@@ -31,7 +31,7 @@ class DynamoSessionServiceProvider extends ServiceProvider {
             $sessionHandler = $dynamoDb->registerSessionHandler([
                 'table_name'               => $cfg['table'],
                 'hash_key'                 => $cfg['dynamo_hash'],
-                'session_lifetime'         => $cfg['lifetime'],
+                'session_lifetime'         => $cfg['lifetime'] * 60,
                 'consistent_read'          => true,
                 'locking_strategy'         => null,
                 'automatic_gc'             => false,
