@@ -5157,6 +5157,42 @@ select::-ms-expand {
 	transform: translateY(-50%);
 }
 
+.scrollable-course-listings-container  .slick-prev:hover,
+.scrollable-course-listings-container  .slick-next:hover,
+.scrollable-course-listings-container  .slick-prev,
+.scrollable-course-listings-container  .slick-next{
+	height: 110px;
+	width: 70px;
+	top: 50%;
+	transform: translateY(-50%);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+}
+
+.scrollable-course-listings-container  .slick-prev.slick-disabled,
+.scrollable-course-listings-container  .slick-next.slick-disabled{
+	opacity: 0.4;
+}
+
+.scrollable-course-listings-container .slick-prev::before, 
+.scrollable-course-listings-container .slick-next::before{
+	content: '';
+}
+
+.scrollable-course-listings-container .slick-prev:hover,
+.scrollable-course-listings-container .slick-prev{
+	left: -8%;
+	background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/left-arrow.png");
+}
+
+.scrollable-course-listings-container .slick-next:hover,
+.scrollable-course-listings-container .slick-next{
+	right: -8%;
+	background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/right-arrow.png");
+}
+
+/****************************************************/
 #video-grid{
     margin: 0 auto;
     max-width: 1596px;
