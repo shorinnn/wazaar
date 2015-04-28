@@ -939,7 +939,9 @@ class AnalyticsHelper
             $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
         }
 
-        $sql = "SELECT course_id, tracking_code, count(tracking_code) as 'count', courses.name as 'course_name'
+        $sql = "SELECT course_id, tracking_code, count(tracking_code) as 'count', courses.name as 'course_name',
+                (SELECT sum(purchase_price) FROM purchases WHERE tracking_code = tracking_code_hits.tracking_code) as 'purchase_total',
+                (SELECT count(purchase_price) FROM purchases WHERE tracking_code = tracking_code_hits.tracking_code) as 'purchase_count'
                 FROM tracking_code_hits
                 JOIN courses ON courses.id = tracking_code_hits.course_id WHERE tracking_code_hits.id <> 0
                  {$criteria}
@@ -964,8 +966,6 @@ class AnalyticsHelper
         $criteriaPurchase2 = $criteria;
         if (!$this->isAdmin AND !empty($this->affiliateId)) {
             $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
-            //$criteriaPurchase .= " AND (cp.ltc_affiliate_id = '{$this->affiliateId}' OR cp.product_affiliate_id = '{$this->affiliateId}' )";
-            //$criteriaPurchase2 .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
             $criteriaPurchase .= " AND cp.product_affiliate_id = '{$this->affiliateId}'";
             $criteriaPurchase2 .= " AND purchases.product_affiliate_id = '{$this->affiliateId}'";
         }
