@@ -162,7 +162,9 @@
                 </div>
             	<div class="row">
                 	<div class="col-md-6">
-                            
+                    	<div>
+                        
+                        </div>
                     @if( $course->ask_teacher=='enabled')
                     	<div class="header blue clearfix">
                             @if($instructor->profile == null)
