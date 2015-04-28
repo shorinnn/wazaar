@@ -5120,7 +5120,6 @@ select::-ms-expand {
 
 /************ scrollable course listings **********/
 .scrollable-course-listings-wrapper{
-	background: #111;
 }
 
 .scrollable-course-listings-container{
@@ -5134,7 +5133,6 @@ select::-ms-expand {
 .scrollable-course-listings-container .sample-course-listing{
 	height: 440px;
 	width: 313px;
-	background: red;
 	border-radius: 5px;
 	display: block;
 }
@@ -5142,6 +5140,7 @@ select::-ms-expand {
 .scrollable-course-listings-container .browse-more-block{
 	position: relative;
 	text-align: center;
+	margin-top: 60px;
 }
 
 .scrollable-course-listings-container .sample-course-listing .browse-more{
@@ -5164,6 +5163,7 @@ select::-ms-expand {
 	height: 110px;
 	width: 70px;
 	top: 50%;
+	margin-top: 30px;
 	transform: translateY(-50%);
 	background-repeat: no-repeat;
 	background-position: center center;

@@ -46,7 +46,13 @@ $category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthentica
             @endforeach
             
                    <div class="col-xs-12 col-sm-6 col-md-4"  aria-hidden="false" style="width: 344px;"> 
-                       <a href="{{ action('CoursesController@category', $category->slug)}}" class="sample-course-listing browse-more-block"> <span class="browse-more">Browse More &gt;&gt;</span> </a> <div class="col-xs-12 col-sm-6 col-md-4"> </div> </div>
+                   	   <div class="sample-course-listing browse-more-block">
+                           <a href="{{ action('CoursesController@category', $category->slug)}}" class="browse-more"> 
+                              Browse More &gt;&gt;
+                           </a> 
+                       </div>
+                   	   <div class="col-xs-12 col-sm-6 col-md-4"> </div> 
+                   </div>
             <!-- end of the 11 course boxes -->
                 </div>
                 </div>

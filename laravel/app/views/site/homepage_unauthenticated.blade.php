@@ -376,41 +376,6 @@
             </div><!--container ends-->
         </section>
         {{View::make('courses.courses_list_unauthenticated')->with( compact('categories') )}}
-        <section class="scrollable-course-listings-wrapper container-fluid">
-        	<div class="scrollable-course-listings-container container">
-                <div class="scrollable-course-listings row">
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="#" class="sample-course-listing"></a>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="#" class="sample-course-listing"></a>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="#" class="sample-course-listing"></a>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="#" class="sample-course-listing"></a>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="#" class="sample-course-listing"></a>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="#" class="sample-course-listing"></a>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="#" class="sample-course-listing"></a>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="#" class="sample-course-listing"></a>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="#" class="sample-course-listing browse-more-block">
-                            <span class="browse-more">Browse More >></span>
-                        </a>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                </div>
-            </div>
-        </section>
        
         <section class="container unauthenticated-homepage" id="the-world-is-yours">
         	<div class="row">
