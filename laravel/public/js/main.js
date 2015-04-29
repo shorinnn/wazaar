@@ -1095,6 +1095,15 @@ function searchFormFocusStyle(){
 		$(this).attr("placeholder","E.g. Javascript, online business, etc ...");
 	});
 	
+	//Remove dashboard textarea placeholder onclick and restore it on blur
+	$('.comment-section .comment-box form textarea').on('focus', function(){
+		$(this).data('placeholder',$(this).attr('placeholder'));
+       	$(this).attr('placeholder','');	
+	});
+	$('.comment-section .comment-box form textarea').on('blur', function(){
+		$(this).attr('placeholder',$(this).data('placeholder'));
+	});
+
 }
 
 

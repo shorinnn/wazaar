@@ -19,6 +19,7 @@ return array(
     'classmate-conversations' => 'Classmate conversations',
     'share-your-thoughts' => 'Share your thoughts',
     'say-something' => 'Say Something',
+	'leave-comments-first' => 'Be the first to leave your comment!',
     'comment' => 'Comment',
     'upcoming' => 'Upcoming',
     'curriculum' => 'Curriculum',
