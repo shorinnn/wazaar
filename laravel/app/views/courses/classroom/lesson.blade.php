@@ -107,7 +107,7 @@
                                         <span id="show-teacher-questions">
                                             <em>{{ trans('courses/general.ask') }}</em>
                                             @if($instructor->profile == null)
-                                                <span>{{ trans('courses/general.teacher') }}</span>
+                                                <span>{{ trans('courses/general.instructor-a-question') }}</span>
                                                 <img class="img-circle img-responsive hidden-xs" 
                                                 src="{{ cloudfrontUrl('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater-2.png') }} " 
                                                 />
@@ -156,7 +156,7 @@
             <section class="classroom-content container">
                 <div class="row classmate-conversations-heading">
                 	<div class="col-md-12">
-                        <p class="lead">{{trans('conversations/general.Conversations')}}:</p>
+                        <p class="lead">{{trans('conversations/general.classmate-conversations')}}</p>
                     </div>
                 </div>
                 
@@ -211,7 +211,7 @@
             
             
             
-            <section class="container-fluid become-an-instructor">
+            <!--<section class="container-fluid become-an-instructor">
                 <div class="container">
                   <div class="row">
                     <div class="col-xs-12">
@@ -221,7 +221,7 @@
                     </div>
                   </div>
               </div>
-            </section>
+            </section>-->
         </div>
 @stop
 

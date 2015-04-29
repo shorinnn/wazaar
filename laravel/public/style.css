@@ -2893,7 +2893,7 @@ header .activate-dropdown:hover ul{
 }
 
 .no-teacher-questions > div{
-	transform: scale(0.6);
+	transform: scale(0);
 }
 
 .hide-teacher-questions{
@@ -2937,6 +2937,8 @@ header .activate-dropdown:hover ul{
 	line-height: 80px;
 	margin-left: 10px;
 	font-style: normal;
+	width: 70%;
+	text-align: center;
 }
 
 #show-teacher-questions img{

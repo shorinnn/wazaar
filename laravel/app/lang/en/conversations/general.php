@@ -10,6 +10,7 @@ return array(
     'Reply' => 'Reply',
     'originally_posted' => 'originally posted',
     'Conversations' => 'Conversations',
+	'classmate-conversations' => 'Classmate conversations',
     'ask-the-teacher' => 'Ask The Teacher',
     'whats-on-your-mind' => "What's on your mind",
     'type-in-your-question' => 'Type in your question',

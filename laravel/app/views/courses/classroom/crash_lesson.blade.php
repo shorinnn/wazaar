@@ -84,7 +84,7 @@
                 </div>
             </section>
             
-            <section class="container-fluid become-an-instructor">
+            <!--<section class="container-fluid become-an-instructor">
                 <div class="container">
                   <div class="row">
                     <div class="col-xs-12">
@@ -94,7 +94,7 @@
                     </div>
                   </div>
               </div>
-            </section>
+            </section>-->
         </div>
 @stop
 
