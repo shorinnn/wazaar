@@ -162,10 +162,26 @@
                 </div>
             	<div class="row">
                 	<div class="col-md-6">
-                    	<div>
-                        
+                    	<div class="dashboard-students-count-box">
+                        	<div class="students-attending">1333 STUDENTS</div>
+                            <p class="your-progress">Your Progress: <span> 40%</span></p>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped active progress-bar-banner" role="progressbar" aria-valuenow="0" aria-valuemin="0" 
+                                     aria-valuemax="100" style="width: 0%;">
+                                    <span></span>
+                                </div>
+                            </div>
+							<p class="comments-posted">Comments Posted: <span> 0</span></p>
+                            <div class="course-description">
+                            	<h3>About Course</h3>
+                                <p>A little bit of this, a little bit of that. Cool stuff mostly.</p>
+                                <p>A little bit of this, a little bit of that. Cool stuff mostly.
+                                A little bit of this, a little bit of that. Cool stuff mostly.
+                                A little bit of this, a little bit of that. Cool stuff mostly.</p>
+                                <p>A little bit of this, a little bit of that. Cool stuff mostly.</p>
+                            </div>
                         </div>
-                    @if( $course->ask_teacher=='enabled')
+                    <!--@if( $course->ask_teacher=='enabled')
                     	<div class="header blue clearfix">
                             @if($instructor->profile == null)
                         	<h2>{{ trans('courses/student_dash.ask') }}
@@ -228,7 +244,7 @@
                             <span class="view-curriculum">
                                 <a href='#curriculum'>{{ trans('courses/student_dash.view-full-curriculum') }}</a>
                             </span>
-                        </div>
+                        </div>-->
                     </div>
                 	<div class="col-md-6">
                         <div class="header green clearfix">
@@ -249,10 +265,75 @@
                                 @endif
                             </h2>
                         </div>
-                        <p class="lead">{{ trans('courses/student_dash.in-the-next-lesson') }}</p>
+                        <p class="lead"><!--{{ trans('courses/student_dash.in-the-next-lesson') }}--> [Lesson Title]</p>
                         <div class="white-box">
-                            <p>{{ $nextLesson->description or trans('courses/student_dash.finished-all') }}</p>
+                            <p><!--{{ $nextLesson->description or trans('courses/student_dash.finished-all') }}--> [Lesson description]</p>
                         </div>
+                        @if( $course->ask_teacher=='enabled')
+                            <!--<div class="header blue clearfix">
+                                @if($instructor->profile == null)
+                                <h2>{{ trans('courses/student_dash.ask') }}
+                                        <small>{{ trans('courses/student_dash.the-teacher') }}</small></h2>
+                                    <div class="avater hidden-xs">
+                                        <p class="quote">{{ trans('courses/student_dash.you-can-ask-anything') }}!</p>
+                                        <img height="50" src="//s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar-placeholder.jpg" 
+                                        class="img-circle">
+                                    </div>
+                                @else
+                                    <h2>{{ trans('courses/student_dash.ask') }}
+                                        <small>{{ $instructor->profile->first_name }}</small></h2>
+                                    <div class="avater hidden-xs">
+                                        <p class="quote">{{ trans('courses/student_dash.you-can-ask-anything') }}!</p>
+                                        <img height="50" src="{{ $instructor->profile->photo }}" class="img-circle">
+                                    </div>
+                                @endif
+                            </div>-->
+                            <div class="white-box">
+                                @foreach($student->answers as $answer)
+                                <p>
+                                    <small class="pull-right"> {{$answer->created_at->diffForHumans() }}</small>
+                                    <b>{{ $answer->sender->commentName('instructor') }}</b>: <br />
+                                    {{ $answer->content }}
+                                    <small><a href='{{ action( 'ClassroomController@lesson', 
+                                                [ 'course' => $course->slug, 'module' => $answer->lesson->module->slug, 'lesson' => $answer->lesson->slug ] ) }}#ask-teacher'>
+                                            [{{ trans('courses/student_dash.view-in-lesson') }}]</a></small>
+                                </p>
+                                @endforeach
+                            </div>
+                        @endif
+                        <br />
+                        <p class="lead">{{ trans('courses/student_dash.upcoming') }}</p>
+                        <div class="white-box">
+                        	<div class="clearfix">
+                                    <?php
+                                    $upcoming = $nextLesson;
+                                    ?>
+                                @for($i = 0; $i < 3; ++$i)
+                                    <?php
+                                    if($upcoming) {
+                                        $upcoming = $upcoming->lessonAfter();
+                                    }
+                                    ?>
+                                    @if($upcoming)
+                                        <p class="lead">
+                                            <span>{{ trans('courses/general.lesson') }} {{$upcoming->lesson_number}} </span>	
+                                            {{$upcoming->name}}
+                                        </p>
+                                        <p
+                                        @if($i==2)
+                                            style='margin-bottom:-34px'
+                                        @endif
+                                        >
+                                             {{$upcoming->description}}
+                                        </p>
+                                    @endif
+                            	@endfor
+                            </div>
+                            <span class="view-curriculum">
+                                <a href='#curriculum'>{{ trans('courses/student_dash.view-full-curriculum') }}</a>
+                            </span>
+                        </div>
+
                     </div>
                 </div>
                 <a name='conversations'></a>

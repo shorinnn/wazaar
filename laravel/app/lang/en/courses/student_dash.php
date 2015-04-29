@@ -18,6 +18,7 @@ return array(
     'view-full-curriculum' => 'View Full Curriculum',
     'classmate-conversations' => 'Classmate conversations',
     'share-your-thoughts' => 'Share your thoughts',
+    'say-something' => 'Say Something',
     'comment' => 'Comment',
     'upcoming' => 'Upcoming',
     'curriculum' => 'Curriculum',

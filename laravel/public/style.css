@@ -3058,6 +3058,60 @@ header .activate-dropdown:hover ul{
 	margin-right: 20px;
 }
 
+.classroom-content .dashboard-students-count-box{
+	width: 100%;
+	height: 340px;
+	border-radius: 5px;
+	margin-top: 60px;
+	overflow: hidden;
+	background: #fff;
+}
+
+.classroom-content .dashboard-students-count-box .students-attending{
+	color: #fff;
+	height: 40px ;
+	line-height: 40px;
+	font-size: 14px;
+	padding-left: 40px;
+	display: block;
+	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/person-icon-button.png);
+	background-repeat: no-repeat;
+	background-color: rgba(0, 0, 0, 0.7);
+	background-position: 14px center;
+}
+
+.classroom-content .dashboard-students-count-box .comments-posted,
+.classroom-content .dashboard-students-count-box .your-progress{
+	font-size: 16px;
+	color: #0099ff;
+	padding: 0 20px;
+	margin: 20px 0;
+}
+
+.classroom-content .dashboard-students-count-box .comments-posted span,
+.classroom-content .dashboard-students-count-box .your-progress span{
+	display: inline-block;
+	color: #849598;
+}
+
+.classroom-content .dashboard-students-count-box .progress{
+	height: 6px;
+	margin: 0 20px 10px;
+}
+
+.classroom-content .dashboard-students-count-box  .course-description h3{
+	font-size: 18px;
+	color: #849598;
+	margin: 0 20px 10px;
+}
+
+.classroom-content .dashboard-students-count-box  .course-description p{
+	color: #849598;
+	font-weight: 200;
+	font-size: 12px;
+	margin: 10px 20px 0; 
+}
+
 .classroom-content .header.blue .avater{
 	width: 64%;
 	float: left;
@@ -3148,6 +3202,7 @@ header .activate-dropdown:hover ul{
 
 .white-box > p {
     padding-left: 20px;
+	margin-top: 10px;
 }
 
 .classroom-content .white-box ul{

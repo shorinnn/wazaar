@@ -14,7 +14,7 @@
             @endif
             {{ Form::open( [ 'action' => 'ConversationsController@store', 'class' => 'ajax-form', 'data-callback' =>'postedComment', 
                     'data-destination' => '#convo.users-comments > .clearfix', 'id' => 'add-comment-form'] ) }}
-            <textarea name="content" class="form-control" placeholder="{{ trans('courses/student_dash.share-your-thoughts') }}"></textarea>
+            <textarea name="content" class="form-control" placeholder="{{ trans('courses/student_dash.say-something') }}"></textarea>
             @if( isset($lesson) )
                 <input type="hidden" name="lesson" value="{{ $lesson->id }}" />
             @else
