@@ -73,25 +73,27 @@
             	<div class="row first-row">
                 	<div class="col-md-12">
                       @foreach($lesson->blocks as $block)
-                          @if($block->type=='text')
+                          @if($block->type=='text' && trim($block->content)!='')
                               <div class="well">{{ $block->content }}</div>
                           @endif
                       @endforeach
                     </div>
                 </div>
                 <div class="row second-row">
-                	<div class="col-md-12">
-                    	<div class="files">
-                            @foreach($lesson->blocks as $block)
-                                @if($block->type=='file')
-                                    <p> 
-                                        <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}">
-                                        <i class="fa fa-cloud-download"></i> {{ $block->name }}</a>
-                                    </p>
-                                @endif
-                            @endforeach
+                    @if($lesson->blocks()->where('type','file')->count() > 0)
+                            <div class="col-md-12">
+                            <div class="files">
+                                @foreach($lesson->blocks as $block)
+                                    @if($block->type=='file')
+                                        <p> 
+                                            <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}">
+                                            <i class="fa fa-cloud-download"></i> {{ $block->name }}</a>
+                                        </p>
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
 
                 
