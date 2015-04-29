@@ -94,26 +94,28 @@
                 </div>
                 @endif
                 
-            	<div class="row">
-                    <div class="col-md-12 additional-lesson-conntent">
-                        <h3 style="text-transform: capitalize">{{ Lang::choice('courses/student_dash.announcements', 2) }}</h3>
-                        @foreach($student->announcements as $announcement)
-                            <p class='alert alert-info
-                               @if ($announcement->isUnread( $student->id ) )
-                                   bolded
-                               @endif
-                               '>
-                                <small class="pull-right"> {{$announcement->created_at->diffForHumans() }}</small>
-                                {{ $announcement->content }}</p>
-                            
-                            {{ $announcement->markRead( Auth::user()->id ) }}
-                        @endforeach
+                @if($student->announcements!=null && $student->announcements->count() > 0)
+                    <div class="row">
+                        <div class="col-md-12 additional-lesson-conntent">
+                            <h3 style="text-transform: capitalize">{{ Lang::choice('courses/student_dash.announcements', 2) }}</h3>
+                            @foreach($student->announcements as $announcement)
+                                <p class='alert alert-info
+                                   @if ($announcement->isUnread( $student->id ) )
+                                       bolded
+                                   @endif
+                                   '>
+                                    <small class="pull-right"> {{$announcement->created_at->diffForHumans() }}</small>
+                                    {{ $announcement->content }}</p>
+
+                                {{ $announcement->markRead( Auth::user()->id ) }}
+                            @endforeach
+                        </div>
                     </div>
-                </div>
+                @endif
                 <div class="row">
 					<div class="col-md-12">
                     	<div class="additional-lesson-conntent">
-                        	<h3>{{ trans('courses/student_dash.additional-lesson-content') }}</h3>
+                        	<!--<h3>{{ trans('courses/student_dash.additional-lesson-content') }}</h3>-->
                             @if($nextLesson != false)
                                 @if($nextLesson->blocks()->where('type','text')->first())
                                     <p> {{ 
@@ -128,37 +130,38 @@
                             @endif
                         </div>                   
                     </div>
-                    <div class="col-md-12">
-                    	<div class="accompanying-material">
-                            <h3>{{ trans('courses/student_dash.accompanying-material') }}</h3>
-                            @if($nextLesson != false)
-                                @foreach($nextLesson->blocks as $block)
-                                    @if($block->type=='file')
-                                    <?php
-                                        $extension = substr( mime_to_extension( $block->mime ), 1 );
-                                    ?>
-                                        <div 
-                                            @if($extension=='pdf')
-                                                class="pdf"
-                                            @elseif($extension=='zip')
-                                                class="zip"
-                                            @else
-                                                class="pdf"
-                                            @endif
-                                            >
-                                            <span> {{ $extension  }}</span>
-                                            <p>{{ $block->name }}</p>
-                                            <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}">
-                                                {{ trans('courses/student_dash.download') }}</a>
-                                            
-                                        </div>
-                                    @endif
-                                @endforeach
-                            @endif
-                                                        
-                        </div>
                     
-                    </div>                
+                    @if($nextLesson != false && $nextLesson->blocks()->where('type','file')->count() > 0)
+                        <div class="col-md-12">
+                            <div class="accompanying-material">
+                                <h3>{{ trans('courses/student_dash.accompanying-material') }}</h3>
+                                @if($nextLesson != false)
+                                    @foreach($nextLesson->blocks as $block)
+                                        @if($block->type=='file')
+                                        <?php
+                                            $extension = substr( mime_to_extension( $block->mime ), 1 );
+                                        ?>
+                                            <div 
+                                                @if($extension=='pdf')
+                                                    class="pdf"
+                                                @elseif($extension=='zip')
+                                                    class="zip"
+                                                @else
+                                                    class="pdf"
+                                                @endif
+                                                >
+                                                <span> {{ $extension  }}</span>
+                                                <p>{{ $block->name }}</p>
+                                                <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}">
+                                                    {{ trans('courses/student_dash.download') }}</a>
+
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>      
+                    @endif
                 </div>
             	<div class="row">
                 	<div class="col-md-6">
