@@ -824,14 +824,14 @@ function skinVideoControls(){
 		var playerHeight = video.innerHeight();
 		console.log('Player height is' + playerHeight);
 		console.log('Player Width is' + playerWidth);
-		$('.control').css('max-width',playerWidth);
+		//$('.control').css('max-width',playerWidth);
 		//$('.centered-play-button').css('top', (playerHeight/2) - 50);
 		/*$('#lesson-video-overlay').css({
 			height: playerHeight	
 		});*/
-		$('#lesson-video-overlay > div').css({
+		/*$('#lesson-video-overlay > div').css({
 			maxWidth: playerWidth
-		});
+		});*/
 
 	}
 	//remove default control when JS loaded
