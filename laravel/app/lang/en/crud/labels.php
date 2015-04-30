@@ -30,4 +30,5 @@ return array(
     'old-password' => 'Old Password',
     'new-password' => 'New Password',
     'password-confirmation' => 'Password Confirmation',
+    'add' => 'Add'
 );

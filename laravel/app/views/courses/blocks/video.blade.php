@@ -18,7 +18,7 @@
     <h3 class="no-margin"><!--{{trans('video.uploadOr')}} -->
     {{--Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])--}}
     {{--Form::open(['url' => '//s3-ap-southeast-1.amazonaws.com/videosinput', 'id' => '', 'files' => true])--}}
-    <form action="//s3-ap-southeast-1.amazonaws.com/videosinput" enctype="multipart/form-data" method="POST">
+    <form action="//s3-ap-southeast-1.amazonaws.com/videosinput" enctype="multipart/form-data" method="POST" class="fileupload">
         <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
         <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
         <input type="hidden" name="acl" value="private">
@@ -48,14 +48,14 @@
                                 }
                             </style>
                             <span>{{ trans('video.upload-new-video') }}</span>
-                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
+                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lessonId}}" id="fileupload-{{$lessonId}}">
                         </div>
                         
                     @else
                         <span id="video-transcoding-indicator">Video Currently Processing</span>
                         <div class="form-group video-upload clear">
                         	<span>{{ trans('video.upload-video') }}</span>                   
-                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" id="fileupload-{{$lessonId}}">
+                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lessonId}}" id="fileupload-{{$lessonId}}">
                         </div>
 
                     @endif
@@ -122,9 +122,11 @@
 		
 		$('#video-player-container-' + $lessonId).addClass('hide');
 		$('.course-editor #modules-list > li .progress').addClass('hide');
+
         videoUploader.initialize({
             'fileInputElem' : $('#fileupload-' + $lessonId),
-            'progressCallBack' : function ($data, $progressPercentage){
+            'progressCallBack' : function ($data, $progressPercentage, $elem){
+                var $lessonId = $($data.fileInput[0]).attr("data-lesson-id");
 				$('#progress-bar-' + $lessonId).parent('.progress').removeClass('hide');
                 $('#progress-bar-' + $lessonId).css('width', $progressPercentage + '%');
                 $('#percent-complete-' + $lessonId).html($progressPercentage + '%');
@@ -132,8 +134,11 @@
             'failCallBack' : function ($data){
 
             },
-            'successCallBack' : function ($data){
-				console.log("Video transcoding");
+            'successCallBack' : function ($data, $elem){
+				console.log($elem);
+
+                var $localLessonId = $($elem.fileInput[0]).attr("data-lesson-id");
+                var $localBlockId = $($elem.fileInput[0]).attr("data-block-id");
 				$('#video-transcoding-indicator').css('display', 'block');
 				
 				function videoTranscodingAnimation(){
@@ -144,16 +149,16 @@
 					}, 500);	
 				}
 				videoTranscodingAnimation();
-				$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<em>Processing</em>");
-				$('.lesson-options-{{$lessonId}} .buttons.active em').css('display', 'block');
-				$('.lesson-options-{{$lessonId}} .buttons.active').css({
+				$('.lesson-options-' + $localLessonId).find('#video-thumb-container').html("<em>Processing</em>");
+				$('.lesson-options-' + $localLessonId + '.buttons.active em').css('display', 'block');
+				$('.lesson-options-'+ $localLessonId +' .buttons.active').css({
 					width: '120px',
 					border: 'solid 1px #b0bfc1'	
 				});
                 if ($data.videoId !== undefined) {
                     //$('#video-player-container-' + $lessonId).find('#video-player').addClass('hide');
-                    $('#video-player-container-' + $lessonId).find('#notify-warning-new-video').removeClass('hide');
-                    $.post('/lessons/blocks/' + $lessonId + '/video', {videoId : $data.videoId, blockId : $blockId });
+                    $('#video-player-container-' + $localLessonId).find('#notify-warning-new-video').removeClass('hide');
+                    $.post('/lessons/blocks/' + $localLessonId + '/video', {videoId : $data.videoId, blockId : $localBlockId });
                     console.log('has video id');
                     //Run timer to check for video transcode status
                     $intervalId = setInterval (function() {
@@ -163,11 +168,11 @@
 							console.log($video);
 							if ($video.transcode_status == 'Complete'){
                                 console.log('Transcoding complete');
-								$('#video-link-' + $lessonId).addClass('done');
+								$('#video-link-' + $localLessonId).addClass('done');
 								$('#video-transcoding-indicator').css('display', 'none');
-                                $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
+                                $('#lesson-'+$localLessonId).find('.lesson-no-video').removeClass('lesson-no-video');
 								clearInterval($intervalId);
-								var uploadedVideo = $('#video-player-container-' + $lessonId).find('video');
+								var uploadedVideo = $('#video-player-container-' + $localLessonId).find('video');
 								var videoDuration = uploadedVideo[0].duration;
 								var timeFormat = function(seconds){
 									var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);
@@ -176,19 +181,19 @@
 								};
 								
 								
-								$('#lesson-{{$lessonId}} > .new-lesson').removeClass('gray').addClass('green');
+								$('#lesson-'+ $localLessonId +' > .new-lesson').removeClass('gray').addClass('green');
 								
-								$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container').css({
+								$('.lesson-options-'+ $localLessonId +' .buttons.active div#video-thumb-container').css({
 									display: 'block'	
 								});
 								
-								$('.lesson-options-{{$lessonId}}').find(
+								$('.lesson-options-' + $localLessonId).find(
 									'#video-thumb-container').html(
 									"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
-								$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text(timeFormat(videoDuration));
+								$('.lesson-options-' + $localLessonId).find('#video-thumb-container p').text(timeFormat(videoDuration));
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
 
-								$('.lesson-options-{{$lessonId}} .buttons.active div#video-thumb-container a').on('click', function(){
+								$('.lesson-options-'+ $localLessonId +' .buttons.active div#video-thumb-container a').on('click', function(){
 									$('#uploadedVideoPlayer').html(videoVariable);
 								})
 								//$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');

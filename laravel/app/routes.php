@@ -13,6 +13,7 @@
 $domain = Config::get('app.base_url');
 $instructorSubdomain = 'instructors.'.Config::get('app.base_url');
 $affiliateSubdomain = 'affiliates.'. Config::get('app.base_url');
+
 // workaround for codeception functional tests with subdomains
 if( !isset($_SERVER['HTTP_HOST'])){
     $domain = $instructorSubdomain = $affiliateSubdomain = Request::getHost();
@@ -289,18 +290,5 @@ Route::group(['prefix' => 'api'], function(){
         Route::post('profile/create','ApiPaymentController@createProfile');
         Route::post('order/status','ApiPaymentController@getOrderStatus');
     });
-
     Route::post('profile/invalidate','ApiPaymentController@invalidateToken');
-});
-
-Route::get('test', function(){
-    $p = new PaymentHelper;
-
-    //$p->invalidateProfile('a98e39d4-c257-4395-af7a-e9f7bc9e8966');
-
-    /*$r = $p->processCreateProfileFromOrderId('1000002587');
-    dd($r);*/
-
-    dd($p->processCreateProfileFromOrderId('1000002588'));
-
 });

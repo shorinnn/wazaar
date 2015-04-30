@@ -140,8 +140,7 @@
                         </div>
                         
                         
-                                    {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'id' =>'create-form', 
-                                         'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'formSaved'])}}
+                                    {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'id' =>'create-form', 'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'formSaved'])}}
                      	<div class="row">
                         	<div class="col-md-12">
                             	<div id="top-form">
@@ -240,50 +239,44 @@
                                 </div>
                             </div>
                         </div>
+
+                        {{-- Course Listings Image --}}
+
                         <div class="row">
                         	<div class="col-md-12">
                                 <div class="image-upload">
                                 	<h3>{{ trans('courses/general.course_listings_image') }}</h3>
-                                    <!--<label for="upload-preview-image">
-                                            <div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>
-                                    </label>-->
-                                     
+
+                                    <div id="selected-previews"></div>
+
                                     <label for="upload-preview-image" class="uploadFile">
                                     	<span>{{ trans('courses/curriculum.upload') }}</span>
                                     	<input type="file" hidden="" class='upload-preview-image' 
                                                id="upload-preview-image" name="preview_image" data-dropzone='.dropzone-preview'
                                            data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' 
                                            data-target='#use-existing-preview > div > .radio-buttons' />
-                                    	
                                     </label>
                                     <!--<input disabled="disabled" placeholder="Choose File" id="uploadFile">
                                     <div class="fileUpload btn btn-primary">
                                         <span>Browse</span>
                                         <input type="file" data-callback="replaceElementWithUploaded" data-progress-bar=".progress-bar-1" class="ajax-file-uploader upload" data-replace="#category-graphics-1" data-dropzone="" id="file-upload-1" name="file">
                                     </div>-->
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" aria-valuemin="0" 
-                                                 aria-valuemax="100" style="width: 0%;">
-                                                <span></span>
-                                            </div>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                            <span></span>
                                         </div>
-                                        
-                                        
+                                    </div>
+
+                                    @if($images->count() > 0)
                                         <span class="use-existing use-existing-preview" id="use-existing-preview">
-                                        <span class="use-existing">{{ trans('crud/labels.or_use_existing') }}:</span>
-                                        	<div class="row">
-                                                    <div class="radio-buttons clearfix">
-                                                        @if($images->count() > 0)
-                                                            @foreach($images as $img)
-                                                                {{ View::make('courses.preview_image')->with(compact('img')) }}
-                                                            @endforeach
-                                                        @endif
-                                                    </div>
-                                            </div>
-                                        </span>                                    
+                                            <span class="use-existing"><a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">{{ trans('crud/labels.or_use_existing') }}</a> </span>
+                                            @include('courses.previewsModal')
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                         	<div class="col-md-12">
                                 <div class="image-upload">
@@ -497,6 +490,18 @@
                     $('#lesson-'+$lessonId).find('.lesson-no-video').removeClass('lesson-no-video');
                 });
             });
+
+
+
+                $('#btn-close-previews').on('click', function (){
+                    $('#selected-previews').html('');
+                    $('.display-border').each(function (){
+                        console.log($(this).parent().find('img').attr('src'));
+                        $('#selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
+                    });
+                });
+
+
         });
 </script>
 @stop
