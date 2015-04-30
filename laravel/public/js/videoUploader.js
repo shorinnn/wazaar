@@ -33,6 +33,7 @@ var videoUploader = {
         }).on('fileuploadfail', function ($e, $data) {
             videoUploader.failCallBack($data);
         }).on('fileuploaddone', function ($e,$data){
+            console.log($data);
             if ($data.jqXHR.status == 201){
                 //console.log($data);
                 //console.log($data.files[0].name);
