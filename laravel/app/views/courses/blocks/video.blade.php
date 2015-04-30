@@ -138,7 +138,7 @@
 				console.log($elem);
 
                 var $localLessonId = $($elem.fileInput[0]).attr("data-lesson-id");
-                var $localBlockId = $($elem.fileInput[0]).attr("data-lesson-id");
+                var $localBlockId = $($elem.fileInput[0]).attr("data-block-id");
 				$('#video-transcoding-indicator').css('display', 'block');
 				
 				function videoTranscodingAnimation(){
