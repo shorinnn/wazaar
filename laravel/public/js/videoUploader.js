@@ -10,7 +10,7 @@ var videoUploader = {
     'intervalId' : 0,
     'initialize' : function ($options){
         videoUploader.successCallBack = $options.successCallBack;
-        videoUploader.failCallBack = $options.failCallBack,
+        videoUploader.failCallBack = $options.failCallBack;
         videoUploader.progressCallBack = $options.progressCallBack;
 
         if ($options.dropZone == undefined){
