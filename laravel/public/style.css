@@ -7884,6 +7884,20 @@ footer{
 .container.instructor-mycourses{
 	width: 1000px;
 }
+
+.student-teacher-dashboard-wrapper .container{
+	width: 97% !important;
+}
+
+.student-teacher-dashboard-container .dashboard-content section{
+	float: right !important;
+	width: 58% !important;
+	margin-left: 0px !important;
+}
+
+.student-teacher-dashboard-container .dashboard-content header{
+	width: 58% !important;
+}
 }
 
 @media (max-width:1002px){
@@ -7966,6 +7980,45 @@ footer{
 	
 	.instructor-mycourses .course-wrapper .bottom-bar .status-box{
 		left: 65.5%;
+	}
+
+	.student-teacher-dashboard-wrapper .container{
+		width: 97% !important;
+	}
+	
+	.student-teacher-dashboard-container .dashboard-content section{
+		float: none !important;
+		width: 100% !important;
+		margin-left: 0px !important;
+		padding: 0 20px 20px;
+	}
+
+	.student-teacher-dashboard-container .dashboard-content section .icons{
+		clear: both;
+		width: 150px;
+		margin: 0 auto;
+	}
+	
+	.student-teacher-dashboard-container .dashboard-content header{
+		width: 100% !important;
+		float: none !important;
+		clear: both;
+		padding-left: 20px !important;
+	}
+	
+	.student-teacher-dashboard-container .dashboard-content{
+		height: auto !important;
+	}
+	
+	.student-teacher-dashboard-container .dashboard-content figure{
+		width: 100% !important;
+		float: none;
+		clear: both;
+		margin-bottom: 20px;
+	}
+
+	.student-teacher-dashboard-container .dashboard-content header .title{
+		padding-left: 20px;
 	}
 }
 
@@ -8174,6 +8227,24 @@ header .top-menu li{
 	.main-content-container{
 		padding: 0;
 	}
+	
+	.student-teacher-dashboard-container .dashboard-content section .description{
+		max-width: none !important;
+	}
+	
+	.student-teacher-dashboard-container .dashboard-content section .buttons{
+		clear: both;
+		float: none !important;
+	}
+	
+	.student-teacher-dashboard-container .dashboard-content section .buttons .go-to-dashboard{
+		float: left;
+		margin-right: 10px;
+	}
+	
+	.student-teacher-dashboard-container .dashboard-content section .buttons .continue-last-lesson{
+		float: left;
+	}
 
 }
 
@@ -8205,6 +8276,14 @@ header .top-menu li{
 	.main-content-container .main-content .curriculum .lesson-container{
 		margin: 0;
 		width: 100%;
+	}
+	
+	.student-teacher-dashboard-container .dashboard-content header .data .current-lesson em{
+		display: block;
+	}
+	
+	.student-teacher-dashboard-container .dashboard-content header .data .current-lesson{
+		text-align: right;
 	}
 }
 
