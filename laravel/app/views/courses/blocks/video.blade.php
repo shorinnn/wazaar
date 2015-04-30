@@ -135,7 +135,8 @@
 
             },
             'successCallBack' : function ($data, $elem){
-				console.log("Video transcoding");
+				console.log($elem);
+
                 var $localLessonId = $($data.fileInput[0]).attr("data-lesson-id");
 				$('#video-transcoding-indicator').css('display', 'block');
 				
