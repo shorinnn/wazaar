@@ -48,14 +48,14 @@
                                 }
                             </style>
                             <span>{{ trans('video.upload-new-video') }}</span>
-                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" data-lesson-id="{{$lessonId}}" id="fileupload-{{$lessonId}}">
+                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lessonId}}" id="fileupload-{{$lessonId}}">
                         </div>
                         
                     @else
                         <span id="video-transcoding-indicator">Video Currently Processing</span>
                         <div class="form-group video-upload clear">
                         	<span>{{ trans('video.upload-video') }}</span>                   
-                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" data-lesson-id="{{$lessonId}}" id="fileupload-{{$lessonId}}">
+                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lessonId}}" id="fileupload-{{$lessonId}}">
                         </div>
 
                     @endif
@@ -138,6 +138,7 @@
 				console.log($elem);
 
                 var $localLessonId = $($elem.fileInput[0]).attr("data-lesson-id");
+                var $localBlockId = $($elem.fileInput[0]).attr("data-lesson-id");
 				$('#video-transcoding-indicator').css('display', 'block');
 				
 				function videoTranscodingAnimation(){
@@ -157,7 +158,7 @@
                 if ($data.videoId !== undefined) {
                     //$('#video-player-container-' + $lessonId).find('#video-player').addClass('hide');
                     $('#video-player-container-' + $localLessonId).find('#notify-warning-new-video').removeClass('hide');
-                    $.post('/lessons/blocks/' + $localLessonId + '/video', {videoId : $data.videoId, blockId : $blockId });
+                    $.post('/lessons/blocks/' + $localLessonId + '/video', {videoId : $data.videoId, blockId : $localBlockId });
                     console.log('has video id');
                     //Run timer to check for video transcode status
                     $intervalId = setInterval (function() {
