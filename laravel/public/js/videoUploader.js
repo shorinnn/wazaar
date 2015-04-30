@@ -39,7 +39,7 @@ var videoUploader = {
                 if ($data.files[0].name !== undefined){
                     var $elem = $(this)[0];
                     $.post('/video/add-by-filename',{videoFilename: $data.uniqueKey + '-' + $data.files[0].name}, function ($response){
-                        videoUploader.successCallBack($response, $elem);
+                        videoUploader.successCallBack($response, $data);
                     },'json')
                 }
             }
