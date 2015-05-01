@@ -361,9 +361,22 @@ class Student extends User{
      */
     public function viewLesson(Lesson $lesson){
         if( !$this->isLessonViewed($lesson) ){
-            $view = ViewedLesson::create( ['student_id' => $this->id, 'lesson_id' => $lesson->id] );
+            $view = ViewedLesson::create( ['student_id' => $this->id, 'lesson_id' => $lesson->id, 'course_id' => $lesson->module->course->id] );
         }
         return true;
+    }
+    
+    public function currentLesson($course){
+        $lesson = $this->viewedLessons()->where('course_id', $course->id)->orderBy('id', 'desc')->first();
+        if($lesson==null) return null;
+        return $lesson->lesson;
+    }
+    
+    public function courseProgress($course){
+        $complete = $this->viewedLessons()->where('course_id', $course->id)->count();
+        $total = Lesson::where('published','yes')->whereIn('module_id', Module::where('course_id', $course->id)->lists('id') )->count();
+        if($total == 0) return 0;
+        return ceil( $complete * 100 / $total );
     }
     
     /**

@@ -257,7 +257,7 @@
                                 @else
                                     <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 
                                         'module' => $nextLesson->module->slug , 'lesson' => $nextLesson->slug ] ) }}">
-                                    @if( $student->viewedLessons->count()==0 )
+                                    @if( $student->viewedLessons()->where('course_id', $course->id)->count()==0 )
                                         {{ trans('courses/student_dash.begin') }} 
                                         <small>{{ trans('courses/student_dash.first-lesson') }}</small>
                                     @else
