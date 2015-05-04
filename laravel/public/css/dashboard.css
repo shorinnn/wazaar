@@ -817,6 +817,8 @@ h4.date-range-header{
 }
 
 .student-teacher-dashboard-container
+.dashboard-content section .icons .questions i,
+.student-teacher-dashboard-container
 .dashboard-content section .icons .comments i{
 	padding: 0 4px;
 	display: block;

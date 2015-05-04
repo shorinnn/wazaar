@@ -3032,6 +3032,7 @@ header .activate-dropdown:hover ul{
 	padding: 0 20px;
 }
 
+.classroom-content .header h2 a,
 .classroom-content .header h2{
 	font-size: 45px;
 	color: #fff;
@@ -3070,15 +3071,15 @@ header .activate-dropdown:hover ul{
 }
 
 .classroom-content .dashboard-students-count-box .students-attending{
-	color: #fff;
+	color: #0099ff;
 	height: 40px ;
 	line-height: 40px;
 	font-size: 14px;
 	padding-left: 40px;
 	display: block;
-	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/person-icon-button.png);
+	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/person-icon-button-gray.png);
 	background-repeat: no-repeat;
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: rgba(0, 0, 0, 0);
 	background-position: 14px center;
 }
 
@@ -3200,6 +3201,7 @@ header .activate-dropdown:hover ul{
 	font-size: 12px;
 	color: #849598;
 	font-weight: 200;
+	padding-right: 20px;
 }
 
 .white-box > p {
@@ -3711,6 +3713,7 @@ a.load-remote > *{
 	color: #333;
 	margin: 0 0 15px;
 	line-height: 24px;
+	padding: 20px 0;
 }
 
 .classroom-content .additional-lesson-conntent a.read-more{
