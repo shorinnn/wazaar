@@ -272,13 +272,17 @@
                             </h2>
                         </div>
                         <p class="lead"><!--{{ trans('courses/student_dash.in-the-next-lesson') }}--> 
-                            @if($currentLesson)
+                            @if( !$currentLesson)
+                                {{ $nextLesson->name }}
+                            @else
                                 {{ $currentLesson->name }}
                             @endif
                         </p>
                         <div class="white-box">
                             <p><!--{{ $currentLesson->description or trans('courses/student_dash.finished-all') }}--> 
-                                @if($currentLesson)
+                            @if(!$currentLesson)
+                                {{ $nextLesson->description }}
+                            @else
                                 {{ $currentLesson->description }}
                             @endif
                             </p>
