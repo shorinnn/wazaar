@@ -3061,26 +3061,25 @@ header .activate-dropdown:hover ul{
 	margin-right: 20px;
 }
 
-.classroom-content .dashboard-students-count-box{
-	width: 100%;
-	height: 340px;
-	border-radius: 5px;
+.classroom-content .dashboard-students-count.students-attending{
 	margin-top: 60px;
-	overflow: hidden;
-	background: #fff;
-}
-
-.classroom-content .dashboard-students-count-box .students-attending{
+	font-size: 16px;
 	color: #0099ff;
-	height: 40px ;
-	line-height: 40px;
-	font-size: 14px;
-	padding-left: 40px;
-	display: block;
+	border-radius: 5px;
+	background: #fff;
+	margin-bottom: 1px;
+	padding: 8px 0 8px 40px;
 	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/person-icon-button-gray.png);
 	background-repeat: no-repeat;
-	background-color: rgba(0, 0, 0, 0);
-	background-position: 14px center;
+	background-position: 20px center;
+}
+
+.classroom-content .dashboard-students-count-box{
+	width: 100%;
+	min-height: 307px;
+	border-radius: 5px;
+	overflow: hidden;
+	background: #fff;
 }
 
 .classroom-content .dashboard-students-count-box .comments-posted,
@@ -3100,6 +3099,10 @@ header .activate-dropdown:hover ul{
 .classroom-content .dashboard-students-count-box .progress{
 	height: 6px;
 	margin: 0 20px 10px;
+}
+
+.classroom-content .dashboard-students-count-box .progress .progress-bar{
+	background-color: #92cc2e;
 }
 
 .classroom-content .dashboard-students-count-box  .course-description h3{
@@ -3167,6 +3170,7 @@ header .activate-dropdown:hover ul{
 	position: relative;
 	/*padding-left: 20px;*/
 	overflow: hidden;
+	margin-bottom: 1px;
 }
 
 .classroom-content .white-box .view-curriculum{
@@ -6188,17 +6192,17 @@ select option.suspended{
 
 .instructor-course-editor .use-existing-preview .radio-buttons img{
 	float: left;
-	height: 194px;
-	width: 194px;
+	height: 120px;
+	width: 120px;
 }
 
 #course-edit .use-existing-preview .radio-buttons .select-border{
-	height: 194px;
-	width: 194px;
+	height: 120px;
+	width: 120px;
 	position: absolute;
 	top: 0;
 	left: 0;
-	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/photo_select_border.png') no-repeat center center;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/photo_select_border-small.png') no-repeat center center;
 	opacity: 0;
 }
 
@@ -6212,9 +6216,9 @@ select option.suspended{
 }
 
 .radio-checked.radio-checkbox > div {
-    height: 194px;
+    height: 120px;
 	position: relative;
-    width: 194px;
+    width: 120px;
 }
 
 #course-edit .who-its-for{

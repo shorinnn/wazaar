@@ -165,8 +165,9 @@
                 </div>
             	<div class="row">
                 	<div class="col-md-6">
+                    	<div class="dashboard-students-count students-attending">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
                     	<div class="dashboard-students-count-box">
-                        	<div class="students-attending">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
+                        	
                             <p class="your-progress">{{trans('courses/general.your-progress')}}: 
                                 <span> {{$student->courseProgress($course)}}%</span>
                             </p>
