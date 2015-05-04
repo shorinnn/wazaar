@@ -6104,6 +6104,17 @@ select option.suspended{
 	color: #eb102f;
 }
 
+#course-edit #selected-previews{
+	height: auto;
+    margin: 0 auto;
+    width: 350px;
+}
+
+#course-edit #selected-previews img{
+    height: auto;
+    width: 350px;
+}
+
 #course-edit .uploadFile{
 	height: 30px;
 	font-size: 14px;
@@ -6176,9 +6187,24 @@ select option.suspended{
 #course-edit .use-existing{
 	display: block;
 	text-align: center;
-	margin: 50px 0;
+	margin: 30px 0;
 	font-size: 24px;
 	color: #000;
+}
+
+.use-existing-preview .or-text {
+    color: #ccc;
+    font-size: 20px;
+    font-style: normal;
+    margin: 0;
+    text-align: center;
+}
+
+.use-existing-preview .use-existing > a {
+    color: #0099ff;
+    font-size: 18px;
+    padding: 15px 5px;
+    text-align: center;
 }
 
 #course-edit .use-existing-preview .radio-buttons{

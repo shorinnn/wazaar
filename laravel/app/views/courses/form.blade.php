@@ -269,7 +269,12 @@
 
                                     @if($images->count() > 0)
                                         <span class="use-existing use-existing-preview" id="use-existing-preview">
-                                            <span class="use-existing"><a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">{{ trans('crud/labels.or_use_existing') }}</a> </span>
+                                            <span class="use-existing">
+                                            	<em class="or-text"> {{ trans('site/login.or') }}</em>
+                                            	<a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">
+                                                	{{trans('video.selectExisting')}}
+                                                </a> 
+                                            </span>
                                             @include('courses.previewsModal')
                                         </span>
                                     @endif
@@ -297,7 +302,12 @@
                                         </div>
                                         
                                         <span class="use-existing use-existing-preview" id="use-existing-banner">
-                                            <span class="use-existing">{{ trans('crud/labels.or_use_existing') }}:</span>
+                                            <span class="use-existing">
+                                            	<em class="or-text"> {{ trans('site/login.or') }}</em>
+                                            	<a href="#">
+                                                	{{trans('video.selectExisting')}}
+                                                </a> 
+                                            </span>
                                                 <div class="row">
                                                     <div class="radio-buttons clearfix">
                                                     @if($bannerImages->count() > 0)
