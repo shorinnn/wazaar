@@ -82,4 +82,7 @@ return array(
     'privacy' => 'Privacy',
     'go-to-dashboard' => 'Go To Dashboard',
     'course-edit' => 'Course Edit',
+    'your-progress' => 'Your Progress',
+    'comments-posted' => 'Comments Posted',
+    'about-course' => 'About Course',
 );

@@ -116,27 +116,27 @@
 					<div class="col-md-12">
                     	<div class="additional-lesson-conntent">
                         	<!--<h3>{{ trans('courses/student_dash.additional-lesson-content') }}</h3>-->
-                            @if($nextLesson != false)
-                                @if($nextLesson->blocks()->where('type','text')->first())
+                            @if($currentLesson != false)
+                                @if($currentLesson->blocks()->where('type','text')->first())
                                     <p> {{ 
-                                            Str::limit( strip_tags( $nextLesson->blocks()->where('type','text')->first()->content), 100)
+                                            Str::limit( strip_tags( $currentLesson->blocks()->where('type','text')->first()->content), 100)
                                          }} 
                                     </p>
                                     <a href="{{ action( 'ClassroomController@lesson', 
-                                            [ 'course' => $nextLesson->module->course->slug, 
-                                              'module' => $nextLesson->module->slug, 
-                                              'lesson' => $nextLesson->slug ] ) }}" class="read-more">{{ trans('courses/student_dash.read-more') }}</a>
+                                            [ 'course' => $currentLesson->module->course->slug, 
+                                              'module' => $currentLesson->module->slug, 
+                                              'lesson' => $currentLesson->slug ] ) }}" class="read-more">{{ trans('courses/student_dash.read-more') }}</a>
                                 @endif
                             @endif
                         </div>                   
                     </div>
                     
-                    @if($nextLesson != false && $nextLesson->blocks()->where('type','file')->count() > 0)
+                    @if($currentLesson != false && $currentLesson->blocks()->where('type','file')->count() > 0)
                         <div class="col-md-12">
                             <div class="accompanying-material">
                                 <h3>{{ trans('courses/student_dash.accompanying-material') }}</h3>
-                                @if($nextLesson != false)
-                                    @foreach($nextLesson->blocks as $block)
+                                @if($currentLesson != false)
+                                    @foreach($currentLesson->blocks as $block)
                                         @if($block->type=='file')
                                         <?php
                                             $extension = substr( mime_to_extension( $block->mime ), 1 );
@@ -166,22 +166,22 @@
             	<div class="row">
                 	<div class="col-md-6">
                     	<div class="dashboard-students-count-box">
-                        	<div class="students-attending">1333 STUDENTS</div>
-                            <p class="your-progress">Your Progress: <span> 40%</span></p>
+                        	<div class="students-attending">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
+                            <p class="your-progress">{{trans('courses/general.your-progress')}}: 
+                                <span> {{$student->courseProgress($course)}}%</span>
+                            </p>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped active progress-bar-banner" role="progressbar" aria-valuenow="0" aria-valuemin="0" 
-                                     aria-valuemax="100" style="width: 0%;">
+                                <div class="progress-bar progress-bar-striped active progress-bar-banner" role="progressbar" aria-valuenow="0" 
+                                     aria-valuemin="0" 
+                                     aria-valuemax="100" style="width: {{ $student->courseProgress($course)  }}%;">
                                     <span></span>
                                 </div>
                             </div>
-							<p class="comments-posted">Comments Posted: <span> 0</span></p>
+                            <p class="comments-posted">{{trans('courses/general.comments-posted')}}: 
+                                <span> {{ $course->comments->count() + $course->lessonComments()->count() }}</span></p>
                             <div class="course-description">
-                            	<h3>About Course</h3>
-                                <p>A little bit of this, a little bit of that. Cool stuff mostly.</p>
-                                <p>A little bit of this, a little bit of that. Cool stuff mostly.
-                                A little bit of this, a little bit of that. Cool stuff mostly.
-                                A little bit of this, a little bit of that. Cool stuff mostly.</p>
-                                <p>A little bit of this, a little bit of that. Cool stuff mostly.</p>
+                            	<h3>{{trans('courses/general.about-course')}}</h3>
+                                <p>{{ $course->description }}</p>
                             </div>
                         </div>
                     <!--@if( $course->ask_teacher=='enabled')
@@ -221,7 +221,7 @@
                         <div class="white-box">
                         	<div class="clearfix">
                                     <?php
-                                    $upcoming = $nextLesson;
+                                    $upcoming = $currentLesson;
                                     ?>
                                 @for($i = 0; $i < 3; ++$i)
                                     <?php
@@ -255,12 +255,15 @@
                                 @if( !$nextLesson )
                                     Completed all lessons
                                 @else
+                                    
+                                    @if( $student->viewedLessons()->where('course_id', $course->id)->count()==0 )
                                     <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 
                                         'module' => $nextLesson->module->slug , 'lesson' => $nextLesson->slug ] ) }}">
-                                    @if( $student->viewedLessons()->where('course_id', $course->id)->count()==0 )
                                         {{ trans('courses/student_dash.begin') }} 
                                         <small>{{ trans('courses/student_dash.first-lesson') }}</small>
                                     @else
+                                    <a href="{{ action( 'ClassroomController@lesson', [ 'course' => $course->slug, 
+                                        'module' => $currentLesson->module->slug , 'lesson' => $currentLesson->slug ] ) }}">
                                         {{ trans('courses/student_dash.continue') }} 
                                         <small>{{ trans('courses/student_dash.where-you-left-off') }}</small>
                                     @endif
@@ -268,9 +271,17 @@
                                 @endif
                             </h2>
                         </div>
-                        <p class="lead"><!--{{ trans('courses/student_dash.in-the-next-lesson') }}--> [Lesson Title]</p>
+                        <p class="lead"><!--{{ trans('courses/student_dash.in-the-next-lesson') }}--> 
+                            @if($currentLesson)
+                                {{ $currentLesson->name }}
+                            @endif
+                        </p>
                         <div class="white-box">
-                            <p><!--{{ $nextLesson->description or trans('courses/student_dash.finished-all') }}--> [Lesson description]</p>
+                            <p><!--{{ $currentLesson->description or trans('courses/student_dash.finished-all') }}--> 
+                                @if($currentLesson)
+                                {{ $currentLesson->description }}
+                            @endif
+                            </p>
                         </div>
                         @if( $course->ask_teacher=='enabled')
                             <!--<div class="header blue clearfix">
@@ -309,7 +320,7 @@
                         <div class="white-box">
                         	<div class="clearfix">
                                     <?php
-                                    $upcoming = $nextLesson;
+                                    $upcoming = $currentLesson;
                                     ?>
                                 @for($i = 0; $i < 3; ++$i)
                                     <?php

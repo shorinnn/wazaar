@@ -38,6 +38,8 @@ class ClassroomController extends \BaseController {
                 return Redirect::to('/');
             }
             $nextLesson = $video = $student->nextLesson($course);
+            
+            $currentLesson = $student->currentLesson($course);
             if( $video ) $video = $video->blocks()->where('type','video')->first();
 //            $video = $course->videoBlocks();
 //            if($video!=null) $video = $video->first();
@@ -48,7 +50,7 @@ class ClassroomController extends \BaseController {
             if(Request::ajax()){
                 return View::make('courses.classroom.course_comments_ajax')->with( compact('course') );
             }
-            return View::make('courses.classroom.dashboard')->with( compact('course', 'student', 'video', 'nextLesson', 'gift', 'instructor') );
+            return View::make('courses.classroom.dashboard')->with( compact('course', 'student', 'video', 'nextLesson', 'currentLesson', 'gift', 'instructor') );
         }
         
         public function testimonial($slug){
@@ -102,6 +104,7 @@ class ClassroomController extends \BaseController {
             
             $nextLesson = $lesson->next();
             $prevLesson = $lesson->prev();
+            $currentLesson = $student->currentLesson($course);
             
             $instructor = $course->instructor;
             if($course->assigned_instructor_id > 0) $instructor = $course->assignedInstructor;
@@ -110,7 +113,8 @@ class ClassroomController extends \BaseController {
                 if( Input::has('ask') ) return View::make('courses.classroom.lesson_ask_ajax')->with( compact('lesson','student') );
                 else return View::make('courses.classroom.lesson_comments_ajax')->with( compact('lesson','student') );
             }
-            else return View::make('courses.classroom.lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'instructor', 'student') );
+            else return View::make('courses.classroom.lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
+                    'instructor', 'student') );
         }
         
         public function resource($id){

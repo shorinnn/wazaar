@@ -73,4 +73,7 @@ return array(
     'privacy' => '月PrivacyせPlease provide more context',
     'go-to-dashboard' => 'ダッシュボードへ',
     'course-edit' => 'コース編集',
+    'your-progress' => 'Your Progress',
+    'comments-posted' => 'Comments Posted',
+    'about-course' => 'About Course',
 );
