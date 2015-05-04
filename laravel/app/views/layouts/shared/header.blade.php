@@ -86,11 +86,16 @@
         </div>
         @else
             
-			<style>
+            
+            
+            @if( Route::currentRouteAction()!='UsersController@login' && Route::currentRouteAction()!='UsersController@create')
+            <style>
                 .top-menu .main-logo {
                     display:none;
                 }
             </style>
+            @endif
+            
             
             <ul class="logged-out">
                 <li>
