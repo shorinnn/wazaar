@@ -55,6 +55,14 @@ class Purchase extends CocoriumArdent{
                 $course->instructor->creditReverse($instructorTransaction);
             }
             
+            // uncredit the second tier instructor
+            if( $refund->second_tier_instructor_earnings > 0 ){
+                $secondTierInstructorTransaction = $refund->product->instructor->secondTierInstructor->allTransactions()
+                        ->where('transaction_type','second_tier_instructor_credit')
+                        ->where('purchase_id', $refund->purchase_id)->first();
+                $course->instructor->secondTierInstructor->creditReverse($secondTierInstructorTransaction);
+            }
+            
             // uncredit the instructor agency
             if( $refund->instructor_agency_earnings > 0 ){
                 $agency = $course->instructor->agency;

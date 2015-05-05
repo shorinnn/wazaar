@@ -13,6 +13,18 @@
 
 App::before(function($request)
 {
+    
+    /** temporary mobile-desktop switcher **/
+    if(Input::has('force-mobile')) Cookie::queue('force-mobile', 1, 60*24*30);
+    if(Input::has('force-desktop')){
+        Cookie::queue('force-desktop', 1, 60*24*30);
+        Cookie::queue("force-mobile", null, -1);
+    }
+    /** /temporary mobile-desktop switcher **/
+    // record second tier instructor
+    if(Auth::guest() && Input::has('stpi')){
+        Cookie::queue('stpi', Input::get('stpi'), 60*24*30);
+    }
     // record the LTC Affiliate on any page
     if(Auth::guest() && Input::has('aid')){
         Cookie::queue('ltc', Input::get('aid'), 60*24*30);

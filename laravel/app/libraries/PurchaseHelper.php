@@ -50,7 +50,8 @@ class PurchaseHelper{
         $amount = ( $product->cost() - $processor_fee ) * (Config::get('custom.earnings.site_percentage') / 100);
         $ltcAmount = $amount  * (Config::get('custom.earnings.ltc_percentage') / 100);
         $agencyAmount = ($course->instructor->agency==null) ? 0 : $amount * (Config::get('custom.earnings.agency_percentage') / 100);
-        return $amount - $ltcAmount - $agencyAmount - $processor_fee;
+        $secondTierInstructor = ($course->instructor->secondTierInstructor==null) ? 0 : $amount * (Config::get('custom.earnings.agency_percentage') / 100);
+        return $amount - $ltcAmount - $agencyAmount - $secondTierInstructor - $processor_fee;
     }
     
     public static function ltcAffiliateEarnings($product, $processor_fee){
@@ -64,5 +65,12 @@ class PurchaseHelper{
         $amount = ( $product->cost() - $processor_fee ) * (Config::get('custom.earnings.site_percentage') / 100);
         $agencyAmount = ($course->instructor->agency==null) ? 0 : $amount * (Config::get('custom.earnings.agency_percentage') / 100);
         return $agencyAmount;
+    }
+    
+    public static function secondTierInstructorEarnings($product, $processor_fee){
+        $course = ( get_class($product)=='Course' ) ? $product : $product->module->course;
+        $amount = ( $product->cost() - $processor_fee ) * (Config::get('custom.earnings.site_percentage') / 100);
+        $amount =  ($course->instructor->secondTierInstructor==null) ? 0 : $amount * (Config::get('custom.earnings.second_tier_instructor_percentage') / 100);
+        return $amount;
     }
 }

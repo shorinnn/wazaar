@@ -32,7 +32,7 @@ class Transaction extends Ardent {
                 $this->updateUniques();
 
                 // restore balance
-                if($this->transaction_type == 'instructor_debit') $field = 'instructor_balance';
+                if($this->transaction_type == 'instructor_debit' || $this->transaction_type == 'second_tier_instructor_debit') $field = 'instructor_balance';
                 elseif($this->transaction_type=='affiliate_debit') $field = 'affiliate_balance';
                 else $field = 'agency_balance';
                 

@@ -471,3 +471,8 @@ function doPostCurl($url, $data)
 
     return $result;
 }
+
+function serveMobile(){
+    if(Cookie::get('force-mobile')==1) return true;
+    return false;
+}

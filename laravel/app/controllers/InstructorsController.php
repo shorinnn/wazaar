@@ -29,7 +29,7 @@ class InstructorsController extends \BaseController {
         
         public function doBecome(){
             $users = new UserRepository();
-            if($users->become( 'Instructor', Auth::user() ) ){
+            if( $users->become( 'Instructor', Auth::user(), Cookie::get('stpi') ) ){
                 return Redirect::action('InstructorsController@index')->withSuccess( trans('instructors/general.congratulations_become_instructor') );
             }
             else{

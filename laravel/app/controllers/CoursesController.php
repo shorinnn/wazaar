@@ -240,7 +240,10 @@ class CoursesController extends \BaseController {
             }
             $video = $course->videoBlocks();
             if($video!=null) $video = $video->first();
-            Return View::make('courses.show')->with(compact('course'))->with(compact('student'))->with( compact('video') )->with( compact('instructor') );
+            if( serveMobile() ) 
+                Return View::make('MOBILE_VERSION.courses.show')->with(compact('course'))->with(compact('student'))->with( compact('video') )->with( compact('instructor') );
+            else    
+                Return View::make('courses.show')->with(compact('course'))->with(compact('student'))->with( compact('video') )->with( compact('instructor') );
         } 
         
         public function purchase($slug){

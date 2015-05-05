@@ -30,4 +30,9 @@ return array(
     'affiliate_credit_reverse_transaction' => 'Affiliate Credit Reverse Transaction Reference:',
     'instructor_agency_credit_reverse_transaction' => 'Instructor Agency Credit Reverse Transaction Reference:',
     'site_credit_reverse_transaction' => 'Site Credit Reverse Transaction Reference:',
+    
+    'second_tier_instructor_credit_transaction' => 'Second Tier Instructor Credit Transaction Reference:',
+    'second_tier_instructor_debit_transaction' => 'Second Tier Instructor Debit Transaction',
+    'second_tier_instructor_debit_refund_transaction' => 'Second Tier Instructor Debit Refund Transaction',
+    'second_tier_instructor_credit_reverse_transaction' => 'Second Tier Instructor Credit Reverse Transaction Reference:',
 );

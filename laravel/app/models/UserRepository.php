@@ -22,7 +22,7 @@ class UserRepository
      * @param array $roles Additional roles to attach besides Student
      * @return  User User object that may or may not be saved successfully. Check the id to make sure.
      */
-    public function signup($input, $ltc_cookie=null, $roles=false)
+    public function signup($input, $ltc_cookie=null, $roles=false, $secondTierInstructorCookie = null)
     {
         $user = new Student;
 
@@ -30,6 +30,7 @@ class UserRepository
         $user->email    = array_get($input, 'email');
         $user->username = 'U'.uniqid();
         $user->password = array_get($input, 'password');
+        $user->second_tier_instructor_id = $secondTierInstructorCookie;
 
         // The password confirmation will be removed from model
         // before saving. This field will be used in Ardent's
@@ -103,7 +104,7 @@ class UserRepository
      * @param array $roles Additional roles to attach besides Student
      * @return  User User object that may or may not be saved successfully. Check the id to make sure.
      */
-    public function signupWithFacebook($input, $ltc_cookie=null, $roles = false)
+    public function signupWithFacebook($input, $ltc_cookie=null, $roles = false, $secondTierInstructorCookie = null)
     {
         $user = new Student;
 
@@ -116,6 +117,7 @@ class UserRepository
         $user->last_name = $input['last_name'];
         $user->facebook_login_id = $input['id'];
         $user->facebook_profile_id = $input['link'];
+        $user->second_tier_instructor_id = $secondTierInstructorCookie;
         
         // Generate a random confirmation code
         $user->confirmation_code     = md5(uniqid(mt_rand(), true));
@@ -171,7 +173,7 @@ class UserRepository
      * @param array $roles Additional roles to attach besides Student
      * @return  User User object that may or may not be saved successfully. Check the id to make sure.
      */
-    public function signupWithGoogle($input, $ltc_cookie=null, $roles = false)
+    public function signupWithGoogle($input, $ltc_cookie=null, $roles = false, $secondTierInstructorCookie = null)
     {
         $user = new Student;
 
@@ -184,6 +186,7 @@ class UserRepository
         $user->last_name = $input['family_name'];
         $user->google_plus_login_id = $input['id'];
         $user->google_plus_profile_id = $input['link'];
+        $user->second_tier_instructor_id = $secondTierInstructorCookie;
         
         // Generate a random confirmation code
         $user->confirmation_code     = md5(uniqid(mt_rand(), true));
@@ -343,7 +346,7 @@ class UserRepository
      * @param User $user The user object
      * @return boolean True on success, false on failure
      */
-    public function become($role, User $user){
+    public function become($role, User $user, $secondTierInstructorCookie = null){
         // usable roles
         if(!in_array($role, ['Student', 'Instructor', 'Affiliate'])) return false;
         
@@ -358,6 +361,10 @@ class UserRepository
         $user->attachRole($role);
         // default the affiliate ID to the user ID
         $user->affiliate_id = $user->id;
+        // record the second tier instructor if any
+        if( $secondTierInstructorCookie!=null ){
+            $user->second_tier_instructor_id = $secondTierInstructorCookie;
+        }
         $user->save();
         return true;
     }

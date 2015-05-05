@@ -1,72 +1,28 @@
 <?php
 
-class Instructor extends User{
+class SecondTierInstructor extends User{
+
+
 
     protected $table = 'users';
 
-    public static $relationsData = [
-        'coursesRel' => [self::HAS_MANY, 'Course'],
-        'coursePreviewImages' => [self::HAS_MANY, 'CoursePreviewImage'],
-        'courseBannerImages' => [self::HAS_MANY, 'CourseBannerImage'],
-        'profile' => [self::MORPH_ONE, 'Profile', 'name'=>'owner'],
-        'followers' => [self::BELONGS_TO_MANY, 'Student',  'table' => 'follow_relationships',  'foreignKey' => 'instructor_id', 'otherKey' => 'student_id'],
-        'sentMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'sender_id' ],
-        'receivedMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'recipient_id' ],
-        'agency' => [self::BELONGS_TO, 'InstructorAgency', 'foreignKey' => 'instructor_agency_id'],
-        'secondTierInstructor' => [self::BELONGS_TO, 'SecondTierInstructor', 'foreignKey' => 'second_tier_instructor_id'],
+
+    public static $relationsData = array(
+        'instructors' => array(self::HAS_MANY, 'User', 'table' => 'users', 'foreignKey' => 'second_tier_instructor_id'),
         'allTransactions' => [ self::HAS_MANY, 'Transaction', 'foreignKey'=>'user_id' ],
-      ];
+    );
     
     public function getTransactionsAttribute(){
-//        return $this->allTransactions()->where('transaction_type', 'LIKE', "%instructor%")->orWhere(function($query){
-//            $query->where('user_id', $this->id)->where('transaction_type','cashout_fee');
-//        });
         $types = [
-            'instructor_credit',
-            'instructor_credit_reverse',
-            'instructor_debit',
-            'instructor_debit_refund',
+            'second_tier_instructor_credit',
+            'second_tier_instructor_credit_reverse',
+            'second_tier_instructor_debit',
+            'second_tier_instructor_debit_refund',
             'cashout_fee'
         ];
         return $this->allTransactions()->whereIn('transaction_type', $types);
     }
     
-    public function getCoursesAttribute()
-    {
-        return $this->courses()->get();
-    }
-    public function courses(){
-        $ids = $this->coursesRel()->lists('id');
-        if( count($ids) ==0 ) return Course::where('assigned_instructor_id', $this->id);
-        else return Course::where('assigned_instructor_id', $this->id)->orWhereIn('id',$ids);
-    }
-    
-    public function totalSales(){
-        $amount = 0;
-        foreach($this->coursesRel as $course){
-             $amount += $course->sales->sum('purchase_price') + $course->lessonSales();
-        }
-        return $amount;
-    }
-    
-    public function followed($student_id){
-        
-        if( in_array( $student_id, $this->followers()->lists('student_id') ) ) return true;
-        return false;
-    }
-    
-    public function notifyFollowers( $course ){
-        $data['course'] = $course;
-        $data['instructor'] = $this;
-        if( $this->followers->count() > 0 ){
-            foreach($this->followers as $follower){
-                $data['follower'] = $follower;
-                Mail::send('emails.course_published', $data, function($message) use($follower){
-                    $message->to( $follower->email )->subject('New Course Published');
-                });
-            }
-        }
-    }
     
     public function credit( $amount = 0, $product = null, $order = null, $purchase_id = 0 ){
         $amount = doubleval($amount);
@@ -80,8 +36,8 @@ class Instructor extends User{
               $transaction->amount = $amount;
               $transaction->product_id = $product->id;
               $transaction->product_type = get_class($product);
-              $transaction->transaction_type = 'instructor_credit';
-              $transaction->details = trans('transactions.instructor_credit_transaction').' '.$order;
+              $transaction->transaction_type = 'second_tier_instructor_credit';
+              $transaction->details = trans('transactions.second_tier_instructor_credit_transaction').' '.$order;
 
               $transaction->purchase_id = $purchase_id;
               $transaction->reference = $order;
@@ -97,7 +53,7 @@ class Instructor extends User{
     }
     
     public function creditReverse( $transaction ){
-        if( $transaction->transaction_type!='instructor_credit' || $transaction->user_id != $this->id || $transaction->status!='complete' ){
+        if( $transaction->transaction_type!='second_tier_instructor_credit' || $transaction->user_id != $this->id || $transaction->status!='complete' ){
             return false;
         }
         $old = $transaction;
@@ -109,8 +65,8 @@ class Instructor extends User{
               $transaction->purchase_id = $old->purchase_id;
               $transaction->product_id = $old->product_id;
               $transaction->product_type = $old->product_type;
-              $transaction->transaction_type = 'instructor_credit_reverse';
-              $transaction->details = trans('transactions.instructor_credit_reverse_transaction').' '.$old->reference;
+              $transaction->transaction_type = 'second_tier_instructor_credit_reverse';
+              $transaction->details = trans('second_tier_transactions.instructor_credit_reverse_transaction').' '.$old->reference;
 
 //              $transaction->reference = $order;
               $transaction->status = 'complete';
@@ -144,8 +100,8 @@ class Instructor extends User{
               $transaction = new Transaction();
               $transaction->user_id = $this->id;
               $transaction->amount = $cashout;
-              $transaction->transaction_type = 'instructor_debit';
-              $transaction->details = trans('transactions.instructor_debit_transaction');
+              $transaction->transaction_type = 'second_tier_instructor_debit';
+              $transaction->details = trans('transactions.second_tier_instructor_debit_transaction');
               $transaction->reference = $reference;
               $transaction->status = 'pending';
               $transaction->gc_fee = 0;
@@ -182,16 +138,4 @@ class Instructor extends User{
               return false;
          });
      }
-     
-     public function commentName($userType=null){
-        if( $this->profile ){
-            return $this->profile->first_name.' '.$this->profile->last_name;
-        }
-        else{
-            if($this->first_name=='') return $this->email;
-            else return $this->first_name.' '.$this->last_name;
-        }
-    }
-
-
 }

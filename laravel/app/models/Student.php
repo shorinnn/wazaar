@@ -115,11 +115,14 @@ class Student extends User{
         if( !$this->canPurchase($product) ) return false;
         // if this is the first purchase, set the LTC affiliates
         if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
+        $course = ( get_class($product)=='Course' ) ? $product : $product->module->course;
+        
         $purchase = new Purchase;
 
         $purchase->student_id = $this->id;
         $purchase->purchase_price = $product->cost();
         $purchase->ltc_affiliate_id = $this->ltcAffiliate->id;
+        if($course->instructor->secondTierInstructor!=null) $purchase->second_tier_instructor_id = $course->instructor->second_tier_instructor_id;
         
         /******* Money fields **********/
         $purchase->balance_transaction_id = $paymentData['successData']['balance_transaction_id'];
@@ -138,6 +141,7 @@ class Student extends User{
         }
         
         $purchase->instructor_earnings = PurchaseHelper::instructorEarnings($product, $purchase->processor_fee, $affiliate);
+        $purchase->second_tier_instructor_earnings = PurchaseHelper::secondTierInstructorEarnings($product, $purchase->processor_fee);
         $purchase->affiliate_earnings = PurchaseHelper::affiliateEarnings($product, $purchase->processor_fee, $affiliate);
         $purchase->second_tier_affiliate_earnings = PurchaseHelper::secondTierAffiliateEarnings($product, $purchase->processor_fee, $affiliate);
         $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product, $purchase->processor_fee);
@@ -189,6 +193,12 @@ class Student extends User{
             
             // credit instructor
             $course->instructor->credit( $purchase->instructor_earnings, $product, $purchase->payment_ref, $purchase->id );
+            
+            // credit second tier instructor
+            if( $purchase->second_tier_instructor_earnings > 0){
+                $course->instructor->secondTierInstructor->credit( $purchase->second_tier_instructor_earnings, $product, $purchase->payment_ref, $purchase->id);
+            }
+            
             // credit LTC affiliate
             if( $purchase->ltc_affiliate_earnings > 0){
                 $this->ltcAffiliate->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref, 'ltc', 0, $purchase->id);
