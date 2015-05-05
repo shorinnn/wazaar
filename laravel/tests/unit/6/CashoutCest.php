@@ -48,6 +48,38 @@ class CashoutCest{
         }
        
     }
+    public function instructorWithSecondTierCashout(UnitTester $I){
+        $instructor = Instructor::where('username', 'instructor')->first();
+        Transaction::truncate();
+        Transaction::unguard();
+        $t = date('Y-m-01', strtotime('-40 day') );
+        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'second_tier_instructor_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
+        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
+        $instructor->instructor_balance = 100;
+        $instructor->updateUniques();
+        $I->assertEquals( 100, $instructor->instructor_balance );
+        $amount = $instructor->instructor_balance - Config::get('custom.cashout.fee');
+        
+        Artisan::call( 'cocorium:instructor-cashout' );
+        $instructor = Instructor::where('username', 'instructor')->first();
+        $I->assertEquals( 0, $instructor->instructor_balance );
+
+        
+        $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit', 
+            'amount' => $amount, 'status' => 'pending'] );
+        $debits = '["1","2"]';
+        $credit = Transaction::find(3);
+        $I->assertEquals( $debits, $credit->debits );
+        $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'cashout_fee', 'amount' => Config::get('custom.cashout.fee'), 'status' => 'pending'] );
+        
+        $credits = $instructor->allTransactions()->whereIn('transaction_type',['instructor_credit', 'second_tier_instructor_credit'])->get();
+        foreach($credits as $credit){
+            $I->assertNotNull($credit->cashed_out_on);
+        }
+       
+    }
     
     public function instructorCashout2OutOf3(UnitTester $I){
         $instructor = Instructor::where('username', 'instructor')->first();
@@ -82,6 +114,41 @@ class CashoutCest{
         $I->assertEquals(1 , $instructor->allTransactions()->where('transaction_type','instructor_credit')->whereNull('cashed_out_on')->count() );
     }
     
+    public function instructorWithSecondTierCashout2OutOf3(UnitTester $I){
+        $instructor = Instructor::where('username', 'instructor')->first();
+        Transaction::truncate();
+        Transaction::unguard();
+        $t = date('Y-m-01', strtotime('-40 day') );
+        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
+        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'instructor_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete' ]);
+        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'second_tier_instructor_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
+        $instructor->instructor_balance = 150;
+        $instructor->updateUniques();
+        $I->assertEquals( 150, $instructor->instructor_balance );
+        
+        $amount = $instructor->instructor_balance - 50 - Config::get('custom.cashout.fee');
+        
+        Artisan::call( 'cocorium:instructor-cashout' );
+        $instructor = Instructor::where('username', 'instructor')->first();
+        $I->assertEquals( 50, $instructor->instructor_balance );
+
+        
+        $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit', 'amount' => $amount, 
+            'status' => 'pending' ] );
+        $debits = '["1","3"]';
+        $credit = Transaction::find(4);
+        $I->assertEquals( $debits, $credit->debits );
+        $I->seeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'cashout_fee', 'amount' => Config::get('custom.cashout.fee'), 'status' => 'pending'] );
+        
+        $I->assertEquals(2 , $instructor->allTransactions()->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
+                ->whereNotNull('cashed_out_on')->count() );
+        $I->assertEquals(1 , $instructor->allTransactions()->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
+                ->whereNull('cashed_out_on')->count() );
+    }
+    
     public function noInstructorCashout(UnitTester $I){
         $instructor = Instructor::where('username', 'instructor')->first();
         Transaction::truncate();
@@ -106,6 +173,33 @@ class CashoutCest{
         $I->dontSeeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit'] );
         
         $I->assertEquals(3 , $instructor->allTransactions()->where('transaction_type','instructor_credit')->whereNull('cashed_out_on')->count() );
+    }
+    
+    public function noInstructorSecondTierCashout(UnitTester $I){
+        $instructor = Instructor::where('username', 'instructor')->first();
+        Transaction::truncate();
+        Transaction::unguard();
+        
+        $t = date('Y-m-d', strtotime('-10 day') );
+        
+        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'second_tier_instructor_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete', 'created_at' => $t ]);
+        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'second_tier_instructor_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete' ]);
+        Transaction::create([ 'user_id' => $instructor->id, 'transaction_type' => 'second_tier_instructor_credit', 'amount' => 50, 'product_id' => 1, 
+            'product_type' => 'Course', 'status' => 'complete' ]);
+        $instructor->instructor_balance = 150;
+        $instructor->updateUniques();
+        $I->assertEquals( 150, $instructor->instructor_balance );
+        
+        Artisan::call( 'cocorium:instructor-cashout' );
+        $instructor = Instructor::where('username', 'instructor')->first();
+        $I->assertEquals( 150, $instructor->instructor_balance );
+
+        $I->dontSeeRecord('transactions', ['user_id' => $instructor->id, 'transaction_type' => 'instructor_debit'] );
+        
+        $I->assertEquals(3 , $instructor->allTransactions()->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
+                ->whereNull('cashed_out_on')->count() );
     }
     
     
