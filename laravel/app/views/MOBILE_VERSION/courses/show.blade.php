@@ -16,7 +16,6 @@
     <a href='{{ action('AffiliateController@promote', $course->slug)}}' class='btn btn-warning btn-sm'>{{ trans('courses/promote.promote') }}</a>
 </div>
 @endif
-MOBILE PAGE HERE MAYNE!
         <section class="course-detail-top-section clearfix unauthenticated-homepage cat-box-{{$course->courseCategory->color_scheme}}">
                 @if($course->bannerImage != null)
                     <img src="{{$course->bannerImage->url}}" alt="" class="img-responsive" />
@@ -26,30 +25,79 @@ MOBILE PAGE HERE MAYNE!
                 @endif
         	
         	<div class="centered-contents clearfix">
-                <ol class="breadcrumb">
+                <!--<ol class="breadcrumb">
                   <li><a href="{{action('CoursesController@category', [$course->courseCategory->slug] )}}">{{ $course->courseCategory->name }}</a></li>
                   <li class="active">
                       <a href='{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}'>
                           {{ $course->courseSubcategory->name }}
                       </a></li>
-                </ol>
+                </ol>-->
                 <h1> {{ $course->name }}</h1>
+                <p class="short-course-description">Lorem ipsum blah blah blah</p>
+                
+                <div class="your-teacher">
+                    <div class="avater">
+                            
+                            @if($instructor->profile == null)
+	                                <h3>{{ trans("courses/general.by") }}<a href="#">{{$instructor->first_name}} {{$instructor->last_name}}</a><span></span></h3>
+                                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater.png" alt="" >
+                                </div>
+                                <!--<span class="role">Lead programmer, Wazaar</span>-->
+                            @else
+                             <h3>{{ trans("courses/general.by") }} <a href="#">{{$instructor->profile->first_name}} {{$instructor->profile->last_name}}</a><span></span></h3>  
+                             <img src="{{ $instructor->profile->photo }}" alt="" >
+                                </div>
+                            @endif
+                </div>
+                
                 <div class="clearfix">
                 	<!--<div class="level">{{ $course->courseDifficulty->name }}</div>-->
                 </div>
+                
+                <div class="video-player-wrapper">
+                    @if( $video==null || $video->video() == null)
+                    <div class="video-player"
+                         @if( $course->bannerImage != null)
+                         style="background-image:url('{{$course->bannerImage->url}}') !important"
+                         @endif
+                         >
+                    <a href="#" class="watch-video-button">WATCH VIDEO</a>
+                    <span class="video-time">10:23</span>
+                    <div class="overlay"></div>            
+                    @else
+                    <div class="video-player" style="background:none; text-align: right">
+                        @if( Agent::isMobile() )
+                            <video id='myVideo' controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
+                                        ->first()->video_url }}" type="video/mp4"></video>
+                        @else
+                        <video id='myVideo'  height="266" controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                                        ->first()->video_url }}" type="video/mp4"></video>
+                        @endif
+                    @endif
+                    </div>
+                </div>
+                <div class="course-features">
+                	<div class="mobile-learning">
+                    	<span>Mobile<br>Learning
+                    </div>
+                    <div class="money-back-seal">
+                    	<span>Money-back <br> Guarantee</span>
+                    </div>
+                    <div></div>
+                </div>
                 <div class="clearfix banner-content-wrapper">
-                    <div class="number-of-students">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>
-                    <a href="#bottom-student-reviews" class="number-of-reviews">
+                    <!--<div class="number-of-students">{{ $course->student_count }} {{Lang::choice('general.student', $course->student_count)}}</div>-->
+                    <!--<a href="#bottom-student-reviews" class="number-of-reviews">
                         {{ $course->total_reviews }} 
                         {{-- singplural($course->total_reviews, 'REVIEWS') --}}
                         
                         {{ Lang::choice( 'courses/general.reviews', $course->total_reviews) }}
                         
                         <span>{{ $course->reviews_positive_score }}%</span>
-                    </a>
+                    </a>-->
                         @if($course->isDiscounted())
                             <div class="white-box">
-                                <div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>
+                                <!--<div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>-->
                         @else
                             <div class="white-box not-on-sale">
                                 <!--<div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>-->
@@ -68,8 +116,8 @@ MOBILE PAGE HERE MAYNE!
                              <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
                             {{Form::close()}}
                             @if($course->isDiscounted())
-                                <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
-                                    You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
+                                <!--<p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
+                                    You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>-->	
                             @endif
                         @else
                              {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
@@ -83,47 +131,26 @@ MOBILE PAGE HERE MAYNE!
 
                             {{Form::close()}}
                             @if($course->isDiscounted())
-                                <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
-                                    You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
+                                <!--<p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
+                                    You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>-->
                             @endif
                         @endif
                         <!--<a href="#" class="crash-class">CRASH CLASS</a>-->
-                        <div class="clearfix wishlist-and-social">
+                        <!--<div class="clearfix wishlist-and-social">
                             {{Form::open(['action' => ['WishlistController@store'] ])}}
                             <input type='hidden' name='id' value='{{ $course->id }}' />
                             <!--<a href="#" class="add-to-wishlist">Add to Wishlist</a>-->
-                            <input type='submit' class="add-to-wishlist" value='{{trans('courses/general.add_to_wishlist')}}' />
+                            <!--<input type='submit' class="add-to-wishlist" value='{{trans('courses/general.add_to_wishlist')}}' />
                             {{Form::close()}}
                             <ul class="social-icons">
                                     <li><a href="#" class="twitter-icon"></a></li>
                                     <li><a href="#" class="fb-icon"></a></li>
                                     <li><a href="#" class="google-icon"></a></li>
                             </ul>
-                        </div>             
+                        </div>-->             
                     </div>
                 </div>
                         
-                    @if( $video==null || $video->video() == null)
-                    <div class="video-player"
-                         @if( $course->bannerImage != null)
-                         style="background-image:url('{{$course->bannerImage->url}}') !important"
-                         @endif
-                         >
-	                <a href="#" class="watch-video-button">WATCH VIDEO</a>
-    				<span class="video-time">10:23</span>
-                    <div class="overlay"></div>            
-                    @else
-                    <div class="video-player" style="background:none; text-align: right">
-                        @if( Agent::isMobile() )
-                            <video id='myVideo' controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
-                                        ->first()->video_url }}" type="video/mp4"></video>
-                        @else
-                        <video id='myVideo'  height="266" controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
-                                        ->first()->video_url }}" type="video/mp4"></video>
-                        @endif
-                    @endif
-                </div>
-                 
             </div>
         </section>
         <section class="main-content-container clearfix">
@@ -137,7 +164,7 @@ MOBILE PAGE HERE MAYNE!
                     @if (Session::get('error'))
                         <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
                     @endif
-                <div class="middle-content-wrapper clearfix">
+                <div class="middle-content-wrapper panel-group clearfix" id="accordion" role="tablist" aria-multiselectable="true">
                     <div class="left-content">
                         <!--@if($course->testimonials->count() > 0)
                             <div class="testimonials top-testimonials">
@@ -150,113 +177,97 @@ MOBILE PAGE HERE MAYNE!
                                 </span>
                             </div>
                         @endif-->
-                        <div class="misc-container-1">
-                            <p class="lead what-you-will-learn">{{trans('courses/general.what_you_will_achieve')}}.</p>
-                            <article class="what-you-will-learn">
-                            <ul>
-                            @if($achievements = json2Array($course->what_will_you_achieve))
-                                @foreach($achievements as $achievement)
-                                    <li>{{ $achievement }}</li>
-                                @endforeach
-                            @endif    
-                             </ul>
-                        	</article>
-                            <p class="lead what-you-will-learn">{{trans('courses/create.course-requirements')}}.</p>
-                            <article class="what-you-will-learn">
-                            <ul>
-                            @if($requirements = json2Array($course->requirements))
-                                @foreach($requirements as $requirement)
-                                    <li>{{ $requirement }}</li>
-                                @endforeach
-                            @endif    
-                             </ul>
+                        <div class="misc-container-1 panel panel-default no-margin">
+                        	<div class="panel-heading" role="tab" id="headingOne">
+                            	<div class="panel-title">
+                            		<p class="lead what-you-will-learn collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
+                                    aria-controls="collapseOne">{{trans('courses/general.what_you_will_achieve')}}.</p>
+                                </div>
+                            </div>
+                            <article id="collapseOne" class="panel-collapse collapse in what-you-will-learn" role="tabpanel" aria-labelledby="headingOne">
+                                <ul class="panel-body">
+                                @if($achievements = json2Array($course->what_will_you_achieve))
+                                    @foreach($achievements as $achievement)
+                                        <li>{{ $achievement }}</li>
+                                    @endforeach
+                                @endif    
+                                 </ul>
                         	</article>
                         </div>
-                        <p class="lead">{{ trans('courses/general.Description') }}</p>
-                        <article class="bottom-margin">
-                        {{$course->description}}
-                        </article>
+                    </div>
+                    <div class="sidebar">
+                        
+                        <aside>
+                        	<div class="misc-container-2 panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <div class="panel-title">
+                                        <p class="lead collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                                    aria-controls="collapseTwo">{{ trans('courses/general.who_is_this_for?') }}</p>
+                                         @if($who_for = json2Array($course->who_is_this_for))
+                                         <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                            <ul class="panel-body">
+                                                @foreach($who_for as $who)
+                                                    <li>{{$who}}</li>
+                                                @endforeach
+                                            </ul>
+                                         </div>
+                                         @endif
+                                     </div>
+                                 </div>
+                             </div>
+                        </aside>                        
+                    </div>
+                    <div class="left-content">
+                        <!--@if($course->testimonials->count() > 0)
+                            <div class="testimonials top-testimonials">
+                                <p>
+                                {{{ $course->testimonials->first()->content }}}
+                                </p>
+                                <span class="name">
+                                    {{$course->testimonials->first()->student->first_name}}
+                                    {{$course->testimonials->first()->student->last_name}}
+                                </span>
+                            </div>
+                        @endif-->
+                        <div class="misc-container-1 panel panel-default">
+                        	<div class="panel-heading" role="tab" id="headingThree">
+                            	<div class="panel-title">
+                                    <p class="lead what-you-will-learn collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+                                    aria-controls="collapseThree">{{trans('courses/create.course-requirements')}}.</p>
+                                    <article id="collapseThree" class="panel-collapse collapse in what-you-will-learn" role="tabpanel" aria-labelledby="headingThree">
+                                    <ul class="panel-body">
+                                    @if($requirements = json2Array($course->requirements))
+                                        @foreach($requirements as $requirement)
+                                            <li>{{ $requirement }}</li>
+                                        @endforeach
+                                    @endif    
+                                     </ul>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="misc-container-1 panel panel-default">
+                        	<div class="panel-heading" role="tab" id="headingFour">
+                            	<div class="panel-title">
+                                    <p class="lead what-you-will-learn collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false"
+                                    aria-controls="collapseFour">{{ trans('courses/general.Description') }}</p>
+                                    <article id="collapseFour" class="panel-collapse collapse in what-you-will-learn" role="tabpanel" aria-labelledby="headingFour">
+                                        <div class="panel-body">
+                                            {{$course->description}}
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
                         <!-- <p class="lead">Sub Description</p>
                         <article class="bottom-margin">
                         {{ $course->description }}
                         </article>
                         -->
                     </div>
-                    <div class="sidebar">
-                        
-                        <aside>
-                        	<div class="misc-container-2">
-                                <p class="lead">{{ trans('courses/general.who_is_this_for?') }}</p>
-                                 @if($who_for = json2Array($course->who_is_this_for))
-                                <ul>
-                                    @foreach($who_for as $who)
-                                        <li>{{$who}}</li>
-                                    @endforeach
-                                </ul>
-                                 @endif
-                             </div>
-                        </aside>
-                        
-                        <div class="your-teacher">
-                            <div class="avater">
-                                <p>{{ trans('courses/general.your_teacher')}}</p>
-                                    
-                                    @if($instructor->profile == null)
-                                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater.png" alt="" >
-                                        </div>
-                                        <h3>{{$instructor->first_name}} {{$instructor->last_name}}<span></span></h3>
-                                        <!--<span class="role">Lead programmer, Wazaar</span>-->
-                                        @if(Auth::check())
-                                            {{ View::make('courses.followed_form')->withInstructor($instructor) }}
-                                        @endif
-                                        <h4>{{ trans('general.about') }} {{$instructor->first_name}}</h4>
-                                        <p>
-                                            @if( $course->show_bio=='custom' )
-                                                {{ $course->custom_bio }}
-                                            @else
-                                                {{ trans('general.no-bio-available') }}
-                                            @endif
-                                        </p>
-                                    @else
-                                     <img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $instructor->profile->photo }}" alt="" >
-                                        </div>
-                                        <h3>{{$instructor->profile->first_name}} {{$instructor->profile->last_name}}<span></span></h3>
-           
-    
-                                        @if(Auth::check())
-                                            {{ View::make('courses.followed_form')->withInstructor($instructor) }}
-                                        @endif
-                                        <h4>{{ trans('general.about') }} {{$instructor->profile->first_name}}</h4>
-                                        <p>
-                                            @if( $course->show_bio=='custom' )
-                                                {{ $course->custom_bio }}
-                                            @else
-                                                {{ $instructor->profile->bio }}
-                                            @endif
-                                        </p>
-                                    @endif
-                        </div>
-                        <div class="testimonial-block">
-                            <small>{{ trans('general.you-are-backed-by-our') }}</small>
-                            <div class="money-back">
-                                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/30-days-coupon.png" alt="">
-                                <p>{{ trans('general.money-back-guarantee') }}</p>
-                            </div>
-    
-                            <div class="testimonials">
-                                @if($course->testimonials->count() > 1)
-                                <h4> {{ trans('courses/general.testimonials') }}</h4>
-                                    <p>
-                                     {{{ $course->testimonials->last()->content }}}
-                                    </p>
-                                    <span class="name">
-                                        {{$course->testimonials->last()->student->first_name}}
-                                        {{$course->testimonials->last()->student->last_name}}
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                <div class="divider clear">
+                    <span></span>
                 </div>
                 <div class="curriculum clearfix clear">
                 	<h3 class="text-center">

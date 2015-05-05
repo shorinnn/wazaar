@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{url('css/slick.css')}}">
     <link rel="stylesheet" href="{{url('css/slick-theme.css')}}">
     <link rel="stylesheet" href="{{url('css/datepicker.css')}}">
+    <link rel="stylesheet" href="{{url('css/mobile.css')}}">
 
     @yield('extra_css')
     <!--[if lt IE 9]>
@@ -246,7 +247,12 @@
 				});		
 				
 				$('.datepicker').datepicker();
-
+				$('.collapse').collapse();
+				
+				$("[data-toggle='collapse']").click( function(e) {
+				var next_of_kin = "[data-parent='" + e.target.id + "']";
+					$(next_of_kin).toggleClass('close');
+				});
 			});
 		</script>
 	</body>

@@ -2,6 +2,7 @@
 
 return array(
     'sale' => 'SALE',
+    'by' => 'by',
     'purchase' => 'Purchase',
     'join_class' => 'Join Class',
     'enroll_for' => 'Enroll for',
