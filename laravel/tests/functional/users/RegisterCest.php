@@ -37,6 +37,23 @@ class RegisterCest{
         $I->assertTrue(Auth::user()->hasRole('Instructor'));
         $I->assertTrue(Auth::user()->hasRole('Student'));
     }
+    public function registerAsInstructorWithSecondTier(FunctionalTester $I){
+        $I->amOnPage('/register/instructor');
+        $I->setCookie('register_instructor',1);
+        $I->setCookie('stpi',2);
+        $I->amOnPage('/register/instructor');
+        $I->amOnPage('/register/instructor');
+        $I->dontSeeAuthentication();
+        $I->seeNumberOfElements('input[name=email]', 1);
+        $I->submitForm('form', ['username' => 'new_student', 'email' => 'new_student@mailinator.com',
+                                        'password' => 'passpass', 'password_confirmation' => 'passpass']);
+        $I->seeAuthentication();
+        $I->assertTrue(Auth::user()->hasRole('Instructor'));
+        $I->assertTrue(Auth::user()->hasRole('Student'));
+        $I->assertEquals( 2, Auth::user()->second_tier_instructor_id );
+        $secondtier = SecondTierInstructor::find(2);
+        $I->assertEquals( 1, $secondtier->instructors->count() );
+    }
     
     public function registerAsAffiliate(FunctionalTester $I){
         $I->amOnPage('/register/affiliate');

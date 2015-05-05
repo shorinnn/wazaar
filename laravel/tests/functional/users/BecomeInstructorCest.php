@@ -43,6 +43,33 @@ class BecomeInstructorCest{
         $I->seeCurrentUrlEquals('/instructors');
     }
     
+    public function becomeInstructorWithSecondTier(FunctionalTester $I){
+        $user =  User::where('username','student')->first();
+        Auth::login($user);
+        $I->assertEquals(1, $user->roles()->count());
+        $I->seeAuthentication();
+        $I->setCookie('stpi',2);
+        $I->amOnPage('/instructors/become-instructor');
+        $I->amOnPage('/instructors/become-instructor');
+        $I->see('Get Started');  
+        // disable filters because codeception doesn't load the new role after submission
+        $I->haveDisabledFilters();
+        $I->click('Get Started');
+        $user = User::where('username','student')->first();
+//        $user = $I->refreshAuthenticatedUser( $user );
+        Auth::login($user);
+        $I->assertTrue( Auth::user()->hasRole('Instructor') );
+        $I->seeCurrentUrlEquals('/instructors');
+        // enable filters again
+        $I->haveEnabledFilters();
+        $I->see('Congratulations');
+        $I->amOnPage('/instructors');
+        $I->seeCurrentUrlEquals('/instructors');
+        $I->assertEquals( 2, Auth::user()->second_tier_instructor_id );
+        $secondtier = SecondTierInstructor::find(2);
+        $I->assertEquals( 1, $secondtier->instructors->count() );
+    }
+    
     public function failBecomingInstructorAgain(FunctionalTester $I){
         $user =  User::where('username','student')->first();
         Auth::login($user);
