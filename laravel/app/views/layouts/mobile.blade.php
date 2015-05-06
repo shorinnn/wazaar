@@ -38,7 +38,7 @@
 <body>
     <div id="wrapper">
     	<header class="container-fluid">
-        	{{ View::make('layouts.shared.header') }}
+        	{{ View::make('layouts.shared.mobile_header') }}
         </header>
         
         @yield('content')
