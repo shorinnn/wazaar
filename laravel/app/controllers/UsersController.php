@@ -39,7 +39,7 @@ class UsersController extends Controller
     {
         $roles['instructor'] = Cookie::get('register_instructor');
         $roles['affiliate'] = Cookie::get('register_affiliate');
-        $user = $this->users->signup(Input::all(), Cookie::get('ltc'), $roles, Cookie::get('stpi'));
+        $user = $this->users->signup( Input::all(), Cookie::get('ltc'), $roles, Cookie::get('stpi'), Cookie::get('iai') );
 
         if ( $user!=null && $user->id) {
             if (Config::get('confide::signup_email')) {
@@ -133,7 +133,7 @@ class UsersController extends Controller
                     // create user
                     $roles['instructor'] = Cookie::get('register_instructor');
                     $roles['affiliate'] = Cookie::get('register_affiliate');
-                    $user = $this->users->signupWithGoogle($result, Cookie::get('ltc'), $roles, Cookie::get('stpi'));
+                    $user = $this->users->signupWithGoogle($result, Cookie::get('ltc'), $roles, Cookie::get('stpi'), Cookie::get('iai'));
 
                     if(!$user->id){ 
                         // cannot create user
@@ -236,7 +236,7 @@ class UsersController extends Controller
                     // create user
                     $roles['instructor'] = Cookie::get('register_instructor');
                     $roles['affiliate'] = Cookie::get('register_affiliate');
-                    $user = $this->users->signupWithFacebook($result, Cookie::get('ltc'), $roles, $roles, Cookie::get('stpi'));
+                    $user = $this->users->signupWithFacebook($result, Cookie::get('ltc'), $roles, $roles, Cookie::get('stpi'), Cookie::get('iai'));
                     if(!$user->id){ 
                         // cannot create user
                         $error = $user->errors()->all(':message');

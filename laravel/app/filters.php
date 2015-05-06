@@ -25,6 +25,10 @@ App::before(function($request)
     if(Auth::guest() && Input::has('stpi')){
         Cookie::queue('stpi', Input::get('stpi'), 60*24*30);
     }
+    // record instructor agency
+    if(Auth::guest() && Input::has('iai')){
+        Cookie::queue('iai', Input::get('iai'), 60*24*30);
+    }
     // record the LTC Affiliate on any page
     if(Auth::guest() && Input::has('aid')){
         Cookie::queue('ltc', Input::get('aid'), 60*24*30);
