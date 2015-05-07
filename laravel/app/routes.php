@@ -68,6 +68,8 @@ Route::group( array('domain' =>  $domain), function(){
         Route::get('instructor-agencies/instructors/{id}', 'InstructorAgenciesController@instructors');
         Route::resource('instructor-agencies', 'InstructorAgenciesController');
         Route::resource('frontpage-videos', 'FrontpageVideosController');
+        Route::get('email/publishers', 'AdminEmailController@publishers');
+        Route::post('email/publishers', 'AdminEmailController@sendPublishers');
     });
 
     // Course Categories
