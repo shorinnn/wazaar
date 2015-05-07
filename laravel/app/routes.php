@@ -63,6 +63,7 @@ Route::group( array('domain' =>  $domain), function(){
         Route::post('withdrawals/update', 'WithdrawalsController@update');
         Route::resource('withdrawals', 'WithdrawalsController');
         Route::resource('members', 'MembersController');
+        Route::resource('second-tier-publishers', 'SecondTierPublishersController');
         Route::resource('submissions', 'SubmissionsController');
         Route::get('instructor-agencies/instructors/{id}', 'InstructorAgenciesController@instructors');
         Route::resource('instructor-agencies', 'InstructorAgenciesController');

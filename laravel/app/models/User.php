@@ -12,7 +12,7 @@ class User extends Ardent implements ConfideUserInterface
     }
 
     use HasRole;
-    protected $fillable = ['first_name', 'last_name', 'email', 'username', 'affiliate_id']; 
+    protected $fillable = ['first_name', 'last_name', 'email', 'username', 'affiliate_id', 'sti_approved']; 
     
      public static $relationsData = array(
         'profiles' => [ self::HAS_MANY, 'Profile', 'foreignKey' => 'owner_id' ],
@@ -70,15 +70,16 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     public function firstName(){
-        
-        if( isset( $this->profiles) && $this->profiles->first() !=null ){
+        if( $this->profiles && $this->profiles->first() !=null ){
             return $this->profiles->first()->first_name;
         }
-        else return $this->first_name;
+        else{
+            return $this->first_name;
+        }
     }
     
     public function lastName(){
-        if(  isset( $this->profiles) && $this->profiles->first() !=null){
+        if( $this->profiles && $this->profiles->first() !=null){
             return $this->profiles->first()->last_name;
         }
         else return $this->last_name;

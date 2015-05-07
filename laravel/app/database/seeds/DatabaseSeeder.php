@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder {
                  $this->call('FrontpageVideosSeeder');
                  $this->call('GiftSeeder');
                  $this->call('AffiliateUsersSeeder');
+                 $this->call('SecondTierInstructorsSeeder');
 	}
 
 }
@@ -1169,6 +1170,40 @@ class InstructorAgenciesSeeder extends Seeder {
         
         DB::table('users')->where('username','instructor')->update(['instructor_agency_id' => $agency1->id]);
 
+    }
+}
+
+class SecondTierInstructorsSeeder extends Seeder {
+
+    public function run()
+    {
+        $role = Role::where('name','=','Instructor')->first();
+        $instructor = new User( [ 'username' => 'STInstructor1', 'email'=>'stInstructor1@mailinator.com','password' => 'pass', 
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ] );
+        $instructor->password = 'pass';
+        $instructor->password_confirmation = 'pass';
+        $instructor->is_second_tier_instructor = 'yes';
+        $instructor->save();
+        $instructor->attachRole( $role );
+        Profile::create( ['owner_id' => $instructor->id, 'owner_type' => 'Instructor','first_name' => 'STInstructor', 'last_name' => 'Last', 'email' => 'stInstructor1@mailinator.com']);
+
+        $instructor = new User(['username' => 'STInstructor2', 'email'=>'stInstructor2@mailinator.com','password' => 'pass', 
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ]);
+        $instructor->password = 'pass';
+        $instructor->password_confirmation = 'pass';
+        $instructor->is_second_tier_instructor = 'yes';
+        $instructor->save();
+        $instructor->attachRole( $role );
+        Profile::create( ['owner_id' => $instructor->id, 'owner_type' => 'Instructor','first_name' => 'STInstructor2', 'last_name' => 'Last', 'email' => 'stInstructor2@mailinator.com']);
+        
+        $instructor = new User(['username' => 'STInstructor3', 'email'=>'stInstructor3@mailinator.com','password' => 'pass', 
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ]);
+        $instructor->password = 'pass';
+        $instructor->password_confirmation = 'pass';
+        $instructor->is_second_tier_instructor = 'yes';
+        $instructor->save();
+        $instructor->attachRole( $role );    
+        Profile::create( ['owner_id' => $instructor->id, 'owner_type' => 'Instructor','first_name' => 'STInstructor3', 'last_name' => 'Last', 'email' => 'stInstructor3@mailinator.com']);
     }
 }
 

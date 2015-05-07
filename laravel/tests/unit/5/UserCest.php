@@ -56,8 +56,41 @@ class UserCest{
         $I->assertFalse($user->hasRole('Affiliate'));
     }
     
+    public function makeUserStudentAndSecondTierInstructor(UnitTester $I){
+        User::unguard();
+        DB::table('users')->update( [ 'is_second_tier_instructor'=>'yes', 'sti_approved'=>'yes' ] );
+        $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 
+            'password_confirmation' => 'pass'];
+        $user = $this->users->signup( $data, null, [ 'instructor' => 1 ], null, null, 1 );
+        $I->assertTrue($user->save());
+        $user = User::find( $user->id );
+        $I->assertTrue($user->hasRole('Student'));
+        $I->assertTrue($user->hasRole('Instructor'));
+        $I->assertFalse($user->hasRole('Admin'));
+        $I->assertFalse($user->hasRole('Affiliate'));
+        $I->assertEquals($user->is_second_tier_instructor, 'yes');
+        $I->assertEquals($user->sti_approved, 'no');
+    }
+    
+    public function notMakeUserStudentAndSecondTierInstructor(UnitTester $I){
+        User::unguard();
+        DB::table('users')->update( [ 'is_second_tier_instructor'=>'yes', 'sti_approved'=>'yes' ] );
+        $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 
+            'password_confirmation' => 'pass'];
+        $user = $this->users->signup( $data, null, [ 'instructor' => 1 ], null, null );
+        $I->assertTrue($user->save());
+        $user = User::find( $user->id );
+        $I->assertTrue($user->hasRole('Student'));
+        $I->assertTrue($user->hasRole('Instructor'));
+        $I->assertFalse($user->hasRole('Admin'));
+        $I->assertFalse($user->hasRole('Affiliate'));
+        $I->assertEquals($user->is_second_tier_instructor, 'no');
+        $I->assertEquals($user->sti_approved, 'no');
+    }
+    
     public function makeUserStudentAndInstructorWithSecondTier(UnitTester $I){
         User::unguard();
+        DB::table('users')->update( [ 'is_second_tier_instructor'=>'yes', 'sti_approved'=>'yes' ] );
         $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 
             'password_confirmation' => 'pass'];
         $user = $this->users->signup( $data, null, [ 'instructor' => 1 ], 2 );
@@ -74,6 +107,24 @@ class UserCest{
         $I->assertEquals( 1, $secondTierInstructor->instructors->count() );
     }
     
+    public function failMakeUserStudentAndInstructorWithSecondTier(UnitTester $I){
+        User::unguard();
+        $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 
+            'password_confirmation' => 'pass'];
+        $user = $this->users->signup( $data, null, [ 'instructor' => 1 ], 2 );
+        $I->assertTrue($user->save());
+        $user = User::find( $user->id );
+        $I->assertTrue($user->hasRole('Student'));
+        $I->assertTrue($user->hasRole('Instructor'));
+        $I->assertFalse($user->hasRole('Admin'));
+        $I->assertFalse($user->hasRole('Affiliate'));
+        $I->assertEquals($user->second_tier_instructor_id, null);
+        $instructor = Instructor::find( $user->id );
+        $I->assertEquals($instructor->secondTierInstructor, null);
+        $secondTierInstructor = SecondTierInstructor::find(2);
+        $I->assertEquals( 0, $secondTierInstructor->instructors->count() );
+    }
+    
     public function loginWithFacebookAndBeStudentOnly(UnitTester $I){
         User::unguard();
         $data = ['id' => '123', 'email' => 'fbUser@mailinator.com', 'first_name' => 'First', 'last_name' => 'Last', 'link' => 'link'];
@@ -88,18 +139,39 @@ class UserCest{
     
     public function loginWithFacebookSecondTierInstructor(UnitTester $I){
         User::unguard();
+        DB::table('users')->update( [ 'is_second_tier_instructor'=>'yes', 'sti_approved'=>'yes' ] );
         $data = ['id' => '123', 'email' => 'fbUser@mailinator.com', 'first_name' => 'First', 'last_name' => 'Last', 'link' => 'link'];
         $user = $this->users->signupWithFacebook($data, null, [ 'instructor' => 1 ], 2);
         $I->assertTrue($user->save());
+        $sti = User::find(2);
         $user = User::find( $user->id );
         $I->assertTrue($user->hasRole('Student'));
         $I->assertTrue($user->hasRole('Instructor'));
         $I->assertFalse($user->hasRole('Admin'));
         $I->assertFalse($user->hasRole('Affiliate'));
         $instructor = Instructor::find( $user->id );
+        $I->assertEquals($instructor->second_tier_instructor_id, 2);
         $I->assertEquals($instructor->secondTierInstructor->id, 2);
         $secondTierInstructor = SecondTierInstructor::find(2);
         $I->assertEquals( 1, $secondTierInstructor->instructors->count() );
+    }
+    
+    public function failLoginWithFacebookSecondTierInstructor(UnitTester $I){
+        User::unguard();
+        $data = ['id' => '123', 'email' => 'fbUser@mailinator.com', 'first_name' => 'First', 'last_name' => 'Last', 'link' => 'link'];
+        $user = $this->users->signupWithFacebook($data, null, [ 'instructor' => 1 ], 2);
+        $I->assertTrue($user->save());
+        $sti = User::find(2);
+        $user = User::find( $user->id );
+        $I->assertTrue($user->hasRole('Student'));
+        $I->assertTrue($user->hasRole('Instructor'));
+        $I->assertFalse($user->hasRole('Admin'));
+        $I->assertFalse($user->hasRole('Affiliate'));
+        $instructor = Instructor::find( $user->id );
+        $I->assertEquals($instructor->second_tier_instructor_id, null);
+        $I->assertEquals($instructor->secondTierInstructor, null);
+        $secondTierInstructor = SecondTierInstructor::find(2);
+        $I->assertEquals( 0, $secondTierInstructor->instructors->count() );
     }
     
     public function loginWithGoogleAndBeStudentOnly(UnitTester $I){
@@ -115,6 +187,7 @@ class UserCest{
     }
     public function loginWithGoogleSecondTierInstructor(UnitTester $I){
         User::unguard();
+        DB::table('users')->update( [ 'is_second_tier_instructor'=>'yes', 'sti_approved'=>'yes' ] );
         $data = ['id' => '123', 'email' => 'fbUser@mailinator.com', 'given_name' => 'First', 'family_name' => 'Last', 'link' => 'link'];
         $user = $this->users->signupWithGoogle($data, null, [ 'instructor' => 1 ], 2);
         $I->assertTrue($user->save());
@@ -127,6 +200,22 @@ class UserCest{
         $I->assertEquals($instructor->secondTierInstructor->id, 2);
         $secondTierInstructor = SecondTierInstructor::find(2);
         $I->assertEquals( 1, $secondTierInstructor->instructors->count() );
+    }
+    
+    public function failLoginWithGoogleSecondTierInstructor(UnitTester $I){
+        User::unguard();
+        $data = ['id' => '123', 'email' => 'fbUser@mailinator.com', 'given_name' => 'First', 'family_name' => 'Last', 'link' => 'link'];
+        $user = $this->users->signupWithGoogle($data, null, [ 'instructor' => 1 ], 2);
+        $I->assertTrue($user->save());
+        $user = User::find( $user->id );
+        $I->assertTrue($user->hasRole('Student'));
+        $I->assertTrue($user->hasRole('Instructor'));
+        $I->assertFalse($user->hasRole('Admin'));
+        $I->assertFalse($user->hasRole('Affiliate'));
+        $instructor = Instructor::find( $user->id );
+        $I->assertEquals($instructor->second_tier_instructor_id, null);
+        $secondTierInstructor = SecondTierInstructor::find(2);
+        $I->assertEquals( 0, $secondTierInstructor->instructors->count() );
     }
     
     public function linkFacebookAccount(UnitTester $I){
@@ -160,6 +249,7 @@ class UserCest{
     }
     
     public function makeStudentInstructorSecondTierInstructor(UnitTester $I){
+        DB::table('users')->update( [ 'is_second_tier_instructor'=>'yes', 'sti_approved'=>'yes' ] );
         $student = User::where('username','student')->first();
         $I->assertTrue($student->id > 0);
         $this->users->become('Instructor', $student, 2);
@@ -169,6 +259,19 @@ class UserCest{
         $I->assertEquals($instructor->secondTierInstructor->id, 2);
         $secondTierInstructor = SecondTierInstructor::find(2);
         $I->assertEquals( 1, $secondTierInstructor->instructors->count() );
+    }
+
+    
+    public function failMakeStudentInstructorSecondTierInstructor(UnitTester $I){
+        $student = User::where('username','student')->first();
+        $I->assertTrue($student->id > 0);
+        $this->users->become('Instructor', $student, 2);
+        $student = User::where('username','student')->first();
+        $I->assertTrue($student->hasRole('Instructor'));
+        $instructor = Instructor::find( $student->id );
+        $I->assertEquals($instructor->second_tier_instructor_id, null);
+        $secondTierInstructor = SecondTierInstructor::find(2);
+        $I->assertEquals( 0, $secondTierInstructor->instructors->count() );
     }
     
     public function failOverwritingSecondTierInstructor(UnitTester $I){
