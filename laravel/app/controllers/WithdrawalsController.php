@@ -27,6 +27,23 @@ class WithdrawalsController extends \BaseController {
             }
             return Redirect::back();
         }
+        
+        public function bankFile($time=''){
+            
+            if($time=='') $time = date('Y-m-01');
+            return View::make('administration.withdrawals.bank_file')->withTime( $time );
+        }
+        
+        public function downloadBankFile(){
+            $content = WithdrawalsHelper::generateFile( Input::get('time') );
+            $title = date('m-Y', strtotime( Input::get('time') ) );
+            header("Content-Disposition: attachment; filename=\"" . $title. ".txt\"");
+            header("Content-Type: application/force-download");
+            header("Content-Length: " . strlen($content));
+            header("Connection: close");
+            echo $content;
+            return;
+        }
 
 
 }

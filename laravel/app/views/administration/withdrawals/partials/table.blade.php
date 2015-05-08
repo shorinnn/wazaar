@@ -73,7 +73,8 @@
                                 {{ $request->created_at->diffForHumans() }}
                             </td>
                             <td>
-                                <input type="text" name="reference[{{$request->id}}]" placeholder="{{ trans('administration.reference') }}" />
+                                <input type="text" name="reference[{{$request->id}}]" placeholder="{{ trans('administration.reference') }}" 
+                                       value="{{ $request->id }}" />
                             </td>
                             
                         </tr>
