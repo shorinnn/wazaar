@@ -17,7 +17,7 @@
                     </div>               
                 </span>
         
-                        {{ Form::open( ['action' => 'AdminEmailController@sendPublishers', 'class' => 'ajax-form', 'data-callback' => 'sent' ] ) }}
+                        {{ Form::open( ['action' => 'AdminEmailController@sendPublishers', 'id'=>'mail-form', 'class' => 'ajax-formz', 'data-callback' => 'sent' ] ) }}
                              {{ trans('general.registered-before-date') }}
                              <input type="text" name='date' id='pkr' value='{{ date('d-m-Y') }}' required />
                          <input type='text' class='form-control' id='subject' name='subject' placeholder="{{ trans('general.email-subject') }}"
@@ -43,7 +43,7 @@
         if(res.status=='success'){
             tinyMCE.activeEditor.setContent('');
             $('#subject').val('');
-            $.bootstrapGrowl( "{{ trans('conversations/general.sent' ) }} ("+res.mails_sent+")",{align:'center', type:'success'} );
+            $.bootstrapGrowl( "{{ trans('conversations/general.sent' ) }}  ("+res.mails_sent+")",{align:'center', type:'success'} );
         }
         else{
             console.log('errors!!!');

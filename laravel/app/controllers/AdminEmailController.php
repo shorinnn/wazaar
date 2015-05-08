@@ -10,7 +10,7 @@ class AdminEmailController extends \BaseController {
 	public function sendPublishers()
 	{
             $content = trim(strip_tags(Input::get('content'))); 
-            if( $content!='' ){
+            if( $content!=''  && trim( Input::get('subject') ) != '' && trim( Input::get('date') ) != '' ){
                 $date = date('Y-m-d', strtotime( Input::get('date') ) );
                 $recipients = User::whereHas(
                         'roles', function($q){
@@ -33,7 +33,7 @@ class AdminEmailController extends \BaseController {
                     return json_encode( ['status' => 'success', 'message' => 'sent', 'date'=>$date, 'sent' => $sent, 'mails_sent' => $mailsSent ] );
                 }
                 else{
-                    Session::flash('success', trans('conversations/general.sent' ));
+                    Session::flash('success', trans('conversations/general.sent') . " ($mailsSent)");
                     return Redirect::back();
                 }
             }
