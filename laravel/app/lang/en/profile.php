@@ -8,6 +8,7 @@ return
         'headerPhoto'          => 'Photo',
         'headerPersonal'       => 'Personal',
         'headerSocial'         => 'Social Media',
+        'headerFinancial'         => 'Financial',
         'new'                  =>
             [
                 'step1' => 'Step 1: Upload Your Photo or Picture',
@@ -28,7 +29,21 @@ return
             'facebook'  => 'Facebook',
             'twitter'   => 'Twitter',
             'linkedin'  => 'LinkedIn',
-            'youtube'   => 'Youtube'
+            'youtube'   => 'Youtube',
+            'bank-code'   => 'Bank Code',
+            'bank-name'   => 'Bank Name',
+            'branch-code'   => 'Branch Code',
+            'branch-name'   => 'Branch name',
+            'account-type'   => 'Account Type',
+            'account-number'   => 'Account Number',
+            'beneficiary-name'   => 'Beneficiary Name',
+            'account-types' =>
+            [
+                'ordinary' => 'Ordinary Savings Account',
+                'checking' => 'Checking Account',
+                'savings' => 'Savings Account',
+                'others' => 'Others'
+            ]
         ],
         'updateSuccessful' => 'Profile updated successfully',
         'profile' => 'Profile',

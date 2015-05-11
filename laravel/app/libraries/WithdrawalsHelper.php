@@ -33,7 +33,8 @@ class WithdrawalsHelper{
                                     ->where('status','complete')
                                     ->whereBetween('created_at', ["$startDate", "$endDate"])->get();
         // payer record
-        $str = "1,21,0,4618933800,ｶ)ﾐﾝｶﾚ,〇〇〇〇,0009,ﾐﾂｲｽﾐﾄﾓ,015,ﾄｳｷｮｳﾁｭｳｵｳ,1,8901282,,\n";
+        $date = date('md');
+        $str = "1,21,0,4618933800,ｶ)ﾐﾝｶﾚ,$date,0009,ﾐﾂｲｽﾐﾄﾓ,015,ﾄｳｷｮｳﾁｭｳｵｳ,1,8901282,,\n";
         foreach($withdrawals as $w){
             switch($w->transaction_type){
                 case 'affiliate_debit': $user = LTCAffiliate::find($w->user_id); break;
