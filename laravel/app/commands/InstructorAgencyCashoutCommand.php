@@ -55,7 +55,8 @@ class InstructorAgencyCashoutCommand extends ScheduledCommand {
             
             // get all affiliates that meet the threshold
             $agencies = InstructorAgency::whereHas('allTransactions', function($query) use ($cutoffDate){
-                $query->where('transaction_type','instructor_agency_credit')->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate );
+                $query->where('user_id', '>', 2)
+                        ->where('transaction_type','instructor_agency_credit')->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate );
             })->get();
             
             foreach( $agencies as $agency ){
