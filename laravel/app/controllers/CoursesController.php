@@ -240,6 +240,10 @@ class CoursesController extends \BaseController {
             }
             $video = $course->videoBlocks();
             if($video!=null) $video = $video->first();
+            // temporary video TODO: remove this
+            Course::whereNull('description_video_id')->update(['description_video_id' => 1]);
+            $video = $course->descriptionVideo;
+
             if( serveMobile() ) 
                 Return View::make('MOBILE_VERSION.courses.show')->with(compact('course'))->with(compact('student'))->with( compact('video') )->with( compact('instructor') );
             else    

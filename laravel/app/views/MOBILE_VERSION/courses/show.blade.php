@@ -1,4 +1,4 @@
-    @extends('layouts.mobile')
+    @extends('MOBILE_VERSION.layouts.mobile')
     
     @section('page_title')
     {{ $course->name }} -
@@ -55,7 +55,7 @@
                 </div>
                 
                 <div class="video-player-wrapper">
-                    @if( $video==null || $video->video() == null)
+                    @if( $video==null )
                     <div class="video-player"
                          @if( $course->bannerImage != null)
                          style="background-image:url('{{$course->bannerImage->url}}') !important"
@@ -67,10 +67,10 @@
                     @else
                     <div class="video-player" style="background:none; text-align: right">
                         @if( Agent::isMobile() )
-                            <video id='myVideo' controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
+                            <video id='myVideo' controls><source src="{{ $video->formats()->where('resolution', 'Custom Preset for Mobile Devices')
                                         ->first()->video_url }}" type="video/mp4"></video>
                         @else
-                        <video id='myVideo'  height="266" controls><source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                        <video id='myVideo'  height="266" controls><source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                         ->first()->video_url }}" type="video/mp4"></video>
                         @endif
                     @endif

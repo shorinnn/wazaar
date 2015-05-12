@@ -41,9 +41,7 @@ class WithdrawalsController extends \BaseController {
             header("Content-Type: application/force-download");
             header("Content-Length: " . strlen($content));
             header("Connection: close");
-            echo $content;
-            return;
+            exit($content);
         }
-
 
 }
