@@ -25,9 +25,10 @@ class WithdrawalsHelper{
     }
     
     public static function generateFile($time){
-        $startDate = date('Y-m-01', strtotime($time) );
-        $endDate = date('Y-m-d', strtotime($startDate.' + 1 month'));
-        $endDate = date('Y-m-d', strtotime($endDate.' - 1 day'));
+//        $startDate = date('Y-m-01', strtotime($time) );
+//        $endDate = date('Y-m-d', strtotime($startDate.' + 1 month'));
+        $endDate = date('Y-m-15', strtotime($time) );
+        $startDate = date('Y-m-d', strtotime($endDate.' - 1 month'));
         $types = [ 'affiliate_debit', 'instructor_agency_debit', 'instructor_debit', 'second_tier_instructor_debit' ];
         $withdrawals = Transaction::whereIn('transaction_type', $types)
                                     ->where('status','complete')

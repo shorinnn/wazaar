@@ -58,4 +58,5 @@ return array(
     'old-password-not-valid' => 'Old password is not valid',
     'email-subject' => 'Email Subject',
     'registered-before-date' => 'Registered Before',
+    'not-yet-available' => 'Not Yet Available',
 );

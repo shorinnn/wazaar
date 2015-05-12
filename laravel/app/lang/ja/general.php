@@ -52,4 +52,5 @@ return array(
     'old-password-not-valid' => '現在のパスワードが無効です',
     'email-subject' => 'Email Subject',
     'registered-before-date' => 'Registered Before',
+    'not-yet-available' => '現在Not Yet Available',
 );

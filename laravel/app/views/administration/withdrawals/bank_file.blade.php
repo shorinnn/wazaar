@@ -19,7 +19,7 @@
         height:32px;
         background-image:url('http://www.mytreedb.com/uploads/mytreedb/loader/ajax_loader_blue_32.gif');
     }
-    .errored{
+    .errored{.
         border:1px solid red;
     }
 </style>
@@ -27,12 +27,26 @@
     <select name="time">
        <?php
         $stop = Config::get('custom.cashout.start_date') ;
-        $now = time();
+        $now = strtotime( date('Y-m-15', time() ) );
         while( strtotime($stop) < $now){
-            $label = date('m-Y', $now);
-            $now = date('Y-m-d', $now);
-            echo "<option value='$now'>$label</option>";
-            $now =  strtotime( $now.' - 1 month');
+            if($now < time() ){
+                $t = $now;
+                $now = date('Y-m-d', $now);
+                $prev = strtotime("$now - 1 month");
+                $label = date('d-m-Y', $prev) . ' - 14'.date('-m-Y', $t) ;
+
+                echo "<option value='$now'>$label</option>";
+                $now = strtotime( $now.' - 1 month');
+            }
+            else{
+                $t = $now;
+                $now = date('Y-m-d', $now);
+                $prev = strtotime("$now - 1 month");
+                $label = date('d-m-Y', $prev) . ' - 14'.date('-m-Y', $t).' - '.trans('general.not-yet-available') ;
+
+                echo "<option disabled='disabled' value='$now'>$label</option>";
+                $now = strtotime( $now.' - 1 month');
+            }
         }
        ?>
     </select>
