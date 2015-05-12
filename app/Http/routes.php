@@ -20,7 +20,27 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+
+
 Route::group(['prefix' => 'api'], function (){
+
+    Route::resource('users', 'ClientUsersController');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     Route::get('/', function(){
        $result = Mail::send('welcome',[], function ($message){
            $message->to('albertmaranian@gmail.com');
