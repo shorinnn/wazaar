@@ -34,7 +34,7 @@ class PurchaseCest{
     
     public function getLTCAffiliateID(UnitTester $I){
         $purchase = Purchase::find(1);
-        $I->assertEquals(2, $purchase->ltcAffiliate->id);
+        $I->assertEquals(5, $purchase->ltcAffiliate->id);
     }
     
     public function getProductAffiliateID(UnitTester $I){

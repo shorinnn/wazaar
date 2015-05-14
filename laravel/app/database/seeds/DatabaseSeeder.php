@@ -85,7 +85,6 @@ class UserTableSeeder extends Seeder {
         $user = new User;
 
         $user->username = 'WazaarAffiliate';
-        $user->affiliate_id = '2';
         $user->email = 'wazaarAffiliate@wazaar.jp';
         $user->password = 'random';
         $user->password_confirmation = 'random';
@@ -98,7 +97,7 @@ class UserTableSeeder extends Seeder {
 
 
         $user = new User;
-        $user->ltc_affiliate_id = 2;
+        $user->ltc_affiliate_id = 5;
         $user->username = 'student';
         $user->email = 'student@mailinator.com';
         $user->first_name = 'Student';
@@ -111,7 +110,7 @@ class UserTableSeeder extends Seeder {
         $user->save();
 
         $user = new User;
-        $user->ltc_affiliate_id = 2;
+        $user->ltc_affiliate_id = 5;
         $user->username = 'instructor';
         $user->email = 'instructor@mailinator.com';
         $user->first_name = 'Instructor';
@@ -127,7 +126,7 @@ class UserTableSeeder extends Seeder {
 
         $user = new User;
         $user->affiliate_id = '5';
-        $user->ltc_affiliate_id = 2;
+        $user->has_ltc = 'yes';
         $user->username = 'affiliate';
         $user->email = 'affiliate@mailinator.com';
         $user->first_name = 'Affiliate';
@@ -140,7 +139,7 @@ class UserTableSeeder extends Seeder {
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
-        $user->ltc_affiliate_id = 2;
+        $user->ltc_affiliate_id = 5;
         $user->username = 'mac';
         $user->email = 'mac@mailinator.com';
         $user->first_name = 'Mac';
@@ -152,7 +151,7 @@ class UserTableSeeder extends Seeder {
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
-        $user->ltc_affiliate_id = 2;
+        $user->ltc_affiliate_id = 5;
         $user->username = 'jeremy';
         $user->email = 'jeremy@mailinator.com';
         $user->first_name = 'Jeremy';
@@ -164,7 +163,7 @@ class UserTableSeeder extends Seeder {
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
-        $user->ltc_affiliate_id = 2;
+        $user->ltc_affiliate_id = 5;
         $user->username = 'martin';
         $user->email = 'martin@mailinator.com';
         $user->first_name = 'Martin';
@@ -176,7 +175,7 @@ class UserTableSeeder extends Seeder {
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
-        $user->ltc_affiliate_id = 2;
+        $user->ltc_affiliate_id = 5;
         $user->username = 'sorin';
         $user->email = 'sorin@mailinator.com';
         $user->first_name = 'Sorin';
@@ -188,7 +187,7 @@ class UserTableSeeder extends Seeder {
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
-        $user->ltc_affiliate_id = 2;
+        $user->ltc_affiliate_id = 5;
         $user->username = 'second_instructor';
         $user->email = 'second_instructor@mailinator.com';
         $user->first_name = 'SInstructor';
@@ -201,7 +200,7 @@ class UserTableSeeder extends Seeder {
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
-        $user->ltc_affiliate_id = 2;
+        $user->ltc_affiliate_id = 5;
         $user->username = 'Keiji_Tani';
         $user->email = 'Keiji_Tani@mailinator.com';
         $user->first_name = 'Keiji';
@@ -214,7 +213,7 @@ class UserTableSeeder extends Seeder {
         $user->save();
         
         $user = new User;
-        $user->ltc_affiliate_id = 2;
+        $user->ltc_affiliate_id = 5;
         $user->username = '甘党大王';
         $user->email = '1@mailinator.com';
         $user->first_name = '甘党大王';
@@ -226,7 +225,7 @@ class UserTableSeeder extends Seeder {
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
-        $user->ltc_affiliate_id = 2;
+        $user->ltc_affiliate_id = 5;
         $user->username = 'チョコリング';
         $user->email = '2@mailinator.com';
         $user->first_name = 'チョコリング';
@@ -238,7 +237,7 @@ class UserTableSeeder extends Seeder {
         $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
         $user->save();
         $user = new User;
-        $user->ltc_affiliate_id = 2;
+        $user->ltc_affiliate_id = 5;
         $user->username = '未公開	';
         $user->email = '3@mailinator.com';
         $user->first_name = '未公開';
@@ -252,7 +251,7 @@ class UserTableSeeder extends Seeder {
         
         //albert: added this for my testing
         $user = new User;
-        $user->ltc_affiliate_id = 2;
+        $user->ltc_affiliate_id = 5;
         $user->username = 'albert';
         $user->email = 'albert@mailinator.com';
         $user->first_name = 'Albert';
@@ -822,12 +821,12 @@ class PurchasesSeeder extends Seeder {
     {
         DB::table('purchases')->delete();
         Purchase::unguard();
-        Purchase::create( ['product_id' => 6, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
-        Purchase::create( ['product_id' => 5, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 2] );
-        Purchase::create( ['product_id' => 6, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5] );
-        Purchase::create( ['product_id' => 5, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5,
+        Purchase::create( ['product_id' => 6, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5] );
+        Purchase::create( ['product_id' => 5, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 2] );
+        Purchase::create( ['product_id' => 6, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5] );
+        Purchase::create( ['product_id' => 5, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5,
             'purchase_price' => 50] );
-        Purchase::create( ['product_id' => 10, 'product_type' => 'Lesson', 'student_id' => 8, 'ltc_affiliate_id' => 2, 'product_affiliate_id' => 5,
+        Purchase::create( ['product_id' => 10, 'product_type' => 'Lesson', 'student_id' => 8, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5,
             'purchase_price' => 20] );
        
     }
@@ -1172,7 +1171,7 @@ class InstructorAgenciesSeeder extends Seeder {
     {
         $agencyRole = Role::where('name','=','InstructorAgency')->first();
         $agency1 = new User( [ 'username' => 'InstructorAgency1', 'email'=>'agency@mailinator.com','password' => 'pass', 
-            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ] );
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5 ] );
         $agency1->password = 'pass';
         $agency1->password_confirmation = 'pass';
         $agency1->agency_balance = 200;
@@ -1180,14 +1179,14 @@ class InstructorAgenciesSeeder extends Seeder {
         $agency1->attachRole( $agencyRole );
 
         $agency2 = new User(['username' => 'InstructorAgency2', 'email'=>'agency2@mailinator.com','password' => 'pass', 
-            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ]);
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5 ]);
         $agency2->password = 'pass';
         $agency2->password_confirmation = 'pass';
         $agency2->save();
         $agency2->attachRole( $agencyRole );
         
         $agency3 = new User(['username' => 'InstructorAgency3', 'email'=>'agency3@mailinator.com','password' => 'pass', 
-            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ]);
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5 ]);
         $agency3->password = 'pass';
         $agency3->password_confirmation = 'pass';
         $agency3->save();
@@ -1204,7 +1203,7 @@ class SecondTierInstructorsSeeder extends Seeder {
     {
         $role = Role::where('name','=','Instructor')->first();
         $instructor = new User( [ 'username' => 'STInstructor1', 'email'=>'stInstructor1@mailinator.com','password' => 'pass', 
-            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ] );
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5 ] );
         $instructor->password = 'pass';
         $instructor->password_confirmation = 'pass';
         $instructor->is_second_tier_instructor = 'yes';
@@ -1213,7 +1212,7 @@ class SecondTierInstructorsSeeder extends Seeder {
         Profile::create( ['owner_id' => $instructor->id, 'owner_type' => 'Instructor','first_name' => 'STInstructor', 'last_name' => 'Last', 'email' => 'stInstructor1@mailinator.com']);
 
         $instructor = new User(['username' => 'STInstructor2', 'email'=>'stInstructor2@mailinator.com','password' => 'pass', 
-            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ]);
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5 ]);
         $instructor->password = 'pass';
         $instructor->password_confirmation = 'pass';
         $instructor->is_second_tier_instructor = 'yes';
@@ -1222,7 +1221,7 @@ class SecondTierInstructorsSeeder extends Seeder {
         Profile::create( ['owner_id' => $instructor->id, 'owner_type' => 'Instructor','first_name' => 'STInstructor2', 'last_name' => 'Last', 'email' => 'stInstructor2@mailinator.com']);
         
         $instructor = new User(['username' => 'STInstructor3', 'email'=>'stInstructor3@mailinator.com','password' => 'pass', 
-            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ]);
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5 ]);
         $instructor->password = 'pass';
         $instructor->password_confirmation = 'pass';
         $instructor->is_second_tier_instructor = 'yes';
