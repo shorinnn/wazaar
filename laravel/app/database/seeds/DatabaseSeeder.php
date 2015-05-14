@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder {
                  $this->call('FrontpageVideosSeeder');
                  $this->call('GiftSeeder');
                  $this->call('AffiliateUsersSeeder');
+                 $this->call('SecondTierInstructorsSeeder');
 	}
 
 }
@@ -1061,7 +1062,32 @@ class ProfileSeeder extends Seeder {
 
         Profile::create( ['owner_id' => User::where('username','albert')->first()->id , 'owner_type' => 'Student','first_name' => 'Albert', 'last_name' => 'Maranian', 'email' => 'albert@mailinator.com']);
         Profile::create( ['owner_id' => 2, 'owner_type' => 'Affiliate','first_name' => 'Wazaar', 'last_name' => 'Affiliate', 'email' => 'wazaarAffiliate@wazaar.jp', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 'created_at' => \Carbon\Carbon::now()]);
-        Profile::create( ['owner_id' => 5, 'owner_type' => 'Instructor','first_name' => 'Wazaar', 'last_name' => 'Instructor', 'email' => 'wazaarInstructor@wazaar.jp', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 'created_at' => \Carbon\Carbon::now()]);
+        
+        Profile::create( ['owner_id' => 5, 'owner_type' => 'Instructor','first_name' => 'Wazaar', 'last_name' => 'Instructor', 
+                            'email' => 'wazaarInstructor@wazaar.jp', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 
+                            'bank_code' => 'BNK5', 'bank_name'=>'Bank5', 'branch_code'=>'B5', 'branch_name' => 'BRANCH5', 
+                            'account_type' => 1, 'account_number' => 'ACC5', 'beneficiary_name' => 'Beneficiary Instructor5', 'created_at' => \Carbon\Carbon::now()]);
+        
+        Profile::create( ['owner_id' => 4, 'owner_type' => 'Instructor','first_name' => 'Wazaar', 'last_name' => 'Instructor', 
+                            'email' => 'wazaarInstructor@wazaar.jp', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 
+                            'bank_code' => 'BNK4', 'bank_name'=>'Bank4', 'branch_code'=>'B4', 'branch_name' => 'BRANCH4', 
+                            'account_type' => 1, 'account_number' => 'ACC4', 'beneficiary_name' => 'Beneficiary Instructor4', 'created_at' => \Carbon\Carbon::now()]);
+        
+        Profile::create( ['owner_id' => 35, 'owner_type' => 'Instructor','first_name' => 'ST', 'last_name' => 'Instructor1', 
+                            'email' => 'stInstructor@mailinator.com', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 
+                            'bank_code' => 'BNK65', 'bank_name'=>'Bank35', 'branch_code'=>'B35', 'branch_name' => 'BRANCH35', 
+                            'account_type' => 2, 'account_number' => 'ACC35', 'beneficiary_name' => 'Beneficiary Instructor35', 'created_at' => \Carbon\Carbon::now()]);
+        
+        Profile::create( ['owner_id' => 36, 'owner_type' => 'Instructor','first_name' => 'ST', 'last_name' => 'Instructor2', 
+                            'email' => 'stInstructor2@mailinator.com', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 
+                            'bank_code' => 'BNK36', 'bank_name'=>'Bank36', 'branch_code'=>'B36', 'branch_name' => 'BRANCH36', 
+                            'account_type' => 4, 'account_number' => 'ACC36', 'beneficiary_name' => 'Beneficiary Instructor36', 'created_at' => \Carbon\Carbon::now()]);
+        
+        Profile::create( ['owner_id' => 37, 'owner_type' => 'Instructor','first_name' => 'ST', 'last_name' => 'Instructor3', 
+                            'email' => 'stInstructor3@mailinator.com', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 
+                            'bank_code' => 'BNK37', 'bank_name'=>'Bank37', 'branch_code'=>'B37', 'branch_name' => 'BRANCH37', 
+                            'account_type' => 9, 'account_number' => 'ACC37', 'beneficiary_name' => 'Beneficiary Instructor37', 'created_at' => \Carbon\Carbon::now()]);
+        
         Profile::create( ['owner_id' => 11, 'owner_type' => 'Instructor','first_name' => 'Keiji', 'last_name' => 'Tani', 'email' => 'Tani@mailinator.com',
             'bio' => '谷啓嗣（たにけいじ） <br />
 1986年2月15日生まれ　香川県出身<br />
@@ -1169,6 +1195,40 @@ class InstructorAgenciesSeeder extends Seeder {
         
         DB::table('users')->where('username','instructor')->update(['instructor_agency_id' => $agency1->id]);
 
+    }
+}
+
+class SecondTierInstructorsSeeder extends Seeder {
+
+    public function run()
+    {
+        $role = Role::where('name','=','Instructor')->first();
+        $instructor = new User( [ 'username' => 'STInstructor1', 'email'=>'stInstructor1@mailinator.com','password' => 'pass', 
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ] );
+        $instructor->password = 'pass';
+        $instructor->password_confirmation = 'pass';
+        $instructor->is_second_tier_instructor = 'yes';
+        $instructor->save();
+        $instructor->attachRole( $role );
+        Profile::create( ['owner_id' => $instructor->id, 'owner_type' => 'Instructor','first_name' => 'STInstructor', 'last_name' => 'Last', 'email' => 'stInstructor1@mailinator.com']);
+
+        $instructor = new User(['username' => 'STInstructor2', 'email'=>'stInstructor2@mailinator.com','password' => 'pass', 
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ]);
+        $instructor->password = 'pass';
+        $instructor->password_confirmation = 'pass';
+        $instructor->is_second_tier_instructor = 'yes';
+        $instructor->save();
+        $instructor->attachRole( $role );
+        Profile::create( ['owner_id' => $instructor->id, 'owner_type' => 'Instructor','first_name' => 'STInstructor2', 'last_name' => 'Last', 'email' => 'stInstructor2@mailinator.com']);
+        
+        $instructor = new User(['username' => 'STInstructor3', 'email'=>'stInstructor3@mailinator.com','password' => 'pass', 
+            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 2 ]);
+        $instructor->password = 'pass';
+        $instructor->password_confirmation = 'pass';
+        $instructor->is_second_tier_instructor = 'yes';
+        $instructor->save();
+        $instructor->attachRole( $role );    
+        Profile::create( ['owner_id' => $instructor->id, 'owner_type' => 'Instructor','first_name' => 'STInstructor3', 'last_name' => 'Last', 'email' => 'stInstructor3@mailinator.com']);
     }
 }
 

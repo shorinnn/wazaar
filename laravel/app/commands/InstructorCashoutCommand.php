@@ -57,7 +57,8 @@ class InstructorCashoutCommand extends ScheduledCommand {
             $cutoffDate = date( 'Y-m-01', strtotime('-1 month') );
             
             $instructors = Instructor::whereHas('allTransactions', function($query) use ($cutoffDate){
-                $query->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate );
+                $query->where('user_id','>', 2)->whereIn('transaction_type',['instructor_credit','second_tier_instructor_credit'])
+                        ->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate );
             })->get();
             
             foreach( $instructors as $instructor ){

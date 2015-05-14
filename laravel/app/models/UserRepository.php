@@ -22,7 +22,7 @@ class UserRepository
      * @param array $roles Additional roles to attach besides Student
      * @return  User User object that may or may not be saved successfully. Check the id to make sure.
      */
-    public function signup($input, $ltc_cookie=null, $roles=false, $secondTierInstructorCookie = null, $instructorAgencyCookie = null)
+    public function signup($input, $ltc_cookie=null, $roles=false, $secondTierInstructorCookie = null, $instructorAgencyCookie = null, $registersAsST = null)
     {
         $user = new Student;
 
@@ -30,13 +30,16 @@ class UserRepository
         $user->email    = array_get($input, 'email');
         $user->username = 'U'.uniqid();
         $user->password = array_get($input, 'password');
-        $user->second_tier_instructor_id = $secondTierInstructorCookie;
-        if( User::find( $instructorAgencyCookie ) ){
-            $user->instructor_agency_id = $instructorAgencyCookie;
+        $user->instructor_agency_id = $instructorAgencyCookie;
+        if( User::where('id', $secondTierInstructorCookie )->where( 'is_second_tier_instructor','yes' )->where( 'sti_approved','yes' )->count() == 1 ){
+            $user->second_tier_instructor_id = $secondTierInstructorCookie;
+        }
+        if( $registersAsST !=null ){
+            $user->is_second_tier_instructor = 'yes';
         }
 
         // The password confirmation will be removed from model
-        // before saving. This field will be used in Ardent's
+        // before saving. This field will be used in Ardent'ssql
         // auto validation.
         $user->password_confirmation = array_get($input, 'password_confirmation');
 
@@ -107,7 +110,7 @@ class UserRepository
      * @param array $roles Additional roles to attach besides Student
      * @return  User User object that may or may not be saved successfully. Check the id to make sure.
      */
-    public function signupWithFacebook($input, $ltc_cookie=null, $roles = false, $secondTierInstructorCookie = null, $instructorAgencyCookie = null)
+    public function signupWithFacebook($input, $ltc_cookie=null, $roles = false, $secondTierInstructorCookie = null, $instructorAgencyCookie = null, $registersAsST = null)
     {
         $user = new Student;
 
@@ -120,9 +123,12 @@ class UserRepository
         $user->last_name = $input['last_name'];
         $user->facebook_login_id = $input['id'];
         $user->facebook_profile_id = $input['link'];
-        $user->second_tier_instructor_id = $secondTierInstructorCookie;
-        if( User::find( $instructorAgencyCookie ) ){
-            $user->instructor_agency_id = $instructorAgencyCookie;
+        $user->instructor_agency_id = $instructorAgencyCookie;
+        if( User::where('id', $secondTierInstructorCookie )->where( 'is_second_tier_instructor','yes' )->where( 'sti_approved','yes' )->count() == 1 ){
+            $user->second_tier_instructor_id = $secondTierInstructorCookie;
+        }
+        if( $registersAsST !=null ){
+            $user->is_second_tier_instructor = 'yes';
         }
         
         // Generate a random confirmation code
@@ -179,7 +185,7 @@ class UserRepository
      * @param array $roles Additional roles to attach besides Student
      * @return  User User object that may or may not be saved successfully. Check the id to make sure.
      */
-    public function signupWithGoogle($input, $ltc_cookie=null, $roles = false, $secondTierInstructorCookie = null, $instructorAgencyCookie = null)
+    public function signupWithGoogle($input, $ltc_cookie=null, $roles = false, $secondTierInstructorCookie = null, $instructorAgencyCookie = null, $registersAsST = null)
     {
         $user = new Student;
 
@@ -192,9 +198,12 @@ class UserRepository
         $user->last_name = $input['family_name'];
         $user->google_plus_login_id = $input['id'];
         $user->google_plus_profile_id = $input['link'];
-        $user->second_tier_instructor_id = $secondTierInstructorCookie;
-        if( User::find( $instructorAgencyCookie ) ){
-            $user->instructor_agency_id = $instructorAgencyCookie;
+        $user->instructor_agency_id = $instructorAgencyCookie;
+        if( User::where('id', $secondTierInstructorCookie )->where( 'is_second_tier_instructor','yes' )->where( 'sti_approved','yes' )->count() == 1 ){
+            $user->second_tier_instructor_id = $secondTierInstructorCookie;
+        }
+        if( $registersAsST !=null ){
+            $user->is_second_tier_instructor = 'yes';
         }
         
         // Generate a random confirmation code
@@ -371,7 +380,8 @@ class UserRepository
         // default the affiliate ID to the user ID
         $user->affiliate_id = $user->id;
         // record the second tier instructor if any
-        if( $secondTierInstructorCookie!=null ){
+        if( $secondTierInstructorCookie!=null && 
+                User::where('id', $secondTierInstructorCookie )->where( 'is_second_tier_instructor','yes' )->where( 'sti_approved','yes' )->count() == 1 ){
             $user->second_tier_instructor_id = $secondTierInstructorCookie;
         }
         $user->save();

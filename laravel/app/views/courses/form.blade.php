@@ -364,8 +364,8 @@
                                     </div>    
                                 <div class="what-you-will-achieve">
                                 	<h3>{{ trans('courses/create.course-requirements') }} </h3>
+                                        <?php $i = 1;?>
                                         @if($values = json2Array($course->requirements))
-                                         <?php $i = 1;?>
                                             @foreach($values as $val)
                                             <div class="clonable-{{time().$i}}">
                                                  <span>{{$i}}</span>

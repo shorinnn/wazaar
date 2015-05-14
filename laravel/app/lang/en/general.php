@@ -56,4 +56,7 @@ return array(
     'password-updated-failed' => 'Password Update failed',
     'please-fill-in-all-fields' => 'Please fill in all fields',
     'old-password-not-valid' => 'Old password is not valid',
+    'email-subject' => 'Email Subject',
+    'registered-before-date' => 'Registered Before',
+    'not-yet-available' => 'Not Yet Available',
 );

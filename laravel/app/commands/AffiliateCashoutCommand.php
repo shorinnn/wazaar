@@ -56,7 +56,8 @@ class AffiliateCashoutCommand extends ScheduledCommand {
             
             // get all affiliates that meet the threshold
             $affiliates = LTCAffiliate::whereHas('allTransactions', function($query) use ($cutoffDate){
-                $query->where('transaction_type','affiliate_credit')->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate );
+                $query->where('user_id','>',2)
+                        ->where('transaction_type','affiliate_credit')->whereNull('cashed_out_on')->where('created_at', '<=', $cutoffDate );
             })->get();
             foreach( $affiliates as $affiliate ){
                 $transactions = $affiliate->allTransactions()->where('transaction_type','affiliate_credit')->whereNull('cashed_out_on')

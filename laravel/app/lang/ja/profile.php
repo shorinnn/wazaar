@@ -8,6 +8,7 @@ return
         'headerPhoto'          => '写真',
         'headerPersonal'       => 'Personal　Please provide more context',
         'headerSocial'         => 'SNS',
+        'headerFinancial'         => 'Financial',
         'new'                  =>
             [
                 'step1' => 'ステップ 1: 写真やアイコンをアップロードします',
@@ -28,7 +29,21 @@ return
             'facebook'  => 'Facebook',
             'twitter'   => 'Twitter',
             'linkedin'  => 'LinkedIn',
-            'youtube'   => 'Youtube'
+            'youtube'   => 'Youtube',
+            'bank-code'   => '銀行コード',
+            'bank-name'   => ' 銀行名',
+            'branch-code'   => '支店コー',
+            'branch-name'   => '支店名',
+            'account-type'   => '普通口座',
+            'account-number'   => '口座番号',
+            'beneficiary-name'   => '受取人名',
+            'account-types' =>
+            [
+                'ordinary' => '普通口座',
+                'checking' => '当座口座',
+                'savings' => '貯蓄口座',
+                'others' => 'その他'
+            ]
         ],
         'updateSuccessful' => 'プロフィールが更新されました',
         'profile' => 'プロフィール',

@@ -53,7 +53,12 @@
                     <h4>{{trans('profile.headerSocial')}}</h4>
                     <hr/>
                     @include('profile.partials.done.socialmedia')
-
+                    
+                    @if( $type != 'student')
+                        <h4>{{trans('profile.headerFinancial')}}</h4>
+                        <hr/>
+                        @include('profile.partials.done.financial')
+                    @endif
 
                     {{Form::hidden('type', $type)}}
                     <div class="pull-right">{{Form::submit('Update',['class' => 'btn btn-success'])}}</div>

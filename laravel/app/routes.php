@@ -61,12 +61,19 @@ Route::group( array('domain' =>  $domain), function(){
     // Admin Controller
     Route::group(array('prefix'=>'administration'),function(){
         Route::post('withdrawals/update', 'WithdrawalsController@update');
+        Route::get('withdrawals/bank-file/{time}', 'WithdrawalsController@bankFile');
+        Route::get('withdrawals/bank-file/', 'WithdrawalsController@bankFile');
+        Route::post('withdrawals/bank-file/', 'WithdrawalsController@downloadBankFile');
+        
         Route::resource('withdrawals', 'WithdrawalsController');
         Route::resource('members', 'MembersController');
+        Route::resource('second-tier-publishers', 'SecondTierPublishersController');
         Route::resource('submissions', 'SubmissionsController');
         Route::get('instructor-agencies/instructors/{id}', 'InstructorAgenciesController@instructors');
         Route::resource('instructor-agencies', 'InstructorAgenciesController');
         Route::resource('frontpage-videos', 'FrontpageVideosController');
+        Route::get('email/publishers', 'AdminEmailController@publishers');
+        Route::post('email/publishers', 'AdminEmailController@sendPublishers');
     });
 
     // Course Categories

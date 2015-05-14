@@ -50,4 +50,7 @@ return array(
     'password-updated-failed' => 'パスワードを更新できません',
     'please-fill-in-all-fields' => 'すべてのフィールドに入力してください',
     'old-password-not-valid' => '現在のパスワードが無効です',
+    'email-subject' => 'Email Subject',
+    'registered-before-date' => 'Registered Before',
+    'not-yet-available' => '現在Not Yet Available',
 );
