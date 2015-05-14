@@ -349,20 +349,20 @@ class UserCest{
         $I->assertNotEquals('2', $student->affiliate_id);
     }
     
-    public function registerUserAffilitedByNooneDefaultsToWazaar(UnitTester $I){
+    public function registerUserNoLTC(UnitTester $I){
         User::unguard();
         $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 'password_confirmation' => 'pass'];
         $user = $this->users->signup($data);
-        $I->assertEquals($user->ltc_affiliate_id, 2);
+        $I->assertEquals($user->ltc_affiliate_id, null);
     }
     
-    public function registerUserAffilitedByAffiliate5(UnitTester $I){
+    public function registerUserLTC(UnitTester $I){
         User::unguard();
         $data = ['username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 'password_confirmation' => 'pass'];
         $affiliate = User::where('username', 'affiliate')->first();
+        $affiliate->has_ltc = 'yes';
+        $affiliate->updateUniques();
         $user = $this->users->signup($data, $affiliate->affiliate_id);
         $I->assertEquals($user->ltc_affiliate_id, $affiliate->affiliate_id);
     }
-    
-    
 }

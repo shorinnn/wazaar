@@ -64,17 +64,13 @@ class UserRepository
      * @param string|null $ltc The affiliate id or NULL
      */
     public function save_ltc($user, $ltc=null){
-        if($ltc==null){// no affiliate ID, Wazzar is LTC
-            $ltc_affiliate = LTCAffiliate::find(2);
-        }
-        else{// affiliate ID exists
+        if( $ltc != null ){
             $ltc_affiliate = LTCAffiliate::where('affiliate_id', $ltc)->first();
-            if($ltc_affiliate==null){// invalid affiliate ID, default to Wazaar
-                $ltc_affiliate = LTCAffiliate::find(2);
+            if($ltc_affiliate !=null && $ltc_affiliate->has_ltc=='yes'){// invalid affiliate ID, default to Wazaar
+                $user->ltcAffiliate()->associate($ltc_affiliate);
+                $user->save();
             }            
         }
-        $user->ltcAffiliate()->associate($ltc_affiliate);
-        $user->save();
     }
     
     /**
