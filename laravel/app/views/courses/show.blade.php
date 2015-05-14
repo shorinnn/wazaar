@@ -107,17 +107,58 @@
                          style="background-image:url('{{$course->bannerImage->url}}') !important"
                          @endif
                          >
-	                <a href="#" class="watch-video-button">WATCH VIDEO</a>
+	                <!--<a href="#" class="watch-video-button">WATCH VIDEO</a>-->
     				<span class="video-time">10:23</span>
                     <div class="overlay"></div>            
                     @else
-                    <div class="video-player" style="background:none; text-align: right">
+                    <div class="video-player video-container description-page" style="background:none; text-align: right">
                         @if( Agent::isMobile() )
                             <video id='myVideo' controls><source src="{{ $video->formats()->where('resolution', 'Custom Preset for Mobile Devices')
                                         ->first()->video_url }}" type="video/mp4"></video>
                         @else
-                        <video id='myVideo'  height="266" controls><source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
-                                        ->first()->video_url }}" type="video/mp4"></video>
+
+
+                            <div class="videoContainer">
+                                <video id="myVideo" preload="auto" controls>
+                                    <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                                                ->first()->video_url }}" type="video/mp4">
+                                    <p>Your browser does not support the video tag.</p>
+                                </video> 
+                                <div class="control-container clearfix">                       
+                                    <div class="topControl">
+                                        <div class="progress">
+                                            <span class="bufferBar"></span>
+                                            <span class="timeBar"></span>
+                                        </div>
+                                    </div>
+                                    <div class="control">
+                                        
+                                        <div class="btmControl clearfix">
+                                            <div class="btnPlay btn" title="Play/Pause video"></div>
+                                            <div class="sound sound2 btn" title="Mute/Unmute sound"></div>
+                                            <div class="volume-container">
+                                                <div class="volume" title="Set volume">
+                                                    <span class="volumeBar">
+                                                        <em></em>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="btnFS btn" title="Switch to full screen"></div>
+                                            <div class="time">
+                                                <span class="current"></span>
+                                                <span class="duration"></span> 
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="loading"></div>
+                            </div>
+                            <div id="lesson-video-overlay">
+                                <div>
+                                </div>
+                            </div>
+                            <span class="centered-play-button"></span>
                         @endif
                     @endif
                 </div>

@@ -84,6 +84,13 @@
 	cursor: pointer;
 }
 
+.video-container.description-page .centered-play-button {
+	width: 70px;
+	height: 70px;
+	margin: -70px 0 0 -35px;
+	background-position: 50% 26px;
+}
+
 .video-container .progress{
 	height: 5px;
 	border-radius: 0;
@@ -244,6 +251,11 @@
   margin: 30px 0;
   padding: 0 5%;
 }
+
+.description-page.video-container .btmControl{
+  margin: 18px 0 15px;
+}
+
 .video-container .control div.btn {
   display: block;
   float: left;
@@ -353,7 +365,7 @@
 }
 /* time and duration */
 .video-container .time{
-  width:15%;
+  width:16%;
   float:right;
   margin-left: 5%;
   color: #fff;
