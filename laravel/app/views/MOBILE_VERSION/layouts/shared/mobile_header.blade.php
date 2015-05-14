@@ -7,7 +7,7 @@
         <?php
         $student = Student::find(Auth::user()->id);
         ?>
-        <ul class="logged-in-top-menu">
+        <!--<ul class="logged-in-top-menu">
             
             @if($student->hasRole('Affiliate'))
                 <li>
@@ -23,35 +23,37 @@
             <li>
                 <a href="#">{{trans('site/homepage.expert')}}</a>
             </li>
-        </ul>
-        <div class="top-profile-info">          
-            <span class="profile-level">12</span>
-            <ul class="profile-name">
-                <li class="activate-dropdown">
-                    <button aria-expanded="false" data-toggle="dropdown" 
-                            class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
-                        {{ username() }}
-                    </button>
-                    <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
-                        <li>
-                            <a class="profile-button" href="{{ action('ProfileController@index') }}">{{trans('site/menus.profile')}}</a>
-                        </li>
-                        <li>
-                            <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
-                        </li>
-                        <li>
-                            <a class="settings-button" href="{{ action('ProfileController@settings')}}">{{trans('site/menus.settings')}}</a>
-                        </li>
-                        <li>
-                            <a class="settings-button" href="{{ action('PrivateMessagesController@index') }}">{{trans('site/menus.messages')}}</a>
-                        </li>
-                        <li>
-                            <a class="settings-button" href="{{ action('UsersController@logout') }}">{{trans('site/menus.logout')}}</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="profile-thumbnail">
+        </ul>-->
+        <!--<nav class="navbar navbar-default">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>          
+            <!--<span class="profile-level">12</span>-->
+            <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="activate-dropdown nav navbar-nav">
+                    <li>
+                        <a class="profile-button" href="{{ action('ProfileController@index') }}">{{trans('site/menus.profile')}}</a>
+                    </li>
+                    <li>
+                        <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
+                    </li>
+                    <li>
+                        <a class="settings-button" href="{{ action('ProfileController@settings')}}">{{trans('site/menus.settings')}}</a>
+                    </li>
+                    <li>
+                        <a class="settings-button" href="{{ action('PrivateMessagesController@index') }}">{{trans('site/menus.messages')}}</a>
+                    </li>
+                    <li>
+                        <a class="settings-button" href="{{ action('UsersController@logout') }}">{{trans('site/menus.logout')}}</a>
+                    </li>
+                </ul>
+            </div>-->
+            <!--<div class="profile-thumbnail">
                 @if( $student->profile )
                     <img style="height: 50px; width: 50px; border-radius: 50px;" 
                          src="{{ cloudfrontUrl( Student::find(Auth::user()->id)->profile->photo ) }}" alt="">
@@ -76,14 +78,14 @@
                                 @foreach( $student->grouppedNotifications( $received ) as $key => $notification)
                                 <tr><td>
                                     <a href="{{ $notification['url'] }}">{{ $notification['text'] }}</a>
-                                    </td></tr>
+                                    </td></tr>	
                                 @endforeach
                             </table>
                         </div>
                     </span>
                 @endif
-            </div>
-        </div>
+            </div>-->
+        </nav>
         @else
             
             

@@ -1361,6 +1361,8 @@ header .activate-dropdown:hover ul{
 	right: 0;
 }
 
+.social-link-form .form-group button,
+.social-link-form .form-group input,
 #login-form .form-group button,
 #login-form .form-group input,
 #register-form .form-group button,
@@ -1373,16 +1375,19 @@ header .activate-dropdown:hover ul{
 	margin: 0 auto;
 }
 
+.social-link-form .form-group label,
 #login-form .form-group label,
 #register-form .form-group label{
 	display: none;
 }
 
+.social-link-form #email,
 #login-form #email,
 #register-form #email{
 	text-indent: 45px;
 }
 
+.social-link-form .valid-input,
 #login-form .valid-input,
 #register-form .valid-input{
 	border-color: #92cc2e;
@@ -1391,6 +1396,7 @@ header .activate-dropdown:hover ul{
 	/*box-shadow: 1px 0px 12px 2px #92cc2e;*/
 }
 
+.social-link-form .invalid-input,
 #login-form .invalid-input,
 #register-form .invalid-input{
 	border-color: #ff0000;
@@ -1437,6 +1443,8 @@ header .activate-dropdown:hover ul{
     width: 312px;
 }
 
+.social-link-form #password,
+.social-link-form #password_confirmation,
 #login-form #password,
 #login-form #password_confirmation,
 #register-form #password,
@@ -1453,6 +1461,13 @@ header .activate-dropdown:hover ul{
 	margin: 0 auto 156px;
 }
 
+.social-link-form .form-group.link-button,
+.social-link-form .form-group.send-button{
+	margin: 0 auto 40px;
+	width: 312px;
+}
+
+.social-link-form .form-group button,
 #login-form .form-group button,
 #register-form .form-group button{
 	text-align: center;
@@ -1470,6 +1485,13 @@ header .activate-dropdown:hover ul{
 	transition: all 0.1s;
 }
 
+.social-link-form .form-group button{
+	background: #0099ff;
+	border: none;
+}
+
+.social-link-form .form-group button:focus,
+.social-link-form .form-group button:active,
 #login-form .form-group button:focus,
 #register-form .form-group button:focus,
 #login-form .form-group button:active,
@@ -1481,6 +1503,7 @@ header .activate-dropdown:hover ul{
 	outline: none;
 }
 
+.social-link-form .form-group button:hover,
 #login-form .form-group button:hover,
 #register-form .form-group button:hover{
 	background-image: -moz-linear-gradient(left, #82cc43, #62cc6c, #7fcc47);
@@ -1490,6 +1513,10 @@ header .activate-dropdown:hover ul{
 	background-image: linear-gradient(left, #82cc43, #62cc6c, #7fcc47);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#82cc43', endColorstr='#7fcc47'); /* IE6 & IE7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#82cc43', endColorstr='#7fcc47')"; /* IE8 */
+}
+
+.social-link-form .form-group button:hover{
+	background: #36d2ff;
 }
 
 #login-form #email{
@@ -1511,7 +1538,15 @@ header .activate-dropdown:hover ul{
 	color: #849598;
 	padding-left: 105px;
 }
-	
+
+.forgot_password_text,	
+.email_already_registered{
+	text-align: center;
+	color: #333;
+	font-size: 14px;
+	margin: 40px 0 20px;
+	padding: 0 20px;
+}
 /********** Form Error Message ************/
 .parsley-errors-list,
 .alert.alert-error.alert-danger{

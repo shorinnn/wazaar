@@ -1,4 +1,4 @@
-    @extends('layouts.mobile')
+    @extends('MOBILE_VERSION.layouts.mobile')
     
     @section('page_title')
     {{ $course->name }} -

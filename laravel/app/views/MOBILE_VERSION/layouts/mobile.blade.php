@@ -247,7 +247,6 @@
 				});		
 				
 				$('.datepicker').datepicker();
-				$('.collapse').collapse();
 				
 				$("[data-toggle='collapse']").click( function(e) {
 				var next_of_kin = "[data-parent='" + e.target.id + "']";
