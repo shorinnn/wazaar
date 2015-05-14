@@ -14,6 +14,12 @@ class ClientEloquentRepository implements ClientInterface {
         $this->model = new Client();
     }
 
+    public function getByAPIKey($apiKey)
+    {
+        return $this->model->where('apiKey',$apiKey)->first();
+    }
+
+
     public function validationRules($id = 0)
     {
         // TODO: Implement validationRules() method.

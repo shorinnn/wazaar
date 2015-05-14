@@ -12,4 +12,6 @@ interface ClientInterface {
 
     public function validationRules($id = 0);
     public function validationMessages();
+
+    public function getByAPIKey($apiKey);
 }

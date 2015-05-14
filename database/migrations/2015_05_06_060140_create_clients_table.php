@@ -19,7 +19,7 @@ class CreateClientsTable extends Migration {
             $table->string('websiteUrl');
             $table->string('apiKey');
             $table->string('accessToken');
-            $table->string('encryptedAccessToken');
+            $table->string('encryptedAccessToken',500);
 		    $table->timestamps();
 		});
 	}
