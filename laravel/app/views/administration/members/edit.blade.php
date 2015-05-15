@@ -54,6 +54,13 @@
                         <td class="title no-border">{{trans('general.affiliate_id')}}</td>
                         <td class="no-border">{{ Form::text('affiliate_id') }}</td>
                     </tr>
+                    <tr>
+                        <td class="title no-border">{{trans('general.life-time-commission')}}:</td>
+                        <td class="no-border">{{ Form::select('has_ltc',[
+                            'no' => trans('courses/curriculum.no'),
+                            'yes' => trans('courses/curriculum.yes')
+                        ]) }}</td>
+                    </tr>
                     @endif
                     @if($user->hasRole('Instructor'))
                      <tr>

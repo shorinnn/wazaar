@@ -53,4 +53,5 @@ return array(
     'email-subject' => 'Email Subject',
     'registered-before-date' => 'Registered Before',
     'not-yet-available' => '現在Not Yet Available',
+    'life-time-commission' => '現在Lifetime Commission',
 );

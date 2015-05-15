@@ -104,6 +104,7 @@ class Student extends User{
         return false;
     }
     
+    
     /**
      * Purchase a course/lesson
      * @param mixed Course/Lesson
@@ -121,7 +122,8 @@ class Student extends User{
 
         $purchase->student_id = $this->id;
         $purchase->purchase_price = $product->cost();
-        $purchase->ltc_affiliate_id = $this->ltcAffiliate->id;
+        $purchase->ltc_affiliate_id = $this->ltc_affiliate_id;
+        
         if($course->instructor->secondTierInstructor!=null) $purchase->second_tier_instructor_id = $course->instructor->second_tier_instructor_id;
         
         /******* Money fields **********/
@@ -144,9 +146,9 @@ class Student extends User{
         $purchase->second_tier_instructor_earnings = PurchaseHelper::secondTierInstructorEarnings($product, $purchase->processor_fee);
         $purchase->affiliate_earnings = PurchaseHelper::affiliateEarnings($product, $purchase->processor_fee, $affiliate);
         $purchase->second_tier_affiliate_earnings = PurchaseHelper::secondTierAffiliateEarnings($product, $purchase->processor_fee, $affiliate);
-        $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product, $purchase->processor_fee);
+        $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product, $purchase->ltc_affiliate_id, $purchase->processor_fee);
         $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product, $purchase->processor_fee);
-        $purchase->site_earnings = PurchaseHelper::siteEarnings($product,  $paymentData['successData']['processor_fee'] );
+        $purchase->site_earnings = PurchaseHelper::siteEarnings($product, $purchase->ltc_affiliate_id, $paymentData['successData']['processor_fee'] );
         $purchase->payment_ref = $paymentData['successData']['REF'];
         $purchase->order_id = $paymentData['successData']['ORDERID'];
         /************ Money fields **************/

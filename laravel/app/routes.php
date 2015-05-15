@@ -66,6 +66,7 @@ Route::group( array('domain' =>  $domain), function(){
         Route::post('withdrawals/bank-file/', 'WithdrawalsController@downloadBankFile');
         
         Route::resource('withdrawals', 'WithdrawalsController');
+        Route::post('members/refund', 'MembersController@refund');
         Route::resource('members', 'MembersController');
         Route::resource('second-tier-publishers', 'SecondTierPublishersController');
         Route::resource('submissions', 'SubmissionsController');

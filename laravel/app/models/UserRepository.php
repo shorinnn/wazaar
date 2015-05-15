@@ -66,7 +66,7 @@ class UserRepository
     public function save_ltc($user, $ltc=null){
         if( $ltc != null ){
             $ltc_affiliate = LTCAffiliate::where('affiliate_id', $ltc)->first();
-            if($ltc_affiliate !=null && $ltc_affiliate->has_ltc=='yes'){// invalid affiliate ID, default to Wazaar
+            if($ltc_affiliate !=null ){
                 $user->ltcAffiliate()->associate($ltc_affiliate);
                 $user->save();
             }            

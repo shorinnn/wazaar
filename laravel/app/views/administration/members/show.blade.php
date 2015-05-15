@@ -50,6 +50,10 @@
                 </tr>
                 @if($student->hasRole('Affiliate'))
                 <tr>
+                    <td class="title no-border">{{trans('general.life-time-commission')}}:</td>
+                    <td class="no-border">{{ trans('courses/curriculum.'.$student->has_ltc) }}</td>
+                </tr>
+                <tr>
                     <td class="title no-border">{{trans('general.affiliate_id')}}:</td>
                     <td class="no-border">{{ $student->affiliate_id }}</td>
                 </tr>

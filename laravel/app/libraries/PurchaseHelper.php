@@ -45,16 +45,23 @@ class PurchaseHelper{
         return $amount * ( Config::get('custom.earnings.second_tier_percentage') / 100);
     }
     
-    public static function siteEarnings($product, $processor_fee){
+    public static function siteEarnings($product, $ltcAffiliateId, $processor_fee){
         $course = (get_class($product)=='Course') ? $product : $product->module->course;
         $amount = ( $product->cost() - $processor_fee ) * (Config::get('custom.earnings.site_percentage') / 100);
-        $ltcAmount = $amount  * (Config::get('custom.earnings.ltc_percentage') / 100);
+//        $ltcAmount = $amount  * (Config::get('custom.earnings.ltc_percentage') / 100);
+        $ltcAmount = self::ltcAffiliateEarnings($product, $ltcAffiliateId, $processor_fee);
         $agencyAmount = ($course->instructor->agency==null) ? 0 : $amount * (Config::get('custom.earnings.agency_percentage') / 100);
         $secondTierInstructor = ($course->instructor->secondTierInstructor==null) ? 0 : $amount * (Config::get('custom.earnings.agency_percentage') / 100);
         return $amount - $ltcAmount - $agencyAmount - $secondTierInstructor - $processor_fee;
     }
     
-    public static function ltcAffiliateEarnings($product, $processor_fee){
+    public static function ltcAffiliateEarnings($product, $ltcAffiliateId,  $processor_fee){
+        // if null, no LTC earnings
+        if( $ltcAffiliateId==null ) return 0;
+        // if affiliate not LTC, no LTC earnings
+        $affiliate = User::find($ltcAffiliateId);
+        if( $affiliate->has_ltc=='no' ) return 0;
+        // valid LTC affilaite, sreturn ltc value
         $course = ( get_class($product)=='Course' ) ? $product : $product->module->course;
         $amount = ( $product->cost() - $processor_fee ) * (Config::get('custom.earnings.site_percentage') / 100);
         return $amount * (Config::get('custom.earnings.ltc_percentage') / 100);

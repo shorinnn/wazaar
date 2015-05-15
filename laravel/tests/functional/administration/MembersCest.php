@@ -170,6 +170,21 @@ class MembersCest{
         $I->see('Teacher Stats');
     }
     
+    public function makeAffiliateLTC(FunctionalTester $I){
+        $user = User::find(1);
+        $I->amLoggedAs($user);
+        $student = User::find(2);
+        $student->has_ltc = 'no';
+        $student->updateUniques();
+        $I->assertEquals('no', $student->has_ltc);
+        $I->amOnPage("/administration/members/$student->id/edit");
+        $I->seeCurrentUrlEquals("/administration/members/$student->id/edit");
+//        $I->seeInField('has_ltc', 'no');
+        $I->submitForm('#edit-form', [ 'has_ltc' => 'yes' ] );
+        $I->see('Updated');
+        $student = User::find(2);
+        $I->assertEquals('yes', $student->has_ltc);
+    }
     
     
 }

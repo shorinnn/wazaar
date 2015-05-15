@@ -341,10 +341,13 @@ class UserCest{
     }
     
     public function failReusingAffiliateID(UnitTester $I){
+        $wazaar = User::find(2);
+        $wazaar->affiliate_id = 2;
+        $I->assertTrue( $wazaar->save() );
         $student = User::where('username','affiliate')->first();
         $I->assertTrue($student->id > 0);
         $student->affiliate_id = '2';
-        $I->assertFalse( $student->save() );
+        $I->assertFalse( $student->updateUniques() );
         $student = User::where('username','affiliate')->first();
         $I->assertNotEquals('2', $student->affiliate_id);
     }
