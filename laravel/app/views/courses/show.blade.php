@@ -396,6 +396,8 @@
                 $(function(){
                     var video = $('#myVideo');
                     video[0].play();
+					$('.video-container.description-page #lesson-video-overlay').hide();
+					$('.video-container.description-page .centered-play-button').hide();
                 });
             </script>
         @stop
