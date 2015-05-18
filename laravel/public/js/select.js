@@ -23,7 +23,10 @@ function tamingselect()
 			hiddenfield.name=sels[i].name;
 			hiddenfield.type='hidden';
 			hiddenfield.id=sels[i].id;
-			hiddenfield.value=sels[i].options[0].value;
+                        // look at this max
+//			hiddenfield.value=sels[i].options[0].value;
+			hiddenfield.value= $(sels[i]).val();
+                        
 			sels[i].parentNode.insertBefore(hiddenfield,sels[i])
 			var trigger=document.createElement('a');
 			ts_addclass(trigger,ts_triggeroff);
@@ -33,7 +36,9 @@ function tamingselect()
 				ts_swapclass(this.parentNode.getElementsByTagName('ul')[0],ts_dropdownclosed,ts_dropdownopen);
 				return false;
 			}
-			trigger.appendChild(document.createTextNode(sels[i].options[0].text));
+                        // look at this max
+//			trigger.appendChild(document.createTextNode(sels[i].options[0].text));
+			trigger.appendChild( document.createTextNode( hiddenfield.value ) );
 			sels[i].parentNode.insertBefore(trigger,sels[i]);
 			var replaceUL=document.createElement('ul');
 			for(var j=0;j<sels[i].getElementsByTagName('option').length;j++)
