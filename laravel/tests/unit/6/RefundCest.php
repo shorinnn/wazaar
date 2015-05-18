@@ -30,6 +30,7 @@ class RefundCest{
         
         $student = Student::where('username','sorin')->first();
         $student->student_balance = 10;
+        $student->ltc_affiliate_id = 2;
         $student->updateUniques();
         $I->assertEquals(10, $student->student_balance);
                 
@@ -58,9 +59,11 @@ class RefundCest{
         $course->instructor->updateUniques();
         $affiliate = ProductAffiliate::find(5);
         $affiliate->affiliate_balance = 0;
+        $affiliate->ltc_affiliate_id = 2;
         $affiliate->updateUniques();
         $ltc = ProductAffiliate::find(2);
         $ltc->affiliate_balance = 0;
+        $ltc->has_ltc = 'yes';
         $ltc->updateUniques();
         
         
@@ -70,7 +73,6 @@ class RefundCest{
         
         $I->assertNotEquals( false, $student->purchase($course, 5, $data) );
         $purchase = Purchase::orderBy('id','desc')->first();
-        
         
         $I->assertNotEquals(0, $affiliate->ltc_affiliate_id);
         $I->assertEquals( $purchase->purchase_price, 105 );
@@ -122,7 +124,7 @@ class RefundCest{
             'product_id' => $course->id, 'status' => 'failed', 'is_second_tier' => 'yes', 'is_ltc' => 'no'] );
         $I->seeRecord('transactions', ['user_id' => 5, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->affiliate_earnings,
             'product_id' => $course->id, 'status' => 'failed'] );
-        $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->ltc_affiliate_earnings,
+        $I->seeRecord('transactions', ['user_id' => $purchase->ltc_affiliate_id, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->ltc_affiliate_earnings,
             'product_id' => $course->id, 'status' => 'failed', 'is_ltc' => 'yes'] );
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'failed', 'gc_fee' => 5] );
@@ -155,6 +157,7 @@ class RefundCest{
         
         $student = Student::where('username','sorin')->first();
         $student->student_balance = 10;
+        $student->ltc_affiliate_id = 2;
         $student->updateUniques();
         $I->assertEquals(10, $student->student_balance);
                 
@@ -184,9 +187,11 @@ class RefundCest{
         $course->instructor->updateUniques();
         $affiliate = ProductAffiliate::find(5);
         $affiliate->affiliate_balance = 0;
+        $affiliate->ltc_affiliate_id = 2;
         $affiliate->updateUniques();
         $ltc = ProductAffiliate::find(2);
         $ltc->affiliate_balance = 0;
+        $ltc->has_ltc = 'yes';
         $ltc->updateUniques();
         
         $stInstructor = User::find(14);
@@ -293,6 +298,7 @@ class RefundCest{
         
         $student = Student::where('username','sorin')->first();
         $student->student_balance = 0;
+        $student->ltc_affiliate_id = 2;
         $student->updateUniques();
         $I->assertEquals(0, $student->student_balance);
                 
@@ -319,9 +325,11 @@ class RefundCest{
         $course->instructor->updateUniques();
         $affiliate = ProductAffiliate::find(5);
         $affiliate->affiliate_balance = 0;
+        $affiliate->ltc_affiliate_id = 2;
         $affiliate->updateUniques();
         $ltc = ProductAffiliate::find(2);
         $ltc->affiliate_balance = 0;
+        $ltc->has_ltc = 'yes';
         $ltc->updateUniques();
         
         
@@ -416,6 +424,7 @@ class RefundCest{
         
         $student = Student::where('username','sorin')->first();
         $student->student_balance = 0;
+        $student->ltc_affiliate_id = 2;
         $student->updateUniques();
         $I->assertEquals(0, $student->student_balance);
                 
@@ -442,9 +451,11 @@ class RefundCest{
         $course->instructor->updateUniques();
         $affiliate = ProductAffiliate::find(5);
         $affiliate->affiliate_balance = 0;
+        $affiliate->ltc_affiliate_id = 2;
         $affiliate->updateUniques();
         $ltc = ProductAffiliate::find(2);
         $ltc->affiliate_balance = 0;
+        $ltc->has_ltc = 'yes';
         $ltc->updateUniques();
         
         
@@ -527,6 +538,7 @@ class RefundCest{
         
         $student = Student::where('username','sorin')->first();
         $student->student_balance = 10;
+        $student->ltc_affiliate_id = 2;
         $student->updateUniques();
         $I->assertEquals(10, $student->student_balance);
                 
@@ -555,9 +567,11 @@ class RefundCest{
         $course->instructor->updateUniques();
         $affiliate = ProductAffiliate::find(5);
         $affiliate->affiliate_balance = 0;
+        $affiliate->ltc_affiliate_id = 2;
         $affiliate->updateUniques();
         $ltc = ProductAffiliate::find(2);
         $ltc->affiliate_balance = 0;
+        $ltc->has_ltc = 'yes';
         $ltc->updateUniques();
         
         
@@ -662,6 +676,7 @@ class RefundCest{
         
         $student = Student::where('username','sorin')->first();
         $student->student_balance = 10;
+        $student->ltc_affiliate_id = 2;
         $student->updateUniques();
         $I->assertEquals(10, $student->student_balance);
                 
@@ -692,9 +707,11 @@ class RefundCest{
         $course->instructor->updateUniques();
         $affiliate = ProductAffiliate::find(5);
         $affiliate->affiliate_balance = 0;
+        $affiliate->ltc_affiliate_id = 2;
         $affiliate->updateUniques();
         $ltc = ProductAffiliate::find(2);
         $ltc->affiliate_balance = 0;
+        $ltc->has_ltc = 'yes';
         $ltc->updateUniques();
         
         $stInstructor = User::find(14);

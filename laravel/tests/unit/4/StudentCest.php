@@ -26,7 +26,7 @@ class StudentCest{
     
     public function getLTCAffiliate(UnitTester $I){
         $student = Student::where('username','student')->first();
-        $I->assertEquals(2, $student->ltcAffiliate->id);
+        $I->assertEquals(5, $student->ltcAffiliate->id);
     }
     
     public function get2Purchases(UnitTester $I){
@@ -101,7 +101,8 @@ class StudentCest{
         $student->purchase($course, 5, $this->paymentData);
         $student = Student::where('username','student')->first();
         $I->assertTrue( $student->purchased($course) );
-        $I->assertEquals(2, $student->ltc_affiliate_id);
+        $student = Student::where('username','student')->first();
+        $I->assertEquals(5, $student->ltc_affiliate_id);
         $I->assertEquals(5, $student->purchases->first()->product_affiliate_id);
     }
     

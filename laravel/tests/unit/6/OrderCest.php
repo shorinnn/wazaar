@@ -21,6 +21,11 @@ class OrderCest{
         Config::set('custom.earnings.second_tier_percentage', 2);
         Config::set('custom.earnings.second_tier_instructor_percentage', 2);
         
+        Student::boot();
+        User::boot();
+        ProductAffiliate::boot();
+        LTCAffiliate::boot();
+        Purchase::boot();
                 
         $secondTierAffiliate = User::find(2);
         $secondTierAffiliate->has_ltc = 'yes';
@@ -64,6 +69,7 @@ class OrderCest{
         $ltc->updateUniques();
         $I->assertEquals( 0, $ltc->affiliate_balance );
         $I->assertEquals( 5, $student->ltc_affiliate_id );
+        
         $I->assertNotEquals( false, $student->purchase($course, null, $data) );
         $purchase = Purchase::orderBy('id','desc')->first();
 
@@ -88,7 +94,9 @@ class OrderCest{
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'complete', 'gc_fee' => 5] );
+        
         $I->assertNotEquals( 2, $purchase->ltc_affiliate_id );
+        
         $I->assertEquals( 70, $course->instructor->instructor_balance );
         $wazaar = User::find(2);
         $I->assertEquals( $purchase->site_earnings, $wazaar->affiliate_balance );

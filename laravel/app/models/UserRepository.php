@@ -71,6 +71,10 @@ class UserRepository
                 $user->save();
             }            
         }
+        else{
+            $user->ltc_affiliate_id = null;
+            $user->save();
+        }
     }
     
     /**

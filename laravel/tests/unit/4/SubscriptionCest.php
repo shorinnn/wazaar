@@ -17,6 +17,8 @@ class SubscriptionCest{
         $this->paymentData['successData']['REF'] = '123';
         $this->paymentData['successData']['processor_fee'] = '123';
         $this->paymentData['successData']['tax'] = '123';
+        $this->paymentData['successData']['giftID'] = null;
+        $this->paymentData['successData']['ORDERID'] = 1;
         $this->paymentData['successData']['balance_used'] = '0';
         $this->paymentData['successData']['balance_transaction_id'] = '0';
     }
