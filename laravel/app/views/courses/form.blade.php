@@ -454,7 +454,7 @@
 
 <input class="course-id" type="text" value="{{$course->id}}"/>
 <form id="form-aws-credentials" action="">
-    <input type="hidden" name="key" value="course-{{$uniqueKey}}-${filename}">
+    <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
     <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
     <input type="hidden" name="acl" value="private">
     <input type="hidden" name="success_action_status" value="201">
