@@ -87,7 +87,8 @@ class CoursesController extends \BaseController {
             }
 
              $awsPolicySig = UploadHelper::AWSPolicyAndSignature();
-            return View::make('courses.form',compact('awsPolicySig'))->with(compact('course'))->with(compact('images'))->with(compact('bannerImages'))->with(compact('assignedInstructor'))
+             $uniqueKey = Str::random();
+            return View::make('courses.form',compact('awsPolicySig','uniqueKey'))->with(compact('course'))->with(compact('images'))->with(compact('bannerImages'))->with(compact('assignedInstructor'))
                     ->with(compact('difficulties'))->with(compact('categories'))->with(compact('subcategories'))->with(compact('assignableInstructors'));
         }
         
