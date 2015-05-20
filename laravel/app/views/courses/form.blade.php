@@ -454,7 +454,7 @@
 
 <input class="course-id" type="text" value="{{$course->id}}"/>
 <form id="form-aws-credentials" action="">
-    <input type="hidden" name="key" value="{{Str::random(8)}}-${filename}">
+    <input type="hidden" name="key" value="course-{{$course->id}}-${filename}">
     <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
     <input type="hidden" name="acl" value="private">
     <input type="hidden" name="success_action_status" value="201">
@@ -556,7 +556,7 @@
                 if ($data.files[0].name !== undefined){
                     var $elem = $(this)[0];
                     var $courseId = $('.course-id').val();
-                    
+
                     $.post('/video/add-by-filename',{videoFilename: $data.uniqueKey + '-' + $data.files[0].name}, function ($response){
                         $.post('/courses/'+ $courseId +'/video/set-description',{videoId: $response.videoId});
                         $courseVideoInterval = setInterval (function() {
