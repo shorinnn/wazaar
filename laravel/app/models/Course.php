@@ -15,7 +15,7 @@ class Course extends Ardent{
 
     protected $dates = ['sale_ends_on'];
     public $fillable = ['name', 'slug', 'description', 'short_description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
-        'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage', 'payment_type', 'requirements'];
+        'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage', 'payment_type', 'requirements','description_video_id'];
     
     public static $rules = [
         'name' => 'required|unique:courses',
@@ -45,7 +45,7 @@ class Course extends Ardent{
         'comments' => [self::HAS_MANY, 'Conversation'],
         'messages' => [self::HAS_MANY, 'PrivateMessage'],
         'gifts' => [self::HAS_MANY, 'Gift'],
-        'descriptionVideo' => [self::BELONGS_TO, 'Video', 'foreignKey' => 'description_video_id'],
+        //'descriptionVideo' => [self::BELONGS_TO, 'Video', 'foreignKey' => 'description_video_id'],
     );
     
     public function dashboardComments(){

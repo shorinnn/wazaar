@@ -98,6 +98,8 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     
     Route::post('private-messages/massStore', 'PrivateMessagesController@massStore');
     Route::get('coursecategories/subcategories_instructor', 'CoursesCategoriesController@subcategories_instructor');
+
+
 });
 
 Route::group( array('domain' => $domain ), function(){
@@ -152,7 +154,9 @@ Route::group( array('domain' => $domain ), function(){
     Route::post('courses/{slug}/crash/', 'CoursesController@crashCourse');
     Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
     Route::get('courses/{slug}/purchased', 'CoursesController@purchased');
+
     Route::get('courses/{slug}', 'CoursesController@show');
+
 });
 
 Route::group( array('domain' => $instructorSubdomain ), function(){
@@ -299,4 +303,18 @@ Route::group(['prefix' => 'api'], function(){
         Route::post('order/status','ApiPaymentController@getOrderStatus');
     });
     Route::post('profile/invalidate','ApiPaymentController@invalidateToken');
+});
+
+Route::post('courses/{id}/video/set-description','CoursesController@setVideoDescription');
+
+Route::get('test', function(){
+   $course = Course::find(1);
+    $course->description_video_id = 10;
+    if (!$course->updateUniques()){
+        dd($course->errors());
+    }
+    echo '<pre>';
+    print_r($course->toArray());
+    echo '</pre>';
+    die;
 });

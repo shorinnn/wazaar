@@ -380,7 +380,11 @@
                                                  <input type='text' name='requirements[]' data-clonable-max='5' class="clonable clonable-{{time().$i}}" />
                                                  <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"></a>
                                             </div>
-                                    </div>    
+                                    </div>
+
+                                {{-- Video Upload / Select form existing block --}}
+                                @include('courses.video.index')
+
                                 <div class="description-editor-box">
                                 	<h3>{{ trans('crud/labels.description') }} </h3>
                                 	<div class="description-box">{{ Form::textarea('description', null,['id'=>'description'] ) }}</div>
@@ -448,6 +452,15 @@
 	</div>
 </div>
 
+<input class="course-id" type="text" value="{{$course->id}}"/>
+<form id="form-aws-credentials" action="">
+    <input type="hidden" name="key" value="{{Str::random(8)}}-${filename}">
+    <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
+    <input type="hidden" name="acl" value="private">
+    <input type="hidden" name="success_action_status" value="201">
+    <input type="hidden" name="policy" value="{{$awsPolicySig['base64Policy']}}">
+    <input type="hidden" name="signature" value="{{$awsPolicySig['signature']}}">
+</form>
 @include('videos.playerModal')
 @stop
 
@@ -513,5 +526,54 @@
 
 
         });
+</script>
+
+<script type="text/javascript">
+
+    var $courseVideoInterval;
+
+    jQuery(function(){
+        var formData = $('#form-aws-credentials').serialize();
+        console.log(formData);
+        jQuery('#upload-course-video').fileupload({
+            url: '//s3-ap-southeast-1.amazonaws.com/videosinput',
+            formData: {
+                key:$('#form-aws-credentials').find('input[name=key]').val(),
+                AWSAccessKeyId:$('#form-aws-credentials').find('input[name=AWSAccessKeyId]').val(),
+                acl:$('#form-aws-credentials').find('input[name=acl]').val(),
+                success_action_status:$('#form-aws-credentials').find('input[name=success_action_status]').val(),
+                policy:$('#form-aws-credentials').find('input[name=policy]').val(),
+                signature:$('#form-aws-credentials').find('input[name=signature]').val()
+            }
+        }).on('fileuploadprogress', function ($e, $data) {
+            var $progress = parseInt($data.loaded / $data.total * 100, 10);
+            $('#progress-course-video').css('width',$progress + '%');
+        }).bind('fileuploaddone', function ($e, $data) {
+            $('.course-video-upload-button-progress').addClass('hidden');
+            $('.course-video-upload-processing').removeClass('hidden');
+
+            if ($data.jqXHR.status == 201){
+                if ($data.files[0].name !== undefined){
+                    var $elem = $(this)[0];
+                    var $courseId = $('.course-id').val();
+                    $.post('/video/add-by-filename',{videoFilename: $data.uniqueKey + '-' + $data.files[0].name}, function ($response){
+                        $.post('/courses/'+ $courseId +'/video/set-description',{videoId: $response.videoId});
+                        $courseVideoInterval = setInterval (function() {
+                            $.ajax({
+                                dataType: "json",
+                                url: '/video/' + $response.videoId + '/json',
+                                success: function ($video){
+                                    if ($video.transcode_status == 'Complete'){
+                                        clearInterval($courseVideoInterval);
+                                        console.log($video);
+                                    }
+                                }
+                            });
+                        },5000);
+                    },'json');
+                }
+            }
+        });
+    });
 </script>
 @stop

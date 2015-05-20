@@ -85,7 +85,9 @@ class CoursesController extends \BaseController {
             foreach($instructors as $i){
                 $assignableInstructors[$i->id] = $i->commentName();
             }
-            return View::make('courses.form')->with(compact('course'))->with(compact('images'))->with(compact('bannerImages'))->with(compact('assignedInstructor'))
+
+             $awsPolicySig = UploadHelper::AWSPolicyAndSignature();
+            return View::make('courses.form',compact('awsPolicySig'))->with(compact('course'))->with(compact('images'))->with(compact('bannerImages'))->with(compact('assignedInstructor'))
                     ->with(compact('difficulties'))->with(compact('categories'))->with(compact('subcategories'))->with(compact('assignableInstructors'));
         }
         
@@ -495,6 +497,21 @@ class CoursesController extends \BaseController {
             
             if($reply->save())            return json_encode( [ 'status' => 'success' ] );
             else return json_encode( [ 'status' => 'error', 'errors' => format_errors( $reply->errors()->all() ) ] );
-        }        
-        
+        }
+
+
+        public function setVideoDescription($courseId = 0)
+        {
+            if (Input::has('videoId')){
+                $course = Course::find($courseId);
+
+                if ($course){
+                    $course->description_video_id = Input::get('videoId');
+                    $course->updateUniques();
+                    return Response::json($course->toArray());
+                }
+            }
+
+            return Response::json(['error' => 'Insufficient Parameters']);
+        }
 }
