@@ -566,6 +566,12 @@
                                 success: function ($video){
                                     if ($video.transcode_status == 'Complete'){
                                         clearInterval($courseVideoInterval);
+                                        $('.course-video-thumb').removeClass('hidden');
+                                        $('.course-video-upload-processing').addClass('hidden');
+                                        $('#course-video-anchor').attr('data-filename',$video.original_filename);
+                                        $('#course-video-anchor').attr('data-video-url',$video.formats[0].video_url);
+                                        $('#course-video-anchor').html($video.original_filename);
+
                                         console.log($video);
                                     }
                                 }

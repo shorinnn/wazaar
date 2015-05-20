@@ -29,6 +29,10 @@
                 Processing video please wait...
             </div>
 
+            <div class="course-video-thumb hidden" align="center">
+               Current Video: <a href="#" id="course-video-anchor" class="video-title" data-filename="BfE1cTQk-fighting_cats4.wmv" data-video-url="http://d378r68ica1xoa.cloudfront.net/BfE1cTQk-fighting_cats4.wmv1421660966371o9l23s.mp4" onclick="videoModal.show(this, event)">BfE1cTQk-fighting_cats4.wmv</a>
+            </div>
+
 
             <span class="use-existing use-existing-preview" id="use-existing-video">
                 <span class="use-existing">
