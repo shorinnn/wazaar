@@ -25,6 +25,7 @@
 @if (Session::get('error'))
 <div class="alert alert-danger">{{ Session::get('error') }}</div>
 @endif
+@include('videos.archiveModal')
 <div class="container-fluid instructor-course-editor">
     <div role="tabpanel">
         <div class="header clearfix">
@@ -117,7 +118,7 @@
                             </div>
                         </div>
                     
-                    @include('videos.archiveModal')
+
                     </div>
                     <!-- Curriculum End -->
                     
@@ -483,7 +484,25 @@
             $('textarea').each(function(){
                 enableRTE( '#'+$(this).attr('id') );
             });
+            videoLookup.prepareModalEvents();
             videoLookup.initialize(function ($lessonId, $videoId){
+                /**** if lesson is 0 or undefined, this means we are looking up for a video intended to a course(description) ***/
+                if ($lessonId == 0 || $lessonId == undefined){
+                    var $courseId = $('.course-id').val();
+                    //make post call to update course
+                    $.post('/courses/'+ $courseId +'/video/set-description',{videoId: $videoId});
+
+                    videoUploader.getVideo($videoId, function ($video){
+                        $('#course-video-anchor').html($video.original_filename);
+                        $('#course-video-anchor').attr('data-filename',$video.original_filename);
+                        $('#course-video-anchor').attr('data-video-url',$video.formats[0].video_url);
+
+                    });
+                    return;
+                }
+
+                /*** Lesson video lookup below *****/
+
 				var uploadedVideo = $('#video-player-container-' + $lessonId).find('video');
 				var videoDuration = uploadedVideo[0].duration;
 				var timeFormat = function(seconds){
@@ -491,10 +510,7 @@
 					var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
 					return m+":"+s;
 				};
-				
-				//console.log($lessonId);
-				//console.log(uploadedVideo);
-				videoUploader.getVideo($videoId, function ($video){ 
+				videoUploader.getVideo($videoId, function ($video){
 					console.log($video);
 					
 					$('.lesson-options-' + $lessonId).find('#video-thumb-container').css({
@@ -581,6 +597,10 @@
                 }
             }
         });
+
+        /*videoLookup.initialize($('.course-video-select-existing-anchor'), function ($lessonId, $videoId){
+            alert($videoId);
+        });*/
     });
 </script>
 @stop

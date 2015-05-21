@@ -45,7 +45,7 @@ class Course extends Ardent{
         'comments' => [self::HAS_MANY, 'Conversation'],
         'messages' => [self::HAS_MANY, 'PrivateMessage'],
         'gifts' => [self::HAS_MANY, 'Gift'],
-        //'descriptionVideo' => [self::BELONGS_TO, 'Video', 'foreignKey' => 'description_video_id'],
+        'descriptionVideo' => [self::BELONGS_TO, 'Video', 'foreignKey' => 'description_video_id'],
     );
     
     public function dashboardComments(){

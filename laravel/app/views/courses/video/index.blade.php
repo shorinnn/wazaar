@@ -25,19 +25,24 @@
 
             </div>
 
-            <div class="course-video-upload-processing hidden">
-                Processing video please wait...
+            <div class="course-video-upload-processing hidden" align="center">
+                <img src="{{url('images/ajax-loader.gif')}}" alt=""/>
             </div>
-
-            <div class="course-video-thumb hidden" align="center">
-               Current Video: <a href="#" id="course-video-anchor" class="video-title" data-filename="BfE1cTQk-fighting_cats4.wmv" data-video-url="http://d378r68ica1xoa.cloudfront.net/BfE1cTQk-fighting_cats4.wmv1421660966371o9l23s.mp4" onclick="videoModal.show(this, event)">BfE1cTQk-fighting_cats4.wmv</a>
+            <p>&nbsp;</p>
+            <div class="course-video-thumb @if (!$course->descriptionVideo) hidden @endif" align="center">
+                {{trans('video.currentVideo')}}:
+            @if ($course->descriptionVideo)
+                   <a href="#" id="course-video-anchor" class="video-title" data-filename="{{$course->descriptionVideo->original_filename}}" data-video-url="{{$course->descriptionVideo->formats[0]->video_url}}" onclick="videoModal.show(this, event)">{{$course->descriptionVideo->original_filename}}</a>
+                @else
+                   <a href="#" id="course-video-anchor" class="video-title" data-filename="BfE1cTQk-fighting_cats4.wmv" data-video-url="http://d378r68ica1xoa.cloudfront.net/BfE1cTQk-fighting_cats4.wmv1421660966371o9l23s.mp4" onclick="videoModal.show(this, event)">BfE1cTQk-fighting_cats4.wmv</a>
+                @endif
             </div>
 
 
             <span class="use-existing use-existing-preview" id="use-existing-video">
                 <span class="use-existing">
                     <em class="or-text"> {{ trans('site/login.or') }}</em>
-                    <a href="#">
+                    <a href="#" class="course-video-select-existing-anchor">
                         {{trans('video.selectExisting')}}
                     </a>
                 </span>

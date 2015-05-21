@@ -16,8 +16,6 @@
         </div>
     </div>
     <h3 class="no-margin"><!--{{trans('video.uploadOr')}} -->
-    {{--Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])--}}
-    {{--Form::open(['url' => '//s3-ap-southeast-1.amazonaws.com/videosinput', 'id' => '', 'files' => true])--}}
     <form action="//s3-ap-southeast-1.amazonaws.com/videosinput" enctype="multipart/form-data" method="POST" class="fileupload">
         <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
         <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
@@ -27,18 +25,8 @@
         <input type="hidden" name="signature" value="{{$awsPolicySig['signature']}}">
 
         <div class="form-inline">
-        	<!--<input disabled="disabled" placeholder="" id="uploadFile" style="">-->
-		    <!--<span id="video-transcoding-indicator">Video Currently Processing</span>-->
-                   {{-- @if (!isset($video->formats[0]->video_url))
-
-                        <span id="video-transcoding-indicator">Video Currently Processing</span>
-						<style>
-							.course-editor #modules-list > li .video-upload{
-								font-size: 16px !important;
-							}
-                        </style> --}}
                     @if ($video!=null && isset($video->formats[0]->video_url))
-                   		<span id="video-transcoding-indicator" style="display: block;">Current video: 
+                   		<span id="video-transcoding-indicator" style="display: block;">{{trans('video.currentVideo')}}:
                         	<a href="#" class="video-title" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="videoModal.show(this, event)">{{$video->original_filename}}</a>
                         </span> 
                         <div class="form-group video-upload clear">

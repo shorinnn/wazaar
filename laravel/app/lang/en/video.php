@@ -14,5 +14,6 @@ return [
     'myVideos' => 'My Videos',
     'useVideo' => 'Use Video',
     'noImage' => 'You don\'t have an image yet. Upload one now.',
-    'previewImage' => 'Preview Image'
+    'previewImage' => 'Preview Image',
+    'currentVideo' => 'Current video'
 ];

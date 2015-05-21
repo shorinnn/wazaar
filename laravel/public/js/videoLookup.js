@@ -1,18 +1,7 @@
 var videoLookup = {
-    'initialize' : function ($callback){
-        var $lessonId = 0;
-
-        $('#modules-list').on('click', '.show-videos-archive-modal', function ($e){
-            $e.preventDefault();
-            $lessonId = $(this).attr('data-lesson-id');
-            $('#videoFilter').val('');
-            $('#videos-archive-modal').modal('show');
-
-            $.get('/video/user/archive', function ($html){
-                $('.video-list-container').html($html);
-            });
-        });
-
+    'lessonId' : 0,
+    'callback' : '',
+    'prepareModalEvents' : function (){
         $('#modal-body-videos').on('click','input[name=radioVideoId]', function(){
             $('#btn-use-video').removeClass('disabled');
         });
@@ -22,7 +11,7 @@ var videoLookup = {
 
             var $videoId = $('input[name=radioVideoId]:checked').val();
             $('#videos-archive-modal').modal('hide');
-            $callback($lessonId, $videoId);
+            videoLookup.callback(videoLookup.lessonId, $videoId);
         });
 
         $('#modal-body-videos').on('click', '.videos-lookup-pagination-wrapper .page-numbers-container ul li a', function($e){
@@ -42,5 +31,33 @@ var videoLookup = {
                 $('.video-list-container').html($html);
             });
         });
+    },
+    'initialize' : function ($callback){
+
+        videoLookup.callback = $callback;
+
+
+            $('#modules-list').on('click', '.show-videos-archive-modal', function ($e) {
+                $e.preventDefault();
+                videoLookup.lessonId = $(this).attr('data-lesson-id');
+                $('#videoFilter').val('');
+                $('#videos-archive-modal').modal('show');
+
+                $.get('/video/user/archive', function ($html) {
+                    $('.video-list-container').html($html);
+                });
+            });
+
+            $('.course-video-select-existing-anchor').on('click', function ($e) {
+                $e.preventDefault();
+
+                //$lessonId = $(this).attr('data-lesson-id');
+                $('#videoFilter').val('');
+                $('#videos-archive-modal').modal('show');
+
+                $.get('/video/user/archive', function ($html) {
+                    $('.video-list-container').html($html);
+                });
+            });
     }
 }
