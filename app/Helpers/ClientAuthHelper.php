@@ -24,13 +24,12 @@ class ClientAuthHelper {
                 return 'Invalid API Key';
             }
 
+            \Session::put('clientId',$client->id);
             return true;
         }
         catch(\Exception $ex){
             return $ex->getMessage();
         }
-
-
     }
 
 }

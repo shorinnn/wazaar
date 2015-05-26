@@ -22,6 +22,7 @@ class CocoriumDeliveredServiceProvider extends ServiceProvider {
 	public function register()
 	{
         $this->app->bind('Delivered\Repositories\Client\ClientInterface','Delivered\Repositories\Client\ClientEloquentRepository');
+        $this->app->bind('Delivered\Repositories\Template\TemplateInterface','Delivered\Repositories\Template\TemplateEloquentRepository');
 	}
 
 }

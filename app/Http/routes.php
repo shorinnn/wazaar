@@ -25,7 +25,7 @@ Route::controllers([
 Route::group(['prefix' => 'api', 'middleware' => 'client'], function (){
 
     Route::resource('users', 'ClientUsersController');
-
+    Route::resource('templates', 'TemplateController');
 
     Route::get('/', function(){
        $result = Mail::send('welcome',[], function ($message){

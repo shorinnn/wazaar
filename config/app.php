@@ -143,6 +143,7 @@ return [
 		'Delivered\Providers\BusServiceProvider',
 		'Delivered\Providers\ConfigServiceProvider',
 		'Delivered\Providers\EventServiceProvider',
+        'Jlapp\Swaggervel\SwaggervelServiceProvider',
 		'Delivered\Providers\RouteServiceProvider',
         'Delivered\Providers\CocoriumDeliveredServiceProvider',
 

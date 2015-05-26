@@ -34,8 +34,6 @@ class VerifyClientMiddleware {
         }
 
         return response()->json(['success' => false, 'error' => $verifier],401);
-
-
 	}
 
 }
