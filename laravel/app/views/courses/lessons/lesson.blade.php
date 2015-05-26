@@ -74,12 +74,14 @@
                         style='display:block'
                        @endif
                        >
-                       @if( 
+
+
+                       @if(
                             $lesson->blocks()->where('type','video')->where('content','>','0')->count() > 0
                             && @$lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()
                         )
                     	<P>{{@$lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()->formats[0]->duration }}</P>
-                        <a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> 
+                        <a href='#' class='fa fa-eye' onclick="videoModal.show(this, event)" data-filename="{{$lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()->original_filename}}" data-video-url="{{@$lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()->formats[0]->video_url }}"></a>
                         <img src='{{@$lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()->formats[0]->thumbnail }}'/>
                        @endif
                     </div>
