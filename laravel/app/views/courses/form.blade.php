@@ -550,7 +550,7 @@
 
     jQuery(function(){
         var formData = $('#form-aws-credentials').serialize();
-        console.log(formData);
+
         jQuery('#upload-course-video').fileupload({
             url: '//s3-ap-southeast-1.amazonaws.com/videosinput',
             formData: {

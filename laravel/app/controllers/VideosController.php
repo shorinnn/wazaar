@@ -76,4 +76,15 @@ class VideosController extends BaseController
 
         return View::make('videos.partials.videoThumbs',compact('videos'));
     }
+
+    public function delete($id)
+    {
+        if ($id){
+            $ownerId = Auth::id();
+            $video = Video::where('id',$id)->where('created_by_id', $ownerId)->first();
+            if ($video){
+                $video->delete();
+            }
+        }
+    }
 }

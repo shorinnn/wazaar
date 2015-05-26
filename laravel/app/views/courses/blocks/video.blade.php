@@ -1,4 +1,3 @@
-
 <div class="text-center">
     <div id="video-player-container-{{$lessonId}}">
         <!--<div id="notify-warning-new-video" class="alert alert-warning

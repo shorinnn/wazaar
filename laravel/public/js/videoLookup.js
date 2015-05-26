@@ -4,14 +4,28 @@ var videoLookup = {
     'prepareModalEvents' : function (){
         $('#modal-body-videos').on('click','input[name=radioVideoId]', function(){
             $('#btn-use-video').removeClass('disabled');
+            $('#btn-delete-video').removeClass('disabled');
         });
 
         $('#btn-use-video').on('click', function () {
             $('#btn-use-video').addClass('disabled');
+            $('#btn-delete-video').addClass('disabled');
 
             var $videoId = $('input[name=radioVideoId]:checked').val();
             $('#videos-archive-modal').modal('hide');
             videoLookup.callback(videoLookup.lessonId, $videoId);
+        });
+
+        $('#btn-delete-video').on('click', function(){
+            bootbox.confirm(_("Are you sure you want to delete video?"), function($response){
+                if ($response){
+                    var $videoId = $('input[name=radioVideoId]:checked').val();
+                    $.post('/video/' + $videoId + '/delete', function (){
+                        $('#li-video-' + $videoId).fadeOut().remove();
+                        bootbox.success(_('Video deleted successfully'));
+                    });
+                }
+            });
         });
 
         $('#modal-body-videos').on('click', '.videos-lookup-pagination-wrapper .page-numbers-container ul li a', function($e){

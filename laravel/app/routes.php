@@ -261,6 +261,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
         Route::any('sns/callback', 'SnsController@snsCallback');
         Route::get('{id}/json','VideosController@videoAndFormatsJson');
         Route::any('user/archive','VideosController@userArchive');
+        Route::post('{id}/delete','VideosController@delete');
     });
 });
 

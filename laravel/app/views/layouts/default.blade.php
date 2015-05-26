@@ -248,5 +248,6 @@
 
 			});
 		</script>
+    <script type="text/javascript" src="{{url('js/bootbox.js')}}"></script>
 	</body>
 </html>

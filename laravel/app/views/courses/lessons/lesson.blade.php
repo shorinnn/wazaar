@@ -76,11 +76,11 @@
                        >
                        @if( 
                             $lesson->blocks()->where('type','video')->where('content','>','0')->count() > 0
-                            && $lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()->formats()->count() > 0
+                            && @$lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()
                         )
-                    	<P>{{$lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()->formats[0]->duration }}</P>
+                    	<P>{{@$lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()->formats[0]->duration }}</P>
                         <a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> 
-                        <img src='{{$lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()->formats[0]->thumbnail }}'/>
+                        <img src='{{@$lesson->blocks()->where('type','video')->where('content','>','0')->first()->video()->formats[0]->thumbnail }}'/>
                        @endif
                     </div>
                     

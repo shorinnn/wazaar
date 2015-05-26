@@ -2,7 +2,7 @@
     <ul class="list-unstyled video-list-thumbs row radio-buttons clearfix">
         @if ($videos->count() > 0)
             @foreach($videos as $video)
-                <li class="col-lg-4 col-sm-4 col-xs-6 radio-checkbox radio-checked">
+                <li class="col-lg-4 col-sm-4 col-xs-6 radio-checkbox radio-checked" id="li-video-{{$video->id}}">
                     <a href="#" title="{{$video->original_filename}}">
                         <img src="{{$video->formats[0]->thumbnail}}" alt="{{$video->original_filename}}" class="img-responsive" height="130px" />
                         <h2>
