@@ -4419,7 +4419,7 @@ a.load-remote > *{
 #step1 input{
 	background: none;
 	border-color: #eef0f0;
-	padding: 0;
+	padding: 0 10px 0 20px;
 	color: #666;
 	text-indent: 18px;
 }
