@@ -53,7 +53,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => getenv('locale'),
 
 
 	/*
@@ -67,7 +67,7 @@ return array(
 	|
 	*/
 
-	'fallback_locale' => 'ja',
+	'fallback_locale' => 'en',
 
 	/*
 	|--------------------------------------------------------------------------
