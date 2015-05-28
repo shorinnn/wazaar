@@ -17,7 +17,7 @@
 | loading of any our classes "manually". Feels great to relax.
 |
 */
-if('local'===$_SERVER['APP_ENV']) require __DIR__.'/../bootstrap/autoload.php';
+if( isset( $_SERVER['APP_ENV'] ) && 'local'===$_SERVER['APP_ENV']) require __DIR__.'/../bootstrap/autoload.php';
 else require '/opt/repos/wazaar/laravel/bootstrap/autoload.php';
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ else require '/opt/repos/wazaar/laravel/bootstrap/autoload.php';
 | the responses back to the browser and delight these users.
 |
 */
-if('local'===$_SERVER['APP_ENV']) $app = require_once __DIR__.'/../bootstrap/start.php';
+if( isset( $_SERVER['APP_ENV'] ) && 'local'===$_SERVER['APP_ENV']) $app = require_once __DIR__.'/../bootstrap/start.php';
 else $app = require_once '/opt/repos/wazaar/laravel/bootstrap/start.php';
 
 /*
