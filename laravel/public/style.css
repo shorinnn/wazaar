@@ -4415,11 +4415,12 @@ a.load-remote > *{
 	outline: none;
 }
 
-#step1 form input{
+#step2 input,
+#step1 input{
 	background: none;
 	border-color: #eef0f0;
-	padding: 0;
-	text-indent: 18px;
+	padding: 0 10px 0 20px;
+	color: #666;
 }
 
 #step3 button.start-creating,
