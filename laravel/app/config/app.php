@@ -26,8 +26,8 @@ return array(
 	|
 	*/
 
-	'url' => 'http://www.cocorium.com',
-	'base_url' => 'cocorium.com',
+	'url' => 'http://www.wazaar.jp',
+	'base_url' => 'wazaar.jp',
 
 	/*
 	|--------------------------------------------------------------------------
