@@ -8,7 +8,7 @@ class SiteController extends \BaseController {
 
 	public function index()
 	{             
-            echo 'ENV:'.App::environment();
+            echo getenv('LARAVEL_ENV');
             $frontpageVideos  = FrontpageVideo::grid();
             $categories = CourseCategory::with('featuredCourse')->get();
             if(Auth::user()) Return View::make('site.homepage_authenticated')->with(compact('categories'));
