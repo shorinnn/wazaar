@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 	'local' => array('homestead'),
-        'staging' => ['cocorium.com', 'affiliates.cocorium.com', 'orders.cocorium.com']
+	'staging' => array('ip-172-31-54-34'),
 ));
 
 /*
