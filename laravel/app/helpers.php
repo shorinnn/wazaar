@@ -440,7 +440,7 @@ function cycle($first_value, $values = '*') {
  */
 function json2Array($json){
     $arr = json_decode($json, true);
-    if( json_last_error() != JSON_ERROR_NONE) return false;
+    if( json_last_error() != JSON_ERROR_NONE) return [];
     return $arr;
 }
 
