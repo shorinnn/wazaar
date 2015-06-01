@@ -8,7 +8,7 @@ return array(
     'next'  => '次へ',
     'close' => '閉じる',
     'you-sure-want-delete' => '本当に削除しますか?',
-    'name' => 'please provide more context',
+    'name' => 'Name',
     'upload_your_file' => 'ファイルをアップロード',
     'or_use_existing' => 'または、既存のファイルを選択',
     'description' => '説明',

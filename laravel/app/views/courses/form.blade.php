@@ -188,7 +188,7 @@
                                                     <label class="btn btn-primary {{$active}}">
                                                         <input type='radio' name='course_difficulty_id' id="option{{$key}}" 
                                                         autocomplete="off" value='{{$key}}' 
-                                                        required {{$checked}} /> {{$difficulty}}
+                                                        required {{$checked}} /> {{ trans('general.'.$difficulty) }}
                                                     </label>
                                                  @endforeach
                                              </div>
@@ -326,6 +326,7 @@
                         	<div class="col-md-12">
                                 <div class="who-its-for">
                                 	<h3>{{ trans('courses/general.who_is_this_for') }}</h3>
+                                        <p class="tip">{{ trans('courses/create.tip-if-student') }}</p>
                                         <?php $i = 1;?>
                                         @if($values = json2Array($course->who_is_this_for))
                                             @foreach($values as $val)
@@ -345,7 +346,7 @@
                                     </div>    
                                 <div class="what-you-will-achieve">
                                 	<h3>{{ trans('courses/create.by_the_end') }} </h3>
-                                    <p class="tip">{{ trans('courses/curriculum.result-based') }}</p>
+                                    <p class="tip">{{ trans('courses/create.make_it_results') }}</p>
                                         @if($values = json2Array($course->what_will_you_achieve))
                                          <?php $i = 1;?>
                                             @foreach($values as $val)
@@ -453,7 +454,7 @@
 	</div>
 </div>
 
-<input class="course-id" type="text" value="{{$course->id}}"/>
+<input class="course-id" type="hidden" value="{{$course->id}}"/>
 <form id="form-aws-credentials" action="">
     <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
     <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
