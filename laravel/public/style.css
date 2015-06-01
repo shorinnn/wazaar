@@ -2965,10 +2965,14 @@ header .activate-dropdown:hover ul{
 	line-height: 78px;
 }
 
+#show-teacher-questions .img-circle{
+    height:50px;
+    width:50px;
+}
 #show-teacher-questions span{
 	font-size: 24px;
-	display: block;
-	float: left;
+/*	display: block;
+	float: left;*/
 	line-height: 80px;
 	margin-left: 10px;
 	font-style: normal;
@@ -4623,7 +4627,8 @@ select::-ms-expand {
 	position: relative;
 }
 
-.what-you-will-achieve > p.tip::before{
+/*.what-you-will-achieve > p.tip::before{*/
+p.tip::before{
 	content: 'TIP';
 	padding: 5px 10px;
 	border-radius: 2px;

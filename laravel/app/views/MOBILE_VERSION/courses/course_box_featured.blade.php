@@ -18,7 +18,7 @@
                  class="hidden-sm hidden-xs img-responsive">
             </div>
             <div class="featured-contents-container">
-                <div class="level">{{ $course->courseDifficulty->name }}</div>
+                <div class="level">{{ trans( 'general.'.$course->courseDifficulty->name ) }}</div>
                 <h2>{{ $course->name }}</h2>
                 <p>{{{ Str::limit( strip_tags($course->short_description, Config::get('custom.short_desc_max_chars') ) ) }}}
                     <br />

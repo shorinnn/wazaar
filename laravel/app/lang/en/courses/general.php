@@ -72,7 +72,7 @@ return array(
     'ask-teacher' => 'Ask Teacher', 
     'ask' => 'Ask',
     'teacher' => 'Teacher',
-	'instructor-a-question' => 'Instructor a Question',
+    'instructor-a-question' => 'Instructor a Question',
     'my-courses' => 'My Courses',
     'created-on' => 'Created On',
     'your-students-are-going-to-love' => 'Your students are going to love',

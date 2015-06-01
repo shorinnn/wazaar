@@ -11,9 +11,7 @@
 <div class="container create-course">
 <div class="row">
 	<div class="col-md-12">
-        <h1>{{ trans('courses/create.creating_a_course') }}
-        	<small>{{ trans('courses/create.the_world_is_yours') }}</small>
-		</h1>      
+        <h1>{{ trans('courses/create.creating_a_course') }}		</h1>      
             <!--<form method='post' class='ajax-form' id="create-form" data-callback='prepareCourseDetails'--> 
             <form method='post' class='ajax-form' id="create-form" data-callback='followRedirect' 
                   action='{{action('CoursesController@store')}}' data-parsley-validate>
@@ -47,14 +45,15 @@
             <!--<input type='hidden' name='_method' value='PUT' />-->
                    
             <div id='step3' class='# hidden animated-step'>
-                <h1>{{ trans('courses/create.set_objectives') }}
+                <h2>{{ trans('courses/create.set_objectives') }}<br />
                    <small>{{ trans('courses/create.this_helps_creating') }}</small>
-                </h1> 
+                </h2> 
                  <h2>{{ trans('courses/create.course_level') }}</h2>
                  <div class="course-level btn-group clearfix" data-toggle="buttons">
                      @foreach($difficulties as $key=>$difficulty)
                      	<label class="btn btn-primary">
-                         	<input type='radio' name='course_difficulty_id' id="option{{$key}}" autocomplete="off" value='{{$key}}' required /> {{$difficulty}}
+                         	<input type='radio' name='course_difficulty_id' id="option{{$key}}" autocomplete="off" value='{{$key}}' required /> 
+                                {{ trans( 'general.'.$difficulty ) }}
                         </label>
                      @endforeach
         		 </div>
@@ -69,6 +68,7 @@
         		 </div>
                  <div class="who-its-for">
                      <h2>{{ trans('courses/create.for_your_student_if') }}</h2>
+                     <p class="tip">{{ trans('courses/create.tip-if-student') }}</p>
                      <div>
                          <input type='text' name='who_is_this_for[]'  class="clonable" required /><br />
                          <span>1</span>

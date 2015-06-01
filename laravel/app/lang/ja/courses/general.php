@@ -62,7 +62,7 @@ return array(
     'next-lesson' => '次のレッスン', 
     'prev-lesson' => '前のレッスン',
     'ask-teacher' => '講師に質問する',  
-    'ask' => '月AskせThis may not work',
+    'ask' => '月Askせ',
     'teacher' => '月TeacherせThis may not work',
     'my-courses' => 'マイコース',
     'created-on' => '月Created Onせ',
