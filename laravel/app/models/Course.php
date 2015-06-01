@@ -185,13 +185,13 @@ class Course extends Ardent{
         if($this->isDirty('course_subcategory_id')){
             $old = $this->getOriginal();
             if( count($old)>0 ){
-                $oldSubCategory = CourseSubCategory::find( $old['course_subcategory_id'] );
+                $oldSubCategory = CourseSubcategory::find( $old['course_subcategory_id'] );
                 if($oldSubCategory!=null){
                     $oldSubCategory->courses_count--;
                     $oldSubCategory->save();
                 }
             }
-            $subcategory = CourseSubCategory::find($this->course_subcategory_id);
+            $subcategory = CourseSubcategory::find($this->course_subcategory_id);
             if($subcategory!=null){
                 $subcategory->courses_count += 1;
                 $subcategory->save();
