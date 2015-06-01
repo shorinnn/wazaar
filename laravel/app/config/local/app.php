@@ -16,7 +16,6 @@ return array(
 	'debug' => true,
 	'url' => 'http://wazaar.dev',
 	'base_url' => 'wazaar.dev',
-        'locale' => 'ja',
 	'providers' => append_config(
 		[
 			'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
