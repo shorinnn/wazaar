@@ -26,7 +26,7 @@ class UserRepository
     {
         $user = new Student;
 
-//        $user->username = array_get($input, 'username');
+//      $user->username = array_get($input, 'username');
         $user->email    = array_get($input, 'email');
         $user->username = 'U'.uniqid();
         $user->password = array_get($input, 'password');
@@ -88,8 +88,7 @@ class UserRepository
         if( !$user->hasRole('Student') && $instructor === 0){
             $studentRole = Role::where('name','=','Student')->first();
             $user->attachRole( $studentRole );
-            $user->affiliate_id = $user->id;
-            $user->save();
+
         }
         // user signs up for a instructor account
         if($instructor==1){
@@ -99,6 +98,8 @@ class UserRepository
         if($instructor==2){
             $affiliateRole = Role::where('name','=','Affiliate')->first();
             $user->attachRole( $affiliateRole );
+            $user->affiliate_id = $user->id;
+            $user->save();
         }
         return $user;
     }

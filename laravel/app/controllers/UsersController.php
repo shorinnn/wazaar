@@ -31,6 +31,19 @@ class UsersController extends Controller
     }
     
     /**
+     * Displays the form for account creation
+     * @param mixed $instructor_account If not 0, sign up for a instructor account
+     * @return  Illuminate\Http\Response
+     */
+    public function secondTierPublisherCreate()
+    {
+        if( Auth::guest() ){
+            Cookie::queue('st', 1, 24*30);
+        }
+        return View::make('confide.second_tier_publisher_signup');
+    }
+    
+    /**
      * Stores new account
      *
      * @return  Illuminate\Http\Response
@@ -56,6 +69,9 @@ class UsersController extends Controller
             Cookie::queue('register_instructor', null, -1);
             Cookie::queue('register_affiliate', null, -1);
             Cookie::queue('ltc', null, -1);
+            Cookie::queue('st', null, -1);
+            Cookie::queue('iai', null, -1);
+            Cookie::queue('stpi', null, -1);
             Auth::login($user);
             return Redirect::intended('/');
         } else {

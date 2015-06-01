@@ -38,6 +38,7 @@ Route::group( array('domain' =>  $domain), function(){
 
     // Confide routes
     Route::get('register', 'UsersController@create');
+    Route::get('register/second-tier-publisher', 'UsersController@secondTierPublisherCreate');
     Route::get('register/{teacher_account}', 'UsersController@create');
     Route::post('users', 'UsersController@store');
     Route::get('login', 'UsersController@login');
