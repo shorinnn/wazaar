@@ -3,7 +3,7 @@
 function cloudfrontUrl($url){
     if( !App::environment( 'production' ) ) return $url;
     $url = explode('.com/', $url);
-    $url = str_replace('wazaardev', '', $url);
+    $url = str_replace('wazaardev/', '', $url);
     return '//'.getenv('CLOUDFRONT_DOMAIN').'/'.$url[1];
 }
 
