@@ -87,6 +87,7 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-4">
                                     <div class="who-for">
+                                        {{ dd($course->requirements) }}
                                         <h3>{{ trans('courses/create.course-requirements') }}</h3>
                                         @foreach( json2Array($course->requirements) as $for)
                                             <ul>
