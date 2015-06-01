@@ -9,7 +9,7 @@ class CocoriumServiceProvider extends ServiceProvider {
     {
         $this->app->bind(
             'Cocorium\Payment\PaymentInterface',
-            'Cocorium\Payment\PaymentGlobalCollectDriver'
+            'Cocorium\Payment\PaymentMaxCollectDriver'
         );
     }
 }
