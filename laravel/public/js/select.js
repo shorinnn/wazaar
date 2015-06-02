@@ -38,7 +38,8 @@ function tamingselect()
 			}
                         // look at this max
 //			trigger.appendChild(document.createTextNode(sels[i].options[0].text));
-			trigger.appendChild( document.createTextNode( hiddenfield.value ) );
+//			trigger.appendChild( document.createTextNode( hiddenfield.value ) );
+			trigger.appendChild( document.createTextNode( $( sels[i] ).find('option:selected' ).text() ) );
 			sels[i].parentNode.insertBefore(trigger,sels[i]);
 			var replaceUL=document.createElement('ul');
 			for(var j=0;j<sels[i].getElementsByTagName('option').length;j++)
