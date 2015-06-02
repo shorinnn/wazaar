@@ -3,6 +3,10 @@
 return array(
     'members' => 'Members',
     'user' => 'User',
+	'lesson' => 'Lessons',
+	'highly-recommend' => 'highly recommend',
+	'weeks-of-learning' => 'weeks of learning',
+	'catalogue' => 'Catalogue',
     'email' => 'Email',
     'first_name' => 'First name',
     'last_name' => 'Last name',
