@@ -6,7 +6,7 @@ return [
                                 'allowed_types' => ['.jpg', '.png', '.gif', '.bmp'] ],
     'course_banner_image'  => [ 'width' => '656', 'height' => '266', 'allowed_types' => ['.jpg', '.png', '.gif', '.bmp'] ],
     'course_is_new'        => [ 'maximum_students' => 20, 'maximum_months' => 6 ],
-    'tracker_url'          => 'http://wazaar.jp/action_tracker',
+    'tracker_url'          => 'http://wazaar.dev/action_tracker',
     'maximum_lesson_files' => 10,
     'course_attachments' => ['.jpg', '.png', '.gif', '.bmp', '.txt', '.pdf', '.zip'],
     'use_id_for_slug' => true,

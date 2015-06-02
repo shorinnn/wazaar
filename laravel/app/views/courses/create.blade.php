@@ -11,9 +11,7 @@
 <div class="container create-course">
 <div class="row">
 	<div class="col-md-12">
-        <h1>{{ trans('courses/create.creating_a_course') }}
-        	<small>{{ trans('courses/create.the_world_is_yours') }}</small>
-		</h1>      
+        <h1>{{ trans('courses/create.creating_a_course') }}		</h1>      
             <!--<form method='post' class='ajax-form' id="create-form" data-callback='prepareCourseDetails'--> 
             <form method='post' class='ajax-form' id="create-form" data-callback='followRedirect' 
                   action='{{action('CoursesController@store')}}' data-parsley-validate>
@@ -23,6 +21,7 @@
                     <input type='hidden' name='_token' value='{{csrf_token()}}' />
                     <input type='text' name='name' id='name' required /><br />
                     <button type="button" onclick='unhide("#step2")' class='btn btn-primary unhide-btn'>{{ trans('courses/create.next_step') }}</button>
+                    
                 <!--</form>-->
             </div>
         </div>
@@ -41,20 +40,24 @@
                     </select><br />
                 </div>
                 <button class='btn btn-primary  unhide-btn' type="button" onclick='unhide("#step3")'>{{ trans('courses/create.next_step') }}</button>
+                <center>
+                     <a href='#' type="button" class="btn btn-primary" onclick="reverseUnhide()"><i class="fa fa-backward"></i></a>
+                 </center>
         </div>
         
             <!--<input type='hidden' name='_token' value='{{csrf_token()}}' />-->
             <!--<input type='hidden' name='_method' value='PUT' />-->
                    
             <div id='step3' class='# hidden animated-step'>
-                <h1>{{ trans('courses/create.set_objectives') }}
+                <h2>{{ trans('courses/create.set_objectives') }}<br />
                    <small>{{ trans('courses/create.this_helps_creating') }}</small>
-                </h1> 
+                </h2> 
                  <h2>{{ trans('courses/create.course_level') }}</h2>
                  <div class="course-level btn-group clearfix" data-toggle="buttons">
                      @foreach($difficulties as $key=>$difficulty)
                      	<label class="btn btn-primary">
-                         	<input type='radio' name='course_difficulty_id' id="option{{$key}}" autocomplete="off" value='{{$key}}' required /> {{$difficulty}}
+                         	<input type='radio' name='course_difficulty_id' id="option{{$key}}" autocomplete="off" value='{{$key}}' required /> 
+                                {{ trans( 'general.'.$difficulty ) }}
                         </label>
                      @endforeach
         		 </div>
@@ -69,6 +72,7 @@
         		 </div>
                  <div class="who-its-for">
                      <h2>{{ trans('courses/create.for_your_student_if') }}</h2>
+                     <p class="tip">{{ trans('courses/create.tip-if-student') }}</p>
                      <div>
                          <input type='text' name='who_is_this_for[]'  class="clonable" required /><br />
                          <span>1</span>
@@ -83,6 +87,10 @@
                      </div>
                      <a href="#" class="help-tip">{{ trans('general.help') }}</a>
                      <button type="submit" class='btn btn-primary clear start-creating'>{{ trans('courses/create.start_creating_curriculum') }}</button>
+                     <center>
+                         <a style='margin-bottom: 8px' href='#' type="button" class="btn btn-primary" onclick="reverseUnhide()"><i class="fa fa-backward"></i></a>
+                     </center>
+                     
                  </div>
             </div>
         </form>

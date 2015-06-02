@@ -3,6 +3,7 @@
 function cloudfrontUrl($url){
     if( !App::environment( 'production' ) ) return $url;
     $url = explode('.com/', $url);
+    $url = str_replace('wazaardev/', '', $url);
     return '//'.getenv('CLOUDFRONT_DOMAIN').'/'.$url[1];
 }
 
@@ -439,8 +440,9 @@ function cycle($first_value, $values = '*') {
  * @return mixed False if not valid json, associative array otherwise
  */
 function json2Array($json){
+    if($json==null) return array();
     $arr = json_decode($json, true);
-    if( json_last_error() != JSON_ERROR_NONE) return false;
+    if( json_last_error() != JSON_ERROR_NONE) return array();
     return $arr;
 }
 

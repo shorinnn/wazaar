@@ -38,6 +38,7 @@ Route::group( array('domain' =>  $domain), function(){
 
     // Confide routes
     Route::get('register', 'UsersController@create');
+    Route::get('register/second-tier-publisher', 'UsersController@secondTierPublisherCreate');
     Route::get('register/{teacher_account}', 'UsersController@create');
     Route::post('users', 'UsersController@store');
     Route::get('login', 'UsersController@login');
@@ -309,13 +310,7 @@ Route::group(['prefix' => 'api'], function(){
 Route::post('courses/{id}/video/set-description','CoursesController@setVideoDescription');
 
 Route::get('test', function(){
-   $course = Course::find(1);
-    $course->description_video_id = 10;
-    if (!$course->updateUniques()){
-        dd($course->errors());
-    }
-    echo '<pre>';
-    print_r($course->toArray());
-    echo '</pre>';
-    die;
+    $payment = App::make('Cocorium\Payment\PaymentInterface');
+    $payment->makeUsingCreditCard(100,[]);
+
 });
