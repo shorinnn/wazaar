@@ -20,5 +20,5 @@ return array(
     'start_creating_curriculum' => 'コースの作成を開始！',
     'course-requirements' => 'コースを受講する際に必要なものがあればそれは何ですか？',
     'tip-if-student' => '例えばヨガコースがであれば、ヨガマットなどが必要なものになります。',
-    'create' => 'Create'
+    'create' => 'Create New Course'
 );
