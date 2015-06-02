@@ -17,4 +17,5 @@ return array(
     'for_your_student_if' => 'This course is for your student if your student is...',
     'start_creating_curriculum' => 'Start Creating Curriculum',
     'course-requirements' => 'Course Requirements',
+    'create' => 'Create'
 );

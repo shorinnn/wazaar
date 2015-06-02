@@ -88,8 +88,9 @@
                      <a href="#" class="help-tip">{{ trans('general.help') }}</a>
                      <button type="submit" class='btn btn-primary clear start-creating'>{{ trans('courses/create.start_creating_curriculum') }}</button>
                      <center>
-                         <a href='#' type="button" class="btn btn-primary" onclick="reverseUnhide()"><i class="fa fa-backward"></i></a>
+                         <a style='margin-bottom: 8px' href='#' type="button" class="btn btn-primary" onclick="reverseUnhide()"><i class="fa fa-backward"></i></a>
                      </center>
+                     
                  </div>
             </div>
         </form>

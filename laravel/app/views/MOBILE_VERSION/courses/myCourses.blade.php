@@ -17,6 +17,7 @@
 	<div class="row">
     	<div class="col-md-12">
         	<div>
+                <a class='btn btn-primary pull-right' href='{{action('CoursesController@create')}}'> {{ trans('courses/create.create') }} </a>
             	<h1>{{ trans('courses/general.my-courses') }}</h1>
             </div>
         </div>
