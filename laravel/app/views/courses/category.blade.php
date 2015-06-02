@@ -35,7 +35,7 @@
             <div class="container cat-row-{{$category->color_scheme}}">
             	<div class="row">      
                     <div class="col-xs-12 col-sm-12 col-md-12">
-                         <!--{{ View::make('courses.course_box_featured')->with( compact('category') )->withCourse($featured) }}-->
+                         {{ View::make('courses.course_box_featured')->with( compact('category') )->withCourse($featured) }}
                     </div>
                 </div>
             </div>

@@ -156,6 +156,7 @@ header .top-menu .logged-out-header-search form div button{
 header .top-menu .logged-out-header-search 
 form div input{
 	float: left;
+	width: 274px;
 	height: 100%;
 	border: none;
 	padding: 0;
@@ -8570,9 +8571,6 @@ header .top-menu li{
 		width: 38px;
 	}
 	
-	header .top-menu .logged-out{
-		float: left;
-	}
 }
 
 @media (min-width:320px) and (max-width: 480px) {
@@ -8590,6 +8588,14 @@ header .top-menu li{
 
 	.instructor-mycourses .course-wrapper .bottom-bar .status-box{
 		left: 10%;
+	}
+
+	header .top-menu .logged-out-header-search form div input{
+		width: auto;
+	}
+	
+	header .top-menu .logged-out{
+		float: left;
 	}
 
 }
