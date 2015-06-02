@@ -27,6 +27,10 @@ Route::group(['prefix' => 'api', 'middleware' => 'client'], function (){
     Route::resource('users', 'ClientUsersController');
     Route::resource('templates', 'TemplateController');
 
+    Route::group(['prefix' => 'email-requests'], function (){
+        Route::post('create', 'EmailRequestsController@create');
+    });
+
     Route::get('/', function(){
        $result = Mail::send('welcome',[], function ($message){
            $message->to('albertmaranian@gmail.com');
