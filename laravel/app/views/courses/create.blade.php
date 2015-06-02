@@ -21,6 +21,7 @@
                     <input type='hidden' name='_token' value='{{csrf_token()}}' />
                     <input type='text' name='name' id='name' required /><br />
                     <button type="button" onclick='unhide("#step2")' class='btn btn-primary unhide-btn'>{{ trans('courses/create.next_step') }}</button>
+                    
                 <!--</form>-->
             </div>
         </div>
@@ -39,6 +40,9 @@
                     </select><br />
                 </div>
                 <button class='btn btn-primary  unhide-btn' type="button" onclick='unhide("#step3")'>{{ trans('courses/create.next_step') }}</button>
+                <center>
+                     <a href='#' type="button" class="btn btn-primary" onclick="reverseUnhide()"><i class="fa fa-backward"></i></a>
+                 </center>
         </div>
         
             <!--<input type='hidden' name='_token' value='{{csrf_token()}}' />-->
@@ -83,6 +87,9 @@
                      </div>
                      <a href="#" class="help-tip">{{ trans('general.help') }}</a>
                      <button type="submit" class='btn btn-primary clear start-creating'>{{ trans('courses/create.start_creating_curriculum') }}</button>
+                     <center>
+                         <a href='#' type="button" class="btn btn-primary" onclick="reverseUnhide()"><i class="fa fa-backward"></i></a>
+                     </center>
                  </div>
             </div>
         </form>
