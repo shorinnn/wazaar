@@ -169,6 +169,8 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::post('courses/mark-resolved', 'CoursesController@markResolved');
     Route::post('courses/reply', 'CoursesController@reply');
 
+    Route::resource('custompercentages', 'CustomPercentagesController');
+    Route::get('courses/{slug}/custompercentage/', 'CoursesController@customPercentage');
     Route::resource('courses', 'CoursesController');
     // Modules routes
     Route::resource('courses.modules', 'ModulesController');

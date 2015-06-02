@@ -412,6 +412,8 @@
                                     <div class="clear clearfix">
                                     	<div class="percentage-slider">
                                             <label class="label-name">{{ trans('courses/general.affiliate_percentage') }}  </label>   
+                                            <a href='{{action('CoursesController@customPercentage', $course->slug ) }}'> 
+                                                [ Manage Custom Affiliate Percentage ] </a>
                                             <div>                                   
                                                 <input type="text" class='span2 clear right' name='affiliate_percentage' id='affiliate_percentage' 
                                                     value="{{ $course->affiliate_percentage }}" data-slider-min="0" data-slider-max="68" 
@@ -424,6 +426,9 @@
                                                    max="68" min="0" value='{{ intval( $course->affiliate_percentage ) }}' data-slider='#affiliate_percentage' />%
                                              </div>
                                          </div>
+                                        
+                                        
+                                        
                                         <div class="clear clearfix margin-bottom-20">
                                         	<label class="label-name">{{ trans('courses/general.discount') }} </label>
                                                 {{ Form::text('sale', money_val($course->sale)) }}
@@ -444,6 +449,7 @@
                                     </div>
                                 </div>
                                     {{ Form::close() }}
+                                    
                             </div>
                        </div>	 
                    </div>        
