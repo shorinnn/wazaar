@@ -41,6 +41,6 @@ $(function(){
         cocoriumTracker.add(e);
     });
     $(window).bind('beforeunload', function() {
-        cocoriumTracker.upload();
+//        cocoriumTracker.upload(); todo: uncomment this
     });
 });
