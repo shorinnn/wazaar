@@ -9,15 +9,15 @@ class PurchaseHelper{
             return $amount * (Config::get('custom.earnings.instructor_percentage') / 100);
         }
         else{// affiliate fee, instructor gets 70% - affiliate cut - second tier affiliate cut
-            $affiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
+            $prodAffiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
             
-            if($affiliate->ltcAffiliate == null) {
-                return $amount * ( (Config::get('custom.earnings.instructor_percentage') / 100) - ($course->affiliate_percentage / 100) );
+            if($prodAffiliate->ltcAffiliate == null) {
+                return $amount *  (Config::get('custom.earnings.instructor_percentage') / 100) - self::affiliateEarnings($product, $processor_fee, $affiliate);
             }
             else{
-                return $amount * ( (Config::get('custom.earnings.instructor_percentage') / 100) 
-                    - ($course->affiliate_percentage / 100)
-                    - Config::get('custom.earnings.second_tier_percentage') / 100 );
+                return $amount * (Config::get('custom.earnings.instructor_percentage') / 100) 
+                    - self::affiliateEarnings($product, $processor_fee, $affiliate)
+                    - self::secondTierAffiliateEarnings($product, $processor_fee, $affiliate);
             }
         }
     }
@@ -30,18 +30,25 @@ class PurchaseHelper{
             return 0;
         }
         else{// affiliate get his percentage
+            // custom percentage
+            $affiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
+            $customPercentage = $affiliate->customPercentages()->where('course_id', $course->id)->first();
+            if( $customPercentage != null ){
+                return $amount * ($customPercentage->percentage / 100);
+            }
+            // regular percentage
             return $amount * ($course->affiliate_percentage / 100);
         }
     }
     
     public static function secondTierAffiliateEarnings($product, $processor_fee, $affiliate){
+        $affiliate_id = $affiliate;
         $course = (get_class($product)=='Course') ? $product : $product->module->course;
         $amount = $product->cost() - $processor_fee;
         $affiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
         if($course->affiliate_percentage == 0 || $affiliate == null || $affiliate->ltcAffiliate==null){
             return 0;
         }
-
         return $amount * ( Config::get('custom.earnings.second_tier_percentage') / 100);
     }
     

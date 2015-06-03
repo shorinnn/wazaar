@@ -296,6 +296,119 @@ class OrderCest{
             'product_id' => $course->id, 'status' => 'complete', 'gc_fee' => 5] );
     }
     
+    public function coursePurchaseCustomAffiliateShareForOnlyOne(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        Purchase::where('student_id', $student->id)->delete();
+        $course = Course::first();
+        $course->price = 105;
+        $course->affiliate_percentage = 10;
+        $course->updateUniques();
+        
+        $custom = new CourseAffiliateCustomPercentage();
+        $custom->course_id = $course->id;
+        $custom->affiliate_id = 5;
+        $custom->percentage = 20;
+        $custom->save();
+        
+        $course->instructor->instructor_agency_id = null;
+        $course->instructor->updateUniques();
+        $data = [];
+        $data['successData']['REF'] = '123';
+        $data['successData']['processor_fee'] = '5';
+        $data['successData']['tax'] = '10';
+        
+        $data['successData']['giftID'] = null;
+        $data['successData']['ORDERID'] = 1;
+        $data['successData']['balance_used'] = '10';
+        $data['successData']['balance_transaction_id'] = '0';
+        $I->assertNotEquals( false, $student->purchase($course, 5, $data) );
+        $purchase = Purchase::orderBy('id','desc')->first();
+        $affiliate = ProductAffiliate::find(5);
+        
+        $I->assertNotEquals(0, $affiliate->ltc_affiliate_id);
+        $I->assertEquals( $purchase->instructor_earnings, 48 );
+        $I->assertEquals( $purchase->affiliate_earnings, 20 );
+        
+        $sorin = Student::where('username','sorin')->first();
+        Purchase::where('student_id', $sorin->id)->delete();
+        
+        $data = [];
+        $data['successData']['REF'] = '123';
+        $data['successData']['processor_fee'] = '5';
+        $data['successData']['tax'] = '10';
+        
+        $data['successData']['giftID'] = null;
+        $data['successData']['ORDERID'] = 2;
+        $data['successData']['balance_used'] = '10';
+        $data['successData']['balance_transaction_id'] = '0';
+        $I->assertNotEquals( false, $sorin->purchase($course, 2, $data) );
+        $purchase = Purchase::orderBy('id','desc')->first();
+        $affiliate = ProductAffiliate::find(2);
+        
+        $I->assertEquals(0, $affiliate->ltc_affiliate_id);
+        $I->assertEquals( $purchase->instructor_earnings, 60 );
+        $I->assertEquals( $purchase->affiliate_earnings, 10 );        
+    }
+    
+    public function coursePurchaseCustomAffiliateShare(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        Purchase::where('student_id', $student->id)->delete();
+        $course = Course::first();
+        $course->price = 105;
+        $course->affiliate_percentage = 10;
+        $course->updateUniques();
+        
+        $custom = new CourseAffiliateCustomPercentage();
+        $custom->course_id = $course->id;
+        $custom->affiliate_id = 5;
+        $custom->percentage = 20;
+        $custom->save();
+        
+        $course->instructor->instructor_agency_id = null;
+        $course->instructor->updateUniques();
+        $data = [];
+        $data['successData']['REF'] = '123';
+        $data['successData']['processor_fee'] = '5';
+        $data['successData']['tax'] = '10';
+        
+        $data['successData']['giftID'] = null;
+        $data['successData']['ORDERID'] = 1;
+        $data['successData']['balance_used'] = '10';
+        $data['successData']['balance_transaction_id'] = '0';
+        $I->assertNotEquals( false, $student->purchase($course, 5, $data) );
+        $purchase = Purchase::orderBy('id','desc')->first();
+        $affiliate = ProductAffiliate::find(5);
+        
+        $I->assertNotEquals(0, $affiliate->ltc_affiliate_id);
+        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->original_price, 105 );
+        $I->assertEquals( $purchase->discount_value, 0 );
+        $I->assertEquals( $purchase->discount, null );
+        $I->assertEquals( $purchase->processor_fee, 5 );
+        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->balance_used, 10 );
+        $I->assertEquals( $purchase->balance_transaction_id, 0 );
+        $I->assertEquals( $purchase->instructor_earnings, 48 );
+        $I->assertEquals( $purchase->affiliate_earnings, 20 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (5 / 100) );
+        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (5 / 100) ) - 5 );
+        
+        $st = ($purchase->purchase_price - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );        
+        $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
+        
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 48,
+            'product_id' => $course->id, 'status' => 'complete'] );
+        $I->seeRecord('transactions', ['user_id' => $affiliate->ltc_affiliate_id, 'transaction_type' => 'affiliate_credit', 'amount' => 2,
+            'product_id' => $course->id, 'status' => 'complete', 'is_second_tier' => 'yes', 'is_ltc' => 'no'] );
+        $I->seeRecord('transactions', ['user_id' => 5, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->affiliate_earnings,
+            'product_id' => $course->id, 'status' => 'complete'] );
+        $I->seeRecord('transactions', ['user_id' => $purchase->ltc_affiliate_id, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->ltc_affiliate_earnings,
+            'product_id' => $course->id, 'status' => 'complete', 'is_ltc' => 'yes'] );
+        $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
+            'product_id' => $course->id, 'status' => 'complete', 'gc_fee' => 5] );
+    }
+    
     public function coursePurchaseAffiliateShareNoSecondTier(UnitTester $I){
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();
@@ -340,6 +453,66 @@ class OrderCest{
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 60,
+            'product_id' => $course->id, 'status' => 'complete'] );
+        $I->seeRecord('transactions', ['user_id' => 5, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->affiliate_earnings,
+            'product_id' => $course->id, 'status' => 'complete'] );
+        $I->seeRecord('transactions', ['user_id' => $purchase->ltc_affiliate_id, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->ltc_affiliate_earnings,
+            'product_id' => $course->id, 'status' => 'complete'] );
+        $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
+            'product_id' => $course->id, 'status' => 'complete', 'gc_fee' => 5] );
+    }
+    
+    public function coursePurchaseAffiliateCustomShareNoSecondTier(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        Purchase::where('student_id', $student->id)->delete();
+        $course = Course::first();
+        $course->price = 105;
+        $course->affiliate_percentage = 10;
+        $course->updateUniques();
+        
+        $course->instructor->instructor_agency_id = null;
+        $course->instructor->updateUniques();
+        
+        $custom = new CourseAffiliateCustomPercentage();
+        $custom->course_id = $course->id;
+        $custom->affiliate_id = 5;
+        $custom->percentage = 20;
+        $custom->save();
+        
+        $data = [];
+        $data['successData']['REF'] = '123';
+        $data['successData']['processor_fee'] = '5';
+        $data['successData']['tax'] = '10';
+        
+        $data['successData']['giftID'] = null;
+        $data['successData']['ORDERID'] = 1;
+        $data['successData']['balance_used'] = '10';
+        $data['successData']['balance_transaction_id'] = '0';
+        $affiliate = ProductAffiliate::find(5);
+        $affiliate->ltc_affiliate_id = 0;
+        $I->assertTrue( $affiliate->updateUniques() );
+        
+        $I->assertNotEquals( false, $student->purchase($course, 5, $data) );
+        $purchase = Purchase::orderBy('id','desc')->first();
+        
+        $I->assertEquals(0, $affiliate->ltc_affiliate_id);
+        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->original_price, 105 );
+        $I->assertEquals( $purchase->discount_value, 0 );
+        $I->assertEquals( $purchase->discount, null );
+        $I->assertEquals( $purchase->processor_fee, 5 );
+        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->balance_used, 10 );
+        $I->assertEquals( $purchase->balance_transaction_id, 0 );
+        $I->assertEquals( $purchase->instructor_earnings, 50 );
+        $I->assertEquals( $purchase->affiliate_earnings, 20 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (5 / 100) );
+        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (5 / 100) ) - 5 );
+             
+        $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
+        
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 50,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => 5, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->affiliate_earnings,
             'product_id' => $course->id, 'status' => 'complete'] );
@@ -540,6 +713,62 @@ class OrderCest{
             'product_id' => $lesson->id, 'status' => 'complete', 'gc_fee' => 5, 'reference' => '123'] );
     }
     
+    public function lessonPurchaseAffiliateCustomShareNoSecondTier(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        Purchase::where('student_id', $student->id)->delete();
+        $lesson = Lesson::first();
+        $lesson->price = 105;
+        $lesson->updateUniques();
+        $lesson->module->course->affiliate_percentage = 10;
+        $lesson->module->course->updateUniques();
+        
+        $lesson->module->course->instructor->instructor_agency_id = null;
+        $lesson->module->course->instructor->updateUniques();
+        $affiliate = ProductAffiliate::find(5);
+        $affiliate->ltc_affiliate_id = 0;
+        $I->assertTrue( $affiliate->updateUniques() );
+        
+        $custom = new CourseAffiliateCustomPercentage();
+        $custom->course_id = $lesson->module->course->id;
+        $custom->affiliate_id = 5;
+        $custom->percentage = 20;
+        $custom->save();
+        
+        $data = [];
+        $data['successData']['REF'] = '123';
+        $data['successData']['processor_fee'] = '5';
+        $data['successData']['tax'] = '10';
+        $data['successData']['giftID'] = null;
+        $data['successData']['ORDERID'] = 1;
+        $data['successData']['balance_used'] = '10';
+        $data['successData']['balance_transaction_id'] = '0';
+        $I->assertNotEquals( false, $student->purchase($lesson, 5, $data) );
+        $purchase = Purchase::orderBy('id','desc')->first();
+        
+        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->original_price, 105 );
+        $I->assertEquals( $purchase->discount_value, 0 );
+        $I->assertEquals( $purchase->discount, null );
+        $I->assertEquals( $purchase->processor_fee, 5 );
+        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->balance_used, 10 );
+        $I->assertEquals( $purchase->balance_transaction_id, 0 );
+        $I->assertEquals( $purchase->instructor_earnings, 50 );
+        $I->assertEquals( $purchase->affiliate_earnings, 20 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (5 / 100) );
+        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (5 / 100) ) - 5 );
+        
+        $I->seeRecord('transactions', ['user_id' => $lesson->module->course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 50,
+            'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123'] );
+        $I->seeRecord('transactions', ['user_id' => 5, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->affiliate_earnings,
+            'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123'] );
+        $I->seeRecord('transactions', ['user_id' => $purchase->ltc_affiliate_id, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->ltc_affiliate_earnings,
+            'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123', 'is_ltc' => 'yes'] );
+        $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
+            'product_id' => $lesson->id, 'status' => 'complete', 'gc_fee' => 5, 'reference' => '123'] );
+    }
+    
     public function lessonPurchaseAffiliateShareSecondTier(UnitTester $I){
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();
@@ -573,14 +802,72 @@ class OrderCest{
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
+        $I->assertEquals( $purchase->second_tier_affiliate_earnings, 2 );
         $I->assertEquals( $purchase->instructor_earnings, 58 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
-        $I->assertEquals( $purchase->second_tier_affiliate_earnings, 2 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (5 / 100) );
         $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
         $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (5 / 100) ) - 5 );
         $st = ProductAffiliate::find(5)->ltc_affiliate_id;
         $I->seeRecord('transactions', ['user_id' => $lesson->module->course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
+            'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123'] );
+        $I->seeRecord('transactions', ['user_id' => $st, 'transaction_type' => 'affiliate_credit', 'amount' => 2,
+            'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123', 'is_second_tier' => 'yes'] );
+        $I->seeRecord('transactions', ['user_id' => 5, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->affiliate_earnings,
+            'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123'] );
+        $I->seeRecord('transactions', ['user_id' => $purchase->ltc_affiliate_id, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->ltc_affiliate_earnings,
+            'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123', 'is_ltc' => 'yes'] );
+        $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
+            'product_id' => $lesson->id, 'status' => 'complete', 'gc_fee' => 5, 'reference' => '123'] );
+    }
+    
+    public function lessonPurchaseAffiliateCustomShareSecondTier(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        Purchase::where('student_id', $student->id)->delete();
+        $lesson = Lesson::first();
+        $lesson->price = 105;
+        $lesson->updateUniques();
+        $lesson->module->course->affiliate_percentage = 10;
+        $lesson->module->course->updateUniques();
+        
+        $lesson->module->course->instructor->instructor_agency_id = null;
+        $lesson->module->course->instructor->updateUniques();
+        
+        $custom = new CourseAffiliateCustomPercentage();
+        $custom->course_id = $lesson->module->course->id;
+        $custom->affiliate_id = 5;
+        $custom->percentage = 20;
+        $custom->save();
+        
+        $data = [];
+        $data['successData']['REF'] = '123';
+        $data['successData']['processor_fee'] = '5';
+        $data['successData']['tax'] = '10';
+        $data['successData']['giftID'] = null;
+        $data['successData']['ORDERID'] = 1;
+        $data['successData']['balance_used'] = '10';
+        $data['successData']['balance_transaction_id'] = '0';
+
+        
+        $I->assertNotEquals( false, $student->purchase($lesson, 5, $data) );
+        $purchase = Purchase::orderBy('id','desc')->first();
+        
+        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->original_price, 105 );
+        $I->assertEquals( $purchase->discount_value, 0 );
+        $I->assertEquals( $purchase->discount, null );
+        $I->assertEquals( $purchase->processor_fee, 5 );
+        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->balance_used, 10 );
+        $I->assertEquals( $purchase->balance_transaction_id, 0 );
+        $I->assertEquals( $purchase->second_tier_affiliate_earnings, 2 );
+        $I->assertEquals( $purchase->instructor_earnings, 48 );
+        $I->assertEquals( $purchase->affiliate_earnings, 20 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (5 / 100) );
+        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (5 / 100) ) - 5 );
+        $st = ProductAffiliate::find(5)->ltc_affiliate_id;
+        $I->seeRecord('transactions', ['user_id' => $lesson->module->course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 48,
             'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123'] );
         $I->seeRecord('transactions', ['user_id' => $st, 'transaction_type' => 'affiliate_credit', 'amount' => 2,
             'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123', 'is_second_tier' => 'yes'] );
