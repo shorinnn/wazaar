@@ -46,5 +46,6 @@ Route::group(['prefix' => 'api', 'middleware' => 'client'], function (){
 });
 
 Route::get('test', function(){
-   echo Crypt::decrypt('eyJpdiI6ImVYYlwvbzNJbTRablBJWHBHdWJUaVp3PT0iLCJ2YWx1ZSI6IlFlVEVMV3VoYks3b09lMGpcL2tLYUxBck5BTkFkNVdCVzFSTUJrbEpiMkNFPSIsIm1hYyI6ImRiZDZiNGM4ODY4MTcyNzg1OTRmNjJiYmFkNjUxZjc5NTc2OTM5YjA0MWU1MTljYjAyNjY4YmU2YzdhZTlkMzUifQ==');
+    $eReq = \Delivered\EmailRequest::find(3);
+    event(new \Delivered\Events\EmailRequestWasMade($eReq));
 });

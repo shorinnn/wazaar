@@ -4,6 +4,7 @@ use Delivered\Helpers\ResponseHelper;
 use Delivered\Http\Requests;
 use Delivered\Http\Controllers\Controller;
 
+use Delivered\Repositories\ClientUser\ClientUserInterface;
 use Delivered\Repositories\EmailRequest\EmailRequestInterface;
 use Delivered\Repositories\Template\TemplateInterface;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class EmailRequestsController extends Controller
         $this->response     = $responseHelper;
     }
 
-    public function create(Request $request, TemplateInterface $templateInterface, Validation $validation)
+    public function create(Request $request, TemplateInterface $templateInterface, Validation $validation, ClientUserInterface $clientUserInterface)
     {
         if (!$request->has('requestType')) {
             return $this->response->error(['requestType must be provided']);
@@ -70,12 +71,48 @@ class EmailRequestsController extends Controller
             }
         }
 
+        //Validate user the request is intended for
+        if (!$request->has('userId')) {
+            if (!$request->has('user')) {
+                return $this->response->error(['Request must have a user']);
+            }
+
+            $newUserArr = json_decode($request->get('user'), true);
+            
+            if (is_array($newUserArr)) {
+                $userValidator = $validation->make($newUserArr, $clientUserInterface->validationRules(), $clientUserInterface->validationMessages());
+
+                if ($userValidator->fails()) {
+                    return $this->response->error($userValidator->getMessageBag()->all());
+                }
+
+                $user = $clientUserInterface->create([
+                    'clientId'  => $clientId,
+                    'firstName' => $newUserArr['firstName'],
+                    'lastName'  => $newUserArr['lastName'],
+                    'email'     => $newUserArr['email']
+                ]);
+
+            }
+        } else {
+            $user = $clientUserInterface->find($request->get('userId'));
+
+            if (!$user) {
+                return $this->response->error(['User provided does not exist']);
+            }
+
+            if ($user->clientId !== $clientId) {
+                return $this->response->error(['Permission Error: Invalid User ID']);
+            }
+        }
+
+
         $emailRequest = [
-            'clientId'       => $clientId,
-            'externalUserId' => $request->get('externalUserId'),
-            'requestType'    => $request->get('requestType'),
-            'templateId'     => $template->id,
-            'variables'      => $request->get('variables')
+            'clientId'    => $clientId,
+            'userId'      => $user->id,
+            'requestType' => $request->get('requestType'),
+            'templateId'  => $template->id,
+            'variables'   => $request->get('variables')
         ];
 
         $request = $this->emailRequest->create($emailRequest);
