@@ -46,7 +46,7 @@ class PurchaseHelper{
         $course = (get_class($product)=='Course') ? $product : $product->module->course;
         $amount = $product->cost() - $processor_fee;
         $affiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
-        if($course->affiliate_percentage == 0 || $affiliate == null || $affiliate->ltcAffiliate==null){
+        if($course->affiliate_percentage == 0 || $affiliate == null || $affiliate->secondTierAffiliate==null){
             return 0;
         }
         return $amount * ( Config::get('custom.earnings.second_tier_percentage') / 100);

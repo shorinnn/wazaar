@@ -10,6 +10,7 @@ class ProductAffiliate extends User{
         'sales' => array(self::HAS_MANY, 'Purchase'),
         'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
         'ltcAffiliate' => [ self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id' ],
+        'secondTierAffiliate' => [ self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'second_tier_affiliate_id' ],
         'customPercentages' => array(self::HAS_MANY, 'CourseAffiliateCustomPercentage', 'foreignKey' => 'affiliate_id'),
     );
     

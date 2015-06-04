@@ -33,7 +33,12 @@ class OrderCest{
         $secondTierAffiliate->updateUniques();
         $aff = User::find(5);
         $aff->ltc_affiliate_id = 2;
+        $aff->has_ltc = 'yes';
         $aff->updateUniques();
+        
+        $student = Student::where('username','student')->first();
+        $student->created_at = date('Y-m-d H:i:s');
+        $student->updateUniques();
     }
     
     
@@ -429,13 +434,13 @@ class OrderCest{
         $data['successData']['balance_used'] = '10';
         $data['successData']['balance_transaction_id'] = '0';
         $affiliate = ProductAffiliate::find(5);
-        $affiliate->ltc_affiliate_id = 0;
+        $affiliate->second_tier_affiliate_id = 0;
         $I->assertTrue( $affiliate->updateUniques() );
         
         $I->assertNotEquals( false, $student->purchase($course, 5, $data) );
         $purchase = Purchase::orderBy('id','desc')->first();
         
-        $I->assertEquals(0, $affiliate->ltc_affiliate_id);
+        $I->assertEquals(0, $affiliate->second_tier_affiliate_id);
         $I->assertEquals( $purchase->purchase_price, 105 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
@@ -489,13 +494,13 @@ class OrderCest{
         $data['successData']['balance_used'] = '10';
         $data['successData']['balance_transaction_id'] = '0';
         $affiliate = ProductAffiliate::find(5);
-        $affiliate->ltc_affiliate_id = 0;
+        $affiliate->second_tier_affiliate_id = 0;
         $I->assertTrue( $affiliate->updateUniques() );
         
         $I->assertNotEquals( false, $student->purchase($course, 5, $data) );
         $purchase = Purchase::orderBy('id','desc')->first();
         
-        $I->assertEquals(0, $affiliate->ltc_affiliate_id);
+        $I->assertEquals(0, $affiliate->second_tier_affiliate_id);
         $I->assertEquals( $purchase->purchase_price, 105 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
