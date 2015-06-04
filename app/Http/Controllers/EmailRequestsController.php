@@ -1,5 +1,6 @@
 <?php namespace Delivered\Http\Controllers;
 
+use Delivered\Events\EmailRequestWasMade;
 use Delivered\Helpers\ResponseHelper;
 use Delivered\Http\Requests;
 use Delivered\Http\Controllers\Controller;
@@ -78,7 +79,7 @@ class EmailRequestsController extends Controller
             }
 
             $newUserArr = json_decode($request->get('user'), true);
-            
+
             if (is_array($newUserArr)) {
                 $userValidator = $validation->make($newUserArr, $clientUserInterface->validationRules(), $clientUserInterface->validationMessages());
 
@@ -118,6 +119,8 @@ class EmailRequestsController extends Controller
         $request = $this->emailRequest->create($emailRequest);
 
         $emailRequest['id'] = $request->id;
+
+        event(new EmailRequestWasMade($request));
 
         return $this->response->success($emailRequest);
     }

@@ -14,6 +14,9 @@ class EventServiceProvider extends ServiceProvider {
 		'Delivered\Events\EmailRequestWasMade' => [
 			'Delivered\Handlers\Events\ProcessEmailRequest',
 		],
+        'Delivered\Events\EmailWasDispatched' => [
+            'Delivered\Handlers\Events\CreateEmailHistory'
+        ]
 	];
 
 	/**

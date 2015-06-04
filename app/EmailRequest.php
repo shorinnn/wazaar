@@ -10,8 +10,13 @@ class EmailRequest extends Model {
     const TYPE_IMMEDIATE = 'immediate';
     const TYPE_SEQUENCE = 'sequence';
 
-    public function getVariablesAttribute()
+    public function getBodyVariablesAttribute()
     {
-        return json_decode($this->getAttribute('variables'), true);
+        return json_decode($this->attributes['bodyVariables'],true);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('Delivered\ClientUser','userId');
     }
 }

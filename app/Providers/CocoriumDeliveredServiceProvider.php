@@ -25,6 +25,7 @@ class CocoriumDeliveredServiceProvider extends ServiceProvider {
         $this->app->bind('Delivered\Repositories\Template\TemplateInterface','Delivered\Repositories\Template\TemplateEloquentRepository');
         $this->app->bind('Delivered\Repositories\EmailRequest\EmailRequestInterface','Delivered\Repositories\EmailRequest\EmailRequestEloquentRepository');
         $this->app->bind('Delivered\Repositories\ClientUser\ClientUserInterface','Delivered\Repositories\ClientUser\ClientUserEloquentRepository');
+        $this->app->bind('Delivered\Repositories\EmailHistory\EmailHistoryInterface','Delivered\Repositories\EmailHistory\EmailHistoryEloquentRepository');
 	}
 
 }

@@ -3,6 +3,7 @@
 use Delivered\EmailRequest;
 use Delivered\Events\EmailRequestWasMade;
 
+use Delivered\Helpers\EmailDispatcher;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 
@@ -26,9 +27,11 @@ class ProcessEmailRequest {
 	 */
 	public function handle(EmailRequestWasMade $event)
 	{
+        $emailDispatcher = new EmailDispatcher();
+
         if ($event->emailRequest){
             if ($event->emailRequest->requestType == EmailRequest::TYPE_IMMEDIATE){
-
+                $emailDispatcher->sendFromRequest($event->emailRequest);
             }
         }
 	}

@@ -14,7 +14,7 @@ class AddVariablesToEmailRequestsTable extends Migration {
 	{
 		Schema::table('email_requests', function(Blueprint $table)
 		{
-			$table->text('variables')->after('templateId')->nullable();
+			$table->text('bodyVariables')->after('templateId')->nullable();
 		});
 	}
 
@@ -27,7 +27,7 @@ class AddVariablesToEmailRequestsTable extends Migration {
 	{
 		Schema::table('email_requests', function(Blueprint $table)
 		{
-			$table->dropColumn('variables');
+			$table->dropColumn('bodyVariables');
 		});
 	}
 

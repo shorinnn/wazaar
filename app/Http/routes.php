@@ -20,8 +20,6 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-
-
 Route::group(['prefix' => 'api', 'middleware' => 'client'], function (){
 
     Route::resource('users', 'ClientUsersController');
@@ -46,6 +44,6 @@ Route::group(['prefix' => 'api', 'middleware' => 'client'], function (){
 });
 
 Route::get('test', function(){
-    $eReq = \Delivered\EmailRequest::find(3);
+    $eReq = \Delivered\EmailRequest::find(6);
     event(new \Delivered\Events\EmailRequestWasMade($eReq));
 });
