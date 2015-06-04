@@ -39,6 +39,7 @@ class Order2Cest{
     public function simpleCoursePurchase(UnitTester $I){
         $student = Student::where('username','student')->first();
         $student->ltc_affiliate_id = 5;
+        $student->created_at = date('Y-m-d H:i:s');
         $I->assertTrue( $student->updateUniques() );
         $student = Student::where('username','student')->first();
         
@@ -88,6 +89,8 @@ class Order2Cest{
         $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
         $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (5 / 100) ) - 5 );
         
+        $I->assertEquals( 5, $purchase->ltc_affiliate_id );
+        
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => $purchase->ltc_affiliate_id, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->ltc_affiliate_earnings,
@@ -95,7 +98,6 @@ class Order2Cest{
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'complete', 'gc_fee' => 5] );
         
-        $I->assertEquals( 5, $purchase->ltc_affiliate_id );
         
         $I->assertEquals( 70, $course->instructor->instructor_balance );
         $wazaar = User::find(2);
@@ -107,6 +109,7 @@ class Order2Cest{
     public function simpleCoursePurchaseAffiliateHasNoLTC(UnitTester $I){
         $student = Student::where('username','student')->first();
         $student->ltc_affiliate_id = 5;
+        $student->created_at = date('Y-m-d H:i:s');
         $I->assertTrue( $student->updateUniques() );
         $student = Student::where('username','student')->first();
         
@@ -172,6 +175,7 @@ class Order2Cest{
     public function simpleCourseNoLTCAffiliate(UnitTester $I){
         $student = Student::where('username','student')->first();
         $student->ltc_affiliate_id = null;
+        $student->created_at = date('Y-m-d H:i:s');
         $I->assertTrue( $student->updateUniques() );
         $student = Student::where('username','student')->first();
         

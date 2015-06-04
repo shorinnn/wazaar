@@ -126,6 +126,8 @@ class UserTableSeeder extends Seeder {
 
         $user = new User;
         $user->affiliate_id = '5';
+        $user->second_tier_affiliate_id = 2;
+        $user->ltc_affiliate_id = 2;
         $user->has_ltc = 'yes';
         $user->username = 'affiliate';
         $user->email = 'affiliate@mailinator.com';

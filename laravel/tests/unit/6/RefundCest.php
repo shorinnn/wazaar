@@ -24,6 +24,8 @@ class RefundCest{
         DB::table('purchases')->where('student_id', $user->id)->delete();
         DB::table('purchase_refunds')->where('student_id', $user->id)->delete();
         DB::table('transactions')->where('user_id', $user->id)->delete();
+        
+        
     }
     
     public function purchaseThenRefundWithBalance(UnitTester $I){
@@ -31,6 +33,7 @@ class RefundCest{
         $student = Student::where('username','sorin')->first();
         $student->student_balance = 10;
         $student->ltc_affiliate_id = 2;
+        $student->created_at = date('Y-m-d');
         $student->updateUniques();
         $I->assertEquals(10, $student->student_balance);
                 
@@ -60,6 +63,7 @@ class RefundCest{
         $affiliate = ProductAffiliate::find(5);
         $affiliate->affiliate_balance = 0;
         $affiliate->ltc_affiliate_id = 2;
+        $affiliate->second_tier_affiliate_id = 2;
         $affiliate->updateUniques();
         $ltc = ProductAffiliate::find(2);
         $ltc->affiliate_balance = 0;
@@ -74,7 +78,7 @@ class RefundCest{
         $I->assertNotEquals( false, $student->purchase($course, 5, $data) );
         $purchase = Purchase::orderBy('id','desc')->first();
         
-        $I->assertNotEquals(0, $affiliate->ltc_affiliate_id);
+        $I->assertNotEquals(0, $affiliate->second_tier_affiliate_id);
         $I->assertEquals( $purchase->purchase_price, 105 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
@@ -158,6 +162,7 @@ class RefundCest{
         $student = Student::where('username','sorin')->first();
         $student->student_balance = 10;
         $student->ltc_affiliate_id = 2;
+        $student->created_at = date('Y-m-d H:i:s');
         $student->updateUniques();
         $I->assertEquals(10, $student->student_balance);
                 
@@ -425,6 +430,7 @@ class RefundCest{
         $student = Student::where('username','sorin')->first();
         $student->student_balance = 0;
         $student->ltc_affiliate_id = 2;
+        $student->created_at = date('Y-m-d H:i:s');
         $student->updateUniques();
         $I->assertEquals(0, $student->student_balance);
                 
@@ -452,6 +458,7 @@ class RefundCest{
         $affiliate = ProductAffiliate::find(5);
         $affiliate->affiliate_balance = 0;
         $affiliate->ltc_affiliate_id = 2;
+        $affiliate->second_tier_affiliate_id = 2;
         $affiliate->updateUniques();
         $ltc = ProductAffiliate::find(2);
         $ltc->affiliate_balance = 0;
@@ -539,6 +546,7 @@ class RefundCest{
         $student = Student::where('username','sorin')->first();
         $student->student_balance = 10;
         $student->ltc_affiliate_id = 2;
+        $student->created_at = date('Y-m-d H:i:s');
         $student->updateUniques();
         $I->assertEquals(10, $student->student_balance);
                 
@@ -677,6 +685,7 @@ class RefundCest{
         $student = Student::where('username','sorin')->first();
         $student->student_balance = 10;
         $student->ltc_affiliate_id = 2;
+        $student->created_at = date('Y-m-d H:i:s');
         $student->updateUniques();
         $I->assertEquals(10, $student->student_balance);
                 
