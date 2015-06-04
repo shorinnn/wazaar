@@ -317,9 +317,10 @@ class Student extends User{
 
     public function setLTCAffiliate(){
         $register = new DateTime($this->created_at);
-        $now = new DateTIme();
+        $now = new DateTime();
         if($now->diff($register)->days >=30){
             $this->ltc_affiliate_id = 2;
+//            $this->ltc_affiliate_id = null;
             $this->save();
         }
     }
