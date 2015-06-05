@@ -15,7 +15,7 @@
         </div>
     </div>
     <h3 class="no-margin"><!--{{trans('video.uploadOr')}} -->
-    <form action="//s3-ap-southeast-1.amazonaws.com/videosinput" enctype="multipart/form-data" method="POST" class="fileupload">
+    <form action="//s3-ap-southeast-1.amazonaws.com/videosinput-tokyo" enctype="multipart/form-data" method="POST" class="fileupload">
         <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
         <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
         <input type="hidden" name="acl" value="private">
@@ -94,14 +94,14 @@
 			$('#video-link-' + $lessonId).removeClass('active').addClass('done');
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').css('display', 'block');
 			
-			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<P></P><a href='#' class='fa fa-eye' onclick='videoModal.show(this, event)' data-filename='"+ $video->original_filename +"' data-video-url='"+ $video->formats[0]->video_url +"' data-toggle='modal'></a> <img src='{{$video->formats[0]->thumbnail}}'/>");
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<P></P><a href='#' class='fa fa-eye' onclick='videoModal.show(this, event)' data-filename='{{$video->original_filename}}' data-video-url='{{$video->formats[0]->video_url}}' data-toggle='modal'></a> <img src='{{$video->formats[0]->thumbnail}}'/>");
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text("{{$video->formats[0]->duration}}");
 		@endif
 		
 		@if(@$video->transcode_status == Video::STATUS_COMPLETE)
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').css('display', 'block');
 			
-			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<P></P><a href='#' class='fa fa-eye' onclick='videoModal.show(this, event)' data-filename='"+ $video->original_filename +"' data-video-url='"+ $video->formats[0]->video_url +"' data-toggle='modal'></a> <img src='{{$video->formats[0]->thumbnail}}'/>");
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<P></P><a href='#' class='fa fa-eye' onclick='videoModal.show(this, event)' data-filename='{{$video->original_filename}}' data-video-url='{{$video->formats[0]->video_url}}' data-toggle='modal'></a> <img src='{{$video->formats[0]->thumbnail}}'/>");
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text("{{$video->formats[0]->duration}}");
 		@endif
 		
