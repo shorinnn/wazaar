@@ -59,5 +59,7 @@ $category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthentica
             </section>
         </div>
     </div>
+
+ 
 </section>
 @endforeach

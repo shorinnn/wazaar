@@ -1,6 +1,7 @@
 <?php
 
-function cloudfrontUrl($url){
+function cloudfrontUrl($url = ''){
+    if(trim($url)=='' || $url == false) return $url;
     if( !App::environment( 'production' ) ) return $url;
     $url = explode('.com/', $url);
     $url = str_replace('wazaardev/', '', $url);

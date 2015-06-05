@@ -195,7 +195,7 @@
                 </div><!--navbar-default ends-->
             </div><!--container ends-->
         </section>
-        {{-- View::make('courses.courses_list_unauthenticated')->with( compact('categories') ) --}}
+        {{ View::make('courses.courses_list_unauthenticated')->with( compact('categories') ) }}
        
         <section class="container unauthenticated-homepage" id="the-world-is-yours">
         	<div class="row">
