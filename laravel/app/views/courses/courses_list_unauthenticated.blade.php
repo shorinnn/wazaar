@@ -5,7 +5,6 @@ $category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthentica
 ?>
 <section class="container-fluid unauthenticated-homepage cat-box-{{$category->color_scheme}}" id="cat-row-{{$category->color_scheme}}">
         <div class="container course-listing-container">
-<?php /*
             <div class="row">
             @if(cycle(1,2)==1)
                 <div class="col-md-6">
@@ -43,7 +42,7 @@ $category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthentica
                 <div class="scrollable-course-listings row">
             <!-- include the 11 course boxes -->
             @foreach($category->unauthenticatedHomepageCourses as $course)
-                {{ View::make('courses.course_box')->with(compact('course')) }}
+                {{-- View::make('courses.course_box')->with(compact('course')) --}}
             @endforeach
             
                    <div class="col-xs-12 col-sm-6 col-md-4"  aria-hidden="false" style="width: 344px;"> 
@@ -59,7 +58,6 @@ $category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthentica
                 </div>
             </section>
         </div>
- *  */?>
     </div>
 
  
