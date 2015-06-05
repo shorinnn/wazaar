@@ -94,14 +94,14 @@
 			$('#video-link-' + $lessonId).removeClass('active').addClass('done');
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').css('display', 'block');
 			
-			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='{{$video->formats[0]->thumbnail}}'/>");
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<P></P><a href='#' class='fa fa-eye' onclick='videoModal.show(this, event)' data-filename='"+ $video->original_filename +"' data-video-url='"+ $video->formats[0]->video_url +"' data-toggle='modal'></a> <img src='{{$video->formats[0]->thumbnail}}'/>");
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text("{{$video->formats[0]->duration}}");
 		@endif
 		
 		@if(@$video->transcode_status == Video::STATUS_COMPLETE)
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').css('display', 'block');
 			
-			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='{{$video->formats[0]->thumbnail}}'/>");
+			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<P></P><a href='#' class='fa fa-eye' onclick='videoModal.show(this, event)' data-filename='"+ $video->original_filename +"' data-video-url='"+ $video->formats[0]->video_url +"' data-toggle='modal'></a> <img src='{{$video->formats[0]->thumbnail}}'/>");
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text("{{$video->formats[0]->duration}}");
 		@endif
 		
@@ -176,7 +176,7 @@
 								
 								$('.lesson-options-' + $localLessonId).find(
 									'#video-thumb-container').html(
-									"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' data-target='#myModal'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
+									"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' onclick='videoModal.show(this, event)' data-filename='"+ $video.original_filename +"' data-video-url='"+ $video.formats[0].video_url +"'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
 								$('.lesson-options-' + $localLessonId).find('#video-thumb-container p').text(timeFormat(videoDuration));
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
 
