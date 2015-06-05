@@ -25,7 +25,7 @@
 
         <div class="form-inline">
                     @if ($video!=null && isset($video->formats[0]->video_url))
-                   		<span id="video-transcoding-indicator-{{$lessonId}}" style="display: block;">{{trans('video.currentVideo')}}:
+                   		<span id="video-transcoding-indicator-{{$lessonId}}" class="video-transcoding-indicator" style="display: block;">{{trans('video.currentVideo')}}:
                         	<a href="#" class="video-title" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="videoModal.show(this, event)">{{$video->original_filename}}</a>
                         </span> 
                         <div class="form-group video-upload clear">
@@ -39,7 +39,7 @@
                         </div>
                         
                     @else
-                        <span id="video-transcoding-indicator-{{$lessonId}}">{{trans('video.videoCurrentlyProcessing')}}</span>
+                        <span id="video-transcoding-indicator-{{$lessonId}}" class="video-transcoding-indicator">{{trans('video.videoCurrentlyProcessing')}}</span>
                         <div class="form-group video-upload clear">
                         	<span>{{ trans('video.upload-video') }}</span>                   
                             <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lessonId}}" id="fileupload-{{$lessonId}}">
@@ -122,17 +122,15 @@
 
             },
             'successCallBack' : function ($data, $elem){
-				console.log($elem);
-
                 var $localLessonId = $($elem.fileInput[0]).attr("data-lesson-id");
                 var $localBlockId = $($elem.fileInput[0]).attr("data-block-id");
-				$('#video-transcoding-indicator').css('display', 'block');
+				$('#video-transcoding-indicator-' + $localLessonId).css('display', 'block');
 				
 				function videoTranscodingAnimation(){
 					var count = 0;
 					animationInterval = setInterval(function(){
 					  count++;
-					  document.getElementById('video-transcoding-indicator-' + $localLessonId).innerHTML = "Video Currently Processing." + new Array(count % 4).join('.');
+					  document.getElementById('video-transcoding-indicator-' + $localLessonId).innerHTML = _("Video Currently Processing") + new Array(count % 4).join('.');
 					}, 500);	
 				}
 				videoTranscodingAnimation();
@@ -156,7 +154,7 @@
 							if ($video.transcode_status == 'Complete'){
                                 console.log('Transcoding complete');
 								$('#video-link-' + $localLessonId).addClass('done');
-								$('#video-transcoding-indicator').css('display', 'none');
+								$('#video-transcoding-indicator-' + $localLessonId).css('display', 'none');
                                 $('#lesson-'+$localLessonId).find('.lesson-no-video').removeClass('lesson-no-video');
 								clearInterval($intervalId);
 								var uploadedVideo = $('#video-player-container-' + $localLessonId).find('video');
