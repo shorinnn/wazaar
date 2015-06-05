@@ -25,7 +25,7 @@
 
         <div class="form-inline">
                     @if ($video!=null && isset($video->formats[0]->video_url))
-                   		<span id="video-transcoding-indicator" style="display: block;">{{trans('video.currentVideo')}}:
+                   		<span id="video-transcoding-indicator-{{$lessonId}}" style="display: block;">{{trans('video.currentVideo')}}:
                         	<a href="#" class="video-title" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="videoModal.show(this, event)">{{$video->original_filename}}</a>
                         </span> 
                         <div class="form-group video-upload clear">
@@ -39,7 +39,7 @@
                         </div>
                         
                     @else
-                        <span id="video-transcoding-indicator">Video Currently Processing</span>
+                        <span id="video-transcoding-indicator-{{$lessonId}}">{{trans('video.videoCurrentlyProcessing')}}</span>
                         <div class="form-group video-upload clear">
                         	<span>{{ trans('video.upload-video') }}</span>                   
                             <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lessonId}}" id="fileupload-{{$lessonId}}">
@@ -132,7 +132,7 @@
 					var count = 0;
 					animationInterval = setInterval(function(){
 					  count++;
-					  document.getElementById('video-transcoding-indicator').innerHTML = "Video Currently Processing." + new Array(count % 4).join('.');
+					  document.getElementById('video-transcoding-indicator-' + $localLessonId).innerHTML = "Video Currently Processing." + new Array(count % 4).join('.');
 					}, 500);	
 				}
 				videoTranscodingAnimation();
@@ -182,7 +182,7 @@
 
 								$('.lesson-options-'+ $localLessonId +' .buttons.active div#video-thumb-container a').on('click', function(){
 									$('#uploadedVideoPlayer').html(videoVariable);
-								})
+								});
 								//$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
 								//reload video partial
 							}
