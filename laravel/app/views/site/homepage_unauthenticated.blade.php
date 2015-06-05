@@ -53,8 +53,7 @@
                 </div>
             </div>
         </section>
-            <?php 
-    /*
+
         <section class="unauthenticated-homepage thumb-carousel-section">
         <div id="video-grid" class="carousel slide" data-ride="carousel">
         
@@ -139,7 +138,8 @@
           </a>
         </div>
         </section>
-
+            <?php 
+    /*
         <section class="container-fluid course-search-section unauthenticated-homepage discover-wazaar">
         	<div class="row">
             	<div class="col-md-12">
