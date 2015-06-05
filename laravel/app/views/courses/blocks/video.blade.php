@@ -39,7 +39,7 @@
                         </div>
                         
                     @else
-                        <span id="video-transcoding-indicator-{{$lessonId}}" class="video-transcoding-indicator">{{trans('video.videoCurrentlyProcessing')}}</span>
+                        <span id="video-transcoding-indicator-{{$lessonId}}" class="video-transcoding-indicator hidden">{{trans('video.videoCurrentlyProcessing')}}</span>
                         <div class="form-group video-upload clear">
                         	<span>{{ trans('video.upload-video') }}</span>                   
                             <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lessonId}}" id="fileupload-{{$lessonId}}">
@@ -117,6 +117,8 @@
 				$('#progress-bar-' + $lessonId).parent('.progress').removeClass('hide');
                 $('#progress-bar-' + $lessonId).css('width', $progressPercentage + '%');
                 $('#percent-complete-' + $lessonId).html($progressPercentage + '%');
+                $('#video-transcoding-indicator-' + $lessonId).addClass('hidden');
+
             },
             'failCallBack' : function ($data){
 
@@ -124,7 +126,7 @@
             'successCallBack' : function ($data, $elem){
                 var $localLessonId = $($elem.fileInput[0]).attr("data-lesson-id");
                 var $localBlockId = $($elem.fileInput[0]).attr("data-block-id");
-				$('#video-transcoding-indicator-' + $localLessonId).css('display', 'block');
+				$('#video-transcoding-indicator-' + $localLessonId).removeClass('hidden');
 				
 				function videoTranscodingAnimation(){
 					var count = 0;
@@ -158,7 +160,7 @@
                                 $('#lesson-'+$localLessonId).find('.lesson-no-video').removeClass('lesson-no-video');
 								clearInterval($intervalId);
 								var uploadedVideo = $('#video-player-container-' + $localLessonId).find('video');
-								var videoDuration = uploadedVideo[0].duration;
+								var videoDuration = $video.formats[0].duration;// uploadedVideo[0].duration;
 								var timeFormat = function(seconds){
 									var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);
 									var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
