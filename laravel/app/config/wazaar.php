@@ -9,7 +9,7 @@ return [
             '1421660966371-o9l23s' => 'Custom Preset for Mobile Devices',
             '1421661161826-cx6nmz' => 'Custom Preset for Desktop Devices'
         ],
-    'AWS_WEB_DOMAIN' => 'd378r68ica1xoa.cloudfront.net',
+    'AWS_WEB_DOMAIN' => 'd2t29bdxhtuuvy.cloudfront.net',// 'd378r68ica1xoa.cloudfront.net',
     'S3_PROFILES_BUCKET' => 'profile_pictures',
     'TAX' => '.08',
     'API_URL' => 'http://cocorium.com/api/',
