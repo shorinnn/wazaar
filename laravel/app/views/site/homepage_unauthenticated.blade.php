@@ -138,8 +138,7 @@
           </a>
         </div>
         </section>
-            <?php 
-    /*
+            
         <section class="container-fluid course-search-section unauthenticated-homepage discover-wazaar">
         	<div class="row">
             	<div class="col-md-12">
@@ -156,7 +155,8 @@
         <section class="unauthenticated-homepage parallax-1">
         	<!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image5.jpg" class="img-responsive">-->
         </section>
-                
+                <?php 
+    /*
         <section class="school-is-a-thing unauthenticated-homepage clearfix">
         	<div>
             	<h3>{{trans('site/homepage.thing-of-yesterday')}}
