@@ -3,7 +3,7 @@
 class CoursesController extends \BaseController {
     
         public function __construct(){
-            $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'dashboard'] ] );
+            $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'dashboard','customPercentage'] ] );
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
         }
 
@@ -21,8 +21,8 @@ class CoursesController extends \BaseController {
             $instructor = Instructor::find(Auth::user()->id);
             $images = $instructor->coursePreviewImages;
             $bannerImages = $instructor->courseBannerImages;
-         
-            return View::make('courses.create')->with(compact('difficulties'))->with(compact('categories'));
+            
+            return View::make('courses.create')->with( compact('difficulties', 'categories') );
         }
         
         public function store(){
@@ -86,10 +86,24 @@ class CoursesController extends \BaseController {
                 $assignableInstructors[$i->id] = $i->commentName();
             }
 
-             $awsPolicySig = UploadHelper::AWSPolicyAndSignature();
-             $uniqueKey = Str::random();
-            return View::make('courses.form',compact('awsPolicySig','uniqueKey'))->with(compact('course'))->with(compact('images'))->with(compact('bannerImages'))->with(compact('assignedInstructor'))
-                    ->with(compact('difficulties'))->with(compact('categories'))->with(compact('subcategories'))->with(compact('assignableInstructors'));
+            $awsPolicySig = UploadHelper::AWSPolicyAndSignature();
+            $uniqueKey = Str::random();
+            $affiliates = ProductAffiliate::arrayWithProfile();
+            
+            return View::make('courses.form',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
+                    ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates'));
+        }
+        
+        public function customPercentage($slug){
+            $course = Course::where('slug',$slug)->first();
+            
+            if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
+                return Redirect::action('CoursesController@index');
+            }
+            
+            $affiliates = [0 => 'Select...'] + ProductAffiliate::arrayWithProfile();
+            
+            return View::make( 'courses.custom_percentages',compact('course', 'affiliates') );
         }
         
         public function update($slug){

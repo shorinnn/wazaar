@@ -54,4 +54,7 @@ return array(
     'registered-before-date' => 'Registered Before',
     'not-yet-available' => '現在Not Yet Available',
     'life-time-commission' => '現在Lifetime Commission',
+    'Beginner' => '初級',
+    'Intermediate' => '中級',
+    'Expert' => '上級',
 );

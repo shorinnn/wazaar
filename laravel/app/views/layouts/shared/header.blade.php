@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="top-menu clearfix">
+    <div class="top-menu clearfix col-md-12">
         <a href="{{ action('SiteController@index') }}" class="main-logo">
             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
            class="img-responsive" alt=""></a>
@@ -91,12 +91,22 @@
             @if( Route::currentRouteAction()!='UsersController@login' && Route::currentRouteAction()!='UsersController@create')
             <style>
                 .top-menu .main-logo {
-                    display:none;
+                    display:block;
                 }
             </style>
             @endif
             
-            
+            <div class="logged-out-header-search">
+            	<form class="clearfix">
+                	<button class="catalogue-button">
+                    	{{trans('general.catalogue')}}
+                    </button>
+                    <div>
+                    	<button></button>
+                        <input type="search" name="header-search" class="header-search" placeholder="Search...">
+                    </div>
+                </form>
+            </div>
             <ul class="logged-out">
                 <li>
                     <a href="{{ action('UsersController@login') }}"> {{trans('general.login')}}</a> 

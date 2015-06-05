@@ -1,4 +1,4 @@
-
+<!--
     <div class="object big-box clearfix">
     	<a href="{{action("CoursesController@show", $course->slug)}}">
             <div class="price-tag">
@@ -18,17 +18,24 @@
                  class="hidden-sm hidden-xs img-responsive">
             </div>
             <div class="featured-contents-container">
-                <div class="level">{{ $course->courseDifficulty->name }}</div>
+                <div class="level">{{ trans( 'general.'.$course->courseDifficulty->name ) }}</div>
                 <h2>{{ $course->name }}</h2>
                 <p>{{{ Str::limit( strip_tags($course->short_description, Config::get('custom.short_desc_max_chars') ) ) }}}
                     <br />
-<!--                <small>{{ trans('courses/general.subcategory') }}: 
+-->                    
+                    <!-- DO not uncomment this <small> tag -->
+			<!--<small>{{ trans('courses/general.subcategory') }}: 
                     <a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>
                 </small>-->
+                
+ <!--               
                 </p>
                 <div class="next_">
                     <div class="learn-more">
+                    
+                    	<!-- Do not uncomment this learn-more button -->
                         <!--<a href="{{action("CoursesController@show", $course->slug)}}">{{ trans('site/homepage.learn-more') }}: </a>-->
+<!--                        
                     </div>
                     <div class="students-attending">
                         {{ $course->student_count }}
@@ -38,3 +45,4 @@
             </div>
         </a>
     </div>
+-->

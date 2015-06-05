@@ -22,9 +22,9 @@ App::before(function($request)
     }
     /** /temporary mobile-desktop switcher **/
     // record second tier instructor
-    if(Auth::guest() && Input::has('st')){
-        Cookie::queue('st', Input::get('st'), 60*24*30);
-    }
+//    if(Auth::guest() && Input::has('st')){
+//        Cookie::queue('st', Input::get('st'), 60*24*30);
+//    }
     if(Auth::guest() && Input::has('stpi')){
         Cookie::queue('stpi', Input::get('stpi'), 60*24*30);
     }

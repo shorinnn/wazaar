@@ -4,7 +4,7 @@ return array(
 	'dashboard' => 'ダッシュボード',
 	'store' => 'ストア',
 	'learn' => '学ぶ',
-	'expert' => 'エキスパート',
+	'expert' => 'コース選択',
 	'what-do-you-want-to-learn' => 'さあ、何を学ぼう?',
 	'your-progress' => '進行状況',
 	'deadline-date' => '締切:',

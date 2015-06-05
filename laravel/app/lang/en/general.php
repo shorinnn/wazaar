@@ -3,6 +3,10 @@
 return array(
     'members' => 'Members',
     'user' => 'User',
+	'lesson' => 'Lessons',
+	'highly-recommend' => 'highly recommend',
+	'weeks-of-learning' => 'weeks of learning',
+	'catalogue' => 'Catalogue',
     'email' => 'Email',
     'first_name' => 'First name',
     'last_name' => 'Last name',
@@ -60,5 +64,8 @@ return array(
     'registered-before-date' => 'Registered Before',
     'not-yet-available' => 'Not Yet Available',
     'life-time-commission' => 'Lifetime Commission',
-    'errors' => 'Errors'
+    'errors' => 'Errors',
+    'Beginner' => 'Beginner',
+    'Intermediate' => 'Intermediate',
+    'Expert' => 'Expert',
 );

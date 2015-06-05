@@ -10,7 +10,25 @@ class ProductAffiliate extends User{
         'sales' => array(self::HAS_MANY, 'Purchase'),
         'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
         'ltcAffiliate' => [ self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id' ],
+        'secondTierAffiliate' => [ self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'second_tier_affiliate_id' ],
+        'customPercentages' => array(self::HAS_MANY, 'CourseAffiliateCustomPercentage', 'foreignKey' => 'affiliate_id'),
     );
+    
+    public static function all( $columns = []){
+        return self::whereHas(
+                'roles', function($q){
+                $q->where('name', 'Affiliate');
+            }
+        )->get();
+    }
+    
+    public static function arrayWithProfile(){
+        $affiliates = self::all();
+        foreach($affiliates as $aff){
+            $affiliates_arr[$aff->id] = ( trim( $aff->fullName() ) != '') ? $aff->fullName() : $aff->email;
+        }
+        return $affiliates_arr;
+    }
     
      
     public function credit( $amount = 0, $product = null, $order = null, $purchase_id ){

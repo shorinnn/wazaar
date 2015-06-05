@@ -38,6 +38,7 @@ Route::group( array('domain' =>  $domain), function(){
 
     // Confide routes
     Route::get('register', 'UsersController@create');
+    Route::get('register/second-tier-publisher', 'UsersController@secondTierPublisherCreate');
     Route::get('register/{teacher_account}', 'UsersController@create');
     Route::post('users', 'UsersController@store');
     Route::get('login', 'UsersController@login');
@@ -168,6 +169,8 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::post('courses/mark-resolved', 'CoursesController@markResolved');
     Route::post('courses/reply', 'CoursesController@reply');
 
+    Route::resource('custompercentages', 'CustomPercentagesController');
+    Route::get('courses/{slug}/custompercentage/', 'CoursesController@customPercentage');
     Route::resource('courses', 'CoursesController');
     // Modules routes
     Route::resource('courses.modules', 'ModulesController');
