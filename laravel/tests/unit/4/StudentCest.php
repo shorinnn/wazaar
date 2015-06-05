@@ -80,7 +80,7 @@ class StudentCest{
         $I->assertEquals(5, $student->ltc_affiliate_id);
     }
     
-    public function defaultAffiliateToWazaar(UnitTester $I){
+    public function defaultAffiliateToNull(UnitTester $I){
         $student = Student::where('username','mac')->first();
         $student->ltc_affiliate_id = 5;
         $student->created_at = '2012-12-12 18:57:26';
@@ -91,10 +91,13 @@ class StudentCest{
         $student->purchase($course, null, $this->paymentData);
         $student = Student::where('username','mac')->first();
         $I->assertTrue( $student->purchased($course) );
-        $I->assertEquals(2, $student->ltc_affiliate_id);
+        $I->assertEquals(null, $student->ltc_affiliate_id);
     }
     
     public function storeProductAffiliate(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        $student->created_at = date("Y-m-d H:i:s");
+        $student->save();
         $student = Student::where('username','student')->first();
         $course = Course::find(1);
         Purchase::where('student_id', $student->id)->delete();
