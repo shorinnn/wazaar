@@ -8,9 +8,12 @@ return
     'cardNumber' => 'Card Number',
     'expiryDate' => 'Expiry Date',
     'MMYY'    => 'MMYY',
+    'MM' => 'MM',
+    'YY' => 'YY',
     'cvCode' => 'CV Code',
     'pay' => 'Pay',
     'cancel' => 'Cancel',
+    'youAreToEnroll' => 'You are about to enroll in',
     'productId' =>
     [
         'required' => 'Payment product was not defined',
