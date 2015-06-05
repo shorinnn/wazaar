@@ -2,6 +2,7 @@
 <?php
 $category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthenticatedHomepageCourses.previewImage', 'unauthenticatedHomepageCourses.courseSubcategory', 
  'unauthenticatedHomepageCourses.courseCategory', 'unauthenticatedHomepageCourses');
+/*
 ?>
 <section class="container-fluid unauthenticated-homepage cat-box-{{$category->color_scheme}}" id="cat-row-{{$category->color_scheme}}">
         <div class="container course-listing-container">
@@ -59,5 +60,7 @@ $category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthentica
             </section>
         </div>
     </div>
+ * */?>
+ 
 </section>
 @endforeach
