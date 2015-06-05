@@ -174,8 +174,7 @@
         <section class="unauthenticated-homepage parallax-2">
         	<!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image7.jpg" class="img-responsive">-->
         </section>
-      <?php 
-    /*
+    
         <section class="container-fluid main-nav-section jp">
         	<div class="container">
                 <div class="navbar navbar-default">
@@ -196,7 +195,7 @@
                 </div><!--navbar-default ends-->
             </div><!--container ends-->
         </section>
-        {{View::make('courses.courses_list_unauthenticated')->with( compact('categories') )}}
+        {{-- View::make('courses.courses_list_unauthenticated')->with( compact('categories') ) --}}
        
         <section class="container unauthenticated-homepage" id="the-world-is-yours">
         	<div class="row">
@@ -209,6 +208,6 @@
                 </div>
             </div>
         </section>
-*/?>
+
     @stop
     
