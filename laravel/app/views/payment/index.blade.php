@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1 class='icon'>{{trans('payment.payment')}}</h1>
-                <p>You are about to enroll in...</p>
+                <p>{{trans('payment.youAreToEnroll')}}...</p>
             </div>
         </div>
 
@@ -27,7 +27,7 @@
                         <h4>Payment Method</h4>
                         <hr/>
                         @if (count($errors) > 0)
-                            <h5>Errors!</h5>
+                            <h5>{{trans('general.errors')}}!</h5>
                             <ul>
                                 @foreach($errors as $err)
                                     <li><i class="glyphicon glyphicon-remove"></i> {{$err}}</li>
@@ -36,7 +36,7 @@
                         @endif
 
                         <div class="ajax-errors hidden">
-                            <h5>Errors!</h5>
+                            <h5>{{trans('general.errors')}}!</h5>
                             <ul>
                                 <li></li>
                             </ul>
@@ -48,19 +48,20 @@
                             @include('payment.panels.payeeInformation')
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Payment Method</h3>
+                                    <h3 class="panel-title">{{trans('payment.paymentDetails')}}</h3>
                                 </div>
                                 <div class="panel-body" id="panel-credit-card">
                                     @include('payment.panels.creditcard')
+                                    {{--
                                     <iframe class="hidden" id="frame-gc-form" height="200" width="430" src="" frameBorder="0">Browser not compatible.</iframe>
-
+                                    --}}
                                 </div>
 
                             </div>
                             <div class="bank-transfer-wrapper">
 
                             </div>
-                            <button type="submit" class="btn btn-success btn-lg btn-block hidden" role="button">{{trans('payment.pay')}}</button>
+                            <button type="submit" class="btn btn-success btn-lg btn-block" role="button">{{trans('payment.pay')}}</button>
                             <a class="btn btn-danger btn-lg btn-block" href="{{url('courses/cancel-purchase')}}">{{trans('payment.cancel')}}</a>
                         @endif
 
@@ -82,7 +83,7 @@
 
                $.post($url,$data,function ($response){
                   if ($response.success){
-                      $('#panel-credit-card').append('<div>Loading payment form please wait....</div>');
+                      $('#panel-credit-card').append('<div> ' + _("Loading payment form please wait") + '....</div>');
                       $('#frame-gc-form').attr('src',$response.redirectUrl);
                       $('#frame-gc-form').removeClass('hidden');
                       $('.credit-card-wrapper').addClass('hidden');
