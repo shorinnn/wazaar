@@ -175,7 +175,7 @@
 								$('.lesson-options-' + $localLessonId).find(
 									'#video-thumb-container').html(
 									"<P></P><a href='#' class='fa fa-eye' data-toggle='modal' onclick='videoModal.show(this, event)' data-filename='"+ $video.original_filename +"' data-video-url='"+ $video.formats[0].video_url +"'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
-								$('.lesson-options-' + $localLessonId).find('#video-thumb-container p').text(timeFormat(videoDuration));
+								$('.lesson-options-' + $localLessonId).find('#video-thumb-container p').text(videoDuration);
 								$('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
 
 								$('.lesson-options-'+ $localLessonId +' .buttons.active div#video-thumb-container a').on('click', function(){
