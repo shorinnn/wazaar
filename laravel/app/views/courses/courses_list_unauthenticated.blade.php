@@ -4,8 +4,8 @@ $category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthentica
  'unauthenticatedHomepageCourses.courseCategory', 'unauthenticatedHomepageCourses');
 ?>
 <section class="container-fluid unauthenticated-homepage cat-box-{{$category->color_scheme}}" id="cat-row-{{$category->color_scheme}}">
-<?php /*
         <div class="container course-listing-container">
+<?php /*
             <div class="row">
             @if(cycle(1,2)==1)
                 <div class="col-md-6">
@@ -59,8 +59,9 @@ $category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthentica
                 </div>
             </section>
         </div>
+ *  */?>
     </div>
- */?>
+
  
 </section>
 @endforeach
