@@ -19,8 +19,7 @@
                 </div>
             </div>        	
         </section>
-    <?php 
-    /*
+
         <section class="container-fluid course-search-section unauthenticated-homepage">
         	<div class="container">
             	<div class="row">
@@ -54,7 +53,8 @@
                 </div>
             </div>
         </section>
-        
+            <?php 
+    /*
         <section class="unauthenticated-homepage thumb-carousel-section">
         <div id="video-grid" class="carousel slide" data-ride="carousel">
         
