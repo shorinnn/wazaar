@@ -41,9 +41,12 @@ $category->load('unauthenticatedHomepageCourses.courseDifficulty', 'unauthentica
         	<div class="scrollable-course-listings-container container">
                 <div class="scrollable-course-listings row">
             <!-- include the 11 course boxes -->
+            <?php /*
             @foreach($category->unauthenticatedHomepageCourses as $course)
-                {{-- View::make('courses.course_box')->with(compact('course')) --}}
+                {{ View::make('courses.course_box')->with(compact('course')) }}
             @endforeach
+             * 
+             */?>
             
                    <div class="col-xs-12 col-sm-6 col-md-4"  aria-hidden="false" style="width: 344px;"> 
                    	   <div class="sample-course-listing browse-more-block">
