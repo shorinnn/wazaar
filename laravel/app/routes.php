@@ -314,7 +314,20 @@ Route::group(['prefix' => 'api'], function(){
 Route::post('courses/{id}/video/set-description','CoursesController@setVideoDescription');
 
 Route::get('test', function(){
-    $payment = App::make('Cocorium\Payment\PaymentInterface');
-    $payment->makeUsingCreditCard(100,[]);
 
+    $users = [
+        ['firstName' => 'Albert', 'lastName' => 'Maranian', 'email' => 'albert1@gmail.com'],
+        ['firstName' => 'Albert', 'lastName' => 'Maranian', 'email' => 'albert2@gmail.com'],
+        ['firstName' => 'Albert', 'lastName' => 'Maranian', 'email' => 'albert3@gmail.com'],
+        ['firstName' => 'Albert', 'lastName' => 'Maranian', 'email' => 'albert4@gmail.com']
+    ];
+    $usersJson = json_encode($users);
+    $delHelper = new DeliveredHelper();
+
+    $result = $delHelper->addBatchUsers($usersJson);
+
+    echo '<pre>';
+    print_r($result);
+    echo '</pre>';
+    die;
 });
