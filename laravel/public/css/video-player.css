@@ -9,8 +9,9 @@
 }
 
 .video-container video{
-	max-width: 100%;
+	width: 100%;
 	height: auto;
+	outline: none;
 }
 
 .control-container{
@@ -277,11 +278,11 @@
 }
 .video-container .control div.btnPlay{
   background-position: center 5px;
-  margin-right: 64px;
+  margin-right: 2.4%;
 }
 .video-container .control div.paused{
   background-position: center bottom;
-  margin-right: 64px;
+  margin-right: 2.4%;
 }
 .video-container .control div.btnStop{
   background:url(control.png) no-repeat 0 -60px;

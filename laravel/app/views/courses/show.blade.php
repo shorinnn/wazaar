@@ -115,7 +115,7 @@
                                             <p>Your browser does not support the video tag.</p>
                                         </video> 
                                         <div class="control-container clearfix">                       
-                                            <div class="topControl">
+                                            <!--<div class="topControl">
                                                 <div class="progress">
                                                     <span class="bufferBar"></span>
                                                     <span class="timeBar"></span>
@@ -140,7 +140,7 @@
                                                     </div>
                                                 </div>
                                                 
-                                            </div>
+                                            </div>-->
                                         </div>
                                         <div class="loading"></div>
                                     </div>
@@ -249,9 +249,7 @@
                         <div class="module-box">
                         	<h2>{{ $module->order }}. {{ $module->name }}</h2>
                             <p class="regular-paragraph">
-                            In this module, you will become familiar with the course, your instructor, your classmates, 
-                            and our learning environment. Then, you will learn how new digital tools are enabling customers 
-                            to take a more active role in developing and branding the products they consume.
+                            A short description of the module goes here...
                             </p>
                             <ul class="lesson-topics">
                             @foreach($module->lessons as $lesson)
