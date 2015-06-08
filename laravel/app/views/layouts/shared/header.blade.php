@@ -109,10 +109,12 @@
             </div>
             <ul class="logged-out">
                 <li>
-                    <a href="{{ action('UsersController@login') }}"> {{trans('general.login')}}</a> 
+                    <!--<a href="{{ action('UsersController@login') }}" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> -->
+                    <a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> 
                 </li>
                 <li class="register-button">
-                    <a href="{{ action('UsersController@create') }}"> {{ trans('general.register') }}</a>
+                    <!--<a href="{{ action('UsersController@create') }}" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
+                    <a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>
                 </li>
             </ul>
         @endif

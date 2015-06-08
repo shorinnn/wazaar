@@ -7,7 +7,59 @@ body {
 	color: #000;
 	line-height: 16px !important;
 	/*font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;*/
-	font: 16px Lato, Helvetica, sans-serif;
+	font: 16px 'Open Sans', Helvetica, sans-serif;
+}
+
+html, body {
+	height: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: none;
+	outline: none;
+}
+
+img {
+	border: none;
+}
+
+article, 
+section, 
+nav, 
+header,
+footer,
+aside {
+	display: block;
+}
+
+address {
+	font-style: normal;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+input[type="submit"], button, input[type="button"] {
+	cursor: pointer;
+	outline: none;
+}
+
+input[type="search"] {
+	-webkit-appearance: textfield;
+	outline: none;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
 .clear{
@@ -31,6 +83,10 @@ body {
 	border: none !important;
 }
 
+.margin-right-15{
+	margin-right: 15px;
+}
+
 .block{
 	display: block;
 }
@@ -43,21 +99,20 @@ body {
 	display: none;
 }
 
-a, input::-moz-focus-inner {
+a,
+input::-moz-focus-inner {
    outline: none !important;
    border: 0;
    text-decoration: none !important;
 }
 
+input:activem
+input:focus,
 a:focus,
 a:active,
 a:hover{
 	outline: none;
 	text-decoration: none !important;
-}
-
-ul{
-	list-style-type: none;
 }
 
 /************** Page contents styles *****************/
@@ -134,6 +189,7 @@ header .top-menu .logged-out-header-search form .catalogue-button{
 	color: #a7b5c2;
 	text-transform: uppercase;
 	background: #242d36;
+	outline: none;
 }
 
 header .top-menu .logged-out-header-search form div{
@@ -151,6 +207,7 @@ header .top-menu .logged-out-header-search form div button{
 	background: none;
 	border: none;
 	padding: 0;
+	outline: none;
 }
 
 header .top-menu .logged-out-header-search 
@@ -164,6 +221,7 @@ form div input{
 	font-size: 12px;
 	padding: 0 11px;
 	background: none;
+	outline: none;
 }
 
 header .top-menu .logged-out{
@@ -1372,6 +1430,279 @@ header .activate-dropdown:hover ul{
     width: 135px;
 }
 /************** Register and Login Page ******************/
+#registerModal,
+#loginModal{
+	background-color: rgba(24, 34, 43, 0.9);
+}
+
+#registerModal .close,
+#loginModal .close{
+    font-size: 60px;
+    font-weight: 100;
+    position: relative;
+    right: 2%;
+    top: 3%;
+	color: #7e8e9e;
+	opacity: 1;
+	text-shadow: none;
+}
+
+#registerModal .modal-content,
+#loginModal .modal-content{
+	background-color: transparent;
+	outline: none;
+	box-shadow: none;
+	border: none;
+}
+
+#registerModal .modal-body,
+#loginModal .modal-body{
+	padding: 0;
+}
+
+.login-wrapper{
+	position: relative;
+}
+
+.login-wrapper .form-group{
+	margin-bottom: 12px;
+	position: relative;
+}
+
+.modal-box-logo{
+	text-align: center;
+	display: block;
+	margin: 16% auto 18px;
+}
+
+.modal-box-logo img{
+	display: inline-block;
+}
+
+.login-form-container .or{
+	width: 100%;
+	margin: 25px 0 22px;
+}
+
+.login-form-container .intro-paragraph{
+	color: #303941;
+	margin: 0;
+}
+
+.login-form-container .or span{
+	background: #e3e5e6;
+	height: 1px;
+	width: 44%;
+	margin-top: 8px;
+}
+
+.login-form-container .or em{
+	float: left;
+	font-size: 13px;
+	color: #303941;
+	margin: 0 14px;
+}
+
+.login-form-container .or::after,
+.login-form-container .or::before{
+	display: none;
+}
+
+
+.login-form-container .or .left-line{
+	float: left;
+}
+
+.login-form-container .or .right-line{
+	float: right;
+}
+
+.login-form-container{
+	border-radius: 4px;
+	background: #f7f9fa;
+}
+
+.login-form-container h1{
+	color: #303941;
+	margin: 35px 0;
+	text-align: center;
+}
+
+.login-social-buttons{
+	max-width: 340px;
+	margin: 0 auto;
+}
+
+.login-social-buttons a{
+	display: block;
+	font-size: 13px;
+	padding: 15px 10px 15px 94px;
+	color: #fff;
+	font-weight: 600;
+	text-decoration: none;
+	overflow: hidden;
+	border-radius: 4px;
+	background-repeat: no-repeat;
+	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/fb-and-google-icons.png);
+}
+
+.login-social-buttons a:active,
+.login-social-buttons a:focus{
+	outline: none;
+}
+
+
+/*.login-social-buttons a + a{
+	margin-right: 0;
+}*/
+
+.login-facebook{
+	background-position: 60px 12px;
+	background-color: #3b5998;
+}
+
+.login-facebook:hover{
+	background-color: #4262a8;
+}
+
+.login-facebook:active,
+.login-facebook:focus{
+	background-color: #36508a;
+}
+
+
+/*.login-google{
+	background-position: 11px -52px;
+	background-color: #db4437;
+}*/
+
+.login-form{
+	max-width: 340px;
+	margin: 22px auto 60px;
+}
+
+.password-field{
+	position: relative;
+}
+
+.password-field .show-password,
+.password-field .forgot{
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	line-height: 39px;
+	padding-right: 13px;
+	font-size: 13px;
+	color: #0099ff;
+}
+
+.login-form input{
+	background: #ebeced;
+	display: block;
+	font-size: 14px;
+	border: solid 1px #ebeced;
+	width: 100%;
+	height: 38px;
+	padding: 0 13px 0 40px;
+	box-shadow: none;
+	border-radius: 4px;
+}
+
+.login-form input:focus{
+	background: #fff;
+	font-size: 14px;
+	color: #303941;
+	border: solid 1px #e3e5e6;
+}
+
+.login-form input[type='email']{
+}
+
+.login-form input[type='password']{
+	padding-right: 65px;
+}
+
+.input-error input{
+	border: solid 1px #ea401e !important;
+}
+
+.input-error p{
+	display: block !important;
+	width: 100%;
+	padding: 6px 10px 6px 15px;
+	border-radius: 4px;
+	background: #ea401e;
+	font-size: 11px;
+	color: #fff;
+	position: absolute;
+	bottom: -43px;
+	z-index: 1;
+}
+
+.input-error p::before{
+    border-color: #ea401e transparent;
+    border-style: solid;
+    border-width: 0 5px 5px;
+    content: "";
+    height: 0;
+    left: -3px;
+    position: relative;
+    top: -26px;
+    width: 0;
+}
+
+.login-form button{
+	width: 100%;
+	margin-top: 10px;
+}
+
+.blue-button{
+	display: block;
+	border: none;
+	font-weight: 600;
+	font-size: 13px;
+	color: #fff;
+	background: #0099ff;
+	border-radius: 4px;	
+}
+
+.blue-button:hover{
+	background: #33adff;
+}
+
+.blue-button:active,
+.blue-button:focus{
+	background: #008eed;
+}
+
+.large-blue-button{
+	padding: 15px 25px;
+}
+	
+.login-form input:-moz-placeholder,
+.login-form input::-moz-placeholder,
+.login-form input:-ms-input-placeholder,
+.login-form input::-webkit-input-placeholder{
+   color: #a7b7c4;
+   text-align: center;
+}
+
+.login-form-footer{
+	padding: 20px 0;
+}
+
+.login-form-footer span{
+	font-size: 13px;
+	color: #7e8e9e;
+}
+
+.login-form-footer a{
+	font-weight: 600;
+	font-size: 13px;
+	color: #0099ff;
+}
+
 .login-page.top-blue-section,
 .register-page.top-blue-section{
 	padding: 40px 0;
@@ -1445,7 +1776,7 @@ header .activate-dropdown:hover ul{
 }
 
 /************* Facebook and Google Buttons ***************/
-.social-button{
+/*.social-button{
 	width: 312px;
 	height: 42px;
 	line-height: 42px;
@@ -1482,10 +1813,10 @@ header .activate-dropdown:hover ul{
 
 .social-button.fb-button:focus,
 .social-button.fb-button:active{
-    /*-webkit-box-shadow: 0px 1px 0px #203e7c;
+    -webkit-box-shadow: 0px 1px 0px #203e7c;
     -moz-box-shadow: 0px 1px 0px #203e7c;
     box-shadow: 0px 1px 0px #203e7c;
-    top:7px;*/
+    top:7px;
 }
 
 .social-button.fb-button:hover{
@@ -1504,15 +1835,15 @@ header .activate-dropdown:hover ul{
 
 .social-button.google-button:focus,
 .social-button.google-button:active{
-    /*-webkit-box-shadow: 0px 1px 0px #84261a;
+    -webkit-box-shadow: 0px 1px 0px #84261a;
     -moz-box-shadow: 0px 1px 0px #84261a;
     box-shadow: 0px 1px 0px #84261a;
-    top:7px;*/
+    top:7px;
 }
 
 .social-button.google-button:hover{
 	background-color: #ee7632;
-}
+}*/
 
 .or{
 	width: 125px;
@@ -1542,7 +1873,7 @@ header .activate-dropdown:hover ul{
 	right: 0;
 }
 
-.social-link-form .form-group button,
+/*.social-link-form .form-group button,
 .social-link-form .form-group input,
 #login-form .form-group button,
 #login-form .form-group input,
@@ -1560,21 +1891,21 @@ header .activate-dropdown:hover ul{
 #login-form .form-group label,
 #register-form .form-group label{
 	display: none;
-}
+}*/
 
-.social-link-form #email,
+/*.social-link-form #email,
 #login-form #email,
 #register-form #email{
 	text-indent: 45px;
-}
+}*/
 
-.social-link-form .valid-input,
+/*.social-link-form .valid-input,
 #login-form .valid-input,
 #register-form .valid-input{
 	border-color: #92cc2e;
 	color: #99cf3b;
 	box-shadow: none;
-	/*box-shadow: 1px 0px 12px 2px #92cc2e;*/
+	box-shadow: 1px 0px 12px 2px #92cc2e;
 }
 
 .social-link-form .invalid-input,
@@ -1583,7 +1914,7 @@ header .activate-dropdown:hover ul{
 	border-color: #ff0000;
 	color: #555;
 	box-shadow: 1px 0px 12px 2px #ff0000;
-}
+}*/
 
 .active-input{
 	border-color: #92cc2e !important;
@@ -1595,7 +1926,7 @@ header .activate-dropdown:hover ul{
 	box-shadow: none;
 }
 
-.form-group.input-container::after {
+/*.form-group.input-container::after {
     background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/check.png") no-repeat center center;
     content: "";
     height: 25px;
@@ -1614,17 +1945,17 @@ header .activate-dropdown:hover ul{
     top: 0;
     width: 47px;
     z-index: 101;
-}
+}*/
 
-.form-group.password-input-container,
+/*.form-group.password-input-container,
 .form-group.email-input-container,
 .form-group.input-container{
     margin: 0 auto 20px;
     position: relative;
     width: 312px;
-}
+}*/
 
-.social-link-form #password,
+/*.social-link-form #password,
 .social-link-form #password_confirmation,
 #login-form #password,
 #login-form #password_confirmation,
@@ -1658,9 +1989,9 @@ header .activate-dropdown:hover ul{
 	color: #fff;
 	position: relative;
 	border: solid 1px #87bc2b;
-	/*-webkit-box-shadow: 0px 5px 0px #689814;
+	-webkit-box-shadow: 0px 5px 0px #689814;
     -moz-box-shadow: 0px 5px 0px #689814;
-    box-shadow: 0px 5px 0px #689814;*/
+    box-shadow: 0px 5px 0px #689814;
 	-webkit-transition: all 0.1s;
 	-moz-transition: all 0.1s;
 	transition: all 0.1s;
@@ -1677,10 +2008,10 @@ header .activate-dropdown:hover ul{
 #register-form .form-group button:focus,
 #login-form .form-group button:active,
 #register-form .form-group button:active{
-    /*-webkit-box-shadow: 0px 1px 0px #689814;
+    -webkit-box-shadow: 0px 1px 0px #689814;
     -moz-box-shadow: 0px 1px 0px #689814;
     box-shadow: 0px 1px 0px #689814;
-    top:7px;*/
+    top:7px;
 	outline: none;
 }
 
@@ -1693,8 +2024,8 @@ header .activate-dropdown:hover ul{
 	background-image: -ms-linear-gradient(left, #82cc43, #62cc6c, #7fcc47);
 	background-image: linear-gradient(left, #82cc43, #62cc6c, #7fcc47);
 	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#82cc43', endColorstr='#7fcc47'); /* IE6 & IE7 */
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#82cc43', endColorstr='#7fcc47')"; /* IE8 */
-}
+	/*-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#82cc43', endColorstr='#7fcc47')"; /* IE8 */
+/*}
 
 .social-link-form .form-group button:hover{
 	background: #36d2ff;
@@ -1727,7 +2058,7 @@ header .activate-dropdown:hover ul{
 	font-size: 14px;
 	margin: 40px 0 20px;
 	padding: 0 20px;
-}
+}*/
 /********** Form Error Message ************/
 .parsley-errors-list,
 .alert.alert-error.alert-danger{
