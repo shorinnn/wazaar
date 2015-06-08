@@ -22,7 +22,10 @@ Route::controllers([
 
 Route::group(['prefix' => 'api', 'middleware' => 'client'], function (){
 
-    Route::resource('users', 'ClientUsersController');
+    Route::group(['prefix' => 'users'], function (){
+        Route::resource('/', 'ClientUsersController');
+        Route::post('batch','ClientUsersController@addBatch');
+    });
     Route::resource('templates', 'TemplateController');
 
     Route::group(['prefix' => 'email-requests'], function (){

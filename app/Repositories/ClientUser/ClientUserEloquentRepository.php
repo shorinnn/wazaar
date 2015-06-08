@@ -15,13 +15,29 @@ class ClientUserEloquentRepository implements ClientUserInterface
         $this->model = new ClientUser();
     }
 
+    public function getByClient($clientId)
+    {
+        return $this->model->where('clientId', $clientId)->get();
+    }
+
     public function validationRules($id = 0)
     {
-        return [
+        $rules = [
             'firstName' => 'required',
             'lastName'  => 'required',
-            'email'     => 'required|email'
+            'email'     => 'required|email|unique:client_users,email'
         ];
+
+        if ($id > 0){
+            $rules['email'] = "required|email|unique:client_users,email,$id";
+        }
+
+        return $rules;
+    }
+
+    public function insert($batch)
+    {
+        return $this->model->insert($batch);
     }
 
     public function validationMessages()

@@ -31,98 +31,103 @@ class EmailRequestsController extends Controller
             return $this->response->error(['requestType must be provided']);
         }
 
-        $clientId = \Session::get('clientId');
-        //if templateId wasn't provided, template must be available
-        if (!$request->has('templateId')) {
-            if (!$request->has('template')) {
-                return $this->response->error(['A template must be provided']);
-            }
-
-            $newTemplateArr = json_decode($request->get('template'), true);
-
-            if (is_array($newTemplateArr)) {
-                $templateValidator = $validation->make($newTemplateArr, $templateInterface->validationRules(),
-                    $templateInterface->validationMessages());
-
-                if ($templateValidator->fails()) {
-                    return $this->response->error($templateValidator->getMessageBag()->all());
+        try{
+            $clientId = \Session::get('clientId');
+            //if templateId wasn't provided, template must be available
+            if (!$request->has('templateId')) {
+                if (!$request->has('template')) {
+                    return $this->response->error(['A template must be provided']);
                 }
 
-                $template = $templateInterface->create([
-                    'clientId'     => $clientId,
-                    'templateName' => $newTemplateArr['templateName'],
-                    'slug'         => Str::slug($newTemplateArr['templateName']),
-                    'subject'      => $newTemplateArr['subject'],
-                    'fromAddress'  => $newTemplateArr['fromAddress'],
-                    'fromName'     => $newTemplateArr['fromName'],
-                    'body'         => $newTemplateArr['body']
-                ]);
+                $newTemplateArr = json_decode($request->get('template'), true);
+
+                if (is_array($newTemplateArr)) {
+                    $templateValidator = $validation->make($newTemplateArr, $templateInterface->validationRules(),
+                        $templateInterface->validationMessages());
+
+                    if ($templateValidator->fails()) {
+                        return $this->response->error($templateValidator->getMessageBag()->all());
+                    }
+
+                    $template = $templateInterface->create([
+                        'clientId'     => $clientId,
+                        'templateName' => $newTemplateArr['templateName'],
+                        'slug'         => Str::slug($newTemplateArr['templateName']),
+                        'subject'      => $newTemplateArr['subject'],
+                        'fromAddress'  => $newTemplateArr['fromAddress'],
+                        'fromName'     => $newTemplateArr['fromName'],
+                        'body'         => $newTemplateArr['body']
+                    ]);
+                } else {
+                    return $this->response->error(['Template provided is not a valid data']);
+                }
             } else {
-                return $this->response->error(['Template provided is not a valid data']);
-            }
-        } else {
-            $template = $templateInterface->find($request->get('templateId'));
+                $template = $templateInterface->find($request->get('templateId'));
 
-            if (!$template) {
-                return $this->response->error(['Template provided does not exist']);
-            }
-
-            if ($template->clientId !== $clientId) {
-                return $this->response->error(['Permission Error: Invalid Template ID']);
-            }
-        }
-
-        //Validate user the request is intended for
-        if (!$request->has('userId')) {
-            if (!$request->has('user')) {
-                return $this->response->error(['Request must have a user']);
-            }
-
-            $newUserArr = json_decode($request->get('user'), true);
-
-            if (is_array($newUserArr)) {
-                $userValidator = $validation->make($newUserArr, $clientUserInterface->validationRules(), $clientUserInterface->validationMessages());
-
-                if ($userValidator->fails()) {
-                    return $this->response->error($userValidator->getMessageBag()->all());
+                if (!$template) {
+                    return $this->response->error(['Template provided does not exist']);
                 }
 
-                $user = $clientUserInterface->create([
-                    'clientId'  => $clientId,
-                    'firstName' => $newUserArr['firstName'],
-                    'lastName'  => $newUserArr['lastName'],
-                    'email'     => $newUserArr['email']
-                ]);
-
-            }
-        } else {
-            $user = $clientUserInterface->find($request->get('userId'));
-
-            if (!$user) {
-                return $this->response->error(['User provided does not exist']);
+                if ($template->clientId !== $clientId) {
+                    return $this->response->error(['Permission Error: Invalid Template ID']);
+                }
             }
 
-            if ($user->clientId !== $clientId) {
-                return $this->response->error(['Permission Error: Invalid User ID']);
+            //Validate user the request is intended for
+            if (!$request->has('userId')) {
+                if (!$request->has('user')) {
+                    return $this->response->error(['Request must have a user']);
+                }
+
+                $newUserArr = json_decode($request->get('user'), true);
+
+                if (is_array($newUserArr)) {
+                    $userValidator = $validation->make($newUserArr, $clientUserInterface->validationRules(), $clientUserInterface->validationMessages());
+
+                    if ($userValidator->fails()) {
+                        return $this->response->error($userValidator->getMessageBag()->all());
+                    }
+
+                    $user = $clientUserInterface->create([
+                        'clientId'  => $clientId,
+                        'firstName' => $newUserArr['firstName'],
+                        'lastName'  => $newUserArr['lastName'],
+                        'email'     => $newUserArr['email']
+                    ]);
+
+                }
+            } else {
+                $user = $clientUserInterface->find($request->get('userId'));
+
+                if (!$user) {
+                    return $this->response->error(['User provided does not exist']);
+                }
+
+                if ($user->clientId !== $clientId) {
+                    return $this->response->error(['Permission Error: Invalid User ID']);
+                }
             }
+
+
+            $emailRequest = [
+                'clientId'    => $clientId,
+                'userId'      => $user->id,
+                'requestType' => $request->get('requestType'),
+                'templateId'  => $template->id,
+                'bodyVariables'   => $request->get('variables')
+            ];
+
+            $request = $this->emailRequest->create($emailRequest);
+
+            $emailRequest['id'] = $request->id;
+
+            event(new EmailRequestWasMade($request));
+
+            return $this->response->success($emailRequest);
         }
-
-
-        $emailRequest = [
-            'clientId'    => $clientId,
-            'userId'      => $user->id,
-            'requestType' => $request->get('requestType'),
-            'templateId'  => $template->id,
-            'variables'   => $request->get('variables')
-        ];
-
-        $request = $this->emailRequest->create($emailRequest);
-
-        $emailRequest['id'] = $request->id;
-
-        event(new EmailRequestWasMade($request));
-
-        return $this->response->success($emailRequest);
+        catch(\Exception $ex){
+            return $this->response->error([$ex->getMessage()]);
+        }
     }
 
 

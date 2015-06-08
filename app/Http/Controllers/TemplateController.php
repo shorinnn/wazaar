@@ -178,7 +178,7 @@ class TemplateController extends Controller
                 } else {
                     $result = $template->delete($id);
 
-                    return $this->response->success($result);
+                    return $this->response->success(['Template Deleted']);
                 }
             } else {
                 return $this->response->error(['Template was not found']);
