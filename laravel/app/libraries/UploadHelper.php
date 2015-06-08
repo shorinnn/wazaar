@@ -114,7 +114,7 @@ class UploadHelper
 
     public static function AWSPolicyAndSignature()
     {
-        $bucket = getenv('AWS_VIDEO_INPUT_BUCKET');
+        $bucket =  Config::get('wazaar.AWS_VIDEO_INPUT_BUCKET');// getenv('AWS_VIDEO_INPUT_BUCKET');
         $accesskey = Config::get('aws::config.key');
         $secret = Config::get('aws::config.secret');
 

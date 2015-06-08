@@ -146,7 +146,7 @@ class VideoHelper
 
         $uploadHelper = new UploadHelper;
         // Move Video to input bucket for processing later on
-        $inputBucket = getenv('AWS_VIDEO_INPUT_BUCKET');
+        $inputBucket = Config::get('wazaar.AWS_VIDEO_INPUT_BUCKET');// getenv('AWS_VIDEO_INPUT_BUCKET');
         $request     = $uploadHelper->moveToAWS($videoFullpath, '', $inputBucket);
 
         return $request;
@@ -162,7 +162,7 @@ class VideoHelper
     {
         $client = AWS::get('ElasticTranscoder');
         //must be in an .env config file
-        $pipelineId = getenv('AWS_PIPELINEID');
+        $pipelineId = Config::get('wazaar.AWS_PIPELINEID');// getenv('AWS_PIPELINEID');
 
         $outputs = [];
         foreach ($presetIds as $presetId) {

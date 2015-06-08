@@ -80,6 +80,7 @@ return array(
     'registered-before-date' => 'Registered Before',
     'not-yet-available' => 'Not Yet Available',
     'life-time-commission' => 'Lifetime Commission',
+    'errors' => 'Errors',
     'Beginner' => 'Beginner',
     'Intermediate' => 'Intermediate',
     'Expert' => 'Expert',
