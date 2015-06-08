@@ -105,6 +105,9 @@ class UsersController extends Controller
         $input = Input::all();
 
         if ($this->users->login($input)) {
+            if(Request::ajax()){
+                return json_encode( ['status' => 'success'] );
+            }
             return Redirect::intended('/');
         } else {
             if ($this->users->isThrottled($input)) {
@@ -116,6 +119,9 @@ class UsersController extends Controller
             }
             $input = Input::all();
             unset($input['password']);
+            if(Request::ajax()){
+                return json_encode( ['status' => 'error'] );
+            }
             return Redirect::action('UsersController@login')
                 ->withInput($input)
                 ->with('error', $err_msg);
@@ -409,5 +415,9 @@ class UsersController extends Controller
         Confide::logout();
 
         return Redirect::to('/');
+    }
+    
+    public function emailCheck(){
+        return User::where('email', Input::get('email'))->count();
     }
 }

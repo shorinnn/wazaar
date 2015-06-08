@@ -85,18 +85,23 @@
                             <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
                             <p class="intro-paragraph text-center">{{ trans('general.enter-email-and-password') }}</p>
                             <div class="login-form clearfix">
-                            <form id='login-form' role="form" method="POST" action="{{{ action('UsersController@login') }}}" accept-charset="UTF-8">
+                            <form id='login-form' role="form" method="POST" onsubmit="return loginValidator.validate();"
+                                  data-no-processing="1" class="ajax-form" data-callback="loginValidator.callback" 
+                                  data-fail-callback="loginValidator.failCallback"
+                                  action="{{{ action('UsersController@login') }}}" accept-charset="UTF-8">
                             <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                                 <fieldset>
-                                    <div class="form-group email-field input-error">
+                                    <div class="form-group email-field">
                                         <input class="form-control" tabindex="1" placeholder="{{ trans('general.email-placeholder') }}" 
-                                            data-toggle="tooltip" data-placement="right" title="Did you mean..." 
-                                            type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
-                                        <p class="hide">Some error messages here!</p>
+                                            data-placement="right" data-trigger="manual"
+                                            onblur="loginValidator.emailValidate()" data-check-url="{{ action('UsersController@emailCheck') }}"
+                                            type="text" name="email" id="email" value="{{{ Input::old('email') }}}" />
+                                        
                                     </div>
                                     <div class="form-group password-field">
                                         <input class="form-control" tabindex="2" placeholder="{{ trans('general.password-placeholder') }}" 
-                                            type="password" name="password" id="password">
+                                               data-placement="right"
+                                               onblur="loginValidator.passwordValidate()" type="password" name="password" id="password" />
                                         <a href="{{{ action('UsersController@forgotPassword') }}}" 
                                         class="left forgot">{{ trans('site/login.forgot') }}</a>
                                     </div>
@@ -265,6 +270,7 @@
         <script src="{{url("plugins/zero-clipboard/ZeroClipboard.min.js")}}"></script>
         <script src="{{url("js/select.js")}}"></script>
         <script src="{{url("js/bootstrap-datepicker.js")}}"></script>
+        <script src="{{url("js/mailcheck.min.js")}}"></script>
         
 
     @endif

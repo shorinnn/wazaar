@@ -30,13 +30,40 @@ function formAjaxSubmit(e){
     $.post(form.attr('action'), form.serialize(), function(result){
         result = JSON.parse(result);
         if(result.status=='error'){
-            form.find('[type="submit"]').after('<p class="alert alert-danger ajax-errors">'+result.errors+'</p>');
             restoreSubmitLabel(form);
+            if( typeof(form.attr('data-fail-callback'))!='undefined' ){
+                fn = form.attr('data-fail-callback').split('.');
+                if(fn.length == 1) window[ fn[0] ](result, e);
+                else{
+                    if(fn.length==2) window[ fn[0] ][ fn[1] ](result, e);
+                    else if(fn.length==3) window[ fn[0] ][ fn[1] ][ fn[2] ](result, e);
+                    else if(fn.length==4) window[ fn[0] ][ fn[1] ][ fn[2] ][ fn[3] ](result, e);
+                    else if(fn.length==5) window[ fn[0] ][ fn[1] ][ fn[2] ][ fn[3] ][ fn[4] ](result, e);
+                    else if(fn.length==6) window[ fn[0] ][ fn[1] ][ fn[2] ][ fn[3] ][ fn[4] ][ fn[5] ](result, e);
+                    else{
+                        alert('ERROR: jsCallbackOverflow #f44');
+                    }
+                }
+                return false;
+            }
+            form.find('[type="submit"]').after('<p class="alert alert-danger ajax-errors">'+result.errors+'</p>');
             return false;
         }
         restoreSubmitLabel(form);
         if( typeof(form.attr('data-callback'))!='undefined' ){
-            window[form.attr('data-callback')](result, e);
+//          window[form.attr('data-callback')](result, e);
+            fn = form.attr('data-callback').split('.');
+            if(fn.length == 1) window[ fn[0] ](result, e);
+            else{
+                if(fn.length==2) window[ fn[0] ][ fn[1] ](result, e);
+                else if(fn.length==3) window[ fn[0] ][ fn[1] ][ fn[2] ](result, e);
+                else if(fn.length==4) window[ fn[0] ][ fn[1] ][ fn[2] ][ fn[3] ](result, e);
+                else if(fn.length==5) window[ fn[0] ][ fn[1] ][ fn[2] ][ fn[3] ][ fn[4] ](result, e);
+                else if(fn.length==6) window[ fn[0] ][ fn[1] ][ fn[2] ][ fn[3] ][ fn[4] ][ fn[5] ](result, e);
+                else{
+                        alert('ERROR: jsCallbackOverflow #f64');
+                    }
+            }
         }
     });
     return false;
@@ -51,9 +78,11 @@ function formAjaxSubmit(e){
  * @param {Event} e
  */
 function submittedFormButton(e){
-    $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
-    $(e.target).find('[type=submit]').attr('disabled', 'disabled');
-    $(e.target).find('[type=submit]').html( _('Processing...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    if( typeof( $(e.target).attr('data-no-processing') ) == 'undefined' || $(e.target).attr('data-no-processing') != 1){
+        $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
+        $(e.target).find('[type=submit]').attr('disabled', 'disabled');
+        $(e.target).find('[type=submit]').html( _('Processing...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    }
 }
 
 /**
@@ -62,8 +91,10 @@ function submittedFormButton(e){
  * @param {jQuery form} $form
  */
 function restoreSubmitLabel($form){
-    $form.find('[type=submit]').html( $form.find('[type=submit]').attr('data-old-label') );
-    $form.find('[type=submit]').removeAttr('disabled');
+    if( typeof( $form.attr('data-no-processing') ) == 'undefined' ||  $form.attr('data-no-processing') != 1){
+        $form.find('[type=submit]').html( $form.find('[type=submit]').attr('data-old-label') );
+        $form.find('[type=submit]').removeAttr('disabled');
+    }
 }
 
 /**

@@ -9,6 +9,7 @@ $(document).ready(function(){
     
     
     $('.tooltipable').tooltip();
+//    $("body").tooltip({ selector: '[data-toggle="tooltip"]' });
     enableClipboard();
 
     $('#curriculum .lessons').jScrollPane();
