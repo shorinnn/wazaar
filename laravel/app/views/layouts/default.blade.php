@@ -8,8 +8,8 @@
             Wazaar</title>    
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
-    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>-->
+    <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{url('style.css')}}">
     <link rel="stylesheet" href="{{url('css/video-player.css')}}">
     <link rel="stylesheet" href="{{url('css/dashboard.css')}}">
@@ -63,7 +63,146 @@
           </section>          
         </footer>
     </div>    
-    @if( getenv('USE_COMMENTABLE_RESOURCES')==true )
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <section class="container-fluid login-wrapper">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <a href="" class="modal-box-logo clearfix">
+                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
+                        </a>
+                        <div class="login-form-container clearfix">
+                            <h1 class="clearfix">{{ trans('site/login.login-to-account') }}</h1>
+                            <div class="login-social-buttons clearfix">
+                                <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.login-with-facebook') }}</a>
+                                <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
+                            </div>
+                            <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
+                            <p class="intro-paragraph text-center">{{ trans('general.enter-email-and-password') }}</p>
+                            <div class="login-form clearfix">
+                            <form id='login-form' role="form" method="POST" action="{{{ action('UsersController@login') }}}" accept-charset="UTF-8">
+                            <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+                                <fieldset>
+                                    <div class="form-group email-field input-error">
+                                        <input class="form-control" tabindex="1" placeholder="{{ trans('general.email-placeholder') }}" 
+                                            data-toggle="tooltip" data-placement="right" title="Did you mean..." 
+                                            type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
+                                        <p class="hide">Some error messages here!</p>
+                                    </div>
+                                    <div class="form-group password-field">
+                                        <input class="form-control" tabindex="2" placeholder="{{ trans('general.password-placeholder') }}" 
+                                            type="password" name="password" id="password">
+                                        <a href="{{{ action('UsersController@forgotPassword') }}}" 
+                                        class="left forgot">{{ trans('site/login.forgot') }}</a>
+                                    </div>
+                                    @if (Session::get('notice'))
+                                        <div class="alert">{{{ Session::get('notice') }}}</div>
+                                    @endif
+                                    <div class="form-group">
+                                        <button tabindex="3" type="submit" class="blue-button large-blue-button">
+                                            {{ trans('site/login.sign-in') }}
+                                        </button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                            </div>
+                        </div>
+                        <div class="login-form-footer text-center">
+                            <span class="margin-right-15">{{ trans('site/login.dont-have-an-account') }}</span>
+                            <a href="#">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>   
+    <!-- Login Modal ends -->
+ 
+    <!-- Register form Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-dialog">
+        <div class="modal-content">
+      	<div class="modal-body">
+            <section class="container-fluid login-wrapper">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <a href="" class="modal-box-logo clearfix">
+                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
+                        </a>
+                        <div class="login-form-container clearfix">
+                            <h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
+                            <div class="login-social-buttons clearfix">
+                                <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.register-with-facebook') }}</a>
+                                <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
+                            </div>
+                            <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
+                            <p class="intro-paragraph text-center">{{ trans('general.enter-new-email-and-password') }}</p>
+                            <div class="login-form clearfix">
+                                <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8" id="register-form"
+                                     
+                                      data-parsley-validate>
+                                    <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+                                    <fieldset>
+                                    
+                                    <div class="form-group email-field">
+                                        <input class="form-control instant-valid delayed-valid" placeholder="{{ trans('general.email-placeholder') }}" 
+                                           type="email" name="email" id="email" value="{{{ Input::old('email') }}}" 
+                                           data-toggle="tooltip" data-placement="right" title="Did you mean...?"
+                                           required  data-parsley-trigger="change" data-instant-valid-callback="appendGreenBorder" 
+                                           data-instant-invalid-callback="appendRedBorder" data-delayed-invalid-callback="invalidSubtleHint" />
+                                    </div>
+                                    <p class="js-error-message"></p>
+                                    @if (Session::has('error'))
+                                        <div class="alert alert-error alert-danger">
+                                            <span>ERROR</span>
+                                            {{Session::get('error')}}
+                                        </div>
+                                    @endif
+                                    
+                                    <div class="form-group password-field">
+                                        <input class="form-control delayed-valid instant-valid" placeholder="{{ trans('general.password-placeholder') }}" 
+                                               type="password" name="password" id="password" 
+                                               required  data-parsley-trigger="change" data-parsley-minlength="6" data-instant-valid-callback="appendGreenBorder" 
+                                               data-delayed-invalid-callback="invalidSubtleHint" data-instant-invalid-callback="appendRedBorder" />
+                                        <a href="#" class="show-password">{{ trans('site/register.show-password') }}</a>
+                                    </div>
+                                    <!--<div class="form-group">
+                                        <input class="form-control instant-valid" placeholder="{{ trans('general.password-confirmation-placeholder') }}" 
+                                               type="password" name="password_confirmation" id="password_confirmation" 
+                                               data-parsley-equalto="#password" required  data-parsley-trigger="change" data-parsley-minlength="6" 
+                                               data-instant-valid-callback="appendGreenBorder" />
+                                    </div>-->
+                                    <div class="form-actions form-group">
+                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" class="hide" alt="">
+                                      <button type="submit" id="submit-button" class="large-blue-button blue-button deactivate-button">
+                                        {{ trans('site/register.create-account') }}
+                                      </button>
+                                    </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="login-form-footer text-center">
+                            <span class="margin-right-15">{{ trans('site/register.already-have-an-account') }}</span>
+                            <a href="{{ action('UsersController@login') }}">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>    
+    <!-- Register Modal ends -->
+	@if( getenv('USE_COMMENTABLE_RESOURCES')==true )
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>-->
@@ -246,9 +385,14 @@
 				});		
 				
 				$('.datepicker').datepicker();
-
+				$('[data-toggle="tooltip"]').tooltip();
+				$('#newModal').modal({
+					keyboard: true,
+					show: false	
+				}); 
 			});
 		</script>
-    <script type="text/javascript" src="{{url('js/bootbox.js')}}"></script>
+    	<script type="text/javascript" src="{{url('js/bootbox.js')}}"></script>
+
 	</body>
 </html>

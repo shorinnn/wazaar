@@ -1,4 +1,4 @@
-@if( $testimonial->thumbs() > 0)
+<!--@if( $testimonial->thumbs() > 0)
     @if($testimonial->thumbs_up > $testimonial->thumbs_down)
     <h4 class="testimonial-{{$testimonial->id}} text-center">
         <i class="fa fa-thumbs-o-up"></i> <span class='thumbs-up-label'>{{$testimonial->thumbs_up}}</span>
@@ -21,16 +21,30 @@
         <span class='not-very'>{{trans('courses/general.very')}}</span> 
         {{trans('courses/general.helpful')}}
     </h4>
-@endif
+@endif-->
+  <div class="reviews clearfix">
+      <div class="user-thumb">
+          <img />
+          <span>
+          {{ $testimonial->student->first_name }}
+          {{ $testimonial->student->last_name }}
+          </span>
+      </div>
+      <div class="user-review">
+          <p class="regular-paragraph">
+			{{{ $testimonial->content }}}          
+          </p>
+          <span class="view-more-reviews">{{ trans("courses/general.more") }}</span>
+      </div>
+  </div>
 
-<p>
+<!-- <p>
      {{{ $testimonial->content }}}
  </p>
  <span class="name">
      {{ $testimonial->student->first_name }}
      {{ $testimonial->student->last_name }}
  </span>
- 
  @if( Auth::check() )
         <h4 class="text-center">{{trans('courses/general.was-this-review-helpful')}}?</h4>
         <div class="text-center">
@@ -73,3 +87,5 @@
         </div>
  @endif
  <hr />
+ 
+ -->

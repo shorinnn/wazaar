@@ -857,7 +857,7 @@ function skinVideoControls(){
 	//CONTROLS EVENTS
 	//video screen and play button clicked
 	video.on('click', function() { playpause(); } );
-	$('.btnPlay, .centered-play-button').on('click', function() {
+	$('.btnPlay, .centered-play-button, .play-intro-button').on('click', function() {
         playpause();
 		$('#lesson-video-overlay').hide();
     });
@@ -873,12 +873,12 @@ function skinVideoControls(){
 		if(video[0].paused || video[0].ended) {
 			$('.btnPlay').addClass('paused');
 			video[0].play();
-            $('.centered-play-button').hide();
+            $('.centered-play-button, .play-intro-button').hide();
 		}
 		else {
 			$('.btnPlay').removeClass('paused');
 			video[0].pause();
-            $('.centered-play-button').show();
+            $('.centered-play-button, .play-intro-button').show();
 		}
 	};
 
