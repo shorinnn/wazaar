@@ -23,6 +23,9 @@ if( !isset($_SERVER['HTTP_HOST'])){
 Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
+    Route::get('/registration-confirmation', 'SiteController@registrationConfirmation');
+    Route::get('/verification-confirmation', 'SiteController@verificationConfirmation');
+    
     Route::get('/dash', 'SiteController@dashboard');
 
     // Temporary classroom route for mac to work with

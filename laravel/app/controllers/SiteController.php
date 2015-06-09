@@ -15,6 +15,13 @@ class SiteController extends \BaseController {
             else Return View::make('site.homepage_unauthenticated')->with( compact('categories', 'frontpageVideos') );
 	}
         
+        public function registrationConfirmation(){
+            return View::make('signup_success.blade.php');
+        }
+        public function verificationConfirmation(){
+            return View::make('email_verified.blade.php');
+        }
+        
 	public function dashboard()
 	{                 
             $student = Student::find( Auth::user()->id );
