@@ -1834,6 +1834,10 @@ header .activate-dropdown:hover ul{
 	margin: 0;
 }
 
+.email-verified a,
+.email-verified p{
+	display: none;
+}
 /************* Facebook and Google Buttons ***************/
 /*.social-button{
 	width: 312px;
