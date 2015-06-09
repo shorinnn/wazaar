@@ -16,10 +16,10 @@ class SiteController extends \BaseController {
 	}
         
         public function registrationConfirmation(){
-            return View::make('signup_success.blade.php');
+            return View::make('signup_success');
         }
         public function verificationConfirmation(){
-            return View::make('email_verified.blade.php');
+            return View::make('email_verified');
         }
         
 	public function dashboard()
