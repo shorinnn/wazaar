@@ -1,0 +1,42 @@
+﻿@charset "UTF-8";
+
+/* ------------------------------------------- CSS Information 
+ File Name:      default.css
+ Author:         Dxmix 
+ Style Info:     ブラウザスタイルのリセット設定
+----------------------------------------------------------- */  
+
+html{overflow-y: scroll;} 
+
+body,div,
+blockquote,pre,
+h1,h2,h3,h4,h5,h6,
+dl,dt,dd,ul,ol,li,
+table,th,td,
+form,input,textarea,fieldset{
+margin: 0;
+padding:0;
+}
+
+
+h1,h2,h3,h4,h5,h6{
+font-size: 100%;
+font-weight: normal;
+}
+
+
+
+table{
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+caption, th{text-align: left;}   
+
+img,abbr,acronym,fieldset{border: none;}
+
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;}
+
+hr,legend{display: none;}
+
+object,embed{vertical-align: top;} 

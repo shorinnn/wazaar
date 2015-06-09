@@ -1,0 +1,166 @@
+<!--
+////////////////////////////////////////
+////           Demo #1              ////
+////////////////////////////////////////
+-->
+
+.dropcontainer {
+	position:relative;
+	color: #777;
+} 
+
+.activetrigger,
+.trigger {
+	padding: 0 0 0 10px;
+	display: block;
+	border: 1px solid #adadad;
+	color: #000;
+	border-radius: 5px;
+	width: 345px;
+	height: 38px;
+	line-height: 38px;
+	background: #fff;
+	font-size: 14px;
+	font-weight: normal;
+	text-align: left;	
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.activetrigger:hover,
+.activetrigger:active,
+.activetrigger:focus,
+.trigger:hover,
+.trigger:active,
+.trigger:focus{
+	background: #fff !important;
+	box-shadow: none;
+	outline: none !important;
+	color: #0099ff;
+}
+
+.trigger:hover{
+	border: solid 1px #0099ff;
+	color: #0099ff;
+}
+
+.trigger:hover::after{
+	background-position:  -40px -85px;
+}
+
+.activetrigger{
+	border-radius: 5px 5px 0 0;
+	border-bottom-color: #ececec;
+}
+
+.activetrigger:hover{
+	color: #0099ff !important;
+}
+
+.activetrigger::after,
+.trigger::after{
+    content: "";
+    height: 18px;
+    position: absolute;
+    right: 10px;
+    width: 18px;
+	margin-top: 10px;
+	background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png");
+	background-repeat: no-repeat;
+	background-position:  -40px -136px;
+}
+
+.activetrigger::after{
+	background-position:  -40px -111px;
+}
+
+.activetrigger:hover::after{
+	background-position:  -40px -60px;
+}
+
+.dropcontainer{
+}
+
+.dropcontainer ul {
+	list-style-type: none;
+    position: absolute;
+    z-index: 222;
+	margin: 0;
+	width: 100%;
+	background: #fff;
+	border-radius: 0 0 5px 5px;
+	border: solid #b0bfc1;
+	border-width: 0px 1px 1px;
+	box-shadow: none;
+	top: 38px;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.dropcontainer ul li {
+	text-align: left;
+}
+
+.dropcontainer ul li a{
+	display: block;
+	line-height: 38px;
+	font-size: 14px;
+	font-weight: normal;
+	text-align: left;	
+	color: #000;
+	padding: 7px 5px 7px 10px;
+	overflow: hidden;
+	position: relative;
+	-webkit-transition: padding-left 0.3s;
+	-moz-transition: padding-left 0.3s;
+	transition: padding-left 0.3s;
+}
+
+.dropcontainer ul li a:hover{
+	background: none;
+	color: #0099ff;
+	padding-left: 45px;
+}
+
+.dropcontainer ul li a::before{
+    content: "";
+    height: 15px;
+    margin-top: 13px;
+    position: absolute;
+    left: -25px;
+    width: 15px;
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png") no-repeat -42px -479px;
+	-webkit-transition: left 0.4s;
+	-moz-transition: left 0.4s;
+	transition: left 0.4s;
+}
+
+.dropcontainer ul li a:hover::before{
+    left: 20px;
+}
+
+
+.dropcontainer ul li:hover {
+	outline: none;
+}
+
+.dropcontainer ul li:first-child {
+	display: block;
+}
+
+.dropcontainer ul li:last-child {
+	border-bottom: none;
+}
+
+.dropdownhidden {
+	display: none;
+}
+
+.dropdownvisible {
+	height: auto;
+}
+
+

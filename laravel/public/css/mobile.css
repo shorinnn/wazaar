@@ -1,0 +1,217 @@
+ 	/* Mobile CSS Document */
+
+
+/******************** Description page *************/
+
+.course-detail-top-section{
+	background: #fff !important;
+}
+
+.course-detail-top-section .centered-contents{
+	max-width: 800px;
+	padding: 0;
+}
+
+.course-detail-top-section .centered-contents h1{
+	font-size: 26px;
+	color: #333;
+	padding: 0 10px;
+	margin: 30px 0 15px;
+}
+
+.course-detail-top-section .centered-contents .short-course-description{
+	font-size: 14px;
+	color: #333;
+	padding: 0 10px;
+}
+
+.course-detail-top-section .centered-contents .banner-content-wrapper{
+	position: relative;
+	top: 0;
+	left: 0;
+	clear: both;
+	background: #eee;
+}
+
+.course-detail-top-section .centered-contents .video-player-wrapper{
+	background: #333;
+	padding: 10px;
+}
+
+.course-detail-top-section .centered-contents .video-player{
+	position: relative;
+	float: none;
+	clear: both;
+	max-width: none;
+	width: auto;
+	margin: 0;
+	border-radius: 5px;
+}
+
+.course-detail-top-section .centered-contents .course-features{
+	width: 100%;
+}
+
+.course-detail-top-section .centered-contents .course-features > div{
+	width: 33.3%;
+	height: 97px;
+	float: left;
+	background: #fff;
+}
+
+.course-detail-top-section .centered-contents .course-features > div + div{
+	border-left: solid 1px #8c0000;
+}
+
+.course-detail-top-section .centered-contents .course-features > div span{
+	padding-left: 40%;
+	height: 100%;
+	display: block;
+	font-size: 16px;
+	color: #333;
+	padding-top: 32px;
+}
+
+.course-detail-top-section .centered-contents .white-box{
+	float: none;
+	padding: 0;
+	width: auto;
+	background: none;
+}
+
+.course-detail-top-section .centered-contents .avater{
+	text-align: center;
+	margin: 27px 0 20px;
+}
+
+.course-detail-top-section .centered-contents .avater img{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+
+.course-detail-top-section .centered-contents .avater h3{
+	color: #898795;
+	font-size: 18px;
+}
+
+.course-detail-top-section .centered-contents .avater h3 a{
+	color: #0080fb;
+}
+
+.course-detail-top-section .centered-contents .white-box::after, 
+.course-detail-top-section .centered-contents .white-box::before{
+	display: none;
+}
+
+.course-detail-top-section .centered-contents .white-box .join-class{
+	margin: 30px auto;
+}
+
+.main-content-container .main-content{
+	max-width: 800px;
+}
+
+.main-content-container .main-content .sidebar,
+.main-content-container .main-content .left-content{
+	float: none;
+	clear: both;
+	margin: 0;
+	width: auto;
+}
+
+.course-detail-top-section + .main-content-container{
+	padding: 0;
+}
+
+.main-content-container .main-content .sidebar .lead, 
+.main-content-container .main-content .left-content .lead{
+	padding: 12px 20px 10px;
+	border-radius: 0;
+	margin: 0;
+	font-size: 18px;
+	cursor: pointer;
+	position: relative;
+	
+}
+
+.main-content-container .main-content .sidebar .lead::after,
+.main-content-container .main-content .left-content .lead::after {
+    border-color: #000 transparent;
+    border-style: solid;
+    border-width: 0 10px 10px;
+    content: "";
+    height: 0;
+    position: relative;
+    right: 5%;
+    top: 10px;
+    width: 0;
+	float: right;
+	-webkit-transition: border-width 0.1s;
+	-moz-transition: border-width 0.1s;
+	transition: border-width 0.1s;
+	transition-delay: 0.3s;
+}
+
+.main-content-container .main-content .sidebar .lead.collapsed::after,
+.main-content-container .main-content .left-content .lead.collapsed::after {
+    border-width: 10px 10px 0;
+}
+
+.main-content-container .main-content .left-content article{
+	padding: 0 20px;
+	margin: 0;
+}
+
+.main-content-container .main-content .left-content article.collapse.in{
+	padding: 0 20px;
+	border-radius: 0;
+}
+
+.load-more-comments{
+	border-radius: 0;
+	margin: 0;
+}
+
+.main-content-container .main-content .curriculum{
+	padding: 0 20px 80px;
+}
+
+.main-content-container .main-content #accordion{
+	margin-bottom: 0;
+	padding-top: 0;
+}
+
+.main-content-container .main-content .sidebar .misc-container-2,
+.main-content-container .main-content .left-content .misc-container-1{
+	border: none;
+	box-shadow: none;
+	margin: 5px 0 0;
+	border-radius: 5px;
+}
+
+.main-content-container .main-content .panel-default > .panel-heading{
+	padding: 0;
+}
+
+.main-content-container .main-content .left-content article.what-you-will-learn ul{
+	border: none;
+}
+
+.main-content-container .main-content .testimonials.bottom-testimonials{
+	margin-bottom: 0;
+}
+
+.main-content-container .main-content .curriculum .lesson-container{
+	width: 95.7%;
+}
+
+@media (max-width:618px){
+	.main-content-container .main-content{
+		padding: 0 0 80px;
+	}
+}
+
+.no-margin{
+	margin: 0 !important;
+}

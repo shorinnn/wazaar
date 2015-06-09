@@ -1,0 +1,446 @@
+.video-container{
+	width: 100%;
+	position: relative;
+	background: #121920;
+}
+
+.video-container > img{
+	min-width: 100%;
+}
+
+.video-container video{
+	width: 100%;
+	height: auto;
+	outline: none;
+}
+
+.control-container{
+	background: #18222b;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#lesson-video-overlay{
+	position: absolute;
+	bottom: 0;
+	height: 100%;
+	left: 0;
+	width: 100%;
+	background: -moz-linear-gradient(top , rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+	background: -webkit-linear-gradient(top , rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+	background: -o-linear-gradient(top , rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+	background: -ms-linear-gradient(top , rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+	background: linear-gradient(top , rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+}
+
+#lesson-video-overlay > div{
+	margin: 0 auto;
+	height: 100%;
+}
+
+#lesson-video-overlay > div h4,
+#lesson-video-overlay > div h3{
+	font-weight: 200;
+	color: #fff;
+	font-size: 42px;
+	text-align: left;
+	max-width: 44%;
+	margin-left: 20px;
+}
+
+#lesson-video-overlay > div h4{
+	margin: 35px 0 13px 20px;
+	font-size: 28px;
+}
+
+#lesson-video-overlay > div p{
+	font-size: 18px;
+	color: #fff;
+	font-weight: 200;
+	margin: 0 0 15px 20px;
+	max-width: 44%;
+	text-align: left;
+	line-height: 26px;
+}
+
+
+.video-container .centered-play-button {
+    background-color: rgba(21, 34, 46, 0.8);
+    background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-4.png");
+    background-position: 50% 38px;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    display: block;
+    height: 100px;
+    left: 50%;
+    margin: -100px 0 0 -50px;
+    width: 100px;
+    position: absolute;
+    top: 50%;
+    width: 100px;
+	cursor: pointer;
+}
+
+.video-container.description-page .centered-play-button {
+	width: 70px;
+	height: 70px;
+	margin: -70px 0 0 -35px;
+	background-position: 50% 26px;
+}
+
+.video-container .progress{
+	height: 5px;
+	border-radius: 0;
+	margin: 0 auto;
+	background: #283644;
+}
+
+.video-container .progress .progress-bar{
+	width: 100%;
+	border: none;
+}
+
+.video-container .progress .progress-bar[value]{
+    -moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	border: none;
+	background: #2a3845;
+	height: 5px;
+}
+
+.video-container .progress .progress-bar[value]::-webkit-progress-value{
+	background: #8dc32c;
+	border: none;
+}
+
+.video-container .progress .progress-bar[value]::-moz-progress-bar{
+	background: #8dc32c;
+	border: none;
+	height: 100%;
+}
+
+.video-container .video-controls{
+	height: 100px;
+	margin: 0 auto;
+	background: #18222b;
+	position: relative;
+}
+
+.video-container .video-controls > div{
+	height: 100%;
+	width: 70%;
+	float: left;
+	padding: 34px 40px;
+	position: relative;
+}
+
+.video-container  .progressTime{
+	float: right;
+	height: 100%;
+	line-height: 100px;
+	color: #fff;
+}
+
+.video-container .video-controls > div > span{
+	display: block;
+	float: left;
+	width: 33px;
+	cursor: pointer;
+	height: 33px;
+    background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-4.png");
+    background-repeat: no-repeat;
+}
+
+.video-container .video-controls span.play-button{
+	background-position: center 5px;
+	margin-right: 64px;
+}
+
+.video-container .video-controls span.pause-button{
+	background-position: center bottom;
+	margin-right: 64px;
+}
+
+.video-container .video-controls span.volume-button{
+	background-position: center -145px;
+}
+
+.video-container .video-controls span.full-screen-button{
+	background-position: center -281px;
+	float: right;
+}
+
+.video-container .video-controls .volume-control{
+	width: 8%;
+	top: -150px;
+	left: 114px;
+	height: 135px;
+	border-radius: 5px;
+	background: #162028;
+	position: absolute;
+	display: block;
+}
+
+.video-container .video-controls 
+.volume-control .caret{
+	border-color: #18212a transparent;
+	border-width: 7px 7px 0;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	top: 0;
+	right: 0;
+	margin: 135px auto 0;
+}
+
+.video-container .video-controls 
+.volume-control > div{
+	margin: 17px auto 0;
+	height: 100px;
+	width: 10px;
+	background: #c9cbcc;
+	border-radius: 5px;
+	position: relative;
+	cursor: pointer;
+}
+
+.video-container .video-controls 
+.volume-control > div .volume-bar{
+	position: absolute;
+	bottom: 0;
+	height: 50%;
+	width: 100%;
+	border-radius: 0 0 5px 5px;
+	background: #81b42c;
+}
+
+.video-container .video-controls 
+.volume-control > div .volume-bar > span{
+	display: block;
+	background: #0382d8;
+	width: 16px;
+	height: 16px;
+	position: relative;
+	left: -3px;
+	top: -11px;
+	border-radius: 16px;
+}
+
+/*** VIDEO CONTROLS CSS ***/
+/* control holder */
+.video-container .control{
+  position:relative;
+  left:0;
+  margin: 0 auto;
+  z-index:5;
+  display:none;
+}
+/* control top part */
+.video-container .topControl{
+  height: 5px;
+  border-bottom:1px solid #404040;
+  background: #283644;
+}
+/* control bottom part */
+.video-container .btmControl{
+  clear:both;
+  margin: 30px 0;
+  padding: 0 5%;
+}
+
+.description-page.video-container .btmControl{
+  margin: 18px 0 15px;
+}
+
+.video-container .control div.btn {
+  display: block;
+  float: left;
+  width: 42px;
+  cursor: pointer;
+  height: 33px;
+  background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-4.png");
+  background-repeat: no-repeat;
+}
+.video-container .control div.text{
+  font-size:12px;
+  font-weight:bold;
+  line-height:30px;
+  text-align:center;
+  font-family:verdana;
+  width:20px;
+  border:none;
+  color:#777;
+}
+.video-container .control div.btnPlay{
+  background-position: center 5px;
+  margin-right: 2.4%;
+}
+.video-container .control div.paused{
+  background-position: center bottom;
+  margin-right: 2.4%;
+}
+.video-container .control div.btnStop{
+  background:url(control.png) no-repeat 0 -60px;
+}
+.video-container .control div.spdText{
+  border:none;
+  font-size:14px;
+  line-height:30px;
+  font-style:italic;
+}
+.video-container .control div.selected{
+  font-size:15px;
+  color:#ccc;
+}
+.video-container .control div.sound{
+  background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/volume-control-icons.png') !important; 
+  background-repeat: no-repeat;
+  border:none;
+  float:left;
+}
+.video-container .control div.sound2{
+  background-position: left -92px;
+}
+.video-container .control div.sound3{
+  background-position: left -45px;
+}
+.video-container .control div.muted{
+  background-position: left 4px;
+}
+.video-container .control div.btnFS{
+  background-position: center -281px;
+  float: right;
+}
+.video-container .control div.btnLight{
+  background:url(control.png) no-repeat -44px -60px;
+  border-left:1px solid #404040;
+  float:right;
+}
+.video-container .control div.lighton{
+  background:url(control.png) no-repeat -44px -30px !important;
+}
+
+/* PROGRESS BAR CSS */
+/* Progress bar */
+.video-container .progress {
+  width: 100%;
+  height: 5px;
+  position:relative;
+  float:left;
+  cursor:pointer;
+  background: #444; /* fallback */
+  background:-moz-linear-gradient(top,#666,#333);
+  background:-webkit-linear-gradient(top,#666,#333);
+  background:-o-linear-gradient(top,#666,#333);
+  box-shadow:0 2px 3px #333 inset;
+  -moz-box-shadow:0 2px 3px #333 inset;
+  -webkit-box-shadow:0 2px 3px #333 inset;
+}
+.video-container .progress span {
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  display:block;
+}
+.video-container .timeBar{
+  z-index:10;
+  width:0;
+  background: #8dc42c; /* fallback */
+}
+.video-container .bufferBar{
+  z-index:5;
+  width:0;
+  background: #777;
+  background:-moz-linear-gradient(top,#999,#666);
+  background:-webkit-linear-gradient(top,#999,#666);
+  background:-o-linear-gradient(top,#999,#666);
+  box-shadow:2px 0 5px #333;
+  -moz-box-shadow:2px 0 5px #333;
+  -webkit-box-shadow:2px 0 5px #333;
+}
+/* time and duration */
+.video-container .time{
+  width:16%;
+  float:right;
+  margin-left: 5%;
+  color: #fff;
+  text-align:center;
+  font-size:14px;
+  margin-top: 10px;
+}
+
+/* VOLUME BAR CSS */
+/* volume bar */
+.video-container .volume{
+  position: absolute;
+  height: 10px;
+  width: 135px;
+  top: 10px;
+  border-radius: 10px;
+  background: #cacccd;
+}
+.video-container .volumeBar{
+  display: block;
+  background: #81b42c;
+  width: 10px;
+  height: 10px;
+  position: relative;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.video-container .volumeBar em{
+  display: inline-block;
+  float: right;
+  position: relative;
+  height: 16px;
+  width: 16px;
+  border-radius: 16px;
+  right: -5px;
+  z-index: 999;
+  top: -3px;
+  background: #0382d7;
+}
+
+/* OTHERS CSS */
+/* video screen cover */
+/*.loading, #init{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:url(loading.gif) no-repeat 50% 50%;
+  z-index:2;
+  display:none;
+}*/
+
+.video-container .volume-container{
+  height: 30px;
+  float: left;
+  padding-left: 12px;
+  width: 160px;
+  margin-left: 3%;
+  border-radius: 5px;
+  background: #162028;
+  position: relative;
+  display: block;
+}
+
+.video-container .volume-container .caret{
+  border-color: #18212a transparent;
+  border-width: 7px 7px 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  margin: 135px auto 0;
+}

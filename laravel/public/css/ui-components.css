@@ -1,0 +1,806 @@
+/* CSS Document for CRUD and other UI components */
+
+/******** Table *************/
+
+.crud-components{
+	max-width: 1000px;
+	margin: 0 auto;
+	padding-top: 120px;
+}
+
+.table-wrapper{
+	border: solid 1px #0d9eff;
+	border-radius: 5px;
+}
+
+.table-wrapper .activate-dropdown{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	height: 40px;
+}
+
+.table-wrapper .activate-dropdown button.btn::after {
+    border-color: #fff transparent;
+    border-style: solid;
+    border-width: 3px 3px 0;
+    content: "";
+    height: 0;
+    margin-top: -3px;
+    position: absolute;
+    right: 30px;
+    top: 58%;
+    width: 0;
+}
+.table-wrapper .activate-dropdown button.btn{
+	height: 40px;
+	width: 112px;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 12px;
+	text-transform: uppercase;
+	background: #058ae2;
+	border: none;
+	display: block;
+}
+
+.table-wrapper .activate-dropdown.open button.btn,
+.table-wrapper .activate-dropdown button.btn:hover{
+	background: #097dca;
+}
+
+.table-wrapper .activate-dropdown button.btn:active,
+.table-wrapper .activate-dropdown button.btn:focus{
+	outline: none;
+}
+
+.table-wrapper .activate-dropdown.open button.btn{
+	border-radius: 5px 5px 0 0;
+}
+
+.table-wrapper .activate-dropdown.open button.btn::after {
+    border-width: 0 3px 3px;
+}
+
+.table-wrapper .activate-dropdown.open .dropdown-menu{
+    background: none repeat scroll 0 0 #097dca;
+    border: medium none;
+    border-radius: 0 0 5px 5px;
+    box-shadow: none;
+    min-width: 100%;
+    top: 38px;
+	padding: 0;
+}
+
+.table-wrapper .activate-dropdown.open .dropdown-menu li a{
+	color: #fff;
+	font-size: 12px;
+	font-weight: normal;
+	padding: 6px 0;
+}
+
+.table-wrapper .activate-dropdown.open .dropdown-menu li a:hover{
+	background: #058ae2;
+}
+
+.table-wrapper .table-title{
+	width: 100%;
+	height: 60px;
+	background: #0099ff;
+	text-align: center;
+	line-height: 60px;
+	font-weight: bold;
+	font-size: 14px;
+	color: #fff;
+	display: block;
+	text-transform: uppercase;
+	position: relative;
+}
+
+.table-wrapper .table{
+	border: none;
+	margin: 0;
+}
+
+.table > thead{
+	background: #40b3ff;
+}
+
+.table.table-bordered > thead > tr > th{
+	font-weight: normal;
+	font-size: 12px;
+	color: #fff;
+	text-align: center;
+	border: 1px solid #0d9eff;
+}
+
+.table.table-bordered > tbody > tr > td{
+	color: #0099ff;
+	font-weight: normal;
+	font-size: 12px;
+	text-align: center;
+	vertical-align: middle;
+	border: solid #0d9eff;
+	border-width: 0 1px 0 0;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, 
+.table-striped > tbody > tr:nth-child(2n+1) > th{
+	background: #e5f5ff;
+}
+
+/********** Paginations ************/
+.pagination-container{
+	width: 100%;
+	margin: 20px 0;
+	position: relative;
+}
+
+.pagination-container .page-numbers-container{
+	position: relative;
+}
+
+.pagination-container ul{
+	padding: 0;
+	margin: 0 auto;
+	float: left;
+}
+
+
+.pagination-container a.directions{
+	display: block;
+	height: 22px;
+	width: 22px;
+	float: left;
+	margin-top: 9px;
+	background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png");
+	background-repeat: no-repeat;
+}
+
+.pagination-container a.directions.left{
+	margin-right: 10px;
+	background-position: center 0;
+}
+
+.pagination-container a.directions.right{
+	margin-left: 10px;
+	background-position: center -30px;
+}
+
+
+.pagination-container ul li{
+	float: left;
+	width: 40px;
+	height: 40px;
+}
+
+.pagination-container ul li + li{
+	margin-left: 10px;
+}
+
+.pagination-container ul li a{
+	display: block;
+	height: 38px;
+	width: 38px;
+	font-size: 14px;
+	text-align: center;
+	color: #0099ff;
+	line-height: 38px;
+	border: solid 1px #119fff;
+	border-radius: 38px;
+}
+
+.pagination-container ul li a.active{
+	color: #fff;
+	background: #0099ff;
+	text-decoration: none;
+}
+
+.pagination-container ul li a:hover{
+	border-color: #b0bfc1;
+	color: #b0bfc1;
+	text-decoration: none;
+}
+
+.pagination-container ul li a.active:hover{
+	color: #fff;
+	border: solid 1px #119fff;
+}
+
+.pagination-container .skip-to{
+	position: absolute;
+	right: 0;
+}
+
+.pagination-container .skip-to span{
+	display: inline-block;
+	text-transform: uppercase;
+	float: left;
+	font-size: 12px;
+	color: #0099ff;
+	margin-right: 11px;
+	line-height: 38px;
+}
+
+.pagination-container .skip-to input{
+	border: solid 1px #12a0ff;
+	height: 38px;
+	width: 38px;
+	border-radius: 38px;
+	float: left;
+	resize: none;
+	font-size: 14px;
+	text-align: center;
+	color: #0099ff;
+	overflow: hidden;
+}
+
+
+/************** Dropdown Menus ******************/
+.dropdown-container .menu-dropdown{
+	float: left;
+}
+
+.dropdown-container .menu-dropdown + .menu-dropdown{
+	margin-left: 32px;
+}
+
+.menu-dropdown{
+	width: 312px;
+	height: 40px;
+	position: relative;
+}
+
+.menu-dropdown > ul{
+	margin: 0;
+	width: 100%;
+	background: #fff;
+	border-radius: 0 0 5px 5px;
+	border: solid #b0bfc1;
+	border-width: 0px 1px 1px;
+	box-shadow: none;
+	top: 38px;
+	width: 310px;
+	padding: 0;
+}
+
+.menu-dropdown > ul li a{
+	display: block;
+	padding: 10px 0 10px 20px;
+	line-height: 38px;
+	font-size: 14px;
+	text-align: left;	
+}
+
+.menu-dropdown button{
+	height: 38px;
+	width: 310px;
+	line-height: 38px;
+	padding: 0 0 0 20px;
+	font-size: 14px;
+	text-align: left;	
+	background: #fff;
+	border-radius: 5px;
+	color: #b0bec1;
+}
+
+.menu-dropdown.open button:hover,
+.menu-dropdown.open button:active,
+.menu-dropdown.open button:focus,
+.menu-dropdown button:hover,
+.menu-dropdown button:active,
+.menu-dropdown button:focus{
+	background: #fff !important;
+	box-shadow: none;
+	outline: none !important;
+}
+
+.menu-dropdown button:hover{
+	border: solid 1px #0099ff;
+	color: #0099ff;
+}
+
+.menu-dropdown button::after {
+    content: "";
+    height: 18px;
+    margin-top: 10px;
+    position: absolute;
+    right: 10px;
+    width: 18px;
+	background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png");
+	background-repeat: no-repeat;
+}
+
+.menu-dropdown button::after{
+	background-position:  -40px -136px;
+}
+
+.menu-dropdown.open button::after{
+	background-position:  -40px -111px;
+}
+
+.menu-dropdown.open button{
+	border-bottom-color: #ececec;
+}
+
+.menu-dropdown button:hover::after{
+	background-position:  -40px -85px;
+}
+
+.menu-dropdown.open button:hover::after{
+	background-position:  -40px -60px;
+}
+
+.menu-dropdown ul li a{
+	color: #b0bec1;
+	padding: 7px 5px 7px 20px;
+	overflow: hidden;
+	position: relative;
+	-webkit-transition: padding-left 0.3s;
+	-moz-transition: padding-left 0.3s;
+	transition: padding-left 0.3s;
+}
+
+.menu-dropdown ul li a:hover{
+	background: none;
+	color: #0099ff;
+	padding-left: 45px;
+}
+
+.menu-dropdown ul li a::before{
+    content: "";
+    height: 15px;
+    margin-top: 13px;
+    position: absolute;
+    left: -25px;
+    width: 15px;
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png") no-repeat -42px -479px;
+	-webkit-transition: left 0.4s;
+	-moz-transition: left 0.4s;
+	transition: left 0.4s;
+}
+
+.menu-dropdown ul li a:hover::before{
+    left: 20px;
+}
+
+.menu-dropdown.open button{
+	border-radius: 5px 5px 0 0 !important;
+	color: #b0bec1 !important;
+	background: #fff !important;
+}
+
+.menu-dropdown.open button:hover{
+	color: #0099ff !important;
+}
+
+.dropdown-2 button{
+	border-radius: 18px;
+}
+
+
+/************** Radio Buttons***************/
+.switch-buttons,
+.checkbox-buttons,
+.radio-buttons{
+	margin: 20px 0;
+	float: left;
+}
+
+.radio-buttons input[type='radio'],
+input[type='checkbox']{
+    /* Hide the input, but have it still be clickable */
+    opacity: 0;
+    float: left;
+    width: 18px;
+    display:none;
+}
+
+.radio-buttons input[type='radio'] + label{
+   	margin: 0;
+    clear: none;
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+    cursor: pointer;
+}
+
+.radio-buttons input[type='radio'] + label.small-radio{
+	height: 20px;
+	width: 20px;
+	margin-left: 6px;
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png") no-repeat -54px -163px;
+}
+
+.radio-buttons input[type='radio'] + label.big-radio{
+	height: 32px;
+	width: 32px;
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png") no-repeat -57px -193px;
+}
+
+/* Change from unchecked to checked graphic*/
+
+.radio-buttons input[type='radio']:checked + label.small-radio{
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png") no-repeat -24px -163px;
+}
+
+.radio-buttons input[type='radio']:checked + label.big-radio{
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png") no-repeat -10px -193px;
+}
+
+.radio-item{ 
+	clear:both;
+	padding-bottom:5px;
+	display:block;
+	overflow:hidden; 
+}
+
+.radio-item .label{ 
+	float:left;
+}
+
+.radio-item .radio-checkbox{ 
+	cursor:pointer;
+	float:left; 
+}
+
+.radio-item .radio-checkbox:hover{ 
+	opacity:0.8; 
+}
+
+/************** CheckBoxes***************/
+.checkbox-buttons .checkbox-item{ 
+	padding-left:50px; 
+	clear:both;
+	padding-bottom:5px;
+	display:block;
+	overflow:hidden; 
+}
+
+.checkbox-buttons .checkbox-item .label{ 
+	float:left;
+}
+
+.checkbox-buttons .checkbox-item .checkbox-checkbox{ 
+	cursor:pointer;
+	float:left; 
+}
+
+.checkbox-buttons .checkbox-item .checkbox-checkbox:hover{ 
+	opacity:0.8;
+}
+
+/* Change from unchecked to checked graphic*/
+
+.checkbox-buttons input[type='checkbox'] + label{
+    margin: 0;
+    clear: none;
+    cursor: pointer;
+}
+
+.checkbox-buttons input[type='checkbox'] + label.small-checkbox{
+	height: 20px;
+	width: 20px;
+	margin-left: 6px;
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png") no-repeat -54px -239px;
+}
+
+.checkbox-buttons input[type='checkbox']:checked + label.small-checkbox{
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png") no-repeat -24px -239px;
+}
+
+.checkbox-buttons input[type='checkbox'] + label.big-checkbox{
+	width: 32px;
+	height: 32px;
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png") no-repeat -57px -274px;
+}
+
+.checkbox-buttons input[type='checkbox']:checked + label.big-checkbox{
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png") no-repeat -9px -274px;
+}
+
+/******** Switch button ***************/
+.switch-buttons > .switch {
+  display: block;
+  margin: 0 0 0 50px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 70px;
+  height: 32px;
+  border-radius: 18px;
+  cursor: pointer;
+}
+
+.switch-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.switch-label {
+  position: relative;
+  display: block;
+  height: 100%;
+  font-size: 12px;
+  text-transform: uppercase;
+  background: #eb2915;
+  border-radius: 18px;
+  -webkit-transition: 0.15s ease-out;
+  -moz-transition: 0.15s ease-out;
+  -o-transition: 0.15s ease-out;
+  transition: 0.15s ease-out;
+  -webkit-transition-property: opacity background;
+  -moz-transition-property: opacity background;
+  -o-transition-property: opacity background;
+  transition-property: opacity background;
+}
+
+.switch-label:before, .switch-label:after {
+  position: absolute;
+  top: 9px;
+  text-transform: capitalize;
+  -webkit-transition: inherit;
+  -moz-transition: inherit;
+  -o-transition: inherit;
+  transition: inherit;
+}
+
+.switch-label:before {
+  content: attr(data-off);
+  right: 11px;
+  color: #fff;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.switch-label:after {
+  content: attr(data-on);
+  left: 11px;
+  color: #fff;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+}
+
+.switch-input:checked ~ .switch-label {
+  background: #92cc2e;
+}
+
+.switch-input:checked ~ .switch-label:before {
+  opacity: 0;
+}
+
+.switch-input:checked ~ .switch-label:after {
+  opacity: 1;
+}
+
+.switch-handle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 28px;
+  height: 28px;
+  background: white;
+  border-radius: 28px;
+  background-image: -webkit-linear-gradient(top, white 40%, #f0f0f0);
+  background-image: -moz-linear-gradient(top, white 40%, #f0f0f0);
+  background-image: -o-linear-gradient(top, white 40%, #f0f0f0);
+  background-image: linear-gradient(to bottom, white 40%, #f0f0f0);
+  -webkit-transition: left 0.15s ease-out;
+  -moz-transition: left 0.15s ease-out;
+  -o-transition: left 0.15s ease-out;
+  transition: left 0.15s ease-out;
+}
+
+.switch-handle:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -6px 0 0 -6px;
+  width: 12px;
+  height: 12px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+  background-image: -webkit-linear-gradient(top, #eeeeee, white);
+  background-image: -moz-linear-gradient(top, #eeeeee, white);
+  background-image: -o-linear-gradient(top, #eeeeee, white);
+  background-image: linear-gradient(to bottom, #eeeeee, white);
+}
+.switch-input:checked ~ .switch-handle {
+  left: 40px;
+  box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/************ Submit buttons ****************/
+.submit-button{
+	float: left;
+	position: relative;
+	left: -50%;
+	margin: 62px 0 0 -70px;
+}
+
+.submit{
+	padding: 7px 15px;
+	display: inline-block;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: center;
+	margin: 5px 0;
+	background: none;
+	border-style: solid;
+	border-width: 1px;
+	text-transform: uppercase;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	-o-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+
+.submit-button-2,
+.submit-button-1{
+	border-color: #0099ff;
+	border-radius: 15px;
+	color: #0099ff;
+}
+
+.submit-button-2:hover,
+.submit-button-1:hover{
+	background: #0099ff;
+	border-color: #0099ff;
+	color: #fff;
+	text-decoration: none;
+}
+
+.submit-button-2:focus,
+.submit-button-2:active,
+.submit-button-1:focus,
+.submit-button-1:active{
+	background: #0669d1;
+	border-color: #0669d1;
+	color: #fff;
+}
+
+.submit-button-2{
+	border-radius: 5px;
+}
+
+button.submit-button-4,
+button.submit-button-3{
+	border-color: #92cc2e;
+	border-radius: 15px;
+	color: #23313e;
+}
+
+button.submit-button-4:hover,
+button.submit-button-3:hover{
+	background: #92cc2e;
+	border-color: #92cc2e;
+	color: #23313e;
+}
+
+button.submit-button-3:focus,
+button.submit-button-3:active,
+button.submit-button-4:focus,
+button.submit-button-4:active{
+	background: #23313e;
+	border-color: #23313e;
+	color: #fff;
+}
+
+button.submit-button-4{
+	border-radius: 5px;
+}
+
+
+/************ File upload buttons *************/
+.file-upload{
+	float: left;
+	margin: 115px 0 0 -402px;
+}
+
+.file-upload > button{
+	height: 30px;
+	width: 98px;
+	border-style: solid;
+	border-width: 1px;
+	background: none;
+	text-align: center;
+	font-weight: normal;
+	font-size: 12px;
+	float: left;
+	margin-right: 5px;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	-o-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+
+.file-upload > button.browse-button-1{
+	border-radius: 15px;
+	border-color: #849598;
+	color: #849598;
+}
+
+.file-upload > button.browse-button-1:hover{
+	background: #849598;
+	border-color: #849598;
+	color: #fff;
+}
+
+.file-upload > button.browse-button-1:active,
+.file-upload > button.browse-button-1:focus{
+	background: #333333;
+	border-color: #333333;
+}
+
+.file-upload > button.browse-button-2{
+	border-radius: 5px;
+	border-color: #b0bfc1;
+	color: #b0bfc1;
+}
+
+.file-upload > button.browse-button-2:hover{
+	background: #b0bfc1;
+	border-color: #b0bfc1;
+	color: #fff;
+}
+
+.file-upload > button.browse-button-2:active,
+.file-upload > button.browse-button-2:focus{
+	background: #849598;
+	border-color: #849598;
+	color: #fff;
+}
+
+.file-upload > div{
+	width: 250px;
+	height: 30px;
+	border: solid 1px #b0bfc1;
+	border-radius: 5px;
+	overflow: hidden;
+	float: left;
+}
+
+.file-upload > div input[type='text']{
+	width: 151px;
+	float: left;
+	height: 100%;
+	background: none;
+	font-size: 12px;
+	color: #b0bec1;
+	border: none;
+	padding: 0;
+	text-transform: uppercase;
+	text-indent: 24px;
+}
+
+
+.file-upload > div button{
+	width: 97px;
+	border: none;
+	float: left;
+	height: 100%;
+	color: #fff;
+	background: #b0bfc1;
+	font-size: 12px;
+	text-transform: uppercase;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	-o-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+
+.file-upload > div button:hover{
+	background: #849598;
+}
+
+.file-upload > div button:active,
+.file-upload > div button:focus{
+	background: #333333;
+}

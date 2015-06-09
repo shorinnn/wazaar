@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>main.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Courses.html">Courses</a></li>
+                                <li><a href="../classes/Forms.html">Forms</a></li>
+                                <li><a href="../classes/Main.html">Main</a></li>
+                                <li><a href="../classes/Validations.html">Validations</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: main.js</h1>
+                        
+                        <div class="file">
+                            <pre class="code prettyprint linenums">
+                        /**
+                         * Contains generic reusable functions and event listeners
+                         * @class Main 
+                         */
+                        // JavaScript Document
+                        $(document).ready(function(){
+                            $(&quot;.profile-name &gt; li&quot;).removeClass(&quot;activate-dropdown&quot;);
+                            $(&#x27;body&#x27;).delegate(&#x27;.slide-toggler&#x27;, &#x27;click&#x27;, slideToggle);
+                            $(&#x27;body&#x27;).delegate(&#x27;a.load-remote&#x27;, &#x27;click&#x27;, loadRemote);
+                            $(&#x27;body&#x27;).delegate(&#x27;.load-remote a&#x27;, &#x27;click&#x27;, prepareLoadRemote);
+                            $(&#x27;body&#x27;).delegate(&#x27;a.load-more-ajax&#x27;, &#x27;click&#x27;, loadMoreComments);
+                            $(&#x27;body&#x27;).delegate(&#x27;a.load-remote-cache&#x27;, &#x27;click&#x27;, loadRemoteCache);
+                            $(window).scroll(stepsScrollAnimation);
+                            _.setTranslation( js_translation_map );
+                            floatingNav();
+                            scrollNavigation();
+                        });
+                        
+                        /**
+                         * Returns a slug version of the supplied string
+                         * @method convertToSlug
+                         * @param {string} text
+                         * @return {string} the slug
+                         */
+                        function convertToSlug(text){
+                             return text.toLowerCase().replace(/[^\w ]+/g,&#x27;&#x27;).replace(/ +/g,&#x27;-&#x27;);
+                        }
+                        
+                        /**
+                         * Redirects the window to the specified URL
+                         * @method followRedirect
+                         * @param {object} An ovject with an URL property, usually a JSON response
+                         */
+                        function followRedirect(json){
+                            window.location = json.url;
+                        }
+                        
+                        
+                        /**
+                         * Static unique numbers holder. Used to keep track of used numbers
+                         * @property unique_numbers
+                         * @type {Array}
+                         */
+                        
+                        var unique_numbers = new Array();
+                        /**
+                         * Returns a document-wide unique number
+                         * @method uniqueID
+                         * @return {Number} The unique number
+                         */
+                        function uniqueId(){
+                            id = Math.random()*1000000;
+                            id = Math.ceil(id);
+                            while( unique_numbers.indexOf(id) != -1){
+                                id = Math.random()*1000000;
+                                id = Math.ceil(id);
+                                unique_numbers.push(id);
+                            }
+                            return id;
+                        }
+                        
+                        /**
+                         * Hides the current .animated-step element, unhides the next one and triggers a slideup animation
+                         * @method unhide
+                         * @param {string} elem CSS selector
+                         * @param {string} data-target the element to display
+                         */
+                        function unhide(elem){
+                            $(elem).removeClass(&#x27;hidden&#x27;);
+                            $(elem).css(&#x27;opacity&#x27;,&#x27;0&#x27;);
+                            $(&#x27;.steps-meter&#x27;).find(&#x27;p.active&#x27;).removeClass(&#x27;active&#x27;);
+                            $(&#x27;[data-target=&quot;&#x27;+elem+&#x27;&quot;]&#x27;).addClass(&#x27;active&#x27;);
+                        
+                            $(elem).animate({
+                                opacity:1
+                            }, 1000);
+                            val = $(elem).prev(&#x27;.animated-step&#x27;).outerHeight(true);
+                            console.log(val);
+                            $(elem).prev(&#x27;.animated-step&#x27;).animate({
+                                opacity: 0,
+                                marginTop: -val
+                            }, 1000, function(){
+                                $(elem).prev(&#x27;.animated-step&#x27;).hide();
+                            });
+                        }
+                        
+                        /**
+                         * Reverses the unhide method
+                         * @method reverseUnhide
+                         * @param {string} data-target The element to display
+                         */
+                        function reverseUnhide(){
+                            elem = &#x27;#&#x27;+$(&#x27;.animated-step:visible&#x27;).attr(&#x27;id&#x27;);
+                            if(elem==&#x27;#step1&#x27;) return false;
+                            prev = &#x27;#&#x27;+$(elem).prev(&#x27;.animated-step&#x27;).attr(&#x27;id&#x27;);
+                            console.log(prev);
+                            $(&#x27;.steps-meter&#x27;).find(&#x27;p.active&#x27;).removeClass(&#x27;active&#x27;);
+                            $(&#x27;[data-target=&quot;&#x27;+prev+&#x27;&quot;]&#x27;).addClass(&#x27;active&#x27;);
+                        
+                            $(elem).animate({
+                                opacity:0
+                            }, 1000, function(){
+                                $(elem).addClass(&#x27;hidden&#x27;);
+                            });
+                            $(elem).prev(&#x27;.animated-step&#x27;).show();
+                            $(elem).prev(&#x27;.animated-step&#x27;).animate({
+                                opacity: 1,
+                                marginTop: 0
+                            }, 1000, function(){
+                                
+                            });
+                        }
+                        
+                        /**
+                         * Slide toggles an element defined by the caller&#x27;s data-target attribute
+                         * @method slideToggle
+                         * @param {event} e The click event
+                         * @param {string} data-target The element to toggle
+                         * @param {string} data-callback The function to call when the toggle animation finishes
+                         */
+                        function slideToggle(e){
+                            e.preventDefault();
+                            target = $(e.target).attr(&#x27;data-target&#x27;);
+                            $(target).slideToggle(&#x27;fast&#x27;, function(){
+                                var callback = $(e.target).attr(&#x27;data-callback&#x27;);
+                                if( typeof(callback)!= &#x27;undefined&#x27;){
+                                    window[callback](e);
+                                }
+                            });
+                        }
+                        
+                        /**
+                         * Makes the element clicked inside the .load-remote element inherit load-remote
+                         * properties then fires loadRemote on it
+                         * @param {event} e Clickevent
+                         * @param {string} data-url The url to use in the ajax call
+                         * @param {string} data-callback The function to call after the ajax call succeedes
+                         * @param {string} data-load-method How to add the new content to the target (load|append|prepend|fade)
+                         * @param {string} data-target CSS selector of the element that receives the new content
+                         * @method prepareLoadRemote
+                         */
+                        function prepareLoadRemote(e){
+                            $(e.target).attr(&#x27;data-url&#x27;, $(e.target).attr(&#x27;href&#x27;));
+                            if( typeof( $(e.target).closest(&#x27;.load-remote&#x27;).attr(&#x27;data-callback&#x27;) )!=&#x27;undefined&#x27;){
+                                $(e.target).attr(&#x27;data-callback&#x27;, $(e.target).closest(&#x27;.load-remote&#x27;).attr(&#x27;data-callback&#x27;));
+                            }
+                            if( typeof( $(e.target).closest(&#x27;.load-remote&#x27;).attr(&#x27;data-load-method&#x27;) )!=&#x27;undefined&#x27;){
+                                $(e.target).attr(&#x27;data-load-method&#x27;, $(e.target).closest(&#x27;.load-remote&#x27;).attr(&#x27;data-load-method&#x27;));
+                            }
+                            $(e.target).attr(&#x27;data-target&#x27;, $(e.target).closest(&#x27;.load-remote&#x27;).attr(&#x27;data-target&#x27;));
+                            history.pushState({}, &#x27;&#x27;, $(e.target).attr(&quot;href&quot;));
+                            loadRemote(e);
+                        }
+                        /**
+                         * Event handler for a.load-remote&lt;br /&gt;
+                         * It loads the resource specified at data-url into the element specified at data-target
+                         * @param {event} e Click event
+                         * @param {string} data-url The url to use in the ajax call
+                         * @param {string} data-callback The function to call after the ajax call succeedes
+                         * @param {string} data-load-method How to add the new content to the target (load|append|prepend|fade)
+                         * @param {string} data-target CSS selector of the element that receives the new content
+                         * @method loadRemote
+                         */
+                        function loadRemote(e){
+                            e.preventDefault();
+                            var loading = $(e.target).attr(&#x27;data-loading&#x27;);
+                            if( typeof(loading)!=&#x27;undefined&#x27;&amp;&amp; loading==1 ) return false;
+                            url = $(e.target).attr(&#x27;data-url&#x27;);
+                            target = $(e.target).attr(&#x27;data-target&#x27;);
+                            var callback = $(e.target).attr(&#x27;data-callback&#x27;);
+                            elem = $(e.target);
+                            loadMethod = $(e.target).attr(&#x27;data-load-method&#x27;);
+                            while(typeof(url)==&#x27;undefined&#x27;){
+                                elem = elem.parent();
+                                url = elem.attr(&#x27;data-url&#x27;);
+                                target = elem.attr(&#x27;data-target&#x27;);
+                                callback = elem.attr(&#x27;data-callback&#x27;);  
+                                loadMethod = $(e.target).attr(&#x27;data-load-method&#x27;);
+                            }
+                            $(e.target).attr(&#x27;data-loading&#x27;, 1);
+                            if(typeof(loadMethod)==&#x27;undefined&#x27; || loadMethod==&#x27;load&#x27;){
+                                $(target).html( _(&#x27;loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
+                                $(target).load(url, function(){
+                                    $(e.target).attr(&#x27;data-loading&#x27;, 0);
+                                    if( typeof(callback)!= &#x27;undefined&#x27;){
+                                        window[callback](e);
+                                    }
+                                });
+                            }
+                            else if(loadMethod==&#x27;append&#x27; || loadMethod==&#x27;prepend&#x27;){
+                                $(target).prepend(&#x27;&lt;p class=&quot;remove_this&quot;&gt;&#x27; + _(&#x27;loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&lt;/p&gt;&#x27;);
+                                $.get(url, function(data){
+                                    $(&#x27;.remove_this&#x27;).remove();
+                                    $(e.target).attr(&#x27;data-loading&#x27;, 0);
+                                    if(loadMethod==&#x27;append&#x27;) $(target).append(data);
+                                    else $(target).prepend(data);
+                                    if( typeof(callback)!= &#x27;undefined&#x27;){
+                                        window[callback](e);
+                                    }
+                                });
+                            }
+                            else if(loadMethod==&#x27;fade&#x27;){
+                                $(target).addClass(&#x27;disabled-item&#x27;);
+                                $(target).after(&quot;&lt;div class=&#x27;overlay-loading&#x27;&gt;&lt;/div&gt;&quot;);
+                                mt = $(target).height();
+                                mt /=2;
+                                $(&#x27;.overlay-loading&#x27;).css(&#x27;margin-top&#x27;, &quot;-&quot;+mt+&quot;px&quot;);
+                                $(target).load(url, function(){
+                                    $(&#x27;.overlay-loading&#x27;).remove();
+                                    $(target).removeClass(&#x27;disabled-item&#x27;);
+                                    $(e.target).attr(&#x27;data-loading&#x27;, 0);
+                                    if( typeof(callback)!= &#x27;undefined&#x27;){
+                                        window[callback](e);
+                                    }
+                                });
+                            }
+                            else{}
+                        }
+                        
+                        /**
+                         * Loads more comments via ajax and appends them to the container
+                         * @param {event} e Click event
+                         * @param {string} data-url The url to use in the ajax call
+                         * @param {string} data-callback The function to call after the ajax call succeedes
+                         * @param {string} data-target CSS selector of the element that receives the new content
+                         * @param {string} data-skip How many items to skip in the fetch query
+                         * @method loadMoreComments
+                         */
+                        function loadMoreComments(e){    
+                            e.preventDefault();
+                            url = $(e.target).attr(&#x27;data-url&#x27;);
+                            target = $(e.target).attr(&#x27;data-target&#x27;);
+                            skip = $(e.target).attr(&#x27;data-skip&#x27;);
+                            lesson = $(e.target).attr(&#x27;data-lesson&#x27;);
+                            elem = $(e.target);
+                            while(typeof(url)==&#x27;undefined&#x27;){
+                                elem = elem.parent();
+                                url = elem.attr(&#x27;data-url&#x27;);
+                                target = elem.attr(&#x27;data-target&#x27;);
+                                callback = elem.attr(&#x27;data-callback&#x27;);  
+                            }
+                            $(e.target).html( _(&#x27;Loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
+                            $.post(url,{lesson:lesson, skip:skip}, function(data) {
+                                $(e.target).attr(&#x27;href&#x27;,&#x27;#&#x27;);
+                                $(e.target).html( _(&#x27;LOAD MORE&#x27;) );
+                                if($.trim(data)==&#x27;&#x27;){
+                                    $(e.target).removeClass(&#x27;load-more-ajax&#x27;);
+                                    $(e.target).html( _(&#x27;No more messages&#x27;) );
+                                }
+                                $(target).append(data).fadeIn(&#x27;slow&#x27;);
+                                skip = 1 * skip + 1 * 2;
+                                $(e.target).attr(&#x27;data-skip&#x27;, skip);
+                                
+                            });
+                        }
+                        
+                        /**
+                         * Similar to loadRemote, it loads the resource, but only once, later requests just display the content already loaded
+                         * @param {event} e Click event
+                         * @param {string} data-url The url to use in the ajax call
+                         * @param {string} data-callback The function to call after the ajax call succeedes
+                         * @param {string} data-target CSS selector of the element that receives the new content
+                         * @method loadRemoteCache
+                         */
+                        function loadRemoteCache(e){
+                            e.preventDefault();
+                            url = $(e.target).attr(&#x27;data-url&#x27;);
+                            target = $(e.target).attr(&#x27;data-target&#x27;);
+                            var callback = $(e.target).attr(&#x27;data-callback&#x27;);
+                            elem = $(e.target);
+                            while(typeof(url)==&#x27;undefined&#x27;){
+                                elem = elem.parent();
+                                url = elem.attr(&#x27;data-url&#x27;);
+                                target = elem.attr(&#x27;data-target&#x27;);
+                                callback = elem.attr(&#x27;data-callback&#x27;);  
+                            }
+                            // load content from the parent container
+                            $(target).parent().children().hide();
+                            $(target).show();
+                            
+                            if(elem.attr(&#x27;data-loaded&#x27;) == &#x27;1&#x27; ) return false;// content already loaded, just redisplay it
+                            
+                            $(target).html( _(&#x27;loading...&#x27;) + &#x27;&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif&quot; /&gt;&#x27;);
+                            $(target).load(url, function(){
+                                elem.attr(&#x27;data-loaded&#x27;,&#x27;1&#x27;);
+                                if( typeof(callback)!= &#x27;undefined&#x27;){
+                                    window[callback](e);
+                                }
+                            });
+                        }
+                        
+                        
+                        /**
+                         * Flag, set to true if the scrolling unhide/reverseUnhide animation is running
+                         * @property scrollAnimationActivated
+                         * @type {Boolean}
+                         */
+                        scrollAnimationActivated = true;
+                        /**
+                         * Fires the unhide method when scrolled to the bottom of the page and reverseUnhide
+                         * method when scrolled to the top of the page
+                         * @method stepsScrollAnimation
+                         */
+                        function stepsScrollAnimation(){
+                           if($(&#x27;.animated-step&#x27;).length==0) return false;
+                           if(!scrollAnimationActivated) return false;
+                           if($(window).scrollTop() + $(window).height() == $(document).height()) {
+                               scrollAnimationActivated = false;
+                               $(&#x27;.animated-step:visible&#x27;).find(&#x27;.unhide-btn&#x27;).click();
+                               setTimeout(function(){
+                                   scrollAnimationActivated = true;
+                               },2000);
+                               return false;    
+                           }
+                           if($(window).scrollTop() == 0) {
+                               scrollAnimationActivated = false;
+                               reverseUnhide();
+                               setTimeout(function(){
+                                   scrollAnimationActivated = true;
+                               },2000);
+                           }
+                        }
+                        
+                        /**
+                         * This function fixes the navigation menu at the top of the page
+                         * on scroll.
+                         * @method floatingNav
+                         */
+                        function floatingNav(){
+                            // this checks the current top position of the nav and stores it in a variable.
+                            if( $(&quot;.main-nav-section&quot;).length == 0 )return false;
+                            var max_scroll = $(&quot;.main-nav-section&quot;).position().top;
+                            $(window).scroll(function () {
+                                var navbar = $(&quot;.main-nav-section&quot;);
+                        
+                                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                                if (scrollTop &gt; max_scroll &amp;&amp; !navbar.is(&quot;.filterbuttonFixed&quot;)) {
+                                    navbar.addClass(&quot;filterbuttonFixed&quot;);
+                                }
+                                else if (scrollTop &lt; max_scroll &amp;&amp; navbar.is(&quot;.filterbuttonFixed&quot;)) {
+                                    navbar.removeClass(&quot;filterbuttonFixed&quot;);
+                                }
+                        
+                            });
+                        
+                        }
+                        
+                        /**
+                         * Function for sliding to each section when nav button is clicked
+                         * @method scrollNavigation
+                         */ 
+                        function scrollNavigation(){
+                            $(&#x27;a[href*=#]&#x27;).each(function() {
+                                if (location.pathname.replace(/^\//,&#x27;&#x27;) == this.pathname.replace(/^\//,&#x27;&#x27;)
+                                    &amp;&amp; location.hostname == this.hostname
+                                    &amp;&amp; this.hash.replace(/#/,&#x27;&#x27;) ) {
+                                        var $targetId = $(this.hash), $targetAnchor = $(&#x27;[name=&#x27; + this.hash.slice(1) +&#x27;]&#x27;);
+                                        var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+                                        if ($target) {
+                                        var targetOffset = $target.offset().top;
+                        
+                                        //Function for removing and adding the &quot;active&quot; class and scroll to the DIV
+                                        $(this).click(function() {
+                                            $(&quot;#nav li a&quot;).removeClass(&quot;active&quot;);
+                                            $(this).addClass(&#x27;active&#x27;);
+                                            $(&#x27;html, body&#x27;).animate({scrollTop: targetOffset}, 1000);
+                                            return false;
+                                        });
+                                    }
+                                }
+                        
+                            });
+                            $(window).scroll(function(){
+                                $(&#x27;.parallax-1, .parallax-2&#x27;).animate({
+                                    backgroundPosition:&quot;(50% -2000px)&quot;
+                                }, 480);
+                            });
+                        
+                        }
+                        
+                        /**
+                         * Appends the HTML property of the result of an ajax call to the specified destination element
+                         * @param {json} json The ajax response
+                         * @param {event} e the original event
+                         * @param {bool} prepend if set to true, prepend to list, otherwise append
+                         * @param {string} data-destination CSS selector of the element that receives the new content
+                         * @method addToList
+                         */
+                        function addToList(json, e, prepend){
+                            var destination = $(e.target).attr(&#x27;data-destination&#x27;);
+                            if( typeof(prepend)== &#x27;undefined&#x27;)    $(destination).append( json.html );
+                            else     $(destination).prepend( json.html );
+                            // reset the original form
+                            $(e.target)[0].reset();
+                        }
+                        
+                        /**
+                         * Replace an existing element with the one returned by an upload script
+                         * @param {event} e the original event
+                         * @param {json} data the upload result
+                         * @param {string} data-progress-bar The progress bar used in the upload process (so we can reset it)
+                         * @param {string} data-replace CSS selector of the element to be replaced by the new stuff
+                         * @method replaceElementWithUploaded
+                         */
+                        function replaceElementWithUploaded(e, data){
+                            var progressbar = $(e.target).attr(&#x27;data-progress-bar&#x27;);
+                            $(progressbar).find(&#x27;span&#x27;).html(&#x27;&#x27;);
+                            $(progressbar).css(&#x27;width&#x27;, 0 + &#x27;%&#x27;);
+                            result = JSON.parse(data.result);
+                            if(result.status==&#x27;error&#x27;){
+                                $(e.target).after(&quot;&lt;p class=&#x27;alert alert-danger ajax-error&#x27;&gt;&quot;+result.errors+&#x27;&lt;/p&gt;&#x27;);
+                                return false;
+                            }
+                            var to_replace = $(e.target).attr(&#x27;data-replace&#x27;);
+                            $(to_replace).replaceWith(result.html);
+                        }
+                        
+                        /**
+                         * Replace an existing element with the one returned by an ajax script
+                         * @param {json} result the ajax result
+                         * @param {e} e the original event
+                         * @param {string} data-replace CSS selector of the element to be replaced by the new stuff
+                         * @method replaceElementWithReturned
+                         */
+                        function replaceElementWithReturned(result, e){
+                            var to_replace = $(e.target).attr(&#x27;data-replace&#x27;);
+                            $(to_replace).replaceWith(result.html);
+                            console.log(to_replace);
+                            console.log(result.html);
+                        }
+                        
+                        /**
+                         * jQuery method that scrolls an element to the specified child&#x27;s position
+                         * @method scrollToChild
+                         * @param {string|element} child What element to scroll to
+                         */
+                        $.fn.scrollToChild = function(child) {
+                            this.css( &quot;color&quot;, &quot;green&quot; );
+                            this.scrollTop( this.scrollTop() + $(child).position().top - $(child).height() );
+                        };
+                        
+                        /**
+                         * Callback fired after posting a comment
+                         * @param {object} json The json response of the post ajax call
+                         * @param {type} e The original event (form submit)
+                         * @method postedComment
+                         */
+                        function postedComment(json, e){
+                            // remove form from page if reply
+                            if( $(e.target).find(&#x27;.reply-to&#x27;).val() &gt; 0){
+                                // increment reply counter
+                                count = $(e.target).closest(&#x27;.comment-form-reply&#x27;).parent().parent().parent().find(&#x27;.number-of-replies&#x27;).html();
+                                $.trim( count );
+                                count = count.split(&#x27; &#x27;);
+                                count = count[0];
+                                count_number = count = count * 1 + 1 * 1;
+                                count += &#x27; &#x27; + pluralize( _(&#x27;reply&#x27;), count_number );
+                                $(e.target).closest(&#x27;.comment-form-reply&#x27;).parent().parent().parent().find(&#x27;.number-of-replies&#x27;).first().html( count );
+                        //        $(e.target).closest(&#x27;.comment-form-reply&#x27;).parent().parent().parent().find(&#x27;.number-of-replies&#x27;).click();
+                                $(e.target).closest(&#x27;.comment-form-reply&#x27;).remove();
+                                addToList(json, e);
+                            }
+                            else{
+                                addToList(json, e, true);
+                            }
+                        }
+                        
+                        /**
+                         * Expands/collapses a comment&#x27;s reply box
+                         * @param {event} e The click event
+                         * @method collapseComments
+                         */
+                        function collapseComments(e){
+                            $(e.target).removeClass(&#x27;load-remote&#x27;);
+                            $(e.target).addClass(&#x27;slide-toggler&#x27;);
+                            $(e.target).attr(&#x27;data-callback&#x27;,&#x27;rotateCollapse&#x27;);
+                            $(e.target).find(&quot;.fa-arrow-down&quot;).remove();
+                            $(e.target).append(&quot; &lt;i class=&#x27;fa fa-arrow-up fa-animated&#x27;&gt;&lt;/i&gt;&quot;);
+                        }
+                        
+                        /**
+                         * Used by rotateCollapse it stores the arrow glyph rotation value (0 or 180)
+                         * @property rotation
+                         * @type {Number}
+                         */
+                        var rotation = 0;
+                        
+                        /**
+                         * Fired when a comment area is expanded/collapsed, it rotates the arrow glyph
+                         * contained in the link element that triggeres the event
+                         * @param {event} e The collapseComments click event
+                         * @method rotateCollapses
+                         */
+                        function rotateCollapse(e){
+                            rotation = rotation==0 ? 180 : 0;
+                            $(e.target).find(&#x27;.fa&#x27;).rotate(rotation);
+                        }
+                        
+                        
+                        /**
+                         * jQuery method that sets an element rotate property to the given value
+                         * @param {number} degrees The value of the rotate property
+                         * @method jQuery.rotate
+                         */
+                        jQuery.fn.rotate = function(degrees) {
+                            $(this).css({&#x27;-webkit-transform&#x27; : &#x27;rotate(&#x27;+ degrees +&#x27;deg)&#x27;,
+                                         &#x27;-moz-transform&#x27; : &#x27;rotate(&#x27;+ degrees +&#x27;deg)&#x27;,
+                                         &#x27;-ms-transform&#x27; : &#x27;rotate(&#x27;+ degrees +&#x27;deg)&#x27;,
+                                         &#x27;transform&#x27; : &#x27;rotate(&#x27;+ degrees +&#x27;deg)&#x27;});
+                            return $(this);
+                        };
+                        
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

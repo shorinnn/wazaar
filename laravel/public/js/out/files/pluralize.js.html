@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>pluralize.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Courses.html">Courses</a></li>
+                                <li><a href="../classes/Forms.html">Forms</a></li>
+                                <li><a href="../classes/Main.html">Main</a></li>
+                                <li><a href="../classes/Validations.html">Validations</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: pluralize.js</h1>
+                        
+                        <div class="file">
+                            <pre class="code prettyprint linenums">
+                        (function (root, pluralize) {
+                          /* istanbul ignore else */
+                          if (typeof require === &#x27;function&#x27; &amp;&amp; typeof exports === &#x27;object&#x27; &amp;&amp; typeof module === &#x27;object&#x27;) {
+                            // Node.
+                            module.exports = pluralize();
+                          } else if (typeof define === &#x27;function&#x27; &amp;&amp; define.amd) {
+                            // AMD, registers as an anonymous module.
+                            define(function () {
+                              return pluralize();
+                            });
+                          } else {
+                            // Browser global.
+                            root.pluralize = pluralize();
+                          }
+                        })(this, function () {
+                          // Rule storage - pluralize and singularize need to be run sequentially,
+                          // while other rules can be optimized using an object for instant lookups.
+                          var pluralRules      = [];
+                          var singularRules    = [];
+                          var uncountables     = {};
+                          var irregularPlurals = {};
+                          var irregularSingles = {};
+                        
+                          /**
+                           * Title case a string.
+                           *
+                           * @param  {string} str
+                           * @return {string}
+                           */
+                          function toTitleCase (str) {
+                            return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
+                          }
+                        
+                          /**
+                           * Sanitize a pluralization rule to a usable regular expression.
+                           *
+                           * @param  {(RegExp|string)} rule
+                           * @return {RegExp}
+                           */
+                          function sanitizeRule (rule) {
+                            if (typeof rule === &#x27;string&#x27;) {
+                              return new RegExp(&#x27;^&#x27; + rule + &#x27;$&#x27;, &#x27;i&#x27;);
+                            }
+                        
+                            return rule;
+                          }
+                        
+                          /**
+                           * Pass in a word token to produce a function that can replicate the case on
+                           * another word.
+                           *
+                           * @param  {string}   word
+                           * @param  {string}   token
+                           * @return {Function}
+                           */
+                          function restoreCase (word, token) {
+                            // Upper cased words. E.g. &quot;HELLO&quot;.
+                            if (word === word.toUpperCase()) {
+                              return token.toUpperCase();
+                            }
+                        
+                            // Title cased words. E.g. &quot;Title&quot;.
+                            if (word[0] === word[0].toUpperCase()) {
+                              return toTitleCase(token);
+                            }
+                        
+                            // Lower cased words. E.g. &quot;test&quot;.
+                            return token.toLowerCase();
+                          }
+                        
+                          /**
+                           * Interpolate a regexp string.
+                           *
+                           * @param  {[type]} str  [description]
+                           * @param  {[type]} args [description]
+                           * @return {[type]}      [description]
+                           */
+                          function interpolate (str, args) {
+                            return str.replace(/\$(\d{1,2})/g, function (match, index) {
+                              return args[index] || &#x27;&#x27;;
+                            });
+                          }
+                        
+                          /**
+                           * Sanitize a word by passing in the word and sanitization rules.
+                           *
+                           * @param  {String}   word
+                           * @param  {Array}    collection
+                           * @return {String}
+                           */
+                          function sanitizeWord (word, collection) {
+                            // Empty string or doesn&#x27;t need fixing.
+                            if (!word.length || uncountables.hasOwnProperty(word)) {
+                              return word;
+                            }
+                        
+                            var len = collection.length;
+                        
+                            // Iterate over the sanitization rules and use the first one to match.
+                            while (len--) {
+                              var rule = collection[len];
+                        
+                              // If the rule passes, return the replacement.
+                              if (rule[0].test(word)) {
+                                return word.replace(rule[0], function (match, index, word) {
+                                  var result = interpolate(rule[1], arguments);
+                        
+                                  if (match === &#x27;&#x27;) {
+                                    return restoreCase(word[index - 1], result);
+                                  }
+                        
+                                  return restoreCase(match, result);
+                                });
+                              }
+                            }
+                        
+                            return word;
+                          }
+                        
+                          /**
+                           * Replace a word with the updated word.
+                           *
+                           * @param  {Object}   replaceMap
+                           * @param  {Object}   keepMap
+                           * @param  {Array}    rules
+                           * @return {Function}
+                           */
+                          function replaceWord (replaceMap, keepMap, rules) {
+                            return function (word) {
+                              // Get the correct token and case restoration functions.
+                              var token = word.toLowerCase();
+                        
+                              // Check against the keep object map.
+                              if (keepMap.hasOwnProperty(token)) {
+                                return restoreCase(word, token);
+                              }
+                        
+                              // Check against the replacement map for a direct word replacement.
+                              if (replaceMap.hasOwnProperty(token)) {
+                                return restoreCase(word, replaceMap[token]);
+                              }
+                        
+                              // Run all the rules against the word.
+                              return sanitizeWord(word, rules);
+                            };
+                          }
+                        
+                          /**
+                           * Pluralize or singularize a word based on the passed in count.
+                           *
+                           * @param  {String}  word
+                           * @param  {Number}  count
+                           * @param  {Boolean} inclusive
+                           * @return {String}
+                           */
+                          function pluralize (word, count, inclusive) {
+                            var pluralized = count === 1 ?
+                              pluralize.singular(word) : pluralize.plural(word);
+                        
+                            return (inclusive ? count + &#x27; &#x27; : &#x27;&#x27;) + pluralized;
+                          }
+                        
+                          /**
+                           * Pluralize a word.
+                           *
+                           * @type {Function}
+                           */
+                          pluralize.plural = replaceWord(
+                            irregularSingles, irregularPlurals, pluralRules
+                          );
+                        
+                          /**
+                           * Singularize a word.
+                           *
+                           * @type {Function}
+                           */
+                          pluralize.singular = replaceWord(
+                            irregularPlurals, irregularSingles, singularRules
+                          );
+                        
+                          /**
+                           * Add a pluralization rule to the collection.
+                           *
+                           * @param {(string|RegExp)} rule
+                           * @param {string}          replacement
+                           */
+                          pluralize.addPluralRule = function (rule, replacement) {
+                            pluralRules.push([sanitizeRule(rule), replacement]);
+                          };
+                        
+                          /**
+                           * Add a singularization rule to the collection.
+                           *
+                           * @param {(string|RegExp)} rule
+                           * @param {string}          replacement
+                           */
+                          pluralize.addSingularRule = function (rule, replacement) {
+                            singularRules.push([sanitizeRule(rule), replacement]);
+                          };
+                        
+                          /**
+                           * Add an uncountable word rule.
+                           *
+                           * @param {(string|RegExp)} word
+                           */
+                          pluralize.addUncountableRule = function (word) {
+                            if (typeof word === &#x27;string&#x27;) {
+                              return uncountables[word.toLowerCase()] = true;
+                            }
+                        
+                            // Set singular and plural references for the word.
+                            pluralize.addPluralRule(word, &#x27;$0&#x27;);
+                            pluralize.addSingularRule(word, &#x27;$0&#x27;);
+                          };
+                        
+                          /**
+                           * Add an irregular word definition.
+                           *
+                           * @param {String} single
+                           * @param {String} plural
+                           */
+                          pluralize.addIrregularRule = function (single, plural) {
+                            plural = plural.toLowerCase();
+                            single = single.toLowerCase();
+                        
+                            irregularSingles[single] = plural;
+                            irregularPlurals[plural] = single;
+                          };
+                        
+                          /**
+                           * Irregular rules.
+                           */
+                          [
+                            // Pronouns.
+                            [&#x27;I&#x27;,        &#x27;we&#x27;],
+                            [&#x27;me&#x27;,       &#x27;us&#x27;],
+                            [&#x27;he&#x27;,       &#x27;they&#x27;],
+                            [&#x27;she&#x27;,      &#x27;they&#x27;],
+                            [&#x27;them&#x27;,     &#x27;them&#x27;],
+                            [&#x27;myself&#x27;,   &#x27;ourselves&#x27;],
+                            [&#x27;yourself&#x27;, &#x27;yourselves&#x27;],
+                            [&#x27;itself&#x27;,   &#x27;themselves&#x27;],
+                            [&#x27;herself&#x27;,  &#x27;themselves&#x27;],
+                            [&#x27;himself&#x27;,  &#x27;themselves&#x27;],
+                            [&#x27;themself&#x27;, &#x27;themselves&#x27;],
+                            [&#x27;this&#x27;,     &#x27;these&#x27;],
+                            [&#x27;that&#x27;,     &#x27;those&#x27;],
+                            // Words ending in with a consonant and &#x60;o&#x60;.
+                            [&#x27;echo&#x27;, &#x27;echoes&#x27;],
+                            [&#x27;dingo&#x27;, &#x27;dingoes&#x27;],
+                            [&#x27;volcano&#x27;, &#x27;volcanoes&#x27;],
+                            [&#x27;tornado&#x27;, &#x27;tornadoes&#x27;],
+                            [&#x27;torpedo&#x27;, &#x27;torpedoes&#x27;],
+                            // Ends with &#x60;us&#x60;.
+                            [&#x27;genus&#x27;,  &#x27;genera&#x27;],
+                            [&#x27;viscus&#x27;, &#x27;viscera&#x27;],
+                            // Ends with &#x60;ma&#x60;.
+                            [&#x27;stigma&#x27;,   &#x27;stigmata&#x27;],
+                            [&#x27;stoma&#x27;,    &#x27;stomata&#x27;],
+                            [&#x27;dogma&#x27;,    &#x27;dogmata&#x27;],
+                            [&#x27;lemma&#x27;,    &#x27;lemmata&#x27;],
+                            [&#x27;schema&#x27;,   &#x27;schemata&#x27;],
+                            [&#x27;anathema&#x27;, &#x27;anathemata&#x27;],
+                            // Other irregular rules.
+                            [&#x27;ox&#x27;,      &#x27;oxen&#x27;],
+                            [&#x27;axe&#x27;,     &#x27;axes&#x27;],
+                            [&#x27;die&#x27;,     &#x27;dice&#x27;],
+                            [&#x27;yes&#x27;,     &#x27;yeses&#x27;],
+                            [&#x27;foot&#x27;,    &#x27;feet&#x27;],
+                            [&#x27;eave&#x27;,    &#x27;eaves&#x27;],
+                            [&#x27;goose&#x27;,   &#x27;geese&#x27;],
+                            [&#x27;tooth&#x27;,   &#x27;teeth&#x27;],
+                            [&#x27;quiz&#x27;,    &#x27;quizzes&#x27;],
+                            [&#x27;human&#x27;,   &#x27;humans&#x27;],
+                            [&#x27;proof&#x27;,   &#x27;proofs&#x27;],
+                            [&#x27;carve&#x27;,   &#x27;carves&#x27;],
+                            [&#x27;valve&#x27;,   &#x27;valves&#x27;],
+                            [&#x27;thief&#x27;,   &#x27;thieves&#x27;],
+                            [&#x27;genie&#x27;,   &#x27;genies&#x27;],
+                            [&#x27;groove&#x27;,  &#x27;grooves&#x27;],
+                            [&#x27;pickaxe&#x27;, &#x27;pickaxes&#x27;],
+                            [&#x27;whiskey&#x27;, &#x27;whiskies&#x27;]
+                          ].forEach(function (rule) {
+                            return pluralize.addIrregularRule(rule[0], rule[1]);
+                          });
+                        
+                          /**
+                           * Pluralization rules.
+                           */
+                          [
+                            [/s?$/i, &#x27;s&#x27;],
+                            [/([^aeiou]ese)$/i, &#x27;$1&#x27;],
+                            [/(ax|test)is$/i, &#x27;$1es&#x27;],
+                            [/(alias|[^aou]us|tlas|gas|ris)$/i, &#x27;$1es&#x27;],
+                            [/(e[mn]u)s?$/i, &#x27;$1s&#x27;],
+                            [/([^l]ias|[aeiou]las|[emjzr]as|[iu]am)$/i, &#x27;$1&#x27;],
+                            [/(alumn|syllab|octop|vir|radi|nucle|fung|cact|stimul|termin|bacill|foc|uter|loc|strat)(?:us|i)$/i, &#x27;$1i&#x27;],
+                            [/(alumn|alg|vertebr)(?:a|ae)$/i, &#x27;$1ae&#x27;],
+                            [/(seraph|cherub)(?:im)?$/i, &#x27;$1im&#x27;],
+                            [/(her|at|gr)o$/i, &#x27;$1oes&#x27;],
+                            [/(agend|addend|millenni|dat|extrem|bacteri|desiderat|strat|candelabr|errat|ov|symposi|curricul|automat|quor)(?:a|um)$/i, &#x27;$1a&#x27;],
+                            [/(apheli|hyperbat|periheli|asyndet|noumen|phenomen|criteri|organ|prolegomen|\w+hedr)(?:a|on)$/i, &#x27;$1a&#x27;],
+                            [/sis$/i, &#x27;ses&#x27;],
+                            [/(?:(i)fe|(ar|l|ea|eo|oa|hoo)f)$/i, &#x27;$1$2ves&#x27;],
+                            [/([^aeiouy]|qu)y$/i, &#x27;$1ies&#x27;],
+                            [/([^ch][ieo][ln])ey$/i, &#x27;$1ies&#x27;],
+                            [/(x|ch|ss|sh|zz)$/i, &#x27;$1es&#x27;],
+                            [/(matr|cod|mur|sil|vert|ind|append)(?:ix|ex)$/i, &#x27;$1ices&#x27;],
+                            [/(m|l)(?:ice|ouse)$/i, &#x27;$1ice&#x27;],
+                            [/(pe)(?:rson|ople)$/i, &#x27;$1ople&#x27;],
+                            [/(child)(?:ren)?$/i, &#x27;$1ren&#x27;],
+                            [/eaux$/i, &#x27;$0&#x27;],
+                            [/m[ae]n$/i, &#x27;men&#x27;]
+                          ].forEach(function (rule) {
+                            return pluralize.addPluralRule(rule[0], rule[1]);
+                          });
+                        
+                          /**
+                           * Singularization rules.
+                           */
+                          [
+                            [/s$/i, &#x27;&#x27;],
+                            [/(ss)$/i, &#x27;$1&#x27;],
+                            [/((a)naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)(?:sis|ses)$/i, &#x27;$1sis&#x27;],
+                            [/(^analy)(?:sis|ses)$/i, &#x27;$1sis&#x27;],
+                            [/([^aeflor])ves$/i, &#x27;$1fe&#x27;],
+                            [/(hive|tive|dr?ive)s$/i, &#x27;$1&#x27;],
+                            [/(ar|(?:wo|[ae])l|[eo][ao])ves$/i, &#x27;$1f&#x27;],
+                            [/([^aeiouy]|qu)ies$/i, &#x27;$1y&#x27;],
+                            [/(^[pl]|zomb|^(?:neck)?t|[aeo][lt]|cut)ies$/i, &#x27;$1ie&#x27;],
+                            [/([^c][eor]n|smil)ies$/i, &#x27;$1ey&#x27;],
+                            [/(m|l)ice$/i, &#x27;$1ouse&#x27;],
+                            [/(seraph|cherub)im$/i, &#x27;$1&#x27;],
+                            [/(x|ch|ss|sh|zz|tto|go|cho|alias|[^aou]us|tlas|gas|(?:her|at|gr)o|ris)(?:es)?$/i, &#x27;$1&#x27;],
+                            [/(e[mn]u)s?$/i, &#x27;$1&#x27;],
+                            [/(movie|twelve)s$/i, &#x27;$1&#x27;],
+                            [/(cris|test|diagnos)(?:is|es)$/i, &#x27;$1is&#x27;],
+                            [/(alumn|syllab|octop|vir|radi|nucle|fung|cact|stimul|termin|bacill|foc|uter|loc|strat)(?:us|i)$/i, &#x27;$1us&#x27;],
+                            [/(agend|addend|millenni|dat|extrem|bacteri|desiderat|strat|candelabr|errat|ov|symposi|curricul|automat|quor)a$/i, &#x27;$1um&#x27;],
+                            [/(apheli|hyperbat|periheli|asyndet|noumen|phenomen|criteri|organ|prolegomen|\w+hedr)a$/i, &#x27;$1on&#x27;],
+                            [/(alumn|alg|vertebr)ae$/i, &#x27;$1a&#x27;],
+                            [/(cod|mur|sil|vert|ind)ices$/i, &#x27;$1ex&#x27;],
+                            [/(matr|append)ices$/i, &#x27;$1ix&#x27;],
+                            [/(pe)(rson|ople)$/i, &#x27;$1rson&#x27;],
+                            [/(child)ren$/i, &#x27;$1&#x27;],
+                            [/(eau)x?$/i, &#x27;$1&#x27;],
+                            [/men$/i, &#x27;man&#x27;]
+                          ].forEach(function (rule) {
+                            return pluralize.addSingularRule(rule[0], rule[1]);
+                          });
+                        
+                          /**
+                           * Uncountable rules.
+                           */
+                          [
+                            // Singular words with no plurals.
+                            &#x27;advice&#x27;,
+                            &#x27;agenda&#x27;,
+                            &#x27;bison&#x27;,
+                            &#x27;bream&#x27;,
+                            &#x27;buffalo&#x27;,
+                            &#x27;carp&#x27;,
+                            &#x27;chassis&#x27;,
+                            &#x27;cod&#x27;,
+                            &#x27;cooperation&#x27;,
+                            &#x27;corps&#x27;,
+                            &#x27;digestion&#x27;,
+                            &#x27;debris&#x27;,
+                            &#x27;diabetes&#x27;,
+                            &#x27;energy&#x27;,
+                            &#x27;equipment&#x27;,
+                            &#x27;elk&#x27;,
+                            &#x27;excretion&#x27;,
+                            &#x27;expertise&#x27;,
+                            &#x27;flounder&#x27;,
+                            &#x27;gallows&#x27;,
+                            &#x27;graffiti&#x27;,
+                            &#x27;headquarters&#x27;,
+                            &#x27;health&#x27;,
+                            &#x27;herpes&#x27;,
+                            &#x27;highjinks&#x27;,
+                            &#x27;homework&#x27;,
+                            &#x27;information&#x27;,
+                            &#x27;jeans&#x27;,
+                            &#x27;justice&#x27;,
+                            &#x27;kudos&#x27;,
+                            &#x27;labour&#x27;,
+                            &#x27;machinery&#x27;,
+                            &#x27;mackerel&#x27;,
+                            &#x27;media&#x27;,
+                            &#x27;mews&#x27;,
+                            &#x27;moose&#x27;,
+                            &#x27;news&#x27;,
+                            &#x27;pike&#x27;,
+                            &#x27;plankton&#x27;,
+                            &#x27;pliers&#x27;,
+                            &#x27;pollution&#x27;,
+                            &#x27;premises&#x27;,
+                            &#x27;rain&#x27;,
+                            &#x27;rice&#x27;,
+                            &#x27;salmon&#x27;,
+                            &#x27;scissors&#x27;,
+                            &#x27;series&#x27;,
+                            &#x27;sewage&#x27;,
+                            &#x27;shambles&#x27;,
+                            &#x27;shrimp&#x27;,
+                            &#x27;species&#x27;,
+                            &#x27;staff&#x27;,
+                            &#x27;swine&#x27;,
+                            &#x27;trout&#x27;,
+                            &#x27;tuna&#x27;,
+                            &#x27;whiting&#x27;,
+                            &#x27;wildebeest&#x27;,
+                            &#x27;wildlife&#x27;,
+                            // Regexes.
+                            /pox$/i, // &quot;chickpox&quot;, &quot;smallpox&quot;
+                            /ois$/i,
+                            /deer$/i, // &quot;deer&quot;, &quot;reindeer&quot;
+                            /fish$/i, // &quot;fish&quot;, &quot;blowfish&quot;, &quot;angelfish&quot;
+                            /sheep$/i,
+                            /measles$/i,
+                            /[^aeiou]ese$/i // &quot;chinese&quot;, &quot;japanese&quot;
+                          ].forEach(pluralize.addUncountableRule);
+                        
+                          return pluralize;
+                        });
+                        
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

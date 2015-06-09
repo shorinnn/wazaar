@@ -1,0 +1,1634 @@
+{
+    "project": {},
+    "files": {
+        "courses.js": {
+            "name": "courses.js",
+            "modules": {},
+            "classes": {
+                "Courses": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "forms.js": {
+            "name": "forms.js",
+            "modules": {},
+            "classes": {
+                "Forms": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "main.js": {
+            "name": "main.js",
+            "modules": {},
+            "classes": {
+                "Main": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "pluralize.js": {
+            "name": "pluralize.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "validations.js": {
+            "name": "validations.js",
+            "modules": {},
+            "classes": {
+                "Validations": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "videoUploader.js": {
+            "name": "videoUploader.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Courses": {
+            "name": "Courses",
+            "shortname": "Courses",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "courses.js",
+            "line": 1,
+            "description": "Contains form related reusable functions and event listeners"
+        },
+        "Forms": {
+            "name": "Forms",
+            "shortname": "Forms",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "forms.js",
+            "line": 1,
+            "description": "Contains form related reusable functions and event listeners"
+        },
+        "Main": {
+            "name": "Main",
+            "shortname": "Main",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "main.js",
+            "line": 1,
+            "description": "Contains generic reusable functions and event listeners"
+        },
+        "Validations": {
+            "name": "Validations",
+            "shortname": "Validations",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "validations.js",
+            "line": 1,
+            "description": "Contains validation functions and event handlers"
+        }
+    },
+    "classitems": [
+        {
+            "file": "courses.js",
+            "line": 32,
+            "description": "Enables Drag and Drop sorting for dynamically added lessons",
+            "itemtype": "method",
+            "name": "sortablizeLessons",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "The ID of the UL element containing the list",
+                    "type": "String"
+                }
+            ],
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 48,
+            "description": "Recalculates the lesson order within the module",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "The ID of the UL element containing the list",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "reorderLessons",
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 63,
+            "description": "Called after course creations, sets the step 2 form action attribute",
+            "itemtype": "method",
+            "name": "prepareCourseDetails",
+            "params": [
+                {
+                    "name": "json",
+                    "description": "JSON response from the create course action",
+                    "type": "Object"
+                }
+            ],
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 75,
+            "description": "Event handler for click on .add-module<br />\nAdds a new Module under the current course",
+            "itemtype": "method",
+            "name": "addModule",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The json response of the create module call",
+                    "type": "Json"
+                }
+            ],
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 91,
+            "description": "Event handler for click on .add-lesson<br />\nAdds a lesson under the selected module",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The json response of the create module call",
+                    "type": "Json"
+                }
+            ],
+            "itemtype": "method",
+            "name": "addLesson",
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 102,
+            "description": "Activates TinyMCE when the text tab of a lesson is loaded",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The event containing the calling object",
+                    "type": "Event"
+                }
+            ],
+            "itemtype": "method",
+            "name": "enableLessonRTE",
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 130,
+            "description": "Called after the files tab of a lesson is loaded, it ajaxifies the file upload form",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The original event containing the calling object",
+                    "type": "Event"
+                }
+            ],
+            "itemtype": "method",
+            "name": "enableBlockFileUploader",
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 140,
+            "description": "Called after the lesson file has been uploaded, it resets the progress bar \nand includes the new object in the UI",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The original event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data",
+                    "description": "The upload result object",
+                    "type": "Object"
+                }
+            ],
+            "itemtype": "method",
+            "name": "blockFileUploaded",
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 159,
+            "description": "Called before ajax uploading a lesson file, it limits the number of files that can be uploaded",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The original event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data",
+                    "description": "The upload result object",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "False if file can't be uploaded, true otherwise",
+                "type": "Boolean"
+            },
+            "class": "Courses"
+        },
+        {
+            "file": "courses.js",
+            "line": 174,
+            "description": "Called after a course preview/banner image is uploaded, it appends the new element to the list and clears the progressbar",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The original event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data",
+                    "description": "The upload result object",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Courses"
+        },
+        {
+            "file": "forms.js",
+            "line": 18,
+            "description": "Event handler for .ajax-form<br />\nSubmits forms with .ajax-form class via ajax and fires the data-callback function if specified",
+            "itemtype": "method",
+            "name": "formAjaxSubmit",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Submit event",
+                    "type": "Type"
+                },
+                {
+                    "name": "data-callback",
+                    "description": "What callback to fire after the ajax call succeedes",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "False",
+                "type": "Boolean"
+            },
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 45,
+            "description": "Event handler for forms.<br />\nCalled on all forms when they're submitted. It replaces the submit button label with \"Processing...[loader icon]\" \nand stores the old value in data-old-label attribute.",
+            "itemtype": "method",
+            "name": "submittedFormButton",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 58,
+            "description": "Restores the form's submit button original label",
+            "itemtype": "method",
+            "name": "restoreSubmitLabel",
+            "params": [
+                {
+                    "name": "$form",
+                    "description": "",
+                    "type": "JQuery form"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 68,
+            "description": "Event handler for  .delete-button.<br />\nFired by click on .delete-button and asks for confirmation",
+            "itemtype": "method",
+            "name": "confirmDelete",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The trigger event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data-message",
+                    "description": "What message to display in the confirmation prompt",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "True if confirmed, false otherwise",
+                "type": "Bool"
+            },
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 87,
+            "description": "Event handler for .has-slug<br />\nIs called on keyup event for elements with .has-slug class. It takes the elements value \nand populates another field specified by the elements data-slug-target attribute with\nthe slug version of the value",
+            "itemtype": "method",
+            "name": "updateSlug",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "",
+                    "type": "Event"
+                },
+                {
+                    "name": "data-slug-target",
+                    "description": "What input to populate with the slug result  (css selector)",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "null",
+                "type": "Null"
+            },
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 103,
+            "description": "Populates a second dropdown specified by 'data-target' with the values \nreturned by the get call to the resource at data-url",
+            "itemtype": "method",
+            "name": "populateDropdown",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "HTML dropdown",
+                    "type": "Object"
+                },
+                {
+                    "name": "data-target",
+                    "description": "What dropdown to populate (css selector)",
+                    "type": "String"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 129,
+            "description": "Event handler for .clonable inputs.<br />\nFired on keyup on an empty clonable input - it creates a set of \ninput+delete button after the calling element",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "keyup event",
+                    "type": "Event"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 163,
+            "description": "Renumbers the position label under clonable inputs",
+            "itemtype": "method",
+            "name": "reorderClonable",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The name of the clonable inputs",
+                    "type": "String"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 176,
+            "description": "Event handler for click on .delete-clonable buttons<br />\nDeletes the clonable input and associated delete button",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Click event",
+                    "type": "Event"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 192,
+            "description": "Called after an AJAX delete call, removes the specified HTML element",
+            "itemtype": "method",
+            "name": "deleteItem",
+            "params": [
+                {
+                    "name": "result",
+                    "description": "The ajax call json response",
+                    "type": "Json"
+                },
+                {
+                    "name": "event",
+                    "description": "The original submit event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data-delete",
+                    "description": "What element to remove from page (CSS Selector)",
+                    "type": "String"
+                }
+            ],
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 204,
+            "description": "Sends the calling field's value to an ajax script",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data-url",
+                    "description": "What URL to PUT the form to",
+                    "type": "String"
+                },
+                {
+                    "name": "data-name",
+                    "description": "The name of the field being updated",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "updateFieldRemote",
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 229,
+            "description": "Flag, set to 1 when the \"saving\" animation runs, 0 when it finishes",
+            "itemtype": "property",
+            "name": "saving_animation",
+            "type": "Number",
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 236,
+            "description": "Displays a saving animation when called with a 0 param, ends it when called with a 1 param",
+            "params": [
+                {
+                    "name": "stop",
+                    "description": "zero to start the animation, 1 to end it",
+                    "type": "Number"
+                }
+            ],
+            "itemtype": "method",
+            "name": "savingAnimation",
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 261,
+            "description": "Enables AJAX file uploading for the specified element",
+            "params": [
+                {
+                    "name": "$uploader",
+                    "description": "The file object that is ajaxified",
+                    "type": "Object"
+                },
+                {
+                    "name": "data-dropzone",
+                    "description": "CSS Selector of the element to be used as the uploader's dropzone",
+                    "type": "String"
+                },
+                {
+                    "name": "data-progress-bar",
+                    "description": "CSS selector of the element to be used as the uploader's progress bar",
+                    "type": "String"
+                },
+                {
+                    "name": "data-callback",
+                    "description": "What method to run after upload is complete",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "enableFileUploader",
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 300,
+            "description": "Displays saving animation after ajax form is submitted",
+            "itemtype": "method",
+            "name": "formSaved",
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 309,
+            "description": "Converts the supplied element into a slider object",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "The css selector of the element to be converted",
+                    "type": "String"
+                },
+                {
+                    "name": "data-label",
+                    "description": "CSS selector of the label element that displays the slider value",
+                    "type": "String"
+                },
+                {
+                    "name": "data-target-input",
+                    "description": "CSS selector of the input to be converted to a slider elements",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "enableSlider",
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 324,
+            "description": "Sets a slider control's value to the value of the calling input",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The change event fired by the calling input",
+                    "type": "Event"
+                },
+                {
+                    "name": "data-slider",
+                    "description": "The CSS selector of the slider element",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "setSlider",
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 336,
+            "description": "Sets a form's reply_to field to the value specified by data-id attr of the target",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The click event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data-id",
+                    "description": "The id of the comment containing the reply box",
+                    "type": "String"
+                },
+                {
+                    "name": "data-field",
+                    "description": "The CSS selector of the hidden field containing the reply_to value",
+                    "type": "String"
+                },
+                {
+                    "name": "data-reply-to",
+                    "description": "The id of the comment the reply is for (can be data-id if replying a top level comment)",
+                    "type": "String"
+                },
+                {
+                    "name": "data-destination",
+                    "description": "CSS selector of the element that will append the reply after submission",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "setReplyTo",
+            "class": "Forms"
+        },
+        {
+            "file": "forms.js",
+            "line": 368,
+            "description": "Cancel's the reply state of a lesson comment. It removes the 'reply_to' value\nand the \"recipient\"'s name from the comment box",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Click event",
+                    "type": "Event"
+                }
+            ],
+            "itemtype": "method",
+            "name": "cancelReply",
+            "class": "Forms"
+        },
+        {
+            "file": "main.js",
+            "line": 19,
+            "description": "Returns a slug version of the supplied string",
+            "itemtype": "method",
+            "name": "convertToSlug",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "the slug",
+                "type": "String"
+            },
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 29,
+            "description": "Redirects the window to the specified URL",
+            "itemtype": "method",
+            "name": "followRedirect",
+            "params": [
+                {
+                    "name": "An",
+                    "description": "ovject with an URL property, usually a JSON response",
+                    "type": "Object"
+                }
+            ],
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 39,
+            "description": "Static unique numbers holder. Used to keep track of used numbers",
+            "itemtype": "property",
+            "name": "unique_numbers",
+            "type": "{Array}",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 46,
+            "description": "Returns a document-wide unique number",
+            "itemtype": "method",
+            "name": "uniqueID",
+            "return": {
+                "description": "The unique number",
+                "type": "Number"
+            },
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 62,
+            "description": "Hides the current .animated-step element, unhides the next one and triggers a slideup animation",
+            "itemtype": "method",
+            "name": "unhide",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "CSS selector",
+                    "type": "String"
+                },
+                {
+                    "name": "data-target",
+                    "description": "the element to display",
+                    "type": "String"
+                }
+            ],
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 87,
+            "description": "Reverses the unhide method",
+            "itemtype": "method",
+            "name": "reverseUnhide",
+            "params": [
+                {
+                    "name": "data-target",
+                    "description": "The element to display",
+                    "type": "String"
+                }
+            ],
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 114,
+            "description": "Slide toggles an element defined by the caller's data-target attribute",
+            "itemtype": "method",
+            "name": "slideToggle",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The click event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data-target",
+                    "description": "The element to toggle",
+                    "type": "String"
+                },
+                {
+                    "name": "data-callback",
+                    "description": "The function to call when the toggle animation finishes",
+                    "type": "String"
+                }
+            ],
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 132,
+            "description": "Makes the element clicked inside the .load-remote element inherit load-remote\nproperties then fires loadRemote on it",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Clickevent",
+                    "type": "Event"
+                },
+                {
+                    "name": "data-url",
+                    "description": "The url to use in the ajax call",
+                    "type": "String"
+                },
+                {
+                    "name": "data-callback",
+                    "description": "The function to call after the ajax call succeedes",
+                    "type": "String"
+                },
+                {
+                    "name": "data-load-method",
+                    "description": "How to add the new content to the target (load|append|prepend|fade)",
+                    "type": "String"
+                },
+                {
+                    "name": "data-target",
+                    "description": "CSS selector of the element that receives the new content",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "prepareLoadRemote",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 154,
+            "description": "Event handler for a.load-remote<br />\nIt loads the resource specified at data-url into the element specified at data-target",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Click event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data-url",
+                    "description": "The url to use in the ajax call",
+                    "type": "String"
+                },
+                {
+                    "name": "data-callback",
+                    "description": "The function to call after the ajax call succeedes",
+                    "type": "String"
+                },
+                {
+                    "name": "data-load-method",
+                    "description": "How to add the new content to the target (load|append|prepend|fade)",
+                    "type": "String"
+                },
+                {
+                    "name": "data-target",
+                    "description": "CSS selector of the element that receives the new content",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "loadRemote",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 220,
+            "description": "Loads more comments via ajax and appends them to the container",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Click event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data-url",
+                    "description": "The url to use in the ajax call",
+                    "type": "String"
+                },
+                {
+                    "name": "data-callback",
+                    "description": "The function to call after the ajax call succeedes",
+                    "type": "String"
+                },
+                {
+                    "name": "data-target",
+                    "description": "CSS selector of the element that receives the new content",
+                    "type": "String"
+                },
+                {
+                    "name": "data-skip",
+                    "description": "How many items to skip in the fetch query",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "loadMoreComments",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 257,
+            "description": "Similar to loadRemote, it loads the resource, but only once, later requests just display the content already loaded",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Click event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data-url",
+                    "description": "The url to use in the ajax call",
+                    "type": "String"
+                },
+                {
+                    "name": "data-callback",
+                    "description": "The function to call after the ajax call succeedes",
+                    "type": "String"
+                },
+                {
+                    "name": "data-target",
+                    "description": "CSS selector of the element that receives the new content",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "loadRemoteCache",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 293,
+            "description": "Flag, set to true if the scrolling unhide/reverseUnhide animation is running",
+            "itemtype": "property",
+            "name": "scrollAnimationActivated",
+            "type": "{Boolean}",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 299,
+            "description": "Fires the unhide method when scrolled to the bottom of the page and reverseUnhide\nmethod when scrolled to the top of the page",
+            "itemtype": "method",
+            "name": "stepsScrollAnimation",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 324,
+            "description": "This function fixes the navigation menu at the top of the page\non scroll.",
+            "itemtype": "method",
+            "name": "floatingNav",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 348,
+            "description": "Function for sliding to each section when nav button is clicked",
+            "itemtype": "method",
+            "name": "scrollNavigation",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 381,
+            "description": "Appends the HTML property of the result of an ajax call to the specified destination element",
+            "params": [
+                {
+                    "name": "json",
+                    "description": "The ajax response",
+                    "type": "Json"
+                },
+                {
+                    "name": "e",
+                    "description": "the original event",
+                    "type": "Event"
+                },
+                {
+                    "name": "prepend",
+                    "description": "if set to true, prepend to list, otherwise append",
+                    "type": "Bool"
+                },
+                {
+                    "name": "data-destination",
+                    "description": "CSS selector of the element that receives the new content",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "addToList",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 397,
+            "description": "Replace an existing element with the one returned by an upload script",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "the original event",
+                    "type": "Event"
+                },
+                {
+                    "name": "data",
+                    "description": "the upload result",
+                    "type": "Json"
+                },
+                {
+                    "name": "data-progress-bar",
+                    "description": "The progress bar used in the upload process (so we can reset it)",
+                    "type": "String"
+                },
+                {
+                    "name": "data-replace",
+                    "description": "CSS selector of the element to be replaced by the new stuff",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "replaceElementWithUploaded",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 418,
+            "description": "Replace an existing element with the one returned by an ajax script",
+            "params": [
+                {
+                    "name": "result",
+                    "description": "the ajax result",
+                    "type": "Json"
+                },
+                {
+                    "name": "e",
+                    "description": "the original event",
+                    "type": "E"
+                },
+                {
+                    "name": "data-replace",
+                    "description": "CSS selector of the element to be replaced by the new stuff",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "method",
+            "name": "replaceElementWithReturned",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 432,
+            "description": "jQuery method that scrolls an element to the specified child's position",
+            "itemtype": "method",
+            "name": "scrollToChild",
+            "params": [
+                {
+                    "name": "child",
+                    "description": "What element to scroll to",
+                    "type": "String|element"
+                }
+            ],
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 442,
+            "description": "Callback fired after posting a comment",
+            "params": [
+                {
+                    "name": "json",
+                    "description": "The json response of the post ajax call",
+                    "type": "Object"
+                },
+                {
+                    "name": "e",
+                    "description": "The original event (form submit)",
+                    "type": "Type"
+                }
+            ],
+            "itemtype": "method",
+            "name": "postedComment",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 468,
+            "description": "Expands/collapses a comment's reply box",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The click event",
+                    "type": "Event"
+                }
+            ],
+            "itemtype": "method",
+            "name": "collapseComments",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 481,
+            "description": "Used by rotateCollapse it stores the arrow glyph rotation value (0 or 180)",
+            "itemtype": "property",
+            "name": "rotation",
+            "type": "{Number}",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 488,
+            "description": "Fired when a comment area is expanded/collapsed, it rotates the arrow glyph\ncontained in the link element that triggeres the event",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The collapseComments click event",
+                    "type": "Event"
+                }
+            ],
+            "itemtype": "method",
+            "name": "rotateCollapses",
+            "class": "Main"
+        },
+        {
+            "file": "main.js",
+            "line": 500,
+            "description": "jQuery method that sets an element rotate property to the given value",
+            "params": [
+                {
+                    "name": "degrees",
+                    "description": "The value of the rotate property",
+                    "type": "Number"
+                }
+            ],
+            "itemtype": "method",
+            "name": "jQuery.rotate",
+            "class": "Main"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 24,
+            "description": "Title case a string.",
+            "params": [
+                {
+                    "name": "str",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 34,
+            "description": "Sanitize a pluralization rule to a usable regular expression.",
+            "params": [
+                {
+                    "name": "rule",
+                    "description": "",
+                    "type": "(RegExp|string)"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "RegExp"
+            },
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 48,
+            "description": "Pass in a word token to produce a function that can replicate the case on\nanother word.",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "token",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Function"
+            },
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 71,
+            "description": "Interpolate a regexp string.",
+            "params": [
+                {
+                    "name": "str",
+                    "description": "[description]",
+                    "type": "[type]"
+                },
+                {
+                    "name": "args",
+                    "description": "[description]",
+                    "type": "[type]"
+                }
+            ],
+            "return": {
+                "description": "[description]",
+                "type": "[type]"
+            },
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 84,
+            "description": "Sanitize a word by passing in the word and sanitization rules.",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "collection",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 120,
+            "description": "Replace a word with the updated word.",
+            "params": [
+                {
+                    "name": "replaceMap",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "keepMap",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "rules",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Function"
+            },
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 148,
+            "description": "Pluralize or singularize a word based on the passed in count.",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "count",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "inclusive",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 163,
+            "description": "Pluralize a word.",
+            "type": "{Function}",
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 172,
+            "description": "Singularize a word.",
+            "type": "{Function}",
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 181,
+            "description": "Add a pluralization rule to the collection.",
+            "params": [
+                {
+                    "name": "rule",
+                    "description": "",
+                    "type": "(string|RegExp)"
+                },
+                {
+                    "name": "replacement",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 191,
+            "description": "Add a singularization rule to the collection.",
+            "params": [
+                {
+                    "name": "rule",
+                    "description": "",
+                    "type": "(string|RegExp)"
+                },
+                {
+                    "name": "replacement",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 201,
+            "description": "Add an uncountable word rule.",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "",
+                    "type": "(string|RegExp)"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 216,
+            "description": "Add an irregular word definition.",
+            "params": [
+                {
+                    "name": "single",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "plural",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 230,
+            "description": "Irregular rules.",
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 287,
+            "description": "Pluralization rules.",
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 318,
+            "description": "Singularization rules.",
+            "class": "Validations"
+        },
+        {
+            "file": "pluralize.js",
+            "line": 352,
+            "description": "Uncountable rules.",
+            "class": "Validations"
+        },
+        {
+            "file": "validations.js",
+            "line": 12,
+            "description": "Event Listener for .instant-valid class.<br />\nFired by keyup on elements with the .instant-valid class and triggers  valid/invalid \nparsley events and callbacks for current element",
+            "itemtype": "method",
+            "name": "fieldInstantValidCallback",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "",
+                    "type": "Event"
+                },
+                {
+                    "name": "data-instant-valid-callback",
+                    "description": "What function to call if the field is valid on instant check",
+                    "type": "String"
+                },
+                {
+                    "name": "data-instant-invalid-callback",
+                    "description": "What function to call if the field is invalid on instant check",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "True if the element was valid, false otherwise",
+                "type": "Bool"
+            },
+            "class": "Validations"
+        },
+        {
+            "file": "validations.js",
+            "line": 43,
+            "description": "Event listener for parsley:field:success.<br />\nFires a form callback (data-form-valid-callback) if all elements within the form are valid",
+            "itemtype": "method",
+            "name": "formValidCallback",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "e"
+                },
+                {
+                    "name": "data-form-valid-callback",
+                    "description": "The function to call if the entire form is valid during instant check",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "bool - True on fired, false otherwise"
+            },
+            "class": "Validations"
+        },
+        {
+            "file": "validations.js",
+            "line": 75,
+            "description": "Called by fieldInstantValidCallback() - Fires the invalid form callback (specified by the data-form-valid-callback\nattr of e.target) if specified",
+            "itemtype": "method",
+            "name": "formInvalidCallback",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "",
+                    "type": "Event"
+                },
+                {
+                    "name": "data-form-invalid-callback",
+                    "description": "The function to call if the entire form is invalid during instant check",
+                    "type": "String"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "validations.js",
+            "line": 95,
+            "description": "Adds a green border to an element",
+            "itemtype": "method",
+            "name": "appendGreenBorder",
+            "params": [
+                {
+                    "name": "$element",
+                    "description": "The html object to add the border",
+                    "type": "Object"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "validations.js",
+            "line": 119,
+            "description": "Adds a red border to the supplied element",
+            "itemtype": "method",
+            "name": "appendRedBorder",
+            "params": [
+                {
+                    "name": "$element",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "validations.js",
+            "line": 136,
+            "description": "Event listener for .instant-valid .<br />. \nAdds a green shadow and border to the active form field and highlights the next form field on validation",
+            "itemtype": "method",
+            "name": "highlightInput",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Focus event",
+                    "type": "Event"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "validations.js",
+            "line": 146,
+            "description": "Event listener for .delayed-valid class.<br />\nChecks if the current input is valid and fires a callback specified by\ndata-delayed-invalid-callback if invalid",
+            "itemtype": "method",
+            "name": "validateOnDelay",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "keyup event",
+                    "type": "Event"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "validations.js",
+            "line": 169,
+            "description": "Event listener for blur on .delayed-valid.<br />\nCancel the validateOnDelay if element is blured",
+            "itemtype": "method",
+            "name": "cancelDelayTimer",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Blur event",
+                    "type": "Event"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "validations.js",
+            "line": 180,
+            "description": "Slides down a subtle hint if the element supplied is not valid",
+            "params": [
+                {
+                    "name": "$element",
+                    "description": "Form input",
+                    "type": "Object"
+                }
+            ],
+            "class": "Validations"
+        },
+        {
+            "file": "videoUploader.js",
+            "line": 1,
+            "description": "Video uploader object using jqueryUploader for ajax upload",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " forms.js:18"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " forms.js:68"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " validations.js:43"
+        },
+        {
+            "message": "Missing item type\nCalled before ajax uploading a lesson file, it limits the number of files that can be uploaded",
+            "line": " courses.js:159"
+        },
+        {
+            "message": "Missing item type\nCalled after a course preview/banner image is uploaded, it appends the new element to the list and clears the progressbar",
+            "line": " courses.js:174"
+        },
+        {
+            "message": "Missing item type\nEvent handler for .clonable inputs.<br />\nFired on keyup on an empty clonable input - it creates a set of \ninput+delete button after the calling element",
+            "line": " forms.js:129"
+        },
+        {
+            "message": "Missing item type\nEvent handler for click on .delete-clonable buttons<br />\nDeletes the clonable input and associated delete button",
+            "line": " forms.js:176"
+        },
+        {
+            "message": "Missing item type\nTitle case a string.",
+            "line": " pluralize.js:24"
+        },
+        {
+            "message": "Missing item type\nSanitize a pluralization rule to a usable regular expression.",
+            "line": " pluralize.js:34"
+        },
+        {
+            "message": "Missing item type\nPass in a word token to produce a function that can replicate the case on\nanother word.",
+            "line": " pluralize.js:48"
+        },
+        {
+            "message": "Missing item type\nInterpolate a regexp string.",
+            "line": " pluralize.js:71"
+        },
+        {
+            "message": "Missing item type\nSanitize a word by passing in the word and sanitization rules.",
+            "line": " pluralize.js:84"
+        },
+        {
+            "message": "Missing item type\nReplace a word with the updated word.",
+            "line": " pluralize.js:120"
+        },
+        {
+            "message": "Missing item type\nPluralize or singularize a word based on the passed in count.",
+            "line": " pluralize.js:148"
+        },
+        {
+            "message": "Missing item type\nPluralize a word.",
+            "line": " pluralize.js:163"
+        },
+        {
+            "message": "Missing item type\nSingularize a word.",
+            "line": " pluralize.js:172"
+        },
+        {
+            "message": "Missing item type\nAdd a pluralization rule to the collection.",
+            "line": " pluralize.js:181"
+        },
+        {
+            "message": "Missing item type\nAdd a singularization rule to the collection.",
+            "line": " pluralize.js:191"
+        },
+        {
+            "message": "Missing item type\nAdd an uncountable word rule.",
+            "line": " pluralize.js:201"
+        },
+        {
+            "message": "Missing item type\nAdd an irregular word definition.",
+            "line": " pluralize.js:216"
+        },
+        {
+            "message": "Missing item type\nIrregular rules.",
+            "line": " pluralize.js:230"
+        },
+        {
+            "message": "Missing item type\nPluralization rules.",
+            "line": " pluralize.js:287"
+        },
+        {
+            "message": "Missing item type\nSingularization rules.",
+            "line": " pluralize.js:318"
+        },
+        {
+            "message": "Missing item type\nUncountable rules.",
+            "line": " pluralize.js:352"
+        },
+        {
+            "message": "Missing item type\nSlides down a subtle hint if the element supplied is not valid",
+            "line": " validations.js:180"
+        },
+        {
+            "message": "Missing item type\nVideo uploader object using jqueryUploader for ajax upload",
+            "line": " videoUploader.js:1"
+        }
+    ]
+}
