@@ -1,186 +1,194 @@
-/**
- * Contains validation functions and event handlers
- * @class Validations 
- */
-$(document).ready(function(){
-    $('body').delegate('.instant-valid', 'keyup', fieldInstantValidCallback);
-    $.listen('parsley:field:success', formValidCallback);
-    $('body').delegate('.instant-valid', 'focus', highlightInput);
-    $('body').delegate('.delayed-valid', 'keyup', validateOnDelay);
+$(function(){
+    $('.show-password').click(function(){
+        $input = $(this).parent().find('input');
+        console.log($input);
+        if( $(this).html() == _('Show') ){
+            $(this).html( _('Hide') );
+            $input.attr('type', 'text');
+        }
+        else{
+            $(this).html( _('Show') );
+            $input.attr('type', 'password');
+            
+        }
+    });
 });
 
-/**
- * Event Listener for .instant-valid class.<br />
- * Fired by keyup on elements with the .instant-valid class and triggers  valid/invalid 
- * parsley events and callbacks for current element
- * @method fieldInstantValidCallback
- * @param {event} e
- * @param {string} data-instant-valid-callback What function to call if the field is valid on instant check
- * @param {string} data-instant-invalid-callback What function to call if the field is invalid on instant check
- * @return {bool}  True if the element was valid, false otherwise
- */
-function fieldInstantValidCallback(e){
-    // fire the instant valid callback
-    if( $(e.target).parsley().isValid() ){
-        $(e.target).trigger('blur change');
-        if( typeof($(e.target).attr('data-instant-valid-callback')) !='undefined') {
-            window[$(e.target).attr('data-instant-valid-callback')]($(e.target));
-            return true;
-        }        
-    }
-    // fire the instant invalid callback
-    else{
-//        $(e.target).trigger('blur change');
-        formInvalidCallback(e);
-   
-        if( typeof($(e.target).attr('data-instant-invalid-callback')) !='undefined') {
-            window[$(e.target).attr('data-instant-invalid-callback')]( $(e.target) );
+function validateEmail(email) {
+var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        return re.test(email);
         }
-    }
-    return false;
-}
 
-/**
- * Event listener for parsley:field:success.<br />
- * Fires a form callback (data-form-valid-callback) if all elements within the form are valid
- * @method formValidCallback
- * @param event e
- * @param {string} data-form-valid-callback The function to call if the entire form is valid during instant check
- * @returns bool - True on fired, false otherwise
- */
-function formValidCallback(e){
-    if( typeof(e.$element)=='undefined' ){
-        e = {};
-        e.$element = $(event.srcElement);
-    }
-    // get the parent form
-    $form = e.$element.closest('form');
-    // loop through elements and check if all valid
-    all_valid = true;
-    $form.find("[data-parsley-trigger]").each(
-        function(){
-            if($(this).hasClass() || $(this).attr('id')!=''){
-                if(!$(this).parsley().isValid()) all_valid = false;
+var loginValidator = {
+emailAssist:function(){
+    var domains = ['gmail.com', 'aol.com'];
+    $('#login-form [name=email]').mailcheck({
+        domains: domains,                       // optional
+        suggested: function(element, suggestion) {
+          $('#login-form [name=email]').tooltip('hide')
+            .attr('title', 'Did you mean '+suggestion.full+'?')
+            .tooltip('fixTitle')
+            .tooltip('show');
+        },
+        empty: function(element) {
+        }
+    });
+},
+emailValidate:function(){
+        $('#login-form [name=email]').tooltip('destroy');
+        $('#login-form [name=email]').closest('.form-group').removeClass('input-error');
+        $('#login-form [name=email]').closest('.form-group').removeClass('valid-input');
+        $('#login-form [name=email]').next('.hide').remove();
+        
+        if ( !validateEmail($('#login-form [name=email]').val()) ){
+            $('#login-form [name=email]').closest('.form-group').addClass('input-error');
+            $('#login-form [name=email]').after('<p class="hide">' + _('Invalid email address') + '</p>');
+            this.emailAssist();
+            return false;
+        }
+
+        checkURL = $('#login-form [name=email]').attr('data-check-url');
+        self = this;
+        $.get(checkURL, {email: $('#login-form [name=email]').val()}, function(result){
+            if (result === '0'){
+            $('#login-form [name=email]').closest('.form-group').addClass('input-error');
+                    $('#login-form [name=email]').after('<p class="hide">' + _('Email not registered') + '</p>');
+                    self.emailAssist();
+                    return false;
             }
+            else{
+                    $('#login-form [name=email]').tooltip('destroy');
+                    $('#login-form [name=email]').closest('.form-group').addClass('valid-input');
+                    return true;
+                }
+        });
+},
+        passwordValidate:function(){
+            $('#login-form [name=password]').tooltip('destroy');
+            $('#login-form [name=password]').closest('.form-group').removeClass('input-error');
+            $('#login-form [name=password]').closest('.form-group').removeClass('valid-input');
+            $('#login-form [name=password]').next('.hide').remove();
+            if ($.trim($('#login-form [name=password]').val()) == ''){
+                $('#login-form [name=password]').closest('.form-group').addClass('input-error');
+                $('#login-form [name=password]').after('<p class="hide">Password can\'t be blank</p>'); 
+                return false;
+            }
+            if ( typeof( $('#login-form [name=password]').attr('data-fail') ) !='undefined' ){
+                $('#login-form [name=password]').closest('.form-group').addClass('input-error');
+                $('#login-form [name=password]').after('<p class="hide">Incorrect password</p>');
+                $('#login-form [name=password]').removeAttr('data-fail');
+                return false;
+            }
+            $('#login-form [name=password]').tooltip('destroy');
+            $('#login-form [name=password]').closest('.form-group').addClass('valid-input');
+            return true;
+        },
+        validate : function(){
+            if ( this.emailValidate()==false ) return false;
+            if ( this.passwordValidate()==false ) return false;
+        
+            var e = {};
+            $('#login-form').removeAttr('data-no-processing');
+            e.target = document.getElementById('login-form');
+            formAjaxSubmit(e);
+            return false;
+        },
+        callback: function(result, e){
+            $('#login-form [type="submit"]').attr('disabled', 'disabled');
+            $('#login-form [type="submit"]').html( _( 'Logging in - Please wait' ) );
+            window.location = window.location;
+        },
+        failCallback: function(result, e){
+            console.log('fail called!');
+            $('#login-form [name=password]').attr('data-fail',1);
+            this.passwordValidate();
         }
-    );
-    if( all_valid && typeof($form.attr('data-form-valid-callback')) !='undefined' && $form.attr('data-validation-callback-called')!=1 ){
-        $form.attr('data-validation-callback-called', 1);
-        window[$form.attr('data-form-valid-callback')]($form);
-        return true;
-    }
-    return false;
-}
+};
 
-/**
- * Called by fieldInstantValidCallback() - Fires the invalid form callback (specified by the data-form-valid-callback
- * attr of e.target) if specified
- * @method formInvalidCallback
- * @param {event} e
- * @param {string} data-form-invalid-callback The function to call if the entire form is invalid during instant check
- */
-function formInvalidCallback(e){
-    if( typeof(e.$element)=='undefined' ){
-        target = e.target;
-        e = {};
-        e.$element = $(target) ;// || $(event.srcElement);
-    }
-    $form = e.$element.closest('form');
-    if($form.attr('data-validation-callback-called')==1){
-        $form.attr('data-validation-callback-called', 0);
-        window[$form.attr('data-form-invalid-callback')]($form);
-    }
-}
-
-/** 
- * Adds a green border to an element
- * @method appendGreenBorder
- * @param {object} $element The html object to add the border
- */
-function appendGreenBorder($element){
-    // On successful validation appends a green border on the input
-    $element.addClass("valid-input");
-
-    // Removes the box shadow from successfully validated inputs
-    $element.removeClass("active-input invalid-input");
-
-    // Adds a class that displays the green tick icon
-    $element.parent("div.form-group").addClass("input-container");
-
-    // Slides up the character tip span when the field successfully validates
-    $element.parent().find('.character-tip span').css('top','-47px');
-
-    // Switches the green box shadow to the next input on a successful validation
-    if($element.parsley().isValid()){
-        $element.parent("div.form-group").nextAll('div.form-group').first().find("input").addClass("active-input");
-    }
-}
-
-/** 
- * Adds a red border to the supplied element
- * @method appendRedBorder
- * @param {object} $element
- */
-function appendRedBorder($element){
-    // Adds the red border when validation fails
-    $element.addClass("invalid-input");
-
-    // Removes the green border
-    $element.removeClass("valid-input");
-
-    // Removes the green tick icon
-    $element.parent("div.form-group").removeClass("input-container");
-
-}
-
-/**
-* Event listener for .instant-valid .<br />. 
-* Adds a green shadow and border to the active form field and highlights the next form field on validation
-* @method highlightInput
-* @param {event} e Focus event
-*/
-function highlightInput(e){
-    $(e.target).addClass("active-input");
-}
-
-/**
- * Event listener for .delayed-valid class.<br />
- * Checks if the current input is valid and fires a callback specified by
- * data-delayed-invalid-callback if invalid
- * @method validateOnDelay
- * @param {event} e keyup event
- */
-function validateOnDelay(e){
-    if( typeof(e.target.timer) != 'undefined'){
-        clearTimeout(e.target.timer);
-    }
-    
-    e.target.timer = setTimeout(function () {
-        if(! $(e.target).parsley().isValid() ){
-            $(e.target).removeClass('delayed-valid');
-            callback = $(e.target).attr('data-delayed-invalid-callback');
-            window[callback]( $(e.target) );
+var registerValidator = {
+emailAssist:function(){
+    var domains = ['gmail.com', 'aol.com'];
+    $('#register-form [name=email]').mailcheck({
+        domains: domains,                       // optional
+        suggested: function(element, suggestion) {
+          $('#register-form [name=email]').tooltip('hide')
+            .attr('title', 'Did you mean '+suggestion.full+'?')
+            .tooltip('fixTitle')
+            .tooltip('show');
+        },
+        empty: function(element) {
         }
-    }, 3000);
-    
-    $(e.target).on('blur', cancelDelayTimer);
-}
+    });
+},
+emailValidate:function(){
+        $('#register-form [name=email]').tooltip('destroy');
+        $('#register-form [name=email]').closest('.form-group').removeClass('input-error');
+        $('#register-form [name=email]').closest('.form-group').removeClass('valid-input');
+        $('#register-form [name=email]').next('.hide').remove();
+        
+        if ( !validateEmail($('#register-form [name=email]').val()) ){
+            $('#register-form [name=email]').closest('.form-group').addClass('input-error');
+            $('#register-form [name=email]').after('<p class="hide">' + _('Invalid email address') + '</p>');
+            this.emailAssist();
+            return false;
+        }
 
-/**
- * Event listener for blur on .delayed-valid.<br />
- * Cancel the validateOnDelay if element is blured
- * @method cancelDelayTimer
- * @param {event} e Blur event
- */
-function cancelDelayTimer(e){
-    clearTimeout(e.target.timer);
-}
-
-
-/**
- * Slides down a subtle hint if the element supplied is not valid
- * @param {object} $element Form input
- */
-function invalidSubtleHint($element){
-    $element.parent().find('.character-tip span').css('top','0px');
-}
+        checkURL = $('#register-form [name=email]').attr('data-check-url');
+        self = this;
+        $.get(checkURL, {email: $('#register-form [name=email]').val()}, function(result){
+            if (result === '1'){
+            $('#register-form [name=email]').closest('.form-group').addClass('input-error');
+                    $('#register-form [name=email]').after('<p class="hide">' + _('Email already registered') + '</p>');
+                    self.emailAssist();
+                    return false;
+            }
+            else{
+                    $('#register-form [name=email]').tooltip('destroy');
+                    $('#register-form [name=email]').closest('.form-group').addClass('valid-input');
+                    self.emailAssist();
+                    return true;
+                }
+        });
+},
+        passwordValidate:function(){
+            $('#register-form [name=password]').tooltip('destroy');
+            $('#register-form [name=password]').closest('.form-group').removeClass('input-error');
+            $('#register-form [name=password]').closest('.form-group').removeClass('valid-input');
+            $('#register-formm [name=password]').next('.hide').remove();
+            if ( $('#register-form [name=password]').val().length < 6){
+                $('#register-form [name=password]').closest('.form-group').addClass('input-error');
+                $('#register-form [name=password]').after('<p class="hide">'+ _('Password must be at least 6 characters long') + '</p>'); 
+                return false;
+            }
+            $('#register-form [name=password]').tooltip('destroy');
+            $('#register-form [name=password]').closest('.form-group').addClass('valid-input');
+            return true;
+        },
+        validate : function(e){
+            if ( this.emailValidate()==false ) return false;
+            if ( this.passwordValidate()==false ) return false;
+        
+            var e = {};
+            $('#register-form').removeAttr('data-no-processing');
+            e.target = document.getElementById('register-form');
+            formAjaxSubmit(e);
+            return false;
+        },
+        callback: function(result, e){
+            $('#register-form [type="submit"]').attr('disabled', 'disabled');
+            $('#register-form [type="submit"]').html( _( 'Logging in - Please wait' ) );
+            window.location = window.location;
+        },
+        failCallback: function(result, e){
+            if(result.errors){
+                for( var key in result.errors){
+                    $('#register-form [name='+key+']').parent().find('.hide').remove();
+                    $('#register-form [name='+key+']').after('<p class="hide">'+ result.errors[key].join('<br />') + '</p>'); 
+                    $('#register-form [name='+key+']').parent().removeClass('valid-input');
+                    $('#register-form [name='+key+']').parent().addClass('input-error');
+                }
+                
+            }
+            $('#register-form [name=password]').attr('data-fail',1);
+        }
+};

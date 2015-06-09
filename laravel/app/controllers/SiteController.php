@@ -8,11 +8,19 @@ class SiteController extends \BaseController {
 
 	public function index()
 	{             
+            
             $frontpageVideos  = FrontpageVideo::grid();
             $categories = CourseCategory::with('featuredCourse')->get();
             if(Auth::user()) Return View::make('site.homepage_authenticated')->with(compact('categories'));
             else Return View::make('site.homepage_unauthenticated')->with( compact('categories', 'frontpageVideos') );
 	}
+        
+        public function registrationConfirmation(){
+            return View::make('signup_success.blade.php');
+        }
+        public function verificationConfirmation(){
+            return View::make('email_verified.blade.php');
+        }
         
 	public function dashboard()
 	{                 

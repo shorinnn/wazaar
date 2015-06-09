@@ -10,6 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |   
 */
+//$domain = 'www.'.Config::get('app.base_url');
 $domain = Config::get('app.base_url');
 $instructorSubdomain = 'instructors.'.Config::get('app.base_url');
 $affiliateSubdomain = 'affiliates.'. Config::get('app.base_url');
@@ -22,6 +23,9 @@ if( !isset($_SERVER['HTTP_HOST'])){
 Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
+    Route::get('/registration-confirmation', 'SiteController@registrationConfirmation');
+    Route::get('/verification-confirmation', 'SiteController@verificationConfirmation');
+    
     Route::get('/dash', 'SiteController@dashboard');
 
     // Temporary classroom route for mac to work with
@@ -56,6 +60,7 @@ Route::group( array('domain' =>  $domain), function(){
     Route::get('reset-password/{token}', 'UsersController@resetPassword');
     Route::post('reset-password', 'UsersController@doResetPassword');
     Route::get('logout', 'UsersController@logout');
+    Route::get('emailcheck', 'UsersController@emailCheck');
 
 
 

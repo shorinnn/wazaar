@@ -14,5 +14,12 @@ var js_translation_map = {
     "Copy to clipboard" : "節Copy to clipboard約",
     "Copied!" : "節Copied!約",
     "Please fill in the reference fields" : "節Please fill in the reference fields約",
-    'Password updated' : '節Password updated約'
+    'Password updated' : '節Password updated約',
+    'Invalid email address' : 'Invalid email address',
+    'Email not registered' : 'Email not registered',
+    'Email already registered' : 'Email already registered',
+    'Hit "Forgot?" to get a new one!' : 'Hit "Forgot?" to get a new one!',
+    'Show' : 'Show',
+    'Hide' : 'Hide',
+    'Password must be at least 6 characters long' : 'Password must be at least 6 characters long'
 };

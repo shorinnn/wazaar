@@ -18,5 +18,12 @@ var js_translation_map = {
     'thisWeek' : 'This Week',
     'thisMonth' : 'This Month',
     'allTime' : 'All Time',
-    'Password updated' : 'Password updated'
+    'Password updated' : 'Password updated',
+    'Invalid email address' : 'Invalid email address',
+    'Email not registered' : 'Email not registered',
+    'Email already registered' : 'Email already registered',
+    'Hit "Forgot?" to get a new one!' : 'Hit "Forgot?" to get a new one!',
+    'Show' : 'Show',
+    'Hide' : 'Hide',
+    'Password must be at least 6 characters long' : 'Password must be at least 6 characters long'
 };

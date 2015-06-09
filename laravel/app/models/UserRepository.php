@@ -41,7 +41,7 @@ class UserRepository
         // The password confirmation will be removed from model
         // before saving. This field will be used in Ardent'ssql
         // auto validation.
-        $user->password_confirmation = array_get($input, 'password_confirmation');
+        $user->password_confirmation = $user->password;// array_get($input, 'password_confirmation');
 
         // Generate a random confirmation code
         $user->confirmation_code     = md5(uniqid(mt_rand(), true));
@@ -52,6 +52,13 @@ class UserRepository
             if( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) $user = $this->attachRoles($user, 1);
             if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ) $user = $this->attachRoles($user, 2);
             $this->save_ltc($user, $ltc_cookie);
+            
+            // add user to DELIVERED
+//            $delivered = new DeliveredHelper();
+//            $response = $delivered->addUser( str_random(4), str_random(5), $user->email );
+//            if( $response->success ){
+//                $user->delivered_user_id = $response->data->clientId;
+//            }
             return User::find($user->id);
         }
         else return $user;

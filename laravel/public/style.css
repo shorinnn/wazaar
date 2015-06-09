@@ -1961,7 +1961,12 @@ header .activate-dropdown:hover ul{
 #register-form #email{
 	text-indent: 45px;
 }*/
-
+.valid-input{
+	border-color: #92cc2e;
+	color: #99cf3b;
+	box-shadow: none;
+	box-shadow: 1px 0px 12px 2px #92cc2e;
+}
 /*.social-link-form .valid-input,
 #login-form .valid-input,
 #register-form .valid-input{
