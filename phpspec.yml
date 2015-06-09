@@ -1,5 +1,0 @@
-suites:
-    main:
-        namespace: Delivered
-        psr4_prefix: Delivered
-        src_path: app
