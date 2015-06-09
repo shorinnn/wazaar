@@ -8,6 +8,7 @@ class SiteController extends \BaseController {
 
 	public function index()
 	{             
+            
             $frontpageVideos  = FrontpageVideo::grid();
             $categories = CourseCategory::with('featuredCourse')->get();
             if(Auth::user()) Return View::make('site.homepage_authenticated')->with(compact('categories'));
