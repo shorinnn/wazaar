@@ -55,7 +55,7 @@
 <input type="hidden" name="meta_web_form_id" value="2051478497" />
 <input type="hidden" name="meta_split_id" value="" />
 <input type="hidden" name="listname" value="awlist3910087" />
-<input type="hidden" name="redirect" value="http://cocorium.com/lp1/success.php" id="redirect_307b2f963055014508b9c9a4122095fa" />
+<input type="hidden" name="redirect" value="http://wazaar.jp/lp1/success.php" id="redirect_307b2f963055014508b9c9a4122095fa" />
 <input type="hidden" name="meta_forward_vars" value="1" />
 <input type="hidden" name="meta_adtracking" value="My_Web_Form" />
 <input type="hidden" name="meta_message" value="1" />
@@ -151,7 +151,7 @@ Wazaarのミッションになります。
 <input type="hidden" name="meta_web_form_id" value="2051478497" />
 <input type="hidden" name="meta_split_id" value="" />
 <input type="hidden" name="listname" value="awlist3910087" />
-<input type="hidden" name="redirect" value="http://cocorium.com/lp1/success.php" id="redirect_307b2f963055014508b9c9a4122095fa" />
+<input type="hidden" name="redirect" value="http://wazaar.jp/lp1/success.php" id="redirect_307b2f963055014508b9c9a4122095fa" />
 <input type="hidden" name="meta_forward_vars" value="1" />
 <input type="hidden" name="meta_adtracking" value="My_Web_Form" />
 <input type="hidden" name="meta_message" value="1" />

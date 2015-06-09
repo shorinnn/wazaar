@@ -26,7 +26,7 @@
     	<header class="container-fluid">
        		<div class="row">
                 <div class="top-menu clearfix col-md-12">
-                    <a href="http://wazaar.dev" class="main-logo">
+                    <a href="http://wazaar.jp" class="main-logo">
                         <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
                        class="img-responsive" alt="">
                     </a>    
@@ -47,8 +47,8 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<h2>
                         	<img src="registered-mark.png" alt="" class="inline-block">
-                            <span class="block">Congratulations <span class="name">Saulius,</span></span>
-                            <span class="block">you have verified your email!</span>
+                            <span class="block">Congratulations <span class="name"><?php if(isset($_GET['name'])) echo $_GET['name'];?>,</span></span>
+                            <span class="block">Your email has been successfully submitted!</span>
                         </h2>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
         <script src="http://www.localeplanet.com/api/translate.js" /></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>        
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
-    	<script type="text/javascript" src="http://wazaar.dev/js/bootbox.js"></script>
+    	<script type="text/javascript" src="http://wazaar.jp/js/bootbox.js"></script>
 
 </body>
 </html>
