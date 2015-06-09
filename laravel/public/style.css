@@ -1783,6 +1783,11 @@ header .activate-dropdown:hover ul{
 /*********** Registration Successful and Email Verifications **************/
 .email-confirmation-pages{
 	background: #ebeced;
+	padding-bottom: 10%;
+}
+
+.email-confirmation-pages .container{
+	max-width: 680px;
 }
 
 .congrats-message{
@@ -1793,7 +1798,13 @@ header .activate-dropdown:hover ul{
 .congrats-message h2{
 	font-weight: 600;
 	font-size: 18px;
-	margin: 29px 0 54px;
+	line-height: 30px;
+	text-transform: uppercase;
+	margin: 0 0 5.5%;
+}
+
+.congrats-message h2 img{
+	margin-bottom: 30px;
 }
 
 .congrats-message h2 .name{
@@ -1806,6 +1817,21 @@ header .activate-dropdown:hover ul{
 	padding: 30px;
 }
 
+.invite-friends.deactivated{
+	background: none;
+}
+
+.invite-friends.deactivated span{
+	background: none;
+	border-color: #bfc6cd;
+	color: #bfc6cd;
+}
+	
+.invite-friends.deactivated p,
+.invite-friends.deactivated h3{
+	color: #bfc6cd;
+}
+
 .invite-friends > div,
 .verify-email > div{
 	padding: 0;
@@ -1814,28 +1840,31 @@ header .activate-dropdown:hover ul{
 .step-number{
 	display: inline-block;
 	float: left;
-	padding: 6px 11px;
+	height: 26px;
+	width: 26px;
 	background: #fff;
 	font-size: 18px;
 	font-weight: 600;
 	color: #7e8e9e;
+	line-height: 22px;
 	text-align: center;
-	border-radius: 11px;
+	border-radius: 26px;
 	margin-right: 15px;
 	margin-bottom: 20px;
+	margin-top: 3px;
 	border: solid 2px #7e8e9e;
 }
 
 .invite-friends h3,
 .verify-email h3{
 	color: #303941;
-	margin: 0 0 12px;
+	margin: 0 0 5px;
 }
 
 .invite-friends p,
 .verify-email p{
 	color: #6e747a;
-	margin: 0;
+	margin: 0 0 10px;
 }
 
 .email-verified{
@@ -1854,26 +1883,40 @@ header .activate-dropdown:hover ul{
 .email-verified .step-number{
 	color: #0099ff;
 	border-color: #0099ff;
+	background: none;
+	margin-top: -3px;
 }
 
 .approval-notice{
+	display: none;
 	font-size: 12px;
 	font-weight: 600;
 	color: #f7f9fa;
-	padding: 15px;
+	padding: 15px !important;
 	background: #ffa92e;
 	border: solid 1px #eb9a2a;
 	border-radius: 4px;
-	margin-top: 17px;
+}
+
+.share-link-form{
+	margin-bottom: 17px;
 }
 
 .share-link-form input{
 	background: #fff;
 	border-radius: 4px;
 	border: solid 1px #e3e5e6;
-	width: 38px;
-	height: 214px;
+	height: 38px;
+	float: left;
+	width: 214px;
+	margin-bottom: 5px;
 	margin-right: 10px;
+	padding-left: 15px;
+}
+
+.share-link-form button{
+	padding: 11px 25px;
+	float: left;
 }
 
 .share-link-form input:-moz-placeholder,
@@ -1882,7 +1925,44 @@ header .activate-dropdown:hover ul{
 .share-link-form input::-webkit-input-placeholder{
 	font-size: 13px;
 	color: #303941;
-	padding-left: 15px;
+}
+
+.approval-pending input{
+	background: #fff;
+	border-radius: 4px;
+	cursor: not-allowed !important;
+	border: solid 1px #e3e5e6;
+}
+
+.approval-pending button{
+	background: #b2e0ff;
+	cursor: not-allowed !important;
+}
+
+.approval-pending .approval-notice{
+	display: block;
+}
+
+.approval-pending button:focus,
+.approval-pending button:active,
+.approval-pending button:hover{
+	background: #b2e0ff;
+}
+
+.approval-pending input::-webkit-input-placeholder{
+	color: #cfd1d2;
+}
+
+.approval-pending input::-moz-placeholder{
+	color: #cfd1d2;
+}
+
+.approval-pending input:-moz-placeholder{
+	color: #cfd1d2;
+}
+
+.approval-pending input:-ms-input-placeholder{
+	color: #cfd1d2;
 }
 
 
