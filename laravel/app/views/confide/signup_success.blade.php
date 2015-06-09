@@ -15,7 +15,7 @@
         	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
             	<span class="step-number">1</span>
                 <h3>Please verify your email</h3>
-                <p>We have sent verification link to your email saulius@mail.com!</p>
+                <p class="regular-paragraph">We have sent verification link to your email saulius@mail.com!</p>
             </div>
         	<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
             	<a href="#" class="blue-button large-blue-button">VERIFY EMAIL</a>
