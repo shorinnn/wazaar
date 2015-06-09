@@ -422,10 +422,21 @@ Wazaarのプロジェクトリーダーをやるということもありませ�
 <!-- form -->
 <div class="form_bg">
 	<div class="container">
-        <form name="" action="" method="post" class="">
-        <img src="img/form/name.png" class="imgl"><input type="text" name="" value="" class="inputtext"><br />
-        <img src="img/form/mail.png" class="imgl"><input type="text" name="" value="" class="inputtext"><br />
-        <input type="image" name="submit" src="img/form/btn_01.png" alt="登録"  class="submitbutton" value=""
+        <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl"  >
+<div style="display: none;">
+<input type="hidden" name="meta_web_form_id" value="2051478497" />
+<input type="hidden" name="meta_split_id" value="" />
+<input type="hidden" name="listname" value="awlist3910087" />
+<input type="hidden" name="redirect" value="https://www.aweber.com/thankyou.htm?m=default" id="redirect_b7646bf4328e670f0334e6a8622fcb44" />
+
+<input type="hidden" name="meta_adtracking" value="My_Web_Form" />
+<input type="hidden" name="meta_message" value="1" />
+<input type="hidden" name="meta_required" value="name,email" />
+</div>
+<input type="hidden" name="meta_tooltip" value="" />
+        <img src="img/form/name.png" class="imgl"><input type="text" name="name" value="" class="inputtext"><br />
+        <img src="img/form/mail.png" class="imgl"><input type="text" name="email" value="" class="inputtext"><br />
+        <input type="image" name="submit" src="img/form/btn_01.png" alt="??"  class="submitbutton" value=""
          onmouseover="this .src='img/form/btn_02.png'"
          onmouseout="this .src='img/form/btn_01.png'" />
         </form>
@@ -509,10 +520,21 @@ Wazaarのミッションになります。
 <!-- form -->
 <div class="form_bg">
 	<div class="container">
-        <form name="" action="" method="post" class="">
-        <img src="img/form/name.png" class="imgl"><input type="text" name="" value="" class="inputtext"><br />
-        <img src="img/form/mail.png" class="imgl"><input type="text" name="" value="" class="inputtext"><br />
-        <input type="image" name="submit" src="img/form/btn_01.png" alt="登録"  class="submitbutton" value=""
+        <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl"  >
+<div style="display: none;">
+<input type="hidden" name="meta_web_form_id" value="2051478497" />
+<input type="hidden" name="meta_split_id" value="" />
+<input type="hidden" name="listname" value="awlist3910087" />
+<input type="hidden" name="redirect" value="https://www.aweber.com/thankyou.htm?m=default" id="redirect_b7646bf4328e670f0334e6a8622fcb44" />
+
+<input type="hidden" name="meta_adtracking" value="My_Web_Form" />
+<input type="hidden" name="meta_message" value="1" />
+<input type="hidden" name="meta_required" value="name,email" />
+</div>
+<input type="hidden" name="meta_tooltip" value="" />
+        <img src="img/form/name.png" class="imgl"><input type="text" name="name" value="" class="inputtext"><br />
+        <img src="img/form/mail.png" class="imgl"><input type="text" name="email" value="" class="inputtext"><br />
+        <input type="image" name="submit" src="img/form/btn_01.png" alt="??"  class="submitbutton" value=""
          onmouseover="this .src='img/form/btn_02.png'"
          onmouseout="this .src='img/form/btn_01.png'" />
         </form>
