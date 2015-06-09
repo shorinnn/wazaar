@@ -41,7 +41,7 @@ class UserRepository
         // The password confirmation will be removed from model
         // before saving. This field will be used in Ardent'ssql
         // auto validation.
-        $user->password_confirmation = array_get($input, 'password_confirmation');
+        $user->password_confirmation = $user->password;// array_get($input, 'password_confirmation');
 
         // Generate a random confirmation code
         $user->confirmation_code     = md5(uniqid(mt_rand(), true));

@@ -73,11 +73,13 @@ class UsersController extends Controller
             Cookie::queue('iai', null, -1);
             Cookie::queue('stpi', null, -1);
             Auth::login($user);
+            if(Request::ajax()) return json_encode( [ 'status' => 'success' ] );
             return Redirect::intended('/');
         } else {
             $error = implode('<br />',$user->errors()->all());
             $input = Input::all();
             unset($input['password']);
+            if(Request::ajax()) return json_encode( [ 'status' => 'error', 'errors' => $user->errors()->getMessages() ] );
             return Redirect::back()->with('error', $error)->withInput( $input );//Redirect::action('UsersController@create')
                 //->withInput(Input::except('password'))
                 //->with('error', $error);

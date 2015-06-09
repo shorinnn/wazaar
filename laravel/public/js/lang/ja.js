@@ -17,5 +17,9 @@ var js_translation_map = {
     'Password updated' : '節Password updated約',
     'Invalid email address' : 'Invalid email address',
     'Email not registered' : 'Email not registered',
-    'Hit "Forgot?" to get a new one!' : 'Hit "Forgot?" to get a new one!'
+    'Email already registered' : 'Email already registered',
+    'Hit "Forgot?" to get a new one!' : 'Hit "Forgot?" to get a new one!',
+    'Show' : 'Show',
+    'Hide' : 'Hide',
+    'Password must be at least 6 characters long' : 'Password must be at least 6 characters long'
 };

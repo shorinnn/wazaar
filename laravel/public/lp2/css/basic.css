@@ -1,0 +1,147 @@
+@charset "UTF-8";  
+
+/* ------------------------------------------- CSS Information 
+ File Name:      basic.css
+ Author:         Dxmix
+ Style Info:     基本設定
+----------------------------------------------------------- */
+
+
+.container{
+	width: 960px;
+	margin: 0 auto;
+}
+
+#contents{
+padding-bottom:40px;
+width: 960px;
+clear: both;
+}
+
+.btn_01{
+height:165px;
+padding-top:105px;
+}
+
+#titlebox{
+padding: 480px 0 0 700px;
+}
+
+h1,h2{
+text-align:left;
+font-size: 12px;
+padding-right: 10px;
+color: #009e96;
+}
+
+h1{float:left;}
+
+
+h3,h4{
+font-size: 1px;
+line-height: 1em;
+text-indent: -9999px;
+}
+
+/*A Style*/  
+a:link{
+text-decoration: none;
+color: #f5f1ed;
+}
+
+a:visited{
+text-decoration: none;
+color: #f5f1ed;
+}
+
+a:hover{
+text-decoration: underline;
+color: #f5f1ed;
+}
+
+a:active{
+text-decoration: none;
+color: #f5f1ed;
+}
+
+.it{ font-style: italic;}
+.ol{ text-decoration: overline;}
+.lt{ text-decoration: line-through;}
+.uol{ text-decoration: underline overline;}
+
+
+
+/*basic*/
+
+.b{font-weight: bold;}
+.b-bg{font-weight: bold; background-color: #fff45c;}
+.b-ul{font-weight: bold; text-decoration: underline;}
+.b-ul-bg{font-weight: bold; text-decoration: underline; background-color: #fff45c;}
+.b-big{font-weight: bold; font-size:24px;}
+.big{font-size:24px; color:#005752; font-weight:bold;}
+
+/*red*/
+
+b,.red-b{
+color: #e83e3e;
+font-weight: bold;
+}
+
+.red-b-bg{
+color: #e83e3e;
+font-weight: bold;
+background-color: #fff45c;
+}
+
+.red-b-ul{
+color: #e83e3e;
+font-weight: bold;
+text-decoration: underline;
+}
+
+.red-b-ul-bg{
+color: #e83e3e;
+font-weight: bold;
+text-decoration: underline;
+background-color: #fff45c;
+}
+
+.red-b-big{color: #e83e3e; font-weight: bold; font-size:20px;}
+
+/*blue*/
+
+.blue-b{
+color: #005982;
+font-weight: bold;
+}
+
+.blue-b-bg{
+color: #005982;
+font-weight: bold;
+background-color: #fff45c;
+}
+
+.blue-b-ul{
+color: #005982;
+font-weight: bold;
+text-decoration: underline;
+}
+
+.blue-b-ul-bg{
+color: #005982;
+font-weight: bold;
+text-decoration: underline;
+background-color: #fff45c;
+}
+
+.purple{background-color: #920783; color:#ffffff; font-weight:bold; margin:0 5px;}
+.blue{background-color: #004986; color:#ffffff; font-weight:bold; margin:0 5px;}
+.red{background-color: #c40000; color:#ffffff; font-weight:bold; margin:0 5px;}
+.lblue{background-color: #0075a9; color:#ffffff; font-weight:bold; margin:0 5px;}
+.green{background-color: #007130; color:#ffffff; font-weight:bold; margin:0 5px;}
+
+/*img float*/
+
+img.imgr{float: right; padding: 0 0 50px 30px;}
+img.imgl{float: left;}
+  

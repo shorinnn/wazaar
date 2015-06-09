@@ -1,3 +1,19 @@
+$(function(){
+    $('.show-password').click(function(){
+        $input = $(this).parent().find('input');
+        console.log($input);
+        if( $(this).html() == _('Show') ){
+            $(this).html( _('Hide') );
+            $input.attr('type', 'text');
+        }
+        else{
+            $(this).html( _('Show') );
+            $input.attr('type', 'password');
+            
+        }
+    });
+});
+
 function validateEmail(email) {
 var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
         return re.test(email);
@@ -84,5 +100,91 @@ emailValidate:function(){
             console.log('fail called!');
             $('#login-form [name=password]').attr('data-fail',1);
             this.passwordValidate();
+        }
+};
+
+var registerValidator = {
+emailAssist:function(){
+    var domains = ['gmail.com', 'aol.com'];
+    $('#register-form [name=email]').mailcheck({
+        domains: domains,                       // optional
+        suggested: function(element, suggestion) {
+          $('#register-form [name=email]').tooltip('hide')
+            .attr('title', 'Did you mean '+suggestion.full+'?')
+            .tooltip('fixTitle')
+            .tooltip('show');
+        },
+        empty: function(element) {
+        }
+    });
+},
+emailValidate:function(){
+        $('#register-form [name=email]').tooltip('destroy');
+        $('#register-form [name=email]').closest('.form-group').removeClass('input-error');
+        $('#register-form [name=email]').closest('.form-group').removeClass('valid-input');
+        $('#register-form [name=email]').next('.hide').remove();
+        
+        if ( !validateEmail($('#register-form [name=email]').val()) ){
+            $('#register-form [name=email]').closest('.form-group').addClass('input-error');
+            $('#register-form [name=email]').after('<p class="hide">' + _('Invalid email address') + '</p>');
+            this.emailAssist();
+            return false;
+        }
+
+        checkURL = $('#register-form [name=email]').attr('data-check-url');
+        self = this;
+        $.get(checkURL, {email: $('#register-form [name=email]').val()}, function(result){
+            if (result === '1'){
+            $('#register-form [name=email]').closest('.form-group').addClass('input-error');
+                    $('#register-form [name=email]').after('<p class="hide">' + _('Email already registered') + '</p>');
+                    self.emailAssist();
+                    return false;
+            }
+            else{
+                    $('#register-form [name=email]').tooltip('destroy');
+                    $('#register-form [name=email]').closest('.form-group').addClass('valid-input');
+                    self.emailAssist();
+                    return true;
+                }
+        });
+},
+        passwordValidate:function(){
+            $('#register-form [name=password]').tooltip('destroy');
+            $('#register-form [name=password]').closest('.form-group').removeClass('input-error');
+            $('#register-form [name=password]').closest('.form-group').removeClass('valid-input');
+            $('#register-formm [name=password]').next('.hide').remove();
+            if ( $('#register-form [name=password]').val().length < 6){
+                $('#register-form [name=password]').closest('.form-group').addClass('input-error');
+                $('#register-form [name=password]').after('<p class="hide">'+ _('Password must be at least 6 characters long') + '</p>'); 
+                return false;
+            }
+            $('#register-form [name=password]').tooltip('destroy');
+            $('#register-form [name=password]').closest('.form-group').addClass('valid-input');
+            return true;
+        },
+        validate : function(){
+            if ( this.emailValidate()==false ) return false;
+            if ( this.passwordValidate()==false ) return false;
+        
+            var e = {};
+            $('#register-form').removeAttr('data-no-processing');
+            e.target = document.getElementById('register-form');
+        },
+        callback: function(result, e){
+            $('#register-form [type="submit"]').attr('disabled', 'disabled');
+            $('#register-form [type="submit"]').html( _( 'Logging in - Please wait' ) );
+            window.location = window.location;
+        },
+        failCallback: function(result, e){
+            if(result.errors){
+                for( var key in result.errors){
+                    $('#register-form [name='+key+']').parent().find('.hide').remove();
+                    $('#register-form [name='+key+']').after('<p class="hide">'+ result.errors[key].join('<br />') + '</p>'); 
+                    $('#register-form [name='+key+']').parent().removeClass('valid-input');
+                    $('#register-form [name='+key+']').parent().addClass('input-error');
+                }
+                
+            }
+            $('#register-form [name=password]').attr('data-fail',1);
         }
 };
