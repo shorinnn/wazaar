@@ -54,9 +54,11 @@ class UserRepository
             $this->save_ltc($user, $ltc_cookie);
             
             // add user to DELIVERED
-            $delivered = new DeliveredHelper();
-            $response = $delivered->addUser( str_random(4), str_random(5), $user->email );
-            $user->delivered_user_id = $response->data->clientId;
+//            $delivered = new DeliveredHelper();
+//            $response = $delivered->addUser( str_random(4), str_random(5), $user->email );
+//            if( $response->success ){
+//                $user->delivered_user_id = $response->data->clientId;
+//            }
             return User::find($user->id);
         }
         else return $user;

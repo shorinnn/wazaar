@@ -90,6 +90,8 @@ emailValidate:function(){
             var e = {};
             $('#login-form').removeAttr('data-no-processing');
             e.target = document.getElementById('login-form');
+            formAjaxSubmit(e);
+            return false;
         },
         callback: function(result, e){
             $('#login-form [type="submit"]').attr('disabled', 'disabled');
@@ -162,13 +164,15 @@ emailValidate:function(){
             $('#register-form [name=password]').closest('.form-group').addClass('valid-input');
             return true;
         },
-        validate : function(){
+        validate : function(e){
             if ( this.emailValidate()==false ) return false;
             if ( this.passwordValidate()==false ) return false;
         
             var e = {};
             $('#register-form').removeAttr('data-no-processing');
             e.target = document.getElementById('register-form');
+            formAjaxSubmit(e);
+            return false;
         },
         callback: function(result, e){
             $('#register-form [type="submit"]').attr('disabled', 'disabled');

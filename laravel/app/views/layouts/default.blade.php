@@ -85,8 +85,8 @@
                             <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
                             <p class="intro-paragraph text-center">{{ trans('general.enter-email-and-password') }}</p>
                             <div class="login-form clearfix">
-                            <form id='login-form' role="form" method="POST" onsubmit="return loginValidator.validate();"
-                                  data-no-processing="1" class="ajax-form" data-callback="loginValidator.callback" 
+                            <form id='login-form' role="form" method="POST" onsubmit="return loginValidator.validate(event);"
+                                  data-no-processing="1" class="ajax-formxxx" data-callback="loginValidator.callback" 
                                   data-fail-callback="loginValidator.failCallback"
                                   action="{{{ action('UsersController@login') }}}" accept-charset="UTF-8">
                             <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
@@ -152,8 +152,9 @@
                             <p class="intro-paragraph text-center">{{ trans('general.enter-new-email-and-password') }}</p>
                             <div class="login-form clearfix">
                                 <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8" id="register-form"
-                                     data-no-processing="1"  class="ajax-form" data-callback="registerValidator.callback" 
-                                     data-fail-callback="registerValidator.failCallback"  onsubmit="return registerValidator.validate();" />
+                                     data-no-processing="1"  class="ajax-formxxx" data-callback="registerValidator.callback" 
+                                     
+                                     data-fail-callback="registerValidator.failCallback"  onsubmit="return registerValidator.validate(event);" />
                                     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                                     <fieldset>
                                     
