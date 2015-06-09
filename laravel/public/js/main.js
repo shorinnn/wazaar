@@ -41,6 +41,7 @@ $(document).ready(function(){
 	insertSelectBorder();
 	askTeacherQuestion();
 	searchFormFocusStyle();
+	showMoreContent();
 });
 
 function videoGridBoxIn(){
@@ -1109,5 +1110,66 @@ function searchFormFocusStyle(){
 
 }
 
+function showMoreContent(){
+	/*var collapsedHeight = $('.expandable-content').css('max-height');
+	$('.expandable-content').each(function(){
+		var $this = $(this);
+		$this.data('natural', $this[0].scrollHeight);
+	});
+	$('.expandable-button').bind('click', function(){
+		var $expandableContent = $(this).parent().children('.expandable-content');
+		if($expandableContent.hasClass('expanded')){
+			$expandableContent.animate({'maxHeight': collapsedHeight}, 250);
+			$expandableContent.removeClass('expanded');
+		}
+		else{
+			$expandableContent.animate({'maxHeight': $expandableContent.data('natural')}, 250);
+			$expandableContent.addClass('expanded');	
+		}
+	});*/
+	
+	$(".expandable-button").each(function() {
+		var $link = $(this);
+		var $content = $link.parent().children('.expandable-content');
+	
+		console.log($link);
+		console.log($content);
+	
+		var visibleHeight = $content[0].clientHeight;
+		var actualHide = $content[0].scrollHeight - 1; // -1 is needed in this example or you get a 1-line offset.
+	
+		console.log(actualHide);
+		console.log(visibleHeight);
+	
+		if (actualHide > visibleHeight) {
+			$link.show();
+		} else {
+			$link.hide();
+		}
+	});
 
+	$(".expandable-button").on("click", function() {
+		var $link = $(this);
+		var $content = $link.parent().children('.expandable-content');
+		var linkText = $link.text();
+	
+		$content.toggleClass("short-text, full-text");
+	
+		$link.text(getShowLinkText(linkText));
+	
+		return false;
+	});
+	
+	function getShowLinkText(currentText) {
+		var newText = '';
+	
+		if (currentText.toUpperCase() === "SHOW FULL DESCRIPTION") {
+			newText = "Hide full description";
+		} else {
+			newText = "Show full description";
+		}
+	
+		return newText;
+	}
+}
 

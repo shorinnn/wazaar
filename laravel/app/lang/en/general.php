@@ -6,6 +6,7 @@ return array(
 	'enter-new-email-and-password' => 'enter your email and choose password',
     'members' => 'Members',
     'user' => 'User',
+    'verify-email' => 'Verify Email',
 	'highly-recommend' => 'highly recommend',
 	'weeks-of-learning' => 'weeks of learning',
 	'catalogue' => 'Catalogue',

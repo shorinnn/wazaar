@@ -49,8 +49,8 @@
                               </a></li>
                         </ol>-->
                         <h1> {{ $course->name }}</h1>
-                        <p class="intro-paragraph">{{$course->description}}</p>
-                        <span class="show-full-description"> {{ trans("courses/general.show-full-description") }}</span>
+                        <p class="intro-paragraph expandable-content short-text">Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.{{$course->description}}</p>
+                        <span class="show-full-description expandable-button"> {{ trans("courses/general.show-full-description") }}</span>
                         <!--
                         
                         <div class="clearfix banner-content-wrapper">
