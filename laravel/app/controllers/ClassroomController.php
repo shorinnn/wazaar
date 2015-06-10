@@ -143,6 +143,7 @@ class ClassroomController extends \BaseController {
                     if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
                     return Redirect::to('/?2');
                 }
+                return Redirect::to( $block->presignedUrl() );
                 header('location: '.$block->presignedUrl());
             }
         }
