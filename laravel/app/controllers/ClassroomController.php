@@ -131,6 +131,7 @@ class ClassroomController extends \BaseController {
             $purchase = $student->purchases()->where('product_type','Lesson')->where('product_id', $lesson->id)->first();
             
             if($student->id == $course->instructor_id || $student->id == $course->assigned_instructor_id){
+                dd($block->presignedUrl());
                 header('location: '.$block->presignedUrl());
             }
             else{
