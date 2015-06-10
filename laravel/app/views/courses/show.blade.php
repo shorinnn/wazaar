@@ -50,7 +50,7 @@
                         </ol>-->
                         <h1> {{ $course->name }}</h1>
                         <p class="intro-paragraph expandable-content short-text">{{$course->description}}</p>
-                        <span class="show-full-description expandable-button show-more"> {{ trans("courses/general.show-full-description") }}</span>
+                        <span class="show-full-description expandable-button show-more" data-less-text='Show less description' data-more-text='Show full description'> {{ trans("courses/general.show-full-description") }}</span>
                         <!--
                         
                         <div class="clearfix banner-content-wrapper">
@@ -284,7 +284,9 @@
                                 </li>-->
                                 @endforeach
                             </ul>
-                            <span class="hide-lesson-topics expandable-button show-more">Show more lessons</span>
+                            <span class="hide-lesson-topics expandable-button show-more"
+                            	data-less-text='Show less lessons' 
+                                data-more-text='Show more lessons'>Show more lessons</span>
                         </div>
                         @endforeach
                         @if($course->allTestimonials->count() > 0)

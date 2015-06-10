@@ -34,7 +34,7 @@
           <p class="regular-paragraph expandable-content">
 			{{{ $testimonial->content }}}          
           </p>
-          <span class="view-more-reviews expandable-button show-more">{{ trans("courses/general.more") }}</span>
+          <span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }}</span>
       </div>
   </div>
 

@@ -1124,13 +1124,19 @@ header .activate-dropdown:hover ul{
 	text-overflow: ellipsis;
 }
 
+.small-box .short-description-container{
+	width: 100%;
+	height: 63px;
+	overflow: hidden;
+	padding-bottom: 15px;
+}
+
 .small-box .course-box-content p{ 
 	font-size:13px;
 	color:#667078;
   	text-align:left;
   	margin:0;
 	height: 63px;
-	padding-bottom: 29px;
   	line-height: 21px;
 	border-bottom: solid 1px #f0f1f2;
 }

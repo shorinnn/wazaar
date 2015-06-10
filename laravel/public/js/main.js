@@ -30,8 +30,7 @@ $(document).ready(function(){
 	});
 	$('button.join-class').mouseup(function(){
 		$(this).removeClass('pushdown');
-	});
-	
+	});	
 	
     $(window).scroll(stepsScrollAnimation);
     _.setTranslation( js_translation_map );
@@ -43,6 +42,7 @@ $(document).ready(function(){
 	askTeacherQuestion();
 	searchFormFocusStyle();
 	showMoreContent();
+	/*lineLimit();*/
 });
 
 function videoGridBoxIn(){
@@ -1120,7 +1120,7 @@ function showMoreContent(){
 		console.log($content);
 	
 		var visibleHeight = $content[0].clientHeight;
-		var actualHide = $content[0].scrollHeight - 1; // -1 is needed in this example or you get a 1-line offset.
+		var actualHide = $content[0].scrollHeight - 1; // -1 is needed in this case or you get a 1-line offset.
 	
 		console.log(actualHide);
 		console.log(visibleHeight);
@@ -1135,19 +1135,26 @@ function showMoreContent(){
 			if ($link.hasClass('show-more')){
 				$link.removeClass('show-more');
 				$link.addClass('show-less');
-				$link.html("Less");
+				$link.html($link.attr('data-less-text'));
 				TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
 			} else if($link.hasClass('show-less')){
 				$link.removeClass('show-less');
 				$link.addClass('show-more');
-				$link.html("More");
+				$link.html($link.attr('data-more-text'));
 				TweenMax.fromTo($content, 0, {height: actualHide}, {height: visibleHeight});
 			}
 		
 			return false;
 		});
 	});
-
-	
 }
 
+/*function lineLimit(){
+	var p=$('.short-description-container p');
+	var divh=$('.short-description-container').height();
+	while ($(p).outerHeight()>divh) {
+		$(p).text(function (index, text) {
+			return text.replace(/\W*\s(\S)*$/, '...');
+		});
+	}	
+}*/

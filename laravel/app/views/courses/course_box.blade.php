@@ -22,13 +22,15 @@
         </div>
         <div class="course-box-content clearfix">
             <h2>{{ $course->name }}</h2>
-            <p>{{{ Str::limit( strip_tags( $course->short_description, Config::get('custom.short_desc_max_chars') ) ) }}}
-			<!--<span class="subcategory">
-                    <small>{{ trans('courses/general.subcategory') }}: 
-                        <a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>
-                    </small>
-                </span>-->
-            </p>
+            <div class="short-description-container">
+                <p>{{{ Str::limit( strip_tags( $course->short_description, Config::get('custom.short_desc_max_chars') ) ) }}}
+                <!--<span class="subcategory">
+                        <small>{{ trans('courses/general.subcategory') }}: 
+                            <a href="{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}">{{$course->courseSubcategory->name}}</a>
+                        </small>
+                    </span>-->
+                </p>
+            </div>
             <div class="bottom-contents clearfix">
             	<div class="difficulty-bar advanced">
                 	<span class="bar-1"></span>
