@@ -1112,23 +1112,6 @@ function searchFormFocusStyle(){
 }
 
 function showMoreContent(){
-	/*var collapsedHeight = $('.expandable-content').css('max-height');
-	$('.expandable-content').each(function(){
-		var $this = $(this);
-		$this.data('natural', $this[0].scrollHeight);
-	});
-	$('.expandable-button').bind('click', function(){
-		var $expandableContent = $(this).parent().children('.expandable-content');
-		if($expandableContent.hasClass('expanded')){
-			$expandableContent.animate({'maxHeight': collapsedHeight}, 250);
-			$expandableContent.removeClass('expanded');
-		}
-		else{
-			$expandableContent.animate({'maxHeight': $expandableContent.data('natural')}, 250);
-			$expandableContent.addClass('expanded');	
-		}
-	});*/
-	
 	$(".expandable-button").each(function() {
 		var $link = $(this);
 		var $content = $link.parent().children('.expandable-content');
@@ -1147,30 +1130,24 @@ function showMoreContent(){
 		} else {
 			$link.hide();
 		}
+
+		$link.on("click", function() {		
+			if ($link.hasClass('show-more')){
+				$link.removeClass('show-more');
+				$link.addClass('show-less');
+				$link.html("Hide full description");
+				TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
+			} else if($link.hasClass('show-less')){
+				$link.removeClass('show-less');
+				$link.addClass('show-more');
+				$link.html("Show full description");
+				TweenMax.fromTo($content, 0, {height: actualHide}, {height: visibleHeight});
+			}
+		
+			return false;
+		});
 	});
 
-	$(".expandable-button").on("click", function() {
-		var $link = $(this);
-		var $content = $link.parent().children('.expandable-content');
-		var linkText = $link.text();
 	
-		$content.toggleClass("short-text, full-text");
-	
-		$link.text(getShowLinkText(linkText));
-	
-		return false;
-	});
-	
-	function getShowLinkText(currentText) {
-		var newText = '';
-	
-		if (currentText.toUpperCase() === "SHOW FULL DESCRIPTION") {
-			newText = "Hide full description";
-		} else {
-			newText = "Show full description";
-		}
-	
-		return newText;
-	}
 }
 

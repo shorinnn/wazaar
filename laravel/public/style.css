@@ -2451,6 +2451,9 @@ h3{
 
 .course-detail-top-section .short-text{
 	height: 110px;
+	-webkit-transition: height 0.3s ease;
+	-moz-transition: height 0.3s ease;
+	transition: height 0.3s ease;
 }
 
 .course-detail-top-section .full-text{
@@ -2459,13 +2462,13 @@ h3{
 
 .expandable-content{
 	overflow: hidden;
-	-webkit-transition: max-height 0.3s ease;
-	-moz-transition: max-height 0.3s ease;
-	transition: max-height 0.3s ease;
+	-webkit-transition: height 0.3s ease;
+	-moz-transition: height 0.3s ease;
+	transition: height 0.3s ease;
 }
 
 .expandable-button{
-	
+	cursor: pointer;	
 }
 
 .course-detail-top-section .show-full-description{
@@ -2649,6 +2652,7 @@ h3{
 .lesson-topics{
 	padding: 0;
 	margin: 0;
+	height: 114px;
 	border-top: solid 1px #ebeced;
 }
 
@@ -2740,6 +2744,7 @@ h3{
 .user-review p{
 	clear: both;
 	color: #6e747a;
+	height: 90px;
 }
 
 .user-review .view-more{
@@ -8850,7 +8855,7 @@ footer{
 }
 
 .footer-container{ 
-	background-color:#fff 
+	background-color: #ececec; 
 }
 
 .footer-container .first-col{ 

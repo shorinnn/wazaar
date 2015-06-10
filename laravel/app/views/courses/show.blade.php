@@ -49,8 +49,8 @@
                               </a></li>
                         </ol>-->
                         <h1> {{ $course->name }}</h1>
-                        <p class="intro-paragraph expandable-content short-text">Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.Create your very first application in 2 weeks! You get a beginner award after completing the course.{{$course->description}}</p>
-                        <span class="show-full-description expandable-button"> {{ trans("courses/general.show-full-description") }}</span>
+                        <p class="intro-paragraph expandable-content short-text">{{$course->description}}</p>
+                        <span class="show-full-description expandable-button show-more"> {{ trans("courses/general.show-full-description") }}</span>
                         <!--
                         
                         <div class="clearfix banner-content-wrapper">
@@ -251,7 +251,7 @@
                             <p class="regular-paragraph">
                             A short description of the module goes here...
                             </p>
-                            <ul class="lesson-topics">
+                            <ul class="lesson-topics expandable-content">
                             @foreach($module->lessons as $lesson)
                                 @if($lesson->id == $module->lessons->last()->id)
                                     <li class="lessons lesson-1">
@@ -284,7 +284,7 @@
                                 </li>-->
                                 @endforeach
                             </ul>
-                            <span class="hide-lesson-topics">Hide 4 lessons</span>
+                            <span class="hide-lesson-topics expandable-button show-more">Show more lessons</span>
                         </div>
                         @endforeach
                         @if($course->allTestimonials->count() > 0)
