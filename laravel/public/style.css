@@ -1664,16 +1664,19 @@ header .activate-dropdown:hover ul{
 	font-weight: 600;
 	font-size: 13px;
 	color: #fff;
+	text-align: center;
 	background: #0099ff;
 	border-radius: 4px;	
 }
 
 .blue-button:hover{
+	color: #fff;
 	background: #33adff;
 }
 
 .blue-button:active,
 .blue-button:focus{
+	color: #fff;
 	background: #008eed;
 }
 
@@ -1965,7 +1968,6 @@ header .activate-dropdown:hover ul{
 	color: #cfd1d2;
 }
 
-
 /************* Facebook and Google Buttons ***************/
 /*.social-button{
 	width: 312px;
@@ -2244,6 +2246,7 @@ header .activate-dropdown:hover ul{
 	width: 312px;
 	font-size: 13px;
 	color: #849598;
+
 	padding-left: 105px;
 }
 
@@ -2692,6 +2695,7 @@ h3{
 	border: solid 1px #e0e1e2;
 }
 
+
 .lesson-reviews h2{
 	color: #2e343b;
 	margin: 0;
@@ -2899,6 +2903,7 @@ h3{
 }
 
 .course-detail-top-section .centered-contents .banner-content-wrapper{
+
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -5198,6 +5203,7 @@ a.load-remote > *{
 .account-details .bills-table .table-head p.price{
 	width: 22.4%;
 }
+
 
 .account-details .bills-table .table-head p.details{
 	width: 12%;
@@ -8756,6 +8762,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .instructor-mycourses .course-wrapper .middle-content .buttons ul li a span{
 	display: inline-block;
 	height: 30px;
+
 	width: 30px;
 	float: left;
 	position: relative;
@@ -8843,7 +8850,7 @@ footer{
 }
 
 .footer-container{ 
-	background-color:#ececec 
+	background-color:#fff 
 }
 
 .footer-container .first-col{ 
