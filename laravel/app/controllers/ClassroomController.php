@@ -130,7 +130,10 @@ class ClassroomController extends \BaseController {
             $lesson = $block->lesson;
             $purchase = $student->purchases()->where('product_type','Lesson')->where('product_id', $lesson->id)->first();
             
-            
+            if($student->id == $course->instructor_id || $student->id == $course->assigned_instructor_id){
+                header('location: '.$block->presignedUrl());
+                return;
+            }
             if( !$student->purchased($course) && $purchase==null && $lesson->price > 0 ){
                 if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
                 return Redirect::to('/?1');
