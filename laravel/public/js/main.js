@@ -1135,12 +1135,12 @@ function showMoreContent(){
 			if ($link.hasClass('show-more')){
 				$link.removeClass('show-more');
 				$link.addClass('show-less');
-				$link.html("Hide full description");
+				$link.html("Less");
 				TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
 			} else if($link.hasClass('show-less')){
 				$link.removeClass('show-less');
 				$link.addClass('show-more');
-				$link.html("Show full description");
+				$link.html("More");
 				TweenMax.fromTo($content, 0, {height: actualHide}, {height: visibleHeight});
 			}
 		
