@@ -84,7 +84,7 @@ class PurchaseHelper{
     public static function secondTierInstructorEarnings($product, $processor_fee){
         $course = ( get_class($product)=='Course' ) ? $product : $product->module->course;
         $amount = ( $product->cost() - $processor_fee ) * (Config::get('custom.earnings.site_percentage') / 100);
-        $amount =  ($course->instructor->secondTierInstructor==null) ? 0 : $amount * (Config::get('custom.earnings.second_tier_instructor_percentage') / 100);
+        $amount =  ($course->instructor->secondTierInstructor==null || $course->instructor->secondTierInstructor->sti_approved == 'no') ? 0 : $amount * (Config::get('custom.earnings.second_tier_instructor_percentage') / 100);
         return $amount;
     }
 }

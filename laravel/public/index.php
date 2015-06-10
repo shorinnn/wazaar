@@ -1,6 +1,4 @@
 <?php
-// temporary hack
-if($_SERVER['HTTP_HOST']=='wazaar.jp') exit();
 /**
  * Laravel - A PHP Framework For Web Artisans
  *

@@ -200,6 +200,9 @@ class RefundCest{
         $ltc->updateUniques();
         
         $stInstructor = User::find(14);
+        $stInstructor->is_second_tier_instructor = 'yes';
+        $stInstructor->sti_approved = 'yes';
+        $stInstructor->updateUniques();
         
         
         $I->assertEquals(0, $course->instructor->instructor_balance);
@@ -724,6 +727,10 @@ class RefundCest{
         $ltc->updateUniques();
         
         $stInstructor = User::find(14);
+        $stInstructor->is_second_tier_instructor = 'yes';
+        $stInstructor->sti_approved = 'yes';
+        $stInstructor->updateUniques();
+        
         $I->assertEquals(0, $course->instructor->instructor_balance);
         $I->assertEquals(0, $course->instructor->agency->agency_balance);
         $I->assertEquals(0, $affiliate->affiliate_balance);
