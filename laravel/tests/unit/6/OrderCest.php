@@ -47,6 +47,9 @@ class OrderCest{
         Purchase::where('student_id', $student->id)->delete();
         
         $st = User::find( 14 );
+        $st->is_second_tier_instructor = 'yes';
+        $st->sti_approved = 'yes';
+        $st->updateUniques();
         $I->assertEquals(0, $st->instructor_balance);
         
         $course = Course::first();
@@ -94,6 +97,55 @@ class OrderCest{
         
         $st = User::find( 14 );
         $I->assertEquals($purchase->second_tier_instructor_earnings, $st->instructor_balance);
+    }
+    
+    public function coursePurchaseSecondTierInstructorNotApproved(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        Purchase::where('student_id', $student->id)->delete();
+        
+        $st = User::find( 14 );
+        $st->is_second_tier_instructor = 'yes';
+        $st->sti_approved = 'no';
+        $st->updateUniques();
+        $I->assertEquals(0, $st->instructor_balance);
+        
+        $course = Course::first();
+        $course->price = 105;
+        $course->affiliate_percentage = 0;
+        $course->updateUniques();
+        $course->instructor->instructor_agency_id = null;
+        $course->instructor->second_tier_instructor_id = $st->id;
+        $course->instructor->updateUniques();
+        $data = [];
+        $data['successData']['REF'] = '123';
+        $data['successData']['processor_fee'] = '5';
+        $data['successData']['tax'] = '10';
+        $data['successData']['giftID'] = null;
+        $data['successData']['ORDERID'] = 1;
+        $data['successData']['balance_used'] = '10';
+        $data['successData']['balance_transaction_id'] = '0';
+        $I->assertNotEquals( false, $student->purchase($course, null, $data) );
+        $purchase = Purchase::orderBy('id','desc')->first();
+        
+        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->original_price, 105 );
+        $I->assertEquals( $purchase->discount_value, 0 );
+        $I->assertEquals( $purchase->discount, null );
+        $I->assertEquals( $purchase->processor_fee, 5 );
+        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->balance_used, 10 );
+        $I->assertEquals( $purchase->balance_transaction_id, 0 );
+        $I->assertEquals( $purchase->instructor_earnings, 70 ); 
+        $I->assertEquals( $purchase->affiliate_earnings, 0 );
+        $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
+        
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
+            'product_id' => $course->id, 'status' => 'complete'] );
+        $I->dontSeeRecord('transactions', ['user_id' => $st->id, 'transaction_type' => 'second_tier_instructor_credit'] );
+
+        
+        $st = User::find( 14 );
+        $I->assertEquals( 0, $st->instructor_balance );
     }
     
     public function coursePurchaseDiscountedPercent(UnitTester $I){
@@ -195,6 +247,9 @@ class OrderCest{
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();
         $st = User::find( 14 );
+        $st->is_second_tier_instructor = 'yes';
+        $st->sti_approved = 'yes';
+        $st->updateUniques();
         $I->assertEquals(0, $st->instructor_balance);
         $course = Course::first();
         $course->price = 106;
@@ -622,6 +677,9 @@ class OrderCest{
         $lesson->updateUniques();
         
         $st = User::find(14);
+        $st->is_second_tier_instructor = 'yes';
+        $st->sti_approved = 'yes';
+        $st->updateUniques();
         $st->instructor_balance = 0;
         $st->updateUniques();
         $I->assertEquals( 0, $st->instructor_balance );

@@ -1,0 +1,157 @@
+/* Wazaar App Custom Styles */
+/************ Default browser reset styles **************/
+
+body {
+	margin: 0;
+	padding: 0;
+	color: #000;
+	line-height: 16px;
+	font: 16px 'Open Sans', Helvetica, sans-serif;
+}
+
+html, body {
+	height: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: none;
+	outline: none;
+}
+
+img {
+	border: none;
+}
+
+article, 
+section, 
+nav, 
+header,
+footer,
+aside {
+	display: block;
+}
+
+address {
+	font-style: normal;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+input[type="submit"], button, input[type="button"] {
+	cursor: pointer;
+	outline: none;
+}
+
+input[type="search"] {
+	-webkit-appearance: textfield;
+	outline: none;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.clear{
+	clear: both;
+}
+
+.cl{
+	display: block;
+	clear: both;
+}
+
+.right{
+	float: right;
+}
+
+.left{
+	float: left;
+}
+
+.no-border{
+	border: none !important;
+}
+
+.margin-right-15{
+	margin-right: 15px;
+}
+
+.block{
+	display: block;
+}
+
+.inline{
+	display: inline;
+}
+
+.hide{
+	display: none;
+}
+
+a,
+input::-moz-focus-inner {
+   outline: none !important;
+   border: 0;
+   text-decoration: none !important;
+}
+
+input:activem
+input:focus,
+a:focus,
+a:active,
+a:hover{
+	outline: none;
+	text-decoration: none !important;
+}
+
+
+#wrapper{
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-image: url(background-image.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#container{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(27, 35, 42, 0.8);
+}
+
+#logo{
+	text-align: center;
+}
+
+#logo img{
+	margin: 10% 0 60px;
+}
+
+#container h1{
+	font-size: 44px;
+	color: #fff;
+	font-weight: normal;
+	text-align: center;
+	margin: 0 0 35px;
+}
+
+#container p{
+	padding: 0 20px;
+	font-size: 16px;
+	color: #a7b7c4;
+	text-align: center;
+	margin: 0 auto;
+	max-width: 440px;
+	line-height: 26px;
+}
