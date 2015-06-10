@@ -112,6 +112,9 @@ function enableLessonRTE(e){
     selector = '#'+textarea.attr('id');
     tinymce.remove(selector);
     tinymce.init({
+        menu:{},
+        language: 'ja',
+        language_url: COCORIUM_APP_PATH+'js/lang/tinymce/ja.js',
         autosave_interval: "20s",
         autosave_restore_when_empty: true,
         selector: selector,
