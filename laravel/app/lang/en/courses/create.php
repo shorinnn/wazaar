@@ -18,5 +18,8 @@ return array(
     'start_creating_curriculum' => 'Start Creating Curriculum',
     'course-requirements' => 'Course Requirements',
     'tip-if-student' => 'If your students are...',
-    'create' => 'Create New Course'
+    'create' => 'Create New Course',
+    'course-listing-image' => 'Image displayed on course listing box. ',
+    'course-video-image' => 'Image displayed on course details page at the top. ',
+    'course-description-video' => 'Course Description/Sales Video'
 );

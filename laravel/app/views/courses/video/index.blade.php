@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="image-upload">
-            <h3>Course Video</h3>
+            <h3>{{ trans('courses/create.course-description-video') }}</h3>
             <div class="course-video-upload-button-progress">
                 <label for="upload-course-video" class="uploadFile">
                     <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->

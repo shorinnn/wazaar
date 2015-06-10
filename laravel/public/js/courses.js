@@ -141,6 +141,9 @@ function enableLessonRTE(e){
 function enableRTE(selector){
     tinymce.remove(selector);
     tinymce.init({
+        menu:{},
+        language: 'ja',
+        language_url: COCORIUM_APP_PATH+'js/lang/tinymce/ja.js',
         autosave_interval: "20s",
         autosave_restore_when_empty: true,
         selector: selector,
@@ -294,4 +297,8 @@ function showReplyForm(e){
 function instructorReplied(result, event){
     deleteItem(result, event);
     $('#reply-modal').modal('hide');
+}
+
+function courseSettings(){
+    $('[href="#course-edit"]').click();
 }
