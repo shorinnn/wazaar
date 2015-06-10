@@ -130,16 +130,20 @@ class ClassroomController extends \BaseController {
             $lesson = $block->lesson;
             $purchase = $student->purchases()->where('product_type','Lesson')->where('product_id', $lesson->id)->first();
             
-            
-            if( !$student->purchased($course) && $purchase==null && $lesson->price > 0 ){
-                if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
-                return Redirect::to('/?1');
+            if($student->id == $course->instructor_id || $student->id == $course->assigned_instructor_id){
+                header('location: '.$block->presignedUrl());
             }
-            if( (!$student->purchased($course) && $purchase==null && $lesson->price==0) || ( !$student->purchased($course) && $purchase->free_product=='yes') ){
-                if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
-                return Redirect::to('/?2');
+            else{
+                if( !$student->purchased($course) && $purchase==null && $lesson->price > 0 ){
+                    if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
+                    return Redirect::to('/?1');
+                }
+                if( (!$student->purchased($course) && $purchase==null && $lesson->price==0) || ( !$student->purchased($course) && $purchase->free_product=='yes') ){
+                    if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
+                    return Redirect::to('/?2');
+                }
+                header('location: '.$block->presignedUrl());
             }
-            header('location: '.$block->presignedUrl());
         }
         public function gift($id){
             $id = PseudoCrypt::unhash($id);
