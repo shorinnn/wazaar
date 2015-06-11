@@ -99,9 +99,19 @@ emailValidate:function(){
             window.location = window.location;
         },
         failCallback: function(result, e){
-            console.log('fail called!');
-            $('#login-form [name=password]').attr('data-fail',1);
-            this.passwordValidate();
+//            console.log('fail called!');
+//            $('#login-form [name=password]').attr('data-fail',1);
+//            this.passwordValidate();
+            if(result.errors){
+                for( var key in result.errors){
+                    $('#login-form [name='+key+']').parent().find('.hide').remove();
+                    $('#login-form [name='+key+']').after('<p class="hide">'+ result.errors[key].join('<br />') + '</p>'); 
+                    $('#login-form [name='+key+']').parent().removeClass('valid-input');
+                    $('#login-form [name='+key+']').parent().addClass('input-error');
+                }
+                
+            }
+//            $('#login-form [name=password]').attr('data-fail',1);
         }
 };
 

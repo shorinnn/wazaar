@@ -412,4 +412,19 @@ class UserRepository
         return false;
     }
     
+    public function confirm($code){
+        $identity = ['confirmation_code' => $code];
+        $Eloquent = new \Zizaco\Confide\EloquentRepository();
+        $user = $Eloquent->getUserByIdentity($identity);
+
+        if ($user) {
+            $user->confirmed = true;
+            $user->save();
+            Auth::login($user);
+            return $user;
+        } else {
+            return false;
+        }
+    }
+    
 }

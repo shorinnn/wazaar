@@ -92,14 +92,14 @@
                             <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                                 <fieldset>
                                     <div class="form-group email-field">
-                                        <input class="form-control" tabindex="1" placeholder="{{ trans('general.email-placeholder') }}" 
+                                        <input class="form-control"  placeholder="{{ trans('general.email-placeholder') }}" 
                                             data-placement="right" data-trigger="manual"
                                             onblur="loginValidator.emailValidate()" data-check-url="{{ action('UsersController@emailCheck') }}"
                                             type="text" name="email" id="email" value="{{{ Input::old('email') }}}" />
                                         
                                     </div>
                                     <div class="form-group password-field">
-                                        <input class="form-control" tabindex="2" placeholder="{{ trans('general.password-placeholder') }}" 
+                                        <input class="form-control" placeholder="{{ trans('general.password-placeholder') }}" 
                                                data-placement="right"
                                                onblur="loginValidator.passwordValidate()" type="password" name="password" id="password" />
                                         <a href="{{{ action('UsersController@forgotPassword') }}}" 
@@ -109,7 +109,7 @@
                                         <div class="alert">{{{ Session::get('notice') }}}</div>
                                     @endif
                                     <div class="form-group">
-                                        <button tabindex="3" type="submit" class="blue-button large-blue-button">
+                                        <button  type="submit" class="blue-button large-blue-button">
                                             {{ trans('site/login.sign-in') }}
                                         </button>
                                     </div>

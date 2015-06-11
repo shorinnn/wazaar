@@ -121,7 +121,7 @@ class UsersController extends Controller
             $input = Input::all();
             unset($input['password']);
             if(Request::ajax()){
-                return json_encode( ['status' => 'error'] );
+                return json_encode( ['status' => 'error', 'errors' => ['password' => [$err_msg] ] ] );
             }
             return Redirect::action('UsersController@login')
                 ->withInput($input)
@@ -326,7 +326,8 @@ class UsersController extends Controller
      */
     public function confirm($code)
     {
-        if (Confide::confirm($code)) {
+//        if (Confide::confirm($code)) {
+        if ( $this->users->confirm($code) ) {
             $notice_msg = Lang::get('confide::confide.alerts.confirmation');
             return Redirect::action('UsersController@verificationConfirmation');
 //            return Redirect::action('UsersController@login')
