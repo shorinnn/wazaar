@@ -25,9 +25,7 @@
                             {{Session::get('error')}}
                         </div>
                     @endif
-                    <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8" id="register-form"
-                         
-                          data-parsley-validate>
+                    <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8">
                         <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                         <fieldset>
                         

@@ -19,7 +19,7 @@
                         @if(Session::has('error'))
                             <p class='alert alert-danger'> {{Session::get('error')}}</p>
                         @endif
-                    <form id='login-form' role="form" method="POST" action="{{{ action('UsersController@login') }}}" accept-charset="UTF-8">
+                    <form  role="form" method="POST" action="{{{ action('UsersController@login') }}}" accept-charset="UTF-8">
                     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                     	<fieldset>
                             <div class="form-group email-field">

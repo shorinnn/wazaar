@@ -177,7 +177,7 @@ emailValidate:function(){
         callback: function(result, e){
             $('#register-form [type="submit"]').attr('disabled', 'disabled');
             $('#register-form [type="submit"]').html( _( 'Logging in - Please wait' ) );
-            window.location = window.location;
+            window.location = result.url;
         },
         failCallback: function(result, e){
             if(result.errors){

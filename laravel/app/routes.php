@@ -23,8 +23,7 @@ if( !isset($_SERVER['HTTP_HOST'])){
 Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
-    Route::get('/registration-confirmation', 'SiteController@registrationConfirmation');
-    Route::get('/verification-confirmation', 'SiteController@verificationConfirmation');
+
     
     Route::get('/dash', 'SiteController@dashboard');
 
@@ -61,7 +60,8 @@ Route::group( array('domain' =>  $domain), function(){
     Route::post('reset-password', 'UsersController@doResetPassword');
     Route::get('logout', 'UsersController@logout');
     Route::get('emailcheck', 'UsersController@emailCheck');
-
+    Route::get('/registration-confirmation', 'UsersController@registrationConfirmation');
+    Route::get('/verification-confirmation', 'UsersController@verificationConfirmation');
 
 
     // Admin Controller

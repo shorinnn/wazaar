@@ -106,7 +106,7 @@ return array(
     |
     */
     'signup_email'   => true,
-    'signup_confirm' => false,
+    'signup_confirm' => true,
 
     /*
     |--------------------------------------------------------------------------
