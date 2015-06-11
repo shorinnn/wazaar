@@ -248,6 +248,7 @@ function courseImageUploaded(e, data){
     $(progressbar).find('span').html('');
     $(progressbar).css('width', 0 + '%');
     target = $(e.target).attr('data-target');
+    console.log(data.result);
     result = JSON.parse(data.result);
     $(target).append(result.html);
     $(target).find('[type=radio]').click();

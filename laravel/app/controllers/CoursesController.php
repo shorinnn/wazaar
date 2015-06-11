@@ -135,7 +135,8 @@ class CoursesController extends \BaseController {
                         return json_encode(['status'=>'error', 'errors' => trans('courses/general.course_created_image_error')]);
                     }
                     else{
-                        return json_encode(['status'=>'success', 'html'=> View::make('courses.preview_image')->with(compact('img'))->render() ]);
+//                        return json_encode(['status'=>'success', 'html'=> View::make('courses.preview_image')->with(compact('img'))->render() ]);
+                        return json_encode(['status'=>'success', 'html'=> "<img src='$img->url' height=100 />" ]);
                     }
                 }
                 // upload banner image
@@ -145,7 +146,8 @@ class CoursesController extends \BaseController {
                         return json_encode(['status'=>'error', 'errors' => trans('courses/general.course_created_image_error')]);
                     }
                     else{
-                        return json_encode(['status'=>'success', 'html'=> View::make('courses.preview_image')->with(compact('img'))->render() ]);
+                        return json_encode(['status'=>'success', 'html'=> "<img src='$img->url' height=100 />" ]);
+//                        return json_encode(['status'=>'success', 'html'=> View::make('courses.preview_image')->with(compact('img'))->render() ]);
                     }
                 }
                 if( Request::ajax() ){
