@@ -162,6 +162,7 @@
 }
 .datepicker th.switch {
   width: 145px;
+  display: table-cell !important;
 }
 .datepicker th.next,
 .datepicker th.prev {

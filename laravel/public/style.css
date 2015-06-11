@@ -7966,7 +7966,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
     color: #b0bfc1;
     font-size: 14px;
     margin-right: 2%;
-    width: 50%;
+    width: 90%;
 	height: 30px;
 	text-indent: 10px;
 }
@@ -7974,6 +7974,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .course-editor #modules-list > li .uploaded-file .buttons{
 	float: left;
 	height: 30px;
+	width: auto;
 }
 
 .course-editor #modules-list > li .uploaded-file .buttons button{
@@ -8283,6 +8284,12 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .course-editor .lesson-options .files form{
 	max-width: 347px;
 	margin: 0 auto;
+}
+
+.course-editor .lesson-options .files form .error{
+	margin: 10px 0;
+	clear: both;
+	text-align: center;
 }
 
 .course-editor .lesson-options .details{

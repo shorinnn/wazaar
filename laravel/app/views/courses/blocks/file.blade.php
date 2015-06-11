@@ -1,4 +1,4 @@
-<div class='uploaded-file' id='uploaded-file-{{$block->id}}'>
+<div class='uploaded-file clearfix' id='uploaded-file-{{$block->id}}'>
     <input type='text' class='ajax-updatable' data-url='{{action('BlocksController@update', [$block->lesson->id, $block->id] )}}'
           data-name='name'  value='{{ trim($block->name)=='' ? trans('general.new_file') : $block->name }}' />
     
