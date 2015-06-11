@@ -214,7 +214,8 @@ function blockFileUploaded(e, data){
     $(progressbar).css('width', 0 + '%');
     result = JSON.parse(data.result);
     if(result.status=='error'){
-        $(e.target).after("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
+//        $(e.target).closest('form').after("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
+        $(e.target).closest('form').prepend("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
         return false;
     }
     $(e.target).parent().parent().parent().append(result.html);
@@ -227,7 +228,8 @@ function blockFileUploaded(e, data){
  * @return {Boolean} False if file can't be uploaded, true otherwise
  */
 function limitLessonFiles(e, data){
-    $(e.target).parent().find('.ajax-error').remove();
+//    $(e.target).parent().find('.ajax-error').remove();
+    $(e.target).closest('form').find('.ajax-error').remove();
     max_upload = $(e.target).attr('data-max-upload');
     if( $(e.target).parent().parent().find('.uploaded-file').length >= max_upload){
         $(e.target).after("<p class='alert alert-danger ajax-error'>"+$(e.target).attr('data-max-upload-error')+'</p>');

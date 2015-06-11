@@ -34,7 +34,7 @@ class BlocksController extends \BaseController {
             if( $lesson->blocks()->where('type','file')->count() > Config::get('custom.maximum_lesson_files') ){
                 return json_encode(['status'=>'error', 'errors' => trans('courses/general.max_upload_error') ]); 
             }
-            if(!Input::hasFile('file')) return json_encode(['status'=>'error', 'errors' => '1'.trans('crud/errors.error_occurred') ]); 
+            if(!Input::hasFile('file')) return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred') ]); 
             $block = new Block();
             $block->lesson_id = $lesson_id;
             $block->type = 'file';
@@ -43,11 +43,11 @@ class BlocksController extends \BaseController {
                     return json_encode(['status'=>'success', 'html' => View::make('courses.blocks.file')->with(compact('block'))->render() ]);
                 }
                 else{
-                    return json_encode(['status'=>'error', 'errors' => '2'.trans('crud/errors.error_occurred') ]); 
+                    return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred') ]); 
                 }
             }
             else{
-                return json_encode(['status'=>'error', 'errors' => '3'.trans('crud/errors.error_occurred') ]); 
+                return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred') ]); 
             }
         }
         
