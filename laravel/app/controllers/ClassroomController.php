@@ -80,8 +80,10 @@ class ClassroomController extends \BaseController {
             if( !$student->purchased($course) && $purchase==null && $lesson->price > 0 ){
                 return Redirect::to('/');
             }
-            if( (!$student->purchased($course) && $purchase==null && $lesson->price==0) || ( !$student->purchased($course) && $purchase->free_product=='yes') ){
-                return View::make('courses.classroom.crash_lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
+            if($student->id != $course->instructor_id && $student->id != $course->assigned_instructor_id ){
+                if( (!$student->purchased($course) && $purchase==null && $lesson->price==0) || ( !$student->purchased($course) && $purchase->free_product=='yes') ){
+                    return View::make('courses.classroom.crash_lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
+                }
             }
             
             // if subscription, see if valid
@@ -131,6 +133,7 @@ class ClassroomController extends \BaseController {
             $purchase = $student->purchases()->where('product_type','Lesson')->where('product_id', $lesson->id)->first();
             
             if($student->id == $course->instructor_id || $student->id == $course->assigned_instructor_id){
+                return Redirect::to( $block->presignedUrl() );
                 header('location: '.$block->presignedUrl());
             }
             else{
@@ -142,6 +145,7 @@ class ClassroomController extends \BaseController {
                     if( Request::ajax() ) return json_encode( ['status' => 'error', 'errors' => '' ]);
                     return Redirect::to('/?2');
                 }
+                return Redirect::to( $block->presignedUrl() );
                 header('location: '.$block->presignedUrl());
             }
         }

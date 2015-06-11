@@ -57,4 +57,6 @@ return array(
     'Beginner' => '初級',
     'Intermediate' => '中級',
     'Expert' => '上級',
+    'next-step' => 'Next Step',
+    'course-description-preview' => 'Course Description Preview',
 );

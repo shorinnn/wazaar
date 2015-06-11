@@ -804,3 +804,8 @@ button.submit-button-4{
 .file-upload > div button:focus{
 	background: #333333;
 }
+
+
+.datepicker .switch{
+    display:table-cell;
+}

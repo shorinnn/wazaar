@@ -30,7 +30,7 @@ return array(
     'subcategory' => "Subcategory",
     'difficulty' => "Difficulty",
     'preview_image' => "Preview Image",
-	'course_listings_image' => "Course Listings Image",
+    'course_listings_image' => "Course Listings Image",
     'details_page_banner_image' => "Details Page Banner Image",
     'course_description_video_image' => "Course Description Video Image",
     'who_is_this_for' => "Who Is This For",
@@ -94,4 +94,6 @@ return array(
     'your-progress' => 'Your Progress',
     'comments-posted' => 'Comments Posted',
     'about-course' => 'About Course',
+    'next-step' => 'Next Step',
+    'course-description-preview' => 'Course Description Preview',
 );

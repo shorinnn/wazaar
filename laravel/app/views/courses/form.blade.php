@@ -30,6 +30,10 @@
     <div role="tabpanel">
         <div class="header clearfix">
             <a href='{{action("CoursesController@myCourses")}}' class="all-my-courses btn btn-link">{{ trans('courses/general.all_my_courses') }}</a>
+            
+            <a href='{{action("CoursesController@show", $course->slug)}}' target='_blank' class="all-my-courses btn btn-link">
+                {{ trans('courses/general.course-description-preview') }}
+            </a>
         
             <!-- Nav tabs -->
             <ul class="nav nav-pills" id="instructor-editor" role="tablist">
@@ -113,6 +117,16 @@
                                             <input type='hidden' name='_token' value='{{ csrf_token() }}' />
                                             <button type='submit' class='add-new-module'>{{ trans('crud/labels.add_module') }}</button>
                                         </form>
+                                        
+                                        @if($course->publish_status=='unsubmitted')
+                                            <br />
+                                            <center>
+                                                <a href="#" class="btn btn-primary" onclick="courseSettings()">
+                                                    {{ trans('courses/general.next-step') }}
+                                                </a>
+                                            </center>
+                                        @endif
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -147,10 +161,10 @@
                             	<div id="top-form">
                             
                                     <div class="clearfix">
-                                    	<label class="label-name">{{ trans('courses/general.privacy_status') }} </label>
+                                    	<label class="label-name">{{ ucwords( trans('courses/statuses.public') ) }} </label>
                                         <label class="custom-dropdown label">
-                                        {{ Form::select('privacy_status', [ 'private' => trans('courses/statuses.private'), 
-                                        'public' => trans('courses/statuses.public')], null,['class'=>'turnintodropdown']) }}
+                                        {{ Form::select('privacy_status', [ 'private' => trans('courses/general.no'), 
+                                        'public' => trans('courses/general.yes')], null,['class'=>'turnintodropdown']) }}
                                         </label>
                                     </div>    
                                                 
@@ -247,7 +261,8 @@
                         	<div class="col-md-12">
                                 <div class="image-upload">
                                 	<h3>{{ trans('courses/general.course_listings_image') }}</h3>
-
+                                        <p class="tip">{{ trans('courses/create.course-listing-image') }}
+                                            <i class='fa fa-question-circle tooltipable' data-placement="right" title='<img height="400" width="600" src="http://www.wongside.com/brian/blog/wp-content/uploads/2008/06/applehomepage2.jpg" />' data-html='true'></i></p>
                                     <div id="selected-previews"></div>
 
                                     <label for="upload-preview-image" class="uploadFile">
@@ -287,6 +302,7 @@
                         	<div class="col-md-12">
                                 <div class="image-upload">
                                 	<h3>{{ trans('courses/general.course_description_video_image') }}</h3>
+                                        <p class="tip">{{ trans('courses/create.course-video-image') }}
                                     <label for="upload-banner-image" class="uploadFile">
                                             <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
                                             <span>{{ trans('courses/curriculum.upload') }}</span> 
@@ -433,7 +449,7 @@
                                         	<label class="label-name">{{ trans('courses/general.discount') }} </label>
                                                 {{ Form::text('sale', money_val($course->sale)) }}
                                                 <label class="custom-dropdown label discount margin-top-20">
-                                                	{{ Form::select('sale_kind', ['amount' => '$', 'percentage' => '%'], null,['class'=>'turnintodropdown'] ) }}
+                                                	{{ Form::select('sale_kind', ['amount' => '¥', 'percentage' => '%'], null,['class'=>'turnintodropdown'] ) }}
                                                 </label>
                                         </div>    
                                         <div class="clear clearfix margin-bottom-20 input-group date">

@@ -6,6 +6,7 @@ return [
     'willAppearHere' => '手順を完了すると、ここに動画が表示されます',
     'doesNotSupportHtml5' => 'このブラウザはHTML5をサポートしていません',
     'upload-video' => '動画をアップロード',
+    'upload-new-video' => '動画をアップロード',
     'uploadOr' => '動画をアップロードする、または',
     'selectExisting' => '既存のファイルを選択',
     'formatsSupported' => '対応フォーマット: mp4, avi, wmv',

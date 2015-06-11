@@ -75,7 +75,11 @@
                             <div class="files">
                                 @foreach($lesson->blocks as $block)
                                     @if($block->type=='file')
-                                        <p><a href='{{ $block->content }}' target='_blank'><i class="fa fa-cloud-download"></i> {{ $block->name }}</a></p>
+                                        <p>
+                                            <!--<a href='{{ $block->content }}' target='_blank'>-->
+                                            <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}">
+                                                <i class="fa fa-cloud-download"></i> {{ $block->name }}
+                                            </a></p>
                                     @endif
                                 @endforeach
                             </div>
