@@ -119,7 +119,7 @@
                         </div>
                         <div class="login-form-footer text-center">
                             <span class="margin-right-15">{{ trans('site/login.dont-have-an-account') }}</span>
-                            <a href="#">Register</a>
+                            <a href="{{action('UsersController@create')}}" class='showRegister'>Register</a>
                         </div>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                         </div>
                         <div class="login-form-footer text-center">
                             <span class="margin-right-15">{{ trans('site/register.already-have-an-account') }}</span>
-                            <a href="{{ action('UsersController@login') }}">Login</a>
+                            <a href="{{ action('UsersController@login') }}" class='showLogin'>Login</a>
                         </div>
                     </div>
                 </div>
@@ -273,6 +273,16 @@
     @yield('extra_js')
 		<script>
 			$(document).ready(function() {
+                            $('.showRegister').click(function(){
+                                $('.modal').modal('hide');
+                                $('[data-target="#registerModal"]').click();
+                                return false;
+                            });
+                            $('.showLogin').click(function(){
+                                $('.modal').modal('hide');
+                                $('[data-target="#loginModal"]').click();
+                                return false;
+                            });
 
 				$('#video-container').prepend('<div id="video-background" class="full-screen"></div>');
 				$('#video-background').videobackground({
