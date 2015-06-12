@@ -1,7 +1,7 @@
-    @extends('layouts.default')
+    @extends('layouts.login_default')
     @section('content')
     
-    <section class="container-fluid login-wrapper">
+    <section class="container-fluid login-wrapper dedicated-login-page">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
                 <a href="" class="modal-box-logo clearfix">

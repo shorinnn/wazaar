@@ -302,7 +302,7 @@
                         	<div class="col-md-12">
                                 <div class="image-upload">
                                 	<h3>{{ trans('courses/general.course_description_video_image') }}</h3>
-                                        <p class="tip">{{ trans('courses/create.course-video-image') }}
+                                        <p class="tip">{{ trans('courses/create.course-video-image') }}</p>
                                     <label for="upload-banner-image" class="uploadFile">
                                             <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
                                             <span>{{ trans('courses/curriculum.upload') }}</span> 

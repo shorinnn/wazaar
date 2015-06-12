@@ -42,7 +42,7 @@ $(document).ready(function(){
 	askTeacherQuestion();
 	searchFormFocusStyle();
 	showMoreContent();
-	/*lineLimit();*/
+	
 });
 
 function videoGridBoxIn(){
@@ -1038,7 +1038,8 @@ function insertSelectBorder(){
 	$('.instructor-course-editor .use-existing-preview .select-border').on('click', function(){
 		$(this).toggleClass('display-border');
 		if($(this).hasClass('display-border')){
-			$('.instructor-course-editor .use-existing-preview .select-border').not(this).removeClass('display-border');	
+			$('.instructor-course-editor .use-existing-preview .select-border').not(this).removeClass('display-border');
+			$(this).parent().siblings('input[type="radio"]').prop('checked', true);	
 			//$(this).siblings('.select-border').toggleClass('hide');	
 		}
 	});	
@@ -1148,13 +1149,3 @@ function showMoreContent(){
 		});
 	});
 }
-
-/*function lineLimit(){
-	var p=$('.short-description-container p');
-	var divh=$('.short-description-container').height();
-	while ($(p).outerHeight()>divh) {
-		$(p).text(function (index, text) {
-			return text.replace(/\W*\s(\S)*$/, '...');
-		});
-	}	
-}*/
