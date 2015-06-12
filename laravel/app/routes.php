@@ -20,6 +20,8 @@ if( !isset($_SERVER['HTTP_HOST'])){
     $domain = $instructorSubdomain = $affiliateSubdomain = Request::getHost();
 }
 
+Route::resource('lp', 'LpController');
+
 Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
@@ -42,6 +44,7 @@ Route::group( array('domain' =>  $domain), function(){
     // Confide routes
     Route::get('register', 'UsersController@create');
     Route::get('register/second-tier-publisher', 'UsersController@secondTierPublisherCreate');
+    Route::get('links', 'UsersController@links');
     Route::get('register/{teacher_account}', 'UsersController@create');
     Route::post('users', 'UsersController@store');
     Route::get('login', 'UsersController@login');

@@ -414,7 +414,6 @@
 
                                 <div class="description-editor-box">
                                 	<h3>{{ trans('crud/labels.description') }} </h3>
-                                        
                                 	<div class="description-box">{{ Form::textarea('description', null,['id'=>'description'] ) }}</div>
                                 </div>    
                                 <div>

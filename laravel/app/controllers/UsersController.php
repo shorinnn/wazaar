@@ -73,8 +73,8 @@ class UsersController extends Controller
             Cookie::queue('iai', null, -1);
             Cookie::queue('stpi', null, -1);
             Auth::login($user);
-            if(Request::ajax()) return json_encode( [ 'status' => 'success', 'url' => action('UsersController@registrationConfirmation' ) ] );
-            return Redirect::intended( action('UsersController@registrationConfirmation' ) );
+            if(Request::ajax()) return json_encode( [ 'status' => 'success', 'url' => $user->url ] );
+            return Redirect::intended( $user->url );
         } else {
             $error = implode('<br />',$user->errors()->all());
             $input = Input::all();
@@ -109,6 +109,7 @@ class UsersController extends Controller
             if(Request::ajax()){
                 return json_encode( ['status' => 'success'] );
             }
+            if(Auth::user()->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
             return Redirect::intended('/');
         } else {
             if ($this->users->isThrottled($input)) {
@@ -431,5 +432,12 @@ class UsersController extends Controller
 
     public function verificationConfirmation(){
         return View::make('confide.mail_verified');
+    }
+    
+    public function links(){
+        if(Auth::guest() || Auth::user()->is_second_tier_instructor=='no'){
+            return Redirect::action('SiteController@index');
+        }
+        return View::make('links');
     }
 }

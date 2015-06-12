@@ -85,4 +85,5 @@ return array(
     'Beginner' => 'Beginner',
     'Intermediate' => 'Intermediate',
     'Expert' => 'Expert',
+    'verification-notice' => 'Well done. You have successfully registered. Please activate your account with the email we sent you.'
 );
