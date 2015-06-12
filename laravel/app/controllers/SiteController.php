@@ -16,13 +16,7 @@ class SiteController extends \BaseController {
             }
             return View::make('splash');
 	}
-        
-        public function registrationConfirmation(){
-            return View::make('confide.signup_success');
-        }
-        public function verificationConfirmation(){
-            return View::make('confide.mail_verified');
-        }
+
         
 	public function dashboard()
 	{                 

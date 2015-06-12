@@ -73,16 +73,15 @@ class UsersController extends Controller
             Cookie::queue('iai', null, -1);
             Cookie::queue('stpi', null, -1);
             Auth::login($user);
-            if(Request::ajax()) return json_encode( [ 'status' => 'success' ] );
-            return Redirect::intended('/');
+            if(Request::ajax()) return json_encode( [ 'status' => 'success', 'url' => action('UsersController@registrationConfirmation' ) ] );
+            return Redirect::intended( action('UsersController@registrationConfirmation' ) );
         } else {
             $error = implode('<br />',$user->errors()->all());
             $input = Input::all();
             unset($input['password']);
             if(Request::ajax()) return json_encode( [ 'status' => 'error', 'errors' => $user->errors()->getMessages() ] );
             return Redirect::back()->with('error', $error)->withInput( $input );//Redirect::action('UsersController@create')
-                //->withInput(Input::except('password'))
-                //->with('error', $error);
+
         }
     }
 
@@ -122,7 +121,7 @@ class UsersController extends Controller
             $input = Input::all();
             unset($input['password']);
             if(Request::ajax()){
-                return json_encode( ['status' => 'error'] );
+                return json_encode( ['status' => 'error', 'errors' => ['password' => [$err_msg] ] ] );
             }
             return Redirect::action('UsersController@login')
                 ->withInput($input)
@@ -327,10 +326,12 @@ class UsersController extends Controller
      */
     public function confirm($code)
     {
-        if (Confide::confirm($code)) {
+//        if (Confide::confirm($code)) {
+        if ( $this->users->confirm($code) ) {
             $notice_msg = Lang::get('confide::confide.alerts.confirmation');
-            return Redirect::action('UsersController@login')
-                ->with('notice', $notice_msg);
+            return Redirect::action('UsersController@verificationConfirmation');
+//            return Redirect::action('UsersController@login')
+//                ->with('notice', $notice_msg);
         } else {
             $error_msg = Lang::get('confide::confide.alerts.wrong_confirmation');
             return Redirect::action('UsersController@login')
@@ -421,5 +422,14 @@ class UsersController extends Controller
     
     public function emailCheck(){
         return User::where('email', Input::get('email'))->count();
+    }
+    
+            
+    public function registrationConfirmation(){
+        return View::make('confide.signup_success');
+    }
+
+    public function verificationConfirmation(){
+        return View::make('confide.mail_verified');
     }
 }

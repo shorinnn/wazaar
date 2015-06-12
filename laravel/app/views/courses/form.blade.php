@@ -263,14 +263,19 @@
                                 	<h3>{{ trans('courses/general.course_listings_image') }}</h3>
                                         <p class="tip">{{ trans('courses/create.course-listing-image') }}
                                             <i class='fa fa-question-circle tooltipable' data-placement="right" title='<img height="400" width="600" src="http://www.wongside.com/brian/blog/wp-content/uploads/2008/06/applehomepage2.jpg" />' data-html='true'></i></p>
-                                    <div id="selected-previews"></div>
+                                          <div id="selected-previews">
+                                                    @if($course->previewImage!=null)
+                                                        <img src="{{$course->previewImage->url}}" height="100" />
+                                                    @endif
+                                        </div>
 
                                     <label for="upload-preview-image" class="uploadFile">
                                     	<span>{{ trans('courses/curriculum.upload') }}</span>
                                     	<input type="file" hidden="" class='upload-preview-image' 
                                                id="upload-preview-image" name="preview_image" data-dropzone='.dropzone-preview'
                                            data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' 
-                                           data-target='#use-existing-preview > div > .radio-buttons' />
+                                           data-targez='#use-existing-preview > div > .radio-buttons'
+                                           data-target='#selected-previews'/>
                                     </label>
                                     <!--<input disabled="disabled" placeholder="Choose File" id="uploadFile">
                                     <div class="fileUpload btn btn-primary">
@@ -303,12 +308,22 @@
                                 <div class="image-upload">
                                 	<h3>{{ trans('courses/general.course_description_video_image') }}</h3>
                                         <p class="tip">{{ trans('courses/create.course-video-image') }}</p>
+<<<<<<< HEAD
+=======
+                                        
+                                            <div id="video-selected-previews">
+                                                    @if($course->bannerImage!=null)
+                                                        <img src="{{$course->bannerImage->url}}" height="100" />
+                                                    @endif
+                                        </div>
+>>>>>>> d387a1b9214b6e6ff1fbf5a08a79b243f037d958
                                     <label for="upload-banner-image" class="uploadFile">
                                             <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
                                             <span>{{ trans('courses/curriculum.upload') }}</span> 
                                              <input type="file" class='upload-banner-image' name="banner_image" data-dropzone='.dropzone-preview'
                                              data-progress-bar='.progress-bar-banner' data-callback='courseImageUploaded' id="upload-banner-image"
-                                             data-target='#use-existing-banner > div > .radio-buttons' />
+                                             data-targezt='#use-existing-banner > div > .radio-buttons'
+                                             data-target='#video-selected-previews' />
 	                                    	
                                     </label>
                                         <div class="progress">
@@ -321,17 +336,20 @@
                                         <span class="use-existing use-existing-preview" id="use-existing-banner">
                                             <span class="use-existing">
                                             	<em class="or-text"> {{ trans('site/login.or') }}</em>
-                                            	<a href="#">
+                                            	<a href="#" onclick="$('#video-banner-existing-previews-modal').modal('show'); return false;">
                                                 	{{trans('video.selectExisting')}}
                                                 </a> 
                                             </span>
+                                            @include('courses.videoBannerpreviewsModal')
                                                 <div class="row">
                                                     <div class="radio-buttons clearfix">
-                                                    @if($bannerImages->count() > 0)
-                                                        @foreach($bannerImages as $img)
-                                                            {{ View::make('courses.preview_image')->with(compact('img')) }}
-                                                        @endforeach
-                                                    @endif
+                                                        <?php
+//                                                    @if($bannerImages->count() > 0)
+//                                                        @foreach($bannerImages as $img)
+//                                                            {{ View::make('courses.preview_image')->with(compact('img')) }}
+//                                                        @endforeach
+//                                                    @endif
+                                                            ?>
                                                 </div>
                                             </div>
                                         </span>
@@ -560,6 +578,14 @@
                     $('.display-border').each(function (){
                         console.log($(this).parent().find('img').attr('src'));
                         $('#selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
+                    });
+                });
+                
+                $('#btn-close-previews-banner').on('click', function (){
+                    $('#video-selected-previews').html('');
+                    $('.display-border').each(function (){
+                        console.log($(this).parent().find('img').attr('src'));
+                        $('#video-selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
                     });
                 });
 
