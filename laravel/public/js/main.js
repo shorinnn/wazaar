@@ -1039,7 +1039,7 @@ function insertSelectBorder(){
 		$(this).toggleClass('display-border');
 		if($(this).hasClass('display-border')){
 			$('.instructor-course-editor .use-existing-preview .select-border').not(this).removeClass('display-border');
-			$(this).parent().siblings('input[type="radio"]').prop('checked', true);	
+			$(this).parent().children('input[type="radio"]').prop('checked', true);	
 			//$(this).siblings('.select-border').toggleClass('hide');	
 		}
 	});	

@@ -308,15 +308,6 @@
                                 <div class="image-upload">
                                 	<h3>{{ trans('courses/general.course_description_video_image') }}</h3>
                                         <p class="tip">{{ trans('courses/create.course-video-image') }}</p>
-<<<<<<< HEAD
-=======
-                                        
-                                            <div id="video-selected-previews">
-                                                    @if($course->bannerImage!=null)
-                                                        <img src="{{$course->bannerImage->url}}" height="100" />
-                                                    @endif
-                                        </div>
->>>>>>> d387a1b9214b6e6ff1fbf5a08a79b243f037d958
                                     <label for="upload-banner-image" class="uploadFile">
                                             <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
                                             <span>{{ trans('courses/curriculum.upload') }}</span> 

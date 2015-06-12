@@ -1708,7 +1708,7 @@ header .activate-dropdown:hover ul{
 }
 
 .large-blue-button{
-	padding: 15px 25px;
+	padding: 12px 25px;
 }
 
 .disabled-button{
@@ -1829,6 +1829,7 @@ header .activate-dropdown:hover ul{
 	font-weight: 600;
 	font-size: 18px;
 	line-height: 30px;
+	color: #303941;
 	text-transform: uppercase;
 	margin: 0 0 5.5%;
 }
@@ -1870,13 +1871,13 @@ header .activate-dropdown:hover ul{
 .step-number{
 	display: inline-block;
 	float: left;
-	height: 26px;
-	width: 26px;
+	height: 30px;
+	width: 30px;
 	background: #fff;
 	font-size: 18px;
 	font-weight: 600;
 	color: #7e8e9e;
-	line-height: 22px;
+	line-height: 27px;
 	text-align: center;
 	border-radius: 26px;
 	margin-right: 15px;
@@ -7163,7 +7164,7 @@ select option.suspended{
 	float: left;
     display: block;
     font-size: 14px;
-	margin: 0;
+	margin: 0 1% 2% 0;
     padding: 8px 20px;
 }
 
@@ -7272,29 +7273,30 @@ select option.suspended{
 
 #course-edit #edit-course-form #top-form div.course-level label{
 	margin: 0;
-	float: left;
 	width: auto;
+	display: inline-block;
 }
 
 #course-edit #edit-course-form #top-form div.course-level label + label {
-    margin-left: 5.5%;
+    margin-left: 3%;
 }
 
 #course-edit #edit-course-form #top-form div.course-level div{
 	float: right;
 	width: 345px;
+	text-align: center;
 }
 
 #course-edit #edit-course-form #top-form div.course-level div label input{
 	display: none;
 }
 
-#course-edit  h3{
+#course-edit h3{
     color: #0099ff;
     font-size: 20px;
     font-weight: 200;
 	text-align: center;
-    margin: 65px 0 15px;
+    margin: 65px 0 30px;
 }
 
 .well{
