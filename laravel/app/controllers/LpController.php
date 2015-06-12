@@ -17,7 +17,9 @@ class LpController extends \BaseController {
             //add user to DELIVERED
             $delivered = new DeliveredHelper();
             $name = explode(' ', Input::get('name'), 2);
-            $response = $delivered->addUser( $name[1], $name[0], Input::get('email') );
+            $firstName = (isset($name[1])) ? $name[1] : 'firstname';
+            $lastName = (isset($name[0])) ? $name[0] : 'lastname';
+            $response = $delivered->addUser( $firstName, $lastName, Input::get('email') );
             if( is_object($response) && $response->success ){
                 return Redirect::to('lp1/success.php');
             }
