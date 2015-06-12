@@ -18,10 +18,13 @@ return array(
     'for_your_student_if' => 'このコースはどのような人をターゲットにしていますか？',
 //    'for_your_student_if' => 'このコースは、次のような生徒にぴったりです',
     'start_creating_curriculum' => 'コースの作成を開始！',
-    'course-requirements' => 'コースを受講する際に必要なものがあればそれは何ですか？',
+    'course-requirements' => 'コースを受講する際に必要なものは何ですか？',
     'tip-if-student' => '例えばヨガコースがであれば、ヨガマットなどが必要なものになります。',
     'create' => 'Create New Course',
     'course-listing-image' => 'Image displayed on course listing box. ',
     'course-video-image' => 'Image displayed on course details page at the top. ',
-    'course-description-video' => 'Course Description/Sales Video'
+    'course-description-video' => 'Course Description/Sales Video',
+    'description-tip' => "Additional information you'd like to add, to accompany the video.",
+    'upload-files-tip' => "Upload files that accompany the lesson.",
+    'options-tip' => "Write the description for the lesson and set the individual lesson price.",
 );

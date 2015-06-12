@@ -1,3 +1,5 @@
+<p class="tip"> {{ trans('courses/create.options-tip') }}</p>
+
 <div class="clear clearfix">
 	<p>{{ trans('crud/labels.description') }}</p> 
 	<textarea class="ajax-updatable"  data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}'

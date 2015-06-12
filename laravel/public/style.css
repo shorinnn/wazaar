@@ -8168,7 +8168,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 
 .plan-your-curriculum .lesson-options .buttons > p,
-.course-editor #modules-list .lesson-options .details p{
+.course-editor #modules-list .lesson-options .details p:not(.tip){
 	font-size: 14px;
 	color: #0099ff;
 	line-height: 30px;
