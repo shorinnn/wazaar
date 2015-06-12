@@ -17,11 +17,14 @@ html, body {
 a {
 	text-decoration: none !important;
 	color: inherit;
+	outline: none !important
 }
 
+a:focus,
+a:active,
 a:hover {
 	text-decoration: none;
-	outline: none;
+	outline: none !important;
 }
 
 img {
@@ -117,6 +120,10 @@ a:hover{
 
 /************** Page contents styles *****************/
 
+#wrapper{
+	height: 100%;
+	width: 100%;
+}
 /************** Header Section *******************/
 header{
 	min-height: 70px;
@@ -1469,8 +1476,10 @@ header .activate-dropdown:hover ul{
 	padding: 0;
 }
 
-.login-wrapper{
+.user-data-modal-wrapper{
 	position: relative;
+	height: 100%;
+	width: 100%;
 }
 
 .dedicated-login-page{
@@ -1481,7 +1490,7 @@ header .activate-dropdown:hover ul{
 	padding-bottom: 5%;
 }
 
-.login-wrapper .form-group{
+.user-data-modal-wrapper .form-group{
 	margin-bottom: 12px;
 	position: relative;
 }
@@ -1496,51 +1505,51 @@ header .activate-dropdown:hover ul{
 	display: inline-block;
 }
 
-.login-form-container .or{
+.user-data-modal .or{
 	width: 100%;
 	margin: 25px 0 22px;
 }
 
-.login-form-container .intro-paragraph{
+.user-data-modal .intro-paragraph{
 	color: #303941;
 	margin: 0;
 }
 
-.login-form-container .or span{
+.user-data-modal .or span{
 	background: #e3e5e6;
 	height: 1px;
 	width: 44%;
 	margin-top: 8px;
 }
 
-.login-form-container .or em{
+.user-data-modal .or em{
 	float: left;
 	font-size: 13px;
 	color: #303941;
 	margin: 0 14px;
 }
 
-.login-form-container .or::after,
-.login-form-container .or::before{
+.user-data-modal .or::after,
+.user-data-modal .or::before{
 	display: none;
 }
 
 
-.login-form-container .or .left-line{
+.user-data-modal .or .left-line{
 	float: left;
 }
 
-.login-form-container .or .right-line{
+.user-data-modal .or .right-line{
 	float: right;
 }
 
-.login-form-container{
+.user-data-modal{
 	border-radius: 4px;
 	background: #f7f9fa;
 	padding: 0 20px;
 }
 
-.login-form-container h1{
+.user-data-modal h1{
 	color: #303941;
 	margin: 35px 0;
 	text-align: center;
@@ -1594,7 +1603,7 @@ header .activate-dropdown:hover ul{
 	background-color: #db4437;
 }*/
 
-.login-form{
+.form-container{
 	max-width: 340px;
 	margin: 22px auto 60px;
 }
@@ -1615,7 +1624,7 @@ header .activate-dropdown:hover ul{
 	color: #0099ff;
 }
 
-.login-form input{
+.form-container input{
 	background: #fff;
 	display: block;
 	font-size: 14px;
@@ -1627,18 +1636,18 @@ header .activate-dropdown:hover ul{
 	border-radius: 4px;
 }
 
-.login-form input:active,
-.login-form input:focus{
+.form-container input:active,
+.form-container input:focus{
 	background: #fff;
 	font-size: 14px;
 	color: #303941;
 	border: solid 1px #a7b7c4;
 }
 
-.login-form input[type='email']{
+.form-container input[type='email']{
 }
 
-.login-form input[type='password']{
+.form-container input[type='password']{
 	padding-right: 65px;
 }
 
@@ -1671,7 +1680,7 @@ header .activate-dropdown:hover ul{
     width: 0;
 }
 
-.login-form button{
+.form-container button{
 	width: 100%;
 	margin-top: 10px;
 }
@@ -1706,24 +1715,24 @@ header .activate-dropdown:hover ul{
 	background: #b2e0ff;
 }
 	
-.login-form input:-moz-placeholder,
-.login-form input::-moz-placeholder,
-.login-form input:-ms-input-placeholder,
-.login-form input::-webkit-input-placeholder{
+.form-container input:-moz-placeholder,
+.form-container input::-moz-placeholder,
+.form-container input:-ms-input-placeholder,
+.form-container input::-webkit-input-placeholder{
    color: #a7b7c4;
    text-align: center;
 }
 
-.login-form-footer{
+.user-data-modal-footer{
 	padding: 20px 0;
 }
 
-.login-form-footer span{
+.user-data-modal-footer span{
 	font-size: 13px;
 	color: #7e8e9e;
 }
 
-.login-form-footer a{
+.user-data-modal-footer a{
 	font-weight: 600;
 	font-size: 13px;
 	color: #0099ff;

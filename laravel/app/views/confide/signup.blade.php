@@ -5,13 +5,13 @@
     <div class="alert">{{ Session::get('notice') }}</div>
 @endif
 
-<section class="container-fluid login-wrapper dedicated-login-page">
+<section class="container-fluid user-data-modal-wrapper dedicated-login-page">
 	<div class="row">
     	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
         	<a href="" class="modal-box-logo clearfix">
             	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
             </a>
-            <div class="login-form-container clearfix">
+            <div class="user-data-modal clearfix">
             	<h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
                 <div class="login-social-buttons clearfix">
                 	<a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.register-with-facebook') }}</a>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
                 <p class="intro-paragraph text-center">{{ trans('general.enter-new-email-and-password') }}</p>
-                <div class="login-form clearfix">
+                <div class="form-container clearfix">
                     @if (Session::has('error'))
                         <div class="alert alert-danger">
                             {{Session::get('error')}}
@@ -51,7 +51,7 @@
                     </form>
                 </div>
             </div>
-            <div class="login-form-footer text-center">
+            <div class="user-data-modal-footer text-center">
                 <span class="margin-right-15">{{ trans('site/register.already-have-an-account') }}</span>
                 <a href="{{ action('UsersController@login') }}" class='showLogin'>Login</a>
             </div>
