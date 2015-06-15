@@ -108,7 +108,8 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::post('private-messages/massStore', 'PrivateMessagesController@massStore');
     Route::get('coursecategories/subcategories_instructor', 'CoursesCategoriesController@subcategories_instructor');
 
-
+    Route::get('courses/search-instructor/{email}', 'CoursesController@searchInstructor');
+    Route::get('courses/search-instructor/', 'CoursesController@searchInstructor');
 });
 
 Route::group( array('domain' => $domain ), function(){
@@ -154,6 +155,7 @@ Route::group( array('domain' => $domain ), function(){
     Route::get('courses/view-discussion/{id}', 'CoursesController@viewDiscussion');
     Route::put('courses/{slug}/submit-for-approval', 'CoursesController@submitForApproval');
     Route::get('courses/search-instructor/{email}', 'CoursesController@searchInstructor');
+    Route::get('courses/search-instructor/', 'CoursesController@searchInstructor');
     
     Route::get('courses/categories', 'CoursesController@categories');
     Route::get('courses/category/{slug}/{subcat}', 'CoursesController@subCategory');

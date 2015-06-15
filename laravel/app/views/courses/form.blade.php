@@ -231,7 +231,11 @@
                                                     <span></span>
                                             {{ Form::hidden('assigned_instructor_id', null, [ 'id'=>'assigned_instructor_id' ] ) }}
                                     </div>
-                                    <div class="clearfix">
+                                    <div class="clearfix display-instructor" 
+                                         @if($assignedInstructor==null)
+                                             style='display:none'
+                                         @endif
+                                         >
                                         <label class="label-name">{{ trans('crud/labels.display_instructor') }} </label>
                                         <div class="ui-select">
                                             {{ Form::select( 'details_displays', 

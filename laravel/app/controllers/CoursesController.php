@@ -181,7 +181,7 @@ class CoursesController extends \BaseController {
             return Redirect::back();
         }
         
-        public function searchInstructor($email){
+        public function searchInstructor($email=''){
             $instructor = Instructor::where('email', $email)->first();
             if( $instructor==null ) return 0;
             if( !$instructor->hasRole('Instructor') ) return 0;

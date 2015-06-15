@@ -26,5 +26,7 @@ return array(
     'course-description-video' => 'Course Description/Sales Video',
     'description-tip' => "Additional information you'd like to add, to accompany the video.",
     'upload-files-tip' => "Upload files that accompany the lesson.",
-    'options-tip' => "Write the description for the lesson and set the individual lesson price.",
+    'options-tip' => "Write the description for the lesson and set the individual lesson price.",    
+    'enter-module-name' => "モジュール名を記入して下さい",
+    'enter-lesson-name' => "レッスン名を記入して下さい",
 );

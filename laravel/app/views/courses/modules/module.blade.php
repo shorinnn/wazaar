@@ -8,7 +8,8 @@
                data-url='{{action('ModulesController@update', [$module->course->id, $module->id] )}}' data-name='order' /> 
         
         <input type="text" value="{{$module->name}}" class='ajax-updatable' 
-        	data-url='{{action('ModulesController@update', [$module->course->id, $module->id] )}}' placeholder="Enter module name" data-name='name' />
+        	data-url='{{action('ModulesController@update', [$module->course->id, $module->id] )}}' 
+                placeholder="{{trans('courses/create.enter-module-name')}}" data-name='name' />
         <div class="buttons">       
             <!--<i class="sortable-handle fa fa-bars"></i> -->
             <div class="sortable-handle menu">
