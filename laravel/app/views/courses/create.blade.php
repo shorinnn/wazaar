@@ -49,18 +49,19 @@
             <!--<input type='hidden' name='_method' value='PUT' />-->
                    
             <div id='step3' class='# hidden animated-step'>
-                <h2>{{ trans('courses/create.set_objectives') }}<br />
+                <h2 class="clearfix">{{ trans('courses/create.set_objectives') }}<br />
                    <small>{{ trans('courses/create.this_helps_creating') }}</small>
                 </h2> 
-                 <h2>{{ trans('courses/create.course_level') }}</h2>
+                 <h2 class="clearfix">{{ trans('courses/create.course_level') }}</h2>
                  <div class="course-level btn-group clearfix" data-toggle="buttons">
                      @foreach($difficulties as $key=>$difficulty)
                      	<label class="btn btn-primary">
-                         	<input type='radio' name='course_difficulty_id' id="option{{$key}}" autocomplete="off" value='{{$key}}' required /> 
+                         	<input type='radio' name='course_difficulty_id' parsley-error-container=".errorBlock" id="option{{$key}}" autocomplete="off" value='{{$key}}' required /> 
                                 {{ trans( 'general.'.$difficulty ) }}
                         </label>
                      @endforeach
         		 </div>
+                 <div class="errorBlock"></div>
                  <div class="what-you-will-achieve">
                      <h2>{{ trans('courses/create.by_the_end') }}</h2>
                      <p class="tip">{{ trans('courses/create.make_it_results') }}</p>

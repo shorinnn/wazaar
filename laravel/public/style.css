@@ -1684,7 +1684,7 @@ header .activate-dropdown:hover ul{
 }
 
 .blue-button{
-	display: block;
+	display: inline-block;
 	border: none;
 	font-weight: 600;
 	font-size: 13px;
@@ -1706,7 +1706,11 @@ header .activate-dropdown:hover ul{
 }
 
 .large-blue-button{
-	padding: 12px 25px;
+	padding: 10px 25px;
+}
+
+.round-button{
+	border-radius: 20px;
 }
 
 .disabled-button{
@@ -5564,8 +5568,13 @@ a.load-remote > *{
 	color: #0099ff;
 	font-weight: 200;
 	font-size: 18px;
-	margin: 10px 0 16px;
+	margin: 10px 0 30px;
 	text-align: center;
+}
+
+.create-course h2 small{
+	display: block;
+	margin: 10px 0;
 }
 
 #step2,
@@ -5689,16 +5698,25 @@ select::-ms-expand {
 	width: 383px;
 	margin: 0 auto;
 	display: block;
+	text-align: center;
+}
+.errorBlock{
+	margin: 8px 0;
+}
+
+#step3 .course-level label{
+	display: inline-block;
+	float: none;
+	width: auto;
+	margin: 0 1% 0 0 !important;
 }
 
 #step3 .course-level label,
 #step3 .course-level input[type='radio']{
-	height: 40px;
-	padding: 0 30px;
+	padding: 8px 20px;
 	border: solid 1px #e5e8e9 !important;
 	border-radius: 20px;
 	box-shadow: none;
-	line-height: 40px;
 	font-size: 12px;
 	color: #849598 !important;
 	background: none;
@@ -5793,12 +5811,12 @@ select::-ms-expand {
 	font-size: 12px;
 	color: #849598;
 	display: inline-block;
-	padding-right: 30px;
+	padding-right: 40px;
 	margin: 10px 10px 40px 0;
 	height: 20px;
 	line-height: 20px;
 	float: right;
-	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-5.png') no-repeat 26px -280px;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-5.png') no-repeat 100% -280px;
 }
 
 .what-you-will-achieve > p,
@@ -7243,25 +7261,25 @@ select option.suspended{
 #course-edit #edit-course-form #top-form div textarea::-webkit-input-placeholder,
 #course-edit .payment-section input[type='text']::-webkit-input-placeholder,
 #course-edit #edit-course-form #top-form div input[type='text']::-webkit-input-placeholder{
-   color: #000;
+   color: #a7b7c4;
 }
 
 #course-edit #edit-course-form #top-form div textarea:-moz-placeholder ,
 #course-edit .payment-section input[type='text']:-moz-placeholder ,
 #course-edit #edit-course-form #top-form div input[type='text']:-moz-placeholder {
-	color: #000;
+	color: #a7b7c4;
 }
 
 #course-edit #edit-course-form #top-form div textarea::-moz-placeholder,
 #course-edit .payment-section input[type='text']::-moz-placeholder,
 #course-edit #edit-course-form #top-form div input[type='text']::-moz-placeholder{
-	color: #000;
+	color: #a7b7c4;
 }
 
 #course-edit #edit-course-form #top-form div textarea:-ms-input-placeholder ,
 #course-edit .payment-section input[type='text']:-ms-input-placeholder ,
 #course-edit #edit-course-form #top-form div input[type='text']:-ms-input-placeholder {
-	color: #000;
+	color: #a7b7c4;
 }
 
 #course-edit #edit-course-form #top-form div.course-level span{
