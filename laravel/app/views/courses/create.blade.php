@@ -56,10 +56,11 @@
                  <div class="course-level btn-group clearfix" data-toggle="buttons">
                      @foreach($difficulties as $key=>$difficulty)
                      	<label class="btn btn-primary">
-                         	<input type='radio' name='course_difficulty_id' id="option{{$key}}" autocomplete="off" value='{{$key}}' required /> 
+                         	<input type='radio' name='course_difficulty_id' parsley-error-container=".errorBlock" id="option{{$key}}" autocomplete="off" value='{{$key}}' required /> 
                                 {{ trans( 'general.'.$difficulty ) }}
                         </label>
                      @endforeach
+                     <div class="errorBlock"></div>
         		 </div>
                  <div class="what-you-will-achieve">
                      <h2>{{ trans('courses/create.by_the_end') }}</h2>
