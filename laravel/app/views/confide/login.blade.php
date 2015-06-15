@@ -1,6 +1,6 @@
     @extends('layouts.login_default')
     @section('content')
-    
+    <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/background-images/background-image.jpg">
     <section class="container-fluid user-data-modal-wrapper dedicated-login-page">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
