@@ -36,6 +36,9 @@
         <section class="container-fluid progress-bar-container">
         	<div class="container">
             	<div class="row">
+                    @if(Session::has('verification-notice'))
+                        <p class='alert alert-success'>{{ trans('general.verification-notice') }}</p>
+                    @endif
                 	<div class="col-md-12 progress-bar-contents">
                     	<p class="lead">{{trans('site/homepage.your-progress')}}</p>
                         <div class="clearfix">

@@ -231,7 +231,7 @@
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
         <script src="{{url("plugins/zero-clipboard/ZeroClipboard.min.js")}}"></script>
-        <script src="{{url("js/select.js")}}"></script>
+        <!--<script src="{{url("js/select.js")}}"></script>-->
         <script src="{{url("js/bootstrap-datepicker.js")}}"></script>
 
     @else
@@ -261,7 +261,7 @@
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
         <script src="{{url("plugins/zero-clipboard/ZeroClipboard.min.js")}}"></script>
-        <script src="{{url("js/select.js")}}"></script>
+        <!--<script src="{{url("js/select.js")}}"></script>-->
         <script src="{{url("js/bootstrap-datepicker.js")}}"></script>
         <script src="{{url("js/mailcheck.min.js")}}"></script>
         

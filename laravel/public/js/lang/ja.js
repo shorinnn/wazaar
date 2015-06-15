@@ -1,9 +1,9 @@
 var js_translation_map = {
     "LOAD MORE" : "荷LOAD MORE重",
-    "loading..." : "荷重...",
-    "Loading..." : "荷重...",
-    "processing..." : "処理...",
-    "Processing..." : "処理...",
+    "loading..." : "選択中...",
+    "Loading..." : "選択中...",
+    "processing..." : "選択中...",
+    "Processing..." : "選択中...",
     "saving" : "節約",
     "Upload complete. Processing" : "完全なアップロードします。処理",
     "File upload failed." : "ファイルのアップロードに失敗しました.",

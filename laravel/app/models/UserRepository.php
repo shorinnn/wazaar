@@ -45,6 +45,9 @@ class UserRepository
 
         // Generate a random confirmation code
         $user->confirmation_code     = md5(uniqid(mt_rand(), true));
+        
+        $url = action('SiteController@index');
+        if($registersAsST!=null) $url = action('UsersController@registrationConfirmation' );
 
         // Save if valid. Password field will be hashed before save
         if($this->save($user)){
@@ -59,7 +62,12 @@ class UserRepository
 //            if( $response->success ){
 //                $user->delivered_user_id = $response->data->clientId;
 //            }
-            return User::find($user->id);
+            $user = User::find($user->id); 
+            $user->url = $url;
+            if($user->roles()->count() == 1){
+                Session::flash('verification-notice', 1);
+            }
+            return $user;
         }
         else return $user;
         
