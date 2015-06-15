@@ -7172,12 +7172,12 @@ select option.suspended{
 	text-decoration: none;
 }
 
-#course-edit .custom-dropdown{
+#course-edit .ui-select{
 	width: 345px;
 	float: right;
 	margin: 0;
 	padding: 0;
-	overflow: visible;
+	overflow: hidden;
 }
 
 #course-edit .custom-dropdown::after,
@@ -7187,11 +7187,14 @@ select option.suspended{
 	content: '';
 }
 
-#course-edit .custom-dropdown select{
+#course-edit .ui-select select{
 	background: none;
 	color: #000;
 	font-size: 14px;
 	width: 360px;
+	height: 33px;
+	background-position: 90% -75px;
+	padding-left: 10px;
 }
 
 #course-edit #edit-course-form #top-form{
