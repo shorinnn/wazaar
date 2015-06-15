@@ -30,6 +30,7 @@ return array(
     'price' =>'価格',
     'affiliate_percentage' =>'アフィリエイト配分比率',
     'discount' =>'月DiscountせIs this noun or verb?',
+    'sale_starts_on' =>'Sale starts on',
     'sale_ends_on' =>'月Sale Ends OnせIs this for a date and time?',
     'sale_ends_in' =>'月Sale Ends InせIs this for days?',
     'Description' =>'説明',

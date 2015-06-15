@@ -38,6 +38,7 @@ return array(
     'price' => "Price",
     'affiliate_percentage' => "Affiliate Percentage",
     'discount' => "Discount",
+    'sale_starts_on' => "Sale Starts On",
     'sale_ends_on' => "Sale Ends On",
     'sale_ends_in' => "Sale Ends In",
     'Description' => 'Description',

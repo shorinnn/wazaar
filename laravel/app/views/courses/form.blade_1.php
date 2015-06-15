@@ -391,7 +391,7 @@
                                         {{ Form::textarea( 'custom_bio', null, ['placeholder'=>'Enter bio to display on course description page.'] ) }}
                                     </div>
                                 </div>
-                            <!--</div>-->
+                            </div>
                         </div>
                                     
                         
@@ -518,7 +518,7 @@
                                                 >
                                             <div class="clear clearfix margin-bottom-20 input-group date">
                                                 <label class="label-name">{{ trans('courses/general.sale_starts_on') }}</label>  
-                                                {{ Form::text('sale_starts_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
+                                                {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
@@ -660,10 +660,7 @@
 
     jQuery(function(){
         
-        $('.datetimepicker').datetimepicker( { 
-            sideBySide:true,
-            extraFormats: ['YYYY-MM-DD hh:mm:s']
-        } );
+        $('.datetimepicker').datetimepicker( { sideBySide:true } );
         
         var formData = $('#form-aws-credentials').serialize();
 
