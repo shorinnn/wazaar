@@ -5578,6 +5578,7 @@ a.load-remote > *{
 	padding-bottom: 100px;
 }
 
+#course-edit .ui-select,
 #step2 div.ui-select,
 #step1 > div{
 	width: 312px;
@@ -5585,6 +5586,7 @@ a.load-remote > *{
 	position: relative;
 }
 
+#course-edit .ui-select select,
 #step3 button.start-creating,
 #step2 select,
 #step2 button,
@@ -5632,6 +5634,7 @@ a.load-remote > *{
 	margin-top: 103px;
 }
 
+#course-edit .ui-select select,
 #step2 select{
 	border-color: #eef0f0;
 	position: relative;
@@ -7186,13 +7189,13 @@ select option.suspended{
 }
 
 #course-edit .ui-select select{
-	background: none;
 	color: #000;
 	font-size: 14px;
-	width: 360px;
 	height: 33px;
-	background-position: 90% -75px;
+	background-position: 99% -75px;
 	padding-left: 10px;
+	width: 345px;
+	margin-bottom: 0;
 }
 
 #course-edit #edit-course-form #top-form{
