@@ -437,3 +437,16 @@ function checkboxToggler(e){
     target = $(e.target).attr('data-target');
     $(target).prop('checked', this.checked);
 }
+
+function toggleElementViaOther(e) {
+    $source = $(e.target);
+    dest = $source.attr('data-destination');
+    val = $source.val();
+    if( typeof($source).attr('data-is-int')!='undefined' ) val = parseInt(val);
+    if ( val == $source.attr('data-hide-on') ) {
+        $(dest).hide();
+    }
+    else {
+        $(dest).show();
+    }
+}

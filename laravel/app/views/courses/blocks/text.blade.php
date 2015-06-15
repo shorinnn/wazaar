@@ -1,4 +1,4 @@
-Additional Lesson Notes
+{{ trans('courses/create.additional-lesson-notes') }}
 
 <p class="tip"> {{ trans('courses/create.description-tip') }}</p>
 
