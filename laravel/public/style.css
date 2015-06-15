@@ -5574,7 +5574,7 @@ a.load-remote > *{
 
 .create-course h2 small{
 	display: block;
-	margin-top: 10px;
+	margin: 10px 0;
 }
 
 #step2,
@@ -5708,7 +5708,7 @@ select::-ms-expand {
 	display: inline-block;
 	float: none;
 	width: auto;
-	margin: 0 2% 0 0 !important;
+	margin: 0 1% 0 0 !important;
 }
 
 #step3 .course-level label,
