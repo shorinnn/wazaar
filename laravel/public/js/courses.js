@@ -278,12 +278,15 @@ function submitForApproval(result, event){
 
 function assignInstructor(e){
     $('.assigned-check').remove();
+    $('[name="details_displays"]').val('instructor');
+    $('.display-instructor').hide();
     $('#assign-instructor').prev('label').append('<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" class="assigned-check" />');
     email = $('#assign-instructor').val();
     $.get( COCORIUM_APP_PATH+'courses/search-instructor/'+email, function(result){
-        $('#assigned_instructor_id').val( result );
+        $('#assigned_instructor_id').val( parseInt(result) );
         $('.assigned-check').remove();
         if( result > 0 ){
+            $('.display-instructor').show();
             $('#assign-instructor').prev('label').append('<i class="fa fa-check assigned-check"></i>');
         }
     });
