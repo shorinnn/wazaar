@@ -78,4 +78,5 @@ return array(
     'comments-posted' => 'Comments Posted',
     'about-course' => 'About Course',
     'approval-status' => '教材のステータス',
+    'sale-end-must-occur-after-start' => 'Sale End must occur after Sale Start',
 );

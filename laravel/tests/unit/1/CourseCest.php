@@ -175,8 +175,9 @@ class CourseCest{
         $I->assertEquals($course->price, $course->cost());
         $course->sale = 5;
         $course->sale_kind = 'amount';
+        $course->sale_starts_on = date('Y-m-d H:i:s', time() );
         $course->sale_ends_on = date('Y-m-d H:i:s', time() + 3600);
-        $course->updateUniques();
+        $I->assertTrue( $course->updateUniques() );
         $I->assertNotEquals($course->price, $course->cost());
         $I->assertEquals($course->price - 5, $course->cost());
         $I->assertEquals($course->price, $course->discount_original);
@@ -189,8 +190,9 @@ class CourseCest{
         $course->price = 100;
         $course->sale = 50;
         $course->sale_kind = 'percentage';
+        $course->sale_starts_on = date('Y-m-d H:i:s', time() );
         $course->sale_ends_on = date('Y-m-d H:i:s', time() + 3600);
-        $course->updateUniques();
+        $I->assertTrue( $course->updateUniques() );
         $I->assertNotEquals($course->price, $course->cost());
         $I->assertEquals($course->price/2, $course->cost());
         $I->assertEquals($course->price, $course->discount_original);
@@ -231,10 +233,74 @@ class CourseCest{
         $I->assertFalse( $course->updateUniques() );
     }
     
+    public function failSaleNoStartDate(UnitTester $I){
+        $course = Course::find(1);
+        $I->assertEquals($course->price, $course->cost());
+        $course->price = 100;
+        $course->sale = 5;
+        $course->sale_kind = 'amount';
+        $course->sale_starts_on = date('Y-m-d H:i:s', time() + 3600);
+        $I->assertFalse( $course->updateUniques() );
+    }
+    
+    public function failSaleNoEndDate(UnitTester $I){
+        $course = Course::find(1);
+        $I->assertEquals($course->price, $course->cost());
+        $course->price = 100;
+        $course->sale = 5;
+        $course->sale_kind = 'amount';
+        $course->sale_ends_on = date('Y-m-d H:i:s', time() + 3600);
+        $I->assertFalse( $course->updateUniques() );
+    }
+    
+    public function failSaleEndBeforeStart(UnitTester $I){
+        $course = Course::find(1);
+        $I->assertEquals($course->price, $course->cost());
+        $course->price = 100;
+        $course->sale = 5;
+        $course->sale_kind = 'amount';
+        $course->sale_starts_on = date('Y-m-d H:i:s', time() + 3600);
+        $course->sale_ends_on = date('Y-m-d H:i:s', time());
+        $I->assertFalse( $course->updateUniques() );
+    }
+    
+    
     public function getLessonSales(UnitTester $I){
         $lesson = Lesson::find(10);
         $lessonSales = Purchase::where( 'product_id', $lesson->id )->where( 'product_type','Lesson' )->sum( 'purchase_price' );
         $I->assertEquals( $lessonSales, $lesson->module->course->lessonSales() );
+    }
+    
+    public function passIsDiscounted(UnitTester $I){
+        $course = Course::find(1);
+        $I->assertEquals($course->price, $course->cost());
+        $course->sale = 5;
+        $course->sale_kind = 'amount';
+        $course->sale_starts_on = date('Y-m-d H:i:s', time() );
+        $course->sale_ends_on = date('Y-m-d H:i:s', time() + 3600);
+        $I->assertTrue( $course->updateUniques() );
+        $I->assertNotEquals($course->price, $course->cost());
+        $I->assertEquals($course->price - 5, $course->cost());
+        $I->assertEquals($course->price, $course->discount_original);
+        $I->assertEquals(5, $course->discount_saved);
+        
+        $I->assertTrue( $course->isDiscounted() );
+    }
+    
+    public function failIsDiscounted(UnitTester $I){
+        $course = Course::find(1);
+        $I->assertFalse( $course->isDiscounted() );
+    }
+    
+    public function failIsDiscountedBadDate(UnitTester $I){
+        $course = Course::find(1);
+        $I->assertEquals($course->price, $course->cost());
+        $course->sale = 5;
+        $course->sale_kind = 'amount';
+        $course->sale_starts_on = date('Y-m-d H:i:s', time() );
+        $I->assertFalse( $course->updateUniques() );
+        
+        $I->assertFalse( $course->isDiscounted() );
     }
         
 }

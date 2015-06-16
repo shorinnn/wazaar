@@ -97,4 +97,5 @@ return array(
     'about-course' => 'About Course',
     'next-step' => 'Next Step',
     'course-description-preview' => 'Course Description Preview',
+    'sale-end-must-occur-after-start' => 'Sale End must occur after Sale Start',
 );

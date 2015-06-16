@@ -13,7 +13,7 @@ class Course extends Ardent{
         };
       }
 
-    protected $dates = ['sale_ends_on'];
+    protected $dates = [ 'sale_starts_on', 'sale_ends_on' ];
     public $fillable = ['name', 'slug', 'description', 'short_description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
         'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage', 'payment_type', 'requirements','description_video_id'];
     
@@ -166,6 +166,13 @@ class Course extends Ardent{
             $this->errors()->add(0, trans('courses/general.no_negative_discounts') );
             return false;
         }
+        // sale start can't be before sale end
+        if( $this->sale > 0){
+            if( $this->sale_ends_on=='' || $this->sale_starts_on=='' || ( strtotime($this->sale_ends_on) < strtotime($this->sale_starts_on) ) ){
+                $this->errors()->add(0, trans('courses/general.sale-end-must-occur-after-start') );
+                return false;
+            }
+        }
         // update category counter
         if($this->isDirty('course_category_id')){
             $old = $this->getOriginal();
@@ -219,7 +226,7 @@ class Course extends Ardent{
     }
     
     public function isDiscounted(){
-        if($this->sale==0 || $this->sale_ends_on < date('Y-m-d H:i:s')) return false;
+        if($this->sale==0 || $this->sale_starts_on > date('Y-m-d H:i:s') || $this->sale_ends_on < date('Y-m-d H:i:s')) return false;
         else{
             $now = new DateTime();
             $future_date = new DateTime($this->sale_ends_on);
