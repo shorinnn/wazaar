@@ -42,7 +42,7 @@ $(document).ready(function(){
 	askTeacherQuestion();
 	searchFormFocusStyle();
 	showMoreContent();
-	
+	stickyFooter();
 });
 
 function videoGridBoxIn(){
@@ -1148,4 +1148,19 @@ function showMoreContent(){
 			return false;
 		});
 	});
+}
+
+function stickyFooter(){
+	var bodyHeight = $("body").height();
+	var vwptHeight = $(window).height();
+	if (vwptHeight > bodyHeight) {
+	  $("footer").css({
+	  	position: 'absolute',
+		bottom: 0,
+		width: '100%'
+		});
+	}
+	else if(vwptHeight <= bodyHeight){
+	  $("footer").css("position","relative");
+	}
 }

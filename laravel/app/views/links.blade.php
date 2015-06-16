@@ -31,9 +31,9 @@
                                    @endif
                                    
                                     @if(Auth::user()->sti_approved=='no') 
-                                        <button class="blue-button large-blue-button" disabled>
+                                        <button class="blue-button large-button" disabled>
                                     @else
-                                        <button class="blue-button large-blue-button clipboardable tooltipable" 
+                                        <button class="blue-button large-button clipboardable tooltipable" 
                                                 data-clipboard-text="{{ Config::get('app.url') }}/lp1/index.php?stpi={{ Auth::user()->id }}">
                                     @endif
                                    COPY</button>
@@ -47,9 +47,9 @@
                                    @endif
                                    
                                     @if(Auth::user()->sti_approved=='no') 
-                                        <button class="blue-button large-blue-button" disabled>
+                                        <button class="blue-button large-button" disabled>
                                     @else
-                                        <button class="blue-button large-blue-button clipboardable tooltipable" 
+                                        <button class="blue-button large-button clipboardable tooltipable" 
                                                 data-clipboard-text="{{ Config::get('app.url') }}/lp2/index.php?stpi={{ Auth::user()->id }}">
                                     @endif
                                    COPY</button>
@@ -61,7 +61,7 @@
                         <p class="regular-paragraph">Browsing Courses</p>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 share-link-form clearfix">
-                        <a href='{{action("SiteController@index")}}' class="blue-button large-blue-button" disabled>GO!</a>
+                        <a href='{{action("SiteController@index")}}' class="blue-button large-button" disabled>GO!</a>
                     </div>
                 @endif
                 <div class="col-lg-12 approval-notice clearfix clear">

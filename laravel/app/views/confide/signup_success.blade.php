@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                    <a href="#" class="blue-button large-blue-button">VERIFY EMAIL</a>
+                    <a href="#" class="blue-button large-button">VERIFY EMAIL</a>
                 </div>
             </div>
             <div class="row invite-friends deactivated">

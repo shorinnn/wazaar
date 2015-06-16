@@ -43,7 +43,7 @@
 
                         <div class="form-actions form-group">
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" class="hide" alt="">
-                          <button type="submit" id="submit-button" class="large-blue-button blue-button deactivate-button">
+                          <button type="submit" id="submit-button" class="large-button blue-button deactivate-button">
                           	{{ trans('site/register.create-account') }}
                           </button>
                         </div>
