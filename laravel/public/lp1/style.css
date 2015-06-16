@@ -1677,8 +1677,8 @@ header .activate-dropdown:hover ul{
 	background: #008eed;
 }
 
-.large-blue-button{
-	padding: 15px 25px;
+.large-button{
+	padding: 10px 25px;
 }
 
 .disabled-button{

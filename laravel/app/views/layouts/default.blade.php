@@ -110,7 +110,7 @@
                                         <div class="alert">{{{ Session::get('notice') }}}</div>
                                     @endif
                                     <div class="form-group">
-                                        <button  type="submit" class="blue-button large-blue-button">
+                                        <button  type="submit" class="blue-button large-button">
                                             {{ trans('site/login.sign-in') }}
                                         </button>
                                     </div>
@@ -181,7 +181,7 @@
                                     </div>
                                     <div class="form-actions form-group">
                                         <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" class="hide" alt="">
-                                      <button type="submit" id="submit-button" class="large-blue-button blue-button deactivate-button">
+                                      <button type="submit" id="submit-button" class="large-button blue-button deactivate-button">
                                         {{ trans('site/register.create-account') }}
                                       </button>
                                     </div>

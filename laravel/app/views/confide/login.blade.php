@@ -37,7 +37,7 @@
                                 <div class="alert">{{{ Session::get('notice') }}}</div>
                             @endif
                             <div class="form-group">
-                                <button tabindex="3" type="submit" class="blue-button large-blue-button">
+                                <button tabindex="3" type="submit" class="blue-button large-button">
                                 	{{ trans('site/login.sign-in') }}
                                 </button>
                             </div>
