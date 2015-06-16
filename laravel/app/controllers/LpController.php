@@ -20,6 +20,7 @@ class LpController extends \BaseController {
             $firstName = (isset($name[1])) ? $name[1] : 'firstname';
             $lastName = (isset($name[0])) ? $name[0] : 'lastname';
             $response = $delivered->addUser( $firstName, $lastName, Input::get('email') );
+            dd($response);
             if( is_object($response) && $response->success ){
                 return Redirect::to('lp1/success.php');
             }

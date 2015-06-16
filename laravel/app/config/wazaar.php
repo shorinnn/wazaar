@@ -18,7 +18,7 @@ return [
     'AWS_VIDEO_OUTPUT_BUCKET' => 'videosoutput-tokyo',
     'AWS_PIPELINEID' => '1420442490328-k9je9y',
 
-    'DELIVERED_ENDPOINT' => 'http://delivered.cocorium.dev/api',
+    'DELIVERED_ENDPOINT' => 'http://delivered.cocorium.com/api',
     'DELIVERED_API_KEY' => 'I04dSvx0T9E8uowU',
     'DELIVERED_TOKEN' => 'eyJpdiI6Imo1SVJxYjlrcmpcL0o4a2VYQnViRHNBPT0iLCJ2YWx1ZSI6ImdhdnBwVGZtWHduSjlKUVwvYjNOMUhPU1JKWFB6MnpWTU9QWHJxUEkwXC85ST0iLCJtYWMiOiJiYTcyMjU0MDUyZDE5YWZhNDJkYWE4NzRjZTMwYmE0MmNjNTAzZjdmMTg2NzFlNzQzOTc5ZTYxODFlY2YzMDYzIn0'
 ];
