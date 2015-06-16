@@ -122,7 +122,8 @@ class CoursesController extends \BaseController {
             $course->requirements = json_encode(array_filter(Input::get('requirements')));
             $course->sale = Input::get('sale');
             $course->sale_kind = Input::get('sale_kind');
-            $course->sale_ends_on = (Input::get('sale_ends_on')) ?  Input::get('sale_ends_on') : null;
+            $course->sale_starts_on = (Input::get('sale_starts_on')) ?  date('Y-m-d H:i:s', strtotime(Input::get('sale_starts_on')) ) : null;
+            $course->sale_ends_on = (Input::get('sale_ends_on')) ?  date('Y-m-d H:i:s', strtotime(Input::get('sale_ends_on')) ) : null;
             $course->ask_teacher = Input::get('ask_teacher');
             $course->details_displays = Input::get('details_displays');
             $course->assigned_instructor_id = Input::get('assigned_instructor_id') == 0 ? null : Input::get('assigned_instructor_id');

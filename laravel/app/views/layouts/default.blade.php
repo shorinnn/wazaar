@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{url('css/slick.css')}}">
     <link rel="stylesheet" href="{{url('css/slick-theme.css')}}">
     <link rel="stylesheet" href="{{url('css/datepicker.css')}}">
+    <link rel="stylesheet" href="{{url('css/bootstrap-datetimepicker.css')}}">
 
     @yield('extra_css')
     <!--[if lt IE 9]>

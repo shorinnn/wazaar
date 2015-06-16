@@ -33,19 +33,19 @@
 <div class="container-fluid instructor-course-editor">
     <div role="tabpanel">
         <div class="header clearfix">
-            <a href='{{action("CoursesController@myCourses")}}' class="blue-button large-button round-button">{{ trans('courses/general.all_my_courses') }}</a>
+            <a href='{{action("CoursesController@myCourses")}}' class="blue-button large-blue-button round-button">{{ trans('courses/general.all_my_courses') }}</a>
             
-            <a href='{{action("CoursesController@show", $course->slug)}}' target='_blank' class="blue-button large-button round-button">
+            <a href='{{action("CoursesController@show", $course->slug)}}' target='_blank' class="blue-button large-blue-button round-button">
                 {{ trans('courses/general.course-description-preview') }}
             </a>
         
             <!-- Nav tabs -->
             <ul class="nav nav-pills" id="instructor-editor" role="tablist">
                 <li role="presentation" class="active right-twenty-margin">
-                    <a href="#curriculum-tab" class="blue-button large-button round-button" aria-controls="curriculum-tab" role="tab" data-toggle="tab">{{ trans('courses/general.curriculum') }}</a>
+                    <a href="#curriculum-tab" class="blue-button large-blue-button round-button" aria-controls="curriculum-tab" role="tab" data-toggle="tab">{{ trans('courses/general.curriculum') }}</a>
                 </li>
                 <li role="presentation">
-                    <a href="#course-edit" class="blue-button large-button round-button" aria-controls="course-edit" role="tab" data-toggle="tab">{{ trans('courses/general.course-edit') }}</a>
+                    <a href="#course-edit" class="blue-button large-blue-button round-button" aria-controls="course-edit" role="tab" data-toggle="tab">{{ trans('courses/general.course-edit') }}</a>
                 </li>
             </ul>
         </div>
@@ -391,7 +391,7 @@
                                         {{ Form::textarea( 'custom_bio', null, ['placeholder'=>'Enter bio to display on course description page.'] ) }}
                                     </div>
                                 </div>
-                            <!--</div>-->
+                            </div>
                         </div>
                                     
                         
@@ -518,7 +518,7 @@
                                                 >
                                             <div class="clear clearfix margin-bottom-20 input-group date">
                                                 <label class="label-name">{{ trans('courses/general.sale_starts_on') }}</label>  
-                                                {{ Form::text('sale_starts_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
+                                                {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
@@ -660,10 +660,7 @@
 
     jQuery(function(){
         
-        $('.datetimepicker').datetimepicker( { 
-            sideBySide:true,
-            extraFormats: ['YYYY-MM-DD hh:mm:s']
-        } );
+        $('.datetimepicker').datetimepicker( { sideBySide:true } );
         
         var formData = $('#form-aws-credentials').serialize();
 

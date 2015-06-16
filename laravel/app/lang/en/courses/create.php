@@ -17,7 +17,7 @@ return array(
     'for_your_student_if' => 'This course is for your student if your student is...',
     'start_creating_curriculum' => 'Start Creating Curriculum',
     'course-requirements' => 'Course Requirements',
-    'tip-if-student' => 'If your students are...',
+    'tip-if-student' => 'If your students are...<br /> e.g. a newbie looking to start programming.',
     'create' => 'Create New Course',
     'course-listing-image' => 'Image displayed on course listing box. ',
     'course-video-image' => 'Image displayed on course details page at the top. ',
@@ -27,4 +27,5 @@ return array(
     'options-tip' => "Write the description for the lesson and set the individual lesson price.",
     'enter-module-name' => "Enter module name",
     'enter-lesson-name' => "Enter lesson name",
+    'additional-lesson-notes' => "Additional Lesson Notes",
 );

@@ -174,18 +174,21 @@ function cloneInput(e){
     keynum = e.which;
     keychar = String.fromCharCode(keynum);
     charcheck = /[a-zA-Z0-9]/;
-    if( !charcheck.test(keychar) ) return;   
+//    if( !charcheck.test(keychar) ) return;   
     $elem = $(e.target);
     max = parseInt( $elem.attr('data-clonable-max') ); 
-    if( $.trim($elem.val()) == '' && $elem.parent().next('.clonable').length==0 ){
+//    if( $.trim($elem.val()) == '' && $elem.parent().next('.clonable').length==0 ){
+    if(  $elem.parent().next('.clonable').length==0 ){
+        
         name = $elem.attr('name');
-        if(max > 0 && $('[name="'+name+'"]').length >= max){
+        if( max > 0 && $('[name="'+name+'"]').length >= max ){
             return;
         }
         
         var $destination = $elem.parent();
         var clone = $elem.clone();
         clone.removeAttr('id');
+        clone.removeAttr('value');
         clone.removeAttr('required');
         clone.removeClass();
         id = uniqueId();
@@ -218,6 +221,7 @@ function reorderClonable(name){
 function deleteClonable(e){
     e.preventDefault();
     name = $(e.target).parent().find('input').attr('name');
+    if( $('[name="'+name+'"]').length == 1 ) return false;
     $(e.target).parent().fadeOut( function(){
         $(e.target).parent().remove();
         reorderClonable( name );
@@ -436,4 +440,17 @@ function cancelReply(e){
 function checkboxToggler(e){
     target = $(e.target).attr('data-target');
     $(target).prop('checked', this.checked);
+}
+
+function toggleElementViaOther(e) {
+    $source = $(e.target);
+    dest = $source.attr('data-destination');
+    val = $source.val();
+    if( typeof($source).attr('data-is-int')!='undefined' ) val = parseInt(val);
+    if ( val == $source.attr('data-hide-on') ) {
+        $(dest).hide();
+    }
+    else {
+        $(dest).show();
+    }
 }

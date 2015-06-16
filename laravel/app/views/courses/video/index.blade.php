@@ -2,6 +2,11 @@
     <div class="col-md-12">
         <div class="image-upload">
             <h3>{{ trans('courses/create.course-description-video') }}</h3>
+                    <p class="tip">Video to be displayed on the course description page. 
+                        <i class='fa fa-question-circle tooltipable' data-placement="top" 
+                           title='<img height="400" width="600" src="{{ url('images/course_examples/course-video.png') }}" />' 
+                           data-html='true'></i>
+                    </p>
             <div class="course-video-upload-button-progress">
                 <label for="upload-course-video" class="uploadFile">
                     <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
