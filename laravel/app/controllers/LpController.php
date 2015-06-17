@@ -81,7 +81,7 @@ class LpController extends \BaseController {
                 $template = $this->_getTemplate();
                 $variables = json_encode( ['FIRST_NAME' => $user->firstName ] );
                 $result = $delivered->executeEmailRequest('immediate', $template->id, $user->id, $variables );
-                return Redirect::to('lp1/success.php');
+                return Redirect::to('lp1/success.php?name='.$firstName);
             }
             return Redirect::to( $_SERVER['HTTP_REFERER'].$error_flag );
 	}
