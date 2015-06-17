@@ -71,7 +71,7 @@ class LpController extends \BaseController {
             //add user to DELIVERED
             $delivered = new DeliveredHelper();
             $name = explode(' ', Input::get('name'), 2);
-            $firstName = (isset($name[1])) ? $name[1] : 'firstname';
+            $firstName = (isset($name[1])) ? $name[1] : $name[0];
             $lastName = (isset($name[0])) ? $name[0] : 'lastname';
             $response = $delivered->addUser( $firstName, $lastName, Input::get('email') );
             if( is_array($response) && $response['success'] == true ){
