@@ -77,6 +77,16 @@ class DeliveredHelper
         $call = $this->_call('templates/' . $id,[], 'delete');
         return $call;
     }
+    
+    /**
+     * Get all users associated to the client
+     * @return mixed|null
+     */
+    public function getUsers()
+    {
+        $call = $this->_call('users',[],'get');
+        return $call;
+    }
 
     /**
      * Add a user under a client
@@ -150,7 +160,7 @@ class DeliveredHelper
             case 'put'  : $request = $curl->put($url, $params);break;
             case 'delete' : $request = $curl->delete($url);break;
         }
-        dd($request);
+        
         if ($request){
             return json_decode($request->body,true);
         }
