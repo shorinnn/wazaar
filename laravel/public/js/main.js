@@ -33,7 +33,7 @@ $(document).ready(function(){
 	});	
 	
     $(window).scroll(stepsScrollAnimation);
-    _.setTranslation( js_translation_map );
+//    _.setTranslation( js_translation_map );
     floatingNav();
     scrollNavigation();
 	fullScreen();
