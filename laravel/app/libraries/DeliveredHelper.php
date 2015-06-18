@@ -137,6 +137,45 @@ class DeliveredHelper
     }
 
     /**
+     * Assign tag to a user
+     * @param $tagName
+     * @param $tagType
+     * @param $tagValue
+     * @param $userId
+     * @return mixed|null
+     */
+    public function addTag($tagName, $tagType, $tagValue, $userId)
+    {
+        $call = $this->_call('tags',compact('tagName', 'tagType', 'tagValue', 'userId'));
+        return $call;
+    }
+
+    /**
+     * Add a List or Group
+     * @param $groupName
+     * @param $groupDescription
+     * @return mixed|null
+     */
+    public function addList($groupName, $groupDescription)
+    {
+        $call = $this->_call('lists',compact('groupName', 'groupDescription'));
+        return $call;
+    }
+
+    /**
+     * Assign a set of users(ID) or a user to a list
+     * @param $listId
+     * @param array $userIds
+     * @return mixed|null
+     */
+    public function addUsersToList($listId, $userIds = [])
+    {
+        $userIds = json_encode($userIds);
+        $call = $this->_call('lists/users',compact('listId', 'userIds'));
+        return $call;
+    }
+
+    /**
      * Execute CURL request to delivered API
      * @param $uri
      * @param array $params
@@ -145,10 +184,11 @@ class DeliveredHelper
      */
     private function _call($uri, $params = [], $method = 'post')
     {
-        $key   = Config::get('wazaar.DELIVERED_API_KEY');
-        $token = Config::get('wazaar.DELIVERED_TOKEN');
-        $endpoint = trim(Config::get('wazaar.DELIVERED_ENDPOINT'));
+        $key   = Config::get('wazaar.DELIVERED_API_KEY','U1527uCqeGUJdRF8');
+        $token = Config::get('wazaar.DELIVERED_TOKEN','eyJpdiI6IndRR1JcL2FkUzVEUk1nWWxoYjEzWEFnPT0iLCJ2YWx1ZSI6IngzTnRhZEpsTWZrVTMreTNiaHY2bE8yZFhjR2NmZ3JCc29ySXkyM3FDblU9IiwibWFjIjoiODY0NDQzMzgwYjg3NWEwNWI3YjI2ZTI3YjdjNzFiNGIyOGQ2NmNhMTgzM2YxMTQyM2ViNWVhMWRhYjVlMTgxZSJ9');
+        $endpoint = trim(Config::get('wazaar.DELIVERED_ENDPOINT','http://delivered.cocorium.com/api'));
         $curl = new \anlutro\cURL\cURL();
+
 
         $url = $curl->buildUrl($endpoint . '/' . $uri,['apiKey' => $key, 'token' => $token]);
 
