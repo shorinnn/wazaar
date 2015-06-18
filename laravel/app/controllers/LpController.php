@@ -62,10 +62,12 @@ class LpController extends \BaseController {
 
 	public function store()
 	{
+            $referer = explode( '?', $_SERVER['HTTP_REFERER'] );
+            $referer = $referer[0];
             $error_flag = '?error=1';
             if( Input::has('stpi') ){
                 Cookie::queue('stpi', Input::get('stpi'), 60*24*30);
-                $error_flag = '&error=1';
+                $error_flag .= '&stpi='.Input::get('stpi');
             }
             
             //add user to DELIVERED
@@ -83,7 +85,11 @@ class LpController extends \BaseController {
                 $result = $delivered->executeEmailRequest('immediate', $template->id, $user->id, $variables );
                 return Redirect::to('lp1/success.php?name='.$firstName);
             }
-            return Redirect::to( $_SERVER['HTTP_REFERER'].$error_flag );
+            $errors = urlencode( json_encode($response['errors']) );
+            $name = urlencode(Input::get('name'));
+            $email = urlencode(Input::get('email'));
+            $error_flag.= "&errors=$errors&name=$name&email=$email#form";
+            return Redirect::to( $referer.$error_flag  );
 	}
 
 }
