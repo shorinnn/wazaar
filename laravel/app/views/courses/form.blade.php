@@ -4,7 +4,6 @@
 @stop
 
 @section('content')
-
 <style>
     #save-indicator{
         border:1px solid black;

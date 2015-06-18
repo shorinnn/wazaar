@@ -499,3 +499,7 @@ function asset_path($filename) {
 
     return $filename;
 }
+
+function round2($number, $roundTo=0){
+    return (round($number/$roundTo)) * $roundTo; 
+}

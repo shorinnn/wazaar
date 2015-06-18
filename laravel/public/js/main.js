@@ -1164,3 +1164,7 @@ function stickyFooter(){
 	  $("footer").css("position","relative");
 	}
 }
+
+function round2(number, roundTo){
+    return (Math.round(number/roundTo)) * roundTo; 
+}
