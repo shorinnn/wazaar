@@ -1047,14 +1047,14 @@ function insertSelectBorder(){
 
 
 function delayedKeyup(e){
-    delay( window[$(e.target).attr('data-callback')], $(e.target).attr('data-delay'));
+    delay( window[$(e.target).attr('data-callback')], $(e.target).attr('data-delay'), $(e.target) );
 }
 
 var delay = (function () {
 	var timer = 0;
-	return function (callback, ms) {
+	return function (callback, ms, obj) {
 		clearTimeout(timer);
-		timer = setTimeout(callback, ms);
+		timer = setTimeout(callback, ms, obj);
 	};
 })();
 

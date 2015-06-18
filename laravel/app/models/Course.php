@@ -142,6 +142,12 @@ class Course extends Ardent{
 //    }
     
     public function beforeSave(){
+        if($this->price>0){
+            $this->price = round2( $this->price, 100 );
+        }
+        if($this->sale>0 && $this->sale_kind=='amount'){
+            $this->sale = round2( $this->sale, 100 );
+        }
         if( Config::get('custom.use_id_for_slug')==true ) {
             if( !$this->id ){
                 $id = DB::table('courses')->orderBy('id','desc')->first();
@@ -154,14 +160,28 @@ class Course extends Ardent{
             $this->slug = Str::slug($this->name);
         }
         if( trim($this->short_description) == '' ) $this->short_description = Str::limit($this->description, Config::get('custom.short_desc_max_chars') );
+        
         if($this->sale_kind=='percentage' && $this->sale  > 100){
             $this->errors()->add(0, trans('courses/general.cant_discount_101_percent') );
             return false;
         }
+        $percentage = ($this->sale/100);
+        
+        if($this->sale_kind=='percentage' && ( $this->price - ($this->price * $percentage) < 500 && $this->price - ($this->price * $percentage) != 0 ) ){
+            $this->errors()->add(0, trans('courses/general.after-sale-course-must-be-free-or-500') );
+            return false;
+        }
+        
         if($this->sale_kind=='amount' && $this->sale  > $this->price){
             $this->errors()->add(0, trans('courses/general.cant_discount_more_than_price') );
             return false;
         }
+        
+        if($this->sale_kind=='amount' && ( $this->price - $this->sale  < 500 && $this->price - $this->sale !=0 ) ){
+            $this->errors()->add(0, trans('courses/general.after-sale-course-must-be-free-or-500') );
+            return false;
+        }
+        
         if( $this->sale<0 ){
             $this->errors()->add(0, trans('courses/general.no_negative_discounts') );
             return false;
@@ -172,6 +192,11 @@ class Course extends Ardent{
                 $this->errors()->add(0, trans('courses/general.sale-end-must-occur-after-start') );
                 return false;
             }
+            
+        }
+        if($this->price!=0 && $this->price < 500){
+            $this->errors()->add(0, trans('courses/general.course-must-be-free-or-500') );
+            return false;
         }
         // update category counter
         if($this->isDirty('course_category_id')){
