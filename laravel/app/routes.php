@@ -322,7 +322,7 @@ Route::group(['prefix' => 'api'], function(){
 Route::post('courses/{id}/video/set-description','CoursesController@setVideoDescription');
 
 Route::get('test', function(){
-
+/*
 
     $users = [
         ['firstName' => 'Albert', 'lastName' => 'Maranian', 'email' => 'albert1@gmail.com'],
@@ -338,5 +338,5 @@ Route::get('test', function(){
     echo '<pre>';
     print_r($result);
     echo '</pre>';
-    die;
+    die;*/
 });
