@@ -55,8 +55,11 @@ class LpController extends \BaseController {
         }
     
         public function index(){
-            $list = $this->_getList();
-            dd($list);
+            $users = $this->delivered->getUsers();
+            $user = $users['data'][0];
+            dd($users);
+//            $list = $this->_getList();
+//            dd($list);
 //            $users = $this->delivered->getUsers();
 //            $user = $users['data'][0];
 //            if(is_array($user) ) $user = json_decode(json_encode($user), FALSE);

@@ -9,7 +9,7 @@
             <div class="row congrats-message">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <h2>
-                        <img src="registered-mark.png" alt="" class="inline-block">
+                        <img src="images/registered-mark.png" alt="" class="inline-block">
                         <span class="block">Congratulations <!-- <span class="name">Saulius,</span></span> -->
                         <span class="block">you have verified your email!</span>
                     </h2>
