@@ -323,6 +323,7 @@ Route::post('courses/{id}/video/set-description','CoursesController@setVideoDesc
 
 Route::get('test', function(){
 
+
     $users = [
         ['firstName' => 'Albert', 'lastName' => 'Maranian', 'email' => 'albert1@gmail.com'],
         ['firstName' => 'Albert', 'lastName' => 'Maranian', 'email' => 'albert2@gmail.com'],
@@ -332,7 +333,7 @@ Route::get('test', function(){
     $usersJson = json_encode($users);
     $delHelper = new DeliveredHelper();
 
-    $result = $delHelper->addBatchUsers($usersJson);
+    $result = $delHelper->addUsersToList(1,[1]);
 
     echo '<pre>';
     print_r($result);
