@@ -60,5 +60,6 @@ return array(
     'Expert' => '上級',
     'next-step' => 'Next Step',
     'course-description-preview' => 'Course Description Preview',
-    'verification-notice' => 'Well done. You have successfully registered. Please activate your account with the email we sent you.'
+    'verification-notice' => 'Well done. You have successfully registered. Please activate your account with the email we sent you.',
+    'your-2tier-links' => 'Your 2-Tier Publisher Links'
 );

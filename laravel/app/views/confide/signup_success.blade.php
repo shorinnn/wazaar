@@ -10,7 +10,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <h2>
                         <img src="images/registered-mark.png" alt="" class="inline-block" />
-                        <span class="block">Congratulations 
+                        <span class="block">Congratulations </span>
                             <!--<span class="name">Saulius,</span></span> -->
                         <span class="block">you have registered on Wazaar!</span>
                     </h2>
