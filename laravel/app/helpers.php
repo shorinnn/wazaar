@@ -503,3 +503,10 @@ function asset_path($filename) {
 function round2($number, $roundTo=0){
     return (round($number/$roundTo)) * $roundTo; 
 }
+
+function getDomainFromEmail($email){
+    // Get the data after the @ sign
+    $domain = substr(strrchr($email, "@"), 1);
+ 
+    return $domain;
+}
