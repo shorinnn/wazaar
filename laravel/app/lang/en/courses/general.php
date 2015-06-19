@@ -97,4 +97,7 @@ return array(
     'about-course' => 'About Course',
     'next-step' => 'Next Step',
     'course-description-preview' => 'Course Description Preview',
+    'sale-end-must-occur-after-start' => 'Sale End must occur after Sale Start',
+    'course-must-be-free-or-500' => 'Course price must be 0 or minimum of 500',
+    'after-sale-course-must-be-free-or-500' => 'After discount course price must be 0 or minimum of 500',
 );

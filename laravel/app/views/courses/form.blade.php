@@ -4,7 +4,6 @@
 @stop
 
 @section('content')
-
 <style>
     #save-indicator{
         border:1px solid black;
@@ -474,7 +473,8 @@
                                     </div>    
                                     <div class="clear clearfix margin-bottom-20">
                                     	<label class="label-name">{{ trans('courses/general.price') }}</label> 
-                                        {{  Form::text( 'price', money_val($course->price) ) }}
+                                        {{  Form::text( 'price', money_val($course->price),
+                                            ['class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustPrice'] ) }}
                                     </div>    
                                     
                                     <div class="clear clearfix">
@@ -499,11 +499,12 @@
                                          </div>
                                         
                                         
-                                        
                                         <div class="clear clearfix margin-bottom-20">
                                         	<label class="label-name">{{ trans('courses/general.discount') }} </label>
                                                 {{ Form::text('sale', money_val($course->sale),
                                                     ['onkeyup' => 'toggleElementViaOther(event)', 
+                                                    'class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustDiscount',
+                                                    'data-saleType' => 'sale_kind',
                                                     'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
                                                     
                                                 <div class="ui-select discount margin-top-20">

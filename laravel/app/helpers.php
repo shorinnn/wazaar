@@ -479,3 +479,34 @@ function serveMobile(){
     if(Cookie::get('force-mobile')==1) return true;
     return false;
 }
+
+/**
+ * @param  string  $filename
+ * @return string
+ */
+function asset_path($filename) {
+    $manifest_path = base_path()."/public/assets/rev-manifest.json";
+
+    if (file_exists($manifest_path)) {
+        $manifest = json_decode(file_get_contents($manifest_path), TRUE);
+    } else {
+        $manifest = [];
+    }
+
+    if (array_key_exists($filename, $manifest)) {
+        return $manifest[$filename];
+    }
+
+    return $filename;
+}
+
+function round2($number, $roundTo=0){
+    return (round($number/$roundTo)) * $roundTo; 
+}
+
+function getDomainFromEmail($email){
+    // Get the data after the @ sign
+    $domain = substr(strrchr($email, "@"), 1);
+ 
+    return $domain;
+}

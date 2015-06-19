@@ -78,4 +78,7 @@ return array(
     'comments-posted' => 'Comments Posted',
     'about-course' => 'About Course',
     'approval-status' => '教材のステータス',
+    'sale-end-must-occur-after-start' => 'Sale End must occur after Sale Start',
+    'course-must-be-free-or-500' => 'Course price must be 0 or minimum of 500',
+    'after-sale-course-must-be-free-or-500' => 'After discount course price must be 0 or minimum of 500',
 );

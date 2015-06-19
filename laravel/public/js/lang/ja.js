@@ -1,4 +1,4 @@
-var js_translation_map = {
+var js_translation_map_ja = {
     "LOAD MORE" : "荷LOAD MORE重",
     "loading..." : "選択中...",
     "Loading..." : "選択中...",

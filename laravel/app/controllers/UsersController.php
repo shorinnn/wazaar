@@ -12,6 +12,7 @@ class UsersController extends Controller
     public function __construct(UserRepository $users){
         $this->users = $users;
         $this->beforeFilter('guest', array('only' => array('create', 'login' ,'forgotPassword', 'doForgotPassword')));
+        $this->beforeFilter('auth', array('only' => array('verificationConfirmation', 'registrationConfirmation' ,'links')));
     }
 
     /**
@@ -40,7 +41,9 @@ class UsersController extends Controller
         if( Auth::guest() ){
             Cookie::queue('st', 1, 24*30);
         }
-        return View::make('confide.second_tier_publisher_signup');
+        $extraText = 'Second Tier Publisher Page';
+        return View::make(Config::get('confide::signup_form'))->with( compact('extraText' ) );
+//        return View::make('confide.second_tier_publisher_signup');
     }
     
     /**

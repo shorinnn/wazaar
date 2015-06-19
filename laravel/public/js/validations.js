@@ -1,3 +1,6 @@
+/**
+ * @class Validations
+ */
 $(function(){
     $('.show-password').click(function(){
         $input = $(this).parent().find('input');

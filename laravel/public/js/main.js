@@ -33,7 +33,7 @@ $(document).ready(function(){
 	});	
 	
     $(window).scroll(stepsScrollAnimation);
-    _.setTranslation( js_translation_map );
+//    _.setTranslation( js_translation_map );
     floatingNav();
     scrollNavigation();
 	fullScreen();
@@ -1047,14 +1047,14 @@ function insertSelectBorder(){
 
 
 function delayedKeyup(e){
-    delay( window[$(e.target).attr('data-callback')], $(e.target).attr('data-delay'));
+    delay( window[$(e.target).attr('data-callback')], $(e.target).attr('data-delay'), $(e.target) );
 }
 
 var delay = (function () {
 	var timer = 0;
-	return function (callback, ms) {
+	return function (callback, ms, obj) {
 		clearTimeout(timer);
-		timer = setTimeout(callback, ms);
+		timer = setTimeout(callback, ms, obj);
 	};
 })();
 
@@ -1165,4 +1165,8 @@ function stickyFooter(){
 	else if(vwptHeight <= bodyHeight){
 	  $("footer").css("position","relative");
 	}
+}
+
+function round2(number, roundTo){
+    return (Math.round(number/roundTo)) * roundTo; 
 }

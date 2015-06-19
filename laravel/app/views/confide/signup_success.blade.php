@@ -9,10 +9,10 @@
             <div class="row congrats-message">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <h2>
-                        <!--<img src="registered-mark.png" alt="" class="inline-block">-->
-                        <span class="block">Congratulations 
+                        <img src="images/registered-mark.png" alt="" class="inline-block" />
+                        <span class="block">{{ trans('acl.congratulations') }} </span>
                             <!--<span class="name">Saulius,</span></span> -->
-                        <span class="block">you have registered on Wazaar!</span>
+                        <span class="block">{{ trans('acl.you-registered-on-wazaar') }}</span>
                     </h2>
                 </div>
             </div>
@@ -20,12 +20,14 @@
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <span class="step-number">1</span>
                     <div>
-                        <h3>Please verify your email</h3>
-                        <p class="regular-paragraph">We have sent verification link to your email {{ Auth::user()->email }}!</p>
+                        <h3>{{ trans('acl.please-verify-email') }}</h3>
+                        <p class="regular-paragraph">{{ trans('acl.we-sent-link', ['email' => Auth::user()->email]) }} </p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                    <a href="#" class="blue-button large-button">VERIFY EMAIL</a>
+                    <a target='_blank' href="http://{{ getDomainFromEmail(Auth::user()->email )}}" class="blue-button large-button">
+                        {{ trans('acl.verify-email')}}
+                    </a>
                 </div>
             </div>
             <div class="row invite-friends deactivated">
@@ -33,7 +35,7 @@
                     <span class="step-number">2</span> 
                     <div>
                         @if( Auth::user()->is_second_tier_instructor=='yes' )
-                            <h3>Invite friends and collegues</h3>
+                            <h3>{{ trans('acl.invite-publishers') }}</h3>
                             <p>Get personal sharable link</p>    
                         @else
                             <h3>Start</h3>

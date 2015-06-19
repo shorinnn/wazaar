@@ -13,7 +13,7 @@ class Course extends Ardent{
         };
       }
 
-    protected $dates = ['sale_ends_on'];
+    protected $dates = [ 'sale_starts_on', 'sale_ends_on' ];
     public $fillable = ['name', 'slug', 'description', 'short_description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
         'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage', 'payment_type', 'requirements','description_video_id'];
     
@@ -142,6 +142,12 @@ class Course extends Ardent{
 //    }
     
     public function beforeSave(){
+        if($this->price>0){
+            $this->price = round2( $this->price, 100 );
+        }
+        if($this->sale>0 && $this->sale_kind=='amount'){
+            $this->sale = round2( $this->sale, 100 );
+        }
         if( Config::get('custom.use_id_for_slug')==true ) {
             if( !$this->id ){
                 $id = DB::table('courses')->orderBy('id','desc')->first();
@@ -154,16 +160,42 @@ class Course extends Ardent{
             $this->slug = Str::slug($this->name);
         }
         if( trim($this->short_description) == '' ) $this->short_description = Str::limit($this->description, Config::get('custom.short_desc_max_chars') );
+        
         if($this->sale_kind=='percentage' && $this->sale  > 100){
             $this->errors()->add(0, trans('courses/general.cant_discount_101_percent') );
             return false;
         }
+        $percentage = ($this->sale/100);
+        
+        if($this->sale_kind=='percentage' && ( $this->price - ($this->price * $percentage) < 500 && $this->price - ($this->price * $percentage) != 0 ) ){
+            $this->errors()->add(0, trans('courses/general.after-sale-course-must-be-free-or-500') );
+            return false;
+        }
+        
         if($this->sale_kind=='amount' && $this->sale  > $this->price){
             $this->errors()->add(0, trans('courses/general.cant_discount_more_than_price') );
             return false;
         }
+        
+        if($this->sale_kind=='amount' && ( $this->price - $this->sale  < 500 && $this->price - $this->sale !=0 ) ){
+            $this->errors()->add(0, trans('courses/general.after-sale-course-must-be-free-or-500') );
+            return false;
+        }
+        
         if( $this->sale<0 ){
             $this->errors()->add(0, trans('courses/general.no_negative_discounts') );
+            return false;
+        }
+        // sale start can't be before sale end
+        if( $this->sale > 0){
+            if( $this->sale_ends_on=='' || $this->sale_starts_on=='' || ( strtotime($this->sale_ends_on) < strtotime($this->sale_starts_on) ) ){
+                $this->errors()->add(0, trans('courses/general.sale-end-must-occur-after-start') );
+                return false;
+            }
+            
+        }
+        if($this->price!=0 && $this->price < 500){
+            $this->errors()->add(0, trans('courses/general.course-must-be-free-or-500') );
             return false;
         }
         // update category counter
@@ -219,7 +251,7 @@ class Course extends Ardent{
     }
     
     public function isDiscounted(){
-        if($this->sale==0 || $this->sale_ends_on < date('Y-m-d H:i:s')) return false;
+        if($this->sale==0 || $this->sale_starts_on > date('Y-m-d H:i:s') || $this->sale_ends_on < date('Y-m-d H:i:s')) return false;
         else{
             $now = new DateTime();
             $future_date = new DateTime($this->sale_ends_on);

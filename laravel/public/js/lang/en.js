@@ -1,4 +1,4 @@
-var js_translation_map = {
+var js_translation_map_en = {
     "LOAD MORE" : "LOAD MORE",
     "loading..." : "loading...",
     "Loading..." : "荷重...",
