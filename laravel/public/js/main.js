@@ -1153,6 +1153,8 @@ function showMoreContent(){
 function stickyFooter(){
 	var bodyHeight = $("body").height();
 	var vwptHeight = $(window).height();
+	var contentWrapper = $('#wrapper');
+	contentWrapper.css('height', bodyHeight);
 	if (vwptHeight > bodyHeight) {
 	  $("footer").css({
 	  	position: 'absolute',

@@ -10,8 +10,12 @@ body {
 	font: 16px 'Open Sans', Helvetica, sans-serif;
 }
 
-html, body {
-	height: auto;
+html{
+  height: 100%;
+}
+
+body{
+  min-height: 100%;
 }
 
 a {
@@ -425,6 +429,27 @@ header .activate-dropdown:hover ul{
     color: #fff;
     margin-left: 14px;
     padding-top: 22px;
+}
+
+/*************** Home Page *********************/
+.extra-large-heading{
+	font-size: 40px;
+	font-weight: normal;
+}
+
+.extra-large-heading .lead{
+	font-size: 18px;
+	font-weight: normal;
+}
+
+.homepage .extra-large-heading{
+	color: #fff;
+	margin: 8% 0 15px;
+}
+
+.homepage .extra-large-heading .lead{
+	color: #a7b7c4;
+	margin: 0 0 27px;
 }
 
 /***************** Background video on Unauthenticated Homepage ******************/
@@ -1113,7 +1138,7 @@ header .activate-dropdown:hover ul{
 	color: #fff;
 	border-radius: 3px;
 	overflow: hidden;
-	background: rgba(0, 0, 0, 0.6) url("") no-repeat left center; 
+	background: rgba(0, 0, 0, 0.6) url("../%22%22") no-repeat left center; 
 }
 
 .small-box .course-box-content{
@@ -1623,7 +1648,9 @@ header .activate-dropdown:hover ul{
 }
 
 .form-container input{
-	background: #fff;
+	background-color: #fff;
+	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/email-pass-icons.png);
+	background-repeat: no-repeat;
 	display: block;
 	font-size: 14px;
 	border: solid 1px #e3e5e6;
@@ -1636,17 +1663,19 @@ header .activate-dropdown:hover ul{
 
 .form-container input:active,
 .form-container input:focus{
-	background: #fff;
+	background-color: #fff;
 	font-size: 14px;
 	color: #303941;
 	border: solid 1px #a7b7c4;
 }
 
-.form-container input[type='email']{
+.form-container input[name='email']{
+	background-position: 15px 14px;
 }
 
-.form-container input[type='password']{
+.form-container input[name='password']{
 	padding-right: 65px;
+	background-position: 15px -39px;
 }
 
 .input-error input{
@@ -1816,6 +1845,7 @@ header .activate-dropdown:hover ul{
 .email-confirmation-pages{
 	background: #ebeced;
 	padding-bottom: 10%;
+	height: 100%;
 }
 
 .email-confirmation-pages .container{
