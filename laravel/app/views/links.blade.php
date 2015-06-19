@@ -21,8 +21,8 @@
                 
                 @if( Auth::user()->is_second_tier_instructor=='yes' )
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <h3>Invite friends and collegues</h3>
-                        <p class="regular-paragraph">Copy your personal link to share it!</p>
+                        <h3>{{ trans('acl.invite-publishers') }}</h3>
+                        <p class="regular-paragraph">{{ trans('acl.your-publisher-links') }}</p>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 share-link-form clearfix">
                             <input type="url" name="share-link" placeholder="http://" 
@@ -33,13 +33,18 @@
                                        value="{{ Config::get('app.url') }}/lp1/index.php?stpi={{ Auth::user()->id }}">
                                    @endif
                                    
-                                    @if(Auth::user()->sti_approved=='no') 
-                                        <button class="blue-button large-button" disabled>
-                                    @else
-                                        <button class="blue-button large-button clipboardable tooltipable" 
-                                                data-clipboard-text="{{ Config::get('app.url') }}/lp1/index.php?stpi={{ Auth::user()->id }}">
-                                    @endif
-                                   COPY</button>
+                                   <div class='tooltipable pull-right' title='Copy To Clipboard'>
+                                            @if(Auth::user()->sti_approved=='no') 
+                                                <button class="blue-button large-button" disabled>
+                                            @else
+                                                <button class="blue-button large-button clipboardable" 
+                                                        data-clipboard-text="{{ Config::get('app.url') }}/lp1/index.php?stpi={{ Auth::user()->id }}">
+                                            @endif
+                                           COPY</button>
+                                            <br style='clearfix' />
+                                    </div>
+                                    
+                            
                                     
                             <input type="url" name="share-link" placeholder="http://" 
                                    @if(Auth::user()->sti_approved=='no') 
@@ -49,13 +54,15 @@
                                        value="{{ Config::get('app.url') }}/lp2/index.php?stpi={{ Auth::user()->id }}">
                                    @endif
                                    
-                                    @if(Auth::user()->sti_approved=='no') 
-                                        <button class="blue-button large-button" disabled>
-                                    @else
-                                        <button class="blue-button large-button clipboardable tooltipable" 
-                                                data-clipboard-text="{{ Config::get('app.url') }}/lp2/index.php?stpi={{ Auth::user()->id }}">
-                                    @endif
-                                   COPY</button>
+                                   <div class='tooltipable pull-right' title='Copy To Clipboard'>
+                                        @if(Auth::user()->sti_approved=='no') 
+                                            <button class="blue-button large-button" disabled>
+                                        @else
+                                            <button class="blue-button large-button clipboardable" 
+                                                    data-clipboard-text="{{ Config::get('app.url') }}/lp2/index.php?stpi={{ Auth::user()->id }}">
+                                        @endif
+                                       COPY</button>
+                                    </div>
                     </div>
                 @else
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -68,7 +75,7 @@
                     </div>
                 @endif
                 <div class="col-lg-12 approval-notice clearfix clear">
-                    We must approve your 2-tier account, which can take up to 3 days. Come back later to get your link.
+                    {{ trans('acl.we-must-approve-2tier')}}
                 </div>
             </div>
         </div>
