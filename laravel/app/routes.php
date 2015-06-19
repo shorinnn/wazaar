@@ -237,7 +237,7 @@ Route::group( array('domain' => $domain ), function(){
 });
 
 
-Route::group( array('domain' => $affiliateSubdomain ), function(){
+Route::group( array('domain' => $affiliateSubdomain ), function(){    
     Route::group(['prefix' => 'dashboard'], function (){
         Route::get('/','AffiliateDashboardController@index');
         Route::get('topcourses/{frequency}/{courseId?}', 'AffiliateDashboardController@topCoursesView');
