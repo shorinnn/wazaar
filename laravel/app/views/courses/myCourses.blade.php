@@ -13,163 +13,58 @@
     <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
 @endif
 
-<div class="container instructor-mycourses">
-	<div class="row">
-    	<div class="col-md-12">
-            <div>
-                <a class='btn btn-primary pull-right' href='{{action('CoursesController@create')}}'>{{ trans('courses/create.create') }}</a>
-            	<h1>{{ trans('courses/general.my-courses') }}</h1>
+<div class="mycourses-wrapper">
+    <section class="container-fluid mycourses-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    <h1>Dashboard</h1>
+                    <a href="#" class="header-tabs regular-paragraph active">My courses</a>
+                    <a href="#" class="header-tabs regular-paragraph">Analytics</a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                    <a href="#" class="blue-button large-button">Create new course</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-    	<div class="col-md-12">
-        	<div>
-              	@foreach($courses as $course)
-            	<div class="course-wrapper">
-                	<div class="top-content course-header course-row-{{$course->id}} clearfix">
-                        <div class="row clearfix">
-                            <div class="col-md-6 clearfix">
-                                <div class="clearfix">
-                                    <h4>{{$course->name}}</h4>
-                                    <span class="label label-primary">{{$course->courseCategory->name or ' - '}} ></span>
-                                    <span class="label label-primary">{{$course->courseSubcategory->name or ' - '}}</span>
-                                </div>
-                        	</div>
-                            <div class="col-md-6 clearfix">
-                                <div class="clearfix">
-                                    <p class="created-date">
-                                    {{ trans('courses/general.created-on') }}: <span>23-04-2014</span>
-                                    </p>
-                                    {{ link_to_action('CoursesController@edit', trans('courses/general.edit'), $course->slug, [ 'class'=>'edit-button' ] ) }}
-                                </div>
-                        	</div> 
-                        </div>                   
-                    </div>
-                    <div class="middle-content course-info course-row-{{$course->id}} clearfix">
-                    	<div class="row clearfix">
-                        	<div class="col-xs-12 col-sm-6 col-md-4 clearfix">
-                                <div class="image-container clearfix">
-                                    @if($course->previewImage!=null)
-                                    <a href="{{ $course->previewImage->url }}" target="_blank">
-                                        <img src="{{ $course->previewImage->url }}" height="90" />
-                                    </a>
-                                    @endif                        
-                                </div>
-                        	</div>
-                        	<div class="hidden-xs hidden-sm col-md-6 clearfix">
-                                <div class="description clearfix">
-                                    <p>
-                                    @if($course->testimonials()->where('rating','positive')->where('reported','no')->first() != null)
-                                        “{{ $course->testimonials()->where('rating','positive')->where('reported','no')->first()->content }}”
-                                    @else
-                                    {{ trans('courses/general.your-students-are-going-to-love') }} “{{ $course->name }}”!
-                                    @endif
-                                    </p>
-                                </div>
-                        	</div>
-                        	<div class="col-xs-12 col-sm-6 col-md-2 clearfix">
-                                <div class="buttons clearfix">
-                                    <ul class="clearfix">
-                                        <li class="questions clearfix">
-                                            <a href="{{ action( 'CoursesController@dashboard', $course->slug ) }}?tab=questions">
-                                                <span>
-                                                    @if( $course->questions->count() > 0 )
-                                                        <i>{{ $course->questions->count() }}</i>
-                                                    @endif
-                                                </span>
-                                                <em>{{ trans('courses/general.questions') }}</em></a>
-                                        </li>
-                                        <li class="discussions clearfix">
-                                            <a href="{{ action( 'CoursesController@dashboard', $course->slug ) }}?tab=discussions">
-                                                <span>
-                                                @if( $course->dashboardComments->count() > 0 )
-                                                    <i>{{ $course->dashboardComments->count() }}</i>
-                                                @endif
-                                                </span>
-                                                <em>{{ trans('courses/general.discussions') }}</em>
-                                            </a>
-                                        </li>
-                                        <!--<li class="assignment">
-                                            <a href="#"><span></span><em>Assignment</em></a>
-                                        </li>
-                                        <li class="compliments">
-                                            <a href="#"><span></span><em>Compliments</em></a>
-                                        </li>-->
-                                    </ul>
-                                </div>
-                        	</div>
+    </section>
+    <section class="container-fluid mycourses-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3 mycourse-card">
+                    <div class="row mycourse-card-main">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <div class="mycourses-thumb">
+                                <img />
+                            </div>                    
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <h3>Build a Website from Scratch</h3>
+                            <p class="regular-paragraph"><span class="student-count">13,600</span> students</p>
+                            <p class="regular-paragraph"><span class="discussion-count">12 NEW </span> Discussions</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                            <a href="#" class="transparent-button">Edit</a>
                         </div>
                     </div>
-                    <div class="bottom-bar clearfix">
-                    	<div class="row clearfix">
-                            <div class="col-md-12 clearfix">
-                                <span class="status-box">
-                                    {{ trans('courses/general.publish-status') }}: 
-                                    <em>{{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}</em>
-                                    | 
-                                    {{ trans('courses/general.privacy') }}:
-                                    <em>{{ ucfirst( trans( 'courses/statuses.'.$course->privacy_status ) ) }}</em>
-                                </span>
-                                <a href="{{ action( 'CoursesController@dashboard', $course->slug ) }}" class="go-to-dashboard">
-                                    {{ trans('courses/general.go-to-dashboard') }}
-                                </a>
-                            </div>
+                    <div class="row mycourse-card-footer">
+                        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
+                            <p class="date-created regular-paragraph">Created on 12/05/2015</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-md-offset-1 col-lg-offset-1">
+                            <a href="#" class="default-button">Private</a>
+                            <a href="#" class="default-button">Unsubmitted</a>
                         </div>
                     </div>
                 </div>
-                    @endforeach
             </div>
         </div>
-    </div>
-            <!--<div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                @foreach($courses as $course)
-                
-                <tr class="course-header course-row-{{$course->id}}">
-                    <td colspan="3">
-                        {{$course->name}}
-                        <span class="label label-primary">{{$course->courseCategory->name or 'No Category'}}</span>
-                        <span class="label label-primary">{{$course->courseSubcategory->name or 'No Subcategory'}}</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr class="course-info course-row-{{$course->id}}">
-                    <td>
-                        @if($course->previewImage!=null)
-                        <a href="{{ $course->previewImage->url }}" target="_blank">
-                            <img src="{{ $course->previewImage->url }}" height="90" />
-                        </a>
-                        @endif
-                    </td>
-                    <td class="text-center">
-                        <h3>{{$course->student_count}}</h3>
-                        {{Lang::choice('general.student', $course->student_count)}}
-                    </td>
-                    <td class="text-center">{{link_to_action('CoursesController@show', trans('crud/labels.view'), $course->slug)}}</td>
-                    <td class="text-center">
-                        
-                        {{ link_to_action('CoursesController@curriculum', trans('courses/general.manage_lessons'), $course->slug, [ 'class'=>'edit-button btn btn-primary' ] ) }}
-                        {{ link_to_action('CoursesController@edit', trans('courses/general.edit_details'), $course->slug, [ 'class'=>'edit-button btn btn-primary' ] ) }}
-                            
-                            @if($course->student_count==0)
-                                {{ Form::open(['action' => ['CoursesController@destroy', $course->id], 
-                                               'method' => 'delete', 'id'=>'course-form-'.$course->id,
-                                               'class' => 'ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '.course-row-'.$course->id]) }}
-                                    <button class="btn btn-danger delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}" type="submit" >{{trans('crud/labels.delete')}}</button>
-                                {{ Form::close() }}
-                            @endif
-                
-                    </td>
-                
-                    </tr>
-                
-                @endforeach
-                </table>
-            </div>-->
-            {{$courses->links()}}
-		</div>
-	</div>
+    </section>
+</div>
+<div class="toggle-comments">
+
+</div>
+<div class="comments-overlay-wrapper">
+
 </div>
 @stop
