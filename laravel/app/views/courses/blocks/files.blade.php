@@ -1,6 +1,6 @@
 <p class="tip"> {{ trans('courses/create.upload-files-tip') }}</p>
 
-<form method='post' class='ajax-form clearfix' action='{{action('BlocksController@files', $lesson_id)}}'>
+<form method='post' class='ajax-form clearfix' action='{{action('BlocksController@uploadFiles', $lesson_id)}}'>
     <input type='hidden' name='_token' value='{{ csrf_token() }}' />
     <div class="fileUpload btn btn-primary">
         <span>{{ trans('administration.browse') }}</span>
