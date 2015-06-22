@@ -5637,13 +5637,13 @@ a.load-remote > *{
 	border-bottom: solid 2px #e8eced;
 }
 
-select,
-textarea,
-.calender .date,
-.value-unit,
-input[type='text'],
-input[type='date'],
-input[type='password']{
+.edit-course select,
+.edit-course textarea,
+.edit-course .calender .date,
+.edit-course .value-unit,
+.edit-course input[type='text'],
+.edit-course input[type='date'],
+.edit-course input[type='password']{
 	display: inline-block;
 	height: 38px;
 	border-radius: 3px;
@@ -5657,11 +5657,11 @@ input[type='password']{
 	border: solid 1px #cfd8df;
 }
 
-select,
-input[type='text']:-moz-placeholder,
-input[type='text']::-moz-placeholder,
-input[type='text']:-ms-input-placeholder,
-input[type='text']::-webkit-input-placeholder{
+.edit-course select,
+.edit-course input[type='text']:-moz-placeholder,
+.edit-course input[type='text']::-moz-placeholder,
+.edit-course input[type='text']:-ms-input-placeholder,
+.edit-course input[type='text']::-webkit-input-placeholder{
 	color: #798794;	
 }
 
