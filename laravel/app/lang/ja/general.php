@@ -61,5 +61,7 @@ return array(
     'next-step' => 'Next Step',
     'course-description-preview' => 'Course Description Preview',
     'verification-notice' => 'Well done. You have successfully registered. Please activate your account with the email we sent you.',
-    'your-2tier-links' => 'Your 2-Tier Publisher Links'
+    'your-2tier-links' => 'あなたの販売者２ティアリンクです。',
+    'COPY' => 'コピー',
+    'copy-to-clipboard' => 'Ctrl＋C でコピーしてください。',
 );

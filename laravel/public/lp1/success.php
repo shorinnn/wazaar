@@ -46,8 +46,11 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<h2>
                         	<img src="registered-mark.png" alt="" class="inline-block">
-                            <span class="block">Congratulations <span class="name"><?php if(isset($_GET['name'])) echo $_GET['name'];?>,</span></span>
-                            <span class="block">Your email has been successfully submitted!</span>
+                            <span class="block">
+                                <span class="name"><?php if(isset($_GET['name'])) echo $_GET['name'];?>,</span>
+                                さん、おめでとうございます！ 
+                            </span>
+                            <span class="block">あなたのメールアドレスは無事に登録完了いたしました。</span>
                         </h2>
                     </div>
                 </div>

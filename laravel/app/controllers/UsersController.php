@@ -22,6 +22,9 @@ class UsersController extends Controller
      */
     public function create($instructor_account = '')
     {
+        if( Auth::guest() ){
+            Cookie::queue('st', 1, 0);
+        }
         if( $instructor_account === 'instructor' ){
             Cookie::queue("register_instructor", 1, 30);
         }
@@ -41,8 +44,9 @@ class UsersController extends Controller
         if( Auth::guest() ){
             Cookie::queue('st', 1, 24*30);
         }
-        $extraText = 'Second Tier Publisher Page';
-        return View::make(Config::get('confide::signup_form'))->with( compact('extraText' ) );
+        $extraText = '販売者２ティア登録 <br /> 招待者のみ';
+        $secondTierRegister = 1;
+        return View::make(Config::get('confide::signup_form'))->with( compact('extraText','secondTierRegister' ) );
 //        return View::make('confide.second_tier_publisher_signup');
     }
     

@@ -86,5 +86,7 @@ return array(
     'Intermediate' => 'Intermediate',
     'Expert' => 'Expert',
     'verification-notice' => 'Well done. You have successfully registered. Please activate your account with the email we sent you.',
-    'your-2tier-links' => 'Your 2-Tier Publisher Links'
+    'your-2tier-links' => 'Your 2-Tier Publisher Links',
+    'COPY' => 'COPY',
+    'copy-to-clipboard' => 'Copy To Clipboard',
 );

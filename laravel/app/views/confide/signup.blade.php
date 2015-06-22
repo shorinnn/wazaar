@@ -17,11 +17,11 @@
                     <p class='text-center'>{{ $extraText }}</p>
                 @endif
                 <div class="login-social-buttons clearfix">
-                	<a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.register-with-facebook') }}</a>
+                	<a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans ('site/register.register-with-facebook') }}</a>
                     <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
                 </div>
                 <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
-                <p class="intro-paragraph text-center">{{ trans('general.enter-new-email-and-password') }}</p>
+                <p class="intro-paragraph text-center">{{ trans('site/register.enter-new-email-and-password') }}</p>
                 <div class="form-container clearfix">
                     @if (Session::has('error'))
                         <div class="alert alert-danger">
@@ -31,15 +31,24 @@
                     <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8">
                         <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                         <fieldset>
+                            
+                            @if(isset($secondTierRegister))
+                                <div class="form-group">
+                                    <input class="form-control" 
+                                       placeholder="{{ trans('site/register.name-placeholder') }}" 
+                                   type="text" name="name" id="name" value="{{{ Input::old('name') }}}" required/>
+                                </div>
+                            @endif
                         
-				        <div class="form-group email-field">
-                            <input class="form-control instant-valid delayed-valid" placeholder="{{ trans('general.email-placeholder') }}" 
+                            <div class="form-group email-field">
+                                <input class="form-control instant-valid delayed-valid" 
+                                   placeholder="{{ trans('site/register.email-placeholder') }}" 
                                type="email" name="email" id="email" value="{{{ Input::old('email') }}}" required/>
-						</div>
+                            </div>
                         
                         
 				        <div class="form-group password-field">
-                            <input class="form-control delayed-valid instant-valid" placeholder="{{ trans('general.password-placeholder') }}" 
+                            <input class="form-control delayed-valid instant-valid" placeholder="{{ trans('site/register.password-placeholder') }}" 
                                    type="password" name="password" id="password" required  />
                             <a href="#" class="show-password">{{ trans('site/register.show-password') }}</a>
                         </div>
@@ -56,19 +65,10 @@
             </div>
             <div class="user-data-modal-footer text-center">
                 <span class="margin-right-15">{{ trans('site/register.already-have-an-account') }}</span>
-                <a href="{{ action('UsersController@login') }}" class='showLogin'>Login</a>
+                <a href="{{ action('UsersController@login') }}" class='showLogin'>{{ trans('site/register.login') }}</a>
             </div>
         </div>
     </div>
 </section>
 
-@stop
-
-@section('extra_js')
-    <script>
-        $(function(){
-                $('[data-target="#registerModal"]').click();
-
-        });
-    </script>
 @stop

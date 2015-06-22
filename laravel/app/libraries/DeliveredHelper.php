@@ -185,12 +185,6 @@ class DeliveredHelper
         return $call;
     }
 
-    public function getLists()
-    {
-        $call = $this->_call('lists',[],'get');
-        return $call;
-    }
-
     /**
      * Execute CURL request to delivered API
      * @param $uri
@@ -216,7 +210,8 @@ class DeliveredHelper
             case 'put'  : $request = $curl->put($url, $params);break;
             case 'delete' : $request = $curl->delete($url);break;
         }
-        if ($request){
+        
+        if ($request){ 
             return json_decode($request->body,true);
         }
 

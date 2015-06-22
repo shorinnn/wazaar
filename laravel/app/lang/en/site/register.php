@@ -8,6 +8,6 @@ return array(
     'sign-up' => 'Sign up',
     'create-account' => 'Create account',
     'register-new-account' => 'Register new account',
-	
-    
+    'login' => 'Login', 
+    'name-placeholder' => 'Name', 
 );

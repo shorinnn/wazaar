@@ -5,7 +5,6 @@ class LpController extends \BaseController {
             $this->template = new StdClass();
             $this->template->subject = 'ワザール販売者登録ありがとうございました！';
             $this->template->content = '
-                HELLO @FIRST_NAME@<br />
                 このたびはワザールの販売者登録、誠にありがとうございました。<br />
                 <br />
                 最新の情報を随時ご連絡させていただきます。<br />
@@ -30,6 +29,15 @@ class LpController extends \BaseController {
             $this->delivered = new DeliveredHelper();
         }
         
+        private function _translateErrors($errors = []){
+            $translated = [];
+            foreach($errors as $err){
+                $err = Str::slug($err);
+                $translated[] = trans( 'delivered.'.$err );
+            }
+            return $translated;
+        }
+        
         private function _getTemplate(){
             $templates = $this->delivered->getTemplates();
             foreach($templates['data'] as $template){
@@ -43,21 +51,28 @@ class LpController extends \BaseController {
         }
         
         private function _getList(){
-//            $lists = $this->delivered->getLists();
-//            foreach($lists['data'] as $list){
-//                if( $lists['groupName'] == $this->list->name ) return json_decode(json_encode($list), FALSE);
-//            }
-//            $data = $this->delivered->addList($this->list->name, $this->list->description);
-//            return json_decode(json_encode($data['data']), FALSE);
-            $list = new stdClass();
-            $list->id = 1;
-            return $list;
+            $lists = $this->delivered->getLists();
+            foreach($lists['data'] as $list){
+                if( $list['groupName'] == $this->list->name ) return json_decode(json_encode($list), FALSE);
+            }
+            $data = $this->delivered->addList($this->list->name, $this->list->description);
+            
+            return json_decode(json_encode($data['data']), FALSE);
+//            $list = new stdClass();
+//            $list->id = 1;
+//            return $list;
+        }
+        
+        private function _updateTemplate(){
+            $template = $this->_getTemplate();
+            $this->delivered->updateTemplate($template->id, $template->templateName, $template->subject, $template->fromName,$template->fromAddress,
+                    $this->template->content);
         }
     
         public function index(){
             $users = $this->delivered->getUsers();
-            $user = $users['data'][0];
             dd($users);
+
 //            $list = $this->_getList();
 //            dd($list);
 //            $users = $this->delivered->getUsers();
@@ -97,6 +112,7 @@ class LpController extends \BaseController {
             $firstName = (isset($name[1])) ? $name[1] : $name[0];
             $lastName = (isset($name[0])) ? $name[0] : 'lastname';
             
+            $template = $this->_getTemplate();
             $response = $this->delivered->addUser( $firstName, $lastName, Input::get('email') );
             if( is_array($response) && $response['success'] == true ){
                 $user = $response['data'];
@@ -119,23 +135,24 @@ class LpController extends \BaseController {
                             return Redirect::to('lp1/success.php?name='.$firstName);
                         }
                         else{
-                             $errors = urlencode( json_encode($result['errors']) );
+                            $errors = urlencode( json_encode( $this->_translateErrors( $result['errors'] ) ) );
                         }
                     }
                     else{
                         $errors = [];
                         if( $tag1['success'] != true) $errors += $tag1['errors'];
                         if( $tag2['success'] != true) $errors += $tag2['errors'];
-                        $errors = urlencode( json_encode($errors) );
+                        $errors = urlencode( json_encode( $this->_translateErrors($errors) ) );
                     }
                 }
                 else{
-                    $errors = urlencode( json_encode($response['errors']) );
+                    $errors = urlencode( json_encode( $this->_translateErrors($response['errors']) ) );
                 }
                 
             }
             else{
-                $errors = urlencode( json_encode($response['errors']) );
+                
+                $errors = urlencode( json_encode( $this->_translateErrors( $response['errors'] ) ) );
             }
             
             $name = urlencode(Input::get('name'));
@@ -143,5 +160,7 @@ class LpController extends \BaseController {
             $error_flag.= "&errors=$errors&name=$name&email=$email#form";
             return Redirect::to( $referer.$error_flag  );
 	}
+        
+        
 
 }
