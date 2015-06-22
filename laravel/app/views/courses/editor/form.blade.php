@@ -38,7 +38,7 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             	<a href="#" class="blue-button large-button disabled-button right">{{ trans('courses/general.submit_for_approval') }}</a>
-                <a href="#" class="default-button large-button right">
+                <a href="{{ action( 'CoursesController@show', $course->slug ) }}" target='_blank' class="default-button large-button right">
                 	{{ trans('courses/general.preview_course') }}
             	</a>
 
