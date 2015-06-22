@@ -1045,10 +1045,10 @@ function skinVideoControls(){
 
 //Add blue border with a checkmark to selected images
 function insertSelectBorder(){
-	$('.instructor-course-editor .use-existing-preview .select-border').on('click', function(){
+	$('.use-existing-preview .select-border').on('click', function(){
 		$(this).toggleClass('display-border');
 		if($(this).hasClass('display-border')){
-			$('.instructor-course-editor .use-existing-preview .select-border').not(this).removeClass('display-border');
+			$('.use-existing-preview .select-border').not(this).removeClass('display-border');
 			$(this).parent().children('input[type="radio"]').prop('checked', true);	
 			//$(this).siblings('.select-border').toggleClass('hide');	
 		}

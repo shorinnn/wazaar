@@ -7774,18 +7774,18 @@ r ,
 	color: #eb102f;
 }
 
-#course-edit #selected-previews{
+#selected-previews{
 	height: auto;
     margin: 0 auto;
     width: 350px;
 }
 
-#course-edit #selected-previews img{
+#selected-previews img{
     height: auto;
     width: 350px;
 }
 
-#course-edit .uploadFile{
+.uploadFile{
 	height: 30px;
 	font-size: 14px;
 	color: #849598;
@@ -7799,8 +7799,8 @@ r ,
 	border-radius: 5px;
 }
 
-#course-edit .uploadFile input.upload-banner-image,
-#course-edit .uploadFile input.upload-preview-image{
+.uploadFile input.upload-banner-image,
+.uploadFile input.upload-preview-image{
 	border: none;
 	width: 100%;
 	height: 100%;
@@ -7817,7 +7817,7 @@ r ,
 	opacity: 0;
 }
 
-#course-edit .uploadFile span{
+.uploadFile span{
 	display: block;
 	line-height: 30px;
 	text-align: center;
@@ -7834,11 +7834,11 @@ r ,
     width: 97px;
 }
 
-#course-edit .uploadFile span:hover{
+.uploadFile span:hover{
 	cursor: pointer;
 }
 
-#course-edit .progress {
+.progress {
     background: none repeat scroll 0 0 #ececec;
     height: 6px;
     margin: 15px auto 0;
@@ -7846,7 +7846,7 @@ r ,
 	max-width: 524px;
 }
 
-#course-edit .progress-bar {
+.progress-bar {
     background: none repeat scroll 0 0 #92cc2e;
     border-radius: 6px;
     height: 100%;
@@ -7854,7 +7854,7 @@ r ,
     width: 60%;
 }
 
-#course-edit .use-existing{
+.use-existing{
 	display: block;
 	text-align: center;
 	margin: 30px 0;
@@ -7877,12 +7877,12 @@ r ,
     text-align: center;
 }
 
-#course-edit .use-existing-preview .radio-buttons{
+.use-existing-preview .radio-buttons{
 	float: none;
 	margin: 0;
 }
 
-#course-edit .use-existing-preview .radio-buttons .radio-checkbox{
+.use-existing-preview .radio-buttons .radio-checkbox{
 	margin-bottom: 20px;
 }
 
@@ -7892,7 +7892,7 @@ r ,
 	width: 120px;
 }
 
-#course-edit .use-existing-preview .radio-buttons .select-border{
+.use-existing-preview .radio-buttons .select-border{
 	height: 120px;
 	width: 120px;
 	position: absolute;
@@ -7902,11 +7902,11 @@ r ,
 	opacity: 0;
 }
 
-#course-edit .use-existing-preview .radio-buttons .select-border.display-border{
+.use-existing-preview .radio-buttons .select-border.display-border{
 	opacity: 1;
 }
 
-#course-edit .use-existing-preview .radio-buttons label{
+.use-existing-preview .radio-buttons label{
 	float: left;
 	display: none;
 }
@@ -7926,21 +7926,21 @@ r ,
     max-width: 524px;
 }
 
-#course-edit .payment-section .set-slider{
+.payment-section .set-slider{
 	width: 60px;
 	margin-top: 10px;
 }
 
-#course-edit .payment-section .percentage-slider label{
+.payment-section .percentage-slider label{
 	/*max-width: 100px;*/
 }
 
-#course-edit .payment-section .percentage-slider > div{
+.payment-section .percentage-slider > div{
 	max-width: 345px;
 	float: right;
 }
 
-#course-edit .payment-section .submit-button{
+.payment-section .submit-button{
 	outline: none;
     border: medium none;
     border-radius: 5px;
