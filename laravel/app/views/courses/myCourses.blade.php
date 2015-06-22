@@ -47,7 +47,7 @@
                             <h3>{{$course->name}}</h3>
                             <p class="regular-paragraph">
                             	<span class="student-count">
-                            		13,600
+                            		{{ $course->student_count }}
                                 </span> 
                                 {{ trans('courses/general.students') }}
                             </p>
@@ -70,11 +70,15 @@
                     </div>
                     <div class="row mycourse-card-footer">
                         <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
-                            <p class="date-created regular-paragraph">{{ trans('courses/general.created-on') }}: <span>12/05/2015</span></p>
+                            <p class="date-created regular-paragraph">{{ trans('courses/general.created-on') }}: 
+                                <span> {{ date('m/d/Y', strtotime($course->created_at)) }}</span></p>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-md-offset-1 col-lg-offset-1">
-                            <span class="default-button">Private</span>
-                            <span class="default-button">Unsubmitted</span>
+                            <span class="default-button">{{ $course->privacy_status }}</span>
+                            <span class="default-button 
+                                  @if($course->publish_status=='pending') submitted @endif
+                                  @if($course->publish_status=='approved') published @endif
+                                  ">{{ $course->publish_status }}</span>
                         </div>
                     </div>
                 </div>
