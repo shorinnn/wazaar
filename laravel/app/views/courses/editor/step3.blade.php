@@ -41,7 +41,7 @@
                         $checked = ($key==$course->course_difficulty_id) ? 'checked="checked"' : '';
                         $active = ($key==$course->course_difficulty_id) ? 'active' : '';
                      ?>
-                        <label class="toggle-button {{$active}}" for="course_difficulty_id">
+                        <label class="toggle-button {{$active}}" for="option{{$key}}">
                             <input type='radio' name='course_difficulty_id' id="option{{$key}}" 
                             autocomplete="off" value='{{$key}}' 
                             {{$checked}} /> {{ trans('general.'.$difficulty) }}

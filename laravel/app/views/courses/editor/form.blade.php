@@ -51,7 +51,7 @@
         	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             	<a href="#" class="header-tabs regular-paragraph active load-remote-cache" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
                    data-url="{{ action('CoursesController@edit', $course->slug)}}/1" data-target='.course-ajax-holder .step1' data-steps-remaining='2 steps'
-                   >{{ trans('courses/general.course_description') }}</a>
+                   data-loaded='1' >{{ trans('courses/general.course_description') }}</a>
             	<a href="#" class="header-tabs regular-paragraph load-remote-cache" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
                    data-url="{{ action('CoursesController@edit', $course->slug)}}/2" data-target='.course-ajax-holder .step2'  data-steps-remaining='1 step'
                    >{{ trans('courses/general.curriculum') }}</a>
@@ -71,7 +71,7 @@
     </section>
     <section class="container main course-editor">
     	<div class="row course-ajax-holder">
-            <div class='step1'>
+            <div class='step1' data-loaded='1'>
                 {{ View::make('courses.editor.step1',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
                         ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates')) }}
             </div>

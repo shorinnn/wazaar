@@ -7,6 +7,10 @@
                 @endif
                 <label class="small-radio" for="img-{{$img->id}}"></label>
                 <img src="{{$img->url}}" height="120" width="120" />
-                <div class="select-border"></div>
+                <div class="select-border
+                     @if( get_class($img)=='CoursePreviewImage' && $img->id == $course->course_preview_image_id )
+                     display-border
+                     @endif
+                     "></div>
             </div>
         </div>

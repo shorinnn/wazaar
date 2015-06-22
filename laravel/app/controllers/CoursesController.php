@@ -100,6 +100,11 @@ class CoursesController extends \BaseController {
                 case 2: $view = 'courses.editor.step2'; break;
                 case 3: $view = 'courses.editor.step3'; break;
             }
+            
+            if(Input::has('old-ui')){
+                return View::make('courses.form_DEPRECATED',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
+                        ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates'));
+            }
             return View::make($view,compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
                     ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates'));
         }

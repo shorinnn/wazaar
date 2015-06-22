@@ -1,7 +1,9 @@
 <!--<form method='post' class='ajax-form' id="create-form" data-callback='followRedirect' 
                   action='{{action('CoursesController@store')}}' data-parsley-validate>-->
+<input type='hidden' class='course-id' value='{{ $course->id }}' />
     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
                 'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'saveAndNextTab']) }}
+@include('videos.archiveModal')
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
     <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -173,6 +175,12 @@
              {{ trans('courses/general.introduction_video') }}
                     <span class="lead">{{ trans('courses/general.introduction_video_tip') }}</span>
             </h4>
+                <div class="file-details">
+                    @include('courses.video.index')
+                </div>
+                
+               <?php
+                /*
             <div class="file-details">
                 <p class="regular-paragraph">{{ trans('courses/general.video_size') }}</p>
                 <label for="upload-banner-image" class="default-button large-button">
@@ -210,7 +218,8 @@
                         </div>
                     </div>
                 </span>
-            </div>
+            </div>*/
+                ?>
         </div>
     </div>
     <div class="row next-step-button">
@@ -235,6 +244,23 @@
 <script src="{{url('js/bootstrap-datetimepicker.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
         $(function (){
+            videoLookup.prepareModalEvents();
+            videoLookup.initialize(function ($lessonId, $videoId){
+                /**** if lesson is 0 or undefined, this means we are looking up for a video intended to a course(description) ***/
+                if ($lessonId == 0 || $lessonId == undefined){
+                    var $courseId = $('.course-id').val();
+                    //make post call to update course
+                    $.post('/courses/'+ $courseId +'/video/set-description',{videoId: $videoId});
+
+                    videoUploader.getVideo($videoId, function ($video){
+                        $('#course-video-anchor').html($video.original_filename);
+                        $('#course-video-anchor').attr('data-filename',$video.original_filename);
+                        $('#course-video-anchor').attr('data-video-url',$video.formats[0].video_url);
+
+                    });
+                    return;
+                }
+            });
             enableFileUploader( $('#upload-preview-image') );
             enableFileUploader( $('#upload-banner-image') );
             
