@@ -16,12 +16,12 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 right-content">
-            	<h2>Course summary</h2>
+            	<h2>{{ trans('courses/general.course_summary') }}</h2>
             	<div class="row category-row">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<div class="row">
                         	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            	<p class="regular-paragraph">Category</p>
+                            	<p class="regular-paragraph">{{ trans('courses/general.category') }}</p>
                             </div>
                             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                             	<p class="regular-paragraph semibold-text">IT & WEB</p>
@@ -29,7 +29,7 @@
                         </div>
                     	<div class="row">
                         	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            	<p class="regular-paragraph">Sub-category</p>
+                            	<p class="regular-paragraph">Sub-{{ trans('courses/general.subcategory') }}</p>
                             </div>
                             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                             	<p class="regular-paragraph semibold-text">Websites</p>
@@ -41,7 +41,7 @@
 				<div class="row margin-top-40">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<h4>Description:</h4>
-                        <p class="regular-paragraph">
+                        <p class="regular-paragraph text-left">
                         Did you know that if you upload a test video you are over 3 times as likely to have your course published and 
                         featured on Udemy? Upload a short, ~1 ...minute long video and upload it to the test video tool by following 
                         </p>

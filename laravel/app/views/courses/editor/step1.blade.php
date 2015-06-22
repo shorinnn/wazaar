@@ -8,10 +8,8 @@
             {{ trans('courses/general.short_description') }}
             <span class="lead">{{ trans('courses/general.used_on_listings_description') }}</span>
             </h4>
-            <textarea>
-
-            </textarea>
-        </div>
+			{{ Form::textarea('short_description', null,['id'=>'short_description'] ) }}       
+        	</div>
     </div>
     <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -19,10 +17,8 @@
             {{ trans('courses/general.full_description') }}
             <span class="lead">{{ trans('courses/general.used_on_description_page') }}</span>
             </h4>
-            <textarea>
-
-            </textarea>                    
-        </div>
+			{{ Form::textarea('description', null,['id'=>'description'] ) }}        
+            </div>
     </div>
     <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 who-its-for">
@@ -65,7 +61,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <p class="regular-paragraph">Category</p>
+                    <p class="regular-paragraph">{{ trans('courses/general.category') }}</p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text">IT & WEB</p>
@@ -73,7 +69,7 @@
             </div>
             <div class="row">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <p class="regular-paragraph">Sub-category</p>
+                    <p class="regular-paragraph">{{ trans('courses/general.subcategory') }}</p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text">Websites</p>
@@ -85,26 +81,82 @@
     <div class="row margin-top-40 listing-image">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h4>
-            Listing image (thumbnail)
-                    <span class="lead">Image used for listings thumbnail</span>
+            {{ trans('courses/general.listing_image_thumbnail') }}
+            <span class="lead">{{ trans('courses/general.listing_image_tip') }}</span>
             </h4>
             <div class="file-details">
-                    <p class="regular-paragraph">Recommended size 1080x680</p>
-                                            <p class="regular-paragraph">Available formats png or jpg.</p>
-                <button class="default-button large-button">Upload Image</button>
+                <p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
+                <p class="regular-paragraph">{{ trans('courses/general.available_formats	') }}</p>
+                <label for="upload-preview-image" class="default-button large-button">
+                    <span>{{ trans('courses/general.upload_image') }}</span>
+                    <input type="file" hidden="" class='upload-preview-image' 
+                           id="upload-preview-image" name="preview_image" data-dropzone='.dropzone-preview'
+                       data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' 
+                       data-targez='#use-existing-preview > div > .radio-buttons'
+                       data-target='#selected-previews'/>
+                </label>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        <span></span>
+                    </div>
+                </div>
+                @if($images->count() > 0)
+                    <span class="use-existing use-existing-preview" id="use-existing-preview">
+                        <span class="use-existing">
+                            <em class="or-text"> {{ trans('site/login.or') }}</em>
+                            <a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">
+                                    {{trans('video.selectExisting')}}
+                            </a> 
+                        </span>
+                        @include('courses.previewsModal')
+                    </span>
+                @endif
             </div>
         </div>
     </div>
     <div class="row margin-top-40 listing-video">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h4>
-                    Introduction video
-                    <span class="lead">Video on public course page</span>
+             {{ trans('courses/general.introduction_video') }}
+                    <span class="lead">{{ trans('courses/general.introduction_video_tip') }}</span>
             </h4>
             <div class="file-details">
-                    <p class="regular-paragraph">Video should be 16:9 or</p>
-                                            <p class="regular-paragraph">else it will be cropped</p>
-                <button class="default-button large-button">Upload Video</button>
+                <p class="regular-paragraph">{{ trans('courses/general.video_size') }}</p>
+                <label for="upload-banner-image" class="default-button large-button">
+                        <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
+                        <span>{{ trans('courses/general.upload_video') }}</span>
+                         <input type="file" class='upload-banner-image' name="banner_image" data-dropzone='.dropzone-preview'
+                         data-progress-bar='.progress-bar-banner' data-callback='courseImageUploaded' id="upload-banner-image"
+                         data-targezt='#use-existing-banner > div > .radio-buttons'
+                         data-target='#video-selected-previews' />
+
+                </label>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active progress-bar-banner" role="progressbar" aria-valuenow="0" aria-valuemin="0" 
+                         aria-valuemax="100" style="width: 0%;">
+                        <span></span>
+                    </div>
+                </div>
+                <span class="use-existing use-existing-preview" id="use-existing-banner">
+                    <span class="use-existing">
+                        <em class="or-text"> {{ trans('site/login.or') }}</em>
+                        <a href="#" onclick="$('#video-banner-existing-previews-modal').modal('show'); return false;">
+                                {{trans('video.selectExisting')}}
+                        </a> 
+                    </span>
+                    @include('courses.videoBannerpreviewsModal')
+                        <div class="row">
+                            <div class="radio-buttons clearfix">
+                                <?php
+//                              	@if($bannerImages->count() > 0)
+//                                  @foreach($bannerImages as $img)
+//                                  	{{ View::make('courses.preview_image')->with(compact('img')) }}
+//                                  @endforeach
+//                                  @endif
+                                ?>
+                        </div>
+                    </div>
+                </span>
             </div>
         </div>
     </div>

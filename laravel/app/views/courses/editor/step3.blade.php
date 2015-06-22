@@ -11,7 +11,7 @@
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="toggle-switch">
-                    <button name="yes" class="toggle-button">Yes</button>
+                <button name="yes" class="toggle-button">Yes</button>
                 <button name="no" class="toggle-button">No</button>
             </div>
         </div>
@@ -21,10 +21,8 @@
             <h4 class="text-right">Payment type</h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <select>
-                    <option>One time</option>
-                <option></option>
-            </select>
+            {{ Form::select('payment_type', [ 'one_time' => trans('courses/general.one_time'), 
+            'subscription' =>  trans('courses/general.subscription') ], null,['class'=>''] ) }}
             <span class="regular-paragraph clue-text">How users will pay for a course. </span>
         </div>
     </div>
@@ -33,10 +31,20 @@
             <h4 class="text-right">Difficulty</h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <div class="toggle-switch">
-                    <button name="beginner" class="toggle-button">Beginner</button>
-                <button name="intermediate" class="toggle-button">Intermediate</button>
-                <button name="advanced" class="toggle-button">Advanced</button>
+            <div class="course-level toggle-switch btn-group clearfix" data-toggle="buttons">
+                <div>
+                     @foreach($difficulties as $key=>$difficulty)
+                     <?php
+                        $checked = ($key==$course->course_difficulty_id) ? 'checked="checked"' : '';
+                        $active = ($key==$course->course_difficulty_id) ? 'active' : '';
+                     ?>
+                        <label class="toggle-button {{$active}}" for="course_difficulty_id">
+                            <input type='radio' name='course_difficulty_id' id="option{{$key}}" 
+                            autocomplete="off" value='{{$key}}' 
+                            required {{$checked}} /> {{ trans('general.'.$difficulty) }}
+                        </label>
+                     @endforeach
+                 </div>
             </div>
         </div>
     </div>
@@ -45,11 +53,15 @@
             <h4 class="text-right">Discount</h4>
         </div>
             <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-            <input type="text">
+            {{ Form::text('sale', money_val($course->sale),
+                ['onkeyup' => 'toggleElementViaOther(event)', 
+                'class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustDiscount',
+                'data-saleType' => 'sale_kind',
+                'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
         </div>
-        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-            <select>
-            </select>
+        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 discount">
+              {{ Form::select('sale_kind', ['amount' => '¥', 'percentage' => '%'], null,
+          ['class'=>''] ) }}
         </div>
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
@@ -155,7 +167,7 @@
                     <div class="row margin-top-40">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h4>Description:</h4>
-            <p class="regular-paragraph">
+            <p class="regular-paragraph text-left">
             Did you know that if you upload a test video you are over 3 times as likely to have your course published and 
             featured on Udemy? Upload a short, ~1 ...minute long video and upload it to the test video tool by following 
             </p>

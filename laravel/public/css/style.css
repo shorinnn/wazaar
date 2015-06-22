@@ -1675,6 +1675,7 @@ header .activate-dropdown:hover ul{
 
 .form-container input[name='password']{
 	padding-right: 65px;
+	padding-left: 40px;
 	background-position: 15px -39px;
 }
 
@@ -5605,7 +5606,7 @@ a.load-remote > *{
 /************** Create New Course and Edit Course *********/
 .edit-course{
 	background: #e8eced;
-	height: 100%;
+	min-height: 100%;
 }
 
 .create-course-start-page-container h2{
@@ -5641,7 +5642,7 @@ input[type='password']{
 	outline: none;
 	padding: 0 12px;
 	font-size: 13px;
-	background: none;
+	background-color: transparent;
 	color: #303941;
 	border: solid 1px #cfd8df;
 }
@@ -5783,6 +5784,21 @@ input[type='text']::-webkit-input-placeholder{
 	margin-bottom: 10px;
 }
 
+.edit-course input[type="file"]{
+	display: none;
+}
+
+.edit-course .progress{
+	margin: 20px 10px;
+	box-shadow: none;
+	border-radius: 6px;
+	height: 6px;
+}
+
+.edit-course .use-existing{
+	margin: 0;
+}
+
 .edit-course .who-its-for input,
 .edit-course .what-you-will-achieve input{
 	padding-left: 40px !important;
@@ -5813,16 +5829,19 @@ input[type='text']::-webkit-input-placeholder{
 .edit-course .right-content .category-row p{
 	margin: 0 0 10px;
 	color: #303941;
+	text-align: left;
 }
 
 .edit-course .right-content h2{
 	margin: 0 0 35px;
+	text-align: left;
 }
 
 .edit-course .right-content h4{
 	margin: 0 0 17px;
 	line-height: 20px;
 	color: #303941;
+	text-align: left;
 }
 
 .edit-course .right-content h4 .lead{
@@ -5830,6 +5849,7 @@ input[type='text']::-webkit-input-placeholder{
 	font-weight: normal;
 	color: #798794;
 	display: block;
+	text-align: left;
 }
 
 .edit-course .right-content ul{
@@ -5842,6 +5862,7 @@ input[type='text']::-webkit-input-placeholder{
 	color: #303941;
 	padding-left: 20px;
 	margin: 10px 0;
+	text-align: left;
 }
 
 .edit-course .right-content .file-details{
@@ -5932,11 +5953,12 @@ input[type='text']::-webkit-input-placeholder{
 	outline: none;
 	margin: 0;
 	border: none;
+	font-weight: normal;
 	float: left;
 	text-transform: capitalize;
 }
 
-.toggle-switch .active-toggle-button,
+.toggle-switch .active,
 .toggle-switch .toggle-button:focus,
 .toggle-switch .toggle-button:active{
 	background: #119bf8;
