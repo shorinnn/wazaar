@@ -139,6 +139,8 @@ function enableLessonRTE(e){
 } 
 
 function enableRTE(selector){
+    console.log('RTEing ');
+    console.log(selector);
     tinymce.remove(selector);
     tinymce.init({
         menu:{},
@@ -336,4 +338,12 @@ function courseChangedTabs(e){
         $('.steps-remaining').find('span').html( _(remaining) );
         $('.steps-remaining').show();
     }
+}
+
+function saveAndNextTab(e){
+    $('html, body').animate({
+        scrollTop: $("body").offset().top
+    }, 500);
+    formSaved(e);
+    $('.header-tabs.active').next('.header-tabs').click();
 }
