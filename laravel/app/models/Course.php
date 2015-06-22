@@ -52,6 +52,16 @@ class Course extends Ardent{
     public function dashboardComments(){
         return $this->comments()->where( 'lesson_id', null );
     }
+    public function lessonCount(){
+        $lessons = $modules = [0];
+        $modules = Module::where('course_id', $this->id)->lists('id');
+        $count = 0;
+        if(count($modules) > 0){
+            $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
+            $count += count($lessons);
+        }
+        return $count;
+    }
     public function lessonComments(){
         $lessons = $modules = [0];
         $modules = Module::where('course_id', $this->id)->lists('id');

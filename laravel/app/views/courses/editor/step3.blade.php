@@ -1,3 +1,6 @@
+{{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
+                'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'saveAndNextTab']) }}
+                
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
     <div class="approval-box">
             <h4 class="not-approved">Not approved!</h4>
@@ -41,14 +44,45 @@
                         <label class="toggle-button {{$active}}" for="course_difficulty_id">
                             <input type='radio' name='course_difficulty_id' id="option{{$key}}" 
                             autocomplete="off" value='{{$key}}' 
-                            required {{$checked}} /> {{ trans('general.'.$difficulty) }}
+                            {{$checked}} /> {{ trans('general.'.$difficulty) }}
                         </label>
                      @endforeach
                  </div>
             </div>
         </div>
     </div>
+    
     <div class="row editor-settings-layout margin-bottom-30">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <h4 class="text-right">Price</h4>
+        </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="value-unit">
+                    <!--<input type="text" name="amount">-->
+                    {{  Form::text( 'price', money_val($course->price),
+                                            ['class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustPrice'] ) }}
+                <span>¥</span>
+            </div>
+        </div>
+    </div>
+    <div class="row editor-settings-layout margin-bottom-30">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <h4 class="text-right">Affiliate percentage</h4>
+        </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="value-unit">
+                <input type="text" class='span2 clear right' name='affiliate_percentage' id='affiliate_percentage' 
+                    value="{{ $course->affiliate_percentage }}" data-slider-min="0" data-slider-max="68" 
+                    data-slider-step="1" data-slider-value="{{ intval( $course->affiliate_percentage ) }}" 
+                    data-slider-orientation="horizontal" 
+                    data-slider-selection="after" data-slider-tooltip="show" data-label="#affiliate_percentage_output" 
+                    data-target-input='1' />
+                    <!--<input type="text" name="amount">-->
+                <span>%</span>
+            </div>
+        </div>
+    </div>
+        <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <h4 class="text-right">Discount</h4>
         </div>
@@ -64,58 +98,38 @@
           ['class'=>''] ) }}
         </div>
     </div>
-    <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">Price</h4>
-        </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <div class="value-unit">
-                    <input type="text" name="amount">
-                <span>¥</span>
+        <div class='sale-ends-on' @if($course->sale == 0) style='display:none' @endif >
+            <div class="row editor-settings-layout margin-bottom-30">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <h4 class="text-right">{{ trans('courses/general.sale_starts_on') }}</h4>
+                </div>
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="calender">
+                          <div class="clear clearfix input-group date">
+                              {{ Form::text('sale_starts_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
+                              <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-calendar"></span>
+                              </span>
+                          </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">Affiliate percentage</h4>
-        </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <div class="value-unit">
-                    <input type="text" name="amount">
-                <span>%</span>
-            </div>
-        </div>
-    </div>
-    <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ trans('courses/general.sale_starts_on') }}</h4>
-        </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <div class="calender">
-                  <div class="clear clearfix input-group date">
-                      {{ Form::text('sale_starts_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
-                      <span class="input-group-addon">
-                          <span class="glyphicon glyphicon-calendar"></span>
-                      </span>
-                  </div>
-            </div>
-        </div>
-    </div>
-    <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ trans('courses/general.sale_ends_on') }}</h4>
-        </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <div class="calender">
-                <div class="clear clearfix input-group date">
-                    {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+            <div class="row editor-settings-layout margin-bottom-30">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <h4 class="text-right">{{ trans('courses/general.sale_ends_on') }}</h4>
+                </div>
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="calender">
+                        <div class="clear clearfix input-group date">
+                            {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 right-content">
     <h2>Course summary</h2>
@@ -126,7 +140,10 @@
                     <p class="regular-paragraph">Category</p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                    <p class="regular-paragraph semibold-text">IT & WEB</p>
+                    <p class="regular-paragraph semibold-text">
+                        {{ Form::select('course_category_id', $categories, $course->course_category_id, ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 
+                                    'data-url'=> action('CoursesCategoriesController@subcategories_instructor'), 'required', 'class'=>'']) }}
+                    </p>
                 </div>
             </div>
             <div class="row">
@@ -134,7 +151,10 @@
                     <p class="regular-paragraph">Sub-category</p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                    <p class="regular-paragraph semibold-text">Websites</p>
+                    <p class="regular-paragraph semibold-text">
+                        {{ Form::select('course_subcategory_id', $subcategories, $course->course_subcategory_id,
+                                    ['id'=>'course_subcategory_id', 'class'=>'']) }}
+                    </p>
                 </div>
             </div>
             <div class="row">
@@ -142,7 +162,9 @@
                     <p class="regular-paragraph">Price: </p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                    <p class="regular-paragraph semibold-text">7,200</p>
+                    <p class="regular-paragraph semibold-text">
+                        ¥ {{ number_format($course->price, Config::get('custom.currency_decimals')) }}
+                    </p>
                 </div>
             </div>
             <div class="row">
@@ -150,7 +172,7 @@
                     <p class="regular-paragraph">Modules: </p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                    <p class="regular-paragraph semibold-text">4</p>
+                    <p class="regular-paragraph semibold-text"> {{ $course->modules()->count() }}</p>
                 </div>
             </div>
             <div class="row">
@@ -158,18 +180,18 @@
                     <p class="regular-paragraph">Total lessons: </p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                    <p class="regular-paragraph semibold-text">26</p>
+                    <p class="regular-paragraph semibold-text"> {{ $course->lessonCount() }}</p>
                 </div>
             </div>
         </div>
-        <a href="#" class="edit-button">Edit</a>
+        <!--<a href="#" class="edit-button">Edit</a>-->
     </div>
                     <div class="row margin-top-40">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h4>Description:</h4>
             <p class="regular-paragraph text-left">
-            Did you know that if you upload a test video you are over 3 times as likely to have your course published and 
-            featured on Udemy? Upload a short, ~1 ...minute long video and upload it to the test video tool by following 
+                {{ strip_tags($course->description) }}
+            
             </p>
         </div>
     </div>
@@ -177,9 +199,11 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h4>What is this for:</h4>
             <ul>
-                    <li>Did you know that </li>
-                    <li>If you upload a test video </li>
-                    <li>You are over 3 times as likely to have your course published and featured on </li>
+                    @if($values = json2Array($course->who_is_this_for))
+                        @foreach($values as $val)
+                            <li>{{$val}}</li>
+                        @endforeach
+                    @endif
             </ul>
         </div>
     </div>
@@ -187,9 +211,11 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h4>Requirements:</h4>
             <ul>
-                    <li>Did you know that </li>
-                    <li>If you upload a test video </li>
-                    <li>You are over 3 times as likely to have your course published and featured on </li>
+                    @if($values = json2Array($course->requirements))
+                        @foreach($values as $val)
+                            <li>{{$val}}</li>
+                        @endforeach
+                    @endif
             </ul>
         </div>
     </div>
@@ -197,9 +223,11 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h4>At the end of course you will be able:</h4>
             <ul>
-                    <li>Did you know that </li>
-                    <li>If you upload a test video </li>
-                    <li>You are over 3 times as likely to have your course published and featured on </li>
+                    @if($values = json2Array($course->what_will_you_achieve))
+                        @foreach($values as $val)
+                            <li>{{$val}}</li>
+                        @endforeach
+                    @endif
             </ul>
         </div>
     </div>
@@ -209,7 +237,7 @@
         </div>
     </div>
 </div>
-
+{{ Form::close() }}
 <script src="{{url('js/moment.js')}}" type="text/javascript"></script>
 <script src="{{url('js/bootstrap-datetimepicker.js')}}" type="text/javascript"></script>
 <script type="text/javascript"> 
