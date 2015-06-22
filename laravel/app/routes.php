@@ -331,7 +331,7 @@ Route::group(['prefix' => 'api'], function(){
 Route::post('courses/{id}/video/set-description','CoursesController@setVideoDescription');
 
 Route::get('test', function(){
-/*
+
 
     $users = [
         ['firstName' => 'Albert', 'lastName' => 'Maranian', 'email' => 'albert1@gmail.com'],
@@ -342,10 +342,10 @@ Route::get('test', function(){
     $usersJson = json_encode($users);
     $delHelper = new DeliveredHelper();
 
-    $result = $delHelper->addUsersToList(1,[1]);
+    $result = $delHelper->getUsers();
 
     echo '<pre>';
     print_r($result);
     echo '</pre>';
-    die;*/
+    die;
 });
