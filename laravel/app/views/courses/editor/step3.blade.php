@@ -12,25 +12,27 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ trans('courses/general.enable_ask_coach') }}</h4>
+            <h4 class="text-right">{{ trans('courses/curriculum.enable-ask-coach') }} </h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="toggle-switch">
                 <label class="toggle-button
                        @if($course->ask_teacher=='enabled') active @endif" for="ask-enabled">
                     {{ Form::radio('ask_teacher', 'enabled', ($course->ask_teacher=='enabled'), ['id'=>'ask-enabled'] ) }}
-                    {{ trans('courses/general.yes') }}
+                    {{trans('courses/curriculum.yes')}}
                 </label>
                 <label class="toggle-button
                        @if($course->ask_teacher=='disabled') active @endif" for="ask-disabled">
                     {{ Form::radio('ask_teacher', 'disabled', ($course->ask_teacher=='disabled'), ['id'=>'ask-disabled'] ) }}
-                    {{ trans('courses/general.no') }}
+                    {{trans('courses/curriculum.no')}}
                 </label>
 <!--                <button name="yes" class="toggle-button">Yes</button>
                 <button name="no" class="toggle-button">No</button>-->
             </div>
         </div>
     </div>
+       <?php
+       /** TEMPORARILY HIDE PAYMENT TYPE AS IT'S NOT REQUIRED 
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <h4 class="text-right">{{ trans('courses/general.payment_type') }}</h4>
@@ -41,6 +43,8 @@
             <span class="regular-paragraph clue-text">{{ trans('courses/general.how_users_will_pay') }}</span>
         </div>
     </div>
+        * 
+        */?>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <h4 class="text-right">{{ trans('courses/general.difficulty') }}</h4>
@@ -79,7 +83,7 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ trans('courses/general.affiliate_percentage') }}</h4>
+            <h4 class="text-right">{{ trans('courses/general.affiliate_percentage') }} </h4>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
             <div class="value-unit">
@@ -96,7 +100,7 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-        <h4 class="text-right">{{ trans('courses/general.discount') }}</h4>
+        <h4 class="text-right">{{ trans('courses/general.discount') }} </h4>
     </div>
     <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" id="discount">
         {{ Form::text('sale', money_val($course->sale),
@@ -245,7 +249,7 @@
     </div>
     <div class="row next-step-button">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button class="blue-button extra-large-button">{{ trans('courses/general.submit_for_approval') }}</button>
+            <button class="blue-button extra-large-button">{{ trans('courses/statuses.submit-for-approval')}}</button>
         </div>
     </div>
 </div>

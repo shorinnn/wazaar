@@ -108,7 +108,8 @@
 
 		
 		$('#video-player-container-' + $lessonId).addClass('hide');
-		$('.course-editor #modules-list > li .progress').addClass('hide');
+//		$('.course-editor #modules-list > li .progress').addClass('hide');
+		$('.lesson-options-{{$lessonId}}').find('.progress').addClass('hide');
 
         videoUploader.initialize({
             'fileInputElem' : $('#fileupload-' + $lessonId),

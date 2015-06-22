@@ -80,7 +80,7 @@ return array(
 	'available_formats' => 'Available formats png or jpg.',
 	'video_size' => 'Video should be 16:9 or else it will be cropped',
     'subscription' => 'Subscription',
-    'enable_ask_coach' => 'Enable Ask Coach',
+    'enable_ask_coach' => 'Enable Ask Teacher',
     'reviews' => 'Reviews',
     'review' => 'Review',
     'module' => 'Module',
