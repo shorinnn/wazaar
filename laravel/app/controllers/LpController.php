@@ -71,7 +71,8 @@ class LpController extends \BaseController {
     
         public function index(){
             $users = $this->delivered->getUsers();
-            dd($users);
+            $user = $users['data'][3];
+            dd( $user );
 
 //            $list = $this->_getList();
 //            dd($list);
