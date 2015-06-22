@@ -58,7 +58,7 @@ class CoursesController extends \BaseController {
             }
         }
         
-         public function edit($slug){
+         public function edit($slug, $step=0){
             $course = Course::where('slug',$slug)->first();
             if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 return Redirect::action('CoursesController@index');
@@ -90,9 +90,16 @@ class CoursesController extends \BaseController {
             $uniqueKey = Str::random();
             $affiliates = ProductAffiliate::arrayWithProfile();
             
-            return View::make('courses.form',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
+            switch($step){
+                case 0: $view = 'courses.editor.form'; break;
+                case 1: $view = 'courses.editor.step1'; break;
+                case 2: $view = 'courses.editor.step2'; break;
+                case 3: $view = 'courses.editor.step3'; break;
+            }
+            return View::make($view,compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
                     ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates'));
         }
+        
         
         public function customPercentage($slug){
             $course = Course::where('slug',$slug)->first();

@@ -324,3 +324,16 @@ function adjustDiscount(e){
     if(kind=='amount' && val>0) val =  round2( val, 100 );
     e.val( val );
 }
+
+function courseChangedTabs(e){
+    $('.header-tabs').removeClass('active');
+    $(e.target).addClass('active');
+    remaining = $(e.target).attr('data-steps-remaining');
+    if(remaining==0){
+        $('.steps-remaining').hide();
+    }
+    else{
+        $('.steps-remaining').find('span').html( _(remaining) );
+        $('.steps-remaining').show();
+    }
+}

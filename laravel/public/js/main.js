@@ -398,18 +398,26 @@ function loadRemoteCache(e){
     url = $(e.target).attr('data-url');
     target = $(e.target).attr('data-target');
     var callback = $(e.target).attr('data-callback');
+    var cachedCallback = $(e.target).attr('data-cached-callback');
     elem = $(e.target);
     while(typeof(url)=='undefined'){
         elem = elem.parent();
         url = elem.attr('data-url');
         target = elem.attr('data-target');
         callback = elem.attr('data-callback');  
+        cachedCallback = elem.attr('data-cached-callback');  
     }
     // load content from the parent container
     $(target).parent().children().hide();
     $(target).show();
+
     
-    if(elem.attr('data-loaded') == '1' ) return false;// content already loaded, just redisplay it
+    if(elem.attr('data-loaded') == '1' ){
+        if( typeof(cachedCallback)!= 'undefined'){
+            window[cachedCallback](e);
+        }
+        return false;
+    }// content already loaded, just redisplay it
     
     var loadingGif = $(target).html( _('') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader-2.gif" />').css({
 	textAlign: 'center',
@@ -419,6 +427,7 @@ function loadRemoteCache(e){
 	
     $(target).load(url, function(){
         elem.attr('data-loaded','1');
+        elem.addClass('dataLoaded');
         if( typeof(callback)!= 'undefined'){
             window[callback](e);
         }

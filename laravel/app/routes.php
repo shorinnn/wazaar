@@ -161,6 +161,8 @@ Route::group( array('domain' => $domain ), function(){
     Route::get('courses/search-instructor/', 'CoursesController@searchInstructor');
     
     Route::get('courses/categories', 'CoursesController@categories');
+    Route::get('courses/categories', 'CoursesController@categories');
+    Route::get('courses/categories', 'CoursesController@categories');
     Route::get('courses/category/{slug}/{subcat}', 'CoursesController@subCategory');
     Route::get('courses/category/{slug}', 'CoursesController@category');
     Route::post('courses/{slug}/purchase/{lesson}', 'CoursesController@purchaseLesson');
@@ -184,7 +186,11 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
 
     Route::resource('custompercentages', 'CustomPercentagesController');
     Route::get('courses/{slug}/custompercentage/', 'CoursesController@customPercentage');
+    
+    Route::get('courses/{slug}/edit/{step}', 'CoursesController@edit');
+    
     Route::resource('courses', 'CoursesController');
+    Route::get('courses/{slug}/custompercentage/', 'CoursesController@customPercentage');
     // Modules routes
     Route::resource('courses.modules', 'ModulesController');
 
