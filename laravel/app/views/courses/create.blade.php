@@ -47,7 +47,7 @@
                 </div>
                 <div class="row">
                 	<div class="col-lg-12 text-center">
-                    	<button class="blue-button extra-large-button margin-top-30">CREATE COURSE</button>
+                    	<button type='submit' class="blue-button extra-large-button margin-top-30">CREATE COURSE</button>
                     </div>
                 </div>
         	</div>
