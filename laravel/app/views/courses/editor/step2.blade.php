@@ -100,15 +100,6 @@
 
 
 
-
-<script src="{{url('plugins/uploader/js/vendor/jquery.ui.widget.js')}}"></script>
-<script src="{{url('plugins/uploader/js/jquery.iframe-transport.js')}}"></script>
-<script src="{{url('plugins/uploader/js/jquery.fileupload.js')}}"></script>
-<script src="{{url('plugins/slider/js/bootstrap-slider.js')}}"></script>
-<script src="{{url('js/videoUploader.js')}}" type="text/javascript"></script>
-<script src="{{url('js/videoLookup.js')}}" type="text/javascript"></script>
-<script src="{{url('js/videoModal.js')}}" type="text/javascript"></script>
-
 <script type="text/javascript">
 //        $(function (){
 setTimeout(function(){
@@ -169,24 +160,7 @@ setTimeout(function(){
                 });
             });
 
-
-
-                $('#btn-close-previews').on('click', function (){
-                    $('#selected-previews').html('');
-                    $('.display-border').each(function (){
-                        console.log($(this).parent().find('img').attr('src'));
-                        $('#selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
-                    });
-                });
-                
-                $('#btn-close-previews-banner').on('click', function (){
-                    $('#video-selected-previews').html('');
-                    $('.display-border').each(function (){
-                        console.log($(this).parent().find('img').attr('src'));
-                        $('#video-selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
-                    });
-                });
-}, 500);
+}, 50);
 
 
 
@@ -198,7 +172,7 @@ setTimeout(function(){
 
 
     
-//    var $courseVideoInterval;
+    var $courseVideoInterval;
 //
 ////    jQuery(function(){
 //
@@ -251,11 +225,7 @@ setTimeout(function(){
                 }
             }
         });
-        }, 500);
+        }, 50);
 
-        /*videoLookup.initialize($('.course-video-select-existing-anchor'), function ($lessonId, $videoId){
-            alert($videoId);
-        });*/
-//    });
 </script>
 

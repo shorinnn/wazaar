@@ -12,7 +12,7 @@
             {{ trans('courses/general.short_description') }}
             <span class="lead">{{ trans('courses/general.used_on_listings_description') }}</span>
             </h4>
-			{{ Form::textarea('short_description', null,['id'=>'short_description'] ) }}       
+            {{ Form::textarea('short_description', null,['id'=>'short_description'] ) }}       
         	</div>
     </div>
     <div class="row">

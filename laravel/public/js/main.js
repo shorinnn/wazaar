@@ -419,8 +419,12 @@ function loadRemoteCache(e){
         }
         return false;
     }// content already loaded, just redisplay it
-    
-    var loadingGif = $(target).html( _('') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader-2.gif" />').css({
+    gif = '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader-2.gif" />';
+    customGif = $(e.target).attr('data-gif');
+    if( typeof(customGif)!= 'undefined' ){
+        gif = customGif;
+    }
+    var loadingGif = $(target).html( _('') + gif).css({
 	textAlign: 'center',
 	marginBottom: 0,
 	marginTop: 0
