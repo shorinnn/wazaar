@@ -21,6 +21,9 @@
     #publish-status-header{
         font-size:15px;
     }
+    .edit-course select{
+        width:auto;
+    }
 </style>
 
 @if (Session::get('success'))

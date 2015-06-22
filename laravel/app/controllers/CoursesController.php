@@ -128,18 +128,18 @@ class CoursesController extends \BaseController {
             if( Input::has("course_banner_image_id") ) $course->course_banner_image_id = Input::get("course_banner_image_id");
             
             $course->fill($data);
-            $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
-            $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
-            $course->requirements = json_encode(array_filter(Input::get('requirements')));
-            $course->sale = Input::get('sale');
-            $course->sale_kind = Input::get('sale_kind');
-            $course->sale_starts_on = (Input::get('sale_starts_on')) ?  date('Y-m-d H:i:s', strtotime(Input::get('sale_starts_on')) ) : null;
-            $course->sale_ends_on = (Input::get('sale_ends_on')) ?  date('Y-m-d H:i:s', strtotime(Input::get('sale_ends_on')) ) : null;
-            $course->ask_teacher = Input::get('ask_teacher');
-            $course->details_displays = Input::get('details_displays');
-            $course->assigned_instructor_id = Input::get('assigned_instructor_id') == 0 ? null : Input::get('assigned_instructor_id');
-            $course->show_bio = Input::get('show_bio');
-            $course->custom_bio = Input::get('custom_bio');
+            if(Input::has('who_is_this_for') ) $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
+            if(Input::has('what_will_you_achieve') ) $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
+            if(Input::has('requirements') ) $course->requirements = json_encode(array_filter(Input::get('requirements')));
+            if(Input::has('sale') ) $course->sale = Input::get('sale');
+            if(Input::has('sale_kind') ) $course->sale_kind = Input::get('sale_kind');
+            if(Input::has('sale_starts_on') ) $course->sale_starts_on = (Input::get('sale_starts_on')) ?  date('Y-m-d H:i:s', strtotime(Input::get('sale_starts_on')) ) : null;
+            if(Input::has('sale_ends_on') ) $course->sale_ends_on = (Input::get('sale_ends_on')) ?  date('Y-m-d H:i:s', strtotime(Input::get('sale_ends_on')) ) : null;
+            if(Input::has('ask_teacher') ) $course->ask_teacher = Input::get('ask_teacher');
+            if(Input::has('details_displays') ) $course->details_displays = Input::get('details_displays');
+            if(Input::has('assigned_instructor_id') ) $course->assigned_instructor_id = Input::get('assigned_instructor_id') == 0 ? null : Input::get('assigned_instructor_id');
+            if(Input::has('show_bio') ) $course->show_bio = Input::get('show_bio');
+            if(Input::has('custom_bio') ) $course->custom_bio = Input::get('custom_bio');
             if($course->updateUniques()){
                 if ( Input::hasFile('preview_image') ){
                     $img = $course->upload_preview( Input::file('preview_image')->getRealPath()); 
