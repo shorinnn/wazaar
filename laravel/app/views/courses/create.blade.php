@@ -10,7 +10,7 @@
             	<div class="row">
                 	<div class="col-lg-12">
                     	<img />
-                        <h3 class="text-center">{{ trans('courses/create.create-new-course') }}</h3>
+                        <h2 class="text-center">{{ trans('courses/create.create-new-course') }}</h2>
                     </div>
                 </div>
                 <div class="row first-row">
