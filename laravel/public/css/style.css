@@ -4087,6 +4087,14 @@ h4{
 	width: 85px !important;
 }
 
+#discount-unit{
+	padding: 0;
+}
+
+#discount-unit select{
+	width: 70px !important;
+}
+
 .custom-dropdown::before,
 .custom-dropdown::after {
   content: "";
@@ -5660,7 +5668,7 @@ a.load-remote > *{
 	border-radius: 3px;
 	width: 100%;
 	margin-bottom: 20px;
-	outline: none;
+	outline: none !important;
 	padding: 0 12px;
 	font-size: 13px;
 	background-color: transparent;
@@ -5712,6 +5720,10 @@ a.load-remote > *{
 .calender .date{
 	padding: 0 !important;
 	width: 99.5% !important;
+}
+
+.calender .date .glyphicon-calendar {
+    top: 5px;
 }
 
 .calender input{
@@ -5813,10 +5825,12 @@ a.load-remote > *{
 }
 
 .edit-course .progress{
-	margin: 20px 10px;
+	margin: 10px 10px 20px;
 	box-shadow: none;
 	border-radius: 6px;
 	height: 6px;
+	background: #fff;
+	width: auto;
 }
 
 .edit-course .use-existing{
@@ -5850,6 +5864,10 @@ a.load-remote > *{
 	position: relative;
 }
 
+._step3 .right-content,
+._step3 .left-content {
+    text-align: left !important;
+}
 .edit-course .right-content .category-row p{
 	margin: 0 0 10px;
 	color: #303941;
@@ -8471,7 +8489,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
     color: #b0bfc1;
     font-size: 14px;
     margin-right: 2%;
-    min-width: 77%;
+    width: 77%;
 	height: 30px;
 	text-indent: 10px;
 }
@@ -8939,6 +8957,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .lesson-options .details h4{
 	color: #303941;
 	margin: 4px 0;
+	float: left;
 }
 
 .plan-your-curriculum .lesson-options > div{
