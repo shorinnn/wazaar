@@ -139,8 +139,6 @@ function enableLessonRTE(e){
 } 
 
 function enableRTE(selector){
-    console.log('RTEing ');
-    console.log(selector);
     tinymce.remove(selector);
     tinymce.init({
         menu:{},

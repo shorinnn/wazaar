@@ -1,14 +1,15 @@
 <div class="row">
     <div class="col-md-12">
         <div class="image-upload">
-            <h3>{{ trans('courses/create.course-description-video') }}</h3>
+<!--            <h3>{{ trans('courses/create.course-description-video') }}</h3>
                     <p class="tip">Video to be displayed on the course description page. 
                         <i class='fa fa-question-circle tooltipable' data-placement="top" 
                            title='<img height="400" width="600" src="{{ url('images/course_examples/course-video.png') }}" />' 
                            data-html='true'></i>
-                    </p>
+                    </p>-->
             <div class="course-video-upload-button-progress">
-                <label for="upload-course-video" class="uploadFile">
+                <label for="upload-course-video" class="default-button large-button">
+                    
                     <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
                     <span>{{ trans('courses/curriculum.upload') }}</span>
                     <form action="//s3-ap-southeast-1.amazonaws.com/videosinput" enctype="multipart/form-data" method="POST" class="fileupload">

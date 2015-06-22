@@ -5701,7 +5701,6 @@ a.load-remote > *{
 .calender .date{
 	padding: 0 !important;
 	width: 99.5% !important;
-	overflow: hidden;
 }
 
 .calender input{

@@ -3,7 +3,9 @@
                 
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
     <div class="approval-box">
-            <h4 class="not-approved">Not approved!</h4>
+            <h4 class="not-approved">
+                {{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}
+            </h4>
         <p class="regular-paragraph">
         Wazaar must review and approve your course before you can publish it.
         </p>
@@ -14,8 +16,18 @@
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="toggle-switch">
-                <button name="yes" class="toggle-button">Yes</button>
-                <button name="no" class="toggle-button">No</button>
+                <label class="toggle-button
+                       @if($course->ask_teacher=='enabled') active @endif" for="ask-enabled">
+                    {{ Form::radio('ask_teacher', 'enabled', ($course->ask_teacher=='enabled'), ['id'=>'ask-enabled'] ) }}
+                    Yes
+                </label>
+                <label class="toggle-button
+                       @if($course->ask_teacher=='disabled') active @endif" for="ask-disabled">
+                    {{ Form::radio('ask_teacher', 'disabled', ($course->ask_teacher=='disabled'), ['id'=>'ask-disabled'] ) }}
+                    No
+                </label>
+<!--                <button name="yes" class="toggle-button">Yes</button>
+                <button name="no" class="toggle-button">No</button>-->
             </div>
         </div>
     </div>
@@ -247,10 +259,10 @@
     } );
 	
 	$('.toggle-switch .toggle-button').on('click', function(){
-		$(this).addClass('active');
-		if($(this).hasClass('active')){
-			$('.toggle-switch .toggle-button').not(this).removeClass('active');
-		}
+            $(this).addClass('active');
+            if($(this).hasClass('active')){
+                    $(this).closest('.toggle-switch').find('.toggle-button').not(this).removeClass('active');
+            }
 	});	
 
 </script>

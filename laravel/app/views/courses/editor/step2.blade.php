@@ -117,7 +117,7 @@ setTimeout(function(){
             
             enableFileUploader( $('#upload-preview-image') );
             enableFileUploader( $('#upload-banner-image') );
-            enableSlider('#affiliate_percentage');
+//            enableSlider('#affiliate_percentage');
             $('textarea').each(function(){
                 if( $(this).attr('id') != 'short_description' ){
                     enableRTE( '#'+$(this).attr('id') );
