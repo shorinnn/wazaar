@@ -4072,9 +4072,9 @@ h4{
   -webkit-appearance: button; /* hide default arrow in chrome OSX */
 }
 
-.discount select,
+#discount select,
 .affiliate-percentage select{
-	width: 85px;
+	width: 85px !important;
 }
 
 .custom-dropdown::before,
@@ -5665,21 +5665,25 @@ a.load-remote > *{
 	color: #798794;	
 }
 
+.edit-course select{
+	width: 100% !important;
+}
+
 .value-unit{
-	margin: 0;
-	width: auto;
-	padding: 0;
+	margin: 0 !important;
+	width: auto !important;
+	padding: 0 !important;
 }
 
 .value-unit input{
-	padding: 0 10px;
+	padding: 0 10px !important;
 	float: left;
-	border: none;
-	width: 68px;
-	background: none;
-	outline: none;
-	font-size: 13px;
-	color: #303941;
+	border: none !important;
+	width: 68px !important;
+	background: none !important;
+	outline: none !important;
+	font-size: 13px !important;
+	color: #303941 !important;
 }
 
 .value-unit span{
@@ -5695,18 +5699,19 @@ a.load-remote > *{
 }
 
 .calender .date{
-	border: none;
-	padding: 0;
+	padding: 0 !important;
+	width: 99.5% !important;
+	overflow: hidden;
 }
 
 .calender input{
-	float: left;
-	height: 100%;
+	float: left !important;
+	height: 100% !important;
 	background: none;
-	border: solid 1px #cfd8df;
-	margin: 0;
+	border: none !important;
+	margin: 0 !important;
 	width: 90% !important;
-	outline: none;
+	outline: none !important;
 }
 
 .calender .input-group-addon{
@@ -5715,7 +5720,7 @@ a.load-remote > *{
 	height: 100%;
 	width: 10%;
 	border: solid #cfd8df;
-	border-width: 1px 1px 1px 0;
+	border-width: 0 0 0 1px;
 }
 
 .edit-course .header h1{
@@ -5953,6 +5958,10 @@ a.load-remote > *{
 	border: solid 1px #119bf8;
 	overflow: hidden;
 	display: inline-block;
+}
+
+.toggle-switch input[type='radio']{
+	display: none;
 }
 
 .toggle-switch .toggle-button{

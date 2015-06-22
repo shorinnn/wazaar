@@ -34,14 +34,14 @@
             <h4 class="text-right">Difficulty</h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <div class="course-level toggle-switch btn-group clearfix" data-toggle="buttons">
-                <div>
+            <div class="course-level toggle-switch btn-group clearfix">
+                <div class="clearfix">
                      @foreach($difficulties as $key=>$difficulty)
                      <?php
                         $checked = ($key==$course->course_difficulty_id) ? 'checked="checked"' : '';
                         $active = ($key==$course->course_difficulty_id) ? 'active' : '';
                      ?>
-                        <label class="toggle-button {{$active}}" for="course_difficulty_id">
+                        <label class="toggle-button {{$active}}" for="option{{$key}}">
                             <input type='radio' name='course_difficulty_id' id="option{{$key}}" 
                             autocomplete="off" value='{{$key}}' 
                             {{$checked}} /> {{ trans('general.'.$difficulty) }}
@@ -66,10 +66,10 @@
         </div>
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <h4 class="text-right">Affiliate percentage</h4>
         </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
             <div class="value-unit">
                 <input type="text" class='span2 clear right' name='affiliate_percentage' id='affiliate_percentage' 
                     value="{{ $course->affiliate_percentage }}" data-slider-min="0" data-slider-max="68" 
@@ -82,21 +82,21 @@
             </div>
         </div>
     </div>
-        <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">Discount</h4>
-        </div>
-            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-            {{ Form::text('sale', money_val($course->sale),
-                ['onkeyup' => 'toggleElementViaOther(event)', 
-                'class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustDiscount',
-                'data-saleType' => 'sale_kind',
-                'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 discount">
-              {{ Form::select('sale_kind', ['amount' => '¥', 'percentage' => '%'], null,
-          ['class'=>''] ) }}
-        </div>
+    <div class="row editor-settings-layout margin-bottom-30">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <h4 class="text-right">Discount</h4>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" id="discount">
+        {{ Form::text('sale', money_val($course->sale),
+            ['onkeyup' => 'toggleElementViaOther(event)', 
+            'class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustDiscount',
+            'data-saleType' => 'sale_kind',
+            'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" id="discount">
+          {{ Form::select('sale_kind', ['amount' => '¥', 'percentage' => '%'], null,
+      ['class'=>''] ) }}
+    </div>
     </div>
         <div class='sale-ends-on' @if($course->sale == 0) style='display:none' @endif >
             <div class="row editor-settings-layout margin-bottom-30">
@@ -245,5 +245,13 @@
         sideBySide:true,
         extraFormats: ['YYYY-MM-DD hh:mm:s']
     } );
+	
+	$('.toggle-switch .toggle-button').on('click', function(){
+		$(this).addClass('active');
+		if($(this).hasClass('active')){
+			$('.toggle-switch .toggle-button').not(this).removeClass('active');
+		}
+	});	
+
 </script>
 
