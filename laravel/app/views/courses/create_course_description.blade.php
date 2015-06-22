@@ -27,8 +27,8 @@
             </div>
         </div>
     </section>
-     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'id' =>'create-form',
-     'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'formSaved'])}}
+    <form method='post' class='ajax-form' id="create-form" data-callback='followRedirect' 
+                      action='{{action('CoursesController@store')}}' data-parsley-validate>
     <section class="container main">
     	<div class="row">
         	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
@@ -55,10 +55,6 @@
                         </textarea>                    
                     </div>
                 </div>
-                {{ Form::close() }}
-                
-                <form method='post' class='ajax-form' id="create-form" data-callback='followRedirect' 
-                                  action='{{action('CoursesController@store')}}' data-parsley-validate>
                 <div class="row">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 who-its-for">
                         <h4>{{ trans('courses/create.course-requirements') }}
