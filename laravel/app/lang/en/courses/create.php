@@ -31,6 +31,7 @@ return array(
     'description-tip' =>"Additional information you'd like to add, to accompany the video.",
     'upload-files-tip' => "Upload files that accompany the lesson.",
     'options-tip' => "Write the description for the lesson and set the individual lesson price.",
+	'wazaar_must_review' => 'Wazaar must review and approve your course before you can publish it.',
     'enter-module-name' => "Enter module name",
     'enter-lesson-name' => "Enter lesson name",
     'additional-lesson-notes' => "Additional Lesson Notes",

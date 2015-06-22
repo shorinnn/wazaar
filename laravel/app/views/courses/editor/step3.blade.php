@@ -7,24 +7,24 @@
                 {{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}
             </h4>
         <p class="regular-paragraph">
-        Wazaar must review and approve your course before you can publish it.
+        {{ trans('courses/create.wazaar_must_review') }}
         </p>
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">Enable Ask Coach</h4>
+            <h4 class="text-right">{{ trans('courses/general.enable_ask_coach') }}</h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="toggle-switch">
                 <label class="toggle-button
                        @if($course->ask_teacher=='enabled') active @endif" for="ask-enabled">
                     {{ Form::radio('ask_teacher', 'enabled', ($course->ask_teacher=='enabled'), ['id'=>'ask-enabled'] ) }}
-                    Yes
+                    {{ trans('courses/general.yes') }}
                 </label>
                 <label class="toggle-button
                        @if($course->ask_teacher=='disabled') active @endif" for="ask-disabled">
                     {{ Form::radio('ask_teacher', 'disabled', ($course->ask_teacher=='disabled'), ['id'=>'ask-disabled'] ) }}
-                    No
+                    {{ trans('courses/general.no') }}
                 </label>
 <!--                <button name="yes" class="toggle-button">Yes</button>
                 <button name="no" class="toggle-button">No</button>-->
@@ -33,17 +33,17 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">Payment type</h4>
+            <h4 class="text-right">{{ trans('courses/general.payment_type') }}</h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             {{ Form::select('payment_type', [ 'one_time' => trans('courses/general.one_time'), 
             'subscription' =>  trans('courses/general.subscription') ], null,['class'=>''] ) }}
-            <span class="regular-paragraph clue-text">How users will pay for a course. </span>
+            <span class="regular-paragraph clue-text">{{ trans('courses/general.how_users_will_pay') }}</span>
         </div>
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">Difficulty</h4>
+            <h4 class="text-right">{{ trans('courses/general.difficulty') }}</h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="course-level toggle-switch btn-group clearfix">
@@ -66,7 +66,7 @@
     
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">Price</h4>
+            <h4 class="text-right">{{ trans('courses/general.price') }}</h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="value-unit">
@@ -79,7 +79,7 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">Affiliate percentage</h4>
+            <h4 class="text-right">{{ trans('courses/general.affiliate_percentage') }}</h4>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
             <div class="value-unit">
@@ -96,7 +96,7 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-        <h4 class="text-right">Discount</h4>
+        <h4 class="text-right">{{ trans('courses/general.discount') }}</h4>
     </div>
     <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" id="discount">
         {{ Form::text('sale', money_val($course->sale),
@@ -144,12 +144,12 @@
         </div>
 </div>
 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 right-content">
-    <h2>Course summary</h2>
+    <h2>{{ trans('courses/general.course_summary') }}</h2>
     <div class="row category-row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <p class="regular-paragraph">Category</p>
+                    <p class="regular-paragraph">{{ trans('courses/general.category') }}</p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text">
@@ -160,7 +160,7 @@
             </div>
             <div class="row">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <p class="regular-paragraph">Sub-category</p>
+                    <p class="regular-paragraph">{{ trans('courses/general.subcategory') }}</p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text">
@@ -171,7 +171,7 @@
             </div>
             <div class="row">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <p class="regular-paragraph">Price: </p>
+                    <p class="regular-paragraph">{{ trans('courses/general.price') }}: </p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text">
@@ -181,7 +181,7 @@
             </div>
             <div class="row">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <p class="regular-paragraph">Modules: </p>
+                    <p class="regular-paragraph">{{ trans('courses/general.modules') }}: </p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text"> {{ $course->modules()->count() }}</p>
@@ -189,7 +189,7 @@
             </div>
             <div class="row">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <p class="regular-paragraph">Total lessons: </p>
+                    <p class="regular-paragraph">{{ trans('courses/general.total_lessons') }}: </p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text"> {{ $course->lessonCount() }}</p>
@@ -200,7 +200,7 @@
     </div>
                     <div class="row margin-top-40">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h4>Description:</h4>
+            <h4>{{ trans('courses/general.description') }}:</h4>
             <p class="regular-paragraph text-left">
                 {{ strip_tags($course->description) }}
             
@@ -209,7 +209,7 @@
     </div>
                     <div class="row margin-top-40">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h4>What is this for:</h4>
+            <h4>{{ trans('courses/general.who_is_this_for?') }}:</h4>
             <ul>
                     @if($values = json2Array($course->who_is_this_for))
                         @foreach($values as $val)
@@ -221,7 +221,7 @@
     </div>
                     <div class="row margin-top-40">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h4>Requirements:</h4>
+            <h4>{{ trans('courses/general.requirements') }}:</h4>
             <ul>
                     @if($values = json2Array($course->requirements))
                         @foreach($values as $val)
@@ -233,7 +233,7 @@
     </div>
                     <div class="row margin-top-40">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h4>At the end of course you will be able:</h4>
+            <h4>{{ trans('courses/general.by_the_end') }}:</h4>
             <ul>
                     @if($values = json2Array($course->what_will_you_achieve))
                         @foreach($values as $val)
@@ -245,7 +245,7 @@
     </div>
     <div class="row next-step-button">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button class="blue-button extra-large-button">SUBMIT FOR APPROVAL</button>
+            <button class="blue-button extra-large-button">{{ trans('courses/general.submit_for_approval') }}</button>
         </div>
     </div>
 </div>

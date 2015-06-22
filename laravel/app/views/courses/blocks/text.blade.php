@@ -1,4 +1,4 @@
-{{ trans('courses/create.additional-lesson-notes') }}
+<span class="block semibold-text margin-top-10">{{ trans('courses/create.additional-lesson-notes') }}</span>
 
 <p class="tip"> {{ trans('courses/create.description-tip') }}</p>
 

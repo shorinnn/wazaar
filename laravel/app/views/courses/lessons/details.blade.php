@@ -1,13 +1,13 @@
 <p class="tip"> {{ trans('courses/create.options-tip') }}</p>
 
 <div class="clear clearfix">
-	<p>{{ trans('crud/labels.description') }}</p> 
+	<h4>{{ trans('crud/labels.description') }}</h4> 
 	<textarea class="ajax-updatable"  data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}'
                       data-name="description">{{ $lesson->description }}</textarea><br />
 </div>
 
 <div class="clear clearfix">
-    <p>{{ trans('general.lesson_price') }}</p> 
+    <h4>{{ trans('general.lesson_price') }}</h4> 
     <input type="text" class="ajax-updatable"  data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}'
                       data-name='price' value="{{ $lesson->price }}" /><br />
 </div>

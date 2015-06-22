@@ -224,7 +224,7 @@
     </div>
     <div class="row next-step-button">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button class="blue-button extra-large-button">NEXT STEP</button>
+            <button class="blue-button extra-large-button">{{ trans('courses/general.next-step') }}</button>
         </div>
     </div>
 </div>

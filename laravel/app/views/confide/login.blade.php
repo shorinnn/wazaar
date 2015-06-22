@@ -15,7 +15,7 @@
                         <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
                     </div>
                     <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
-                    <p class="intro-paragraph text-center">{{ trans('general.enter-email-and-password') }}</p>
+                    <p class="regular-paragraph text-center light-gray-text">{{ trans('general.enter-email-and-password') }}</p>
                     <div class="form-container clearfix">
                         @if(Session::has('error'))
                             <p class='alert alert-danger'> {{Session::get('error')}}</p>

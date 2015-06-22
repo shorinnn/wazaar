@@ -1596,7 +1596,8 @@ header .activate-dropdown:hover ul{
 .login-social-buttons a{
 	display: block;
 	font-size: 13px;
-	padding: 15px 10px 15px 94px;
+	padding: 15px 10px;
+	text-align: center;
 	color: #fff;
 	font-weight: 600;
 	text-decoration: none;
@@ -1687,6 +1688,10 @@ header .activate-dropdown:hover ul{
 	padding-right: 65px;
 	padding-left: 40px;
 	background-position: 15px -39px;
+}
+
+.form-container input[name='name']{
+	background-image: none;
 }
 
 .input-error input{
@@ -2519,6 +2524,11 @@ h4{
 	font-size: 13px;
 	line-height: 18px;
 }
+
+.light-gray-text{
+	color: #7e8e9e;
+}
+
 /************************/
 
 .course-detail-top-section{
@@ -5617,6 +5627,7 @@ a.load-remote > *{
 .edit-course{
 	background: #e8eced;
 	min-height: 100%;
+	padding-bottom: 10%;
 }
 
 .create-course-start-page-container h2{
@@ -5758,7 +5769,6 @@ a.load-remote > *{
 	border-radius: 4px;
 	overflow: hidden;
 	background: #f7f9fa;
-	margin-bottom: 10%;
 }
 
 .edit-course .left-content{
@@ -8346,7 +8356,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 
 .course-editor #modules-list > li .new-lesson > input[type="text"]{
-	width: 65.8%;
+	width: 52%;
 }
 
 .course-editor #modules-list > li .new-module > input[type="text"]{
@@ -8461,7 +8471,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
     color: #b0bfc1;
     font-size: 14px;
     margin-right: 2%;
-    width: 90%;
+    min-width: 77%;
 	height: 30px;
 	text-indent: 10px;
 }
@@ -8568,6 +8578,14 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .course-editor #modules-list > li .video-upload:focus{
 	background: #85c01e;
+}
+
+.course-editor .video .video-transcoding-indicator{
+	margin: 10px;
+}
+
+.course-editor .video .video-transcoding-indicator .video-title{
+	color: #0099ff;
 }
 
 .course-editor #modules-list > li .show-videos-archive-modal {
@@ -8790,7 +8808,12 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .course-editor .lesson-options .details{
     display: block;
     margin: 0 auto 0;
-    max-width: 60%;
+    max-width: 70%;
+}
+
+.course-editor .lesson-options .details textarea,
+.course-editor .lesson-options .details input{
+	width: 74% !important;
 }
 
 .course-editor .upload-drop-zone {
@@ -8907,6 +8930,17 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
     padding-top: 12px;
 }
 
+.lesson-options .tip {
+    color: #7e8e9e;
+    font-size: 13px;
+	margin: 15px 0; 
+}
+
+.lesson-options .details h4{
+	color: #303941;
+	margin: 4px 0;
+}
+
 .plan-your-curriculum .lesson-options > div{
 	position: relative;
 	margin-top: 10px;
@@ -8918,8 +8952,8 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 
 .plan-your-curriculum .lesson-options > div.lesson-options-buttons{
-	margin: 0 auto;
-	max-width: 62%;
+	margin: 0 0 0 21%;
+	width: auto;
 }
 
 .plan-your-curriculum .lesson-options .buttons{
@@ -8937,7 +8971,11 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .plan-your-curriculum .lesson-options .buttons.publish{
 	width: auto;
 	height: auto;
-	margin-top: 16px;
+	margin: 0 0 0 2% !important;
+}
+
+.plan-your-curriculum .lesson-options .buttons.publish p{
+	float: none;
 }
 	
 .plan-your-curriculum .lesson-options .buttons .switch-buttons > .switch{
