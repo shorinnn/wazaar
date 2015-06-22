@@ -13,6 +13,9 @@
             </a>
             <div class="user-data-modal clearfix">
             	<h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
+                @if(isset($extraText))
+                    <p class='text-center'>{{ $extraText }}</p>
+                @endif
                 <div class="login-social-buttons clearfix">
                 	<a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.register-with-facebook') }}</a>
                     <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->

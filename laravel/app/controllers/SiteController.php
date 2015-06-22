@@ -24,6 +24,16 @@ class SiteController extends \BaseController {
             $transactions = $student->transactions->orderBy('id','desc')->paginate(2);
             return View::make('site.dashboard')->with( compact('student', 'transactions') );
 	}
+
+	public function edit_description()
+	{                 
+            return View::make('courses.edit_course_description');
+	}
+
+	public function edit_settings()
+	{                 
+            return View::make('courses.edit_course_settings');
+	}
         
 	public function classroom()
 	{            

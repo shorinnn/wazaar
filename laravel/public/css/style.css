@@ -10,8 +10,12 @@ body {
 	font: 16px 'Open Sans', Helvetica, sans-serif;
 }
 
-html, body {
-	height: auto;
+html{
+  height: 100%;
+}
+
+body{
+  min-height: 100%;
 }
 
 a {
@@ -425,6 +429,27 @@ header .activate-dropdown:hover ul{
     color: #fff;
     margin-left: 14px;
     padding-top: 22px;
+}
+
+/*************** Home Page *********************/
+.extra-large-heading{
+	font-size: 40px;
+	font-weight: normal;
+}
+
+.extra-large-heading .lead{
+	font-size: 18px;
+	font-weight: normal;
+}
+
+.homepage .extra-large-heading{
+	color: #fff;
+	margin: 8% 0 15px;
+}
+
+.homepage .extra-large-heading .lead{
+	color: #a7b7c4;
+	margin: 0 0 27px;
 }
 
 /***************** Background video on Unauthenticated Homepage ******************/
@@ -1113,7 +1138,7 @@ header .activate-dropdown:hover ul{
 	color: #fff;
 	border-radius: 3px;
 	overflow: hidden;
-	background: rgba(0, 0, 0, 0.6) url("") no-repeat left center; 
+	background: rgba(0, 0, 0, 0.6) url("../%22%22") no-repeat left center; 
 }
 
 .small-box .course-box-content{
@@ -1623,7 +1648,9 @@ header .activate-dropdown:hover ul{
 }
 
 .form-container input{
-	background: #fff;
+	background-color: #fff;
+	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/email-pass-icons.png);
+	background-repeat: no-repeat;
 	display: block;
 	font-size: 14px;
 	border: solid 1px #e3e5e6;
@@ -1636,17 +1663,19 @@ header .activate-dropdown:hover ul{
 
 .form-container input:active,
 .form-container input:focus{
-	background: #fff;
+	background-color: #fff;
 	font-size: 14px;
 	color: #303941;
 	border: solid 1px #a7b7c4;
 }
 
-.form-container input[type='email']{
+.form-container input[name='email']{
+	background-position: 15px 14px;
 }
 
-.form-container input[type='password']{
+.form-container input[name='password']{
 	padding-right: 65px;
+	background-position: 15px -39px;
 }
 
 .input-error input{
@@ -1705,8 +1734,22 @@ header .activate-dropdown:hover ul{
 	background: #008eed;
 }
 
+.default-button{
+	padding: 9px 15px;
+	border-radius: 3px;
+	display: inline-block;
+	border: solid 1px #cfd1d3;
+	background: none;
+	font-size: 13px;
+	color: #798794;
+}
+
 .large-button{
 	padding: 10px 25px;
+}
+
+.extra-large-button{
+	padding: 15px 80px;
 }
 
 .round-button{
@@ -1715,8 +1758,13 @@ header .activate-dropdown:hover ul{
 
 .disabled-button{
 	background: #b2e0ff;
+	cursor: not-allowed;
 }
-	
+
+.disabled-button:hover{
+	background: #b2e0ff;
+}
+
 .form-container input:-moz-placeholder,
 .form-container input::-moz-placeholder,
 .form-container input:-ms-input-placeholder,
@@ -1816,6 +1864,7 @@ header .activate-dropdown:hover ul{
 .email-confirmation-pages{
 	background: #ebeced;
 	padding-bottom: 10%;
+	height: 100%;
 }
 
 .email-confirmation-pages .container{
@@ -1875,7 +1924,7 @@ header .activate-dropdown:hover ul{
 	float: left;
 	height: 30px;
 	width: 30px;
-	background: #fff;
+	background: none;
 	font-size: 18px;
 	font-weight: 600;
 	color: #7e8e9e;
@@ -2442,6 +2491,11 @@ h2{
 
 h3{
 	font-size: 15px;
+	font-weight: 600;
+}
+
+h4{
+	font-size: 14px;
 	font-weight: 600;
 }
 
@@ -5548,7 +5602,351 @@ a.load-remote > *{
 	background: #fff;
 }
 
+/************** Create New Course and Edit Course *********/
+.edit-course{
+	background: #e8eced;
+	height: 100%;
+}
 
+.create-course-start-page-container h2{
+	color: #303941;
+	text-transform: uppercase;
+	text-align: center;
+	margin: 15% 0 44px;
+}
+
+.create-course-start-page-container h3{
+	margin: 10px 0;
+}
+
+.create-course-start-page-container .first-row,
+.create-course-start-page-container .second-row{
+	background: #fff;
+	padding: 30px 15px 10px;
+	border-bottom: solid 2px #e8eced;
+}
+
+select,
+textarea,
+.calender .date,
+.value-unit,
+input[type='text'],
+input[type='date'],
+input[type='password']{
+	display: inline-block;
+	height: 38px;
+	border-radius: 3px;
+	width: 100%;
+	margin-bottom: 20px;
+	outline: none;
+	padding: 0 12px;
+	font-size: 13px;
+	background: none;
+	color: #303941;
+	border: solid 1px #cfd8df;
+}
+
+select,
+input[type='text']:-moz-placeholder,
+input[type='text']::-moz-placeholder,
+input[type='text']:-ms-input-placeholder,
+input[type='text']::-webkit-input-placeholder{
+	color: #798794;	
+}
+
+.value-unit{
+	margin: 0;
+	width: auto;
+	padding: 0;
+}
+
+.value-unit input{
+	padding: 0 10px;
+	float: left;
+	border: none;
+	width: 68px;
+	background: none;
+	outline: none;
+	font-size: 13px;
+	color: #303941;
+}
+
+.value-unit span{
+	display: block;
+	float: left;
+	width: 58px;
+	text-align: center;
+	border-left: solid 1px #cfd8df;
+	background: #f7f9fa;
+	font-size: 14px;
+	color: #7e8e9e;
+	padding: 10px 0;
+}
+
+.calender .date{
+	border: none;
+	padding: 0;
+}
+
+.calender input{
+	float: left;
+	height: 100%;
+	background: none;
+	border: solid 1px #cfd8df;
+	margin: 0;
+	width: 90% !important;
+	outline: none;
+}
+
+.calender .input-group-addon{
+	display: block;
+	float: left;
+	height: 100%;
+	width: 10%;
+	border: solid #cfd8df;
+	border-width: 1px 1px 1px 0;
+}
+
+.edit-course .header h1{
+	color: #303941;
+	margin: 30px 0 0;
+}
+
+.edit-course .header .steps-remaining{
+	padding: 10px 0 10px 27px;
+	border-left: solid 1px #e8eced;
+	margin: 26px 0 12px;
+}
+
+.edit-course .header .steps-remaining span{
+	color: #0099ff;
+	font-weight: 600;
+}
+
+.edit-course .header .default-button,
+.edit-course .header .blue-button{
+	margin: 30px 0 0;
+}
+
+.edit-course .header .blue-button{
+	margin-left: 1%;
+}
+
+.edit-course .header{
+	background: #fff;
+	padding: 0 40px;
+	margin-bottom: 20px;
+	border-bottom: solid 1px #cdd1d3;
+}
+
+.edit-course .main{
+	border-radius: 4px;
+	overflow: hidden;
+	background: #f7f9fa;
+	margin-bottom: 10%;
+}
+
+.edit-course .left-content{
+	background: #fff;
+	padding: 35px 30px 20%;
+}
+
+.edit-course .left-content .plan-your-curriculum{
+	margin-top: 60px;
+}
+
+.edit-course .left-content .intro-paragraph{
+	color: #303941;
+	margin: 0;
+}
+
+.edit-course .left-content h4{
+	color: #303941;
+	margin: 40px 0 15px;
+	line-height: 22px;
+}
+
+.edit-course .left-content h4 .lead{
+	display: block;
+	font-style: italic;
+	font-size: 13px;
+	color: #798794;
+}
+
+.edit-course textarea{
+	min-height: 83px;
+	padding: 12px;
+	resize: none;
+}
+
+.edit-course input{
+	margin-bottom: 10px;
+}
+
+.edit-course .who-its-for input,
+.edit-course .what-you-will-achieve input{
+	padding-left: 40px !important;
+}
+
+.edit-course .add-input{
+	font-weight: bold;
+	font-size: 12px;
+	color: #0099ff;
+	display: inline-block;
+	margin-top: 7px;
+}
+
+.remove-input{
+	position: absolute;
+	top: 50%;
+	right: 2%;
+	font-size: 13px;
+	color: #cfd8df;
+}
+
+.edit-course .right-content{
+	background: #f7f9fa;
+	padding: 35px 30px;
+	position: relative;
+}
+
+.edit-course .right-content .category-row p{
+	margin: 0 0 10px;
+	color: #303941;
+}
+
+.edit-course .right-content h2{
+	margin: 0 0 35px;
+}
+
+.edit-course .right-content h4{
+	margin: 0 0 17px;
+	line-height: 20px;
+	color: #303941;
+}
+
+.edit-course .right-content h4 .lead{
+	font-size: 13px;
+	font-weight: normal;
+	color: #798794;
+	display: block;
+}
+
+.edit-course .right-content ul{
+	margin: 0;
+	padding: 0;
+}
+
+.edit-course .right-content ul li{
+	font-size: 13px;
+	color: #303941;
+	padding-left: 20px;
+	margin: 10px 0;
+}
+
+.edit-course .right-content .file-details{
+	background: #e8eced;
+	text-align: center;
+	padding: 40px 0;
+}
+
+.edit-course .right-content .file-details p{
+	color: #798794;
+	margin: 0;
+	line-height: 18px;
+}
+
+.edit-course .right-content .file-details .default-button{
+	margin-top: 20px;
+	font-weight: 600;
+	color: #798794;
+}
+
+.next-step-button{
+	text-align: center;
+	margin-top: 80px;
+}
+
+.next-step-button button{
+	display: block;
+	width: 100%;
+}
+
+.category-row{
+	position: relative;
+}
+
+.category-row .edit-button{
+	position: absolute;
+	top: 0;
+	right: 2%;
+	font-size: 13px;
+	color: #798794;
+}
+
+.approval-box{
+	padding: 20px 30px;
+	display: block;
+	background: #f7f9fa;
+	margin-bottom: 60px;
+}
+
+.approval-box .not-approved{
+	color: #303941;
+	margin: 0 0 12px;
+}
+
+.approval-box .regular-paragraph{
+	color: #a7aaad !important;
+	margin: 0 !important;
+}
+
+.editor-settings-layout h4{
+	margin: 9px 0 !important;
+}
+
+.editor-settings-layout .clue-text{
+	color: #798794;
+	margin: 5px 0;
+	font-style: italic;
+}
+
+.editor-settings-layout select,
+.editor-settings-layout input{
+	margin: 0;
+}
+
+/*Components*/
+.toggle-switch{
+	border-radius: 4px;
+	border: solid 1px #119bf8;
+	overflow: hidden;
+	display: inline-block;
+}
+
+.toggle-switch .toggle-button{
+	font-size: 14px;
+	padding: 11px 20px;
+	background: none;
+	color: #7e8e9e;
+	outline: none;
+	margin: 0;
+	border: none;
+	float: left;
+	text-transform: capitalize;
+}
+
+.toggle-switch .active-toggle-button,
+.toggle-switch .toggle-button:focus,
+.toggle-switch .toggle-button:active{
+	background: #119bf8;
+	color: #fff;
+	outline: none;
+}
+
+.toggle-switch .toggle-button + .toggle-button{
+	border-left: solid 1px #119bf8;
+}
 /************** Create a Course***********/
 .create-course h1{
 	color: #0099ff;
@@ -5587,7 +5985,7 @@ a.load-remote > *{
 	padding-bottom: 100px;
 }
 
-#course-edit .ui-select,
+#course-edit px .ui-select,
 #step2 div.ui-select,
 #step1 > div{
 	width: 312px;
@@ -5740,11 +6138,11 @@ select::-ms-expand {
 	background: #05a5f4 !important;
 }
 
-.what-you-will-achieve,
+/*.what-you-will-achieve,
 .who-its-for{
 	width: 484px;
 	margin: 80px auto 0;
-}
+}*/
 
 .what-you-will-achieve > div,
 .who-its-for > div{
@@ -5763,7 +6161,7 @@ select::-ms-expand {
 	line-height: 20px;
 	text-align: center;
 	position: absolute;
-	top: 11px;
+	top: 10px;
 	left: 10px;
 	z-index: 1;
 	font-size: 12px;
@@ -5792,7 +6190,7 @@ select::-ms-expand {
 	background-position: -8px -214px;
 }
 
-.what-you-will-achieve input,
+/*.what-you-will-achieve input,
 .who-its-for input{
 	width: 482px;
 	height: 40px;
@@ -7264,7 +7662,8 @@ select option.suspended{
    color: #a7b7c4;
 }
 
-#course-edit #edit-course-form #top-form div textarea:-moz-placeholder ,
+#course-edit #edit-course-form #top-form div textarea:-moz-placeholde
+r ,
 #course-edit .payment-section input[type='text']:-moz-placeholder ,
 #course-edit #edit-course-form #top-form div input[type='text']:-moz-placeholder {
 	color: #a7b7c4;
@@ -8678,6 +9077,128 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 /*.plan-your-curriculum .lesson-options .video div[id*='video-player-container']{
 	display: none;
 }*/
+
+/*************** My Courses **********************/
+.mycourses-wrapper{
+	height: 100%;
+	background: #e8eced;
+}
+
+.mycourses-header{
+	background: #fff;
+	border-bottom: solid 1px #cdd1d3;
+}
+
+.mycourses-header h1{
+	color: #303941;
+	margin: 0 9.5% 0 0;
+	float: left;
+	padding: 27px 0 27px;
+}
+
+.header-tabs{
+	float: left;
+	display: inline-block;
+	padding: 33px 14px 31px;
+	color: #8594a3;
+	margin-right: 3.5%;
+}
+
+.header-tabs.active{
+	font-weight: 600;
+	color: #0099ff;
+	border-bottom: solid 1px #0099ff;
+}
+
+.mycourses-header .blue-button{
+	margin: 20px 0;
+}
+
+.mycourses-main{
+	padding-top: 30px;
+}
+
+.mycourses-thumb{
+	width: 166px;
+	height: 90px;
+	border: solid 1px #68b5e7;
+}
+
+.mycourses-thumb img{
+	height: 100%;
+	width: 100%;
+}
+
+.mycourse-card{
+	border-radius: 5px;
+	overflow: hidden;
+	margin-top: 20px;
+	border-right: solid 1px #dde1e2;
+	border-left: solid 1px #dde1e2;
+	border-bottom: solid 1px #c9cdcd;
+}
+
+.mycourse-card-main{
+	background: #fff;
+	padding: 20px 5px;	
+}
+
+.mycourse-card-main h3{
+	color: #2e3b4e;
+	margin: 6px 0;
+}
+
+.mycourse-card-main p{
+	color: #a7b7c4;
+	font-weight: 600;
+	margin: 10px 0 0;
+}
+
+.mycourse-card-main p .student-count{
+	padding-left: 20px;
+}
+
+.mycourse-card-main p .discussion-count{
+	padding-left: 20px;
+	color: #0099ff;
+}
+
+.mycourse-card-main .transparent-button{
+	color: #0099ff;
+	display: inline-block;
+	padding-left: 25px;
+	font-size: 14px;
+	font-weight: 600;
+	float: right;
+}
+
+.mycourse-card-footer{
+	background: #f7f9fa;
+	padding: 12px 5px 10px;
+	border-top: solid 1px #e8eced;
+}
+
+.mycourse-card-footer .date-created{
+	color: #a7b7c4;
+	padding: 10px 0;
+	margin: 0;
+}
+
+.mycourse-card-footer .default-button{
+	float: right;
+	margin-left: 13px;
+}
+
+.mycourse-card-footer .default-button.published{
+	color: #00a651;
+	border: solid 1px #00a651;
+}
+
+.mycourse-card-footer .default-button.submitted{
+	color: #0099ff;
+	border: solid 1px #0099ff;
+}
+
 /************* Instructors - My courses ******************/
 
 .instructor-mycourses h1{
@@ -9680,6 +10201,16 @@ header .top-menu li{
 	margin-top: 20px !important;
 }
 
+.margin-top-30
+{
+	margin-top: 30px !important;
+}
+
+.margin-top-40
+{
+	margin-top: 40px !important;
+}
+
 .margin-bottom-10
 {
 	margin-bottom: 10px;
@@ -9690,9 +10221,9 @@ header .top-menu li{
 	margin-bottom: 15px;
 }
 
-.margin-bottom-20
+.margin-bottom-30
 {
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 }
 
 .bolded, .bolded > *{
@@ -9701,4 +10232,16 @@ header .top-menu li{
 
 .gray{
     color: #cccccc;
+}
+
+.relative{
+	position: relative;
+}
+
+.semibold-text{
+	font-weight: 600;
+}
+
+.bold-text{
+	font-weight: bold;
 }

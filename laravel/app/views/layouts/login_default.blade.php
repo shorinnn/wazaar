@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
     <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{{url('style.css')}}">
+    <link rel="stylesheet" href="{{url('css/style.css')}}">
     <link rel="stylesheet" href="{{url('css/video-player.css')}}">
     <link rel="stylesheet" href="{{url('css/dashboard.css')}}">
     <link rel="stylesheet" href="{{url('css/generic.css')}}">

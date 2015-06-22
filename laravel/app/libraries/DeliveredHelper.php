@@ -161,6 +161,16 @@ class DeliveredHelper
         $call = $this->_call('lists',compact('groupName', 'groupDescription'));
         return $call;
     }
+    
+    /**
+     * Get all lists associated to the client
+     * @return mixed|null
+     */
+    public function getLists()
+    {
+        $call = $this->_call('lists',[],'get');
+        return $call;
+    }
 
     /**
      * Assign a set of users(ID) or a user to a list
@@ -206,7 +216,6 @@ class DeliveredHelper
             case 'put'  : $request = $curl->put($url, $params);break;
             case 'delete' : $request = $curl->delete($url);break;
         }
-        
         if ($request){
             return json_decode($request->body,true);
         }

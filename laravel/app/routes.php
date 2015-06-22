@@ -25,7 +25,7 @@ Route::resource('lp', 'LpController');
 Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
-
+	
     
     Route::get('/dash', 'SiteController@dashboard');
 
@@ -38,6 +38,9 @@ Route::group( array('domain' =>  $domain), function(){
     Route::get('affiliatedash', 'SiteController@affiliatedash');
     Route::get('classroomdash', 'SiteController@classroomdash');
     Route::get('classroom', 'SiteController@classroom');
+	Route::get('courses/edit/step_1', 'SiteController@edit_description');
+	Route::get('courses/edit/step_3', 'SiteController@edit_settings');
+
     // temporary tracking route
     Route::post('action-tracker', 'ActionController@track');
 
@@ -237,7 +240,7 @@ Route::group( array('domain' => $domain ), function(){
 });
 
 
-Route::group( array('domain' => $affiliateSubdomain ), function(){
+Route::group( array('domain' => $affiliateSubdomain ), function(){    
     Route::group(['prefix' => 'dashboard'], function (){
         Route::get('/','AffiliateDashboardController@index');
         Route::get('topcourses/{frequency}/{courseId?}', 'AffiliateDashboardController@topCoursesView');

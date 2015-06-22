@@ -308,3 +308,19 @@ function instructorReplied(result, event){
 function courseSettings(){
     $('[href="#course-edit"]').click();
 }
+
+function adjustPrice(e){
+    val = parseInt(e.val());
+    if( val!=0 ){
+        val = ( e.val() >= 500 )? e.val() : 500;
+    }
+    e.val( round2( val, 100 ) ) ;
+}
+
+function adjustDiscount(e){
+    val = parseInt(e.val());
+    kind = e.attr('data-saleType');
+    kind = $("[name='"+kind+"']").val();
+    if(kind=='amount' && val>0) val =  round2( val, 100 );
+    e.val( val );
+}

@@ -77,6 +77,7 @@ function getErrors(){
         <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/lp';?>"  >
 <div style="display: none;">
 <input type='hidden' name='stpi' value='<?php echo @$_GET['stpi'];?>' />
+<input type='hidden' name='lp-val' value='LP1' />
 <input type="hidden" name="meta_web_form_id" value="2051478497" />
 <input type="hidden" name="meta_split_id" value="" />
 <input type="hidden" name="listname" value="awlist3910087" />
@@ -175,6 +176,7 @@ Wazaarのミッションになります。
         <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/lp';?>"  >
 <div style="display: none;">
 <input type='hidden' name='stpi' value='<?php echo @$_GET['stpi'];?>' />
+<input type='hidden' name='lp-val' value='LP1' />
 <input type="hidden" name="meta_web_form_id" value="2051478497" />
 <input type="hidden" name="meta_split_id" value="" />
 <input type="hidden" name="listname" value="awlist3910087" />
