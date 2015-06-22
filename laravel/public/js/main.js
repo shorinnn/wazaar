@@ -422,14 +422,14 @@ function loadRemoteCache(e){
     gif = '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader-2.gif" />';
     customGif = $(e.target).attr('data-gif');
     if( typeof(customGif)!= 'undefined' ){
-        gif = customGif;
+        gif = '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/'+customGif+'" />';
     }
-    var loadingGif = $(target).html( _('') + gif).css({
+    var loadingGif = $(target).html( gif ).css({
 	textAlign: 'center',
 	marginBottom: 0,
 	marginTop: 0
 	});
-	
+
     $(target).load(url, function(){
         elem.attr('data-loaded','1');
         elem.addClass('dataLoaded');

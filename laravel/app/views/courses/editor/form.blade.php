@@ -51,13 +51,13 @@
         	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             	<a href="#" class="header-tabs regular-paragraph active load-remote-cache" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
                    data-url="{{ action('CoursesController@edit', $course->slug)}}/1" data-target='.course-ajax-holder .step1' data-steps-remaining='2 steps'
-                   data-loaded='1' >{{ trans('courses/general.course_description') }}</a>
+                   data-loaded='1' data-gif='ajax-loader-3.gif' >{{ trans('courses/general.course_description') }}</a>
             	<a href="#" class="header-tabs regular-paragraph load-remote-cache" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
                    data-url="{{ action('CoursesController@edit', $course->slug)}}/2" data-target='.course-ajax-holder .step2'  data-steps-remaining='1 step'
-                   >{{ trans('courses/general.curriculum') }}</a>
+                   data-gif='ajax-loader-3.gif' >{{ trans('courses/general.curriculum') }}</a>
             	<a href="#" class="header-tabs regular-paragraph load-remote-cache" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
-                   data-url="{{ action('CoursesController@edit', $course->slug)}}/3" data-target='.course-ajax-holder .step3'  data-steps-remaining='0'
-                   >{{ trans('courses/general.settings') }}</a>
+                   data-url="{{ action('CoursesController@edit', $course->slug)}}/3" data-target='.course-ajax-holder ._step3'  data-steps-remaining='0'
+                   data-gif='ajax-loader-3.gif' >{{ trans('courses/general.settings') }}</a>
                 
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -76,7 +76,7 @@
                         ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates')) }}
             </div>
             <div class='step2'></div>
-            <div class='step3'></div>
+            <div class='_step3'></div>
         </div>
     </section>
 </div>
