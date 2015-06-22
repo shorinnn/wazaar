@@ -1513,6 +1513,16 @@ header .activate-dropdown:hover ul{
 	left: 0;
 }
 
+.background-image-overlay{
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: rgba(24, 34, 43, 0.9);
+}
+
 .user-data-modal-wrapper .form-group{
 	margin-bottom: 12px;
 	position: relative;

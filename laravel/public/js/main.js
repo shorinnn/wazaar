@@ -43,6 +43,7 @@ $(document).ready(function(){
 	searchFormFocusStyle();
 	showMoreContent();
 	stickyFooter();
+	rescaleBckgrdOverlay();
 });
 
 function videoGridBoxIn(){
@@ -1174,6 +1175,13 @@ function stickyFooter(){
 	else if(vwptHeight <= bodyHeight){
 	  $("footer").css("position","relative");
 	}
+}
+
+function rescaleBckgrdOverlay(){
+	var bckgrdImageHeight = $('#user-data-bckgrd-img').css('height');
+	var bckgrdImageWidth  = $('#user-data-bckgrd-img').css('width');
+	$('.background-image-overlay').css('height', bckgrdImageHeight); 	
+	$('.background-image-overlay').css('width', bckgrdImageWidth);	
 }
 
 function round2(number, roundTo){
