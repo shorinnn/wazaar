@@ -6124,11 +6124,14 @@ select::-ms-expand {
 	/*margin-top: 50px;*/
 }
 
+.step3{
+	text-align: left !important;
+}
+
 #step3 .course-level{
 	width: 383px;
 	margin: 0 auto;
 	display: block;
-	text-align: center;
 }
 .errorBlock{
 	margin: 8px 0;
