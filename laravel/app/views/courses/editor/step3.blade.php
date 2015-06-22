@@ -12,25 +12,27 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">Enable Ask Coach</h4>
+            <h4 class="text-right">{{ trans('courses/curriculum.enable-ask-coach') }} </h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="toggle-switch">
                 <label class="toggle-button
                        @if($course->ask_teacher=='enabled') active @endif" for="ask-enabled">
                     {{ Form::radio('ask_teacher', 'enabled', ($course->ask_teacher=='enabled'), ['id'=>'ask-enabled'] ) }}
-                    Yes
+                    {{trans('courses/curriculum.yes')}}
                 </label>
                 <label class="toggle-button
                        @if($course->ask_teacher=='disabled') active @endif" for="ask-disabled">
                     {{ Form::radio('ask_teacher', 'disabled', ($course->ask_teacher=='disabled'), ['id'=>'ask-disabled'] ) }}
-                    No
+                    {{trans('courses/curriculum.no')}}
                 </label>
 <!--                <button name="yes" class="toggle-button">Yes</button>
                 <button name="no" class="toggle-button">No</button>-->
             </div>
         </div>
     </div>
+       <?php
+       /** TEMPORARILY HIDE PAYMENT TYPE AS IT'S NOT REQUIRED 
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <h4 class="text-right">Payment type</h4>
@@ -41,9 +43,11 @@
             <span class="regular-paragraph clue-text">How users will pay for a course. </span>
         </div>
     </div>
+        * 
+        */?>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">Difficulty</h4>
+            <h4 class="text-right">{{ trans('courses/general.difficulty') }}</h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="course-level toggle-switch btn-group clearfix">
@@ -66,7 +70,7 @@
     
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">Price</h4>
+            <h4 class="text-right">{{ trans('courses/general.price') }}</h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="value-unit">
@@ -79,7 +83,7 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">Affiliate percentage</h4>
+            <h4 class="text-right">{{ trans('courses/general.affiliate_percentage') }} </h4>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
             <div class="value-unit">
@@ -96,7 +100,7 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-        <h4 class="text-right">Discount</h4>
+        <h4 class="text-right">{{ trans('courses/general.discount') }} </h4>
     </div>
     <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" id="discount">
         {{ Form::text('sale', money_val($course->sale),
@@ -149,7 +153,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <p class="regular-paragraph">Category</p>
+                    <p class="regular-paragraph">{{ trans('courses/general.category') }}</p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text">
@@ -160,7 +164,7 @@
             </div>
             <div class="row">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <p class="regular-paragraph">Sub-category</p>
+                    <p class="regular-paragraph">{{ trans('courses/general.subcategory') }}</p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text">
@@ -171,7 +175,7 @@
             </div>
             <div class="row">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <p class="regular-paragraph">Price: </p>
+                    <p class="regular-paragraph">{{ trans('courses/general.price') }}: </p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text">
@@ -245,7 +249,7 @@
     </div>
     <div class="row next-step-button">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button class="blue-button extra-large-button">SUBMIT FOR APPROVAL</button>
+            <button class="blue-button extra-large-button">{{ trans('courses/statuses.submit-for-approval')}}</button>
         </div>
     </div>
 </div>

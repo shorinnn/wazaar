@@ -12,7 +12,7 @@ return array(
     'select-from-existing' => '月Select From Existingせplease provide more context.An existing file?',
     'max-file-size' => 'ファイルサイズの上限',
     'payment-type' => '支払方法',
-    'enable-ask-coach' => '月Enable Ask CoachせPlease provide more context',
+    'enable-ask-coach' => 'Enable Ask Coach',
     'course-owner-instructor' => '月Course Owner Instructorせplease provide more context',
     'assigned-instructor' => '月Assigned Instructorせplease provide more context',
     'default-instructor-bio' => '講師の基本プロフィール',
