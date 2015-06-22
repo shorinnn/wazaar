@@ -25,7 +25,7 @@ Route::resource('lp', 'LpController');
 Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
-
+	
     
     Route::get('/dash', 'SiteController@dashboard');
 
@@ -38,6 +38,9 @@ Route::group( array('domain' =>  $domain), function(){
     Route::get('affiliatedash', 'SiteController@affiliatedash');
     Route::get('classroomdash', 'SiteController@classroomdash');
     Route::get('classroom', 'SiteController@classroom');
+	Route::get('courses/create/step_1', 'SiteController@create_course');
+	Route::get('courses/create/step_3', 'SiteController@edit_course');
+
     // temporary tracking route
     Route::post('action-tracker', 'ActionController@track');
 

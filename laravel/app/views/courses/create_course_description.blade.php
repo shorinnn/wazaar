@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')	
-<div class="course-editor">
-	<section class="container-fluid create-course-description-header">
+<div class="edit-course">
+	<section class="container-fluid header">
     	<div class="row">
         	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             	<h1>Edit: course name</h1>
@@ -19,24 +19,25 @@
                 
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<div class="right">
-                	<p class="regular-paragraph">
+            	<div class="right steps-remaining">
+                	<p class="regular-paragraph no-margin">
                     	Complete <span>2 steps</span> to submit course 
                     </p>
                 </div>
             </div>
         </div>
     </section>
-    <section class="container create-course-description-main">
-    	<form>
+     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'id' =>'create-form',
+     'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'formSaved'])}}
+    <section class="container main">
     	<div class="row">
         	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
             	<div class="row">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <p class="intro-paragraph">Fill in the details which will be seen on public course page. Keep it clean and informative.</p>
+                        <p class="intro-paragraph">{{ trans('courses/general.details_for_public_course_page') }}</p>
                         <h4>
-                        Short description
-                        <span class="lead">Will be used for listings description and introduction.</span>
+                        {{ trans('courses/general.short_description') }}
+                        <span class="lead">{{ trans('courses/general.used_on_listings_description') }}</span>
                         </h4>
                         <textarea>
                         
@@ -46,76 +47,77 @@
                 <div class="row">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <h4>
-                        Full description
-                        <span class="lead">Will be used on course description page.</span>
+                        {{ trans('courses/general.full_description') }}
+                        <span class="lead">{{ trans('courses/general.used_on_description_page') }}</span>
                         </h4>
                         <textarea>
                         
                         </textarea>                    
                     </div>
                 </div>
+                {{ Form::close() }}
+                
+                <form method='post' class='ajax-form' id="create-form" data-callback='followRedirect' 
+                                  action='{{action('CoursesController@store')}}' data-parsley-validate>
                 <div class="row">
-                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h4>Requirements
-                        	<span class="leas">What user need to know in order to complete course.</span>
+                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 who-its-for">
+                        <h4>{{ trans('courses/create.course-requirements') }}
+                        	<span class="lead">{{ trans('courses/create.what-users-should-know') }}</span>
                         </h4>
                         <div class="relative">
-                        	<input type="text" name="requirement-1" placeholder="List item 1">
-                            <span class="remove-input"></span>
+                        	<input type='text' name='requirements[]' data-clonable-max='5' class="clonable" required />  
+                            <span>1</span>                      	
                         </div>
-                        <div class="relative">
-                        	<input type="text" name="requirement-2" placeholder="List item 2">
-                            <span class="remove-input"></span>
-                        </div>
-                        <a href="#" class="transparent-button add-input">add</a>
                     </div>
                 </div>
                 <div class="row">
-                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h4>Who is this for?
-                        	<span class="lead">Who may get the best benefit from your course?</span>
+                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 who-its-for">
+                        <h4>{{ trans('courses/general.who_is_this_for') }}
+                        	<span class="lead">{{ trans('courses/general.who-benefits-most') }}</span>
                         </h4>
                         <div class="relative">
-                        	<input type="text" name="requirement-1" placeholder="List item 1">
-                            <span class="remove-input"></span>
+                        	<input type='text' name='who_is_this_for[]'  class="clonable" required />
+                            <span>1</span>
                         </div>
-                        <div class="relative">
-                        	<input type="text" name="requirement-2" placeholder="List item 2">
-                            <span class="remove-input"></span>
-                        </div>
-                        <a href="#" class="transparent-button add-input">add</a>
                     </div>
                 </div>
                 <div class="row">
-                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 what-you-will-achieve">
                         <h4>
-                        	By the end of course you will be able to...
-                            <span class="lead">What skills will student learn after a course?</span>
+                        	{{ trans('courses/general.by_the_end') }}
+                            <span class="lead">{{ trans('courses/general.skills_to_be_learnt') }}</span>
                         </h4>
                         <div class="relative">
-                        	<input type="text" name="requirement-1" placeholder="List item 1">
-                            <span class="remove-input"></span>
+                        	<input type='text' name='what_will_you_achieve[]' class="clonable" required />
+                            <span>1</span>
                         </div>
-                        <div class="relative">
-                        	<input type="text" name="requirement-2" placeholder="List item 2">
-                            <span class="remove-input"></span>
-                        </div>
-                        <a href="#" class="transparent-button add-input">add</a>
+                        <!--<a href="#" class="transparent-button add-input">add</a>-->
                     </div>
                 </div>
             </div>
         	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 right-content">
             	<div class="row category-row">
-                	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    	<p class="regular-paragraph">Category</p>
-                    	<p class="regular-paragraph">Sub-category</p>
+                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    	<div class="row">
+                        	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            	<p class="regular-paragraph">Category</p>
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                            	<p class="regular-paragraph semibold-text">IT & WEB</p>
+                            </div>
+                        </div>
+                    	<div class="row">
+                        	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            	<p class="regular-paragraph">Sub-category</p>
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                            	<p class="regular-paragraph semibold-text">Websites</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    	<p class="regular-paragraph semibold-text">IT & WEB</p>
-                    	<p class="regular-paragraph semibold-text">Websites</p>
-                    </div>
+                    <a href="#" class="edit-button">Edit</a>
                 </div>
-                <div class="row upload-box listing-image">
+                <div class="row margin-top-40 listing-image">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<h4>
                         Listing image (thumbnail)
@@ -128,7 +130,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row upload-box listing-video">
+                <div class="row margin-top-40 listing-video">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<h4>
                         	Introduction video
@@ -148,7 +150,7 @@
                 </div>
             </div>
         </div>
-        </form>
     </section>
+    </form>
 </div>
 @stop
