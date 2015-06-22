@@ -16,6 +16,8 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 right-content">
+                {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
+                'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'saveAndNextTab']) }}
             	<h2>{{ trans('courses/general.course_summary') }}</h2>
             	<div class="row category-row">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -24,26 +26,31 @@
                             	<p class="regular-paragraph">{{ trans('courses/general.category') }}</p>
                             </div>
                             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                            	<p class="regular-paragraph semibold-text">IT & WEB</p>
+                            	<p class="regular-paragraph semibold-text">
+                                    {{ Form::select('course_category_id', $categories, $course->course_category_id, ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id_2', 
+                                    'data-url'=> action('CoursesCategoriesController@subcategories_instructor'), 'required', 'class'=>'']) }}
+                                </p>
                             </div>
                         </div>
                     	<div class="row">
                         	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            	<p class="regular-paragraph">Sub-{{ trans('courses/general.subcategory') }}</p>
+                            	<p class="regular-paragraph">{{ trans('courses/general.subcategory') }}</p>
                             </div>
                             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                            	<p class="regular-paragraph semibold-text">Websites</p>
+                            	<p class="regular-paragraph semibold-text">
+                                {{ Form::select('course_subcategory_id', $subcategories, $course->course_subcategory_id,
+                                    ['id'=>'course_subcategory_id_2', 'class'=>'']) }}
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="edit-button">Edit</a>
+                    <!--<a href="#" class="edit-button">Edit</a>-->
                 </div>
 				<div class="row margin-top-40">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<h4>Description:</h4>
                         <p class="regular-paragraph text-left">
-                        Did you know that if you upload a test video you are over 3 times as likely to have your course published and 
-                        featured on Udemy? Upload a short, ~1 ...minute long video and upload it to the test video tool by following 
+                             {{ strip_tags($course->description) }}
                         </p>
                     </div>
                 </div>
@@ -51,9 +58,11 @@
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<h4>What is this for:</h4>
                         <ul>
-                        	<li>Did you know that </li>
-                        	<li>If you upload a test video </li>
-                        	<li>You are over 3 times as likely to have your course published and featured on </li>
+                        	@if($values = json2Array($course->who_is_this_for))
+                                    @foreach($values as $val)
+                                        <li>{{$val}}</li>
+                                    @endforeach
+                                @endif
                         </ul>
                     </div>
                	</div>
@@ -61,9 +70,11 @@
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<h4>Requirements:</h4>
                         <ul>
-                        	<li>Did you know that </li>
-                        	<li>If you upload a test video </li>
-                        	<li>You are over 3 times as likely to have your course published and featured on </li>
+                        	@if($values = json2Array($course->requirements))
+                                    @foreach($values as $val)
+                                        <li>{{$val}}</li>
+                                    @endforeach
+                                @endif
                         </ul>
                     </div>
                	</div>
@@ -71,9 +82,11 @@
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<h4>At the end of course you will be able:</h4>
                         <ul>
-                        	<li>Did you know that </li>
-                        	<li>If you upload a test video </li>
-                        	<li>You are over 3 times as likely to have your course published and featured on </li>
+                        	@if($values = json2Array($course->what_will_you_achieve))
+                                    @foreach($values as $val)
+                                        <li>{{$val}}</li>
+                                    @endforeach
+                                @endif
                         </ul>
                     </div>
                	</div>
@@ -82,6 +95,7 @@
                     	<button class="blue-button extra-large-button">NEXT STEP</button>
                     </div>
                 </div>
+                {{ Form::close() }}
             </div>
 
 

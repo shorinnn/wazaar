@@ -13,7 +13,7 @@
                         <div class="radio-buttons clearfix">
 
                                 @foreach($images as $img)
-                                    {{ View::make('courses.preview_image')->with(compact('img')) }}
+                                    {{ View::make('courses.preview_image')->with(compact('img', 'course')) }}
                                 @endforeach
 
                         </div>
