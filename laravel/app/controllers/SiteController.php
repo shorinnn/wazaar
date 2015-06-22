@@ -25,12 +25,12 @@ class SiteController extends \BaseController {
             return View::make('site.dashboard')->with( compact('student', 'transactions') );
 	}
 
-	public function create_course()
+	public function edit_description()
 	{                 
-            return View::make('courses.create_course_description');
+            return View::make('courses.edit_course_description');
 	}
 
-	public function edit_course()
+	public function edit_settings()
 	{                 
             return View::make('courses.edit_course_settings');
 	}

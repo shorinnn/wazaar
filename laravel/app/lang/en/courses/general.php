@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    'steps' => 'steps',
     'sale' => 'SALE',
     'more' => 'More',
     'new' => 'NEW',
@@ -31,6 +32,8 @@ return array(
     'all_my_courses' => "Back to all my courses",
     'privacy_status' => "Privacy Status",
     'category' => "Category",
+    'settings' => "Settings",
+    'complete' => "Complete",
     'subcategory' => "Subcategory",
     'difficulty' => "Difficulty",
     'preview_image' => "Preview Image",
@@ -38,6 +41,8 @@ return array(
     'details_page_banner_image' => "Details Page Banner Image",
     'course_description_video_image' => "Course Description Video Image",
     'who_is_this_for' => "Who Is This For",
+    'to_submit_course' => "to submit course",
+    'submit_for_approval' => "Submit for approval",
     'what_will_you_achieve' => "What you will achieve at the end of the course ",
     'price' => "Price",
     'affiliate_percentage' => "Affiliate Percentage",
@@ -56,6 +61,7 @@ return array(
     'skills_to_be_learnt' => 'What skills will student learn after a course?',
     'short_description' => 'Short description',
     'full_description' => 'Full description',
+    'course_description' => 'Course description',
 	'details_for_public_course_page' => 'Fill in the details which will be seen on public course page. Keep it clean and informative.',
     'used_on_description_page' => 'Will be used on course description page.',
     'used_on_listings_description' => 'Will be used for listings description and introduction.',
@@ -109,6 +115,7 @@ return array(
     'comments-posted' => 'Comments Posted',
     'about-course' => 'About Course',
     'next-step' => 'Next Step',
+    'preview_course' => 'Preview course',
     'course-description-preview' => 'Course Description Preview',
     'sale-end-must-occur-after-start' => 'Sale End must occur after Sale Start',
     'course-must-be-free-or-500' => 'Course price must be 0 or minimum of 500',

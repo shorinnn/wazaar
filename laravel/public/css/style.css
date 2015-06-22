@@ -1758,8 +1758,13 @@ header .activate-dropdown:hover ul{
 
 .disabled-button{
 	background: #b2e0ff;
+	cursor: not-allowed;
 }
-	
+
+.disabled-button:hover{
+	background: #b2e0ff;
+}
+
 .form-container input:-moz-placeholder,
 .form-container input::-moz-placeholder,
 .form-container input:-ms-input-placeholder,

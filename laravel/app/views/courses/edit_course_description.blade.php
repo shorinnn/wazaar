@@ -4,24 +4,27 @@
 	<section class="container-fluid header">
     	<div class="row">
         	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<h1>Edit: course name</h1>
+            	<h1>{{ trans('courses/general.edit') }}: Course name</h1>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<a href="#" class="blue-button large-button disabled-button right">Submit for approval</a>
-                <a href="#" class="default-button large-button right">Preview course</a>
+            	<a href="#" class="blue-button large-button disabled-button right">{{ trans('courses/general.submit_for_approval') }}</a>
+                <a href="#" class="default-button large-button right">
+                	{{ trans('courses/general.preview_course') }}
+            	</a>
+
             </div>
         </div>
         <div class="row">
         	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<a href="#" class="header-tabs regular-paragraph active">Course description</a>
-            	<a href="#" class="header-tabs regular-paragraph">Curriculum</a>
-            	<a href="#" class="header-tabs regular-paragraph">Settings</a>
+            	<a href="#" class="header-tabs regular-paragraph active">{{ trans('courses/general.course_description') }}</a>
+            	<a href="#" class="header-tabs regular-paragraph">{{ trans('courses/general.curriculum') }}</a>
+            	<a href="#" class="header-tabs regular-paragraph">{{ trans('courses/general.settings') }}</a>
                 
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             	<div class="right steps-remaining">
                 	<p class="regular-paragraph no-margin">
-                    	Complete <span>2 steps</span> to submit course 
+                    	{{ trans('courses/general.complete') }} <span>2 {{ trans('courses/general.steps') }}</span> {{ trans('courses/general.to_submit_course') }}
                     </p>
                 </div>
             </div>

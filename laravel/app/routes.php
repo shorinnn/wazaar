@@ -38,8 +38,8 @@ Route::group( array('domain' =>  $domain), function(){
     Route::get('affiliatedash', 'SiteController@affiliatedash');
     Route::get('classroomdash', 'SiteController@classroomdash');
     Route::get('classroom', 'SiteController@classroom');
-	Route::get('courses/create/step_1', 'SiteController@create_course');
-	Route::get('courses/create/step_3', 'SiteController@edit_course');
+	Route::get('courses/edit/step_1', 'SiteController@edit_description');
+	Route::get('courses/edit/step_3', 'SiteController@edit_settings');
 
     // temporary tracking route
     Route::post('action-tracker', 'ActionController@track');
