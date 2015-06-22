@@ -1,10 +1,15 @@
-<h1>{{ Lang::get('confide::confide.email.account_confirmation.subject') }}</h1>
+<p>こんにちは </p>
 
-<p>{{ Lang::get('confide::confide.email.account_confirmation.greetings', array('name' => $user['email'])) }},</p>
+<p>Wazaarへようこそ！</p>
 
-<p>{{ Lang::get('confide::confide.email.account_confirmation.body') }}</p>
+<p>メールアドレスの確認のために、<br />
+下記のリンクをクリックしてください。<br />
+
 <a href='{{{ action("UsersController@confirm", $user['confirmation_code']) }}}'>
     {{{ action("UsersController@confirm", $user['confirmation_code']) }}}
 </a>
+</p>
 
-<p>{{ Lang::get('confide::confide.email.account_confirmation.farewell') }}</p>
+<p>今後ともよろしくお願い致します。</p>
+<p>ワザール　日本法人代表</p>
+<p>峯山</p>

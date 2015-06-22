@@ -56,6 +56,17 @@ class UserRepository
             if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ) $user = $this->attachRoles($user, 2);
             $this->save_ltc($user, $ltc_cookie);
             
+            if($registersAsST!=null){// create profile
+                $name = explode( ' ', Input::get('name') );
+                $profile = new Profile;
+                $profile->owner_id = $user->id; 
+                $profile->owner_type = 'Instructor'; 
+                $profile->first_name = @$name[1];
+                $profile->last_name = @$name[0];
+                $profile->email = $user->email;
+                $profile->save();
+            }
+            
             // add user to DELIVERED
 //            $delivered = new DeliveredHelper();
 //            $response = $delivered->addUser( str_random(4), str_random(5), $user->email );

@@ -33,14 +33,14 @@
                                        value="{{ Config::get('app.url') }}/lp1/index.php?stpi={{ Auth::user()->id }}">
                                    @endif
                                    
-                                   <div class='tooltipable pull-right' title='Copy To Clipboard'>
+                                   <div class='tooltipable pull-right' title='{{ trans('general.copy-to-clipboard') }}'>
                                             @if(Auth::user()->sti_approved=='no') 
                                                 <button class="blue-button large-button" disabled>
                                             @else
                                                 <button class="blue-button large-button clipboardable" 
                                                         data-clipboard-text="{{ Config::get('app.url') }}/lp1/index.php?stpi={{ Auth::user()->id }}">
                                             @endif
-                                           COPY</button>
+                                           {{ trans('general.COPY') }}</button>
                                             <br style='clearfix' />
                                     </div>
                                     
@@ -54,14 +54,14 @@
                                        value="{{ Config::get('app.url') }}/lp2/index.php?stpi={{ Auth::user()->id }}">
                                    @endif
                                    
-                                   <div class='tooltipable pull-right' title='Copy To Clipboard'>
+                                   <div class='tooltipable pull-right' title='{{ trans('general.copy-to-clipboard') }}'>
                                         @if(Auth::user()->sti_approved=='no') 
                                             <button class="blue-button large-button" disabled>
                                         @else
                                             <button class="blue-button large-button clipboardable" 
                                                     data-clipboard-text="{{ Config::get('app.url') }}/lp2/index.php?stpi={{ Auth::user()->id }}">
                                         @endif
-                                       COPY</button>
+                                       {{ trans('general.COPY') }}</button>
                                     </div>
                     </div>
                 @else

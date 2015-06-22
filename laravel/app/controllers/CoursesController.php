@@ -16,7 +16,7 @@ class CoursesController extends \BaseController {
         public function create(){
             $course = new Course;
             $difficulties = CourseDifficulty::lists('name', 'id');
-            $categories = ['' => trans('general.select')] + CourseCategory::lists('name', 'id');
+            $categories = ['' => trans('courses/create.choose-category') ] + CourseCategory::lists('name', 'id');
             $subcategories = CourseSubcategory::arrayWithParent();
             $instructor = Instructor::find(Auth::user()->id);
             $images = $instructor->coursePreviewImages;
@@ -32,13 +32,17 @@ class CoursesController extends \BaseController {
             $course->instructor_id = Auth::user()->id;
             $course->name = Input::get('name');
             $course->slug = Str::slug(Input::get('name'));
+            $course->course_category_id = Input::get('course_category_id');
+            $course->course_subcategory_id = Input::get('course_subcategory_id');
             if($course->save()){
                 // notify followers
 //                Instructor::find( Auth::user()->id )->notifyFollowers( $course );
                 
                 if(Request::ajax()){
 //                    dd($course);
-                    return $this->update( $course->slug );
+                    $response = ['status' => 'success', 'url' => action('CoursesController@edit', $course->slug) ];
+                    return json_encode($response);
+//                    return $this->update( $course->slug );
 //                    $response = ['status' => 'success', 'url' => 'http://google.ro' ];
 //                    return json_encode($response);
 //                    

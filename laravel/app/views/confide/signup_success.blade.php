@@ -36,7 +36,7 @@
                     <div>
                         @if( Auth::user()->is_second_tier_instructor=='yes' )
                             <h3>{{ trans('acl.invite-publishers') }}</h3>
-                            <p>Get personal sharable link</p>    
+                            <!--<p>Get personal sharable link</p>-->
                         @else
                             <h3>Start</h3>
                             <p>Browsing Courses</p>    
