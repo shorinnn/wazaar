@@ -360,7 +360,7 @@
                                         $('#course-video-anchor').attr('data-video-url',$video.formats[0].video_url);
                                         $('#course-video-anchor').html($video.original_filename);
                                         $('.course-description-video-preview').html("<img src='" +  $video.formats[0].thumbnail + "' />");
-                                        alert('CHANGED THUMBNAIL!');
+                                        console.log('CHANGED THUMBNAIL!');
                                         console.log($video);
                                     }
                                 }
