@@ -88,6 +88,9 @@
                     </div>
                     
                 </div>
+                <?php
+                /*
+                <!--
                 <div class="buttons text">
                     <a href='#' class='load-remote-cache
                        @if($lesson->blocks()->where('type','text')->count() > 0 && 
@@ -100,7 +103,7 @@
                         <p>{{ trans('crud/labels.edit_text') }}</p>-->
                         <span></span>                                   
                     </a>
-                </div>
+                </div>-->*/?>
                 <div class="buttons file">
                     <a href='#' class='load-remote-cache
                        @if($lesson->blocks()->where('type','file')->count() > 0)
