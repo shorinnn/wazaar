@@ -5962,15 +5962,21 @@ a.load-remote > *{
 
 .course-listing-image-preview,
 .course-description-video-preview{
-	border: solid 1px #444 !important;
+	border: solid 1px #9E9E9E !important;
 	display: inline-block;
-	width: 96%;
+	width: 315px;
+	margin-bottom: 5px;
+}
+
+.course-video-thumb .video-title{
+	color: #0099ff;
 }
 
 .course-listing-image-preview img,
 .course-description-video-preview img{
-	width: 100%;
-	height: auto;
+	width: 315px;
+	height: 178px;
+	max-width: auto !important;
 }
 
 
