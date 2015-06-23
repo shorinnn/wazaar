@@ -5962,20 +5962,22 @@ a.load-remote > *{
 
 .course-listing-image-preview,
 .course-description-video-preview{
-	border: solid 1px #444;
+	border: solid 1px #444 !important;
 	display: inline-block;
+	width: 96%;
 }
 
 .course-listing-image-preview img,
 .course-description-video-preview img{
-	
+	width: 100%;
+	height: auto;
 }
 
 
 .edit-course .right-content .file-details{
 	background: #e8eced;
 	text-align: center;
-	padding: 40px 0;
+	padding: 7px 0 40px;
 }
 
 .edit-course .right-content .file-details p{

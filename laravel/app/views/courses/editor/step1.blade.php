@@ -193,7 +193,7 @@
                     <span class="lead">{{ trans('courses/general.introduction_video_tip') }}</span>
             </h4>
                 <div class="file-details">
-                    <div class="course-description-video-preview" style="border:1px solid black;">
+                    <div class="course-description-video-preview">
                         @if ($course->descriptionVideo)
                             <img src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
                         @endif
