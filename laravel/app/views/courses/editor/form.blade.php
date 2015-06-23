@@ -63,7 +63,10 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             	<div class="right steps-remaining">
                 	<p class="regular-paragraph no-margin">
-                    	{{ trans('courses/general.complete') }} <span>2 {{ trans('courses/general.steps') }}</span> {{ trans('courses/general.to_submit_course') }}
+                    	{{ trans('courses/general.complete') }} 
+                        <span>
+                            <span>{{ courseStepsRemaining($course) }}</span>
+                            {{ trans('courses/general.steps') }}</span> {{ trans('courses/general.to_submit_course') }}
                     </p>
                 </div>
             </div>
@@ -80,7 +83,9 @@
         </div>
     </section>
 </div>
-
 @include('videos.playerModal')
+<script>
+    var course_steps_remaining = {{ courseStepsRemaining($course) }};
+</script>
 @stop
 
