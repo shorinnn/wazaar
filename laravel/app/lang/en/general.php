@@ -91,4 +91,5 @@ return array(
     'copy-to-clipboard' => 'Copy To Clipboard',
     'accept' => 'Accept',
     'i-agree' => 'I Agree',
+    'please-wait' => 'Please Wait',
 );

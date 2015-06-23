@@ -66,4 +66,5 @@ return array(
     'copy-to-clipboard' => 'Ctrl＋C でコピーしてください。',
     'accept' => 'Accept',
     'i-agree' => 'I Agree',
+    'please-wait' => 'Please Wait',
 );
