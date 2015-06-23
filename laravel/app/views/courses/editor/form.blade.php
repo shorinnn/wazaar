@@ -24,7 +24,7 @@
     .edit-course select{
         width:auto;
     }
-    .course-listing-image-preview img{
+    .course-description-video-preview img, .course-listing-image-preview img{
         max-height: 100px;
     }
 </style>
