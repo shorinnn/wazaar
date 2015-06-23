@@ -19,7 +19,7 @@
                         <input type="hidden" name="success_action_status" value="201">
                         <input type="hidden" name="policy" value="{{$awsPolicySig['base64Policy']}}">
                         <input type="hidden" name="signature" value="{{$awsPolicySig['signature']}}">
-                        <input type="file" multiple="multiple" name="file" class='upload-banner-image' id="upload-course-video"data-unique-key="{{$uniqueKey}}">
+                        <input type="file" multiple="multiple" name="file" class='upload-banner-image' id="upload-course-video" data-unique-key="{{$uniqueKey}}">
                     </form>
                 </label>
                 <div class="progress">
