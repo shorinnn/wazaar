@@ -102,17 +102,21 @@
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
         <h4 class="text-right">{{ trans('courses/general.discount') }} </h4>
     </div>
-    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" id="discount">
-        {{ Form::text('sale', money_val($course->sale),
-            ['onkeyup' => 'toggleElementViaOther(event)', 
-            'class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustDiscount',
-            'data-saleType' => 'sale_kind',
-            'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="value-unit">
+            {{ Form::text('sale', money_val($course->sale),
+                ['onkeyup' => 'toggleElementViaOther(event)', 
+                'class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustDiscount',
+                'data-saleType' => 'sale_kind',
+                'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
+            <span>¥</span>
+        </div>
     </div>
+        <!--
     <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" id="discount">
           {{ Form::select('sale_kind', ['amount' => '¥', 'percentage' => '%'], null,
       ['class'=>''] ) }}
-    </div>
+    </div>-->
     </div>
         <div class='sale-ends-on' @if($course->sale == 0) style='display:none' @endif >
             <div class="row editor-settings-layout margin-bottom-30">
@@ -249,7 +253,7 @@
     </div>
     <div class="row next-step-button">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button class="blue-button extra-large-button">{{ trans('courses/statuses.submit-for-approval')}}</button>
+            <button type='submit' class="blue-button extra-large-button">{{ trans('courses/statuses.submit-for-approval')}}</button>
         </div>
     </div>
 </div>

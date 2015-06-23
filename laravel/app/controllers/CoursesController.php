@@ -136,8 +136,11 @@ class CoursesController extends \BaseController {
             if(Input::has('who_is_this_for') ) $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
             if(Input::has('what_will_you_achieve') ) $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
             if(Input::has('requirements') ) $course->requirements = json_encode(array_filter(Input::get('requirements')));
-            if(Input::has('sale') ) $course->sale = Input::get('sale');
-            if(Input::has('sale_kind') ) $course->sale_kind = Input::get('sale_kind');
+            if(Input::has('sale') ){
+                $course->sale = Input::get('sale');
+                $course->sale_kind = 'amount';
+            }
+//            if(Input::has('sale_kind') ) $course->sale_kind = Input::get('sale_kind');
             if(Input::has('sale_starts_on') ) $course->sale_starts_on = (Input::get('sale_starts_on')) ?  date('Y-m-d H:i:s', strtotime(Input::get('sale_starts_on')) ) : null;
             if(Input::has('sale_ends_on') ) $course->sale_ends_on = (Input::get('sale_ends_on')) ?  date('Y-m-d H:i:s', strtotime(Input::get('sale_ends_on')) ) : null;
             if(Input::has('ask_teacher') ) $course->ask_teacher = Input::get('ask_teacher');

@@ -321,7 +321,8 @@ function adjustDiscount(e){
     val = parseInt(e.val());
     kind = e.attr('data-saleType');
     kind = $("[name='"+kind+"']").val();
-    if(kind=='amount' && val>0) val =  round2( val, 100 );
+//    if(kind=='amount' && val>0) val =  round2( val, 100 );
+    val = round2( val, 100 );
     e.val( val );
 }
 
