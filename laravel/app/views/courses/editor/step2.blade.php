@@ -1,8 +1,6 @@
 <input type='hidden' class='step-2-filled' value='{{ $course->lessonCount() >=5 ? 1 : 0}}' />
 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
-       			<p class="intro-paragraph">
-                Create your lessons. Organise them by modules. You can create unlimited number of modules and lessons.
-                </p>
+       			<p class="intro-paragraph">{{ trans('courses/general.step2-title') }}</p>
                 <div class="plan-your-curriculum">
                     <ul id="modules-list">
                         @foreach($course->modules()->orderBy('order','ASC')->get() as $module)
@@ -49,7 +47,7 @@
                 </div>
 				<div class="row margin-top-40">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    	<h4>Description:</h4>
+                    	<h4>{{ trans('courses/general.description') }}:</h4>
                         <p class="regular-paragraph text-left">
                              {{ strip_tags($course->description) }}
                         </p>
@@ -57,7 +55,7 @@
                 </div>
 				<div class="row margin-top-40">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    	<h4>What is this for:</h4>
+                    	<h4>{{ trans('courses/general.who_is_this_for?') }}:</h4>
                         <ul>
                         	@if($values = json2Array($course->who_is_this_for))
                                     @foreach($values as $val)
@@ -69,7 +67,7 @@
                	</div>
 				<div class="row margin-top-40">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    	<h4>Requirements:</h4>
+                    	<h4>{{ trans('courses/general.requirements') }}:</h4>
                         <ul>
                         	@if($values = json2Array($course->requirements))
                                     @foreach($values as $val)
@@ -81,7 +79,7 @@
                	</div>
 				<div class="row margin-top-40">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    	<h4>At the end of course you will be able:</h4>
+                    	<h4>{{ trans('courses/general.by_the_end') }}:</h4>
                         <ul>
                         	@if($values = json2Array($course->what_will_you_achieve))
                                     @foreach($values as $val)
@@ -93,7 +91,7 @@
                	</div>
                 <div class="row next-step-button">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    	<button class="blue-button extra-large-button">NEXT STEP</button>
+                    	<button class="blue-button extra-large-button">{{ trans('courses/general.next-step') }}</button>
                     </div>
                 </div>
                 {{ Form::close() }}

@@ -15,7 +15,9 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ trans('courses/curriculum.enable-ask-coach') }} </h4>
+            <h4 class="text-right">{{ trans('courses/curriculum.enable-ask-coach') }} 
+            <span class="lead">{{ trans('courses/general.enable-ask-coach-tip') }}</span>
+            </h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="toggle-switch">
@@ -33,6 +35,7 @@
                 <button name="no" class="toggle-button">No</button>-->
             </div>
         </div>
+        
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -105,7 +108,8 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ trans('courses/general.affiliate_percentage') }} </h4>
+            <h4 class="text-right">{{ trans('courses/general.affiliate_percentage') }} 
+            <span class="lead">{{ trans('courses/general.affiliate-percentage-tip') }}</span></h4>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
             <div class="value-unit">
@@ -275,7 +279,7 @@
     </div>
     <div class="row next-step-button">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button type='submit' class="blue-button extra-large-button">{{ trans('courses/statuses.submit-for-approval')}}</button>
+            <button type='submit' class="blue-button extra-large-button">{{ trans('courses/general.submit-for-approval')}}</button>
         </div>
     </div>
 </div>

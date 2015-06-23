@@ -133,4 +133,9 @@ return array(
     'sale-end-must-occur-after-start' => 'Sale End must occur after Sale Start',
     'course-must-be-free-or-500' => 'Course price must be 0 or minimum of 500',
     'after-sale-course-must-be-free-or-500' => 'After discount course price must be 0 or minimum of 500',
+    'back-to-course-list' => 'Back to course list',
+    'step2-title' => 'Create your lessons. Organise them by modules. You can create unlimited number of modules and lessons.',
+    'enable-ask-coach-tip' => '',
+    'affiliate-percentage-tip' => '',
+    'submit-for-approval' => ''
 );

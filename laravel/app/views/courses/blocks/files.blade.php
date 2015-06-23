@@ -3,7 +3,7 @@
 <form method='post' class='ajax-form clearfix' action='{{action('BlocksController@uploadFiles', $lesson_id)}}'>
     <input type='hidden' name='_token' value='{{ csrf_token() }}' />
     <div class="fileUpload btn btn-primary">
-        <span>{{ trans('administration.browse') }}</span>
+        <span>{{-- trans('administration.browse') --}}</span>
         <input type='file' name='file' id='file-upload-{{$lesson_id}}' data-dropzone='.dropzone-{{$lesson_id}}'
        data-progress-bar='.progress-bar-{{$lesson_id}}' data-callback='blockFileUploaded'
        data-add-callback='limitLessonFiles' data-max-upload='{{ Config::get('custom.maximum_lesson_files') }}'
