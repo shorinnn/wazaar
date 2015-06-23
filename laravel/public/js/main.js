@@ -42,7 +42,7 @@ $(document).ready(function(){
 	askTeacherQuestion();
 	searchFormFocusStyle();
 	showMoreContent();
-	stickyFooter();
+	//stickyFooter();
 	rescaleBckgrdOverlay();
 });
 
