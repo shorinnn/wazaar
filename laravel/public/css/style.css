@@ -5960,6 +5960,18 @@ a.load-remote > *{
 	text-align: left;
 }
 
+.course-listing-image-preview,
+.course-description-video-preview{
+	border: solid 1px #444;
+	display: inline-block;
+}
+
+.course-listing-image-preview img,
+.course-description-video-preview img{
+	
+}
+
+
 .edit-course .right-content .file-details{
 	background: #e8eced;
 	text-align: center;

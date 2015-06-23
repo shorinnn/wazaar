@@ -152,7 +152,7 @@
             <span class="lead">{{ trans('courses/general.listing_image_tip') }}</span>
             </h4>
             <div class="file-details">
-                <div class="course-listing-image-preview" style="border:1px solid black;">
+                <div class="course-listing-image-preview">
                     @if($course->course_preview_image_id > 0)
                         <img src="{{ cloudfrontUrl( $course->previewImage->url ) }}" />
                     @endif
