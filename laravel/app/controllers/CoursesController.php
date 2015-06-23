@@ -207,6 +207,9 @@ class CoursesController extends \BaseController {
         
         public function myCourses(){
             $instructor = Instructor::find(Auth::user()->id);
+            if( $instructor->accepted_instructor_terms!='yes' ){
+                return Redirect::action('InstructorsController@acceptTerms');
+            }
             $courses = $instructor->courses()
                     ->with( [ 'dashboardComments' => function($query){
                         $query->where('instructor_read', 'no');

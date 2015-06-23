@@ -217,6 +217,8 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
 Route::group( array('domain' => $domain ), function(){
     // Instructors routes
     Route::get('instructors', 'InstructorsController@index');
+    Route::get('instructors/accept-terms', 'InstructorsController@acceptTerms');
+    Route::post('instructors/accept-terms', 'InstructorsController@doAcceptTerms');
     Route::get('instructors/start/{user}', 'InstructorsController@start');
     Route::get('instructors/become-instructor', 'InstructorsController@become');
     Route::post('instructors/become-instructor', 'InstructorsController@doBecome');

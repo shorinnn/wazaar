@@ -30,4 +30,6 @@ return array(
         'create-yourself' => '自分を、デザインしよう。',
         'sign-up-now' => 'いますぐ登録',
         'get-credit' => '現金￥500 を受け取ろう',
+        'my-courses' => 'My Courses', 
+        'teach' => 'Teach'
 );

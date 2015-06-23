@@ -89,4 +89,6 @@ return array(
     'your-2tier-links' => 'Your 2-Tier Publisher Links',
     'COPY' => 'COPY',
     'copy-to-clipboard' => 'Copy To Clipboard',
+    'accept' => 'Accept',
+    'i-agree' => 'I Agree',
 );
