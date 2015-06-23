@@ -5635,7 +5635,7 @@ a.load-remote > *{
 .edit-course{
 	background: #e8eced;
 	min-height: 100%;
-	padding-bottom: 10%;
+	padding-bottom: 5%;
 }
 
 .create-course-start-page-container h2{
@@ -5956,7 +5956,7 @@ a.load-remote > *{
 
 .approval-box .not-approved{
 	color: #303941;
-	margin: 0 0 12px;
+	margin: 0 0 12px !important;
 }
 
 .approval-box .regular-paragraph{
@@ -8540,6 +8540,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	height: 6px;
 	margin: 0 0 20px;
 	width: 100%;
+	max-width: 100%;
 	border-radius: 6px;
 	overflow: visible;
 	background: #ececec;
@@ -8958,6 +8959,8 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	color: #303941;
 	margin: 4px 0;
 	float: left;
+	width: 22%;
+	text-align: right;
 }
 
 .plan-your-curriculum .lesson-options > div{
