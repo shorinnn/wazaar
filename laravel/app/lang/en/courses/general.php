@@ -137,5 +137,8 @@ return array(
     'step2-title' => 'Create your lessons. Organise them by modules. You can create unlimited number of modules and lessons.',
     'enable-ask-coach-tip' => '',
     'affiliate-percentage-tip' => '',
-    'submit-for-approval' => 'Submit for approval'
+    'submit-for-approval' => 'Submit for approval',
+    'course-public' => 'Public',
+    'course-not-public' => 'Not Public',
+    'course-public-tip' => '',
 );

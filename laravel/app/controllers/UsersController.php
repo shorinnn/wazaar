@@ -44,7 +44,7 @@ class UsersController extends Controller
         if( Auth::guest() ){
             Cookie::queue('st', 1, 24*30);
         }
-        $extraText = '販売者２ティア登録 <br /> 招待者のみ';
+        $extraText = trans('general.register-2-tier');
         $secondTierRegister = 1;
         return View::make(Config::get('confide::signup_form'))->with( compact('extraText','secondTierRegister' ) );
 //        return View::make('confide.second_tier_publisher_signup');

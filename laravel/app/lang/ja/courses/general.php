@@ -41,7 +41,8 @@ return array(
     'who_is_this_for?' =>'こんな方におすすめ',
     'add_to_wishlist' =>'ウィッシュリストに追加',
     'reviews' => 'レビュー | レビュー',
-    'module' => 'モジュール',
+//    'module' => 'モジュール',
+    'module' =>'セクション',
     'lesson' => 'レッスン',
     'helpful-student-reviews' => '参考にされているレビュー',
     'found-this-review-very-helpful' => 'このレビューが役に立った',
@@ -106,5 +107,8 @@ return array(
     'course_summary' => 'コースの要約',
     'requirements' => 'コースを始める前に受講者が知っておくべきことや、準備すべきもの',
     'submit-for-approval' => 'Wazaarの審査へ提出',
-    'preview_course' => 'コースのプレビュー'
+    'preview_course' => 'コースのプレビュー',
+    'course-public' => 'ワザールに公開',
+    'course-not-public' => 'ワザールに限定公開', 
+    'course-public-tip' => 'ワザールに公開では、ワザール上で商品が掲載されます。ワザールに限定公開ではリンクを知っている人のみが商品ページを視聴できます。',
 );

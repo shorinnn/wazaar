@@ -39,19 +39,22 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ ucwords( trans('courses/statuses.public') ) }} </h4>
+            <h4 class="text-right">
+                {{-- ucwords( trans('courses/statuses.public') ) --}} 
+            <span class="lead">{{ trans('courses/general.course-public-tip') }}</span>
+            </h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="toggle-switch">
                 <label class="toggle-button
                        @if($course->privacy_status=='public') active @endif" for="privacy-public">
                     {{ Form::radio('privacy_status', 'public', ($course->privacy_status=='public'), ['id'=>'privacy-public'] ) }}
-                    {{trans('courses/curriculum.yes')}}
+                    {{ trans('courses/general.course-public') }}
                 </label>
                 <label class="toggle-button
                        @if($course->privacy_status=='private') active @endif" for="privacy-private">
                     {{ Form::radio('privacy_status', 'private', ($course->privacy_status=='private'), ['id'=>'privacy-private'] ) }}
-                    {{trans('courses/curriculum.no')}}
+                    {{ trans('courses/general.course-not-public') }}
                 </label>
             </div>
         </div>
