@@ -141,4 +141,6 @@ return array(
     'course-public' => 'Public',
     'course-not-public' => 'Not Public',
     'course-public-tip' => '',
+    'individual-sale' => 'Individual Sale',
+    'free-preview' => 'Free Preview'
 );
