@@ -58,7 +58,72 @@
                 </div>
             </div>
         </section>
-               	
+        <div class="homepage-carousel">
+        	<h1>What is hot right now
+            <p class="lead">Our most popular courses everyone loves. Learn a skill now!</p>
+            </h1>
+            
+            <div class="home-carousel-container">
+                <div class="cards">
+                
+                </div>
+                <div class="cards">
+                
+                </div>
+                <div class="cards">
+                
+                </div>
+            </div>
+        </div>
+        <section class="container-fluid explore-category">
+        	<div class="row">
+            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                
+                </div>
+            </div>
+        	<div class="row">
+            	<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                	<a href="#" class="category-box">
+                    	<span></span>
+                    </a>
+                </div>
+            	<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                
+                </div>
+            </div>
+        	<div class="row">
+            	<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                
+                </div>
+            </div>
+        </section>
         <footer>
           <section class="footer-container">
             <div class="container">

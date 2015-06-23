@@ -452,6 +452,54 @@ header .activate-dropdown:hover ul{
 	margin: 0 0 27px;
 }
 
+.homepage .home-search-form{
+	background: #fff;
+	border-radius: 4px;
+	overflow: hidden;
+	width: 46%;
+	height: 60px;
+}
+
+.homepage .home-search-form input[type='search']{
+	width: 84%;
+	height: 100%;
+	border: none;
+	margin: 0;
+	padding: 0 8%;
+	font-size: 15px;
+	color: #7e8e9e;
+	background: red;
+}
+
+.homepage .home-search-form button{
+	width: 16%;
+	background: green;
+	border: none;
+	margin: 0;
+}
+	
+.homepage-carousel{
+	background: #ebeced;
+	padding-bottom: 80px;
+}
+
+.homepage-carousel h1{
+	color: #303941;
+	margin: 56px 0 44px;
+	text-align: center;
+}
+
+.homepage-carousel h1 .lead{
+	font-size: 14px;
+	color: #7e8e9e;
+	margin: 15px 0 0;
+}
+
+.homepage-carousel-container .card{
+	width: 300px;
+	float: left;
+	height: 220px;	
+}
 /***************** Background video on Unauthenticated Homepage ******************/
 .bckgrd-video-wrapper{
 	width: 100%;
@@ -1755,7 +1803,7 @@ header .activate-dropdown:hover ul{
 	border-radius: 3px;
 	display: inline-block;
 	border: solid 1px #cfd1d3;
-	background: none;
+	background: #f7f9fa;
 	font-size: 13px;
 	color: #798794;
 }
@@ -5750,6 +5798,11 @@ a.load-remote > *{
 	margin: 30px 0 0;
 }
 
+.edit-course .header h1 .back-to-course-list{
+	margin: 0 0 0 15px;
+    position: relative;
+    top: -2px;
+}
 .edit-course .header .steps-remaining{
 	padding: 10px 0 10px 27px;
 	border-left: solid 1px #e8eced;
