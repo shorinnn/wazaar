@@ -321,7 +321,8 @@ function adjustDiscount(e){
     val = parseInt(e.val());
     kind = e.attr('data-saleType');
     kind = $("[name='"+kind+"']").val();
-    if(kind=='amount' && val>0) val =  round2( val, 100 );
+//    if(kind=='amount' && val>0) val =  round2( val, 100 );
+    val = round2( val, 100 );
     e.val( val );
 }
 
@@ -344,4 +345,10 @@ function saveAndNextTab(e){
     }, 500);
     formSaved(e);
     $('.header-tabs.active').next('.header-tabs').click();
+}
+
+function submittedCourse(){
+    $('.header-tabs').last().removeAttr('data-loaded');
+    $('.header-tabs').last().click();
+    
 }

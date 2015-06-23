@@ -32,4 +32,6 @@ return array(
         'create-yourself' => 'Create yourself',
         'sign-up-now' => 'Sign up now',
         'get-credit' => 'Get 500¥ Credit',
+        'my-courses' => 'My Courses', 
+        'teach' => 'Teach'
 );

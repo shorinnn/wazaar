@@ -38,6 +38,16 @@
                         <tr id='row-{{$course->id}}'>
                             <td class="hidden-xs">
                                  {{ $course->name}}
+                                 @if($course->pre_submit_data!='')
+                                     <hr />
+                                     <b>Previous:</b><br />
+                                    <?php
+                                       $old = @json_decode($course->pre_submit_data);
+                                    ?>
+                                    {{ trans('courses/general.price') }}: {{$old->price}}¥ | 
+                                    {{ trans('courses/general.affiliate_percentage') }}: {{$old->affiliate_percentage}}% |
+                                    {{ trans('courses/general.discount') }}: {{$old->sale}}¥
+                                 @endif
                             </td>
                             <td class="hidden-xs">
                                  {{ $course->instructor->commentName('instructor') }}
@@ -46,6 +56,11 @@
                                 <a href="{{action('CoursesController@show', $course->slug)}}" target="_blank">
                                     {{ trans('crud/labels.view') }}
                                 </a>
+                                @if($course->pre_submit_data!='')
+                                    <a href="{{action('CoursesController@show', $course->slug)}}?view-old-version=1" target="_blank">
+                                        {{ trans('crud/labels.view-old-version') }}
+                                    </a>
+                                @endif
                             </td>
                             <td>
                                 {{ Form::open( ['action' => array('SubmissionsController@update', $course->id), 

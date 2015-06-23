@@ -49,7 +49,6 @@ function formAjaxSubmit(e){
             form.find('[type="submit"]').after('<p class="alert alert-danger ajax-errors">'+result.errors+'</p>');
             return false;
         }
-        restoreSubmitLabel(form);
         if( typeof(form.attr('data-callback'))!='undefined' ){
 //          window[form.attr('data-callback')](result, e);
             fn = form.attr('data-callback').split('.');

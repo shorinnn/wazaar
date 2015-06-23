@@ -36,4 +36,15 @@ class InstructorsController extends \BaseController {
                 return Redirect::action('InstructorsController@index')->withError( trans('instructors/general.already_instructor') );
             }
         }
+        
+        public function acceptTerms(){
+            return View::make('instructors.accept_terms');
+        }
+        
+        public function doAcceptTerms(){
+            if( Input::get('accept') != 1 ) return View::make('instructors.accept_terms');
+            Auth::user()->accepted_instructor_terms = 'yes';
+            Auth::user()->updateUniques();
+            return Redirect::action('CoursesController@myCourses');
+        }
 }

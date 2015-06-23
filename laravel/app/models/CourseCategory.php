@@ -9,15 +9,42 @@ class CourseCategory extends Ardent{
     );
     
     public function homepageCourses(){
-         return $this->allCourses()->orderBy('id','desc')->where('featured',0)
-                 ->where('publish_status','approved')
-                 ->where('privacy_status','public')->limit(6);
+         return $this->allCourses()->orderBy('id','desc')
+//                 ->where('featured',0)
+//                 ->where('publish_status','approved')
+//                 ->where('privacy_status','public')
+                 ->where(function($query){
+                        $query->where('featured',0)
+                        ->where('publish_status', 'approved')
+                        ->where('privacy_status','public')
+                        ->orWhere(function($query2){
+                            $query2->where('privacy_status','public')
+                                    ->where('featured',0)
+                                    ->where('publish_status', 'pending')
+                                    ->where('pre_submit_data', '!=', "");
+                        });
+                    })
+                 
+                 ->limit(6);
     }
     
     public function unauthenticatedHomepageCourses(){
          return $this->allCourses()->orderBy('id','desc')
-                 ->where('publish_status','approved')
-                 ->where('privacy_status','public')->limit(11);
+//                 ->where('publish_status','approved')
+//                 ->where('privacy_status','public')
+                 ->where(function($query){
+                        $query->where('featured',0)
+                        ->where('publish_status', 'approved')
+                        ->where('privacy_status','public')
+                        ->orWhere(function($query2){
+                            $query2->where('privacy_status','public')
+                                    ->where('featured',0)
+                                    ->where('publish_status', 'pending')
+                                    ->where('pre_submit_data', '!=', "");
+                        });
+                    })
+                 
+                 ->limit(11);
     }
 
     public function featuredCourse(){

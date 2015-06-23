@@ -64,4 +64,7 @@ return array(
     'your-2tier-links' => 'あなたの販売者２ティアリンクです。',
     'COPY' => 'コピー',
     'copy-to-clipboard' => 'Ctrl＋C でコピーしてください。',
+    'accept' => 'Accept',
+    'i-agree' => 'I Agree',
+    'please-wait' => 'Please Wait',
 );

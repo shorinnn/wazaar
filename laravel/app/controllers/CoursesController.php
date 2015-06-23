@@ -128,7 +128,11 @@ class CoursesController extends \BaseController {
             if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 return Redirect::action('CoursesController@index');
             }
-            $data = input_except(['_method', '_token']);
+            if( Input::has('publish_status') ){
+                $course->publish_status = 'pending';
+            }
+            
+            $data = input_except(['_method', '_token', 'publish_status']);
             if( Input::has("course_preview_image_id") ) $course->course_preview_image_id = Input::get("course_preview_image_id");
             if( Input::has("course_banner_image_id") ) $course->course_banner_image_id = Input::get("course_banner_image_id");
             
@@ -136,8 +140,11 @@ class CoursesController extends \BaseController {
             if(Input::has('who_is_this_for') ) $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
             if(Input::has('what_will_you_achieve') ) $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
             if(Input::has('requirements') ) $course->requirements = json_encode(array_filter(Input::get('requirements')));
-            if(Input::has('sale') ) $course->sale = Input::get('sale');
-            if(Input::has('sale_kind') ) $course->sale_kind = Input::get('sale_kind');
+            if(Input::has('sale') ){
+                $course->sale = Input::get('sale');
+                $course->sale_kind = 'amount';
+            }
+//            if(Input::has('sale_kind') ) $course->sale_kind = Input::get('sale_kind');
             if(Input::has('sale_starts_on') ) $course->sale_starts_on = (Input::get('sale_starts_on')) ?  date('Y-m-d H:i:s', strtotime(Input::get('sale_starts_on')) ) : null;
             if(Input::has('sale_ends_on') ) $course->sale_ends_on = (Input::get('sale_ends_on')) ?  date('Y-m-d H:i:s', strtotime(Input::get('sale_ends_on')) ) : null;
             if(Input::has('ask_teacher') ) $course->ask_teacher = Input::get('ask_teacher');
@@ -207,6 +214,9 @@ class CoursesController extends \BaseController {
         
         public function myCourses(){
             $instructor = Instructor::find(Auth::user()->id);
+            if( $instructor->accepted_instructor_terms!='yes' ){
+                return Redirect::action('InstructorsController@acceptTerms');
+            }
             $courses = $instructor->courses()
                     ->with( [ 'dashboardComments' => function($query){
                         $query->where('instructor_read', 'no');
@@ -224,11 +234,24 @@ class CoursesController extends \BaseController {
             if( !$category = CourseCategory::where('slug',$slug)->first() ){
                  return View::make('site.error_encountered');
             }
- 
             
             $courses = $category->courses()->with('courseDifficulty')->with('courseCategory')->with('courseSubcategory')->with('previewImage')
-                    ->where('featured',0)->where('privacy_status','public')->orderBy('id','Desc')->paginate(9);
+                    ->where(function($query){
+                        $query->where('featured',0)
+                        ->where('publish_status', 'approved')
+                        ->where('privacy_status','public')
+                        ->orWhere(function($query2){
+                            $query2->where('privacy_status','public')
+                                    ->where('featured',0)
+                                    ->where('publish_status', 'pending')
+                                    ->where('pre_submit_data', '!=', "");
+                        });
+                    })
+                    ->orderBy('id','Desc')->paginate(9);
             Return View::make('courses.category')->with(compact('category'))->with(compact('courses'));
+            //                    ->where('featured',0)
+            //                    ->where('privacy_status','public')
+                            
         }
         
         public function subCategory($slug='', $subcat=''){
@@ -237,8 +260,21 @@ class CoursesController extends \BaseController {
                  return View::make('site.error_encountered');
             }
             $courses = $subcategory->courses()->with('courseDifficulty')->with('courseCategory')->with('courseSubcategory')->with('previewImage')
-                    ->where('featured',0)->where('privacy_status','public')->orderBy('id','Desc')->paginate(9);
+                    ->where(function($query){
+                        $query->where('featured',0)
+                        ->where('publish_status', 'approved')
+                        ->where('privacy_status','public')
+                        ->orWhere(function($query2){
+                            $query2->where('privacy_status','public')
+                                    ->where('featured',0)
+                                    ->where('publish_status', 'pending')
+                                    ->where('pre_submit_data', '!=', "");
+                        });
+                    })
+                    
+                    ->orderBy('id','Desc')->paginate(9);
             Return View::make('courses.category')->with(compact('category'))->with(compact('courses'))->with(compact('subcategory'));
+                    //->where('featured',0)->where('privacy_status','public')
         }
         
         public function show($slug){
@@ -259,6 +295,13 @@ class CoursesController extends \BaseController {
                     ->first();
             if( $course==null)   {
                 return View::make('site.error_encountered');
+            }
+            if(Auth::check() && Auth::user()->hasRole('Admin') && Input::has('view-old-version')){
+                if( $course->pre_submit_data !='' ) {
+                    $old = json_decode( $course->pre_submit_data );
+                    foreach($old as $k => $v) $course->$k = $v;
+                    $course->name = "[OLD VERSION] ".$course->name;
+                }
             }
             $instructor = $course->instructor;
             if( $course->assigned_instructor_id != null && $course->details_displays == 'assigned_instructor'){

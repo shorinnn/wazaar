@@ -3,7 +3,8 @@
 
 <section class="container-fluid edit-course create-course-start-page-container">
     <form method='post' class='ajax-form' id="create-form" data-callback='followRedirect' 
-                  action='{{action('CoursesController@store')}}' data-parsley-validate>	
+          data-redirect-target-elem='.create-course-btn' data-redirect-label='{{ trans('general.please-wait') }}'
+          action='{{action('CoursesController@store')}}' data-parsley-validate>	
     <div class="container">
     	<div class="row">
         	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2">
@@ -47,7 +48,7 @@
                 </div>
                 <div class="row">
                 	<div class="col-lg-12 text-center">
-                    	<button type='submit' class="blue-button extra-large-button margin-top-30">CREATE COURSE</button>
+                    	<button type='submit' class="create-course-btn blue-button extra-large-button margin-top-30">CREATE COURSE</button>
                     </div>
                 </div>
         	</div>

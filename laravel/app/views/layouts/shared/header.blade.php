@@ -14,15 +14,21 @@
                     <a href="#">Affiliate{{trans('site/homepage.dashboard')}}</a>
                 </li>
             @endif
-            <li>
-                <a href="#">{{trans('site/homepage.store')}}</a>
-            </li>
-            <li>
-                <a href="#">{{trans('site/homepage.learn')}}</a>
-            </li>
-            <li>
-                <a href="#">{{trans('site/homepage.expert')}}</a>
-            </li>
+            
+            @if( App::environment() !='production')
+                <li>
+                    <a href="#">{{trans('site/homepage.store')}}</a>
+                </li>
+                <li>
+                    <a href="{{ action('StudentController@mycourses') }}">{{trans('site/homepage.my-courses')}}</a>
+                </li>
+            @endif
+            
+            @if(Auth::check() && $student->hasRole('Instructor'))
+                <li>
+                    <a href="{{ action('CoursesController@myCourses') }}">{{trans('site/homepage.teach')}}</a>
+                </li>
+            @endif
         </ul>
         <div class="top-profile-info">          
             <span class="profile-level">12</span>
