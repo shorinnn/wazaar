@@ -258,6 +258,7 @@ function courseImageUploaded(e, data){
     result = JSON.parse(data.result);
     $(target).append(result.html);
     $(target).find('[type=radio]').click();
+    $('.course-listing-image-preview').html( result.html );
 }
 
 /**

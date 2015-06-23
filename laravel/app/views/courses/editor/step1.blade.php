@@ -152,6 +152,11 @@
             <span class="lead">{{ trans('courses/general.listing_image_tip') }}</span>
             </h4>
             <div class="file-details">
+                <div class="course-listing-image-preview" style="border:1px solid black;">
+                    @if($course->course_preview_image_id > 0)
+                        <img src="{{ cloudfrontUrl( $course->previewImage->url ) }}" />
+                    @endif
+                </div>
                 <p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
                 <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>
                 <label for="upload-preview-image" class="default-button large-button">
@@ -188,6 +193,11 @@
                     <span class="lead">{{ trans('courses/general.introduction_video_tip') }}</span>
             </h4>
                 <div class="file-details">
+                    <div class="course-description-video-preview" style="border:1px solid black;">
+                        @if ($course->descriptionVideo)
+                            <img src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
+                        @endif
+                    </div>
                     @include('courses.video.index')
                 </div>
                 
@@ -295,7 +305,8 @@
                     $('#selected-previews').html('');
                     $('.display-border').each(function (){
                         console.log($(this).parent().find('img').attr('src'));
-                        $('#selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
+//                        $('#selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
+                        $('.course-listing-image-preview').html("<img src='" +  $(this).parent().find('img').attr('src') + "' />");
                     });
                 });
                 

@@ -24,6 +24,9 @@
     .edit-course select{
         width:auto;
     }
+    .course-listing-image-preview img{
+        max-height: 100px;
+    }
 </style>
 
 @if (Session::get('success'))
