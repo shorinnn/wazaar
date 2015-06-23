@@ -7,9 +7,7 @@
 </div>
 
    <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            {{ trans('courses/general.individual-sale') }}
-        </div>
+            <h4>{{ trans('courses/general.individual-sale') }}</h4>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="toggle-switch">
                 <label class="toggle-button
@@ -43,9 +41,9 @@
     </div>
 
    <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            {{ trans('courses/general.free-preview') }}
-        </div>
+        
+            <h4>{{ trans('courses/general.free-preview') }}</h4>
+       
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="toggle-switch">
                 <label class="toggle-button

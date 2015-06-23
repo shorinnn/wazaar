@@ -9032,8 +9032,13 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	color: #303941;
 	margin: 4px 0;
 	float: left;
-	width: 22%;
+	width: 23%;
 	text-align: right;
+}
+
+.lesson-options .details .toggle-switch{
+	float: left;
+	margin-left: 2%;
 }
 
 .plan-your-curriculum .lesson-options > div{
