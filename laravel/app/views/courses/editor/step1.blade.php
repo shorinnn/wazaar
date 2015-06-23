@@ -1,7 +1,7 @@
 <!--<form method='post' class='ajax-form' id="create-form" data-callback='followRedirect' 
                   action='{{action('CoursesController@store')}}' data-parsley-validate>-->
 <input type='hidden' class='course-id' value='{{ $course->id }}' />
-<input type='hidden' class='step-1-filled' value='{{ $course->short_description !='' ? 1 : 0}}' />
+
     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
                 'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-1-form',  'data-callback'=>'saveAndNextTab']) }}
 @include('videos.archiveModal')
@@ -261,8 +261,8 @@
             $('.step-1-form input').change(function(){
                 if( $('.step-1-form').parsley().isValid() && $('.step-1-filled').val()=='0' ) {
                     $('.step-1-filled').val('1');
-                    course_steps_remaining--;
-                    $('.steps-remaining p span span').html( course_steps_remaining );
+                    updateStepsRemaining();
+                    
                 }
             });
             
