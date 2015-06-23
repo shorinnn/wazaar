@@ -1,5 +1,6 @@
+<input type='hidden' class='step-3-filled' value='{{ $course->course_difficulty_id > 0 ? 1 : 0}}' />
 {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
-                'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'submittedCourse']) }}
+                'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-3-form',  'data-callback'=>'submittedCourse']) }}
     <input type='hidden' name='publish_status' value='1' />
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
     <div class="approval-box">
@@ -14,7 +15,9 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ trans('courses/curriculum.enable-ask-coach') }} </h4>
+            <h4 class="text-right">{{ trans('courses/curriculum.enable-ask-coach') }} 
+            <span class="lead">{{ trans('courses/general.enable-ask-coach-tip') }}</span>
+            </h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="toggle-switch">
@@ -32,6 +35,7 @@
                 <button name="no" class="toggle-button">No</button>-->
             </div>
         </div>
+        
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -81,7 +85,7 @@
                         <label class="toggle-button {{$active}}" for="option{{$key}}">
                             <input type='radio' name='course_difficulty_id' id="option{{$key}}" 
                             autocomplete="off" value='{{$key}}' 
-                            {{$checked}} /> {{ trans('general.'.$difficulty) }}
+                            {{$checked}} required /> {{ trans('general.'.$difficulty) }}
                         </label>
                      @endforeach
                  </div>
@@ -104,7 +108,8 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ trans('courses/general.affiliate_percentage') }} </h4>
+            <h4 class="text-right">{{ trans('courses/general.affiliate_percentage') }} 
+            <span class="lead">{{ trans('courses/general.affiliate-percentage-tip') }}</span></h4>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
             <div class="value-unit">
@@ -274,7 +279,7 @@
     </div>
     <div class="row next-step-button">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button type='submit' class="blue-button extra-large-button">{{ trans('courses/statuses.submit-for-approval')}}</button>
+            <button type='submit' class="blue-button extra-large-button">{{ trans('courses/general.submit-for-approval')}}</button>
         </div>
     </div>
 </div>
@@ -287,12 +292,20 @@
         extraFormats: ['YYYY-MM-DD hh:mm:s']
     } );
 	
-	$('.toggle-switch .toggle-button').on('click', function(){
-            $(this).addClass('active');
-            if($(this).hasClass('active')){
-                    $(this).closest('.toggle-switch').find('.toggle-button').not(this).removeClass('active');
-            }
-	});	
+    $('.toggle-switch .toggle-button').on('click', function(){
+        $(this).addClass('active');
+        if($(this).hasClass('active')){
+                $(this).closest('.toggle-switch').find('.toggle-button').not(this).removeClass('active');
+        }
+    });	
+
+    $('.step-3-form input').change(function(){
+        if( $('.step-3-form').parsley().isValid() && $('.step-3-filled').val()=='0' ) {
+            $('.step-3-filled').val('1');
+            course_steps_remaining--;
+            $('.steps-remaining p span span').html( course_steps_remaining );
+        }
+    });
 
 </script>
 

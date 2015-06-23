@@ -48,7 +48,9 @@
                 </div>
                 <div class="row">
                 	<div class="col-lg-12 text-center">
-                    	<button type='submit' class="create-course-btn blue-button extra-large-button margin-top-30">CREATE COURSE</button>
+                    	<button type='submit' class="create-course-btn blue-button extra-large-button margin-top-30">
+                        {{ trans('courses/create.create-new-course') }}
+                        </button>
                     </div>
                 </div>
         	</div>

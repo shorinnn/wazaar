@@ -58,7 +58,13 @@
                 </li>
             </ul>
             <div class="profile-thumbnail">
-                @if( $student->profile )
+                @if(Auth::user()->hasRole('Instructor'))
+                <img style="height: 50px; width: 50px; border-radius: 50px;" 
+                         src="{{ cloudfrontUrl( Instructor::find(Auth::user()->id)->profile->photo ) }}" alt="">
+                @elseif(Auth::user()->hasRole('Instructor'))
+                <img style="height: 50px; width: 50px; border-radius: 50px;" 
+                         src="{{ cloudfrontUrl( ProductAffiliate::find(Auth::user()->id)->profile->photo ) }}" alt="">
+                @elseif( $student->profile )
                     <img style="height: 50px; width: 50px; border-radius: 50px;" 
                          src="{{ cloudfrontUrl( Student::find(Auth::user()->id)->profile->photo ) }}" alt="">
                    

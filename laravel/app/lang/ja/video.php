@@ -5,12 +5,12 @@ return [
     'uploadHere' => 'ここに動画をアップロード',
     'willAppearHere' => '手順を完了すると、ここに動画が表示されます',
     'doesNotSupportHtml5' => 'このブラウザはHTML5をサポートしていません',
-    'upload-video' => '動画をアップロード',
-    'upload-new-video' => '動画をアップロード',
+    'upload-video' => 'ビデオの投稿',
+    'upload-new-video' => 'ビデオの投稿',
     'uploadOr' => '動画をアップロードする、または',
-    'selectExisting' => '既存のファイルを選択',
+    'selectExisting' => '投稿済みの動画から選択',
     'formatsSupported' => '対応フォーマット: mp4, avi, wmv',
-    'maxFileSize' => 'ファイルサイズの上限: 2GB',
+    'maxFileSize' => '動画は１GBまで投稿可能',
     'myVideos' => 'マイ動画',
     'useVideo' => '動画を使用する'
 ];

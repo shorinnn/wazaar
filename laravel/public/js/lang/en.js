@@ -4,7 +4,7 @@ var js_translation_map_en = {
     "Loading..." : "荷重...",
     "processing..." : "Processing...",
     "Processing..." : "Processing...",
-    "saving" : "Saving",
+    "saving" : "保存中",
     "Upload complete. Processing" : "Upload complete. Processing",
     "File upload failed." : "File upload failed.",
     "Request failed: an error occurred" : "Request failed: an error occurred",

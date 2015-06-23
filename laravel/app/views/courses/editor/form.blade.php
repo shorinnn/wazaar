@@ -37,10 +37,14 @@
 	<section class="container-fluid header">
     	<div class="row">
         	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<h1>{{ trans('courses/general.edit') }}: {{ $course->name }}</h1>
+            	<h1>{{ trans('courses/general.edit') }}: {{ $course->name }}
+                    <a href="{{ action('CoursesController@myCourses') }}" class="blue-button large-button back-to-course-list">
+                        {{ trans('courses/general.back-to-course-list')}}
+                    </a>
+                </h1>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<a href="#" class="blue-button large-button disabled-button right">{{ trans('courses/general.submit_for_approval') }}</a>
+            	<a href="#" class="blue-button large-button disabled-button right">{{ trans('courses/general.submit-for-approval') }}</a>
                 <a href="{{ action( 'CoursesController@show', $course->slug ) }}" target='_blank' class="default-button large-button right">
                 	{{ trans('courses/general.preview_course') }}
             	</a>
@@ -63,7 +67,10 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             	<div class="right steps-remaining">
                 	<p class="regular-paragraph no-margin">
-                    	{{ trans('courses/general.complete') }} <span>2 {{ trans('courses/general.steps') }}</span> {{ trans('courses/general.to_submit_course') }}
+                    	{{ trans('courses/general.complete') }} 
+                        <span>
+                            <span>{{ courseStepsRemaining($course) }}</span>
+                            {{ trans('courses/general.steps') }}</span> {{ trans('courses/general.to_submit_course') }}
                     </p>
                 </div>
             </div>
@@ -80,7 +87,9 @@
         </div>
     </section>
 </div>
-
 @include('videos.playerModal')
+<script>
+    var course_steps_remaining = {{ courseStepsRemaining($course) }};
+</script>
 @stop
 

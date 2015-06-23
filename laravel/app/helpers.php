@@ -510,3 +510,11 @@ function getDomainFromEmail($email){
  
     return $domain;
 }
+
+function courseStepsRemaining($course){
+    $remaining = 3;
+    if( $course->short_description !='' ) $remaining--;
+    if( $course->lessonCount() >=5 ) $remaining--;
+    if( $course->course_difficulty_id > 0 ) $remaining--;
+    return $remaining;
+}
