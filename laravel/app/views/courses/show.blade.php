@@ -395,18 +395,11 @@
                             </div>-->
                             <div class="instructor">
                                     <h2>{{ trans('courses/general.instructor') }}</h2>
-                                        
                                         @if($instructor->profile == null)
                                         	<div class="clearfix">
-                                                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/avaters/teacher-avater.png" alt="" >
+                                                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/profile_pictures/avatar-placeholder.jpg" alt="" >
                                                 <em>{{$instructor->first_name}} {{$instructor->last_name}}</em>
-                                                <span>Visual Designer</span>
                                             </div>
-                                            <!--<span class="role">Lead programmer, Wazaar</span>-->
-                                            <!--@if(Auth::check())
-                                                {{ View::make('courses.followed_form')->withInstructor($instructor) }}
-                                            @endif-->
-                                            <!--<h4>{{ trans('general.about') }} {{$instructor->first_name}}</h4>-->
                                             <p class="clearfix regular-paragraph">
                                                 @if( $course->show_bio=='custom' )
                                                     {{ $course->custom_bio }}
@@ -415,10 +408,9 @@
                                                 @endif
                                             </p>
                                         @else
-                                        	<div class="clearfix">
-                                         		<img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $instructor->profile->photo }}" alt="" >
+                                            <div class="clearfix">
+                                                <img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $instructor->profile->photo }}" alt="" >
                                                 <em>{{$instructor->profile->first_name}} {{$instructor->profile->last_name}}</em>
-                                                <span>Visual Designer</span>
                                             </div>
                                             <!--@if(Auth::check())
                                                 {{ View::make('courses.followed_form')->withInstructor($instructor) }}
