@@ -346,3 +346,9 @@ function saveAndNextTab(e){
     formSaved(e);
     $('.header-tabs.active').next('.header-tabs').click();
 }
+
+function submittedCourse(){
+    $('.header-tabs').last().removeAttr('data-loaded');
+    $('.header-tabs').last().click();
+    
+}

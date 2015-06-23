@@ -38,7 +38,10 @@ class SubmissionsController extends \BaseController {
                 return Redirect::action('SubmissionsController@index')->withError( trans('crud/errors.object_doesnt_exist', ['object' => 'Course' ]) );
             }
             $course->publish_status = Input::get('value');
-           if( $course->updateUniques () ){
+            if(Input::get('value')=='approved'){
+               $course->pre_submit_data = json_encode($course);
+            }
+            if( $course->updateUniques () ){
                 if(Request::ajax()) return json_encode( ['status'=>'success'] );
                 return Redirect::back()->withSuccess( trans('crud/errors.object_updated', ['object'=>'Course'] ));
             }

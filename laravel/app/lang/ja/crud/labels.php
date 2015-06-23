@@ -31,4 +31,5 @@ return array(
     'old-password' => '現在のパスワード',
     'new-password' => '新しいパスワード',
     'password-confirmation' => '月Password ConfirmationせIs this a title or a header? Or a button?',
+    'view-old-version' => 'View Old Version'
 );

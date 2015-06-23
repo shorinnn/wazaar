@@ -1,14 +1,16 @@
 {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
-                'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'saveAndNextTab']) }}
-                
+                'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form',  'data-callback'=>'submittedCourse']) }}
+    <input type='hidden' name='publish_status' value='1' />
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
     <div class="approval-box">
             <h4 class="not-approved">
                 {{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}
             </h4>
-        <p class="regular-paragraph">
-        {{ trans('courses/create.wazaar_must_review') }}
-        </p>
+        @if($course->publish_status =='unsubmitted')
+            <p class="regular-paragraph">
+                {{ trans('courses/create.wazaar_must_review') }}
+            </p>
+        @endif
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -28,6 +30,25 @@
                 </label>
 <!--                <button name="yes" class="toggle-button">Yes</button>
                 <button name="no" class="toggle-button">No</button>-->
+            </div>
+        </div>
+    </div>
+    <div class="row editor-settings-layout margin-bottom-30">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <h4 class="text-right">{{ ucwords( trans('courses/statuses.public') ) }} </h4>
+        </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="toggle-switch">
+                <label class="toggle-button
+                       @if($course->privacy_status=='public') active @endif" for="privacy-public">
+                    {{ Form::radio('privacy_status', 'public', ($course->privacy_status=='public'), ['id'=>'privacy-public'] ) }}
+                    {{trans('courses/curriculum.yes')}}
+                </label>
+                <label class="toggle-button
+                       @if($course->privacy_status=='private') active @endif" for="privacy-private">
+                    {{ Form::radio('privacy_status', 'private', ($course->privacy_status=='private'), ['id'=>'privacy-private'] ) }}
+                    {{trans('courses/curriculum.no')}}
+                </label>
             </div>
         </div>
     </div>
