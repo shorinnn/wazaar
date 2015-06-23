@@ -7,8 +7,19 @@
 @include('videos.archiveModal')
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
     <div class="row">
+        
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <p class="intro-paragraph">{{ trans('courses/general.details_for_public_course_page') }}</p>
+                <p class="intro-paragraph">{{ trans('courses/general.details_for_public_course_page') }}</p>
+                <h4>
+                {{ trans('courses/create.give-title') }}
+                </h4>
+                    {{ Form::text( 'name', null, ['class' => 'has-slug', 'placeholder'=>'Course Name', 'data-slug-target' => '#slug' ]) }}
+                    {{ Form::hidden( 'slug', null, ['id'=>'slug'] ) }}
+            </div>
+    </div>
+    <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!--<p class="intro-paragraph">{{ trans('courses/general.details_for_public_course_page') }}</p>-->
             <h4>
             {{ trans('courses/general.short_description') }}
             <span class="lead">{{ trans('courses/general.used_on_listings_description') }}</span>

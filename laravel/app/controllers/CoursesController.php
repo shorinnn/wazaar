@@ -132,11 +132,12 @@ class CoursesController extends \BaseController {
                 $course->publish_status = 'pending';
             }
             
-            $data = input_except(['_method', '_token', 'publish_status']);
+            $data = input_except([ '_method', '_token', 'publish_status', 'slug' ]);
             if( Input::has("course_preview_image_id") ) $course->course_preview_image_id = Input::get("course_preview_image_id");
             if( Input::has("course_banner_image_id") ) $course->course_banner_image_id = Input::get("course_banner_image_id");
             
             $course->fill($data);
+            if( Config::get('custom.use_id_for_slug')==false && Input::has('slug') ) $course->slug = Input::get('slug'); 
             if(Input::has('who_is_this_for') ) $course->who_is_this_for = json_encode(array_filter(Input::get('who_is_this_for')));
             if(Input::has('what_will_you_achieve') ) $course->what_will_you_achieve = json_encode(array_filter(Input::get('what_will_you_achieve')));
             if(Input::has('requirements') ) $course->requirements = json_encode(array_filter(Input::get('requirements')));
