@@ -84,7 +84,16 @@
     </section>
     <section class="container main course-editor">
     	<div class="row course-ajax-holder">
+                <form id="form-aws-credentials" action="">
+                    <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
+                    <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
+                    <input type="hidden" name="acl" value="private">
+                    <input type="hidden" name="success_action_status" value="201">
+                    <input type="hidden" name="policy" value="{{$awsPolicySig['base64Policy']}}">
+                    <input type="hidden" name="signature" value="{{$awsPolicySig['signature']}}">
+                </form>
             <div class='step1' data-loaded='1'>
+                <input class="course-id" type="hidden" value="{{$course->id}}"/>
                 {{ View::make('courses.editor.step1',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
                         ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates')) }}
             </div>

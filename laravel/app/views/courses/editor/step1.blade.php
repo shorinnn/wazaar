@@ -288,7 +288,7 @@
                         $('#course-video-anchor').html($video.original_filename);
                         $('#course-video-anchor').attr('data-filename',$video.original_filename);
                         $('#course-video-anchor').attr('data-video-url',$video.formats[0].video_url);
-
+                        $('.course-description-video-preview').html("<img src='" +  $video.formats[0].thumbnail + "' />");
                     });
                     return;
                 }
@@ -319,7 +319,62 @@
                 });
 
 
+     
+    var $courseVideoInterval;
+        var formData = $('#form-aws-credentials').serialize();
+
+        jQuery('#upload-course-video').fileupload({
+            url: '//s3-ap-southeast-1.amazonaws.com/videosinput',
+            formData: {
+                key:$('#form-aws-credentials').find('input[name=key]').val(),
+                AWSAccessKeyId:$('#form-aws-credentials').find('input[name=AWSAccessKeyId]').val(),
+                acl:$('#form-aws-credentials').find('input[name=acl]').val(),
+                success_action_status:$('#form-aws-credentials').find('input[name=success_action_status]').val(),
+                policy:$('#form-aws-credentials').find('input[name=policy]').val(),
+                signature:$('#form-aws-credentials').find('input[name=signature]').val()
+            }
+        }).on('fileuploadprogress', function ($e, $data) {
+            var $progress = parseInt($data.loaded / $data.total * 100, 10);
+            $('#progress-course-video').css('width',$progress + '%');
+        }).bind('fileuploaddone', function ($e, $data) {
+            $('.course-video-upload-button-progress').addClass('hidden');
+            $('.course-video-upload-processing').removeClass('hidden');
+
+            if ($data.jqXHR.status == 201){
+                if ($data.files[0].name !== undefined){
+                    var $elem = $(this)[0];
+                    var $courseId = $('.course-id').val();
+
+                    $.post('/video/add-by-filename',{videoFilename: $data.uniqueKey + '-' + $data.files[0].name}, function ($response){
+                        $.post('/courses/'+ $courseId +'/video/set-description',{videoId: $response.videoId});
+                        $courseVideoInterval = setInterval (function() {
+                            $.ajax({
+                                dataType: "json",
+                                url: '/video/' + $response.videoId + '/json',
+                                success: function ($video){
+                                    if ($video.transcode_status == 'Complete'){
+                                        clearInterval($courseVideoInterval);
+                                        $('.course-video-thumb').removeClass('hidden');
+                                        $('.course-video-upload-processing').addClass('hidden');
+                                        $('#course-video-anchor').attr('data-filename',$video.original_filename);
+                                        $('#course-video-anchor').attr('data-video-url',$video.formats[0].video_url);
+                                        $('#course-video-anchor').html($video.original_filename);
+                                        $('.course-description-video-preview').html("<img src='" +  $video.formats[0].thumbnail + "' />");
+                                        console.log('CHANGED THUMBNAIL!');
+                                        console.log($video);
+                                    }
+                                }
+                            });
+                        },5000);
+                    },'json');
+                }
+            }
         });
+        
+           });
+        
+        
+
 </script>
 
 
