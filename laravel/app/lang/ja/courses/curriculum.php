@@ -20,4 +20,5 @@ return array(
     'default-instructor-bio' => '講師の基本プロフィール',
     'custom-course-bio' => '月Custom Course Bioせplease provide more context',
     'upload' => 'アップロード',
+    'enable-discussions' => 'Enable Discussions',
 );

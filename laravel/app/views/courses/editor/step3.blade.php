@@ -39,6 +39,26 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <h4 class="text-right">{{ trans('courses/curriculum.enable-discussions') }} </h4>
+        </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="toggle-switch">
+                <label class="toggle-button
+                       @if($course->discussions=='yes') active @endif" for="discussions-enabled">
+                    {{ Form::radio('discussions', 'yes', ($course->discussions=='yes'), ['id'=>'discussions-enabled'] ) }}
+                    {{trans('courses/curriculum.yes')}}
+                </label>
+                <label class="toggle-button
+                       @if($course->discussions=='no') active @endif" for="discussions-disabled">
+                    {{ Form::radio('discussions', 'no', ($course->discussions=='no'), ['id'=>'discussions-disabled'] ) }}
+                    {{trans('courses/curriculum.no')}}
+                </label>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row editor-settings-layout margin-bottom-30">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <h4 class="text-right">
                 {{-- ucwords( trans('courses/statuses.public') ) --}} 
             <span class="lead">{{ trans('courses/general.course-public-tip') }}</span>
