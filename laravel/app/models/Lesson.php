@@ -24,6 +24,7 @@ class Lesson extends Ardent {
     }
 
     public function beforeSave() {
+        $this->published = 'yes';
         $this->slug = Str::slug($this->name);
         if ($this->slug == 'dashboard')
             return false; // the not_in filter not working for "dashboard"????
