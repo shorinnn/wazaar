@@ -5798,6 +5798,11 @@ a.load-remote > *{
 	margin: 30px 0 0;
 }
 
+.edit-course .header h1 .back-to-course-list{
+	margin: 0 0 0 15px;
+    position: relative;
+    top: -2px;
+}
 .edit-course .header .steps-remaining{
 	padding: 10px 0 10px 27px;
 	border-left: solid 1px #e8eced;
