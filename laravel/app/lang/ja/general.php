@@ -16,8 +16,8 @@ return array(
     'select' =>'選択',
     'help' =>'ヘルプ',
     'step' =>'ステップ',
-    'module' =>'モジュール',
-//    'module' =>'セクション',
+//    'module' =>'モジュール',
+    'module' =>'セクション',
     'video' =>'動画',
     'lesson' =>'レッスン',
     'add_file' =>'ファイルを追加',
@@ -70,4 +70,5 @@ return array(
     'accept' => 'Accept',
     'i-agree' => 'I Agree',
     'please-wait' => 'Please Wait',
+    'register-2-tier' => '販売者２ティア登録',
 );

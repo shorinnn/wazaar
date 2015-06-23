@@ -15,7 +15,8 @@ class Course extends Ardent{
 
     protected $dates = [ 'sale_starts_on', 'sale_ends_on' ];
     public $fillable = ['name', 'slug', 'description', 'short_description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
-        'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage', 'payment_type', 'requirements','description_video_id'];
+        'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage', 
+        'payment_type', 'requirements','description_video_id', 'discussions'];
     
     public static $rules = [
         'name' => 'required|unique:courses',

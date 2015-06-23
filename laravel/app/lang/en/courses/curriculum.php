@@ -18,5 +18,6 @@ return array(
     'default-instructor-bio' => 'Default Instructor Bio',
     'custom-course-bio' => 'Custom Course Bio',
     'upload' => 'Upload',
-	'result-based' => 'Make it results based'
+    'result-based' => 'Make it results based',
+    'enable-discussions' => 'Enable Discussions',
 );

@@ -152,27 +152,28 @@
                 
             @endif
             
-            
-            <section class="classroom-content container">
-                <div class="row classmate-conversations-heading">
-                	<div class="col-md-12">
-                        <p class="lead">{{trans('conversations/general.classmate-conversations')}}</p>
+            @if($lesson->module->course->discussions=='yes')
+                <section class="classroom-content container">
+                    <div class="row classmate-conversations-heading">
+                            <div class="col-md-12">
+                            <p class="lead">{{trans('conversations/general.classmate-conversations')}}</p>
+                        </div>
                     </div>
-                </div>
-                
-            @if( Auth::check() )
-                {{ View::make('courses.classroom.conversations.form')->with( compact('lesson','student') ) }}
+
+                @if( Auth::check() )
+                    {{ View::make('courses.classroom.conversations.form')->with( compact('lesson','student') ) }}
+                @endif
+
+                    <div class='ajax-content fa-animated'>
+                        {{ View::make('courses.classroom.conversations.all')->withComments( $lesson->comments )->withStudent('student') }}
+                        <br />
+                        <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
+
+                            {{ $lesson->comments->links() }}
+                        </div>
+                    </div>
+                </section>
             @endif
-            
-                <div class='ajax-content fa-animated'>
-                    {{ View::make('courses.classroom.conversations.all')->withComments( $lesson->comments )->withStudent('student') }}
-                    <br />
-                    <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
-                        
-                        {{ $lesson->comments->links() }}
-                    </div>
-                </div>
-            </section>
             
             <div class="clearfix container">
                     <div class="row">

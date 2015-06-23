@@ -1,4 +1,4 @@
-<input type='hidden' class='step-2-filled' value='{{ $course->lessonCount() >=5 ? 1 : 0}}' />
+
 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
        			<p class="intro-paragraph">{{ trans('courses/general.step2-title') }}</p>
                 <div class="plan-your-curriculum">

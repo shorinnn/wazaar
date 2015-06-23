@@ -1,14 +1,25 @@
 <!--<form method='post' class='ajax-form' id="create-form" data-callback='followRedirect' 
                   action='{{action('CoursesController@store')}}' data-parsley-validate>-->
 <input type='hidden' class='course-id' value='{{ $course->id }}' />
-<input type='hidden' class='step-1-filled' value='{{ $course->short_description !='' ? 1 : 0}}' />
+
     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
                 'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-1-form',  'data-callback'=>'saveAndNextTab']) }}
 @include('videos.archiveModal')
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
     <div class="row">
+        
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <p class="intro-paragraph">{{ trans('courses/general.details_for_public_course_page') }}</p>
+                <p class="intro-paragraph">{{ trans('courses/general.details_for_public_course_page') }}</p>
+                <h4>
+                {{ trans('courses/create.give-title') }}
+                </h4>
+                    {{ Form::text( 'name', null, ['class' => 'has-slug', 'placeholder'=>'Course Name', 'data-slug-target' => '#slug' ]) }}
+                    {{ Form::hidden( 'slug', null, ['id'=>'slug'] ) }}
+            </div>
+    </div>
+    <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!--<p class="intro-paragraph">{{ trans('courses/general.details_for_public_course_page') }}</p>-->
             <h4>
             {{ trans('courses/general.short_description') }}
             <span class="lead">{{ trans('courses/general.used_on_listings_description') }}</span>
@@ -141,6 +152,11 @@
             <span class="lead">{{ trans('courses/general.listing_image_tip') }}</span>
             </h4>
             <div class="file-details">
+                <div class="course-listing-image-preview" style="border:1px solid black;">
+                    @if($course->course_preview_image_id > 0)
+                        <img src="{{ cloudfrontUrl( $course->previewImage->url ) }}" />
+                    @endif
+                </div>
                 <p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
                 <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>
                 <label for="upload-preview-image" class="default-button large-button">
@@ -177,6 +193,11 @@
                     <span class="lead">{{ trans('courses/general.introduction_video_tip') }}</span>
             </h4>
                 <div class="file-details">
+                    <div class="course-description-video-preview" style="border:1px solid black;">
+                        @if ($course->descriptionVideo)
+                            <img src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
+                        @endif
+                    </div>
                     @include('courses.video.index')
                 </div>
                 
@@ -250,8 +271,8 @@
             $('.step-1-form input').change(function(){
                 if( $('.step-1-form').parsley().isValid() && $('.step-1-filled').val()=='0' ) {
                     $('.step-1-filled').val('1');
-                    course_steps_remaining--;
-                    $('.steps-remaining p span span').html( course_steps_remaining );
+                    updateStepsRemaining();
+                    
                 }
             });
             
@@ -284,7 +305,8 @@
                     $('#selected-previews').html('');
                     $('.display-border').each(function (){
                         console.log($(this).parent().find('img').attr('src'));
-                        $('#selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
+//                        $('#selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
+                        $('.course-listing-image-preview').html("<img src='" +  $(this).parent().find('img').attr('src') + "' />");
                     });
                 });
                 

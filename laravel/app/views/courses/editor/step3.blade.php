@@ -1,4 +1,4 @@
-<input type='hidden' class='step-3-filled' value='{{ $course->course_difficulty_id > 0 ? 1 : 0}}' />
+
 {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
                 'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-3-form',  'data-callback'=>'submittedCourse']) }}
     <input type='hidden' name='publish_status' value='1' />
@@ -39,19 +39,42 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ ucwords( trans('courses/statuses.public') ) }} </h4>
+            <h4 class="text-right">{{ trans('courses/curriculum.enable-discussions') }} </h4>
+        </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="toggle-switch">
+                <label class="toggle-button
+                       @if($course->discussions=='yes') active @endif" for="discussions-enabled">
+                    {{ Form::radio('discussions', 'yes', ($course->discussions=='yes'), ['id'=>'discussions-enabled'] ) }}
+                    {{trans('courses/curriculum.yes')}}
+                </label>
+                <label class="toggle-button
+                       @if($course->discussions=='no') active @endif" for="discussions-disabled">
+                    {{ Form::radio('discussions', 'no', ($course->discussions=='no'), ['id'=>'discussions-disabled'] ) }}
+                    {{trans('courses/curriculum.no')}}
+                </label>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row editor-settings-layout margin-bottom-30">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <h4 class="text-right">
+                {{-- ucwords( trans('courses/statuses.public') ) --}} 
+            <span class="lead">{{ trans('courses/general.course-public-tip') }}</span>
+            </h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="toggle-switch">
                 <label class="toggle-button
                        @if($course->privacy_status=='public') active @endif" for="privacy-public">
                     {{ Form::radio('privacy_status', 'public', ($course->privacy_status=='public'), ['id'=>'privacy-public'] ) }}
-                    {{trans('courses/curriculum.yes')}}
+                    {{ trans('courses/general.course-public') }}
                 </label>
                 <label class="toggle-button
                        @if($course->privacy_status=='private') active @endif" for="privacy-private">
                     {{ Form::radio('privacy_status', 'private', ($course->privacy_status=='private'), ['id'=>'privacy-private'] ) }}
-                    {{trans('courses/curriculum.no')}}
+                    {{ trans('courses/general.course-not-public') }}
                 </label>
             </div>
         </div>
@@ -302,8 +325,7 @@
     $('.step-3-form input').change(function(){
         if( $('.step-3-form').parsley().isValid() && $('.step-3-filled').val()=='0' ) {
             $('.step-3-filled').val('1');
-            course_steps_remaining--;
-            $('.steps-remaining p span span').html( course_steps_remaining );
+            updateStepsRemaining();
         }
     });
 

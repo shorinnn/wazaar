@@ -24,6 +24,9 @@
     .edit-course select{
         width:auto;
     }
+    .course-description-video-preview img, .course-listing-image-preview img{
+        max-height: 100px;
+    }
 </style>
 
 @if (Session::get('success'))
@@ -34,6 +37,9 @@
 @endif
 @include('videos.archiveModal')
 <div class="edit-course">
+    <input type='hidden' class='step-1-filled' value='{{ $course->short_description !='' ? 1 : 0}}' />
+    <input type='hidden' class='step-2-filled' value='{{ $course->lessonCount() >=5 ? 1 : 0}}' />
+    <input type='hidden' class='step-3-filled' value='{{ $course->course_difficulty_id > 0 ? 1 : 0}}' />
 	<section class="container-fluid header">
     	<div class="row">
         	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -45,7 +51,7 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             	<a href="#" class="blue-button large-button disabled-button right">{{ trans('courses/general.submit-for-approval') }}</a>
-                <a href="{{ action( 'CoursesController@show', $course->slug ) }}" target='_blank' class="default-button large-button right">
+                <a href='#' data-href="{{ action( 'CoursesController@show', $course->slug ) }}" class="default-button disabled-button large-button right preview-course-btn">
                 	{{ trans('courses/general.preview_course') }}
             	</a>
 

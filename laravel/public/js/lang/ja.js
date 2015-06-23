@@ -4,7 +4,7 @@ var js_translation_map_ja = {
     "Loading..." : "選択中...",
     "processing..." : "選択中...",
     "Processing..." : "選択中...",
-    "saving" : "節約",
+    "saving" : "保存中",
     "Upload complete. Processing" : "完全なアップロードします。処理",
     "File upload failed." : "ファイルのアップロードに失敗しました.",
     "Request failed: an error occurred" : "荷Request failed: an error occurred荷",

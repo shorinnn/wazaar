@@ -41,7 +41,8 @@ return array(
     'who_is_this_for?' =>'こんな方におすすめ',
     'add_to_wishlist' =>'ウィッシュリストに追加',
     'reviews' => 'レビュー | レビュー',
-    'module' => 'モジュール',
+//    'module' => 'モジュール',
+    'module' =>'セクション',
     'lesson' => 'レッスン',
     'helpful-student-reviews' => '参考にされているレビュー',
     'found-this-review-very-helpful' => 'このレビューが役に立った',
@@ -98,7 +99,7 @@ return array(
     'introduction_video' => 'プロモーションビデオ',
     'introduction_video_tip' => '商品ページのトップに掲載されます',
     'next-step' => '次のページへ',
-    'step2-title' => '動画を投稿してコース作成してください。コースは各モジュールによって構成され、各モジュールはレッスンによって構成されます。',
+    'step2-title' => '動画を投稿して作成してください。コースは各セクションによって構成され、各セクションはレッスンによって構成されます。',
     'settings' => 'その他の設定',
     'enable-ask-coach-tip' => '受講生から講師への直接質問を可能にする場合は「可能」、認めない場合は「不可」を選択してください。',
     'affiliate-percentage-tip' => '0%から68%の中で設定してください',
@@ -106,5 +107,10 @@ return array(
     'course_summary' => 'コースの要約',
     'requirements' => 'コースを始める前に受講者が知っておくべきことや、準備すべきもの',
     'submit-for-approval' => 'Wazaarの審査へ提出',
-    'preview_course' => 'コースのプレビュー'
+    'preview_course' => 'コースのプレビュー',
+    'course-public' => 'ワザールに公開',
+    'course-not-public' => 'ワザールに限定公開', 
+    'course-public-tip' => 'ワザールに公開では、ワザール上で商品が掲載されます。ワザールに限定公開ではリンクを知っている人のみが商品ページを視聴できます。',
+    'individual-sale' => 'Individual Sale',
+    'free-preview' => 'Free Preview'
 );

@@ -13,9 +13,10 @@
             	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
             </a>
             <div class="user-data-modal clearfix">
-            	<h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
                 @if(isset($extraText))
-                    <p class='text-center regular-paragraph light-gray-text'>{{ $extraText }}</p>
+                    <h1 class="clearfix">{{ $extraText }}</h1>
+                @else
+                    <h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
                 @endif
                 <div class="login-social-buttons clearfix">
                 	<a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans ('site/register.register-with-facebook') }}</a>

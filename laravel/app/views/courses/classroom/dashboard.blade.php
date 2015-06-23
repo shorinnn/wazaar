@@ -355,23 +355,26 @@
 
                     </div>
                 </div>
-                <a name='conversations'></a>
-                <div class="row classmate-conversations-heading">
-                	<div class="col-md-12">
-                        <p class="lead">{{ trans('courses/student_dash.classmate-conversations') }}</p>
-                    </div>
-                </div>
-
-            {{ View::make('courses.classroom.conversations.form')->with(compact('course', 'student') ) }}
-            
-            <div class='ajax-content fa-animated'>
-                {{ View::make('courses.classroom.conversations.all')->withComments( $course->comments )->withStudent( $student ) }}
-                <br />
-                <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
-                    {{ $course->comments->links() }}
-                </div>
-            </div>
                 
+                @if($course->discussions=='yes')
+                        <a name='conversations'></a>
+                        <div class="row classmate-conversations-heading">
+                                <div class="col-md-12">
+                                <p class="lead">{{ trans('courses/student_dash.classmate-conversations') }}</p>
+                            </div>
+                        </div>
+
+                    {{ View::make('courses.classroom.conversations.form')->with(compact('course', 'student') ) }}
+
+                    <div class='ajax-content fa-animated'>
+                        {{ View::make('courses.classroom.conversations.all')->withComments( $course->comments )->withStudent( $student ) }}
+                        <br />
+                        <div class="text-center load-remote" data-target='.ajax-content' data-load-method="fade">
+                            {{ $course->comments->links() }}
+                        </div>
+                    </div>
+                @endif
+
         
                
             
