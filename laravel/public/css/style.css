@@ -5757,7 +5757,8 @@ a.load-remote > *{
 	display: block;
 	float: left;
 	width: 58px;
-	text-align: center;
+	text-align: left;
+	text-indent: 10px;
 	border-left: solid 1px #cfd8df;
 	background: #f7f9fa;
 	font-size: 14px;
@@ -5768,6 +5769,7 @@ a.load-remote > *{
 .calender .date{
 	padding: 0 !important;
 	width: 99.5% !important;
+	margin-bottom: 0 !important;
 }
 
 .calender .date .glyphicon-calendar {
@@ -5976,7 +5978,7 @@ a.load-remote > *{
 .course-description-video-preview img{
 	width: 315px;
 	height: 178px;
-	max-width: none !important;
+	max-height: none !important;
 }
 
 
@@ -6044,6 +6046,7 @@ a.load-remote > *{
 .editor-settings-layout .clue-text{
 	color: #798794;
 	margin: 5px 0;
+	display: block;
 	font-style: italic;
 }
 
@@ -8000,8 +8003,8 @@ r ,
 
 .instructor-course-editor .use-existing-preview .radio-buttons img{
 	float: left;
-	height: 120px;
-	width: 120px;
+	height: 94px;
+	width: 167px;
 }
 
 .use-existing-preview .radio-buttons .select-border{
@@ -8027,6 +8030,11 @@ r ,
     height: 120px;
 	position: relative;
     width: 120px;
+}
+
+.use-existing-preview .radio-checked.radio-checkbox > div{
+	width: 167px;
+	height: 94px;
 }
 
 #course-edit .who-its-for{
@@ -9039,6 +9047,10 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .lesson-options .details .toggle-switch{
 	float: left;
 	margin-left: 2%;
+}
+
+.lesson-options .details .toggle-switch .toggle-button{
+	padding: 8px 15px;
 }
 
 .plan-your-curriculum .lesson-options > div{

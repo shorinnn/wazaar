@@ -16,7 +16,6 @@
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <h4 class="text-right">{{ trans('courses/curriculum.enable-ask-coach') }} 
-            <span class="lead">{{ trans('courses/general.enable-ask-coach-tip') }}</span>
             </h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -34,6 +33,7 @@
 <!--                <button name="yes" class="toggle-button">Yes</button>
                 <button name="no" class="toggle-button">No</button>-->
             </div>
+            <span class="clue-text">{{ trans('courses/general.enable-ask-coach-tip') }}</span>
         </div>
         
     </div>
@@ -61,7 +61,7 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <h4 class="text-right">
                 {{-- ucwords( trans('courses/statuses.public') ) --}} 
-            <span class="lead">{{ trans('courses/general.course-public-tip') }}</span>
+            
             </h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -77,6 +77,7 @@
                     {{ trans('courses/general.course-not-public') }}
                 </label>
             </div>
+            <span class="clue-text">{{ trans('courses/general.course-public-tip') }}</span>
         </div>
     </div>
        <?php
@@ -132,7 +133,7 @@
     <div class="row editor-settings-layout margin-bottom-30">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <h4 class="text-right">{{ trans('courses/general.affiliate_percentage') }} 
-            <span class="lead">{{ trans('courses/general.affiliate-percentage-tip') }}</span></h4>
+            </h4>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
             <div class="value-unit">
@@ -145,6 +146,7 @@
                     <!--<input type="text" name="amount">-->
                 <span>%</span>
             </div>
+            <span class="clue-text">{{ trans('courses/general.affiliate-percentage-tip') }}</span>
         </div>
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
@@ -232,7 +234,7 @@
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text">
-                        ¥ {{ number_format($course->price, Config::get('custom.currency_decimals')) }}
+                        ¥{{ number_format($course->price, Config::get('custom.currency_decimals')) }}
                     </p>
                 </div>
             </div>
