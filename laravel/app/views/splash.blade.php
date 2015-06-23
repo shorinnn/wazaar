@@ -14,12 +14,27 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <html class="ie8">
     <![endif]-->
-    
+    <style>
+		.publisher-login{
+			text-align: center;
+			padding: 20px 0;
+		}
+		
+		.publisher-login a{
+			display: inline-block;
+			text-decoration: none;
+			color: #0099ff;
+			font-size: 13px;
+			font-weight: 600;
+		}
+		
+	</style>
     
 </head>
 <body>
     <div id="wrapper">
     	<div id="container">
+        	
         	<div id="logo">
             	<img src="splash/logo.png" alt="">
             </div>
@@ -27,6 +42,9 @@
             <h1>2015年7月下旬OPEN</h1>
             <!--<p>We will help you learn new amazing things! Our learning platform will be so simple and accessible to everyone!</p>-->
             <p>技の動画フリーマーケット、ワザールでは、あなたの技を動画にして、500円から販売することができます！あなたの技が日本を変える！ワザールまもなく始まります！</p>
+            <div class="publisher-login">
+            	<a href="http://instructors.cocorium.com/courses/mycourses">Publisher Login</a>
+            </div>
         </div>         	
     </div>    
 </body>
