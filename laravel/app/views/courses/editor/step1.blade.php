@@ -288,7 +288,7 @@
                         $('#course-video-anchor').html($video.original_filename);
                         $('#course-video-anchor').attr('data-filename',$video.original_filename);
                         $('#course-video-anchor').attr('data-video-url',$video.formats[0].video_url);
-
+                         $('.course-description-video-preview').html("<img src='" +  $video.formats[0].thumbnail + "' />");
                     });
                     return;
                 }

@@ -37,7 +37,7 @@
             <p>&nbsp;</p>
             <div class="course-video-thumb @if (!$course->descriptionVideo) hidden @endif" align="center">
                 {{trans('video.currentVideo')}}:
-            @if ($course->descriptionVideo)
+                @if ($course->descriptionVideo)
                    <a href="#" id="course-video-anchor" class="video-title" data-filename="{{$course->descriptionVideo->original_filename}}" data-video-url="{{$course->descriptionVideo->formats[0]->video_url}}" onclick="videoModal.show(this, event)">{{$course->descriptionVideo->original_filename}}</a>
                 @else
                    <a href="#" id="course-video-anchor" class="video-title" data-filename="BfE1cTQk-fighting_cats4.wmv" data-video-url="http://d378r68ica1xoa.cloudfront.net/BfE1cTQk-fighting_cats4.wmv1421660966371o9l23s.mp4" onclick="videoModal.show(this, event)">BfE1cTQk-fighting_cats4.wmv</a>
