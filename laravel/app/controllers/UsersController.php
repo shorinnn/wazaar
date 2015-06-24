@@ -250,6 +250,7 @@ class UsersController extends Controller
      */
 
     public function loginWithFacebook() {
+        dd('die fb');
         // get data from input
         $code = Input::get( 'code' );
         // get fb service
