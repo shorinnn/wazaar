@@ -263,6 +263,7 @@ class UsersController extends Controller
             // See if we need to register this user
             
             $user = $this->users->where('facebook_login_id',$result['id'])->first();
+            dd($user);
             if($user == null){
                 // see if email is aready in the system
                 if($user = $this->users->where('email', $result['email'])->first()){
