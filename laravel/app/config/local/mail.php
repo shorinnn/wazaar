@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'Qz0eZgm9NE6KAjE3LVjRJw',
+	'password' => 'Bt2i_x_BlEaJiQ9LkFjVPQ',
 
 	/*
 	|--------------------------------------------------------------------------
