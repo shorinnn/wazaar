@@ -75,6 +75,8 @@ class SiteController extends \BaseController {
             $user = User::where('email', 'sorincoder25@mailinator.com')->first();
             try{
                 if (Config::get('confide::signup_email')) {
+                    
+                    dd($user);
                     Mail::send(
                         Config::get('confide::email_account_confirmation'),
                         compact('user'),
