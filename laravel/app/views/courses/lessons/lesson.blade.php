@@ -118,7 +118,8 @@
                 </div>
                 <div class="buttons setting">
                     <a href='#' class='load-remote-cache
-                       @if($lesson->description!='' || $lesson->price>0 || $lesson->published=='yes')
+                       {{--}}if($lesson->description!='' || $lesson->price>0 || $lesson->published=='yes') --}}
+                       @if($lesson->description!='' || $lesson->price>0 )
                         done
                        @endif
                        ' data-target='.action-panel-{{$lesson->id}} .details' 

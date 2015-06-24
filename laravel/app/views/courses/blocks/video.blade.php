@@ -1,84 +1,87 @@
 <div class="text-center">
-    <input type="text" class="ajax-updatable" onkeyup="externalVideoAdded(event)" data-lesson='{{$lesson->id}}'
-           data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}' placeholder='Youtube or Vimeo Link'
-                      data-name='external_video_url' id='external-video-{{$lesson->id}}' value="{{ $lesson->external_video_url }}" />
-    <div id="video-player-container-{{$lessonId}}">
-        <!--<div id="notify-warning-new-video" class="alert alert-warning
-            @if (@$video->transcode_status == Video::STATUS_COMPLETE)
-                hide
-            @endif ">
-            <strong>{{trans('crud/labels.note')}}: </strong>
-            {{trans('video.willAppearHere')}}
-        </div>-->
-        <div id="video-player" class="@if (!isset($video->formats[0]->video_url)) hide @endif">
-            <video controls>
-                <source id="source-video-url" src="{{@$video->formats[0]->video_url}}">
-                {{trans('video.doesNotSupportHthml5')}}
-            </video>
-        </div>
-    </div>
-    <h3 class="no-margin"><!--{{trans('video.uploadOr')}} -->
-    <form action="//s3-ap-northeast-1.amazonaws.com/videosinput-tokyo" enctype="multipart/form-data" method="POST" class="fileupload">
-        <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
-        <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
-        <input type="hidden" name="acl" value="private">
-        <input type="hidden" name="success_action_status" value="201">
-        <input type="hidden" name="policy" value="{{$awsPolicySig['base64Policy']}}">
-        <input type="hidden" name="signature" value="{{$awsPolicySig['signature']}}">
-
-        <div class="form-inline">
-                    @if ($video!=null && isset($video->formats[0]->video_url))
-                   		<span id="video-transcoding-indicator-{{$lessonId}}" class="video-transcoding-indicator" style="display: block;">{{trans('video.currentVideo')}}:
-                        	<a href="#" class="video-title" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="videoModal.show(this, event)">{{$video->original_filename}}</a>
-                        </span> 
-                        <div class="form-group video-upload clear">
-							<style>
-                                .course-editor #modules-list > li .video-upload{
-                                    font-size: 16px !important;
-                                }
-                            </style>
-                            <span>{{ trans('video.upload-new-video') }}</span>
-                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lessonId}}" id="fileupload-{{$lessonId}}">
-                        </div>
-                        
-                    @else
-                        <span id="video-transcoding-indicator-{{$lessonId}}" class="video-transcoding-indicator hidden">{{trans('video.videoCurrentlyProcessing')}}</span>
-                        <div class="form-group video-upload clear">
-                        	<span>{{ trans('video.upload-video') }}</span>                   
-                            <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lessonId}}" id="fileupload-{{$lessonId}}">
-                        </div>
-
-                    @endif
-                    
-                    <p class="video-info">{{trans('video.maxFileSize')}}</p>
-            <!-- Progress Bar -->
     
-            <div class="progress">
-                <div id="progress-bar-{{$lessonId}}" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                    <span><span id="percent-complete-{{$lessonId}}"></span> <!--{{trans('crud/labels.complete')}}--></span>
+    @if($lesson->module->course->free == 'yes')
+        <input type="text" class="ajax-updatable" onkeyup="externalVideoAdded(event)" data-lesson='{{$lesson->id}}'
+               data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}' placeholder='Youtube or Vimeo Link'
+                          data-name='external_video_url' id='external-video-{{$lesson->id}}' value="{{ $lesson->external_video_url }}" />
+    @else
+        <div id="video-player-container-{{$lessonId}}">
+            <!--<div id="notify-warning-new-video" class="alert alert-warning
+                @if (@$video->transcode_status == Video::STATUS_COMPLETE)
+                    hide
+                @endif ">
+                <strong>{{trans('crud/labels.note')}}: </strong>
+                {{trans('video.willAppearHere')}}
+            </div>-->
+            <div id="video-player" class="@if (!isset($video->formats[0]->video_url)) hide @endif">
+                <video controls>
+                    <source id="source-video-url" src="{{@$video->formats[0]->video_url}}">
+                    {{trans('video.doesNotSupportHthml5')}}
+                </video>
+            </div>
+        </div>
+        <h3 class="no-margin"><!--{{trans('video.uploadOr')}} -->
+        <form action="//s3-ap-northeast-1.amazonaws.com/videosinput-tokyo" enctype="multipart/form-data" method="POST" class="fileupload">
+            <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
+            <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
+            <input type="hidden" name="acl" value="private">
+            <input type="hidden" name="success_action_status" value="201">
+            <input type="hidden" name="policy" value="{{$awsPolicySig['base64Policy']}}">
+            <input type="hidden" name="signature" value="{{$awsPolicySig['signature']}}">
+
+            <div class="form-inline">
+                        @if ($video!=null && isset($video->formats[0]->video_url))
+                                    <span id="video-transcoding-indicator-{{$lessonId}}" class="video-transcoding-indicator" style="display: block;">{{trans('video.currentVideo')}}:
+                                    <a href="#" class="video-title" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="videoModal.show(this, event)">{{$video->original_filename}}</a>
+                            </span> 
+                            <div class="form-group video-upload clear">
+                                                            <style>
+                                    .course-editor #modules-list > li .video-upload{
+                                        font-size: 16px !important;
+                                    }
+                                </style>
+                                <span>{{ trans('video.upload-new-video') }}</span>
+                                <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lessonId}}" id="fileupload-{{$lessonId}}">
+                            </div>
+
+                        @else
+                            <span id="video-transcoding-indicator-{{$lessonId}}" class="video-transcoding-indicator hidden">{{trans('video.videoCurrentlyProcessing')}}</span>
+                            <div class="form-group video-upload clear">
+                                    <span>{{ trans('video.upload-video') }}</span>                   
+                                <input type="file" multiple="multiple" name="file" class="upload" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lessonId}}" id="fileupload-{{$lessonId}}">
+                            </div>
+
+                        @endif
+
+                        <p class="video-info">{{trans('video.maxFileSize')}}</p>
+                <!-- Progress Bar -->
+
+                <div class="progress">
+                    <div id="progress-bar-{{$lessonId}}" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        <span><span id="percent-complete-{{$lessonId}}"></span> <!--{{trans('crud/labels.complete')}}--></span>
+                    </div>
                 </div>
+
+                <em class="or-text"
+                   @if ( Video::where('created_by_id', Lesson::find($lessonId)->module->course->instructor_id)->count() > 0)
+                       style='display:inline;'
+                   @endif
+                > 
+                {{ trans('site/login.or') }}</em>
+                <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}"
+                   @if ( Video::where('created_by_id', Lesson::find($lessonId)->module->course->instructor_id)->count() > 0)
+                       style='display:inline-block;'
+                   @endif            
+                >
+                {{trans('video.selectExisting')}}</a></h3>
+                <!--<p class="video-info">{{trans('video.formatsSupported')}}</p>-->
+
+
             </div>
 
-            <em class="or-text"
-               @if ( Video::where('created_by_id', Lesson::find($lessonId)->module->course->instructor_id)->count() > 0)
-                   style='display:inline;'
-               @endif
-            > 
-            {{ trans('site/login.or') }}</em>
-            <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lessonId}}"
-               @if ( Video::where('created_by_id', Lesson::find($lessonId)->module->course->instructor_id)->count() > 0)
-                   style='display:inline-block;'
-               @endif            
-            >
-            {{trans('video.selectExisting')}}</a></h3>
-            <!--<p class="video-info">{{trans('video.formatsSupported')}}</p>-->
-            
-
-        </div>
-
-   </form>
-</div>
-
+       </form>
+    </div>
+    @endif
 <script type="text/javascript">
     var timeFormat = function(seconds){
         var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);

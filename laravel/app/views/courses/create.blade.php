@@ -46,6 +46,19 @@
                         </select>-->
                     </div>
                 </div>
+                <div class="row first-row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <span class="step-number">3</span>
+                        <h3>{{ trans('courses/create.paid-or-free') }}</h3>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <select name='free' required>
+                            <option></option>
+                            <option value='no'>{{ trans('courses/create.paid') }}</option>
+                            <option value='yes'>{{ trans('courses/create.free') }}</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="row">
                 	<div class="col-lg-12 text-center">
                     	<button type='submit' class="create-course-btn blue-button extra-large-button margin-top-30">
