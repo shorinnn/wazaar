@@ -210,12 +210,12 @@ class UsersController extends Controller
     }
     
     public function fbLogin(){
-        $id = Session::get('fbid');
+        $id = Session::get('f');
         dd($id);
         $user = User::find($id);
 //        Auth::login($user);
          Auth::loginUsingId( $id );
-        Session::forget('fbid');
+        Session::forget('f');
         if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
         else return Redirect::intended('/');
     }
@@ -303,7 +303,7 @@ class UsersController extends Controller
                         Cookie::queue('stpi', null, -1);
                         $this->users->saveSocialPicture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
                         //user created
-                        Session::put('fbid', $user->id);
+                        Session::put('f', $user->id);
                         return Redirect::action('UsersController@fbLogin');
                         
 //                        $user = User::find( $user->id );
@@ -316,7 +316,7 @@ class UsersController extends Controller
             }
             else{
                 // login
-                Session::put('fbid', $user->id);
+                Session::put('f', $user->id);
                 return Redirect::action('UsersController@fbLogin');
                 
 //                $user = User::find( $user->id );
