@@ -17,7 +17,7 @@
                 	<a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.register-with-facebook') }}</a>
                     <a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>
                 </div>
-                <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div> 
+                <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
             --> <p class="intro-paragraph text-center">{{ trans('general.enter-new-email-and-password') }}</p>
                 <div class="login-form clearfix">
                     @if (Session::has('error'))
