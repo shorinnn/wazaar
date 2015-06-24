@@ -55,6 +55,9 @@ class User extends Ardent implements ConfideUserInterface
             $this->errors()->add(0, trans('validation.cannot_self_delete') );
             return false;
         }
+        // delete profiles
+        DB::table('user_profiles')->where('owner_id', $this->id)->delete();
+        DB::table('assigned_roles')->where('user_id', $this->id)->delete();
     }
     
     /**
