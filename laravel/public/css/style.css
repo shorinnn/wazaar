@@ -6045,8 +6045,9 @@ a.load-remote > *{
 
 .editor-settings-layout .clue-text{
 	color: #798794;
-	margin: 5px 0;
+	margin: 2px 0;
 	display: block;
+	font-size: 13px;
 	font-style: italic;
 }
 
@@ -6381,6 +6382,8 @@ p.tip::before{
 	padding: 5px 10px;
 	border-radius: 2px;
 	margin-right: 11px;
+	margin-bottom: 11px;
+	float: left;
 	border: solid 1px #b0bfc1;
 }
 
@@ -8008,8 +8011,8 @@ r ,
 }
 
 .use-existing-preview .radio-buttons .select-border{
-	height: 120px;
-	width: 120px;
+	height: 94px;
+	width: 167px;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -9033,7 +9036,8 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .lesson-options .tip {
     color: #7e8e9e;
     font-size: 13px;
-	margin: 15px 0; 
+	margin: 15px 0;
+	text-align: left;
 }
 
 .lesson-options .details h4{
@@ -9050,7 +9054,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 
 .lesson-options .details .toggle-switch .toggle-button{
-	padding: 8px 15px;
+	padding: 5px 13px;
 }
 
 .plan-your-curriculum .lesson-options > div{
