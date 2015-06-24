@@ -263,7 +263,6 @@ class UsersController extends Controller
             // See if we need to register this user
             
             $user = $this->users->where('facebook_login_id',$result['id'])->first();
-            dd($user);
             if($user == null){
                 // see if email is aready in the system
                 if($user = $this->users->where('email', $result['email'])->first()){
@@ -285,7 +284,6 @@ class UsersController extends Controller
                             ->with('error', $error);
                     }
                     else{
-//                        dd($user);
                         Cookie::queue('register_instructor', null, -1);
                         Cookie::queue('register_affiliate', null, -1);
                         Cookie::queue('ltc', null, -1);
@@ -306,19 +304,16 @@ class UsersController extends Controller
                 
             }
             else{
-                dd('LOGGD!');
                 // login
                 Auth::login($user);
                 if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
                 else return Redirect::intended('/');
             }
-            dd('will redirect?');
         }
         // if not ask for permission first
         else {
             // get fb authorization
             $url = $fb->getAuthorizationUri();
-//            dd($url);
             // return to facebook login url
             return Redirect::to( (string)$url );
 //            return Redirect::intended( (string)$url );
