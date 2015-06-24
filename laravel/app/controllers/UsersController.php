@@ -284,12 +284,12 @@ class UsersController extends Controller
                             ->with('error', $error);
                     }
                     else{
-                        Cookie::queue('register_instructor', null, -1);
-                        Cookie::queue('register_affiliate', null, -1);
-                        Cookie::queue('ltc', null, -1);
-                        Cookie::queue('st', null, -1);
-                        Cookie::queue('iai', null, -1);
-                        Cookie::queue('stpi', null, -1);
+//                        Cookie::queue('register_instructor', null, -1);
+//                        Cookie::queue('register_affiliate', null, -1);
+//                        Cookie::queue('ltc', null, -1);
+//                        Cookie::queue('st', null, -1);
+//                        Cookie::queue('iai', null, -1);
+//                        Cookie::queue('stpi', null, -1);
                         $this->users->saveSocialPicture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
                         //user created
 //                        Auth::login($user);
