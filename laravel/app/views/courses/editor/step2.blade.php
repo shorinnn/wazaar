@@ -165,7 +165,18 @@ setTimeout(function(){
 
 //        });
 </script>
+<script type="text/javascript">
+	var lessonOptionButtons = $('.lesson-options .buttons a');
+	lessonOptionButtons.on('click', function (e) {
+		$(this).parent().parent('.lesson-options-buttons').find('.load-remote-cache').not(this).removeClass('active');
+		$(this).parent().parent('.lesson-options-buttons').find('.load-remote-cache').not(this).removeClass('active-done');
+		$(this).addClass('active');
+		if($(this).hasClass('done')){
+			$(this).removeClass('active').addClass('active-done');
+		}
+	});
 
+</script>
 <script type="text/javascript">
 
 
