@@ -108,9 +108,13 @@ return array(
     'requirements' => 'コースを始める前に受講者が知っておくべきことや、準備すべきもの',
     'submit-for-approval' => 'Wazaarの審査へ提出',
     'preview_course' => 'コースのプレビュー',
-    'course-public' => 'ワザールに公開',
-    'course-not-public' => 'ワザールに限定公開', 
+    'course-public' => '公開',
+//    'course-public' => 'ワザールに公開',
+    'course-not-public' => '限定公開', 
+//    'course-not-public' => 'ワザールに限定公開', 
     'course-public-tip' => 'ワザールに公開では、ワザール上で商品が掲載されます。ワザールに限定公開ではリンクを知っている人のみが商品ページを視聴できます。',
-    'individual-sale' => 'Individual Sale',
-    'free-preview' => 'Free Preview'
+    'individual-sale' => '個別のバラ売り',
+    'free-preview' => '無料のプレビュー',   
+    'modules' => 'セクション数',
+    'total_lessons' => '総レッスン数',
 );

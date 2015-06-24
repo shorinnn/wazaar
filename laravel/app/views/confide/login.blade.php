@@ -9,7 +9,7 @@
                     <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
                 </a>
                 <div class="user-data-modal clearfix">
-                    <h1 class="clearfix">{{ trans('site/login.login-to-account') }}</h1>
+                    <h1 class="clearfix">{{ trans('general.login') }}</h1>
                     <div class="login-social-buttons clearfix">
                         <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.login-with-facebook') }}</a>
                         <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
@@ -29,7 +29,7 @@
                                     type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
                             </div>
                             <div class="form-group password-field">
-                                <input class="form-control" tabindex="2" placeholder="{{ trans('general.password-placeholder') }}" 
+                                <input class="form-control" tabindex="2" pplaceholder="{{ trans('site/register.password-placeholder') }}" 
                                     type="password" name="password" id="password">
 			                	<a href="{{{ action('UsersController@forgotPassword') }}}" 
                                 class="left forgot">{{ trans('site/login.forgot') }}</a>

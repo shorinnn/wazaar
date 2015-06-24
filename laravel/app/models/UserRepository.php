@@ -66,9 +66,7 @@ class UserRepository
                 $profile->first_name = $first_name;// 'First  Name';//!isset($name[1]) && empty($name[1]) ? 'First Name' : $name[1];
                 $profile->last_name = $last_name;//  'Last Name';//!isset($name[0]) && empty($name[0]) ? 'Last Name' : $name[0];
                 $profile->email = $user->email;
-                if(! $profile->save() ){
-                    dd( $profile->errors()->all() );
-                }
+                $profile->save();
                 
             }
             
@@ -144,6 +142,7 @@ class UserRepository
      */
     public function signupWithFacebook($input, $ltc_cookie=null, $roles = false, $secondTierInstructorCookie = null, $instructorAgencyCookie = null, $registersAsST = null)
     {
+       
         $user = new Student;
 
         $user->username = "FB$input[id]";
@@ -172,6 +171,19 @@ class UserRepository
         if( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) $user = $this->attachRoles($user, 1);
         if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ) $user = $this->attachRoles($user, 2);
         $this->save_ltc($user, $ltc_cookie);
+        
+        if($registersAsST!=null){// create profile
+            $first_name = $input['first_name'];
+            $last_name = $input['last_name'];
+            $profile = new Profile;
+            $profile->owner_id = $user->id; 
+            $profile->owner_type = 'Instructor'; 
+            $profile->first_name = $first_name;// 'First  Name';//!isset($name[1]) && empty($name[1]) ? 'First Name' : $name[1];
+            $profile->last_name = $last_name;//  'Last Name';//!isset($name[0]) && empty($name[0]) ? 'Last Name' : $name[0];
+            $profile->email = $user->email;
+            $profile->save();
+
+        }
         return $user;
     }
     
