@@ -76,7 +76,7 @@ class UsersController extends Controller
                 }
             }
             catch(Exception $e){
-                dd($e);
+                
             }
 
             Cookie::queue('register_instructor', null, -1);

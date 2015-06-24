@@ -19,9 +19,9 @@ $affiliateSubdomain = 'affiliates.'. Config::get('app.base_url');
 if( !isset($_SERVER['HTTP_HOST'])){
     $domain = $instructorSubdomain = $affiliateSubdomain = Request::getHost();
 }
+//Route::get('mandrill-test', 'SiteController@mandrillTest');
 
 Route::resource('lp', 'LpController');
-Route::get('mandrill-test', 'SiteController@mandrillTest');
 
 Route::group( array('domain' =>  $domain), function(){
     // Site routes

@@ -70,32 +70,32 @@ class SiteController extends \BaseController {
              Return View::make('TEMPORARYVIEWS.course_editor');
         }
         
-        public function mandrillTest(){
-            Config::set('app.debug', true);
-            $user = User::where('email', 'sorincoder25@mailinator.com')->first();
-            try{
-                if (Config::get('confide::signup_email')) {
-                    Mail::send(
-                        Config::get('confide::email_account_confirmation'),
-                        compact('user'),
-                        function ($message) use ($user) {
-                            $message
-                                ->to($user->email, $user->usersname)
-                                ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
-                        }
-                    );
-                    
-                }
-                else{
-                    echo 'no mandrill!';
-                }
-            }
-            catch(Exception $e){
-                dd( $e->getMessage() );
-            }
-            
-            dd($user);
-        }
+//        public function mandrillTest(){
+//            Config::set('app.debug', true);
+//            $user = User::where('email', 'sorincoder25@mailinator.com')->first();
+//            try{
+//                if (Config::get('confide::signup_email')) {
+//                    Mail::send(
+//                        Config::get('confide::email_account_confirmation'),
+//                        compact('user'),
+//                        function ($message) use ($user) {
+//                            $message
+//                                ->to($user->email, $user->usersname)
+//                                ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
+//                        }
+//                    );
+//                    
+//                }
+//                else{
+//                    echo 'no mandrill!';
+//                }
+//            }
+//            catch(Exception $e){
+//                dd( $e->getMessage() );
+//            }
+//            
+//            dd($user);
+//        }
 
 
 
