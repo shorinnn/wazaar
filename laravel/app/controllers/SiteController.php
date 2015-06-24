@@ -85,6 +85,9 @@ class SiteController extends \BaseController {
                         }
                     );
                 }
+                else{
+                    echo 'no mandrill!';
+                }
             }
             catch(Exception $e){
                 dd($e);
