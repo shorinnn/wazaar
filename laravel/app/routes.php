@@ -352,3 +352,6 @@ Route::get('test', function(){
     echo '</pre>';
     die;
 });
+
+
+Route::get('payment-test', 'PaymentTestController@pay');

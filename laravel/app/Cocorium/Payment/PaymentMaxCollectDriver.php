@@ -8,14 +8,31 @@ class PaymentMaxCollectDriver implements PaymentInterface {
 
     public function __construct()
     {
-        $this->spid = \Config::get('maxcollect.spid');
+        $this->sid = \Config::get('maxcollect.sid');
         $this->spw =  \Config::get('maxcollect.spw');
         $this->endpoint = \Config::get('maxcollect.endpoint');
     }
 
     public function makeUsingCreditCard($amount, $creditCardDetails, $otherParams = [])
     {
-        $curl = \cURL::buildUrl($this->endpoint,[]);
+        $data = [
+          'SiteId' => $this->sid,
+          'SitePass' => $this->spw,
+          'cardName' => $creditCardDetails['cardName'],
+          'cardNo' => $creditCardDetails['cardNo'],
+          'cardMonth' => $creditCardDetails['cardMonth'],
+          'cardYear' => $creditCardDetails['cardYear'],
+          'cvv2' => $creditCardDetails['cvv2'],
+          'Amount' => $amount,
+          'Name' => $creditCardDetails['customerName'],
+          'Mail' => $creditCardDetails['customerEmail']
+
+        ];
+
+
+        $curl = new \anlutro\cURL\cURL();
+        $url = $curl->buildUrl($this->endpoint,$data);
+        return $curl->get($url);
     }
 
     public function makeUsingBank($amount, $bankDetails, $otherParams = [])
