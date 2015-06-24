@@ -318,9 +318,10 @@ class UsersController extends Controller
         else {
             // get fb authorization
             $url = $fb->getAuthorizationUri();
-            dd($url);
+//            dd($url);
             // return to facebook login url
-            return Redirect::intended( (string)$url );
+            return Redirect::to( (string)$url );
+//            return Redirect::intended( (string)$url );
         }
     }
     
