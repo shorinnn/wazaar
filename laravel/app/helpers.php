@@ -518,3 +518,38 @@ function courseStepsRemaining($course){
     if( $course->course_difficulty_id > 0 ) $remaining--;
     return $remaining;
 }
+
+function validateExternalVideo($url){
+    // see if youtube
+    $videoID = parse_yturl($url);
+    // see if vimeo
+    if( !$videoID ) $videoID = get_vimeoid($url);
+    // not Youtube or Vimeo
+    if( !$videoID ) return false;
+    return true;
+    //https://www.googleapis.com/youtube/v3/videos/?part=id&id=gvmrxFFhKDE
+}
+
+/**
+ *  Check if input string is a valid YouTube URL
+ *  and try to extract the YouTube Video ID from it.
+ *  @author  Stephan Schmitz <eyecatchup@gmail.com>
+ *  @param   $url   string   The string that shall be checked.
+ *  @return  mixed           Returns YouTube Video ID, or (boolean) false.
+ */        
+function parse_yturl($url) 
+{
+    $pattern = '#^(?:https?://)?(?:www\.)?(?:youtu\.be/|youtube\.com(?:/embed/|/v/|/watch\?v=|/watch\?.+&v=))([\w-]{11})(?:.+)?$#x';
+    preg_match($pattern, $url, $matches);
+    return (isset($matches[1])) ? $matches[1] : false;
+}
+
+function get_vimeoid( $url ) {
+    $urls = parse_url($url);
+    if ($urls['host'] == 'vimeo.com'){
+        $urls =  explode( '/', $urls['path'] );
+        $vimid = $urls[ count($urls) - 1 ];
+        return trim($vimid);
+    }
+    return false;
+}

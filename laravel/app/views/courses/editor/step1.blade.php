@@ -1,5 +1,6 @@
 <!--<form method='post' class='ajax-form' id="create-form" data-callback='followRedirect' 
                   action='{{action('CoursesController@store')}}' data-parsley-validate>-->
+
 <input type='hidden' class='course-id' value='{{ $course->id }}' />
 
     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
