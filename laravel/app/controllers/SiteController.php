@@ -75,8 +75,6 @@ class SiteController extends \BaseController {
             $user = User::where('email', 'sorincoder25@mailinator.com')->first();
             try{
                 if (Config::get('confide::signup_email')) {
-                    
-                    dd($user);
                     Mail::send(
                         Config::get('confide::email_account_confirmation'),
                         compact('user'),
@@ -86,9 +84,7 @@ class SiteController extends \BaseController {
                                 ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
                         }
                     );
-                    if(count(Mail::failures()) > 0){
-                        dd( Mail::failures() );
-                    }
+                    
                 }
                 else{
                     echo 'no mandrill!';
