@@ -311,6 +311,7 @@ class UsersController extends Controller
                 if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
                 else return Redirect::intended('/');
             }
+            dd('will redirect?');
         }
         // if not ask for permission first
         else {
