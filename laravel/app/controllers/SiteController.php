@@ -84,6 +84,9 @@ class SiteController extends \BaseController {
                                 ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
                         }
                     );
+                    if(count(Mail::failures()) > 0){
+                        dd( Mail::failures() );
+                    }
                 }
                 else{
                     echo 'no mandrill!';
