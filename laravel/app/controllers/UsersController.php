@@ -297,7 +297,7 @@ class UsersController extends Controller
                             else return Redirect::intended('/');
                         }
                         else{
-                            dd('something happened');
+//                            dd('something happened');
                         }
                     }
                 }
