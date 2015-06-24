@@ -293,9 +293,13 @@ class UsersController extends Controller
                         Cookie::queue('stpi', null, -1);
                         $this->users->saveSocialPicture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
                         //user created
-                        Auth::login($user);
-                        if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
-                        else return Redirect::intended('/');
+                        if( Auth::login($user) ){
+                            if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+                            else return Redirect::intended('/');
+                        }
+                        else{
+                            dd('something happened');
+                        }
                     }
                 }
                 
