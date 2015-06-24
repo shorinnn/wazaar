@@ -18,7 +18,7 @@
     <h3 class="no-margin"><!--{{trans('video.uploadOr')}} -->
     {{--Form::open(['url' => 'video/upload', 'id' => '', 'files' => true])--}}
     {{--Form::open(['url' => '//s3-ap-southeast-1.amazonaws.com/videosinput', 'id' => '', 'files' => true])--}}
-    <form action="//s3-ap-southeast-1.amazonaws.com/videosinput" enctype="multipart/form-data" method="POST" class="fileupload">
+    <form action="//s3-ap-southeast-1.amazonaws.com/videosinput-tokyo" enctype="multipart/form-data" method="POST" class="fileupload">
         <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
         <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
         <input type="hidden" name="acl" value="private">

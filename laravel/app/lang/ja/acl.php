@@ -14,7 +14,7 @@ return array(
         'google_linked' => 'アカウントの連携が完了しました。Googleアカウントからもログインできます',
         'invite-publishers' => '動画商品制作者（販売者）の方をご招待ください。',
         'your-publisher-links' => 'あなたの販売者ティアリンク（VIP用）です。',
-        'we-must-approve-2tier' => 'We must approve your 2-tier account, which can take up to 3 days. Come back later to get your link.',
+        'we-must-approve-2tier' => '審査に三日間ほど御時間がかかりますので、リンク発行まで今しばらくお待ちください。',
         'congratulations' => 'おめでとうございます。',
         'you-registered-on-wazaar' => 'Wazaar に登録されました。',
         'please-verify-email' => 'ご登録されたメールアドレスに認証リンクを送りましたのでご確認ください。',
