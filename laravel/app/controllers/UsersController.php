@@ -209,6 +209,15 @@ class UsersController extends Controller
         }
     }
     
+    public function fbLogin(){
+        $id = Session::get('fbid');
+        $user = User::find( $id);
+        Auth::login($user);
+        Session::forget('fbid');
+        if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+        else return Redirect::intended('/');
+    }
+    
     /**
      * Show Link existing email account with Google account page
      */
@@ -292,20 +301,26 @@ class UsersController extends Controller
                         Cookie::queue('stpi', null, -1);
                         $this->users->saveSocialPicture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
                         //user created
-                        $user = User::find( $user->id );
-                        Auth::login($user);
-                        if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
-                        else return Redirect::intended('/');
+                        Session::put('fbid', $user->id);
+                        return Redirect::action('UsersController@fbLogin');
+                        
+//                        $user = User::find( $user->id );
+//                        Auth::login($user);
+//                        if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+//                        else return Redirect::intended('/');
                     }
                 }
                 
             }
             else{
                 // login
-                $user = User::find( $user->id );
-                Auth::login($user);
-                if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
-                else return Redirect::intended('/');
+                Session::put('fbid', $user->id);
+                return Redirect::action('UsersController@fbLogin');
+                
+//                $user = User::find( $user->id );
+//                Auth::login($user);
+//                if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+//                else return Redirect::intended('/');
             }
         }
         // if not ask for permission first
