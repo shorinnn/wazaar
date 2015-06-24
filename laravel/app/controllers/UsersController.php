@@ -211,6 +211,7 @@ class UsersController extends Controller
     
     public function fbLogin(){
         $id = Session::get('fbid');
+        dd($id);
         $user = User::find($id);
 //        Auth::login($user);
          Auth::loginUsingId( $id );
