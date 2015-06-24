@@ -294,7 +294,7 @@ class UsersController extends Controller
                         //user created
                         $user = User::find( $user->id );
                         Auth::login($user);
-                        
+                        sleep(1);
                         if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
                         else return Redirect::intended('/');
                     }
@@ -305,6 +305,7 @@ class UsersController extends Controller
                 // login
                 $user = User::find( $user->id );
                 Auth::login($user);
+                sleep(1);
                 if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
                 else return Redirect::intended('/');
             }

@@ -16,7 +16,7 @@ return array(
 	|
 	*/
 
-	'driver' => 'file',
+	'driver' => 'dynamo',
         'dynamo_gc' => true,
         'dynamo_hash' => 'session_id',
         'dynamo_aws_region' => 'us-east-1',
