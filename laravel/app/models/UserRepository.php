@@ -61,8 +61,8 @@ class UserRepository
                 $profile = new Profile;
                 $profile->owner_id = $user->id; 
                 $profile->owner_type = 'Instructor'; 
-                $profile->first_name = @$name[1];
-                $profile->last_name = @$name[0];
+                $profile->first_name = empty($name[1]) ? 'First Name' : $name[1];
+                $profile->last_name = empty($name[0]) ? 'Last Name' : $name[0];;
                 $profile->email = $user->email;
                 $profile->save();
             }
