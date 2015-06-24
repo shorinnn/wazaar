@@ -157,7 +157,7 @@ class Course extends Ardent{
             $this->errors()->add(0, trans('courses/general.cant-set-price-for-free-course') );
             return false;
         }
-        if($this->free=='no' && $this->price == 0){
+        if( !$this->id && $this->free=='no' && $this->price == 0 ){
             $this->errors()->add(0, trans('courses/general.course-must-be-500') );
             return false;
         }
