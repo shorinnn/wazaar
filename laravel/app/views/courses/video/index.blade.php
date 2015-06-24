@@ -12,7 +12,7 @@
                     
                     <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
                     <span>{{ trans('courses/curriculum.upload') }}</span>
-                    <form action="//s3-ap-southeast-1.amazonaws.com/videosinput" enctype="multipart/form-data" method="POST" class="fileupload">
+                    <form action="//s3-ap-southeast-1.amazonaws.com/videosinput-tokyo" enctype="multipart/form-data" method="POST" class="fileupload">
                         <input type="hidden" name="key" value="{{Str::random(8)}}-${filename}">
                         <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
                         <input type="hidden" name="acl" value="private">
