@@ -5973,7 +5973,7 @@ a.load-remote > *{
 	text-align: left;
     background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/check-icon.png');
     background-repeat: no-repeat;
-    background-position: 0 5px;
+    background-position: 0 4px;
 }
 
 .course-listing-image-preview,
@@ -9653,6 +9653,22 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	padding-right: 45px;
 	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-19.png') no-repeat 139px -218px;
 }
+
+input[disabled]{
+	background: #fff;
+	border-radius: 4px;
+	cursor: not-allowed !important;
+	border: solid 1px #cfd1d2;
+	color: #cfd1d2;
+}
+
+input[disabled]:-ms-input-placeholder,
+input[disabled]::-moz-placeholder,
+input[disabled]::-moz-placeholder,
+input[disabled]::-webkit-input-placeholder{
+	color: #cfd1d2;
+}
+
 /************* Page Footer **************/
 footer{
 	clear:both;
