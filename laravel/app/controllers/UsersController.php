@@ -305,7 +305,6 @@ class UsersController extends Controller
                 // login
                 $user = User::find( $user->id );
                 Auth::login($user);
-                dd($user);
                 if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
                 else return Redirect::intended('/');
             }
