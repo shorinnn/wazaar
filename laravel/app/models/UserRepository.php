@@ -66,7 +66,10 @@ class UserRepository
                 $profile->first_name = $first_name;// 'First  Name';//!isset($name[1]) && empty($name[1]) ? 'First Name' : $name[1];
                 $profile->last_name = $last_name;//  'Last Name';//!isset($name[0]) && empty($name[0]) ? 'Last Name' : $name[0];
                 $profile->email = $user->email;
-                $profile->save();
+                if(! $profile->save() ){
+                    dd( $profile->errors()->all() );
+                }
+                
             }
             
             // add user to DELIVERED
