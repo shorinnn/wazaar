@@ -81,6 +81,8 @@ return array(
     'approval-status' => '教材のステータス',
     'sale-end-must-occur-after-start' => 'Sale End must occur after Sale Start',
     'course-must-be-free-or-500' => 'Course price must be 0 or minimum of 500',
+    'course-must-be-500' => 'Minimum price is 500',
+    'after-sale-course-must-be-500' => 'After sale, minimum price is 500',
     'after-sale-course-must-be-free-or-500' => 'After discount course price must be 0 or minimum of 500',
     'back-to-course-list' => 'Back to course list',
     'course_description' => '基本情報の編集',
@@ -117,4 +119,5 @@ return array(
     'free-preview' => '無料のプレビュー',   
     'modules' => 'セクション数',
     'total_lessons' => '総レッスン数',
+    'cant-set-price-for-free-course' => 'Cannot set price for a free course'
 );
