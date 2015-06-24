@@ -303,6 +303,7 @@ class UsersController extends Controller
                         Cookie::queue('stpi', null, -1);
                         $this->users->saveSocialPicture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
                         //user created
+                        dd($user->id);
                         Session::put('f', $user->id);
                         return Redirect::action('UsersController@fbLogin');
                         
