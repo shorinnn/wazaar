@@ -2008,10 +2008,19 @@ header .activate-dropdown:hover ul{
 	margin: 0 0 5px;
 }
 
+
 .invite-friends p,
 .verify-email p{
 	color: #6e747a;
 	margin: 0 0 10px;
+}
+
+.verify-email p,
+.verify-email h3,
+.invite-friends p,
+.invite-friends h3{
+	padding-right: 10px;
+	line-height: 22px;
 }
 
 .email-verified{
@@ -2055,7 +2064,7 @@ header .activate-dropdown:hover ul{
 	border: solid 1px #e3e5e6;
 	height: 38px;
 	float: left;
-	width: 214px;
+	width: 67%;
 	margin-bottom: 5px;
 	margin-right: 10px;
 	padding-left: 15px;
