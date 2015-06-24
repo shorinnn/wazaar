@@ -12,7 +12,7 @@
                     
                     <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
                     <span>{{ trans('courses/curriculum.upload') }}</span>
-                    {{--<form action="//s3-ap-southeast-1.amazonaws.com/videosinput-tokyo" enctype="multipart/form-data" method="POST" class="fileupload">--}}
+                    <form action="//s3-ap-southeast-1.amazonaws.com/videosinput-tokyo" enctype="multipart/form-data" method="POST" class="fileupload">
                         <input type="hidden" name="key" value="{{Str::random(8)}}-${filename}">
                         <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
                         <input type="hidden" name="acl" value="private">
@@ -20,7 +20,7 @@
                         <input type="hidden" name="policy" value="{{$awsPolicySig['base64Policy']}}">
                         <input type="hidden" name="signature" value="{{$awsPolicySig['signature']}}">
                         <input type="file" multiple="multiple" name="file" class='upload-banner-image' id="upload-course-video" data-unique-key="{{$uniqueKey}}">
-                    {{--</form>--}}
+                    </form>
                 </label>
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped active progress-bar-banner" id="progress-course-video" role="progressbar" aria-valuenow="0" aria-valuemin="0"
