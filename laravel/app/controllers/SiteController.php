@@ -91,7 +91,7 @@ class SiteController extends \BaseController {
                 }
             }
             catch(Exception $e){
-                dd($e);
+                dd( $e->getMessage() );
             }
             
             dd($user);
