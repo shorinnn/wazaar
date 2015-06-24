@@ -62,17 +62,17 @@ class UsersController extends Controller
         $user = $this->users->signup( Input::all(), Cookie::get('ltc'), $roles, Cookie::get('stpi'), Cookie::get('iai'), Cookie::get('st') );
 
         if ( $user!=null && $user->id) {
-            if (Config::get('confide::signup_email')) {
-                Mail::send(
-                    Config::get('confide::email_account_confirmation'),
-                    compact('user'),
-                    function ($message) use ($user) {
-                        $message
-                            ->to($user->email, $user->usersname)
-                            ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
-                    }
-                );
-            }
+//            if (Config::get('confide::signup_email')) {
+//                Mail::send(
+//                    Config::get('confide::email_account_confirmation'),
+//                    compact('user'),
+//                    function ($message) use ($user) {
+//                        $message
+//                            ->to($user->email, $user->usersname)
+//                            ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
+//                    }
+//                );
+//            }
             Cookie::queue('register_instructor', null, -1);
             Cookie::queue('register_affiliate', null, -1);
             Cookie::queue('ltc', null, -1);
