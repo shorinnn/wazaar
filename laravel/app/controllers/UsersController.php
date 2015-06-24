@@ -305,6 +305,7 @@ class UsersController extends Controller
                 
             }
             else{
+                dd('LOGGD!');
                 // login
                 Auth::login($user);
                 if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
