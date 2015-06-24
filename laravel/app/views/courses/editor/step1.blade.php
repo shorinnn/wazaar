@@ -268,13 +268,15 @@
 <script type="text/javascript">
 
         $(function (){
-            
-            $('.step-1-form input').change(function(){
-                if( $('.step-1-form').parsley().isValid() && $('.step-1-filled').val()=='0' ) {
+            function checkStep1(){
+                if( $('.step-1-form').parsley().isValid() && tinyMCE.get('description').getContent() !='' && $('.step-1-filled').val()=='0' ) {
                     $('.step-1-filled').val('1');
                     updateStepsRemaining();
-                    
                 }
+            }
+            
+            $('.step-1-form input').change(function(){
+                checkStep1();
             });
             
             videoLookup.prepareModalEvents();
@@ -299,7 +301,9 @@
             
             $('textarea').each(function(){
                 if( $(this).attr('id') != 'short_description' ){
-                    enableRTE( '#'+$(this).attr('id') );
+                    enableRTE( '#'+$(this).attr('id'), function(){
+                        checkStep1();
+                    } );
                 }
             });
                 $('#btn-close-previews').on('click', function (){
