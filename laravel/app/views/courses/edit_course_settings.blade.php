@@ -366,7 +366,7 @@
         var formData = $('#form-aws-credentials').serialize();
 
         jQuery('#upload-course-video').fileupload({
-            url: '//s3-ap-southeast-1.amazonaws.com/videosinput',
+            url: '//s3-ap-southeast-1.amazonaws.com/videosinput-tokyo',
             formData: {
                 key:$('#form-aws-credentials').find('input[name=key]').val(),
                 AWSAccessKeyId:$('#form-aws-credentials').find('input[name=AWSAccessKeyId]').val(),
