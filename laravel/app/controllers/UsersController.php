@@ -284,7 +284,7 @@ class UsersController extends Controller
                             ->with('error', $error);
                     }
                     else{
-                        
+                        dd($user);
                         Cookie::queue('register_instructor', null, -1);
                         Cookie::queue('register_affiliate', null, -1);
                         Cookie::queue('ltc', null, -1);
