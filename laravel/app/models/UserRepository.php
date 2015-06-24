@@ -52,7 +52,7 @@ class UserRepository
         // Save if valid. Password field will be hashed before save
         if($this->save($user)){
             $user = $this->attachRoles($user);
-            if( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) $user = $this->attachRoles($user, 1);
+            if( $registersAsST!=null || ( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) ) $user = $this->attachRoles($user, 1);
             if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ) $user = $this->attachRoles($user, 2);
             $this->save_ltc($user, $ltc_cookie);
             
@@ -168,7 +168,7 @@ class UserRepository
         // Save if valid. Password field will be hashed before save
         $this->save($user);
         $user = $this->attachRoles($user);
-        if( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) $user = $this->attachRoles($user, 1);
+        if( $registersAsST!=null || ( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) ) $user = $this->attachRoles($user, 1);
         if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ) $user = $this->attachRoles($user, 2);
         $this->save_ltc($user, $ltc_cookie);
         
