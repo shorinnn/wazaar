@@ -147,7 +147,7 @@ class UserRepository
 
         $user->username = "FB$input[id]";
         $user->email    = $input['email'];
-        $user->password = md5(uniqid(mt_rand(), true));
+        $user->password = Str::random(12);//md5(uniqid(mt_rand(), true));
         $user->password_confirmation = $user->password;
         $user->confirmed = 1;
         $user->first_name = $input['first_name'];
