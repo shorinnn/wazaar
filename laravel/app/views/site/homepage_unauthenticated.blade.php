@@ -1,213 +1,166 @@
-    @extends('layouts.default')
-    @section('content')	
-    <style>
-        .boxes p{
-              background-color: rgba(128, 128, 128, 0.40);
-        }
-    </style>
-    <div class="main">
-    </div>
-    	<section class="bckgrd-video-wrapper">
-            <div id="bckgrd-video-container">
-            	<section id="video-container" class="text-center">
-                    <span class="centered-play-button"></span>
-                </section>
-                <div id="bckgrd-video-overlay">
-                    <span class="logo">
-                        <img class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/logged-out-home-logo.png" alt="">
-                    </span>
-                </div>
-            </div>        	
-        </section>
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>App Development - Wazaar</title>    
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css">
 
-        <section class="container-fluid course-search-section unauthenticated-homepage">
-        	<div class="container">
-            	<div class="row">
-                	<div class="col-md-12">
-                    	<p class="lead">
-                            <span>{{trans('site/homepage.what-do-you-want-to-learn')}}</span> 
-                        </p>
-                        <div class="course-search-form">
-                        	<form>
-                            	<input type="search" placeholder="E.g. Javascript, online business, etc ..." name="course-search">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <html class="ie8">
+    <![endif]-->
+    
+    
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="wrapper">
+    	<header class="container-fluid">
+       		<div class="row">
+                <div class="top-menu clearfix col-md-12">
+                    <a href="http://wazaar.dev" class="main-logo">
+                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
+                       class="img-responsive" alt="">
+                    </a>    
+                    <style>
+                        .top-menu .main-logo {
+                            display:block;
+                        }
+                    </style>
+                                    
+                    
+                </div>
+			</div>
+        </header>
+        
+        <section class="container-fluid homepage">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h1 class="extra-large-heading text-center">
+                        Get your skills to new level
+                        <p class="lead">Learning has never been easier! New skills just a few clicks away!</p>
+                    </h1>
+                    <a href="#" class="blue-button large-button round-button">How it works</a>
+                    <div class="home-search-form">
+                        <form>
+                            <div>
+                                <input type="search" name="home-search" class="left" placeholder="What do you want to learn?">
                                 <button></button>
-                            </form>
-                            <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/sample-search-category.png" 
-                            alt="" class="img-responsive">-->
-                            <div class="top-categories-slider-container">
-                                <div class="top-categories-slider">
-                                    @foreach($categories as $category)
-                                        <a href="{{ action('CoursesController@category', $category->slug) }}">
-                                            <h3>{{ $category->name }}</h3>
-                                            <ul>
-                                                @foreach($category->courseSubcategories()->limit(3)->get() as $sub)
-                                                    <li>{{ $sub->name }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </a>
-                                    @endforeach
-                                </div>                            
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section class="unauthenticated-homepage thumb-carousel-section">
-        <div id="video-grid" class="carousel slide" data-ride="carousel">
-        
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner" role="listbox">
-            <?php $first = true;?>
-                    @foreach($frontpageVideos as $set)
-                        @if( cycle(1, 2, 3, 4, ':first') == 1 ) 
-                            <div class="item 
-                                 <?php 
-                                 if($first){
-                                     echo 'active';
-                                     $first = false;
-                                 }?>">
-                                <div class="container-fluid">
-                                    <div class="row">
-                        @endif
-
-                                          @if( cycle('x', 'y', ':second') == 'x')
-                                            <div class="col-xs-4 col-sm-4 col-md-4 big-box-holders box-holders clearfix">
-                                                @if( cycle('a','b', ':third') == 'a')
-                                                    <a href="{{$set[2]['url']}}" class="small-boxes boxes left course-tile-{{$set[2]['id']}}">
-                                                        <span class="hidden-xs"></span>
-                                                        <img class="img-responsive" src="{{ $set[2]['thumb'] }}">
-                                                        <p class="hidden-xs">{{ $set[2]['name'] }}</p>
-                                                    </a>
-                                                    <a href="{{$set[1]['url']}}" class="small-boxes boxes left course-tile-{{$set[1]['id']}}">
-                                                        <span class="hidden-xs"></span>
-                                                        <img class="img-responsive"  src="{{ $set[1]['thumb'] }}"> 
-                                                        <p class="hidden-xs">{{ $set[1]['name'] }}</p>
-                                                    </a>
-                                                    <a href="{{$set[0]['url']}}" class="big-boxes boxes clear  course-tile-{{$set[0]['id']}}">
-                                                        <span class="hidden-xs"></span>
-                                                       <img class="img-responsive"  src="{{ $set[0]['thumb'] }}"> 
-                                                        <p class="hidden-xs">{{ $set[0]['name'] }}</p>
-                                                    </a>
-                                                @else
-                                                    <a href="{{$set[0]['url']}}" class="big-boxes boxes clear  course-tile-{{$set[2]['id']}}">
-                                                        <span class="hidden-xs"></span>
-                                                       <img class="img-responsive"  src="{{ $set[0]['thumb'] }}"> 
-                                                        <p class="hidden-xs">{{ $set[0]['name'] }}</p>
-                                                    </a>
-                                                    <a href="{{$set[1]['url']}}" class="small-boxes boxes left course-tile-{{$set[1]['id']}}">
-                                                        <span class="hidden-xs"></span>
-                                                        <img class="img-responsive"  src="{{ $set[1]['thumb'] }}"> 
-                                                        <p class="hidden-xs">{{ $set[1]['name'] }}</p>
-                                                    </a>
-                                                    <a href="{{$set[2]['url']}}" class="small-boxes boxes left course-tile-{{$set[2]['id']}}">
-                                                        <span class="hidden-xs"></span>
-                                                        <img class="img-responsive" src="{{ $set[2]['thumb'] }}">
-                                                        <p class="hidden-xs">{{ $set[2]['name'] }}</p>
-                                                    </a>
-                                                @endif
-                                            </div>
-                                            @else
-                                                <div class="col-xs-2 col-sm-2 col-md-2 small-box-holders box-holders left clearfix">
-                                                    @foreach($set as $vid)
-                                                        <a href="{{$vid['url']}}" class="small-boxes boxes clear course-tile-{{$vid['id']}}">
-                                                            <span class="hidden-xs"></span>
-                                                            <img class="img-responsive" src="{{ $vid['thumb'] }}">   
-                                                            <p class="hidden-xs">{{ $vid['name'] }}</p>
-                                                        </a>
-                                                    @endforeach                                                              
-                                                </div>
-                                            @endif
-                        @if( cycle(1, 2, 3, 4, ':fourth') == 4 ) 
-                                    </div>
-                               </div>
-                           </div>
-                        @endif
-                    @endforeach
-          </div>
-        
-          <!-- Controls -->
-          <a class="left carousel-control" href="#video-grid" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="right carousel-control" href="#video-grid" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-        </section>
+        <div class="homepage-carousel">
+        	<h1>What is hot right now
+            <p class="lead">Our most popular courses everyone loves. Learn a skill now!</p>
+            </h1>
             
-        <section class="container-fluid course-search-section unauthenticated-homepage discover-wazaar">
+            <div class="home-carousel-container">
+                <div class="cards">
+                
+                </div>
+                <div class="cards">
+                
+                </div>
+                <div class="cards">
+                
+                </div>
+            </div>
+        </div>
+        <section class="container-fluid explore-category">
         	<div class="row">
-            	<div class="col-md-12">
-                    <a href="#" class="discover-wazaar-button">
-                    {{trans('site/homepage.discover-wazaar')}}
+            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                
+                </div>
+            </div>
+        	<div class="row">
+            	<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+                	<a href="#" class="category-box">
+                    	<span></span>
                     </a>
-                    <span class="down-arrow">
-                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/down-arrow.png">
-                    </span>                
+                </div>
+            	<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+                
                 </div>
             </div>
-        </section>
-
-        <section class="unauthenticated-homepage parallax-1">
-        	<!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image5.jpg" class="img-responsive">-->
-        </section>
-              
-        <section class="school-is-a-thing unauthenticated-homepage clearfix">
-        	<div>
-            	<h3>{{trans('site/homepage.thing-of-yesterday')}}
-                	<span>This is the new way to upgrade yourself. Save time and money, and get a promotion.</span>
-                </h3>
-                        <p class="description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. Lorem ipsum dolor sit amet, 
-                consectetur adipisicing elit, sed do 
-                </p>
-                <a href="#" class="sign-up-button">{{trans('site/homepage.sign-up-and-earn')}}</a>
-            </div>
-            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image6.jpg" alt="" 
-            class="hidden-xs img-responsive">
-        </section>
-        <section class="unauthenticated-homepage parallax-2">
-        	<!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/home-stock-image7.jpg" class="img-responsive">-->
-        </section>
-    
-        <section class="container-fluid main-nav-section jp">
-        	<div class="container">
-                <div class="navbar navbar-default">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> 
-                        	<span class="icon-bar"></span> 
-                            <span class="icon-bar"></span> 
-                            <span class="icon-bar"></span> 
-                        </button>
-                    </div><!--navbar-header ends-->
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            @foreach($categories as $category)
-                                <li><a href="#cat-row-{{$category->color_scheme}}">{{ $category->name }}</a></li>
-                            @endforeach
-                        </ul>
-                    </div><!--nav-collapse ends--> 
-                </div><!--navbar-default ends-->
-            </div><!--container ends-->
-        </section>
-        {{ View::make('courses.courses_list_unauthenticated')->with( compact('categories') ) }}
-       
-        <section class="container unauthenticated-homepage" id="the-world-is-yours">
         	<div class="row">
-            	<div class="col-md-12">
-                	<h3>{{ trans('site/homepage.the-world-is-yours') }}.
-                    	<span>{{ trans('site/homepage.create-yourself') }}.</span>
-                    </h3>
-                    <a href="#" class="sign-up">{{ trans('site/homepage.sign-up-now') }}</a>
-                    <span class="get-reward">{{ trans('site/homepage.get-credit') }}!</span>
+            	<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+                
+                </div>
+            	<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
+                
                 </div>
             </div>
         </section>
+        <section class="container-fluid">
+        	<div class="container">
+            	<div class="row">
+                
+                </div>
+            </div>
+        </section>
+        <footer>
+          <section class="footer-container">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4 col-sm-12 first-col">
+                  <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/footer-logo.png" alt="Wazaar" />
+                </div>
+                <div class="col-md-4 col-sm-12 second-col">
+                  <strong>Phone:</strong> 000 000 000 000<br/>
+                  <strong>Mail:</strong> info@wazaar.com
+                </div>
+                <div class="col-md-4 col-sm-12 third-col">
+                  <strong>Wazaar</strong><br/>
+                  All rights reserved<br/>
+                  &copy; 2015
+                </div>              
+              </div>
+            </div>
+          </section>          
+        </footer>
+    </div>    
 
-    @stop
-    
+ 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+        <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+        <script src="http://www.localeplanet.com/api/translate.js" /></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
+    	<script type="text/javascript" src="http://wazaar.dev/js/bootbox.js"></script>
+
+</body>
+</html>
