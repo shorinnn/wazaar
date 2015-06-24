@@ -22,6 +22,7 @@ if( !isset($_SERVER['HTTP_HOST'])){
 //Route::get('mandrill-test', 'SiteController@mandrillTest');
 
 Route::resource('lp', 'LpController');
+Route::get('loginTest', 'SiteController@loginTest');
 
 Route::group( array('domain' =>  $domain), function(){
     // Site routes
