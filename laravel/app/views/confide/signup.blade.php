@@ -19,10 +19,12 @@
                     <h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
                 @endif
                 
-                <div class="login-social-buttons clearfix">
-                	<a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans ('site/register.register-with-facebook') }}</a>
-                    <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
-                </div>
+                @if( App::environment() != 'production' )
+                    <div class="login-social-buttons clearfix">
+                            <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans ('site/register.register-with-facebook') }}</a>
+                        <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
+                    </div>
+                @endif
 
                 <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
                 
