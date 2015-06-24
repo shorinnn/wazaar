@@ -89,7 +89,8 @@ class BlocksController extends \BaseController {
 
         $awsPolicySig = UploadHelper::AWSPolicyAndSignature();
         $uniqueKey = Str::random(8);
-        return View::make('courses.blocks.video')->with(compact('block', 'lessonId', 'video','awsPolicySig','uniqueKey'));
+        $lesson = Lesson::find($lessonId);
+        return View::make('courses.blocks.video')->with(compact('block', 'lessonId', 'video','awsPolicySig','uniqueKey','lesson'));
     }
 
     public function saveVideo($lessonId)

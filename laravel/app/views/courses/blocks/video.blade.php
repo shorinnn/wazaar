@@ -1,4 +1,7 @@
 <div class="text-center">
+    <input type="text" class="ajax-updatable" onkeyup="externalVideoAdded(event)" data-lesson='{{$lesson->id}}'
+           data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}' placeholder='Youtube or Vimeo Link'
+                      data-name='external_video_url' id='external-video-{{$lesson->id}}' value="{{ $lesson->external_video_url }}" />
     <div id="video-player-container-{{$lessonId}}">
         <!--<div id="notify-warning-new-video" class="alert alert-warning
             @if (@$video->transcode_status == Video::STATUS_COMPLETE)
@@ -83,10 +86,19 @@
         return m+":"+s;
     };
 
+    function externalVideoAdded(e){
+            target = $(e.target);
+            $localLessonId = target.attr('data-lesson');
+            $('#lesson-'+$localLessonId).find('.lesson-no-video').removeClass('lesson-no-video');
+    }
+    
     $(function (){
+        
+        
         var $blockId = {{$block->id}};
         var $lessonId = {{$lessonId}};
         var $intervalId = 0;
+        
 
 		var videoVariable = $('#lesson-{{$lessonId}} #video-player-container-' + $lessonId).html();
 		
