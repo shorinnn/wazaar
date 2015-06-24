@@ -9039,6 +9039,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
     font-size: 13px;
 	margin: 15px 0;
 	text-align: left;
+	display: inline-block;
 }
 
 .lesson-options .details h4{
