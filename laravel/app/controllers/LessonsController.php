@@ -56,6 +56,15 @@ class LessonsController extends \BaseController {
         
         public function update($module, $id){
             $lesson = Lesson::find($id);
+            
+            // validate Youtube/Vimeo Link if field is external_video_url
+            if(Input::get('name')=='external_video_url'){
+                if( !validateExternalVideo(Input::get('value')) ){
+                    $response = ['status' => 'error', 'errors' =>  trans('crud/errors.invalid_video_url') ];
+                    return json_encode($response);
+                }
+                    
+            }
             if($lesson!=null && ( $lesson->module->course->instructor->id == Auth::user()->id 
                     || $lesson->module->course->assigned_instructor_id == Auth::user()->id ) ){
                 $name = Input::get('name');

@@ -35,4 +35,7 @@ return array(
     'enter-module-name' => "Enter module name",
     'enter-lesson-name' => "Enter lesson name",
     'additional-lesson-notes' => "Additional Lesson Notes",
+    'paid-or-free' => 'Paid or free',
+    'paid' => 'Paid',
+    'free' => 'Free'
 );

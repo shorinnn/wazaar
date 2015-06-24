@@ -81,7 +81,7 @@ function submittedFormButton(e){
     if( typeof( $(e.target).attr('data-no-processing') ) == 'undefined' || $(e.target).attr('data-no-processing') != 1){
         $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
         $(e.target).find('[type=submit]').attr('disabled', 'disabled');
-        $(e.target).find('[type=submit]').html( _('Processing...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+        $(e.target).find('[type=submit]').html( _('Processing...') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
     }
 }
 

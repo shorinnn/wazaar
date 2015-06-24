@@ -71,4 +71,5 @@ return array(
     'i-agree' => 'I Agree',
     'please-wait' => 'Please Wait',
     'register-2-tier' => '販売者２ティア登録',
+ 
 );

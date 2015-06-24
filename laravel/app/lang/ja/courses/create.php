@@ -33,5 +33,9 @@ return array(
     'give-title' => 'コースのタイトル名（60文字以内）',
     'what-is-it-about' => 'コースのカテゴリー名',
     'create-new-course' => 'コース作成',
-    'what-users-should-know' => 'コース受講にあたり必要となる機材や受講者が知っておくべきことがありましたら、ご記入ください。'
+    'what-users-should-know' => 'コース受講にあたり必要となる機材や受講者が知っておくべきことがありましたら、ご記入ください。',
+    'wazaar_must_review' => '商品をワザールで掲載する前に商品の審査が必要になります。',
+    'paid-or-free' => 'Paid or free',
+    'paid' => 'Paid',
+    'free' => 'Free'
 );

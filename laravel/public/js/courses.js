@@ -138,9 +138,13 @@ function enableLessonRTE(e){
 	TweenMax.fromTo(actionPanel, 0.3, {marginBottom: '40px', padding: '10px'}, {marginBottom: '0px', padding: '30px 10px 10px'});
 } 
 
-function enableRTE(selector){
+function enableRTE(selector, changeCallback){
+    if( typeof(changeCallback) == 'undefined' ) changeCallback = function(){};
     tinymce.remove(selector);
     tinymce.init({
+        setup : function(ed) {
+                  ed.on('change', changeCallback);
+            },
         menu:{},
         language: 'ja',
         language_url: COCORIUM_APP_PATH+'js/lang/tinymce/ja.js',

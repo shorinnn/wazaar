@@ -10,7 +10,7 @@
       </div>
     </div>-->                        
 	<div class="new-lesson
-                 @if($lesson->blocks()->where('type','video')->where( 'content','!=','' )->count() > 0)
+                 @if($lesson->blocks()->where('type','video')->where( 'content','!=','' )->count() > 0 || trim($lesson->external_video_url) != '')
                     green
                  @else
                  	gray
@@ -49,7 +49,7 @@
         </div>
         <div class="lesson-options lesson-options-{{$lesson->id}} row">
             <div class="clearfix lesson-options-buttons
-                 @if($lesson->blocks()->where('type','video')->where( 'content','!=','' )->count() == 0)
+                 @if($lesson->blocks()->where('type','video')->where( 'content','!=','' )->count() == 0 && trim($lesson->external_video_url) == '')
                     lesson-no-video
                  @endif
                  ">
@@ -118,7 +118,8 @@
                 </div>
                 <div class="buttons setting">
                     <a href='#' class='load-remote-cache
-                       @if($lesson->description!='' || $lesson->price>0 || $lesson->published=='yes')
+                       {{--}}if($lesson->description!='' || $lesson->price>0 || $lesson->published=='yes') --}}
+                       @if($lesson->description!='' || $lesson->price>0 )
                         done
                        @endif
                        ' data-target='.action-panel-{{$lesson->id}} .details' 

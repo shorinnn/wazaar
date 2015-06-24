@@ -34,6 +34,7 @@ class CoursesController extends \BaseController {
             $course->slug = Str::slug(Input::get('name'));
             $course->course_category_id = Input::get('course_category_id');
             $course->course_subcategory_id = Input::get('course_subcategory_id');
+            $course->free = Input::get('free');
             if($course->save()){
                 // notify followers
 //                Instructor::find( Auth::user()->id )->notifyFollowers( $course );

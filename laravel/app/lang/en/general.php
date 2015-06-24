@@ -93,5 +93,6 @@ return array(
     'i-agree' => 'I Agree',
     'please-wait' => 'Please Wait',
     'register-2-tier' => 'Register 2 tier publisher account',
+    'cant-set-price-for-free-course' => 'Cannot set price for a free course'
     
 );

@@ -42,6 +42,7 @@ class CourseCest{
     public function setFreeCourse(UnitTester $I){
         $course = Course::find(1);
         $course->price = 0;
+        $course->free = 'yes';
         $I->assertTrue( $course->updateUniques() );
     }
     
@@ -202,6 +203,44 @@ class CourseCest{
         $lesson = Lesson::find(10);
         $lessonSales = Purchase::where( 'product_id', $lesson->id )->where( 'product_type','Lesson' )->sum( 'purchase_price' );
         $I->assertEquals( $lessonSales, $lesson->module->course->lessonSales() );
+    }
+    
+    
+    
+    public function free_course_zero_price(UnitTester $I){
+        $course = Course::first();
+        $course->free = 'yes';
+        $course->price = 0;
+        $I->assertTrue( $course->updateUniques() );
+        $course->price = 0;
+        $I->assertTrue( $course->updateUniques() );
+    }
+    
+    public function fail_price_for_free_course(UnitTester $I){
+        $course = Course::first();
+        $course->free = 'yes';
+        $course->price = 0;
+        $I->assertTrue( $course->updateUniques() );
+        $course->price = 700;
+        $I->assertFalse( $course->updateUniques() );
+    }
+    
+    public function set_price_for_paid_course(UnitTester $I){
+        $course = Course::first();
+        $course->free = 'no';
+        $course->price = 800;
+        $I->assertTrue( $course->updateUniques() );
+        $course->price = 900;
+        $I->assertTrue( $course->updateUniques() );
+    }
+    
+    public function fail_free_for_paid_course(UnitTester $I){
+        $course = Course::first();
+        $course->free = 'no';
+        $course->price = 800;
+        $I->assertTrue( $course->updateUniques() );
+        $course->price = 0;
+        $I->assertFalse( $course->updateUniques() );
     }
         
 }
