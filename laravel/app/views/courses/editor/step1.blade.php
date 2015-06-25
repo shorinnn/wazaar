@@ -345,6 +345,11 @@
         }).bind('fileuploaddone', function ($e, $data) {
             $('.course-video-upload-button-progress').addClass('hidden');
             $('.course-video-upload-processing').removeClass('hidden');
+            $('.course-video-thumb').addClass('hidden');
+            setInterval(function(){
+                count++;
+                document.getElementById('video-transcoding-indicator-course-description').innerHTML = _("Video Currently Processing") + new Array(count % 4).join('.');
+            }, 500);
 
             if ($data.jqXHR.status == 201){
                 if ($data.files[0].name !== undefined){
@@ -366,6 +371,7 @@
                                         $('#course-video-anchor').attr('data-video-url',$video.formats[0].video_url);
                                         $('#course-video-anchor').html($video.original_filename);
                                         $('.course-description-video-preview').html("<img src='" +  $video.formats[0].thumbnail + "' />");
+                                        $('.course-video-thumb').removeClass('hidden');
                                         console.log('CHANGED THUMBNAIL!');
                                         console.log($video);
                                     }

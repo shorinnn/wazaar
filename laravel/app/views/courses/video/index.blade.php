@@ -2,7 +2,8 @@
 <div class="row">
     <div class="col-md-12">
         <div class="course-video-upload-processing hidden" align="center">
-            <img src="{{url('images/ajax-loader.gif')}}" alt=""/>
+            <!--<img src="{{url('images/ajax-loader.gif')}}" alt=""/>-->
+            <span id="video-transcoding-indicator-course-description" class="video-transcoding-indicator">{{trans('video.videoCurrentlyProcessing')}}</span>
         </div>
         <p>&nbsp;</p>
         <div class="course-video-thumb @if (!$course->descriptionVideo) hidden @endif" align="center">
