@@ -347,8 +347,9 @@
         }).bind('fileuploaddone', function ($e, $data) {
             $('.course-video-upload-button-progress').addClass('hidden');
             $('.course-video-upload-processing').removeClass('hidden');
-            $('.course-video-thumb').addClass('hidden');
+            //$('.course-video-thumb').addClass('hidden');
             var count = 0;
+
             setInterval(function(){
                 count++;
                 document.getElementById('video-transcoding-indicator-course-description').innerHTML = _("Video Currently Processing") + new Array(count % 4).join('.');
