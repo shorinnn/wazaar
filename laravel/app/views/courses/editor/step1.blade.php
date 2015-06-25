@@ -269,6 +269,10 @@
 <script type="text/javascript">
 
         $(function (){
+            
+            $('.course-description-video-preview').click(function(){
+                $('#course-video-anchor').click();
+            });
             function checkStep1(){
                 if( $('.step-1-form').parsley().isValid() && tinyMCE.get('description').getContent() !='' && $('.step-1-filled').val()=='0' ) {
                     $('.step-1-filled').val('1');
