@@ -132,7 +132,9 @@ return array(
     'course-description-preview' => 'Course Description Preview',
     'sale-end-must-occur-after-start' => 'Sale End must occur after Sale Start',
     'course-must-be-free-or-500' => 'Course price must be 0 or minimum of 500',
+    'course-must-be-500' => 'Minimum price is 500',
     'after-sale-course-must-be-free-or-500' => 'After discount course price must be 0 or minimum of 500',
+    'after-sale-course-must-be-500' => 'After sale, minimum price is 500',
     'back-to-course-list' => 'Back to course list',
     'step2-title' => 'Create your lessons. Organise them by modules. You can create unlimited number of modules and lessons.',
     'enable-ask-coach-tip' => '',
@@ -142,5 +144,6 @@ return array(
     'course-not-public' => 'Not Public',
     'course-public-tip' => '',
     'individual-sale' => 'Individual Sale',
-    'free-preview' => 'Free Preview'
+    'free-preview' => 'Free Preview',
+    'cant-set-price-for-free-course' => 'Cannot set price for a free course'
 );

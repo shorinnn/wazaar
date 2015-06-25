@@ -14,7 +14,6 @@ $(document).ready(function(){
     $('body').delegate('.set-slider', 'change', setSlider);
     $('body').delegate('.reply-to', 'click', setReplyTo);
     $('body').delegate('.cancel-reply', 'click', cancelReply);
-    $('body').delegate('.toggle-disable', 'change', toggleDisable);
 });
 
 /**
@@ -82,7 +81,7 @@ function submittedFormButton(e){
     if( typeof( $(e.target).attr('data-no-processing') ) == 'undefined' || $(e.target).attr('data-no-processing') != 1){
         $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
         $(e.target).find('[type=submit]').attr('disabled', 'disabled');
-        $(e.target).find('[type=submit]').html( _('Processing...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+        $(e.target).find('[type=submit]').html( _('Processing...') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
     }
 }
 
@@ -448,30 +447,6 @@ function toggleElementViaOther(e) {
     val = $source.val();
     if( typeof($source).attr('data-is-int')!='undefined' ) val = parseInt(val);
     if ( val == $source.attr('data-hide-on') ) {
-        $(dest).hide();
-    }
-    else {
-        $(dest).show();
-    }
-}
-
-function toggleDisable(e){
-    $source = $(e.target);
-    dest = $source.attr('data-target');
-    disable =  $source.attr('data-disable');
-    if ( disable == 'disable' ) {
-        $(dest).attr("disabled", "disabled"); 
-    }
-    else {
-        $(dest).removeAttr("disabled"); 
-    }
-}
-
-function toggleVisible(e){
-    $source = $(e.target);
-    dest = $source.attr('data-target');
-    hide =  $source.attr('data-visible');
-    if ( hide == 'hide' ) {
         $(dest).hide();
     }
     else {

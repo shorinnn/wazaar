@@ -12,4 +12,5 @@ return array(
     'error_occurred' => "エラーが発生しました",
     'module-slug-in-use' => "このモジュール名をコースで既に使用しています。他の名前を入力してください",
     'lesson-slug-in-use' => "このレッスン名を既にモジュールで使用しています。他の名前を入力してください",
+    'invalid_video_url' => "Invalid Video Url",
 );

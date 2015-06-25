@@ -153,6 +153,15 @@ class Course extends Ardent{
 //    }
     
     public function beforeSave(){
+        if($this->free=='yes' && $this->price > 0){
+            $this->errors()->add(0, trans('courses/general.cant-set-price-for-free-course') );
+            return false;
+        }
+//        if( $this->id > 0 && $this->free=='no' && $this->price == 0 ){
+//            $this->errors()->add(0, trans('courses/general.course-must-be-500') );
+//            return false;
+//        }
+        
         if($this->price>0){
             $this->price = round2( $this->price, 100 );
         }
@@ -178,8 +187,12 @@ class Course extends Ardent{
         }
         $percentage = ($this->sale/100);
         
-        if($this->sale_kind=='percentage' && ( $this->price - ($this->price * $percentage) < 500 && $this->price - ($this->price * $percentage) != 0 ) ){
-            $this->errors()->add(0, trans('courses/general.after-sale-course-must-be-free-or-500') );
+//        if($this->sale_kind=='percentage' && ( $this->price - ($this->price * $percentage) < 500 && $this->price - ($this->price * $percentage) != 0 ) ){
+//            $this->errors()->add(0, trans('courses/general.after-sale-course-must-be-free-or-500') );
+//            return false;
+//        }
+        if($this->sale_kind=='percentage' && ( $this->price - ($this->price * $percentage) < 500 ) ){
+            $this->errors()->add(0, trans('courses/general.after-sale-course-must-be-500') );
             return false;
         }
         
@@ -188,8 +201,12 @@ class Course extends Ardent{
             return false;
         }
         
-        if($this->sale_kind=='amount' && ( $this->price - $this->sale  < 500 && $this->price - $this->sale !=0 ) ){
-            $this->errors()->add(0, trans('courses/general.after-sale-course-must-be-free-or-500') );
+//        if($this->sale_kind=='amount' && ( $this->price - $this->sale  < 500 && $this->price - $this->sale !=0 ) ){
+//            $this->errors()->add(0, trans('courses/general.after-sale-course-must-be-free-or-500') );
+//            return false;
+//        }
+        if($this->sale_kind=='amount' && $this->sale > 0 &&( $this->price - $this->sale  < 500 ) ){
+            $this->errors()->add(0, trans('courses/general.after-sale-course-must-be-500') );
             return false;
         }
         
@@ -205,8 +222,9 @@ class Course extends Ardent{
             }
             
         }
-        if($this->price!=0 && $this->price < 500){
-            $this->errors()->add(0, trans('courses/general.course-must-be-free-or-500') );
+        if( $this->id > 0 && $this->price!=0 && $this->price < 500 ){
+//            $this->errors()->add(0, trans('courses/general.course-must-be-free-or-500') );
+            $this->errors()->add(0, trans('courses/general.course-must-be-500') );
             return false;
         }
         // update category counter

@@ -1,4 +1,3 @@
-
 {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
                 'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-3-form',  'data-callback'=>'submittedCourse']) }}
     <input type='hidden' name='publish_status' value='1' />
@@ -117,90 +116,93 @@
         </div>
     </div>
     
-    <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ trans('courses/general.price') }}</h4>
-        </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <div class="value-unit">
-                    <!--<input type="text" name="amount">-->
-                    {{  Form::text( 'price', money_val($course->price),
-                                            ['class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustPrice'] ) }}
-                <span>¥</span>
+        @if($course->free == 'no')
+        <div class="row editor-settings-layout margin-bottom-30">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <h4 class="text-right">{{ trans('courses/general.price') }}</h4>
+            </div>
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="value-unit">
+                        <!--<input type="text" name="amount">-->
+                        {{  Form::text( 'price', money_val($course->price),
+                                                ['class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustPrice'] ) }}
+                    <span>¥</span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row editor-settings-layout margin-bottom-30">
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ trans('courses/general.affiliate_percentage') }} 
-            </h4>
+        <div class="row editor-settings-layout margin-bottom-30">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <h4 class="text-right">{{ trans('courses/general.affiliate_percentage') }} 
+                </h4>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="value-unit">
+                    <input type="number" class='span2 clear right' name='affiliate_percentage' id='affiliate_percentage' 
+                        max='68' min='0'
+                        value="{{ $course->affiliate_percentage }}" data-slider-min="0" data-slider-max="68" 
+                        data-slider-step="1" data-slider-value="{{ intval( $course->affiliate_percentage ) }}" 
+                        data-slider-orientation="horizontal" 
+                        data-slider-selection="after" data-slider-tooltip="show" data-label="#affiliate_percentage_output" 
+                        data-target-input='1' />
+                        <!--<input type="text" name="amount">-->
+                    <span>%</span>
+                </div>
+                <span class="clue-text">{{ trans('courses/general.affiliate-percentage-tip') }}</span>
+            </div>
+        </div>
+        <div class="row editor-settings-layout margin-bottom-30">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <h4 class="text-right">{{ trans('courses/general.discount') }} </h4>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
             <div class="value-unit">
-                <input type="text" class='span2 clear right' name='affiliate_percentage' id='affiliate_percentage' 
-                    value="{{ $course->affiliate_percentage }}" data-slider-min="0" data-slider-max="68" 
-                    data-slider-step="1" data-slider-value="{{ intval( $course->affiliate_percentage ) }}" 
-                    data-slider-orientation="horizontal" 
-                    data-slider-selection="after" data-slider-tooltip="show" data-label="#affiliate_percentage_output" 
-                    data-target-input='1' />
-                    <!--<input type="text" name="amount">-->
-                <span>%</span>
+                {{ Form::text('sale', money_val($course->sale),
+                    ['onkeyup' => 'toggleElementViaOther(event)', 
+                    'class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustDiscount',
+                    'data-saleType' => 'sale_kind',
+                    'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
+                <span>¥</span>
             </div>
-            <span class="clue-text">{{ trans('courses/general.affiliate-percentage-tip') }}</span>
         </div>
-    </div>
-    <div class="row editor-settings-layout margin-bottom-30">
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-        <h4 class="text-right">{{ trans('courses/general.discount') }} </h4>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-        <div class="value-unit">
-            {{ Form::text('sale', money_val($course->sale),
-                ['onkeyup' => 'toggleElementViaOther(event)', 
-                'class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustDiscount',
-                'data-saleType' => 'sale_kind',
-                'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
-            <span>¥</span>
-        </div>
-    </div>
-        <!--
-    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" id="discount">
-          {{ Form::select('sale_kind', ['amount' => '¥', 'percentage' => '%'], null,
-      ['class'=>''] ) }}
-    </div>-->
-    </div>
-        <div class='sale-ends-on' @if($course->sale == 0) style='display:none' @endif >
-            <div class="row editor-settings-layout margin-bottom-30">
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <h4 class="text-right">{{ trans('courses/general.sale_starts_on') }}</h4>
-                </div>
-                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    <div class="calender">
-                          <div class="clear clearfix input-group date">
-                              {{ Form::text('sale_starts_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
-                              <span class="input-group-addon">
-                                  <span class="glyphicon glyphicon-calendar"></span>
-                              </span>
-                          </div>
+            <!--
+        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" id="discount">
+              {{ Form::select('sale_kind', ['amount' => '¥', 'percentage' => '%'], null,
+          ['class'=>''] ) }}
+        </div>-->
+            </div>
+            <div class='sale-ends-on' @if($course->sale == 0) style='display:none' @endif >
+                <div class="row editor-settings-layout margin-bottom-30">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <h4 class="text-right">{{ trans('courses/general.sale_starts_on') }}</h4>
+                    </div>
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <div class="calender">
+                              <div class="clear clearfix input-group date">
+                                  {{ Form::text('sale_starts_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
+                                  <span class="input-group-addon">
+                                      <span class="glyphicon glyphicon-calendar"></span>
+                                  </span>
+                              </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row editor-settings-layout margin-bottom-30">
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <h4 class="text-right">{{ trans('courses/general.sale_ends_on') }}</h4>
-                </div>
-                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    <div class="calender">
-                        <div class="clear clearfix input-group date">
-                            {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                <div class="row editor-settings-layout margin-bottom-30">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <h4 class="text-right">{{ trans('courses/general.sale_ends_on') }}</h4>
+                    </div>
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <div class="calender">
+                            <div class="clear clearfix input-group date">
+                                {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
 </div>
 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 right-content">
     <h2>{{ trans('courses/general.course_summary') }}</h2>

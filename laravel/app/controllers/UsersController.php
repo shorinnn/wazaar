@@ -23,8 +23,10 @@ class UsersController extends Controller
     public function create($instructor_account = '')
     {
         if( Auth::guest() ){
-            Cookie::queue('st', 1, 0);
+            Cookie::queue('st', null, -1);
+            Cookie::forget('st');
         }
+        
         if( $instructor_account === 'instructor' ){
             Cookie::queue("register_instructor", 1, 30);
         }
@@ -207,6 +209,17 @@ class UsersController extends Controller
         }
     }
     
+    public function fbLogin(){
+        $id = Session::get('f');
+        dd($id);
+        $user = User::find($id);
+//        Auth::login($user);
+         Auth::loginUsingId( $id );
+        Session::forget('f');
+        if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+        else return Redirect::intended('/');
+    }
+    
     /**
      * Show Link existing email account with Google account page
      */
@@ -273,7 +286,7 @@ class UsersController extends Controller
                     // create user
                     $roles['instructor'] = Cookie::get('register_instructor');
                     $roles['affiliate'] = Cookie::get('register_affiliate');
-                    $user = $this->users->signupWithFacebook($result, Cookie::get('ltc'), $roles, $roles, Cookie::get('stpi'), Cookie::get('iai'), Cookie::get('st') );
+                    $user = $this->users->signupWithFacebook($result, Cookie::get('ltc'), $roles, Cookie::get('stpi'), Cookie::get('iai'), Cookie::get('st') );
                     if(!$user->id){ 
                         // cannot create user
                         $error = $user->errors()->all(':message');
@@ -282,21 +295,35 @@ class UsersController extends Controller
                             ->with('error', $error);
                     }
                     else{
-                        Cookie::queue('ltc', null, -1);
                         Cookie::queue('register_instructor', null, -1);
                         Cookie::queue('register_affiliate', null, -1);
+                        Cookie::queue('ltc', null, -1);
+                        Cookie::queue('st', null, -1);
+                        Cookie::queue('iai', null, -1);
+                        Cookie::queue('stpi', null, -1);
                         $this->users->saveSocialPicture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
                         //user created
-                        Auth::login($user);
-                        return Redirect::intended('/');
+                        dd($user->id);
+                        Session::put('f', $user->id);
+                        return Redirect::action('UsersController@fbLogin');
+                        
+//                        $user = User::find( $user->id );
+//                        Auth::login($user);
+//                        if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+//                        else return Redirect::intended('/');
                     }
                 }
                 
             }
             else{
                 // login
-                Auth::login($user);
-                return Redirect::intended('/');
+                Session::put('f', $user->id);
+                return Redirect::action('UsersController@fbLogin');
+                
+//                $user = User::find( $user->id );
+//                Auth::login($user);
+//                if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+//                else return Redirect::intended('/');
             }
         }
         // if not ask for permission first
@@ -304,7 +331,8 @@ class UsersController extends Controller
             // get fb authorization
             $url = $fb->getAuthorizationUri();
             // return to facebook login url
-            return Redirect::intended( (string)$url );
+            return Redirect::to( (string)$url );
+//            return Redirect::intended( (string)$url );
         }
     }
     

@@ -3,7 +3,6 @@
  * @class Courses 
  */
 $(document).ready(function(){
-    activatePreviewButton();
     $('body').delegate('.add-module', 'click', addModule);    
     $('body').delegate('.add-lesson', 'click', addLesson);    
     $('body').delegate('.show-reply-form', 'click', showReplyForm);    
@@ -101,11 +100,6 @@ function addLesson(json){
     $('#lessons-holder-'+json.module).append(json.html);
     $('#lessons-holder-'+json.module+' .lesson-no-video .a-add-video').click();
     reorderLessons( 'lessons-holder-'+json.module );
-    
-    if( $('.step-2-filled').val()=='0' && $('.lesson-options').length >= 5 ) {
-        $('.step-2-filled').val('1');
-        updateStepsRemaining();
-    }
 }
 
 /**
@@ -144,9 +138,13 @@ function enableLessonRTE(e){
 	TweenMax.fromTo(actionPanel, 0.3, {marginBottom: '40px', padding: '10px'}, {marginBottom: '0px', padding: '30px 10px 10px'});
 } 
 
-function enableRTE(selector){
+function enableRTE(selector, changeCallback){
+    if( typeof(changeCallback) == 'undefined' ) changeCallback = function(){};
     tinymce.remove(selector);
     tinymce.init({
+        setup : function(ed) {
+                  ed.on('change', changeCallback);
+            },
         menu:{},
         language: 'ja',
         language_url: COCORIUM_APP_PATH+'js/lang/tinymce/ja.js',
@@ -328,22 +326,21 @@ function adjustDiscount(e){
     val = parseInt(e.val());
     kind = e.attr('data-saleType');
     kind = $("[name='"+kind+"']").val();
-//    if(kind=='amount' && val>0) val =  round2( val, 100 );
-    val = round2( val, 100 );
+    if(kind=='amount' && val>0) val =  round2( val, 100 );
     e.val( val );
 }
 
 function courseChangedTabs(e){
     $('.header-tabs').removeClass('active');
     $(e.target).addClass('active');
-//    remaining = $(e.target).attr('data-steps-remaining');
-//    if(remaining==0){
-//        $('.steps-remaining').hide();
-//    }
-//    else{
-//        $('.steps-remaining').find('span').html( _(remaining) );
-//        $('.steps-remaining').show();
-//    }
+    remaining = $(e.target).attr('data-steps-remaining');
+    if(remaining==0){
+        $('.steps-remaining').hide();
+    }
+    else{
+        $('.steps-remaining').find('span').html( _(remaining) );
+        $('.steps-remaining').show();
+    }
 }
 
 function saveAndNextTab(e){
@@ -352,23 +349,4 @@ function saveAndNextTab(e){
     }, 500);
     formSaved(e);
     $('.header-tabs.active').next('.header-tabs').click();
-}
-
-function submittedCourse(){
-    $('.header-tabs').last().removeAttr('data-loaded');
-    $('.header-tabs').last().click();
-}
-
-function updateStepsRemaining(){
-    course_steps_remaining--;
-    $('.steps-remaining p span span').html( course_steps_remaining );
-    activatePreviewButton();
-}
-
-function activatePreviewButton(){
-    if( $('.step-1-filled').val()==1 && $('.step-2-filled').val()==1){
-        $('.preview-course-btn').removeClass('disabled-button');
-        $('.preview-course-btn').attr( 'target','_blank' );
-        $('.preview-course-btn').attr( 'href', $('.preview-course-btn').attr('data-href') );
-    }
 }

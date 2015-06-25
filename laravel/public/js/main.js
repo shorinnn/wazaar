@@ -42,7 +42,7 @@ $(document).ready(function(){
 	askTeacherQuestion();
 	searchFormFocusStyle();
 	showMoreContent();
-	//stickyFooter();
+	stickyFooter();
 	rescaleBckgrdOverlay();
 });
 
@@ -93,14 +93,7 @@ function convertToSlug(text){
  * @method followRedirect
  * @param {object} An ovject with an URL property, usually a JSON response
  */
-function followRedirect(json, e){
-    elem = $(e.target);
-    target = elem.attr('data-redirect-target-elem');
-    if( typeof(target) != undefined ){
-        $(target).html( 
-                 elem.attr('data-redirect-label') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />'
-                );
-    }
+function followRedirect(json){
     window.location = json.url;
 }
 
