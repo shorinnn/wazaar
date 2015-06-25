@@ -31,7 +31,7 @@ return array(
     'status' => '月Statusせ',
     'course-categories' => 'コースカテゴリ',
     'color-scheme' => '月StatusせPlease provide more context',
-    'browse' => '月BrowseせPlease provide more context',
+    'browse' => 'Browse',
     'course-difficulties' => 'コース難易度',
     'request-type' => 'リクエストタイプ',
     'user' => 'ユーザー',
