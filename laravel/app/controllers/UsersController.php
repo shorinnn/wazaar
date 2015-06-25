@@ -272,7 +272,7 @@ class UsersController extends Controller
             // Send a request with it
             $result = json_decode( $fb->request( '/me' ), true );
             // See if we need to register this user
-            
+            dd($result);
             $user = $this->users->where('facebook_login_id',$result['id'])->first();
             if($user == null){
                 // see if email is aready in the system
