@@ -18,8 +18,7 @@
                 @else
                     <h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
                 @endif
-               <!--  {{ $_SERVER['REMOTE_ADDR'] }} -->
-                @if( App::environment() != 'production' || $_SERVER['REMOTE_ADDR'] == '115.66.142.54' || $_SERVER['REMOTE_ADDR'] == '94.52.185.22' )
+                @if( App::environment() != 'production' || Input::has('cmon-show-me-the-fb-register-button-mayne') )
                     <div class="login-social-buttons clearfix">
                             <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans ('site/register.register-with-facebook') }}</a>
                         <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
