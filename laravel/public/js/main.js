@@ -430,13 +430,25 @@ function loadRemoteCache(e){
 	marginTop: 0
 	});
 
-    $(target).load(url, function(){
+    $(target).load(url, function(responseText, textStatus, req){
+//        if(textStatus == "error") {
+//            $(target).html( _( '<p class="ajax-load-error">Request failed. Trying again in 5 seconds</p>') );
+//            setTimeout(loadRemoteCache, 5000, e);
+//            return;
+//        }
         elem.attr('data-loaded','1');
         elem.addClass('dataLoaded');
         if( typeof(callback)!= 'undefined'){
             window[callback](e);
         }
     });
+//    $(target).load('fail'+url, function(){
+//        elem.attr('data-loaded','1');
+//        elem.addClass('dataLoaded');
+//        if( typeof(callback)!= 'undefined'){
+//            window[callback](e);
+//        }
+//    });
 }
 
 

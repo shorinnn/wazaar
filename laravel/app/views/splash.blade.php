@@ -43,7 +43,7 @@
             <!--<p>We will help you learn new amazing things! Our learning platform will be so simple and accessible to everyone!</p>-->
             <p>技の動画フリーマーケット、ワザールでは、あなたの技を動画にして、500円から販売することができます！あなたの技が日本を変える！ワザールまもなく始まります！</p>
             <div class="publisher-login">
-            	<a href="{{url('courses/mycourses')}}">Publisher Login</a>
+            	<a href="{{ action('CoursesController@myCourses') }}">Publisher Login</a>
             </div>
         </div>         	
     </div>    
