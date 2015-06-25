@@ -209,11 +209,11 @@ class UsersController extends Controller
         }
     }
     
-    public function fbLogin(){
+    public function fbLogin($encryptedUserId = ''){
         if (!Session::has('f')){
-            dd(Cookie::get('f'));
+            $id = Crypt::decrypt($encryptedUserId);
         }
-        dd(Cookie::get('f'));
+        dd($id);
         $id = Session::get('f');
         //dd($id);
         $user = User::find($id);
@@ -323,7 +323,7 @@ class UsersController extends Controller
                 // login
                 Session::put('f', $user->id);
                 Cookie::make('f',$user->id,5);
-                return Redirect::action('UsersController@fbLogin',[$user->id]);
+                return Redirect::action('UsersController@fbLogin',[Crypt::encrypt($user->id)]);
                 
 //                $user = User::find( $user->id );
 //                Auth::login($user);
