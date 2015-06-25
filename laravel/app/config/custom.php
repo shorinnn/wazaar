@@ -8,7 +8,7 @@ return [
     'course_is_new'        => [ 'maximum_students' => 20, 'maximum_months' => 6 ],
     'tracker_url'          => 'http://wazaar.jp/action_tracker',
     'maximum_lesson_files' => 10,
-    'course_attachments' => ['.jpg', '.png', '.gif', '.bmp', '.txt', '.pdf', '.zip'],
+    'course_attachments' => ['.jpg', '.png', '.gif', '.bmp', '.txt', '.pdf', '.zip', '.doc', '.docx'],
     'use_id_for_slug' => true,
     'short_desc_max_chars' => 100,
     'earnings' => ['instructor_percentage' => 70, 'site_percentage' => 30, 'ltc_percentage' => 5, 'agency_percentage' => 5,

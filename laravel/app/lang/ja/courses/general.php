@@ -84,7 +84,7 @@ return array(
     'course-must-be-500' => 'Minimum price is 500',
     'after-sale-course-must-be-500' => 'After sale, minimum price is 500',
     'after-sale-course-must-be-free-or-500' => 'After discount course price must be 0 or minimum of 500',
-    'back-to-course-list' => 'Back to course list',
+    'back-to-course-list' => '制作中の教材一覧に戻る',
     'course_description' => '基本情報の編集',
     'details_for_public_course_page' => '商品ページに掲載される情報をご記入お願い致します。',
     'short_description' => 'サブタイトル（120文字）',
