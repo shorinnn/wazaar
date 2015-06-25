@@ -1,6 +1,6 @@
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 margin-top-10">
         <div class="course-video-upload-processing hidden" align="center">
             <!--<img src="{{url('images/ajax-loader.gif')}}" alt=""/>-->
             <span id="video-transcoding-indicator-course-description" class="video-transcoding-indicator">{{trans('video.videoCurrentlyProcessing')}}</span>
@@ -44,7 +44,7 @@
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped active progress-bar-banner" id="progress-course-video" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                          aria-valuemax="100" style="width: 0%;">
-                        <span></span>
+                        <span><span id="progress-course-video-percent-complete"></span></span>
                     </div>
                 </div>
 

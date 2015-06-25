@@ -342,10 +342,13 @@
         }).on('fileuploadprogress', function ($e, $data) {
             var $progress = parseInt($data.loaded / $data.total * 100, 10);
             $('#progress-course-video').css('width',$progress + '%');
+            $('#progress-course-video-percent-complete').html($progress + '%');
+
         }).bind('fileuploaddone', function ($e, $data) {
             $('.course-video-upload-button-progress').addClass('hidden');
             $('.course-video-upload-processing').removeClass('hidden');
             $('.course-video-thumb').addClass('hidden');
+            var count = 0;
             setInterval(function(){
                 count++;
                 document.getElementById('video-transcoding-indicator-course-description').innerHTML = _("Video Currently Processing") + new Array(count % 4).join('.');
