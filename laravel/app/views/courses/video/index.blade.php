@@ -6,7 +6,7 @@
             <span id="video-transcoding-indicator-course-description" class="video-transcoding-indicator">{{trans('video.videoCurrentlyProcessing')}}</span>
         </div>
         <p>&nbsp;</p>
-        <div class="course-video-thumb @if (!$course->descriptionVideo) hidden @endif" align="center">
+        <div class="course-video-thumb @if (!$course->descriptionVideo) hidden @endif" align="center" style="padding:5px">
             {{trans('video.currentVideo')}}:
             @if ($course->descriptionVideo)
                 <a href="#" id="course-video-anchor" class="video-title" data-filename="{{$course->descriptionVideo->original_filename}}" data-video-url="{{$course->descriptionVideo->formats[0]->video_url}}" onclick="videoModal.show(this, event)">{{$course->descriptionVideo->original_filename}}</a>

@@ -377,6 +377,7 @@
                                         $('.course-description-video-preview').html("<img src='" +  $video.formats[0].thumbnail + "' />");
                                         $('.course-video-thumb').removeClass('hidden');
                                         $('.course-video-upload-button-progress').removeClass('hidden');
+                                        $('#progress-course-video').css('width','0%');
                                         console.log('CHANGED THUMBNAIL!');
                                         console.log($video);
                                     }
