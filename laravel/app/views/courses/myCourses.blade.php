@@ -46,25 +46,27 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <h3>{{$course->name}}</h3>
                             <p class="regular-paragraph">
+                            	<i class="fa fa-user"></i>
                             	<span class="student-count">
                             		{{ $course->student_count }}
                                 </span> 
                                 {{ trans('courses/general.students') }}
                             </p>
                             <p class="regular-paragraph">
-                            	<a href="{{ action( 'CoursesController@dashboard', $course->slug ) }}?tab=discussions" class="discussion-count">
-                                	@if( $course->dashboardComments->count() > 0 )
-                            			<i>{{ $course->dashboardComments->count() }}</i> {{ trans('courses/general.new') }} 
-                                    @endif
-                               	</a>
-                                @if( $course->dashboardComments->count() > 0 ) 
-                                	{{ trans('courses/general.discussions') }}
+                            	@if( $course->dashboardComments->count() > 0 ) 
+                                    <a href="{{ action( 'CoursesController@dashboard', $course->slug ) }}?tab=discussions" class="discussion-count">
+                                    	<i class="fa fa-comments wazaar-blue-text"></i>                                	                                	                                  	
+                                        <i>{{ $course->dashboardComments->count() }}</i> {{ trans('courses/general.new') }}
+                                        {{ trans('courses/general.discussions') }} 
+                                    </a>
                                 @else
+                                	<i class="fa fa-comments"></i>
                                 	{{ trans('courses/general.no-new-discussions') }}
                                 @endif
                             </p>
                         </div>
                         <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                        	<i class="fa fa-pencil-square-o"></i>
                             {{ link_to_action('CoursesController@edit', trans('courses/general.edit'), $course->slug, [ 'class'=>'transparent-button' ] ) }}
                         </div>
                     </div>

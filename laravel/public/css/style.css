@@ -106,6 +106,10 @@ ul {
 	display: none;
 }
 
+.wazaar-blue-text{
+	color: #0099ff;
+}
+
 a,
 input::-moz-focus-inner {
    outline: none !important;
@@ -8925,7 +8929,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .course-editor .lesson-options .details{
     display: block;
     margin: 0 auto 0;
-    max-width: 70%;
+    max-width: 80%;
 }
 
 .course-editor .lesson-options .details textarea,
@@ -9142,8 +9146,6 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .plan-your-curriculum .lesson-options .buttons .load-remote-cache.active-done span{
 	box-shadow:0 0 0 2px #6cab00;
-	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/misc-icons-18-undone.png');
-	background-color: #ececec;
 }
 
 .plan-your-curriculum .lesson-options .buttons.video.active span,
@@ -9368,12 +9370,15 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	margin: 10px 0 0;
 }
 
+.mycourse-card-main p .fa-user,
+.mycourse-card-main p .fa-comments{
+	padding-right: 5px;
+}
+
 .mycourse-card-main p .student-count{
-	padding-left: 20px;
 }
 
 .mycourse-card-main p .discussion-count{
-	padding-left: 20px;
 	color: #0099ff;
 }
 
