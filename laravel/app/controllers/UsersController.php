@@ -211,10 +211,10 @@ class UsersController extends Controller
     
     public function fbLogin(){
         $id = Session::get('f');
-        dd($id);
+        //dd($id);
         $user = User::find($id);
 //        Auth::login($user);
-         Auth::loginUsingId( $id );
+        Auth::loginUsingId( $id );
         Session::forget('f');
         if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
         else return Redirect::intended('/');

@@ -25,7 +25,9 @@ class PaymentMaxCollectDriver implements PaymentInterface {
           'cvv2' => $creditCardDetails['cvv2'],
           'Amount' => $amount,
           'Name' => $creditCardDetails['customerName'],
-          'Mail' => $creditCardDetails['customerEmail']
+          'Mail' => $creditCardDetails['customerEmail'],
+          'CustomerId' => 'lagsik',
+          'CustomerPass' => 'taeigit'
 
         ];
 
