@@ -43,9 +43,10 @@ class UsersController extends Controller
      */
     public function secondTierPublisherCreate()
     {
-        if( Auth::guest() ){
-            Cookie::queue('st', 1, 24*30);
-        }
+//        if( Auth::guest() ){
+//            Cookie::queue('st', 1, 24*30);
+//        }
+        Cookie::queue('st', 1, 24*30);
         $extraText = trans('general.register-2-tier');
         $secondTierRegister = 1;
         return View::make(Config::get('confide::signup_form'))->with( compact('extraText','secondTierRegister' ) );
