@@ -4,7 +4,6 @@ $filePolicy = UploadHelper::AWSAttachmentsPolicyAndSignature();
 ?>
 <!--<form method='post' class='ajax-form clearfix' action='{{action('BlocksController@uploadFiles', $lesson_id)}}'>
     <input type='hidden' name='_token' value='{{ csrf_token() }}' />-->
-
 <form action="https://{{ $_ENV['AWS_BUCKET'] }}.s3-ap-northeast-1.amazonaws.com" method="post" enctype="multipart/form-data"
       class='ajax-form' >
       <input type="hidden" name="key" value="course_uploads/${filename}" data-value="course_uploads/{timestamp}--${filename}">
