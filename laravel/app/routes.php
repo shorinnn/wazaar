@@ -53,7 +53,7 @@ Route::group( array('domain' =>  $domain), function(){
     Route::get('register/{teacher_account}', 'UsersController@create');
     Route::post('users', 'UsersController@store');
     Route::get('login', 'UsersController@login');
-    Route::get('fb-login', 'UsersController@fbLogin');
+    Route::get('fb-login/{userId?}', 'UsersController@fbLogin');
     Route::get('login-with-facebook', 'UsersController@loginWithFacebook');
     Route::get('link-facebook', 'UsersController@linkFacebook');
     Route::post('link-facebook', 'UsersController@doLinkFacebook');

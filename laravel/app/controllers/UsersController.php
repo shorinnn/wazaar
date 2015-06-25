@@ -323,7 +323,7 @@ class UsersController extends Controller
                 // login
                 Session::put('f', $user->id);
                 Cookie::make('f',$user->id,5);
-                return Redirect::action('UsersController@fbLogin');
+                return Redirect::action('UsersController@fbLogin',[$user->id]);
                 
 //                $user = User::find( $user->id );
 //                Auth::login($user);
