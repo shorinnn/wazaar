@@ -157,10 +157,10 @@ class Course extends Ardent{
             $this->errors()->add(0, trans('courses/general.cant-set-price-for-free-course') );
             return false;
         }
-        if( $this->id > 0 && $this->free=='no' && $this->price == 0 ){
-            $this->errors()->add(0, trans('courses/general.course-must-be-500') );
-            return false;
-        }
+//        if( $this->id > 0 && $this->free=='no' && $this->price == 0 ){
+//            $this->errors()->add(0, trans('courses/general.course-must-be-500') );
+//            return false;
+//        }
         
         if($this->price>0){
             $this->price = round2( $this->price, 100 );
@@ -222,7 +222,7 @@ class Course extends Ardent{
             }
             
         }
-        if( $this->id > 0 && $this->price!=0 && $this->price < 500){
+        if( $this->id > 0 && $this->price!=0 && $this->price < 500 ){
 //            $this->errors()->add(0, trans('courses/general.course-must-be-free-or-500') );
             $this->errors()->add(0, trans('courses/general.course-must-be-500') );
             return false;

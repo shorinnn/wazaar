@@ -271,7 +271,7 @@
                     <div class="row margin-top-40">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h4>{{ trans('courses/general.who_is_this_for?') }}:</h4>
-            <ul>
+            <ul class="who-is-for-ul">
                     @if($values = json2Array($course->who_is_this_for))
                         @foreach($values as $val)
                             <li>{{$val}}</li>
@@ -283,7 +283,7 @@
                     <div class="row margin-top-40">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h4>{{ trans('courses/general.requirements') }}:</h4>
-            <ul>
+            <ul class="requirements-ul">
                     @if($values = json2Array($course->requirements))
                         @foreach($values as $val)
                             <li>{{$val}}</li>
@@ -295,7 +295,7 @@
                     <div class="row margin-top-40">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h4>{{ trans('courses/general.by_the_end') }}:</h4>
-            <ul>
+            <ul class="by-the-end-ul">
                     @if($values = json2Array($course->what_will_you_achieve))
                         @foreach($values as $val)
                             <li>{{$val}}</li>
@@ -306,7 +306,15 @@
     </div>
     <div class="row next-step-button">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button type='submit' class="blue-button extra-large-button">{{ trans('courses/general.submit-for-approval')}}</button>
+            <button type='submit'
+                    @if($course->publish_status=='pending')
+                         disabled="disabled"
+                    @endif
+                    class="
+                    @if($course->publish_status=='pending')
+                        disabled-button
+                    @endif
+                    submit-for-approval blue-button extra-large-button">{{ trans('courses/general.submit-for-approval')}}</button>
         </div>
     </div>
 </div>

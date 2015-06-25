@@ -66,8 +66,12 @@
                             </p>
                         </div>
                         <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                        	<i class="fa fa-pencil-square-o"></i>
-                            {{ link_to_action('CoursesController@edit', trans('courses/general.edit'), $course->slug, [ 'class'=>'transparent-button' ] ) }}
+                            <a href='{{ action('CoursesController@edit', $course->slug) }}' 
+                               class='transparent-button'>
+                                <i class="fa fa-pencil-square-o"></i>
+                                {{ trans('courses/general.edit') }}
+                            </a>
+                            <!--{{-- link_to_action('CoursesController@edit', trans('courses/general.edit'), $course->slug, [ 'class'=>'transparent-button' ] ) --}}-->
                         </div>
                     </div>
                     <div class="row mycourse-card-footer">

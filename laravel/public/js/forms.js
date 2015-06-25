@@ -27,7 +27,7 @@ $(document).ready(function(){
 function formAjaxSubmit(e){
     form = $(e.target);
     form.find('.ajax-errors').remove();
-    $.post(form.attr('action'), form.serialize(), function(result){
+    $.post( form.attr('action'), form.serialize(), function(result){
         result = JSON.parse(result);
         if(result.status=='error'){
             restoreSubmitLabel(form);
@@ -65,6 +65,11 @@ function formAjaxSubmit(e){
                     }
             }
         }
+    }).fail(function(){
+        setTimeout(function(){
+            restoreSubmitLabel(form);
+        }, 1000);
+        
     });
     return false;
 }

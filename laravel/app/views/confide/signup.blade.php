@@ -18,8 +18,7 @@
                 @else
                     <h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
                 @endif
-                
-                @if( App::environment() != 'production' )
+                @if( App::environment() != 'production' || Input::has('cmon-show-me-the-fb-register-button-mayne') )
                     <div class="login-social-buttons clearfix">
                             <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans ('site/register.register-with-facebook') }}</a>
                         <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->

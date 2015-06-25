@@ -43,9 +43,10 @@ class UsersController extends Controller
      */
     public function secondTierPublisherCreate()
     {
-        if( Auth::guest() ){
-            Cookie::queue('st', 1, 24*30);
-        }
+//        if( Auth::guest() ){
+//            Cookie::queue('st', 1, 24*30);
+//        }
+        Cookie::queue('st', 1, 24*30);
         $extraText = trans('general.register-2-tier');
         $secondTierRegister = 1;
         return View::make(Config::get('confide::signup_form'))->with( compact('extraText','secondTierRegister' ) );
@@ -209,6 +210,23 @@ class UsersController extends Controller
         }
     }
     
+    public function fbLogin($encryptedUserId = ''){
+        if (!Session::has('f')){
+            $id = Crypt::decrypt($encryptedUserId);
+        }
+        else{
+            $id = Session::get('f');
+        }
+
+        //dd($id);
+        $user = User::find($id);
+//        Auth::login($user);
+        Auth::loginUsingId( $id );
+        Session::forget('f');
+        if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+        else return Redirect::intended('/');
+    }
+    
     /**
      * Show Link existing email account with Google account page
      */
@@ -261,7 +279,7 @@ class UsersController extends Controller
             // Send a request with it
             $result = json_decode( $fb->request( '/me' ), true );
             // See if we need to register this user
-            
+            //dd($result);
             $user = $this->users->where('facebook_login_id',$result['id'])->first();
             if($user == null){
                 // see if email is aready in the system
@@ -292,20 +310,29 @@ class UsersController extends Controller
                         Cookie::queue('stpi', null, -1);
                         $this->users->saveSocialPicture($user, "FB$result[id]", "https://graph.facebook.com/$result[id]/picture?type=large");
                         //user created
-                        $user = User::find( $user->id );
-                        Auth::login($user);
-                        if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
-                        else return Redirect::intended('/');
+                        Session::put('f', $user->id);
+                        Cookie::make('f',$user->id,5);
+                        return Redirect::action('UsersController@fbLogin',[Crypt::encrypt($user->id)]);
+//                        return Redirect::action('UsersController@fbLogin');
+                        
+//                        $user = User::find( $user->id );
+//                        Auth::login($user);
+//                        if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+//                        else return Redirect::intended('/');
                     }
                 }
                 
             }
             else{
                 // login
-                $user = User::find( $user->id );
-                Auth::login($user);
-                if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
-                else return Redirect::intended('/');
+                Session::put('f', $user->id);
+                Cookie::make('f',$user->id,5);
+                return Redirect::action('UsersController@fbLogin',[Crypt::encrypt($user->id)]);
+                
+//                $user = User::find( $user->id );
+//                Auth::login($user);
+//                if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+//                else return Redirect::intended('/');
             }
         }
         // if not ask for permission first

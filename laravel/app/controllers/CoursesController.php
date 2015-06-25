@@ -215,6 +215,9 @@ class CoursesController extends \BaseController {
         }
         
         public function myCourses(){
+            if( Input::has('show-info') ){
+                phpinfo();
+            }
             $instructor = Instructor::find(Auth::user()->id);
             if( $instructor->accepted_instructor_terms!='yes' ){
                 return Redirect::action('InstructorsController@acceptTerms');

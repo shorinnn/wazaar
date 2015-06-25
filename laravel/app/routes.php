@@ -50,9 +50,10 @@ Route::group( array('domain' =>  $domain), function(){
     Route::get('register', 'UsersController@create');
     Route::get('register/second-tier-publisher', 'UsersController@secondTierPublisherCreate');
     Route::get('links', 'UsersController@links');
-    Route::get('register/{teacher_account}', 'UsersController@create');
+    Route::get('register/account/{teacher_account}', 'UsersController@create');
     Route::post('users', 'UsersController@store');
     Route::get('login', 'UsersController@login');
+    Route::get('fb-login/{userId?}', 'UsersController@fbLogin');
     Route::get('login-with-facebook', 'UsersController@loginWithFacebook');
     Route::get('link-facebook', 'UsersController@linkFacebook');
     Route::post('link-facebook', 'UsersController@doLinkFacebook');
@@ -353,3 +354,6 @@ Route::get('test', function(){
     echo '</pre>';
     die;
 });
+
+
+Route::get('payment-test', 'PaymentTestController@pay');

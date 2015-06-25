@@ -312,6 +312,7 @@ class UserRepository
         
         $user->photo =  $result->get('ObjectURL');
         $user->save();
+        DB::table('user_profiles')->where('owner_id', $user->id)->update( ['photo' => $user->photo] );
     }
 
     /**
