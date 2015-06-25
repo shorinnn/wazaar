@@ -17,19 +17,20 @@ class PaymentTestController extends BaseController
     {
         //the POST variables required
         $requestData = [
-            'purchaseId' => 101, //purchases.id
-            'amount'     => 100, //purchases.purchase_price
-            'userId'     => 1, //users.id
-            'email'      => 'albertmaranian@gmail.com', //users.email
-            'firstName'  => 'Albert', //user_profiles.first_name
-            'lastName'   => 'Maranian Jr', //user_profiles.last_name
-            'city'       => 'Davao',
-            'zip'        => '',
-            'country'    => 'PH',
-            'cardNumber' => '4263982640269299',
-            'cardExpiry' => '0218',
-            'ipAddress'  => '0.0.0.0'
+           'cardName' => 'Visa',
+           'cardNo' => '4000000000000000',
+           'cardMonth' => '06',
+           'cardYear' => '2019',
+           'cvv2' => '111',
+           'customerName' => 'Albert Maranian',
+           'customerEmail' =>'albertmaranian@gmail.com'
         ];
+
+        $payment = $this->payment->makeUsingCreditCard(100,$requestData);
+        echo '<pre>';
+        print_r($payment);
+        echo '</pre>';
+        die;
         //transaction reference
         $reference = Str::random();
 
