@@ -50,7 +50,7 @@ Route::group( array('domain' =>  $domain), function(){
     Route::get('register', 'UsersController@create');
     Route::get('register/second-tier-publisher', 'UsersController@secondTierPublisherCreate');
     Route::get('links', 'UsersController@links');
-    Route::get('register/{teacher_account}', 'UsersController@create');
+    Route::get('register/account/{teacher_account}', 'UsersController@create');
     Route::post('users', 'UsersController@store');
     Route::get('login', 'UsersController@login');
     Route::get('fb-login/{userId?}', 'UsersController@fbLogin');
