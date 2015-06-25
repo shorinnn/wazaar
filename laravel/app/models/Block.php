@@ -37,6 +37,19 @@ class Block extends Ardent{
 //        $signed = '//'.getenv('CLOUDFRONT_DOMAIN').'/'.$signed[1];
 //        return $signed;
      }
+     public static function presignedUrlFromKey($key){
+        $client = AWS::get('s3');
+        $command = $client->getCommand('GetObject', array(
+            'Bucket' => $_ENV['AWS_BUCKET'],
+            'Key' => $key
+        ));
+        // Create a signed URL from the command object that will last for
+        // 10 minutes from the current time
+        $url = $command->createPresignedUrl('+1 minutes');
+        return $url;
+     }
+     
+     
      public function upload($path){
         $key = 'file-'.uniqid();
         $file = file_get_contents($path);
@@ -73,8 +86,10 @@ class Block extends Ardent{
             $result = $s3->deleteObject(array(
                 'ACL'    => 'public-read',
                 'Bucket' => $_ENV['AWS_BUCKET'],
-                'Key'    => 'course_uploads'.$object
+                'Key'    => $this->key
+//                'Key'    => 'course_uploads'.$object
             ));
+//            dd($result);
             return true;
         }
     }

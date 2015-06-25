@@ -95,7 +95,7 @@
             <div class='step1' data-loaded='1'>
                 <input class="course-id" type="hidden" value="{{$course->id}}"/>
                 {{ View::make('courses.editor.step1',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
-                        ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates')) }}
+                        ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates', 'filePolicy' ) ) }}
             </div>
             <div class='step2'></div>
             <div class='_step3'></div>

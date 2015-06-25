@@ -355,6 +355,8 @@ function mime_to_extension($mime){
       'application/zip' => '.zip',
       'multipart/x-zip' => '.zip',
       'text/x-script.zsh' => '.zsh',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => '.docx',
+      'application/msword' => '.doc'
     );
     if(key_exists($mime, $definitive)) return $definitive[$mime];
     return false;    
@@ -552,4 +554,14 @@ function get_vimeoid( $url ) {
         return trim($vimid);
     }
     return false;
+}
+
+function filenameFromS3Key($url){
+    $url = explode('/', $url);
+    $url = $url[ count($url) - 1];
+    $url = explode('.', $url);
+    unset( $url[ count($url) - 1 ]);
+    $url = implode('.', $url);
+    $url = explode('--', $url);    
+    return $url[1];
 }

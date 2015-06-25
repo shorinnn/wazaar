@@ -4,7 +4,7 @@ class BlocksController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor' );
-            $this->beforeFilter('csrf', ['only' => [ 'saveText', 'destroy', 'uploadFiles', 'update']]);
+            $this->beforeFilter('csrf', ['only' => [ 'saveText', 'destroy', 'uploadFileszzz', 'update']]);
         }
         
         public function text($lesson_id){
@@ -34,23 +34,50 @@ class BlocksController extends \BaseController {
             if( $lesson->blocks()->where('type','file')->count() > Config::get('custom.maximum_lesson_files') ){
                 return json_encode(['status'=>'error', 'errors' => trans('courses/general.max_upload_error') ]); 
             }
-//            dd( Input::file() );
-            if(!Input::hasFile('file')) return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred').'[1]' ]); 
+            
+            $url = Block::presignedUrlFromKey( Input::get('key') );
+            $mime = mimetype( $url );
+
+//            dd($mime);
+//            return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred').'[2]' ]); 
+            
             $block = new Block();
             $block->lesson_id = $lesson_id;
             $block->type = 'file';
-            if( $block->upload( Input::file('file')->getRealPath() ) ){
-                if($block->save()){
-                    return json_encode(['status'=>'success', 'html' => View::make('courses.blocks.file')->with(compact('block'))->render() ]);
-                }
-                else{
-                    return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred').'[2]' ]); 
-                }
+            $block->key = Input::get('key');
+            $block->mime = $mime;
+            $block->content = Input::get('content');
+            $block->name = filenameFromS3Key( $block->key );
+            if($block->save()){
+                return json_encode(['status'=>'success', 'html' => View::make('courses.blocks.file')->with(compact('block'))->render() ]);
             }
             else{
-                return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred').'[3]' ]); 
+                return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred').'[2]' ]); 
             }
         }
+//        public function uploadFiles($lesson_id){
+//            // make sure the upload limit hasn't been reached
+//            $lesson = Lesson::find($lesson_id);
+//            if( $lesson->blocks()->where('type','file')->count() > Config::get('custom.maximum_lesson_files') ){
+//                return json_encode(['status'=>'error', 'errors' => trans('courses/general.max_upload_error') ]); 
+//            }
+////            dd( Input::file() );
+//            if(!Input::hasFile('file')) return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred').'[1]' ]); 
+//            $block = new Block();
+//            $block->lesson_id = $lesson_id;
+//            $block->type = 'file';
+//            if( $block->upload( Input::file('file')->getRealPath() ) ){
+//                if($block->save()){
+//                    return json_encode(['status'=>'success', 'html' => View::make('courses.blocks.file')->with(compact('block'))->render() ]);
+//                }
+//                else{
+//                    return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred').'[2]' ]); 
+//                }
+//            }
+//            else{
+//                return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred').'[3]' ]); 
+//            }
+//        }
         
         public function destroy($lesson_id, $id){
             $block = Block::find($id);

@@ -93,6 +93,9 @@ class CoursesController extends \BaseController {
 
             $awsPolicySig = UploadHelper::AWSPolicyAndSignature();
             $uniqueKey = Str::random();
+            
+            $filePolicy = UploadHelper::AWSAttachmentsPolicyAndSignature();
+            
             $affiliates = ProductAffiliate::arrayWithProfile();
             
             switch($step){
@@ -104,10 +107,10 @@ class CoursesController extends \BaseController {
             
             if(Input::has('old-ui')){
                 return View::make('courses.form_DEPRECATED',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
-                        ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates'));
+                        ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates', 'filePolicy' ));
             }
             return View::make($view,compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
-                    ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates'));
+                    ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates', 'filePolicy' ));
         }
         
         
@@ -215,9 +218,7 @@ class CoursesController extends \BaseController {
         }
         
         public function myCourses(){
-            if( Input::has('show-info') ){
-                phpinfo();
-            }
+            
             $instructor = Instructor::find(Auth::user()->id);
             if( $instructor->accepted_instructor_terms!='yes' ){
                 return Redirect::action('InstructorsController@acceptTerms');
