@@ -46,9 +46,9 @@
                          aria-valuemax="100" style="width: 0%;">
 
                     </div>
-                    <div align="center">
+                    <!--<div align="center">
                         <span><span id="progress-course-video-percent-complete"></span></span>
-                    </div>
+                    </div>-->
                 </div>
 
             </div>
