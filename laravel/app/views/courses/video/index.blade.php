@@ -44,6 +44,9 @@
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped active progress-bar-banner" id="progress-course-video" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                          aria-valuemax="100" style="width: 0%;">
+
+                    </div>
+                    <div align="center">
                         <span><span id="progress-course-video-percent-complete"></span></span>
                     </div>
                 </div>
