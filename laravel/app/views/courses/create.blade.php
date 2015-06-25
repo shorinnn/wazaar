@@ -9,8 +9,8 @@
     	<div class="row">
         	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2">
             	<div class="row">
-                	<div class="col-lg-12">
-                    	<img />
+                	<div class="col-lg-12 text-center">
+                    	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/create-new-icon.png" />
                         <h2 class="text-center">{{ trans('courses/create.create-new-course') }}</h2>
                     </div>
                 </div>
