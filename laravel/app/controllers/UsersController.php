@@ -210,6 +210,9 @@ class UsersController extends Controller
     }
     
     public function fbLogin(){
+        if (!Session::has('f')){
+            dd(Cookie::get('f'));
+        }
         $id = Session::get('f');
         //dd($id);
         $user = User::find($id);
@@ -318,6 +321,7 @@ class UsersController extends Controller
             else{
                 // login
                 Session::put('f', $user->id);
+                Cookie::make('f',$user->id,5);
                 return Redirect::action('UsersController@fbLogin');
                 
 //                $user = User::find( $user->id );
