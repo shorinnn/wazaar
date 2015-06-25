@@ -213,6 +213,7 @@ class UsersController extends Controller
         if (!Session::has('f')){
             dd(Cookie::get('f'));
         }
+        dd(Cookie::get('f'));
         $id = Session::get('f');
         //dd($id);
         $user = User::find($id);
