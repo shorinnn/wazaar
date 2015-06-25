@@ -213,8 +213,10 @@ class UsersController extends Controller
         if (!Session::has('f')){
             $id = Crypt::decrypt($encryptedUserId);
         }
-        dd($id);
-        $id = Session::get('f');
+        else{
+            $id = Session::get('f');
+        }
+
         //dd($id);
         $user = User::find($id);
 //        Auth::login($user);
