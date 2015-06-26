@@ -1,3 +1,6 @@
+<?php
+    $notApprovedDisable = $course->publish_status == 'approved' ? '' : 'disabled';
+?>
 <span class="no-parsley"></span>
 {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
                 'id'=>'edit-course-form-s3', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-3-form',  'data-callback'=>'submittedCourse']) }}
@@ -160,8 +163,6 @@
             </div>
         </div>
         
-            
-        @if($course->publish_status == 'approved')
                 <div class="row editor-settings-layout margin-bottom-30">
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <h4 class="text-right">{{ trans('courses/general.discount') }} </h4>
@@ -169,7 +170,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                     <div class="value-unit">
                         {{ Form::text('sale', money_val($course->sale),
-                            ['onkeyup' => 'toggleElementViaOther(event)', 
+                            ['onkeyup' => 'toggleElementViaOther(event)', $notApprovedDisable => $notApprovedDisable,
                             'class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustDiscount',
                             'data-saleType' => 'sale_kind','data-parsley-errors-container' => '.no-parsley',
                             'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
@@ -190,7 +191,9 @@
                                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                                 <div class="calender">
                                       <div class="clear clearfix input-group date">
-                                          {{ Form::text('sale_starts_on', null, ['class'=>'form-control sales-end-calender datetimepicker', 'data-parsley-errors-container' => '.no-parsley']) }}
+                                          {{ Form::text('sale_starts_on', null, [
+                                            'class'=>'form-control sales-end-calender datetimepicker', $notApprovedDisable => $notApprovedDisable,
+                                            'data-parsley-errors-container' => '.no-parsley']) }}
                                           <span class="input-group-addon">
                                               <span class="glyphicon glyphicon-calendar"></span>
                                           </span>
@@ -205,7 +208,8 @@
                                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                                 <div class="calender">
                                     <div class="clear clearfix input-group date">
-                                        {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datetimepicker', 'data-parsley-errors-container' => '.no-parsley']) }}
+                                        {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datetimepicker',  
+                                                        $notApprovedDisable => $notApprovedDisable, 'data-parsley-errors-container' => '.no-parsley']) }}
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -215,8 +219,15 @@
                         </div>
                     </div>
                             <button type='button' data-url='{{action('CoursesController@update', $course->slug)}}'
-                                class="submit-for-approval blue-button extra-large-button" onclick='courseUpdateDiscount(event)'>Update Discount</button>
-                 @endif
+                                    @if($course->publish_status != 'approved')
+                                        disabled='disabled'
+                                    @endif
+                                class="
+                                    @if($course->publish_status != 'approved')
+                                        disabled-button 
+                                    @endif
+                                submit-for-approval blue-button extra-large-button" onclick='courseUpdateDiscount(event)'>Update Discount</button>
+                               
         @endif
 </div>
 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 right-content">

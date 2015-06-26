@@ -220,6 +220,13 @@ class Course extends Ardent{
                 $this->errors()->add(0, trans('courses/general.sale-end-must-occur-after-start') );
                 return false;
             }
+            $minutes = strtotime($this->sale_ends_on) - strtotime($this->sale_starts_on);
+            $minutes /= 60;
+            
+            if( $this->sale_ends_on=='' || $this->sale_starts_on=='' || (  $minutes < 10) ){
+                $this->errors()->add(0, trans('courses/general.sale-period-min-10-minutes') );
+                return false;
+            }
             
         }
         if( $this->id > 0 && $this->price!=0 && $this->price < 500 ){

@@ -151,5 +151,6 @@ return array(
     'public' => 'Public',
     'dashboard' => 'ダッシュボード',
     'my-courses-link-instructor' => 'My Courses',
-    'price-tip' => ''
+    'price-tip' => '',
+    'sale-period-min-10-minutes' => 'Sale must last at least 10 minutes',
 );
