@@ -294,7 +294,6 @@ class UsersController extends Controller
                     // create user
                     $roles['instructor'] = Cookie::get('register_instructor');
                     $roles['affiliate'] = Cookie::get('register_affiliate');
-                    dd( Input::get('st') );
                     $user = $this->users->signupWithFacebook($result, Cookie::get('ltc'), $roles, Cookie::get('stpi'), Cookie::get('iai'), Cookie::get('st') );
                     if(!$user->id){ 
                         // cannot create user
