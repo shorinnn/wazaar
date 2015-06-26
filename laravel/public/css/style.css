@@ -2751,7 +2751,7 @@ h4{
 
 .course-data .column-2 .star-rating{
 	float: left;
-	padding-left: 20px;
+	padding-left: 0;
 	padding-right: 40px;
 	padding-top: 40px;
 	margin: 25px 0;
