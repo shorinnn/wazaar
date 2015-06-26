@@ -158,7 +158,7 @@
         <section class="container-fluid course-data">
         	<div class="container">
             	<div class="row">
-                	<div class="col-xs-12 col-sm-6 col-md-4 column-1">
+                	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 column-1">
                     	<div class="number-of-lessons">
                         	<i class="fa fa-play-circle"></i>
                         	<em>16</em>
@@ -175,7 +175,7 @@
                             <span>{{ trans("general.of-video") }}</span>
                         </div>
                     </div>
-                	<div class="col-xs-12 col-sm-6 col-md-4 column-2">
+                	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 column-2">
                     	<div class="star-rating">
                         	<em>{{ $course->total_reviews }}</em>
                             <span>
@@ -220,11 +220,11 @@
                                 @else
                                      {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
                                      @if(Auth::guest() || Student::find(Auth::user()->id)->canPurchase($course) )
-                                          <button class="join-class">
+                                          <button class="clearfix enroll-button join-class">
                                      @else 
-                                          <button class="join-class" disabled="disabled">
+                                          <button class="clearfix enroll-button join-class" disabled="disabled">
                                      @endif
-                                    <span>{{ trans("courses/general.enroll_for_free") }}</span>
+                                    {{ trans("courses/general.enroll_for_free") }}
                                         </button>
         
                                     {{Form::close()}}

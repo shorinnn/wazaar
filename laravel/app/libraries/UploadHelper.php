@@ -164,11 +164,17 @@ class UploadHelper
                 ),
                 array(
                     'success_action_status' => '201'
-                )
+                )/*,
+                ['content-length-range',0,'10485760']*/
             )
         ));
         $base64Policy = base64_encode($policy);
         $signature = base64_encode(hash_hmac("sha1", $base64Policy, $secret, $raw_output = true));
         return compact('base64Policy','signature');
+    }
+
+    public static function AWSVideosInputURL()
+    {
+        return Config::get('wazaar.AWS_REGION_DOMAIN') . '/' . Config::get('wazaar.AWS_VIDEO_INPUT_BUCKET');
     }
 }
