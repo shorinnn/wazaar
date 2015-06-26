@@ -21,7 +21,7 @@
             </div>
         </div>
         <h3 class="no-margin"><!--{{trans('video.uploadOr')}} -->
-        <form action="//s3-ap-northeast-1.amazonaws.com/videosinput-tokyo" enctype="multipart/form-data" method="POST" class="fileupload">
+        <form action="{{UploadHelper::AWSVideosInputURL()}}" enctype="multipart/form-data" method="POST" class="fileupload">
             <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
             <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
             <input type="hidden" name="acl" value="private">

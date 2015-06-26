@@ -14,6 +14,7 @@ return [
     'TAX' => '.08',
     'API_URL' => 'http://cocorium.com/api/',
     'PAGINATION' => 10,
+    'AWS_REGION_DOMAIN' => '//s3-ap-northeast-1.amazonaws.com',
     'AWS_VIDEO_INPUT_BUCKET' => 'videosinput-tokyo',
     'AWS_VIDEO_OUTPUT_BUCKET' => 'videosoutput-tokyo',
     'AWS_PIPELINEID' => '1420442490328-k9je9y',
