@@ -48,8 +48,8 @@ class UsersController extends Controller
 //        }
         Cookie::queue('st', 1, 24*30);
         $extraText = trans('general.register-2-tier');
-        $secondTierRegister = 1;
-        return View::make(Config::get('confide::signup_form'))->with( compact('extraText','secondTierRegister' ) );
+        $secondTierRegister = $st = 1;
+        return View::make(Config::get('confide::signup_form'))->with( compact('extraText','secondTierRegister', 'st' ) );
 //        return View::make('confide.second_tier_publisher_signup');
     }
     
@@ -62,7 +62,8 @@ class UsersController extends Controller
     {
         $roles['instructor'] = Cookie::get('register_instructor');
         $roles['affiliate'] = Cookie::get('register_affiliate');
-        $user = $this->users->signup( Input::all(), Cookie::get('ltc'), $roles, Cookie::get('stpi'), Cookie::get('iai'), Cookie::get('st') );
+        $st = Input::get('st'); // Cookie::get('st')
+        $user = $this->users->signup( Input::all(), Cookie::get('ltc'), $roles, Cookie::get('stpi'), Cookie::get('iai'), $st );
         
         if ( $user!=null && $user->id) {
             try{
