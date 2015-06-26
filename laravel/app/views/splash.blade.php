@@ -14,27 +14,15 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <html class="ie8">
     <![endif]-->
-    <style>
-		.publisher-login{
-			text-align: center;
-			padding: 20px 0;
-		}
-		
-		.publisher-login a{
-			display: inline-block;
-			text-decoration: none;
-			color: #0099ff;
-			font-size: 13px;
-			font-weight: 600;
-		}
-		
-	</style>
     
 </head>
 <body>
     <div id="wrapper">
     	<div id="container">
-        	
+        	<div class="top-buttons">
+            	<a href="{{ action('UsersController@login') }}" class="login button large-button">ログイン</a>
+                <a href="{{ action('UsersController@create') }}" class="blue-button button large-button register">サインアップ</a>
+            </div>
         	<div id="logo">
             	<img src="splash/logo.png" alt="">
             </div>

@@ -877,7 +877,7 @@ header .activate-dropdown:hover ul{
 
 .difficulty-levels .level-buttons-container{
 	height: 32px;
-	width: 264px;
+	width: 266px;
 	border-radius: 2px;
 	border: solid 1px #e3e5e6;
 	float: left;
@@ -2998,6 +2998,9 @@ h4{
 	margin-bottom: 23px;
 	line-height: 18px;
 	padding-left: 20px;
+	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/check-icon.png');
+	background-repeat: no-repeat;
+	background-position: 0 5px;
 }
 
 .course-description-container .instructor div{
@@ -9390,7 +9393,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	color: #0099ff;
 	display: inline-block;
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: normal;
 	float: right;
 }
 
@@ -9673,7 +9676,7 @@ input[disabled]{
 	background: #fff;
 	border-radius: 4px;
 	cursor: not-allowed !important;
-	border: solid 1px #cfd1d2 !important;
+	border: solid 1px #E7E7E7 !important;
 	color: #cfd1d2 !important;
 }
 
@@ -9683,6 +9686,13 @@ input[disabled]::-moz-placeholder,
 input[disabled]::-webkit-input-placeholder{
 	color: #cfd1d2 !important;
 }
+
+input[type='number'] {
+	-moz-appearance: none ;
+	padding-right: 0 !important;
+	height: 100%;
+}
+
 
 /************* Page Footer **************/
 footer{

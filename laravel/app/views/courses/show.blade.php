@@ -30,7 +30,7 @@
                             	<li class="back-to-category">
                                 	<a href="#">< Back to IT & Tech</a>
                                 </li>
-                            	<li class="tags">
+                            	<!--<li class="tags">
                                 	<a href="#">Information</a>
                                 </li>
                             	<li class="tags">
@@ -38,7 +38,7 @@
                                 </li>
                             	<li class="tags">
                                 	<a href="#">Engineering</a>
-                                </li>
+                                </li>-->
                             </ul>
                         </div>
                         <!--<ol class="breadcrumb">
@@ -251,14 +251,14 @@
                             <p class="regular-paragraph">
                             A short description of the module goes here...
                             </p>
-                            <ul class="lesson-topics expandable-content">
+                            <ul class="lesson-topics expandable-content clearfix">
                             @foreach($module->lessons as $lesson)
                                 @if($lesson->id == $module->lessons->last()->id)
                                     <li class="lessons lesson-1">
                                 @else
-                                    <li class="lessons lesson-1 bordered">                                    	                                    
+                                    <li class="lessons lesson-1 bordered clearfix">                                    	                                    
                                 @endif
-                                        <a href="#">{{ $lesson->name }}
+                                        <a href="#" class="clearfix">{{ $lesson->name }}
                                         	<span>Type of lesson</span>
                                         </a>
                                     </li>
