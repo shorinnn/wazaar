@@ -424,8 +424,8 @@ Wazaarのプロジェクトリーダーをやるということもありませ�
 <!-- form -->
 <div class="form_bg">
 	<div class="container">
-        <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/lp';?>"  >
-            <!--<form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl"  >-->
+        <!--<form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/lp';?>"  >-->
+            <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl"  >
 <div style="display: none;">
     <input type='hidden' name='stpi' value='<?php echo @$_GET['stpi'];?>' />
 <input type='hidden' name='lp-val' value='LP2' />
@@ -526,8 +526,8 @@ Wazaarのミッションになります。
 <!-- form -->
 <div class="form_bg">
 	<div class="container">
-        <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/lp';?>"  >
-            <!--<form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl"  >-->
+        <!--<form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/lp';?>"  >-->
+            <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl"  >
 <div style="display: none;">
 <input type='hidden' name='stpi' value='<?php echo @$_GET['stpi'];?>' />
 <input type='hidden' name='lp-val' value='LP2' />
