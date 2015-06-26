@@ -216,16 +216,33 @@ function enableSettingOption(e){
  * @method blockFileUploaded
  */
 function blockFileUploaded(e, data){
+    lessonId = $(e.target).attr('data-lesson-id');
     var progressbar = $(e.target).attr('data-progress-bar');
-    $(progressbar).find('span').html('');
-    $(progressbar).css('width', 0 + '%');
-    result = JSON.parse(data.result);
-    if(result.status=='error'){
-//        $(e.target).closest('form').after("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
-        $(e.target).closest('form').prepend("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
-        return false;
-    }
-    $(e.target).parent().parent().parent().append(result.html);
+
+    $uploadTo = $(e.target).parent().parent().parent();
+//    console.log($uploadTo);
+
+//    result = JSON.parse(data.result);
+    result = xmlToJson(data.result);
+    awsResponse = result;
+//    console.log(result);
+    $.post(COCORIUM_APP_PATH + 'lessons/blocks/'+lessonId+'/files', {
+        key: result.PostResponse.Key['#text'],
+        content: result.PostResponse.Location['#text']
+    }, function(result){
+        result = JSON.parse(result);
+        $(progressbar).find('span').html('');
+        $(progressbar).css('width', 0 + '%');
+//        console.log(result);
+        $uploadTo.append(result.html);
+//        $(e.target).parent().parent().parent().append(result.html);
+    });
+//    if(result.status=='error'){
+////        $(e.target).closest('form').after("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
+//        $(e.target).closest('form').prepend("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
+//        return false;
+//    }
+//    $(e.target).parent().parent().parent().append(result.html);
 }
 
 /**
@@ -237,6 +254,9 @@ function blockFileUploaded(e, data){
 function limitLessonFiles(e, data){
 //    $(e.target).parent().find('.ajax-error').remove();
     $(e.target).closest('form').find('.ajax-error').remove();
+    filename = $(e.target).closest('form').find('[name="key"]').attr('data-value');
+    filename = filename.replace('{timestamp}--', Date.now()+'--' );
+    $(e.target).closest('form').find('[name="key"]').val( filename );
     max_upload = $(e.target).attr('data-max-upload');
     if( $(e.target).parent().parent().find('.uploaded-file').length >= max_upload){
         $(e.target).after("<p class='alert alert-danger ajax-error'>"+$(e.target).attr('data-max-upload-error')+'</p>');

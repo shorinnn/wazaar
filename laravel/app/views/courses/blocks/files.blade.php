@@ -1,11 +1,23 @@
 <p class="tip"> {{ trans('courses/create.upload-files-tip') }}</p>
-
-<form method='post' class='ajax-form clearfix' action='{{action('BlocksController@uploadFiles', $lesson_id)}}'>
-    <input type='hidden' name='_token' value='{{ csrf_token() }}' />
+<?php
+$filePolicy = UploadHelper::AWSAttachmentsPolicyAndSignature();
+?>
+<!--<form method='post' class='ajax-form clearfix' action='{{action('BlocksController@uploadFiles', $lesson_id)}}'>
+    <input type='hidden' name='_token' value='{{ csrf_token() }}' />-->
+<form action="https://{{ $_ENV['AWS_BUCKET'] }}.s3-ap-northeast-1.amazonaws.com" method="post" enctype="multipart/form-data"
+      class='ajax-form' >
+      <input type="hidden" name="key" value="course_uploads/${filename}" data-value="course_uploads/{timestamp}--${filename}">
+      <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
+      <input type="hidden" name="acl" value="private">
+      <input type="hidden" name="success_action_status" value="201">
+      <input type="hidden" name="policy" value="{{$filePolicy['base64Policy']}}">
+      <input type="hidden" name="signature" value="{{$filePolicy['signature']}}">
+      
+      
     <div class="fileUpload btn btn-primary">
         <span>{{ trans('administration.browse') }}</span>
         <input type='file' name='file' id='file-upload-{{$lesson_id}}' data-dropzone='.dropzone-{{$lesson_id}}'
-       data-progress-bar='.progress-bar-{{$lesson_id}}' data-callback='blockFileUploaded'
+       data-progress-bar='.progress-bar-{{$lesson_id}}' data-callback='blockFileUploaded' data-lesson-id='{{$lesson_id}}'
        data-add-callback='limitLessonFiles' data-max-upload='{{ Config::get('custom.maximum_lesson_files') }}'
        data-max-upload-error="{{trans('courses/general.max_upload_error')}}" />
     </div>
