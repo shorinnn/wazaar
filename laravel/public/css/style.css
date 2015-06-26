@@ -2434,16 +2434,16 @@ header .activate-dropdown:hover ul{
 /********** Form Error Message ************/
 .parsley-errors-list,
 .alert.alert-error.alert-danger{
-	border: none;
+    border: none;
     border-radius: 10px;
     color: #ff0000;
     font-size: 11px;
     margin: 0 auto;
     padding: 0 36px;
-	text-align: center;
-	background: none;
-	position: absolute;
-	top: 50px;
+    text-align: center;
+    background: none;
+    /*position: absolute;*/
+/*	top: 50px;*/
 }
 
 .parsley-errors-list.filled > li{
@@ -2458,8 +2458,8 @@ header .activate-dropdown:hover ul{
 .alert.alert-error.alert-danger::after,
 .parsley-errors-list > li::before,
 .alert.alert-error.alert-danger::before{
-	content: '▲';
-	display:inline;
+/*	content: '▲';
+	display:inline;*/
 }
 
 .forgot-password-page{
@@ -2751,7 +2751,7 @@ h4{
 
 .course-data .column-2 .star-rating{
 	float: left;
-	padding-left: 20px;
+	padding-left: 0;
 	padding-right: 40px;
 	padding-top: 40px;
 	margin: 25px 0;
@@ -10513,6 +10513,9 @@ header .top-menu li{
 	margin-top: 40px !important;
 }
 
+.margin-top-50 {
+    margin-top: 50px !important;
+}
 .margin-bottom-10
 {
 	margin-bottom: 10px;
@@ -10546,4 +10549,8 @@ header .top-menu li{
 
 .bold-text{
 	font-weight: bold;
+}
+
+.no-parsley{
+    display:none
 }

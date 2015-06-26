@@ -38,5 +38,6 @@ return array(
     'wazaar_must_review' => '商品をワザールで掲載する前に商品の審査が必要になります。',
     'paid-or-free' => 'Paid or free',
     'paid' => 'Paid',
-    'free' => 'Free'
+    'free' => 'Free',    
+    'create-btn-instructor' => '新規教材の制作',
 );

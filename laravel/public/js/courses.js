@@ -424,3 +424,21 @@ function activatePreviewButton(){
         $('.preview-course-btn').attr( 'href', $('.preview-course-btn').attr('data-href') );
     }
 }
+
+function courseUpdateDiscount(e){
+    $('.discount-ajax-result').remove();
+    sale = $('[name="sale"]').val();
+    sale_starts_on = $('[name="sale_starts_on"]').val();
+    sale_ends_on = $('[name="sale_ends_on"]').val();
+    url = $(e.target).attr('data-url');
+    token = $('[name="_token"]').val();
+    $.post(url, { _method:'PUT', _token:token, sale:sale, sale_starts_on:sale_starts_on, sale_ends_on:sale_ends_on }, function(result){
+        result = JSON.parse(result);
+        if(result.status=='success'){
+            $(e.target).after("<p class='alert alert-success discount-ajax-result'>"+_('Discount Updated')+"</p>");
+        }
+        else{
+            $(e.target).after("<p class='alert alert-danger discount-ajax-result'>"+result.errors+"</p>");
+        }
+    });
+}

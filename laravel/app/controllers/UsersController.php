@@ -33,7 +33,7 @@ class UsersController extends Controller
         if( $instructor_account === 'affiliate' ){
             Cookie::queue("register_affiliate", 1, 30);
         }
-        return View::make(Config::get('confide::signup_form'));
+        return View::make(Config::get('confide::signup_form'))->with( compact('instructor_account') );
     }
     
     /**
@@ -60,8 +60,8 @@ class UsersController extends Controller
      */
     public function store()
     {
-        $roles['instructor'] = Cookie::get('register_instructor');
-        $roles['affiliate'] = Cookie::get('register_affiliate');
+        $roles['instructor'] = Input::get('register_instructor');//Cookie::get('register_instructor');
+        $roles['affiliate'] = Input::get('register_affiliate');//Cookie::get('register_affiliate');
         $st = Input::get('st'); // Cookie::get('st')
         $user = $this->users->signup( Input::all(), Cookie::get('ltc'), $roles, Cookie::get('stpi'), Cookie::get('iai'), $st );
         
