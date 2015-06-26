@@ -39,6 +39,12 @@
                         @if(isset($st))
                             <input type="hidden" name="st" value="1" />
                         @endif
+                        @if( isset($instructor_account) && $instructor_account =='instructor')
+                            <input type="hidden" name="register_instructor" value="1" />
+                        @endif
+                        @if( isset($instructor_account) && $instructor_account =='affiliate')
+                            <input type="hidden" name="register_affiliate" value="1" />
+                        @endif
                         <fieldset>
                             
                             @if(isset($secondTierRegister))

@@ -20,4 +20,8 @@ return array(
     'upload' => 'Upload',
     'result-based' => 'Make it results based',
     'enable-discussions' => 'Enable Discussions',
+    'discussion-no' => 'No',
+    'discussion-yes' => 'Yes',
+    'discussion-tip' => '',
+    'privacy-title' => 'Privacy'
 );

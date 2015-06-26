@@ -21,4 +21,8 @@ return array(
     'custom-course-bio' => '月Custom Course Bioせplease provide more context',
     'upload' => 'アップロード',
     'enable-discussions' => '掲示板の開設',
+    'discussion-no' => 'いいえ',
+    'discussion-yes' => 'はい',
+    'discussion-tip' => '掲示板は受講生からの質問を掲載するものです。商品への質問が受講生からあった場合に、講師の先生にはこちらの質問にご返答いただくことになります。掲示板を開設した方が、教材への満足度が高くなり、受講生からの高い評価につながりますので、掲示板を開設されることを強くオススメいたします。',
+    'privacy-title' => '商品のプライバシー設定',
 );

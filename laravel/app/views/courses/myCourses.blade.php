@@ -19,11 +19,11 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <h1>{{ trans('courses/general.dashboard') }}</h1>
-                    <a href="#" class="header-tabs regular-paragraph active">{{ trans('courses/general.my-courses') }}</a>
+                    <a href="#" class="header-tabs regular-paragraph active">{{ trans('courses/general.my-courses-link-instructor') }}</a>
                     <a href="#" class="header-tabs regular-paragraph">{{ trans('courses/general.analytics') }}</a>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                    <a href="{{action('CoursesController@create')}}" class="blue-button large-button">{{ trans('courses/create.create') }}</a>
+                    <a href="{{action('CoursesController@create')}}" class="blue-button large-button">{{ trans('courses/create.create-btn-instructor') }}</a>
                 </div>
             </div>
         </div>
@@ -80,11 +80,13 @@
                                 <span> {{ date('m/d/Y', strtotime($course->created_at)) }}</span></p>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-md-offset-1 col-lg-offset-1">
-                            <span class="default-button">{{ $course->privacy_status }}</span>
+                            <span class="default-button">{{ 
+                                trans('courses/general.'.$course->privacy_status) }}</span>
                             <span class="default-button 
                                   @if($course->publish_status=='pending') submitted @endif
                                   @if($course->publish_status=='approved') published @endif
-                                  ">{{ $course->publish_status }}</span>
+                                  ">
+                                    {{ trans('courses/general.'.$course->publish_status) }}</span>
                         </div>
                     </div>
                 </div>

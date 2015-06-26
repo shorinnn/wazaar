@@ -11,9 +11,9 @@
         <div class='row'>
             <div class='col-md-12'>
             	<div class="student-teacher-dashboard-container">
-                <h1>My Courses</h1>
+                <h1> {{trans('site/homepage.my-courses')}} </h1>
                 @if($student->courses()->count() == 0 )
-                    <p>You have no courses.</p>
+                    <p>{{ trans('courses/general.you-have-no-courses') }}</p>
                 @else
                     <!--<p>Here are your courses:</p>-->
                     @foreach($student->courses() as $course)
