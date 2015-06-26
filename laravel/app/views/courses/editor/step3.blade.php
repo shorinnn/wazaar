@@ -1,5 +1,6 @@
+<span class="no-parsley"></span>
 {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
-                'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-3-form',  'data-callback'=>'submittedCourse']) }}
+                'id'=>'edit-course-form-s3', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-3-form',  'data-callback'=>'submittedCourse']) }}
     <input type='hidden' name='publish_status' value='1' />
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
     <div class="approval-box">
@@ -21,17 +22,18 @@
             <div class="toggle-switch">
                 <label class="toggle-button
                        @if($course->ask_teacher=='enabled') active @endif" for="ask-enabled">
-                    {{ Form::radio('ask_teacher', 'enabled', ($course->ask_teacher=='enabled'), ['id'=>'ask-enabled'] ) }}
+                    {{ Form::radio('ask_teacher', 'enabled', ($course->ask_teacher=='enabled'), ['id'=>'ask-enabled', 'data-parsley-errors-container' => '.no-parsley'] ) }}
                     {{trans('courses/curriculum.yes')}}
                 </label>
                 <label class="toggle-button
                        @if($course->ask_teacher=='disabled') active @endif" for="ask-disabled">
-                    {{ Form::radio('ask_teacher', 'disabled', ($course->ask_teacher=='disabled'), ['id'=>'ask-disabled'] ) }}
+                    {{ Form::radio('ask_teacher', 'disabled', ($course->ask_teacher=='disabled'), ['id'=>'ask-disabled',  'data-parsley-errors-container' => '.no-parsley'] ) }}
                     {{trans('courses/curriculum.no')}}
                 </label>
 <!--                <button name="yes" class="toggle-button">Yes</button>
                 <button name="no" class="toggle-button">No</button>-->
             </div>
+                
             <span class="clue-text">{{ trans('courses/general.enable-ask-coach-tip') }}</span>
         </div>
         
@@ -44,12 +46,12 @@
             <div class="toggle-switch">
                 <label class="toggle-button
                        @if($course->discussions=='yes') active @endif" for="discussions-enabled">
-                    {{ Form::radio('discussions', 'yes', ($course->discussions=='yes'), ['id'=>'discussions-enabled'] ) }}
+                    {{ Form::radio('discussions', 'yes', ($course->discussions=='yes'), ['id'=>'discussions-enabled', 'data-parsley-errors-container' => '.no-parsley'] ) }}
                     {{trans('courses/curriculum.discussion-yes')}}
                 </label>
                 <label class="toggle-button
                        @if($course->discussions=='no') active @endif" for="discussions-disabled">
-                    {{ Form::radio('discussions', 'no', ($course->discussions=='no'), ['id'=>'discussions-disabled'] ) }}
+                    {{ Form::radio('discussions', 'no', ($course->discussions=='no'), ['id'=>'discussions-disabled', 'data-parsley-errors-container' => '.no-parsley'] ) }}
                     {{trans('courses/curriculum.discussion-no')}}
                 </label>
             </div>
@@ -69,12 +71,12 @@
             <div class="toggle-switch">
                 <label class="toggle-button
                        @if($course->privacy_status=='public') active @endif" for="privacy-public">
-                    {{ Form::radio('privacy_status', 'public', ($course->privacy_status=='public'), ['id'=>'privacy-public'] ) }}
+                    {{ Form::radio('privacy_status', 'public', ($course->privacy_status=='public'), ['id'=>'privacy-public', 'data-parsley-errors-container' => '.no-parsley'] ) }}
                     {{ trans('courses/general.course-public') }}
                 </label>
                 <label class="toggle-button
                        @if($course->privacy_status=='private') active @endif" for="privacy-private">
-                    {{ Form::radio('privacy_status', 'private', ($course->privacy_status=='private'), ['id'=>'privacy-private'] ) }}
+                    {{ Form::radio('privacy_status', 'private', ($course->privacy_status=='private'), ['id'=>'privacy-private', 'data-parsley-errors-container' => '.no-parsley'] ) }}
                     {{ trans('courses/general.course-not-public') }}
                 </label>
             </div>
@@ -109,12 +111,13 @@
                      ?>
                         <label class="toggle-button {{$active}}" for="option{{$key}}">
                             <input type='radio' name='course_difficulty_id' id="option{{$key}}" 
-                            autocomplete="off" value='{{$key}}' 
+                            autocomplete="off" value='{{$key}}' data-parsley-errors-container = '.parsley-difficulty'
                             {{$checked}} required /> {{ trans('general.'.$difficulty) }}
                         </label>
                      @endforeach
                  </div>
             </div>
+                <div class="parsley-difficulty"></div>
         </div>
     </div>
     
@@ -127,9 +130,11 @@
                 <div class="value-unit">
                         <!--<input type="text" name="amount">-->
                         {{  Form::text( 'price', money_val($course->price),
-                                                ['class' => 'delayed-keyup', 'data-delay' => '5000', 'required'=>'required', 'data-callback' => 'adjustPrice'] ) }}
+                                ['class' => 'delayed-keyup', 'data-delay' => '5000', 'required'=>'required', 'data-parsley-errors-container' => '.price-parsley',
+                            'data-callback' => 'adjustPrice', 'required' => 'required', 'min' => 500] ) }}
                     <span>¥</span>
                 </div>
+                    <div class="price-parsley display-block"></div>
                     <span class="clue-text">{{ trans('courses/general.price-tip') }}</span>
             </div>
             
@@ -142,7 +147,7 @@
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                 <div class="value-unit">
                     <input type="number" class='span2 clear right' name='affiliate_percentage' id='affiliate_percentage' 
-                        max='68' min='0'
+                        max='68' min='0' data-parsley-errors-container='.no-parsley'
                         value="{{ $course->affiliate_percentage }}" data-slider-min="0" data-slider-max="68" 
                         data-slider-step="1" data-slider-value="{{ intval( $course->affiliate_percentage ) }}" 
                         data-slider-orientation="horizontal" 
@@ -163,7 +168,7 @@
                 {{ Form::text('sale', money_val($course->sale),
                     ['onkeyup' => 'toggleElementViaOther(event)', 
                     'class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustDiscount',
-                    'data-saleType' => 'sale_kind',
+                    'data-saleType' => 'sale_kind','data-parsley-errors-container' => '.no-parsley',
                     'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
                 <span>¥</span>
             </div>
@@ -182,7 +187,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                         <div class="calender">
                               <div class="clear clearfix input-group date">
-                                  {{ Form::text('sale_starts_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
+                                  {{ Form::text('sale_starts_on', null, ['class'=>'form-control sales-end-calender datetimepicker', 'data-parsley-errors-container' => '.no-parsley']) }}
                                   <span class="input-group-addon">
                                       <span class="glyphicon glyphicon-calendar"></span>
                                   </span>
@@ -197,7 +202,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                         <div class="calender">
                             <div class="clear clearfix input-group date">
-                                {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datetimepicker']) }}
+                                {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datetimepicker', 'data-parsley-errors-container' => '.no-parsley']) }}
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>

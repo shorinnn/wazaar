@@ -15,7 +15,8 @@
                 <h4>
                 {{ trans('courses/create.give-title') }}
                 </h4>
-                    {{ Form::text( 'name', null, ['class' => 'has-slug', 'placeholder'=>'Course Name', 'data-slug-target' => '#slug' ]) }}
+                    {{ Form::text( 'name', null, ['class' => 'has-slug', 'placeholder'=>'Course Name', 
+                        'data-slug-target' => '#slug', 'required' => 'required' ]) }}
                     {{ Form::hidden( 'slug', null, ['id'=>'slug'] ) }}
             </div>
     </div>
@@ -26,7 +27,7 @@
             {{ trans('courses/general.short_description') }}
             <span class="lead">{{ trans('courses/general.used_on_listings_description') }}</span>
             </h4>
-            {{ Form::textarea('short_description', null,['id'=>'short_description'] ) }}       
+            {{ Form::textarea('short_description', null,['id'=>'short_description', 'required' => 'required' ] ) }}       
         	</div>
     </div>
     <div class="row">
