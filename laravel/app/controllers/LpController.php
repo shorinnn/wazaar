@@ -70,10 +70,9 @@ class LpController extends \BaseController {
         }
     
         public function index(){
-            dd();
-            $users = $this->delivered->getUsers();
-            $user = $users['data'][3];
-            dd( $user );
+           
+            $template = $this->_getTemplate();
+            dd( $template );
 
 //            $list = $this->_getList();
 //            dd($list);

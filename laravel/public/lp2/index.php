@@ -428,6 +428,7 @@ Wazaarのプロジェクトリーダーをやるということもありませ�
             <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl"  >
 <div style="display: none;">
     <input type='hidden' name='stpi' value='<?php echo @$_GET['stpi'];?>' />
+    <input type="hidden" id="awf_field-74444845" class="text" name="custom STPI" value="<?php echo @$_GET['stpi'];?>" tabindex="502" />
 <input type='hidden' name='lp-val' value='LP2' />
 <input type="hidden" name="meta_web_form_id" value="2051478497" />
 <input type="hidden" name="meta_split_id" value="" />
@@ -530,6 +531,7 @@ Wazaarのミッションになります。
             <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl"  >
 <div style="display: none;">
 <input type='hidden' name='stpi' value='<?php echo @$_GET['stpi'];?>' />
+<input type="hidden" id="awf_field-74444845" class="text" name="custom STPI" value="<?php echo @$_GET['stpi'];?>" tabindex="502" />
 <input type='hidden' name='lp-val' value='LP2' />
 <input type="hidden" name="meta_web_form_id" value="2051478497" />
 <input type="hidden" name="meta_split_id" value="" />
