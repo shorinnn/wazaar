@@ -312,22 +312,23 @@
                     } );
                 }
             });
-                $('#btn-close-previews').on('click', function (){
-                    $('#selected-previews').html('');
-                    $('.display-border').each(function (){
-                        console.log($(this).parent().find('img').attr('src'));
+
+            $('#btn-close-previews').on('click', function (){
+                $('#selected-previews').html('');
+                $('.display-border').each(function (){
+                    console.log($(this).parent().find('img').attr('src'));
 //                        $('#selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
-                        $('.course-listing-image-preview').html("<img src='" +  $(this).parent().find('img').attr('src') + "' />");
-                    });
+                    $('.course-listing-image-preview').html("<img src='" +  $(this).parent().find('img').attr('src') + "' />");
                 });
-                
-                $('#btn-close-previews-banner').on('click', function (){
-                    $('#video-selected-previews').html('');
-                    $('.display-border').each(function (){
-                        console.log($(this).parent().find('img').attr('src'));
-                        $('#video-selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
-                    });
+            });
+
+            $('#btn-close-previews-banner').on('click', function (){
+                $('#video-selected-previews').html('');
+                $('.display-border').each(function (){
+                    console.log($(this).parent().find('img').attr('src'));
+                    $('#video-selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
                 });
+            });
 
 
      
@@ -360,12 +361,15 @@
             } else {
                 data.submit();
             }
+            window.reloadConfirm = true;
+
         }).on('fileuploadprogress', function ($e, $data) {
             var $progress = parseInt($data.loaded / $data.total * 100, 10);
             $('#progress-course-video').css('width',$progress + '%');
             $('#progress-course-video-percent-complete').html($progress + '%');
 
         }).bind('fileuploaddone', function ($e, $data) {
+            window.reloadConfirm = false;
             $('.course-video-upload-button-progress').addClass('hidden');
             $('.course-video-upload-processing').removeClass('hidden');
             $('.course-video-thumb').addClass('hidden');

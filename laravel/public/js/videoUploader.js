@@ -46,9 +46,11 @@ var videoUploader = {
             } else {
                 data.submit();
             }
+            window.reloadConfirm = true;
         }).on('fileuploadfail', function ($e, $data) {
             videoUploader.failCallBack($data);
         }).on('fileuploaddone', function ($e,$data){
+            window.reloadConfirm = false;
             if ($data.jqXHR.status == 201){
                 //console.log($data);
                 //console.log($data.files[0].name);
