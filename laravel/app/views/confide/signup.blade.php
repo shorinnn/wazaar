@@ -36,6 +36,9 @@
                     @endif
                     <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8">
                         <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+                        @if(isset($st))
+                            <input type="hidden" name="st" value="1" />
+                        @endif
                         <fieldset>
                             
                             @if(isset($secondTierRegister))
