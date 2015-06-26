@@ -220,9 +220,9 @@
                                 @else
                                      {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
                                      @if(Auth::guest() || Student::find(Auth::user()->id)->canPurchase($course) )
-                                          <button class="clearfix enroll-button join-class">
+                                          <button class="clearfix enroll-button join-class margin-top-50">
                                      @else 
-                                          <button class="clearfix enroll-button join-class" disabled="disabled">
+                                          <button class="clearfix enroll-button join-class margin-top-50" disabled="disabled">
                                      @endif
                                     {{ trans("courses/general.enroll_for_free") }}
                                         </button>
