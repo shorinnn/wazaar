@@ -145,5 +145,11 @@ return array(
     'course-public-tip' => '',
     'individual-sale' => 'Individual Sale',
     'free-preview' => 'Free Preview',
-    'cant-set-price-for-free-course' => 'Cannot set price for a free course'
+    'cant-set-price-for-free-course' => 'Cannot set price for a free course',
+    'you-have-no-courses' => 'You have no courses.',   
+    'pending' => 'Pending',
+    'public' => 'Public',
+    'dashboard' => 'ダッシュボード',
+    'my-courses-link-instructor' => 'My Courses',
+    'price-tip' => ''
 );

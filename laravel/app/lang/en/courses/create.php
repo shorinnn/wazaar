@@ -37,5 +37,6 @@ return array(
     'additional-lesson-notes' => "Additional Lesson Notes",
     'paid-or-free' => 'Paid or free',
     'paid' => 'Paid',
-    'free' => 'Free'
+    'free' => 'Free',
+    'create-btn-instructor' => 'Create New Course',
 );

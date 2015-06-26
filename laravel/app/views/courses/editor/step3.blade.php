@@ -45,21 +45,23 @@
                 <label class="toggle-button
                        @if($course->discussions=='yes') active @endif" for="discussions-enabled">
                     {{ Form::radio('discussions', 'yes', ($course->discussions=='yes'), ['id'=>'discussions-enabled'] ) }}
-                    {{trans('courses/curriculum.yes')}}
+                    {{trans('courses/curriculum.discussion-yes')}}
                 </label>
                 <label class="toggle-button
                        @if($course->discussions=='no') active @endif" for="discussions-disabled">
                     {{ Form::radio('discussions', 'no', ($course->discussions=='no'), ['id'=>'discussions-disabled'] ) }}
-                    {{trans('courses/curriculum.no')}}
+                    {{trans('courses/curriculum.discussion-no')}}
                 </label>
             </div>
+                
+            <span class="clue-text">{{ trans('courses/general.course-public-tip') }}</span>
         </div>
         
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <h4 class="text-right">
-                {{-- ucwords( trans('courses/statuses.public') ) --}} 
+                {{ ucwords( trans('courses/curriculum.privacy-title') ) }} 
             
             </h4>
         </div>
@@ -125,10 +127,12 @@
                 <div class="value-unit">
                         <!--<input type="text" name="amount">-->
                         {{  Form::text( 'price', money_val($course->price),
-                                                ['class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustPrice'] ) }}
+                                                ['class' => 'delayed-keyup', 'data-delay' => '5000', 'required'=>'required', 'data-callback' => 'adjustPrice'] ) }}
                     <span>¥</span>
                 </div>
+                    <span class="clue-text">{{ trans('courses/general.price-tip') }}</span>
             </div>
+            
         </div>
         <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">

@@ -31,6 +31,6 @@ return array(
     'display_instructor' => '月Display Instructorせplease provide more context',
     'old-password' => '現在のパスワード',
     'new-password' => '新しいパスワード',
-    'password-confirmation' => '月Password ConfirmationせIs this a title or a header? Or a button?',
+    'password-confirmation' => '新しいパスワード（確認用）',
     'view-old-version' => 'View Old Version'
 );
