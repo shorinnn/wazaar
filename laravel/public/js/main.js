@@ -1157,17 +1157,18 @@ function showMoreContent(){
 		} else {
 			$link.hide();
 		}
-
+		$link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
+		
 		$link.on("click", function() {		
 			if ($link.hasClass('show-more')){
 				$link.removeClass('show-more');
 				$link.addClass('show-less');
-				$link.html($link.attr('data-less-text'));
+				$link.html(('<i class="fa fa-chevron-up"></i>') + $link.attr('data-less-text'));
 				TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
 			} else if($link.hasClass('show-less')){
 				$link.removeClass('show-less');
 				$link.addClass('show-more');
-				$link.html($link.attr('data-more-text'));
+				$link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
 				TweenMax.fromTo($content, 0, {height: actualHide}, {height: visibleHeight});
 			}
 		

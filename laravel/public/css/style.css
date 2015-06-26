@@ -207,6 +207,13 @@ header .top-menu .logged-out-header-search form .catalogue-button{
 	outline: none;
 }
 
+header .top-menu .logged-out-header-search form .catalogue-button i{
+	color: #a7b5c2;
+	font-size: 13px;
+	position: relative;
+	top: 1px;
+}
+
 header .top-menu .logged-out-header-search form div{
 	max-width: 302px;
 	height: 100%;
@@ -217,7 +224,7 @@ header .top-menu .logged-out-header-search form div{
 header .top-menu .logged-out-header-search form div button{
 	border: none;
 	float: left;
-	width: 28px;
+	width: 38px;
 	height: 100%;
 	background: none;
 	border: none;
@@ -225,16 +232,24 @@ header .top-menu .logged-out-header-search form div button{
 	outline: none;
 }
 
+header .top-menu .logged-out-header-search form div button i{
+  color: #ffffff;
+  font-weight: 100;
+  font-size: 16px;
+  position: relative;
+  top: -1px;
+}
+
 header .top-menu .logged-out-header-search 
 form div input{
 	float: left;
-	width: 274px;
+	width: 264px;
 	height: 100%;
 	border: none;
 	padding: 0;
 	color: #fff;
 	font-size: 12px;
-	padding: 0 11px;
+	padding: 0 11px 0 0;
 	background: none;
 	outline: none;
 }
@@ -2652,7 +2667,7 @@ h4{
 }
 
 .course-details-player{
-	margin-top: 60px;
+	margin: 60px 0;
 }
 
 .category-tags{
@@ -2688,12 +2703,19 @@ h4{
 	top: 50%;
 	left: 50%;
 	cursor: pointer;
-	padding: 15px 22px 15px 49px;
+	padding: 15px 22px 15px 22px;
 	background-color: rgba(0, 0, 0, 0.6);
 	font-size: 16px;
 	color: #fff;
 	border-radius: 23px;
 	transform: translate(-50%, -50%);
+}
+
+.play-intro-button i{
+  padding-right: 10px;
+  font-size: 20px;
+  position: relative;
+  top: 1px;
 }
 
 .course-data{
@@ -2704,11 +2726,17 @@ h4{
 .course-data .column-1 div{
 	float: left;
 	margin: 25px 0;
-	padding-top: 40px;
 }
 
 .course-data .column-1 .number-of-lessons{
 	padding-right: 32px;
+}
+
+.course-data .column-2 div i,
+.course-data .column-1 div i{
+  padding-bottom: 18px;
+  font-size: 22px;
+  color: #bec6ce;
 }
 
 .course-data .column-1 .number-of-students{
@@ -2738,8 +2766,21 @@ h4{
 
 .course-data .column-2 .add-to-wishlist-container .share-lesson,
 .course-data .column-2 .add-to-wishlist-container input{
-	margin: 15px 0;
-	padding-left: 34px;
+	margin: 0 0 15px;
+	display: inline-block !important;
+	padding: 0;
+}
+
+.course-data .column-2 .add-to-wishlist-container i{
+	padding-right: 6px;
+	position: relative;
+	top: 3px;
+}
+
+.course-data .column-2 .add-to-wishlist-container .share-lesson i{
+	padding-right: 11px;
+	position: relative;
+	top: 3px;
 }
 
 .course-data .column-2 div em,
@@ -2852,12 +2893,18 @@ h4{
 }
 
 .hide-lesson-topics{
-	padding: 25px 0 25px 50px;
+	padding: 25px 0 25px 30px;
 	display: block;
 	cursor:pointer;
 	background: #fff;
 	font-size: 13px;
 	color: #7e8e9e;
+}
+
+.expandable-button i{
+	padding-right: 10px;
+	position: relative;
+	top: -1px;
 }
 
 .lesson-reviews{

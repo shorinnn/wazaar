@@ -148,7 +148,7 @@
                                         <div>
                                         </div>
                                     </div>
-                                    <span class="play-intro-button">{{ trans("courses/general.play-intro") }}</span>
+                                    <span class="play-intro-button"><i class="fa fa-play-circle"></i>{{ trans("courses/general.play-intro") }}</span>
                                 @endif
                             @endif                    
                     </div>
@@ -160,14 +160,17 @@
             	<div class="row">
                 	<div class="col-xs-12 col-sm-6 col-md-4 column-1">
                     	<div class="number-of-lessons">
+                        	<i class="fa fa-play-circle"></i>
                         	<em>16</em>
                             <span>{{ trans("general.lessons") }}</span>
                         </div>
                     	<div class="number-of-students">
+                        	<i class="fa fa-user"></i>
                         	<em>{{ $course->student_count }} </em>
                             <span>{{Lang::choice('general.student', $course->student_count)}}</span>
                         </div>
                     	<div class="number-of-videos">
+                        	<i class="fa fa-clock-o"></i>
                         	<em>2.2h</em>
                             <span>{{ trans("general.of-video") }}</span>
                         </div>
@@ -182,12 +185,14 @@
                             </span>
                         </div>
                         <div class="add-to-wishlist-container clearfix">
+                        	
                         	{{Form::open(['action' => ['WishlistController@store'] ])}}
                             	<input type='hidden' name='id' value='{{ $course->id }}' />
+                                <i class="fa fa-heart-o"></i>
                             	<input type='submit' class="add-to-wishlist" value='{{trans('courses/general.add_to_wishlist')}}' />
                             {{Form::close()}}
                         	<!--<a href="#">{{ trans("general.add-to-wishlist") }}</a>-->
-                            <a href="#" class="share-lesson">{{ trans("general.share-this-lesson") }}</a>                        
+                            <a href="#" class="share-lesson"><i class="fa fa-share-square-o"></i>{{ trans("general.share-this-lesson") }}</a>                        
                         </div>
                     </div>
                 	<div class="col-xs-12 col-sm-6 col-md-4 column-3">

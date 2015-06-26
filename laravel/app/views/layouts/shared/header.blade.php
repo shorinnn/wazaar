@@ -111,10 +111,11 @@
             <div class="logged-out-header-search">
             	<form class="clearfix">
                 	<button class="catalogue-button">
+                    	<i class="fa fa-list"></i>
                     	{{trans('general.catalogue')}}
                     </button>
                     <div>
-                    	<button></button>
+                    	<button><i class="fa fa-search"></i></button>
                         <input type="search" name="header-search" class="header-search" placeholder="Search...">
                     </div>
                 </form>
