@@ -274,10 +274,24 @@
     @endif
     
     @yield('extra_js')
-		<script>
+		<script type="text/javascript">
+            window.reloadConfirm = false;
+
                          window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
                          _.setTranslation( js_translation_map_{{ Config::get('app.locale') }} );
 			$(document).ready(function() {
+
+                jQuery(window).bind('beforeunload', function(e) {
+
+                    var message =  _("If you leave this page, you'll miss uploading file, do you wanna leave now?");
+                    e.returnValue = message;
+                    if (window.reloadConfirm){
+                        //window.reloadConfirm = false;
+                        return message;
+                    }
+                });
+
+
                             $('.showRegister').click(function(){
                                 $('.modal').modal('hide');
                                 $('[data-target="#registerModal"]').click();
