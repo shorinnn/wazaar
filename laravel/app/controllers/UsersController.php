@@ -25,6 +25,8 @@ class UsersController extends Controller
         if( Auth::guest() ){
             Cookie::queue('st', null, -1);
             Cookie::forget('st');
+            setcookie('st-php', null, -1, '/', '.'.Config::get('app.base_url') );
+            unset($_COOKIE['st-php']);
         }
         
         if( $instructor_account === 'instructor' ){
@@ -46,6 +48,8 @@ class UsersController extends Controller
 //        if( Auth::guest() ){
 //            Cookie::queue('st', 1, 24*30);
 //        }
+        setcookie('st-php', 1, time() + 24*30, '/', '.'.Config::get('app.base_url') );
+        $_COOKIE['st-php'] = 1;
         Cookie::queue('st', 1, 24*30);
         $extraText = trans('general.register-2-tier');
         $secondTierRegister = $st = 1;
