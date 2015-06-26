@@ -159,58 +159,64 @@
                 <span class="clue-text">{{ trans('courses/general.affiliate-percentage-tip') }}</span>
             </div>
         </div>
-        <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ trans('courses/general.discount') }} </h4>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-            <div class="value-unit">
-                {{ Form::text('sale', money_val($course->sale),
-                    ['onkeyup' => 'toggleElementViaOther(event)', 
-                    'class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustDiscount',
-                    'data-saleType' => 'sale_kind','data-parsley-errors-container' => '.no-parsley',
-                    'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
-                <span>¥</span>
-            </div>
-        </div>
-            <!--
-        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" id="discount">
-              {{ Form::select('sale_kind', ['amount' => '¥', 'percentage' => '%'], null,
-          ['class'=>''] ) }}
-        </div>-->
-            </div>
-            <div class='sale-ends-on' @if($course->sale == 0) style='display:none' @endif >
+        
+            
+        @if($course->publish_status == 'approved')
                 <div class="row editor-settings-layout margin-bottom-30">
-                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        <h4 class="text-right">{{ trans('courses/general.sale_starts_on') }}</h4>
-                    </div>
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                        <div class="calender">
-                              <div class="clear clearfix input-group date">
-                                  {{ Form::text('sale_starts_on', null, ['class'=>'form-control sales-end-calender datetimepicker', 'data-parsley-errors-container' => '.no-parsley']) }}
-                                  <span class="input-group-addon">
-                                      <span class="glyphicon glyphicon-calendar"></span>
-                                  </span>
-                              </div>
-                        </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <h4 class="text-right">{{ trans('courses/general.discount') }} </h4>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="value-unit">
+                        {{ Form::text('sale', money_val($course->sale),
+                            ['onkeyup' => 'toggleElementViaOther(event)', 
+                            'class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustDiscount',
+                            'data-saleType' => 'sale_kind','data-parsley-errors-container' => '.no-parsley',
+                            'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
+                        <span>¥</span>
                     </div>
                 </div>
-                <div class="row editor-settings-layout margin-bottom-30">
-                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        <h4 class="text-right">{{ trans('courses/general.sale_ends_on') }}</h4>
+                    <!--
+                <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" id="discount">
+                      {{ Form::select('sale_kind', ['amount' => '¥', 'percentage' => '%'], null,
+                  ['class'=>''] ) }}
+                </div>-->
                     </div>
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                        <div class="calender">
-                            <div class="clear clearfix input-group date">
-                                {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datetimepicker', 'data-parsley-errors-container' => '.no-parsley']) }}
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+                    <div class='sale-ends-on' @if($course->sale == 0) style='display:none' @endif >
+                        <div class="row editor-settings-layout margin-bottom-30">
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                <h4 class="text-right">{{ trans('courses/general.sale_starts_on') }}</h4>
+                            </div>
+                                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                                <div class="calender">
+                                      <div class="clear clearfix input-group date">
+                                          {{ Form::text('sale_starts_on', null, ['class'=>'form-control sales-end-calender datetimepicker', 'data-parsley-errors-container' => '.no-parsley']) }}
+                                          <span class="input-group-addon">
+                                              <span class="glyphicon glyphicon-calendar"></span>
+                                          </span>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row editor-settings-layout margin-bottom-30">
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                <h4 class="text-right">{{ trans('courses/general.sale_ends_on') }}</h4>
+                            </div>
+                                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                                <div class="calender">
+                                    <div class="clear clearfix input-group date">
+                                        {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datetimepicker', 'data-parsley-errors-container' => '.no-parsley']) }}
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                            <button type='button' data-url='{{action('CoursesController@update', $course->slug)}}'
+                                class="submit-for-approval blue-button extra-large-button" onclick='courseUpdateDiscount(event)'>Update Discount</button>
+                 @endif
         @endif
 </div>
 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 right-content">
