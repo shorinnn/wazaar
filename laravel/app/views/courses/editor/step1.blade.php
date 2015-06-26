@@ -334,7 +334,7 @@
         var formData = $('#form-aws-credentials').serialize();
 
         jQuery('#upload-course-video').fileupload({
-            url: '//s3-ap-northeast-1.amazonaws.com/videosinput-tokyo',
+            url: '{{UploadHelper::AWSVideosInputURL()}}',
             formData: {
                 key:$('#form-aws-credentials').find('input[name=key]').val(),
                 AWSAccessKeyId:$('#form-aws-credentials').find('input[name=AWSAccessKeyId]').val(),
@@ -342,6 +342,22 @@
                 success_action_status:$('#form-aws-credentials').find('input[name=success_action_status]').val(),
                 policy:$('#form-aws-credentials').find('input[name=policy]').val(),
                 signature:$('#form-aws-credentials').find('input[name=signature]').val()
+            }
+        }).bind('fileuploadadd', function (e, data) {
+            var uploadErrors = [];
+            var acceptedFileTypes =  ['video/mp4', 'video/flv', 'video/wmv', 'video/avi', 'video/mpg','video/MP4', 'video/FLV', 'video/WMV', 'video/AVI', 'video/MPG'];
+
+            if(acceptedFileTypes.indexOf(data.originalFiles[0].type) < 0) {
+                uploadErrors.push(_('Not an accepted file type'));
+            }
+            if(data.originalFiles[0].size && data.originalFiles[0].size > 1000000000) {//75654966 / 1000000000
+                uploadErrors.push(_('Filesize is too big'));
+            }
+            if(uploadErrors.length > 0) {
+                alert(uploadErrors.join("\n"));
+                return false;
+            } else {
+                data.submit();
             }
         }).on('fileuploadprogress', function ($e, $data) {
             var $progress = parseInt($data.loaded / $data.total * 100, 10);
