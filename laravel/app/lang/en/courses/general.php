@@ -153,4 +153,9 @@ return array(
     'my-courses-link-instructor' => 'My Courses',
     'price-tip' => '',
     'sale-period-min-10-minutes' => 'Sale must last at least 10 minutes',
+    'pending' => 'pending',
+    'unsubmitted' => 'unsubmitted',
+    'approved' => 'approved',
+    'public' => 'public',
+    'private' => 'private',
 );
