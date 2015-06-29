@@ -5928,6 +5928,12 @@ a.load-remote > *{
 	color: #798794;	
 }
 
+.update-discount button{
+	float: right;
+	position: relative;
+	margin-right: -15px;
+}
+
 .edit-course select{
 	width: 100% !important;
 }
@@ -10604,6 +10610,9 @@ header .top-menu li{
 	}
 }
 
+.no-padding{
+	 padding: 0 !important;
+}
 
 .no-margin
 {

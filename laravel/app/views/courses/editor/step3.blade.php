@@ -218,19 +218,24 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row editor-settings-layout margin-bottom-30">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding update-discount">
+                                <button type='button' data-url='{{action('CoursesController@update', $course->slug)}}'
+                                        @if($course->publish_status != 'approved')
+                                            disabled='disabled'
+                                        @endif
+                                    class="
+                                        @if($course->publish_status != 'approved')
+                                            disabled-button 
+                                        @endif
+                                    submit-for-approval blue-button large-button" onclick='courseUpdateDiscount(event)'>
+                                    {{ trans('courses/general.update-discount') }}
+                                </button>
+                            </div>
+                        </div>
                     </div>
                             
             
-                            <button type='button' data-url='{{action('CoursesController@update', $course->slug)}}'
-                                    @if($course->publish_status != 'approved')
-                                        disabled='disabled'
-                                    @endif
-                                class="
-                                    @if($course->publish_status != 'approved')
-                                        disabled-button 
-                                    @endif
-                                submit-for-approval blue-button extra-large-button" onclick='courseUpdateDiscount(event)'>
-                                {{ trans('courses/general.update-discount') }}</button>
                                
         @endif
 </div>
