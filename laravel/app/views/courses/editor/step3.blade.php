@@ -219,6 +219,7 @@
                             </div>
                         </div>
                         <div class="row editor-settings-layout margin-bottom-30">
+                        
                             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 no-padding update-discount">
                                 <button type='button' data-url='{{action('CoursesController@update', $course->slug)}}'
                                         @if($course->publish_status != 'approved')
@@ -232,6 +233,7 @@
                                     {{ trans('courses/general.update-discount') }}
                                 </button>
                             </div>
+                            
                         </div>
                     </div>
                             
