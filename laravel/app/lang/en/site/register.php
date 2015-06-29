@@ -12,6 +12,8 @@ return array(
     'register-new-account' => 'Register new account',
     'login' => 'Login', 
     'name-placeholder' => 'Name', 
+    'last-name-placeholder' => 'Last Name', 
+    'first-name-placeholder' => 'First Name', 
     'email-placeholder' => 'you@mail.com', 
     'password-placeholder' => 'password',
 );

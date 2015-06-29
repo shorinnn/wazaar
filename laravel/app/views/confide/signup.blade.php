@@ -50,12 +50,12 @@
                             
                                 <div class="form-group left">
                                     <input class="form-control" 
-                                       placeholder="{{ trans('site/register.name-placeholder') }}" 
+                                       placeholder="{{ trans('site/register.last-name-placeholder') }}" 
                                    type="text" name="last_name" id="last_name" value="{{{ Input::old('last_name') }}}" required/>
                                 </div>
                                 <div class="form-group left">
                                     <input class="form-control" 
-                                       placeholder="First name" 
+                                       placeholder="{{ trans('site/register.first-name-placeholder') }}" 
                                    type="text" name="first_name" id="first_name" value="{{{ Input::old('first_name') }}}" required/>
                                 </div>
                         

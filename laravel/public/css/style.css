@@ -1872,6 +1872,7 @@ header .activate-dropdown:hover ul{
 .form-container input#last_name,
 .form-container input#first_name{
 	width: 164px;
+	padding-left: 20px;
 }
 
 .form-container input#first_name{
