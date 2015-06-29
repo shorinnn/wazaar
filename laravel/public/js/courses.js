@@ -176,7 +176,8 @@ function enableRTE(selector, changeCallback){
  * @method enableBlockFileUploader
  */
 function enableBlockFileUploader(e){
-    $uploader = $(e.target).parent().parent().parent().parent().find('[type=file]');
+//    $uploader = $(e.target).parent().parent().parent().parent().find('[type=file]');
+    $uploader = $(e.target).parent().parent().parent().parent().find('.lesson-file-uploader');
     console.log($uploader);
     enableFileUploader($uploader);
 	
@@ -338,18 +339,28 @@ function courseSettings(){
 }
 
 function adjustPrice(e){
+    $(e).parent().parent().find('.min-price-error').remove();
     val = parseInt(e.val());
-    if( val!=0 ){
+    if( val==0 && typeof('data-allow-zero')!='undefined' ){}
+    else if(  val!=0 ){
+        if(val < 500){
+            if(  typeof( $(e).attr('data-next-to') )==undefined )
+                $(e).parent().parent().append('<p class="min-price-error alert alert-danger">' + _('min-price-500') + '</p>');
+            else
+                $(e).parent().append('<p class="min-price-error alert alert-danger">' + _('min-price-500') + '</p>');
+        }
         val = ( e.val() >= 500 )? e.val() : 500;
     }
-    e.val( round2( val, 100 ) ) ;
+    else{}
+    e.val( round2( val, 10 ) ) ;
 }
 
 function adjustDiscount(e){
     val = parseInt(e.val());
     kind = e.attr('data-saleType');
     kind = $("[name='"+kind+"']").val();
-    if(kind=='amount' && val>0) val =  round2( val, 100 );
+//    if(kind=='amount' && val>0) val =  round2( val, 10 );
+    val =  round2( val, 10 );
     e.val( val );
 }
 

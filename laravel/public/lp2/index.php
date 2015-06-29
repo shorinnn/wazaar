@@ -1,20 +1,41 @@
+<?php
+function get($name){
+    if(isset($_GET[$name])) return urldecode ($_GET[$name]);
+    return '';
+}
+
+function getErrors(){
+    if(get('errors')=='') return '';
+    return implode('<br />', json_decode( get('errors') ) );
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <script src="alertify.min.js"></script>
+    <script>
+    function alerts(){
+        var errors = "<?php echo getErrors() ;?>";
+        alertify.alert(errors);
+    }
+    </script>
 <meta charset="UTF-8" />
 <meta name="keywords" content=",,,,," />
 <meta name="description" content=",,,,," />
 <meta name="author" content="" /> 
 <link rel="stylesheet" href="css/salesweb.css" type="text/css" />
+<!-- include the core styles -->
+<link rel="stylesheet" href="css/alertify.core.css" />
+<!-- include a theme, can be included into the core instead of 2 separate files -->
+<link rel="stylesheet" href="css/alertify.default.css" />
 <title>技のフリーマーケット・Wazaarワザール</title>
 </head>
 
 
 
-<body>
-    <?php if(isset($_GET['error'])):?>
-        <p style='font-size:40px; color:red;'>ERROR OCCURRED</p>
-    <?php endif;?>
+<body <?php if(get('errors') != ''):?>
+    onload="alerts()"
+        <?php endif;?>>
 <!-- header -->
 <header>
 <div id="header"><img src="img/header/01.png" /></div>
@@ -424,8 +445,8 @@ Wazaarのプロジェクトリーダーをやるということもありませ�
 <!-- form -->
 <div class="form_bg">
 	<div class="container">
-        <!--<form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/lp';?>"  >-->
-            <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl"  >
+        <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/lp';?>"  >
+            <!--<form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl"  >-->
 <div style="display: none;">
     <input type='hidden' name='stpi' value='<?php echo @$_GET['stpi'];?>' />
     <input type="hidden" id="awf_field-74444845" class="text" name="custom STPI" value="<?php echo @$_GET['stpi'];?>" tabindex="502" />
@@ -441,8 +462,8 @@ Wazaarのプロジェクトリーダーをやるということもありませ�
 <input type="hidden" name="meta_required" value="name,email" />
 </div>
 <input type="hidden" name="meta_tooltip" value="" />
-        <img src="img/form/name.png" class="imgl"><input type="text" name="name" value="" class="inputtext"><br />
-        <img src="img/form/mail.png" class="imgl"><input type="text" name="email" value="" class="inputtext"><br />
+        <img src="img/form/name.png" class="imgl"><input type="text" name="name" value="<?=get('name');?>" class="inputtext"><br />
+        <img src="img/form/mail.png" class="imgl"><input type="text" name="email" value="<?=get('email');?>" class="inputtext"><br />
         <input type="image" name="submit" src="img/form/btn_01.png" alt="??"  class="submitbutton" value=""
          onmouseover="this .src='img/form/btn_02.png'"
          onmouseout="this .src='img/form/btn_01.png'" />
@@ -527,8 +548,9 @@ Wazaarのミッションになります。
 <!-- form -->
 <div class="form_bg">
 	<div class="container">
-        <!--<form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/lp';?>"  >-->
-            <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl"  >
+             <a name="form"></a>
+        <form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/lp';?>"  >
+            <!--<form method="post" class="af-form-wrapper" accept-charset="UTF-8" action="https://www.aweber.com/scripts/addlead.pl"  >-->
 <div style="display: none;">
 <input type='hidden' name='stpi' value='<?php echo @$_GET['stpi'];?>' />
 <input type="hidden" id="awf_field-74444845" class="text" name="custom STPI" value="<?php echo @$_GET['stpi'];?>" tabindex="502" />
@@ -544,8 +566,8 @@ Wazaarのミッションになります。
 <input type="hidden" name="meta_required" value="name,email" />
 </div>
 <input type="hidden" name="meta_tooltip" value="" />
-        <img src="img/form/name.png" class="imgl"><input type="text" name="name" value="" class="inputtext"><br />
-        <img src="img/form/mail.png" class="imgl"><input type="text" name="email" value="" class="inputtext"><br />
+        <img src="img/form/name.png" class="imgl"><input type="text" name="name" value="<?=get('name');?>" class="inputtext"><br />
+        <img src="img/form/mail.png" class="imgl"><input type="text" name="email" value="<?=get('email');?>" class="inputtext"><br />
         <input type="image" name="submit" src="img/form/btn_01.png" alt="??"  class="submitbutton" value=""
          onmouseover="this .src='img/form/btn_02.png'"
          onmouseout="this .src='img/form/btn_01.png'" />

@@ -34,6 +34,10 @@ class Lesson extends Ardent {
             $this->errors()->add(0, trans('crud/errors.lesson-slug-in-use'));
             return false;
         }
+        if($this->price>0 && $this->price < 500){
+            $this->errors()->add(0, 'ワザールで最低レッスン金額は500円以上ですので、500円以上の金額を設定して下さい。' );
+            return false;
+        }
     }
 
     public function beforeDelete() {

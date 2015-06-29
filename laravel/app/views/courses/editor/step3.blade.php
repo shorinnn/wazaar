@@ -133,7 +133,7 @@
                 <div class="value-unit">
                         <!--<input type="text" name="amount">-->
                         {{  Form::text( 'price', money_val($course->price),
-                                ['class' => 'delayed-keyup', 'data-delay' => '5000', 'required'=>'required', 'data-parsley-errors-container' => '.price-parsley',
+                                ['class' => 'delayed-keyup', 'data-delay' => '1000', 'required'=>'required', 'data-parsley-errors-container' => '.price-parsley',
                             'data-callback' => 'adjustPrice', 'required' => 'required', 'min' => 500] ) }}
                     <span>¥</span>
                 </div>
@@ -171,7 +171,7 @@
                     <div class="value-unit">
                         {{ Form::text('sale', money_val($course->sale),
                             ['onkeyup' => 'toggleElementViaOther(event)', $notApprovedDisable => $notApprovedDisable,
-                            'class' => 'delayed-keyup', 'data-delay' => '5000', 'data-callback' => 'adjustDiscount',
+                            'class' => 'delayed-keyup', 'data-delay' => '1000', 'data-callback' => 'adjustDiscount',
                             'data-saleType' => 'sale_kind','data-parsley-errors-container' => '.no-parsley',
                             'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
                         <span>¥</span>

@@ -20,7 +20,7 @@ return array(
         'please-verify-email' => 'ご登録されたメールアドレスに認証リンクを送りましたのでご確認ください。',
         'we-sent-link' => ' ',
         'verify-email' => 'VERIFY EMAIL',
-        'you-verified-email' => 'you have verified your email!',
-        'email-verified' => 'Email verified!',
+        'you-verified-email' => 'あなたのメールアドレスが認証されました！',
+        'email-verified' => 'あなたのメールアドレスは認証済みです。',
 
 );
