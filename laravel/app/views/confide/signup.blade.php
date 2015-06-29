@@ -47,13 +47,19 @@
                         @endif
                         <fieldset>
                             
-                            @if(isset($secondTierRegister))
+                            
                                 <div class="form-group">
                                     <input class="form-control" 
                                        placeholder="{{ trans('site/register.name-placeholder') }}" 
-                                   type="text" name="name" id="name" value="{{{ Input::old('name') }}}" required/>
+                                   type="text" name="last_name" id="last_name" value="{{{ Input::old('last_name') }}}" required/>
                                 </div>
-                            @endif
+                                <div class="form-group">
+                                    <input class="form-control" 
+                                       placeholder="First name" 
+                                   type="text" name="first_name" id="first_name" value="{{{ Input::old('first_name') }}}" required/>
+                                </div>
+                        
+                            
                         
                             <div class="form-group email-field">
                                 <input class="form-control instant-valid delayed-valid" 

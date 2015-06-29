@@ -67,14 +67,21 @@ class UsersController extends Controller
         
         if ( $user!=null && $user->id) {
             try{
+                $subject = '販売者アカウント確認のご連絡';
+                $view = 'confide.emails.regular_confirm';
+                $lastName = 'LastName';
+                if($user->is_second_tier_instructor=='yes'){
+                    $subject = Lang::get('confide::confide.email.account_confirmation.subject');
+                    $view = Config::get('confide::email_account_confirmation');
+                }
                 if (Config::get('confide::signup_email')) {
                     Mail::send(
-                        Config::get('confide::email_account_confirmation'),
-                        compact('user'),
-                        function ($message) use ($user) {
+                        $view,
+                        compact('user' , 'lastName' ),
+                        function ($message) use ($user, $subject) {
                             $message
-                                ->to($user->email, $user->usersname)
-                                ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
+                                ->to($user->email, $user->email)
+                                ->subject( $subject );
                         }
                     );
                 }
