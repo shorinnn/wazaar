@@ -46,18 +46,79 @@
           <section class="footer-container">
             <div class="container">
               <div class="row">
-                <div class="col-md-4 col-sm-12 first-col">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/footer-logo.png" alt="Wazaar" />
+                  <p>&copy; Wazaar {{ date('Y') }}</p>
                 </div>
-                <div class="col-md-4 col-sm-12 second-col">
-                  <strong>{{trans('site/footer.phone')}}:</strong> 000 000 000 000<br/>
-                  <strong>{{trans('site/footer.mail')}}:</strong> info@wazaar.com
-                </div>
-                <div class="col-md-4 col-sm-12 third-col">
-                  <strong>Wazaar</strong><br/>
-                  {{trans('site/footer.all-rights-reserved')}}<br/>
-                  &copy; {{ date('Y') }}
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                	<div class="row">
+                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        	<h5>Courses</h5>
+                            <ul>
+                            	<li>
+                                	<a href="#">Data Science</a>
+                                </li>
+                            	<li>
+                                	<a href="#">Development</a>
+                                </li>
+                            	<li>
+                                	<a href="#">Business</a>
+                                </li>
+                            	<li>
+                                	<a href="#">IT & Software</a>
+                                </li>
+                            	<li>
+                                	<a href="#">Office Productivity</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        	<h5>&nbsp;</h5>
+                            <ul>
+                            	<li>
+                                	<a href="#">Design</a>
+                                </li>
+                            	<li>
+                                	<a href="#">Marketing</a>
+                                </li>
+                            	<li>
+                                	<a href="#">Lifestyle</a>
+                                </li>
+                            	<li>
+                                	<a href="#">Photography</a>
+                                </li>
+                            	<li>
+                                	<a href="#">Health & Fitness</a>
+                                </li>
+                            </ul>                        
+                        </div>
+                    </div>
+                  <!--{{trans('site/footer.all-rights-reserved')}}<br/>
+                  &copy; {{ date('Y') }}-->
                 </div>              
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                	<div class="row">
+                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        	<h5>ABOUT</h5>
+                            <ul>
+                            	<li>
+                                	<a href="#">Company</a>
+                                </li>
+                            	<li>
+                                	<a href="#">Terms of Use</a>
+                                </li>
+                            	<li>
+                                	<a href="#">Privacy Policy</a>
+                                </li>
+                            </ul>                        
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        	<h5>GET IN TOUCH</h5>
+                            <p>000 000 000 000</p>
+                            <p><!--{{trans('site/footer.mail')}}:-->info@wazaar.com</p>                        
+                        </div>
+                    </div>
+                </div>
               </div>
             </div>
           </section>          
