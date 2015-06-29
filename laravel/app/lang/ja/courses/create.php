@@ -36,8 +36,8 @@ return array(
     'create-new-course' => 'コース作成',
     'what-users-should-know' => 'コース受講にあたり必要となる機材や受講者が知っておくべきことがありましたら、ご記入ください。',
     'wazaar_must_review' => '商品をワザールで掲載する前に商品の審査が必要になります。',
-    'paid-or-free' => 'Paid or free',
-    'paid' => 'Paid',
-    'free' => 'Free',    
+    'paid-or-free' => '有料コース / 無料コース',
+    'paid' => '有料コース',
+    'free' => '無料コース',    
     'create-btn-instructor' => '新規教材の制作',
 );
