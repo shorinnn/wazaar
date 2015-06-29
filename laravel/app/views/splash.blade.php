@@ -23,7 +23,7 @@
             	<a href="{{ action('UsersController@login') }}" class="login button large-button">ログイン</a>
                 <a href="{{ action('UsersController@create') }}" class="blue-button button large-button register">サインアップ</a>
             </div>
-        	<div id="logo">
+        	<div id="logo" class="clear">
             	<img src="splash/logo.png" alt="">
             </div>
             <!--<h1>Coming this July!</h1>-->
