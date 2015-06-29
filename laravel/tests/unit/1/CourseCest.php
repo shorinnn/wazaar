@@ -54,18 +54,18 @@ class CourseCest{
     
     public function roundPriceDown(UnitTester $I){
         $course = Course::find(1);
-        $course->price = 620;
+        $course->price = 623;
         $I->assertTrue( $course->updateUniques() );
         $course = Course::find(1);
-        $I->assertEquals(600, $course->price);
+        $I->assertEquals(620, $course->price);
     }
     
     public function roundPriceUp(UnitTester $I){
         $course = Course::find(1);
-        $course->price = 660;
+        $course->price = 667;
         $I->assertTrue( $course->updateUniques() );
         $course = Course::find(1);
-        $I->assertEquals(700, $course->price);
+        $I->assertEquals(670, $course->price);
     }
     
     public function failUpdateUsingTakenSlug(UnitTester $I){

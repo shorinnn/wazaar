@@ -234,6 +234,11 @@ class Course extends Ardent{
             $this->errors()->add(0, trans('courses/general.course-must-be-500') );
             return false;
         }
+        if( $this->free=='no' && $this->price < 500 ){
+//            $this->errors()->add(0, trans('courses/general.course-must-be-free-or-500') );
+            $this->errors()->add(0, trans('courses/general.course-must-be-500') );
+            return false;
+        }
         // update category counter
         if($this->isDirty('course_category_id')){
             $old = $this->getOriginal();
