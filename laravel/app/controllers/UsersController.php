@@ -11,7 +11,7 @@ class UsersController extends Controller
 {
     public function __construct(UserRepository $users){
         $this->users = $users;
-        $this->beforeFilter('guest', array('only' => array('create', 'login' ,'forgotPassword', 'doForgotPassword')));
+        $this->beforeFilter('guest', array('only' => array('create', 'secondTierPublisherCreate', 'login' ,'forgotPassword', 'doForgotPassword')));
         $this->beforeFilter('auth', array('only' => array('verificationConfirmation', 'registrationConfirmation' ,'links')));
     }
 
