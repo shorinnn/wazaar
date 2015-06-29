@@ -176,7 +176,8 @@ function enableRTE(selector, changeCallback){
  * @method enableBlockFileUploader
  */
 function enableBlockFileUploader(e){
-    $uploader = $(e.target).parent().parent().parent().parent().find('[type=file]');
+//    $uploader = $(e.target).parent().parent().parent().parent().find('[type=file]');
+    $uploader = $(e.target).parent().parent().parent().parent().find('.lesson-file-uploader');
     console.log($uploader);
     enableFileUploader($uploader);
 	
