@@ -406,12 +406,19 @@ function saveAndNextTab(e){
 function saveStep1Form(){
     $('.step-1-form').attr('data-old-callback', $('.step-1-form').attr('data-callback'));
     $('.step-1-form').attr('data-callback', 'savedStep1');
+    $('.step-1-form').attr('data-save-indicator', '.step-1-save-btn');
     $('.step-1-form').submit();
+   
 }
 
 function savedStep1(e,json){
     $('.step-1-form').attr('data-callback', $('.step-1-form').attr('data-old-callback'));
     $('.step-1-form').removeAttr('data-old-callback');
+    $('.step-1-form').removeAttr('data-save-indicator');
+    savingAnimation(0);
+    setTimeout(function(){
+        savingAnimation(1);
+    }, 1000);
 }
 
 function submittedCourse(){
@@ -425,6 +432,9 @@ function submittedCourse(){
 function updateStepsRemaining(){
     course_steps_remaining--;
     $('.steps-remaining p span span').html( course_steps_remaining );
+    if( course_steps_remaining == 0){
+        $('.steps-remaining p').html( _('<span>Course Ready</span> For Submission') );
+    }
     activatePreviewButton();
 }
 
@@ -452,4 +462,23 @@ function courseUpdateDiscount(e){
             $(e.target).after("<p class='alert alert-danger discount-ajax-result'>"+result.errors+"</p>");
         }
     });
+}
+
+function saveStep3Form(){
+    $('.step-3-form').attr('data-old-callback', $('.step-3-form').attr('data-callback'));
+    $('.step-3-form').attr('data-callback', 'savedStep3');
+    $('.step-3-form').attr('data-save-indicator', '.step-3-save-btn');//update already
+    $('[name="publish_status"]').val(0);
+    $('.step-3-form').submit();
+}
+
+function savedStep3(e,json){
+    $('.step-3-form').attr('data-callback', $('.step-3-form').attr('data-old-callback'));
+    $('.step-3-form').removeAttr('data-old-callback');
+    $('.step-3-form').removeAttr('data-save-indicator');
+    $('[name="publish_status"]').val(1);
+    savingAnimation(0);
+    setTimeout(function(){
+        savingAnimation(1);
+    }, 1000);
 }

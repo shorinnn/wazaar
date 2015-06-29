@@ -158,4 +158,8 @@ return array(
     'approved' => 'approved',
     'public' => 'public',
     'private' => 'private',
+    'course-discussions-tip' => '',
+    'discount-tip' => '',
+    'update-discount' => 'Update Discount',
+    'saving-button' => 'Save',
 );
