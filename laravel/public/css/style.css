@@ -1837,8 +1837,6 @@ header .activate-dropdown:hover ul{
 
 .form-container input{
 	background-color: #fff;
-	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/email-pass-icons.png);
-	background-repeat: no-repeat;
 	display: block;
 	font-size: 14px;
 	border: solid 1px #e3e5e6;
@@ -1859,12 +1857,25 @@ header .activate-dropdown:hover ul{
 
 .form-container input[name='email']{
 	background-position: 15px 14px;
+	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/email-pass-icons.png);
+	background-repeat: no-repeat;
 }
 
 .form-container input[name='password']{
 	padding-right: 65px;
 	padding-left: 40px;
 	background-position: 15px -39px;
+	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/email-pass-icons.png);
+	background-repeat: no-repeat;
+}
+
+.form-container input#last_name,
+.form-container input#first_name{
+	width: 164px;
+}
+
+.form-container input#first_name{
+	margin-left: 12px;
 }
 
 .form-container input[name='name']{

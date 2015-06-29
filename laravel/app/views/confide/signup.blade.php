@@ -48,12 +48,12 @@
                         <fieldset>
                             
                             
-                                <div class="form-group">
+                                <div class="form-group left">
                                     <input class="form-control" 
                                        placeholder="{{ trans('site/register.name-placeholder') }}" 
                                    type="text" name="last_name" id="last_name" value="{{{ Input::old('last_name') }}}" required/>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group left">
                                     <input class="form-control" 
                                        placeholder="First name" 
                                    type="text" name="first_name" id="first_name" value="{{{ Input::old('first_name') }}}" required/>
@@ -61,7 +61,7 @@
                         
                             
                         
-                            <div class="form-group email-field">
+                            <div class="form-group email-field clear">
                                 <input class="form-control instant-valid delayed-valid" 
                                    placeholder="{{ trans('site/register.email-placeholder') }}" 
                                type="email" name="email" id="email" value="{{{ Input::old('email') }}}" required/>
