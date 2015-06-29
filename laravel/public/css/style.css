@@ -9871,11 +9871,10 @@ input[type='number'] {
 /************* Page Footer **************/
 footer{
 	clear:both;
-	background-color: #fff;
 }
 
 .footer-container{ 
-	background-color: #fff;
+	background-color: #e8eced;
 	padding: 62px 0 62px;
 }
 
