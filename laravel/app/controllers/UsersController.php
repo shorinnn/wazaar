@@ -126,7 +126,9 @@ class UsersController extends Controller
             if(Request::ajax()){
                 return json_encode( ['status' => 'success'] );
             }
+            
             if(Auth::user()->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+            elseif( Auth::user()->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
             return Redirect::intended('/');
         } else {
             if ($this->users->isThrottled($input)) {
@@ -225,6 +227,7 @@ class UsersController extends Controller
         Auth::loginUsingId( $id );
         Session::forget('f');
         if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+        elseif( $user->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
         else return Redirect::intended('/');
     }
     
