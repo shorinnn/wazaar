@@ -42,7 +42,7 @@ $(document).ready(function(){
 	askTeacherQuestion();
 	searchFormFocusStyle();
 	showMoreContent();
-	stickyFooter();
+	//stickyFooter();
 	rescaleBckgrdOverlay();
 });
 
@@ -1177,7 +1177,7 @@ function showMoreContent(){
 	});
 }
 
-function stickyFooter(){
+/*function stickyFooter(){
 	var bodyHeight = $("body").height();
 	var vwptHeight = $(window).height();
 	var contentWrapper = $('#wrapper');
@@ -1192,7 +1192,7 @@ function stickyFooter(){
 	else if(vwptHeight <= bodyHeight){
 	  $("footer").css("position","relative");
 	}
-}
+}*/
 
 function rescaleBckgrdOverlay(){
 	var bckgrdImageHeight = $('#user-data-bckgrd-img').css('height');

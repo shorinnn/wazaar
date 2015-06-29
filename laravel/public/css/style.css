@@ -5874,7 +5874,6 @@ a.load-remote > *{
 /************** Create New Course and Edit Course *********/
 .edit-course{
 	background: #e8eced;
-	min-height: 100%;
 	padding-bottom: 5%;
 }
 
