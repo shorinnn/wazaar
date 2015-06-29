@@ -132,7 +132,7 @@ class CoursesController extends \BaseController {
             if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 return Redirect::action('CoursesController@index');
             }
-            if( Input::has('publish_status') ){
+            if( Input::has('publish_status') && Input::get('publish_status')==1 ){
                 $course->publish_status = 'pending';
             }
             

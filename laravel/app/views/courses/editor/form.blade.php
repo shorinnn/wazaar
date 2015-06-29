@@ -70,16 +70,23 @@
                    data-gif='ajax-loader-3.gif' >{{ trans('courses/general.settings') }}</a>
                 
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<div class="right steps-remaining">
-                	<p class="regular-paragraph no-margin">
-                    	{{ trans('courses/general.complete') }} 
-                        <span>
-                            <span>{{ courseStepsRemaining($course) }}</span>
-                            {{ trans('courses/general.steps') }}</span> {{ trans('courses/general.to_submit_course') }}
-                    </p>
+            
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="right steps-remaining">
+                        @if( courseStepsRemaining($course)==0 || $course->publish_status!='unsubmitted')
+                            <p class="regular-paragraph no-margin">
+                               <span>Course Ready</span> For Submission
+                            </p>
+                        @else
+                            <p class="regular-paragraph no-margin">
+                            {{ trans('courses/general.complete') }} 
+                            <span>
+                                <span>{{ courseStepsRemaining($course) }}</span>
+                                {{ trans('courses/general.steps') }}</span> {{ trans('courses/general.to_submit_course') }}
+                            </p>
+                        @endif
+                    </div>
                 </div>
-            </div>
         </div>
     </section>
     <section class="container main course-editor">

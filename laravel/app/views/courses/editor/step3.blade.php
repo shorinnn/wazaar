@@ -43,7 +43,7 @@
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h4 class="text-right">{{ trans('courses/curriculum.enable-discussions') }} </h4>
+            <h4 class="text-right">{{ trans('courses/curriculum.enable-discussions') }}  </h4>
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <div class="toggle-switch">
@@ -59,7 +59,7 @@
                 </label>
             </div>
                 
-            <span class="clue-text">{{ trans('courses/general.course-public-tip') }}</span>
+            <span class="clue-text">{{ trans('courses/general.course-discussions-tip') }}</span>
         </div>
         
     </div>
@@ -176,6 +176,7 @@
                             'data-destination'=>'.sale-ends-on', 'data-hide-on' => '0', 'data-is-int' => 1 ]) }}
                         <span>¥</span>
                     </div>
+                    <span class="clue-text">{{ trans('courses/general.discount-tip') }}</span>
                 </div>
                     <!--
                 <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2" id="discount">
@@ -218,6 +219,8 @@
                             </div>
                         </div>
                     </div>
+                            
+            
                             <button type='button' data-url='{{action('CoursesController@update', $course->slug)}}'
                                     @if($course->publish_status != 'approved')
                                         disabled='disabled'
@@ -226,7 +229,8 @@
                                     @if($course->publish_status != 'approved')
                                         disabled-button 
                                     @endif
-                                submit-for-approval blue-button extra-large-button" onclick='courseUpdateDiscount(event)'>Update Discount</button>
+                                submit-for-approval blue-button extra-large-button" onclick='courseUpdateDiscount(event)'>
+                                {{ trans('courses/general.update-discount') }}</button>
                                
         @endif
 </div>
@@ -332,6 +336,8 @@
     </div>
     <div class="row next-step-button">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <button type='button' class="blue-button extra-large-button step-3-save-btn" onclick="saveStep3Form()">{{ trans('courses/general.saving-button') }}</button>
+            <br />
             <button type='submit'
                     @if($course->publish_status=='pending')
                          disabled="disabled"
