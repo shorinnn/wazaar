@@ -9558,6 +9558,23 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 
 .mycourses-main{
 	padding-top: 30px;
+	border-bottom: 1px solid #cdd1d3;
+}
+
+.no-courses-available {
+    margin: 10% 0;
+}
+
+.white-background{
+	 background-color: #fff;
+}
+
+.no-courses-available p{
+	padding: 0 20px;
+	font-size: 18px;
+	color: #303941;
+	margin: 0 0 20px;
+	line-height: 26px;
 }
 
 .mycourses-thumb{

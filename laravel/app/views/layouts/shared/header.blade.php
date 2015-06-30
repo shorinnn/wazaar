@@ -20,7 +20,8 @@
                     <a href="#">{{trans('site/homepage.store')}}</a>
                 </li>
                 <li>
-                    <a href="{{ action('StudentController@mycourses') }}">{{trans('site/homepage.my-courses')}}</a>
+                    <a href="#">{{trans('site/homepage.my-courses')}}</a>
+                    <!--<a href="{{ action('StudentController@mycourses') }}">{{trans('site/homepage.my-courses')}}</a>-->
                 </li>
             @endif
             

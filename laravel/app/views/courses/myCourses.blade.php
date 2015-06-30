@@ -23,7 +23,11 @@
                     <a href="#" class="header-tabs regular-paragraph">{{ trans('courses/general.analytics') }}</a>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                    <a href="{{action('CoursesController@create')}}" class="blue-button large-button">{{ trans('courses/create.create-btn-instructor') }}</a>
+                	@if($courses->count() == 0)
+                    	<a href="{{action('CoursesController@create')}}" class="blue-button large-button hide">{{ trans('courses/create.create-btn-instructor') }}</a>
+                    @else
+                    	<a href="{{action('CoursesController@create')}}" class="blue-button large-button">{{ trans('courses/create.create-btn-instructor') }}</a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -33,8 +37,10 @@
             <div class="row">
                 <!-- no courses -->
                 @if($courses->count() == 0)
-                    <p>You have no courses yet</p>
-                    <p><a href="{{action('CoursesController@create')}}" class="blue-button large-button">{{ trans('courses/create.create-btn-instructor') }}</a></p>
+                	<div class="no-courses-available text-center">
+                        <p>You have no courses yet</p>
+                        <a href="{{action('CoursesController@create')}}" class="blue-button large-button">{{ trans('courses/create.create-btn-instructor') }}</a>
+                    </div>
                 @endif
                 <!--/ no courses -->
             	@foreach($courses as $course)
