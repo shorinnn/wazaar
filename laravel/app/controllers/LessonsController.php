@@ -72,6 +72,9 @@ class LessonsController extends \BaseController {
                 $lesson->$name = Input::get('value');
                 if( $lesson->save() ){
                     $response = ['status' => 'success'];
+                    if( $name=='external_video_url' ){
+                        $response['embed_code'] = externalVideoPreview( Input::get('value') );
+                    }
                     return json_encode($response);
                 }
                 else{

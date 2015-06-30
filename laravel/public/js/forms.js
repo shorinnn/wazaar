@@ -277,6 +277,7 @@ function deleteItem(result, event){
  * @method updateFieldRemote
  */
 function updateFieldRemote(e){
+    var event = e;
     url = $(e.target).attr('data-url');
     name = $(e.target).attr('data-name');
     value = $(e.target).val();
@@ -301,6 +302,10 @@ function updateFieldRemote(e){
             }
             catch(e){}
             savingAnimation(1);
+            callback = $(event.target).attr('data-callback');
+            if( typeof(callback) !=undefined ){
+                window[callback](event, e);
+            }
         },
         error: function(e){
             alert( _('Request failed: an error occurred') );
