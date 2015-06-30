@@ -51,24 +51,35 @@ class UserRepository
 
         // Save if valid. Password field will be hashed before save
         if($this->save($user)){
+            $profileType = 'Student';
+            
             $user = $this->attachRoles($user);
-            if( $registersAsST!=null || ( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) ) $user = $this->attachRoles($user, 1);
-            if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ) $user = $this->attachRoles($user, 2);
+            if( $registersAsST!=null || ( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) ){
+                $user = $this->attachRoles($user, 1);
+                $profileType = 'Instructor';
+            }
+            if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ){
+                $user = $this->attachRoles($user, 2);
+                $profileType = 'Affiliate';
+            }
             $this->save_ltc($user, $ltc_cookie);
             
             if($registersAsST!=null){// create profile
-                $name = explode( ' ', Input::get('name') );
-                $first_name = ( !isset($name[1]) || empty($name[1]) ) ? 'First Name' : $name[1];
-                $last_name = ( !isset($name[0]) || empty($name[0]) ) ? 'Last Name' : $name[0];
+                $profileType = 'Instructor';
+            }
+//                $name = explode( ' ', Input::get('name') );
+//                $first_name = ( !isset($name[1]) || empty($name[1]) ) ? 'First Name' : $name[1];
+//                $last_name = ( !isset($name[0]) || empty($name[0]) ) ? 'Last Name' : $name[0];
+                $first_name = Input::get('first_name');
+                $last_name = Input::get('last_name');
                 $profile = new Profile;
                 $profile->owner_id = $user->id; 
-                $profile->owner_type = 'Instructor'; 
+                $profile->owner_type = $profileType;
                 $profile->first_name = $first_name;// 'First  Name';//!isset($name[1]) && empty($name[1]) ? 'First Name' : $name[1];
                 $profile->last_name = $last_name;//  'Last Name';//!isset($name[0]) && empty($name[0]) ? 'Last Name' : $name[0];
                 $profile->email = $user->email;
                 $profile->save();
-                
-            }
+//            }
             
             // add user to DELIVERED
 //            $delivered = new DeliveredHelper();

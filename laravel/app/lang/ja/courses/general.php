@@ -125,9 +125,17 @@ return array(
     'students' => '受講数',
     'no-new-discussions' => '掲示板での書き込みなし',
     'pending' => '公開前',
+    'unsubmitted' => '未提出',
+    'approved' => '承認済',
     'public' => '公開済',
+    'private' => '限定公開',
     'my-courses-link-instructor' => '制作中の教材',
     'analytics' => '販売に関する分析',
     'price-tip' => 'ワザールでは商品価格の30%を動画視聴や決済などのシステム手数料として頂戴しています。下記でご設定いただくアフィリエイト％（アフィリエイターへの紹介手数料）を引いたものが販売者様の報酬になります。',
     'sale-period-min-10-minutes' => 'Sale must last at least 10 minutes',
+    'course-discussions-tip' => '掲示板は受講生からの質問を掲載するものです。商品への質問が受講生からあった場合に、講師の先生にはこちらの質問にご返答いただくことになります。掲示板を開設した方が、教材への満足度が高くなり、受講生からの高い評価につながりますので、掲示板を開設されることを強くオススメいたします。',
+    'discount-tip' => '商品がワザールで承認された後に、割引額を設定することができます。',
+    'update-discount' => '割引に関する更新',
+    'saving-button' => '下書き保存',
 );
+

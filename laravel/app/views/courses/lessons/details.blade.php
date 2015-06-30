@@ -80,14 +80,14 @@
            @endif
            >
     <h4>{{ trans('general.lesson_price') }}</h4> 
-    <input type="text" 
+    <input type="text" data-delay = '1000' data-callback='adjustPrice' data-next-to='1' data-allow-zero='1'
            @if($lesson->free_preview=='yes')
                 disabled="disabled"
            @endif
            
        
            
-           class="ajax-updatable"  
+           class="ajax-updatable delayed-keyup"  
            data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}'
                       data-name='price' id='price-{{$lesson->id}}' value="{{ $lesson->price }}" /><br />
 </div>

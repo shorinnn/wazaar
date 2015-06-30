@@ -70,9 +70,13 @@ class LpController extends \BaseController {
         }
     
         public function index(){
-            $users = $this->delivered->getUsers();
-            $user = $users['data'][3];
-            dd( $user );
+           
+            if( Input::has('show-me-last-user') ){
+                $users = $this->delivered->getUsers();
+                $users= $users['data'];
+                $user = $users[ count($users) - 1];
+                print_r($user);
+            }
 
 //            $list = $this->_getList();
 //            dd($list);
@@ -93,7 +97,7 @@ class LpController extends \BaseController {
 //            $result = $this->delivered->executeEmailRequest('immediate', $template->id, $user->id, $variables );
 //            dd($result);
 
-            return View::make('lp.index');
+//            return View::make('lp.index');
         }
 
 	public function store()

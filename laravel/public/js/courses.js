@@ -176,7 +176,8 @@ function enableRTE(selector, changeCallback){
  * @method enableBlockFileUploader
  */
 function enableBlockFileUploader(e){
-    $uploader = $(e.target).parent().parent().parent().parent().find('[type=file]');
+//    $uploader = $(e.target).parent().parent().parent().parent().find('[type=file]');
+    $uploader = $(e.target).parent().parent().parent().parent().find('.lesson-file-uploader');
     console.log($uploader);
     enableFileUploader($uploader);
 	
@@ -338,18 +339,28 @@ function courseSettings(){
 }
 
 function adjustPrice(e){
+    $(e).parent().parent().find('.min-price-error').remove();
     val = parseInt(e.val());
-    if( val!=0 ){
+    if( val==0 && typeof('data-allow-zero')!='undefined' ){}
+    else if(  val!=0 ){
+        if(val < 500){
+            if(  typeof( $(e).attr('data-next-to') )==undefined )
+                $(e).parent().parent().append('<p class="min-price-error alert alert-danger">' + _('min-price-500') + '</p>');
+            else
+                $(e).parent().append('<p class="min-price-error alert alert-danger">' + _('min-price-500') + '</p>');
+        }
         val = ( e.val() >= 500 )? e.val() : 500;
     }
-    e.val( round2( val, 100 ) ) ;
+    else{}
+    e.val( round2( val, 10 ) ) ;
 }
 
 function adjustDiscount(e){
     val = parseInt(e.val());
     kind = e.attr('data-saleType');
     kind = $("[name='"+kind+"']").val();
-    if(kind=='amount' && val>0) val =  round2( val, 100 );
+//    if(kind=='amount' && val>0) val =  round2( val, 10 );
+    val =  round2( val, 10 );
     e.val( val );
 }
 
@@ -395,12 +406,19 @@ function saveAndNextTab(e){
 function saveStep1Form(){
     $('.step-1-form').attr('data-old-callback', $('.step-1-form').attr('data-callback'));
     $('.step-1-form').attr('data-callback', 'savedStep1');
+    $('.step-1-form').attr('data-save-indicator', '.step-1-save-btn');
     $('.step-1-form').submit();
+   
 }
 
 function savedStep1(e,json){
     $('.step-1-form').attr('data-callback', $('.step-1-form').attr('data-old-callback'));
     $('.step-1-form').removeAttr('data-old-callback');
+    $('.step-1-form').removeAttr('data-save-indicator');
+    savingAnimation(0);
+    setTimeout(function(){
+        savingAnimation(1);
+    }, 1000);
 }
 
 function submittedCourse(){
@@ -414,6 +432,9 @@ function submittedCourse(){
 function updateStepsRemaining(){
     course_steps_remaining--;
     $('.steps-remaining p span span').html( course_steps_remaining );
+    if( course_steps_remaining == 0){
+        $('.steps-remaining p').html( _('<span>Course Ready</span> For Submission') );
+    }
     activatePreviewButton();
 }
 
@@ -441,4 +462,23 @@ function courseUpdateDiscount(e){
             $(e.target).after("<p class='alert alert-danger discount-ajax-result'>"+result.errors+"</p>");
         }
     });
+}
+
+function saveStep3Form(){
+    $('.step-3-form').attr('data-old-callback', $('.step-3-form').attr('data-callback'));
+    $('.step-3-form').attr('data-callback', 'savedStep3');
+    $('.step-3-form').attr('data-save-indicator', '.step-3-save-btn');//update already
+    $('[name="publish_status"]').val(0);
+    $('.step-3-form').submit();
+}
+
+function savedStep3(e,json){
+    $('.step-3-form').attr('data-callback', $('.step-3-form').attr('data-old-callback'));
+    $('.step-3-form').removeAttr('data-old-callback');
+    $('.step-3-form').removeAttr('data-save-indicator');
+    $('[name="publish_status"]').val(1);
+    savingAnimation(0);
+    setTimeout(function(){
+        savingAnimation(1);
+    }, 1000);
 }

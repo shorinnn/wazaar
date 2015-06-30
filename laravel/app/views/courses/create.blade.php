@@ -35,7 +35,7 @@
                                 'data-url'=> action('CoursesCategoriesController@subcategories_instructor'), 'required']) }}
                                 
                     <select name='course_subcategory_id' id='course_subcategory_id' required>
-                        <option value=''>{{ trans('courses/create.choose-subcategory') }}</option>
+                        <option value=''>{{ trans('courses/general.subcategory') }}</option>
                     </select><br />
 
                     	<!--<select>

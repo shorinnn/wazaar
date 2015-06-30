@@ -16,7 +16,7 @@ $filePolicy = UploadHelper::AWSAttachmentsPolicyAndSignature();
       
     <div class="fileUpload btn btn-primary">
         <span>{{ trans('administration.browse') }}</span>
-        <input type='file' name='file' id='file-upload-{{$lesson_id}}' data-dropzone='.dropzone-{{$lesson_id}}'
+        <input type='file' name='file' id='file-upload-{{$lesson_id}}' data-dropzone='.dropzone-{{$lesson_id}}' class='lesson-file-uploader'
        data-progress-bar='.progress-bar-{{$lesson_id}}' data-callback='blockFileUploaded' data-lesson-id='{{$lesson_id}}'
        data-add-callback='limitLessonFiles' data-max-upload='{{ Config::get('custom.maximum_lesson_files') }}'
        data-max-upload-error="{{trans('courses/general.max_upload_error')}}" />

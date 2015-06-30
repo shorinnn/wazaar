@@ -1,4 +1,4 @@
-<?php
+f<?php
 use \UnitTester;
 
 class CourseSaleCest{
@@ -190,14 +190,14 @@ class CourseSaleCest{
         $course->price = 1000;
         $course->updateUniques();
         $I->assertEquals($course->price, $course->cost());
-        $course->sale = 281;
+        $course->sale = 279;
         $course->sale_kind = 'amount';
         $course->sale_starts_on = date('Y-m-d H:i:s', time() );
         $course->sale_ends_on = date('Y-m-d H:i:s', time() + 3600);
         $I->assertTrue( $course->updateUniques() );
         
         $course = Course::find(1);
-        $I->assertEquals(300, $course->sale);
+        $I->assertEquals(280, $course->sale);
         $I->assertTrue( $course->isDiscounted() );
     }
     public function roundSaleDown(UnitTester $I){
@@ -214,7 +214,7 @@ class CourseSaleCest{
         $I->assertTrue( $course->updateUniques() );
         
         $course = Course::find(1);
-        $I->assertEquals(300, $course->sale);
+        $I->assertEquals(320, $course->sale);
         $I->assertTrue( $course->isDiscounted() );
         
     }

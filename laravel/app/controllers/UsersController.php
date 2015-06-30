@@ -11,7 +11,7 @@ class UsersController extends Controller
 {
     public function __construct(UserRepository $users){
         $this->users = $users;
-        $this->beforeFilter('guest', array('only' => array('create', 'login' ,'forgotPassword', 'doForgotPassword')));
+        $this->beforeFilter('guest', array('only' => array('create', 'secondTierPublisherCreate', 'login' ,'forgotPassword', 'doForgotPassword')));
         $this->beforeFilter('auth', array('only' => array('verificationConfirmation', 'registrationConfirmation' ,'links')));
     }
 
@@ -67,14 +67,21 @@ class UsersController extends Controller
         
         if ( $user!=null && $user->id) {
             try{
+                $subject = '販売者アカウント確認のご連絡';
+                $view = 'confide.emails.regular_confirm';
+                $lastName = 'LastName';
+                if($user->is_second_tier_instructor=='yes'){
+                    $subject = Lang::get('confide::confide.email.account_confirmation.subject');
+                    $view = Config::get('confide::email_account_confirmation');
+                }
                 if (Config::get('confide::signup_email')) {
                     Mail::send(
-                        Config::get('confide::email_account_confirmation'),
-                        compact('user'),
-                        function ($message) use ($user) {
+                        $view,
+                        compact('user' , 'lastName' ),
+                        function ($message) use ($user, $subject) {
                             $message
-                                ->to($user->email, $user->usersname)
-                                ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
+                                ->to($user->email, $user->email)
+                                ->subject( $subject );
                         }
                     );
                 }
@@ -126,7 +133,9 @@ class UsersController extends Controller
             if(Request::ajax()){
                 return json_encode( ['status' => 'success'] );
             }
+            
             if(Auth::user()->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+            elseif( Auth::user()->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
             return Redirect::intended('/');
         } else {
             if ($this->users->isThrottled($input)) {
@@ -225,6 +234,7 @@ class UsersController extends Controller
         Auth::loginUsingId( $id );
         Session::forget('f');
         if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+        elseif( $user->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
         else return Redirect::intended('/');
     }
     
@@ -379,7 +389,7 @@ class UsersController extends Controller
     public function confirm($code)
     {
 //        if (Confide::confirm($code)) {
-        if ( $this->users->confirm($code) ) {
+        if (  $this->users->confirm($code) ) {          
             $notice_msg = Lang::get('confide::confide.alerts.confirmation');
             return Redirect::action('UsersController@verificationConfirmation');
 //            return Redirect::action('UsersController@login')

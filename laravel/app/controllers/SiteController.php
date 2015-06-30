@@ -14,6 +14,10 @@ class SiteController extends \BaseController {
                 if(Auth::user()) Return View::make('site.homepage_authenticated')->with(compact('categories'));
                 else Return View::make('site.homepage_unauthenticated')->with( compact('categories', 'frontpageVideos') );
             }
+            if( Auth::check() ){
+                if( Auth::user()->is_second_tier_instructor == 'yes' ) return Redirect::action('UsersController@links');
+                if( Auth::user()->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
+            }
             return View::make('splash');
 	}
 

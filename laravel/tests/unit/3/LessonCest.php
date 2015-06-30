@@ -63,6 +63,33 @@ class LessonCest{
         $lesson->module_id = $module->id;
         $I->assertTrue( $lesson->save() );
     }
+    
+    public function setPriceZero(UnitTester $I){
+        $module = Module::find(1);
+        $lesson = new Lesson();
+        $lesson->name = 'Test Lesson';
+        $lesson->module_id = $module->id;
+        $lesson->price = 0;
+        $I->assertTrue( $lesson->save() );
+    }
+    
+    public function setPrice500(UnitTester $I){
+        $module = Module::find(1);
+        $lesson = new Lesson();
+        $lesson->name = 'Test Lesson';
+        $lesson->module_id = $module->id;
+        $lesson->price = 500;
+        $I->assertTrue( $lesson->save() );
+    }
+     
+    public function failSetPriceLessThan500(UnitTester $I){
+        $module = Module::find(1);
+        $lesson = new Lesson();
+        $lesson->name = 'Test Lesson';
+        $lesson->module_id = $module->id;
+        $lesson->price = 499;
+        $I->assertFalse( $lesson->save() );
+    }
      
         
 }

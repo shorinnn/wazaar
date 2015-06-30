@@ -14,6 +14,7 @@ $(document).ready(function(){
     $('body').delegate('.set-slider', 'change', setSlider);
     $('body').delegate('.reply-to', 'click', setReplyTo);
     $('body').delegate('.cancel-reply', 'click', cancelReply);
+    $('body').delegate('.toggle-disable', 'change', toggleDisable);
 });
 
 /**
@@ -83,11 +84,22 @@ function formAjaxSubmit(e){
  * @param {Event} e
  */
 function submittedFormButton(e){
+    if( typeof( $(e.target).attr('data-save-indicator') ) !='undefined' ){
+        console.log('has indicator!3');
+        indicator = $(e.target).attr('data-save-indicator');
+        $indicator = $(indicator);
+        $indicator.attr('data-old-label', $indicator.html());
+        $indicator.attr('disabled', 'disabled');
+        $indicator.html( _('Processing...') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+        return false;
+    }
+    
     if( typeof( $(e.target).attr('data-no-processing') ) == 'undefined' || $(e.target).attr('data-no-processing') != 1){
         $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
         $(e.target).find('[type=submit]').attr('disabled', 'disabled');
         $(e.target).find('[type=submit]').html( _('Processing...') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
     }
+    
 }
 
 /**
@@ -96,10 +108,20 @@ function submittedFormButton(e){
  * @param {jQuery form} $form
  */
 function restoreSubmitLabel($form){
+    if( typeof( $form.attr('data-save-indicator') ) !='undefined' ){
+        indicator = $form.attr('data-save-indicator');
+        $indicator = $(indicator);
+        $indicator.html( $indicator.attr('data-old-label') );
+        $indicator.removeAttr('disabled');
+        $form.removeAttr('data-save-indicator');
+        return false;
+    }
+    
     if( typeof( $form.attr('data-no-processing') ) == 'undefined' ||  $form.attr('data-no-processing') != 1){
         $form.find('[type=submit]').html( $form.find('[type=submit]').attr('data-old-label') );
         $form.find('[type=submit]').removeAttr('disabled');
     }
+    
 }
 
 /**
@@ -452,6 +474,31 @@ function toggleElementViaOther(e) {
     val = $source.val();
     if( typeof($source).attr('data-is-int')!='undefined' ) val = parseInt(val);
     if ( val == $source.attr('data-hide-on') ) {
+        $(dest).hide();
+    }
+    else {
+        $(dest).show();
+    }
+}
+
+
+function toggleDisable(e){
+    $source = $(e.target);
+    dest = $source.attr('data-target');
+    disable =  $source.attr('data-disable');
+    if ( disable == 'disable' ) {
+        $(dest).attr("disabled", "disabled"); 
+    }
+    else {
+        $(dest).removeAttr("disabled"); 
+    }
+}
+
+function toggleVisible(e){
+    $source = $(e.target);
+    dest = $source.attr('data-target');
+    hide =  $source.attr('data-visible');
+    if ( hide == 'hide' ) {
         $(dest).hide();
     }
     else {

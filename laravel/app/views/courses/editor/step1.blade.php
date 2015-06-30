@@ -4,8 +4,7 @@
 <input type='hidden' class='course-id' value='{{ $course->id }}' />
 
     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
-                'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-1-form',  'data-callback'=>'saveAndNextTab',
-            'Zdata-callback'=>'submitStep1']) }}
+                'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-1-form',  'data-callback'=>'saveAndNextTab' ]) }}
 @include('videos.archiveModal')
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
     <div class="row">
@@ -249,6 +248,8 @@
     </div>
     <div class="row next-step-button">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <button type='button' class="blue-button extra-large-button step-1-save-btn" onclick="saveStep1Form()">{{ trans('courses/general.saving-button') }}</button>
+            <br />
             <button type='submit' class="blue-button extra-large-button">{{ trans('courses/general.next-step') }}</button>
         </div>
     </div>
