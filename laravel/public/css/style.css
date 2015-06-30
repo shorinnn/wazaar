@@ -527,6 +527,35 @@ header .activate-dropdown:hover ul{
 	margin: 8px 0 0;
 }
 
+.homepage-carousel .slick-prev, 
+.homepage-carousel .slick-next{
+	margin-top: 0;
+	top: 0;
+	height: 100%;
+	width: 40px;
+	background-color: none;
+}
+
+.homepage-carousel .slick-prev::before, 
+.homepage-carousel .slick-next::before{
+	content: '';
+}
+
+.homepage-carousel .slick-prev:hover, 
+.homepage-carousel .slick-prev:focus, 
+.homepage-carousel .slick-next:hover, 
+.homepage-carousel .slick-next:focus{
+	background-color: rgba(0, 0, 0, 0.3);	
+}
+
+.homepage-carousel .slick-prev{
+	left: 0;
+}
+
+.homepage-carousel .slick-next{
+	right: 0;
+}
+
 .homepage-carousel-container .cards{
 	width: 300px;
 	float: left;

@@ -68,23 +68,350 @@
             <p class="lead">Our most popular courses everyone loves. Learn a skill now!</p>
             </h1>
             
-            <div class="homepage-carousel-container slider-nav">
-                <div class="cards">
-                
-                </div>
-                <div class="cards">
-                
-                </div>
-                <div class="cards">
-                
-                </div>
-                <div class="cards">
-                
-                </div>
-                <div class="cards">
-                
-                </div>
-                <div class="cards">
+            <div class="homepage-carousel-container slider-nav container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <a href="http://wazaar.dev/courses/cJio3">
+                        <div class="object small-box small-box-one">
+                            <!--<div class="level">Beginner</div>-->
+                            <!--            <div class="new-tag">NEW</div>
+                            -->
+                            <div class="img-container">
+                            <img 
+                                                src="https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg"
+                                             class="img-responsive" alt="">
+                                  <!---->
+                                <span class="video-play-button"><em></em></span>
+                                <span class="likes">100</span>         
+                            </div>
+                            <div class="course-box-content clearfix">
+                                <h2>App Development</h2>
+                                <div class="short-description-container">
+                                    <p>Short:  You get a beginner award after completing the course.
+                                    <!--<span class="subcategory">
+                                            <small>Subcategory: 
+                                                <a href="http://wazaar.dev/courses/category/cJio3/cJio3">javascript</a>
+                                            </small>
+                                        </span>-->
+                                    </p>
+                                </div>
+                                <div class="bottom-contents clearfix">
+                                    <div class="difficulty-bar advanced">
+                                        <span class="bar-1"></span>
+                                        <span class="bar-2"></span>
+                                        <span class="bar-3"></span>
+                                    </div>
+                                    <div class="next_">
+                                        <!--<div class="learn-more">
+                                            <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
+                                        </div>-->
+                                        <div class="students-attending">
+                                            0 <!--Students-->
+                                        </div>   
+                                    </div> 
+                                    <div class="price-tag-container clearfix">
+                                                            <div class="price-tag">
+                                                                     ¥ 700
+                                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="box-overlay">
+                                <p>Lesson</p>
+                                <p>weeks of learning</p>
+                                <div class="footer clearfix">
+                                    <div class="heart-icon"></div>
+                                    <div class="highly-recommend">highly recommend</div>
+                                </div>
+                            </span>
+                        </div>
+                        </a>
+                    </div>                 
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <a href="http://wazaar.dev/courses/cJio3">
+                        <div class="object small-box small-box-one">
+                            <!--<div class="level">Beginner</div>-->
+                            <!--            <div class="new-tag">NEW</div>
+                            -->
+                            <div class="img-container">
+                            <img 
+                                                src="https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg"
+                                             class="img-responsive" alt="">
+                                  <!---->
+                                <span class="video-play-button"><em></em></span>
+                                <span class="likes">100</span>         
+                            </div>
+                            <div class="course-box-content clearfix">
+                                <h2>App Development</h2>
+                                <div class="short-description-container">
+                                    <p>Short:  You get a beginner award after completing the course.
+                                    <!--<span class="subcategory">
+                                            <small>Subcategory: 
+                                                <a href="http://wazaar.dev/courses/category/cJio3/cJio3">javascript</a>
+                                            </small>
+                                        </span>-->
+                                    </p>
+                                </div>
+                                <div class="bottom-contents clearfix">
+                                    <div class="difficulty-bar advanced">
+                                        <span class="bar-1"></span>
+                                        <span class="bar-2"></span>
+                                        <span class="bar-3"></span>
+                                    </div>
+                                    <div class="next_">
+                                        <!--<div class="learn-more">
+                                            <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
+                                        </div>-->
+                                        <div class="students-attending">
+                                            0 <!--Students-->
+                                        </div>   
+                                    </div> 
+                                    <div class="price-tag-container clearfix">
+                                                            <div class="price-tag">
+                                                                     ¥ 700
+                                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="box-overlay">
+                                <p>Lesson</p>
+                                <p>weeks of learning</p>
+                                <div class="footer clearfix">
+                                    <div class="heart-icon"></div>
+                                    <div class="highly-recommend">highly recommend</div>
+                                </div>
+                            </span>
+                        </div>
+                        </a>
+                    </div>                 
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <a href="http://wazaar.dev/courses/cJio3">
+                        <div class="object small-box small-box-one">
+                            <!--<div class="level">Beginner</div>-->
+                            <!--            <div class="new-tag">NEW</div>
+                            -->
+                            <div class="img-container">
+                            <img 
+                                                src="https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg"
+                                             class="img-responsive" alt="">
+                                  <!---->
+                                <span class="video-play-button"><em></em></span>
+                                <span class="likes">100</span>         
+                            </div>
+                            <div class="course-box-content clearfix">
+                                <h2>App Development</h2>
+                                <div class="short-description-container">
+                                    <p>Short:  You get a beginner award after completing the course.
+                                    <!--<span class="subcategory">
+                                            <small>Subcategory: 
+                                                <a href="http://wazaar.dev/courses/category/cJio3/cJio3">javascript</a>
+                                            </small>
+                                        </span>-->
+                                    </p>
+                                </div>
+                                <div class="bottom-contents clearfix">
+                                    <div class="difficulty-bar advanced">
+                                        <span class="bar-1"></span>
+                                        <span class="bar-2"></span>
+                                        <span class="bar-3"></span>
+                                    </div>
+                                    <div class="next_">
+                                        <!--<div class="learn-more">
+                                            <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
+                                        </div>-->
+                                        <div class="students-attending">
+                                            0 <!--Students-->
+                                        </div>   
+                                    </div> 
+                                    <div class="price-tag-container clearfix">
+                                                            <div class="price-tag">
+                                                                     ¥ 700
+                                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="box-overlay">
+                                <p>Lesson</p>
+                                <p>weeks of learning</p>
+                                <div class="footer clearfix">
+                                    <div class="heart-icon"></div>
+                                    <div class="highly-recommend">highly recommend</div>
+                                </div>
+                            </span>
+                        </div>
+                        </a>
+                    </div>                 
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <a href="http://wazaar.dev/courses/cJio3">
+                        <div class="object small-box small-box-one">
+                            <!--<div class="level">Beginner</div>-->
+                            <!--            <div class="new-tag">NEW</div>
+                            -->
+                            <div class="img-container">
+                            <img 
+                                                src="https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg"
+                                             class="img-responsive" alt="">
+                                  <!---->
+                                <span class="video-play-button"><em></em></span>
+                                <span class="likes">100</span>         
+                            </div>
+                            <div class="course-box-content clearfix">
+                                <h2>App Development</h2>
+                                <div class="short-description-container">
+                                    <p>Short:  You get a beginner award after completing the course.
+                                    <!--<span class="subcategory">
+                                            <small>Subcategory: 
+                                                <a href="http://wazaar.dev/courses/category/cJio3/cJio3">javascript</a>
+                                            </small>
+                                        </span>-->
+                                    </p>
+                                </div>
+                                <div class="bottom-contents clearfix">
+                                    <div class="difficulty-bar advanced">
+                                        <span class="bar-1"></span>
+                                        <span class="bar-2"></span>
+                                        <span class="bar-3"></span>
+                                    </div>
+                                    <div class="next_">
+                                        <!--<div class="learn-more">
+                                            <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
+                                        </div>-->
+                                        <div class="students-attending">
+                                            0 <!--Students-->
+                                        </div>   
+                                    </div> 
+                                    <div class="price-tag-container clearfix">
+                                                            <div class="price-tag">
+                                                                     ¥ 700
+                                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="box-overlay">
+                                <p>Lesson</p>
+                                <p>weeks of learning</p>
+                                <div class="footer clearfix">
+                                    <div class="heart-icon"></div>
+                                    <div class="highly-recommend">highly recommend</div>
+                                </div>
+                            </span>
+                        </div>
+                        </a>
+                    </div>                 
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <a href="http://wazaar.dev/courses/cJio3">
+                        <div class="object small-box small-box-one">
+                            <!--<div class="level">Beginner</div>-->
+                            <!--            <div class="new-tag">NEW</div>
+                            -->
+                            <div class="img-container">
+                            <img 
+                                                src="https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg"
+                                             class="img-responsive" alt="">
+                                  <!---->
+                                <span class="video-play-button"><em></em></span>
+                                <span class="likes">100</span>         
+                            </div>
+                            <div class="course-box-content clearfix">
+                                <h2>App Development</h2>
+                                <div class="short-description-container">
+                                    <p>Short:  You get a beginner award after completing the course.
+                                    <!--<span class="subcategory">
+                                            <small>Subcategory: 
+                                                <a href="http://wazaar.dev/courses/category/cJio3/cJio3">javascript</a>
+                                            </small>
+                                        </span>-->
+                                    </p>
+                                </div>
+                                <div class="bottom-contents clearfix">
+                                    <div class="difficulty-bar advanced">
+                                        <span class="bar-1"></span>
+                                        <span class="bar-2"></span>
+                                        <span class="bar-3"></span>
+                                    </div>
+                                    <div class="next_">
+                                        <!--<div class="learn-more">
+                                            <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
+                                        </div>-->
+                                        <div class="students-attending">
+                                            0 <!--Students-->
+                                        </div>   
+                                    </div> 
+                                    <div class="price-tag-container clearfix">
+                                                            <div class="price-tag">
+                                                                     ¥ 700
+                                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="box-overlay">
+                                <p>Lesson</p>
+                                <p>weeks of learning</p>
+                                <div class="footer clearfix">
+                                    <div class="heart-icon"></div>
+                                    <div class="highly-recommend">highly recommend</div>
+                                </div>
+                            </span>
+                        </div>
+                        </a>
+                    </div>                 
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <a href="http://wazaar.dev/courses/cJio3">
+                        <div class="object small-box small-box-one">
+                            <!--<div class="level">Beginner</div>-->
+                            <!--            <div class="new-tag">NEW</div>
+                            -->
+                            <div class="img-container">
+                            <img 
+                                                src="https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg"
+                                             class="img-responsive" alt="">
+                                  <!---->
+                                <span class="video-play-button"><em></em></span>
+                                <span class="likes">100</span>         
+                            </div>
+                            <div class="course-box-content clearfix">
+                                <h2>App Development</h2>
+                                <div class="short-description-container">
+                                    <p>Short:  You get a beginner award after completing the course.
+                                    <!--<span class="subcategory">
+                                            <small>Subcategory: 
+                                                <a href="http://wazaar.dev/courses/category/cJio3/cJio3">javascript</a>
+                                            </small>
+                                        </span>-->
+                                    </p>
+                                </div>
+                                <div class="bottom-contents clearfix">
+                                    <div class="difficulty-bar advanced">
+                                        <span class="bar-1"></span>
+                                        <span class="bar-2"></span>
+                                        <span class="bar-3"></span>
+                                    </div>
+                                    <div class="next_">
+                                        <!--<div class="learn-more">
+                                            <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
+                                        </div>-->
+                                        <div class="students-attending">
+                                            0 <!--Students-->
+                                        </div>   
+                                    </div> 
+                                    <div class="price-tag-container clearfix">
+                                                            <div class="price-tag">
+                                                                     ¥ 700
+                                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="box-overlay">
+                                <p>Lesson</p>
+                                <p>weeks of learning</p>
+                                <div class="footer clearfix">
+                                    <div class="heart-icon"></div>
+                                    <div class="highly-recommend">highly recommend</div>
+                                </div>
+                            </span>
+                        </div>
+                        </a>
+                    </div>                 
                 
                 </div>
             </div>
@@ -649,13 +976,13 @@
 			  arrows: true,
 			  centerMode: true,
 			  slidesToShow: 3,
-			  slidesToScroll: 1,
+			  slidesToScroll: 2,
 			  responsive: [
 				{
 				  breakpoint: 1024,
 				  settings: {
 					slidesToShow: 3,
-					slidesToScroll: 1,
+					slidesToScroll: 2,
 					infinite: true,
 					dots: false
 				  }
@@ -678,6 +1005,24 @@
 				// settings: "unslick"
 				// instead of a settings object
 			  ]
+			});
+			
+			$('.slider-nav').slick({
+				interval: false
+			});
+			
+			var i;
+			
+			$('.slick-prev, .slick-next').on("mouseover", function () {
+				var control = $(this),
+					interval = 600;
+			
+				i = setInterval(function () {
+					control.trigger("click");
+				}, interval);
+			})
+			.on("mouseout", function () {
+				clearInterval(i);
 			});
 		</script>
 
