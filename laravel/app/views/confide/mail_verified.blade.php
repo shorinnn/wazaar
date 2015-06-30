@@ -96,6 +96,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                             <span class="step-number">2</span>            
                             <h3>{{ trans('general.browse-courses') }}</h3>
+                            <p>{{ trans('general.click_go_to_begin') }}</p>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 share-link-form clearfix">
                             <a href='{{action("SiteController@index")}}' class="blue-button large-button" disabled>GO!</a>

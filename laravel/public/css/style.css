@@ -556,6 +556,10 @@ header .activate-dropdown:hover ul{
 	right: 0;
 }
 
+.homepage-carousel-containe{
+	padding: 0;
+}
+
 .homepage-carousel-container .cards{
 	width: 300px;
 	float: left;
@@ -9435,6 +9439,10 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	font-style: normal;
 	display: none;
 	line-height: 64px;
+}
+
+.external-video-preview{
+    margin: 15px 0;
 }
 
 .plan-your-curriculum .lesson-options .buttons.active div#video-thumb-container{

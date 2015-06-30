@@ -1,6 +1,7 @@
 <?php
 
 return array(
+	'click_go_to_begin' => 'Click "GO!" to begin',
 	'begin_creating_your_course' => 'Begin Creating Your Course!',
     'or' => 'or',
 	'enter-email-and-password' => 'enter your email and password',
