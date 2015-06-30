@@ -1869,14 +1869,19 @@ header .activate-dropdown:hover ul{
 	background-repeat: no-repeat;
 }
 
+.form-container .last_name_input,
+.form-container .first_name_input{
+	width: 48%;
+}
+
 .form-container input#last_name,
 .form-container input#first_name{
-	width: 164px;
+	width: 100%;
 	padding-left: 20px;
 }
 
-.form-container input#first_name{
-	margin-left: 12px;
+.form-container .first_name_input{
+	margin-left: 4%;
 }
 
 .form-container input[name='name']{
@@ -5928,9 +5933,7 @@ a.load-remote > *{
 }
 
 .update-discount button{
-	float: right;
 	position: relative;
-	margin-right: -15px;
 }
 
 .edit-course select{

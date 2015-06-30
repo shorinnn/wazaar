@@ -111,6 +111,8 @@
 			
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<P></P><a href='#' class='fa fa-eye' onclick='videoModal.show(this, event)' data-filename='{{$video->original_filename}}' data-video-url='{{$video->formats[0]->video_url}}' data-toggle='modal'></a> <img src='{{$video->formats[0]->thumbnail}}'/>");
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text("{{$video->formats[0]->duration}}");
+			
+			$('.lesson-options-{{$lessonId}}').find('.lesson-options-buttons').find('.load-remote-cache').addClass('done');
 		@endif
 		
 		@if(@$video->transcode_status == Video::STATUS_COMPLETE)
@@ -118,6 +120,8 @@
 			
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container').html("<P></P><a href='#' class='fa fa-eye' onclick='videoModal.show(this, event)' data-filename='{{$video->original_filename}}' data-video-url='{{$video->formats[0]->video_url}}' data-toggle='modal'></a> <img src='{{$video->formats[0]->thumbnail}}'/>");
 			$('.lesson-options-{{$lessonId}}').find('#video-thumb-container p').text("{{$video->formats[0]->duration}}");
+			
+			$('.lesson-options-{{$lessonId}}').find('.lesson-options-buttons').find('.load-remote-cache').addClass('done');
 		@endif
 		
 
