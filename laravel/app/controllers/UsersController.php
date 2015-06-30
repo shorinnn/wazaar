@@ -79,6 +79,7 @@ class UsersController extends Controller
                         $view,
                         compact('user' , 'lastName' ),
                         function ($message) use ($user, $subject) {
+                            $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
                             $message
                                 ->to($user->email, $user->email)
                                 ->subject( $subject );
@@ -266,6 +267,7 @@ class UsersController extends Controller
         $user->social_confirmation = $code;
         $user->save();
         Mail::queue('confide.emails.social_confirmation_code', array('code' => $code), function($message) use ($user){
+            $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
             $message->to($user->email, "$user->first_name $user->last_name")->subject( trans('acl.social_confirmation_subject') );
         });
         if(Input::get('social_network')=='google') return Redirect::action('UsersController@linkGooglePlus')->with('notice', trans('acl.code_sent'));
