@@ -1,7 +1,11 @@
 <div class="text-center">
     
     @if($lesson->module->course->free == 'yes')
+        <div class='external-video-preview preview-{{$lesson->id}}'>
+            {{ externalVideoPreview($lesson->external_video_url) }}
+        </div>
         <input type="text" class="ajax-updatable" onkeyup="externalVideoAdded(event)" data-lesson='{{$lesson->id}}'
+               data-callback='externalVideoPreview' data-target='.preview-{{$lesson->id}}'
                data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}' placeholder='Youtube or Vimeo Link'
                           data-name='external_video_url' id='external-video-{{$lesson->id}}' value="{{ $lesson->external_video_url }}" />
     @else
@@ -93,6 +97,13 @@
             target = $(e.target);
             $localLessonId = target.attr('data-lesson');
             $('#lesson-'+$localLessonId).find('.lesson-no-video').removeClass('lesson-no-video');
+    }
+    
+    function externalVideoPreview(e,json){
+        dest = $(e.target).attr('data-target');
+        $dest = $(dest);
+        json = JSON.parse(json);
+        $dest.html( json.embed_code);
     }
     
     $(function (){

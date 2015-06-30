@@ -548,7 +548,7 @@ function parse_yturl($url)
 
 function get_vimeoid( $url ) {
     $urls = parse_url($url);
-    if ($urls['host'] == 'vimeo.com'){
+    if (isset($urls['host']) && $urls['host'] == 'vimeo.com'){
         $urls =  explode( '/', $urls['path'] );
         $vimid = $urls[ count($urls) - 1 ];
         return trim($vimid);
@@ -564,4 +564,17 @@ function filenameFromS3Key($url){
     $url = implode('.', $url);
     $url = explode('--', $url);    
     return $url[1];
+}
+
+function externalVideoPreview($url, $big=false){
+    $preview = '';
+    $width = $big ? 1280 : 560;
+    $height = $big ? 720 : 315;
+    if( $id = parse_yturl($url) ){
+        $preview = '<iframe width="'.$width.'" height="'.$height.'" src="https://www.youtube.com/embed/'.$id.'" frameborder="0" allowfullscreen></iframe>';
+    }
+    if( $id = get_vimeoid($url)){
+        $preview = '<iframe src="https://player.vimeo.com/video/'.$id.'?color=ffffff&title=0&portrait=0&badge=0" width="'.$width.'" height="'.$height.'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+    }
+    return $preview;
 }

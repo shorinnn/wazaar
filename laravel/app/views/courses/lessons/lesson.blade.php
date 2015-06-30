@@ -72,8 +72,13 @@
                     </a>
                     <div id="video-thumb-container"
                        @if($lesson->blocks()->where('type','video')->count() > 0)
-                        style='display:block'
+                        style='display:block
+                            @if($lesson->external_video_url !='')
+                                ;background-color:black
+                               @endif
+                               '
                        @endif
+                       
                        >
 
 

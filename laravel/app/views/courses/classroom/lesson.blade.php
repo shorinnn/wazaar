@@ -12,6 +12,11 @@
             <!--<h1 class="classroom-course-title">{{trans('courses/general.Course')}}: {{ $course->name }}</h1>
             <h2 class="classroom-lesson-title">{{trans('courses/general.lesson')}}: {{ $lesson->name }}</h2>-->
         	<section class="video-container">
+                @if( trim($lesson->external_video_url) !='')
+                    <div class="text-center">
+                        {{ externalVideoPreview($lesson->external_video_url, true) }}
+                    </div>
+                @endif
             	@if( $video != null && $video->video()!=null)
                 <div class="text-center">
                     @if( Agent::isMobile() )
