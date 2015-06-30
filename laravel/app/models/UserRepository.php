@@ -33,9 +33,10 @@ class UserRepository
         $user->last_name = Input::get('last_name');
         $user->password = array_get($input, 'password');
         $user->instructor_agency_id = $instructorAgencyCookie;
-        if( User::where('id', $secondTierInstructorCookie )->where( 'is_second_tier_instructor','yes' )->where( 'sti_approved','yes' )->count() == 1 ){
-            $user->second_tier_instructor_id = $secondTierInstructorCookie;
-        }
+//        if( User::where('id', $secondTierInstructorCookie )->where( 'is_second_tier_instructor','yes' )->where( 'sti_approved','yes' )->count() == 1 ){
+//            $user->second_tier_instructor_id = $secondTierInstructorCookie;
+//        }
+        $user->second_tier_instructor_id = $secondTierInstructorCookie;
         if( $registersAsST !=null ){
             $user->is_second_tier_instructor = 'yes';
         }
