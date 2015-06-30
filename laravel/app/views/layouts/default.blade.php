@@ -53,7 +53,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 	<div class="row">
                     	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        	<h5>Courses</h5>
+                        	<!--<h5>Courses</h5>
                             <ul>
                             	<li>
                                 	<a href="#">Data Science</a>
@@ -70,10 +70,10 @@
                             	<li>
                                 	<a href="#">Office Productivity</a>
                                 </li>
-                            </ul>
+                            </ul>-->
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        	<h5>&nbsp;</h5>
+                        	<!--<h5>&nbsp;</h5>
                             <ul>
                             	<li>
                                 	<a href="#">Design</a>
@@ -90,7 +90,7 @@
                             	<li>
                                 	<a href="#">Health & Fitness</a>
                                 </li>
-                            </ul>                        
+                            </ul>  -->                      
                         </div>
                     </div>
                   <!--{{trans('site/footer.all-rights-reserved')}}<br/>
@@ -98,8 +98,8 @@
                 </div>              
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 	<div class="row">
-                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        	<h5>ABOUT</h5>
+                    	<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                        	<!--<h5>ABOUT</h5>
                             <ul>
                             	<li>
                                 	<a href="#">Company</a>
@@ -110,12 +110,12 @@
                             	<li>
                                 	<a href="#">Privacy Policy</a>
                                 </li>
-                            </ul>                        
+                            </ul>   -->                     
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        	<h5>GET IN TOUCH</h5>
-                            <p>000 000 000 000</p>
-                            <p><!--{{trans('site/footer.mail')}}:-->info@wazaar.com</p>                        
+                        <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
+                        	<!--<h5>GET IN TOUCH</h5>-->
+                            <p>電話番号：03-6206-8396　</p>
+                            <p><!--{{trans('site/footer.mail')}}:info@wazaar.com-->メールアドレス：contact@wazaar.jp</p>                        
                         </div>
                     </div>
                 </div>

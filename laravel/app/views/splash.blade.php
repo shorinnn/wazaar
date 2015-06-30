@@ -34,6 +34,15 @@
             	<a href="{{ action('CoursesController@myCourses') }}">Publisher Login</a>
             </div>-->
         </div>         	
-    </div>    
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+		var bodyHeight = $("body").height();
+		var vwptHeight = $(window).height();
+		var contentWrapper = $('#wrapper');
+		contentWrapper.css('height', bodyHeight);
+		console.log(bodyHeight);
+	</script>  
+  
 </body>
 </html>
