@@ -261,7 +261,7 @@
         <script src="{{url("js/main.js")}}"></script>
         <script src="{{url("js/messages.js")}}"></script>
         <script src="{{url("js/slick.js")}}"></script>
-        <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
+        <script src="{{url("js/lang/".Config::get('app.locale').".js")}}"></script>
         <script src="{{url("js/jquery.tinycarousel.js")}}"></script>
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
         <script src="{{url("plugins/zero-clipboard/ZeroClipboard.min.js")}}"></script>
