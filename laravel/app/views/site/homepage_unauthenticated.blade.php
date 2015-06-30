@@ -69,8 +69,7 @@
             </h1>
             
             <div class="homepage-carousel-container slider-nav container-fluid">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="cards">
                         <a href="http://wazaar.dev/courses/cJio3">
                         <div class="object small-box small-box-one">
                             <!--<div class="level">Beginner</div>-->
@@ -127,7 +126,7 @@
                         </div>
                         </a>
                     </div>                 
-                    <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="cards">
                         <a href="http://wazaar.dev/courses/cJio3">
                         <div class="object small-box small-box-one">
                             <!--<div class="level">Beginner</div>-->
@@ -184,7 +183,7 @@
                         </div>
                         </a>
                     </div>                 
-                    <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="cards">
                         <a href="http://wazaar.dev/courses/cJio3">
                         <div class="object small-box small-box-one">
                             <!--<div class="level">Beginner</div>-->
@@ -241,7 +240,7 @@
                         </div>
                         </a>
                     </div>                 
-                    <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="cards">
                         <a href="http://wazaar.dev/courses/cJio3">
                         <div class="object small-box small-box-one">
                             <!--<div class="level">Beginner</div>-->
@@ -298,7 +297,7 @@
                         </div>
                         </a>
                     </div>                 
-                    <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="cards">
                         <a href="http://wazaar.dev/courses/cJio3">
                         <div class="object small-box small-box-one">
                             <!--<div class="level">Beginner</div>-->
@@ -355,7 +354,7 @@
                         </div>
                         </a>
                     </div>                 
-                    <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="cards">
                         <a href="http://wazaar.dev/courses/cJio3">
                         <div class="object small-box small-box-one">
                             <!--<div class="level">Beginner</div>-->
@@ -413,7 +412,6 @@
                         </a>
                     </div>                 
                 
-                </div>
             </div>
         </div>
         <section class="container-fluid">
@@ -976,13 +974,13 @@
 			  arrows: true,
 			  centerMode: true,
 			  slidesToShow: 3,
-			  slidesToScroll: 2,
+			  slidesToScroll: 3,
 			  responsive: [
 				{
 				  breakpoint: 1024,
 				  settings: {
 					slidesToShow: 3,
-					slidesToScroll: 2,
+					slidesToScroll: 3,
 					infinite: true,
 					dots: false
 				  }
@@ -991,7 +989,7 @@
 				  breakpoint: 600,
 				  settings: {
 					slidesToShow: 2,
-					slidesToScroll: 1
+					slidesToScroll: 2
 				  }
 				},
 				{

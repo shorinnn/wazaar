@@ -19,10 +19,6 @@
 <body>
     <div id="wrapper">
     	<div id="container">
-        	<div class="top-buttons">
-            	<a href="{{ action('UsersController@login') }}" class="login button large-button">ログイン</a>
-                <a href="{{ action('UsersController@create') }}" class="blue-button button large-button register">サインアップ</a>
-            </div>
         	<div id="logo" class="clear">
             	<img src="splash/logo.png" alt="">
             </div>
@@ -33,6 +29,12 @@
 <!--            <div class="publisher-login">
             	<a href="{{ action('CoursesController@myCourses') }}">Publisher Login</a>
             </div>-->
+        	<div class="top-buttons">
+                <a href="{{ action('UsersController@create') }}" class="blue-button button large-button register">サインアップ</a>
+            </div>
+        	<div class="top-buttons">
+            	<a href="{{ action('UsersController@login') }}" class="login button large-button">ログイン</a>
+            </div>
         </div>         	
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
