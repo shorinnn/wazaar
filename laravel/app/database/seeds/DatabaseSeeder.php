@@ -266,6 +266,19 @@ class UserTableSeeder extends Seeder {
         $user->save();
 
         //albert
+        
+        $user = new User;
+        $user->ltc_affiliate_id = 5;
+        $user->username = 'instructorZero';
+        $user->email = 'instructorZero@mailinator.com';
+        $user->first_name = 'Instructor';
+        $user->last_name = 'Zero';
+        $user->password = 'pass';
+        $user->password_confirmation = 'pass';
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->confirmed = 1;
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->save();
 
     }
 }
@@ -309,6 +322,10 @@ class AssignedRoleTableSeeder extends Seeder {
         $user->attachRole( $affiliateRole );
         
         $user = User::where('username', '=', 'Keiji_Tani')->first();
+        $user->attachRole( $studentRole );
+        $user->attachRole( $instructorRole );
+        
+        $user = User::where('username', '=', 'instructorZero')->first();
         $user->attachRole( $studentRole );
         $user->attachRole( $instructorRole );
 
@@ -1071,6 +1088,11 @@ class ProfileSeeder extends Seeder {
         
         Profile::create( ['owner_id' => 4, 'owner_type' => 'Instructor','first_name' => 'Wazaar', 'last_name' => 'Instructor', 
                             'email' => 'wazaarInstructor@wazaar.jp', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 
+                            'bank_code' => 'BNK4', 'bank_name'=>'Bank4', 'branch_code'=>'B4', 'branch_name' => 'BRANCH4', 
+                            'account_type' => 1, 'account_number' => 'ACC4', 'beneficiary_name' => 'Beneficiary Instructor4', 'created_at' => \Carbon\Carbon::now()]);
+        
+        Profile::create( ['owner_id' => 15, 'owner_type' => 'Instructor','first_name' => 'Instructor', 'last_name' => 'Zero', 
+                            'email' => 'instructorZero@mailinator.com', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 
                             'bank_code' => 'BNK4', 'bank_name'=>'Bank4', 'branch_code'=>'B4', 'branch_name' => 'BRANCH4', 
                             'account_type' => 1, 'account_number' => 'ACC4', 'beneficiary_name' => 'Beneficiary Instructor4', 'created_at' => \Carbon\Carbon::now()]);
         
