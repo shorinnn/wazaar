@@ -12,7 +12,7 @@ return array(
 	'already-have-an-account' => '既にアカウントをお持ちではありませんか？', 
 	'login' => 'ログイン', 
 	'name-placeholder' => 'お名前', 
-        'last-name-placeholder' => '苗字',
-        'first-name-placeholder' => 'ファーストネーム',
+        'last-name-placeholder' => '名字',
+        'first-name-placeholder' => '名前',
     
 );
