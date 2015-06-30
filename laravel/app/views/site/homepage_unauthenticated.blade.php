@@ -9,6 +9,8 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{url('css/slick.css')}}">
+    <link rel="stylesheet" href="{{url('css/slick-theme.css')}}">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -66,7 +68,16 @@
             <p class="lead">Our most popular courses everyone loves. Learn a skill now!</p>
             </h1>
             
-            <div class="homepage-carousel-container">
+            <div class="homepage-carousel-container slider-nav">
+                <div class="cards">
+                
+                </div>
+                <div class="cards">
+                
+                </div>
+                <div class="cards">
+                
+                </div>
                 <div class="cards">
                 
                 </div>
@@ -622,7 +633,8 @@
         </footer>
     </div>    
 
- 
+		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>         
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
@@ -630,6 +642,44 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>        
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
     	<script type="text/javascript" src="http://wazaar.dev/js/bootbox.js"></script>
+        <script src="{{url("js/slick.js")}}"></script>
+        <script type="text/javascript">
+			$('.slider-nav').slick({
+			  dots: false,
+			  arrows: true,
+			  centerMode: true,
+			  slidesToShow: 3,
+			  slidesToScroll: 1,
+			  responsive: [
+				{
+				  breakpoint: 1024,
+				  settings: {
+					slidesToShow: 3,
+					slidesToScroll: 1,
+					infinite: true,
+					dots: false
+				  }
+				},
+				{
+				  breakpoint: 600,
+				  settings: {
+					slidesToShow: 2,
+					slidesToScroll: 1
+				  }
+				},
+				{
+				  breakpoint: 480,
+				  settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1
+				  }
+				}
+				// You can unslick at a given breakpoint now by adding:
+				// settings: "unslick"
+				// instead of a settings object
+			  ]
+			});
+		</script>
 
 </body>
 </html>

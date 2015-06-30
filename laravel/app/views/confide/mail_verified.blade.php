@@ -78,11 +78,12 @@
                 @else
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <span class="step-number">2</span>            
-                        <h3>Start</h3>
-                        <p class="regular-paragraph">Browsing Courses</p>
+                        <h3>{{ trans('general.begin_creating_your_course') }}</h3>
+                        <!--<p class="regular-paragraph">Browsing Courses</p>-->
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 share-link-form clearfix">
-                        <a href='{{action("SiteController@index")}}' class="blue-button large-button" disabled>GO!</a>
+                        <a href='{{ action('CoursesController@myCourses') }}' class="blue-button large-button" disabled>GO!</a>
+                        <!--<a href='{{action("SiteController@index")}}' class="blue-button large-button" disabled>GO!</a>-->
                     </div>
                 @endif
                 <div class="col-lg-12 approval-notice clearfix clear">

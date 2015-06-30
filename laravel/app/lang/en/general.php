@@ -1,6 +1,7 @@
 <?php
 
 return array(
+	'begin_creating_your_course' => 'Begin Creating Your Course!',
     'or' => 'or',
 	'enter-email-and-password' => 'enter your email and password',
 	'enter-new-email-and-password' => 'enter your email and choose password',

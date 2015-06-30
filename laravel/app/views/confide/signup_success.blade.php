@@ -38,8 +38,8 @@
                             <h3>{{ trans('acl.invite-publishers') }}</h3>
                             <!--<p>Get personal sharable link</p>-->
                         @else
-                            <h3>Start</h3>
-                            <p>Browsing Courses</p>    
+                            <h3>{{ trans('general.begin_creating_your_course') }}</h3>
+                            <!--<p>Browsing Courses</p>  -->  
                         @endif
                     </div>       
                 </div>
