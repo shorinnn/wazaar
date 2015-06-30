@@ -76,15 +76,31 @@
                                     </div>
                     </div>
                 @else
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <span class="step-number">2</span>            
-                        <h3>{{ trans('general.begin_creating_your_course') }}</h3>
-                        <!--<p class="regular-paragraph">Browsing Courses</p>-->
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 share-link-form clearfix">
-                        <a href='{{ action('CoursesController@myCourses') }}' class="blue-button large-button" disabled>GO!</a>
-                        <!--<a href='{{action("SiteController@index")}}' class="blue-button large-button" disabled>GO!</a>-->
-                    </div>
+                    @if( Auth::user()->hasRole('Instructor') )
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <span class="step-number">2</span>            
+                            <h3>{{ trans('general.begin_creating_your_course') }}</h3>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 share-link-form clearfix">
+                            <a href='{{ action('CoursesController@myCourses') }}' class="blue-button large-button" disabled>GO!</a>
+                        </div>
+                    @elseif( Auth::user()->hasRole('Affiliate') )
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <span class="step-number">2</span>            
+                            <h3>{{ trans('general.browse-courses') }}</h3>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 share-link-form clearfix">
+                            <a href='{{action("SiteController@index")}}' class="blue-button large-button" disabled>GO!</a>
+                        </div>
+                    @else
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <span class="step-number">2</span>            
+                            <h3>{{ trans('general.browse-courses') }}</h3>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 share-link-form clearfix">
+                            <a href='{{action("SiteController@index")}}' class="blue-button large-button" disabled>GO!</a>
+                        </div>
+                    @endif
                 @endif
                 <div class="col-lg-12 approval-notice clearfix clear">
                     {{ trans('acl.we-must-approve-2tier')}}

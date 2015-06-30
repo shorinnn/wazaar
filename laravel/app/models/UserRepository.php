@@ -29,6 +29,8 @@ class UserRepository
 //      $user->username = array_get($input, 'username');
         $user->email    = array_get($input, 'email');
         $user->username = 'U'.uniqid();
+        $user->first_name = Input::get('first_name');
+        $user->last_name = Input::get('last_name');
         $user->password = array_get($input, 'password');
         $user->instructor_agency_id = $instructorAgencyCookie;
         if( User::where('id', $secondTierInstructorCookie )->where( 'is_second_tier_instructor','yes' )->where( 'sti_approved','yes' )->count() == 1 ){
@@ -48,6 +50,7 @@ class UserRepository
         
         $url = action('SiteController@index');
         if($registersAsST!=null) $url = action('UsersController@registrationConfirmation' );
+        $url = action('UsersController@registrationConfirmation' );
 
         // Save if valid. Password field will be hashed before save
         if($this->save($user)){

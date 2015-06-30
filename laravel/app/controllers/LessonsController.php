@@ -19,6 +19,7 @@ class LessonsController extends \BaseController {
 //            $lesson->name = 'New Lesson';
             $lesson->order = $module->lessons->count() + 1;
             if($lesson->save()){
+                $lesson = Lesson::find( $lesson->id );
                 if(Request::ajax()){
                     $response = ['status' => 'success', 
                                  'module' => $lesson->module_id, 
