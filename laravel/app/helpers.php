@@ -548,7 +548,7 @@ function parse_yturl($url)
 
 function get_vimeoid( $url ) {
     $urls = parse_url($url);
-    if ($urls['host'] == 'vimeo.com'){
+    if (isset($urls['host']) && $urls['host'] == 'vimeo.com'){
         $urls =  explode( '/', $urls['path'] );
         $vimid = $urls[ count($urls) - 1 ];
         return trim($vimid);
