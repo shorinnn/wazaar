@@ -31,6 +31,12 @@
     <section class="container-fluid mycourses-main">
         <div class="container">
             <div class="row">
+                <!-- no courses -->
+                @if($courses->count() == 0)
+                    <p>You have no courses yet</p>
+                    <p><a href="{{action('CoursesController@create')}}" class="blue-button large-button">{{ trans('courses/create.create-btn-instructor') }}</a></p>
+                @endif
+                <!--/ no courses -->
             	@foreach($courses as $course)
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3 mycourse-card">
                     <div class="row mycourse-card-main">
