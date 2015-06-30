@@ -149,7 +149,7 @@ return array(
     'you-have-no-courses' => 'You have no courses.',   
     'pending' => 'Pending',
     'public' => 'Public',
-    'dashboard' => 'ダッシュボード',
+    'dashboard' => 'Dashboard',
     'my-courses-link-instructor' => 'My Courses',
     'price-tip' => '',
     'sale-period-min-10-minutes' => 'Sale must last at least 10 minutes',
@@ -162,4 +162,14 @@ return array(
     'discount-tip' => '',
     'update-discount' => 'Update Discount',
     'saving-button' => 'Save',
+    'my-courses-privacy' =>[
+        'public' => 'Public',
+        'private' => 'Private'
+    ],
+    'my-courses-publish' => [
+        'rejected' => 'Rejected',
+        'unsubmitted' => 'Unsubmitted',
+        'pending' => 'Pending',
+        'approved' => 'Approved'
+    ]
 );

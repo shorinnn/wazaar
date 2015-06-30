@@ -69,7 +69,7 @@ class UsersController extends Controller
             try{
                 $subject = '販売者アカウント確認のご連絡';
                 $view = 'confide.emails.regular_confirm';
-                $lastName = 'LastName';
+                $lastName = $user->last_name;
                 if($user->is_second_tier_instructor=='yes'){
                     $subject = Lang::get('confide::confide.email.account_confirmation.subject');
                     $view = Config::get('confide::email_account_confirmation');

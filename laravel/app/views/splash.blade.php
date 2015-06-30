@@ -30,7 +30,11 @@
             	<a href="{{ action('CoursesController@myCourses') }}">Publisher Login</a>
             </div>-->
         	<div class="top-buttons">
-                <a href="{{ action('UsersController@create') }}" class="blue-button button large-button register">サインアップ</a>
+                @if(Input::has('pub'))
+                    <a href="{{ action('UsersController@create') }}/account/instructor" class="blue-button button large-button register">サインアップ</a>
+                @else
+                    <a href="{{ action('UsersController@create') }}" class="blue-button button large-button register">サインアップ</a>
+                @endif
             </div>
         	<div class="top-buttons">
             	<a href="{{ action('UsersController@login') }}" class="login button large-button">ログイン</a>

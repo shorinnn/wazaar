@@ -5,21 +5,14 @@ class LpController extends \BaseController {
             $this->template = new StdClass();
             $this->template->subject = 'ワザール販売者登録ありがとうございました！';
             $this->template->content = '
-                このたびはワザールの販売者登録、誠にありがとうございました。<br />
-                <br />
-                最新の情報を随時ご連絡させていただきます。<br />
-                <br />
-                その他、何かご不明な点等ございましたらお手数ではございますが、下記連絡先までご連絡ください。<br />
-                <br />
-                株式会社　みんカレ<br />
-                Wazaar (ワザール）の日本国内で運営法人<br />
-                <br />
-                住所：東京都千代田区神田須田町１丁目８番３号<br />
-                ハイツモントレ神田２０５号<br />
-                TEL  03-6206-8396<br />
-                MOB  080-9263-0375<br />
-                <br />
-                担当：友永恵輔';
+                <p>@NAME@ 様</p>
+                <p>Wazaarへようこそ！</p>
+                メールアドレスの確認のために、下記のリンクからワザールへの登録をお願い致します。
+                <p><a href="@LINK@">@LINK@</a></p>
+                <p>ワザールではまだまだ動画教材が足りませんので、@NAME@ 様の動画教材を是非、ワザールにご投稿いただけることを心よりお待ちしております。<br />
+                今後とも何卒よろしくお願い致します。<br />
+                ワザール　日本法人代表<br />
+                峯山</p>';
             $this->template->name = 'Wazaar';
             $this->template->email = 'no-reply@wazaar.jp';
             $this->template->templateName = 'LP-Signup';
@@ -71,6 +64,9 @@ class LpController extends \BaseController {
     
         public function index(){
            
+            $this->_updateTemplate();
+            $template = $this->_getTemplate();
+            dd($template);
             if( Input::has('show-me-last-user') ){
                 $users = $this->delivered->getUsers();
                 $users= $users['data'];
@@ -134,7 +130,7 @@ class LpController extends \BaseController {
                     if( is_array($tag1) && $tag1['success'] == true && is_array($tag2) && $tag2['success'] == true  ){
                         // send email
                         $template = $this->_getTemplate();
-                        $variables = json_encode( ['FIRST_NAME' => $user->firstName ] );
+                        $variables = json_encode( ['NAME' => Input::get('name'), 'LINK' => action('SiteController@index').'?stpi='.$stpi.'&pub=1' ] );
                         $result = $this->delivered->executeEmailRequest('immediate', $template->id, $user->id, $variables );
                         if( is_array($response) && $response['success'] == true ){
                             return Redirect::to('lp1/success.php?name='.$firstName);

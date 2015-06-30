@@ -137,5 +137,15 @@ return array(
     'discount-tip' => '商品がワザールで承認された後に、割引額を設定することができます。',
     'update-discount' => '割引に関する更新',
     'saving-button' => '下書き保存',
+    'my-courses-privacy' =>[
+        'public' => '公開',
+        'private' => '限定公開'
+    ],
+    'my-courses-publish' => [
+        'rejected' => '教材の見直し必要',
+        'unsubmitted' => '制作中',
+        'pending' => '審査中',
+        'approved' => '承認済'
+    ]
 );
 

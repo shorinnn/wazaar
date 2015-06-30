@@ -38,7 +38,11 @@
                             <h3>{{ trans('acl.invite-publishers') }}</h3>
                             <!--<p>Get personal sharable link</p>-->
                         @else
-                            <h3>{{ trans('general.begin_creating_your_course') }}</h3>
+                            @if(Auth::user()->hasRole('Instructor') )
+                                <h3>{{ trans('general.begin_creating_your_course') }}</h3>
+                            @else
+                                <h3>{{ trans('general.browse-courses') }}</h3>
+                            @endif
                             <!--<p>Browsing Courses</p>  -->  
                         @endif
                     </div>       
