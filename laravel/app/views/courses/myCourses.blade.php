@@ -38,8 +38,8 @@
                 <!-- no courses -->
                 @if($courses->count() == 0)
                 	<div class="no-courses-available text-center">
-                        <p>You have no courses yet</p>
-                        <a href="{{action('CoursesController@create')}}" class="blue-button large-button">{{ trans('courses/create.create-btn-instructor') }}</a>
+                        <p>{{ trans('courses/general.instructor-no-courses')}}</p>
+                        <a href="{{action('CoursesController@create')}}" class="blue-button large-button">{{ trans('courses/general.create-btn-instructor') }}</a>
                     </div>
                 @endif
                 <!--/ no courses -->

@@ -116,6 +116,7 @@ return array(
 //    'course-not-public' => 'ワザールに限定公開', 
 //    'course-public-tip' => 'ワザールに公開では、ワザール上で商品が掲載されます。ワザールに限定公開ではリンクを知っている人のみが商品ページを視聴できます。',
     'course-public-tip' => '公開では、ワザールで教材が掲載されて誰でも商品ページを視聴できるようになります。限定公開ではリンクを知っている人のみ商品を視聴できます。',
+    'course-public-tip' => '公開設定にすると、誰でも商品ページを視聴できます。限定公開にすると、商品のリンクページを知っている人のみが商品を視聴できます。',
     'individual-sale' => '個別のバラ売り',
     'free-preview' => '無料のプレビュー',   
     'modules' => 'セクション数',
@@ -146,6 +147,9 @@ return array(
         'unsubmitted' => '制作中',
         'pending' => '審査中',
         'approved' => '承認済'
-    ]
+    ],
+    'instructor-no-courses' => 'まだ動画教材を制作されておりません。',
+    'create-btn-instructor' => '新規教材を制作しましょう！',
+    'dashboard' => 'ダッシュボード',
 );
 
