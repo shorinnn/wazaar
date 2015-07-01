@@ -852,7 +852,7 @@
 			  pauseOnHover: true,
 			  swipe: true,
 			  slidesToShow: 4,
-			  slidesToScroll: 1,
+			  slidesToScroll: 20,
 			  responsive: [
 				{
 				  breakpoint: 1024,
