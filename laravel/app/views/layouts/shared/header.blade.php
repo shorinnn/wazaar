@@ -40,9 +40,9 @@
                         {{ username() }}
                     </button>
                     <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
-                        <li>
+                        <?php /*-- <li>
                             <a class="profile-button" href="{{ action('ProfileController@index') }}">{{trans('site/menus.profile')}}</a>
-                        </li>
+                        </li> */?>
                         <li>
                             <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
                         </li>
