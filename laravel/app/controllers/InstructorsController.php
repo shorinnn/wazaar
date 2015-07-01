@@ -40,6 +40,7 @@ class InstructorsController extends \BaseController {
         public function acceptTerms(){
             $i = Instructor::find( Auth::user()->id );
             return View::make('instructors.at');
+//            return View::make('instructors.terms');
         }
         
         public function doAcceptTerms(){

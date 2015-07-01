@@ -20,7 +20,7 @@ class UsersController extends Controller
      * @param mixed $instructor_account If not 0, sign up for a instructor account
      * @return  Illuminate\Http\Response
      */
-    public function create($instructor_account = '')
+    public function create($instructor_account = 'instructor')
     {
         if( Auth::guest() ){
             Cookie::queue('st', null, -1);
@@ -397,8 +397,8 @@ class UsersController extends Controller
         catch(Exception $e){}
         if (  $this->users->confirm($code) ) {    
             $notice_msg = Lang::get('confide::confide.alerts.confirmation');
-            return View::make('confide.to_verification');
-//            return Redirect::action('UsersController@verificationConfirmation');
+//            return View::make('confide.to_verification');
+            return Redirect::action('UsersController@verificationConfirmation');
 //            return Redirect::action('UsersController@login')
 //                ->with('notice', $notice_msg);
         } else {

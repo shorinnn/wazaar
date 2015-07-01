@@ -39,4 +39,5 @@ return array(
     'paid' => 'Paid',
     'free' => 'Free',
     'create-btn-instructor' => 'Create New Course',
+    'free-course-label' => 'Free',
 );

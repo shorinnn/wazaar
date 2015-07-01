@@ -72,6 +72,10 @@ return array(
     'i-agree' => 'I Agree',
     'please-wait' => 'Please Wait',
     'register-2-tier' => '販売者２ティア登録',
-    'browse-courses' => 'Browse Courses'
+    'browse-courses' => 'Browse Courses',
+    'begin_creating_your_course' => '動画教材の制作を開始しましょう！',
+    'click-go-to-begin' => 'クリックを押して今すぐ始めましょう！',
+    'verify-go-button' => '次へ！'
+    
  
 );

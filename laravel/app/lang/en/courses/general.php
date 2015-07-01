@@ -171,5 +171,8 @@ return array(
         'unsubmitted' => 'Unsubmitted',
         'pending' => 'Pending',
         'approved' => 'Approved'
-    ]
+    ],
+    'instructor-no-courses' => 'You have no courses yet',
+    'create-btn-instructor' => 'Create Course',
+    'course-ready-for-submission' => 'Course Ready For Submission',
 );

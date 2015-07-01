@@ -38,7 +38,7 @@
 @include('videos.archiveModal')
 <div class="edit-course">
     <input type='hidden' class='step-1-filled' value='{{ $course->short_description !='' ? 1 : 0}}' />
-    <input type='hidden' class='step-2-filled' value='{{ $course->lessonCount() >=5 ? 1 : 0}}' />
+    <input type='hidden' class='step-2-filled' value='{{ $course->lessonCount() >= 0 ? 1 : 0}}' />
     <input type='hidden' class='step-3-filled' value='{{ $course->course_difficulty_id > 0 ? 1 : 0}}' />
 	<section class="container-fluid header">
     	<div class="row">
@@ -75,7 +75,7 @@
                     <div class="right steps-remaining">
                         @if( courseStepsRemaining($course)==0 || $course->publish_status!='unsubmitted')
                             <p class="regular-paragraph no-margin">
-                               <span>Course Ready</span> For Submission
+                               <span>{{ trans('courses/general.course-ready-for-submission') }} </span>
                             </p>
                         @else
                             <p class="regular-paragraph no-margin">
