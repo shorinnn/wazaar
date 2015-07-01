@@ -103,7 +103,7 @@ function addLesson(json){
     $('#lessons-holder-'+json.module).append(json.html);
     $('#lessons-holder-'+json.module+' .lesson-no-video .a-add-video').click();
     reorderLessons( 'lessons-holder-'+json.module );
-    if( $('.step-2-filled').val()=='0' && $('.lesson-options').length >= 5 ) {
+    if( $('.step-2-filled').val()=='0' && $('.lesson-options').length >= 0 ) {
         $('.step-2-filled').val('1');
         updateStepsRemaining();
     }

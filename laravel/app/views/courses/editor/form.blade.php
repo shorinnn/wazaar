@@ -38,7 +38,7 @@
 @include('videos.archiveModal')
 <div class="edit-course">
     <input type='hidden' class='step-1-filled' value='{{ $course->short_description !='' ? 1 : 0}}' />
-    <input type='hidden' class='step-2-filled' value='{{ $course->lessonCount() >=5 ? 1 : 0}}' />
+    <input type='hidden' class='step-2-filled' value='{{ $course->lessonCount() >= 0 ? 1 : 0}}' />
     <input type='hidden' class='step-3-filled' value='{{ $course->course_difficulty_id > 0 ? 1 : 0}}' />
 	<section class="container-fluid header">
     	<div class="row">
