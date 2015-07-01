@@ -275,7 +275,11 @@
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text">
-                        ¥{{ number_format($course->price, Config::get('custom.currency_decimals')) }}
+                        @if($course->free=='yes')
+                            {{ trans('courses/create.free-course-label') }}
+                        @else
+                            ¥{{ number_format($course->price, Config::get('custom.currency_decimals')) }}
+                        @endif
                     </p>
                 </div>
             </div>

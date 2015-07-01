@@ -40,4 +40,5 @@ return array(
     'paid' => '有料コース',
     'free' => '無料コース',    
     'create-btn-instructor' => '新規教材の制作',
+    'free-course-label' => '無料',
 );
