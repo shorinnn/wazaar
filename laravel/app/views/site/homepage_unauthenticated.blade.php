@@ -389,7 +389,7 @@
                 </div>
             	<div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="http://wazaar.dev/courses/cJio3">
+                        <a href="http://wazaar.dev/courses/cJio3" class="small-box-link-wrapper">
                         <div class="object small-box small-box-one">
                             <!--<div class="level">Beginner</div>-->
                             <!--            <div class="new-tag">NEW</div>
@@ -446,7 +446,7 @@
                         </a>
                     </div>                 
                     <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="http://wazaar.dev/courses/cJio3">
+                        <a href="http://wazaar.dev/courses/cJio3" class="small-box-link-wrapper">
                         <div class="object small-box small-box-one">
                             <!--<div class="level">Beginner</div>-->
                             <!--            <div class="new-tag">NEW</div>
@@ -503,7 +503,7 @@
                         </a>
                     </div>                 
                     <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="http://wazaar.dev/courses/cJio3">
+                        <a href="http://wazaar.dev/courses/cJio3" class="small-box-link-wrapper">
                         <div class="object small-box small-box-one">
                             <!--<div class="level">Beginner</div>-->
                             <!--            <div class="new-tag">NEW</div>
@@ -562,7 +562,7 @@
                 </div>
             	<div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="http://wazaar.dev/courses/cJio3">
+                        <a href="http://wazaar.dev/courses/cJio3" class="small-box-link-wrapper">
                         <div class="object small-box small-box-one">
                             <!--<div class="level">Beginner</div>-->
                             <!--            <div class="new-tag">NEW</div>
@@ -619,7 +619,7 @@
                         </a>
                     </div>                 
                     <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="http://wazaar.dev/courses/cJio3">
+                        <a href="http://wazaar.dev/courses/cJio3" class="small-box-link-wrapper">
                         <div class="object small-box small-box-one">
                             <!--<div class="level">Beginner</div>-->
                             <!--            <div class="new-tag">NEW</div>
@@ -676,7 +676,7 @@
                         </a>
                     </div>                 
                     <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="http://wazaar.dev/courses/cJio3">
+                        <a href="http://wazaar.dev/courses/cJio3" class="small-box-link-wrapper">
                         <div class="object small-box small-box-one">
                             <!--<div class="level">Beginner</div>-->
                             <!--            <div class="new-tag">NEW</div>
@@ -845,16 +845,20 @@
 			$('.slider-nav').slick({
 			  dots: false,
 			  arrows: true,
-			  centerMode: true,
-			  speed: 1000,
-			  slidesToShow: 3,
-			  slidesToScroll: 4,
+			  speed: 20000,
+			  infinite: true,
+			  autoplay: true,
+			  autoplaySpeed: 0,
+			  pauseOnHover: true,
+			  swipe: true,
+			  slidesToShow: 4,
+			  slidesToScroll: 1,
 			  responsive: [
 				{
 				  breakpoint: 1024,
 				  settings: {
 					slidesToShow: 3,
-					slidesToScroll: 3,
+					slidesToScroll: 6,
 					dots: false
 				  }
 				},
@@ -862,7 +866,7 @@
 				  breakpoint: 600,
 				  settings: {
 					slidesToShow: 2,
-					slidesToScroll: 2,
+					slidesToScroll: 4,
 				  }
 				},
 				{
@@ -878,7 +882,7 @@
 			  ]
 			});
 			
-			$('.slider-nav').slick({
+			/*$('.slider-nav').slick({
 				interval: false
 			});
 			
@@ -886,7 +890,7 @@
 			
 			$('.slick-prev, .slick-next').on("mouseover", function () {
 				var control = $(this),
-					interval = 600;
+					interval = 1000;
 			
 				i = setInterval(function () {
 					control.trigger("click");
@@ -894,7 +898,7 @@
 			})
 			.on("mouseout", function () {
 				clearInterval(i);
-			});
+			});*/
 		</script>
 
 </body>

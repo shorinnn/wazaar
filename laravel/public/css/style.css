@@ -493,7 +493,7 @@ header .activate-dropdown:hover ul{
 .homepage-header .extra-large-heading{
 	color: #fff;
 	text-transform: uppercase;
-	margin: 8% 0 15px;
+	margin: 70px 0 15px;
 }
 
 .homepage-header .extra-large-heading .lead{
@@ -1343,6 +1343,7 @@ header .activate-dropdown:hover ul{
 	background-color: #ffffff !important;
  	border-radius: 4px;
   	height: 356px;
+	max-width: 360px;
   	background-repeat:no-repeat;
   	position:relative;
   	margin-top:35px;
@@ -10433,6 +10434,13 @@ footer{
 
 
 @media (max-width:767px){
+	
+.small-box-link-wrapper{
+    display: block;
+    margin: 0 auto;
+    max-width: 360px;
+}
+
 .small-box{
 	width: 100%;
 }
