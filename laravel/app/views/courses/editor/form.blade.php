@@ -75,7 +75,7 @@
                     <div class="right steps-remaining">
                         @if( courseStepsRemaining($course)==0 || $course->publish_status!='unsubmitted')
                             <p class="regular-paragraph no-margin">
-                               <span>Course Ready</span> For Submission
+                               <span>{{ trans('courses/general.course-ready-for-submission') }} </span>
                             </p>
                         @else
                             <p class="regular-paragraph no-margin">

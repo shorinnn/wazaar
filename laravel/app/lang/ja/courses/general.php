@@ -151,5 +151,6 @@ return array(
     'instructor-no-courses' => 'まだ動画教材を制作されておりません。',
     'create-btn-instructor' => '新規教材を制作しましょう！',
     'dashboard' => 'ダッシュボード',
+    'course-ready-for-submission' => '商品は審査中です。',
 );
 

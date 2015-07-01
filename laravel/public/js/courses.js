@@ -437,7 +437,7 @@ function updateStepsRemaining(){
     course_steps_remaining--;
     $('.steps-remaining p span span').html( course_steps_remaining );
     if( course_steps_remaining == 0){
-        $('.steps-remaining p').html( _('<span>Course Ready</span> For Submission') );
+        $('.steps-remaining p').html( '<span>' + _('Course Ready For Submission') +'</span>' );
     }
     activatePreviewButton();
 }
