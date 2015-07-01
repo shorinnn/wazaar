@@ -12,7 +12,12 @@ class SiteController extends \BaseController {
                 $frontpageVideos  = FrontpageVideo::grid();
                 $categories = CourseCategory::with('featuredCourse')->get();
                 if(Auth::user()) Return View::make('site.homepage_authenticated')->with(compact('categories'));
-                else Return View::make('site.homepage_unauthenticated')->with( compact('categories', 'frontpageVideos') );
+                else{
+                    if(Input::has('old-page'))
+                        Return View::make('site.homepage_unauthenticated_DEPR')->with( compact('categories', 'frontpageVideos') );
+                    else
+                        Return View::make('site.homepage_unauthenticated')->with( compact('categories', 'frontpageVideos') );
+                }
             }
             if( Auth::check() ){
                 if( Auth::user()->is_second_tier_instructor == 'yes' ) return Redirect::action('UsersController@links');
