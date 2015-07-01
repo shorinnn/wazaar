@@ -492,7 +492,7 @@ class UsersController extends Controller
     public function registrationConfirmation(){
         if( Auth::guest() ){
             $dot = getenv('AWS_MACHINE_IDENTIFIER') == 'Wazaar.' ? 1 : 0;
-            return Redirect::url("login?dot=$dot");
+            return Redirect::to("login?dot=$dot");
         }
         return View::make('confide.signup_success');
     }
@@ -500,7 +500,7 @@ class UsersController extends Controller
     public function verificationConfirmation(){
         if( Auth::guest() ){
             $dot = getenv('AWS_MACHINE_IDENTIFIER') == 'Wazaar.' ? 1 : 0;
-            return Redirect::url("login?dot=$dot");
+            return Redirect::to("login?dot=$dot");
         }
         return View::make('confide.mail_verified');
     }
