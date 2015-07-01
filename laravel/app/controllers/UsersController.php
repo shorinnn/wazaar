@@ -392,7 +392,7 @@ class UsersController extends Controller
     {
 //        if (Confide::confirm($code)) {
         try{
-            Auth::logout();
+            Session::flush();
         }
         catch(Exception $e){}
         if (  $this->users->confirm($code) ) {    
