@@ -20,7 +20,7 @@ class UsersController extends Controller
      * @param mixed $instructor_account If not 0, sign up for a instructor account
      * @return  Illuminate\Http\Response
      */
-    public function create($instructor_account = '')
+    public function create($instructor_account = 'instructor')
     {
         if( Auth::guest() ){
             Cookie::queue('st', null, -1);
