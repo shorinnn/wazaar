@@ -391,8 +391,7 @@ class UsersController extends Controller
     public function confirm($code)
     {
 //        if (Confide::confirm($code)) {
-        if (  $this->users->confirm($code) ) {       
-            sleep(2);
+        if (  $this->users->confirm($code) ) {    
             $notice_msg = Lang::get('confide::confide.alerts.confirmation');
             return Redirect::action('UsersController@verificationConfirmation');
 //            return Redirect::action('UsersController@login')
