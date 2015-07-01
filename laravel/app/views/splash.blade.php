@@ -5,7 +5,13 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Wazaar</title>    
+	<title>
+            @if(isset($_ENV['AWS_MACHINE_IDENFITIER']))
+                {{ $_ENV['AWS_MACHINE_IDENFITIER'] }} 
+            @else
+                 - Wazaar
+            @endif
+        </title>    
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="splash/style.css">
 

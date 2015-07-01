@@ -5,10 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>@yield('page_title')
-            @if(isset($_ENV['AWS_MACHINE_IDENFITIER'])
+            @if(isset($_ENV['AWS_MACHINE_IDENFITIER']))
                 {{ $_ENV['AWS_MACHINE_IDENFITIER'] }} 
             @else
-                Wazaar
+                 - Wazaar
             @endif
         </title>    
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
