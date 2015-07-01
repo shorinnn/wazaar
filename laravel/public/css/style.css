@@ -304,6 +304,7 @@ header .profile-name{
 	padding: 0;
 	float: left;
 	margin: 19px 0 0;
+	min-width: 150px;
 }
 
 header .profile-name > li{
@@ -466,7 +467,22 @@ header .activate-dropdown:hover ul{
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
-	background-position: left top;
+	background-position: left top; 
+}
+
+.homepage-header-wrapper header{
+	background: none;
+}
+
+.homepage-header-wrapper .logged-out a{
+	background: none !important;
+	font-size: 13px !important;
+	font-weight: 600;
+	color: #a7b7c4 !important;
+}
+
+.homepage-header-wrapper .logged-out a:hover{
+	color: #fff !important;
 }
 
 .homepage-header .extra-large-heading{
@@ -479,6 +495,14 @@ header .activate-dropdown:hover ul{
 	color: #a7b7c4;
 	text-transform:none;
 	margin: 15px 0 27px;
+}
+
+.homepage-header .how-it-works i{
+    font-size: 18px;
+    padding-bottom: 3px;
+    padding-right: 10px;
+    position: relative;
+    top: 1px;
 }
 
 .homepage-header .home-search-form{
@@ -507,6 +531,8 @@ header .activate-dropdown:hover ul{
 	background: none;
 	border: none;
 	margin: 0;
+	font-size: 22px;
+	font-weight: 100;
 }
 	
 .homepage-carousel{
@@ -545,7 +571,8 @@ header .activate-dropdown:hover ul{
 .homepage-carousel .slick-prev:focus, 
 .homepage-carousel .slick-next:hover, 
 .homepage-carousel .slick-next:focus{
-	background-color: rgba(0, 0, 0, 0.3);	
+	/*background-color: rgba(0, 0, 0, 0.3);	*/
+	background-color: transparent;	
 }
 
 .homepage-carousel .slick-prev{
@@ -556,16 +583,94 @@ header .activate-dropdown:hover ul{
 	right: 0;
 }
 
-.homepage-carousel-containe{
+.popular-courses-carousel{
 	padding: 0;
 }
 
-.homepage-carousel-container .cards{
-	width: 300px;
-	float: left;
-	height: 220px;
+.popular-courses-carousel .popular-courses{
+	/*width: 360px !important;
+	height: 235px;*/
 	margin-right: 20px;
-	background: red;	
+}
+
+.popular-courses-carousel .course-hover-data{
+	opacity: 0;
+	padding: 4% 15px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: #fff;
+	width: 100%;
+	background-color: rgba(242, 114, 114, 0.9);
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.popular-courses-carousel .course-hover-data i{
+	padding-right: 6px;
+}
+
+.popular-courses-carousel .popular-courses:hover .course-hover-data{
+	opacity: 1;
+}
+
+.popular-courses-carousel .popular-courses:hover .progress,
+.popular-courses-carousel .popular-courses:hover .preview-video-length,
+.popular-courses-carousel .popular-courses:hover .course-title .discount-percent{
+	display: none;
+}
+
+.popular-courses-carousel .popular-courses 
+.img-container{
+	width: 100%;
+	position: relative;
+	border: solid 1px #fff;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.popular-courses-carousel .popular-courses 
+.img-container img{
+}
+
+.popular-courses-carousel .popular-courses 
+.progress{
+	width: 73.33%;
+	height: 2px;
+	float: left;
+	margin-top: 13px;
+	margin-right: 9px;
+	background: #c4cad1;
+}
+
+.popular-courses-carousel .popular-courses 
+.progress .progress-bar{
+	background: #119bf8;
+}
+
+.popular-courses-carousel .preview-video-length{
+	font-size: 13px;
+	font-weight: 600;
+	color: #8b99a7;
+	margin-top: 6px;
+	float: right;
+}
+
+.popular-courses-carousel .course-title{
+	clear: both;
+	margin-top: 5px;
+}
+
+.popular-courses-carousel .course-title h4{
+	color: #283947;
+	margin: 0;
+}
+
+.popular-courses-carousel .course-title .discount-percent{
+	font-size: 14px;
+	font-weight: 600;
+	color: #0099ff;
 }
 
 .homepage.explore-category{
