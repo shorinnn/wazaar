@@ -12,7 +12,7 @@ class UsersController extends Controller
     public function __construct(UserRepository $users){
         $this->users = $users;
         $this->beforeFilter('guest', array('only' => array('create', 'secondTierPublisherCreate', 'login' ,'forgotPassword', 'doForgotPassword')));
-        $this->beforeFilter('auth', array('only' => array('verificationConfirmation', 'registrationConfirmation' ,'links')));
+//        $this->beforeFilter('auth', array('only' => array('verificationConfirmation', 'registrationConfirmation' ,'links')));
     }
 
     /**
@@ -391,9 +391,14 @@ class UsersController extends Controller
     public function confirm($code)
     {
 //        if (Confide::confirm($code)) {
-        if (  $this->users->confirm($code) ) {          
+        try{
+            Session::flush();
+        }
+        catch(Exception $e){}
+        if (  $this->users->confirm($code) ) {    
             $notice_msg = Lang::get('confide::confide.alerts.confirmation');
-            return Redirect::action('UsersController@verificationConfirmation');
+            return View::make('confide.to_verification');
+//            return Redirect::action('UsersController@verificationConfirmation');
 //            return Redirect::action('UsersController@login')
 //                ->with('notice', $notice_msg);
         } else {
@@ -490,10 +495,18 @@ class UsersController extends Controller
     
             
     public function registrationConfirmation(){
+        if( Auth::guest() ){
+            $dot = getenv('AWS_MACHINE_IDENTIFIER') == 'Wazaar.' ? 1 : 0;
+            return Redirect::to("login?dot=$dot");
+        }
         return View::make('confide.signup_success');
     }
 
     public function verificationConfirmation(){
+        if( Auth::guest() ){
+            $dot = getenv('AWS_MACHINE_IDENTIFIER') == 'Wazaar.' ? 1 : 0;
+            return Redirect::to("login?dot=$dot");
+        }
         return View::make('confide.mail_verified');
     }
     

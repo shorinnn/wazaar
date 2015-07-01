@@ -12,7 +12,6 @@
 */
 //$domain = 'www.'.Config::get('app.base_url');
 $domain = Config::get('app.base_url');
-$wwwDomain = "www.$domain";
 $instructorSubdomain = 'instructors.'.Config::get('app.base_url');
 $affiliateSubdomain = 'affiliates.'. Config::get('app.base_url');
 
@@ -24,8 +23,8 @@ if( !isset($_SERVER['HTTP_HOST'])){
 
 Route::resource('lp', 'LpController');
 Route::get('loginTest', 'SiteController@loginTest');
-$wwwRoutes = function(){
-//Route::group( array('domain' =>  $domain), function(){
+
+Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
 	
@@ -101,10 +100,7 @@ $wwwRoutes = function(){
         Route::resource('coursesubcategories', 'CoursesSubcategoriesController');
         Route::resource('course-difficulties', 'CourseDifficultiesController');
     });
-//});
-};
-Route::group(array('domain' => $domain), $wwwRoutes);
-Route::group(array('domain' => $wwwDomain), $wwwRoutes);
+});
 
 // Affiliate promote links
 Route::group( array('domain' => $instructorSubdomain ), function(){
@@ -122,8 +118,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::get('courses/search-instructor/', 'CoursesController@searchInstructor');
 });
 
-$wwwRoutes = function(){
-//Route::group( array('domain' => $domain ), function(){
+Route::group( array('domain' => $domain ), function(){
     // Students
     Route::group(['prefix' => 'student'], function (){
         Route::get('mycourses', 'StudentController@mycourses');
@@ -181,10 +176,7 @@ $wwwRoutes = function(){
 
     Route::get('courses/{slug}', 'CoursesController@show');
 
-//});
-};
-Route::group(array('domain' => $domain), $wwwRoutes);
-Route::group(array('domain' => $wwwDomain), $wwwRoutes);
+});
 
 Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::get('courses/mycourses', 'CoursesController@myCourses');
@@ -225,8 +217,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     });
 });
 
-$wwwRoutes = function(){
-//Route::group( array('domain' => $domain ), function(){
+Route::group( array('domain' => $domain ), function(){
     // Instructors routes
     Route::get('instructors', 'InstructorsController@index');
     Route::get('instructors/accept-terms', 'InstructorsController@acceptTerms');
@@ -238,14 +229,11 @@ $wwwRoutes = function(){
 
     //joke route
     Route::get('shop', 'SiteController@shop');
-//});
-};
-Route::group(array('domain' => $domain), $wwwRoutes);
-Route::group(array('domain' => $wwwDomain), $wwwRoutes);
+});
 
 ## Route Group for Profile
-$wwwRoutes = function(){
-//Route::group( array('domain' => $domain ), function(){
+
+Route::group( array('domain' => $domain ), function(){
     Route::group(['prefix' => 'profile'], function (){
         Route::get('settings', 'ProfileController@settings');
         Route::put('settings', 'ProfileController@updateSettings');
@@ -260,10 +248,7 @@ $wwwRoutes = function(){
         ##
         Route::post('{id}/update', 'ProfileController@update');
     });
-//});
-};
-Route::group(array('domain' => $domain), $wwwRoutes);
-Route::group(array('domain' => $wwwDomain), $wwwRoutes);
+});
 
 
 Route::group( array('domain' => $affiliateSubdomain ), function(){    
