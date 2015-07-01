@@ -37,8 +37,16 @@
                                 display:block;
                             }
                         </style>
-                                        
-                        
+                        <ul class="logged-out">
+                            <li>
+                                <!--<a href="{{ action('UsersController@login') }}" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> -->
+                                <a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> 
+                            </li>
+                            <li class="register-button">
+                                <!--<a href="{{ action('UsersController@create') }}" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
+                                <a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>
+                            </li>
+                        </ul>                                        
                     </div>
                 </div>
             </header>
@@ -50,7 +58,7 @@
                             Get your skills to new level
                             <p class="lead">Learning has never been easier! New skills just a few clicks away!</p>
                         </h1>
-                        <a href="#" class="blue-button large-button round-button"><i class="fa fa-play-circle"></i>How it works</a>
+                        <a href="#" class="blue-button large-button round-button how-it-works"><i class="fa fa-play-circle"></i>How it works</a>
                         <div class="home-search-form">
                             <form>
                                 <div>
@@ -68,350 +76,215 @@
             <p class="lead">Our most popular courses everyone loves. Learn a skill now!</p>
             </h1>
             
-            <div class="homepage-carousel-container slider-nav container-fluid">
-                    <div class="cards">
-                        <a href="http://wazaar.dev/courses/cJio3">
-                        <div class="object small-box small-box-one">
-                            <!--<div class="level">Beginner</div>-->
-                            <!--            <div class="new-tag">NEW</div>
-                            -->
-                            <div class="img-container">
-                            <img 
-                                                src="https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg"
-                                             class="img-responsive" alt="">
-                                  <!---->
-                                <span class="video-play-button"><em></em></span>
-                                <span class="likes">100</span>         
+            <div class="popular-courses-carousel slider-nav container-fluid">
+                <div class="popular-courses">
+                    <a href="#">
+                    	<div class="img-container">
+                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                            <div class="course-hover-data">
+                            	<span class="discount-percent left">-20%</span>
+                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
                             </div>
-                            <div class="course-box-content clearfix">
-                                <h2>App Development</h2>
-                                <div class="short-description-container">
-                                    <p>Short:  You get a beginner award after completing the course.
-                                    <!--<span class="subcategory">
-                                            <small>Subcategory: 
-                                                <a href="http://wazaar.dev/courses/category/cJio3/cJio3">javascript</a>
-                                            </small>
-                                        </span>-->
-                                    </p>
-                                </div>
-                                <div class="bottom-contents clearfix">
-                                    <div class="difficulty-bar advanced">
-                                        <span class="bar-1"></span>
-                                        <span class="bar-2"></span>
-                                        <span class="bar-3"></span>
-                                    </div>
-                                    <div class="next_">
-                                        <!--<div class="learn-more">
-                                            <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
-                                        </div>-->
-                                        <div class="students-attending">
-                                            0 <!--Students-->
-                                        </div>   
-                                    </div> 
-                                    <div class="price-tag-container clearfix">
-                                                            <div class="price-tag">
-                                                                     ¥ 700
-                                                                </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
-                        </a>
-                    </div>                 
-                    <div class="cards">
-                        <a href="http://wazaar.dev/courses/cJio3">
-                        <div class="object small-box small-box-one">
-                            <!--<div class="level">Beginner</div>-->
-                            <!--            <div class="new-tag">NEW</div>
-                            -->
-                            <div class="img-container">
-                            <img 
-                                                src="https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg"
-                                             class="img-responsive" alt="">
-                                  <!---->
-                                <span class="video-play-button"><em></em></span>
-                                <span class="likes">100</span>         
+                        <div class="clearfix">
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                <span class="sr-only">70% Complete</span>
+                              </div>
                             </div>
-                            <div class="course-box-content clearfix">
-                                <h2>App Development</h2>
-                                <div class="short-description-container">
-                                    <p>Short:  You get a beginner award after completing the course.
-                                    <!--<span class="subcategory">
-                                            <small>Subcategory: 
-                                                <a href="http://wazaar.dev/courses/category/cJio3/cJio3">javascript</a>
-                                            </small>
-                                        </span>-->
-                                    </p>
-                                </div>
-                                <div class="bottom-contents clearfix">
-                                    <div class="difficulty-bar advanced">
-                                        <span class="bar-1"></span>
-                                        <span class="bar-2"></span>
-                                        <span class="bar-3"></span>
-                                    </div>
-                                    <div class="next_">
-                                        <!--<div class="learn-more">
-                                            <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
-                                        </div>-->
-                                        <div class="students-attending">
-                                            0 <!--Students-->
-                                        </div>   
-                                    </div> 
-                                    <div class="price-tag-container clearfix">
-                                                            <div class="price-tag">
-                                                                     ¥ 700
-                                                                </div>
-                                    </div>
-                                </div>
+                            <div class="left preview-video-length clearfix">
+                                <i class="fa fa-clock-o"></i>
+                                <span class="video-length">08:23:46</span>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
-                        </a>
-                    </div>                 
-                    <div class="cards">
-                        <a href="http://wazaar.dev/courses/cJio3">
-                        <div class="object small-box small-box-one">
-                            <!--<div class="level">Beginner</div>-->
-                            <!--            <div class="new-tag">NEW</div>
-                            -->
-                            <div class="img-container">
-                            <img 
-                                                src="https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg"
-                                             class="img-responsive" alt="">
-                                  <!---->
-                                <span class="video-play-button"><em></em></span>
-                                <span class="likes">100</span>         
-                            </div>
-                            <div class="course-box-content clearfix">
-                                <h2>App Development</h2>
-                                <div class="short-description-container">
-                                    <p>Short:  You get a beginner award after completing the course.
-                                    <!--<span class="subcategory">
-                                            <small>Subcategory: 
-                                                <a href="http://wazaar.dev/courses/category/cJio3/cJio3">javascript</a>
-                                            </small>
-                                        </span>-->
-                                    </p>
-                                </div>
-                                <div class="bottom-contents clearfix">
-                                    <div class="difficulty-bar advanced">
-                                        <span class="bar-1"></span>
-                                        <span class="bar-2"></span>
-                                        <span class="bar-3"></span>
-                                    </div>
-                                    <div class="next_">
-                                        <!--<div class="learn-more">
-                                            <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
-                                        </div>-->
-                                        <div class="students-attending">
-                                            0 <!--Students-->
-                                        </div>   
-                                    </div> 
-                                    <div class="price-tag-container clearfix">
-                                                            <div class="price-tag">
-                                                                     ¥ 700
-                                                                </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
+                        <div class="course-title clearfix">
+                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                        	<span class="discount-percent right">-20%</span>
                         </div>
-                        </a>
-                    </div>                 
-                    <div class="cards">
-                        <a href="http://wazaar.dev/courses/cJio3">
-                        <div class="object small-box small-box-one">
-                            <!--<div class="level">Beginner</div>-->
-                            <!--            <div class="new-tag">NEW</div>
-                            -->
-                            <div class="img-container">
-                            <img 
-                                                src="https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg"
-                                             class="img-responsive" alt="">
-                                  <!---->
-                                <span class="video-play-button"><em></em></span>
-                                <span class="likes">100</span>         
+                    </a>
+                </div>                                 
+                <div class="popular-courses">
+                    <a href="#">
+                    	<div class="img-container">
+                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                            <div class="course-hover-data">
+                            	<span class="discount-percent left">-20%</span>
+                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
                             </div>
-                            <div class="course-box-content clearfix">
-                                <h2>App Development</h2>
-                                <div class="short-description-container">
-                                    <p>Short:  You get a beginner award after completing the course.
-                                    <!--<span class="subcategory">
-                                            <small>Subcategory: 
-                                                <a href="http://wazaar.dev/courses/category/cJio3/cJio3">javascript</a>
-                                            </small>
-                                        </span>-->
-                                    </p>
-                                </div>
-                                <div class="bottom-contents clearfix">
-                                    <div class="difficulty-bar advanced">
-                                        <span class="bar-1"></span>
-                                        <span class="bar-2"></span>
-                                        <span class="bar-3"></span>
-                                    </div>
-                                    <div class="next_">
-                                        <!--<div class="learn-more">
-                                            <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
-                                        </div>-->
-                                        <div class="students-attending">
-                                            0 <!--Students-->
-                                        </div>   
-                                    </div> 
-                                    <div class="price-tag-container clearfix">
-                                                            <div class="price-tag">
-                                                                     ¥ 700
-                                                                </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
-                        </a>
-                    </div>                 
-                    <div class="cards">
-                        <a href="http://wazaar.dev/courses/cJio3">
-                        <div class="object small-box small-box-one">
-                            <!--<div class="level">Beginner</div>-->
-                            <!--            <div class="new-tag">NEW</div>
-                            -->
-                            <div class="img-container">
-                            <img 
-                                                src="https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg"
-                                             class="img-responsive" alt="">
-                                  <!---->
-                                <span class="video-play-button"><em></em></span>
-                                <span class="likes">100</span>         
+                        <div class="clearfix">
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                <span class="sr-only">70% Complete</span>
+                              </div>
                             </div>
-                            <div class="course-box-content clearfix">
-                                <h2>App Development</h2>
-                                <div class="short-description-container">
-                                    <p>Short:  You get a beginner award after completing the course.
-                                    <!--<span class="subcategory">
-                                            <small>Subcategory: 
-                                                <a href="http://wazaar.dev/courses/category/cJio3/cJio3">javascript</a>
-                                            </small>
-                                        </span>-->
-                                    </p>
-                                </div>
-                                <div class="bottom-contents clearfix">
-                                    <div class="difficulty-bar advanced">
-                                        <span class="bar-1"></span>
-                                        <span class="bar-2"></span>
-                                        <span class="bar-3"></span>
-                                    </div>
-                                    <div class="next_">
-                                        <!--<div class="learn-more">
-                                            <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
-                                        </div>-->
-                                        <div class="students-attending">
-                                            0 <!--Students-->
-                                        </div>   
-                                    </div> 
-                                    <div class="price-tag-container clearfix">
-                                                            <div class="price-tag">
-                                                                     ¥ 700
-                                                                </div>
-                                    </div>
-                                </div>
+                            <div class="left preview-video-length clearfix">
+                                <i class="fa fa-clock-o"></i>
+                                <span class="video-length">08:23:46</span>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
-                        </a>
-                    </div>                 
-                    <div class="cards">
-                        <a href="http://wazaar.dev/courses/cJio3">
-                        <div class="object small-box small-box-one">
-                            <!--<div class="level">Beginner</div>-->
-                            <!--            <div class="new-tag">NEW</div>
-                            -->
-                            <div class="img-container">
-                            <img 
-                                                src="https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg"
-                                             class="img-responsive" alt="">
-                                  <!---->
-                                <span class="video-play-button"><em></em></span>
-                                <span class="likes">100</span>         
-                            </div>
-                            <div class="course-box-content clearfix">
-                                <h2>App Development</h2>
-                                <div class="short-description-container">
-                                    <p>Short:  You get a beginner award after completing the course.
-                                    <!--<span class="subcategory">
-                                            <small>Subcategory: 
-                                                <a href="http://wazaar.dev/courses/category/cJio3/cJio3">javascript</a>
-                                            </small>
-                                        </span>-->
-                                    </p>
-                                </div>
-                                <div class="bottom-contents clearfix">
-                                    <div class="difficulty-bar advanced">
-                                        <span class="bar-1"></span>
-                                        <span class="bar-2"></span>
-                                        <span class="bar-3"></span>
-                                    </div>
-                                    <div class="next_">
-                                        <!--<div class="learn-more">
-                                            <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
-                                        </div>-->
-                                        <div class="students-attending">
-                                            0 <!--Students-->
-                                        </div>   
-                                    </div> 
-                                    <div class="price-tag-container clearfix">
-                                                            <div class="price-tag">
-                                                                     ¥ 700
-                                                                </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
+                        <div class="course-title clearfix">
+                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                        	<span class="discount-percent right">-20%</span>
                         </div>
-                        </a>
-                    </div>                 
-                
+                    </a>
+                </div>                                 
+                <div class="popular-courses">
+                    <a href="#">
+                    	<div class="img-container">
+                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                            <div class="course-hover-data">
+                            	<span class="discount-percent left">-20%</span>
+                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                <span class="sr-only">70% Complete</span>
+                              </div>
+                            </div>
+                            <div class="left preview-video-length clearfix">
+                                <i class="fa fa-clock-o"></i>
+                                <span class="video-length">08:23:46</span>
+                            </div>
+                        </div>
+                        <div class="course-title clearfix">
+                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                        	<span class="discount-percent right">-20%</span>
+                        </div>
+                    </a>
+                </div>                                 
+                <div class="popular-courses">
+                    <a href="#">
+                    	<div class="img-container">
+                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                            <div class="course-hover-data">
+                            	<span class="discount-percent left">-20%</span>
+                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                <span class="sr-only">70% Complete</span>
+                              </div>
+                            </div>
+                            <div class="left preview-video-length clearfix">
+                                <i class="fa fa-clock-o"></i>
+                                <span class="video-length">08:23:46</span>
+                            </div>
+                        </div>
+                        <div class="course-title clearfix">
+                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                        	<span class="discount-percent right">-20%</span>
+                        </div>
+                    </a>
+                </div>                                 
+                <div class="popular-courses">
+                    <a href="#">
+                    	<div class="img-container">
+                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                            <div class="course-hover-data">
+                            	<span class="discount-percent left">-20%</span>
+                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                <span class="sr-only">70% Complete</span>
+                              </div>
+                            </div>
+                            <div class="left preview-video-length clearfix">
+                                <i class="fa fa-clock-o"></i>
+                                <span class="video-length">08:23:46</span>
+                            </div>
+                        </div>
+                        <div class="course-title clearfix">
+                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                        	<span class="discount-percent right">-20%</span>
+                        </div>
+                    </a>
+                </div>                                 
+                <div class="popular-courses">
+                    <a href="#">
+                    	<div class="img-container">
+                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                            <div class="course-hover-data">
+                            	<span class="discount-percent left">-20%</span>
+                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                <span class="sr-only">70% Complete</span>
+                              </div>
+                            </div>
+                            <div class="left preview-video-length clearfix">
+                                <i class="fa fa-clock-o"></i>
+                                <span class="video-length">08:23:46</span>
+                            </div>
+                        </div>
+                        <div class="course-title clearfix">
+                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                        	<span class="discount-percent right">-20%</span>
+                        </div>
+                    </a>
+                </div>                                 
+                <div class="popular-courses">
+                    <a href="#">
+                    	<div class="img-container">
+                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                            <div class="course-hover-data">
+                            	<span class="discount-percent left">-20%</span>
+                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                <span class="sr-only">70% Complete</span>
+                              </div>
+                            </div>
+                            <div class="left preview-video-length clearfix">
+                                <i class="fa fa-clock-o"></i>
+                                <span class="video-length">08:23:46</span>
+                            </div>
+                        </div>
+                        <div class="course-title clearfix">
+                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                        	<span class="discount-percent right">-20%</span>
+                        </div>
+                    </a>
+                </div>                                 
+                <div class="popular-courses">
+                    <a href="#">
+                    	<div class="img-container">
+                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                            <div class="course-hover-data">
+                            	<span class="discount-percent left">-20%</span>
+                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="progress">
+                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                <span class="sr-only">70% Complete</span>
+                              </div>
+                            </div>
+                            <div class="left preview-video-length clearfix">
+                                <i class="fa fa-clock-o"></i>
+                                <span class="video-length">08:23:46</span>
+                            </div>
+                        </div>
+                        <div class="course-title clearfix">
+                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                        	<span class="discount-percent right">-20%</span>
+                        </div>
+                    </a>
+                </div>                                 
             </div>
         </div>
         <section class="container-fluid">
@@ -973,8 +846,9 @@
 			  dots: false,
 			  arrows: true,
 			  centerMode: true,
+			  speed: 1000,
 			  slidesToShow: 3,
-			  slidesToScroll: 3,
+			  slidesToScroll: 4,
 			  responsive: [
 				{
 				  breakpoint: 1024,
