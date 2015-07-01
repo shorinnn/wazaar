@@ -12,7 +12,7 @@ class UsersController extends Controller
     public function __construct(UserRepository $users){
         $this->users = $users;
         $this->beforeFilter('guest', array('only' => array('create', 'secondTierPublisherCreate', 'login' ,'forgotPassword', 'doForgotPassword')));
-        $this->beforeFilter('auth', array('only' => array('verificationConfirmation', 'registrationConfirmation' ,'links')));
+//        $this->beforeFilter('auth', array('only' => array('verificationConfirmation', 'registrationConfirmation' ,'links')));
     }
 
     /**
@@ -490,10 +490,18 @@ class UsersController extends Controller
     
             
     public function registrationConfirmation(){
+        if( Auth::guest() ){
+            $dot = getenv('AWS_MACHINE_IDENTIFIER') == 'Wazaar.' ? 1 : 0;
+            return Redirect::url("login?dot=$dot");
+        }
         return View::make('confide.signup_success');
     }
 
     public function verificationConfirmation(){
+        if( Auth::guest() ){
+            $dot = getenv('AWS_MACHINE_IDENTIFIER') == 'Wazaar.' ? 1 : 0;
+            return Redirect::url("login?dot=$dot");
+        }
         return View::make('confide.mail_verified');
     }
     
