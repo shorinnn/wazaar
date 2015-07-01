@@ -63,6 +63,11 @@ input[type="search"] {
 	outline: none;
 }
 
+button[disabled]{
+    background: #b2e0ff !important;
+    cursor: not-allowed !important;
+}
+
 ul {
 	margin: 0;
 	padding: 0;

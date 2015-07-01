@@ -207,7 +207,8 @@
                                      @else 
                                     	  <span class="price clearfix">
                                           </span>
-                                          <button class="clearfix enroll-button" disabled="disabled">
+                                          <button class="clearfix enroll-button" disabled="disabled" data-toggle="tooltip" data-placement="left" title="Available for customers">
+                                          {{ trans("courses/general.enroll") }} 
                                      @endif
                                         </button>
                                      <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
