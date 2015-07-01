@@ -397,8 +397,8 @@ class UsersController extends Controller
         catch(Exception $e){}
         if (  $this->users->confirm($code) ) {    
             $notice_msg = Lang::get('confide::confide.alerts.confirmation');
-            return View::make('confide.to_verification');
-//            return Redirect::action('UsersController@verificationConfirmation');
+//            return View::make('confide.to_verification');
+            return Redirect::action('UsersController@verificationConfirmation');
 //            return Redirect::action('UsersController@login')
 //                ->with('notice', $notice_msg);
         } else {
