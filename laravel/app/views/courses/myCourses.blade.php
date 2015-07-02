@@ -84,6 +84,18 @@
                                 {{ trans('courses/general.edit') }}
                             </a>
                             <!--{{-- link_to_action('CoursesController@edit', trans('courses/general.edit'), $course->slug, [ 'class'=>'transparent-button' ] ) --}}-->
+                            @if($course->student_count==0)
+                                {{ Form::open(['action' => ['CoursesController@destroy', $course->id], 
+                                               'method' => 'delete', 'id'=>'course-form-'.$course->id,
+                                               'class' => 'ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '.course-row-'.$course->id]) }}
+                                    <button class="btn btn-danger delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}" type="submit" >
+                                        <i class="fa fa-trash-o"></i> {{trans('crud/labels.delete')}}</button>
+                                {{ Form::close() }}
+                            @else
+                                <button title="{{trans('crud/labels.cannot-delete-students-purchased')}}" class="default-button tooltipable">
+                                    <i class="fa fa-exclamation-triangle"></i>
+                                </button>
+                            @endif
                         </div>
                     </div>
                     <div class="row mycourse-card-footer">
@@ -99,19 +111,7 @@
                                   @if($course->publish_status=='approved') published @endif
                                   ">
                                     {{ trans('courses/general.my-courses-publish.'.$course->publish_status) }}</span>
-                           <!--
-                            @if($course->student_count==0)
-                                {{ Form::open(['action' => ['CoursesController@destroy', $course->id], 
-                                               'method' => 'delete', 'id'=>'course-form-'.$course->id,
-                                               'class' => 'ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '.course-row-'.$course->id]) }}
-                                    <button class="btn btn-danger delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}" type="submit" >{{trans('crud/labels.delete')}}</button>
-                                {{ Form::close() }}
-                            @else
-                                <button title="{{trans('crud/labels.cannot-delete-students-purchased')}}" class="default-button tooltipable">
-                                    <i class="fa fa-exclamation-triangle"></i>
-                                </button>
-                            @endif
-                            -->
+                            
                         </div>
                     </div>
                 </div>
