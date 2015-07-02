@@ -348,7 +348,7 @@ function adjustPrice(e){
     if( val==0 && typeof('data-allow-zero')!='undefined' ){}
     else if(  val!=0 ){
         if(val < 500){
-            if(  typeof( $(e).attr('data-next-to') )==undefined )
+            if(  typeof( $(e).attr('data-next-to') ) == 'undefined' )
                 $(e).parent().parent().append('<p class="min-price-error alert alert-danger">' + _('min-price-500') + '</p>');
             else
                 $(e).parent().append('<p class="min-price-error alert alert-danger">' + _('min-price-500') + '</p>');
