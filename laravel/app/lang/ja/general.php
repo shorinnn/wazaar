@@ -75,7 +75,7 @@ return array(
     'browse-courses' => 'Browse Courses',
     'begin_creating_your_course' => '動画教材の制作を開始しましょう！',
     'click-go-to-begin' => 'クリックを押して今すぐ始めましょう！',
-    'verify-go-button' => '次へ！'
-    
+    'verify-go-button' => '次へ！',
+    'enter-email-and-password' => 'メールアドレスでログイン',
  
 );

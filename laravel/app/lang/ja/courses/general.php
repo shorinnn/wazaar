@@ -144,13 +144,20 @@ return array(
     ],
     'my-courses-publish' => [
         'rejected' => '教材の見直し必要',
-        'unsubmitted' => '制作中',
+        //'unsubmitted' => '制作中',
+        'unsubmitted' => '未提出',
         'pending' => '審査中',
+        'pending' => '審査中',
+//        'approved' => '承認済'
         'approved' => '承認済'
     ],
     'instructor-no-courses' => 'まだ動画教材を制作されておりません。',
     'create-btn-instructor' => '新規教材を制作しましょう！',
     'dashboard' => 'ダッシュボード',
-    'course-ready-for-submission' => '商品は審査中です。',
+//    'course-ready-for-submission' => '商品は審査中です。',
+    'course-ready-for-submission' => '商品をご提出ください。',
+    'complete-x-steps-to-submit' => "商品提出までに<span><span>:steps</span></span>ステップ必要",
+    'wazaar-is-checking-your-product' => '商品は審査中です。',
+    'enroll' => 'このコースを受講する',
 );
 

@@ -175,4 +175,6 @@ return array(
     'instructor-no-courses' => 'You have no courses yet',
     'create-btn-instructor' => 'Create Course',
     'course-ready-for-submission' => 'Course Ready For Submission',
+    'complete-x-steps-to-submit' => "Complete <span><span>:steps</span> steps</span> to submit course",
+    'wazaar-is-checking-your-product' => 'Wazaar is checking your product',
 );
