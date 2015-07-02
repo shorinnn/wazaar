@@ -9,6 +9,9 @@
     <div class="approval-box">
             <h4 class="not-approved">
                 {{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}
+                @if($course->publish_status=='pending')
+                    <br />{{ trans('courses/general.wazaar-is-checking-your-product') }}
+                @endif
             </h4>
         @if($course->publish_status =='unsubmitted')
             <p class="regular-paragraph">
