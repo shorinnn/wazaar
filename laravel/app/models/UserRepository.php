@@ -179,26 +179,35 @@ class UserRepository
         
         // Generate a random confirmation code
         $user->confirmation_code     = md5(uniqid(mt_rand(), true));
+        
+         $profileType = 'Student';
 
         // Save if valid. Password field will be hashed before save
         $this->save($user);
         $user = $this->attachRoles($user);
-        if( $registersAsST!=null || ( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) ) $user = $this->attachRoles($user, 1);
-        if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ) $user = $this->attachRoles($user, 2);
+        if( $registersAsST!=null || ( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) ){
+            $user = $this->attachRoles($user, 1);
+            $profileType = 'Instructor';
+        }
+        if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ){
+            $user = $this->attachRoles($user, 2);
+             $profileType = 'Affiliate';
+        }
         $this->save_ltc($user, $ltc_cookie);
         
         if($registersAsST!=null){// create profile
+            $profileType = 'Instructor';
+        }
             $first_name = $input['first_name'];
             $last_name = $input['last_name'];
             $profile = new Profile;
             $profile->owner_id = $user->id; 
-            $profile->owner_type = 'Instructor'; 
+            $profile->owner_type = $profileType;
             $profile->first_name = $first_name;// 'First  Name';//!isset($name[1]) && empty($name[1]) ? 'First Name' : $name[1];
             $profile->last_name = $last_name;//  'Last Name';//!isset($name[0]) && empty($name[0]) ? 'Last Name' : $name[0];
             $profile->email = $user->email;
             $profile->save();
 
-        }
         return $user;
     }
     
