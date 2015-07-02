@@ -379,6 +379,16 @@
         if (_.autoPlayTimer) {
             clearInterval(_.autoPlayTimer);
         }
+         if (_.options.pauseOnHover === true && _.options.autoplay === true) {
+            _.$list.on('mouseenter.slick', function(){
+                _.paused = true;
+                _.autoPlayClear();
+            });
+            _.$list.on('mouseleave.slick', function(){
+                _.paused = false;
+                _.autoPlay();
+            });
+         }
 
     };
 

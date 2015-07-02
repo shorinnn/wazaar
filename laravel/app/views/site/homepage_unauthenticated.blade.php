@@ -401,6 +401,14 @@
                                   <!---->
                                 <span class="video-play-button"><em></em></span>
                                 <span class="likes">100</span>         
+                                <span class="box-overlay">
+                                    <p>Lesson</p>
+                                    <p>weeks of learning</p>
+                                    <div class="footer clearfix">
+                                        <div class="heart-icon"></div>
+                                        <div class="highly-recommend">highly recommend</div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="course-box-content clearfix">
                                 <h2>App Development</h2>
@@ -434,14 +442,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
                         </a>
                     </div>                 
@@ -458,6 +458,14 @@
                                   <!---->
                                 <span class="video-play-button"><em></em></span>
                                 <span class="likes">100</span>         
+                                <span class="box-overlay">
+                                    <p>Lesson</p>
+                                    <p>weeks of learning</p>
+                                    <div class="footer clearfix">
+                                        <div class="heart-icon"></div>
+                                        <div class="highly-recommend">highly recommend</div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="course-box-content clearfix">
                                 <h2>App Development</h2>
@@ -491,14 +499,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
                         </a>
                     </div>                 
@@ -515,6 +515,14 @@
                                   <!---->
                                 <span class="video-play-button"><em></em></span>
                                 <span class="likes">100</span>         
+                                <span class="box-overlay">
+                                    <p>Lesson</p>
+                                    <p>weeks of learning</p>
+                                    <div class="footer clearfix">
+                                        <div class="heart-icon"></div>
+                                        <div class="highly-recommend">highly recommend</div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="course-box-content clearfix">
                                 <h2>App Development</h2>
@@ -548,14 +556,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
                         </a>
                     </div>                 
@@ -574,6 +574,14 @@
                                   <!---->
                                 <span class="video-play-button"><em></em></span>
                                 <span class="likes">100</span>         
+                                <span class="box-overlay">
+                                    <p>Lesson</p>
+                                    <p>weeks of learning</p>
+                                    <div class="footer clearfix">
+                                        <div class="heart-icon"></div>
+                                        <div class="highly-recommend">highly recommend</div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="course-box-content clearfix">
                                 <h2>App Development</h2>
@@ -607,14 +615,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
                         </a>
                     </div>                 
@@ -631,6 +631,14 @@
                                   <!---->
                                 <span class="video-play-button"><em></em></span>
                                 <span class="likes">100</span>         
+                                <span class="box-overlay">
+                                    <p>Lesson</p>
+                                    <p>weeks of learning</p>
+                                    <div class="footer clearfix">
+                                        <div class="heart-icon"></div>
+                                        <div class="highly-recommend">highly recommend</div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="course-box-content clearfix">
                                 <h2>App Development</h2>
@@ -664,14 +672,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
                         </a>
                     </div>                 
@@ -688,6 +688,14 @@
                                   <!---->
                                 <span class="video-play-button"><em></em></span>
                                 <span class="likes">100</span>         
+                                <span class="box-overlay">
+                                    <p>Lesson</p>
+                                    <p>weeks of learning</p>
+                                    <div class="footer clearfix">
+                                        <div class="heart-icon"></div>
+                                        <div class="highly-recommend">highly recommend</div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="course-box-content clearfix">
                                 <h2>App Development</h2>
@@ -721,14 +729,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
                         </a>
                     </div>                 
@@ -845,14 +845,16 @@
 			$('.slider-nav').slick({
 			  dots: false,
 			  arrows: true,
-			  speed: 20000,
-			  infinite: true,
+			  speed: 9000,
 			  autoplay: true,
+			  infinite: true,
 			  autoplaySpeed: 0,
+			  cssEase: 'linear',
+			  slidesToShow: 4,
+			  slidesToScroll: 1,
+			  centerMode: true,			  
 			  pauseOnHover: true,
 			  swipe: true,
-			  slidesToShow: 4,
-			  slidesToScroll: 20,
 			  responsive: [
 				{
 				  breakpoint: 1024,
