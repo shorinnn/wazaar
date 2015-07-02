@@ -41,7 +41,7 @@ class Course extends Ardent{
         'courseDifficulty' => array(self::BELONGS_TO, 'CourseDifficulty'),
         'sales' => array(self::MORPH_MANY, 'Purchase', 'name' => 'product' ),
         'courseReferrals' => array(self::HAS_MANY, 'CourseReferral'),
-        'modules' => array(self::HAS_MANY, 'Module'),
+        'allModules' => array(self::HAS_MANY, 'Module'),
         'testimonials' => [ self::HAS_MANY, 'Testimonial' ],
         'comments' => [self::HAS_MANY, 'Conversation'],
         'messages' => [self::HAS_MANY, 'PrivateMessage'],
@@ -50,6 +50,10 @@ class Course extends Ardent{
         'descriptionVideo' => [self::BELONGS_TO, 'Video', 'foreignKey' => 'description_video_id'],
     );
     
+    public function modules($publicOnly=true){
+        if( $publicOnly ) return $this->allModules()->where('public', 'yes');
+        return $this->allModules();
+    }
     public function dashboardComments(){
         return $this->comments()->where( 'lesson_id', null );
     }
@@ -313,6 +317,26 @@ class Course extends Ardent{
             }
             return true;
         }
+    }
+    
+    public function dashboardModule(){
+        $module = $this->allModules()->where('public','no')->where('order',99999)->first();
+        if( $module == null ){
+            $module = new Module();
+            $module->order = 99999;
+            $module->public = 'no';
+            $module->course_id = $this->id;
+            $module->name = 'Opening lesson';
+            if( !$module->save()){
+                dd( $module->errors()->all() );
+            }
+            $lesson = new Lesson();
+            $lesson->module_id = $module->id;
+            $lesson->slug = 'opening-lesson';
+            $lesson->published = 'no';
+            $lesson->save();
+        }
+        return $module;
     }
 
 

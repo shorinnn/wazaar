@@ -10,13 +10,11 @@
                 </a>
                 <div class="user-data-modal clearfix">
                     <h1 class="clearfix">{{ trans('general.login') }}</h1>
-                     @if( App::environment() != 'production' )
                         <div class="login-social-buttons clearfix">
                             <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('site/login.sign-in-with-fb') }}</a>
                             <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
                         </div>
                         <div class="or"><span class="left-line"></span>{{ trans('site/login.or') }}<span class="right-line"></span></div>
-                    @endif
                     
                     <p class="regular-paragraph text-center light-gray-text">{{ trans('general.enter-email-and-password') }}</p>
                     <div class="form-container clearfix">

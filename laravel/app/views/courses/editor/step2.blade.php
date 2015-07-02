@@ -3,6 +3,7 @@
        			<p class="intro-paragraph">{{ trans('courses/general.step2-title') }}</p>
                 <div class="plan-your-curriculum">
                     <ul id="modules-list">
+                        {{ View::make('courses.modules.dashboard-module')->withModule( $course->dashboardModule() ) }}
                         @foreach($course->modules()->orderBy('order','ASC')->get() as $module)
                             {{ View::make('courses.modules.module')->with(compact('module')) }}
                         @endforeach
