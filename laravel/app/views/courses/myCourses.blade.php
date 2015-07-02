@@ -99,7 +99,7 @@
                                   @if($course->publish_status=='approved') published @endif
                                   ">
                                     {{ trans('courses/general.my-courses-publish.'.$course->publish_status) }}</span>
-                            
+                           <!--
                             @if($course->student_count==0)
                                 {{ Form::open(['action' => ['CoursesController@destroy', $course->id], 
                                                'method' => 'delete', 'id'=>'course-form-'.$course->id,
@@ -111,6 +111,7 @@
                                     <i class="fa fa-exclamation-triangle"></i>
                                 </button>
                             @endif
+                            -->
                         </div>
                     </div>
                 </div>
