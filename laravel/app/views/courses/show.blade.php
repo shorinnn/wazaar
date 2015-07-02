@@ -365,12 +365,12 @@
               		</div>
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="sidebar"> 
-                            <div class="money-back">
+                            <!--<div class="money-back">
                         		<small>{{ trans('general.you-are-backed-by-our') }}</small>                           
                                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/30-days-coupon.png" alt="">
                                 <p>{{ trans('general.money-back-guarantee') }}</p>
-                            </div>
-                            <div class="what-you-will-learn">
+                            </div>-->
+                            <div class="what-you-will-learn margin-top-30">
                             	<h2>{{ trans('courses/general.what-you-will-learn') }}</h2>
                             	<ul>
                                     @if($achievements = json2Array($course->what_will_you_achieve))

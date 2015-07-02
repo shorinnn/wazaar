@@ -19,6 +19,14 @@
               @endif-->
             <span class="video-play-button"><em></em></span>
             <span class="likes">{{ $course->reviews_positive_score }}</span>         
+            <span class="box-overlay">
+                <p>{{trans('general.lesson')}}</p>
+                <p>{{trans('general.weeks-of-learning')}}</p>
+                <div class="footer clearfix">
+                    <div class="heart-icon"></div>
+                    <div class="highly-recommend">{{trans('general.highly-recommend')}}</div>
+                </div>
+            </span>
         </div>
         <div class="course-box-content clearfix">
             <h2>{{ $course->name }}</h2>
@@ -75,14 +83,6 @@
                 </div>
             </div>
 		</div>
-	    <span class="box-overlay">
-        	<p>{{trans('general.lesson')}}</p>
-            <p>{{trans('general.weeks-of-learning')}}</p>
-            <div class="footer clearfix">
-            	<div class="heart-icon"></div>
-                <div class="highly-recommend">{{trans('general.highly-recommend')}}</div>
-            </div>
-        </span>
     </div>
     </a>
 </div>
