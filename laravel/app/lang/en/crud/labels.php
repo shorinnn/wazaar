@@ -31,5 +31,6 @@ return array(
     'new-password' => 'New Password',
     'password-confirmation' => 'Password Confirmation',
     'add' => 'Add',
-    'view-old-version' => 'View Old Version'
+    'view-old-version' => 'View Old Version',
+    'cannot-delete-students-purchased' => 'Cannot delete - students purchased course',
 );

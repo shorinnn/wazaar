@@ -32,5 +32,6 @@ return array(
     'old-password' => '現在のパスワード',
     'new-password' => '新しいパスワード',
     'password-confirmation' => '新しいパスワード（確認用）',
-    'view-old-version' => 'View Old Version'
+    'view-old-version' => 'View Old Version',
+    'cannot-delete-students-purchased' => 'Cannot delete - students purchased course',
 );
