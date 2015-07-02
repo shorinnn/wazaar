@@ -6124,6 +6124,17 @@ a.load-remote > *{
 	padding: 10px 0;
 }
 
+.min-price-error{
+	background-color: transparent;
+	border: none;
+	/*color: #ff0000;*/
+	padding: 5px 10px 5px 0;
+	clear: both;
+	font-size: 13px;
+	font-style: italic;
+	margin: 0;
+}
+
 .calender .date{
 	padding: 0 !important;
 	width: 99.5% !important;

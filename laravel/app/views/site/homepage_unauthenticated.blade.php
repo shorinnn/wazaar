@@ -845,14 +845,16 @@
 			$('.slider-nav').slick({
 			  dots: false,
 			  arrows: true,
-			  speed: 20000,
-			  infinite: true,
+			  speed: 9000,
 			  autoplay: true,
+			  infinite: true,
 			  autoplaySpeed: 0,
+			  cssEase: 'linear',
+			  slidesToShow: 4,
+			  slidesToScroll: 1,
+			  centerMode: true,			  
 			  pauseOnHover: true,
 			  swipe: true,
-			  slidesToShow: 4,
-			  slidesToScroll: 20,
 			  responsive: [
 				{
 				  breakpoint: 1024,
