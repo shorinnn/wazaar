@@ -139,6 +139,10 @@ $wwwRoutes = function(){
     Route::get('conversations/reply-to/{id}', 'ConversationsController@replyTo');
     Route::post('conversations/load-more/', 'ConversationsController@loadMore');
     Route::resource('conversations', 'ConversationsController');
+    Route::get('discussions/{id}/vote/{vote}', 'DiscussionsController@vote');
+    Route::resource('discussions', 'DiscussionsController');
+    Route::get('discussion-replies/{id}/vote/{vote}', 'DiscussionRepliesController@vote');
+    Route::resource('discussion-replies', 'DiscussionRepliesController');
 
     // Private Messages
     Route::get('private-messages/thread/{id}', 'PrivateMessagesController@thread');

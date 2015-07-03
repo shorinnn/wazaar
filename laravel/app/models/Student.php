@@ -18,6 +18,7 @@ class Student extends User{
         'following' => [self::BELONGS_TO_MANY, 'Instructor',  'table' => 'follow_relationships',  'foreignKey' => 'student_id', 'otherKey' => 'instructor_id'],
         'sentMessages' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'sender_id' ],
         'receivedMessagesRel' => [ self::HAS_MANY, 'PrivateMessage', 'foreignKey' => 'recipient_id' ],
+        'discussions' => array(self::HAS_MANY, 'LessonDiscussion'),
       ];
     
     public function getTransactionsAttribute(){

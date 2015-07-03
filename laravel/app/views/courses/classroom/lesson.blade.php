@@ -9,6 +9,11 @@
 @section('content')
     
         <div class="classrooms-wrapper clearfix">
+            @if( $errors->any() )
+            <p class='alert alert-danger'>
+                {{ $errors->first() }}
+            </p>
+            @endif
             <!--<h1 class="classroom-course-title">{{trans('courses/general.Course')}}: {{ $course->name }}</h1>
             <h2 class="classroom-lesson-title">{{trans('courses/general.lesson')}}: {{ $lesson->name }}</h2>-->
         	<section class="video-container">
@@ -158,10 +163,28 @@
             @endif
             
             @if($lesson->module->course->discussions=='yes')
+
+            
+            <div style="border:1px solid black; background-color:white; padding:10px; margin:0px" class='row'>
+                
+                <p class='blade-location'> TEMPORARY DISCUSSIONS UI </p>
+                {{ View::make('courses.classroom.discussions.form')->with( compact('lesson') ) }}
+
+                <div>
+                    <div class='col-lg-9 well lesson-questions-replies'></div>
+                    <div class='col-lg-3 well'>{{ View::make('courses.classroom.discussions.questions')->with( compact('lesson') ) }}</div>
+                    <br class='clearfix' />&nbsp;
+                </div>
+                
+                    
+            </div>
+                
+            
+                
                 <section class="classroom-content container">
                     <div class="row classmate-conversations-heading">
                             <div class="col-md-12">
-                            <p class="lead">{{trans('conversations/general.classmate-conversations')}}</p>
+                            <p class="lead">OLD!!! {{trans('conversations/general.classmate-conversations')}}</p>
                         </div>
                     </div>
 

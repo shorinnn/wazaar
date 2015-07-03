@@ -83,7 +83,7 @@
                    
                 @else
                     <img style="height: 50px; width: 50px; border-radius: 50px;" 
-                         src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/profile_pictures/avatar-placeholder.jpg")}}" alt="">
+                         src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" alt="">
                 @endif
                 <?php
                     $received = $student->receivedMessages()->unread( $student->id )->with('sender.profiles')->with('sender')->with('course')->get();

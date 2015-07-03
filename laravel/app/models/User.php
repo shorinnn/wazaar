@@ -88,7 +88,7 @@ class User extends Ardent implements ConfideUserInterface
         else return $this->last_name;
     }
     
-    private function _defaultProfile(){
+    private function _defaultProfile( ){
         if( $this->profiles && $this->profiles !=null){
             if( $this->profiles()->where('owner_type','Instructor')->first() != null ) 
                     return $this->profiles()->where('owner_type','Instructor')->first();
@@ -96,7 +96,9 @@ class User extends Ardent implements ConfideUserInterface
                     return $this->profiles()->where('owner_type','Affiliate')->first();
             if( $this->profiles()->where('owner_type','Student')->first() != null ) 
                     return $this->profiles()->where('owner_type','Student')->first();
+            return null;
         }
+        else if( $this->profile && $this->profile !=null) return $this->profile;
         else return null;
     }
     
@@ -135,7 +137,7 @@ class User extends Ardent implements ConfideUserInterface
             return $user->profile->photo;
         }
         else{
-            return '//s3-ap-northeast-1.amazonaws.com/profile_pictures/avatar-placeholder.jpg';
+            return '//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg';
         }
     }
 

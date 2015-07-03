@@ -248,6 +248,7 @@ function linkToRemote(e){
         elem = elem.parent();
         url = elem.attr('data-url');
         callback = elem.attr('data-callback');  
+        e.target = elem;
     }
     
     $(elem).attr('data-old-label', $(elem).html() );
@@ -258,7 +259,7 @@ function linkToRemote(e){
         result = JSON.parse(result);
         if(result.status == 'success' ){
             if( typeof(callback)!= 'undefined'){
-                window[callback](e);
+                window[callback](e, result);
             }
         }
         else{
@@ -551,10 +552,18 @@ function scrollNavigation(){
  */
 function addToList(json, e, prepend){
     var destination = $(e.target).attr('data-destination');
+    if( typeof( $(e.target).attr('data-prepend')  ) !='undefined') prepend = $(e.target).attr('data-prepend');
     if( typeof(prepend)== 'undefined')    $(destination).append( json.html );
     else     $(destination).prepend( json.html );
     // reset the original form
     $(e.target)[0].reset();
+}
+
+function updateHTML(e, json){
+    var target = $(e.target).attr('data-target');
+    prop = $(e.target).attr('data-property');
+    val = json[prop];
+    $(target).html( val );
 }
 
 /**
