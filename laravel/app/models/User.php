@@ -88,7 +88,16 @@ class User extends Ardent implements ConfideUserInterface
         else return $this->last_name;
     }
     
+    private function _affiliateDefaultProfile(){
+        $profile = Profile::where('owner_type','Affiliate')->where('owner_id', $this->id)->first();
+        if( $profile && $profile !=null){
+            return $profile;
+        }
+        else return null;
+    }
+    
     private function _defaultProfile( ){
+        if( is_a($this,'ProductAffiliate') || is_a($this,'LTCAffiliate') ) return $this->_affiliateDefaultProfile();
         if( $this->profiles && $this->profiles !=null){
             if( $this->profiles()->where('owner_type','Instructor')->first() != null ) 
                     return $this->profiles()->where('owner_type','Instructor')->first();
