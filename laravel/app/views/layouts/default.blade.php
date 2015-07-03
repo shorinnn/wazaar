@@ -340,7 +340,7 @@
                          window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
                          _.setTranslation( js_translation_map_{{ Config::get('app.locale') }} );
 			$(document).ready(function() {
-
+				$('.popular-courses-carousel').show();
                 jQuery(window).bind('beforeunload', function(e) {
 
                     var message =  _("If you leave this page, you'll miss uploading file, do you wanna leave now?");
@@ -352,16 +352,16 @@
                 });
 
 
-                            $('.showRegister').click(function(){
-                                $('.modal').modal('hide');
-                                $('[data-target="#registerModal"]').click();
-                                return false;
-                            });
-                            $('.showLogin').click(function(){
-                                $('.modal').modal('hide');
-                                $('[data-target="#loginModal"]').click();
-                                return false;
-                            });
+				$('.showRegister').click(function(){
+					$('.modal').modal('hide');
+					$('[data-target="#registerModal"]').click();
+					return false;
+				});
+				$('.showLogin').click(function(){
+					$('.modal').modal('hide');
+					$('[data-target="#loginModal"]').click();
+					return false;
+				});
 
 				$('#video-container').prepend('<div id="video-background" class="full-screen"></div>');
 				$('#video-background').videobackground({
@@ -390,6 +390,7 @@
 				$('#video-grid').on('slide.bs.carousel', function () {
 				})		
 				 
+				/************** Old Homepage carousels to be deprecated ***************/ 
 				$('.top-categories-slider').show().slick({
 		     	  dots: false,
 				  arrows: false,
@@ -471,6 +472,81 @@
 					// instead of a settings object
 				  ]		
 				});		
+				/************** Old Homepage carousels end ***************/ 
+				
+				/************** New Homepage carousels***************/ 
+				var slider = $('.whats-hot-slider').slick({
+				  dots: false,
+				  arrows: true,
+				  speed: 750,
+				  autoplay: true,
+				  infinite: true,
+				  autoplaySpeed: 0,
+				  cssEase: 'linear',
+				  slidesToShow: 4,
+				  slidesToScroll: 0.1,
+				  pauseOnHover: true,
+				  swipe: true,
+				  waitForAnimate: false,
+				  responsive: [
+					{
+					  breakpoint: 1024,
+					  settings: {
+						slidesToShow: 3,
+						slidesToScroll: 6,
+						dots: false
+					  }
+					},
+					{
+					  breakpoint: 600,
+					  settings: {
+						slidesToShow: 2,
+						slidesToScroll: 4,
+					  }
+					},
+					{
+					  breakpoint: 480,
+					  settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1
+					  }
+					}
+					// You can unslick at a given breakpoint now by adding:
+					// settings: "unslick"
+					// instead of a settings object
+				  ]
+				});
+				
+				$('.slick-prev, .slick-next').detach().appendTo('.popular-courses-carousel');							
+				/*$('.slick-prev, .slick-next').on("mouseover", function () {
+					slider.slick('slickSetOption', 'slidesToScroll', 0.2);
+				});
+				
+				$('.slick-prev, .slick-next').on("mouseout", function () {
+					slider.slick('slickSetOption', 'slidesToScroll', 0.1);
+				});*/
+
+				$('.whats-hot-slider').slick({
+					interval: false
+				});
+				
+				var i;
+								
+				$('.slick-prev, .slick-next').on("mouseover", function () {
+					var control = $(this),
+						interval = 1000;
+					
+					slider.slick('slickSetOption', 'slidesToScroll', 0.2);
+					
+					i = setInterval(function () {
+						control.trigger("click");
+					}, interval);
+				});
+				$('.slick-prev, .slick-next').on("mouseout", function () {
+					clearInterval(i);
+					slider.slick('slickSetOption', 'slidesToScroll', 0.1);
+				});
+				/************** New Homepage carousels ends ***************/ 
 				
 				$('.datepicker').datepicker();
 				$('[data-toggle="tooltip"]').tooltip();
