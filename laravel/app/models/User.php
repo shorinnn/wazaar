@@ -73,23 +73,36 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     public function firstName(){
-        if( $this->profiles && $this->profiles->first() !=null ){
-            return $this->profiles->first()->first_name;
+        $profile = $this->_defaultProfile();
+        if( $profile !=null){
+            return $profile->first_name;
         }
-        else{
-            return $this->first_name;
-        }
+        else return $this->first_name;
     }
     
     public function lastName(){
-        if( $this->profiles && $this->profiles->first() !=null){
-            return $this->profiles->first()->last_name;
+        $profile = $this->_defaultProfile();
+        if( $profile !=null){
+            return $profile->last_name;
         }
         else return $this->last_name;
     }
     
+    private function _defaultProfile(){
+        if( $this->profiles && $this->profiles !=null){
+            if( $this->profiles()->where('owner_type','Instructor')->first() != null ) 
+                    return $this->profiles()->where('owner_type','Instructor')->first();
+            if( $this->profiles()->where('owner_type','Affiliate')->first() != null ) 
+                    return $this->profiles()->where('owner_type','Affiliate')->first();
+            if( $this->profiles()->where('owner_type','Student')->first() != null ) 
+                    return $this->profiles()->where('owner_type','Student')->first();
+        }
+        else return null;
+    }
+    
     public function fullName(){
-        return $this->firstName().' '.$this->lastName();
+        if( Config::get('first_name_first') == true ) return $this->firstName().' '.$this->lastName();
+        return $this->lastName().' '.$this->firstName();
     }
     
     public function email($profile){
