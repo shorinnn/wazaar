@@ -109,6 +109,7 @@
     @endif
         <script>
              window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
+              _.setTranslation( js_translation_map_{{ Config::get('app.locale') }} );
         </script>
     @yield('extra_js')
     	<script type="text/javascript" src="{{url('js/bootbox.js')}}"></script>

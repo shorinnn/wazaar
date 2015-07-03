@@ -44,7 +44,7 @@
                 @endif
                 <!--/ no courses -->
             	@foreach($courses as $course)
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3 mycourse-card">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3 mycourse-card course-row-{{$course->id}}">
                     <div class="row mycourse-card-main">
                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                             <div class="mycourses-thumb">
@@ -79,11 +79,23 @@
                         </div>
                         <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
                             <a href='{{ action('CoursesController@edit', $course->slug) }}' 
-                               class='transparent-button'>
+                               class='edit-button'>
                                 <i class="fa fa-pencil-square-o"></i>
                                 {{ trans('courses/general.edit') }}
                             </a>
                             <!--{{-- link_to_action('CoursesController@edit', trans('courses/general.edit'), $course->slug, [ 'class'=>'transparent-button' ] ) --}}-->
+                            @if($course->student_count==0)
+                                {{ Form::open(['action' => ['CoursesController@destroy', $course->id], 
+                                               'method' => 'delete', 'id'=>'course-form-'.$course->id,
+                                               'class' => 'ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '.course-row-'.$course->id]) }}
+                                    <button class="btn btn-danger delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}" type="submit" >
+                                        <i class="fa fa-trash-o"></i> {{trans('crud/labels.delete')}}</button>
+                                {{ Form::close() }}
+                            @else
+                                <button title="{{trans('crud/labels.cannot-delete-students-purchased')}}" class="default-button tooltipable">
+                                    <i class="fa fa-exclamation-triangle"></i>
+                                </button>
+                            @endif
                         </div>
                     </div>
                     <div class="row mycourse-card-footer">
@@ -99,6 +111,7 @@
                                   @if($course->publish_status=='approved') published @endif
                                   ">
                                     {{ trans('courses/general.my-courses-publish.'.$course->publish_status) }}</span>
+                            
                         </div>
                     </div>
                 </div>

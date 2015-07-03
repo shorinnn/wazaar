@@ -379,7 +379,6 @@
         if (_.autoPlayTimer) {
             clearInterval(_.autoPlayTimer);
         }
-
     };
 
     Slick.prototype.autoPlayIterator = function() {

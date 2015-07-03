@@ -1,56 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>App Development - Wazaar</title>    
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="{{url('css/slick.css')}}">
-    <link rel="stylesheet" href="{{url('css/slick-theme.css')}}">
-
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <html class="ie8">
-    <![endif]-->
-    
-    
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
-<body>
-    <div id="wrapper">
-    	<section class="homepage-header-wrapper">
-        	<span class="background-image-overlay"></span>
-            <header class="container-fluid">
-                <div class="row">
-                    <div class="top-menu clearfix col-md-12">
-                        <a href="http://wazaar.dev" class="main-logo">
-                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
-                           class="img-responsive" alt="">
-                        </a>    
-                        <style>
-                            .top-menu .main-logo {
-                                display:block;
-                            }
-                        </style>
-                        <ul class="logged-out">
-                            <li>
-                                <!--<a href="{{ action('UsersController@login') }}" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> -->
-                                <a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> 
-                            </li>
-                            <li class="register-button">
-                                <!--<a href="{{ action('UsersController@create') }}" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
-                                <a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>
-                            </li>
-                        </ul>                                        
-                    </div>
-                </div>
-            </header>
-            
+    @extends('layouts.default')	
+    @section('content')
+        <section class="homepage-header-wrapper">
+        	<span class="background-image-overlay"></span>            
             <section class="container-fluid homepage-header">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
@@ -76,214 +27,216 @@
             <p class="lead">Our most popular courses everyone loves. Learn a skill now!</p>
             </h1>
             
-            <div class="popular-courses-carousel slider-nav container-fluid">
-                <div class="popular-courses">
-                    <a href="#">
-                    	<div class="img-container">
-                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                            <div class="course-hover-data">
-                            	<span class="discount-percent left">-20%</span>
-                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+            <div class="popular-courses-carousel container-fluid">
+            	<div class="whats-hot-slider">
+                    <div class="popular-courses">
+                        <a href="#">
+                            <div class="img-container">
+                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                                <div class="course-hover-data">
+                                    <span class="discount-percent left">-20%</span>
+                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="progress">
-                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                <span class="sr-only">70% Complete</span>
-                              </div>
+                            <div class="clearfix">
+                                <div class="progress">
+                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                    <span class="sr-only">70% Complete</span>
+                                  </div>
+                                </div>
+                                <div class="left preview-video-length clearfix">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span class="video-length">08:23:46</span>
+                                </div>
                             </div>
-                            <div class="left preview-video-length clearfix">
-                                <i class="fa fa-clock-o"></i>
-                                <span class="video-length">08:23:46</span>
+                            <div class="course-title clearfix">
+                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                                <span class="discount-percent right">-20%</span>
                             </div>
-                        </div>
-                        <div class="course-title clearfix">
-                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                        	<span class="discount-percent right">-20%</span>
-                        </div>
-                    </a>
-                </div>                                 
-                <div class="popular-courses">
-                    <a href="#">
-                    	<div class="img-container">
-                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                            <div class="course-hover-data">
-                            	<span class="discount-percent left">-20%</span>
-                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                        </a>
+                    </div>                                 
+                    <div class="popular-courses">
+                        <a href="#">
+                            <div class="img-container">
+                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                                <div class="course-hover-data">
+                                    <span class="discount-percent left">-20%</span>
+                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="progress">
-                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                <span class="sr-only">70% Complete</span>
-                              </div>
+                            <div class="clearfix">
+                                <div class="progress">
+                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                    <span class="sr-only">70% Complete</span>
+                                  </div>
+                                </div>
+                                <div class="left preview-video-length clearfix">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span class="video-length">08:23:46</span>
+                                </div>
                             </div>
-                            <div class="left preview-video-length clearfix">
-                                <i class="fa fa-clock-o"></i>
-                                <span class="video-length">08:23:46</span>
+                            <div class="course-title clearfix">
+                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                                <span class="discount-percent right">-20%</span>
                             </div>
-                        </div>
-                        <div class="course-title clearfix">
-                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                        	<span class="discount-percent right">-20%</span>
-                        </div>
-                    </a>
-                </div>                                 
-                <div class="popular-courses">
-                    <a href="#">
-                    	<div class="img-container">
-                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                            <div class="course-hover-data">
-                            	<span class="discount-percent left">-20%</span>
-                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                        </a>
+                    </div>                                 
+                    <div class="popular-courses">
+                        <a href="#">
+                            <div class="img-container">
+                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                                <div class="course-hover-data">
+                                    <span class="discount-percent left">-20%</span>
+                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="progress">
-                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                <span class="sr-only">70% Complete</span>
-                              </div>
+                            <div class="clearfix">
+                                <div class="progress">
+                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                    <span class="sr-only">70% Complete</span>
+                                  </div>
+                                </div>
+                                <div class="left preview-video-length clearfix">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span class="video-length">08:23:46</span>
+                                </div>
                             </div>
-                            <div class="left preview-video-length clearfix">
-                                <i class="fa fa-clock-o"></i>
-                                <span class="video-length">08:23:46</span>
+                            <div class="course-title clearfix">
+                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                                <span class="discount-percent right">-20%</span>
                             </div>
-                        </div>
-                        <div class="course-title clearfix">
-                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                        	<span class="discount-percent right">-20%</span>
-                        </div>
-                    </a>
-                </div>                                 
-                <div class="popular-courses">
-                    <a href="#">
-                    	<div class="img-container">
-                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                            <div class="course-hover-data">
-                            	<span class="discount-percent left">-20%</span>
-                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                        </a>
+                    </div>                                 
+                    <div class="popular-courses">
+                        <a href="#">
+                            <div class="img-container">
+                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                                <div class="course-hover-data">
+                                    <span class="discount-percent left">-20%</span>
+                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="progress">
-                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                <span class="sr-only">70% Complete</span>
-                              </div>
+                            <div class="clearfix">
+                                <div class="progress">
+                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                    <span class="sr-only">70% Complete</span>
+                                  </div>
+                                </div>
+                                <div class="left preview-video-length clearfix">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span class="video-length">08:23:46</span>
+                                </div>
                             </div>
-                            <div class="left preview-video-length clearfix">
-                                <i class="fa fa-clock-o"></i>
-                                <span class="video-length">08:23:46</span>
+                            <div class="course-title clearfix">
+                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                                <span class="discount-percent right">-20%</span>
                             </div>
-                        </div>
-                        <div class="course-title clearfix">
-                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                        	<span class="discount-percent right">-20%</span>
-                        </div>
-                    </a>
-                </div>                                 
-                <div class="popular-courses">
-                    <a href="#">
-                    	<div class="img-container">
-                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                            <div class="course-hover-data">
-                            	<span class="discount-percent left">-20%</span>
-                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                        </a>
+                    </div>                                 
+                    <div class="popular-courses">
+                        <a href="#">
+                            <div class="img-container">
+                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                                <div class="course-hover-data">
+                                    <span class="discount-percent left">-20%</span>
+                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="progress">
-                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                <span class="sr-only">70% Complete</span>
-                              </div>
+                            <div class="clearfix">
+                                <div class="progress">
+                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                    <span class="sr-only">70% Complete</span>
+                                  </div>
+                                </div>
+                                <div class="left preview-video-length clearfix">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span class="video-length">08:23:46</span>
+                                </div>
                             </div>
-                            <div class="left preview-video-length clearfix">
-                                <i class="fa fa-clock-o"></i>
-                                <span class="video-length">08:23:46</span>
+                            <div class="course-title clearfix">
+                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                                <span class="discount-percent right">-20%</span>
                             </div>
-                        </div>
-                        <div class="course-title clearfix">
-                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                        	<span class="discount-percent right">-20%</span>
-                        </div>
-                    </a>
-                </div>                                 
-                <div class="popular-courses">
-                    <a href="#">
-                    	<div class="img-container">
-                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                            <div class="course-hover-data">
-                            	<span class="discount-percent left">-20%</span>
-                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                        </a>
+                    </div>                                 
+                    <div class="popular-courses">
+                        <a href="#">
+                            <div class="img-container">
+                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                                <div class="course-hover-data">
+                                    <span class="discount-percent left">-20%</span>
+                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="progress">
-                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                <span class="sr-only">70% Complete</span>
-                              </div>
+                            <div class="clearfix">
+                                <div class="progress">
+                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                    <span class="sr-only">70% Complete</span>
+                                  </div>
+                                </div>
+                                <div class="left preview-video-length clearfix">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span class="video-length">08:23:46</span>
+                                </div>
                             </div>
-                            <div class="left preview-video-length clearfix">
-                                <i class="fa fa-clock-o"></i>
-                                <span class="video-length">08:23:46</span>
+                            <div class="course-title clearfix">
+                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                                <span class="discount-percent right">-20%</span>
                             </div>
-                        </div>
-                        <div class="course-title clearfix">
-                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                        	<span class="discount-percent right">-20%</span>
-                        </div>
-                    </a>
-                </div>                                 
-                <div class="popular-courses">
-                    <a href="#">
-                    	<div class="img-container">
-                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                            <div class="course-hover-data">
-                            	<span class="discount-percent left">-20%</span>
-                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                        </a>
+                    </div>                                 
+                    <div class="popular-courses">
+                        <a href="#">
+                            <div class="img-container">
+                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                                <div class="course-hover-data">
+                                    <span class="discount-percent left">-20%</span>
+                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="progress">
-                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                <span class="sr-only">70% Complete</span>
-                              </div>
+                            <div class="clearfix">
+                                <div class="progress">
+                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                    <span class="sr-only">70% Complete</span>
+                                  </div>
+                                </div>
+                                <div class="left preview-video-length clearfix">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span class="video-length">08:23:46</span>
+                                </div>
                             </div>
-                            <div class="left preview-video-length clearfix">
-                                <i class="fa fa-clock-o"></i>
-                                <span class="video-length">08:23:46</span>
+                            <div class="course-title clearfix">
+                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                                <span class="discount-percent right">-20%</span>
                             </div>
-                        </div>
-                        <div class="course-title clearfix">
-                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                        	<span class="discount-percent right">-20%</span>
-                        </div>
-                    </a>
-                </div>                                 
-                <div class="popular-courses">
-                    <a href="#">
-                    	<div class="img-container">
-                        	<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                            <div class="course-hover-data">
-                            	<span class="discount-percent left">-20%</span>
-                            	<span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                        </a>
+                    </div>                                 
+                    <div class="popular-courses">
+                        <a href="#">
+                            <div class="img-container">
+                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
+                                <div class="course-hover-data">
+                                    <span class="discount-percent left">-20%</span>
+                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="progress">
-                              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                <span class="sr-only">70% Complete</span>
-                              </div>
+                            <div class="clearfix">
+                                <div class="progress">
+                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                    <span class="sr-only">70% Complete</span>
+                                  </div>
+                                </div>
+                                <div class="left preview-video-length clearfix">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span class="video-length">08:23:46</span>
+                                </div>
                             </div>
-                            <div class="left preview-video-length clearfix">
-                                <i class="fa fa-clock-o"></i>
-                                <span class="video-length">08:23:46</span>
+                            <div class="course-title clearfix">
+                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
+                                <span class="discount-percent right">-20%</span>
                             </div>
-                        </div>
-                        <div class="course-title clearfix">
-                        	<h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                        	<span class="discount-percent right">-20%</span>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>                                 
             </div>
         </div>
@@ -401,6 +354,14 @@
                                   <!---->
                                 <span class="video-play-button"><em></em></span>
                                 <span class="likes">100</span>         
+                                <span class="box-overlay">
+                                    <p>Lesson</p>
+                                    <p>weeks of learning</p>
+                                    <div class="footer clearfix">
+                                        <div class="heart-icon"></div>
+                                        <div class="highly-recommend">highly recommend</div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="course-box-content clearfix">
                                 <h2>App Development</h2>
@@ -434,14 +395,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
                         </a>
                     </div>                 
@@ -458,6 +411,14 @@
                                   <!---->
                                 <span class="video-play-button"><em></em></span>
                                 <span class="likes">100</span>         
+                                <span class="box-overlay">
+                                    <p>Lesson</p>
+                                    <p>weeks of learning</p>
+                                    <div class="footer clearfix">
+                                        <div class="heart-icon"></div>
+                                        <div class="highly-recommend">highly recommend</div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="course-box-content clearfix">
                                 <h2>App Development</h2>
@@ -491,14 +452,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
                         </a>
                     </div>                 
@@ -515,6 +468,14 @@
                                   <!---->
                                 <span class="video-play-button"><em></em></span>
                                 <span class="likes">100</span>         
+                                <span class="box-overlay">
+                                    <p>Lesson</p>
+                                    <p>weeks of learning</p>
+                                    <div class="footer clearfix">
+                                        <div class="heart-icon"></div>
+                                        <div class="highly-recommend">highly recommend</div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="course-box-content clearfix">
                                 <h2>App Development</h2>
@@ -548,14 +509,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
                         </a>
                     </div>                 
@@ -574,6 +527,14 @@
                                   <!---->
                                 <span class="video-play-button"><em></em></span>
                                 <span class="likes">100</span>         
+                                <span class="box-overlay">
+                                    <p>Lesson</p>
+                                    <p>weeks of learning</p>
+                                    <div class="footer clearfix">
+                                        <div class="heart-icon"></div>
+                                        <div class="highly-recommend">highly recommend</div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="course-box-content clearfix">
                                 <h2>App Development</h2>
@@ -607,14 +568,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
                         </a>
                     </div>                 
@@ -631,6 +584,14 @@
                                   <!---->
                                 <span class="video-play-button"><em></em></span>
                                 <span class="likes">100</span>         
+                                <span class="box-overlay">
+                                    <p>Lesson</p>
+                                    <p>weeks of learning</p>
+                                    <div class="footer clearfix">
+                                        <div class="heart-icon"></div>
+                                        <div class="highly-recommend">highly recommend</div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="course-box-content clearfix">
                                 <h2>App Development</h2>
@@ -664,14 +625,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
                         </a>
                     </div>                 
@@ -688,6 +641,14 @@
                                   <!---->
                                 <span class="video-play-button"><em></em></span>
                                 <span class="likes">100</span>         
+                                <span class="box-overlay">
+                                    <p>Lesson</p>
+                                    <p>weeks of learning</p>
+                                    <div class="footer clearfix">
+                                        <div class="heart-icon"></div>
+                                        <div class="highly-recommend">highly recommend</div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="course-box-content clearfix">
                                 <h2>App Development</h2>
@@ -721,14 +682,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="box-overlay">
-                                <p>Lesson</p>
-                                <p>weeks of learning</p>
-                                <div class="footer clearfix">
-                                    <div class="heart-icon"></div>
-                                    <div class="highly-recommend">highly recommend</div>
-                                </div>
-                            </span>
                         </div>
                         </a>
                     </div>                 
@@ -748,158 +701,4 @@
                 </div>
             </div>
         </section>
-        <footer>
-          <section class="footer-container">
-            <div class="container">
-              <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                  <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/footer-logo.png" alt="Wazaar" />
-                  <p>&copy; Wazaar {{ date('Y') }}</p>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                	<div class="row">
-                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        	<!--<h5>Courses</h5>
-                            <ul>
-                            	<li>
-                                	<a href="#">Data Science</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Development</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Business</a>
-                                </li>
-                            	<li>
-                                	<a href="#">IT & Software</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Office Productivity</a>
-                                </li>
-                            </ul>-->
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        	<!--<h5>&nbsp;</h5>
-                            <ul>
-                            	<li>
-                                	<a href="#">Design</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Marketing</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Lifestyle</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Photography</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Health & Fitness</a>
-                                </li>
-                            </ul>  -->                      
-                        </div>
-                    </div>
-                  <!--{{trans('site/footer.all-rights-reserved')}}<br/>
-                  &copy; {{ date('Y') }}-->
-                </div>              
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                	<div class="row">
-                    	<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-                        	<!--<h5>ABOUT</h5>
-                            <ul>
-                            	<li>
-                                	<a href="#">Company</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Terms of Use</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Privacy Policy</a>
-                                </li>
-                            </ul>   -->                     
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
-                        	<!--<h5>GET IN TOUCH</h5>-->
-                            <p>電話番号：03-6206-8396　</p>
-                            <p><!--{{trans('site/footer.mail')}}:info@wazaar.com-->メールアドレス：contact@wazaar.jp</p>                        
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </section>          
-        </footer>
-    </div>    
-
-		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>         
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
-        <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-        <script src="http://www.localeplanet.com/api/translate.js" /></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>        
-        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
-    	<script type="text/javascript" src="http://wazaar.dev/js/bootbox.js"></script>
-        <script src="{{url("js/slick.js")}}"></script>
-        <script type="text/javascript">
-			$('.slider-nav').slick({
-			  dots: false,
-			  arrows: true,
-			  speed: 20000,
-			  infinite: true,
-			  autoplay: true,
-			  autoplaySpeed: 0,
-			  pauseOnHover: true,
-			  swipe: true,
-			  slidesToShow: 4,
-			  slidesToScroll: 20,
-			  responsive: [
-				{
-				  breakpoint: 1024,
-				  settings: {
-					slidesToShow: 3,
-					slidesToScroll: 6,
-					dots: false
-				  }
-				},
-				{
-				  breakpoint: 600,
-				  settings: {
-					slidesToShow: 2,
-					slidesToScroll: 4,
-				  }
-				},
-				{
-				  breakpoint: 480,
-				  settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1
-				  }
-				}
-				// You can unslick at a given breakpoint now by adding:
-				// settings: "unslick"
-				// instead of a settings object
-			  ]
-			});
-			
-			/*$('.slider-nav').slick({
-				interval: false
-			});
-			
-			var i;
-			
-			$('.slick-prev, .slick-next').on("mouseover", function () {
-				var control = $(this),
-					interval = 1000;
-			
-				i = setInterval(function () {
-					control.trigger("click");
-				}, interval);
-			})
-			.on("mouseout", function () {
-				clearInterval(i);
-			});*/
-		</script>
-
-</body>
-</html>
+	@stop

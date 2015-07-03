@@ -10,13 +10,11 @@
                 </a>
                 <div class="user-data-modal clearfix">
                     <h1 class="clearfix">{{ trans('general.login') }}</h1>
-                     @if( App::environment() != 'production' )
                         <div class="login-social-buttons clearfix">
-                            <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.login-with-facebook') }}</a>
+                            <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('site/login.sign-in-with-fb') }}</a>
                             <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
                         </div>
-                        <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
-                    @endif
+                        <div class="or"><span class="left-line"></span>{{ trans('site/login.or') }}<span class="right-line"></span></div>
                     
                     <p class="regular-paragraph text-center light-gray-text">{{ trans('general.enter-email-and-password') }}</p>
                     <div class="form-container clearfix">
@@ -27,7 +25,7 @@
                     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                     	<fieldset>
                             <div class="form-group email-field">
-                                <input class="form-control" tabindex="1" placeholder="{{ trans('general.email-placeholder') }}" 
+                                <input class="form-control" tabindex="1" placeholder="{{ trans('site/register.email-placeholder') }}" 
                                     data-placement="right"
                                     type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
                             </div>
@@ -51,7 +49,7 @@
                 </div>
                 <div class="user-data-modal-footer text-center">
                     <span class="margin-right-15">{{ trans('site/login.dont-have-an-account') }}</span>
-                    <a href="register" class='showRegister'>Register</a>
+                    <a href="register" class='showRegister'>{{ trans('site/login.register') }}</a>
                 </div>
             </div>
         </div>

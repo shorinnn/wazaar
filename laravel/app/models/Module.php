@@ -3,7 +3,7 @@ use LaravelBook\Ardent\Ardent;
 
 class Module extends Ardent{
 
-    public $fillable = ['name', 'order'];
+    public $fillable = ['name', 'order', 'visible'];
     
     public static $relationsData = array(
         'course' => array(self::BELONGS_TO, 'Course'),

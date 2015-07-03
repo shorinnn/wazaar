@@ -269,10 +269,17 @@ header .top-menu .logged-out li{
 }
 
 header .top-menu .logged-out li a{
-	font-size: 14px;
+	font-size: 13px;
 	color: #fff;
 	display: inline-block;
 	padding: 11px 20px;
+	background: none !important;
+	font-weight: 600;
+	color: #a7b7c4 !important;
+}
+
+header .top-menu .logged-out li a:hover{
+	color: #fff !important;
 }
 
 header .top-menu .logged-out li.log-in-button a{
@@ -472,22 +479,10 @@ header .activate-dropdown:hover ul{
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
+	top: -70px;
+	padding-top: 70px;
+	z-index: -1;
 	background-position: left top; 
-}
-
-.homepage-header-wrapper header{
-	background: none;
-}
-
-.homepage-header-wrapper .logged-out a{
-	background: none !important;
-	font-size: 13px !important;
-	font-weight: 600;
-	color: #a7b7c4 !important;
-}
-
-.homepage-header-wrapper .logged-out a:hover{
-	color: #fff !important;
 }
 
 .homepage-header .extra-large-heading{
@@ -563,8 +558,8 @@ header .activate-dropdown:hover ul{
 	margin-top: 0;
 	top: 0;
 	height: 100%;
-	width: 40px;
-	background-color: none;
+	width: 60px;
+	display: none !important;
 }
 
 .homepage-carousel .slick-prev::before, 
@@ -590,6 +585,8 @@ header .activate-dropdown:hover ul{
 
 .popular-courses-carousel{
 	padding: 0;
+	display: none;
+	position: relative;
 }
 
 .popular-courses-carousel .popular-courses{
@@ -1359,9 +1356,16 @@ header .activate-dropdown:hover ul{
 }
 
 .small-box .box-overlay{
-	-webkit-transition: all 0.1s  ;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
+	-webkit-transition: opacity 0.1s  ;
+	-moz-transition: opacity 0.1s;
+	transition: opacity 0.1s;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+	padding: 38px 10px 10px;
 }
 
 .small-box:hover .box-overlay{
@@ -1369,12 +1373,13 @@ header .activate-dropdown:hover ul{
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 169px;
+	height: 100%;
+	opacity: 1;
 	background: rgba(38, 168, 255, 0.8);
 	padding: 38px 10px 10px;
 }
 
-.small-box:hover .box-overlay p{
+.small-box .box-overlay p{
 	margin: 0;
 	padding-bottom: 14px;
 	font-size: 15px;
@@ -1383,10 +1388,13 @@ header .activate-dropdown:hover ul{
 	text-align: center;
 }
 
-.small-box:hover .box-overlay .footer{
+.small-box .box-overlay .footer{
 	height: 30px;
 	clear: both;
-	margin-top: 32px;
+	position: absolute;
+	bottom: 11px;
+	width: 100%;
+	padding-right: 10px;
 }
 
 .heart-icon{
@@ -1414,7 +1422,6 @@ header .activate-dropdown:hover ul{
 
 .small-box img{
 	width: 100%;
-	height: 169px;
 }
 
 .small-box .video-play-button{
@@ -3318,7 +3325,7 @@ h5{
 .course-description-container .what-you-will-learn ul li{
 	font-size: 13px;
 	color: #2e343b;
-	margin-bottom: 23px;
+	margin-bottom: 10px;
 	line-height: 18px;
 	padding-left: 20px;
 	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/check-icon.png');
@@ -6112,6 +6119,17 @@ a.load-remote > *{
 	font-size: 14px;
 	color: #7e8e9e;
 	padding: 10px 0;
+}
+
+.min-price-error{
+	background-color: transparent;
+	border: none;
+	/*color: #ff0000;*/
+	padding: 5px 10px 5px 0;
+	clear: both;
+	font-size: 13px;
+	font-style: italic;
+	margin: 0;
 }
 
 .calender .date{
@@ -9736,19 +9754,44 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	color: #0099ff;
 }
 
-.mycourse-card-main .transparent-button{
+.mycourse-card-main .delete-button,
+.mycourse-card-main .edit-button{
 	color: #0099ff;
 	display: inline-block;
 	font-size: 14px;
 	font-weight: normal;
 	float: right;
+	background: none;
+	border: none;
 }
 
-.mycourse-card-main .transparent-button .fa-pencil-square-o{
+.mycourse-card-main .delete-button{
+	padding: 0;
+	color: #ff0000;
+	margin-top: 5px;
+}
+
+.mycourse-card-main .edit-button .fa-pencil-square-o{
+    font-size: 18px;
+    padding-right: 16px;
+    position: relative;
+    top: 1px;
+}
+
+.mycourse-card-main .delete-button i{
     font-size: 18px;
     padding-right: 5px;
     position: relative;
     top: 1px;
+}
+
+.mycourse-card-main .tooltipable{
+    background: none;
+    border: none;
+    color: #fbc945;
+    float: right;
+    font-size: 18px;
+    padding: 10px 0;
 }
 
 .mycourse-card-footer{
@@ -10794,7 +10837,7 @@ header .top-menu li{
 }
 
 .no-margin-top{
-	margin-top: 0;
+	margin-top: 0 !important;
 }
 
 .margin-top-10
@@ -10838,6 +10881,22 @@ header .top-menu li{
 .margin-bottom-30
 {
 	margin-bottom: 30px;
+}
+
+.padding-top-10{
+	padding-top: 10px;
+}
+
+.padding-top-20{
+	padding-top: 20px;
+}
+
+.padding-top-30{
+	padding-top: 30px;
+}
+
+.padding-bottom-20{
+	padding-bottom: 20px;
 }
 
 .bolded, .bolded > *{
