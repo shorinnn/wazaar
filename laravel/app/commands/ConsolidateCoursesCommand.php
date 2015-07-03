@@ -1,10 +1,13 @@
 <?php
+use Indatus\Dispatcher\Scheduling\ScheduledCommand;
+use Indatus\Dispatcher\Scheduling\Schedulable;
+use Indatus\Dispatcher\Drivers\Cron\Scheduler;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class ConsolidateCoursesCommand extends Command
+class ConsolidateCoursesCommand extends ScheduledCommand
 {
 
     /**
@@ -119,4 +122,13 @@ class ConsolidateCoursesCommand extends Command
     }
 
 
+    /**
+     * When a command should run
+     * @param \Indatus\Dispatcher\Scheduler $scheduler
+     * @return \Indatus\Dispatcher\Scheduling\Schedulable|\Indatus\Dispatcher\Scheduling\Schedulable[]
+     */
+    public function schedule(\Indatus\Dispatcher\Scheduling\Schedulable $scheduler)
+    {
+        return $scheduler->hourly();
+    }
 }
