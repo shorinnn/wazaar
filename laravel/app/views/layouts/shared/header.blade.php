@@ -3,6 +3,18 @@
         <a href="{{ action('SiteController@index') }}" class="main-logo">
             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
            class="img-responsive" alt=""></a>
+		@if (!Request::segment(1))
+            <style>
+				header{
+					background: none;
+				}
+				
+				.logged-out-header-search{
+					display: none;
+				}
+			</style>        
+        @endif
+        
         @if(Auth::check())
         <?php
         $student = Student::find(Auth::user()->id);
@@ -108,7 +120,6 @@
                 }
             </style>
             @endif
-            
             <div class="logged-out-header-search">
             	<form class="clearfix">
                 	<button class="catalogue-button">

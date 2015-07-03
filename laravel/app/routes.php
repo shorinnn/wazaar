@@ -352,22 +352,16 @@ Route::post('courses/{id}/video/set-description','CoursesController@setVideoDesc
 
 Route::get('test', function(){
 
+    $cH = new CourseHelper();
 
-    $users = [
-        ['firstName' => 'Albert', 'lastName' => 'Maranian', 'email' => 'albert1@gmail.com'],
-        ['firstName' => 'Albert', 'lastName' => 'Maranian', 'email' => 'albert2@gmail.com'],
-        ['firstName' => 'Albert', 'lastName' => 'Maranian', 'email' => 'albert3@gmail.com'],
-        ['firstName' => 'Albert', 'lastName' => 'Maranian', 'email' => 'albert4@gmail.com']
-    ];
-    $usersJson = json_encode($users);
-    $delHelper = new DeliveredHelper();
 
-    $result = $delHelper->getUsers();
+    $courses = $cH->bestSellers('EdRc6','AT',10);
 
-    echo '<pre>';
-    print_r($result);
-    echo '</pre>';
-    die;
+    foreach($courses as $course){
+        echo "<div>{$course->course->name} - {$course->course->courseCategory->name}</div>";
+    }
+
+
 });
 
 

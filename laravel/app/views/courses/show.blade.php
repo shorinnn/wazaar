@@ -251,6 +251,28 @@
                         @if (Session::get('error'))
                         <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
                         @endif
+                        <div class="what-you-will-learn no-margin-top module-box padding-top-30 padding-bottom-20">
+                            <h2>{{ trans('courses/general.what-you-will-learn') }}</h2>
+                            <ul>
+                                @if($achievements = json2Array($course->what_will_you_achieve))
+                                    @foreach($achievements as $achievement)
+                                        <li>{{ $achievement }}</li>
+                                    @endforeach
+                                @endif    
+                            </ul>
+                        </div>
+
+                        <div class="requirements no-margin-top module-box padding-top-30 padding-bottom-20">
+                            <h2>{{ trans('courses/general.requirements') }}</h2>
+                            @if($requirements = json2Array($course->requirements))
+                                <ul>
+                                @foreach($requirements as $requirement)
+                                    <li>{{ $requirement }}</li>
+                                @endforeach
+                                </ul>
+                            @endif    
+                        </div>
+                        
                         @foreach($course->modules as $module)
                         <div class="module-box">
                         	<h2>{{ $module->order }}. {{ $module->name }}</h2>
@@ -370,26 +392,6 @@
                                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/30-days-coupon.png" alt="">
                                 <p>{{ trans('general.money-back-guarantee') }}</p>
                             </div>-->
-                            <div class="what-you-will-learn margin-top-30">
-                            	<h2>{{ trans('courses/general.what-you-will-learn') }}</h2>
-                            	<ul>
-                                    @if($achievements = json2Array($course->what_will_you_achieve))
-                                        @foreach($achievements as $achievement)
-                                            <li>{{ $achievement }}</li>
-                                        @endforeach
-                                    @endif    
-                                </ul>
-                            </div>
-                            <div class="requirements">
-                            	<h2>{{ trans('courses/general.requirements') }}</h2>
-                                @if($requirements = json2Array($course->requirements))
-                                	<ul>
-                                    @foreach($requirements as $requirement)
-                                        <li>{{ $requirement }}</li>
-                                    @endforeach
-                                    </ul>
-                                @endif    
-                            </div>
                             <!--<div class="who-its-for">
                                  @if($who_for = json2Array($course->who_is_this_for))
                                 <ul>
@@ -399,7 +401,7 @@
                                 </ul>
                                  @endif
                             </div>-->
-                            <div class="instructor">
+                            <div class="instructor margin-top-30">
                                     <h2>{{ trans('courses/general.instructor') }}</h2>
                                         @if($instructor->profile == null)
                                         	<div class="clearfix">

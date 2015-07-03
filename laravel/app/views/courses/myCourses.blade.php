@@ -79,7 +79,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
                             <a href='{{ action('CoursesController@edit', $course->slug) }}' 
-                               class='transparent-button'>
+                               class='edit-button'>
                                 <i class="fa fa-pencil-square-o"></i>
                                 {{ trans('courses/general.edit') }}
                             </a>
