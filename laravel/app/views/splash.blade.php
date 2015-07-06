@@ -20,8 +20,11 @@
     <div id="wrapper">
     	<div id="container">
         	<div id="logo" class="clear">
-            	<img src="splash/logo.png" alt="">
-            </div>
+                    <img src="splash/logo.png" alt="">
+                </div>
+            <center>
+                <iframe width="640" height="360" src="https://www.youtube.com/embed/k2yWJkh9kTk?rel=0" frameborder="0" allowfullscreen></iframe>
+            </center>
             <!--<h1>Coming this July!</h1>-->
             <h1>2015年7月下旬OPEN</h1>
             <!--<p>We will help you learn new amazing things! Our learning platform will be so simple and accessible to everyone!</p>-->
