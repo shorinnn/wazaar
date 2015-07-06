@@ -49,7 +49,7 @@
 		var bodyHeight = $("body").height();
 		var vwptHeight = $(window).height();
 		var contentWrapper = $('#wrapper');
-		contentWrapper.css('height', bodyHeight);
+//		contentWrapper.css('height', bodyHeight);
 		console.log(bodyHeight);
 	</script>  
   
