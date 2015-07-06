@@ -32,7 +32,7 @@ var videoUploader = {
             videoUploader.progressCallBack($data, $progressPercentage, $(this)[0]);
         }).bind('fileuploadadd', function (e, data) {
             var uploadErrors = [];
-            var acceptedFileTypes =  ['video/mp4', 'video/flv', 'video/wmv', 'video/avi', 'video/mpg','video/MP4', 'video/FLV', 'video/WMV', 'video/AVI', 'video/MPG', 'video/mov', 'video/MOV','video/quicktime'];
+            var acceptedFileTypes =  ['video/mp4', 'video/flv', 'video/wmv', 'video/avi', 'video/mpg', 'video/mpeg', 'video/MP4', 'video/FLV', 'video/WMV', 'video/AVI', 'video/MPG', 'video/MPEG', 'video/mov', 'video/MOV','video/quicktime'];
 
             if(acceptedFileTypes.indexOf(data.originalFiles[0].type) < 0) {
                 uploadErrors.push(_('Not an accepted file type'));
