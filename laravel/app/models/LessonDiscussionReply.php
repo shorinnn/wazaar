@@ -4,8 +4,8 @@ use LaravelBook\Ardent\Ardent;
 class LessonDiscussionReply extends Ardent {
 	protected $fillable = ['student_id', 'lesson_discussion_id', 'content'];
         public static $rules = [
-            'lesson_discussion_id' => 'required|numeric',
-            'student_id' => 'required|numeric',
+            'lesson_discussion_id' => 'required|numeric|exists:lesson_discussions,id',
+            'student_id' => 'required|numeric|exists:users,id',
             'content' => 'required'
         ];
         public static $relationsData = [
@@ -13,7 +13,24 @@ class LessonDiscussionReply extends Ardent {
             'student' => array(self::BELONGS_TO, 'Student'),
         ];
         
+        public function beforeSave(){
+            $student = Student::find($this->student_id);
+            $lesson = Lesson::find($this->discussion->lesson_id);
+            if( !$student->purchased($lesson->module->course) && !$student->purchased( $lesson ) ){
+                $this->errors()->add(0, 'Lesson Not Purchased' );
+                return false;
+            }
+        }
+        
         public function vote($userId, $vote){
+            $student = Student::find($userId);
+            $lesson = $this->discussion->lesson;
+            
+            if( !$student->purchased($lesson->module->course) && !$student->purchased( $lesson ) ){
+                $this->errors()->add(0, 'Lesson Not Purchased' );
+                return false;
+            }
+            
             $rating = LessonDiscussionReplyRating::firstOrNew( ['student_id' => $userId, 'lesson_discussion_reply_id' => $this->id ] );
             $first_time_rating = ( !$rating->id ) ? true : false;
             $old_rating = $rating->vote;

@@ -4,8 +4,8 @@ use LaravelBook\Ardent\Ardent;
 class LessonDiscussion extends Ardent {
 	protected $fillable = ['student_id', 'lesson_id', 'title'];
         public static $rules = [
-            'lesson_id' => 'required|numeric',
-            'student_id' => 'required|numeric',
+            'lesson_id' => 'required|numeric|exists:lessons,id',
+            'student_id' => 'required|numeric|exists:users,id',
             'title' => 'required'
         ];
         public static $relationsData = [
@@ -15,7 +15,23 @@ class LessonDiscussion extends Ardent {
             
         ];
         
+        public function beforeSave(){
+            $student = Student::find($this->student_id);
+            $lesson = Lesson::find($this->lesson_id);
+            if( !$student->purchased($lesson->module->course) && !$student->purchased( $lesson ) ){
+                $this->errors()->add(0, 'Lesson Not Purchased' );
+                return false;
+            }
+        }
+        
         public function vote($userId, $vote){
+            $student = Student::find( $userId );
+            $lesson = Lesson::find( $this->lesson_id );
+            if( !$student->purchased($lesson->module->course) && !$student->purchased( $lesson ) ){
+                $this->errors()->add(0, 'Lesson Not Purchased' );
+                return false;
+            }
+            
             $rating = LessonDiscussionRating::firstOrNew( ['student_id' => $userId, 'lesson_discussion_id' => $this->id ] );
             $first_time_rating = ( !$rating->id ) ? true : false;
             $old_rating = $rating->vote;

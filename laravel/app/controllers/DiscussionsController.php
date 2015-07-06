@@ -20,16 +20,6 @@ class DiscussionsController extends \BaseController {
 	 */
 	public function store()
 	{
-            $student = Student::find( Auth::user()->id );
-            $lesson = Lesson::find( Input::get('lesson_id') );
-            if( !$student->purchased($lesson->module->course) && !$student->purchased( $lesson ) ){
-                if( Request::ajax() ){
-                    $response['status'] = 'error';
-                    $response['errors'] = '';
-                    return json_encode($response);
-                }
-                return Redirect::back()->withErrors( '' );
-            }
             $discussion = new LessonDiscussion(Input::all());
             $discussion->student_id = Auth::user()->id;
             if( $discussion->save() ){

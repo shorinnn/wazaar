@@ -7,17 +7,7 @@ class DiscussionRepliesController extends \BaseController {
             $discussion = LessonDiscussion::find( Input::get('lesson_discussion_id') );
             
             $student = Student::find( Auth::user()->id );
-            $lesson = Lesson::find( $discussion->lesson_id );
-            
-            if( !$student->purchased($lesson->module->course) && !$student->purchased( $lesson ) ){
-                if( Request::ajax() ){
-                    $response['status'] = 'error';
-                    $response['errors'] = '';
-                    return json_encode($response);
-                }
-                return Redirect::back()->withErrors( '' );
-            }
-            
+            $lesson = Lesson::find( $discussion->lesson_id );          
             $reply = new LessonDiscussionReply( Input::all() );
             $reply->student_id = Auth::user()->id;
                 
@@ -40,14 +30,7 @@ class DiscussionRepliesController extends \BaseController {
             $student = Student::find( Auth::user()->id );
             $lesson = Lesson::find( $reply->discussion->lesson_id );
             
-            if( !$student->purchased($lesson->module->course) && !$student->purchased( $lesson ) ){
-                if( Request::ajax() ){
-                    $response['status'] = 'error';
-                    $response['errors'] = '';
-                    return json_encode($response);
-                }
-                return Redirect::back()->withErrors( '' );
-            }
+            
             
             $votes = $reply->vote( Auth::user()->id, $vote );
             
