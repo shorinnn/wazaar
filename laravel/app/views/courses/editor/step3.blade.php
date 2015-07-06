@@ -245,6 +245,33 @@
             
                                
         @endif
+        
+        <div class="row editor-settings-layout margin-bottom-30">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <h4 class="text-right"> {{ trans('crud/labels.assigned_instructor') }}
+                <span id="assign-instructor-checkmark">
+                @if($assignedInstructor!=null)
+                    <i class="fa fa-check assigned-check"></i>
+                @endif
+                </span>
+            </h4>
+        </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <input type='text' class='delayed-keyup'
+                                                   id='assign-instructor' placeholder="Enter instructor username/email."
+                                                   data-delay='300'
+                                                   data-callback='assignInstructor'
+                                                   data-checkmark-holder="#assign-instructor-checkmark"
+                                                   @if($assignedInstructor!=null)
+                                                   value="{{ $assignedInstructor->email }}"
+                                                   @endif
+                                                   />
+                                                    <span></span>
+                                            {{ Form::hidden('assigned_instructor_id', null, [ 'id'=>'assigned_instructor_id' ] ) }}
+        </div>
+        
+    </div>
+        
 </div>
 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 right-content">
     <h2>{{ trans('courses/general.course_summary') }}</h2>
