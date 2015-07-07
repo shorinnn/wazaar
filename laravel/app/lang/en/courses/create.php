@@ -2,6 +2,8 @@
 
 return array(
     'creating_a_course' => 'Creating A Course',
+    'create_a_course' => 'Create A Course',
+    'cancel' => 'Cancel',
     'the_world_is_yours' => 'The world is yours to conquer.',
     'enter_course_name' => 'Enter Course Name',
     'create_course' => 'Create Course',

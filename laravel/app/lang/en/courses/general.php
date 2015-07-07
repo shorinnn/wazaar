@@ -83,6 +83,7 @@ return array(
     'enable_ask_coach' => 'Enable Ask Teacher',
     'reviews' => 'Reviews',
     'review' => 'Review',
+    'submit' => 'Submit',
     'module' => 'Module',
     'modules' => 'Modules',
     'total_lessons' => 'Total Lessons',

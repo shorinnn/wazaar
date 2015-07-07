@@ -39,6 +39,11 @@ class SiteController extends \BaseController {
             return View::make('courses.edit_course_description');
 	}
 
+	public function checkout()
+	{                 
+            return View::make('courses.checkout');
+	}
+
 	public function edit_settings()
 	{                 
             return View::make('courses.edit_course_settings');

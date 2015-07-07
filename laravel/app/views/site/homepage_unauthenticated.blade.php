@@ -6,10 +6,10 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                         <h1 class="extra-large-heading text-center">
-                            Get your skills to new level
-                            <p class="lead">Learning has never been easier! New skills just a few clicks away!</p>
+                            {{trans('site/homepage.take_skill_to_new_level')}}
+                            <p class="lead">{{trans('site/homepage.learning_has_never_been_easier')}}</p>
                         </h1>
-                        <a href="#" class="blue-button large-button round-button how-it-works"><i class="fa fa-play-circle"></i>How it works</a>
+                        <a href="#" class="blue-button large-button round-button how-it-works"><i class="fa fa-play-circle"></i>{{trans('site/homepage.how_it_works')}}</a>
                         <div class="home-search-form">
                             <form>
                                 <div>
@@ -23,8 +23,8 @@
             </section>
         </section>
         <div class="homepage-carousel clearfix">
-        	<h1>What is hot right now
-            <p class="lead">Our most popular courses everyone loves. Learn a skill now!</p>
+        	<h1>{{trans('site/homepage.what_is_hot')}}
+            <p class="lead">{{trans('site/homepage.our_most_popular_courses')}}</p>
             </h1>
             
             <div class="popular-courses-carousel container-fluid">
@@ -244,9 +244,9 @@
             <section class="container homepage explore-category">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <h1 class="text-center">Explore our categories
-                            <p class="lead">We have nicely organised all courses. It’s so easy to find the right for you!
-                            <span class="block">Browse only these categories you like.</span></p>
+                        <h1 class="text-center">{{trans('site/homepage.explore_our_categories')}}
+                            <p class="lead">{{trans('site/homepage.we_have_organised_courses')}}
+                            <span class="block">{{trans('site/homepage.browse_categories_you_like')}}</span></p>
                         </h1>
                     </div>
                 </div>
@@ -320,7 +320,7 @@
         	<div class="container">
             	<div class="row discover-header">
                 	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-                    	<h1 class="left">Discover</h1>
+                    	<h1 class="left">{{trans('site/homepage.discover')}}</h1>
                         <ul class="left categories-menu">
                             <li>
                                 <a href="#">All</a>
@@ -337,7 +337,7 @@
                         </ul>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-right">
-                    	<a href="#">Browser all courses</a>
+                    	<a href="#">{{trans('site/homepage.browse_all_courses')}}</a>
                     </div>
                 </div>
             	<div class="row">
@@ -693,10 +693,10 @@
         	<div class="container">
             	<div class="row">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                    	<h1>Become an instructor
-                        	<p class="lead intro-paragraph">Earn 500 for creating a course!</p>
+                    	<h1>{{trans('site/homepage.be-an-instructor')}}
+                        	<p class="lead intro-paragraph">{{trans('site/homepage.earn_for_creating_course')}}</p>
                         </h1>
-                        <a href="#" class="blue-button large-button">Register</a>
+                        <a href="#" class="blue-button large-button">{{ trans('general.register') }}</a>
                     </div>
                 </div>
             </div>
