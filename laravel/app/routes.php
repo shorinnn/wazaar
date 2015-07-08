@@ -92,6 +92,8 @@ $wwwRoutes = function(){
         Route::resource('frontpage-videos', 'FrontpageVideosController');
         Route::get('email/publishers', 'AdminEmailController@publishers');
         Route::post('email/publishers', 'AdminEmailController@sendPublishers');
+        Route::get('frontpage/featured-courses', 'FrontpageController@featuredCourses');
+        Route::post('frontpage/featured-courses', 'FrontpageController@doFeaturedCourses');
     });
 
     // Course Categories

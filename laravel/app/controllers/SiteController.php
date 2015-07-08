@@ -9,18 +9,16 @@ class SiteController extends \BaseController {
 	public function index()
 	{         
             if(Input::has('skip-the-splashie')){
-                $frontpageVideos  = FrontpageVideo::grid();
-                $categories = CourseCategory::with('featuredCourse')->get();
-//                $top = HomepageHelper::generateVariations(8);
-                Cache::forget('topCourses');
-//                if ( !Cache::has('topCourses') ){
+//                $frontpageVideos  = FrontpageVideo::grid();
+                $categories = CourseCategory::limit(12);
+                
+                if ( !Cache::has('topCourses') ){
                     $top = HomepageHelper::generateVariations(8);
                     Cache::add('topCourses', $top, 30);
-//                }
+                }
                 
                 $topCourses = Cache::get('topCourses');
                 $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
-//                dd( $topCourses );
                 
                 if(Auth::user()) Return View::make('site.homepage_authenticated')->with(compact('categories'));
                 else{
