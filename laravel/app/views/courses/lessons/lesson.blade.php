@@ -13,7 +13,7 @@
                  @if($lesson->blocks()->where('type','video')->where( 'content','!=','' )->count() > 0 || trim($lesson->external_video_url) != '')
                     green
                  @else
-                 	gray
+                    gray
                  @endif
         clearfix">
         <span>{{ trans('general.lesson') }} 
@@ -48,12 +48,15 @@
             {{ Form::close() }}
         </div>
         <div class="lesson-options lesson-options-{{$lesson->id}} row">
-            <div class="clearfix lesson-options-buttons
+            <div class="clearfix lesson-options-buttons">
+                <?php
+                /*
                  @if($lesson->blocks()->where('type','video')->where( 'content','!=','' )->count() == 0 && trim($lesson->external_video_url) == '')
                     lesson-no-video
-                 @endif
-                 ">
+                 @endif*/
+                ?>
                 <div class="buttons video active">
+                    
                     <!--<div class="progress">
                       <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
                         <span class="sr-only">60% Complete</span>
@@ -61,7 +64,7 @@
                     </div>--> 
                     <em class="processing">Processing</em>                                                                  
                     <a href='#' id="video-link-{{$lesson->id}}" class='load-remote-cache a-add-video
-                       @if($lesson->blocks()->where('type','video')->count() > 0)
+                       @if($lesson->blocks()->where('type','video')->where('content','>','0')->count() > 0)
                         done
                        @endif
                        ' data-target='.action-panel-{{$lesson->id}} .video'
@@ -71,7 +74,7 @@
                         <span></span>                                   
                     </a>
                     <div id="video-thumb-container"
-                       @if($lesson->blocks()->where('type','video')->count() > 0)
+                       @if($lesson->blocks()->where('type','video')->where('content','>','0')->count() > 0)
                         style='display:block
                             @if($lesson->external_video_url !='')
                                 ;background-color:black

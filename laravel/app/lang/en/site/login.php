@@ -9,6 +9,7 @@ return array(
     'login-to-account' => 'Login to your account',
     'sign-in' => 'Sign in',
     "dont-have-an-account" => "Don't have an account?",
+    'register' => 'Register'
 
     
 );

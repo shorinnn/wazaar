@@ -29,214 +29,51 @@
             
             <div class="popular-courses-carousel container-fluid">
             	<div class="whats-hot-slider">
-                    <div class="popular-courses">
-                        <a href="#">
-                            <div class="img-container">
-                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                                <div class="course-hover-data">
-                                    <span class="discount-percent left">-20%</span>
-                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
+                    @foreach($topCourses as $course)
+                        <div class="popular-courses">
+                            <a href="{{ action('CoursesController@show', $course['slug'] ) }}">
+                                <div class="img-container">
+                                    <img class="img-responsive" alt="" src="{{ $course['preview'] }}">
+                                    <div class="course-hover-data">
+                                        @if( $course['discounted'] > 0)
+                                            <span class="discount-percent left">- ¥ {{ number_format( $course['discounted'], Config::get('custom.currency_decimals') ) }}</span>
+                                            <span class="video-length right"><i class="fa fa-clock-o"></i>
+                                                <span class='countdown' data-final-date-seconds='{{ timeUntil($course['sale_ends_on'], true) }}'>{{ timeUntil($course['sale_ends_on']) }}</span>
+                                            </span>
+                                        @else
+                                            <span class="discount-percent left">¥ {{ number_format( $course['price'], Config::get('custom.currency_decimals') ) }}</span>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="clearfix">
-                                <div class="progress">
-                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                    <span class="sr-only">70% Complete</span>
-                                  </div>
+                                <div class="clearfix">
+                                    @if( $course['discounted'] > 0)
+                                        <div class="progress">
+                                          <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{ timeProgress($course['sale_starts_on'], $course['sale_ends_on'] ) }}%;">
+                                            <span class="sr-only">
+                                                {{ timeProgress($course['sale_starts_on'], $course['sale_ends_on'] ) }}% Complete</span>
+                                          </div>
+                                        </div>
+                                    @endif
+                                    <div class="left preview-video-length clearfix">
+                                        @if( $course['discounted'] > 0)
+                                            <i class="fa fa-clock-o"></i>
+                                            <span class="video-length countdown" data-final-date-seconds='{{ timeUntil($course['sale_ends_on'], true) }}'>{{ timeUntil($course['sale_ends_on']) }}</span>
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="left preview-video-length clearfix">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span class="video-length">08:23:46</span>
+                                <div class="course-title clearfix">
+                                    <h4 class="clear left"> {{ $course['name'] }}</h4>
+                                    <span class="discount-percent right">
+                                        @if( $course['discounted'] > 0)
+                                            - ¥ {{ number_format( $course['discounted'], Config::get('custom.currency_decimals') ) }}
+                                        @else
+                                            ¥ {{ number_format( $course['price'], Config::get('custom.currency_decimals') ) }}
+                                        @endif
+                                    </span>
                                 </div>
-                            </div>
-                            <div class="course-title clearfix">
-                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                                <span class="discount-percent right">-20%</span>
-                            </div>
-                        </a>
-                    </div>                                 
-                    <div class="popular-courses">
-                        <a href="#">
-                            <div class="img-container">
-                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                                <div class="course-hover-data">
-                                    <span class="discount-percent left">-20%</span>
-                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="clearfix">
-                                <div class="progress">
-                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                    <span class="sr-only">70% Complete</span>
-                                  </div>
-                                </div>
-                                <div class="left preview-video-length clearfix">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span class="video-length">08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="course-title clearfix">
-                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                                <span class="discount-percent right">-20%</span>
-                            </div>
-                        </a>
-                    </div>                                 
-                    <div class="popular-courses">
-                        <a href="#">
-                            <div class="img-container">
-                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                                <div class="course-hover-data">
-                                    <span class="discount-percent left">-20%</span>
-                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="clearfix">
-                                <div class="progress">
-                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                    <span class="sr-only">70% Complete</span>
-                                  </div>
-                                </div>
-                                <div class="left preview-video-length clearfix">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span class="video-length">08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="course-title clearfix">
-                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                                <span class="discount-percent right">-20%</span>
-                            </div>
-                        </a>
-                    </div>                                 
-                    <div class="popular-courses">
-                        <a href="#">
-                            <div class="img-container">
-                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                                <div class="course-hover-data">
-                                    <span class="discount-percent left">-20%</span>
-                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="clearfix">
-                                <div class="progress">
-                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                    <span class="sr-only">70% Complete</span>
-                                  </div>
-                                </div>
-                                <div class="left preview-video-length clearfix">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span class="video-length">08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="course-title clearfix">
-                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                                <span class="discount-percent right">-20%</span>
-                            </div>
-                        </a>
-                    </div>                                 
-                    <div class="popular-courses">
-                        <a href="#">
-                            <div class="img-container">
-                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                                <div class="course-hover-data">
-                                    <span class="discount-percent left">-20%</span>
-                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="clearfix">
-                                <div class="progress">
-                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                    <span class="sr-only">70% Complete</span>
-                                  </div>
-                                </div>
-                                <div class="left preview-video-length clearfix">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span class="video-length">08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="course-title clearfix">
-                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                                <span class="discount-percent right">-20%</span>
-                            </div>
-                        </a>
-                    </div>                                 
-                    <div class="popular-courses">
-                        <a href="#">
-                            <div class="img-container">
-                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                                <div class="course-hover-data">
-                                    <span class="discount-percent left">-20%</span>
-                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="clearfix">
-                                <div class="progress">
-                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                    <span class="sr-only">70% Complete</span>
-                                  </div>
-                                </div>
-                                <div class="left preview-video-length clearfix">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span class="video-length">08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="course-title clearfix">
-                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                                <span class="discount-percent right">-20%</span>
-                            </div>
-                        </a>
-                    </div>                                 
-                    <div class="popular-courses">
-                        <a href="#">
-                            <div class="img-container">
-                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                                <div class="course-hover-data">
-                                    <span class="discount-percent left">-20%</span>
-                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="clearfix">
-                                <div class="progress">
-                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                    <span class="sr-only">70% Complete</span>
-                                  </div>
-                                </div>
-                                <div class="left preview-video-length clearfix">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span class="video-length">08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="course-title clearfix">
-                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                                <span class="discount-percent right">-20%</span>
-                            </div>
-                        </a>
-                    </div>                                 
-                    <div class="popular-courses">
-                        <a href="#">
-                            <div class="img-container">
-                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg">
-                                <div class="course-hover-data">
-                                    <span class="discount-percent left">-20%</span>
-                                    <span class="video-length right"><i class="fa fa-clock-o"></i>08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="clearfix">
-                                <div class="progress">
-                                  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-                                    <span class="sr-only">70% Complete</span>
-                                  </div>
-                                </div>
-                                <div class="left preview-video-length clearfix">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span class="video-length">08:23:46</span>
-                                </div>
-                            </div>
-                            <div class="course-title clearfix">
-                                <h4 class="clear left">Web Developer Course in HTML & CSS</h4>
-                                <span class="discount-percent right">-20%</span>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>                                 
+                    @endforeach
                 </div>                                 
             </div>
         </div>
@@ -702,3 +539,7 @@
             </div>
         </section>
 	@stop
+        
+        @section('extra_js')
+            <script type="text/javascript" src="{{url('js/moment.js')}}"></script>
+        @stop
