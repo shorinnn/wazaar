@@ -104,6 +104,7 @@
                                 <span> {{ date('m/d/Y', strtotime($course->created_at)) }}</span></p>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-md-offset-1 col-lg-offset-1">
+                            
                             <span class="default-button">{{ 
                                 trans('courses/general.my-courses-privacy.'.$course->privacy_status) }}</span>
                             <span class="default-button 
@@ -111,6 +112,14 @@
                                   @if($course->publish_status=='approved') published @endif
                                   ">
                                     {{ trans('courses/general.my-courses-publish.'.$course->publish_status) }}</span>
+                            
+                            <span class="default-button">
+                                @if($course->free=='yes')
+                                    {{ trans('courses/create.free') }}
+                                @else
+                                    {{  trans('courses/create.paid') }}
+                                @endif
+                            </span>
                             
                         </div>
                     </div>

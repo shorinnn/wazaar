@@ -8,12 +8,13 @@
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
     <div class="approval-box">
             <h4 class="not-approved">
-                {{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}
                 @if($course->publish_status=='pending')
                     <br />{{ trans('courses/general.wazaar-is-checking-your-product') }}
+                @else
+                    {{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}
                 @endif
             </h4>
-        @if($course->publish_status =='unsubmitted')
+        @if($course->publish_status == 'unsubmitted')
             <p class="regular-paragraph">
                 {{ trans('courses/create.wazaar_must_review') }}
             </p>
@@ -381,15 +382,16 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <button type='button' class="blue-button extra-large-button step-3-save-btn" onclick="saveStep3Form()">{{ trans('courses/general.saving-button') }}</button>
             <br />
-            <button type='submit'
-                    @if($course->publish_status=='pending')
-                         disabled="disabled"
-                    @endif
-                    class="
-                    @if($course->publish_status=='pending')
-                        disabled-button
-                    @endif
-                    submit-for-approval blue-button extra-large-button">{{ trans('courses/general.submit-for-approval')}}</button>
+            
+            @if($course->publish_status=='pending')
+                <button type='submit' disabled="disabled" class="disabled-button submit-for-approval blue-button extra-large-button">
+                    {{ trans('courses/general.wazaar-is-checking-your-product')}}
+                </button>
+            @else
+                <button type='submit' class="submit-for-approval blue-button extra-large-button">
+                    {{ trans('courses/general.submit-for-approval')}}
+                </button>
+            @endif
         </div>
     </div>
 </div>

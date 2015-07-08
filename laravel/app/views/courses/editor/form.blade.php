@@ -50,7 +50,13 @@
                 </h1>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<a href="#" class=" submit-for-approval blue-button large-button disabled-button right">{{ trans('courses/general.submit-for-approval') }}</a>
+            	<a href="#" class=" submit-for-approval blue-button large-button disabled-button right">
+                    @if($course->publish_status != 'pending')
+                        {{ trans('courses/general.submit-for-approval') }}
+                    @else
+                        {{ trans('courses/general.wazaar-is-checking-your-product') }}
+                    @endif
+                </a>
                 <a href='#' data-href="{{ action( 'CoursesController@show', $course->slug ) }}" class="default-button disabled-button large-button right preview-course-btn">
                 	{{ trans('courses/general.preview_course') }}
             	</a>
