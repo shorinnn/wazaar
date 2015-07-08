@@ -111,12 +111,18 @@
                         </h1>              
                         <div class="row">
                         	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 course-name">
-                            	<figure class="course-thumb">
-                                
-                                </figure>
-                                <div class="left">
-                                	<p class="regular-paragraph">Welcome to Markting in a Digital World</p>
-                                    <span class="regular-paragraph">13 lessons</span>
+                            	<div class="row">
+                                	<div class="col-xs-5 col-sm-3 col-md-5 col-lg-5">
+                                        <figure class="course-thumb">
+                                        
+                                        </figure>
+                                    </div>
+                                	<div class="col-xs-7 col-sm-9 col-md-7 col-lg-7 no-padding">
+                                        <div>
+                                            <p class="regular-paragraph">Welcome to Markting in a Digital World</p>
+                                            <span class="regular-paragraph">13 lessons</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

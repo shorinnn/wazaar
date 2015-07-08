@@ -26,8 +26,8 @@
                            title='<img height="400" width="600" src="{{ url('images/course_examples/course-video.png') }}" />' 
                            data-html='true'></i>
                     </p>-->
-            <div class="course-video-upload-button-progress">
-                <label for="upload-course-video" class="default-button large-button">
+            <div class="course-video-upload-button-progress relative">
+                <label for="upload-course-video" class="default-button">
                     
                     <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
                     <span>{{ trans('courses/curriculum.upload') }}</span>

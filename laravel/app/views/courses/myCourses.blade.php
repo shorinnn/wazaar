@@ -44,7 +44,7 @@
                 @endif
                 <!--/ no courses -->
             	@foreach($courses as $course)
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3 mycourse-card course-row-{{$course->id}}">
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-offset-3 col-lg-offset-3 mycourse-card course-row-{{$course->id}}">
                     <div class="row mycourse-card-main">
                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                             <div class="mycourses-thumb">
