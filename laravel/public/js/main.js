@@ -9,7 +9,6 @@ $(document).ready(function(){
         seconds = $(this).attr('data-final-date-seconds')
         time = moment().add(seconds, 'seconds').format('YYYY/MM/DD HH:mm:ss');
         time = time.toString(); 
-        console.log(time);
         $(this).countdown(time, function(event) {
                $(this).html( event.strftime('%D days %H:%M:%S') );
              } );
