@@ -43,35 +43,44 @@
 	<section class="container-fluid header">
     	<div class="row">
         	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<h1>{{ trans('courses/general.edit') }}: {{ $course->name }}
-                    <a href="{{ action('CoursesController@myCourses') }}" class="blue-button large-button back-to-course-list">
-                        {{ trans('courses/general.back-to-course-list')}}
-                    </a>
-                </h1>
+            	<div class="video-preview-thumb">
+                
+                </div>
+                <div class="left">
+                <ul class="breadcrumb">
+                    <li><a href="{{ action('CoursesController@myCourses') }}">Dashboard</a></li>
+                    <li class="active"><a href="#">Course Edit</a></li>
+                </ul>                    
+                <h1>{{ $course->name }}<span>DRAFT</span>
+                        <!--<a href="{{ action('CoursesController@myCourses') }}" class="blue-button large-button back-to-course-list">
+                            {{ trans('courses/general.back-to-course-list')}}
+                        </a>-->
+                    </h1>
+                </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<a href="#" class=" submit-for-approval blue-button large-button disabled-button right">{{ trans('courses/general.submit-for-approval') }}</a>
-                <a href='#' data-href="{{ action( 'CoursesController@show', $course->slug ) }}" class="default-button disabled-button large-button right preview-course-btn">
+            	<a href="#" class=" submit-for-approval blue-button large-button disabled-button right">{{ trans('courses/general.submit') }}</a>
+                <!--<a href='#' data-href="{{ action( 'CoursesController@show', $course->slug ) }}" class="default-button disabled-button large-button right preview-course-btn">
                 	{{ trans('courses/general.preview_course') }}
-            	</a>
+            	</a>-->
 
             </div>
         </div>
-        <div class="row">
-        	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<a href="#" class="header-tabs regular-paragraph active load-remote-cache" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
+        <div class="row header-tabs-container">
+        	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            	<a href="#" class="header-tabs active load-remote-cache" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
                    data-url="{{ action('CoursesController@edit', $course->slug)}}/1" data-target='.course-ajax-holder .step1' data-steps-remaining='2 steps'
-                   data-loaded='1' data-gif='ajax-loader-3.gif' >{{ trans('courses/general.course_description') }}</a>
-            	<a href="#" class="header-tabs regular-paragraph load-remote-cache link-to-step-2" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
+                   data-loaded='1' data-gif='ajax-loader-3.gif' ><em>1</em>{{ trans('courses/general.description') }}</a>
+            	<a href="#" class="header-tabs load-remote-cache link-to-step-2" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
                    data-url="{{ action('CoursesController@edit', $course->slug)}}/2" data-target='.course-ajax-holder .step2'  data-steps-remaining='1 step'
-                   data-gif='ajax-loader-3.gif' >{{ trans('courses/general.curriculum') }}</a>
-            	<a href="#" class="header-tabs regular-paragraph load-remote-cache link-to-step-3" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
+                   data-gif='ajax-loader-3.gif' ><em>2</em>{{ trans('courses/general.curriculum') }}</a>
+            	<a href="#" class="header-tabs load-remote-cache link-to-step-3" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
                    data-url="{{ action('CoursesController@edit', $course->slug)}}/3" data-target='.course-ajax-holder ._step3'  data-steps-remaining='0'
-                   data-gif='ajax-loader-3.gif' >{{ trans('courses/general.settings') }}</a>
+                   data-gif='ajax-loader-3.gif' ><em>3</em>{{ trans('courses/general.settings') }}</a>
                 
             </div>
             
-               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+               <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="right steps-remaining">
                         @if( courseStepsRemaining($course)==0 || $course->publish_status!='unsubmitted')
                             <p class="regular-paragraph no-margin">
@@ -85,10 +94,10 @@
                             <span>
                                 <span>{{ courseStepsRemaining($course) }}</span>
                                 {{ trans('courses/general.steps') }}</span> {{ trans('courses/general.to_submit_course') }}-->
-                            </p>
+                            <!--</p>
                         @endif
                     </div>
-                </div>
+                </div>-->
         </div>
     </section>
     <section class="container main course-editor">

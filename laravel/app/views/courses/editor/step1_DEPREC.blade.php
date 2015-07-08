@@ -6,13 +6,13 @@
     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
                 'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-1-form',  'data-callback'=>'saveAndNextTab' ]) }}
 @include('videos.archiveModal')
-	<div class="row">
-    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 presentation-graphics">
+	<div class="row presentation-graphics">
+    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
         	<h3>Presentation graphics</h3>
             <div class="row">
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                 	<div class="row">
-                    	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 listing-image">
+                    	<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 listing-image">
                         	<h6>Listing image (thumbnail)</h6>
                             <div class="file-details">
                                 <div class="course-listing-image-preview">
@@ -20,8 +20,9 @@
                                         <img src="{{ cloudfrontUrl( $course->previewImage->url ) }}" />
                                     @endif
                                 </div>
-                                <p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
-                                <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>
+                                
+                                <!--<p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
+                                <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>-->
                                 <label for="upload-preview-image" class="default-button large-button">
                                     <span>{{ trans('courses/general.upload_image') }}</span>
                                     <input type="file" hidden="" class='upload-preview-image' 
@@ -47,8 +48,9 @@
                                     </span>
                                 @endif
                             </div>
+                            <em>Image used for listings thumbnail</em>
                         </div>
-                    	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 listing-video">
+                    	<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 listing-video">
                         	<h6>Introduction video</h6>
                             <div class="file-details">
                                 <div class="course-description-video-preview">
@@ -56,6 +58,7 @@
                                         <img src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
                                     @endif
                                 </div>
+                                <em>Video on public course page</em>
                                 @include('courses.video.index')
                             </div>
                         </div>
