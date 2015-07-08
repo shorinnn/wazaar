@@ -29,6 +29,9 @@
             
             <div class="popular-courses-carousel container-fluid">
             	<div class="whats-hot-slider">
+                    <!-- TOP COURSES
+                        {{ print_r($topCourses) }}
+                    -->
                     @foreach($topCourses as $course)
                         <div class="popular-courses">
                             <a href="{{ action('CoursesController@show', $course['slug'] ) }}">
@@ -88,68 +91,22 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="#">
-                            <span>Business & Marketing</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="#">
-                            <span>Business & Marketing</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="#">
-                            <span>Business & Marketing</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="#">
-                            <span>Business & Marketing</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="#">
-                            <span>Business & Marketing</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="#">
-                            <span>Business & Marketing</span>
-                        </a>
-                    </div>
+                    @foreach($categories->take(6)->get() as $cat)
+                        <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
+                            <a href="{{ action( 'CoursesController@category', $cat->slug ) }}">
+                                <span> {{ $cat->name }}</span>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
                 <div class="row">
-                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="#">
-                            <span>Business & Marketing</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="#">
-                            <span>Business & Marketing</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="#">
-                            <span>Business & Marketing</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="#">
-                            <span>Business & Marketing</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="#">
-                            <span>Business & Marketing</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="#">
-                            <span>Business & Marketing</span>
-                        </a>
-                    </div>
+                    @foreach($categories->skip(6)->take(6)->get() as $cat)
+                        <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
+                            <a href="{{ action( 'CoursesController@category', $cat->slug ) }}">
+                                <span> {{ $cat->name }}</span>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </section>
         </section>
