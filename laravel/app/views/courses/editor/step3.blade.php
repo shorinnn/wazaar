@@ -259,7 +259,7 @@
         </div>
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <input type='text' class='delayed-keyup'
-                                                   id='assign-instructor' placeholder="Enter instructor username/email."
+                                                   id='assign-instructor' placeholder="{{ trans('courses/general.enter-instructor-email') }}"
                                                    data-delay='300'
                                                    data-callback='assignInstructor'
                                                    data-checkmark-holder="#assign-instructor-checkmark"
