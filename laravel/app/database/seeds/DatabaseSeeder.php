@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder {
                  $this->call('InstructorAgenciesSeeder');
                  $this->call('PMSeeder');
                  $this->call('TransactionsSeeder');
-                 $this->call('FrontpageVideosSeeder');
+//                 $this->call('FrontpageVideosSeeder');
                  $this->call('GiftSeeder');
                  $this->call('AffiliateUsersSeeder');
                  $this->call('SecondTierInstructorsSeeder');
@@ -846,6 +846,13 @@ P.S
 //        $js->sale_kind = 'percentage';
 //        $js->sale_ends_on = date('Y-m-d H:i:s', strtotime('+ 4 day 2 hour'));
         $js->updateUniques();
+        
+         Course::create( ['name' => 'Obscure Course no one buys', 'slug' => 'no-one-buys', 'instructor_id' => 4, 'course_category_id' => 6,  'course_subcategory_id' => 6, 
+                        'price' => rand(1000, 5000),  'course_difficulty_id' => 1,  'course_preview_image_id' => 8,
+                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
+                        'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
+                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+                        'what_will_you_achieve' => '["Something", "Something Else!"]']);
         
         DB::table('courses')->update( [ 'publish_status' => 'approved' ] );
     }

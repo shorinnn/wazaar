@@ -16,6 +16,13 @@ class HomepageHelper{
         $helper = new CourseHelper();
         $courses = [];
         $catCourses = [];
+        
+        // add the manually selected courses for homepage
+        $featured = Course::where('featured','1')->get();
+        foreach($featured as $course){
+            $courses[] = self::_prep( $course->id );
+        }
+        
         $maxLoops = 5;
         $i = 0;
         // try to fill the required course slot number
@@ -29,22 +36,16 @@ class HomepageHelper{
                     $catCourses[$cat->id] = $helper->bestSellers($cat->slug, '24h')->toArray();
                 }
                 
-                if( count( $catCourses[$cat->id] ) == 0) continue;
+                if( count( $catCourses[$cat->id] ) == 0 ) continue;
                 $max = count( $catCourses[$cat->id] ) > 3 ? 3 : count( $catCourses[$cat->id] )-1;
                 $rand =  rand(0, $max);
                 // picked random course from top 3
                 $selectedCourse = $catCourses[$cat->id][$rand]['course_id'];
+                
                 // remove it from category array so it doesn't show up again
                 unset( $catCourses[$cat->id][$rand] );
                 $catCourses[$cat->id] = array_values($catCourses[$cat->id]);
-                
-                
-                $course = Course::find( $selectedCourse );
-                $course->preview = url('splash/logo.png');
-                if( $course->previewImage != null ) $course->preview = cloudfrontUrl( $course->previewImage->url );
-                $course->discounted = 0;
-                if( $course->isDiscounted() ) $course->discounted = $course->discount_saved;
-                $courses[] = $course->toArray();
+                $courses[] = self::_prep( $selectedCourse );
             }
             ++$i;
             // if after 5 attempts we have missing slots, kill the loop to avoid infinite loop
@@ -54,6 +55,15 @@ class HomepageHelper{
         
         if( count($courses) > $courseCount) $courses = array_slice ($courses, 0, $courseCount);
         return $courses;
+    }
+    
+    private static function _prep($id){
+        $course = Course::find( $id );
+        $course->preview = url('splash/logo.png');
+        if( $course->previewImage != null ) $course->preview = cloudfrontUrl( $course->previewImage->url );
+        $course->discounted = 0;
+        if( $course->isDiscounted() ) $course->discounted = $course->discount_saved;
+        return $course->toArray();
     }
 
     

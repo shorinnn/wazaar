@@ -12,6 +12,7 @@ class SiteController extends \BaseController {
 //                $frontpageVideos  = FrontpageVideo::grid();
                 $categories = CourseCategory::limit(12);
                 
+//                Cache::forget('topCourses');
                 if ( !Cache::has('topCourses') ){
                     $top = HomepageHelper::generateVariations(8);
                     Cache::add('topCourses', $top, 30);
