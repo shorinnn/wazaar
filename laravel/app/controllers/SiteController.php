@@ -11,12 +11,23 @@ class SiteController extends \BaseController {
             if(Input::has('skip-the-splashie')){
                 $frontpageVideos  = FrontpageVideo::grid();
                 $categories = CourseCategory::with('featuredCourse')->get();
+//                $top = HomepageHelper::generateVariations(8);
+                Cache::forget('topCourses');
+//                if ( !Cache::has('topCourses') ){
+                    $top = HomepageHelper::generateVariations(8);
+                    Cache::add('topCourses', $top, 30);
+//                }
+                
+                $topCourses = Cache::get('topCourses');
+                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
+//                dd( $topCourses );
+                
                 if(Auth::user()) Return View::make('site.homepage_authenticated')->with(compact('categories'));
                 else{
                     if(Input::has('old-page'))
-                        Return View::make('site.homepage_unauthenticated_DEPR')->with( compact('categories', 'frontpageVideos') );
+                        Return View::make('site.homepage_unauthenticated_DEPR')->with( compact('categories', 'frontpageVideos', 'topCourses') );
                     else
-                        Return View::make('site.homepage_unauthenticated')->with( compact('categories', 'frontpageVideos') );
+                        Return View::make('site.homepage_unauthenticated')->with( compact('categories', 'frontpageVideos', 'topCourses') );
                 }
             }
             if( Auth::check() ){

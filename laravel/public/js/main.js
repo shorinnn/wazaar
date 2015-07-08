@@ -5,8 +5,15 @@
 // JavaScript Document
 var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 $(document).ready(function(){
-    
-    
+    $('.countdown').each(function(){
+        seconds = $(this).attr('data-final-date-seconds')
+        time = moment().add(seconds, 'seconds').format('YYYY/MM/DD HH:mm:ss');
+        time = time.toString(); 
+        console.log(time);
+        $(this).countdown(time, function(event) {
+               $(this).html( event.strftime('%D days %H:%M:%S') );
+             } );
+    });
     
     $('.tooltipable').tooltip();
 //    $("body").tooltip({ selector: '[data-toggle="tooltip"]' });

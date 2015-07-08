@@ -294,6 +294,7 @@
         <!--<script src="{{url("js/select.js")}}"></script>-->
         <script src="{{url("js/bootstrap-datepicker.js")}}"></script>
         <script type="text/javascript" src="{{url('js/bootbox.js')}}"></script>
+        <script type="text/javascript" src="{{url('js/jquery.countdown.min.js')}}"></script>
 
     @else
         <!--<script src="{{ url("assets/js/". asset_path('core.min.js') )}}"></script>-->
@@ -329,6 +330,7 @@
         <script src="{{url("js/bootstrap-datepicker.js")}}"></script>
         <script src="{{url("js/mailcheck.min.js")}}"></script>
         <script type="text/javascript" src="{{url('js/bootbox.js')}}"></script>
+        <script type="text/javascript" src="{{url('js/jquery.countdown.min.js')}}"></script>
         
 
     @endif

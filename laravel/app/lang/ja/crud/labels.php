@@ -27,7 +27,7 @@ return array(
     'submit' => '提出',    
     'custom_bio' => '月Custom Bioせplease provide more context',
     'display_bio' => '月Display Bioせplease provide more context',
-    'assigned_instructor' => '月Assign Instructorせplease provide more context',
+    'assigned_instructor' => '講師を追加する',
     'display_instructor' => '月Display Instructorせplease provide more context',
     'old-password' => '現在のパスワード',
     'new-password' => '新しいパスワード',
