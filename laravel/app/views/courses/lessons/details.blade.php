@@ -6,6 +6,9 @@
                       data-name="description">{{ $lesson->description }}</textarea><br />
 </div>
 
+
+@if($lesson->module->course->free == 'no')
+
     <div class="row editor-settings-layout margin-bottom-30">
         
             <h4>{{ trans('courses/general.free-preview') }}</h4>
@@ -44,7 +47,6 @@
         </div>
     </div>
 
-@if($lesson->module->course->free == 'no')
         <div class="row editor-settings-layout margin-bottom-30 price-holder-{{$lesson->id}}" 
              @if($lesson->free_preview=='yes')
                 style="display:none"
