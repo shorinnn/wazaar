@@ -127,4 +127,9 @@ class SiteController extends \BaseController {
         $user = User::find(74);
         Auth::login($user);
     }
+    
+    public function clearCache(){
+        Cache::forget('topCourses');
+        return 'ok';
+    }
 }

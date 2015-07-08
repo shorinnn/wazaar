@@ -24,6 +24,7 @@ if( !isset($_SERVER['HTTP_HOST'])){
 
 Route::resource('lp', 'LpController');
 Route::get('loginTest', 'SiteController@loginTest');
+Route::get('clear-cache/huehue', 'SiteController@clearCache');
 $wwwRoutes = function(){
 //Route::group( array('domain' =>  $domain), function(){
     // Site routes
