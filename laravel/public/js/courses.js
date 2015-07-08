@@ -107,6 +107,7 @@ function addLesson(json){
         $('.step-2-filled').val('1');
         updateStepsRemaining();
     }
+    activeLessonOption();
 }
 
 /**
