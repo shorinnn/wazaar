@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('AffiliateUsersSeeder');
         $this->call('SecondTierInstructorsSeeder');
         $this->call('CategoryGroupSeeder');
+        $this->call('CategoryGroupItemSeeder');
     }
 
 }
@@ -1346,5 +1347,16 @@ class CategoryGroupSeeder extends Seeder {
         $g = new CategoryGroup([ 'name' => 'Look more beautiful!', 'order' => 3]);
         $g->save();
     }
+}
 
+class CategoryGroupItemSeeder extends Seeder {
+
+    public function run() {
+        CategoryGroupItem::create( ['category_group_id' => 1, 'course_category_id' => 1] );
+        CategoryGroupItem::create( ['category_group_id' => 1, 'course_category_id' => 2] );
+        CategoryGroupItem::create( ['category_group_id' => 2, 'course_category_id' => 3] );
+        CategoryGroupItem::create( ['category_group_id' => 2, 'course_category_id' => 4] );
+        CategoryGroupItem::create( ['category_group_id' => 3, 'course_category_id' => 2] );
+        CategoryGroupItem::create( ['category_group_id' => 3, 'course_category_id' => 3] );
+    }
 }
