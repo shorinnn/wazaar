@@ -44,7 +44,7 @@ class InstructorsController extends \BaseController {
         }
         
         public function doAcceptTerms(){
-            if( Input::get('accept') != 1 ) return View::make('instructors.accept_terms');
+            if( Input::get('accept') != 1 ) return View::make('instructors.at');
             Auth::user()->accepted_instructor_terms = 'yes';
             Auth::user()->updateUniques();
             return Redirect::action('CoursesController@myCourses');

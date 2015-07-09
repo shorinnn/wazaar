@@ -159,5 +159,6 @@ return array(
     'complete-x-steps-to-submit' => "商品提出までに<span><span>:steps</span></span>ステップ必要",
     'wazaar-is-checking-your-product' => '商品は審査中です。',
     'enroll' => 'このコースを受講する',
+    'enter-instructor-email' => '追加したい講師のメルアドを記入して下さい。',
 );
 

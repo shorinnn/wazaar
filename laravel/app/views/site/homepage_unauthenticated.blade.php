@@ -1,5 +1,22 @@
     @extends('layouts.default')	
     @section('content')
+    <style>
+        .popular-courses{
+            width:300px;
+            float:left;
+            margin: 0;
+			padding: 0;
+        }
+        
+        .whats-hot-slider
+        {
+                width:100%;
+                height: 330px;
+                position: relative;
+        }
+		
+        
+    </style>
         <section class="homepage-header-wrapper">
         	<span class="background-image-overlay"></span>            
             <section class="container-fluid homepage-header">
@@ -29,9 +46,6 @@
             
             <div class="popular-courses-carousel container-fluid">
             	<div class="whats-hot-slider">
-                    <!-- TOP COURSES
-                        {{ print_r($topCourses) }}
-                    -->
                     @foreach($topCourses as $course)
                         <div class="popular-courses">
                             <a href="{{ action('CoursesController@show', $course['slug'] ) }}">
@@ -499,4 +513,44 @@
         
         @section('extra_js')
             <script type="text/javascript" src="{{url('js/moment.js')}}"></script>
+            
+            <script src="{{url('plugins/smoothscroll/jquery.kinetic.min.js')}}" type="text/javascript"></script>
+            <script src="{{url('plugins/smoothscroll/jquery-ui-1.10.3.custom.min.js')}}" type="text/javascript"></script>
+            <script src="{{url('plugins/smoothscroll/jquery.mousewheel.min.js')}}" type="text/javascript"></script>
+            <script src="{{url('plugins/smoothscroll/jquery.smoothdivscroll-1.3-min.js')}}" type="text/javascript"></script>
+            <script>
+                $(function(){
+                    $('.whats-hot-slider').smoothDivScroll({
+                        autoScrollingMode: "onStart",
+                        mousewheelScrolling: "allDirections",
+			manualContinuousScrolling: true
+                    });
+                    
+                    $('.whats-hot-slider img').hover(function(){
+                            $(".whats-hot-slider").smoothDivScroll("stopAutoScrolling");
+                        },
+                        function(){
+                            $(".whats-hot-slider").smoothDivScroll("startAutoScrolling");
+                        }
+                    );
+            
+                    $(' .scrollingHotSpotRight').mouseout(function(){
+                        delay(function(){
+                            $(".whats-hot-slider").smoothDivScroll("option","autoScrollDirection","endlessLoopLeft");
+                            $(".whats-hot-slider").smoothDivScroll("startAutoScrolling");
+                        }, 500);
+                        
+                    });
+                    
+                    $('.scrollingHotSpotLeft').mouseout(function(){
+                        delay(function(){
+                            $(".whats-hot-slider").smoothDivScroll("option","autoScrollDirection","endlessLoopRight");
+                            $(".whats-hot-slider").smoothDivScroll("startAutoScrolling");
+                        }, 500);
+                        
+                    });
+                    
+                    
+                });
+            </script>
         @stop

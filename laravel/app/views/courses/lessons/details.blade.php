@@ -6,6 +6,9 @@
                       data-name="description">{{ $lesson->description }}</textarea><br />
 </div>
 
+
+@if($lesson->module->course->free == 'no')
+
     <div class="row editor-settings-layout margin-bottom-30">
         
             <h4>{{ trans('courses/general.free-preview') }}</h4>
@@ -44,67 +47,69 @@
         </div>
     </div>
 
-   <div class="row editor-settings-layout margin-bottom-30 price-holder-{{$lesson->id}}" 
-        @if($lesson->free_preview=='yes')
-           style="display:none"
-        @endif
-        >
-            <h4>{{ trans('courses/general.individual-sale') }}</h4>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-            <div class="toggle-switch">
-                <label class="toggle-button
-                       @if($lesson->individual_sale=='yes') active @endif" for="individual-sale-yes-{{$lesson->id}}">
-                    {{ Form::radio('individual_sale', 'yes', ($lesson->individual_sale=='yes'), 
-                                ['id'=>'individual-sale-yes-'.$lesson->id,
-                                'class' => 'ajax-updatable toggle-disable',
-//                                'onchange' => 'toggleVisible(event)',
-                               
-//                                'data-target' => '.price-holder-'.$lesson->id,
-                                'data-target' => '#price-'.$lesson->id,
-                                'data-disable' => 'enable',
-                                'data-url' => action('LessonsController@update', [$lesson->module->id, $lesson->id] ),
-                                'data-name' => 'individual_sale',
-                                'value' => 'yes'] ) }}
-                    {{ trans('courses/curriculum.yes') }}
-                </label>
-                <label class="toggle-button
-                       @if($lesson->individual_sale=='no') active @endif" for="individual-sale-no-{{$lesson->id}}">
-                    {{ Form::radio('individual_sale', 'no', ($lesson->individual_sale=='no'), 
-                                ['id'=>'individual-sale-no-'.$lesson->id,
-                                'class' => 'ajax-updatable toggle-disable',
-//                                'onchange' => 'toggleVisible(event)',
-                                'data-visible' => 'hide',
-//                                'data-target' => '.price-holder-'.$lesson->id,
-                                'data-target' => '#price-'.$lesson->id,
-                                'data-disable' => 'disable',
-                                'data-url' => action('LessonsController@update', [$lesson->module->id, $lesson->id] ),
-                                'data-name' => 'individual_sale',
-                                'value' => 'no'] ) }}
-                    {{ trans('courses/curriculum.no') }}
-                </label>
-            </div>
-        </div>
-    </div>
+        <div class="row editor-settings-layout margin-bottom-30 price-holder-{{$lesson->id}}" 
+             @if($lesson->free_preview=='yes')
+                style="display:none"
+             @endif
+             >
+                 <h4>{{ trans('courses/general.individual-sale') }}</h4>
+                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                 <div class="toggle-switch">
+                     <label class="toggle-button
+                            @if($lesson->individual_sale=='yes') active @endif" for="individual-sale-yes-{{$lesson->id}}">
+                         {{ Form::radio('individual_sale', 'yes', ($lesson->individual_sale=='yes'), 
+                                     ['id'=>'individual-sale-yes-'.$lesson->id,
+                                     'class' => 'ajax-updatable toggle-disable',
+     //                                'onchange' => 'toggleVisible(event)',
 
-   
+     //                                'data-target' => '.price-holder-'.$lesson->id,
+                                     'data-target' => '#price-'.$lesson->id,
+                                     'data-disable' => 'enable',
+                                     'data-url' => action('LessonsController@update', [$lesson->module->id, $lesson->id] ),
+                                     'data-name' => 'individual_sale',
+                                     'value' => 'yes'] ) }}
+                         {{ trans('courses/curriculum.yes') }}
+                     </label>
+                     <label class="toggle-button
+                            @if($lesson->individual_sale=='no') active @endif" for="individual-sale-no-{{$lesson->id}}">
+                         {{ Form::radio('individual_sale', 'no', ($lesson->individual_sale=='no'), 
+                                     ['id'=>'individual-sale-no-'.$lesson->id,
+                                     'class' => 'ajax-updatable toggle-disable',
+     //                                'onchange' => 'toggleVisible(event)',
+                                     'data-visible' => 'hide',
+     //                                'data-target' => '.price-holder-'.$lesson->id,
+                                     'data-target' => '#price-'.$lesson->id,
+                                     'data-disable' => 'disable',
+                                     'data-url' => action('LessonsController@update', [$lesson->module->id, $lesson->id] ),
+                                     'data-name' => 'individual_sale',
+                                     'value' => 'no'] ) }}
+                         {{ trans('courses/curriculum.no') }}
+                     </label>
+                 </div>
+             </div>
+         </div>
 
-<div class="clear clearfix price-holder-{{$lesson->id}}"
-           @if($lesson->free_preview=='yes')
-               style="display:none"
-           @endif
-           >
-    <h4>{{ trans('general.lesson_price') }}</h4> 
-    <input type="text" data-delay = '1000' data-callback='adjustPrice' data-next-to='1' data-allow-zero='1'
-            @if($lesson->individual_sale=='no')
-                disabled="disabled"
-           @endif
-           
-       
-           
-           class="ajax-updatable delayed-keyup"  
-           data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}'
-                      data-name='price' id='price-{{$lesson->id}}' value="{{ $lesson->price }}" /><br />
-</div>
+
+
+     <div class="clear clearfix price-holder-{{$lesson->id}}"
+                @if($lesson->free_preview=='yes')
+                    style="display:none"
+                @endif
+                >
+         <h4>{{ trans('general.lesson_price') }}</h4> 
+         <input type="text" data-delay = '1000' data-callback='adjustPrice' data-next-to='1' data-allow-zero='1'
+                 @if($lesson->individual_sale=='no')
+                     disabled="disabled"
+                @endif
+
+
+
+                class="ajax-updatable delayed-keyup"  
+                data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}'
+                           data-name='price' id='price-{{$lesson->id}}' value="{{ $lesson->price }}" /><br />
+     </div>
+
+@endif
 
 <!--<div class="clear clearfix">
     <p>{{ trans('general.published') }}</p> 
