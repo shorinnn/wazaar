@@ -4,7 +4,7 @@ class CoursesCategoriesController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter('admin', ['except' => ['subcategories','subcategories_instructor' ] ] );
-            $this->beforeFilter('csrf', ['only' => [ 'store', 'update','destroy' ]]);
+            $this->beforeFilter('csrf', ['only' => [ 'store', 'update','destroy', 'group' ]]);
         }
         
         public function index(){
@@ -70,5 +70,22 @@ class CoursesCategoriesController extends \BaseController {
                     View::make('administration.course_categories.graphics')->with(compact('category'))->render() ] );
             }
             else return json_encode( [ 'status'=>'error', 'errors' => format_errors($category->errors()->all()) ] );
+        }
+        
+        public function group($id){
+            if( Input::has('group') ){
+                $groups = Input::get('group');
+                // delete dropped groups
+                 CategoryGroupItem::where( 'course_category_id', $id )->whereNotIn( 'category_group_id', $groups )->delete();
+                // add the new groups
+                foreach($groups as $group){
+                    $g = new CategoryGroupItem( ['course_category_id' => $id, 'category_group_id' => $group ] );
+                    $g->save();
+                }
+            }
+            else{
+                CategoryGroupItem::where('course_category_id', $id)->delete();
+            }
+            return json_encode( [ 'status'=>'success' ] );
         }
 }

@@ -101,6 +101,7 @@ $wwwRoutes = function(){
     Route::get('coursecategories/subcategories', 'CoursesCategoriesController@subcategories');
     Route::group(['prefix' => 'administration'], function (){
         Route::post('coursecategories/graphics_url/{category}', 'CoursesCategoriesController@graphics_url');
+        Route::put('coursecategories/{id}/group', 'CoursesCategoriesController@group');
         Route::resource('coursecategories', 'CoursesCategoriesController');
         Route::resource('coursesubcategories', 'CoursesSubcategoriesController');
         Route::resource('course-difficulties', 'CourseDifficultiesController');
