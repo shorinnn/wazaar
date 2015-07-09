@@ -6,15 +6,15 @@
     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
                 'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-1-form',  'data-callback'=>'saveAndNextTab' ]) }}
 @include('videos.archiveModal')
-	<div class="row presentation-graphics">
+	<div class="row content-row margin-bottom-20">
     	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
         	<h3>Presentation graphics</h3>
             <div class="row">
-            	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 main-info">
                 	<div class="row">
-                    	<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 listing-image">
+                    	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 listing-image">
                         	<h6>Listing image (thumbnail)</h6>
-                            <div class="file-details">
+                            <div class="file-details relative">
                                 <div class="course-listing-image-preview">
                                     @if($course->course_preview_image_id > 0)
                                         <img src="{{ cloudfrontUrl( $course->previewImage->url ) }}" />
@@ -64,10 +64,33 @@
                         </div>
                     </div>
                 </div>
-            	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 side-info">
+                	<h4>Size and format</h4>
                     <p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
                     <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>
                 	<p class="regular-paragraph">{{ trans('courses/general.video_size') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row content-row margin-bottom-20">
+    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+            <h3>Course descriptions</h3>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 main-info">
+                    <h6>
+                    {{ trans('courses/general.short_description') }}
+                    </h6>
+                    {{ Form::textarea('short_description', null,['id'=>'short_description', 'required' => 'required' ] ) }}       
+                    {{ Form::textarea('description', null,['id'=>'description'] ) }}        
+                </div>
+                <div class="hidden-xs hidden-sm col-md-1 col-lg-1"></div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 side-info">
+                	<h6>Tips</h6>
+                    <p class="regular-paragraph">
+                    Make it clear and short. Tell everything your student needs to know before buying a course.
+                    </p>
                 </div>
             </div>
         </div>
@@ -76,10 +99,9 @@
     <div class="row">
         
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <p class="intro-paragraph">{{ trans('courses/general.details_for_public_course_page') }}</p>
-                <h4>
+                <h6>
                 {{ trans('courses/create.give-title') }}
-                </h4>
+                </h6>
                     {{ Form::text( 'name', null, ['class' => 'has-slug', 'placeholder'=>'Course Name', 
                         'data-slug-target' => '#slug', 'required' => 'required' ]) }}
                     {{ Form::hidden( 'slug', null, ['id'=>'slug'] ) }}
