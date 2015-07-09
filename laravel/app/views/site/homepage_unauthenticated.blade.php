@@ -521,17 +521,17 @@
             <script>
                 $(function(){
                     $('.whats-hot-slider').smoothDivScroll({
-                        autoScrollingMode: "onStart",
-                        mousewheelScrolling: "vertical",
+                        autoScrollingMode: false,
+                        //mousewheelScrolling: "vertical",
 						manualContinuousScrolling: true
                     });
                     
-                    $('.whats-hot-slider').mouseover(function(){
+                    $('.whats-hot-slider').hover(function(){
                             $(".whats-hot-slider").smoothDivScroll("stopAutoScrolling");
-                        }/*,
+                        },
                         function(){
                             $(".whats-hot-slider").smoothDivScroll("startAutoScrolling");
-                        }*/
+                        }
                     );
             
                     $(' .scrollingHotSpotRight').mouseout(function(){
