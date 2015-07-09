@@ -31,7 +31,7 @@
       <html class="ie8">
     <![endif]-->
     
-    
+
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
@@ -404,6 +404,10 @@
 			});
 		</script>
     	
-
+            <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/delaunay.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/TweenMax.min.js"></script>
+            
+            <script type="text/javascript" src="{{url('js/cocorium.max.js')}}"></script>
+            <script type="text/javascript" src="{{url('js/html2canvas.js')}}"></script>
 	</body>
 </html>
