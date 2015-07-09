@@ -522,8 +522,8 @@
         $(function(){
             $('.whats-hot-slider').smoothDivScroll({
                 autoScrollingMode: "onStart",
-                mousewheelScrolling: "allDirections",
-                manualContinuousScrolling: true
+                manualContinuousScrolling: true,
+                mousewheelScrolling: ""
             });
 
             $('.whats-hot-slider img').hover(function(){
