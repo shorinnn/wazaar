@@ -21,7 +21,7 @@ class SiteController extends \BaseController {
                 $topCourses = Cache::get('topCourses');
                 $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
                 
-                if(Auth::user()) Return View::make('site.homepage_authenticated')->with(compact('categories'));
+                if(Auth::user()) Return View::make('site.homepage_authenticated')->with(compact('categories', 'topCourses'));
                 else{
                     if(Input::has('old-page'))
                         Return View::make('site.homepage_unauthenticated_DEPR')->with( compact('categories', 'frontpageVideos', 'topCourses') );
