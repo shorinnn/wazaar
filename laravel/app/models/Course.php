@@ -338,6 +338,11 @@ class Course extends Ardent{
         }
         return $module;
     }
+    
+    public function likes(){
+        if( $this->total_reviews ==0 ) return 0;
+        else return $this->total_reviews * $this->reviews_positive_score / 100;
+    }
 
 
 }

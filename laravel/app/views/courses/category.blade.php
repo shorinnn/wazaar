@@ -4,13 +4,15 @@
             <div class="container cat-row-{{$category->color_scheme}}">
             	<div class="row category-heading">
                     <div class="col-xs-12 col-sm-6 col-md-6">
-                        <p class="category-heading-title"> {{ $category->name }} 
-                            @if(isset($subcategory))
-                                {{" > $subcategory->name"}}
-                            @endif
-                            
-                            <!--<small>{{ $category->description }}</small>-->
-                        </p>
+                        @if($category->name!='')
+                            <p class="category-heading-title"> {{ $category->name }} 
+                                @if(isset($subcategory))
+                                    {{" > $subcategory->name"}}
+                                @endif
+
+                                <!--<small>{{ $category->description }}</small>-->
+                            </p>
+                        @endif
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6">
                     	<div class="difficulty-levels">

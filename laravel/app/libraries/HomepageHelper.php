@@ -68,7 +68,6 @@ class HomepageHelper{
         if( $course->previewImage != null ) $course->preview = cloudfrontUrl( $course->previewImage->url );
         $course->discounted = 0;
         if( $course->isDiscounted() ) $course->discounted = $course->discount_saved;
-        if($manual) $course->name .= '(M)';
         return $course->toArray();
     }
 

@@ -237,6 +237,25 @@ class CoursesController extends \BaseController {
         }
         
         public function category($slug=''){
+            
+            if($slug==''){
+                $courses = Course::with('courseDifficulty')->with('courseCategory')->with('courseSubcategory')->with('previewImage')
+                    ->where(function($query){
+                        $query->where('featured',0)
+                        ->where('publish_status', 'approved')
+                        ->where('privacy_status','public')
+                        ->orWhere(function($query2){
+                            $query2->where('privacy_status','public')
+                                    ->where('featured',0)
+                                    ->where('publish_status', 'pending')
+                                    ->where('pre_submit_data', '!=', "");
+                        });
+                    })
+                    ->orderBy('id','Desc')->paginate(9);
+                $category = new stdClass;
+                $category->color_scheme = $category->name = $category->description = $category->id =  '';
+                Return View::make('courses.category')->with(compact('category'))->with(compact('courses'));
+            }
             if( !$category = CourseCategory::where('slug',$slug)->first() ){
                  return View::make('site.error_encountered');
             }
@@ -255,8 +274,6 @@ class CoursesController extends \BaseController {
                     })
                     ->orderBy('id','Desc')->paginate(9);
             Return View::make('courses.category')->with(compact('category'))->with(compact('courses'));
-            //                    ->where('featured',0)
-            //                    ->where('privacy_status','public')
                             
         }
         

@@ -29,6 +29,7 @@ $wwwRoutes = function(){
 //Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
+    Route::get('discover-courses/{group}', 'SiteController@discoverCourses');
 	
     
     Route::get('/dash', 'SiteController@dashboard');
@@ -184,6 +185,7 @@ $wwwRoutes = function(){
     Route::get('courses/categories', 'CoursesController@categories');
     Route::get('courses/category/{slug}/{subcat}', 'CoursesController@subCategory');
     Route::get('courses/category/{slug}', 'CoursesController@category');
+    Route::get('courses/category/', 'CoursesController@category');
     Route::post('courses/{slug}/purchase/{lesson}', 'CoursesController@purchaseLesson');
     Route::post('courses/{slug}/crash/{lesson}', 'CoursesController@crashLesson');
     Route::post('courses/{slug}/crash/', 'CoursesController@crashCourse');
