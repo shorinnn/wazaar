@@ -100,5 +100,11 @@ return array(
     'click-go-to-begin' => 'Click GO to begin',
     'verify-go-button' => 'GO!',
     'opening-lesson' => 'Opening Lesson',
+    'no-rating-yet' => 'No rating yet',
+    'highly-recommended' => 'Highly recommended',
+    'very-positive' => 'Very Positive',
+    'positive' => 'Positive',
+    'mixed' => 'Mixed',
+    'negative' => 'Negative',
     
 );

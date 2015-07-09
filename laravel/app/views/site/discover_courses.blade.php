@@ -24,7 +24,7 @@
                             <p>weeks of learning</p>
                             <div class="footer clearfix">
                                 <div class="heart-icon"></div>
-                                <div class="highly-recommend">highly recommend</div>
+                                <div class="highly-recommend">{{ $course->rating() }}</div>
                             </div>
                         </span>
                     </div>
@@ -91,7 +91,7 @@
                             <p>weeks of learning</p>
                             <div class="footer clearfix">
                                 <div class="heart-icon"></div>
-                                <div class="highly-recommend">highly recommend</div>
+                                <div class="highly-recommend">{{ $course->rating() }}</div>
                             </div>
                         </span>
                     </div>
