@@ -1339,7 +1339,8 @@ header .activate-dropdown:hover ul{
 	background-image: none !important;
 	background-color: #ffffff !important;
  	border-radius: 4px;
-  	height: 356px;
+  	/*height: 356px;*/
+	height: auto;
 	max-width: 360px;
   	background-repeat:no-repeat;
   	position:relative;

@@ -11,7 +11,7 @@
         .whats-hot-slider
         {
                 width:100%;
-                height: 330px;
+                height: auto;
                 position: relative;
         }
 		
@@ -522,16 +522,16 @@
                 $(function(){
                     $('.whats-hot-slider').smoothDivScroll({
                         autoScrollingMode: "onStart",
-                        mousewheelScrolling: "allDirections",
-			manualContinuousScrolling: true
+                        mousewheelScrolling: "vertical",
+						manualContinuousScrolling: true
                     });
                     
-                    $('.whats-hot-slider img').hover(function(){
+                    $('.whats-hot-slider').mouseover(function(){
                             $(".whats-hot-slider").smoothDivScroll("stopAutoScrolling");
-                        },
+                        }/*,
                         function(){
                             $(".whats-hot-slider").smoothDivScroll("startAutoScrolling");
-                        }
+                        }*/
                     );
             
                     $(' .scrollingHotSpotRight').mouseout(function(){
