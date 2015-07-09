@@ -105,6 +105,7 @@ $wwwRoutes = function(){
         Route::resource('coursecategories', 'CoursesCategoriesController');
         Route::resource('coursesubcategories', 'CoursesSubcategoriesController');
         Route::resource('course-difficulties', 'CourseDifficultiesController');
+        Route::put('category-groups/{id}/group', 'CategoryGroupsController@group');
         Route::resource('category-groups', 'CategoryGroupsController');
     });
 //});

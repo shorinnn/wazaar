@@ -44,6 +44,23 @@ class CategoryGroupsController extends \BaseController {
             if(Request::ajax()) return json_encode($response);
             else return Redirect::back();
         }
+        
+        public function group($id){
+            if( Input::has('group') ){
+                $groups = Input::get('group');
+                // delete dropped groups
+                 CategoryGroupItem::where( 'category_group_id', $id )->whereNotIn( 'course_category_id', $groups )->delete();
+                // add the new groups
+                foreach($groups as $group){
+                    $g = new CategoryGroupItem( ['category_group_id' => $id, 'course_category_id' => $group ] );
+                    $g->save();
+                }
+            }
+            else{
+                CategoryGroupItem::where('category_group_id', $id)->delete();
+            }
+            return json_encode( [ 'status'=>'success' ] );
+        }
 
     
 }

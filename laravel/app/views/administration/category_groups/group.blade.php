@@ -15,6 +15,29 @@
             {{ Form::close() }}
             
         </div>
+        <div>
+            <div class='checkbox-buttons'  style="display:block">
+                {{ Form::open(array('action' => ['CategoryGroupsController@group', $group->id], 'method' => 'PUT', 
+                            'class' => 'ajax-form inline-block') ) }}
+                  @foreach(CourseCategory::all() as $category)
+
+                    <div class="checkbox-item">
+                          <div class="checkbox-checkbox checkbox-checked">
+                            <input name='group[]' id="group-{{$category->id}}-{{$group->id}}" autocomplete="off" value='{{ $category->id }}'
+                                   @if($group->categories()->where('course_category_id', $category->id)->count() > 0)
+                                       checked="checked" 
+                                   @endif
+                               type="checkbox" />                        
+                            <label for="group-{{$category->id}}-{{$group->id}}" class="small-checkbox">
+                            </label> {{ $category->name }}
+                          </div>  
+                        </div>
+                    @endforeach
+                    <button type='submit' class="btn btn-primary">{{ trans('crud/labels.update') }}</button>
+                {{ Form::close() }}
+            </div>
+            <div class='clearfix'></div>
+        </div>
     </div>
     
 </li>
