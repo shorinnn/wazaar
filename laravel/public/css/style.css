@@ -142,6 +142,8 @@ header{
 	min-height: 70px;
 	padding: 0 40px !important;
 	background: #18222b;
+	position: relative;
+	z-index: 1;
 }
 
 /************ Top menu and logo inside the blue bar ****************/
@@ -479,9 +481,8 @@ header .activate-dropdown:hover ul{
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
-	top: -70px;
+	margin-top: -70px;
 	padding-top: 70px;
-	z-index: -1;
 	background-position: left top; 
 }
 
@@ -494,7 +495,7 @@ header .activate-dropdown:hover ul{
 .homepage-header .extra-large-heading .lead{
 	color: #a7b7c4;
 	text-transform:none;
-	margin: 15px 0 27px;
+	margin: 10px 0 21px;
 }
 
 .homepage-header .how-it-works i{
@@ -687,7 +688,7 @@ header .activate-dropdown:hover ul{
 
 .homepage.explore-category h1 .lead{
 	color: #7e8e9e;
-	margin-top: 17px;
+	margin: 17px 0 0;
 }
 
 .homepage.explore-category .category-box{
@@ -720,7 +721,7 @@ header .activate-dropdown:hover ul{
 }
 
 .discover-header{
-	margin: 72px 0 27px;
+	margin: 72px 0 34px;
 }
 
 .discover-header h1{
@@ -1340,12 +1341,11 @@ header .activate-dropdown:hover ul{
 	background-color: #ffffff !important;
  	border-radius: 4px;
   	/*height: 356px;*/
-	height: auto;
 	max-width: 360px;
   	background-repeat:no-repeat;
   	position:relative;
-  	margin-top:35px;
-	box-shadow: 0px 0px 0px 1px #e0e1e2;
+  	margin-top:29px;
+	box-shadow: 0px 0px 0px 1px #fff;
 	overflow: hidden;
 	-webkit-transition: box-shadow 0.1s ;
 	-moz-transition: box-shadow 0.1s;
@@ -6070,13 +6070,13 @@ a.load-remote > *{
 	padding: 9px 54px;
 }
 
-select,
-textarea,
-.calender .date,
-.value-unit,
-input[type='text'],
-input[type='date'],
-input[type='password']{
+.edit-course select,
+.edit-course textarea,
+.edit-course .calender .date,
+.edit-course .value-unit,
+.edit-course input[type='text'],
+.edit-course input[type='date'],
+.edit-course input[type='password']{
 	display: inline-block;
 	height: 38px;
 	border-radius: 3px;
@@ -6090,11 +6090,11 @@ input[type='password']{
 	border: solid 1px #cfd8df;
 }
 
-select,
-input[type='text']:-moz-placeholder,
-input[type='text']::-moz-placeholder,
-input[type='text']:-ms-input-placeholder,
-input[type='text']::-webkit-input-placeholder{
+.edit-course select,
+.edit-course input[type='text']:-moz-placeholder,
+.edit-course input[type='text']::-moz-placeholder,
+.edit-course input[type='text']:-ms-input-placeholder,
+.edit-course input[type='text']::-webkit-input-placeholder{
 	color: #798794;	
 }
 
@@ -6355,7 +6355,7 @@ input[type='text']::-webkit-input-placeholder{
 .course-description-video-preview{
 	border: solid 1px #9E9E9E !important;
 	display: inline-block;
-	width: 317px;
+	width: 315px;
 	margin-bottom: 5px;
 }
 
@@ -10104,147 +10104,6 @@ input[type='number'] {
 	height: 100%;
 }
 
-/***************** Checkout Page ****************/
-.checkout-header .main-logo{
-	margin: 39px 60px 39px 0;
-}
-
-.checkout-header h1{
-	float: left;
-	font-size: 18px;
-	font-weight: 600;
-	color: #fff;
-	text-transform: uppercase;
-	margin: 40px 0;
-	padding: 15px 0 15px 45px;
-	border-left: solid 1px #303941;
-}
-
-.checkout-page{
-	padding-bottom: 100px;
-}
-
-.checkout-page h1{
-	font-size: 20px;
-	color: #303941;
-	font-weight: normal;
-	margin: 64px 0 35px;
-}
-
-.checkout-page .step-number{
-	color: #303941;
-	border-color: #303941;
-	margin-top: 0;
-	height: 26px;
-	width: 26px;
-	border-radius: 26px;
-	font-size: 14px;
-	font-weight: 600;
-	line-height: 22px;
-}
-
-.checkout-page label{
-	display: block;
-	font-size: 11px;
-	font-weight: normal;
-	color: #8f9dab;
-	text-transform: uppercase;
-}
-
-.checkout-page input,
-.checkout-page select{
-	margin-bottom: 0;
-}
-
-.place-your-order{
-	background: #119bf8 !important;
-	-webkit-box-shadow: 0px 2px 0px #0f8bdf;
-    -moz-box-shadow: 0px 2px 0px #0f8bdf;
-    box-shadow: 0px 2px 0px #0f8bdf;
-	text-transform: uppercase;
-}
-
-.customer-info .place-your-order{
-	margin-top: 80px;
-}
-
-.product-info .course-name{
-	padding: 25px 0;
-	margin-bottom: 40px;
-	border: solid #e0e1e2;
-	border-width: 1px 0;
-}
-
-.product-info .course-name > div{
-}
-
-.product-info .course-thumb{
-	float: left;
-	height: 57px;
-	width: 113px;
-	background: #000;
-	border-radius: 4px;
-	overflow: hidden;
-}
-
-.product-info .course-thumb img{
-	max-width: 100%;
-}
-
-.product-info .course-name p{
-	color: #798794;
-	line-height: 20px;
-	margin: 3px 0 0;
-}
-
-.product-info .course-name span{
-	color: #a7b7c4;
-}
-
-.product-info .product-price{
-	text-align: center;
-	color: #0099ff;
-}
-
-.product-info .product-price .place-your-order{
-	margin-top: 30px;
-	display: block;
-}
-
-.product-info .product-price span{
-	display: block;
-	margin-bottom: 13px;
-}
-
-.product-info .product-price p{
-	font-size: 30px;
-}
-
-.product-info .product-price em,
-.product-info .product-price small{
-	color: #798794;
-	line-height: 20px;
-	text-align: center;
-	margin: 25px 0;
-	display: block;
-}
-
-.product-info .product-price small a{
-	color: #119bf8;
-}
-
-.product-info .product-price em{
-	font-style: normal;
-	margin: 0;
-}
-
-.product-info .product-price em i{
-	margin-right: 10px;
-	color: #a7b7c4;
-	font-size: 16px;
-	position: relative;
-	top: 1px;
-}
 
 /************* Page Footer **************/
 footer{
@@ -11032,7 +10891,7 @@ header .top-menu li{
 }
 .margin-bottom-10
 {
-	margin-bottom: 10px !important;
+	margin-bottom: 10px;
 }
 
 .margin-bottom-15
