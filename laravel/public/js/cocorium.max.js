@@ -177,7 +177,7 @@ var Max = {
             vertices.length = 0;
             indices.length = 0;
 
-            placeImage();
+//            placeImage();
         }
 
         //////////////
