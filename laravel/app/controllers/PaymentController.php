@@ -81,7 +81,7 @@ class PaymentController extends BaseController
             return Redirect::to('profile');
         }
 
-        return View::make('payment.index', compact('productPartial', 'student', 'renderForm'));
+        return View::make('payment.index', compact('productPartial', 'student', 'renderForm', 'product','finalCost','amountToPay'));
     }
 
     public function process()

@@ -21,24 +21,24 @@
                         <div class="row margin-top-20">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <label>first name</label>
-                                <input type="text" name="first_name" class="margin-bottom-10">
+                                <input type="text" name="first_name" class="margin-bottom-10" value="{{$student->profile->first_name}}">
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <label>last name</label>
-                                <input type="text" name="last_name">
+                                <input type="text" name="last_name" value="{{$student->profile->last_name}}">
                             </div>
                         </div>
                         <div class="row margin-top-30">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <label>Address</label>
-                                <input type="text" name="address_1" placeholder="Address line 1" class="margin-bottom-10">
-                                <input type="text" name="address_2" placeholder="Address line 2">
+                                <input type="text" name="address_1" placeholder="Address line 1" class="margin-bottom-10" value="{{$student->profile->address_1}}">
+                                <input type="text" name="address_2" placeholder="Address line 2" value="{{ $student->profile->address_2 }} "/>
                             </div>
                         </div>
                         <div class="row margin-top-30">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <label>postal code</label>
-                                <input type="text" name="postal_code" class="margin-bottom-10">
+                                <input type="text" name="postal_code" class="margin-bottom-10"  value="{{$student->profile->zip}}">
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <label>country</label>
@@ -83,20 +83,20 @@
                 <div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 product-info">
                     <h1>
-                        You are buying:
+                        {{trans('payment.youAreToEnroll')}}:
                     </h1>
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 course-name">
                             <div class="row">
                                 <div class="col-xs-5 col-sm-3 col-md-5 col-lg-5">
-                                    <figure class="course-thumb">
 
-                                    </figure>
+                                        <img src="{{@$product->previewImage->url}}" class="img-responsive" alt="">
+
                                 </div>
                                 <div class="col-xs-7 col-sm-9 col-md-7 col-lg-7 no-padding">
                                     <div>
-                                        <p class="regular-paragraph">Welcome to Markting in a Digital World</p>
-                                        <span class="regular-paragraph">13 lessons</span>
+                                        <p class="regular-paragraph">{{$product->name}}</p>
+                                        <span class="regular-paragraph">{{$product->allModules->count()}} modules</span>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                     </div>
                     <div class="row product-price">
                         <span class="regular-paragraph">Price:</span>
-                        <p>¥ 7,200</p>
+                        <p>¥ {{number_format($amountToPay)}}</p>
                         <a href="#" class="blue-button extra-large-button place-your-order">Place your order</a>
                         <small class="regular-paragraph">By clicking the "Place your order" button, you agree to these
                             <a href="#">Terms of Service.</a>
