@@ -126,28 +126,40 @@
         </section>
         <section class="container-fluid discover-section">
         	<div class="container">
-            	<div class="row discover-header">
-                	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-                    	<h1 class="left">{{trans('site/homepage.discover')}}</h1>
-                        <ul class="left categories-menu">
-                            <li>
-                                <a href="#">All</a>
-                            </li>
-                            <li>
-                                <a href="#">Career courses</a>
-                            </li>
-                            <li>
-                                <a href="#">Hobbies</a>
-                            </li>
-                            <li>
-                                <a href="#">Look more beautiful!</a>
-                            </li>
-                        </ul>
+            	<nav class="navbar navbar-default">
+                    <div class="row discover-header">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+                        	<div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#discover-nav-menu" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>                            	
+                                <h1 class="left navbar-brand">{{trans('site/homepage.discover')}}</h1>
+                            </div>
+                            <div class="collapse navbar-collapse" id="discover-nav-menu">
+                                <ul class="categories-menu nav navbar-nav">
+                                    <li>
+                                        <a href="#">All</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Career courses</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Hobbies</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Look more beautiful!</a>
+                                    </li>
+                                </ul>
+                                <div class="nav navbar-nav navbar-right">
+                                	<a href="#">{{trans('site/homepage.browse_all_courses')}}</a> 
+                                </div>                                    
+                            </div>                           
+                        </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-right">
-                    	<a href="#">{{trans('site/homepage.browse_all_courses')}}</a>
-                    </div>
-                </div>
+                </nav>
             	<div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-4">
                         <a href="http://wazaar.dev/courses/cJio3" class="small-box-link-wrapper">
@@ -493,6 +505,11 @@
                         </div>
                         </a>
                     </div>                 
+                </div>
+                <div class="row">
+                	<div class="text-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    	<a href="#" class="discover-more-button green-button extra-large-button">Discover more</a></div>
+                    </div>
                 </div>
             </div>
         </section>

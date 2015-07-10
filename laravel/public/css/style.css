@@ -481,7 +481,7 @@ header .activate-dropdown:hover ul{
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
-	margin-top: -70px;
+	margin-top: -140px;
 	padding-top: 70px;
 	background-position: left top; 
 }
@@ -618,11 +618,11 @@ header .activate-dropdown:hover ul{
 	opacity: 1;
 }
 
-.popular-courses-carousel .popular-courses:hover .progress,
+/*.popular-courses-carousel .popular-courses:hover .progress,
 .popular-courses-carousel .popular-courses:hover .preview-video-length,
 .popular-courses-carousel .popular-courses:hover .course-title .discount-percent{
 	display: none;
-}
+}*/
 
 .popular-courses-carousel .popular-courses 
 .img-container{
@@ -720,13 +720,21 @@ header .activate-dropdown:hover ul{
 	padding-bottom: 100px;
 }
 
+.discover-section nav{
+	background: none;
+	border: none;
+	margin: 0;
+}
+
 .discover-header{
 	margin: 72px 0 34px;
 }
 
 .discover-header h1{
-	color: #303941;
-	margin: 0 45px 0 0;
+	color: #303941 !important;
+	margin: 3px 45px 0 0;
+	padding: 0;
+	font-size: 26px;
 }
 
 .discover-header .categories-menu{
@@ -737,18 +745,25 @@ header .activate-dropdown:hover ul{
 
 .discover-header .categories-menu li{
 	padding-left: 34px;
-	float: left;
 }
 
 .discover-header a{
 	font-size: 14px;
-	color: #7e8e9e;
-	display: block;
-	padding: 9px 0 6px;
+	color: #7e8e9e !important;
+	display: block !important;
+	padding: 9px 0 6px !important;
 }
 
 .discover-header a:hover{
-	color: #0099ff;
+	color: #0099ff !important;
+}
+
+.discover-more-button{
+	margin: 50px 0 0;
+	text-transform: uppercase;
+	-webkit-box-shadow: 0px 2px 0px #2b8018;
+    -moz-box-shadow: 0px 2px 0px #2b8018;
+    box-shadow: 0px 2px 0px #2b8018;
 }
 
 .become-an-instructor-section{
@@ -1340,7 +1355,7 @@ header .activate-dropdown:hover ul{
 	background-image: none !important;
 	background-color: #ffffff !important;
  	border-radius: 4px;
-  	/*height: 356px;*/
+  	max-height: 373px;
 	max-width: 360px;
   	background-repeat:no-repeat;
   	position:relative;
@@ -2074,6 +2089,7 @@ header .activate-dropdown:hover ul{
 	margin-top: 10px;
 }
 
+.green-button,
 .blue-button{
 	display: inline-block;
 	border: none;
@@ -2094,6 +2110,19 @@ header .activate-dropdown:hover ul{
 .blue-button:focus{
 	color: #fff;
 	background: #008eed;
+}
+
+.green-button{
+	background: #33a619;
+}
+
+.green-button:hover{
+	color: #fff;
+	background: #3cbf1f;
+}
+
+.green-button:active,
+.green-button:focus{
 }
 
 .default-button{
@@ -10393,6 +10422,21 @@ footer{
 }
 
 @media (max-width:991px){
+	.discover-header .categories-menu{
+		border: none;
+	}
+	
+	.discover-header h1,
+	.discover-header .categories-menu,
+	#discover-nav-menu,
+	.discover-header .categories-menu li{
+		padding-left: 0;
+	}
+
+	.discover-header h1{
+		margin-top: 10px;
+	}
+
 	.big-box .featured-contents-container {
 		width: 100%;
 	}
@@ -10757,6 +10801,11 @@ header .top-menu li{
 		text-align: right;
 	}
 }
+
+@media (max-width:402px){
+	
+}
+
 
 @media (max-width:380px){
 	.category-heading a{
