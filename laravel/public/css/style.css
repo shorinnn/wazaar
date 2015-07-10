@@ -131,6 +131,34 @@ a:hover{
 	text-decoration: none !important;
 }
 
+select,
+textarea,
+.calender .date,
+.value-unit,
+input[type='text'],
+input[type='date'],
+input[type='password']{
+	display: inline-block;
+	height: 38px;
+	border-radius: 3px;
+	width: 100%;
+	margin-bottom: 20px;
+	outline: none !important;
+	padding: 0 12px;
+	font-size: 13px;
+	background-color: transparent;
+	color: #303941;
+	border: solid 1px #cfd8df;
+}
+
+select,
+input[type='text']:-moz-placeholder,
+input[type='text']::-moz-placeholder,
+input[type='text']:-ms-input-placeholder,
+input[type='text']::-webkit-input-placeholder{
+	color: #798794;	
+}
+
 /************** Page contents styles *****************/
 
 #wrapper{
@@ -6103,34 +6131,6 @@ a.load-remote > *{
 
 .create-course-start-page-container .cancel-course-btn{
 	padding: 9px 54px;
-}
-
-select,
-textarea,
-.calender .date,
-.value-unit,
-input[type='text'],
-input[type='date'],
-input[type='password']{
-	display: inline-block;
-	height: 38px;
-	border-radius: 3px;
-	width: 100%;
-	margin-bottom: 20px;
-	outline: none !important;
-	padding: 0 12px;
-	font-size: 13px;
-	background-color: transparent;
-	color: #303941;
-	border: solid 1px #cfd8df;
-}
-
-select,
-input[type='text']:-moz-placeholder,
-input[type='text']::-moz-placeholder,
-input[type='text']:-ms-input-placeholder,
-input[type='text']::-webkit-input-placeholder{
-	color: #798794;	
 }
 
 .create-course-start-page-container input,
