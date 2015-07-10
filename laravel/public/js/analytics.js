@@ -23,16 +23,16 @@ var Analytics = {
                 $('.top-courses-dropdown a').removeClass('active');
                 $($elem).addClass('active');
                 if ($frequency == 'daily'){
-                    $('#header-top-courses-frequency').html(js_translation_map.today);
+                    $('#header-top-courses-frequency').html(_("Today"));
                 }
                 else if($frequency == 'week'){
-                    $('#header-top-courses-frequency').html(js_translation_map.thisWeek);
+                    $('#header-top-courses-frequency').html(_("This Week"));
                 }
                 else if($frequency == 'month'){
-                    $('#header-top-courses-frequency').html(js_translation_map.thisMonth);
+                    $('#header-top-courses-frequency').html(_("This Month"));
                 }
                 else if($frequency == 'alltime'){
-                    $('#header-top-courses-frequency').html(js_translation_map.allTime);
+                    $('#header-top-courses-frequency').html(_("All Time"));
                 }
             });
     },
@@ -45,19 +45,19 @@ var Analytics = {
             $('.sales-dropdown a').removeClass('active');
             $($elem).addClass('active');
             if ($frequency == 'daily'){
-                $('#header-sales-frequency').html(js_translation_map.today);
+                $('#header-sales-frequency').html(_("Today"));
                 $('.with-today').trigger('click');
             }
             else if($frequency == 'week'){
-                $('#header-sales-frequency').html(js_translation_map.thisWeek);
+                $('#header-sales-frequency').html(_("This Week"));
                 $('.with-weekly').trigger('click');
             }
             else if($frequency == 'month'){
-                $('#header-sales-frequency').html(js_translation_map.thisMonth);
+                $('#header-sales-frequency').html(_("This Month"));
                 $('.with-monthly').trigger('click');
             }
             else if($frequency == 'alltime'){
-                $('#header-sales-frequency').html(js_translation_map.allTime);
+                $('#header-sales-frequency').html(_("All Time"));
                 $('.with-alltime').trigger('click');
             }
             if ($('#wrapper-tracking-codes-table').length == 1) {
@@ -81,16 +81,16 @@ var Analytics = {
             $('.tracking-codes-dropdown a').removeClass('active');
             $($elem).addClass('active');
             if ($frequency == 'daily'){
-                $('#header-tracking-codes-frequency').html(js_translation_map.today);
+                $('#header-tracking-codes-frequency').html(_("Today"));
             }
             else if($frequency == 'week'){
-                $('#header-tracking-codes-frequency').html(js_translation_map.thisWeek);
+                $('#header-tracking-codes-frequency').html(_("This Week"));
             }
             else if($frequency == 'month'){
-                $('#header-tracking-codes-frequency').html(js_translation_map.thisMonth);
+                $('#header-tracking-codes-frequency').html(_("This Month"));
             }
             else if($frequency == 'alltime'){
-                $('#header-tracking-codes-frequency').html(js_translation_map.allTime);
+                $('#header-tracking-codes-frequency').html(_("All Time"));
             }
         });
     },
@@ -102,16 +102,16 @@ var Analytics = {
             $('.course-conversions-dropdown a').removeClass('active');
             $($elem).addClass('active');
             if ($frequency == 'daily'){
-                $('#header-course-conversions-frequency').html(js_translation_map.today);
+                $('#header-course-conversions-frequency').html(_("Today"));
             }
             else if($frequency == 'week'){
-                $('#header-course-conversions-frequency').html(js_translation_map.thisWeek);
+                $('#header-course-conversions-frequency').html(_("This Week"));
             }
             else if($frequency == 'month'){
-                $('#header-course-conversions-frequency').html(js_translation_map.thisMonth);
+                $('#header-course-conversions-frequency').html(_("This Month"));
             }
             else if($frequency == 'alltime'){
-                $('#header-course-conversions-frequency').html(js_translation_map.allTime);
+                $('#header-course-conversions-frequency').html(_("All Time"));
             }
         });
     },
@@ -123,16 +123,16 @@ var Analytics = {
             $('.tracking-code-conversions-dropdown a').removeClass('active');
             $($elem).addClass('active');
             if ($frequency == 'daily'){
-                $('#header-tracking-code-conversions-frequency').html(js_translation_map.today);
+                $('#header-tracking-code-conversions-frequency').html(_("Today"));
             }
             else if($frequency == 'week'){
-                $('#header-tracking-code-conversions-frequency').html(js_translation_map.thisWeek);
+                $('#header-tracking-code-conversions-frequency').html(_("This Week"));
             }
             else if($frequency == 'month'){
-                $('#header-tracking-code-conversions-frequency').html(js_translation_map.thisMonth);
+                $('#header-tracking-code-conversions-frequency').html(_("This Month"));
             }
             else if($frequency == 'alltime'){
-                $('#header-tracking-code-conversions-frequency').html(js_translation_map.allTime);
+                $('#header-tracking-code-conversions-frequency').html(_("All Time"));
             }
         });
     },
@@ -145,16 +145,16 @@ var Analytics = {
             $('.tracking-code-conversions-dropdown a').removeClass('active');
             $($elem).addClass('active');
             if ($frequency == 'daily'){
-                $('#header-ltc-registrations-frequency').html(js_translation_map.today);
+                $('#header-ltc-registrations-frequency').html(_("Today"));
             }
             else if($frequency == 'week'){
-                $('#header-ltc-registrations-frequency').html(js_translation_map.thisWeek);
+                $('#header-ltc-registrations-frequency').html(_("This Week"));
             }
             else if($frequency == 'month'){
-                $('#header-ltc-registrations-frequency').html(js_translation_map.thisMonth);
+                $('#header-ltc-registrations-frequency').html(_("This Month"));
             }
             else if($frequency == 'alltime'){
-                $('#header-ltc-registrations-frequency').html(js_translation_map.allTime);
+                $('#header-ltc-registrations-frequency').html(_("All Time"));
             }
         });
     },
@@ -167,17 +167,17 @@ var Analytics = {
             $('.tracking-code-hits-dropdown a').removeClass('active');
             $($elem).addClass('active');
             if ($frequency == 'daily'){
-                $('#header-tracking-codes-frequency').html(js_translation_map.today);
+                $('#header-tracking-codes-frequency').html(_("Today"));
 
             }
             else if($frequency == 'week'){
-                $('#header-tracking-codes-frequency').html(js_translation_map.thisWeek);
+                $('#header-tracking-codes-frequency').html(_("This Week"));
             }
             else if($frequency == 'month'){
-                $('#header-tracking-codes-frequency').html(js_translation_map.thisMonth);
+                $('#header-tracking-codes-frequency').html(_("This Month"));
             }
             else if($frequency == 'alltime'){
-                $('#header-tracking-codes-frequency').html(js_translation_map.allTime);
+                $('#header-tracking-codes-frequency').html(_("All Time"));
             }
         });
     }
