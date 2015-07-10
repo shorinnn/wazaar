@@ -7,7 +7,141 @@
     </style>
 @stop
 @section('content')
-    <div class="container payment-page course-editor">
+
+    <section class="container-fluid checkout-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 customer-info">
+                    <h1>
+                        <span class="step-number">1</span>
+                        Your Billing Info
+                    </h1>
+                    <form>
+                        <div class="row margin-top-20">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label>first name</label>
+                                <input type="text" name="first_name" class="margin-bottom-10">
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label>last name</label>
+                                <input type="text" name="last_name">
+                            </div>
+                        </div>
+                        <div class="row margin-top-30">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Address</label>
+                                <input type="text" name="address_1" placeholder="Address line 1" class="margin-bottom-10">
+                                <input type="text" name="address_2" placeholder="Address line 2">
+                            </div>
+                        </div>
+                        <div class="row margin-top-30">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label>postal code</label>
+                                <input type="text" name="postal_code" class="margin-bottom-10">
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label>country</label>
+                                <select>
+                                    <option>Select country</option>
+                                </select>
+                            </div>
+                        </div>
+                        <h1>
+                            <span class="step-number">2</span>
+                            Credit Card Info
+                        </h1>
+                        <div class="row margin-top-20">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Credit Card number</label>
+                                <input type="text" name="credit_card_number" placeholder="0000 0000 0000 0000">
+                            </div>
+                        </div>
+                        <div class="row margin-top-30">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label>CVV Code</label>
+                                <input type="text" name="cvv_code" class="margin-bottom-10">
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label>Expiry date</label>
+                                <input type="text" name="expiry_date" placeholder="MM / YY">
+                            </div>
+                        </div>
+                        <div class="row margin-top-30">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Name on the card</label>
+                                <input type="text" name="name_on_card">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <a href="#" class="blue-button large-button place-your-order hidden-xs hidden-sm">Place your order</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 product-info">
+                    <h1>
+                        You are buying:
+                    </h1>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 course-name">
+                            <div class="row">
+                                <div class="col-xs-5 col-sm-3 col-md-5 col-lg-5">
+                                    <figure class="course-thumb">
+
+                                    </figure>
+                                </div>
+                                <div class="col-xs-7 col-sm-9 col-md-7 col-lg-7 no-padding">
+                                    <div>
+                                        <p class="regular-paragraph">Welcome to Markting in a Digital World</p>
+                                        <span class="regular-paragraph">13 lessons</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row product-price">
+                        <span class="regular-paragraph">Price:</span>
+                        <p>¥ 7,200</p>
+                        <a href="#" class="blue-button extra-large-button place-your-order">Place your order</a>
+                        <small class="regular-paragraph">By clicking the "Place your order" button, you agree to these
+                            <a href="#">Terms of Service.</a>
+                        </small>
+                        <em class="regular-paragraph"><i class="fa fa-lock"></i>Secure Connection</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- <div class="container payment-page course-editor">
         <div class="row">
             <div class="col-md-12">
                 <h1 class='icon'>{{trans('payment.payment')}}</h1>
@@ -52,9 +186,7 @@
                                 </div>
                                 <div class="panel-body" id="panel-credit-card">
                                     @include('payment.panels.creditcard')
-                                    {{--
-                                    <iframe class="hidden" id="frame-gc-form" height="200" width="430" src="" frameBorder="0">Browser not compatible.</iframe>
-                                    --}}
+
                                 </div>
 
                             </div>
@@ -71,34 +203,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @stop
 
 @section('extra_js')
     <script type="text/javascript">
         $(function(){
-           $('.radio-credit-card').on('click',function(){
-               var $data = $('#form-payment').serialize();
-               var $url = $('#form-payment').attr('action');
 
-               $.post($url,$data,function ($response){
-                  if ($response.success){
-                      $('#panel-credit-card').append('<div> ' + _("Loading payment form please wait") + '....</div>');
-                      $('#frame-gc-form').attr('src',$response.redirectUrl);
-                      $('#frame-gc-form').removeClass('hidden');
-                      $('.credit-card-wrapper').addClass('hidden');
-                  }
-                  else{
-                      for(var $index in $response.errors){
-                          $('.ajax-errors ul').append('<li><i class="glyphicon glyphicon-remove"></i> '+ $response.errors[$index] +"</li>");
-                      }
-                      $('.radio-credit-card').attr('checked', false);
-                      $('.ajax-errors').removeClass('hidden');
-                      $("html, body").animate({ scrollTop: 0 }, "slow");
-                  }
-               },'json');
-
-           });
         });
     </script>
 @stop

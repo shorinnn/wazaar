@@ -15,6 +15,34 @@
         </div>
     </div>
     <div class='options-div category-options-{{$category->id}}'>
+        {{trans('crud/labels.category-groups')}}
+        <br class='clearfix' />
+        
+        <div class='checkbox-buttons'  style="display:block">
+            {{ Form::open(array('action' => ['CoursesCategoriesController@group', $category->id], 'method' => 'PUT', 
+                        'class' => 'ajax-form inline-block') ) }}
+              @foreach(CategoryGroup::all() as $group)
+                
+                <div class="checkbox-item">
+                      <div class="checkbox-checkbox checkbox-checked">
+                        <input name='group[]' id="group-{{$category->id}}-{{$group->id}}" autocomplete="off" value='{{ $group->id }}'
+                               @if($group->categories()->where('course_category_id', $category->id)->count() > 0)
+                                   checked="checked" 
+                               @endif
+                           type="checkbox" />                        
+                        <label for="group-{{$category->id}}-{{$group->id}}" class="small-checkbox">
+                        </label> {{ $group->name }}
+                      </div>  
+                    </div>
+                @endforeach
+                <button type='submit' class="btn btn-primary">{{ trans('crud/labels.update') }}</button>
+            {{ Form::close() }}
+        </div>
+        
+        
+        <div class='clearfix'></div>
+        <br />
+        
         {{trans('crud/labels.description')}} <textarea name='description' class='ajax-updatable' 
                data-url='{{action('CoursesCategoriesController@update', $category->id )}}' data-name='description'>{{$category->description}}</textarea>
         <br />

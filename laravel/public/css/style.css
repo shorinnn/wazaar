@@ -758,6 +758,10 @@ header .activate-dropdown:hover ul{
 	color: #0099ff !important;
 }
 
+.discover-header .navbar-toggle{
+	margin-right: 0;
+}
+
 .discover-more-button{
 	margin: 50px 0 0;
 	text-transform: uppercase;

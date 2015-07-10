@@ -338,6 +338,22 @@ class Course extends Ardent{
         }
         return $module;
     }
+    
+    public function likes(){
+        if( $this->total_reviews ==0 ) return 0;
+        else return $this->total_reviews * $this->reviews_positive_score / 100;
+    }
+    
+    public function rating(){
+        if( $this->total_reviews == 0 ) return trans('general.no-rating-yet');
+        
+        if( $this->reviews_positive_score == 100 ) return trans('general.highly-recommended');
+        elseif( $this->reviews_positive_score <= 90 ) return trans('general.very-positive');
+        elseif( $this->reviews_positive_score <= 80 ) return trans('general.positive');
+        elseif( $this->reviews_positive_score <= 60 ) return trans('general.mixed');
+        elseif( $this->reviews_positive_score <= 40 ) return trans('general.negative');
+        else return trans('general.negative');
+    }
 
 
 }

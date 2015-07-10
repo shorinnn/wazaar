@@ -34,4 +34,5 @@ return array(
     'password-confirmation' => '新しいパスワード（確認用）',
     'view-old-version' => 'View Old Version',
     'cannot-delete-students-purchased' => 'Cannot delete - students purchased course',
+    'category-groups' => 'Category Groups',
 );

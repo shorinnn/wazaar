@@ -77,5 +77,11 @@ return array(
     'click-go-to-begin' => 'クリックを押して今すぐ始めましょう！',
     'verify-go-button' => '次へ！',
     'enter-email-and-password' => 'メールアドレスでログイン',
+    'no-rating-yet' => 'No rating yet',
+    'highly-recommended' => 'Highly recommended',
+    'very-positive' => 'Very Positive',
+    'positive' => 'Positive',
+    'mixed' => 'Mixed',
+    'negative' => 'Negative',
  
 );

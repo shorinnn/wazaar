@@ -29,6 +29,7 @@ $wwwRoutes = function(){
 //Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
+    Route::get('discover-courses/{group}', 'SiteController@discoverCourses');
 	
     
     Route::get('/dash', 'SiteController@dashboard');
@@ -101,9 +102,12 @@ $wwwRoutes = function(){
     Route::get('coursecategories/subcategories', 'CoursesCategoriesController@subcategories');
     Route::group(['prefix' => 'administration'], function (){
         Route::post('coursecategories/graphics_url/{category}', 'CoursesCategoriesController@graphics_url');
+        Route::put('coursecategories/{id}/group', 'CoursesCategoriesController@group');
         Route::resource('coursecategories', 'CoursesCategoriesController');
         Route::resource('coursesubcategories', 'CoursesSubcategoriesController');
         Route::resource('course-difficulties', 'CourseDifficultiesController');
+        Route::put('category-groups/{id}/group', 'CategoryGroupsController@group');
+        Route::resource('category-groups', 'CategoryGroupsController');
     });
 //});
 };
@@ -181,6 +185,7 @@ $wwwRoutes = function(){
     Route::get('courses/categories', 'CoursesController@categories');
     Route::get('courses/category/{slug}/{subcat}', 'CoursesController@subCategory');
     Route::get('courses/category/{slug}', 'CoursesController@category');
+    Route::get('courses/category/', 'CoursesController@category');
     Route::post('courses/{slug}/purchase/{lesson}', 'CoursesController@purchaseLesson');
     Route::post('courses/{slug}/crash/{lesson}', 'CoursesController@crashLesson');
     Route::post('courses/{slug}/crash/', 'CoursesController@crashCourse');

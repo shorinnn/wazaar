@@ -2,63 +2,63 @@
 
 class DatabaseSeeder extends Seeder {
 
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
-		Eloquent::unguard();
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run() {
+        Eloquent::unguard();
 
-		 $this->call('RoleTableSeeder');
-		 $this->call('UserTableSeeder');
-		 $this->call('AssignedRoleTableSeeder');
-		 $this->call('CourseCategorySeeder');
-		 $this->call('CourseSubcategorySeeder');
-		 $this->call('CourseDifficultySeeder');
-		 $this->call('CoursesSeeder');
-		 $this->call('PurchasesSeeder');
-		 $this->call('CoursePreviewImagesSeeder');
-		 $this->call('ModulesSeeder');
-		 $this->call('LessonsSeeder');
-                 $this->call('VideosSeeder');
-		 $this->call('BlocksSeeder');
-                 $this->call('AnalyticsSeeder');
-                 $this->call('ProfileSeeder');
-                 $this->call('TestimonialsSeeder');
-                 $this->call('InstructorAgenciesSeeder');
-                 $this->call('PMSeeder');
-                 $this->call('TransactionsSeeder');
+        $this->call('RoleTableSeeder');
+        $this->call('UserTableSeeder');
+        $this->call('AssignedRoleTableSeeder');
+        $this->call('CourseCategorySeeder');
+        $this->call('CourseSubcategorySeeder');
+        $this->call('CourseDifficultySeeder');
+        $this->call('CoursesSeeder');
+        $this->call('PurchasesSeeder');
+        $this->call('CoursePreviewImagesSeeder');
+        $this->call('ModulesSeeder');
+        $this->call('LessonsSeeder');
+        $this->call('VideosSeeder');
+        $this->call('BlocksSeeder');
+        $this->call('AnalyticsSeeder');
+        $this->call('ProfileSeeder');
+        $this->call('TestimonialsSeeder');
+        $this->call('InstructorAgenciesSeeder');
+        $this->call('PMSeeder');
+        $this->call('TransactionsSeeder');
 //                 $this->call('FrontpageVideosSeeder');
-                 $this->call('GiftSeeder');
-                 $this->call('AffiliateUsersSeeder');
-                 $this->call('SecondTierInstructorsSeeder');
-	}
+        $this->call('GiftSeeder');
+        $this->call('AffiliateUsersSeeder');
+        $this->call('SecondTierInstructorsSeeder');
+        $this->call('CategoryGroupSeeder');
+        $this->call('CategoryGroupItemSeeder');
+    }
 
 }
 
 class RoleTableSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('roles')->delete();
         $admin = new Role;
         $admin->name = 'Admin';
         $admin->save();
-        
+
         $student = new Role;
         $student->name = 'Student';
         $student->save();
-        
+
         $instructor = new Role;
         $instructor->name = 'Instructor';
         $instructor->save();
-        
+
         $affiliate = new Role;
         $affiliate->name = 'Affiliate';
         $affiliate->save();
-        
+
         $agency = new Role;
         $agency->name = 'InstructorAgency';
         $agency->save();
@@ -68,8 +68,7 @@ class RoleTableSeeder extends Seeder {
 
 class UserTableSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
 
 
         DB::table('users')->delete();
@@ -80,7 +79,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'superadmin';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
         $user = new User;
 
@@ -90,7 +89,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'random';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
 
 
@@ -106,7 +105,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
 
         $user = new User;
@@ -119,10 +118,10 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->instructor_balance = 60;
         $user->save();
-        Profile::create( ['owner_id' => $user->id, 'owner_type' => 'Affiliate','first_name' => 'Instructor', 'last_name' => 'McInstructor', 'email' => 'instructor@mailinator.com']);
+        Profile::create(['owner_id' => $user->id, 'owner_type' => 'Affiliate', 'first_name' => 'Instructor', 'last_name' => 'McInstructor', 'email' => 'instructor@mailinator.com']);
 
         $user = new User;
         $user->affiliate_id = '5';
@@ -138,7 +137,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
         $user->affiliate_balance = 70;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 5;
@@ -150,7 +149,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 5;
@@ -162,7 +161,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 5;
@@ -174,7 +173,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 5;
@@ -186,7 +185,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 5;
@@ -199,7 +198,7 @@ class UserTableSeeder extends Seeder {
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
         $user->instructor_balance = 80;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 5;
@@ -211,9 +210,9 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
-        
+
         $user = new User;
         $user->ltc_affiliate_id = 5;
         $user->username = '甘党大王';
@@ -224,7 +223,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 5;
@@ -236,7 +235,7 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
         $user = new User;
         $user->ltc_affiliate_id = 5;
@@ -248,9 +247,9 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
-        
+
         //albert: added this for my testing
         $user = new User;
         $user->ltc_affiliate_id = 5;
@@ -262,11 +261,11 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
 
         //albert
-        
+
         $user = new User;
         $user->ltc_affiliate_id = 5;
         $user->username = 'instructorZero';
@@ -277,244 +276,234 @@ class UserTableSeeder extends Seeder {
         $user->password_confirmation = 'pass';
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->confirmed = 1;
-        $user->created_at = date('Y-m-d', strtotime('-' . rand(0,50) . ' day'));
+        $user->created_at = date('Y-m-d', strtotime('-' . rand(0, 50) . ' day'));
         $user->save();
-
     }
+
 }
-    
+
 class AssignedRoleTableSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('assigned_roles')->delete();
         $user = User::where('username', '=', 'superadmin')->first();
-        $adminRole = Role::where('name','=','Admin')->first();
-        $user->attachRole( $adminRole );
+        $adminRole = Role::where('name', '=', 'Admin')->first();
+        $user->attachRole($adminRole);
         $user = User::where('username', '=', 'student')->first();
-        $studentRole = Role::where('name','=','Student')->first();
-        $user->attachRole( $studentRole );
+        $studentRole = Role::where('name', '=', 'Student')->first();
+        $user->attachRole($studentRole);
         $user = User::where('username', '=', 'albert')->first();
-        $studentRole = Role::where('name','=','Student')->first();
-        $user->attachRole( $studentRole );
+        $studentRole = Role::where('name', '=', 'Student')->first();
+        $user->attachRole($studentRole);
         $user = User::where('username', '=', 'mac')->first();
-        $user->attachRole( $studentRole );
+        $user->attachRole($studentRole);
         $user = User::where('username', '=', 'jeremy')->first();
-        $user->attachRole( $studentRole );
+        $user->attachRole($studentRole);
         $user = User::where('username', '=', 'martin')->first();
-        $user->attachRole( $studentRole );
+        $user->attachRole($studentRole);
         $user = User::where('username', '=', 'sorin')->first();
-        $user->attachRole( $studentRole );
-        
-        $user = User::where('username', '=', 'instructor')->first();
-        $instructorRole = Role::where('name','=','Instructor')->first();
-        $user->attachRole( $studentRole );
-        $user->attachRole( $instructorRole );
-        $user = User::where('username', '=', 'second_instructor')->first();
-        $user->attachRole( $studentRole );
-        $user->attachRole( $instructorRole );
-        $user = User::where('username', '=', 'affiliate')->first();
-        $affiliateRole = Role::where('name','=','Affiliate')->first();
-        $user->attachRole( $studentRole );
-        $user->attachRole( $affiliateRole );
-        $user = User::where('username', '=', 'wazaarAffiliate')->first();
-        $user->attachRole( $studentRole );
-        $user->attachRole( $affiliateRole );
-        
-        $user = User::where('username', '=', 'Keiji_Tani')->first();
-        $user->attachRole( $studentRole );
-        $user->attachRole( $instructorRole );
-        
-        $user = User::where('username', '=', 'instructorZero')->first();
-        $user->attachRole( $studentRole );
-        $user->attachRole( $instructorRole );
+        $user->attachRole($studentRole);
 
+        $user = User::where('username', '=', 'instructor')->first();
+        $instructorRole = Role::where('name', '=', 'Instructor')->first();
+        $user->attachRole($studentRole);
+        $user->attachRole($instructorRole);
+        $user = User::where('username', '=', 'second_instructor')->first();
+        $user->attachRole($studentRole);
+        $user->attachRole($instructorRole);
+        $user = User::where('username', '=', 'affiliate')->first();
+        $affiliateRole = Role::where('name', '=', 'Affiliate')->first();
+        $user->attachRole($studentRole);
+        $user->attachRole($affiliateRole);
+        $user = User::where('username', '=', 'wazaarAffiliate')->first();
+        $user->attachRole($studentRole);
+        $user->attachRole($affiliateRole);
+
+        $user = User::where('username', '=', 'Keiji_Tani')->first();
+        $user->attachRole($studentRole);
+        $user->attachRole($instructorRole);
+
+        $user = User::where('username', '=', 'instructorZero')->first();
+        $user->attachRole($studentRole);
+        $user->attachRole($instructorRole);
     }
 
 }
-
 
 class CourseCategorySeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('course_categories')->delete();
         CourseCategory::unguard();
-        CourseCategory::create( ['name' => 'IT & Technology', 'slug' => 'it-technology', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-7.png',
-                                 'description' => 'Programming, Javascript, C++, etc...', 'courses_count' => 0, 'color_scheme' => 1 ]);
-        CourseCategory::create( ['name' => 'Business', 'slug' => 'business',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-14.png',
-                                 'description' => 'Beez Kneez', 'courses_count' => 0, 'color_scheme' => 8 ]);
-        CourseCategory::create( ['name' => 'Investments', 'slug' => 'investments',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-12.png',
-                                 'description' => 'Mo money', 'courses_count' => 0, 'color_scheme' => 6 ]);
-        CourseCategory::create( ['name' => 'Music', 'slug' => 'music',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-8.png',
-                                 'description' => 'Tokyo Square, nom sayin', 'courses_count' => 0, 'color_scheme' => 2 ]);
-        CourseCategory::create( ['name' => 'Beauty', 'slug' => 'beauty',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-9.png',
-                                 'description' => 'Stop being ugly', 'courses_count' => 0, 'color_scheme' => 3 ]);
-        CourseCategory::create( ['name' => 'Health', 'slug' => 'health',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
-                                 'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
-        CourseCategory::create( ['name' => '1', 'slug' => '1',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
-                                 'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
-        CourseCategory::create( ['name' => '2', 'slug' => '2',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
-                                 'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
-        CourseCategory::create( ['name' => '3', 'slug' => '3',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
-                                 'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
-        CourseCategory::create( ['name' => '4', 'slug' => '4',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
-                                 'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
-        CourseCategory::create( ['name' => '5', 'slug' => '5',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
-                                 'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
-        CourseCategory::create( ['name' => '6', 'slug' => '6',  'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
-                                 'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
-       
+        CourseCategory::create(['name' => 'IT & Technology', 'slug' => 'it-technology', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-7.png',
+            'description' => 'Programming, Javascript, C++, etc...', 'courses_count' => 0, 'color_scheme' => 1]);
+        CourseCategory::create(['name' => 'Business', 'slug' => 'business', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-14.png',
+            'description' => 'Beez Kneez', 'courses_count' => 0, 'color_scheme' => 8]);
+        CourseCategory::create(['name' => 'Investments', 'slug' => 'investments', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-12.png',
+            'description' => 'Mo money', 'courses_count' => 0, 'color_scheme' => 6]);
+        CourseCategory::create(['name' => 'Music', 'slug' => 'music', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-8.png',
+            'description' => 'Tokyo Square, nom sayin', 'courses_count' => 0, 'color_scheme' => 2]);
+        CourseCategory::create(['name' => 'Beauty', 'slug' => 'beauty', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-9.png',
+            'description' => 'Stop being ugly', 'courses_count' => 0, 'color_scheme' => 3]);
+        CourseCategory::create(['name' => 'Health', 'slug' => 'health', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
+            'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
+        CourseCategory::create(['name' => '1', 'slug' => '1', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
+            'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
+        CourseCategory::create(['name' => '2', 'slug' => '2', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
+            'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
+        CourseCategory::create(['name' => '3', 'slug' => '3', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
+            'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
+        CourseCategory::create(['name' => '4', 'slug' => '4', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
+            'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
+        CourseCategory::create(['name' => '5', 'slug' => '5', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
+            'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
+        CourseCategory::create(['name' => '6', 'slug' => '6', 'graphics_url' => 'https://wazaar.s3.amazonaws.com/assets/images/misc-images/misc-icons-13.png',
+            'description' => 'Fat it up bro!', 'courses_count' => 0, 'color_scheme' => 7]);
     }
 
 }
 
 class CourseSubcategorySeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('course_subcategories')->delete();
         CourseSubcategory::unguard();
-        CourseSubcategory::create( ['name' => 'javascript', 'slug' => 'javascript', 
-                                 'description' => 'JS Programing', 'courses_count' => 0, 'course_category_id' => 1 ]);
-        CourseSubcategory::create( ['name' => 'Business Subcat', 'slug' => 'business-subcat', 
-                                 'description' => 'Beez Kneez subcat', 'courses_count' => 0, 'course_category_id' => 2 ]);
-        CourseSubcategory::create( ['name' => 'Investments subcat', 'slug' => 'investments-subcat', 
-                                 'description' => 'Mo money', 'courses_count' => 0, 'course_category_id' => 3  ]);
-        CourseSubcategory::create( ['name' => 'Music subcat', 'slug' => 'music-subcat', 
-                                 'description' => 'Tokyo Square, nom sayin', 'courses_count' => 0, 'course_category_id' => 4  ]);
-        CourseSubcategory::create( ['name' => 'Beauty subcat', 'slug' => 'beauty-subcat', 
-                                 'description' => 'Stop being ugly', 'courses_count' => 0, 'course_category_id' => 5  ]);
-        CourseSubcategory::create( ['name' => 'Health subcat', 'slug' => 'health-subcat', 
-                                 'description' => 'Fat it up bro!', 'courses_count' => 0, 'course_category_id' => 6  ]);
-        CourseSubcategory::create( ['name' => 'php', 'slug' => 'php', 
-                                 'description' => 'PHP Programing', 'courses_count' => 0, 'course_category_id' => 1 ]);
-
-       
+        CourseSubcategory::create(['name' => 'javascript', 'slug' => 'javascript',
+            'description' => 'JS Programing', 'courses_count' => 0, 'course_category_id' => 1]);
+        CourseSubcategory::create(['name' => 'Business Subcat', 'slug' => 'business-subcat',
+            'description' => 'Beez Kneez subcat', 'courses_count' => 0, 'course_category_id' => 2]);
+        CourseSubcategory::create(['name' => 'Investments subcat', 'slug' => 'investments-subcat',
+            'description' => 'Mo money', 'courses_count' => 0, 'course_category_id' => 3]);
+        CourseSubcategory::create(['name' => 'Music subcat', 'slug' => 'music-subcat',
+            'description' => 'Tokyo Square, nom sayin', 'courses_count' => 0, 'course_category_id' => 4]);
+        CourseSubcategory::create(['name' => 'Beauty subcat', 'slug' => 'beauty-subcat',
+            'description' => 'Stop being ugly', 'courses_count' => 0, 'course_category_id' => 5]);
+        CourseSubcategory::create(['name' => 'Health subcat', 'slug' => 'health-subcat',
+            'description' => 'Fat it up bro!', 'courses_count' => 0, 'course_category_id' => 6]);
+        CourseSubcategory::create(['name' => 'php', 'slug' => 'php',
+            'description' => 'PHP Programing', 'courses_count' => 0, 'course_category_id' => 1]);
     }
 
 }
 
 class CourseDifficultySeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('course_difficulties')->delete();
         CourseDifficulty::unguard();
-        CourseDifficulty::create( ['name' => 'Beginner'] );
-        CourseDifficulty::create( ['name' => 'Intermediate'] );
-        CourseDifficulty::create( ['name' => 'Expert'] );       
-       
+        CourseDifficulty::create(['name' => 'Beginner']);
+        CourseDifficulty::create(['name' => 'Intermediate']);
+        CourseDifficulty::create(['name' => 'Expert']);
     }
+
 }
 
 class CoursesSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('courses')->delete();
         Course::unguard();
         // IT Courses
-        Course::create( ['name' => 'App Development', 'slug' => 'app-development', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 1
-                        , 'price' => rand(1000, 5000), 'course_difficulty_id' => 1, 'course_preview_image_id' => 1,
-                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
-                        'short_description' => 'Short:  You get a beginner award after completing the course.', 
-                        'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
-                        'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]',
-                        'sale'=>'100', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 3600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 13600) ]);
-        Course::create( ['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 1,
-                        'price' => rand(1000, 5000), 'course_difficulty_id' => '2',
-                        'description' => 'JS - the best language around.',
-                        'short_description' => 'Short: JS - the.',
-                        'student_count' => 0,  'requirements' => '[]',
-                        'course_preview_image_id' => 2, 'featured' => 1, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
-                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]',
-                        'sale'=>'200', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 3600) 
-                        ]);
-        Course::create( ['name' => 'PHP Primer', 'slug' => 'php-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,
-                        'price' => rand(1000, 5000), 'course_difficulty_id' => 3,
-                        'description' => 'PHP - the best language around.', 
-                        'short_description' => 'Short: PHP - the best language around.', 
-                        'student_count' => 0,   'requirements' => '[]',
-                        'course_preview_image_id' => 3, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
-                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]']);
-        Course::create( ['name' => 'PHP Primer Revisited', 'slug' => 'php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,   
-                        'price' => rand(1000, 5000), 'course_difficulty_id' => 3,
-                        'description' => 'PHP - the best language around. REVISITED.', 
-                        'short_description' => 'Short: REVISITED.',  'requirements' => '[]',
-                        'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
-                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]']);
+        Course::create(['name' => 'App Development', 'slug' => 'app-development', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 1
+            , 'price' => rand(1000, 5000), 'course_difficulty_id' => 1, 'course_preview_image_id' => 1,
+            'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.',
+            'short_description' => 'Short:  You get a beginner award after completing the course.',
+            'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]',
+            'sale' => '100', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 3600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 13600)]);
+        Course::create(['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 1,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => '2',
+            'description' => 'JS - the best language around.',
+            'short_description' => 'Short: JS - the.',
+            'student_count' => 0, 'requirements' => '[]',
+            'course_preview_image_id' => 2, 'featured' => 1, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]',
+            'sale' => '200', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 3600)
+        ]);
+        Course::create(['name' => 'PHP Primer', 'slug' => 'php-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => 3,
+            'description' => 'PHP - the best language around.',
+            'short_description' => 'Short: PHP - the best language around.',
+            'student_count' => 0, 'requirements' => '[]',
+            'course_preview_image_id' => 3, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]']);
+        Course::create(['name' => 'PHP Primer Revisited', 'slug' => 'php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => 3,
+            'description' => 'PHP - the best language around. REVISITED.',
+            'short_description' => 'Short: REVISITED.', 'requirements' => '[]',
+            'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]']);
         // Business Courses
-        Course::create( ['name' => 'Business App Development', 'slug' => 'business-app-development', 'instructor_id' => 4, 'course_category_id' => 2, 'course_subcategory_id' => 2, 
-                        'price' => rand(1000, 5000), 'course_difficulty_id' => 1,  'course_preview_image_id' => 4,
-                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
-                        'short_description' => 'Short Create your very first.',  'requirements' => '[]',
-                        'student_count' => 1, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
-                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]',
-                        'sale'=>'300', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 13600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 53600) ]);
+        Course::create(['name' => 'Business App Development', 'slug' => 'business-app-development', 'instructor_id' => 4, 'course_category_id' => 2, 'course_subcategory_id' => 2,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => 1, 'course_preview_image_id' => 4,
+            'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.',
+            'short_description' => 'Short Create your very first.', 'requirements' => '[]',
+            'student_count' => 1, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]',
+            'sale' => '300', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 13600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 53600)]);
         // Investments Courses
-        Course::create( ['name' => 'Investments App Development', 'slug' => 'investments-app-development', 'instructor_id' => 4, 'course_category_id' => 3,  'course_subcategory_id' => 3, 
-                        'price' => rand(1000, 5000), 'course_difficulty_id' => 1, 'course_preview_image_id' => 5, 'requirements' => '[]',
-                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
-                        'student_count' => 2, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
-                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]']);
-        Course::create( ['name' => 'Investments Javascript Primer', 'slug' => 'investments-javascript-primer', 'instructor_id' => 4, 'course_category_id' => 3,  'course_subcategory_id' => 3, 
-                        'price' => 185000.99, 'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 
-                        'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
-                        'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]']);
+        Course::create(['name' => 'Investments App Development', 'slug' => 'investments-app-development', 'instructor_id' => 4, 'course_category_id' => 3, 'course_subcategory_id' => 3,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => 1, 'course_preview_image_id' => 5, 'requirements' => '[]',
+            'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.',
+            'student_count' => 2, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]']);
+        Course::create(['name' => 'Investments Javascript Primer', 'slug' => 'investments-javascript-primer', 'instructor_id' => 4, 'course_category_id' => 3, 'course_subcategory_id' => 3,
+            'price' => 185000.99, 'course_difficulty_id' => '2', 'description' => 'JS - the best language around.',
+            'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]']);
         // Music Courses
-        Course::create( ['name' => 'Music App Development', 'slug' => 'music-app-development',  'instructor_id' => 4,'course_category_id' => 4, 'course_subcategory_id' => 4,  'price' => rand(1000, 5000),
-                        'course_difficulty_id' => 1, 'course_preview_image_id' => 6, 'affiliate_percentage' => 0,
-                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
-                        'student_count' => 0, 'privacy_status' => 'public', 'requirements' => '[]',
-                        'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]',
-                        'sale'=>'100', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 10*3600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 10*13600) ]);
+        Course::create(['name' => 'Music App Development', 'slug' => 'music-app-development', 'instructor_id' => 4, 'course_category_id' => 4, 'course_subcategory_id' => 4, 'price' => rand(1000, 5000),
+            'course_difficulty_id' => 1, 'course_preview_image_id' => 6, 'affiliate_percentage' => 0,
+            'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.',
+            'student_count' => 0, 'privacy_status' => 'public', 'requirements' => '[]',
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]',
+            'sale' => '100', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 10 * 3600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 10 * 13600)]);
         // Beauty Courses
-        Course::create( ['name' => 'Beauty App Development', 'slug' => 'beauty-app-development', 'instructor_id' => 4, 'course_category_id' => 5, 'course_subcategory_id' => 5,  'price' => rand(1000, 5000),
-                        'course_difficulty_id' => 1, 'requirements' => '[]',
-                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
-                        'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
-                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]']);
-        Course::create( ['name' => 'Beauty Javascript Primer', 'slug' => 'beauty-javascript-primer', 'instructor_id' => 4, 'course_category_id' => 5,  'course_subcategory_id' => 5, 'price' => rand(1000, 5000),
-                        'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0, 
-                        'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
-                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]']);
-        Course::create( ['name' => 'Beauty PHP Primer', 'slug' => 'beauty-php-primer', 'instructor_id' => 4, 'course_category_id' => 5,   'course_subcategory_id' => 5, 
-                        'price' => rand(1000, 5000), 'course_difficulty_id' => 3, 'affiliate_percentage' => 0,
-                                 'description' => 'PHP - the best language around.', 'student_count' => 0,  'course_preview_image_id' => 7,
-                        'privacy_status' => 'public', 'requirements' => '[]',
-                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]']);
-        Course::create( ['name' => 'Beauty PHP Primer Revisited', 'slug' => 'beauty-php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 5,  'course_subcategory_id' => 5, 
-                        'price' => rand(1000, 5000), 'course_difficulty_id' => 3, 'affiliate_percentage' => 0, 'requirements' => '[]',
-                                 'description' => 'PHP - the best language around. REVISITED.', 'student_count' => 0, 'privacy_status' => 'public',
-                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]']);
+        Course::create(['name' => 'Beauty App Development', 'slug' => 'beauty-app-development', 'instructor_id' => 4, 'course_category_id' => 5, 'course_subcategory_id' => 5, 'price' => rand(1000, 5000),
+            'course_difficulty_id' => 1, 'requirements' => '[]',
+            'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.',
+            'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]']);
+        Course::create(['name' => 'Beauty Javascript Primer', 'slug' => 'beauty-javascript-primer', 'instructor_id' => 4, 'course_category_id' => 5, 'course_subcategory_id' => 5, 'price' => rand(1000, 5000),
+            'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0,
+            'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]']);
+        Course::create(['name' => 'Beauty PHP Primer', 'slug' => 'beauty-php-primer', 'instructor_id' => 4, 'course_category_id' => 5, 'course_subcategory_id' => 5,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => 3, 'affiliate_percentage' => 0,
+            'description' => 'PHP - the best language around.', 'student_count' => 0, 'course_preview_image_id' => 7,
+            'privacy_status' => 'public', 'requirements' => '[]',
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]']);
+        Course::create(['name' => 'Beauty PHP Primer Revisited', 'slug' => 'beauty-php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 5, 'course_subcategory_id' => 5,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => 3, 'affiliate_percentage' => 0, 'requirements' => '[]',
+            'description' => 'PHP - the best language around. REVISITED.', 'student_count' => 0, 'privacy_status' => 'public',
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]']);
         // Health Courses
-        Course::create( ['name' => 'Health App Development', 'slug' => 'health-app-development', 'instructor_id' => 4, 'course_category_id' => 6,  'course_subcategory_id' => 6, 
-                        'price' => rand(1000, 5000),  'course_difficulty_id' => 1,  'course_preview_image_id' => 8,
-                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
-                        'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
-                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]']);
-        
+        Course::create(['name' => 'Health App Development', 'slug' => 'health-app-development', 'instructor_id' => 4, 'course_category_id' => 6, 'course_subcategory_id' => 6,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => 1, 'course_preview_image_id' => 8,
+            'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.',
+            'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]']);
+
         CourseBannerImage::$skip_upload = true;
-        CourseBannerImage::create( ['instructor_id' => 11, 'url' => 'https://wazaar.s3.amazonaws.com/course_preview/banner-55031453941e2.jpg'] );
-        
-        Course::create( ['name' => '３ヶ月で10キロ痩せてハイパフォーマーになる『体』やり直し講座', 'instructor_id' => 11, 'course_category_id' => 6,  
-                        'course_subcategory_id' => 6, 'course_banner_image_id' => 1, 'requirements' => '[]',
-                        'price' => rand(1000, 5000),  'course_difficulty_id' => 1,  'course_preview_image_id' => 9,
-                        'description' => '
+        CourseBannerImage::create(['instructor_id' => 11, 'url' => 'https://wazaar.s3.amazonaws.com/course_preview/banner-55031453941e2.jpg']);
+
+        Course::create(['name' => '３ヶ月で10キロ痩せてハイパフォーマーになる『体』やり直し講座', 'instructor_id' => 11, 'course_category_id' => 6,
+            'course_subcategory_id' => 6, 'course_banner_image_id' => 1, 'requirements' => '[]',
+            'price' => rand(1000, 5000), 'course_difficulty_id' => 1, 'course_preview_image_id' => 9,
+            'description' => '
                             正直に告白します。
 <br /><br />
 率直に言って、本講座は、すべての人のためのものでありません。
@@ -798,10 +787,10 @@ P.S
 本動画を通して一人でも
 多くの方の健康問題を解決できることを
 心から楽しみにしております。
-', 
-                        'short_description' => '「モテボディ養成講座（仮）」（フロント）',
-                        'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
-                         'who_is_this_for' => '[
+',
+            'short_description' => '「モテボディ養成講座（仮）」（フロント）',
+            'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
+            'who_is_this_for' => '[
                              "どんなに眠っても疲れが取れないと感じる人",
                              "体がものすごく重いと感じる人",
                              "仕事中によく目眩がする人",
@@ -815,7 +804,7 @@ P.S
                              "とにかくダイエットと名のつくものに全て手を出して失敗した人",
                              "高額プライベートジムに行きたいがお金がない人"
                             ]',
-                        'what_will_you_achieve' => '[
+            'what_will_you_achieve' => '[
                             "一日16時間働いても疲れを感じないコンディション",
                             "健康問題に不安を感じない最高の安心感",
                             "肩こり、腰痛を感じない元気な体",
@@ -829,11 +818,11 @@ P.S
                             "残業時間が減り、プライベート時間が増える。",
                             "会社からの赤丸急上昇の評価、昇給"
                             ]',
-                        'sale'=>'150', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 4*24*3600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 8*24*3600) ]);
-        
+            'sale' => '150', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 4 * 24 * 3600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 8 * 24 * 3600)]);
+
         $phpPrimer = Course::find(3);
         $phpPrimer->student_count = 242;
-        $d = date('Y-m-d H:i:s', strtotime('6 month ago') );
+        $d = date('Y-m-d H:i:s', strtotime('6 month ago'));
         $phpPrimer->created_at = $d;
         $phpPrimer->updateUniques();
         $js = Course::find(2);
@@ -846,296 +835,289 @@ P.S
 //        $js->sale_kind = 'percentage';
 //        $js->sale_ends_on = date('Y-m-d H:i:s', strtotime('+ 4 day 2 hour'));
         $js->updateUniques();
-        
-         Course::create( ['name' => 'Obscure Course no one buys', 'slug' => 'no-one-buys', 'instructor_id' => 4, 'course_category_id' => 6,  'course_subcategory_id' => 6, 
-                        'price' => rand(1000, 5000),  'course_difficulty_id' => 1,  'course_preview_image_id' => 8,
-                        'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.', 
-                        'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
-                         'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
-                        'what_will_you_achieve' => '["Something", "Something Else!"]']);
-        
-        DB::table('courses')->update( [ 'publish_status' => 'approved' ] );
+
+        Course::create(['name' => 'Obscure Course no one buys', 'slug' => 'no-one-buys', 'instructor_id' => 4, 'course_category_id' => 6, 'course_subcategory_id' => 6,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => 1, 'course_preview_image_id' => 8,
+            'description' => 'Create your very first application in 2 weeks! You get a beginner award after completing the course.',
+            'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
+            'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
+            'what_will_you_achieve' => '["Something", "Something Else!"]']);
+
+        DB::table('courses')->update([ 'publish_status' => 'approved']);
     }
+
 }
-    
+
 class PurchasesSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('purchases')->delete();
         Purchase::unguard();
-        Purchase::create( ['product_id' => 6, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5] );
-        Purchase::create( ['product_id' => 5, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 2] );
-        Purchase::create( ['product_id' => 6, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5] );
-        Purchase::create( ['product_id' => 5, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5,
-            'purchase_price' => 50] );
-        Purchase::create( ['product_id' => 10, 'product_type' => 'Lesson', 'student_id' => 8, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5,
-            'purchase_price' => 20] );
-       
+        Purchase::create(['product_id' => 6, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5]);
+        Purchase::create(['product_id' => 5, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 2]);
+        Purchase::create(['product_id' => 6, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5]);
+        Purchase::create(['product_id' => 5, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5,
+            'purchase_price' => 50]);
+        Purchase::create(['product_id' => 10, 'product_type' => 'Lesson', 'student_id' => 8, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5,
+            'purchase_price' => 20]);
     }
+
 }
-    
+
 class CoursePreviewImagesSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('course_preview_images')->delete();
         CoursePreviewImage::unguard();
         CoursePreviewImage::$skip_upload = true;
-        CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg'] );
-        CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg'] );
-        CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905d56385ce.png'] );
-        CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg'] );
-        CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905dd23aa96.jpg'] );
-        CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg'] );
-        CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg'] );
-        CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg'] );
-        CoursePreviewImage::create( ['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/demo-course.jpg'] );
-       
+        CoursePreviewImage::create(['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg']);
+        CoursePreviewImage::create(['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg']);
+        CoursePreviewImage::create(['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905d56385ce.png']);
+        CoursePreviewImage::create(['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg']);
+        CoursePreviewImage::create(['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905dd23aa96.jpg']);
+        CoursePreviewImage::create(['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg']);
+        CoursePreviewImage::create(['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg']);
+        CoursePreviewImage::create(['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg']);
+        CoursePreviewImage::create(['instructor_id' => 4, 'url' => 'https://wazaardev.s3.amazonaws.com/course_preview/demo-course.jpg']);
     }
-}
 
+}
 
 class ModulesSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('modules')->delete();
         Module::unguard();
-        Module::create( ['course_id' => 1, 'name' => 'First Module', 'order' => 1] );
-        Module::create( ['course_id' => 1, 'name' => 'Second Module', 'order' => 2] );
-        Module::create( ['course_id' => 1, 'name' => 'Last Module', 'order' => 3] );
-       
-        Module::create( ['course_id' => 5, 'name' => 'First Module', 'order' => 1] );
-        Module::create( ['course_id' => 5, 'name' => 'Second Module', 'order' => 2] );
-        Module::create( ['course_id' => 5, 'name' => 'Last Module', 'order' => 3] );
-        
-        Module::create( ['course_id' => 14, 'name' => 'The Right Diet', 'order' => 1] );
-        Module::create( ['course_id' => 14, 'name' => 'Workouts', 'order' => 2] );
-       
-    }
-}
+        Module::create(['course_id' => 1, 'name' => 'First Module', 'order' => 1]);
+        Module::create(['course_id' => 1, 'name' => 'Second Module', 'order' => 2]);
+        Module::create(['course_id' => 1, 'name' => 'Last Module', 'order' => 3]);
 
+        Module::create(['course_id' => 5, 'name' => 'First Module', 'order' => 1]);
+        Module::create(['course_id' => 5, 'name' => 'Second Module', 'order' => 2]);
+        Module::create(['course_id' => 5, 'name' => 'Last Module', 'order' => 3]);
+
+        Module::create(['course_id' => 14, 'name' => 'The Right Diet', 'order' => 1]);
+        Module::create(['course_id' => 14, 'name' => 'Workouts', 'order' => 2]);
+    }
+
+}
 
 class LessonsSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('lessons')->delete();
         Lesson::unguard();
-        Lesson::create( ['module_id' => 1, 'name' => 'Welcome', 'order' => 1, 'description' => '1A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 1, 'name' => 'Advanced Stuff', 'order' => 2, 'description' => '2A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 2, 'name' => 'More Advanced Stuff', 'order' => 1, 'description' => '3A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 2, 'name' => 'Second Module Review', 'order' => 2, 'description' => '4A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 2, 'name' => 'Second Module Conclusion', 'order' => 3, 'description' => '5A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 3, 'name' => 'Let\'s recap', 'order' => 1, 'description' => '6A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 3, 'name' => 'Now that you know', 'order' => 2, 'description' => '7A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 3, 'name' => 'We\'re almost done', 'order' => 3, 'description' => '8A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 3, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '9A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes', 'price'=>2] );
-        
-        Lesson::create( ['module_id' => 4, 'name' => 'Welcome', 'order' => 1, 'description' => '1A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 4, 'name' => 'Advanced Stuff', 'order' => 2, 'description' => '2A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 5, 'name' => 'More Advanced Stuff', 'order' => 1, 'description' => '3A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 5, 'name' => 'Second Module Review', 'order' => 2, 'description' => '4A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 5, 'name' => 'Second Module Conclusion', 'order' => 3, 'description' => '5A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 6, 'name' => 'Let\'s recap', 'order' => 1, 'description' => '6A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 6, 'name' => 'Now that you know', 'order' => 2, 'description' => '7A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 6, 'name' => 'We\'re almost done', 'order' => 3, 'description' => '8A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 6, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '9A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes', 'price'=>2] );
-        
-        Lesson::create( ['module_id' => 7, 'name' => 'Vegetables', 'order' => 1, 'description' => 'Vegetables', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 7, 'name' => 'Macro Nutrients', 'order' => 2, 'description' => 'Macro Nutrients', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 7, 'name' => 'Tubers', 'order' => 3, 'description' => 'Tubers', "published" => 'yes'] );
-        
-        Lesson::create( ['module_id' => 8, 'name' => 'Arms', 'order' => 1, 'description' => 'Arms', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 8, 'name' => 'Shoulders', 'order' => 2, 'description' => 'Shoulders', "published" => 'yes'] );
-        Lesson::create( ['module_id' => 8, 'name' => 'Legs', 'order' => 3, 'description' => 'Legs', "published" => 'yes'] );
-    }
-}
+        Lesson::create(['module_id' => 1, 'name' => 'Welcome', 'order' => 1, 'description' => '1A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 1, 'name' => 'Advanced Stuff', 'order' => 2, 'description' => '2A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 2, 'name' => 'More Advanced Stuff', 'order' => 1, 'description' => '3A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 2, 'name' => 'Second Module Review', 'order' => 2, 'description' => '4A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 2, 'name' => 'Second Module Conclusion', 'order' => 3, 'description' => '5A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 3, 'name' => 'Let\'s recap', 'order' => 1, 'description' => '6A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 3, 'name' => 'Now that you know', 'order' => 2, 'description' => '7A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 3, 'name' => 'We\'re almost done', 'order' => 3, 'description' => '8A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 3, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '9A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes', 'price' => 2]);
 
+        Lesson::create(['module_id' => 4, 'name' => 'Welcome', 'order' => 1, 'description' => '1A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 4, 'name' => 'Advanced Stuff', 'order' => 2, 'description' => '2A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 5, 'name' => 'More Advanced Stuff', 'order' => 1, 'description' => '3A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 5, 'name' => 'Second Module Review', 'order' => 2, 'description' => '4A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 5, 'name' => 'Second Module Conclusion', 'order' => 3, 'description' => '5A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 6, 'name' => 'Let\'s recap', 'order' => 1, 'description' => '6A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 6, 'name' => 'Now that you know', 'order' => 2, 'description' => '7A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 6, 'name' => 'We\'re almost done', 'order' => 3, 'description' => '8A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes']);
+        Lesson::create(['module_id' => 6, 'name' => 'Thank you, come again', 'order' => 4, 'description' => '9A lil bit of this, a lil bit of that, cool stuff mostly', "published" => 'yes', 'price' => 2]);
+
+        Lesson::create(['module_id' => 7, 'name' => 'Vegetables', 'order' => 1, 'description' => 'Vegetables', "published" => 'yes']);
+        Lesson::create(['module_id' => 7, 'name' => 'Macro Nutrients', 'order' => 2, 'description' => 'Macro Nutrients', "published" => 'yes']);
+        Lesson::create(['module_id' => 7, 'name' => 'Tubers', 'order' => 3, 'description' => 'Tubers', "published" => 'yes']);
+
+        Lesson::create(['module_id' => 8, 'name' => 'Arms', 'order' => 1, 'description' => 'Arms', "published" => 'yes']);
+        Lesson::create(['module_id' => 8, 'name' => 'Shoulders', 'order' => 2, 'description' => 'Shoulders', "published" => 'yes']);
+        Lesson::create(['module_id' => 8, 'name' => 'Legs', 'order' => 3, 'description' => 'Legs', "published" => 'yes']);
+    }
+
+}
 
 class VideosSeeder extends Seeder {
 
-    public function run()
-    {
-        /*DB::table('videos')->delete();
-        Video::unguard();
-        Video::create( [ 'original_filename' => '9LoQlTLkj6DCaDdo1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-                                'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
-        DB::table('video_formats')->delete();
-        VideoFormat::unguard();
-        VideoFormat::insert( [ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4', 'preset_id' => '1421660966371-o9l23s',
-            'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 9, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4' ] );
-        
-        VideoFormat::insert( [ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 9, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );     */
+    public function run() {
+        /* DB::table('videos')->delete();
+          Video::unguard();
+          Video::create( [ 'original_filename' => '9LoQlTLkj6DCaDdo1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
+          'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
+          DB::table('video_formats')->delete();
+          VideoFormat::unguard();
+          VideoFormat::insert( [ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4', 'preset_id' => '1421660966371-o9l23s',
+          'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 9, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s-00001.png',
+          'video_url' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4' ] );
+
+          VideoFormat::insert( [ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4', 'preset_id' => '1421661161826-cx6nmz',
+          'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 9, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+          'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] ); */
 
         DB::table('videos')->delete();
         Video::unguard();
-        Video::create( [ 'original_filename' => '9LoQlTLkj6DCaDdo1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-                         'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
+        Video::create([ 'original_filename' => '9LoQlTLkj6DCaDdo1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
+            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
 
-        Video::create( [ 'original_filename' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-                         'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
+        Video::create([ 'original_filename' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
+            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
 
-        Video::create( [ 'original_filename' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-                         'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
-        Video::create( [ 'original_filename' => 'video1.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-                         'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
-        Video::create( [ 'original_filename' => 'video2.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-                         'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
-        Video::create( [ 'original_filename' => 'video3.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-                         'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
-        Video::create( [ 'original_filename' => 'vidoe4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-                         'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
-        Video::create( [ 'original_filename' => 'video5.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-                         'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
-        Video::create( [ 'original_filename' => 'video6.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-                         'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
-        Video::create( [ 'original_filename' => 'video7.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-                         'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
+        Video::create([ 'original_filename' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
+            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'video1.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
+            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'video2.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
+            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'video3.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
+            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'vidoe4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
+            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'video5.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
+            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'video6.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
+            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'video7.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
+            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
 
         DB::table('video_formats')->delete();
         VideoFormat::unguard();
-        VideoFormat::insert( [ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4', 'preset_id' => '1421660966371-o9l23s',
-                               'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 66, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4' ] );
+        VideoFormat::insert([ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4', 'preset_id' => '1421660966371-o9l23s',
+            'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 66, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4']);
 
-        VideoFormat::insert( [ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 66, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
+        VideoFormat::insert([ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 66, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
 
-        VideoFormat::insert( [ 'video_id' => 2, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 80, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
-        VideoFormat::insert( [ 'video_id' => 2, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 80, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
+        VideoFormat::insert([ 'video_id' => 2, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 80, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 2, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 80, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
 
-        VideoFormat::insert( [ 'video_id' => 3, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
-        VideoFormat::insert( [ 'video_id' => 3, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
+        VideoFormat::insert([ 'video_id' => 3, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 3, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
 
-        VideoFormat::insert( [ 'video_id' => 4, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 122, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
-        VideoFormat::insert( [ 'video_id' => 4, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 122, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
+        VideoFormat::insert([ 'video_id' => 4, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 122, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 4, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 122, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
 
-        VideoFormat::insert( [ 'video_id' => 5, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
-        VideoFormat::insert( [ 'video_id' => 5, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
+        VideoFormat::insert([ 'video_id' => 5, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 5, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
 
-        VideoFormat::insert( [ 'video_id' => 6, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 200, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
-        VideoFormat::insert( [ 'video_id' => 6, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 200, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
+        VideoFormat::insert([ 'video_id' => 6, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 200, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 6, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 200, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
 
-        VideoFormat::insert( [ 'video_id' => 7, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 30, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
-        VideoFormat::insert( [ 'video_id' => 7, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 30, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
+        VideoFormat::insert([ 'video_id' => 7, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 30, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 7, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 30, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
 
-        VideoFormat::insert( [ 'video_id' => 8, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 67, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
-        VideoFormat::insert( [ 'video_id' => 8, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 67, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
+        VideoFormat::insert([ 'video_id' => 8, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 67, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 8, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 67, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
 
-        VideoFormat::insert( [ 'video_id' => 9, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 45, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
-        VideoFormat::insert( [ 'video_id' => 9, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 45, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
+        VideoFormat::insert([ 'video_id' => 9, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 45, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 9, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 45, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
 
-        VideoFormat::insert( [ 'video_id' => 10, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 12, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
-        VideoFormat::insert( [ 'video_id' => 10, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-                               'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 12, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-                               'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] );
+        VideoFormat::insert([ 'video_id' => 10, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 12, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 10, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
+            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 12, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
+            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
     }
+
 }
 
 class BlocksSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('blocks')->delete();
         Block::unguard();
-        Block::create( ['lesson_id' => 10, 'name' => 'Test Block','type' => 'text', 
+        Block::create(['lesson_id' => 10, 'name' => 'Test Block', 'type' => 'text',
             'content' => '"The service was excellent. Dude, your stuff is the bomb! I am really satisfied with my cocorium. 
-                Without cocorium, we would have gone bankrupt by now." - Truda V.'] );
-        Block::create( ['lesson_id' => 10, 'name' => 'Test Block','type' => 'text', 
-            'content' => 'Second text block right here m8'] );
-        Block::create( ['lesson_id' => 10, 'name' => 'First File','type' => 'file', 'mime' => 'image/jpeg', 'key' => 'course_uploads/file-5526bab93ea21.jpg',
-            'content' => 'https://wazaardev.s3.amazonaws.com/course_uploads/file-5526bab93ea21.jpg'] );
-        Block::create( ['lesson_id' => 10, 'name' => 'Second File','type' => 'file', 'mime' => 'image/jpeg', 'key' => 'course_uploads/file-5526bab93ea21.jpg',
-            'content' => 'https://wazaardev.s3.amazonaws.com/course_uploads/file-5526bab93ea21.jpg'] );
-        Block::create( ['lesson_id' => 10, 'name' => 'Third File','type' => 'file', 'mime' => 'image/jpeg', 'key' => 'course_uploads/file-5526bab93ea21.jpg',
-            'content' => 'https://wazaardev.s3.amazonaws.com/course_uploads/file-5526bab93ea21.jpg'] );
-        Block::create( ['lesson_id' => 10, 'name' => 'First Video Ever','type' => 'video', 
-            'content' => '1'] );
-       
+                Without cocorium, we would have gone bankrupt by now." - Truda V.']);
+        Block::create(['lesson_id' => 10, 'name' => 'Test Block', 'type' => 'text',
+            'content' => 'Second text block right here m8']);
+        Block::create(['lesson_id' => 10, 'name' => 'First File', 'type' => 'file', 'mime' => 'image/jpeg', 'key' => 'course_uploads/file-5526bab93ea21.jpg',
+            'content' => 'https://wazaardev.s3.amazonaws.com/course_uploads/file-5526bab93ea21.jpg']);
+        Block::create(['lesson_id' => 10, 'name' => 'Second File', 'type' => 'file', 'mime' => 'image/jpeg', 'key' => 'course_uploads/file-5526bab93ea21.jpg',
+            'content' => 'https://wazaardev.s3.amazonaws.com/course_uploads/file-5526bab93ea21.jpg']);
+        Block::create(['lesson_id' => 10, 'name' => 'Third File', 'type' => 'file', 'mime' => 'image/jpeg', 'key' => 'course_uploads/file-5526bab93ea21.jpg',
+            'content' => 'https://wazaardev.s3.amazonaws.com/course_uploads/file-5526bab93ea21.jpg']);
+        Block::create(['lesson_id' => 10, 'name' => 'First Video Ever', 'type' => 'video',
+            'content' => '1']);
     }
+
 }
 
 class ProfileSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('user_profiles')->delete();
         Profile::unguard();
 
-        Profile::create( ['owner_id' => User::where('username','albert')->first()->id , 'owner_type' => 'Student','first_name' => 'Albert', 'last_name' => 'Maranian', 'email' => 'albert@mailinator.com']);
-        Profile::create( ['owner_id' => 2, 'owner_type' => 'Affiliate','first_name' => 'Wazaar', 'last_name' => 'Affiliate', 'email' => 'wazaarAffiliate@wazaar.jp', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 'created_at' => \Carbon\Carbon::now()]);
-        
-        Profile::create( ['owner_id' => 5, 'owner_type' => 'Instructor','first_name' => 'Wazaar', 'last_name' => 'Instructor', 
-                            'email' => 'wazaarInstructor@wazaar.jp', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 
-                            'bank_code' => 'BNK5', 'bank_name'=>'Bank5', 'branch_code'=>'B5', 'branch_name' => 'BRANCH5', 
-                            'account_type' => 1, 'account_number' => 'ACC5', 'beneficiary_name' => 'Beneficiary Instructor5', 'created_at' => \Carbon\Carbon::now()]);
-        
-        Profile::create( ['owner_id' => 4, 'owner_type' => 'Instructor','first_name' => 'Wazaar', 'last_name' => 'Instructor', 
-                            'email' => 'wazaarInstructor@wazaar.jp', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 
-                            'bank_code' => 'BNK4', 'bank_name'=>'Bank4', 'branch_code'=>'B4', 'branch_name' => 'BRANCH4', 
-                            'account_type' => 1, 'account_number' => 'ACC4', 'beneficiary_name' => 'Beneficiary Instructor4', 'created_at' => \Carbon\Carbon::now()]);
-        
-        Profile::create( ['owner_id' => 15, 'owner_type' => 'Instructor','first_name' => 'Instructor', 'last_name' => 'Zero', 
-                            'email' => 'instructorZero@mailinator.com', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 
-                            'bank_code' => 'BNK4', 'bank_name'=>'Bank4', 'branch_code'=>'B4', 'branch_name' => 'BRANCH4', 
-                            'account_type' => 1, 'account_number' => 'ACC4', 'beneficiary_name' => 'Beneficiary Instructor4', 'created_at' => \Carbon\Carbon::now()]);
-        
-        Profile::create( ['owner_id' => 35, 'owner_type' => 'Instructor','first_name' => 'ST', 'last_name' => 'Instructor1', 
-                            'email' => 'stInstructor@mailinator.com', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 
-                            'bank_code' => 'BNK65', 'bank_name'=>'Bank35', 'branch_code'=>'B35', 'branch_name' => 'BRANCH35', 
-                            'account_type' => 2, 'account_number' => 'ACC35', 'beneficiary_name' => 'Beneficiary Instructor35', 'created_at' => \Carbon\Carbon::now()]);
-        
-        Profile::create( ['owner_id' => 36, 'owner_type' => 'Instructor','first_name' => 'ST', 'last_name' => 'Instructor2', 
-                            'email' => 'stInstructor2@mailinator.com', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 
-                            'bank_code' => 'BNK36', 'bank_name'=>'Bank36', 'branch_code'=>'B36', 'branch_name' => 'BRANCH36', 
-                            'account_type' => 4, 'account_number' => 'ACC36', 'beneficiary_name' => 'Beneficiary Instructor36', 'created_at' => \Carbon\Carbon::now()]);
-        
-        Profile::create( ['owner_id' => 37, 'owner_type' => 'Instructor','first_name' => 'ST', 'last_name' => 'Instructor3', 
-                            'email' => 'stInstructor3@mailinator.com', 'bio' => 'hi', 'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 
-                            'bank_code' => 'BNK37', 'bank_name'=>'Bank37', 'branch_code'=>'B37', 'branch_name' => 'BRANCH37', 
-                            'account_type' => 9, 'account_number' => 'ACC37', 'beneficiary_name' => 'Beneficiary Instructor37', 'created_at' => \Carbon\Carbon::now()]);
-        
-        Profile::create( ['owner_id' => 11, 'owner_type' => 'Instructor','first_name' => 'Keiji', 'last_name' => 'Tani', 'email' => 'Tani@mailinator.com',
+        Profile::create(['owner_id' => User::where('username', 'albert')->first()->id, 'owner_type' => 'Student', 'first_name' => 'Albert', 'last_name' => 'Maranian', 'email' => 'albert@mailinator.com']);
+        Profile::create(['owner_id' => 2, 'owner_type' => 'Affiliate', 'first_name' => 'Wazaar', 'last_name' => 'Affiliate', 'email' => 'wazaarAffiliate@wazaar.jp', 'bio' => 'hi', 'photo' => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg', 'created_at' => \Carbon\Carbon::now()]);
+
+        Profile::create(['owner_id' => 5, 'owner_type' => 'Instructor', 'first_name' => 'Wazaar', 'last_name' => 'Instructor',
+            'email' => 'wazaarInstructor@wazaar.jp', 'bio' => 'hi', 'photo' => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg',
+            'bank_code' => 'BNK5', 'bank_name' => 'Bank5', 'branch_code' => 'B5', 'branch_name' => 'BRANCH5',
+            'account_type' => 1, 'account_number' => 'ACC5', 'beneficiary_name' => 'Beneficiary Instructor5', 'created_at' => \Carbon\Carbon::now()]);
+
+        Profile::create(['owner_id' => 4, 'owner_type' => 'Instructor', 'first_name' => 'Wazaar', 'last_name' => 'Instructor',
+            'email' => 'wazaarInstructor@wazaar.jp', 'bio' => 'hi', 'photo' => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg',
+            'bank_code' => 'BNK4', 'bank_name' => 'Bank4', 'branch_code' => 'B4', 'branch_name' => 'BRANCH4',
+            'account_type' => 1, 'account_number' => 'ACC4', 'beneficiary_name' => 'Beneficiary Instructor4', 'created_at' => \Carbon\Carbon::now()]);
+
+        Profile::create(['owner_id' => 15, 'owner_type' => 'Instructor', 'first_name' => 'Instructor', 'last_name' => 'Zero',
+            'email' => 'instructorZero@mailinator.com', 'bio' => 'hi', 'photo' => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg',
+            'bank_code' => 'BNK4', 'bank_name' => 'Bank4', 'branch_code' => 'B4', 'branch_name' => 'BRANCH4',
+            'account_type' => 1, 'account_number' => 'ACC4', 'beneficiary_name' => 'Beneficiary Instructor4', 'created_at' => \Carbon\Carbon::now()]);
+
+        Profile::create(['owner_id' => 35, 'owner_type' => 'Instructor', 'first_name' => 'ST', 'last_name' => 'Instructor1',
+            'email' => 'stInstructor@mailinator.com', 'bio' => 'hi', 'photo' => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg',
+            'bank_code' => 'BNK65', 'bank_name' => 'Bank35', 'branch_code' => 'B35', 'branch_name' => 'BRANCH35',
+            'account_type' => 2, 'account_number' => 'ACC35', 'beneficiary_name' => 'Beneficiary Instructor35', 'created_at' => \Carbon\Carbon::now()]);
+
+        Profile::create(['owner_id' => 36, 'owner_type' => 'Instructor', 'first_name' => 'ST', 'last_name' => 'Instructor2',
+            'email' => 'stInstructor2@mailinator.com', 'bio' => 'hi', 'photo' => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg',
+            'bank_code' => 'BNK36', 'bank_name' => 'Bank36', 'branch_code' => 'B36', 'branch_name' => 'BRANCH36',
+            'account_type' => 4, 'account_number' => 'ACC36', 'beneficiary_name' => 'Beneficiary Instructor36', 'created_at' => \Carbon\Carbon::now()]);
+
+        Profile::create(['owner_id' => 37, 'owner_type' => 'Instructor', 'first_name' => 'ST', 'last_name' => 'Instructor3',
+            'email' => 'stInstructor3@mailinator.com', 'bio' => 'hi', 'photo' => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg',
+            'bank_code' => 'BNK37', 'bank_name' => 'Bank37', 'branch_code' => 'B37', 'branch_name' => 'BRANCH37',
+            'account_type' => 9, 'account_number' => 'ACC37', 'beneficiary_name' => 'Beneficiary Instructor37', 'created_at' => \Carbon\Carbon::now()]);
+
+        Profile::create(['owner_id' => 11, 'owner_type' => 'Instructor', 'first_name' => 'Keiji', 'last_name' => 'Tani', 'email' => 'Tani@mailinator.com',
             'bio' => '谷啓嗣（たにけいじ） <br />
 1986年2月15日生まれ　香川県出身<br />
 <br />
@@ -1174,186 +1156,207 @@ class ProfileSeeder extends Seeder {
 すぐに評判になり、2015年６月現在、<br />
 谷の指導を求めるパーソナルトレーニングは<br />
 半年先まで予約が埋まっている。',
-            'photo'  => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg'] );
-
+            'photo' => 'https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg']);
     }
+
 }
 
 class TestimonialsSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('testimonials')->delete();
         Testimonial::unguard();
-        Testimonial::create( ['course_id' => 5, 'student_id' => '3', 'rating'=>'positive', 'thumbs_up' => 3, 'thumbs_down' => 1,
-            'content' => 'Dude, your stuff is the bomb! Business App Development is awesome! Really good.'] );
-        Testimonial::create( ['course_id' => 5, 'student_id' => '9', 'rating'=>'positive', 'thumbs_up' => 0, 'thumbs_down' => 0,
-            'content' => 'I have gotten at least 50 times the value from Business App Development. We\'re loving it.'] );
-        Testimonial::create( ['course_id' => 5, 'student_id' => '4', 'rating'=>'positive', 'thumbs_up' => 1, 'thumbs_down' => 1,
-            'content' => 'Testimonial 3'] );
-        Testimonial::create( ['course_id' => 5, 'student_id' => '5', 'rating'=>'positive', 'thumbs_up' => 9, 'thumbs_down' => 9,
-            'content' => 'Testimonial 4'] );
-        Testimonial::create( ['course_id' => 5, 'student_id' => '6', 'rating'=>'positive', 'thumbs_up' => 15, 'thumbs_down' => 251,
-            'content' => 'Some bad spam over here'] );
-        Testimonial::create( ['course_id' => 5, 'student_id' => '7', 'rating'=>'positive', 'thumbs_up' => 100, 'thumbs_down' => 12,
-            'content' => 'Testimonial 6'] );
-        
-        
-        Testimonial::create( ['course_id' => 14, 'student_id' => '12', 'rating'=>'positive', 'thumbs_up' => 100, 'thumbs_down' => 12,
-            'content' => '先生が御自分のエピソードを話のですが、この話が笑ってしまうほど自分とソックリ！悩んでいる人は同じ行動を取るんだな～と間違って遠回りしてしまった自分を恥じることなく、今からでも間に合うんだ！と勇気づけられました。正しいブラジャーの選び方から始まり、基本は大胸筋の鍛え方が重要という事で簡単で毎日続けられそうな体操を伝授してくれます。チャプター２での質問コーナーでも、まさに自分が知りたかった事が幾つも出てきて参考に成ります。チャプター３の実践では胸の問題なのに体全体が関わっていることを再確認しながら各部位のマッサージが丁寧に解説してもらえるのはトテモ参考に成ります。'] );
-        Testimonial::create( ['course_id' => 14, 'student_id' => '13', 'rating'=>'positive', 'thumbs_up' => 100, 'thumbs_down' => 12,
+        Testimonial::create(['course_id' => 5, 'student_id' => '3', 'rating' => 'positive', 'thumbs_up' => 3, 'thumbs_down' => 1,
+            'content' => 'Dude, your stuff is the bomb! Business App Development is awesome! Really good.']);
+        Testimonial::create(['course_id' => 5, 'student_id' => '9', 'rating' => 'positive', 'thumbs_up' => 0, 'thumbs_down' => 0,
+            'content' => 'I have gotten at least 50 times the value from Business App Development. We\'re loving it.']);
+        Testimonial::create(['course_id' => 5, 'student_id' => '4', 'rating' => 'positive', 'thumbs_up' => 1, 'thumbs_down' => 1,
+            'content' => 'Testimonial 3']);
+        Testimonial::create(['course_id' => 5, 'student_id' => '5', 'rating' => 'positive', 'thumbs_up' => 9, 'thumbs_down' => 9,
+            'content' => 'Testimonial 4']);
+        Testimonial::create(['course_id' => 5, 'student_id' => '6', 'rating' => 'positive', 'thumbs_up' => 15, 'thumbs_down' => 251,
+            'content' => 'Some bad spam over here']);
+        Testimonial::create(['course_id' => 5, 'student_id' => '7', 'rating' => 'positive', 'thumbs_up' => 100, 'thumbs_down' => 12,
+            'content' => 'Testimonial 6']);
+
+
+        Testimonial::create(['course_id' => 14, 'student_id' => '12', 'rating' => 'positive', 'thumbs_up' => 100, 'thumbs_down' => 12,
+            'content' => '先生が御自分のエピソードを話のですが、この話が笑ってしまうほど自分とソックリ！悩んでいる人は同じ行動を取るんだな～と間違って遠回りしてしまった自分を恥じることなく、今からでも間に合うんだ！と勇気づけられました。正しいブラジャーの選び方から始まり、基本は大胸筋の鍛え方が重要という事で簡単で毎日続けられそうな体操を伝授してくれます。チャプター２での質問コーナーでも、まさに自分が知りたかった事が幾つも出てきて参考に成ります。チャプター３の実践では胸の問題なのに体全体が関わっていることを再確認しながら各部位のマッサージが丁寧に解説してもらえるのはトテモ参考に成ります。']);
+        Testimonial::create(['course_id' => 14, 'student_id' => '13', 'rating' => 'positive', 'thumbs_up' => 100, 'thumbs_down' => 12,
             'content' => '
                 歳をとっても、若い頃のようなバストをキープする事はパートナーへのアピール以上に自分の自信にもつながりますから、バストアップだけでなく、きちんとキープする方法、下着の正しい選び方、マッサージや、美肌、食生活、女性ホルモン分泌アップなど、多岐に渡る内容は、バストアップだけじゃなく、よりオールマイティな女性力アップ＆キープにつながってるところがすごいっ！
                 <br />
                 あいてる時間に簡単に観る事ができて、忙しい私には本当に便利でした！
-                '] );
-        Testimonial::create( ['course_id' => 14, 'student_id' => '14', 'rating'=>'positive', 'thumbs_up' => 100, 'thumbs_down' => 12,
-            'content' => '下半身太りでむくみが気になる体質なのでバストアップだけでなくその解決方法もしれて良かったです！'] );
-       
+                ']);
+        Testimonial::create(['course_id' => 14, 'student_id' => '14', 'rating' => 'positive', 'thumbs_up' => 100, 'thumbs_down' => 12,
+            'content' => '下半身太りでむくみが気になる体質なのでバストアップだけでなくその解決方法もしれて良かったです！']);
     }
+
 }
 
 class InstructorAgenciesSeeder extends Seeder {
 
-    public function run()
-    {
-        $agencyRole = Role::where('name','=','InstructorAgency')->first();
-        $agency1 = new User( [ 'username' => 'InstructorAgency1', 'email'=>'agency@mailinator.com','password' => 'pass', 
-            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5 ] );
+    public function run() {
+        $agencyRole = Role::where('name', '=', 'InstructorAgency')->first();
+        $agency1 = new User([ 'username' => 'InstructorAgency1', 'email' => 'agency@mailinator.com', 'password' => 'pass',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5]);
         $agency1->password = 'pass';
         $agency1->password_confirmation = 'pass';
         $agency1->agency_balance = 200;
         $agency1->save();
-        $agency1->attachRole( $agencyRole );
+        $agency1->attachRole($agencyRole);
 
-        $agency2 = new User(['username' => 'InstructorAgency2', 'email'=>'agency2@mailinator.com','password' => 'pass', 
-            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5 ]);
+        $agency2 = new User(['username' => 'InstructorAgency2', 'email' => 'agency2@mailinator.com', 'password' => 'pass',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5]);
         $agency2->password = 'pass';
         $agency2->password_confirmation = 'pass';
         $agency2->save();
-        $agency2->attachRole( $agencyRole );
-        
-        $agency3 = new User(['username' => 'InstructorAgency3', 'email'=>'agency3@mailinator.com','password' => 'pass', 
-            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5 ]);
+        $agency2->attachRole($agencyRole);
+
+        $agency3 = new User(['username' => 'InstructorAgency3', 'email' => 'agency3@mailinator.com', 'password' => 'pass',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5]);
         $agency3->password = 'pass';
         $agency3->password_confirmation = 'pass';
         $agency3->save();
-        $agency3->attachRole( $agencyRole );      
-        
-        DB::table('users')->where('username','instructor')->update(['instructor_agency_id' => $agency1->id]);
+        $agency3->attachRole($agencyRole);
 
+        DB::table('users')->where('username', 'instructor')->update(['instructor_agency_id' => $agency1->id]);
     }
+
 }
 
 class SecondTierInstructorsSeeder extends Seeder {
 
-    public function run()
-    {
-        $role = Role::where('name','=','Instructor')->first();
-        $instructor = new User( [ 'username' => 'STInstructor1', 'email'=>'stInstructor1@mailinator.com','password' => 'pass', 
-            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5 ] );
+    public function run() {
+        $role = Role::where('name', '=', 'Instructor')->first();
+        $instructor = new User([ 'username' => 'STInstructor1', 'email' => 'stInstructor1@mailinator.com', 'password' => 'pass',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5]);
         $instructor->password = 'pass';
         $instructor->password_confirmation = 'pass';
         $instructor->is_second_tier_instructor = 'yes';
         $instructor->save();
-        $instructor->attachRole( $role );
-        Profile::create( ['owner_id' => $instructor->id, 'owner_type' => 'Instructor','first_name' => 'STInstructor', 'last_name' => 'Last', 'email' => 'stInstructor1@mailinator.com']);
+        $instructor->attachRole($role);
+        Profile::create(['owner_id' => $instructor->id, 'owner_type' => 'Instructor', 'first_name' => 'STInstructor', 'last_name' => 'Last', 'email' => 'stInstructor1@mailinator.com']);
 
-        $instructor = new User(['username' => 'STInstructor2', 'email'=>'stInstructor2@mailinator.com','password' => 'pass', 
-            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5 ]);
+        $instructor = new User(['username' => 'STInstructor2', 'email' => 'stInstructor2@mailinator.com', 'password' => 'pass',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5]);
         $instructor->password = 'pass';
         $instructor->password_confirmation = 'pass';
         $instructor->is_second_tier_instructor = 'yes';
         $instructor->save();
-        $instructor->attachRole( $role );
-        Profile::create( ['owner_id' => $instructor->id, 'owner_type' => 'Instructor','first_name' => 'STInstructor2', 'last_name' => 'Last', 'email' => 'stInstructor2@mailinator.com']);
-        
-        $instructor = new User(['username' => 'STInstructor3', 'email'=>'stInstructor3@mailinator.com','password' => 'pass', 
-            'confirmation_code' =>  md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5 ]);
+        $instructor->attachRole($role);
+        Profile::create(['owner_id' => $instructor->id, 'owner_type' => 'Instructor', 'first_name' => 'STInstructor2', 'last_name' => 'Last', 'email' => 'stInstructor2@mailinator.com']);
+
+        $instructor = new User(['username' => 'STInstructor3', 'email' => 'stInstructor3@mailinator.com', 'password' => 'pass',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)), 'confirmed' => 1, 'ltc_affiliate_id' => 5]);
         $instructor->password = 'pass';
         $instructor->password_confirmation = 'pass';
         $instructor->is_second_tier_instructor = 'yes';
         $instructor->save();
-        $instructor->attachRole( $role );    
-        Profile::create( ['owner_id' => $instructor->id, 'owner_type' => 'Instructor','first_name' => 'STInstructor3', 'last_name' => 'Last', 'email' => 'stInstructor3@mailinator.com']);
+        $instructor->attachRole($role);
+        Profile::create(['owner_id' => $instructor->id, 'owner_type' => 'Instructor', 'first_name' => 'STInstructor3', 'last_name' => 'Last', 'email' => 'stInstructor3@mailinator.com']);
     }
+
 }
 
 class PMSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         DB::table('private_messages')->delete();
         PrivateMessage::unguard();
-        
-        PrivateMessage::create( ['sender_id' => '9', 'recipient_id' => 4, 'thread_id' => 0, 'type' => 'ask_teacher', 'course_id' => '5',
-            'lesson_id' => 10, 'content' => 'Ask Thy Teachereth'] );
-        PrivateMessage::create( ['sender_id' => '4', 'recipient_id' => 9, 'thread_id' => 1, 'type' => 'ask_teacher', 'course_id' => '5',
-            'lesson_id' => 10, 'content' => 'teacher answereth'] );
-        PrivateMessage::create( ['sender_id' => '9', 'recipient_id' => 4, 'thread_id' => 1, 'type' => 'ask_teacher', 'course_id' => '5',
-            'lesson_id' => 10, 'content' => '1'] );
-        PrivateMessage::create( ['sender_id' => '9', 'recipient_id' => 4, 'thread_id' => 1, 'type' => 'ask_teacher', 'course_id' => '5',
-            'lesson_id' => 10, 'content' => 'thank you men'] );
-        PrivateMessage::create( ['sender_id' => '4', 'recipient_id' => NULL, 'thread_id' => 0, 'type' => 'mass_message', 'course_id' => '5',
-            'lesson_id' => 10, 'content' => '2'] );
-        PrivateMessage::create( ['sender_id' => '4', 'recipient_id' => NULL, 'thread_id' => 0, 'type' => 'mass_message', 'course_id' => '5',
-            'lesson_id' => 10, 'content' => 'mass message yall'] );
-        PrivateMessage::create( ['sender_id' => '7', 'recipient_id' => 9, 'thread_id' => 0, 'type' => 'student_conversation', 'course_id' => '0',
-            'lesson_id' => 10, 'content' => 'sup m8?'] );
-        PrivateMessage::create( ['sender_id' => '8', 'recipient_id' => 9, 'thread_id' => 0, 'type' => 'student_conversation', 'course_id' => '0',
-            'lesson_id' => 10, 'content' => 'sup m7+1?'] );
-        
-    }
-       
-}
 
+        PrivateMessage::create(['sender_id' => '9', 'recipient_id' => 4, 'thread_id' => 0, 'type' => 'ask_teacher', 'course_id' => '5',
+            'lesson_id' => 10, 'content' => 'Ask Thy Teachereth']);
+        PrivateMessage::create(['sender_id' => '4', 'recipient_id' => 9, 'thread_id' => 1, 'type' => 'ask_teacher', 'course_id' => '5',
+            'lesson_id' => 10, 'content' => 'teacher answereth']);
+        PrivateMessage::create(['sender_id' => '9', 'recipient_id' => 4, 'thread_id' => 1, 'type' => 'ask_teacher', 'course_id' => '5',
+            'lesson_id' => 10, 'content' => '1']);
+        PrivateMessage::create(['sender_id' => '9', 'recipient_id' => 4, 'thread_id' => 1, 'type' => 'ask_teacher', 'course_id' => '5',
+            'lesson_id' => 10, 'content' => 'thank you men']);
+        PrivateMessage::create(['sender_id' => '4', 'recipient_id' => NULL, 'thread_id' => 0, 'type' => 'mass_message', 'course_id' => '5',
+            'lesson_id' => 10, 'content' => '2']);
+        PrivateMessage::create(['sender_id' => '4', 'recipient_id' => NULL, 'thread_id' => 0, 'type' => 'mass_message', 'course_id' => '5',
+            'lesson_id' => 10, 'content' => 'mass message yall']);
+        PrivateMessage::create(['sender_id' => '7', 'recipient_id' => 9, 'thread_id' => 0, 'type' => 'student_conversation', 'course_id' => '0',
+            'lesson_id' => 10, 'content' => 'sup m8?']);
+        PrivateMessage::create(['sender_id' => '8', 'recipient_id' => 9, 'thread_id' => 0, 'type' => 'student_conversation', 'course_id' => '0',
+            'lesson_id' => 10, 'content' => 'sup m7+1?']);
+    }
+
+}
 
 class TransactionsSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         Transaction::unguard();
-        Transaction::create( ['user_id' => 9, 'transaction_type' => 'student_balance_debit', 'amount' => 500,
-            'product_type' => 'Course', 'product_id' => 1, 'status' => 'complete' ] );
-        Transaction::create( ['user_id' => 9, 'transaction_type' => 'student_debit', 'amount' => 1500,
-            'product_type' => 'Course', 'product_id' => 1, 'status' => 'complete' ] );
-        Transaction::create( ['user_id' => 9, 'transaction_type' => 'student_credit', 'amount' => 100, 'status' => 'complete' ] );
-        $transaction = Transaction::create( ['user_id' => 9, 'transaction_type' => 'student_balance_debit', 'amount' => 100,
-            'product_type' => 'Lesson', 'product_id' => 2, 'status' => 'pending' ] );
+        Transaction::create(['user_id' => 9, 'transaction_type' => 'student_balance_debit', 'amount' => 500,
+            'product_type' => 'Course', 'product_id' => 1, 'status' => 'complete']);
+        Transaction::create(['user_id' => 9, 'transaction_type' => 'student_debit', 'amount' => 1500,
+            'product_type' => 'Course', 'product_id' => 1, 'status' => 'complete']);
+        Transaction::create(['user_id' => 9, 'transaction_type' => 'student_credit', 'amount' => 100, 'status' => 'complete']);
+        $transaction = Transaction::create(['user_id' => 9, 'transaction_type' => 'student_balance_debit', 'amount' => 100,
+                    'product_type' => 'Lesson', 'product_id' => 2, 'status' => 'pending']);
         $student = Student::find(9);
-        $student->refundBalanceDebit( $transaction ); 
+        $student->refundBalanceDebit($transaction);
     }
+
 }
 
 class FrontpageVideosSeeder extends Seeder {
 
-    public function run()
-    {
+    public function run() {
         FrontpageVideo::unguard();
-        for($i = 0; $i<4; ++$i){
-            for($j = 0; $j < 6; ++$j){
+        for ($i = 0; $i < 4; ++$i) {
+            for ($j = 0; $j < 6; ++$j) {
                 $type = ($j == 0) ? 'big' : 'small';
                 $id = 0;
-                if($i==0 && $j == 0 ) $id = 1;
-                if($i==1 && $j == 0 ) $id = 2;
-                FrontpageVideo::create( ['course_id' => $id, 'type' => $type] );
+                if ($i == 0 && $j == 0)
+                    $id = 1;
+                if ($i == 1 && $j == 0)
+                    $id = 2;
+                FrontpageVideo::create(['course_id' => $id, 'type' => $type]);
             }
         }
     }
+
 }
 
 class GiftSeeder extends Seeder {
 
-    public function run()
-    {
-        $affiliate = User::where('username','affiliate')->first();
-        $course = Course::where('name','Business App Development')->first();
-        for($i = 0; $i<4; ++$i){
+    public function run() {
+        $affiliate = User::where('username', 'affiliate')->first();
+        $course = Course::where('name', 'Business App Development')->first();
+        for ($i = 0; $i < 4; ++$i) {
             $g = new Gift();
             $g->affiliate_id = $affiliate->id;
             $g->course_id = $course->id;
             $g->text = "Buy this and get gift # $i";
             $g->save();
         }
+    }
+
+}
+
+class CategoryGroupSeeder extends Seeder {
+
+    public function run() {
+        $g = new CategoryGroup([ 'name' => 'Career Courses', 'order' => 1]);
+        $g->save();
+        $g = new CategoryGroup([ 'name' => 'Hobbies', 'order' => 2]);
+        $g->save();
+        $g = new CategoryGroup([ 'name' => 'Look more beautiful!', 'order' => 3]);
+        $g->save();
+    }
+}
+
+class CategoryGroupItemSeeder extends Seeder {
+
+    public function run() {
+        CategoryGroupItem::create( ['category_group_id' => 1, 'course_category_id' => 1] );
+        CategoryGroupItem::create( ['category_group_id' => 1, 'course_category_id' => 2] );
+        CategoryGroupItem::create( ['category_group_id' => 2, 'course_category_id' => 3] );
+        CategoryGroupItem::create( ['category_group_id' => 2, 'course_category_id' => 4] );
+        CategoryGroupItem::create( ['category_group_id' => 3, 'course_category_id' => 2] );
+        CategoryGroupItem::create( ['category_group_id' => 3, 'course_category_id' => 3] );
     }
 }

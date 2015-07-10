@@ -296,15 +296,20 @@ function loadRemote(e){
     var callback = $(e.target).attr('data-callback');
     elem = $(e.target);
     loadMethod = $(e.target).attr('data-load-method');
+    noPushstate = $(e.target).attr('data-no-push-state');
     while(typeof(url)=='undefined'){
         elem = elem.parent();
         url = elem.attr('data-url');
         target = elem.attr('data-target');
         callback = elem.attr('data-callback');  
         loadMethod = $(e.target).attr('data-load-method');
+        noPushstate = $(e.target).attr('data-no-push-state');
     }
+    
     $(e.target).attr('data-loading', 1);
-    history.pushState({}, '', url);
+    
+    if(noPushstate!='1') history.pushState({}, '', url);
+    
     if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
         $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
         $(target).load(url, function(){
