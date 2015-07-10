@@ -63,9 +63,7 @@
             </a>
         </div>
     @endforeach
-</div>
-
-<div class="row">
+    
     @foreach( $discoverCourses->slice(3)->take(3) as $course )
  
         <div class="col-xs-12 col-sm-6 col-md-4">
@@ -130,4 +128,6 @@
             </a>
         </div>
     @endforeach
+
 </div>
+
