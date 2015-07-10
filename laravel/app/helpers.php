@@ -598,3 +598,9 @@ function timeProgress($start, $end){
     $elapsed = time() - strtotime($start);
     return floor( ($elapsed * 100 ) / $total );
 }
+
+function difficultyToCss($dif){
+    if( $dif == 'Beginner' ) return 'beginner';
+    if( $dif == 'Intermediate' ) return 'intermediate';
+    return 'advanced';
+}
