@@ -123,6 +123,7 @@
                     </div>
                 @endforeach
             </div>
+
             </section>
         </section>
         <section class="container-fluid discover-section">
@@ -161,26 +162,8 @@
                     </div>
                 </nav>
             </div>
-            <div class="row">
-                @foreach($categories->take(6)->get() as $cat)
-                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="{{ action( 'CoursesController@category', $cat->slug ) }}">
-                            <span> {{ $cat->name }}</span>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-            <div class="row">
-            @foreach($categories->skip(6)->take(6)->get() as $cat)
-                <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                    <a href="{{ action( 'CoursesController@category', $cat->slug ) }}">
-                        <span> {{ $cat->name }}</span>
-                    </a>
-                </div>                 
-            </div>
-            @endforeach
             
-            <div id='discover-courses-area'>
+            <div id='discover-courses-area' class="container">
                 {{ View::make('site.discover_courses')->with( compact('discoverCourses') ) }}
             </div>
            
