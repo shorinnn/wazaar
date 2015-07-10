@@ -2063,7 +2063,7 @@ header .activate-dropdown:hover ul{
 }
 
 .form-container input[name='password']{
-	padding-right: 65px;
+	padding-right: 140px;
 	padding-left: 40px;
 	background-position: 15px -39px;
 	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/email-pass-icons.png);
