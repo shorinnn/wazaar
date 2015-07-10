@@ -53,17 +53,17 @@
                                 <img class="img-responsive" alt="" src="{{ $course['preview'] }}">
                                 <div class="course-hover-data">
                                     @if( $course['discounted'] > 0)
-                                        <span class="discount-percent left">- ¥ {{ number_format( $course['discounted'], Config::get('custom.currency_decimals') ) }}</span>
-                                        <span class="video-length right"><i class="fa fa-clock-o"></i>
-                                                <span class='countdown' data-final-date-seconds='{{ timeUntil($course['sale_ends_on'], true) }}'>{{ timeUntil($course['sale_ends_on']) }}</span>
-                                            </span>
+                                        <span class="video-length left"><i class="fa fa-clock-o"></i>
+                                        	<span class='countdown' data-final-date-seconds='{{ timeUntil($course['sale_ends_on'], true) }}'>{{ timeUntil($course['sale_ends_on']) }}</span>
+                                        </span>
+                                        <span class="discount-percent right">- ¥ {{ number_format( $course['discounted'], Config::get('custom.currency_decimals') ) }}</span>
                                     @else
-                                        <span class="discount-percent left">¥ {{ number_format( $course['price'], Config::get('custom.currency_decimals') ) }}</span>
+                                        <span class="discount-percent right">¥ {{ number_format( $course['price'], Config::get('custom.currency_decimals') ) }}</span>
                                     @endif
                                 </div>
                             </div>
-                            <div class="clearfix">
-                                @if( $course['discounted'] > 0)
+                            <!-- <div class="clearfix">
+                               @if( $course['discounted'] > 0)
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{ timeProgress($course['sale_starts_on'], $course['sale_ends_on'] ) }}%;">
                                             <span class="sr-only">
@@ -77,7 +77,7 @@
                                         <span class="video-length countdown" data-final-date-seconds='{{ timeUntil($course['sale_ends_on'], true) }}'>{{ timeUntil($course['sale_ends_on']) }}</span>
                                     @endif
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="course-title clearfix">
                                 <h4 class="clear left"> {{ $course['name'] }}</h4>
                                     <span class="discount-percent right">
@@ -205,7 +205,7 @@
                 mousewheelScrolling: ""
             });
 
-            $('.whats-hot-slider img').hover(function(){
+            $('.whats-hot-slider').hover(function(){
                         $(".whats-hot-slider").smoothDivScroll("stopAutoScrolling");
                     },
                     function(){

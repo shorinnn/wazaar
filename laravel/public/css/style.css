@@ -601,6 +601,8 @@ header .activate-dropdown:hover ul{
 	padding: 4% 15px;
 	position: absolute;
 	bottom: 0;
+	font-size: 13px;
+	font-weight: 600;
 	left: 0;
 	color: #fff;
 	width: 100%;
@@ -662,7 +664,7 @@ header .activate-dropdown:hover ul{
 
 .popular-courses-carousel .course-title{
 	clear: both;
-	margin-top: 5px;
+	margin-top: 20px;
 }
 
 .popular-courses-carousel .course-title h4{
