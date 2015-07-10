@@ -6783,10 +6783,12 @@ a.load-remote > *{
 	text-align: left;
 }
 
+/************ Module ************/
+.step2 .lesson-container,
 .step2 .module-container{
 	border-radius: 4px;
 	overflow: hidden;
-	border: solid 1px #e0e1e2;
+	box-shadow: 0px 0px 10px 5px #cfd8df;
 }
 
 .step2 .module-container .module-data{
@@ -6801,6 +6803,7 @@ a.load-remote > *{
 	padding: 5px 0;
 }
 
+.step2 .lesson-container leson-title,
 .step2 .module-container .module-data input{
 	border: solid #e0e1e2;
 	border-width: 0 0 1px;
@@ -6835,22 +6838,69 @@ a.load-remote > *{
 	border: none;
 }
 
-.step2 .module-container .module-buttons{
+/************* Lessons ************/
+.step2 .lesson-container .lesson-name{
+	text-transform: uppercase;
+	font-size: 11px;
+	color: #0099ff;
+	font-weight: 600;
+}
+
+.step2 .lesson-container .preview-thumb{
+	width: 123px;
+	position: relative;
+	border-radius: 2px;
+	background-color: #363230;
+	margin: 46px auto 10px;
+	overflow: hidden;
+	text-align: center;
+}
+
+.step2 .lesson-container .preview-thumb img{
+	max-width: 100%;
+}
+
+.step2 .lesson-container .preview-thumb .default-button{
+	max-width: 123px;
+	margin-bottom: 14px;
+}
+
+.step2 .lesson-container .preview-thumb .remove-video{
+	font-size: 12px;
+	font-weight: bold;
+	color: #a7b7c4;
+}
+
+.step2 .lesson-container h6{
+	color: #a7b7c4;
+	text-transform: uppercase;
+	margin: 29px 0 10px;
+}
+
+.step2 .lesson-container h6 .lead{
+	text-align: right;
+	font-size: 11px;
+	color: #a7b7c4;
+}
+
+/****** Lessons end **************/
+
+.step2 .module-container .footer-buttons{
 	padding: 16px 30px;
 	background: #fff;
 }
 
-.step2 .module-container .module-buttons .green-button{
+.step2 .module-container .footer-buttons .green-button{
 	margin-right: 20px;
 }
 
-.step2 .module-container .module-buttons .delete-lesson{
+.step2 .module-container .footer-buttons .delete-lesson{
 	color: #a7b7c4;
 	padding: 13px 0;
 	font-size: 12px;
 }
 
-.step2 .module-container .module-buttons .delete-lesson i{
+.step2 .module-container .footer-buttons .delete-lesson i{
 	margin-right: 11px;
 }
 
