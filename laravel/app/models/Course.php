@@ -158,8 +158,12 @@ class Course extends Ardent{
     
     public function beforeSave(){
         if($this->free=='yes' && $this->price > 0){
-            $this->errors()->add(0, trans('courses/general.cant-set-price-for-free-course') );
-            return false;
+            $this->price = 0;
+//            $this->errors()->add(0, trans('courses/general.cant-set-price-for-free-course') );
+//            return false;
+        }
+        if($this->free=='no' && $this->price == 0){
+            $this->price = 500;
         }
 //        if( $this->id > 0 && $this->free=='no' && $this->price == 0 ){
 //            $this->errors()->add(0, trans('courses/general.course-must-be-500') );
