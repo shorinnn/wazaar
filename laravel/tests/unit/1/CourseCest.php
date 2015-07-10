@@ -13,6 +13,11 @@ class CourseCest{
     private function setupDatabase() {
         Artisan::call('migrate:refresh');
         Artisan::call('db:seed');
+        $course = Course::find(1);
+        $course->sale = 0;
+        $course->sale_starts_on = '';
+        $course->sale_ends_on = '';
+        $course->updateUniques();
         Course::boot();
     }
     
@@ -41,7 +46,6 @@ class CourseCest{
     
     public function setFreeCourse(UnitTester $I){
         $course = Course::find(1);
-        $course->price = 0;
         $course->free = 'yes';
         $I->assertTrue( $course->updateUniques() );
     }
@@ -222,7 +226,9 @@ class CourseCest{
         $course->price = 0;
         $I->assertTrue( $course->updateUniques() );
         $course->price = 700;
-        $I->assertFalse( $course->updateUniques() );
+        $I->assertTrue( $course->updateUniques() );
+        $course = Course::first();
+        $I->assertEquals( $course->price, 0);
     }
     
     public function set_price_for_paid_course(UnitTester $I){
@@ -240,7 +246,9 @@ class CourseCest{
         $course->price = 800;
         $I->assertTrue( $course->updateUniques() );
         $course->price = 0;
-        $I->assertFalse( $course->updateUniques() );
+        $course->updateUniques();
+        $course = Course::first();
+        $I->assertEquals(500, $course->price);
     }
         
 }

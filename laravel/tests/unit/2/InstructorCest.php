@@ -16,9 +16,9 @@ class InstructorCest{
         Instructor::boot();
     }
     
-    public function get13Courses(UnitTester $I){
+    public function get14Courses(UnitTester $I){
         $instructor = Instructor::where('username','instructor')->first();
-        $I->assertEquals(13, $instructor->courses->count());
+        $I->assertEquals(14, $instructor->courses->count());
     }
     
     public function getFirstCourseTitle(UnitTester $I){
