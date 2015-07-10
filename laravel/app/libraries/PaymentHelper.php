@@ -4,11 +4,13 @@ class PaymentHelper
 {
 
     protected $url;
+    protected $payment;
 
     public function __construct()
     {
         //TODO: Use a config to store the url
         $this->url = Config::get('wazaar.API_URL');
+        $this->payment = app()->bind('Cocorium\Payment\PaymentInterface','Cocorium\Payment\PaymentMaxCollectDriver');
     }
 
     public function paymentValidationRules()
@@ -90,7 +92,9 @@ class PaymentHelper
 
     public function processCreditCardPayment($paymentDetails, $payee, $student)
     {
-        $paymentURL = $this->url . 'payment/creditcard';
+        dd($paymentDetails);
+
+       /* $paymentURL = $this->url . 'payment/creditcard';
         $data       = [
             'amount'     => $paymentDetails['finalCost'], //purchases.purchase_price
             'userId'     => $student->id, //users.id
@@ -106,7 +110,7 @@ class PaymentHelper
             'returnUrl' => url('payment/callback/' . $paymentDetails['reference'])
         ];
 
-        return $this->_executeCurl($paymentURL, $data);
+        return $this->_executeCurl($paymentURL, $data);*/
     }
 
     private function _executeCurl($url, $data)

@@ -13,19 +13,28 @@
             <div class="row">
                 <div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
                 <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 customer-info">
+                    @if (count(@$errors) > 0)
+                        <h1>{{trans('general.errors')}}!</h1>
+                        <ul>
+                            @foreach($errors as $err)
+                                <li><i class="glyphicon glyphicon-remove"></i> {{$err}}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+
                     <h1>
                         <span class="step-number">1</span>
                         Your Billing Info
                     </h1>
-                    <form>
+                    {{Form::open(['url' => url('payment'), 'id' => 'form-payment'])}}
                         <div class="row margin-top-20">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <label>first name</label>
-                                <input type="text" name="first_name" class="margin-bottom-10" value="{{$student->profile->first_name}}">
+                                <input type="text" name="firstName" class="margin-bottom-10" value="{{$student->profile->first_name}}">
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <label>last name</label>
-                                <input type="text" name="last_name" value="{{$student->profile->last_name}}">
+                                <input type="text" name="lastName" value="{{$student->profile->last_name}}">
                             </div>
                         </div>
                         <div class="row margin-top-30">
@@ -54,31 +63,31 @@
                         <div class="row margin-top-20">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <label>Credit Card number</label>
-                                <input type="text" name="credit_card_number" placeholder="0000 0000 0000 0000">
+                                <input type="text" name="cardNumber" placeholder="0000 0000 0000 0000">
                             </div>
                         </div>
                         <div class="row margin-top-30">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <label>CVV Code</label>
-                                <input type="text" name="cvv_code" class="margin-bottom-10">
+                                <input type="text" name="cardCVV" class="margin-bottom-10">
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <label>Expiry date</label>
-                                <input type="text" name="expiry_date" placeholder="MM / YY">
+                                <input type="text" name="cardExpiry" placeholder="MM / YY">
                             </div>
                         </div>
                         <div class="row margin-top-30">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <label>Name on the card</label>
-                                <input type="text" name="name_on_card">
+                                <input type="text" name="cardName">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <a href="#" class="blue-button large-button place-your-order hidden-xs hidden-sm">Place your order</a>
+                                <button class="blue-button large-button place-your-order hidden-xs hidden-sm">Place your order</button>
                             </div>
                         </div>
-                    </form>
+                    {{Form::close()}}
                 </div>
                 <div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 product-info">

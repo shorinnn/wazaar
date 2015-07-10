@@ -5,10 +5,12 @@ class PaymentController extends BaseController
 
     protected $paymentHelper;
 
+
     public function __construct(PaymentHelper $paymentHelper)
     {
         $this->beforeFilter('auth');
         $this->paymentHelper = $paymentHelper;
+
     }
 
     public function index()
@@ -92,7 +94,8 @@ class PaymentController extends BaseController
                 $this->paymentHelper->creditCardValidationMessages());
 
             if ($validator->fails()) {
-                return Response::json(['success' => false, 'errors' => $validator->messages()->all()]); //Redirect::back()->with('errors', $validator->messages()->all());
+
+                return Redirect::back()->with('errors', $validator->messages()->all());
             } else {
                 $paymentProductId = Input::get('paymentProductId');
                 $reference        = Str::random(8);
@@ -216,6 +219,7 @@ class PaymentController extends BaseController
             $validator = Validator::make(Input::all(), $this->paymentHelper->creditCardValidationRules());
 
             if ($validator->fails()) {
+
                 return Redirect::back()->with('errors', $validator->messages()->all());
             } else {
                 $student = Student::current(Auth::user());
