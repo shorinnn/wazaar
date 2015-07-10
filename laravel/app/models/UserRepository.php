@@ -29,8 +29,10 @@ class UserRepository
 //      $user->username = array_get($input, 'username');
         $user->email    = array_get($input, 'email');
         $user->username = 'U'.uniqid();
-        $user->first_name = Input::get('first_name');
-        $user->last_name = Input::get('last_name');
+//        $user->first_name = Input::get('first_name');
+        $user->first_name = array_get($input, 'first_name');
+//        $user->last_name = Input::get('last_name');
+        $user->last_name = array_get($input, 'last_name');
         $user->password = array_get($input, 'password');
         $user->instructor_agency_id = $instructorAgencyCookie;
 //        if( User::where('id', $secondTierInstructorCookie )->where( 'is_second_tier_instructor','yes' )->where( 'sti_approved','yes' )->count() == 1 ){
@@ -74,8 +76,10 @@ class UserRepository
 //                $name = explode( ' ', Input::get('name') );
 //                $first_name = ( !isset($name[1]) || empty($name[1]) ) ? 'First Name' : $name[1];
 //                $last_name = ( !isset($name[0]) || empty($name[0]) ) ? 'Last Name' : $name[0];
-                $first_name = Input::get('first_name');
-                $last_name = Input::get('last_name');
+//  ---              $first_name = Input::get('first_name');
+//     ----           $last_name = Input::get('last_name');
+                $first_name = array_get($input, 'first_name');
+                $last_name = array_get($input, 'last_name');
                 $profile = new Profile;
                 $profile->owner_id = $user->id; 
                 $profile->owner_type = $profileType;
@@ -221,7 +225,8 @@ class UserRepository
     public function linkFacebook($input, $user_id, $facebook_id, $facebook_profile){
         $user = User::find($user_id);
         $input['email'] = $user->email;
-        if($this->login($input)){
+        $login = $this->login($input);
+        if( $login ){
             // link the account
             Auth::user()->confirmed = 1;
             Auth::user()->facebook_login_id = $facebook_id;

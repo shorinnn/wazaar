@@ -34,6 +34,11 @@ class Order2Cest{
         $aff = User::find(5);
         $aff->ltc_affiliate_id = 2;
         $aff->updateUniques();
+        
+        $course = Course::first();
+        $course->sale = 0;
+        $course->sale_ends_on = $course->sale_starts_on = '';
+        $course->updateUniques();
     }
     
     public function simpleCoursePurchase(UnitTester $I){
@@ -48,6 +53,7 @@ class Order2Cest{
         $course->price = 105;
         $course->affiliate_percentage = 0;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
         $course->instructor->instructor_agency_id = null;
 
         $course->instructor->instructor_balance = 0;
@@ -70,6 +76,7 @@ class Order2Cest{
         $ltc->updateUniques();
         $I->assertEquals( 0, $ltc->affiliate_balance );
         $I->assertEquals( 5, $student->ltc_affiliate_id );
+        $course = Course::first();
         
         $I->assertNotEquals( false, $student->purchase($course, null, $data) );
         $purchase = Purchase::orderBy('id','desc')->first();
@@ -118,6 +125,7 @@ class Order2Cest{
         $course->price = 105;
         $course->affiliate_percentage = 0;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
         $course->instructor->instructor_agency_id = null;
 
         $course->instructor->instructor_balance = 0;
@@ -184,6 +192,7 @@ class Order2Cest{
         $course->price = 105;
         $course->affiliate_percentage = 0;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
         $course->instructor->instructor_agency_id = null;
 
         $course->instructor->instructor_balance = 0;

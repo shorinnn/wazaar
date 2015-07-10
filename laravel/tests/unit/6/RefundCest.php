@@ -25,6 +25,10 @@ class RefundCest{
         DB::table('purchase_refunds')->where('student_id', $user->id)->delete();
         DB::table('transactions')->where('user_id', $user->id)->delete();
         
+        $course = Course::first();
+        $course->sale = 0;
+        $course->sale_starts_on = $course->sale_ends_on = '';
+        $course->updateUniques();
         
     }
     
@@ -38,9 +42,11 @@ class RefundCest{
         $I->assertEquals(10, $student->student_balance);
                 
         $course = Course::first();
-        $course->price = 105;
+        $course->price = 1050;
         $course->affiliate_percentage = 10;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
         
         $course->instructor->instructor_agency_id = null;
         $course->instructor->updateUniques();
@@ -167,9 +173,11 @@ class RefundCest{
         $I->assertEquals(10, $student->student_balance);
                 
         $course = Course::first();
-        $course->price = 105;
+        $course->price = 1050;
         $course->affiliate_percentage = 10;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
         
         $course->instructor->instructor_agency_id = null;
         $course->instructor->second_tier_instructor_id = 14;
@@ -311,9 +319,11 @@ class RefundCest{
         $I->assertEquals(0, $student->student_balance);
                 
         $course = Course::first();
-        $course->price = 105;
+        $course->price = 1050;
         $course->affiliate_percentage = 10;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
         
         $course->instructor->instructor_agency_id = null;
         $course->instructor->updateUniques();
@@ -438,9 +448,11 @@ class RefundCest{
         $I->assertEquals(0, $student->student_balance);
                 
         $course = Course::first();
-        $course->price = 105;
+        $course->price = 1050;
         $course->affiliate_percentage = 0;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
         
         $course->instructor->instructor_agency_id = null;
         $course->instructor->updateUniques();
@@ -554,9 +566,11 @@ class RefundCest{
         $I->assertEquals(10, $student->student_balance);
                 
         $course = Course::first();
-        $course->price = 105;
+        $course->price = 1050;
         $course->affiliate_percentage = 10;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
         
         $course->instructor->agency->agency_balance = 0;
         $course->instructor->agency->updateUniques();
@@ -693,9 +707,11 @@ class RefundCest{
         $I->assertEquals(10, $student->student_balance);
                 
         $course = Course::first();
-        $course->price = 105;
+        $course->price = 1050;
         $course->affiliate_percentage = 10;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
         
         $course->instructor->agency->agency_balance = 0;
         $course->instructor->agency->updateUniques();
