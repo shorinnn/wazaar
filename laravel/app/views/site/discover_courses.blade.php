@@ -34,7 +34,7 @@
                             <p>{{ $course->short_description }}</p>
                         </div>
                         <div class="bottom-contents clearfix">
-                            <div class="difficulty-bar advanced">
+                            <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}">
                                 <?php
                                     $difficulty = 1;
                                     if($course->courseDifficulty->name=='Intermediate') $difficulty = 2;
@@ -101,7 +101,7 @@
                             <p>{{ $course->short_description }}</p>
                         </div>
                         <div class="bottom-contents clearfix">
-                            <div class="difficulty-bar advanced">
+                            <div class="difficulty-bar  {{ difficultyToCss($course->courseDifficulty->name) }}">
                                 <?php
                                     $difficulty = 1;
                                     if($course->courseDifficulty->name=='Intermediate') $difficulty = 2;
