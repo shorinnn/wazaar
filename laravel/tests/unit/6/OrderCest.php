@@ -39,6 +39,11 @@ class OrderCest{
         $student = Student::where('username','student')->first();
         $student->created_at = date('Y-m-d H:i:s');
         $student->updateUniques();
+        
+        $course = Course::first();
+        $course->sale = 0;
+        $course->sale_ends_on = $course->sale_starts_on = '';
+        $course->updateUniques();
     }
     
     
@@ -56,6 +61,10 @@ class OrderCest{
         $course->price = 105;
         $course->affiliate_percentage = 0;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
+        
+        $I->assertEquals(105, $course->price);
         $course->instructor->instructor_agency_id = null;
         $course->instructor->second_tier_instructor_id = $st->id;
         $course->instructor->updateUniques();
@@ -113,6 +122,8 @@ class OrderCest{
         $course->price = 105;
         $course->affiliate_percentage = 0;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
         $course->instructor->instructor_agency_id = null;
         $course->instructor->second_tier_instructor_id = $st->id;
         $course->instructor->updateUniques();
@@ -152,12 +163,15 @@ class OrderCest{
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();
         $course = Course::first();
-        $course->price = 105;
+        $course->price = 1050;
         $course->affiliate_percentage = 0;
-        $course->sale = 1;
+        $course->sale = 50;
         $course->sale_kind = 'percentage';
+        $course->sale_starts_on = date('Y-m-d H:i:s', time() - 3600);
         $course->sale_ends_on = date('Y-m-d H:i:s', time() + 3600);
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update( ['price' => '105', 'sale'=>1 ] );
+        $course = Course::first();
         $course->instructor->instructor_agency_id = null;
         $course->instructor->updateUniques();
         
@@ -175,7 +189,7 @@ class OrderCest{
         $I->assertEquals( $purchase->purchase_price, 103.95 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 1.05 );
-        $I->assertEquals( $purchase->discount, '1%' );
+        $I->assertEquals( $purchase->discount, '1.00%' );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->balance_used, 10 );
@@ -199,12 +213,16 @@ class OrderCest{
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();
         $course = Course::first();
-        $course->price = 106;
+        $course->price = 1006;
         $course->affiliate_percentage = 0;
         $course->sale = 1;
         $course->sale_kind = 'amount';
+        $course->sale_starts_on = date('Y-m-d H:i:s', time() - 100 );
         $course->sale_ends_on = date('Y-m-d H:i:s', time() + 3600);
         $course->updateUniques();
+        
+        DB::table('courses')->where('id', $course->id)->update( ['price' => '106', 'sale' => 1] );
+        $course = Course::first();
         
         $course->instructor->instructor_agency_id = null;
         $course->instructor->updateUniques();
@@ -223,7 +241,7 @@ class OrderCest{
         $I->assertEquals( $purchase->purchase_price, 105 );
         $I->assertEquals( $purchase->original_price, 106 );
         $I->assertEquals( $purchase->discount_value, 1 );
-        $I->assertEquals( $purchase->discount, 'Yen 1' );
+        $I->assertEquals( $purchase->discount, 'Yen 1.00' );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->balance_used, 10 );
@@ -252,12 +270,15 @@ class OrderCest{
         $st->updateUniques();
         $I->assertEquals(0, $st->instructor_balance);
         $course = Course::first();
-        $course->price = 106;
+        $course->price = 1006;
         $course->affiliate_percentage = 0;
-        $course->sale = 1;
+        $course->sale = 100;
         $course->sale_kind = 'amount';
+        $course->sale_starts_on = date('Y-m-d H:i:s', time() - 3600);
         $course->sale_ends_on = date('Y-m-d H:i:s', time() + 3600);
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update( [ 'price' => '106', 'sale' => 1 ] );
+        $course = Course::first();
         
         $course->instructor->instructor_agency_id = null;
         $course->instructor->second_tier_instructor_id = $st->id;
@@ -277,7 +298,7 @@ class OrderCest{
         $I->assertEquals( $purchase->purchase_price, 105 );
         $I->assertEquals( $purchase->original_price, 106 );
         $I->assertEquals( $purchase->discount_value, 1 );
-        $I->assertEquals( $purchase->discount, 'Yen 1' );
+        $I->assertEquals( $purchase->discount, 'Yen 1.00' );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->balance_used, 10 );
@@ -310,6 +331,8 @@ class OrderCest{
         $course->price = 105;
         $course->affiliate_percentage = 10;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
         
         $course->instructor->instructor_agency_id = null;
         $course->instructor->updateUniques();
@@ -363,6 +386,8 @@ class OrderCest{
         $course->price = 105;
         $course->affiliate_percentage = 10;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
         
         $custom = new CourseAffiliateCustomPercentage();
         $custom->course_id = $course->id;
@@ -417,6 +442,8 @@ class OrderCest{
         $course->price = 105;
         $course->affiliate_percentage = 10;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
         
         $custom = new CourseAffiliateCustomPercentage();
         $custom->course_id = $course->id;
@@ -476,6 +503,8 @@ class OrderCest{
         $course->price = 105;
         $course->affiliate_percentage = 10;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
         
         $course->instructor->instructor_agency_id = null;
         $course->instructor->updateUniques();
@@ -529,6 +558,8 @@ class OrderCest{
         $course->price = 105;
         $course->affiliate_percentage = 10;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
         
         $course->instructor->instructor_agency_id = null;
         $course->instructor->updateUniques();
@@ -589,6 +620,9 @@ class OrderCest{
         $course->price = 105;
         $course->affiliate_percentage = 0;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
+        
         $agency = InstructorAgency::where( 'username','InstructorAgency1' )->first();
         $course->instructor->instructor_agency_id = $agency->id;
         $course->instructor->updateUniques();
@@ -631,8 +665,10 @@ class OrderCest{
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();
         $lesson = Lesson::first();
-        $lesson->price = 105;
+        $lesson->price = 1050;
         $lesson->updateUniques();
+        DB::table('lessons')->where('id', $lesson->id)->update(['price' => '105']);
+        $lesson = Lesson::first();
         
         $lesson->module->course->instructor->instructor_agency_id = null;
         $lesson->module->course->instructor->updateUniques();
@@ -673,8 +709,10 @@ class OrderCest{
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();
         $lesson = Lesson::first();
-        $lesson->price = 105;
+        $lesson->price = 1050;
         $lesson->updateUniques();
+        DB::table('lessons')->where('id', $lesson->id)->update(['price' => '105']);
+        $lesson = Lesson::first();
         
         $st = User::find(14);
         $st->is_second_tier_instructor = 'yes';
@@ -735,6 +773,8 @@ class OrderCest{
         $lesson->updateUniques();
         $lesson->module->course->affiliate_percentage = 10;
         $lesson->module->course->updateUniques();
+        DB::table('lessons')->where('id', $lesson->id)->update(['price' => '105']);
+        $lesson = Lesson::first();
         
         $lesson->module->course->instructor->instructor_agency_id = null;
         $lesson->module->course->instructor->updateUniques();
@@ -780,10 +820,12 @@ class OrderCest{
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();
         $lesson = Lesson::first();
-        $lesson->price = 105;
+        $lesson->price = 1050;
         $lesson->updateUniques();
         $lesson->module->course->affiliate_percentage = 10;
         $lesson->module->course->updateUniques();
+        DB::table('lessons')->where('id', $lesson->id)->update(['price' => '105']);
+        $lesson = Lesson::first();
         
         $lesson->module->course->instructor->instructor_agency_id = null;
         $lesson->module->course->instructor->updateUniques();
@@ -836,10 +878,12 @@ class OrderCest{
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();
         $lesson = Lesson::first();
-        $lesson->price = 105;
+        $lesson->price = 1050;
         $lesson->updateUniques();
         $lesson->module->course->affiliate_percentage = 10;
         $lesson->module->course->updateUniques();
+        DB::table('lessons')->where('id', $lesson->id)->update(['price' => '105']);
+        $lesson = Lesson::first();
         
         $lesson->module->course->instructor->instructor_agency_id = null;
         $lesson->module->course->instructor->updateUniques();
@@ -888,8 +932,10 @@ class OrderCest{
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();
         $lesson = Lesson::first();
-        $lesson->price = 105;
+        $lesson->price = 1050;
         $lesson->updateUniques();
+        DB::table('lessons')->where('id', $lesson->id)->update(['price' => '105']);
+        $lesson = Lesson::first();
         $lesson->module->course->affiliate_percentage = 10;
         $lesson->module->course->updateUniques();
         
@@ -946,8 +992,11 @@ class OrderCest{
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();
         $lesson = Lesson::first();
-        $lesson->price = 105;
+        $lesson->price = 1050;
         $lesson->updateUniques();
+        DB::table('lessons')->where('id', $lesson->id)->update(['price' => '105']);
+        $lesson = Lesson::first();
+        
         $agency = InstructorAgency::where( 'username','InstructorAgency1' )->first();
         $lesson->module->course->instructor->instructor_agency_id = $agency->id;
         $lesson->module->course->instructor->updateUniques();
