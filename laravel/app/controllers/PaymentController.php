@@ -90,7 +90,7 @@ class PaymentController extends BaseController
     {
         if (Session::has('productType') AND Session::has('productID')) {
 
-            $validator = Validator::make(Input::all(), $this->paymentHelper->creditCardValidationRules(),
+            $validator = Validator::make(Input::only('firstName','lastName','email','zip','city'), $this->paymentHelper->creditCardValidationRules(),
                 $this->paymentHelper->creditCardValidationMessages());
 
             if ($validator->fails()) {
@@ -104,7 +104,7 @@ class PaymentController extends BaseController
                 $product = $this->_getProductDetailsByTypeAndID(Session::get('productType'), Session::get('productID'));
 
                 if (!$student->canPurchase($product)) { //for some reason, it happened that student can no longer purchase it during transit
-                    return Response::json(['success' => false, 'errors' => [trans('payment.cannotPurchase')]]);//return Redirect::back()->with('errors', [trans('payment.cannotPurchase')]);
+                    return Redirect::back()->with('errors' , [trans('payment.cannotPurchase')]);//return Redirect::back()->with('errors', [trans('payment.cannotPurchase')]);
                 }
                 $paymentDetails = [
                     'reference'        => $reference,
@@ -113,9 +113,44 @@ class PaymentController extends BaseController
                 ];
 
                 $payee   = Input::only('firstName', 'lastName', 'email', 'city', 'zip');
-                $payment = $this->paymentHelper->processCreditCardPayment($paymentDetails, $payee, $student);
+                $expiry = explode('/',Input::get('cardExpiry'));
+                $data = Input::all();
+                $data['cardYear'] = @$expiry[1];
+                $data['cardMonth'] = @$expiry[0];
+                $payment = $this->paymentHelper->processCreditCardPayment($paymentDetails['finalCost'],$data);//$paymentDetails, $payee, $student);
 
-                if (isset($payment['successData'])) {
+                if ($payment[0]){
+                    //Success!
+                    $cookie_id = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
+                    $paymentData = [
+                        'successData' => [
+                            'balance_transaction_id' => Session::get('balanceTransactionID'),
+                            'processor_fee' => 0,
+                            'tax' => Session::get('taxValue'),
+                            'giftID' => Session::get('giftID'),
+                            'balance_used' => Session::get('balanceUsed'),
+                            'REF' => $payment[1],
+                            'ORDERID' => $payment[1]
+                        ]
+                    ];
+                    $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $paymentData);
+                    if (!$purchase) {
+                        $redirectUrl = url('payment',['errors' => [trans('payment.cannotPurchase')]]);
+                    }
+                    Session::forget('productType');
+                    Session::forget('productID');
+                    Session::forget('giftID');
+                    $redirectUrl = url('courses/' . $product->slug . '/purchased?purchaseId=' . $purchase->id);
+                    if (strtolower(get_class($product)) == 'lesson') {
+                        // if lesson was purchased, use the course slug
+                        $redirectUrl = url('courses/' . $product->module->course->slug . '/purchased?purchaseId=' . $purchase->id);
+                    }
+
+                    return Redirect::to($redirectUrl);
+                }
+
+                return Redirect::back()->with('errors',$payment[1]);
+                /*if (isset($payment['successData'])) {
 
                     $paymentRequest = [
                         'wazaar_reference' => $reference,
@@ -131,9 +166,7 @@ class PaymentController extends BaseController
 
                     GCPaymentRequests::create($paymentRequest);
                     return Response::json(['success' => true, 'redirectUrl' => $payment['successData']['FORMACTION']]);
-                    //return Redirect::to('payment/do-payment/' . $reference);
-
-                }
+                }*/
 
             }
         }
@@ -149,6 +182,9 @@ class PaymentController extends BaseController
 
     }
 
+    /*
+     * DEPRECATED METHOD INTENDED FOR GLOBAL COLLECT
+     */
     public function paymentReturn($reference)
     {
         $paymentRequest = GCPaymentRequests::where('wazaar_reference', $reference)->first();

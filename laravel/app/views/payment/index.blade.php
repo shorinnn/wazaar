@@ -39,20 +39,33 @@
                         </div>
                         <div class="row margin-top-30">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Email</label>
+                                <input type="email" name="email" placeholder="Email Address" class="margin-bottom-10 form-control" value="{{$student->email}}">
+                            </div>
+                        </div>
+                        <div class="row margin-top-30">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <label>Address</label>
-                                <input type="text" name="address_1" placeholder="Address line 1" class="margin-bottom-10" value="{{$student->profile->address_1}}">
-                                <input type="text" name="address_2" placeholder="Address line 2" value="{{ $student->profile->address_2 }} "/>
+                                <input type="text" name="address1" placeholder="Address line 1" class="margin-bottom-10" value="{{$student->profile->address_1}}">
+                                <input type="text" name="address2" placeholder="Address line 2" value="{{ $student->profile->address_2 }} "/>
+                            </div>
+                        </div>
+                        <div class="row margin-top-30">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>City</label>
+                                <input type="text" name="city" placeholder="City" class="margin-bottom-10 form-control" value="{{$student->profile->city}}">
                             </div>
                         </div>
                         <div class="row margin-top-30">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <label>postal code</label>
-                                <input type="text" name="postal_code" class="margin-bottom-10"  value="{{$student->profile->zip}}">
+                                <input type="text" name="zip" class="margin-bottom-10"  value="{{$student->profile->zip}}">
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <label>country</label>
-                                <select>
+                                <select name="country">
                                     <option>Select country</option>
+                                    <option value="JP" selected>Japan</option>
                                 </select>
                             </div>
                         </div>

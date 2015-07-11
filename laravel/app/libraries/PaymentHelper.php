@@ -10,7 +10,7 @@ class PaymentHelper
     {
         //TODO: Use a config to store the url
         $this->url = Config::get('wazaar.API_URL');
-        $this->payment = app()->bind('Cocorium\Payment\PaymentInterface','Cocorium\Payment\PaymentMaxCollectDriver');
+        $this->payment = app()->make('Cocorium\Payment\PaymentInterface');
     }
 
     public function paymentValidationRules()
@@ -42,8 +42,7 @@ class PaymentHelper
             'lastName'   => 'required',
             'email'      => 'required|email',
             'city'       => 'required',
-            'zip'        => 'required',
-            'paymentProductId' => 'required'
+            'zip'        => 'required'
         ];
     }
 
@@ -55,8 +54,7 @@ class PaymentHelper
             'email.required'      => trans('payment.validation.email.required'),
             'email.validFormat'      => trans('payment.validation.email.validFormat'),
             'city.required'       => trans('payment.validation.email.validFormat'),
-            'zip.required'        => trans('payment.validation.firstName.required'),
-            'paymentProductId.required' => trans('payment.validation.paymentProductId.required')
+            'zip.required'        => trans('payment.validation.firstName.required')
         ];
     }
 
@@ -90,27 +88,22 @@ class PaymentHelper
         return $this->_executeCurl($createURL, $data);
     }
 
-    public function processCreditCardPayment($paymentDetails, $payee, $student)
+    public function processCreditCardPayment($amount, $data)
     {
-        dd($paymentDetails);
+        $payment  = $this->payment->makeUsingCreditCard($amount,$data);
 
-       /* $paymentURL = $this->url . 'payment/creditcard';
-        $data       = [
-            'amount'     => $paymentDetails['finalCost'], //purchases.purchase_price
-            'userId'     => $student->id, //users.id
-            'email'      => $payee['email'], //users.email
-            'firstName'  => $payee['firstName'], //user_profiles.first_name
-            'lastName'   => $payee['lastName'], //user_profiles.last_name
-            'city'       => $payee['city'],
-            'zip'        => $payee['zip'],
-            'country'    => 'JP',
-            'ipAddress'  => Request::ip(),
-            'paymentProductId' => $paymentDetails['paymentProductId'],
-            'reference' => $paymentDetails['reference'],
-            'returnUrl' => url('payment/callback/' . $paymentDetails['reference'])
-        ];
+        if (isset($payment['state'])){
+            if ($payment['state'] == 1){
+                //Raise an event that payment was successfull
+                return [true,$payment['TransactionId']];
+            }
 
-        return $this->_executeCurl($paymentURL, $data);*/
+            $errors = explode(",",$payment['msg']);
+            return [false,$errors];
+        }
+
+        return [false,['Cannot process request as of this moment']];
+
     }
 
     private function _executeCurl($url, $data)
