@@ -66,7 +66,9 @@ class CoursesController extends \BaseController {
          public function edit($slug, $step=0){
             $course = Course::where('slug',$slug)->first();
             if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
-                return Redirect::action('CoursesController@index');
+                if( !admin() ){
+                    return Redirect::action('CoursesController@indexz');
+                }
             }
             $difficulties = CourseDifficulty::lists('name', 'id');
             $categories = CourseCategory::lists('name', 'id');

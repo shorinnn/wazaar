@@ -196,6 +196,9 @@
                         </div>
                     </div>
                 	<div class="col-xs-12 col-sm-6 col-md-4 column-3">
+                                @if( admin() )
+                                 <a href='{{ action( "ClassroomController@dashboard" ,['slug'=> $course->slug] ) }}' class="enroll-button">Classroom</a>
+                                @endif
                                 @if($course->cost() > 0)
                                     {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
                                      @if(Auth::guest() || Student::find(Auth::user()->id)->canPurchase($course) )
@@ -209,6 +212,7 @@
                                           </span>
                                           <button class="clearfix enroll-button" disabled="disabled" data-toggle="tooltip" data-placement="left" title="Available for customers">
                                           {{ trans("courses/general.enroll") }} 
+                                        
                                      @endif
                                         </button>
                                      <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
