@@ -144,11 +144,11 @@ class Student extends User{
         }
         
         $purchase->instructor_earnings = PurchaseHelper::instructorEarnings($product, $purchase->processor_fee, $affiliate);
-        $purchase->second_tier_instructor_earnings = PurchaseHelper::secondTierInstructorEarnings($product, $purchase->processor_fee);
+        $purchase->second_tier_instructor_earnings = PurchaseHelper::secondTierInstructorEarnings($product, $purchase->processor_fee, $purchase->ltc_affiliate_id);
         $purchase->affiliate_earnings = PurchaseHelper::affiliateEarnings($product, $purchase->processor_fee, $affiliate);
         $purchase->second_tier_affiliate_earnings = PurchaseHelper::secondTierAffiliateEarnings($product, $purchase->processor_fee, $affiliate);
         $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product, $purchase->ltc_affiliate_id, $purchase->processor_fee);
-        $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product, $purchase->processor_fee);
+//        $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product, $purchase->processor_fee);
         $purchase->site_earnings = PurchaseHelper::siteEarnings($product, $purchase->ltc_affiliate_id, $paymentData['successData']['processor_fee'] );
         $purchase->payment_ref = $paymentData['successData']['REF'];
         $purchase->order_id = $paymentData['successData']['ORDERID'];
@@ -219,9 +219,9 @@ class Student extends User{
                 $prodAffiliate->credit( $purchase->affiliate_earnings, $product, $purchase->payment_ref, $purchase->id);
             }
             // credit Instructor Agency
-            if( $course->instructor->instructor_agency_id > 0){
-                $course->instructor->agency->credit( $purchase->instructor_agency_earnings, $product, $purchase->payment_ref, $purchase->id);
-            }
+//            if( $course->instructor->instructor_agency_id > 0){
+//                $course->instructor->agency->credit( $purchase->instructor_agency_earnings, $product, $purchase->payment_ref, $purchase->id);
+//            }
             // credit wazaar
             $wazaar = LTCAffiliate::find(2);
             $wazaar->credit( $purchase->site_earnings, $product, $purchase->payment_ref, 'wazaar', $purchase->processor_fee, $purchase->id);
