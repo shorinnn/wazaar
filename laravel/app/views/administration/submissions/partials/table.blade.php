@@ -56,6 +56,10 @@
                                 <a href="{{action('CoursesController@show', $course->slug)}}" target="_blank">
                                     {{ trans('crud/labels.view') }}
                                 </a>
+                                
+                                <a href="{{action('CoursesController@edit', $course->slug)}}" target="_blank">
+                                    {{ trans('crud/labels.edit') }}
+                                </a>
                                 @if($course->pre_submit_data!='')
                                     <a href="{{action('CoursesController@show', $course->slug)}}?view-old-version=1" target="_blank">
                                         {{ trans('crud/labels.view-old-version') }}

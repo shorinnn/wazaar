@@ -604,3 +604,8 @@ function difficultyToCss($dif){
     if( $dif == 'Intermediate' ) return 'intermediate';
     return 'advanced';
 }
+
+function admin(){
+    if(Auth::user()->hasRole('Admin')) return true;
+    return false;
+}

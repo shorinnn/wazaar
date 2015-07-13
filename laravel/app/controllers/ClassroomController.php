@@ -43,7 +43,8 @@ class ClassroomController extends \BaseController {
             if( $video ) $video = $video->blocks()->where('type','video')->first();
 //            $video = $course->videoBlocks();
 //            if($video!=null) $video = $video->first();
-            $gift = $student->purchases()->where('product_id', $course->id)->where('product_type','course')->first()->gift;
+            $gift = $student->purchases()->where('product_id', $course->id)->where('product_type','course')->first();
+            if( $gift != null ) $gift = $gift->gift;
             
             $instructor = $course->instructor;
             if($course->assigned_instructor_id > 0) $instructor = $course->assignedInstructor;

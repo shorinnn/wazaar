@@ -168,11 +168,10 @@ $wwwRoutes = function(){
     // classroom
     Route::get('classroom/resource/{id}', 'ClassroomController@resource');
     Route::get('classroom/gift/{id}', 'ClassroomController@gift');
-    Route::get('classroom/{slug}/dashboard', 'ClassroomController@dashboard');
+//    Route::get('classroom/{slug}/dashboard', 'ClassroomController@dashboard');
     Route::get('classroom/{slug}/testimonial', 'ClassroomController@testimonial');
     Route::get('classroom/{course}/{module}/{lesson}', 'ClassroomController@lesson');
-    Route::get('classroom/{slug}/', 'ClassroomController@dashboard');
-
+    Route::get("classroom/{slug}/", 'ClassroomController@dashboard');
     // Courses Controller
     Route::get('courses/mycourses', 'UsersController@login');
     Route::get('courses/view-discussion/{id}', 'CoursesController@viewDiscussion');

@@ -151,8 +151,10 @@ Route::filter('admin', function()
 });
 
 Route::filter('instructor', function(){
-        if(Auth::guest()) return Redirect::guest( action('UsersController@login') );
-        if(!Auth::user()->hasRole('Instructor')) return Redirect::action('SiteController@index');
+        if( !admin() ){
+            if(Auth::guest()) return Redirect::guest( action('UsersController@login') );
+            if(!Auth::user()->hasRole('Instructor')) return Redirect::action('SiteController@index');
+        }
 });
 
 Route::filter('affiliate', function(){
@@ -160,7 +162,8 @@ Route::filter('affiliate', function(){
     if(!Auth::user()->hasRole('Affiliate')) return Redirect::action('SiteController@index');
 });
 
-Route::filter('nonInstructor', function()
-{
-        if(Auth::check() && Auth::user()->hasRole('Instructor')) return Redirect::action('SiteController@index');
+Route::filter('nonInstructor', function(){
+        if( !admin() ){
+                if(Auth::check() && Auth::user()->hasRole('Instructor')) return Redirect::action('SiteController@index');
+        }
 });
