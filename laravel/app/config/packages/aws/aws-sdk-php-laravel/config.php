@@ -47,7 +47,7 @@ return array(
     |
     */
     'region' => 'ap-northeast-1',
-
+    'elastic_transcoder_endpoint' => 'elastictranscoder.ap-northeast-1.amazonaws.com',
     /*
     |--------------------------------------------------------------------------
     | AWS Config File Location
