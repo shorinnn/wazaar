@@ -26,7 +26,7 @@ class Video extends \LaravelBook\Ardent\Ardent
             return '1421661161826-cx6nmz';
         }*/
 
-        return '1436779736434-6m5wzw';
+        return '1436790010046-k9rw9e';
     }
 
     public static function getByIdAndPreset($id, $presetId = null)
