@@ -872,9 +872,9 @@ class OrderCest{
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 2 );
         $I->assertEquals( $purchase->instructor_earnings, 58 - 2 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (5 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
         $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (5 / 100) ) - 5 );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) ) - 5 );
         $st = ProductAffiliate::find(5)->ltc_affiliate_id;
         $I->seeRecord('transactions', ['user_id' => $lesson->module->course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 56,
             'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123'] );
