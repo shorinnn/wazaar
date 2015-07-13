@@ -44,7 +44,10 @@
     	<div class="row">
         	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             	<div class="video-preview-thumb">
-                
+                	<div class="preview-overlay">
+                    	<i class="fa fa-eye"></i>
+                        <span>PREVIEW</span>
+                    </div>
                 </div>
                 <div class="left">
                 <ul class="breadcrumb">
@@ -116,7 +119,7 @@
                         ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates', 'filePolicy' ) ) }}
             </div>
             <div class='step2'></div>
-            <div class='_step3'></div>
+            <div class='container _step3'></div>
         </div>
     </section>
 </div>

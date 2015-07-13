@@ -26,12 +26,12 @@ a {
 
 a:focus,
 a:active,
-a:hover {
+a:hover{
 	text-decoration: none;
 	outline: none !important;
 }
 
-img {
+img{
 	border: none;
 }
 
@@ -40,7 +40,7 @@ section,
 nav, 
 header,
 footer,
-aside {
+aside{
 	display: block;
 }
 
@@ -2043,7 +2043,7 @@ header .activate-dropdown:hover ul{
 }
 
 .form-container input[name='password']{
-	padding-right: 65px;
+	padding-right: 140px;
 	padding-left: 40px;
 	background-position: 15px -39px;
 	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/email-pass-icons.png);
@@ -2131,7 +2131,7 @@ header .activate-dropdown:hover ul{
 }
 
 .green-button:hover{
-	
+	color: #fff;
 }
 
 .green-button:active,
@@ -6252,6 +6252,7 @@ a.load-remote > *{
 	background-color: rgba(0, 0, 0, 0.85);
 	opacity: 0;
 	z-index: 1;
+	text-align: center;
 }
 
 .edit-course .header .video-preview-thumb:hover .preview-overlay{
@@ -6259,10 +6260,9 @@ a.load-remote > *{
 }
 
 .edit-course .header .video-preview-thumb i{
-	font-size: 13px;
+	font-size: 28px;
 	color: #fff;
-	margin: 13px 0 7px;
-	text-align: center;
+	margin: 8px 0 0;
 }
 
 .edit-course .header .video-preview-thumb span{
@@ -6372,12 +6372,11 @@ a.load-remote > *{
 
 .edit-course .main{
 	border-radius: 4px;
-	overflow: hidden;
 }
 
 .edit-course .left-content{
 	background: #fff;
-	padding: 35px 30px 20%;
+	padding: 35px 30px 38px;
 }
 
 .edit-course .left-content .plan-your-curriculum{
@@ -6589,7 +6588,7 @@ a.load-remote > *{
 
 .listing-image label{
 	position: absolute;
-  	top: 67px;
+  	top: 70px;
   	left: 52px;
 }
 
@@ -6663,7 +6662,7 @@ a.load-remote > *{
 
 .listing-video label {
   position: absolute;
-  top: -138px;
+  top: -136px;
   left: 63px;
   text-align: center;
 }
@@ -6788,22 +6787,33 @@ a.load-remote > *{
 .step2 .module-container{
 	border-radius: 4px;
 	overflow: hidden;
-	box-shadow: 0px 0px 10px 5px #cfd8df;
+	/*box-shadow: 0px 0px 10px 5px #cfd8df;*/
 }
 
 .step2 .module-container .module-data{
 	padding: 28px 30px 31px;
 	background: #fff;
+	position: relative;
 	border-bottom: solid 1px #e0e1e2;	
 }
 
-.step2 .module-container .module-data h2{
+.step2 h2{
 	color: #303941;
 	margin: 0;
 	padding: 5px 0;
 }
 
-.step2 .lesson-container leson-title,
+.step2 .description-text{
+	margin: 16px 0 33px;
+	color: #798794;
+}
+
+.step2 h2,
+.step2 .description-text{
+	position: relative;
+}
+
+.step2 .lesson-container .lesson-title,
 .step2 .module-container .module-data input{
 	border: solid #e0e1e2;
 	border-width: 0 0 1px;
@@ -6812,6 +6822,8 @@ a.load-remote > *{
 	color: #303941;
 	height: 37px;
 	border-radius: 0;
+	padding: 0;
+	margin: 0;
 }
 
 .step2 .module-container .module-data .module-name{
@@ -6826,85 +6838,407 @@ a.load-remote > *{
 	text-align: center;
 }
 
-.step2 .module-container .module-data textarea,
-.step2 .module-container .module-data p{
-	margin: 20px 0 50px;
+.step2 .lesson-container .lesson-data textarea,
+.step2 .module-container .module-data textarea{
+	margin: 20px 0 0;
 	color: #798794;
 	line-height: 20px;
 	clear: both;
+	padding: 0;
+	border: none;
+	min-height: inherit;
+	border-radius: 0;
 }
 
-.step2 .module-container .module-data textarea{
+.step2 h2 .edit-icon,
+.step2 .description-text .edit-icon{
+	position: absolute;
+	top: 5px;
+	right: -26px;
+	color: #798794;
+	font-size: 16px;
+	background-color: transparent;
 	border: none;
+	display: none;
+}
+
+.step2 h2:hover,
+.step2 .description-text:hover{
+	background: #e8eced;
+}
+
+.step2 h2:hover .edit-icon,
+.step2 .description-text:hover .edit-icon{
+	display: block;
 }
 
 /************* Lessons ************/
+.step2 .lesson-container{
+	margin-top: 2px;
+}
+
+.step2 .lesson-container .lesson-data{
+	padding: 28px 30px 31px;
+	background: #fff;
+}
+
 .step2 .lesson-container .lesson-name{
 	text-transform: uppercase;
 	font-size: 11px;
 	color: #0099ff;
 	font-weight: 600;
+	padding: 11px 5px;
+	display: block;
+	margin-right: 19px;
+	text-align: center;
+	position: relative;
+}
+
+.step2 .lesson-container .lesson-name span{
+	display: inline-block;
+	height: 12px;
+	width: 12px;
+	border: solid 2px #0099ff;
+	background: #fff;
+	border-radius: 12px;
+	text-align: center;
+	position: absolute;
+	top: 13px;
+	left: 5px;
+}
+
+.step2 .lesson-container .lesson-name span em{
+	display: inline-block;
+	height: 6px;
+	width: 6px;
+	border-radius: 6px;
+	position: relative;
+	top: -5px;
+	background: #0099ff;
 }
 
 .step2 .lesson-container .preview-thumb{
-	width: 123px;
+	width: 158px;
+	height: 80px;
 	position: relative;
 	border-radius: 2px;
 	background-color: #363230;
-	margin: 46px auto 10px;
+	margin: 28px auto 10px;
 	overflow: hidden;
 	text-align: center;
+}
+
+.step2 .lesson-container .preview-thumb i{
+	color: rgba(53, 59, 67, 0.9);
+	font-size: 38px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .step2 .lesson-container .preview-thumb img{
 	max-width: 100%;
 }
 
-.step2 .lesson-container .preview-thumb .default-button{
-	max-width: 123px;
+.step2 .lesson-container .upload-button{
 	margin-bottom: 14px;
+	width: 100%;
+	text-align: center;
 }
 
-.step2 .lesson-container .preview-thumb .remove-video{
+.step2 .lesson-container .upload-button input{
+	display: none;
+}
+
+.step2 .lesson-container .remove-video{
 	font-size: 12px;
 	font-weight: bold;
 	color: #a7b7c4;
+	display: block;
+	text-align: center;
 }
 
 .step2 .lesson-container h6{
 	color: #a7b7c4;
 	text-transform: uppercase;
-	margin: 29px 0 10px;
+	margin: 29px 0 3px;
 }
 
 .step2 .lesson-container h6 .lead{
-	text-align: right;
+	float: right;
 	font-size: 11px;
 	color: #a7b7c4;
 }
 
+.step2 .lesson-container h6 .tip{
+	font-size: 13px;
+	font-weight: bold;
+	color: #069bff;
+	margin-left: 9px;
+}
+
+.step2 .lesson-data .inactive h6 .tip,
+.step2 .lesson-data .inactive h6{
+	color: #cfd8df;
+}
+
+.step2 .lesson-container .lesson-data textarea{
+	border: solid #e0e1e2;
+	border-width: 0 0 1px;
+}
+
+.step2 .lesson-container .switch-label{
+	background: #a7b7c4;
+}
+
+.switch-input:checked ~ .switch-label{
+	background: #069bff !important;
+}
+
+.step2 .lesson-data .inactive .switch,
+.step2 .lesson-data .inactive{
+	cursor: not-allowed;
+}
+
+.step2 .lesson-data .inactive .switch-label{
+	background: #dce2e7;
+	color: #fdfdfd !important;
+}
+
+.step2 .lesson-container .switch-buttons{
+	margin: 0;
+}
+
+.step2 .lesson-container .switch-buttons .switch{
+	margin: 13px 0 10px !important;
+}
+
+.step2 .lesson-container .value-unit-two{
+	margin: 10px 0 !important;
+}
+
+.step2 .lesson-container .switch-handle{
+	background-image: none;
+	box-shadow: none !important;
+}
+
+.step2 .lesson-container .switch-handle:before{
+	display: none;
+}
+
+.step2 .lesson-container .switch-label{
+	font-size: 14px;
+}
+
+.step2 .lesson-container .switch-label:before{
+	top: 8px;
+	right: 13px;
+}
+
+.step2 .lesson-container .switch-label:after{
+	top: 8px;
+}
+
+.value-unit-two{
+	display: inline-block;
+	width: auto;
+	height: 38px;
+	border-radius: 4px;
+	border: solid 1px #cfd8df;
+	overflow: hidden;
+}
+
+.value-unit-two .unit{
+	padding: 0 25px;
+	font-size: 14px;
+	color: #7e8e9e;
+	height: 38px;
+	line-height: 38px;
+	display: inline-block;
+	background: #f7f9fa;
+	float: left;
+}
+
+.value-unit-two .value{
+	height: 38px;
+	max-width: 78px;
+	padding-left: 13px !important;
+	background: none;
+	margin: 0 !important;
+	border: solid #cfd8df !important;
+	border-width: 0 0 0 1px !important;
+	border-radius: 0 !important;
+}
+
+.step2 .lesson-data .inactive .value{
+	background: #f7f9fa;
+	cursor: not-allowed;
+}
+
+.step2 .lesson-container .file-upload-row{
+	border: solid #e0e1e2;
+	border-width: 1px 0;
+	text-align: center;
+	background-color: #f7f9fa;
+	padding: 34px 0 45px;
+	margin: 0;
+}
+
+.step2 .lesson-container .file-upload-row i.fa-cloud-upload{
+	color: #a7b7c4;
+	font-size: 24px;
+}
+
+.step2 .lesson-container .file-upload-row .upload-button{
+	max-width: 118px;
+}
+
+.step2 .lesson-container .file-upload-row p{
+	font-weight: 600;
+	color: #a7b7c4;
+	margin: 17px 0 20px;
+	line-height: 18px; 
+}
+
+.step2 .lesson-container .file-upload-row .upload-button i{
+	margin: 0 5px 0 0;
+	color: #83909c;
+	font-size: 15px;
+}
+
+.step2 .add-new-module{
+	margin-top: 20px;
+	color: #798794;
+	font-size: 11px;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-bottom: 0;
+	position: relative;
+	top: 18px;
+	overflow: visible;
+}
+
+.step2 .add-new-module-container{
+	border: solid #ccd0d2;
+	border-width: 0 0 1px;
+}
+
+.step2 .add-new-lesson{
+	height: 50px;
+	background: #a7b7c4;
+	font-size: 11px;
+	font-weight: bold;
+	color: #fff;
+	display: block;
+	text-align: center;
+	text-transform: uppercase;
+	line-height: 50px;
+	border-radius: 0 0 4px 4px;
+}
+
+.step2 .uploaded-files{
+	text-align: left;
+}
+
+.step2 .uploaded-files h6{
+	margin-top: 0;
+	margin-bottom: 19px;
+}
+
+.step2 .uploaded-files li{
+	padding: 11px 15px;
+}
+
+.step2 .uploaded-files li:hover{
+	background: #fff;
+}
+
+.step2 .uploaded-files li .file-name{
+	font-size: 13px;
+	color: #303941;
+}
+
+.step2 .uploaded-files li .file-name i{
+	margin-right: 15px;
+	font-size: 18px;
+}
+
+.step2 .uploaded-files li .file-size{
+	font-size: 13px;
+	color: #a7b7c4;
+	margin-left: 5px;
+}
+
+.step2 .uploaded-files li .delete-file,
+.step2 .uploaded-files li .upload-new-file{
+	font-size: 18px;
+	color: #a7b7c4;
+	float: right;
+	display: none;
+}
+
+.step2 .uploaded-files li:hover .delete-file,
+.step2 .uploaded-files li:hover .upload-new-file{
+	display: block;
+}
+
+.step2 .uploaded-files li a:hover{
+	color: #069bff;
+}
+
+.step2 .uploaded-files li .delete-file{
+	margin-left: 25px;
+}
+
+.step2 .uploaded-files li .delete-file:hover{
+	color: #ff0000;
+}
+
 /****** Lessons end **************/
 
+.step2 .lesson-container .footer-buttons,
 .step2 .module-container .footer-buttons{
 	padding: 16px 30px;
 	background: #fff;
 }
 
+.step2 .lesson-container .footer-buttons .green-button,
 .step2 .module-container .footer-buttons .green-button{
 	margin-right: 20px;
 }
 
+
+.step2 .lesson-container .footer-buttons .delete-lesson,
 .step2 .module-container .footer-buttons .delete-lesson{
 	color: #a7b7c4;
 	padding: 13px 0;
 	font-size: 12px;
+	font-weight: bold;
 }
 
+.step2 .lesson-container .footer-buttons .delete-lesson:hover,
+.step2 .module-container .footer-buttons .delete-lesson:hover{
+	color: #ff0000;
+}
+
+.step2 .lesson-container .footer-buttons .delete-lesson i,
 .step2 .module-container .footer-buttons .delete-lesson i{
 	margin-right: 11px;
 }
 
 /************** Editor step 2 ends ***************/
+
+/************** Editor step 2 ***************/
+
+.submit-for-approval{
+	margin-top: 20px;
+	text-transform: uppercase;
+}
+
+/************** Editor step 2 ends ***************/
+
+
 
 /*Components*/
 .toggle-switch{
@@ -10930,6 +11264,12 @@ footer{
 @media (max-width: 1600px) {
 	.carousel-inner .container-fluid .row{
 		margin: 0 -15px 0 -15px;
+	}
+}
+
+@media (max-width: 1200px){
+	.step2 .side-overview{
+		margin-left: 0;
 	}
 }
 

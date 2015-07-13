@@ -67,8 +67,7 @@
                 
             	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 side-info">
                 	<h4>Size and format</h4>
-                    <p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
-                    <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>
+                    <p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }} <br> {{ trans('courses/general.available_formats') }}</p>
                 	<p class="regular-paragraph">{{ trans('courses/general.video_size') }}</p>
                 </div>
             </div>

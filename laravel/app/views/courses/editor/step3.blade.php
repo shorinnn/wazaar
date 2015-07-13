@@ -5,7 +5,7 @@
 {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
                 'id'=>'edit-course-form-s3', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-3-form',  'data-callback'=>'submittedCourse']) }}
     <input type='hidden' name='publish_status' value='1' />
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-content">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 left-content">
     <div class="approval-box">
             <h4 class="not-approved">
                 {{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}
@@ -273,7 +273,13 @@
     </div>
         
 </div>
-<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 right-content">
+
+<div class="right">
+    <button class="blue-button large-button submit-for-approval">SUBMIT FOR APPROVAL</button>
+</div>
+
+</div>
+<!--<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 right-content">
     <h2>{{ trans('courses/general.course_summary') }}</h2>
     <div class="row category-row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -331,7 +337,7 @@
             </div>
         </div>
         <!--<a href="#" class="edit-button">Edit</a>-->
-    </div>
+    <!--</div>
                     <div class="row margin-top-40">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h4>{{ trans('courses/general.description') }}:</h4>
@@ -392,7 +398,7 @@
                     submit-for-approval blue-button extra-large-button">{{ trans('courses/general.submit-for-approval')}}</button>
         </div>
     </div>
-</div>
+</div>-->
 {{ Form::close() }}
 <script src="{{url('js/moment.js')}}" type="text/javascript"></script>
 <script src="{{url('js/bootstrap-datetimepicker.js')}}" type="text/javascript"></script>
