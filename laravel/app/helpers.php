@@ -606,6 +606,6 @@ function difficultyToCss($dif){
 }
 
 function admin(){
-    if(Auth::user()->hasRole('Admin')) return true;
+    if(Auth::check() && Auth::user()->hasRole('Admin')) return true;
     return false;
 }
