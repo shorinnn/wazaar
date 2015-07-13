@@ -15,12 +15,12 @@ class SubmissionsController extends \BaseController {
 	public function index()
 	{
             $pagination = Input::get('view') > 0 ? Input::get('view') :  2;
-          
+//            $page = Input::get('page');
            
             $submissions = Course::with('instructor')->where('publish_status','pending')->paginate( $pagination );
             
             if( Request::ajax() ){
-                return View::make('administration.submissions.partials.table')->with( compact('members') );
+                return View::make('administration.submissions.partials.table')->with( compact('submissions') );
             }
             Return View::make('administration.submissions.index')->with( compact('submissions') );
 	}
