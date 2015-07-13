@@ -169,7 +169,7 @@ class VideoHelper
             $key       = $inputKey . str_replace('-', '', $presetId);
             $outputs[] = ['Key' => $key . '.mp4', 'PresetId' => $presetId, 'ThumbnailPattern' => $key . '-{count}'];
         }
-        dd($pipelineId);
+       
         $result = $client->createJob([
             'PipelineId' => $pipelineId,
             'Input'      => [
