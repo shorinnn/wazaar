@@ -83,5 +83,7 @@ return array(
     'positive' => 'Positive',
     'mixed' => 'Mixed',
     'negative' => 'Negative',
+    'i-agree' => '同意する',
+    'accept' => '確認して次へ',
  
 );
