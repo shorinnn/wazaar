@@ -19,7 +19,7 @@ return [
     'AWS_REGION_DOMAIN' => '//s3-ap-northeast-1.amazonaws.com',
     'AWS_VIDEO_INPUT_BUCKET' => 'videosinput-tokyo',
     'AWS_VIDEO_OUTPUT_BUCKET' => 'videosoutput-tokyo',
-    'AWS_PIPELINEID' =>   '1436778785974-dhm3iq', //'1420442490328-k9je9y',
+    'AWS_PIPELINEID' =>   '1436778785974-dhm3iq',
     'DELIVERED_ENDPOINT' => getenv('DELIVERED_ENDPOINT'),
     'DELIVERED_API_KEY' => getenv('DELIVERED_API_KEY'),
     'DELIVERED_TOKEN' =>  getenv('DELIVERED_TOKEN')
