@@ -144,12 +144,12 @@ class Student extends User{
         }
         
         $purchase->instructor_earnings = PurchaseHelper::instructorEarnings($product, $purchase->processor_fee, $affiliate);
-        $purchase->second_tier_instructor_earnings = PurchaseHelper::secondTierInstructorEarnings($product, $purchase->processor_fee, $purchase->ltc_affiliate_id);
+        $purchase->second_tier_instructor_earnings = PurchaseHelper::secondTierInstructorEarnings($product, $purchase->processor_fee, $purchase->ltc_affiliate_id, $affiliate);
         $purchase->affiliate_earnings = PurchaseHelper::affiliateEarnings($product, $purchase->processor_fee, $affiliate);
         $purchase->second_tier_affiliate_earnings = PurchaseHelper::secondTierAffiliateEarnings($product, $purchase->processor_fee, $affiliate);
-        $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product, $purchase->ltc_affiliate_id, $purchase->processor_fee);
+        $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product, $purchase->ltc_affiliate_id, $purchase->processor_fee, $affiliate);
 //        $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product, $purchase->processor_fee);
-        $purchase->site_earnings = PurchaseHelper::siteEarnings($product, $purchase->ltc_affiliate_id, $paymentData['successData']['processor_fee'] );
+        $purchase->site_earnings = PurchaseHelper::siteEarnings($product, $purchase->ltc_affiliate_id, $paymentData['successData']['processor_fee'], $affiliate );
         $purchase->payment_ref = $paymentData['successData']['REF'];
         $purchase->order_id = $paymentData['successData']['ORDERID'];
         /************ Money fields **************/
@@ -161,8 +161,8 @@ class Student extends User{
         else{
             $prodAffiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
             $purchase->product_affiliate_id = $prodAffiliate->id;
-            if( $prodAffiliate->ltcAffiliate != null){
-                $purchase->second_tier_affiliate_id = $prodAffiliate->ltcAffiliate->id;
+            if( $prodAffiliate->secondTierAffiliate != null){
+                $purchase->second_tier_affiliate_id = $prodAffiliate->secondTierAffiliate->id;
             }
         }
 

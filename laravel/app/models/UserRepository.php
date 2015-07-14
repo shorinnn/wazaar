@@ -116,6 +116,7 @@ class UserRepository
             $ltc_affiliate = LTCAffiliate::where('affiliate_id', $ltc)->first();
             if($ltc_affiliate !=null ){
                 $user->ltcAffiliate()->associate($ltc_affiliate);
+                $user->second_tier_affiliate_id = $ltc_affiliate->id;
                 $user->save();
             }            
         }

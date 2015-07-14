@@ -55,20 +55,18 @@ class PurchaseHelper{
         return $amount * ( Config::get('custom.earnings.second_tier_percentage') / 100);
     }
     
-    public static function siteEarnings($product, $ltcAffiliateId, $processor_fee){
+    public static function siteEarnings($product, $ltcAffiliateId, $processor_fee, $prodAffiliate=null){
         $course = (get_class($product)=='Course') ? $product : $product->module->course;
-        $site_percentage = self::_sitePercentage($product, $processor_fee, $ltcAffiliateId);
-        
+        $site_percentage = self::_sitePercentage($product, $processor_fee, $prodAffiliate);
         $amount = ( $product->cost() - $processor_fee ) * ( $site_percentage / 100);
+        
 //        $ltcAmount = $amount  * (Config::get('custom.earnings.ltc_percentage') / 100);
-        $ltcAmount = self::ltcAffiliateEarnings($product, $ltcAffiliateId, $processor_fee);
-        
+        $ltcAmount = self::ltcAffiliateEarnings($product, $ltcAffiliateId, $processor_fee, $prodAffiliate);
         $secondTierInstructor = ($course->instructor->secondTierInstructor==null) ? 0 : $amount * (Config::get('custom.earnings.second_tier_instructor_percentage') / 100);
-        
-        return $amount - $ltcAmount - $secondTierInstructor - $processor_fee;
+        return $amount - $ltcAmount - $secondTierInstructor;// - $processor_fee;
     }
     
-    public static function ltcAffiliateEarnings($product, $ltcAffiliateId,  $processor_fee){
+    public static function ltcAffiliateEarnings($product, $ltcAffiliateId,  $processor_fee, $prodAffiliate=null){
         // if null, no LTC earnings
         if( $ltcAffiliateId==null ) return 0;
         // if affiliate not LTC, no LTC earnings
@@ -76,16 +74,14 @@ class PurchaseHelper{
         if( $affiliate->has_ltc=='no' ) return 0;
         // valid LTC affilaite, sreturn ltc value
         $course = ( get_class($product)=='Course' ) ? $product : $product->module->course;
-        $site_percentage = self::_sitePercentage($product, $processor_fee, $ltcAffiliateId);
-        
+        $site_percentage = self::_sitePercentage( $product, $processor_fee, $prodAffiliate );
         $amount = ( $product->cost() - $processor_fee ) * ( $site_percentage / 100);
         $percentage = min( Config::get('custom.earnings.ltc_percentage') );
-        
         return $amount * ( $percentage / 100 );
     }
     
-    public static function secondTierInstructorEarnings($product, $processor_fee, $ltcAffiliateId){
-        $site_percentage = self::_sitePercentage($product, $processor_fee, $ltcAffiliateId);
+    public static function secondTierInstructorEarnings($product, $processor_fee, $ltcAffiliateId, $prodAffiliate){
+        $site_percentage = self::_sitePercentage($product, $processor_fee, $prodAffiliate);
         
         $course = ( get_class($product)=='Course' ) ? $product : $product->module->course;
         $amount = ( $product->cost() - $processor_fee ) * ( $site_percentage / 100);
