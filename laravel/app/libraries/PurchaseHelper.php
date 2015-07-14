@@ -5,7 +5,9 @@ class PurchaseHelper{
     public static function instructorEarnings($product, $processor_fee, $affiliate){
         $course = (get_class($product)=='Course') ? $product : $product->module->course;
         $amount = $product->cost() - $processor_fee;
-        
+        if( $affiliate == 'sp' ){ //self promotion
+            return $amount * (Config::get('custom.earnings.self_promotion_instructor_percentage') / 100);
+        }
         if( $affiliate == null || $course->affiliate_percentage==0 ){// no affiliate share, instructor gets full 68%
             
             return $amount * (Config::get('custom.earnings.instructor_percentage') / 100);
@@ -29,7 +31,7 @@ class PurchaseHelper{
     public static function affiliateEarnings($product, $processor_fee, $affiliate){
         $course = (get_class($product)=='Course') ? $product : $product->module->course;
         $amount = $product->cost() - $processor_fee;
-        if($affiliate == null){// no affiliate, nobody to share with
+        if( $affiliate == null || $affiliate == 'sp' ){// no affiliate, nobody to share with
             return 0;
         }
         else{// affiliate get his percentage
@@ -89,9 +91,10 @@ class PurchaseHelper{
         return $amount;
     }
     
-    private static function _sitePercentage($product, $processor_fee, $ltcAffiliateId){
+    private static function _sitePercentage($product, $processor_fee, $affiliate){
+        if( $affiliate=='sp' ) return Config::get('custom.earnings.self_promotion_site_percentage');
         $site_percentage = Config::get('custom.earnings.site_percentage');
-        if( self::secondTierAffiliateEarnings($product, $processor_fee, $ltcAffiliateId) == 0) $site_percentage += Config::get('custom.earnings.second_tier_percentage');
+        if( self::secondTierAffiliateEarnings($product, $processor_fee, $affiliate) == 0) $site_percentage += Config::get('custom.earnings.second_tier_percentage');
         return $site_percentage;
     }
 }

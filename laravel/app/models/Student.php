@@ -158,6 +158,7 @@ class Student extends User{
             $purchase->subscription_end = date( 'Y-m-d H:i:s', strtotime( $purchase->subscription_start.' +1 month' ) );
         }
         if($affiliate==null) $purchase->product_affiliate_id = 0;
+        elseif( $affiliate=='sp' ) $purchase->product_affiliate_id = -1;
         else{
             $prodAffiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
             $purchase->product_affiliate_id = $prodAffiliate->id;
