@@ -5,6 +5,7 @@ return array(
     'the_world_is_yours' => '世界に羽ばたく一歩。',
     'enter_course_name' => 'コース名を入力',
     'create_course' => 'コースを作成',
+    'create_a_course' => 'コースを制作する',
     'what_category_is_in' => 'コースのカテゴリは…',
     'what_sub_category' => 'コースのサブカテゴリは…',
     'select_category' => 'カテゴリを選択中…',
