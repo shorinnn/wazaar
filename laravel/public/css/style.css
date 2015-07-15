@@ -8886,7 +8886,8 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 
 .course-editor #modules-list > li .new-module > input[type="text"]{
-	width: 79%;
+	/*width: 79%;*/
+	width: 70%;
 }
 
 

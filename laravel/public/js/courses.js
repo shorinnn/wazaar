@@ -12,6 +12,10 @@ $(document).ready(function(){
 	activeLessonOption(); 
     
     // Make the modules list sortable
+    sortablizeModulesAndLessons();
+});
+
+function sortablizeModulesAndLessons(){
     var el = document.getElementById('modules-list');
     if( $('#modules-list').length > 0){
         var sortable = Sortable.create(el, {
@@ -32,7 +36,7 @@ $(document).ready(function(){
             sortablizeLessons( $(this).attr('id') );
         });
     }
-});
+}
 
 /**
  * Enables Drag and Drop sorting for dynamically added lessons
