@@ -543,23 +543,13 @@
                     video[0].play();
 					$('.video-container.description-page #lesson-video-overlay').hide();
 					$('.video-container.description-page .centered-play-button, .play-intro-button').hide();
-					video[0].addEventListener("playing", function() { 
-							if(video[0].paused || video[0].ended) {
-								$('.btnPlay').addClass('playing').removeClass('paused');
-								$('.btnPlay .wa-play').hide();
-								$('.btnPlay .wa-pause').show();
-								video[0].play();
-								$('.centered-play-button, .play-intro-button').hide();
-							}
-							else {
-								$('.btnPlay').removeClass('playing').addClass('paused');
-								$('.btnPlay .wa-play').show();
-								$('.btnPlay .wa-pause').hide();
-								video[0].pause();
-								$('.centered-play-button, .play-intro-button').show();
-							}
-						}, true);
-						
+					
+					$('.btnPlay').addClass('playing').removeClass('paused');
+					$('.btnPlay .wa-play').hide();
+					$('.btnPlay .wa-pause').show();
+					video[0].play();
+					$('.centered-play-button, .play-intro-button').hide();
+					
                 });
             </script>
         @stop
