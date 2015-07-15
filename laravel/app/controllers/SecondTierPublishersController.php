@@ -69,8 +69,20 @@ class SecondTierPublishersController extends \BaseController {
             $str = "Total LP Signups: $total<br /><br />";
             $stpi = User::where('is_second_tier_instructor','yes')->get();
             foreach($stpi as $s){
-                $count = User::where('second_tier_instructor_id', $s->id)->count();
-                $str .= "STPI $s->id - Referred: $count<br />";
+                $count = 0;
+                foreach($users as $user){
+                    $emails = [];
+                    foreach($user['tags']  as $tag){
+                        if( $tag['tagName'] == 'second-tier-publisher-id' && ($tag['tagIntegerValue']==$s->id ||  $tag['tagStringValue']==$s->id ) ){
+                           $count ++;
+                           $emails[] = $user['email'];
+                        }
+                    }
+                }
+                $emails = implode(' | ', $emails);
+                $str .= "STPI $s->id - Referred: $count<br />
+                    <div style='display:block; max-height:100px; overflow-y:scroll; border:1px solid black; padding:10px'>$emails</div>
+                        <hr />";
             }
             echo $str;
         }
