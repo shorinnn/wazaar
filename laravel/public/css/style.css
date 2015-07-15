@@ -1936,6 +1936,8 @@ header .activate-dropdown:hover ul{
     width: 135px;
 }
 /************** Register and Login Page ******************/
+
+
 #registerModal,
 #loginModal{
 	background-color: rgba(24, 34, 43, 0.9);
@@ -3100,12 +3102,105 @@ h5{
 	padding: 15px 22px 14px 39px;
 }*/
 
+/****** Skinning Course Description Video *************/
+.course-details-player video{
+	
+}
+
+.course-details-player .control div.btnFS.btn,
+.course-details-player .control div.sound3,
+.course-details-player .control div.sound2,
+.course-details-player .control div.sound,
+.course-details-player .btnPlay{
+	background-image: none !important;
+}
+
+.course-details-player .control div.btnFS.btn i,
+.course-details-player .sound.btn i,
+.course-details-player .btnPlay.btn i{
+	color: #fff;
+	font-size: 18px;
+}
+
+.course-details-player .volume,
+.course-details-player .sound.btn i.fa-volume-off,
+.course-details-player .btnPlay.btn i.wa-pause{
+	display: none;
+}
+
+.course-details-player .sound{
+	margin-top: 2px;
+}
+
+.course-details-player .sound.muted{
+	margin-top: 0;
+}
+
+.course-details-player .sound.btn i.fa-volume-off{
+	font-size: 22px;
+}
+
+.course-details-player .volume-container{
+	background: none;
+	display: none;
+}
+
+.course-details-player .topControl {
+	height: auto;
+	border-bottom: none;
+	background: #242d36;
+	border-radius: 7px;
+	float: left;
+	width: 60%;
+	margin-top: 12px;
+	overflow: hidden;
+	margin-right: 2%;
+}
+
+.course-details-player .topControl .progress{
+	height: 6px;
+	margin: 3px;
+	background: none;
+	box-shadow: none;
+}
+
+.course-details-player .topControl .timeBar{
+	background: #0099ff;
+	border-radius: 3px;
+}
+
+.course-details-player .time{
+	float: left;
+	margin-left: 0;
+	width: auto;
+	font-size: 13px;
+	color: #a7b5c2;
+	margin-right: 2%;
+}
+
+.course-details-player .btmControl{
+	padding: 0 2%;
+	margin: 20px 0;
+}
+
+.course-details-player .btnPlay{
+	margin-top: 2px;
+	margin-right: 2%;
+}
+
+.course-details-player .control-container{
+	border-radius: 0 0 5px;
+	margin-top: -2px;
+}
+
+/****** Skinning Course Description Video Ends *************/
+
 .course-details-player{
-	margin: -237px 0 0;
+	margin: -264px 0 0;
 }
 
 .course-details-player video{
-	border-radius: 5px;
+	border-radius: 5px 5px 0 0;
 	overflow: hidden;
 }
 
@@ -3138,16 +3233,17 @@ h5{
 }
 
 .play-intro-button{
+	display: none;
 	position: absolute;
-	top: 50%;
+	top: 0;
 	left: 50%;
 	cursor: pointer;
 	padding: 15px 22px 15px 22px;
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(24, 34, 43, 0.5);
 	font-size: 16px;
 	color: #fff;
 	border-radius: 23px;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, 0);
 }
 
 .play-intro-button i{
@@ -10806,6 +10902,10 @@ footer{
 @media (max-width:991px){
 	.discover-header .categories-menu{
 		border: none;
+	}
+	
+	.course-details-player{
+		margin: 30px 0;
 	}
 	
 	/*#user-data-bckgrd-img{

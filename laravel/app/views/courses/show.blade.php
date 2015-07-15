@@ -157,17 +157,22 @@
                                         <p>Your browser does not support the video tag.</p>
                                     </video> 
                                     <div class="control-container clearfix">                       
-                                        <!--<div class="topControl">
-                                            <div class="progress">
-                                                <span class="bufferBar"></span>
-                                                <span class="timeBar"></span>
-                                            </div>
-                                        </div>
                                         <div class="control">
                                             
                                             <div class="btmControl clearfix">
-                                                <div class="btnPlay btn" title="Play/Pause video"></div>
-                                                <div class="sound sound2 btn" title="Mute/Unmute sound"></div>
+                                                <div class="btnPlay btn" title="Play/Pause video">
+                                                	<i class="wa-play"></i>
+                                                    <i class="wa-pause"></i>
+                                                </div>
+                                                <div class="time">
+                                                    <span class="current"></span>
+                                                </div>
+                                                <div class="topControl">
+                                                    <div class="progress">
+                                                        <span class="bufferBar"></span>
+                                                        <span class="timeBar"></span>
+                                                    </div>
+                                                </div>
                                                 <div class="volume-container">
                                                     <div class="volume" title="Set volume">
                                                         <span class="volumeBar">
@@ -175,14 +180,17 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div class="btnFS btn" title="Switch to full screen"></div>
                                                 <div class="time">
-                                                    <span class="current"></span>
                                                     <span class="duration"></span> 
                                                 </div>
+                                                <div class="sound sound2 btn" title="Mute/Unmute sound">
+                                                	<i class="wa-sound"></i>
+                                                    <i class="fa fa-volume-off"></i>
+                                                </div>
+                                                <div class="btnFS btn" title="Switch to full screen"><i class="wa-expand"></i></div>
                                             </div>
                                             
-                                        </div>-->
+                                        </div>
                                     </div>
                                     <div class="loading"></div>
                                 </div>
@@ -506,9 +514,6 @@
               </div>
             </section>
         @endif
-    
-    @stop
-    
     <!-- Modal -->
     <div class="modal fade" id="instructor-bio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -526,6 +531,9 @@
         </div>
       </div>
     </div>
+    
+    @stop
+    
 
     @if(Input::has('autoplay'))
         @section('extra_js')

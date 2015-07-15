@@ -53,6 +53,7 @@ $(document).ready(function(){
 	rescaleBckgrdOverlay();
 	$(window).resize(function() {
 	  rescaleBckgrdOverlay();
+   	  skinVideoControls();
 	});
 });
 
@@ -872,7 +873,7 @@ function skinVideoControls(){
 		console.log('Player height is' + playerHeight);
 		console.log('Player Width is' + playerWidth);
 		//$('.control').css('max-width',playerWidth);
-		//$('.centered-play-button').css('top', (playerHeight/2) - 50);
+		$('.centered-play-button, .play-intro-button').show().css('top', (playerHeight/2));
 		/*$('#lesson-video-overlay').css({
 			height: playerHeight	
 		});*/
@@ -918,12 +919,16 @@ function skinVideoControls(){
 
 	var playpause = function() {
 		if(video[0].paused || video[0].ended) {
-			$('.btnPlay').addClass('paused');
+			$('.btnPlay').addClass('playing').removeClass('paused');
+			$('.btnPlay .wa-play').hide();
+			$('.btnPlay .wa-pause').show();
 			video[0].play();
             $('.centered-play-button, .play-intro-button').hide();
 		}
 		else {
-			$('.btnPlay').removeClass('paused');
+			$('.btnPlay').removeClass('playing').addClass('paused');
+			$('.btnPlay .wa-play').show();
+			$('.btnPlay .wa-pause').hide();
 			video[0].pause();
             $('.centered-play-button, .play-intro-button').show();
 		}
@@ -948,9 +953,13 @@ function skinVideoControls(){
 		$(this).toggleClass('muted');
 		if(video[0].muted) {
 			$('.volumeBar').css('width',0);
+			$('.wa-sound').hide();
+			$('.fa.fa-volume-off').show();
 		}
 		else{
 			$('.volumeBar').css('width', video[0].volume*100+'%');
+			$('.wa-sound').show();
+			$('.fa.fa-volume-off').hide();
 		}
 	});
 	
@@ -965,7 +974,7 @@ function skinVideoControls(){
 	
 	//video ended event
 	video.on('ended', function() {
-		$('.btnPlay').removeClass('paused');
+		$('.btnPlay').removeClass('playing');
 		video[0].pause();
 	});
 
@@ -1057,12 +1066,18 @@ function skinVideoControls(){
 		//change sound icon based on volume
 		if(video[0].volume == 0){
 			$('.sound').removeClass('sound2').removeClass('sound3').addClass('muted');
+			$('.wa-sound').hide();
+			$('.fa.fa-volume-off').show();
 		}
         else if(video[0].volume > 0 && video[0].volume < 0.6){
             $('.sound').removeClass('muted').removeClass('sound3').addClass('sound2');
+			$('.wa-sound').show();
+			$('.fa.fa-volume-off').hide();
         }
         else if(video[0].volume > 0.6){
 			$('.sound').removeClass('sound2').removeClass('muted').addClass('sound3');
+			$('.wa-sound').show();
+			$('.fa.fa-volume-off').hide();
 		}
 
 	};
