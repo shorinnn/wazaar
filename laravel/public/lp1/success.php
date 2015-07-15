@@ -51,6 +51,12 @@
                                 さん、おめでとうございます！ 
                             </span>
                             <span class="block">あなたのメールアドレスは無事に登録完了いたしました。</span>
+                        <br />
+                        <center>
+                            <a href="http://wazaar.jp/register" class="blue-button button large-button register center" style='width:220px'>
+                                サインアップ
+                            </a>
+                        </center>
                         </h2>
                     </div>
                 </div>
