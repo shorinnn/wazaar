@@ -11184,7 +11184,9 @@ header .top-menu li{
 }
 
 @media (max-width:402px){
-	
+	.user-data-modal .or span{
+		width: 40%;
+	}
 }
 
 
