@@ -37,7 +37,7 @@ var videoUploader = {
             if(acceptedFileTypes.indexOf(data.originalFiles[0].type) < 0) {
                 uploadErrors.push(_('Not an accepted file type'));
             }
-            if(data.originalFiles[0].size && data.originalFiles[0].size > 2000000000) {//75654966 / 1000000000
+            if(data.originalFiles[0].size && data.originalFiles[0].size > 1000000000) {//75654966 / 1000000000
                 uploadErrors.push(_('Filesize is too big'));
             }
             if(uploadErrors.length > 0) {

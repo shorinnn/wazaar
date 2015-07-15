@@ -128,6 +128,7 @@ return array(
     'your-progress' => 'Your Progress',
     'comments-posted' => 'Comments Posted',
     'about-course' => 'About Course',
+    'about-this-course' => 'About this course',
     'next-step' => 'Next Step',
     'preview_course' => 'Preview course',
     'course-description-preview' => 'Course Description Preview',
