@@ -50,6 +50,7 @@ $(document).ready(function(){
 	searchFormFocusStyle();
 	showMoreContent();
 	//stickyFooter();
+	rescaleBckgrdOverlay();
 	$(window).resize(function() {
 	  rescaleBckgrdOverlay();
 	});

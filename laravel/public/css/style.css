@@ -1968,7 +1968,7 @@ header .activate-dropdown:hover ul{
 
 .user-data-modal-wrapper{
 	position: relative;
-	height: 100%;
+	height: auto;
 	width: 100%;
 }
 
@@ -1996,7 +1996,7 @@ header .activate-dropdown:hover ul{
 .modal-box-logo{
 	text-align: center;
 	display: block;
-	margin: 16% auto 18px;
+	margin: 70px auto 18px;
 }
 
 .modal-box-logo img{
@@ -10807,6 +10807,13 @@ footer{
 	.discover-header .categories-menu{
 		border: none;
 	}
+	
+	/*#user-data-bckgrd-img{
+		max-width: none;
+	}
+	#wrapper{
+		overflow: hidden;
+	}*/
 	
 	.discover-header h1,
 	.discover-header .categories-menu,

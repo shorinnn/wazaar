@@ -133,6 +133,10 @@ a:hover{
 	background-color: rgba(27, 35, 42, 0.8);
 }
 
+#splash-youtube-player{
+	max-width: 100%;
+}
+
 #logo{
 	text-align: center;
 }
