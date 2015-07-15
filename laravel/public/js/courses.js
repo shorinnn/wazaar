@@ -175,7 +175,7 @@ function enableRTE(selector, changeCallback){
             "searchreplace visualblocks code fullscreen",
             "insertdatetime media table contextmenu paste save"
         ],
-        toolbar: "save | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+        toolbar: "bold | bullist numlist"
     });
 }
 
