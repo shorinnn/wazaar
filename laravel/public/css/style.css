@@ -8936,7 +8936,7 @@ r ,
 #save-indicator{
 	border:1px solid black;
 	background-color:white;
-	width:90px;
+	/*width:90px;*/
 	height:30px;
 	position:fixed;
 	top:100px;

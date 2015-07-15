@@ -92,10 +92,24 @@ class Purchase extends CocoriumArdent{
             // uncredit the ltc affiliate
             if( $refund->ltc_affiliate_earnings > 0 ){
                 $ltcAffiliate = LTCAffiliate::find( $refund->ltc_affiliate_id );
-                $affiliateTransaction = Transaction::where('purchase_id', $refund->purchase_id)->where('user_id', $refund->ltc_affiliate_id)
-                        ->where('transaction_type', 'affiliate_credit')
-                        ->where('is_ltc','yes')->where('is_second_tier','no')->first();
-                $ltcAffiliate->creditReverse( $affiliateTransaction, 'ltc' );
+                // is the LTC a Second Tier Publisher?
+                $buyer = Student::find( $this->student_id );
+                $ltcInstructor = $buyer->LTCInstructor();
+                // second tier Publisher LTC
+                if( $buyer->LTCInstructor() == $refund->ltc_affiliate_id){
+                    $ltcSecondTierTransaction = Transaction::where('purchase_id', $refund->purchase_id)->where('user_id', $refund->ltc_affiliate_id)
+                            ->where('transaction_type', 'second_tier_instructor_credit')
+                            ->where('is_ltc','yes')->first();
+                    $secondTierInstructor = SecondTierInstructor::find( $refund->ltc_affiliate_id );
+                    $secondTierInstructor->creditReverse( $ltcSecondTierTransaction );
+                }
+                // regular LTC
+                else{
+                    $affiliateTransaction = Transaction::where('purchase_id', $refund->purchase_id)->where('user_id', $refund->ltc_affiliate_id)
+                            ->where('transaction_type', 'affiliate_credit')
+                            ->where('is_ltc','yes')->where('is_second_tier','no')->first();
+                    $ltcAffiliate->creditReverse( $affiliateTransaction, 'ltc' );
+                }
             }
             
             

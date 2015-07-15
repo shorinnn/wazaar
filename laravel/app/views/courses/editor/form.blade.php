@@ -4,18 +4,18 @@
 @stop
 
 @section('content')
-
 <style>
     #save-indicator{
         border:1px solid black;
         background-color:white;
-        width:90px;
+        width:130px;
         height:30px;
         position:fixed;
         top:100px;
-        left:-100px;
+        left:-140px;
         text-align: right;
         padding-right: 10px;
+        white-space: nowrap;
     }
     
     #publish-status-header{

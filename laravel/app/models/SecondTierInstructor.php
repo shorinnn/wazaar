@@ -24,12 +24,12 @@ class SecondTierInstructor extends User{
     }
     
     
-    public function credit( $amount = 0, $product = null, $order = null, $purchase_id = 0 ){
+    public function credit( $amount = 0, $product = null, $order = null, $purchase_id = 0, $is_ltc = false ){
         $amount = doubleval($amount);
         if( $amount <= 0 ) return false;
         if( !is_a($product, 'Lesson') && !is_a($product, 'Course') ) return false;
         if( !$product->id ) return false;
-        return DB::transaction(function() use ($amount, $product, $order, $purchase_id){
+        return DB::transaction(function() use ($amount, $product, $order, $purchase_id, $is_ltc ){
             // create the transaction
               $transaction = new Transaction();
               $transaction->user_id = $this->id;
@@ -38,7 +38,9 @@ class SecondTierInstructor extends User{
               $transaction->product_type = get_class($product);
               $transaction->transaction_type = 'second_tier_instructor_credit';
               $transaction->details = trans('transactions.second_tier_instructor_credit_transaction').' '.$order;
-
+              
+              if( $is_ltc == true ) $transaction->is_ltc = 'yes';
+              
               $transaction->purchase_id = $purchase_id;
               $transaction->reference = $order;
               $transaction->status = 'complete';
@@ -61,6 +63,7 @@ class SecondTierInstructor extends User{
             // create the transaction
               $transaction = new Transaction();
               $transaction->user_id = $this->id;
+              $transaction->is_ltc = $old->is_ltc;
               $transaction->amount = $old->amount;
               $transaction->purchase_id = $old->purchase_id;
               $transaction->product_id = $old->product_id;
