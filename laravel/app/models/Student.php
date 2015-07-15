@@ -115,8 +115,8 @@ class Student extends User{
         
         // cannot buy the same course/lesson twice |  cannot buy own course/lesson
         if( !$this->canPurchase($product) ) return false;
-        // if this is the first purchase, set the LTC affiliates
-        if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
+        // if this is the first purchase, set the LTC affiliates - DROPPED
+//        if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
         $course = ( get_class($product)=='Course' ) ? $product : $product->module->course;
         
         $purchase = new Purchase;
@@ -329,13 +329,14 @@ class Student extends User{
      */
 
     public function setLTCAffiliate(){
-        $register = new DateTime($this->created_at);
-        $now = new DateTime();
-        if($now->diff($register)->days >=30){
-//            $this->ltc_affiliate_id = 2;
-            $this->ltc_affiliate_id = null;
-            $this->save();
-        }
+        return;
+//        $register = new DateTime($this->created_at);
+//        $now = new DateTime();
+//        if($now->diff($register)->days >=30){
+////            $this->ltc_affiliate_id = 2;
+//            $this->ltc_affiliate_id = null;
+//            $this->save();
+//        }
     }
     
     /**
