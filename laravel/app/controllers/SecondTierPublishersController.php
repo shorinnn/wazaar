@@ -80,7 +80,7 @@ class SecondTierPublishersController extends \BaseController {
                     }
                 }
                 $emails = implode(' | ', $emails);
-                $str .= "STPI $s->id - Referred: $count<br />
+                $str .= "STPI $s->id - $s->last_name $s->first_name ( $s->email ) - Referred: $count<br />
                     <div style='display:block; max-height:100px; overflow-y:scroll; border:1px solid black; padding:10px'>$emails</div>
                         <hr />";
             }
