@@ -899,7 +899,7 @@ function skinVideoControls(){
 		var maxduration = video[0].duration;
 		var perc = 100 * currentPos / maxduration;
 		$('.timeBar').css('width',perc+'%');	
-		$('.current').text(timeFormat(currentPos) + ' / ');	
+		$('.current').text(timeFormat(currentPos) /*+ ' / '*/);	
 	});
 	
 	//CONTROLS EVENTS
@@ -1197,11 +1197,13 @@ function showMoreContent(){
 			if ($link.hasClass('show-more')){
 				$link.removeClass('show-more');
 				$link.addClass('show-less');
+				$('.fadeout-text').hide();
 				$link.html(('<i class="fa fa-chevron-up"></i>') + $link.attr('data-less-text'));
 				TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
 			} else if($link.hasClass('show-less')){
 				$link.removeClass('show-less');
 				$link.addClass('show-more');
+				$('.fadeout-text').show();
 				$link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
 				TweenMax.fromTo($content, 0, {height: actualHide}, {height: visibleHeight});
 			}

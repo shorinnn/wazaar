@@ -357,7 +357,7 @@
                                 @else
                                     <li class="lessons lesson-1 bordered clearfix">                                    	                                    
                                 @endif
-                                		<span><i class="wa-hamburger"></i></span>
+                                		<span><i class="wa-play"></i></span>
                                         <a href="#" class="clearfix lesson-name">{{ $lesson->name }}
                                         	
                                         </a>
@@ -542,7 +542,24 @@
                     var video = $('#myVideo');
                     video[0].play();
 					$('.video-container.description-page #lesson-video-overlay').hide();
-					$('.video-container.description-page .centered-play-button').hide();
+					$('.video-container.description-page .centered-play-button, .play-intro-button').hide();
+					video[0].addEventListener("playing", function() { 
+							if(video[0].paused || video[0].ended) {
+								$('.btnPlay').addClass('playing').removeClass('paused');
+								$('.btnPlay .wa-play').hide();
+								$('.btnPlay .wa-pause').show();
+								video[0].play();
+								$('.centered-play-button, .play-intro-button').hide();
+							}
+							else {
+								$('.btnPlay').removeClass('playing').addClass('paused');
+								$('.btnPlay .wa-play').show();
+								$('.btnPlay .wa-pause').hide();
+								video[0].pause();
+								$('.centered-play-button, .play-intro-button').show();
+							}
+						}, true);
+						
                 });
             </script>
         @stop

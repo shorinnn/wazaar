@@ -2154,6 +2154,7 @@ header .activate-dropdown:hover ul{
 .form-container input[name='password']{
 	padding-right: 140px;
 	padding-left: 40px;
+	margin-bottom: 0;
 	background-position: 15px -39px;
 	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/email-pass-icons.png);
 	background-repeat: no-repeat;
@@ -2168,6 +2169,7 @@ header .activate-dropdown:hover ul{
 .form-container input#first_name{
 	width: 100%;
 	padding-left: 20px;
+	margin-bottom: 0;
 }
 
 .form-container .first_name_input{
@@ -3149,7 +3151,7 @@ h5{
 	height: auto;
 	border-bottom: none;
 	background: #242d36;
-	border-radius: 7px;
+	border-radius: 10px;
 	float: left;
 	width: 60%;
 	margin-top: 12px;
@@ -3158,15 +3160,15 @@ h5{
 }
 
 .course-details-player .topControl .progress{
-	height: 6px;
-	margin: 3px;
+	height: 10px;
+	margin: 1px;
 	background: none;
 	box-shadow: none;
 }
 
 .course-details-player .topControl .timeBar{
 	background: #0099ff;
-	border-radius: 3px;
+	border-radius: 6px;
 }
 
 .course-details-player .time{
@@ -3189,7 +3191,7 @@ h5{
 }
 
 .course-details-player .control-container{
-	border-radius: 0 0 5px;
+	border-radius: 0 0 5px 5px;
 	margin-top: -2px;
 }
 
