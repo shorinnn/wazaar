@@ -54,6 +54,8 @@ class UserRepository
         $url = action('SiteController@index');
         if($registersAsST!=null) $url = action('UsersController@registrationConfirmation' );
         $url = action('UsersController@registrationConfirmation' );
+        $url = action('UsersController@verificationConfirmation' );
+        
 
         $deliveredTags = [];
         // Save if valid. Password field will be hashed before save
