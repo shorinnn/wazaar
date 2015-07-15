@@ -28,7 +28,7 @@ class SecondTierPublishersController extends \BaseController {
             $user = User::find($id);
             $user->sti_approved = trim( strtolower( Input::get('value') ) );
             if( $user->updateUniques() ){
-                if( Input::get('value')=='Yes' ){
+                if( strtolower( Input::get('value') ) =='yes' ){
                     // send STP approval email
                     $name = '';
                     $instructor = Instructor::find($user->id);
