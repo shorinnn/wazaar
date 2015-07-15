@@ -236,6 +236,9 @@ setTimeout(function(){
                 }
             }
         });
+        
+        sortablizeModulesAndLessons();
+        
         }, 50);
 
 </script>

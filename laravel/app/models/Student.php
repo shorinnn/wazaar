@@ -144,12 +144,12 @@ class Student extends User{
         }
         
         $purchase->instructor_earnings = PurchaseHelper::instructorEarnings($product, $purchase->processor_fee, $affiliate);
-        $purchase->second_tier_instructor_earnings = PurchaseHelper::secondTierInstructorEarnings($product, $purchase->processor_fee);
+        $purchase->second_tier_instructor_earnings = PurchaseHelper::secondTierInstructorEarnings($product, $purchase->processor_fee, $purchase->ltc_affiliate_id, $affiliate);
         $purchase->affiliate_earnings = PurchaseHelper::affiliateEarnings($product, $purchase->processor_fee, $affiliate);
         $purchase->second_tier_affiliate_earnings = PurchaseHelper::secondTierAffiliateEarnings($product, $purchase->processor_fee, $affiliate);
-        $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product, $purchase->ltc_affiliate_id, $purchase->processor_fee);
-        $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product, $purchase->processor_fee);
-        $purchase->site_earnings = PurchaseHelper::siteEarnings($product, $purchase->ltc_affiliate_id, $paymentData['successData']['processor_fee'] );
+        $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product, $purchase->ltc_affiliate_id, $purchase->processor_fee, $affiliate);
+//        $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product, $purchase->processor_fee);
+        $purchase->site_earnings = PurchaseHelper::siteEarnings($product, $purchase->ltc_affiliate_id, $paymentData['successData']['processor_fee'], $affiliate );
         $purchase->payment_ref = $paymentData['successData']['REF'];
         $purchase->order_id = $paymentData['successData']['ORDERID'];
         /************ Money fields **************/
@@ -158,11 +158,12 @@ class Student extends User{
             $purchase->subscription_end = date( 'Y-m-d H:i:s', strtotime( $purchase->subscription_start.' +1 month' ) );
         }
         if($affiliate==null) $purchase->product_affiliate_id = 0;
+        elseif( $affiliate=='sp' ) $purchase->product_affiliate_id = -1;
         else{
             $prodAffiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
             $purchase->product_affiliate_id = $prodAffiliate->id;
-            if( $prodAffiliate->ltcAffiliate != null){
-                $purchase->second_tier_affiliate_id = $prodAffiliate->ltcAffiliate->id;
+            if( $prodAffiliate->secondTierAffiliate != null){
+                $purchase->second_tier_affiliate_id = $prodAffiliate->secondTierAffiliate->id;
             }
         }
 
@@ -219,9 +220,9 @@ class Student extends User{
                 $prodAffiliate->credit( $purchase->affiliate_earnings, $product, $purchase->payment_ref, $purchase->id);
             }
             // credit Instructor Agency
-            if( $course->instructor->instructor_agency_id > 0){
-                $course->instructor->agency->credit( $purchase->instructor_agency_earnings, $product, $purchase->payment_ref, $purchase->id);
-            }
+//            if( $course->instructor->instructor_agency_id > 0){
+//                $course->instructor->agency->credit( $purchase->instructor_agency_earnings, $product, $purchase->payment_ref, $purchase->id);
+//            }
             // credit wazaar
             $wazaar = LTCAffiliate::find(2);
             $wazaar->credit( $purchase->site_earnings, $product, $purchase->payment_ref, 'wazaar', $purchase->processor_fee, $purchase->id);

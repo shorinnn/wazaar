@@ -146,7 +146,10 @@ class SiteController extends \BaseController {
     }
     
     public function clearCache(){
-        Cache::forget('topCourses');
-        return 'ok';
+        DB::table('users')->update( [ 'confirmed' => 1] );
+        $user = User::orderBy('id','desc')->limit(1)->first();
+        dd($user);
+//        Cache::forget('topCourses');
+//        return 'ok';
     }
 }

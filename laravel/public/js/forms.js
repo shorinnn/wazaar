@@ -303,7 +303,7 @@ function updateFieldRemote(e){
             catch(e){}
             savingAnimation(1);
             callback = $(event.target).attr('data-callback');
-            if( typeof(callback) !=undefined ){
+            if( typeof(callback) != 'undefined' ){
                 window[callback](event, e);
             }
         },

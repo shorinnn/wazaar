@@ -96,8 +96,10 @@ return array(
     'skills_to_be_learnt' => 'コース終了後に得られるスキル、知識、そしてベネフィットをここに記載してください。',
     'listing_image_thumbnail' => 'コースの紹介画像',
     'listing_image_tip' => '',
-    'recommended_image_size' => '推奨サイズ　 1080x680',
-    'available_formats' => '可能なフォーマット　png or jpg',
+    'recommended_image_size' => '写真画像の比率は16:9<br />
+最低 1024×576 pixels<br />
+jpeg, png',
+    'available_formats' => '',
     'introduction_video' => 'プロモーションビデオ',
     'introduction_video_tip' => '商品ページのトップに掲載されます',
     'next-step' => '次のページへ',
