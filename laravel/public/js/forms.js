@@ -326,12 +326,13 @@ var saving_animation = 0;
  * @param {Number} stop zero to start the animation, 1 to end it
  * @method savingAnimation
  */
+
 function savingAnimation(stop) {
     if(stop==1){
         setTimeout(function(){
             saving_animation = 0;
             $('#save-indicator').animate({
-                left: '-100px'
+                left: '-140px'
             }, 300);
         }, 700);
         return false;
