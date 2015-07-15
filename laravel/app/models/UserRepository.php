@@ -54,7 +54,6 @@ class UserRepository
         $url = action('SiteController@index');
         if($registersAsST!=null) $url = action('UsersController@registrationConfirmation' );
         $url = action('UsersController@registrationConfirmation' );
-        $url = action('UsersController@verificationConfirmation' );
         
 
         $deliveredTags = [];
