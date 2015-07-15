@@ -291,7 +291,6 @@ class UsersController extends Controller
             $token = $fb->requestAccessToken( $code );
             // Send a request with it
             $result = json_decode( $fb->request( '/me' ), true );
-            dd($result);
             // See if we need to register this user
             //dd($result);
             $user = $this->users->where('facebook_login_id',$result['id'])->first();
