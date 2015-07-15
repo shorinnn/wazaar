@@ -53,5 +53,26 @@ class SecondTierPublishersController extends \BaseController {
                 return Redirect::back()->withError( trans('crud/errors.cannot_update_object',['object'=>'User']).': '.format_errors($user->errors()->all()));
             }
 	}
+        
+        public function stats(){
+            $this->delivered = new DeliveredHelper();
+            $total = $this->delivered->getUsers();
+            $users = $total['data'];
+            $total = 0;
+            foreach($users as $user){
+                foreach($user['tags']  as $tag){
+                    if( $tag['tagName'] == 'second-tier-publisher-id' ){
+                        $total++;
+                    }
+                }
+            }
+            $str = "Total LP Signups: $total<br /><br />";
+            $stpi = User::where('is_second_tier_instructor','yes')->get();
+            foreach($stpi as $s){
+                $count = User::where('second_tier_instructor_id', $s->id)->count();
+                $str .= "STPI $s->id - Referred: $count<br />";
+            }
+            echo $str;
+        }
 
 }
