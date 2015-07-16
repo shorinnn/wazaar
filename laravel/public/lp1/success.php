@@ -45,12 +45,20 @@
                 <div class="row congrats-message">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<h2>
-                        	<img src="registered-mark.png" alt="" class="inline-block">
+                        	<img src="registered-mark.png" alt="" class="inline-block" style="margin-bottom:10px">
+                                <center>
+                                    <p class="name" style="margin-bottom: 20px"><?php if(isset($_GET['email'])) echo $_GET['email'];?></p>
+                                </center>
                             <span class="block">
                                 <span class="name"><?php if(isset($_GET['name'])) echo $_GET['name'];?>,</span>
-                                さん、おめでとうございます！ 
+                                さん、おめでとうございます。
+
                             </span>
-                            <span class="block">あなたのメールアドレスは無事に登録完了いたしました。</span>
+                            <span class="block">あなたのメールアドレスは仮登録されました。本登録のために、下記のボタンをクリックしてワザールへの新規登録をお願い致します。</span>
+                            <br />
+                            <center>
+                                <a href="../register" class="blue-button button large-button register" style="width:200px;">新規登録する！</a>
+                            </center>
 
                         </h2>
                     </div>
