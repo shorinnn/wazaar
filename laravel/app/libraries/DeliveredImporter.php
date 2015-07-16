@@ -790,7 +790,7 @@ class DeliveredImporter {
             if($user->email == 'nagisa_la_mer@hotmail.com') continue;
             if($user->email == 'freestyle_innovation@yahoo.co.jp') continue;
             if($user->email == 'superadmin@wazaar.jp') continue;
-            if($user->email == '"wazaarAffiliate@wazaar.jp') continue;
+            if($user->email == 'wazaarAffiliate@wazaar.jp') continue;
             
             $requiredTags = [];
             $requiredTags['student'] = ['student'];
