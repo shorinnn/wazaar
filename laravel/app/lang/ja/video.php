@@ -10,7 +10,7 @@ return [
     'uploadOr' => '動画をアップロードする、または',
     'selectExisting' => '投稿済みの動画から選択',
     'formatsSupported' => '対応フォーマット: mp4, avi, wmv',
-    'maxFileSize' => '動画は１GBまで投稿可能',
+    'maxFileSize' => '動画は2GBまで投稿可能',
     'myVideos' => 'マイ動画',
     'useVideo' => '動画を使用する'
 ];
