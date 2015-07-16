@@ -755,8 +755,7 @@ class DeliveredImporter {
         $batch = json_encode($batch);
         $response = $delivered->addBatchUsers( $batch );
         
-        if( is_array($response) && $response['success'] == true ){}
-        else{
+        if( is_array($response) && $response['success'] == false ){
             dd($response);
         }
         
