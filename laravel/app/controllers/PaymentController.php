@@ -133,7 +133,8 @@ class PaymentController extends BaseController
                             'ORDERID' => $payment[1]
                         ]
                     ];
-                    $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $paymentData);
+//                    $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $paymentData);
+                    $purchase  = $student->purchase($product, Cookie::get("aid"), $paymentData);
                     if (!$purchase) {
                         $redirectUrl = url('payment',['errors' => [trans('payment.cannotPurchase')]]);
                     }
@@ -226,7 +227,8 @@ class PaymentController extends BaseController
                 $payment['successData']['giftID']                   = $variables['giftID'];
 
                 $cookie_id = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
-                $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $payment);
+//                $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $payment);
+                $purchase  = $student->purchase($product, Cookie::get("aid"), $payment);
                 if (!$purchase) {
                     $redirectUrl = url('payment',['errors' => [trans('payment.cannotPurchase')]]);
                 }
@@ -288,7 +290,8 @@ class PaymentController extends BaseController
 
                     // cookie name contains only the course id, so if this is a lesson, fetch the course id
                     $cookie_id = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
-                    $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $payment);
+//                    $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $payment);
+                    $purchase  = $student->purchase($product, Cookie::get("aid"), $payment);
                     if (!$purchase) {
                         return Redirect::back()->with('errors', [trans('payment.cannotPurchase')]);
                     }
