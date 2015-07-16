@@ -317,7 +317,7 @@
                         <div class="course-description no-margin-top module-box padding-top-30 padding-bottom-20">
                         	<h2>{{ trans('courses/general.about-this-course') }}</h2>
                             <p class="intro-paragraph expandable-content short-text">              	
-                               	{{$course->description}}
+                               	<!--{{$course->description}}-->
                             </p>
                             <div class="fadeout-text"></div>
                             <span class="show-full-description expandable-button show-more" data-less-text='Show less description' data-more-text='Show full description'> {{ trans("courses/general.show-full-description") }}</span>
@@ -543,7 +543,13 @@
                     video[0].play();
 					$('.video-container.description-page #lesson-video-overlay').hide();
 					$('.video-container.description-page .centered-play-button, .play-intro-button').hide();
-					
+
+					var playerWidth = video.innerWidth();
+					var playerHeight = video.innerHeight();
+					var centerPlayButtonHeight = $('.play-intro-button').outerHeight();
+					var controlContainerHeight = $('.course-details-player .control-container').outerHeight();
+					$('.play-intro-button').show().css('top', (playerHeight - controlContainerHeight)/2 - centerPlayButtonHeight / 2);
+
 					$('.btnPlay').addClass('playing').removeClass('paused');
 					$('.btnPlay .wa-play').hide();
 					$('.btnPlay .wa-pause').show();
