@@ -787,6 +787,11 @@ class DeliveredImporter {
         $tagCount = 0;
         $sleepCount = 0;
         foreach( $users as $user ){
+            if($user->email == 'nagisa_la_mer@hotmail.com') continue;
+            if($user->email == 'freestyle_innovation@yahoo.co.jp') continue;
+            if($user->email == 'superadmin@wazaar.jp') continue;
+            if($user->email == '"wazaarAffiliate@wazaar.jp') continue;
+            
             $requiredTags = [];
             $requiredTags['student'] = ['student'];
             if( $user->hasRole('Instructor') ) $requiredTags['instructor'] = 'instructor';
