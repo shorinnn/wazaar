@@ -166,6 +166,10 @@ a:hover{
 	line-height: 26px;
 }
 
+#container .row{
+	margin: 0;
+}
+
 .publisher-login{
 	text-align: center;
 	padding: 20px 0;
@@ -226,4 +230,13 @@ a:hover{
 .register{
 	
 }
+
+@media (max-width:361px){
+	#splash-youtube-player{
+		max-width: 100%;
+		height: auto;
+	}
+
+}
+
 

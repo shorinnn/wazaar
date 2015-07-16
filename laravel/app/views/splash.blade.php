@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Wazaar</title>    
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="splash/style.css">
 
@@ -21,10 +22,14 @@
     	<div id="container">
         	<div id="logo" class="clear">
                     <img src="splash/logo.png" alt="">
-                </div>
-            <center>
-                <iframe id="splash-youtube-player" width="640" height="360" src="https://www.youtube.com/embed/k2yWJkh9kTk?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
-            </center>
+            </div>
+            <div class="row">
+            	<div class="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
+                    <center>
+                        <iframe id="splash-youtube-player" width="640" height="360" src="https://www.youtube.com/embed/k2yWJkh9kTk?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+                    </center>
+            	</div>
+            </div>
             <!--<h1>Coming this July!</h1>-->
             <h1>2015年7月下旬OPEN</h1>
             <!--<p>We will help you learn new amazing things! Our learning platform will be so simple and accessible to everyone!</p>-->

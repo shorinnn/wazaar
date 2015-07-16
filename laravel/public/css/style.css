@@ -2063,15 +2063,29 @@ header .activate-dropdown:hover ul{
 .login-social-buttons a{
 	display: block;
 	font-size: 13px;
-	padding: 15px 10px;
+	padding: 7px 10px 15px;
 	text-align: center;
 	color: #fff;
 	font-weight: 600;
 	text-decoration: none;
 	overflow: hidden;
 	border-radius: 4px;
+}
+
+.login-social-buttons a span{
+	display: inline-block;
+}
+
+.login-social-buttons a span::before{
+	content: '';
+	height: 23px;
+	width: 23px;
 	background-repeat: no-repeat;
 	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/fb-and-google-icons.png);
+	display: inline-block;
+	position: relative;
+	top: 8px;
+	margin-right: 7px;
 }
 
 .login-social-buttons a:active,
@@ -2085,8 +2099,11 @@ header .activate-dropdown:hover ul{
 }*/
 
 .login-facebook{
-	background-position: 60px 12px;
 	background-color: #3b5998;
+}
+
+.login-facebook span::before{
+	background-position: 0 0;
 }
 
 .login-facebook:hover{

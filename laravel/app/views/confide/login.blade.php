@@ -11,7 +11,7 @@
                 <div class="user-data-modal clearfix">
                     <h1 class="clearfix">{{ trans('general.login') }}</h1>
                         <div class="login-social-buttons clearfix">
-                            <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('site/login.sign-in-with-fb') }}</a>
+                            <a href="{{ url('login-with-facebook') }}" class="login-facebook"><span>{{ trans('site/login.sign-in-with-fb') }}</span></a>
                             <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
                         </div>
                         <div class="or"><span class="left-line"></span>{{ trans('site/login.or') }}<span class="right-line"></span></div>
