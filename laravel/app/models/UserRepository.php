@@ -77,6 +77,7 @@ class UserRepository
             if($registersAsST!=null){// create profile
                 $profileType = 'Instructor';
                 $deliveredTags[] = 'Instructor';
+                $deliveredTags[] = 'STInstructor';
             }
 //                $name = explode( ' ', Input::get('name') );
 //                $first_name = ( !isset($name[1]) || empty($name[1]) ) ? 'First Name' : $name[1];
@@ -215,6 +216,7 @@ class UserRepository
             $user = $this->attachRoles($user, 1);
             $profileType = 'Instructor';
             $deliveredTags[] = 'Instructor';
+            $deliveredTags[] = 'STInstructor';
         }
         if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ){
             $user = $this->attachRoles($user, 2);
