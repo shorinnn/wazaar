@@ -736,7 +736,7 @@ class DeliveredImporter {
             if($user->email == 'wazaarAffiliate@wazaar.jp') continue;
             $exists = false;
             foreach($deliveredUsers as $dUser){
-                if( $dUser['email'] == $user->email ) $exists = true;
+                if( strtolower($dUser['email']) == strtolower($user->email) ) $exists = true;
             }
             if( !$exists ) $unimported[] = $user;
         }
@@ -745,7 +745,11 @@ class DeliveredImporter {
         echo "\nIMPORTING EMAILS TO DELIVERED...";
         $batch = [];
         foreach($unimported as $user){
-            $b = [ 'firstName' => $user->first_name, 'lastName' => $user->last_name, 'email' => $user->email];
+            $firstName = $user->first_name;
+            if($firstName=='') $firstName = 'F';
+            $lastName = $user->last_name;
+            if($lastName=='') $lastName = 'L';
+            $b = [ 'firstName' => $firstName, 'lastName' => $lastName, 'email' => $user->email];
             $batch[] = $b;
         }
         $batch = json_encode($batch);
