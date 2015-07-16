@@ -192,6 +192,10 @@ a:hover{
 	margin: 35px 0 20px;
 }
 
+.top-buttons .login{
+	margin: 0 0 60px;
+}
+
 .blue-button{
 	background: #0099ff;	
 }
