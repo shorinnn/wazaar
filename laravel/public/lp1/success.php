@@ -45,9 +45,9 @@
                 <div class="row congrats-message">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<h2>
-                        	<img src="registered-mark.png" alt="" class="inline-block" style="margin-bottom:0px">
+                        	<img src="registered-mark.png" alt="" class="inline-block" style="margin-bottom:10px">
                                 <center>
-                                    <p class="name" style="margin-bottom: 30px"><?php if(isset($_GET['email'])) echo $_GET['email'];?></p>
+                                    <p class="name" style="margin-bottom: 20px"><?php if(isset($_GET['email'])) echo $_GET['email'];?></p>
                                 </center>
                             <span class="block">
                                 <span class="name"><?php if(isset($_GET['name'])) echo $_GET['name'];?>,</span>
