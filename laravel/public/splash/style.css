@@ -129,7 +129,7 @@ a:hover{
 
 #container{
 	width: 100%;
-	height: 100%;
+	height: auto;
 	background-color: rgba(27, 35, 42, 0.8);
 }
 
