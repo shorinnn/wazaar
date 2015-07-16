@@ -801,6 +801,7 @@ class DeliveredImporter {
             if( $user->hasRole('Instructor') ) $requiredTags['instructor'] = 'instructor';
             if( $user->is_second_tier_instructor ) $requiredTags['stinstructor']= 'stinstructor';
             if( $user->hasRole('Affiliate') ) $requiredTags['affiliate']= 'affiliate';
+            
             foreach($deliveredUsers as $dUser){
                 if( $dUser['email'] == $user->email ){
                     $deliveredID = $dUser['id'];
@@ -821,7 +822,7 @@ class DeliveredImporter {
                             if(isset($requiredTags['affiliate'])) unset( $requiredTags['affiliate'] );
                         }
                     }
-                    if( count($requiredTags) > 0){
+                    if( array($requiredTags) && count($requiredTags) > 0){
                         $userCount++;
                     }
                     foreach($requiredTags as $tag){
