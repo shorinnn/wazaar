@@ -66,6 +66,7 @@ class LpController extends \BaseController {
         public function index(){
             
             $users = $this->delivered->getUsers();
+            dd($users);
             $user = $users['data'][ count($users['data']) - 1];
             if(is_array($user) ) $user = json_decode(json_encode($user), FALSE);
             dd($user);
