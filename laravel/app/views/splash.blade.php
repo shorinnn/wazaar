@@ -24,9 +24,11 @@
                     <img src="splash/logo.png" alt="">
             </div>
             <div class="row">
-            	<div class="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
-                    <center>
-                        <!--<iframe id="splash-youtube-player" width="640" height="360" src="https://www.youtube.com/embed/k2yWJkh9kTk?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>-->
+            	<div class="col-xs-10 col-sm-8 col-md-6 col-lg-4 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-4">
+                	<center>
+                        <div class="video-container">
+                            <iframe width="640" height="360" src="https://www.youtube.com/embed/FNeLYmf4drs?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+                        </div>
                     </center>
             	</div>
             </div>

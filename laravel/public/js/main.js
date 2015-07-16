@@ -872,8 +872,11 @@ function skinVideoControls(){
 		var playerHeight = video.innerHeight();
 		console.log('Player height is' + playerHeight);
 		console.log('Player Width is' + playerWidth);
+		var centerPlayButtonHeight = $('.play-intro-button').outerHeight();
+		var controlContainerHeight = $('.course-details-player .control-container').outerHeight();
+		console.log('Button height is ' + centerPlayButtonHeight);
 		//$('.control').css('max-width',playerWidth);
-		$('.centered-play-button, .play-intro-button').show().css('top', (playerHeight/2));
+		$('.play-intro-button').show().css('top', (playerHeight)/2 - centerPlayButtonHeight / 2);
 		/*$('#lesson-video-overlay').css({
 			height: playerHeight	
 		});*/
@@ -1182,7 +1185,8 @@ function showMoreContent(){
 	
 		var visibleHeight = $content[0].clientHeight;
 		var actualHide = $content[0].scrollHeight - 1; // -1 is needed in this case or you get a 1-line offset.
-	
+		
+		$content.css('height', visibleHeight);
 		console.log(actualHide);
 		console.log(visibleHeight);
 	
@@ -1191,19 +1195,35 @@ function showMoreContent(){
 		} else {
 			$link.hide();
 		}
+		
+		$(".course-description p").each(function(){
+			if (!$(this).text().trim().length) {
+				$(this).addClass("no-margin");
+			}
+		});
+
+		if($link.is(":visible")){
+			$link.parent().find('.fadeout-text').show();
+		}
+		else{
+			$link.parent().find('.fadeout-text').hide();						
+		}
+		
 		$link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
 		
-		$link.on("click", function() {		
+		$link.on("click", function() {
 			if ($link.hasClass('show-more')){
 				$link.removeClass('show-more');
 				$link.addClass('show-less');
-				$('.fadeout-text').hide();
+				$link.siblings('.fadeout-text').hide();
+				$content.css('max-height', 'none');
 				$link.html(('<i class="fa fa-chevron-up"></i>') + $link.attr('data-less-text'));
 				TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
+				
 			} else if($link.hasClass('show-less')){
 				$link.removeClass('show-less');
 				$link.addClass('show-more');
-				$('.fadeout-text').show();
+				$link.siblings('.fadeout-text').show();
 				$link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
 				TweenMax.fromTo($content, 0, {height: actualHide}, {height: visibleHeight});
 			}
