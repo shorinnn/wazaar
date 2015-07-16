@@ -825,7 +825,7 @@ class DeliveredImporter {
                     if( array($requiredTags) && count($requiredTags) > 0){
                         $userCount++;
                     }
-                    foreach($requiredTags as $tag){
+                    foreach($requiredTags as $tag => $val){
                         $delivered->addTag('user-type-'.$tag, 'String', 1, $deliveredID);
                         $tagCount++;
                     }
