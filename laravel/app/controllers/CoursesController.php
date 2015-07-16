@@ -429,6 +429,8 @@ class CoursesController extends \BaseController {
         }
         
         public function purchased($slug){
+            // unset the affiliate cookie
+            Cookie::queue("aid", null, -1);
             $course = Course::where('slug', $slug)->first();
             return View::make('courses.purchased')->with( compact('course') );
         }
@@ -443,7 +445,8 @@ class CoursesController extends \BaseController {
             $student = Student::current(Auth::user());
 //            $student->crash( $lesson,  Cookie::get( "aid-".$lesson->module->course->id ) );
             $student->crash( $lesson,  Cookie::get( "aid" ) );
-            
+            // unset the affiliate cookie
+            Cookie::queue("aid", null, -1);
             return Redirect::action( 'ClassroomController@lesson', 
                                                 [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, 
                                                     'lesson' => $lesson->slug ]);
@@ -459,6 +462,8 @@ class CoursesController extends \BaseController {
             $student = Student::current(Auth::user());
 //            $student->crash( $course,  Cookie::get( "aid-".$course->id ) );
             $student->crash( $course,  Cookie::get( "aid" ) );
+            // unset the affiliate cookie
+            Cookie::queue("aid", null, -1);
             
             return Redirect::action( 'ClassroomController@dashboard', [ 'course' => $course->slug ]);
         }
