@@ -19,7 +19,7 @@ return array(
         'you-registered-on-wazaar' => 'Wazaar に登録されました。',
         'please-verify-email' => 'ご登録されたメールアドレスに認証リンクを送りましたのでご確認ください。',
         'we-sent-link' => ' ',
-        'verify-email' => 'VERIFY EMAIL',
+        'verify-email' => 'メールを確認する！',
         'you-verified-email' => 'あなたのメールアドレスが認証されました！',
         'email-verified' => 'あなたのメールアドレスは認証済みです。',
 
