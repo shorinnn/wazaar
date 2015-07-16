@@ -825,7 +825,7 @@ class DeliveredImporter {
                         $userCount++;
                     }
                     foreach($requiredTags as $tag){
-                        $this->delivered->addTag('user-type-'.$tag, 'String', 1, $deliveredID);
+                        $delivered->addTag('user-type-'.$tag, 'String', 1, $deliveredID);
                         $tagCount++;
                     }
                     // sleep every 25 users
