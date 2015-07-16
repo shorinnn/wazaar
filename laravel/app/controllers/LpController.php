@@ -140,7 +140,7 @@ class LpController extends \BaseController {
                         $result = $this->delivered->executeEmailRequest('immediate', $template->id, $user->id, $variables );
                         if( is_array($response) && $response['success'] == true ){
 //                            return Redirect::action( 'UsersController@create' );
-                            return Redirect::to('lp1/success.php?name='.$firstName);
+                            return Redirect::to('lp1/success.php?name='.$firstName.'&email='.Input::get('email') );
                         }
                         else{
                             $errors = urlencode( json_encode( $this->_translateErrors( $result['errors'] ) ) );
