@@ -718,10 +718,10 @@ class DeliveredImporter {
         echo " --- $total DELIVERED users fetched.\n";
         
         echo "Fetching Wazaar users...";
-        //$users = User::all();
-//        $total = $users->count();
-        $users = self::getUsers();
-        $total = count($users);
+        $users = User::all();
+        $total = $users->count();
+//        $users = self::getUsers();
+//        $total = count($users);
         
 //        print_r($users);
 //        dd($deliveredUsers);
@@ -745,7 +745,12 @@ class DeliveredImporter {
             $batch[] = $b;
         }
         $batch = json_encode($batch);
-//        $delivered->addBatchUsers( $batch );
+        $response = $delivered->addBatchUsers( $batch );
+        
+        if( is_array($response) && $response['success'] == true ){}
+        else{
+            dd($response);
+        }
         
         $time = time() - $start;
         
@@ -767,10 +772,10 @@ class DeliveredImporter {
         echo "$total DELIVERED users fetched.\n";
         
         echo "Fetching Wazaar users...";
-        //$users = User::all();
-//        $total = $users->count();
-        $users = self::getUsers();
-        $total = count($users);
+        $users = User::all();
+        $total = $users->count();
+//        $users = self::getUsers();
+//        $total = count($users);
         
 //        print_r($users);
 //        dd($deliveredUsers);
@@ -783,10 +788,10 @@ class DeliveredImporter {
         $sleepCount = 0;
         foreach( $users as $user ){
             $requiredTags = [];
-            $requiredTags['Student'] = ['Student'];
-            if( $user->hasRole('Instructor') ) $requiredTags[] = 'Instructor';
-            if( $user->is_second_tier_instructor ) $requiredTags[]= 'STInstructor';
-            if( $user->hasRole('Affiliate') ) $requiredTags[]= 'Affiliate';
+            $requiredTags['student'] = ['student'];
+            if( $user->hasRole('Instructor') ) $requiredTags['instructor'] = 'instructor';
+            if( $user->is_second_tier_instructor ) $requiredTags['stinstructor']= 'stinstructor';
+            if( $user->hasRole('Affiliate') ) $requiredTags['affiliate']= 'affiliate';
             foreach($deliveredUsers as $dUser){
                 if( $dUser['email'] == $user->email ){
                     $deliveredID = $dUser['id'];
@@ -794,16 +799,24 @@ class DeliveredImporter {
                     $user->updateUniques();
                     
                     foreach( $dUser['tags'] as $tag ){
-                        if( $tag['tagName'] == 'user-type' ){
-                            $val = $tag['tagStringValue'] != '' ? $tag['tagStringValue'] : $tag['tagIntegerValue'];
-                            unset( $requiredTags[$val] );
+                        if( $tag['tagName'] == 'user-type-student' ){
+                            if(isset($requiredTags['student'])) unset( $requiredTags['student'] );
+                        }
+                        if( $tag['tagName'] == 'user-type-instructor' ){
+                            if(isset($requiredTags['instructor'])) unset( $requiredTags['instructor'] );
+                        }
+                        if( $tag['tagName'] == 'user-type-stinstructor' ){
+                            if(isset($requiredTags['stinstructor'])) unset( $requiredTags['stinstructor'] );
+                        }
+                        if( $tag['tagName'] == 'user-type-affiliate' ){
+                            if(isset($requiredTags['affiliate'])) unset( $requiredTags['affiliate'] );
                         }
                     }
                     if( count($requiredTags) > 0){
                         $userCount++;
                     }
                     foreach($requiredTags as $tag){
-//                        $this->delivered->addTag('user-type', 'String', $tag, $deliveredID);
+                        $this->delivered->addTag('user-type-'.$tag, 'String', 1, $deliveredID);
                         $tagCount++;
                     }
                     // sleep every 25 users
