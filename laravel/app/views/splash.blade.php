@@ -26,22 +26,22 @@
             <div class="row">
             	<div class="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-2 col-lg-offset-3">
                     <center>
-                        <iframe id="splash-youtube-player" width="640" height="360" src="https://www.youtube.com/embed/k2yWJkh9kTk?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+                        <!--<iframe id="splash-youtube-player" width="640" height="360" src="https://www.youtube.com/embed/k2yWJkh9kTk?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>-->
                     </center>
             	</div>
             </div>
             <!--<h1>Coming this July!</h1>-->
-            <h1>2015年8月下旬OPEN</h1>
+            <h1 style="margin-bottom: 50px;">2015年8月下旬OPEN</h1>
             <!--<p>We will help you learn new amazing things! Our learning platform will be so simple and accessible to everyone!</p>-->
-            <p>技の動画フリーマーケット、ワザールでは、あなたの技を動画にして、500円から販売することができます！あなたの技が日本を変える！ワザールまもなく始まります！</p>
+            <p style="margin-bottom: 50px;">技の動画フリーマーケット、ワザールでは、あなたの技を動画にして、500円から販売することができます！あなたの技が日本を変える！ワザールまもなく始まります！</p>
 <!--            <div class="publisher-login">
             	<a href="{{ action('CoursesController@myCourses') }}">Publisher Login</a>
             </div>-->
         	<div class="top-buttons">
                 @if(Input::has('pub'))
-                    <a href="{{ action('UsersController@create') }}/account/instructor" class="blue-button button large-button register">サインアップ</a>
+                    <a href="{{ action('UsersController@create') }}/account/instructor" class="blue-button button large-button register">新規登録</a>
                 @else
-                    <a href="{{ action('UsersController@create') }}" class="blue-button button large-button register">サインアップ</a>
+                    <a href="{{ action('UsersController@create') }}" class="blue-button button large-button register">新規登録</a>
                 @endif
             </div>
         	<div class="top-buttons">

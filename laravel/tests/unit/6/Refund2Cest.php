@@ -1,7 +1,7 @@
 <?php
 use \UnitTester;
 
-class RefundCest{
+class Refund2Cest{
     
     public function _before() {
         $this->setupDatabase();

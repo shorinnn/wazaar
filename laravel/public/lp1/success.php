@@ -48,9 +48,14 @@
                         	<img src="registered-mark.png" alt="" class="inline-block">
                             <span class="block">
                                 <span class="name"><?php if(isset($_GET['name'])) echo $_GET['name'];?>,</span>
-                                さん、おめでとうございます！ 
+                                さん、おめでとうございます。
+
                             </span>
-                            <span class="block">あなたのメールアドレスは無事に登録完了いたしました。</span>
+                            <span class="block">あなたのメールアドレスは仮登録されました。本登録のために、下記のボタンをクリックしてワザールへの新規登録をお願い致します。</span>
+                            <br />
+                            <center>
+                                <a href="../register" class="blue-button button large-button register" style="width:200px;">新規登録する！</a>
+                            </center>
 
                         </h2>
                     </div>
