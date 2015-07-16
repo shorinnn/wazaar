@@ -3290,6 +3290,8 @@ h5{
 	font-size: 16px;
 	color: #fff;
 	border-radius: 23px;
+	-webkit-transform: translate(-50%, 0);
+	-ms-transform: translate(-50%, 0);
 	transform: translate(-50%, 0);
 }
 

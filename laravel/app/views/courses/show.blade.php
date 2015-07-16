@@ -548,7 +548,7 @@
 					var playerHeight = video.innerHeight();
 					var centerPlayButtonHeight = $('.play-intro-button').outerHeight();
 					var controlContainerHeight = $('.course-details-player .control-container').outerHeight();
-					$('.play-intro-button').show().css('top', (playerHeight - controlContainerHeight)/2 - centerPlayButtonHeight / 2);
+					$('.play-intro-button').show().css('top', (playerHeight)/2 - centerPlayButtonHeight / 2);
 
 					$('.btnPlay').addClass('playing').removeClass('paused');
 					$('.btnPlay .wa-play').hide();

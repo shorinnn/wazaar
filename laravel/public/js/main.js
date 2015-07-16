@@ -876,7 +876,7 @@ function skinVideoControls(){
 		var controlContainerHeight = $('.course-details-player .control-container').outerHeight();
 		console.log('Button height is ' + centerPlayButtonHeight);
 		//$('.control').css('max-width',playerWidth);
-		$('.play-intro-button').show().css('top', (playerHeight - controlContainerHeight)/2 - centerPlayButtonHeight / 2);
+		$('.play-intro-button').show().css('top', (playerHeight)/2 - centerPlayButtonHeight / 2);
 		/*$('#lesson-video-overlay').css({
 			height: playerHeight	
 		});*/
