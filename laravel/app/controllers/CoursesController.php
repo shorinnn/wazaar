@@ -335,7 +335,8 @@ class CoursesController extends \BaseController {
             
             $course->allTestimonials = $course->testimonials()->orderBy('id', 'desc')->limit(2)->get();
             if(Input::has('aid')){
-                Cookie::queue("aid-$course->id", Input::get('aid'), 60*24*30);
+//                Cookie::queue("aid-$course->id", Input::get('aid'), 60*24*30);
+                Cookie::queue("aid", Input::get('aid'), 60*24*30);
                 // store this in the DB as well, in case the cookies get deleted
                 if(Auth::check()) {
                     $student = Student::find(Auth::user()->id);
@@ -440,7 +441,8 @@ class CoursesController extends \BaseController {
             
             $lesson = Lesson::where('slug', $lesson)->first();
             $student = Student::current(Auth::user());
-            $student->crash( $lesson,  Cookie::get( "aid-".$lesson->module->course->id ) );
+//            $student->crash( $lesson,  Cookie::get( "aid-".$lesson->module->course->id ) );
+            $student->crash( $lesson,  Cookie::get( "aid" ) );
             
             return Redirect::action( 'ClassroomController@lesson', 
                                                 [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, 
@@ -455,7 +457,8 @@ class CoursesController extends \BaseController {
             
             $course = Course::where('slug', $slug)->first();
             $student = Student::current(Auth::user());
-            $student->crash( $course,  Cookie::get( "aid-".$course->id ) );
+//            $student->crash( $course,  Cookie::get( "aid-".$course->id ) );
+            $student->crash( $course,  Cookie::get( "aid" ) );
             
             return Redirect::action( 'ClassroomController@dashboard', [ 'course' => $course->slug ]);
         }
