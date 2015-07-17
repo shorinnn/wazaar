@@ -337,6 +337,10 @@ header .top-menu .logged-out-header-search form .catalogue-button i{
 	top: 1px;
 }
 
+header .top-menu .logged-out-header-search form .catalogue-button em{
+	font-style: normal;
+}
+
 header .top-menu .logged-out-header-search form div{
 	max-width: 302px;
 	height: 100%;
@@ -978,7 +982,7 @@ header .activate-dropdown:hover ul{
 	background-image: none !important;
 	background-color: #ffffff !important;
  	border-radius: 4px;
-  	max-height: 373px;
+  	max-height: 394px;
 	max-width: 360px;
   	background-repeat:no-repeat;
   	position:relative;
@@ -1061,6 +1065,7 @@ header .activate-dropdown:hover ul{
 
 .small-box img{
 	width: 100%;
+	max-height: 203px;
 }
 
 .small-box .video-play-button{
@@ -9298,6 +9303,10 @@ footer{
 
 @media (max-width:767px){
 
+header .top-menu .logged-out-header-search form .catalogue-button em{
+	display: none;
+}
+
 .mycourse-card-main .delete-button, .mycourse-card-main .edit-button{
 	float: none;
 	margin-top: 20px;
@@ -9637,6 +9646,29 @@ header .top-menu li{
 }
 
 @media (min-width:320px) and (max-width: 480px) {
+	.course-data .column-1 div{
+		padding: 0 9px !important;
+		margin: 25px 0 0;
+		border: none !important;
+	}
+	
+	.column-3 .add-to-wishlist-container{
+		padding: 0;
+		margin-top: 30px;
+	}
+	
+	.column-3 .add-to-wishlist-container form{
+		float: left;
+	}
+	
+	.column-3 .add-to-wishlist-container .share-lesson{
+		margin-left: 25px !important;
+	}
+	
+	.course-data .column-1 .difficulty-level{
+		margin-top: 15px;
+	}
+	
 	.course-editor .video-list-thumbs .glyphicon-play-circle{
 		font-size: 35px;
 		right: 36%;

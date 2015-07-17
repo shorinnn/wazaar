@@ -124,7 +124,7 @@
             	<form class="clearfix">
                 	<button class="catalogue-button">
                     	<i class="wa-tiny-list"></i>
-                    	{{trans('general.catalogue')}}
+                    	<em>{{trans('general.catalogue')}}</em>
                     </button>
                     <div>
                     	<button><i class="wa-search"></i></button>

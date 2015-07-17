@@ -15,7 +15,7 @@
                                 src="{{ url('splash/logo.png') }}"
                             @endif
                            
-                            class="img-responsive" alt="" style="max-height: 182px"  />
+                            class="img-responsive" alt=""  />
                         <!---->
                         <span class="video-play-button"><em></em></span>
                         <span class="likes">{{ $course->likes() }}</span>         
