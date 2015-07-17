@@ -239,6 +239,7 @@ class UserRepository
             $profile->email = $user->email;
             $profile->save();
 
+        $this->_addToDelivered($user, $deliveredTags);
         return $user;
     }
     

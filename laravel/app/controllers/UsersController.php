@@ -290,9 +290,8 @@ class UsersController extends Controller
             // This was a callback request from facebook, get the token
             $token = $fb->requestAccessToken( $code );
             // Send a request with it
-            $result = json_decode( $fb->request( '/me' ), true );
+            $result = json_decode( $fb->request( '/me?fields=email,link,first_name,last_name' ), true );
             // See if we need to register this user
-            //dd($result);//continue
             $user = $this->users->where('facebook_login_id',$result['id'])->first();
             if($user == null){
                 // see if email is aready in the system
