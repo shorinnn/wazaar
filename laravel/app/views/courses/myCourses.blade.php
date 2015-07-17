@@ -99,11 +99,11 @@
                         </div>
                     </div>
                     <div class="row mycourse-card-footer">
-                        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-5">
                             <p class="date-created regular-paragraph">{{ trans('courses/general.created-on') }}: 
                                 <span> {{ date('m/d/Y', strtotime($course->created_at)) }}</span></p>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-md-offset-1 col-lg-offset-1">
+                        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-7">
                             
                             <span class="default-button">{{ 
                                 trans('courses/general.my-courses-privacy.'.$course->privacy_status) }}</span>
