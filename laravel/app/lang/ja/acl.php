@@ -22,5 +22,6 @@ return array(
         'verify-email' => 'メールを確認する！',
         'you-verified-email' => 'あなたのメールアドレスが認証されました！',
         'email-verified' => 'あなたのメールアドレスは認証済みです。',
+        'enter-email-to-reset' => 'パスワードをリセットするために、メールアドレスを入力してください。'
 
 );

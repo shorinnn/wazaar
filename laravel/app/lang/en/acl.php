@@ -22,5 +22,5 @@ return array(
         'verify-email' => 'VERIFY EMAIL',
         'you-verified-email' => 'you have verified your email!',
         'email-verified' => 'Email verified!',
-
+        'enter-email-to-reset' => 'Please Enter your Email to reset your password.'
 );
