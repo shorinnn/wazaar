@@ -23,7 +23,7 @@
         	<div id="logo" class="clear">
                     <img src="splash/logo.png" alt="">
             </div>
-            <div class="row">
+<!--            <div class="row">
             	<div class="col-xs-10 col-sm-8 col-md-6 col-lg-4 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-4">
                 	<center>
                         <div class="video-container">
@@ -31,11 +31,11 @@
                         </div>
                     </center>
             	</div>
-            </div>
+            </div>-->
             <!--<h1>Coming this July!</h1>-->
-            <h1 style="margin-bottom: 50px;">2015年8月下旬OPEN</h1>
+            <h1>2015年8月下旬OPEN</h1>
             <!--<p>We will help you learn new amazing things! Our learning platform will be so simple and accessible to everyone!</p>-->
-            <p style="margin-bottom: 50px;">技の動画フリーマーケット、ワザールでは、あなたの技を動画にして、500円から販売することができます！あなたの技が日本を変える！ワザールまもなく始まります！</p>
+            <p>技の動画フリーマーケット、ワザールでは、あなたの技を動画にして、500円から販売することができます！あなたの技が日本を変える！ワザールまもなく始まります！</p>
 <!--            <div class="publisher-login">
             	<a href="{{ action('CoursesController@myCourses') }}">Publisher Login</a>
             </div>-->
@@ -47,7 +47,7 @@
                 @endif
             </div>
         	<div class="top-buttons">
-            	<a href="{{ action('UsersController@login') }}" class="login button large-button">ログイン</a>
+            	<a href="{{ action('UsersController@login') }}" class="login button large-button" style="margin-bottom:160px">ログイン</a>
             </div>
         </div>         	
     </div>

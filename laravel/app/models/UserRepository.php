@@ -60,23 +60,24 @@ class UserRepository
         // Save if valid. Password field will be hashed before save
         if($this->save($user)){
             $profileType = 'Student';
-            $deliveredTags[] = 'Student';
+            $deliveredTags[] = 'student';
             $user = $this->attachRoles($user);
             if( $registersAsST!=null || ( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) ){
                 $user = $this->attachRoles($user, 1);
                 $profileType = 'Instructor';
-                $deliveredTags[] = 'Instructor';
+                $deliveredTags[] = 'instructor';
             }
             if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ){
                 $user = $this->attachRoles($user, 2);
                 $profileType = 'Affiliate';
-                $deliveredTags[] = 'Affiliate';
+                $deliveredTags[] = 'affiliate';
             }
             $this->save_ltc($user, $ltc_cookie);
             
             if($registersAsST!=null){// create profile
                 $profileType = 'Instructor';
-                $deliveredTags[] = 'Instructor';
+                $deliveredTags[] = 'instructor';
+                $deliveredTags[] = 'stinstructor';
             }
 //                $name = explode( ' ', Input::get('name') );
 //                $first_name = ( !isset($name[1]) || empty($name[1]) ) ? 'First Name' : $name[1];
@@ -120,7 +121,7 @@ class UserRepository
             $user->updateUniques();
             // associate tags with the user
             foreach($deliveredTags as $tag){
-                $this->delivered->addTag('user-type', 'String', $tag, $userData->id);
+                $this->delivered->addTag('user-type-'.$tag, 'String', 1, $userData->id);
             }
         }
     }
@@ -206,7 +207,7 @@ class UserRepository
         
         $deliveredTags = [];
         $profileType = 'Student';
-        $deliveredTags[] = 'Student';
+        $deliveredTags[] = 'student';
 
         // Save if valid. Password field will be hashed before save
         $this->save($user);
@@ -214,18 +215,19 @@ class UserRepository
         if( $registersAsST!=null || ( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) ){
             $user = $this->attachRoles($user, 1);
             $profileType = 'Instructor';
-            $deliveredTags[] = 'Instructor';
+            $deliveredTags[] = 'instructor';
+            $deliveredTags[] = 'stinstructor';
         }
         if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ){
             $user = $this->attachRoles($user, 2);
              $profileType = 'Affiliate';
-             $deliveredTags[] = 'Affiliate';
+             $deliveredTags[] = 'affiliate';
         }
         $this->save_ltc($user, $ltc_cookie);
         
         if($registersAsST!=null){// create profile
             $profileType = 'Instructor';
-            $deliveredTags[] = 'Instructor';
+            $deliveredTags[] = 'instructor';
         }
             $first_name = $input['first_name'];
             $last_name = $input['last_name'];
