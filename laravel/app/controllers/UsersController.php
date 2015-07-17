@@ -425,11 +425,15 @@ class UsersController extends Controller
      */
     public function doForgotPassword()
     {
+        $old = Config::get('queue.default');
+        Config::set('queue.default', 'sync');
         if (Confide::forgotPassword(Input::get('email'))) {
+            Config::set('queue.default', $old);
             $notice_msg = Lang::get('confide::confide.alerts.password_forgot');
             return Redirect::action('UsersController@login')
                 ->with('notice', $notice_msg);
         } else {
+            Config::set('queue.default', $old);
             $error_msg = Lang::get('confide::confide.alerts.wrong_password_forgot');
             return Redirect::action('UsersController@forgotPassword')
                 ->withInput()
