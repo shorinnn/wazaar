@@ -11,7 +11,7 @@
     	<div class="row">
         	<div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
                 <div class="form-group clearfix" id="reset-password">
-                    <p>Please Enter your Email to reset your password. Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
+                    <p>Please Enter your Email to reset your password.</p>
                     <!--<label for="email">{{{ Lang::get('confide::confide.e_mail') }}}</label>-->
                     <div class="input-append input-group">
                         <input class="form-control no-float" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
