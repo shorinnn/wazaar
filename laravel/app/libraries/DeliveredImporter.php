@@ -3,7 +3,7 @@
  
  
 class DeliveredImporter {
-    
+    /*
     public static function getUsers(){
         $users = Array
         (
@@ -701,7 +701,7 @@ class DeliveredImporter {
         }
         return $objects;
     }
-    
+    */
     
     public static function import(){
         echo "\n\n************ IMPORTING EMAILS TO DELIVERED ***************** \n\n";
