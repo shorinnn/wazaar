@@ -83,15 +83,15 @@ class CoursesController extends \BaseController {
                 $images = $images->merge( $assignedInstructor->coursePreviewImages );
                 $bannerImages = $bannerImages->merge( $assignedInstructor->courseBannerImages );
             }
-            $instructors =  Instructor::whereHas(
-                'roles', function($q){
-                    $q->where('name', 'instructor');
-                }
-            )->get();
+//            $instructors =  Instructor::whereHas(
+//                'roles', function($q){
+//                    $q->where('name', 'instructor');
+//                }
+//            )->get();
             $assignableInstructors = ['null' => 'Not Assigned'];
-            foreach($instructors as $i){
-                $assignableInstructors[$i->id] = $i->commentName();
-            }
+//            foreach($instructors as $i){
+//                $assignableInstructors[$i->id] = $i->commentName();
+//            }
 
             $awsPolicySig = UploadHelper::AWSPolicyAndSignature();
             $uniqueKey = Str::random();
