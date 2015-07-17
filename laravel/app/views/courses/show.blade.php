@@ -164,7 +164,7 @@
                                                 	<i class="wa-play"></i>
                                                     <i class="wa-pause"></i>
                                                 </div>
-                                                <div class="time">
+                                                <div class="time hidden-xs">
                                                     <span class="current"></span>
                                                 </div>
                                                 <div class="topControl">
@@ -180,10 +180,10 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div class="time">
+                                                <div class="time hidden-xs">
                                                     <span class="duration"></span> 
                                                 </div>
-                                                <div class="sound sound2 btn" title="Mute/Unmute sound">
+                                                <div class="sound sound2 btn hidden-xs" title="Mute/Unmute sound">
                                                 	<i class="wa-sound"></i>
                                                     <i class="fa fa-volume-off"></i>
                                                 </div>
@@ -198,7 +198,7 @@
                                     <div>
                                     </div>
                                 </div>
-                                <span class="play-intro-button"><i class="wa-play"></i>{{ trans("courses/general.play-intro") }}</span>
+                                <span class="play-intro-button"><i class="wa-play"></i><em>{{ trans("courses/general.play-intro") }}</em></span>
                             @endif
                         @endif                                        
                     	</div>
@@ -214,12 +214,12 @@
                                     ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
                                   </span>
                                   <button class="clearfix enroll-button blue-button extra-large-button">
-                                  Enroll to the course 
+                                  {{ trans("courses/general.enroll") }} 
                              @else 
                                   <span class="price clearfix">
                                   </span>
                                   <button class="clearfix enroll-button blue-button extra-large-button" disabled="disabled" data-toggle="tooltip" data-placement="left" title="Available for customers">
-                                  <!--{{ trans("courses/general.enroll") }}--> Enroll to the course 
+                                   {{ trans("courses/general.enroll") }} 
                                 
                              @endif
                                 </button>
@@ -333,6 +333,17 @@
                             </ul>
                         </div>
 
+                        <div class="who-its-for no-margin-top module-box padding-top-30 padding-bottom-20">
+                        	<h2>{{ trans('courses/general.who_is_this_for?') }}</h2>
+                             @if($who_for = json2Array($course->who_is_this_for))
+                            <ul>
+                                @foreach($who_for as $who)
+                                    <li>{{$who}}</li>
+                                @endforeach
+                            </ul>
+                             @endif
+                        </div>
+                        
                         <div class="requirements no-margin-top module-box padding-top-30 padding-bottom-20">
                             <h2>{{ trans('courses/general.requirements') }}</h2>
                             @if($requirements = json2Array($course->requirements))
@@ -343,7 +354,7 @@
                                 </ul>
                             @endif    
                         </div>
-                        
+
                         @foreach($course->modules as $module)
                         <div class="module-box">
                         	<h2>{{ $module->order }}. {{ $module->name }}</h2>

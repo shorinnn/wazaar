@@ -3302,6 +3302,10 @@ h5{
   top: 1px;
 }
 
+.play-intro-button em{
+	font-style: normal;
+}
+
 .course-data{
 	background: #fff;
 	border-bottom: solid 1px #cfd1d3;
@@ -3575,7 +3579,7 @@ h5{
 .expandable-button i{
 	padding-right: 10px;
 	position: relative;
-	top: 1px;
+	top: 0px;
 }
 
 .lesson-reviews{
@@ -3685,6 +3689,8 @@ h5{
     margin: 14px auto !important;
     padding: 10px 20px;
     position: relative;
+    -webkit-transform: translate(-50%);
+    -ms-transform: translate(-50%);
     transform: translate(-50%);
 }
 
@@ -3723,12 +3729,14 @@ h5{
 
 .course-description-container .instructor,
 .course-description-container .requirements,
+.course-description-container .who-its-for,
 .course-description-container .what-you-will-learn{
 	margin-top: 70px;
 }
 
 .course-description-container .instructor h2,
 .course-description-container .requirements h2,
+.course-description-container .who-its-for h2,
 .course-description-container .what-you-will-learn h2{
 	color:#2e343b;
 	margin: 0 0 33px;
@@ -3736,11 +3744,13 @@ h5{
 }
 
 .course-description-container .requirements ul,
+.course-description-container .who-its-for ul,
 .course-description-container .what-you-will-learn ul{
 	padding: 0 0 0 23px;
 	margin: 0;
 }
 
+.course-description-container .who-its-for ul li,
 .course-description-container .course-description ol li,
 .course-description-container .requirements ul li,
 .course-description-container .what-you-will-learn ul li{
@@ -5038,6 +5048,8 @@ h5{
 }
 
 .no-teacher-questions > div{
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
 	transform: scale(0);
 }
 
@@ -7811,6 +7823,8 @@ p.tip::before{
 	text-align: center;
 	position: relative;
 	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
 
@@ -7822,6 +7836,8 @@ p.tip::before{
 	width: 70px;
 	top: 50%;
 	margin-top: 30px;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -11095,6 +11111,27 @@ footer{
     display: block;
     margin: 0 auto;
     max-width: 360px;
+}
+
+.play-intro-button{
+	padding: 0;
+	border-radius: 30px;
+	height: 30px;
+	width: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+
+.play-intro-button i{
+    padding-right: 0;
+}
+
+.play-intro-button em{
+	display: none;
+}
+
+.course-details-player .btmControl{
+	margin: 5px 0;
 }
 
 .small-box{
