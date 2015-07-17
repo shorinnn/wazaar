@@ -656,6 +656,54 @@ header .activate-dropdown:hover ul{
 	font-weight: 100;
 }
 	
+.homepage-carousel{
+	background: #ebeced;
+	padding-bottom: 80px;
+}
+
+.homepage-carousel h1{
+	color: #303941;
+	font-weight: normal;
+	margin: 56px 0 44px;
+	text-align: center;
+}
+
+.homepage-carousel h1 .lead{
+	font-size: 14px;
+	color: #7e8e9e;
+	margin: 8px 0 0;
+}
+
+.homepage-carousel .slick-prev, 
+.homepage-carousel .slick-next{
+	margin-top: 0;
+	top: 0;
+	height: 100%;
+	width: 60px;
+	display: none !important;
+}
+
+.homepage-carousel .slick-prev::before, 
+.homepage-carousel .slick-next::before{
+	content: '';
+}
+
+.homepage-carousel .slick-prev:hover, 
+.homepage-carousel .slick-prev:focus, 
+.homepage-carousel .slick-next:hover, 
+.homepage-carousel .slick-next:focus{
+	/*background-color: rgba(0, 0, 0, 0.3);	*/
+	background-color: transparent;	
+}
+
+.homepage-carousel .slick-prev{
+	left: 0;
+}
+
+.homepage-carousel .slick-next{
+	right: 0;
+}
+
 .popular-courses-carousel{
 	padding: 0;
 	display: none;
