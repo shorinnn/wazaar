@@ -50,7 +50,8 @@
                     <div class="popular-courses">
                         <a href="{{ action('CoursesController@show', $course['slug'] ) }}">
                             <div class="img-container">
-                                <img class="img-responsive" alt="" src="{{ $course['preview'] }}">
+                                <!--<img class="img-responsive" alt="" src="{{ $course['preview'] }}">-->
+                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">
                                 <div class="course-hover-data">
                                     @if( $course['discounted'] > 0)
                                         <span class="discount-percent left">- ¥ {{ number_format( $course['discounted'], Config::get('custom.currency_decimals') ) }}</span>
