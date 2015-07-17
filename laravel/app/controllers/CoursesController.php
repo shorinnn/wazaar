@@ -156,10 +156,30 @@ class CoursesController extends \BaseController {
             if(Input::has('sale_ends_on') ) $course->sale_ends_on = (Input::get('sale_ends_on')) ?  date('Y-m-d H:i:s', strtotime(Input::get('sale_ends_on')) ) : null;
             if(Input::has('ask_teacher') ) $course->ask_teacher = Input::get('ask_teacher');
             if(Input::has('details_displays') ) $course->details_displays = Input::get('details_displays');
-            if(Input::has('assigned_instructor_id') ) $course->assigned_instructor_id = Input::get('assigned_instructor_id') == 0 ? null : Input::get('assigned_instructor_id');
+            $notify_assigned = false;
+            if(Input::has('assigned_instructor_id') ){
+                if( Input::get('assigned_instructor_id') != 0 && Input::get('assigned_instructor_id') !=  $course->assigned_instructor_id ){
+                    $notify_assigned = true;
+                }
+                $course->assigned_instructor_id = Input::get('assigned_instructor_id') == 0 ? null : Input::get('assigned_instructor_id');
+            }
             if(Input::has('show_bio') ) $course->show_bio = Input::get('show_bio');
             if(Input::has('custom_bio') ) $course->custom_bio = Input::get('custom_bio');
             if($course->updateUniques()){
+                if ( $notify_assigned ){
+                    $instructor = $course->instructor;
+                    $assigned = $course->assignedInstructor;
+                    Mail::send(
+                        'emails.assigned_instructor',
+                        compact('instructor' , 'assigned' , 'course' ),
+                        function ($message) use ($instructor, $assigned) {
+                            $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
+                            $message
+                                ->to($assigned->email, $assigned->email)
+                                ->subject( 'Wazaar Assignment' );
+                        }
+                    );
+                }
                 if ( Input::hasFile('preview_image') ){
                     $img = $course->upload_preview( Input::file('preview_image')->getRealPath()); 
                     if( !$img ){

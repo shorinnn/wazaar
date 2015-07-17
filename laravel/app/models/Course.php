@@ -205,7 +205,8 @@ class Course extends Ardent{
         }
         
         if($this->sale_kind=='amount' && $this->sale  > $this->price){
-            $this->errors()->add(0, trans('courses/general.cant_discount_more_than_price') );
+//            $this->errors()->add(0, trans('courses/general.cant_discount_more_than_price') );
+            $this->errors()->add(0,  $this->sale  . ' ' . $this->price );
             return false;
         }
         
