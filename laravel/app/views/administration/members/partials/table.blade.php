@@ -66,7 +66,14 @@
                         @foreach($members as $member)
                         <tr>
                             <td class="hidden-xs">
-                            {{$member->email}}
+                                @if($member->confirmed)
+                                    <span class="label label-success">Verified</span>
+                                @else
+                                    <span class="label label-danger">Unverified</span>
+                                @endif
+                            </td>
+                            <td class="hidden-xs">
+                                {{$member->email}}
                             </td>
                             <td>
                             	{{ $member->firstName() }}, {{ $member->lastName() }}
