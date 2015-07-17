@@ -98,7 +98,8 @@ class CoursesController extends \BaseController {
             
             $filePolicy = UploadHelper::AWSAttachmentsPolicyAndSignature();
             
-            $affiliates = ProductAffiliate::arrayWithProfile();
+//            $affiliates = ProductAffiliate::arrayWithProfile();
+            $affiliates = [];
             
             switch($step){
                 case 0: $view = 'courses.editor.form'; break;
