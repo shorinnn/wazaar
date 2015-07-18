@@ -377,7 +377,13 @@
                                         </a>
                                         <!--<em>Type of lesson</em>-->
                                         <div class="buttons">
-                                            <!--<a href="#" class="default-button reading-button large-button">Reading</a>-->
+                                            @if($lesson->blocks()->where('type','video')->first() != null)
+                                            <a href="#" class="default-button reading-button large-button">
+                                            {{ 
+                                                VideoFormat::where('video_id', $lesson->blocks()->where('type','video')->first()->content )->first()
+                                                        ->duration 
+                                            }}</a>
+                                        @endif
                                             
                                             @if( $lesson->free_preview == 'yes' )
                                                 <!--<a href="#" class="default-button preview-button large-button">Preview</a>-->
@@ -403,12 +409,7 @@
                                             @endif
                                             
                                             
-                                        @if($lesson->blocks()->where('type','video')->first() != null)
-                                            {{ 
-                                                VideoFormat::where('video_id', $lesson->blocks()->where('type','video')->first()->content )->first()
-                                                        ->duration 
-                                            }}
-                                        @endif
+                                        
                                         </div>
                                     </li>
                             	<!--<li>
