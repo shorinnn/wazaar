@@ -377,7 +377,10 @@
                                         </a>
                                         <!--<em>Type of lesson</em>-->
                                         <div class="buttons">
-                                            @if($lesson->blocks()->where('type','video')->first() != null)
+                                            @if($lesson->blocks()->where('type','video')->first() != null
+                                                && VideoFormat::where('video_id', $lesson->blocks()->where('type','video')->first()->content )
+                                                        ->first() !=null 
+                                                )
                                             <a href="#" class="default-button reading-button large-button">
                                             {{ 
                                                 VideoFormat::where('video_id', $lesson->blocks()->where('type','video')->first()->content )->first()

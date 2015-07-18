@@ -517,6 +517,31 @@ class UsersController extends Controller
         if(Auth::guest() || Auth::user()->is_second_tier_instructor=='no'){
             return Redirect::action('SiteController@index');
         }
-        return View::make('links');
+        
+        if ( !Cache::has( 'sti-for-'.Auth::user()->id ) ){
+        
+            $this->delivered = new DeliveredHelper();
+            $total = $this->delivered->getUsers();
+            $users = $total['data'];
+            $total = 0;
+            $stpi = User::where('is_second_tier_instructor','yes')->get();
+            foreach($stpi as $s){
+                if($s->id != Auth::user()->id) continue;
+                $emails = [];
+                $count = 0;
+                foreach($users as $user){
+                    foreach($user['tags']  as $tag){
+                        if( $tag['tagName'] == 'second-tier-publisher-id' && ($tag['tagIntegerValue']==$s->id ||  $tag['tagStringValue']==$s->id ) ){
+                           $count ++;
+                        }
+                    }
+                }
+            }
+            $ref = $count;
+            Cache::add( 'sti-for-'.Auth::user()->id , $ref, 30);
+        }
+        else $ref = Cache::get( 'sti-for-'.Auth::user()->id );
+        
+        return View::make('links')->with( compact('ref') );
     }
 }
