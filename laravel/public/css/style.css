@@ -9899,3 +9899,7 @@ header .top-menu li{
       margin-top: 0px;
       border: 1px solid black;
 }
+
+.inline-form{
+    display:inline;
+}

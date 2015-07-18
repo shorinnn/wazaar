@@ -4,6 +4,12 @@
         {{Form::email('email',@$profile->email,['class' => 'form-control', 'placeholder' => 'Email'])}}
     </div>
 </div>
+<div class="form-group">
+    {{Form::label('title', trans('profile.form.title'),['class' => 'col-sm-3 control-label'])}}
+    <div class="col-sm-9">
+        {{Form::text('title',@$profile->title,['class' => 'form-control', 'placeholder' => 'Title'])}}
+    </div>
+</div>
 
 <div class="form-group">
     {{Form::label('first_name', trans('profile.form.firstName'),['class' => 'col-sm-3 control-label'])}}

@@ -43,7 +43,8 @@ return
                 'checking' => '当座口座',
                 'savings' => '貯蓄口座',
                 'others' => 'その他'
-            ]
+            ],
+            'title' => 'Title'
         ],
         'updateSuccessful' => 'プロフィールが更新されました',
         'profile' => 'プロフィール',

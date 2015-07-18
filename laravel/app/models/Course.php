@@ -57,16 +57,39 @@ class Course extends Ardent{
     public function dashboardComments(){
         return $this->comments()->where( 'lesson_id', null );
     }
-    public function lessonCount(){
+    public function lessonCount($includeUnpublished=true){
         $lessons = $modules = [0];
         $modules = Module::where('course_id', $this->id)->lists('id');
         $count = 0;
         if(count($modules) > 0){
-            $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
+            if( $includeUnpublished )            $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
+            else $lessons = Lesson::whereIn('module_id', $modules)->where('published', 'yes')->lists('id');
             $count += count($lessons);
         }
         return $count;
     }
+    
+    public function videoHours($includeUnpublished=true){
+        // get all videos
+        $vids = 0;
+        $lessons = $modules = [0];
+        $modules = Module::where('course_id', $this->id)->lists('id');
+        if(count($modules) > 0){
+            if( $includeUnpublished )            $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
+            else $lessons = Lesson::whereIn('module_id', $modules)->where('published', 'yes')->lists('id');
+            
+            if( count($lessons) > 0 ){
+                $videos = Block::whereIn('lesson_id', $lessons)->where('type', 'video')->get();
+                foreach($videos as $vid){
+                    $vid = DB::table('video_formats')->where( 'video_id', $vid->content )->first();
+                    if($vid!=null) $vids += $vid->duration;
+                }
+            }
+        }
+        if($vids == 0) return $vids;
+        else return round( $vids / 60 / 60, 2);
+    }
+    
     public function lessonComments(){
         $lessons = $modules = [0];
         $modules = Module::where('course_id', $this->id)->lists('id');
