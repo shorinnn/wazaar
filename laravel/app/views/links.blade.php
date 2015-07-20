@@ -20,7 +20,7 @@
                  ">
                 
                 @if( Auth::user()->is_second_tier_instructor=='yes' )
-                    <p class="regular-paragraph">ST Referrals: {{ $ref }}</p>
+                    <p class="regular-paragraph">{{ trans('general.st-referrals') }}: {{ $ref }}</p>
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <h3>{{ trans('acl.invite-publishers') }}</h3>
                         <p class="regular-paragraph">{{ trans('acl.your-publisher-links') }}</p>
