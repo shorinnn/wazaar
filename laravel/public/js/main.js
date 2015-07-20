@@ -876,7 +876,10 @@ function skinVideoControls(){
 		var controlContainerHeight = $('.course-details-player .control-container').outerHeight();
 		console.log('Button height is ' + centerPlayButtonHeight);
 		//$('.control').css('max-width',playerWidth);
-		$('.play-intro-button').show().css('top', (playerHeight)/2 - centerPlayButtonHeight / 2);
+		$('.play-intro-button').css('top', (playerHeight)/2 - centerPlayButtonHeight / 2);
+                if(video[0].paused || video[0].ended) {
+                    $('.play-intro-button').show();
+                }
 		/*$('#lesson-video-overlay').css({
 			height: playerHeight	
 		});*/
@@ -958,9 +961,13 @@ function skinVideoControls(){
     });
 	
 	//sound button clicked
+        $('.sound').off('click');
 	$('.sound').click(function() {
+                console.log('SOUNDCLICKING!');
+                console.log( video[0].muted );
 		video[0].muted = !video[0].muted;
 		$(this).toggleClass('muted');
+                console.log( video[0].muted );
 		if(video[0].muted) {
 			$('.volumeBar').css('width',0);
 			$('.wa-sound').hide();
