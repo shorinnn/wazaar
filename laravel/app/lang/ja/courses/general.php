@@ -162,5 +162,6 @@ jpeg, png',
     'wazaar-is-checking-your-product' => '商品は審査中です。',
     'enroll' => 'このコースを受講する',
     'enter-instructor-email' => '追加したい講師のメルアドを記入して下さい。',
+    'free_preview' => 'Free preview',
 );
 

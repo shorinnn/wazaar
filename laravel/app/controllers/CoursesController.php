@@ -364,10 +364,10 @@ class CoursesController extends \BaseController {
                     $student->saveReferral(Input::get('aid'), $course->id);
                 }
             }
-            $video = $course->videoBlocks();
-            if($video!=null) $video = $video->first();
+//            $video = $course->videoBlocks();
+//            if($video!=null) $video = $video->first();
             // temporary video TODO: remove this
-            Course::whereNull('description_video_id')->update(['description_video_id' => 1]);
+//            Course::whereNull('description_video_id')->update(['description_video_id' => 1]);
             $video = $course->descriptionVideo;
 
             if( serveMobile() ) 

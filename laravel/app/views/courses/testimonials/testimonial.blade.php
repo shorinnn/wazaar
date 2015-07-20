@@ -24,7 +24,13 @@
 @endif-->
   <div class="reviews clearfix">
       <div class="user-thumb">
-          <img />
+            @if( $testimonial->student->profile != null)
+                <img src='{{ $testimonial->student->profile->photo }}' />
+            @elseif($testimonial->student->photo != '')
+                <img src='{{ $testimonial->student->photo }}' />
+            @else
+                <img src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" />
+            @endif
           <span>
           {{ $testimonial->student->first_name }}
           {{ $testimonial->student->last_name }}

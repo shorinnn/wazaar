@@ -43,7 +43,8 @@ return
                 'checking' => 'Checking Account',
                 'savings' => 'Savings Account',
                 'others' => 'Others'
-            ]
+            ],
+            'title' => 'Title'
         ],
         'updateSuccessful' => 'Profile updated successfully',
         'profile' => 'Profile',
