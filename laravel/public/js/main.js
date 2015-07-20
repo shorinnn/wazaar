@@ -1098,9 +1098,16 @@ function skinVideoControls(){
 		var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
 		return m+":"+s;
 	};
-        console.log('DURATION IS  '+video[0].duration);
-        if( isNaN( video[0].duration ) ) console.log('IS NAN MAYNE');
-    $('.duration').text(timeFormat(video[0].duration));
+        loop_failsafe = 0;
+        do{
+            console.log('DURATION IS  '+video[0].duration);
+            setTimeout(function(){
+                $('.duration').text(timeFormat(video[0].duration));
+            }, 50);
+            loop_failsafe++;
+            if(loop_failsafe > 10) break;
+        }
+        while( isNaN( video[0].duration ) );
     updateVolume(0, 0.7);
     return true;
 
