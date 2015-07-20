@@ -1098,6 +1098,7 @@ function skinVideoControls(){
 		var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
 		return m+":"+s;
 	};
+        console.log('DURATION IS  '+video[0].duration);
     $('.duration').text(timeFormat(video[0].duration));
     updateVolume(0, 0.7);
     return true;
