@@ -1099,7 +1099,7 @@ function skinVideoControls(){
 		return m+":"+s;
 	};
         console.log('DURATION IS  '+video[0].duration);
-        if( video[0].duration == 'NaN') console.log('IS NAN MAYNE');
+        if( video[0].duration < 1) console.log('IS NAN MAYNE');
     $('.duration').text(timeFormat(video[0].duration));
     updateVolume(0, 0.7);
     return true;
