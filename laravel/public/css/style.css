@@ -1006,6 +1006,12 @@ header .activate-dropdown:hover ul{
 	display: block;
 	float: left;
 	height: 100%;
+	text-align: center;
+}
+
+.toggle-menus .menu i {
+    position: relative;
+    top: 7px;
 }
 
 .toggle-menus .menu.menu-1{
@@ -1023,6 +1029,10 @@ header .activate-dropdown:hover ul{
 	border: solid #e3e5e6;
 	border-width: 1px 0;
 	padding-bottom: 200px;
+}
+
+.category-box-container .pagination-container{
+	margin-top: 50px;
 }
 
 .small-box{
@@ -3836,6 +3846,48 @@ h5{
 	display: block;
     width: 100%;
 }
+
+/************* New Classroom Pages *************/
+.classroom-view{
+	background-color: #18222b;
+}
+
+.classroom-view .classroom-header{
+	padding-top: 10px;
+}
+
+.classroom-view .classroom-header .left-menu{
+	cursor: pointer;
+	padding: 8px 32px 8px 0;
+	font-size: 21px;
+	color: #fff;
+	display: inline-block;
+	margin-top: 5px;
+	border-right: solid 1px #303941;
+}
+
+.classroom-view .classroom-header .logo{
+	margin: 0 29px;
+	display: inline-block;
+	width: 50px;
+}
+
+.classroom-view .classroom-header .lesson-title{
+	color: #798794;
+	margin: 25px 0 0;
+	display: inline-block;
+}
+
+.classroom-view .classroom-header .prev-lesson{
+	
+}
+
+.classroom-view .classroom-header .next-lesson{
+	
+}
+
+/************* New Classroom Pages End*************/
+
 /************* Old Classroom Pages **************/
 .classrooms-wrapper{
 	background: #f8f8f8;

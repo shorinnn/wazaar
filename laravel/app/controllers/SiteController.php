@@ -69,6 +69,14 @@ class SiteController extends \BaseController {
 	{            
             Return View::make('site.classroom');
 	}
+
+// Temporary functions for new classroom UI
+
+	public function newclassroom()
+	{            
+            Return View::make('TEMPORARYVIEWS.new_classroom');
+	}
+
         
         public function crud(){
              Return View::make('TEMPORARYVIEWS.crud');
