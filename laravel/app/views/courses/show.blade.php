@@ -94,37 +94,39 @@
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-push-8 col-lg-push-8">
                             <div class="instructor margin-top-30 margin-bottom-30">
                                 <!--<h2>{{ trans('courses/general.instructor') }}</h2>-->
-                                @if($instructor->profile == null)
-                                    <div class="clearfix">
-                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/profile_pictures/avatar-placeholder.jpg" alt="" >
-                                        <em>{{$instructor->first_name}} {{$instructor->last_name}}</em>
-                                    </div>
-                                    <p class="clearfix regular-paragraph">
-                                        @if( $course->show_bio=='custom' )
-                                            {{ $course->custom_bio }}
-                                        @else
-                                            {{ trans('general.no-bio-available') }}
-                                        @endif
-                                    </p>
-                                @else
-                                    <div class="clearfix">
-                                        <img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $instructor->profile->photo }}" alt="" >
-                                        <em class="name">{{$instructor->profile->first_name}} {{$instructor->profile->last_name}}</em>
-                                        <span class="instructor-skills">{{ $instructor->profile->title }}</span>
-                                    </div>
-                                    <!--@if(Auth::check())
-                                        {{ View::make('courses.followed_form')->withInstructor($instructor) }}
-                                    @endif-->
-                                    <!--<h4>{{ trans('general.about') }} {{$instructor->profile->first_name}}</h4>-->
-                                    <p class="clearfix regular-paragraph expandable-content short-text">
-                                        @if( $course->show_bio=='custom' )
-                                            {{ $course->custom_bio }}
-                                        @else
-                                            {{ $instructor->profile->bio }}
-                                        @endif
-                                    </p>                                                                  
-                                    <span class="show-full-description blue-button large-button" data-toggle="modal" data-target="#instructor-bio">Read more</span>
-                                @endif                        
+                                @if( $instructor!=null )
+                                    @if($instructor->profile == null)
+                                        <div class="clearfix">
+                                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/profile_pictures/avatar-placeholder.jpg" alt="" >
+                                            <em>{{$instructor->first_name}} {{$instructor->last_name}}</em>
+                                        </div>
+                                        <p class="clearfix regular-paragraph">
+                                            @if( $course->show_bio=='custom' )
+                                                {{ $course->custom_bio }}
+                                            @else
+                                                {{ trans('general.no-bio-available') }}
+                                            @endif
+                                        </p>
+                                    @else
+                                        <div class="clearfix">
+                                            <img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $instructor->profile->photo }}" alt="" >
+                                            <em class="name">{{$instructor->profile->first_name}} {{$instructor->profile->last_name}}</em>
+                                            <span class="instructor-skills">{{ $instructor->profile->title }}</span>
+                                        </div>
+                                        <!--@if(Auth::check())
+                                            {{ View::make('courses.followed_form')->withInstructor($instructor) }}
+                                        @endif-->
+                                        <!--<h4>{{ trans('general.about') }} {{$instructor->profile->first_name}}</h4>-->
+                                        <p class="clearfix regular-paragraph expandable-content short-text">
+                                            @if( $course->show_bio=='custom' )
+                                                {{ $course->custom_bio }}
+                                            @else
+                                                {{ $instructor->profile->bio }}
+                                            @endif
+                                        </p>                                                                  
+                                        <span class="show-full-description blue-button large-button" data-toggle="modal" data-target="#instructor-bio">Read more</span>
+                                    @endif         
+                                @endif
                             </div>
                         </div>                                            
                     </div>
@@ -135,17 +137,13 @@
         	<div class="container">
             	<div class="row">
                 	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-details-player">
+                            <div class="pre-view-image video-player">
+                                <img src="{{ cloudfrontUrl( $course->previewImage->url) }}" />
+                            </div>
                         @if( $video==null )
-                        <div class="video-player"
-                             @if( $course->bannerImage != null)
-                                 style="background-image:url('{{$course->bannerImage->url}}') !important"
-                             @endif
-                             >
-                        <!--<a href="#" class="watch-video-button">WATCH VIDEO</a>-->
-                        <span class="video-time">10:23</span>
-                        <div class="overlay"></div>            
+                            <!--!-->       
                         @else
-                        <div class="video-player video-container description-page" style="background:none; text-align: right">
+                        <div class="video-player video-container description-page video-container-toggler" style="display:none; background:none; text-align: right">
                             @if( Agent::isMobile() )
                                 <video id='myVideo' controls><source src="{{ $video->formats()->where('resolution', 'Custom Preset for Mobile Devices')
                                             ->first()->video_url }}" type="video/mp4"></video>
@@ -584,10 +582,17 @@
     @stop
     
 
-    @if(Input::has('autoplay'))
-        @section('extra_js')
-            <script>
-                $(function(){
+    @section('extra_js')
+        <script>
+            $(function(){
+                if( $('#myVideo').length > 0){
+                   console.log('READY!');
+                   $('.pre-view-image').hide(); 
+                   $('.video-container-toggler').show();
+                   skinVideoControls();
+                }
+                
+                @if(Input::has('autoplay'))
                     var video = $('#myVideo');
                     video[0].play();
 					$('.video-container.description-page #lesson-video-overlay').hide();
@@ -605,7 +610,7 @@
 					video[0].play();
 					$('.centered-play-button, .play-intro-button').hide();
 					
-                });
+            @endif
+        });
             </script>
-        @stop
-    @endif
+    @stop

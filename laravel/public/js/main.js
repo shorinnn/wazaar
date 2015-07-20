@@ -904,10 +904,32 @@ function skinVideoControls(){
 		$('.timeBar').css('width',perc+'%');	
 		$('.current').text(timeFormat(currentPos) /*+ ' / '*/);	
 	});
+        
+        var playpause = function() {
+                console.log('PLAYPAUSE');
+		if(video[0].paused || video[0].ended) {
+                    console.log('playing the vid');
+			$('.btnPlay').addClass('playing').removeClass('paused');
+			$('.btnPlay .wa-play').hide();
+			$('.btnPlay .wa-pause').show();
+			video[0].play();
+                        $('.centered-play-button, .play-intro-button').hide();
+		}
+		else {
+                    console.log('pausing the vid');
+			$('.btnPlay').removeClass('playing').addClass('paused');
+			$('.btnPlay .wa-play').show();
+			$('.btnPlay .wa-pause').hide();
+			video[0].pause();
+                        $('.centered-play-button, .play-intro-button').show();
+		}
+	};
 	
 	//CONTROLS EVENTS
 	//video screen and play button clicked
+        video.off('click');
 	video.on('click', function() { playpause(); } );
+	$('.btnPlay, .centered-play-button, .play-intro-button').off('click');
 	$('.btnPlay, .centered-play-button, .play-intro-button').on('click', function() {
         playpause();
 		$('#lesson-video-overlay').hide();
@@ -920,22 +942,7 @@ function skinVideoControls(){
         $('.video-container .control div.btnFS').hide();
     });
 
-	var playpause = function() {
-		if(video[0].paused || video[0].ended) {
-			$('.btnPlay').addClass('playing').removeClass('paused');
-			$('.btnPlay .wa-play').hide();
-			$('.btnPlay .wa-pause').show();
-			video[0].play();
-            $('.centered-play-button, .play-intro-button').hide();
-		}
-		else {
-			$('.btnPlay').removeClass('playing').addClass('paused');
-			$('.btnPlay .wa-play').show();
-			$('.btnPlay .wa-pause').hide();
-			video[0].pause();
-            $('.centered-play-button, .play-intro-button').show();
-		}
-	};
+	
 
 	//fullscreen button clicked
     $('.btnFS').on('click', function() {
@@ -1093,6 +1100,7 @@ function skinVideoControls(){
 	};
     $('.duration').text(timeFormat(video[0].duration));
     updateVolume(0, 0.7);
+    return true;
 
 }
 
