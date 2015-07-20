@@ -1023,6 +1023,7 @@ function skinVideoControls(){
 		//calculate drag position
 		//and update video currenttime
 		//as well as progress bar
+                video = $('#myVideo');
 		var maxduration = video[0].duration;
 		var position = x - progress.offset().left;
 		var percentage = 100 * position / progress.width();
