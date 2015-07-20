@@ -1025,6 +1025,7 @@ function skinVideoControls(){
 		//as well as progress bar
                 video = $('#myVideo');
 		var maxduration = video[0].duration;
+                console.log('MAXDURATION IS '+maxduration);
 		var position = x - progress.offset().left;
 		var percentage = 100 * position / progress.width();
 		if(percentage > 100) {
@@ -1034,7 +1035,9 @@ function skinVideoControls(){
 			percentage = 0;
 		}
 		$('.timeBar').css('width',percentage+'%');	
-		video[0].currentTime = maxduration * percentage / 100;
+                ct =  maxduration * percentage / 100;
+                console.log(' CURRENT TIME IS: '+ct);
+		video[0].currentTime = ct;
 	};
 
 	//VOLUME BAR
