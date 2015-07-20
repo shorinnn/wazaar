@@ -251,7 +251,7 @@
                     </div>
                 </div>
             	<div class="row">
-                	<div class="col-xs-12 col-sm-9 col-md-8 col-lg-8 column-1">
+                	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 column-1">
                     	<div class="number-of-lessons">
                         	<span>{{ trans("general.lessons") }}</span>
                             <em>16</em>
@@ -286,7 +286,7 @@
                             <!--</span>
                         </div>-->
                     </div>
-                	<div class="col-xs-12 col-sm-3 col-md-4 col-lg-4 column-3">
+                	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 column-3">
                         <div class="add-to-wishlist-container clearfix">
                         	
                         	{{Form::open(['action' => ['WishlistController@store'] ])}}

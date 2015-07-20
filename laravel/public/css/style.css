@@ -9160,6 +9160,15 @@ footer{
 }
 
 @media (max-width: 1200px) and (min-width: 991px){
+.course-data .column-1 div{
+	padding: 15px 30px 12px;
+}
+
+.video-container .control div.btn{
+	padding: 6px 5px;
+	width: auto;
+}
+
 .big-box img + div{
 	width: 47%;
 }
@@ -9220,6 +9229,48 @@ footer{
 }
 
 @media (max-width:991px){
+	.course-detail-top-section .instructor{
+		text-align: center;
+	}
+
+	.course-detail-top-section .instructor > div{
+		display: inline-block;
+		margin-left: 0;
+	}
+	.course-detail-top-section .instructor div img{
+		float: none;
+		margin-right: 0;
+		margin-bottom: 10px;
+	}
+	
+	.course-data .column-3,
+	.course-data .column-1{
+		text-align: center;
+	}
+	
+	.enroll-button-section{
+		text-align: center;
+	}
+	
+	.enroll-button-section .enroll-button{
+		display: inline-block;
+	}
+	
+	.course-data .column-3 .share-lesson{
+		display: inline-block;
+	}
+	
+	.course-data .column-1 div{
+		float: none;
+		display: inline-block;
+		padding: 15px 30px 12px !important;
+	}
+	
+	.add-to-wishlist-container > form{
+		display: inline-block;
+		margin-right: 20px;
+	}
+	
 	.discover-header .categories-menu{
 		border: none;
 	}
@@ -9351,6 +9402,13 @@ footer{
 
 
 @media (max-width:767px){
+.module-box{
+	padding-right: 20px;
+}
+
+.course-details-player .topControl{
+	width: 74%;
+}
 
 header .top-menu .logged-out-header-search form .catalogue-button em{
 	display: none;
@@ -9550,6 +9608,15 @@ header .top-menu li{
 	padding: 0;
 }
 
+.course-data .column-1 div{
+	padding: 15px 20px 12px !important;
+}
+
+.course-data .column-2 div em, 
+.course-data .column-1 div em{
+	font-size: 14px;
+}
+
 }
 
 
@@ -9582,6 +9649,31 @@ header .top-menu li{
 
 }
 
+@media (max-width:552px){
+	.course-data .column-1 div{
+		padding: 15px 15px 12px !important;
+	}
+	
+	.course-data .column-1 div span{
+		font-size: 10px;
+	}
+	
+	.course-data .column-2 div em, 
+	.course-data .column-1 div em{
+		font-size: 12px;
+	}
+	
+	.column-3 .add-to-wishlist-container i{
+		font-size: 16px;
+	}
+	
+	.column-3 .add-to-wishlist-container .share-lesson, 
+	.column-3 .add-to-wishlist-container input, .column-3 div span{
+		font-size: 12px;
+	}
+}
+
+
 @media (max-width:520px){
 	#forgot-form .form-group{
 		width: 100%;
@@ -9613,6 +9705,10 @@ header .top-menu li{
 }
 
 @media (max-width:475px){
+	.course-details-player .topControl{
+		width: 60%;
+	}
+	
 	#forgot-form label{
 		float: none;
 	}
@@ -9705,11 +9801,7 @@ header .top-menu li{
 		padding: 0;
 		margin-top: 30px;
 	}
-	
-	.column-3 .add-to-wishlist-container form{
-		float: left;
-	}
-	
+		
 	.column-3 .add-to-wishlist-container .share-lesson{
 		margin-left: 25px !important;
 	}
@@ -9750,16 +9842,24 @@ header .top-menu li{
 	.lesson-topics li .buttons a{
 		margin-left: 0;
 	}
+
+	.column-3 .add-to-wishlist-container .share-lesson{
+		margin-left: 0 !important;
+	}
 }
 
 @media (max-width:353px){
 	.instructor-mycourses .course-wrapper .bottom-bar .status-box{
 		left: 1%;
 	}
-
+	
 }
 
 @media (max-width:320px){
+	.column-3 .add-to-wishlist-container{
+		padding: 0 0 20px;
+	}
+	
 	#forgot-form + footer{
 		position: relative;
 	}			
