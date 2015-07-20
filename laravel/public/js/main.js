@@ -1099,15 +1099,18 @@ function skinVideoControls(){
 		return m+":"+s;
 	};
         loop_failsafe = 0;
+        duration = video[0].duration;
         do{
-            console.log('DURATION IS  '+video[0].duration);
             setTimeout(function(){
-                $('.duration').text(timeFormat(video[0].duration));
+                video = $('#myVideo');
+                duration = video[0].duration;
+                console.log('DURATION IS  '+video[0].duration);
+                $('.duration').text( timeFormat( video[0].duration ) );
             }, 50);
             loop_failsafe++;
             if(loop_failsafe > 10) break;
         }
-        while( isNaN( video[0].duration ) );
+        while( isNaN( duration ) );
     updateVolume(0, 0.7);
     return true;
 
