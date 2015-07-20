@@ -1099,19 +1099,17 @@ function skinVideoControls(){
 		return m+":"+s;
 	};
         loop_failsafe = 0;
-        duration = video[0].duration;
-        do{
-            setTimeout(function(){
-                video = $('#myVideo');
-                duration = video[0].duration;
-                console.log('DURATION IS  '+video[0].duration);
-                $('.duration').text( timeFormat( video[0].duration ) );
-            }, 50);
+        var updateTimeFormat = function(){
+            video = $('#myVideo');
+            duration = video[0].duration;
+            console.log('DURATION IS  '+video[0].duration);
+            $('.duration').text( timeFormat( video[0].duration ) );
             loop_failsafe++;
-            if(loop_failsafe > 10) break;
-        }
-        while( isNaN( duration ) );
+            if(loop_failsafe > 10) return;
+            if( isNaN( duration ) ) setTimeout(updateTimeFormat, 100);
+        };
     updateVolume(0, 0.7);
+    
     return true;
 
 }
