@@ -1108,6 +1108,7 @@ function skinVideoControls(){
             if(loop_failsafe > 10) return;
             if( isNaN( duration ) ) setTimeout(updateTimeFormat, 100);
         };
+    updateTimeFormat();
     updateVolume(0, 0.7);
     
     return true;
