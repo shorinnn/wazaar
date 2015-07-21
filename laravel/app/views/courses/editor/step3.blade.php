@@ -319,7 +319,7 @@
                     <p class="regular-paragraph">{{ trans('courses/general.modules') }}: </p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                    <p class="regular-paragraph semibold-text"> {{ $course->modules()->count() }}</p>
+                    <p class="regular-paragraph semibold-text step3-module-count"> {{ $course->modules()->count() }}</p>
                 </div>
             </div>
             <div class="row">
@@ -327,7 +327,7 @@
                     <p class="regular-paragraph">{{ trans('courses/general.total_lessons') }}: </p>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                    <p class="regular-paragraph semibold-text"> {{ $course->lessonCount() }}</p>
+                    <p class="regular-paragraph semibold-text step3-lesson-count"> {{ $course->lessonCount() }}</p>
                 </div>
             </div>
         </div>

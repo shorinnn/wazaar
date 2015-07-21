@@ -64,6 +64,12 @@ class CoursesController extends \BaseController {
         }
         
          public function edit($slug, $step=0){
+            // delete dashboard modules
+            foreach( Module::where('order','99999')->get() as $m ){
+                $m->delete();
+            }
+            // delete dashboard modules
+            
             $course = Course::where('slug',$slug)->first();
             if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 if( !admin() ){
@@ -133,6 +139,15 @@ class CoursesController extends \BaseController {
             $course = Course::where('slug',$slug)->first();
             
             if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
+                if( admin() ){
+                    if( Request::ajax() ){
+                        $response = ['status' => 'success', 'url' => action('CoursesController@edit', $course->slug) ];
+                        return json_encode($response);
+                    }
+                    return Redirect::action('CoursesController@edit', $course->slug)
+                            ->withSuccess( trans('crud/errors.object_updated',['object' => 'Course']) );
+                }
+                
                 return Redirect::action('CoursesController@index');
             }
             if( Input::has('publish_status') && Input::get('publish_status')==1 ){

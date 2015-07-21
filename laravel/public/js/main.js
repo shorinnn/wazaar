@@ -876,7 +876,10 @@ function skinVideoControls(){
 		var controlContainerHeight = $('.course-details-player .control-container').outerHeight();
 		console.log('Button height is ' + centerPlayButtonHeight);
 		//$('.control').css('max-width',playerWidth);
-		$('.play-intro-button').show().css('top', (playerHeight)/2 - centerPlayButtonHeight / 2);
+		$('.play-intro-button').css('top', (playerHeight)/2 - centerPlayButtonHeight / 2);
+                if(video[0].paused || video[0].ended) {
+                    $('.play-intro-button').show();
+                }
 		/*$('#lesson-video-overlay').css({
 			height: playerHeight	
 		});*/
@@ -904,10 +907,32 @@ function skinVideoControls(){
 		$('.timeBar').css('width',perc+'%');	
 		$('.current').text(timeFormat(currentPos) /*+ ' / '*/);	
 	});
+        
+        var playpause = function() {
+                console.log('PLAYPAUSE');
+		if(video[0].paused || video[0].ended) {
+                    console.log('playing the vid');
+			$('.btnPlay').addClass('playing').removeClass('paused');
+			$('.btnPlay .wa-play').hide();
+			$('.btnPlay .wa-pause').show();
+			video[0].play();
+                        $('.centered-play-button, .play-intro-button').hide();
+		}
+		else {
+                    console.log('pausing the vid');
+			$('.btnPlay').removeClass('playing').addClass('paused');
+			$('.btnPlay .wa-play').show();
+			$('.btnPlay .wa-pause').hide();
+			video[0].pause();
+                        $('.centered-play-button, .play-intro-button').show();
+		}
+	};
 	
 	//CONTROLS EVENTS
 	//video screen and play button clicked
+        video.off('click');
 	video.on('click', function() { playpause(); } );
+	$('.btnPlay, .centered-play-button, .play-intro-button').off('click');
 	$('.btnPlay, .centered-play-button, .play-intro-button').on('click', function() {
         playpause();
 		$('#lesson-video-overlay').hide();
@@ -920,22 +945,7 @@ function skinVideoControls(){
         $('.video-container .control div.btnFS').hide();
     });
 
-	var playpause = function() {
-		if(video[0].paused || video[0].ended) {
-			$('.btnPlay').addClass('playing').removeClass('paused');
-			$('.btnPlay .wa-play').hide();
-			$('.btnPlay .wa-pause').show();
-			video[0].play();
-            $('.centered-play-button, .play-intro-button').hide();
-		}
-		else {
-			$('.btnPlay').removeClass('playing').addClass('paused');
-			$('.btnPlay .wa-play').show();
-			$('.btnPlay .wa-pause').hide();
-			video[0].pause();
-            $('.centered-play-button, .play-intro-button').show();
-		}
-	};
+	
 
 	//fullscreen button clicked
     $('.btnFS').on('click', function() {
@@ -951,9 +961,13 @@ function skinVideoControls(){
     });
 	
 	//sound button clicked
+        $('.sound').off('click');
 	$('.sound').click(function() {
+                console.log('SOUNDCLICKING!');
+                console.log( video[0].muted );
 		video[0].muted = !video[0].muted;
 		$(this).toggleClass('muted');
+                console.log( video[0].muted );
 		if(video[0].muted) {
 			$('.volumeBar').css('width',0);
 			$('.wa-sound').hide();
@@ -1009,7 +1023,9 @@ function skinVideoControls(){
 		//calculate drag position
 		//and update video currenttime
 		//as well as progress bar
+                video = $('#myVideo');
 		var maxduration = video[0].duration;
+                console.log('MAXDURATION IS '+maxduration);
 		var position = x - progress.offset().left;
 		var percentage = 100 * position / progress.width();
 		if(percentage > 100) {
@@ -1019,7 +1035,9 @@ function skinVideoControls(){
 			percentage = 0;
 		}
 		$('.timeBar').css('width',percentage+'%');	
-		video[0].currentTime = maxduration * percentage / 100;
+                ct =  maxduration * percentage / 100;
+                console.log(' CURRENT TIME IS: '+ct);
+		video[0].currentTime = ct;
 	};
 
 	//VOLUME BAR
@@ -1091,8 +1109,20 @@ function skinVideoControls(){
 		var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
 		return m+":"+s;
 	};
-    $('.duration').text(timeFormat(video[0].duration));
+        loop_failsafe = 0;
+        var updateTimeFormat = function(){
+            video = $('#myVideo');
+            duration = video[0].duration;
+            console.log('DURATION IS  '+video[0].duration);
+            $('.duration').text( timeFormat( video[0].duration ) );
+            loop_failsafe++;
+            if(loop_failsafe > 10) return;
+            if( isNaN( duration ) ) setTimeout(updateTimeFormat, 100);
+        };
+    updateTimeFormat();
     updateVolume(0, 0.7);
+    
+    return true;
 
 }
 

@@ -43,7 +43,7 @@
                 <span></span>
             </div>
             {{ Form::open(array('action' => ['LessonsController@destroy', $lesson->module->id, $lesson->id], 'method' => 'delete', 
-                        'class' => 'ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '#lesson-'.$lesson->id )) }}
+                        'class' => 'ajax-form inline-block', 'data-callback' => 'deleteCurriculumItem', 'data-delete' => '#lesson-'.$lesson->id )) }}
                     <button type="submit" name="delete-lesson-{{$lesson->id}}" class="delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}"></button>
             {{ Form::close() }}
         </div>
