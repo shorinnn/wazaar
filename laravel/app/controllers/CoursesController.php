@@ -165,7 +165,8 @@ class CoursesController extends \BaseController {
                     }
                     else{
 //                        return json_encode(['status'=>'success', 'html'=> View::make('courses.preview_image')->with(compact('img'))->render() ]);
-                        return json_encode(['status'=>'success', 'html'=> "<img src='$img->url' height=100 />" ]);
+                        return json_encode(['status'=>'success', 'html'=> "<img src='$img->url' height=100 />", 
+                            'option' => View::make('courses.preview_image')->with(compact('img', 'course'))->render() ]);
                     }
                 }
                 // upload banner image

@@ -284,7 +284,11 @@ function courseImageUploaded(e, data){
     console.log(data.result);
     result = JSON.parse(data.result);
     $(target).append(result.html);
-    $(target).find('[type=radio]').click();
+    $('#use-existing-preview .radio-buttons').append( result.option );
+    insertSelectBorder();
+    $('#use-existing-preview .radio-buttons').find('[type=radio]').click();
+    $('.use-existing-preview .select-border').click();
+//    $(target).find('[type=radio]').click();
     $('.course-listing-image-preview').html( result.html );
 }
 
