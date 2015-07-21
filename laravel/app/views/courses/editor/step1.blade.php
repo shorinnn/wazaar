@@ -6,30 +6,31 @@
     {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
                 'id'=>'edit-course-form', 'files' => true, 'method' => 'PUT', 'class' => 'ajax-form step-1-form',  'data-callback'=>'saveAndNextTab' ]) }}
 @include('videos.archiveModal')
-	<div class="row content-row margin-bottom-20">
-    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-        	<h3>Presentation graphics</h3>
+
+    <div class="row content-row margin-bottom-20">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+            <h3>Presentation graphics</h3>
             <div class="row no-margin">
-            	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 main-content">
-                	<div class="row">
-                    	<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 listing-image">
-                        	<h6>Listing image (thumbnail)</h6>
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 main-content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 listing-image">
+                            <h6>Listing image (thumbnail)</h6>
                             <div class="file-details">
                                 <div class="course-listing-image-preview">
                                     @if($course->course_preview_image_id > 0)
-                                        <img src="{{ cloudfrontUrl( $course->previewImage->url ) }}" />
+                                    <img src="{{ cloudfrontUrl( $course->previewImage->url ) }}" />
                                     @endif
                                 </div>
-                                
-                                <!--<p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
-                                <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>-->
+
+    <!--<p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
+    <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>-->
                                 <label for="upload-preview-image" class="default-button large-button">
                                     <span>{{ trans('courses/general.upload_image') }}</span>
                                     <input type="file" hidden="" class='upload-preview-image' 
                                            id="upload-preview-image" name="preview_image" data-dropzone='.dropzone-preview'
-                                       data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' 
-                                       data-targez='#use-existing-preview > div > .radio-buttons'
-                                       data-target='#selected-previews'/>
+                                           data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' 
+                                           data-targez='#use-existing-preview > div > .radio-buttons'
+                                           data-target='#selected-previews'/>
                                 </label>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
@@ -37,25 +38,25 @@
                                     </div>
                                 </div>
                                 @if($images->count() > 0)
-                                    <span class="use-existing use-existing-preview" id="use-existing-preview">
-                                        <span class="use-existing">
-                                            <em class="or-text"> {{ trans('site/login.or') }}</em>
-                                            <a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">
-                                                    {{trans('video.selectExisting')}}
-                                            </a> 
-                                        </span>
-                                        @include('courses.previewsModal')
+                                <span class="use-existing use-existing-preview" id="use-existing-preview">
+                                    <span class="use-existing">
+                                        <em class="or-text"> {{ trans('site/login.or') }}</em>
+                                        <a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">
+                                            {{trans('video.selectExisting')}}
+                                        </a> 
                                     </span>
+                                    @include('courses.previewsModal')
+                                </span>
                                 @endif
                             </div>
                             <em>Image used for listings thumbnail</em>
                         </div>
-                    	<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 listing-video">
-                        	<h6>Introduction video</h6>
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 listing-video">
+                            <h6>Introduction video</h6>
                             <div class="file-details">
                                 <div class="course-description-video-preview">
                                     @if ($course->descriptionVideo)
-                                        <img src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
+                                    <img src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
                                     @endif
                                 </div>
                                 <em>Video on public course page</em>
@@ -64,11 +65,11 @@
                         </div>
                     </div>
                 </div>
-                
-            	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 side-info">
-                	<h4>Size and format</h4>
+
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 side-info">
+                    <h4>Size and format</h4>
                     <p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }} <br> {{ trans('courses/general.available_formats') }}</p>
-                	<p class="regular-paragraph">{{ trans('courses/general.video_size') }}</p>
+                    <p class="regular-paragraph">{{ trans('courses/general.video_size') }}</p>
                 </div>
             </div>
         </div>
@@ -196,7 +197,7 @@
             <button type='submit' class="blue-button extra-large-button">{{ trans('courses/general.next-step') }}</button>
         </div>
     </div>
-    
+
     
     
     
