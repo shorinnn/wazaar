@@ -45,11 +45,27 @@
         </ul>
         <div class="top-profile-info">          
             <span class="profile-level">12</span>
+            <div class="profile-thumbnail">
+                @if(Auth::user()->hasRole('Instructor'))
+                <img style="height: 30px; width: 30px; border-radius: 30px;" 
+                         src="{{ cloudfrontUrl( Instructor::find(Auth::user()->id)->profile->photo ) }}" alt="">
+                @elseif(Auth::user()->hasRole('Instructor'))
+                <img style="height: 30px; width: 30px; border-radius: 30px;" 
+                         src="{{ cloudfrontUrl( ProductAffiliate::find(Auth::user()->id)->profile->photo ) }}" alt="">
+                @elseif( $student->profile )
+                    <img style="height: 30px; width: 30px; border-radius: 30px;" 
+                         src="{{ cloudfrontUrl( Student::find(Auth::user()->id)->profile->photo ) }}" alt="">
+                   
+                @else
+                    <img style="height: 30px; width: 30px; border-radius: 30px;" 
+                         src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" alt="">
+                @endif
+            </div>
             <ul class="profile-name">
                 <li class="activate-dropdown">
                     <button aria-expanded="false" data-toggle="dropdown" 
                             class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
-                        {{ Auth::user()->fullName() }}
+                        <span class="greeting">{{trans('site/menus.hi')}}, </span> {{ Auth::user()->fullName() }} <i class="wa-chevron-down"></i>
                     </button>
                     <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
                         <?php /*-- <li>
@@ -59,10 +75,37 @@
                             <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
                         </li>
                         <li>
-                            <a class="settings-button" href="{{ action('ProfileController@settings')}}">{{trans('site/menus.settings')}}</a>
+                            <a class="settings-button" href="#">{{trans('site/menus.analytics')}}</a>
                         </li>
                         <li>
-                            <a class="settings-button" href="{{ action('PrivateMessagesController@index') }}">{{trans('site/menus.messages')}}</a>
+                            <a class="settings-button" href="{{ action('PrivateMessagesController@index') }}">{{trans('site/menus.messages')}}
+
+                            </a>
+							<?php
+                                $received = $student->receivedMessages()->unread( $student->id )->with('sender.profiles')->with('sender')->with('course')->get();
+                            ?>
+                            @if( $received->count() > 0)
+                            <style>
+                                .notification-number:hover div {
+                                    display:block !important;
+                                }
+                            </style>
+                                <span class="notification-number">
+                                    {{ $received->count() }}
+                                    <div style="background-color:white; position:absolute; right:0px; display:none; width: 300px; font-size:12px;">
+                                        <table class="table table-striped">
+                                            @foreach( $student->grouppedNotifications( $received ) as $key => $notification)
+                                            <tr><td>
+                                                <a href="{{ $notification['url'] }}">{{ $notification['text'] }}</a>
+                                                </td></tr>
+                                            @endforeach
+                                        </table>
+                                    </div>
+                                </span>
+                            @endif
+                        </li>
+                        <li>
+                            <a class="settings-button" href="{{ action('ProfileController@settings')}}">{{trans('site/menus.settings')}}</a>
                         </li>
                         <li>
                             <a class="settings-button" href="{{ action('UsersController@logout') }}">{{trans('site/menus.logout')}}</a>
@@ -70,44 +113,6 @@
                     </ul>
                 </li>
             </ul>
-            <div class="profile-thumbnail">
-                @if(Auth::user()->hasRole('Instructor'))
-                <img style="height: 50px; width: 50px; border-radius: 50px;" 
-                         src="{{ cloudfrontUrl( Instructor::find(Auth::user()->id)->profile->photo ) }}" alt="">
-                @elseif(Auth::user()->hasRole('Instructor'))
-                <img style="height: 50px; width: 50px; border-radius: 50px;" 
-                         src="{{ cloudfrontUrl( ProductAffiliate::find(Auth::user()->id)->profile->photo ) }}" alt="">
-                @elseif( $student->profile )
-                    <img style="height: 50px; width: 50px; border-radius: 50px;" 
-                         src="{{ cloudfrontUrl( Student::find(Auth::user()->id)->profile->photo ) }}" alt="">
-                   
-                @else
-                    <img style="height: 50px; width: 50px; border-radius: 50px;" 
-                         src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" alt="">
-                @endif
-                <?php
-                    $received = $student->receivedMessages()->unread( $student->id )->with('sender.profiles')->with('sender')->with('course')->get();
-                ?>
-                @if( $received->count() > 0)
-                <style>
-                    .notification-number:hover div {
-                        display:block !important;
-                    }
-                </style>
-                    <span class="notification-number">
-                        {{ $received->count() }}
-                        <div style="background-color:white; position:absolute; right:0px; display:none; width: 300px; font-size:12px;">
-                            <table class="table table-striped">
-                                @foreach( $student->grouppedNotifications( $received ) as $key => $notification)
-                                <tr><td>
-                                    <a href="{{ $notification['url'] }}">{{ $notification['text'] }}</a>
-                                    </td></tr>
-                                @endforeach
-                            </table>
-                        </div>
-                    </span>
-                @endif
-            </div>
         </div>
         @else
             
@@ -121,11 +126,80 @@
             </style>
             @endif
             <div class="logged-out-header-search">
-            	<form class="clearfix">
-                	<button class="catalogue-button">
+            	<div class="activate-dropdown left relative">
+                	<button aria-expanded="false" data-toggle="dropdown" 
+                            class="catalogue-button dropdown-toggle" type="button" id="btnGroupDrop2">
                     	<i class="wa-tiny-list"></i>
                     	<em>{{trans('general.catalogue')}}</em>
                     </button>
+                    <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
+                    	<ul>
+                        	<li>
+                            	<a href="#">Business & Marketing</a>
+                            </li>
+                        	<li class="dropdown-list">
+                            	Business & Marketing <i class="wa-chevron-right"></i>
+                                <ul>
+                                    <li>
+                                        <a href="#">Entrepreneurship</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Entrepreneurship</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Entrepreneurship</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Entrepreneurship</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Entrepreneurship</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Entrepreneurship</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Entrepreneurship</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Entrepreneurship</a>
+                                    </li>                                
+                                </ul>
+                            </li>
+                        	<li>
+                            	<a href="#">Business & Marketing</a>
+                            </li>
+                        	<li>
+                            	<a href="#">Business & Marketing</a>
+                            </li>
+                        	<li>
+                            	<a href="#">Business & Marketing</a>
+                            </li>
+                        	<li>
+                            	<a href="#">Business & Marketing</a>
+                            </li>
+                        	<li>
+                            	<a href="#">Business & Marketing</a>
+                            </li>
+                        	<li>
+                            	<a href="#">Business & Marketing</a>
+                            </li>
+                        	<li>
+                            	<a href="#">Business & Marketing</a>
+                            </li>
+                        	<li>
+                            	<a href="#">Business & Marketing</a>
+                            </li>
+                        	<li>
+                            	<a href="#">Business & Marketing</a>
+                            </li>
+                        	<li>
+                            	<a href="#">Business & Marketing</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <form>
                     <div>
                     	<button><i class="wa-search"></i></button>
                         <input type="search" name="header-search" class="header-search" placeholder="Search...">
