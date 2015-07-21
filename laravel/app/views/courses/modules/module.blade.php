@@ -2,7 +2,7 @@
 	<div class="new-module">
         <span>
         	{{ trans('general.module') }} 
-            <span class="module-order">{{ $module->order }}</span>
+            <span class="module-order" data-module-id="{{$module->id}}">{{ $module->order }}</span>
         </span>
         <input type="hidden" class="module-order ajax-updatable" value="{{$module->order}}"
                data-url='{{action('ModulesController@update', [$module->course->id, $module->id] )}}' data-name='order' /> 
@@ -18,7 +18,7 @@
                 <span></span>
             </div>
             {{ Form::open(array('action' => ['ModulesController@destroy', $module->course->id, $module->id], 'method' => 'delete', 
-                        'class' => 'ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '#module-'.$module->id )) }}
+                        'class' => 'ajax-form inline-block', 'data-callback' => 'deleteCurriculumItem', 'data-delete' => '#module-'.$module->id )) }}
                     <button type="submit" name="delete-module-{{$module->id}}" class="delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}"></button>
             {{ Form::close() }}
         </div>
