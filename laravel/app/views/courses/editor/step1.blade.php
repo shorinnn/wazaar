@@ -116,79 +116,108 @@
                     	<h4 class="clearfix">Requirements
 							<span class="lead regular-paragraph">What user need to know in order to complete course.</span>                        
                         </h4>
-                        <div class="margin-top-20 clearfix">
+                        <div class="margin-top-20 clearfix requirements-box">
 							<?php $i = 1;?>
                             @if($values = json2Array($course->requirements))
                                 @foreach($values as $val)
-                                <div class="relative clonable-input clearfix clonable-{{time().$i}}">
+                                <div class="relative clonable-input clearfix clonable-req-{{time().$i}}">
                                     <span class="cloned-number">{{$i}}</span>
-                                    <input type='text' name='requirements[]' data-clonable-max='5' value='{{$val}}' class="clonable clonable-{{time().$i}}"  /><br />
-                                     <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"><i class="fa fa-times"></i></a>
+                                    <!--<input type='text' name='requirements[]' data-clonable-max='5' value='{{$val}}' class="clonable clonable-{{time().$i}}"  /><br />-->
+                                    <!--<a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"><i class="fa fa-times"></i></a>-->
+                                    <input type='text' name='requirements[]' value='{{$val}}' /><br />
+                                    <a href="#" tabindex="-1" data-delete=".clonable-req-{{time().$i}}"
+                                       class="style-one delete-clonable">
+                                        <i class="fa fa-times" data-delete=".clonable-req-{{time().$i}}"></i>
+                                    </a>
                                  </div>
                                     <?php ++$i; ?>
                                 @endforeach
                             @endif
         
-                            <div class="relative clonable-input clearfix clonable-{{time().$i}}">
+                            <div class="relative clonable-input clearfix clonable-req-{{time().$i}}">
                                 <span class="cloned-number">{{$i}}</span>     
-                                    <input type='text' name='requirements[]' data-clonable-max='5' class="clonable clonable-{{time().$i}}"
+                                    <input type='text' name='requirements[]'
                                    @if(count($values)==0) required @endif /> 
-                                    <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"><i class="fa fa-times"></i></a>
+                                    <a href="#" tabindex="-1" class="style-one delete-clonable"  data-delete=".clonable-req-{{time().$i}}">
+                                        <i class="fa fa-times"  data-delete=".clonable-req-{{time().$i}}"></i>
+                                    </a>
                             </div>
                         </div>
-                        <a href="#" class="clone-field"><i class="fa fa-plus"></i> Add requirement...</a>
+                        <a href="#" class="clone-field" onclick="cloneBox(event)" data-class="clonable-req"
+                           data-name="requirements[]" data-target=".requirements-box">
+                            <i class="fa fa-plus"></i> Add requirement...
+                        </a>
                     </div>
                     <div class="margin-top-80">
                         <h4>{{ trans('courses/general.who_is_this_for') }}
                         	<span class="lead regular-paragraph">{{ trans('courses/general.who-benefits-most') }}</span>
                         </h4>
-                        <div class="margin-top-20 clearfix">
+                        <div class="margin-top-20 clearfix who-box">
                             <?php $i = 1;?>
                             @if($values = json2Array($course->who_is_this_for))
                                 @foreach($values as $val)
-                                <div class="relative clearfix clonable-input clonable-{{time().$i}}">
+                                <div class="relative clearfix clonable-input clonable-who-{{time().$i}}">
                                     <span class="cloned-number">{{$i}}</span>
-                                    <input type='text' name='who_is_this_for[]' data-clonable-max='5' value='{{$val}}' class="clonable clonable-{{time().$i}}"  /><br />
-                                     <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"><i class="fa fa-times"></i></a>
+                                    <input type='text' name='who_is_this_for[]' value='{{$val}}' /><br />
+                                     <a href="#" tabindex="-1" data-delete=".clonable-who-{{time().$i}}"
+                                       class="style-one delete-clonable">
+                                        <i class="fa fa-times" data-delete=".clonable-who-{{time().$i}}"></i>
+                                    </a>
                                  </div>
                                     <?php ++$i; ?>
                                 @endforeach
                             @endif
                             
-                            <div class="relative clonable-input clearfix">
-                                    <span class="cloned-number">{{$i}}</span>  
-                                    <input type='text' name='who_is_this_for[]'  class="clonable clonable-{{time().$i}}"  
-                                           @if(count($values)==0) required @endif />
-                                    <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"><i class="fa fa-times"></i></a>
-                            </div>
+                            <div class="relative clearfix clonable-input clonable-who-{{time().$i}}">
+                                <span class="cloned-number">{{$i}}</span>
+                                <input type='text' name='who_is_this_for[]' /><br />
+                                 <a href="#" tabindex="-1" data-delete=".clonable-who-{{time().$i}}"
+                                   class="style-one delete-clonable">
+                                    <i class="fa fa-times" data-delete=".clonable-who-{{time().$i}}"></i>
+                                </a>
+                             </div>
                         </div>
-                        <a href="#" class="clone-field"><i class="fa fa-plus"></i> Add requirement...</a>
+                        
+                        <a href="#" class="clone-field" onclick="cloneBox(event)" data-class="clonable-who"
+                           data-name="who_is_this_for[]" data-target=".who-box">
+                            <i class="fa fa-plus"></i> Add requirement...
+                        </a>
+                        
                     </div>
                     <div class="margin-top-80">
                         <h4>
                                 {{ trans('courses/general.by_the_end') }}
                             <span class="lead regular-paragraph">{{ trans('courses/general.skills_to_be_learnt') }}</span>
                         </h4>
-                        <div class="margin-top-20 clearfix">
+                        <div class="margin-top-20 clearfix what-box">
                             <?php $i = 1;?>
                             @if($values = json2Array($course->what_will_you_achieve))
                                 @foreach($values as $val)
-                                    <div class="relative clearfix clonable-input clonable-{{time().$i}}">
+                                    <div class="relative clearfix clonable-input clonable-what-{{time().$i}}">
                                         <span class="cloned-number">{{$i}}</span>
-                                        <input type='text' name='what_will_you_achieve[]' data-clonable-max='5' value='{{$val}}' class="clonable clonable-{{time().$i}}"  /><br />
-                                         <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"><i class="fa fa-times"></i></a>
+                                        <input type='text' name='what_will_you_achieve[]' value='{{$val}}' /><br />
+                                         <a href="#" tabindex="-1" data-delete=".clonable-what-{{time().$i}}"
+                                           class="style-one delete-clonable">
+                                            <i class="fa fa-times" data-delete=".clonable-what-{{time().$i}}"></i>
+                                        </a>
                                      </div>
                                     <?php ++$i; ?>
                                 @endforeach
                             @endif
-                            <div class="relative clonable-input clearfix">
-                                    <span class="cloned-number">{{$i}}</span>  
-                                    <input type='text' name='what_will_you_achieve[]'  class="clonable clonable-{{time().$i}}"  
-                                           @if(count($values)==0) required @endif /> 
-                                    <a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"><i class="fa fa-times"></i></a>
+
+                            <div class="relative clearfix clonable-input clonable-what-{{time().$i}}">
+                                <span class="cloned-number">{{$i}}</span>
+                                <input type='text' name='what_will_you_achieve[]' /><br />
+                                 <a href="#" tabindex="-1" data-delete=".clonable-what-{{time().$i}}"
+                                   class="style-one delete-clonable">
+                                    <i class="fa fa-times" data-delete=".clonable-what-{{time().$i}}"></i>
+                                </a>
                             </div>  
                         </div> 
-                        <a href="#" class="clone-field"><i class="fa fa-plus"></i> Add requirement...</a>                 
+                        <a href="#" class="clone-field" onclick="cloneBox(event)" data-class="clonable-what"
+                           data-name="what_will_you_achieve[]" data-target=".what-box">
+                            <i class="fa fa-plus"></i> Add requirement...
+                        </a>            
                     </div>
                 </div>
                 
@@ -225,6 +254,23 @@
 <script src="{{url('js/bootstrap-datetimepicker.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
 
+        function cloneBox(e){
+           e.preventDefault();
+           target = $(e.target).attr('data-target'); 
+           name = $(e.target).attr('data-name'); 
+           cssClass = $(e.target).attr('data-class'); 
+           cssClass += '-'+uniqueId();
+           $target = $(target);
+           newBox = $target.find('.relative').last().clone();
+           newBox.removeClass();
+           newBox.addClass('relative clonable-input clearfix '+cssClass);
+           newBox.find('input').val('');
+           newBox.find('.delete-clonable').attr('data-delete', '.'+cssClass);
+           newBox.find('.delete-clonable .fa').attr('data-delete', '.'+cssClass);
+           $target.append(newBox);
+           reorderClonable(name);
+        }
+        
         $(function (){
             
             $('.course-description-video-preview').click(function(){

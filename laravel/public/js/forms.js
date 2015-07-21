@@ -247,10 +247,12 @@ function reorderClonable(name){
  */
 function deleteClonable(e){
     e.preventDefault();
-    name = $(e.target).parent().find('input').attr('name');
+    del = $(e.target).attr('data-delete');
+    name = $(del).find('input').attr('name');
     if( $('[name="'+name+'"]').length == 1 ) return false;
     $(e.target).parent().fadeOut( function(){
         $(e.target).parent().remove();
+        $(del).remove();
         reorderClonable( name );
     });
     
