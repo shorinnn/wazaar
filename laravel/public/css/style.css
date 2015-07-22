@@ -2446,6 +2446,12 @@ h5{
 	margin: -264px 0 0;
 }
 
+.pre-view-image.video-player {
+	max-width: 680px;
+	max-height: 385px;
+	overflow: hidden;
+}
+
 .course-details-player video{
 	border-radius: 5px;
 	overflow: hidden;
@@ -2690,7 +2696,7 @@ h5{
 }
 
 .lesson-topics li .lesson-name{
-	display: inline-block;
+	float: left;
 	color: #41474d;
 	font-size: 14px;
 	padding: 20px 20px 20px 0;
@@ -2699,12 +2705,12 @@ h5{
 .lesson-topics li span{
     background: #d7d8d9;
     border-radius: 26px;
-    display: inline-block;
+    float: left;
     height: 28px;
     line-height: 28px;
     position: relative;
     text-align: center;
-    top: 1px;
+    top: 14px;
 	margin-right: 22px;
     width: 28px;
 }
@@ -2804,16 +2810,14 @@ h5{
 
 .user-thumb{
 	float: left;
-	width: 93px;
+	/*width: 93px;*/
 }
 
 .user-thumb img{
 	display: block;
-	width: 70px;
-	height: 70px;
 	border: none;
 	margin: 0 auto;
-	border-radius: 70px;
+	border-radius: 100%;
 	background: #ebeced;
 }
 
@@ -2827,8 +2831,6 @@ h5{
 
 .user-review{
 	float: left;
-	margin-left: 30px;
-	max-width: 420px;
 	position: relative;
 }
 
@@ -9643,7 +9645,7 @@ footer{
 
 @media (max-width: 1200px) and (min-width: 991px){
 .course-data .column-1 div{
-	padding: 15px 30px 12px;
+	padding: 15px 30px 12px !important;
 }
 
 .video-container .control div.btn{
@@ -9711,6 +9713,10 @@ footer{
 }
 
 @media (max-width:991px){
+	.text-center-mobile{
+		text-align: center;
+	}
+
 	.course-detail-top-section .instructor{
 		text-align: center;
 	}
@@ -9882,8 +9888,18 @@ footer{
 	
 }
 
+@media (min-width:768px) and (max-width: 800px) {
+	header .top-menu .logged-out li a{
+		padding: 11px 14px;
+	}
+}
 
 @media (max-width:767px){
+
+.user-thumb{
+	max-width: 70px;
+}
+
 .module-box{
 	padding-right: 20px;
 }
@@ -9892,7 +9908,7 @@ footer{
 	width: 74%;
 }
 
-header .top-menu .logged-out-header-search form .catalogue-button em{
+header .top-menu .logged-out-header-search .catalogue-button em{
 	display: none;
 }
 
@@ -10050,6 +10066,20 @@ header .top-menu .logged-out-header-search form .catalogue-button em{
 .instructor-mycourses .course-wrapper .bottom-bar{
 	margin-top: 35px;
 }
+
+header .top-menu .logged-out li a{
+	padding: 7px 10px;
+}
+
+header .main-logo{
+	margin: 10px 20px 30px 0;
+}
+
+header .top-menu .logged-out-header-search{
+	margin: 25px 0;
+	clear: both;
+	float: none;
+}
 }
 
 @media (max-width:752px){
@@ -10132,6 +10162,15 @@ header .top-menu li{
 }
 
 @media (max-width:552px){
+	.lesson-topics li .buttons{
+		margin-top: 14px;
+	}
+	
+	.lesson-topics li .buttons .blue-button{
+		padding: 5px 10px !important;
+		font-size: 11px;
+	}
+	
 	.course-data .column-1 div{
 		padding: 15px 15px 12px !important;
 	}
@@ -10318,7 +10357,7 @@ header .top-menu li{
 	
 	.lesson-topics li .buttons{
 		margin-right: 10px;
-		float: none;
+		float: right;
 	}
 
 	.lesson-topics li .buttons a{
@@ -10333,6 +10372,10 @@ header .top-menu li{
 @media (max-width:353px){
 	.instructor-mycourses .course-wrapper .bottom-bar .status-box{
 		left: 1%;
+	}
+	
+	header .top-menu .logged-out-header-search form div input{
+		width: 130px;
 	}
 	
 }

@@ -125,6 +125,16 @@
                 }
             </style>
             @endif
+            <ul class="logged-out visible-xs-block hidden-sm hidden-md hidden-lg">
+                <li>
+                    <!--<a href="{{ action('UsersController@login') }}" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> -->
+                    <a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> 
+                </li>
+                <li class="register-button">
+                    <!--<a href="{{ action('UsersController@create') }}" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
+                    <a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>
+                </li>
+            </ul>
             <div class="logged-out-header-search">
             	<div class="activate-dropdown left relative">
                 	<button aria-expanded="false" data-toggle="dropdown" 
@@ -206,7 +216,7 @@
                     </div>
                 </form>
             </div>
-            <ul class="logged-out">
+            <ul class="logged-out hidden-xs">
                 <li>
                     <!--<a href="{{ action('UsersController@login') }}" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> -->
                     <a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> 
