@@ -268,6 +268,7 @@ function deleteClonable(e){
  */
 function deleteItem(result, event){
     identifier = $(event.target).attr('data-delete');
+    console.log(identifier);
     $(identifier).remove();
 }
 

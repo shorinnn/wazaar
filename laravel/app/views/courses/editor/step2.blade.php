@@ -4,7 +4,7 @@
             <h2>Overview</h2>
             <ol>
                 @foreach($course->modules as $module)
-                    <li>
+                    <li class="shr-editor-module-{{$module->id}}">
                         <a href="#">{{ $module->name }}</a>
                         <ol>
                             @foreach($module->lessons as $lesson)

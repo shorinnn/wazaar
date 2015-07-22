@@ -4,7 +4,7 @@ class ModulesController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor' );
-            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy']]);
+            $this->beforeFilter('csrf', ['only' => [ 'store', 'update' ]]);
         }
         
         public function store($course){
@@ -59,7 +59,8 @@ class ModulesController extends \BaseController {
             if($module!=null && ( $module->course->instructor->id == Auth::user()->id 
                     || $module->course->assigned_instructor_id == Auth::user()->id ) ){
                 $name = Input::get('name');
-                $module->$name = Input::get('value');
+                $module->fill( Input::all() );
+                
                 if($module->save()){
                     $response = ['status' => 'success'];
                     return json_encode($response);

@@ -210,6 +210,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::resource('courses', 'CoursesController');
     Route::get('courses/{slug}/custompercentage/', 'CoursesController@customPercentage');
     // Modules routes
+    Route::get('course/{course}/module/{id}/destroy', 'ModulesController@destroy');
     Route::resource('courses.modules', 'ModulesController');
 
     // Lessons
