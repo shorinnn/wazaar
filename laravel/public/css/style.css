@@ -3865,6 +3865,7 @@ h5{
 
 .classroom-view{
 	background-color: #18222b;
+	position: relative;
 }
 
 .classroom-view .classroom-header{
@@ -4106,11 +4107,13 @@ h5{
 	padding-bottom: 17px;
 }
 
+.questions-sidebar .questions-box.active,
 .questions-sidebar .questions-box:hover{
 	background: #303941;
 	cursor: pointer;
 }
 
+.questions-sidebar .questions-box.active .question-title,
 .questions-sidebar .questions-box:hover .question-title{
 	color: #fff;
 }
@@ -4296,6 +4299,7 @@ h5{
 	padding: 12px 30px;
 }
 
+.ask-question-fields .avatar,
 .discussion-sidebar-footer .avatar{
 	height: 36px;
 	width: 36px;
@@ -4316,6 +4320,256 @@ h5{
 	color: #798794;
 	font-size: 13px;
 	padding: 0 12px;
+}
+
+/*Ask question sidebar*/
+.ask-question-fields{
+	padding: 0 30px;
+}
+
+.ask-question-fields .avatar{
+	margin-top: 7px;
+	margin-right: 0;
+}
+
+.ask-question-fields form{
+	float: left;
+	width: 100%;
+}
+
+.ask-question-fields input{
+	border: solid #e0e1e2;
+	border-width: 0 0 1px;
+	padding: 0 3px;
+	font-size: 20px;
+	color: #303941;
+	height: 53px;
+	float: left;
+	margin-bottom: 42px;
+}
+
+.ask-question-fields textarea{
+	border: solid #e0e1e2;
+	border-width: 0 0 1px;
+	padding: 0 2px;
+	font-size: 13px;
+	color: #798794;
+	height: 42px;
+	resize: none;
+	margin: 0 0 20px;
+}
+
+.ask-question-fields-footer{
+	background: #fff;
+	border-top: solid 1px #e0e1e2;
+	padding: 12px 30px;
+	margin-top: 71%;
+}
+
+.ask-question-fields-footer .buttons{
+	float: right;
+}
+
+.ask-question-fields-footer .buttons .cancel{
+	margin-right: 20px;
+}
+
+/*Left Menu*/
+.classroom-view .slide-menu{
+	width: 300px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: -400px;
+	z-index: 8;
+	background: #fff;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.classroom-view .slide-menu.in{
+	left: 0;
+}
+
+
+.classroom-view .slide-menu .header{
+	padding: 22px 0 0;
+	background: #0099ff;
+}
+
+.classroom-view .slide-menu .header .course{
+	font-weight: bold;
+	font-size: 12px;
+	color: #fff;
+	float: left;
+}
+
+.classroom-view .slide-menu .header .course{
+	margin-left: 30px;
+}
+
+.classroom-view .slide-menu .header .course i{
+	position: relative;
+	top: 2px;
+	margin-right: 10px;
+	font-size: 14px;
+}
+
+.classroom-view .slide-menu .header .toggler{
+	font-size: 21px;
+	float: right;
+	color: #0073bf;
+	cursor: pointer;
+	margin-right: 30px;
+}
+
+.classroom-view .slide-menu .header h2{
+	font-size: 20px;
+	color: #fff;
+	margin: 27px 30px 30px;
+	line-height: 26px;
+}
+
+.classroom-view .slide-menu .header .progress-box{
+	padding: 18px 30px;
+	background: #0091f2;
+}
+
+.classroom-view .slide-menu .header .progress-box .progress{
+	height: 7px;
+	padding: 1px 2px;
+	border-radius: 5px;
+	background: #0082d9;
+	box-shadow: none;
+	width: 80%;
+	margin: 0;
+	display: inline-block;
+}
+
+.classroom-view .slide-menu .header .progress-box .progress-bar{
+	background: #fff;
+	border-radius: 5px;
+}
+
+.classroom-view .slide-menu .header .progress-box .progress-count{
+	margin-left: 19px;
+	font-size: 11px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.classroom-view .slide-menu .course-topics-box{
+	background: #fff;
+}
+
+.classroom-view .slide-menu .course-topics-box .topic-header{
+	background: #e8eced;
+	padding: 16px 23px;
+}
+
+.classroom-view .slide-menu .course-topics-box .topic-header h3{
+	font-size: 11px;
+	font-weight: bold;
+	color: #798794;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.classroom-view .slide-menu .course-topics-box .topic-header h3 em{
+	font-style: normal;
+}
+
+.classroom-view .slide-menu .course-topics-box .topic-header span{
+	font-size: 11px;
+	font-weight: bold;
+	color: #a7b7c4;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics{
+	padding: 0 25px 0;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul{
+	margin: 0;
+	padding: 25px 0 0;
+    border-left: solid 2px #e4e9ed;
+ }
+
+.classroom-view .slide-menu .course-topics-box .topics ul li{
+	padding-bottom: 20px;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a{
+	line-height: 18px;
+	font-size: 13px;
+	color: #798794;
+	padding-left: 24px;
+	display: block;
+	position: relative;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li.completed a{
+	color: #303941;
+	font-weight: 600;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a span{
+	position: absolute;
+	top: 3px;
+	left: -7px;
+	height: 12px;
+	width: 12px;
+	border: solid 2px transparent;
+	display: block;
+	border-radius: 12px;
+	padding: 1px;
+	background-color: #fff;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a:hover span{
+	border-color: #0099ff;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li.completed a:hover span{
+	border-color: transparent;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a span em{
+	font-style: normal;
+	display: inline-block;
+	height: 6px;
+	width: 6px;
+	border-radius: 6px;
+	background: #a7b7c4;
+	position: absolute;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a span i{
+	display: none;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a:hover span em{
+	background: #fff;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a:focus,
+.classroom-view .slide-menu .course-topics-box .topics ul li a:hover{
+	outline: none;
+	color: #0099ff;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li.completed em{
+	display: none;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li.completed i{
+	display: block;
+	font-size: 11px;
+	color: #303941;
+	position: relative;
+	top: -4px;
+	left: -4px;
 }
 
 /************* New Classroom Pages End*************/

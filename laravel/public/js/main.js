@@ -49,6 +49,7 @@ $(document).ready(function(){
 	askTeacherQuestion();
 	searchFormFocusStyle();
 	showMoreContent();
+	toggleSideMenu();
 	//stickyFooter();
 	rescaleBckgrdOverlay();
 	$(window).resize(function() {
@@ -1328,3 +1329,9 @@ function xmlToJson(xml) {
 	}
 	return obj;
 };
+
+function toggleSideMenu(){
+	$('.slide-menu-toggler').on('click', function(){
+		$('.slide-menu').toggleClass('in');	
+	});	
+}
