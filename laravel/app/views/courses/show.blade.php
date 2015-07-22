@@ -441,6 +441,26 @@
                                 data-more-text='Show more lessons'>Show more lessons</span>
                         </div>
                         @endforeach
+                        
+                        <div class="reviews instructed-by clearfix module-box">
+                            <div class="row">
+                                <div class="user-thumb col-xs-3 col-sm-2 col-md-2 col-lg-2">
+                                	<img src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" class="img-responsive" />
+                                </div>
+                                <div class="user-review col-xs-9 col-sm-10 col-md-10 col-lg-10">
+                                  <div class="clearfix margin-bottom-20">
+                                  	<h4>Instructed by <em class="name"> Saulius Kirklys</em></h4>
+                                    <span class="role">Visual Designer</span>
+                                  </div>
+                                  <p class="regular-paragraph expandable-content">
+                                    Saulius is a designer, speaker and teacher. He designs great User interfaces at Cocorium.         
+                                  </p>
+                                  <div class="fadeout-text"></div>
+                                  <span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }}</span>                                
+                                </div>
+                            </div>
+                        </div>
+                        
                         @if($course->allTestimonials->count() > 0)
                         <div class="lesson-reviews">
                             <h2>{{ $course->testimonials()->count() }} {{ trans("courses/general.reviews") }}</h2>

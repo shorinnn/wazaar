@@ -2840,6 +2840,33 @@ h5{
 	max-height: 90px;
 }
 
+.instructed-by p{
+	font-size: 13px;	
+	color: #798794;
+	margin: 0;
+}
+
+.instructed-by h4{
+	font-size: 15px;
+	font-weight: 600;
+	color: #798794;
+	margin: 0;#303941
+}
+
+.instructed-by h4 .name{
+	font-style: normal;
+	color: #303941;
+}
+
+.instructed-by .role{
+	display: block;
+	margin-top: 8px;
+	text-transform: uppercase;
+	font-size: 11px;
+	font-weight: bold;
+	color: #a7b7c4;
+}
+
 .fadeout-text {
     position: relative; 
     height: 60px;
@@ -10714,6 +10741,11 @@ header .top-menu li{
 .margin-bottom-15
 {
 	margin-bottom: 15px;
+}
+
+.margin-bottom-20
+{
+	margin-bottom: 20px !important;
 }
 
 .margin-bottom-30
