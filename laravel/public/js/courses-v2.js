@@ -56,14 +56,13 @@ function sortablizeLessons(id){
 
 function reorderModulesAndLessons(){
     var i = 1;
+    modules = [];
     $('span.module-order').each(function(){
         $(this).html(i);
-        $(this).parent().parent().find('input.module-order').val(i);
-        $(this).parent().parent().find('input.module-order').trigger('change');
-        module_id = $(this).attr('data-module-id');
-        reorderLessons( 'lessons-holder-'+module_id );
+        modules.push( $(this).attr('data-id') );
         ++i;
     });
+    console.log(modules);
 
 }
 
@@ -516,4 +515,53 @@ function deleteCurriculumItem( event, result ){
     reorderModulesAndLessons();
     $('.step3-lesson-count').html( $('.new-lesson').length );
     $('.step3-module-count').html( $('.new-module').length );
+}
+
+
+$('body').delegate('a.link-to-remote-confirm', 'click', linkToRemoteConfirm);
+
+function linkToRemoteConfirm(e){
+    e.preventDefault();
+    // get the message from the clicked button, don't hard code it (so we can use localization)
+    msg = $(e.target).attr('data-message');
+    elem = $(e.target);
+    while(typeof(msg)=='undefined'){
+        elem = elem.parent();
+        msg = elem.attr('data-message');
+    }
+    if( !confirm(msg) ) return false;
+    
+    var nofollow = $(e.target).attr('data-nofollow');
+    if( typeof(nofollow)!='undefined'&& nofollow==1 ) return false;
+    
+    var loading = $(e.target).attr('data-loading');
+    if( typeof(loading)!='undefined'&& loading==1 ) return false;
+    
+    url = $(e.target).attr('data-url');
+    var callback = $(e.target).attr('data-callback');
+    elem = $(e.target);
+    while(typeof(url)=='undefined'){
+        elem = elem.parent();
+        url = elem.attr('data-url');
+        callback = elem.attr('data-callback');  
+        e.target = elem;
+    }
+    
+    $(elem).attr('data-old-label', $(elem).html() );
+    $(elem).html( '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $.get(url, function(result){
+        $(e.target).attr('data-loading', 0);
+        $(elem).html( $(elem).attr('data-old-label') );
+        result = JSON.parse(result);
+        if(result.status == 'success' ){
+            if( typeof(callback)!= 'undefined'){
+                window[callback](e, result);
+            }
+        }
+        else{
+            console.log( result );
+            $.bootstrapGrowl( _('An Error Occurred.'),{align:'center', type:'danger'} );
+        }
+    });
+
 }

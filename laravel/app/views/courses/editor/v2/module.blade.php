@@ -2,7 +2,7 @@
     {{ Form::model( $module, ['action' => ['ModulesController@update', $module->course->id, $module->id], 'method' => 'PUT', 'class' => 'ajax-form' ] ) }}
         <div class="row module-data">
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                <span class="module-name">Module {{$module->order}}</span>
+                <span class="module-name">Module <span data-id="{{$module->id}}" class="module-order">{{$module->order}}</span></span>
             </div>
             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                 <!--<input type="text" name="module-name" placeholder="Enter module title">-->
@@ -23,10 +23,11 @@
                 <button type="reset" class="default-button large-button">Cancel</button>
                 
                 
-                <a href="{{ action('ModulesController@destroy', [ $module->course->id, $module->id]) }}" class="delete-lesson right link-to-remote"
+                <a href="{{ action('ModulesController@destroy', [ $module->course->id, $module->id]) }}" class="delete-lesson right link-to-remote-confirm"
                    data-url="{{ action('ModulesController@destroy', [ $module->course->id, $module->id]) }}" data-callback = 'deleteCurriculumItem' 
-                   data-delete = '.shr-editor-module-{{ $module->id }}' >
+                   data-delete = '.shr-editor-module-{{ $module->id }}' data-message="{{ trans('crud/labels.you-sure-want-delete') }}">
                     <i class="fa fa-trash-o" data-callback = 'deleteCurriculumItem' data-delete = '.shr-editor-module-{{ $module->id }}'
+                       data-message="{{ trans('crud/labels.you-sure-want-delete') }}" 
                        data-url="{{ action('ModulesController@destroy', [ $module->course->id, $module->id]) }}" ></i> Delete this module
                 </a>
                 
