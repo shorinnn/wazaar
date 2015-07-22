@@ -109,5 +109,6 @@ return array(
     'positive' => 'Positive',
     'mixed' => 'Mixed',
     'negative' => 'Negative',
+    'st-referrals' => 'ST Referrals',
     
 );

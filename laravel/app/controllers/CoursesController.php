@@ -64,6 +64,12 @@ class CoursesController extends \BaseController {
         }
         
          public function edit($slug, $step=0){
+            // delete dashboard modules
+            foreach( Module::where('order','99999')->get() as $m ){
+                $m->delete();
+            }
+            // delete dashboard modules
+            
             $course = Course::where('slug',$slug)->first();
             if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 if( !admin() ){
@@ -83,22 +89,23 @@ class CoursesController extends \BaseController {
                 $images = $images->merge( $assignedInstructor->coursePreviewImages );
                 $bannerImages = $bannerImages->merge( $assignedInstructor->courseBannerImages );
             }
-            $instructors =  Instructor::whereHas(
-                'roles', function($q){
-                    $q->where('name', 'instructor');
-                }
-            )->get();
+//            $instructors =  Instructor::whereHas(
+//                'roles', function($q){
+//                    $q->where('name', 'instructor');
+//                }
+//            )->get();
             $assignableInstructors = ['null' => 'Not Assigned'];
-            foreach($instructors as $i){
-                $assignableInstructors[$i->id] = $i->commentName();
-            }
+//            foreach($instructors as $i){
+//                $assignableInstructors[$i->id] = $i->commentName();
+//            }
 
             $awsPolicySig = UploadHelper::AWSPolicyAndSignature();
             $uniqueKey = Str::random();
             
             $filePolicy = UploadHelper::AWSAttachmentsPolicyAndSignature();
             
-            $affiliates = ProductAffiliate::arrayWithProfile();
+//            $affiliates = ProductAffiliate::arrayWithProfile();
+            $affiliates = [];
             
             switch($step){
                 case 0: $view = 'courses.editor.form'; break;
@@ -132,6 +139,15 @@ class CoursesController extends \BaseController {
             $course = Course::where('slug',$slug)->first();
             
             if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
+                if( admin() ){
+                    if( Request::ajax() ){
+                        $response = ['status' => 'success', 'url' => action('CoursesController@edit', $course->slug) ];
+                        return json_encode($response);
+                    }
+                    return Redirect::action('CoursesController@edit', $course->slug)
+                            ->withSuccess( trans('crud/errors.object_updated',['object' => 'Course']) );
+                }
+                
                 return Redirect::action('CoursesController@index');
             }
             if( Input::has('publish_status') && Input::get('publish_status')==1 ){
@@ -156,10 +172,30 @@ class CoursesController extends \BaseController {
             if(Input::has('sale_ends_on') ) $course->sale_ends_on = (Input::get('sale_ends_on')) ?  date('Y-m-d H:i:s', strtotime(Input::get('sale_ends_on')) ) : null;
             if(Input::has('ask_teacher') ) $course->ask_teacher = Input::get('ask_teacher');
             if(Input::has('details_displays') ) $course->details_displays = Input::get('details_displays');
-            if(Input::has('assigned_instructor_id') ) $course->assigned_instructor_id = Input::get('assigned_instructor_id') == 0 ? null : Input::get('assigned_instructor_id');
+            $notify_assigned = false;
+            if(Input::has('assigned_instructor_id') ){
+                if( Input::get('assigned_instructor_id') != 0 && Input::get('assigned_instructor_id') !=  $course->assigned_instructor_id ){
+                    $notify_assigned = true;
+                }
+                $course->assigned_instructor_id = Input::get('assigned_instructor_id') == 0 ? null : Input::get('assigned_instructor_id');
+            }
             if(Input::has('show_bio') ) $course->show_bio = Input::get('show_bio');
             if(Input::has('custom_bio') ) $course->custom_bio = Input::get('custom_bio');
             if($course->updateUniques()){
+                if ( $notify_assigned ){
+                    $instructor = $course->instructor;
+                    $assigned = $course->assignedInstructor;
+                    Mail::send(
+                        'emails.assigned_instructor',
+                        compact('instructor' , 'assigned' , 'course' ),
+                        function ($message) use ($instructor, $assigned) {
+                            $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
+                            $message
+                                ->to($assigned->email, $assigned->email)
+                                ->subject( 'Wazaar Assignment' );
+                        }
+                    );
+                }
                 if ( Input::hasFile('preview_image') ){
                     $img = $course->upload_preview( Input::file('preview_image')->getRealPath()); 
                     if( !$img ){
@@ -343,10 +379,10 @@ class CoursesController extends \BaseController {
                     $student->saveReferral(Input::get('aid'), $course->id);
                 }
             }
-            $video = $course->videoBlocks();
-            if($video!=null) $video = $video->first();
+//            $video = $course->videoBlocks();
+//            if($video!=null) $video = $video->first();
             // temporary video TODO: remove this
-            Course::whereNull('description_video_id')->update(['description_video_id' => 1]);
+//            Course::whereNull('description_video_id')->update(['description_video_id' => 1]);
             $video = $course->descriptionVideo;
 
             if( serveMobile() ) 

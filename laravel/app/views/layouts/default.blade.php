@@ -338,7 +338,7 @@
     
     @yield('extra_js')
 		<script type="text/javascript">
-            window.reloadConfirm = false;
+                window.reloadConfirm = false;
 
                          window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
                          _.setTranslation( js_translation_map_{{ Config::get('app.locale') }} );

@@ -22,8 +22,8 @@
                                 <a href="#" class="intermediate level-buttons">Intermediate</a>
                             </div>
                             <div class="toggle-menus">
-                            	<a href="#" class="menu menu-1"></a>
-                                <a href="#" class="menu menu-2"></a>
+                            	<a href="#" class="menu menu-1"><i class="fa fa-th"></i></a>
+                                <a href="#" class="menu menu-2"><i class="fa fa-th-list"></i></a>
                             </div>
                         </div>
                     </div>

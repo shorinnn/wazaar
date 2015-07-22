@@ -25,6 +25,7 @@ if( !isset($_SERVER['HTTP_HOST'])){
 Route::resource('lp', 'LpController');
 Route::get('loginTest', 'SiteController@loginTest');
 Route::get('clear-cache/huehue', 'SiteController@clearCache');
+
 $wwwRoutes = function(){
 //Route::group( array('domain' =>  $domain), function(){
     // Site routes
@@ -46,6 +47,7 @@ $wwwRoutes = function(){
 	Route::get('courses/edit/step_1', 'SiteController@edit_description');
 	Route::get('courses/edit/step_3', 'SiteController@edit_settings');
 	Route::get('checkout', 'SiteController@checkout');
+	Route::get('newclassroom', 'SiteController@newclassroom');
 
     // temporary tracking route
     Route::post('action-tracker', 'ActionController@track');

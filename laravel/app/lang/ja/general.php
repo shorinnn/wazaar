@@ -85,5 +85,6 @@ return array(
     'negative' => 'Negative',
     'i-agree' => '同意する',
     'accept' => '確認して次へ',
+    'st-referrals' => '販売者登録者数',
  
 );

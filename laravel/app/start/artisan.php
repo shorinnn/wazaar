@@ -19,4 +19,5 @@ Artisan::add(new StudentBalanceDebitRefundCommand);
 Artisan::add(new DynamoGCCommand);
 Artisan::add(new SetupCashoutCommand);
 Artisan::add(new ConsolidateCoursesCommand);
+Artisan::add(new ImportToDeliveredCommand);
 

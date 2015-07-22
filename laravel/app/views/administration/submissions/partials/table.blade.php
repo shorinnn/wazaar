@@ -50,7 +50,11 @@
                                  @endif
                             </td>
                             <td class="hidden-xs">
+                                @if($course->instructor == null)
+                                 Invalid Instructor # {{ $course->instructor_id }}
+                                @else
                                  {{ $course->instructor->commentName('instructor') }}
+                                @endif
                             </td>
                             <td>
                                 <a href="{{action('CoursesController@show', $course->slug)}}" target="_blank">

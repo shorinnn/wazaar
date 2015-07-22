@@ -64,9 +64,21 @@ class LpController extends \BaseController {
         }
     
         public function index(){
-            
+            dd('to do stuff');
+//            $delete = [ 1, 2, 5, 9, 15, 16, 17, 18, 24, 25, 26, 27, 349, 387, 684, 4, 6, 7, 8, 10, 11, 360, 624, 675, 685, 984, 985, 1341, 1661, 2134
+//                , 2609, 2610];
+            $delete = [1];
+            foreach($delete as $d){
+                $res = $this->delivered->deleteUser($d);
+            }
+//            
             $users = $this->delivered->getUsers();
-            $user = $users['data'][ count($users['data']) - 1];
+            
+            $users = $users['data'];
+            foreach($users as $user){
+                echo "$user[email] $user[id] <br />";
+            }
+            return;
             if(is_array($user) ) $user = json_decode(json_encode($user), FALSE);
             dd($user);
            
@@ -79,6 +91,9 @@ class LpController extends \BaseController {
                 $user = $users[ count($users) - 1];
                 print_r($user);
             }
+            
+            // remove from LP 
+            $remove_lp = [841, 370, 1278];
 
 //            $list = $this->_getList();
 //            dd($list);
@@ -140,7 +155,7 @@ class LpController extends \BaseController {
                         $result = $this->delivered->executeEmailRequest('immediate', $template->id, $user->id, $variables );
                         if( is_array($response) && $response['success'] == true ){
 //                            return Redirect::action( 'UsersController@create' );
-                            return Redirect::to('lp1/success.php?name='.$firstName);
+                            return Redirect::to('lp1/success.php?name='.$firstName.'&email='.Input::get('email') );
                         }
                         else{
                             $errors = urlencode( json_encode( $this->_translateErrors( $result['errors'] ) ) );

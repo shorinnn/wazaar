@@ -1,8 +1,10 @@
 <?php
 return array(
 	'profile' => 'Profile',
-	'courses' => 'Courses',
-	'settings' => 'Settings',
+	'courses' => 'My courses',
+	'settings' => 'Account settings',
 	'logout' => 'Logout',
 	'messages' => 'Messages',
+	'analytics' => 'Analytics',
+	'hi' => 'Hi',
 );

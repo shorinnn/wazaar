@@ -54,6 +54,19 @@ function sortablizeLessons(id){
     });
 }
 
+function reorderModulesAndLessons(){
+    var i = 1;
+    $('span.module-order').each(function(){
+        $(this).html(i);
+        $(this).parent().parent().find('input.module-order').val(i);
+        $(this).parent().parent().find('input.module-order').trigger('change');
+        module_id = $(this).attr('data-module-id');
+        reorderLessons( 'lessons-holder-'+module_id );
+        ++i;
+    });
+
+}
+
 /**
  * Recalculates the lesson order within the module
  * @param {String} id The ID of the UL element containing the list
@@ -95,6 +108,7 @@ function addModule(json){
     $(destination).append(module);
     sortablizeLessons('lessons-holder-'+id);
     restoreSubmitLabel( $('#modules-form') );
+    $('.step3-module-count').html( $('.new-module').length );
 }
 
 /**
@@ -111,6 +125,7 @@ function addLesson(json){
         $('.step-2-filled').val('1');
         updateStepsRemaining();
     }
+    $('.step3-lesson-count').html( $('.new-lesson').length );
     activeLessonOption();
 }
 
@@ -491,4 +506,11 @@ function savedStep3(e,json){
     setTimeout(function(){
         savingAnimation(1);
     }, 1000);
+}
+
+function deleteCurriculumItem(result, event){
+    deleteItem(result, event);
+    reorderModulesAndLessons();
+    $('.step3-lesson-count').html( $('.new-lesson').length );
+    $('.step3-module-count').html( $('.new-module').length );
 }
