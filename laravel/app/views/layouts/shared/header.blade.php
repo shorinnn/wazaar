@@ -134,7 +134,22 @@
                     </button>
                     <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                     	<ul>
-                        	<li>
+                            @foreach(CourseCategory::withCourses() as $category)
+
+                                    @if($category->courseSubcategories)
+                                        <li  class="dropdown-list"><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a> <i class="wa-chevron-right"></i>
+                                            <ul>
+                                                @foreach($category->courseSubcategories as $subCategory)
+                                                    <li><a href="{{url('courses/category/' . $category->slug . '/' . $subCategory->slug)}}">{{$subCategory->name}}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    @else
+                                    <li><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a></li>
+                                    @endif
+
+                            @endforeach
+                            <!--<li>
                             	<a href="#">Business & Marketing</a>
                             </li>
                         	<li class="dropdown-list">
@@ -195,7 +210,7 @@
                             </li>
                         	<li>
                             	<a href="#">Business & Marketing</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
