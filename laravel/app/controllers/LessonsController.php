@@ -4,7 +4,7 @@ class LessonsController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor' );
-            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy']]);
+            $this->beforeFilter('csrf', ['only' => [ 'store', 'update' ]]);
         }
 
 	public function store($module){
@@ -71,6 +71,8 @@ class LessonsController extends \BaseController {
                 $name = Input::get('name');
 //                $lesson->$name = Input::get('value');
                 $lesson->fill( Input::all() ); 
+                if( !Input::has('free_preview') ) $lesson->free_preview = 'no';
+                if( !Input::has('individual_sale') ) $lesson->individual_sale = 'no';
                 
                 if( $lesson->save() ){
                     $response = ['status' => 'success'];

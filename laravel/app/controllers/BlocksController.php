@@ -4,7 +4,7 @@ class BlocksController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor' );
-            $this->beforeFilter('csrf', ['only' => [ 'saveText', 'destroy', 'uploadFileszzz', 'update']]);
+            $this->beforeFilter('csrf', ['only' => [ 'saveText', 'uploadFileszzz', 'update']]);
         }
         
         public function text($lesson_id){
@@ -49,7 +49,8 @@ class BlocksController extends \BaseController {
             $block->content = Input::get('content');
             $block->name = filenameFromS3Key( $block->key );
             if($block->save()){
-                return json_encode(['status'=>'success', 'html' => View::make('courses.blocks.file')->with(compact('block'))->render() ]);
+                return json_encode(['status'=>'success', 'html' => View::make('courses.editor.v2.file')->withFile($block)->render() ]);
+//                return json_encode(['status'=>'success', 'html' => View::make('courses.blocks.file')->with(compact('block'))->render() ]);
             }
             else{
                 return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred').'[2]' ]); 

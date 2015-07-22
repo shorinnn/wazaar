@@ -27,6 +27,11 @@
     .course-description-video-preview img, .course-listing-image-preview img{
         max-height: 100px;
     }
+    
+        
+    .inactive > *{
+        pointer-events: none;
+    }
 </style>
 
 @if (Session::get('success'))
@@ -115,6 +120,7 @@
                 </form>
             <div class='container step1' data-loaded='1'>
                 <input class="course-id" type="hidden" value="{{$course->id}}"/>
+                
                 {{ View::make('courses.editor.step1',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
                         ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates', 'filePolicy' ) ) }}
             </div>

@@ -268,6 +268,9 @@ function deleteClonable(e){
  */
 function deleteItem(result, event){
     identifier = $(event.target).attr('data-delete');
+    if( typeof(identifier) == 'undefined'){
+        identifier = $(result.target).attr('data-delete');
+    }
     console.log(identifier);
     $(identifier).remove();
 }
@@ -361,7 +364,9 @@ function enableFileUploader($uploader){
     dropzone = $uploader.attr('data-dropzone');
     var progressbar = $uploader.attr('data-progress-bar');
     upload_url = $uploader.closest('form').attr('action');
-    $uploader.fileupload({
+    console.log(dropzone);
+    var $u = $uploader;
+    $u.fileupload({
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
                 callback = $uploader.attr('data-add-callback');

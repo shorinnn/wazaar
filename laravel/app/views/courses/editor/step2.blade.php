@@ -8,7 +8,7 @@
                         <a href="#">{{ $module->name }}</a>
                         <ol>
                             @foreach($module->lessons as $lesson)
-                                <li><a href="#">{{ $lesson->name }}</a></li>
+                                <li class="shr-lesson-{{$lesson->id}}"><a href="#">{{ $lesson->name }}</a></li>
                             @endforeach
                         </ol>
                     </li>
@@ -31,3 +31,8 @@
     	<div class="hidden-xs hidden-sm hidden-md col-lg-2"></div>
     </div>
 </div>
+<script>
+    enableBlockFileUploader();
+    enableCharactersLeft();
+</script>
+    

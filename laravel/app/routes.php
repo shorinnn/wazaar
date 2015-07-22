@@ -214,6 +214,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::resource('courses.modules', 'ModulesController');
 
     // Lessons
+    Route::get('modules/{module}/lessons/{id}/destroy', 'LessonsController@destroy');
     Route::get('modules/{module}/lessons/{id}/details', 'LessonsController@details');
     Route::resource('modules.lessons', 'LessonsController');
 
@@ -224,6 +225,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
             Route::post('/{lesson_id}/{block_id}/text', 'BlocksController@saveText');
             Route::get('/{lesson_id}/files', 'BlocksController@files');
             Route::post('/{lesson_id}/files', 'BlocksController@uploadFiles');
+            Route::get('/{lesson_id}/{id}', 'BlocksController@destroy');
             Route::delete('/{lesson_id}/{id}', 'BlocksController@destroy');
             Route::put('/{lesson_id}/{id}', 'BlocksController@update');
             Route::get('/{lesson_id}/video', 'BlocksController@video');

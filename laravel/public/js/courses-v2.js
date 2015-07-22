@@ -56,14 +56,18 @@ function sortablizeLessons(id){
 
 function reorderModulesAndLessons(){
     var i = 1;
-    modules = [];
+    var modules = [];
+    var lessons = [];
     $('span.module-order').each(function(){
         $(this).html(i);
-        modules.push( $(this).attr('data-id') );
+        id = $(this).attr('data-id');
+        modules.push( id );
+        l = reorderLessons( id );
+        lessons.push(  { module:id, lessons: l} );
         ++i;
     });
-    console.log(modules);
-
+    
+    return true;
 }
 
 /**
@@ -73,12 +77,14 @@ function reorderModulesAndLessons(){
  */
 function reorderLessons(id){
     var i = 1;
-    $('#'+id+' span.lesson-order').each(function(){
+    lessons = [];
+    $('.lesson-module-'+id).each(function(){
         $(this).html(i);
-        $(this).parent().parent().find('input.lesson-order').val(i);
-        $(this).parent().parent().find('input.lesson-order').trigger('change');
+        id = $(this).attr('data-id');
+        lessons.push( id );
         ++i;
     });
+    return lessons;
 }
 
 /**
@@ -125,7 +131,7 @@ function addLesson(json){
         updateStepsRemaining();
     }
     $('.step3-lesson-count').html( $('.new-lesson').length );
-    activeLessonOption();
+    enableBlockFileUploader();
 }
 
 /**
@@ -201,13 +207,13 @@ function enableRTE(selector, changeCallback){
  */
 function enableBlockFileUploader(e){
 //    $uploader = $(e.target).parent().parent().parent().parent().find('[type=file]');
-    $uploader = $(e.target).parent().parent().parent().parent().find('.lesson-file-uploader');
-    console.log($uploader);
-    enableFileUploader($uploader);
-	
-	var actionPanel = $(e.target).parent().parent().parent().siblings('div[class*="action-panel"]');
-	var actionPanelHeight = $(actionPanel).height();
-	TweenMax.fromTo(actionPanel, 0.3, {marginBottom: '40px'}, {marginBottom: '0px'});
+    $('.lesson-file-uploader').each(function(){
+        if( typeof( $(this).attr('data-upload-enabled') ) =='undefined' ){
+            $(this).attr('data-upload-enabled', 1);
+            enableFileUploader( $(this) );
+        }
+    });
+    
 }
 
 /**
@@ -244,7 +250,9 @@ function blockFileUploaded(e, data){
     lessonId = $(e.target).attr('data-lesson-id');
     var progressbar = $(e.target).attr('data-progress-bar');
 
-    $uploadTo = $(e.target).parent().parent().parent();
+//    $uploadTo = $(e.target).parent().parent().parent();
+    uploadTo = $(e.target).attr('data-upload-to');
+    $uploadTo = $(uploadTo);
 //    console.log($uploadTo);
 
 //    result = JSON.parse(data.result);
@@ -564,4 +572,78 @@ function linkToRemoteConfirm(e){
         }
     });
 
+}
+$('body').delegate('.reset-form', 'click', resetForm);
+function resetForm(e){
+    e.preventDefault();
+    form = $(e.target).attr('data-form');
+    $form = $(form);
+    $form[0].reset();
+}
+
+$('body').delegate('.submit-form', 'click', submitForm);
+function submitForm(e){
+    e.preventDefault();
+    form = $(e.target).attr('data-form');
+    $form = $(form);
+    $form.find('[type="submit"]').click();
+//    $form[0].submit();
+}
+
+/**
+ * Restores the form's submit button original label
+ * @method restoreSubmitLabel
+ * @param {jQuery form} $form
+ */
+function restoreSubmitLabel($form){
+    if( typeof( $form.attr('data-save-indicator') ) !='undefined' ){
+        indicator = $form.attr('data-save-indicator');
+        $indicator = $(indicator);
+        $indicator.html( $indicator.attr('data-old-label') );
+        $indicator.removeAttr('disabled');
+        return false;
+    }
+    
+    if( typeof( $form.attr('data-no-processing') ) == 'undefined' ||  $form.attr('data-no-processing') != 1){
+        $form.find('[type=submit]').html( $form.find('[type=submit]').attr('data-old-label') );
+        $form.find('[type=submit]').removeAttr('disabled');
+    }
+    
+}
+
+$('body').delegate('.characters-left', 'keyup', charactersLeft);
+function charactersLeft(e){
+    elem = $(e.target);
+    limit = $(elem).attr('maxlength');
+    current = $(elem).val().length;
+    remaining = limit - current;
+    display = $(elem).attr('data-target');
+    $(display).html(remaining);
+}
+
+function enableCharactersLeft(){
+    $('.characters-left').each(function(){
+        $(this).keyup();
+    });
+}
+
+function toggleTheClass(e){
+    $source = $(e.target);
+    dest = $source.attr('data-target');
+    cls = $source.attr('data-class');
+    $(dest).toggleClass(cls);
+}
+
+function toggleVisibility(e){
+    $source = $(e.target);
+    dest = $source.attr('data-target');
+    hide =  $source.attr('data-visible');
+    if ( hide == 'hide' ) {
+        $source.attr('data-visible', 'show');
+        $(dest).hide();
+    }
+    else {
+        $source.attr('data-visible', 'hide');
+        $(dest).show();
+    }
 }
