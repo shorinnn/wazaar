@@ -1,4 +1,5 @@
 <div class="shr-lesson shr-lesson-{{$lesson->id}}">
+     
     <div class="row lesson-data">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
             <div class="lesson-name"><span><em></em></span>Lesson {{ $lesson->order }}</div>
@@ -12,14 +13,19 @@
             <a href="#" class="remove-video">Remove video</a>
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            {{ Form::model( $lesson, ['action' => ['LessonsController@update', $lesson->module->id, $lesson->id ], 'method' => 'PUT', 
+                        'class' => 'ajax-form ' ] )  }}
+                        <div style="display: none">
+                                <button type="submit"></button>
+                        </div>
             <div>
-                <input type="text" class="lesson-title" placeholder="Enter lesson title" value="{{ $lesson->name }}" >
+                <input type="text" name="name" class="lesson-title" placeholder="Enter lesson title" value="{{ $lesson->name }}" >
             </div>
             <div>
                 <h6>DESCRIPTION
                     <span class="lead">360 Characters left</span>
                 </h6>
-                <textarea placeholder="Enter short lesson description...">{{ $lesson->description }}</textarea>
+                <textarea name="description" placeholder="Enter short lesson description...">{{ $lesson->description }}</textarea>
             </div>
             <div>
                 <h6>NOTES
@@ -58,6 +64,7 @@
                     </div>
                 </div>
             </div>
+            {{ Form::close() }}
         </div>
     </div>
 <!--    <div class="row file-upload-row">
