@@ -1,7 +1,7 @@
 <?php
 
 return [
-  'sid' => '31400702',
-  'spw' => 'm0PEHj6B',
+  'sid' => '31400701',
+  'spw' => 'LkcqgBmo',
   'endpoint' => 'https://mc-credit.com.sg/service/gateway/credit.htm'
 ];
