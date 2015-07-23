@@ -26,21 +26,24 @@
                         <span class="step-number">1</span>
                         Your Billing Info
                     </h1>
-                    {{Form::open(['url' => url('payment'), 'id' => 'form-payment'])}}
+                    {{-- Form::open(['url' => url('payment'), 'id' => 'form-payment']) --}}
+                      <form id="form-payment" method="post" action="https://mc-credit.com.sg/service/credit/input.html">
+                          <input type="hidden" name="SiteId" value="{{Config::get('maxcollect.sid')}}">
+                          <input type="hidden" name="SitePass" value="{{Config::get('maxcollect.spw')}}">
+                          <input type="hidden" name="CustomerId" value="{{Str::random()}}">
+                          <input type="hidden" name="URL" value="{{url('baby/comeback')}}"/>
+                          <input type="hidden" name="CustomerPass" value="password">
+                          <input type="hidden" name="Amount" value="100">
                         <div class="row margin-top-20">
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                <label>first name</label>
-                                <input type="text" name="firstName" class="margin-bottom-10" value="{{$student->profile->first_name}}">
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                <label>last name</label>
-                                <input type="text" name="lastName" value="{{$student->profile->last_name}}">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Name</label>
+                                <input type="text" name="Name" class="margin-bottom-10" value="{{$student->profile->first_name}} {{$student->profile->last_name}}">
                             </div>
                         </div>
                         <div class="row margin-top-30">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <label>Email</label>
-                                <input type="email" name="email" placeholder="Email Address" class="margin-bottom-10 form-control" value="{{$student->email}}">
+                                <input type="email" name="Mail" placeholder="Email Address" class="margin-bottom-10 form-control" value="{{$student->email}}">
                             </div>
                         </div>
                         <div class="row margin-top-30">
@@ -53,13 +56,13 @@
                         <div class="row margin-top-30">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <label>City</label>
-                                <input type="text" name="city" placeholder="City" class="margin-bottom-10 form-control" value="{{$student->profile->city}}">
+                                <input type="text" name="capital" placeholder="City" class="margin-bottom-10 form-control" value="{{$student->profile->city}}">
                             </div>
                         </div>
                         <div class="row margin-top-30">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <label>postal code</label>
-                                <input type="text" name="zip" class="margin-bottom-10"  value="{{$student->profile->zip}}">
+                                <input type="text" name="Zip" class="margin-bottom-10"  value="{{$student->profile->zip}}">
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <label>country</label>
@@ -69,7 +72,8 @@
                                 </select>
                             </div>
                         </div>
-                        <h1>
+
+                        {{--<h1>
                             <span class="step-number">2</span>
                             Credit Card Info
                         </h1>
@@ -99,8 +103,9 @@
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <button class="blue-button large-button place-your-order hidden-xs hidden-sm">Place your order</button>
                             </div>
-                        </div>
-                    {{Form::close()}}
+                        </div>--}}
+                      </form>
+                    {{--Form::close()--}}
                 </div>
                 <div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 product-info">
@@ -127,7 +132,7 @@
                     <div class="row product-price">
                         <span class="regular-paragraph">Price:</span>
                         <p>¥ {{number_format($amountToPay)}}</p>
-                        <a href="#" class="blue-button extra-large-button place-your-order">Place your order</a>
+                        <a href="#" class="blue-button extra-large-button place-your-order" onclick="$('#form-payment').submit()">Place your order</a>
                         <small class="regular-paragraph">By clicking the "Place your order" button, you agree to these
                             <a href="#">Terms of Service.</a>
                         </small>

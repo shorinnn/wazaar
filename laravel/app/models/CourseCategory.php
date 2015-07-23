@@ -116,4 +116,9 @@ class CourseCategory extends Ardent{
         }
     }
 
+    public static function withCourses()
+    {
+        return self::where('courses_count','>',0)->get();
+    }
+
 }
