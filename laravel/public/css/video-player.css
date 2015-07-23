@@ -242,9 +242,15 @@
 }
 /* control top part */
 .video-container .topControl{
-  height: 5px;
-  border-bottom:1px solid #404040;
-  background: #283644;
+	height: auto;
+	border-bottom: none;
+	background: #242d36;
+	border-radius: 10px;
+	float: left;
+	width: 60%;
+	margin-top: 12px;
+	overflow: hidden;
+	margin-right: 2%;
 }
 /* control bottom part */
 .video-container .btmControl{
@@ -440,3 +446,73 @@
   right: 0;
   margin: 135px auto 0;
 }
+
+.video-container .control div.btnFS.btn,
+.video-container .control div.sound3,
+.video-container .control div.sound2,
+.video-container .control div.sound,
+.video-container .btnPlay{
+	background-image: none !important;
+}
+
+.control div.btnFS.btn i,
+.sound.btn i,
+.btnPlay.btn i{
+	color: #fff;
+	font-size: 18px;
+}
+
+.volume,
+.sound.btn i.fa-volume-off,
+.btnPlay.btn i.wa-pause{
+	display: none;
+}
+
+.course-details-player .sound{
+	margin-top: 2px;
+}
+
+.sound.muted{
+	margin-top: 0;
+}
+
+.sound.btn i.fa-volume-off{
+	font-size: 22px;
+}
+
+.volume-container{
+	background: none;
+	display: none !important;
+}
+
+.topControl .progress{
+	height: 10px;
+	margin: 1px;
+	background: none;
+	box-shadow: none;
+}
+
+.topControl .timeBar{
+	background: #0099ff;
+	border-radius: 6px;
+}
+
+.video-container .time{
+	float: left;
+	margin-left: 0;
+	width: auto;
+	font-size: 13px;
+	color: #a7b5c2;
+	margin-right: 2%;
+}
+
+.video-container .btmControl{
+	padding: 0 2%;
+	margin: 20px 0;
+}
+
+.btnPlay{
+	margin-top: 2px;
+	margin-right: 2%;
+}
+

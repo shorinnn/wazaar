@@ -275,7 +275,9 @@ class CoursesController extends \BaseController {
         }
         
         public function category($slug=''){
-            
+
+            $difficultyLevel = Input::get('difficulty') ?: null;
+
             if($slug==''){
                 $courses = Course::with('courseDifficulty')->with('courseCategory')->with('courseSubcategory')->with('previewImage')
                     ->where(function($query){
@@ -288,11 +290,15 @@ class CoursesController extends \BaseController {
                                     ->where('publish_status', 'pending')
                                     ->where('pre_submit_data', '!=', "");
                         });
-                    })
-                    ->orderBy('id','Desc')->paginate(9);
+                    });
+
+                if ($difficultyLevel){
+                    $courses = $courses->where('course_difficulty_id', $difficultyLevel);
+                }
+                $courses = $courses->orderBy('id','Desc')->paginate(9);
                 $category = new stdClass;
                 $category->color_scheme = $category->name = $category->description = $category->id =  '';
-                Return View::make('courses.category')->with(compact('category'))->with(compact('courses'));
+                Return View::make('courses.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
             }
             if( !$category = CourseCategory::where('slug',$slug)->first() ){
                  return View::make('site.error_encountered');
@@ -311,7 +317,7 @@ class CoursesController extends \BaseController {
                         });
                     })
                     ->orderBy('id','Desc')->paginate(9);
-            Return View::make('courses.category')->with(compact('category'))->with(compact('courses'));
+            Return View::make('courses.category')->with(compact('category'))->with(compact('courses'))->with(compact('difficultyLevel'));
                             
         }
         

@@ -18,6 +18,7 @@ class MaxPresenter extends Illuminate\Pagination\Presenter {
     }
     
     public function getPrevious($text = ''){
+        $text = trans('pagination.previous');
         $url = $this->paginator->getUrl($this->currentPage - 1);
         if ($this->currentPage <= 1)
         {
@@ -27,6 +28,7 @@ class MaxPresenter extends Illuminate\Pagination\Presenter {
     }
     
     public function getNext($text = '') {
+        $text = trans('pagination.next');
         $url = $this->paginator->getUrl($this->currentPage + 1);
         if ($this->currentPage >= $this->lastPage)
         {

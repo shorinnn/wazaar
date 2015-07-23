@@ -17,13 +17,13 @@
                     <div class="col-xs-12 col-sm-6 col-md-6">
                     	<div class="difficulty-levels">
                         	<div class="level-buttons-container">
-                            	<a href="#" class="beginner level-buttons">Beginner</a>
-                                <a href="#" class="advanced level-buttons">Advanced</a>
-                                <a href="#" class="intermediate level-buttons">Intermediate</a>
+                            	<a href="{{url('courses/category?difficulty=1')}}" class="beginner level-buttons @if($difficultyLevel == 1) active @endif">Beginner</a>
+                                <a href="{{url('courses/category?difficulty=2')}}" class="advanced level-buttons @if($difficultyLevel == 2) active @endif">Advanced</a>
+                                <a href="{{url('courses/category?difficulty=3')}}" class="intermediate level-buttons @if($difficultyLevel == 3) active @endif">Intermediate</a>
                             </div>
                             <div class="toggle-menus">
-                            	<a href="#" class="menu menu-1"></a>
-                                <a href="#" class="menu menu-2"></a>
+                            	<a href="#" class="menu menu-1"><i class="fa fa-th"></i></a>
+                                <a href="#" class="menu menu-2"><i class="fa fa-th-list"></i></a>
                             </div>
                         </div>
                     </div>

@@ -54,7 +54,7 @@
                     </div>   
                 </div> 
                 <div class="price-tag-container clearfix">
-                    @if($course->isDiscounted())
+                    <!--@if($course->isDiscounted())
                         <div class="price-tag-discount-percent">
                             -
                             @if($course->sale_kind=='amount')
@@ -65,7 +65,7 @@
                             %
                             @endif
                         </div>
-                    @endif
+                    @endif-->
                     <div class="price-tag">
                         @if($course->isDiscounted())
                         <style>
