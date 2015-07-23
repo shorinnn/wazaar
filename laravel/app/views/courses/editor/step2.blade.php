@@ -34,5 +34,6 @@
     enableCharactersLeft();
     sortablizeMdl();
     sortablizeLsn();
+    calculateFileSizes();
 </script>
     

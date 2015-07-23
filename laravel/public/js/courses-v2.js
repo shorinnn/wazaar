@@ -319,6 +319,8 @@ function blockFileUploaded(e, data){
 //        console.log(result);
         $uploadTo.append(result.html);
         bootbox.hideAll();
+        calculateFileSizes();
+        
 //        $(e.target).parent().parent().parent().append(result.html);
     });
 //    if(result.status=='error'){
@@ -756,4 +758,19 @@ $('body').delegate('.type-in-elements', 'keyup', typeInElemens);
 function typeInElemens(e){
     elem = $(e.target).attr('data-elements');
     $(elem).html( $(e.target).val() );
+}
+
+function calculateFileSizes(){
+    $('.calculate-file-size').each(function(){
+        id = $(this).attr('data-id');
+        obj = $(this);
+        $.get( COCORIUM_APP_PATH+'blocks/'+id+'/size', function(result){
+            result = JSON.parse(result);
+            $obj = $('.calculate-file-size-'+result.id);
+            console.log($obj);
+            $obj.html( result.val );
+            console.log( result.val );
+            $obj.removeClass('calculate-file-size');
+        });
+    });
 }

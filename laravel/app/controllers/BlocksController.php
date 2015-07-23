@@ -48,6 +48,7 @@ class BlocksController extends \BaseController {
             $block->mime = $mime;
             $block->content = Input::get('content');
             $block->name = filenameFromS3Key( $block->key );
+            $block->size = '';
             if($block->save()){
                 return json_encode(['status'=>'success', 'html' => View::make('courses.editor.v2.file')->withFile($block)->render() ]);
 //                return json_encode(['status'=>'success', 'html' => View::make('courses.blocks.file')->with(compact('block'))->render() ]);
@@ -137,6 +138,11 @@ class BlocksController extends \BaseController {
         $block = Block::firstOrCreate(['lesson_id' => $lessonId, 'type' => Block::TYPE_VIDEO]);
         $block->content = Input::get('videoId');
         $block->save();
+    }
+    
+    public function size($id){
+        $file = Block::find($id);
+        return json_encode( ['val'=> $file->size(), 'id' => $id] );
     }
 
 

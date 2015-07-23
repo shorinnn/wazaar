@@ -10,7 +10,11 @@
 
         {{ $file->name }}
     </a>  
-    <span class="file-size">4mb</span>
+    @if($file->size=='')
+        <span class="file-size calculate-file-size calculate-file-size-{{$file->id}}" data-id='{{$file->id}}'>calculating...</span>
+    @else
+        <span class="file-size" data-id='{{$file->id}}'>{{ $file->size() }}</span>
+    @endif
 
    <!-- {{ Form::open(array('action' => ['BlocksController@destroy', $file->lesson->id, $file->id], 'method' => 'delete', 
                                     'class' => 'delete-file ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '#uploaded-file-'.$file->id )) }}

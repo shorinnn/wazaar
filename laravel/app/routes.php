@@ -220,6 +220,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::resource('modules.lessons', 'LessonsController');
 
     // Blocks
+    Route::get('/blocks/{id}/size', 'BlocksController@size');
     Route::group(['prefix' => 'lessons'], function (){
         Route::group(['prefix' => 'blocks'], function (){
             Route::get('/{lesson_id}/text', 'BlocksController@text');
