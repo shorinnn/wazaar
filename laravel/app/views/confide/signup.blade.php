@@ -4,11 +4,11 @@
 @if (Session::get('notice'))
     <div class="alert">{{ Session::get('notice') }}</div>
 @endif
-    <img id="user-data-bckgrd-img" class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/background-images/background-image.jpg">
-    <span class="background-image-overlay"></span>
+    <!--<img id="user-data-bckgrd-img" class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/background-images/background-image.jpg">
+    <span class="background-image-overlay"></span>-->
 <section class="container-fluid user-data-modal-wrapper dedicated-login-page">
 	<div class="row">
-    	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
+    	<div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-sm-offset-2 col-md-offset-3 col-lg-offset-4">
         	<a href="" class="modal-box-logo clearfix">
             	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
             </a>
@@ -19,7 +19,7 @@
                     <h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
                 @endif
                     <div class="login-social-buttons clearfix">
-                            <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans ('site/register.register-with-facebook') }}</a>
+                            <a href="{{ url('login-with-facebook') }}" class="login-facebook"><span>{{ trans ('site/register.register-with-facebook') }}</span></a>
                         <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
                     </div>
                     <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>

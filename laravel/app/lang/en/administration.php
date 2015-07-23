@@ -61,4 +61,7 @@ return array(
     'refundable' => 'Refundable',
     'refunded' => 'Refunded',
     'not-refundable' => 'Not Refundable',
+    'category-groups' => 'Course Category Groups',
+    'add-group' => 'Add Group',
+    'order' => 'Order',
 );

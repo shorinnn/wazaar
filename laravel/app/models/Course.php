@@ -57,16 +57,39 @@ class Course extends Ardent{
     public function dashboardComments(){
         return $this->comments()->where( 'lesson_id', null );
     }
-    public function lessonCount(){
+    public function lessonCount($includeUnpublished=true){
         $lessons = $modules = [0];
         $modules = Module::where('course_id', $this->id)->lists('id');
         $count = 0;
         if(count($modules) > 0){
-            $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
+            if( $includeUnpublished )            $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
+            else $lessons = Lesson::whereIn('module_id', $modules)->where('published', 'yes')->lists('id');
             $count += count($lessons);
         }
         return $count;
     }
+    
+    public function videoHours($includeUnpublished=true){
+        // get all videos
+        $vids = 0;
+        $lessons = $modules = [0];
+        $modules = Module::where('course_id', $this->id)->lists('id');
+        if(count($modules) > 0){
+            if( $includeUnpublished )            $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
+            else $lessons = Lesson::whereIn('module_id', $modules)->where('published', 'yes')->lists('id');
+            
+            if( count($lessons) > 0 ){
+                $videos = Block::whereIn('lesson_id', $lessons)->where('type', 'video')->get();
+                foreach($videos as $vid){
+                    $vid = DB::table('video_formats')->where( 'video_id', $vid->content )->first();
+                    if($vid!=null) $vids += $vid->duration;
+                }
+            }
+        }
+        if($vids == 0) return $vids;
+        else return round( $vids / 60 / 60, 2);
+    }
+    
     public function lessonComments(){
         $lessons = $modules = [0];
         $modules = Module::where('course_id', $this->id)->lists('id');
@@ -158,8 +181,12 @@ class Course extends Ardent{
     
     public function beforeSave(){
         if($this->free=='yes' && $this->price > 0){
-            $this->errors()->add(0, trans('courses/general.cant-set-price-for-free-course') );
-            return false;
+            $this->price = 0;
+//            $this->errors()->add(0, trans('courses/general.cant-set-price-for-free-course') );
+//            return false;
+        }
+        if($this->free=='no' && $this->price == 0){
+            $this->price = 500;
         }
 //        if( $this->id > 0 && $this->free=='no' && $this->price == 0 ){
 //            $this->errors()->add(0, trans('courses/general.course-must-be-500') );
@@ -201,7 +228,8 @@ class Course extends Ardent{
         }
         
         if($this->sale_kind=='amount' && $this->sale  > $this->price){
-            $this->errors()->add(0, trans('courses/general.cant_discount_more_than_price') );
+//            $this->errors()->add(0, trans('courses/general.cant_discount_more_than_price') );
+            $this->errors()->add(0,  $this->sale  . ' ' . $this->price );
             return false;
         }
         
@@ -337,6 +365,22 @@ class Course extends Ardent{
             $lesson->save();
         }
         return $module;
+    }
+    
+    public function likes(){
+        if( $this->total_reviews ==0 ) return 0;
+        else return $this->total_reviews * $this->reviews_positive_score / 100;
+    }
+    
+    public function rating(){
+        if( $this->total_reviews == 0 ) return trans('general.no-rating-yet');
+        
+        if( $this->reviews_positive_score == 100 ) return trans('general.highly-recommended');
+        elseif( $this->reviews_positive_score <= 90 ) return trans('general.very-positive');
+        elseif( $this->reviews_positive_score <= 80 ) return trans('general.positive');
+        elseif( $this->reviews_positive_score <= 60 ) return trans('general.mixed');
+        elseif( $this->reviews_positive_score <= 40 ) return trans('general.negative');
+        else return trans('general.negative');
     }
 
 

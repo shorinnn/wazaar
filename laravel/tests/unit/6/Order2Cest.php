@@ -14,12 +14,6 @@ class Order2Cest{
     private function setupDatabase() {
         Artisan::call('migrate:refresh');
         Artisan::call('db:seed');
-        Config::set('custom.earnings.instructor_percentage', 70);
-        Config::set('custom.earnings.site_percentage', 30);
-        Config::set('custom.earnings.ltc_percentage', 5);
-        Config::set('custom.earnings.agency_percentage', 2);
-        Config::set('custom.earnings.second_tier_percentage', 2);
-        Config::set('custom.earnings.second_tier_instructor_percentage', 2);
         
         Student::boot();
         User::boot();
@@ -32,8 +26,13 @@ class Order2Cest{
         $secondTierAffiliate->affiliate_id = 2;
         $secondTierAffiliate->updateUniques();
         $aff = User::find(5);
-        $aff->ltc_affiliate_id = 2;
+        $aff->second_tier_affiliate_id = 2;
         $aff->updateUniques();
+        
+        $course = Course::first();
+        $course->sale = 0;
+        $course->sale_ends_on = $course->sale_starts_on = '';
+        $course->updateUniques();
     }
     
     public function simpleCoursePurchase(UnitTester $I){
@@ -48,6 +47,7 @@ class Order2Cest{
         $course->price = 105;
         $course->affiliate_percentage = 0;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
         $course->instructor->instructor_agency_id = null;
 
         $course->instructor->instructor_balance = 0;
@@ -70,6 +70,7 @@ class Order2Cest{
         $ltc->updateUniques();
         $I->assertEquals( 0, $ltc->affiliate_balance );
         $I->assertEquals( 5, $student->ltc_affiliate_id );
+        $course = Course::first();
         
         $I->assertNotEquals( false, $student->purchase($course, null, $data) );
         $purchase = Purchase::orderBy('id','desc')->first();
@@ -82,16 +83,16 @@ class Order2Cest{
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
-        $I->assertEquals( $purchase->instructor_earnings, 70 ); 
+        $I->assertEquals( $purchase->instructor_earnings, 68 ); 
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (5 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 32 * (3 / 100) );
         $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (5 / 100) ) - 5 );
+        $I->assertEquals( $purchase->site_earnings, 32 - ( 32 * (3 / 100) )  );
         
         $I->assertEquals( 5, $purchase->ltc_affiliate_id );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 68,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => $purchase->ltc_affiliate_id, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->ltc_affiliate_earnings,
             'product_id' => $course->id, 'status' => 'complete'] );
@@ -99,14 +100,14 @@ class Order2Cest{
             'product_id' => $course->id, 'status' => 'complete', 'gc_fee' => 5] );
         
         
-        $I->assertEquals( 70, $course->instructor->instructor_balance );
+        $I->assertEquals( 68, $course->instructor->instructor_balance );
         $wazaar = User::find(2);
         $I->assertEquals( $purchase->site_earnings, $wazaar->affiliate_balance );
         $ltc = User::find(5);
         $I->assertEquals( $purchase->ltc_affiliate_earnings, $ltc->affiliate_balance );
     }
     
-    public function simpleCoursePurchaseAffiliateHasNoLTC(UnitTester $I){
+    public function simpleCoursePurchaseNoAffiliateNoLTC(UnitTester $I){
         $student = Student::where('username','student')->first();
         $student->ltc_affiliate_id = 5;
         $student->created_at = date('Y-m-d H:i:s');
@@ -115,13 +116,15 @@ class Order2Cest{
         
         Purchase::where('student_id', $student->id)->delete();
         $course = Course::first();
-        $course->price = 105;
+        $course->price = 1050;
         $course->affiliate_percentage = 0;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
         $course->instructor->instructor_agency_id = null;
 
         $course->instructor->instructor_balance = 0;
         $course->instructor->updateUniques();
+        $course = Course::first();
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
@@ -152,20 +155,19 @@ class Order2Cest{
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
-        $I->assertEquals( $purchase->instructor_earnings, 70 ); 
+        $I->assertEquals( $purchase->instructor_earnings, 68 ); 
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( 5, $student->ltc_affiliate_id );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - 5 );
+        $I->assertEquals( $purchase->site_earnings, 32 );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 68,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'complete', 'gc_fee' => 5] );
         $I->assertNotEquals( 2, $purchase->ltc_affiliate_id );
-        $I->assertEquals( 70, $course->instructor->instructor_balance );
+        $I->assertEquals( 68, $course->instructor->instructor_balance );
         $wazaar = User::find(2);
         $I->assertEquals( $purchase->site_earnings, $wazaar->affiliate_balance );
         $ltc = User::find(5);
@@ -181,9 +183,11 @@ class Order2Cest{
         
         Purchase::where('student_id', $student->id)->delete();
         $course = Course::first();
-        $course->price = 105;
+        $course->price = 1050;
         $course->affiliate_percentage = 0;
         $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $course = Course::first();
         $course->instructor->instructor_agency_id = null;
 
         $course->instructor->instructor_balance = 0;
@@ -217,19 +221,19 @@ class Order2Cest{
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
-        $I->assertEquals( $purchase->instructor_earnings, 70 ); 
+        $I->assertEquals( $purchase->instructor_earnings, 68 ); 
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - 5 );
+        $I->assertEquals( $purchase->site_earnings, 32  );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 68,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'complete', 'gc_fee' => 5] );
         $I->assertNotEquals( 2, $purchase->ltc_affiliate_id );
-        $I->assertEquals( 70, $course->instructor->instructor_balance );
+        $I->assertEquals( 68, $course->instructor->instructor_balance );
         $wazaar = User::find(2);
         $I->assertEquals( $purchase->site_earnings, $wazaar->affiliate_balance );
     }

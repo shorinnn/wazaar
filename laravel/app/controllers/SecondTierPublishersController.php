@@ -28,7 +28,7 @@ class SecondTierPublishersController extends \BaseController {
             $user = User::find($id);
             $user->sti_approved = trim( strtolower( Input::get('value') ) );
             if( $user->updateUniques() ){
-                if( Input::get('value')=='Yes' ){
+                if( strtolower( Input::get('value') ) =='yes' ){
                     // send STP approval email
                     $name = '';
                     $instructor = Instructor::find($user->id);
@@ -53,5 +53,39 @@ class SecondTierPublishersController extends \BaseController {
                 return Redirect::back()->withError( trans('crud/errors.cannot_update_object',['object'=>'User']).': '.format_errors($user->errors()->all()));
             }
 	}
+        
+        public function stats(){
+            $this->delivered = new DeliveredHelper();
+            $total = $this->delivered->getUsers();
+            $users = $total['data'];
+            $total = 0;
+            foreach($users as $user){
+                foreach($user['tags']  as $tag){
+                    if( $tag['tagName'] == 'second-tier-publisher-id' ){
+                        $total++;
+                    }
+                }
+            }
+            $str = "<h1>Total LP Signups: $total</h1><br /><br />";
+            $stpi = User::where('is_second_tier_instructor','yes')->get();
+            foreach($stpi as $s){
+                $emails = [];
+                $count = 0;
+                foreach($users as $user){
+                    foreach($user['tags']  as $tag){
+                        if( $tag['tagName'] == 'second-tier-publisher-id' && ($tag['tagIntegerValue']==$s->id ||  $tag['tagStringValue']==$s->id ) ){
+                           $count ++;
+                           $emails[] = $user['email'];
+                        }
+                    }
+                }
+                $emails = implode(' | ', $emails);
+                $str .= "<b>STPI $s->id - $s->last_name $s->first_name ( $s->email ) - Referred: $count</b><br />
+                    <div style='display:block; max-height:100px; overflow-y:scroll; border:1px solid black; padding:10px'>$emails</div>
+                        <hr />";
+            }
+            
+            return View::make('administration.second_tier_pub.stats')->withStats( $str );
+        }
 
 }

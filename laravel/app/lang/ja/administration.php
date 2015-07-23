@@ -61,4 +61,7 @@ return array(
     'refundable' => '月Refundableせ',
     'refunded' => '月Refundedせ',
     'not-refundable' => '月Not Refundableせ',
+    'category-groups' => 'Course Category Groups',
+    'add-group' => 'Add Group',
+    'order' => 'Order',
 );

@@ -309,7 +309,7 @@ function updateFieldRemote(e){
             catch(e){}
             savingAnimation(1);
             callback = $(event.target).attr('data-callback');
-            if( typeof(callback) !=undefined ){
+            if( typeof(callback) != 'undefined' ){
                 window[callback](event, e);
             }
         },
@@ -332,12 +332,13 @@ var saving_animation = 0;
  * @param {Number} stop zero to start the animation, 1 to end it
  * @method savingAnimation
  */
+
 function savingAnimation(stop) {
     if(stop==1){
         setTimeout(function(){
             saving_animation = 0;
             $('#save-indicator').animate({
-                left: '-100px'
+                left: '-140px'
             }, 300);
         }, 700);
         return false;

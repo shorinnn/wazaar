@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
     <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{{url('css/style.css')}}">
     <link rel="stylesheet" href="{{url('css/video-player.css')}}">
+    <link rel="stylesheet" href="{{url('css/style.css')}}">
     <link rel="stylesheet" href="{{url('css/dashboard.css')}}">
     <link rel="stylesheet" href="{{url('css/generic.css')}}">
     <link rel="stylesheet" href="{{url('css/select-style.css')}}">
@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{url('css/slick-theme.css')}}">
     <link rel="stylesheet" href="{{url('css/datepicker.css')}}">
     <link rel="stylesheet" href="{{url('css/bootstrap-datetimepicker.css')}}">
+    <link rel="Stylesheet" type="text/css" href="{{ url('css/smoothDivScroll.css') }}" />
 
     @yield('extra_css')
     <!--[if lt IE 9]>
@@ -30,7 +31,7 @@
       <html class="ie8">
     <![endif]-->
     
-    
+
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
@@ -45,7 +46,7 @@
           <section class="footer-container">
             <div class="container">
               <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-center-mobile">
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/footer-logo.png" alt="Wazaar" />
                   <p>&copy; Wazaar {{ date('Y') }}</p>
                 </div>
@@ -97,7 +98,7 @@
                 </div>              
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 	<div class="row">
-                    	<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                    	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                         	<!--<h5>ABOUT</h5>
                             <ul>
                             	<li>
@@ -111,7 +112,7 @@
                                 </li>
                             </ul>   -->                     
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center-mobile padding-bottom-20">
                         	<!--<h5>GET IN TOUCH</h5>-->
                             <p>電話番号：03-6206-8396　</p>
                             <p><!--{{trans('site/footer.mail')}}:info@wazaar.com-->メールアドレス：contact@wazaar.jp</p>                        
@@ -337,7 +338,7 @@
     
     @yield('extra_js')
 		<script type="text/javascript">
-            window.reloadConfirm = false;
+                window.reloadConfirm = false;
 
                          window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
                          _.setTranslation( js_translation_map_{{ Config::get('app.locale') }} );
@@ -392,163 +393,7 @@
 				$('#video-grid').on('slide.bs.carousel', function () {
 				})		
 				 
-				/************** Old Homepage carousels to be deprecated ***************/ 
-				$('.top-categories-slider').show().slick({
-		     	  dots: false,
-				  arrows: false,
-				  infinite: true,
-				  autoplay: true,
-				  fade: false,
-				  speed: 1000,
-				  pauseOnHover: true,
-				  autoplaySpeed: 5000,
-				  slidesToShow: 3,
-				  slidesToScroll: 3,
-				  responsive: [
-					{
-					  breakpoint: 1024,
-					  settings: {
-						slidesToShow: 3,
-						slidesToScroll: 3,
-						infinite: true,
-						dots: false
-					  }
-					},
-					{
-					  breakpoint: 600,
-					  settings: {
-						slidesToShow: 2,
-						slidesToScroll: 2
-					  }
-					},
-					{
-					  breakpoint: 480,
-					  settings: {
-						slidesToShow: 1,
-						slidesToScroll: 1
-					  }
-					}
-					// You can unslick at a given breakpoint now by adding:
-					// settings: "unslick"
-					// instead of a settings object
-				  ]		
-				});		
-
-				$('.scrollable-course-listings').show().slick({
-		     	  dots: true,
-				  arrows: true,
-				  infinite: false,
-				  autoplay: false,
-				  fade: false,
-				  speed: 1000,
-				  pauseOnHover: true,
-				  autoplaySpeed: 1000,
-				  slidesToShow: 3,
-				  slidesToScroll: 3,
-				  responsive: [
-					{
-					  breakpoint: 1024,
-					  settings: {
-						slidesToShow: 3,
-						slidesToScroll: 3,
-						infinite: false,
-						dots: false
-					  }
-					},
-					{
-					  breakpoint: 600,
-					  settings: {
-						slidesToShow: 2,
-						slidesToScroll: 2
-					  }
-					},
-					{
-					  breakpoint: 480,
-					  settings: {
-						slidesToShow: 1,
-						slidesToScroll: 1
-					  }
-					}
-					// You can unslick at a given breakpoint now by adding:
-					// settings: "unslick"
-					// instead of a settings object
-				  ]		
-				});		
-				/************** Old Homepage carousels end ***************/ 
-				
-				/************** New Homepage carousels***************/ 
-				var slider = $('.whats-hot-slider').slick({
-				  dots: false,
-				  arrows: true,
-				  speed: 750,
-				  autoplay: true,
-				  infinite: true,
-				  autoplaySpeed: 0,
-				  cssEase: 'linear',
-				  slidesToShow: 4,
-				  slidesToScroll: 0.1,
-				  pauseOnHover: true,
-				  swipe: true,
-				  waitForAnimate: false,
-				  responsive: [
-					{
-					  breakpoint: 1024,
-					  settings: {
-						slidesToShow: 3,
-						slidesToScroll: 6,
-						dots: false
-					  }
-					},
-					{
-					  breakpoint: 600,
-					  settings: {
-						slidesToShow: 2,
-						slidesToScroll: 4,
-					  }
-					},
-					{
-					  breakpoint: 480,
-					  settings: {
-						slidesToShow: 1,
-						slidesToScroll: 1
-					  }
-					}
-					// You can unslick at a given breakpoint now by adding:
-					// settings: "unslick"
-					// instead of a settings object
-				  ]
-				});
-				
-				$('.slick-prev, .slick-next').detach().appendTo('.popular-courses-carousel');							
-				/*$('.slick-prev, .slick-next').on("mouseover", function () {
-					slider.slick('slickSetOption', 'slidesToScroll', 0.2);
-				});
-				
-				$('.slick-prev, .slick-next').on("mouseout", function () {
-					slider.slick('slickSetOption', 'slidesToScroll', 0.1);
-				});*/
-
-				$('.whats-hot-slider').slick({
-					interval: false
-				});
-				
-				var i;
-								
-				$('.slick-prev, .slick-next').on("mouseover", function () {
-					var control = $(this),
-						interval = 1000;
-					
-					slider.slick('slickSetOption', 'slidesToScroll', 0.2);
-					
-					i = setInterval(function () {
-						control.trigger("click");
-					}, interval);
-				});
-				$('.slick-prev, .slick-next').on("mouseout", function () {
-					clearInterval(i);
-					slider.slick('slickSetOption', 'slidesToScroll', 0.1);
-				});
-				/************** New Homepage carousels ends ***************/ 
+			
 				
 				$('.datepicker').datepicker();
 				$('[data-toggle="tooltip"]').tooltip();
@@ -559,6 +404,19 @@
 			});
 		</script>
     	
+            <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/delaunay.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/TweenMax.min.js"></script>
+            
+            @if( App::environment() == 'production' )
+                <script>
+                    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+                    ga('create', 'UA-65168894-1', 'auto');
+                    ga('send', 'pageview');
+                </script>
+            @endif
 	</body>
 </html>

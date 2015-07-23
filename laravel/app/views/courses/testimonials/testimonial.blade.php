@@ -23,18 +23,27 @@
     </h4>
 @endif-->
   <div class="reviews clearfix">
-      <div class="user-thumb">
-          <img />
-          <span>
-          {{ $testimonial->student->first_name }}
-          {{ $testimonial->student->last_name }}
-          </span>
-      </div>
-      <div class="user-review">
-          <p class="regular-paragraph expandable-content">
-			{{{ $testimonial->content }}}          
-          </p>
-          <span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }}</span>
+  	<div class="row">
+          <div class="user-thumb col-xs-3 col-sm-2 col-md-2 col-lg-2">
+                @if( $testimonial->student->profile != null)
+                    <img src='{{ $testimonial->student->profile->photo }}' class="img-responsive" />
+                @elseif($testimonial->student->photo != '')
+                    <img src='{{ $testimonial->student->photo }}' class="img-responsive" />
+                @else
+                    <img src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" class="img-responsive" />
+                @endif
+              <span>
+              {{ $testimonial->student->first_name }}
+              {{ $testimonial->student->last_name }}
+              </span>
+          </div>
+          <div class="user-review col-xs-9 col-sm-10 col-md-10 col-lg-10">
+              <p class="regular-paragraph expandable-content">
+                {{{ $testimonial->content }}}          
+              </p>
+              <div class="fadeout-text"></div>
+              <span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }}</span>
+          </div>
       </div>
   </div>
 

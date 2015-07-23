@@ -99,18 +99,29 @@
                         </div>
                     </div>
                     <div class="row mycourse-card-footer">
-                        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-5">
                             <p class="date-created regular-paragraph">{{ trans('courses/general.created-on') }}: 
                                 <span> {{ date('m/d/Y', strtotime($course->created_at)) }}</span></p>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-md-offset-1 col-lg-offset-1">
-                            <span class="default-button">{{ 
-                                trans('courses/general.my-courses-privacy.'.$course->privacy_status) }}</span>
+                        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-7">
+                            
+                            <span class="default-button {{ $course->privacy_status }}">
+                                {{ trans('courses/general.my-courses-privacy.'.$course->privacy_status) }}
+                            </span>
                             <span class="default-button 
                                   @if($course->publish_status=='pending') submitted @endif
                                   @if($course->publish_status=='approved') published @endif
                                   ">
                                     {{ trans('courses/general.my-courses-publish.'.$course->publish_status) }}</span>
+                            
+                            
+                            <span class="default-button @if($course->free=='yes') free @else paid @endif">
+                                @if($course->free=='yes')
+                                    {{ trans('courses/create.free') }}
+                                @else
+                                    {{  trans('courses/create.paid') }}
+                                @endif
+                            </span>
                             
                         </div>
                     </div>

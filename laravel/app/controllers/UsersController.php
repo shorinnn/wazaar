@@ -290,9 +290,8 @@ class UsersController extends Controller
             // This was a callback request from facebook, get the token
             $token = $fb->requestAccessToken( $code );
             // Send a request with it
-            $result = json_decode( $fb->request( '/me' ), true );
+            $result = json_decode( $fb->request( '/me?fields=email,link,first_name,last_name' ), true );
             // See if we need to register this user
-            //dd($result);
             $user = $this->users->where('facebook_login_id',$result['id'])->first();
             if($user == null){
                 // see if email is aready in the system
@@ -425,11 +424,15 @@ class UsersController extends Controller
      */
     public function doForgotPassword()
     {
+        $old = Config::get('queue.default');
+        Config::set('queue.default', 'sync');
         if (Confide::forgotPassword(Input::get('email'))) {
+            Config::set('queue.default', $old);
             $notice_msg = Lang::get('confide::confide.alerts.password_forgot');
             return Redirect::action('UsersController@login')
                 ->with('notice', $notice_msg);
         } else {
+            Config::set('queue.default', $old);
             $error_msg = Lang::get('confide::confide.alerts.wrong_password_forgot');
             return Redirect::action('UsersController@forgotPassword')
                 ->withInput()
@@ -514,6 +517,31 @@ class UsersController extends Controller
         if(Auth::guest() || Auth::user()->is_second_tier_instructor=='no'){
             return Redirect::action('SiteController@index');
         }
-        return View::make('links');
+        
+        if ( !Cache::has( 'sti-for-'.Auth::user()->id ) ){
+        
+            $this->delivered = new DeliveredHelper();
+            $total = $this->delivered->getUsers();
+            $users = $total['data'];
+            $total = 0;
+            $stpi = User::where('is_second_tier_instructor','yes')->get();
+            foreach($stpi as $s){
+                if($s->id != Auth::user()->id) continue;
+                $emails = [];
+                $count = 0;
+                foreach($users as $user){
+                    foreach($user['tags']  as $tag){
+                        if( $tag['tagName'] == 'second-tier-publisher-id' && ($tag['tagIntegerValue']==$s->id ||  $tag['tagStringValue']==$s->id ) ){
+                           $count ++;
+                        }
+                    }
+                }
+            }
+            $ref = $count;
+            Cache::add( 'sti-for-'.Auth::user()->id , $ref, 30);
+        }
+        else $ref = Cache::get( 'sti-for-'.Auth::user()->id );
+        
+        return View::make('links')->with( compact('ref') );
     }
 }

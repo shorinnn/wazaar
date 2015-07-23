@@ -7,7 +7,8 @@ class LpController extends \BaseController {
             $this->template->content = '
                 <p>@NAME@ 様</p>
                 <p>Wazaarへようこそ！</p>
-                メールアドレスの確認のために、下記のリンクからワザールへの登録をお願い致します。
+                ご登録されたメールアドレスに最終確認のメールを送りました。
+                そちらから最終の登録手続きをお願い致します。
                 <p><a href="@LINK@">@LINK@</a></p>
                 <p>ワザールではまだまだ動画教材が足りませんので、@NAME@ 様の動画教材を是非、ワザールにご投稿いただけることを心よりお待ちしております。<br />
                 今後とも何卒よろしくお願い致します。<br />
@@ -63,6 +64,23 @@ class LpController extends \BaseController {
         }
     
         public function index(){
+            dd('to do stuff');
+//            $delete = [ 1, 2, 5, 9, 15, 16, 17, 18, 24, 25, 26, 27, 349, 387, 684, 4, 6, 7, 8, 10, 11, 360, 624, 675, 685, 984, 985, 1341, 1661, 2134
+//                , 2609, 2610];
+            $delete = [1];
+            foreach($delete as $d){
+                $res = $this->delivered->deleteUser($d);
+            }
+//            
+            $users = $this->delivered->getUsers();
+            
+            $users = $users['data'];
+            foreach($users as $user){
+                echo "$user[email] $user[id] <br />";
+            }
+            return;
+            if(is_array($user) ) $user = json_decode(json_encode($user), FALSE);
+            dd($user);
            
             $this->_updateTemplate();
             $template = $this->_getTemplate();
@@ -73,6 +91,9 @@ class LpController extends \BaseController {
                 $user = $users[ count($users) - 1];
                 print_r($user);
             }
+            
+            // remove from LP 
+            $remove_lp = [841, 370, 1278];
 
 //            $list = $this->_getList();
 //            dd($list);
@@ -133,7 +154,8 @@ class LpController extends \BaseController {
                         $variables = json_encode( ['NAME' => Input::get('name'), 'LINK' => action('SiteController@index').'?stpi='.$stpi.'&pub=1' ] );
                         $result = $this->delivered->executeEmailRequest('immediate', $template->id, $user->id, $variables );
                         if( is_array($response) && $response['success'] == true ){
-                            return Redirect::to('lp1/success.php?name='.$firstName);
+//                            return Redirect::action( 'UsersController@create' );
+                            return Redirect::to('lp1/success.php?name='.$firstName.'&email='.Input::get('email') );
                         }
                         else{
                             $errors = urlencode( json_encode( $this->_translateErrors( $result['errors'] ) ) );

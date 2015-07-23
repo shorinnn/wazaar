@@ -57,11 +57,9 @@
                     </div>
                 </div>
                 <div class="row">
-                	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    	<button class="default-button cancel-course-btn large-button margin-top-30 right">{{ trans('courses/create.cancel') }}</button>
-                    </div>
-                	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    	<button type='submit' class="create-course-btn blue-button large-button margin-top-30 left">
+                    
+                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                    	<button type='submit' class="create-course-btn blue-button large-button margin-top-30">
                         {{ trans('courses/create.create_a_course') }}
                         </button>                    
                     </div>

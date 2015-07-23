@@ -12,6 +12,10 @@ $(document).ready(function(){
 	activeLessonOption(); 
     
     // Make the modules list sortable
+    sortablizeModulesAndLessons();
+});
+
+function sortablizeModulesAndLessons(){
     var el = document.getElementById('modules-list');
     if( $('#modules-list').length > 0){
         var sortable = Sortable.create(el, {
@@ -32,7 +36,7 @@ $(document).ready(function(){
             sortablizeLessons( $(this).attr('id') );
         });
     }
-});
+}
 
 /**
  * Enables Drag and Drop sorting for dynamically added lessons
@@ -48,6 +52,19 @@ function sortablizeLessons(id){
             reorderLessons(id);
         }
     });
+}
+
+function reorderModulesAndLessons(){
+    var i = 1;
+    $('span.module-order').each(function(){
+        $(this).html(i);
+        $(this).parent().parent().find('input.module-order').val(i);
+        $(this).parent().parent().find('input.module-order').trigger('change');
+        module_id = $(this).attr('data-module-id');
+        reorderLessons( 'lessons-holder-'+module_id );
+        ++i;
+    });
+
 }
 
 /**
@@ -91,6 +108,7 @@ function addModule(json){
     $(destination).append(module);
     sortablizeLessons('lessons-holder-'+id);
     restoreSubmitLabel( $('#modules-form') );
+    $('.step3-module-count').html( $('.new-module').length );
 }
 
 /**
@@ -107,6 +125,7 @@ function addLesson(json){
         $('.step-2-filled').val('1');
         updateStepsRemaining();
     }
+    $('.step3-lesson-count').html( $('.new-lesson').length );
     activeLessonOption();
 }
 
@@ -171,7 +190,8 @@ function enableRTE(selector, changeCallback){
             "searchreplace visualblocks code fullscreen",
             "insertdatetime media table contextmenu paste save"
         ],
-        toolbar: "save | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+        toolbar: "bold | bullist numlist",
+        statusbar: false
     });
 }
 
@@ -490,4 +510,11 @@ function savedStep3(e,json){
     setTimeout(function(){
         savingAnimation(1);
     }, 1000);
+}
+
+function deleteCurriculumItem(result, event){
+    deleteItem(result, event);
+    reorderModulesAndLessons();
+    $('.step3-lesson-count').html( $('.new-lesson').length );
+    $('.step3-module-count').html( $('.new-module').length );
 }

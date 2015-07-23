@@ -32,8 +32,9 @@
                                 <div class="buttons publish">
                                     <div class="switch-buttons">
                                         <label class="switch">
-                                          <input type="checkbox" class="switch-input ajax-updatable"  value='{{ trans('courses/curriculum.yes') }}'
-                                                 data-checked-val='{{ trans('courses/curriculum.yes') }}' data-unchecked-val='{{ trans('courses/curriculum.no') }}'
+                                          <input type="checkbox" class="switch-input ajax-updatable"  
+                                                 value='Yes'
+                                                 data-checked-val='Yes' data-unchecked-val='No'
                                                  data-url='{{action('SecondTierPublishersController@update', $member->id )}}'
                                                  data-name='sti_approved' name="sti_approved"
                                                  @if($member->sti_approved=='yes')

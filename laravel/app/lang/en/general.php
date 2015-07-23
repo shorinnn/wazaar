@@ -8,6 +8,9 @@ return array(
 	'enter-new-email-and-password' => 'enter your email and choose password',
     'members' => 'Members',
     'user' => 'User',
+    'time' => 'Time',
+	'recommends' => 'Recommends',
+	'difficulty' => 'Difficulty',
     'verify-email' => 'Verify Email',
 	'highly-recommend' => 'highly recommend',
 	'weeks-of-learning' => 'weeks of learning',
@@ -100,5 +103,12 @@ return array(
     'click-go-to-begin' => 'Click GO to begin',
     'verify-go-button' => 'GO!',
     'opening-lesson' => 'Opening Lesson',
+    'no-rating-yet' => 'No rating yet',
+    'highly-recommended' => 'Highly recommended',
+    'very-positive' => 'Very Positive',
+    'positive' => 'Positive',
+    'mixed' => 'Mixed',
+    'negative' => 'Negative',
+    'st-referrals' => 'ST Referrals',
     
 );

@@ -10,7 +10,7 @@ return [
     'uploadOr' => 'Upload Video OR',
     'selectExisting' => 'Select From Existing',
     'formatsSupported' => 'Formats supported: mp4, avi, wmv',
-    'maxFileSize' => 'Max file size: 1GB',
+    'maxFileSize' => 'Max file size: 2GB',
     'myVideos' => 'My Videos',
     'useVideo' => 'Use Video',
     'noImage' => 'You don\'t have an image yet. Upload one now.',

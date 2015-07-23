@@ -599,6 +599,16 @@ function timeProgress($start, $end){
     return floor( ($elapsed * 100 ) / $total );
 }
 
+function difficultyToCss($dif){
+    if( $dif == 'Beginner' ) return 'beginner';
+    if( $dif == 'Intermediate' ) return 'intermediate';
+    return 'advanced';
+}
+
+function admin(){
+    if(Auth::check() && Auth::user()->hasRole('Admin')) return true;
+    return false;
+}
 function formatSizeUnits($bytes){
         if ($bytes >= 1073741824)
         {

@@ -7,7 +7,168 @@
     </style>
 @stop
 @section('content')
-    <div class="container payment-page course-editor">
+
+    <section class="container-fluid checkout-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 customer-info">
+                    @if (count(@$errors) > 0)
+                        <h1>{{trans('general.errors')}}!</h1>
+                        <ul>
+                            @foreach($errors as $err)
+                                <li><i class="glyphicon glyphicon-remove"></i> {{$err}}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+
+                    <h1>
+                        <span class="step-number">1</span>
+                        Your Billing Info
+                    </h1>
+                    {{-- Form::open(['url' => url('payment'), 'id' => 'form-payment']) --}}
+                      <form id="form-payment" method="post" action="https://mc-credit.com.sg/service/credit/input.html">
+                          <input type="hidden" name="SiteId" value="{{Config::get('maxcollect.sid')}}">
+                          <input type="hidden" name="SitePass" value="{{Config::get('maxcollect.spw')}}">
+                          <input type="hidden" name="CustomerId" value="{{Str::random()}}">
+                          <input type="hidden" name="URL" value="{{url('baby/comeback')}}"/>
+                          <input type="hidden" name="CustomerPass" value="password">
+                          <input type="hidden" name="Amount" value="100">
+                        <div class="row margin-top-20">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Name</label>
+                                <input type="text" name="Name" class="margin-bottom-10" value="{{$student->profile->first_name}} {{$student->profile->last_name}}">
+                            </div>
+                        </div>
+                        <div class="row margin-top-30">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Email</label>
+                                <input type="email" name="Mail" placeholder="Email Address" class="margin-bottom-10 form-control" value="{{$student->email}}">
+                            </div>
+                        </div>
+                        <div class="row margin-top-30">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Address</label>
+                                <input type="text" name="address1" placeholder="Address line 1" class="margin-bottom-10" value="{{$student->profile->address_1}}">
+                                <input type="text" name="address2" placeholder="Address line 2" value="{{ $student->profile->address_2 }} "/>
+                            </div>
+                        </div>
+                        <div class="row margin-top-30">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>City</label>
+                                <input type="text" name="capital" placeholder="City" class="margin-bottom-10 form-control" value="{{$student->profile->city}}">
+                            </div>
+                        </div>
+                        <div class="row margin-top-30">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label>postal code</label>
+                                <input type="text" name="Zip" class="margin-bottom-10"  value="{{$student->profile->zip}}">
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label>country</label>
+                                <select name="country">
+                                    <option>Select country</option>
+                                    <option value="JP" selected>Japan</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {{--<h1>
+                            <span class="step-number">2</span>
+                            Credit Card Info
+                        </h1>
+                        <div class="row margin-top-20">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Credit Card number</label>
+                                <input type="text" name="cardNumber" placeholder="0000 0000 0000 0000">
+                            </div>
+                        </div>
+                        <div class="row margin-top-30">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label>CVV Code</label>
+                                <input type="text" name="cardCVV" class="margin-bottom-10">
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label>Expiry date</label>
+                                <input type="text" name="cardExpiry" placeholder="MM / YY">
+                            </div>
+                        </div>
+                        <div class="row margin-top-30">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label>Name on the card</label>
+                                <input type="text" name="cardName">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <button class="blue-button large-button place-your-order hidden-xs hidden-sm">Place your order</button>
+                            </div>
+                        </div>--}}
+                      </form>
+                    {{--Form::close()--}}
+                </div>
+                <div class="col-md-1 col-lg-1 hidden-xs hidden-sm"></div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 product-info">
+                    <h1>
+                        {{trans('payment.youAreToEnroll')}}:
+                    </h1>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 course-name">
+                            <div class="row">
+                                <div class="col-xs-5 col-sm-3 col-md-5 col-lg-5">
+
+                                        <img src="{{@$product->previewImage->url}}" class="img-responsive" alt="">
+
+                                </div>
+                                <div class="col-xs-7 col-sm-9 col-md-7 col-lg-7 no-padding">
+                                    <div>
+                                        <p class="regular-paragraph">{{$product->name}}</p>
+                                        <span class="regular-paragraph">{{$product->allModules->count()}} modules</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row product-price">
+                        <span class="regular-paragraph">Price:</span>
+                        <p>¥ {{number_format($amountToPay)}}</p>
+                        <a href="#" class="blue-button extra-large-button place-your-order" onclick="$('#form-payment').submit()">Place your order</a>
+                        <small class="regular-paragraph">By clicking the "Place your order" button, you agree to these
+                            <a href="#">Terms of Service.</a>
+                        </small>
+                        <em class="regular-paragraph"><i class="fa fa-lock"></i>Secure Connection</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- <div class="container payment-page course-editor">
         <div class="row">
             <div class="col-md-12">
                 <h1 class='icon'>{{trans('payment.payment')}}</h1>
@@ -52,9 +213,7 @@
                                 </div>
                                 <div class="panel-body" id="panel-credit-card">
                                     @include('payment.panels.creditcard')
-                                    {{--
-                                    <iframe class="hidden" id="frame-gc-form" height="200" width="430" src="" frameBorder="0">Browser not compatible.</iframe>
-                                    --}}
+
                                 </div>
 
                             </div>
@@ -71,34 +230,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @stop
 
 @section('extra_js')
     <script type="text/javascript">
         $(function(){
-           $('.radio-credit-card').on('click',function(){
-               var $data = $('#form-payment').serialize();
-               var $url = $('#form-payment').attr('action');
 
-               $.post($url,$data,function ($response){
-                  if ($response.success){
-                      $('#panel-credit-card').append('<div> ' + _("Loading payment form please wait") + '....</div>');
-                      $('#frame-gc-form').attr('src',$response.redirectUrl);
-                      $('#frame-gc-form').removeClass('hidden');
-                      $('.credit-card-wrapper').addClass('hidden');
-                  }
-                  else{
-                      for(var $index in $response.errors){
-                          $('.ajax-errors ul').append('<li><i class="glyphicon glyphicon-remove"></i> '+ $response.errors[$index] +"</li>");
-                      }
-                      $('.radio-credit-card').attr('checked', false);
-                      $('.ajax-errors').removeClass('hidden');
-                      $("html, body").animate({ scrollTop: 0 }, "slow");
-                  }
-               },'json');
-
-           });
         });
     </script>
 @stop

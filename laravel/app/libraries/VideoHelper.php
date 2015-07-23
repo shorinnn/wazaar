@@ -177,6 +177,7 @@ class VideoHelper
             ],
             'Outputs'    => $outputs,
         ]);
+
         return $result;
     }
 }

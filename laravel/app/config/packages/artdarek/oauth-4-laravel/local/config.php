@@ -21,8 +21,8 @@ return array(
 		 * Facebook
 		 */
                 'Facebook' => array(
-                    'client_id'     => '542192635924313',
-                    'client_secret' => 'f2c0081d8fcf59ff69e5bbcbe88a1f51',
+                    'client_id'     => '1452067801764623',
+                    'client_secret' => '3cba8db5faef7ca42f81391af4178d8d',
                     'scope'         => array('email'),
                 ),		
                 /** 

@@ -5,7 +5,7 @@
                   data-name='name'  placeholder='{{ trans('courses/promote.new-gift') }}' value='{{ $file->name }}' />
         </div>
         <div class='col-lg-5'>
-            <a class='btn btn-primary' href='{{$file->url}}' class='btn btn-primary' target='_blank'>
+            <a class='btn btn-primary' href='{{ $file->presignedUrl() }}' class='btn btn-primary' target='_blank'>
                 {{ trans('courses/student_dash.download') }}
             </a>
             

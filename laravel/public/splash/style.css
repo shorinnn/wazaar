@@ -129,8 +129,11 @@ a:hover{
 
 #container{
 	width: 100%;
-	height: 100%;
+	height: auto;
 	background-color: rgba(27, 35, 42, 0.8);
+}
+
+#splash-youtube-player{
 }
 
 #logo{
@@ -162,6 +165,10 @@ a:hover{
 	line-height: 26px;
 }
 
+#container .row{
+	margin: 0;
+}
+
 .publisher-login{
 	text-align: center;
 	padding: 20px 0;
@@ -182,6 +189,10 @@ a:hover{
 
 .top-buttons .register{
 	margin: 35px 0 20px;
+}
+
+.top-buttons .login{
+	margin: 0 0 60px;
 }
 
 .blue-button{
@@ -222,4 +233,29 @@ a:hover{
 .register{
 	
 }
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+ 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*@media (max-width:361px){
+	#splash-youtube-player{
+		max-width: 100%;
+		height: auto;
+	}
+
+}*/
+
 

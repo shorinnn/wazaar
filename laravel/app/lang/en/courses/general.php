@@ -128,6 +128,7 @@ return array(
     'your-progress' => 'Your Progress',
     'comments-posted' => 'Comments Posted',
     'about-course' => 'About Course',
+    'about-this-course' => 'About this course',
     'next-step' => 'Next Step',
     'preview_course' => 'Preview course',
     'course-description-preview' => 'Course Description Preview',
@@ -178,4 +179,6 @@ return array(
     'course-ready-for-submission' => 'Course Ready For Submission',
     'complete-x-steps-to-submit' => "Complete <span><span>:steps</span> steps</span> to submit course",
     'wazaar-is-checking-your-product' => 'Wazaar is checking your product',
+    'enter-instructor-email' => 'Enter instructor email',
+    'free_preview' => 'Free preview',
 );

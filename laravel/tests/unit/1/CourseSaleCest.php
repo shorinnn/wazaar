@@ -13,6 +13,11 @@ class CourseSaleCest{
     private function setupDatabase() {
         Artisan::call('migrate:refresh');
         Artisan::call('db:seed');
+        $course = Course::find(1);
+        $course->sale = 0;
+        $course->sale_starts_on = '';
+        $course->sale_ends_on = '';
+        $course->updateUniques();
         Course::boot();
     }
     public function discount100Yen(UnitTester $I){

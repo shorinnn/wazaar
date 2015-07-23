@@ -22,7 +22,43 @@
     <link rel="stylesheet" href="{{url('css/slick.css')}}">
     <link rel="stylesheet" href="{{url('css/slick-theme.css')}}">
     <link rel="stylesheet" href="{{url('css/datepicker.css')}}">
+	<style>
+		html{
+			height: 100%;
+			background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/background-images/background-image.jpg') no-repeat center center;
+			background-size: cover;	
+		}
+		
+		body{
+			min-height: 100%;
+			background-color: rgba(24, 34, 43, 0.9);
+			padding-bottom: 15%;
+		}
 
+		@media (max-width:402px){
+			html{
+				height: 100%;
+				background: none;
+			}
+			
+			body{
+				min-height: 100%;
+				background-color: transparent;
+				padding-bottom: 15%;
+			}
+
+			.user-data-modal-wrapper{
+				background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/background-images/background-image.jpg') no-repeat center center;
+				background-size: cover;	
+			}
+			
+			.user-data-modal-wrapper > .row{
+				background-color: rgba(24, 34, 43, 0.9);
+				padding-bottom: 15%;
+			}
+		}
+
+	</style>
     @yield('extra_css')
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -34,7 +70,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-    <div id="wrapper">
+    <div id="wrapper" class="clearfix user-authenticated-wrapper">
         
         @yield('content')
 
@@ -113,6 +149,17 @@
         </script>
     @yield('extra_js')
     	<script type="text/javascript" src="{{url('js/bootbox.js')}}"></script>
+        
+        @if( App::environment() == 'production' )
+            <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+                ga('create', 'UA-65168894-1', 'auto');
+                ga('send', 'pageview');
+            </script>
+        @endif
 	</body>
 </html>

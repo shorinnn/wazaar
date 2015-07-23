@@ -115,8 +115,8 @@ class Student extends User{
         
         // cannot buy the same course/lesson twice |  cannot buy own course/lesson
         if( !$this->canPurchase($product) ) return false;
-        // if this is the first purchase, set the LTC affiliates
-        if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
+        // if this is the first purchase, set the LTC affiliates - DROPPED
+//        if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
         $course = ( get_class($product)=='Course' ) ? $product : $product->module->course;
         
         $purchase = new Purchase;
@@ -124,6 +124,10 @@ class Student extends User{
         $purchase->student_id = $this->id;
         $purchase->purchase_price = $product->cost();
         $purchase->ltc_affiliate_id = $this->ltc_affiliate_id;
+        $ltcSTPub = $this->LTCInstructor();
+        if( $ltcSTPub !=false ){
+            $purchase->ltc_affiliate_id = $ltcSTPub;
+        }
         
         if($course->instructor->secondTierInstructor!=null) $purchase->second_tier_instructor_id = $course->instructor->second_tier_instructor_id;
         
@@ -144,12 +148,12 @@ class Student extends User{
         }
         
         $purchase->instructor_earnings = PurchaseHelper::instructorEarnings($product, $purchase->processor_fee, $affiliate);
-        $purchase->second_tier_instructor_earnings = PurchaseHelper::secondTierInstructorEarnings($product, $purchase->processor_fee);
+        $purchase->second_tier_instructor_earnings = PurchaseHelper::secondTierInstructorEarnings($product, $purchase->processor_fee, $purchase->ltc_affiliate_id, $affiliate);
         $purchase->affiliate_earnings = PurchaseHelper::affiliateEarnings($product, $purchase->processor_fee, $affiliate);
         $purchase->second_tier_affiliate_earnings = PurchaseHelper::secondTierAffiliateEarnings($product, $purchase->processor_fee, $affiliate);
-        $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product, $purchase->ltc_affiliate_id, $purchase->processor_fee);
-        $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product, $purchase->processor_fee);
-        $purchase->site_earnings = PurchaseHelper::siteEarnings($product, $purchase->ltc_affiliate_id, $paymentData['successData']['processor_fee'] );
+        $purchase->ltc_affiliate_earnings = PurchaseHelper::ltcAffiliateEarnings($product, $purchase->ltc_affiliate_id, $purchase->processor_fee, $affiliate, $this);
+//        $purchase->instructor_agency_earnings = PurchaseHelper::agencyEarnings($product, $purchase->processor_fee);
+        $purchase->site_earnings = PurchaseHelper::siteEarnings($product, $purchase->ltc_affiliate_id, $paymentData['successData']['processor_fee'], $affiliate, $this );
         $purchase->payment_ref = $paymentData['successData']['REF'];
         $purchase->order_id = $paymentData['successData']['ORDERID'];
         /************ Money fields **************/
@@ -158,11 +162,12 @@ class Student extends User{
             $purchase->subscription_end = date( 'Y-m-d H:i:s', strtotime( $purchase->subscription_start.' +1 month' ) );
         }
         if($affiliate==null) $purchase->product_affiliate_id = 0;
+        elseif( $affiliate=='sp' ) $purchase->product_affiliate_id = -1;
         else{
             $prodAffiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
             $purchase->product_affiliate_id = $prodAffiliate->id;
-            if( $prodAffiliate->ltcAffiliate != null){
-                $purchase->second_tier_affiliate_id = $prodAffiliate->ltcAffiliate->id;
+            if( $prodAffiliate->secondTierAffiliate != null){
+                $purchase->second_tier_affiliate_id = $prodAffiliate->secondTierAffiliate->id;
             }
         }
 
@@ -204,7 +209,14 @@ class Student extends User{
             
             // credit LTC affiliate
             if( $purchase->ltc_affiliate_earnings > 0){
-                $this->ltcAffiliate->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref, 'ltc', 0, $purchase->id);
+                $stInstructor = $this->LTCInstructor();
+                if(  $stInstructor == false ){
+                    $this->ltcAffiliate->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref, 'ltc', 0, $purchase->id);
+                }
+                else{
+                    $stInstructor = SecondTierInstructor::find($stInstructor);
+                    $stInstructor->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref,  $purchase->id, 'ltc' );
+                }
             }
             
             // credit second tier affiliate
@@ -219,9 +231,9 @@ class Student extends User{
                 $prodAffiliate->credit( $purchase->affiliate_earnings, $product, $purchase->payment_ref, $purchase->id);
             }
             // credit Instructor Agency
-            if( $course->instructor->instructor_agency_id > 0){
-                $course->instructor->agency->credit( $purchase->instructor_agency_earnings, $product, $purchase->payment_ref, $purchase->id);
-            }
+//            if( $course->instructor->instructor_agency_id > 0){
+//                $course->instructor->agency->credit( $purchase->instructor_agency_earnings, $product, $purchase->payment_ref, $purchase->id);
+//            }
             // credit wazaar
             $wazaar = LTCAffiliate::find(2);
             $wazaar->credit( $purchase->site_earnings, $product, $purchase->payment_ref, 'wazaar', $purchase->processor_fee, $purchase->id);
@@ -317,13 +329,14 @@ class Student extends User{
      */
 
     public function setLTCAffiliate(){
-        $register = new DateTime($this->created_at);
-        $now = new DateTime();
-        if($now->diff($register)->days >=30){
-//            $this->ltc_affiliate_id = 2;
-            $this->ltc_affiliate_id = null;
-            $this->save();
-        }
+        return;
+//        $register = new DateTime($this->created_at);
+//        $now = new DateTime();
+//        if($now->diff($register)->days >=30){
+////            $this->ltc_affiliate_id = 2;
+//            $this->ltc_affiliate_id = null;
+//            $this->save();
+//        }
     }
     
     /**
@@ -605,6 +618,15 @@ class Student extends User{
             return false;
          }
          return true;
+     }
+     
+     public function LTCInstructor(){
+         $user = User::find( $this->id );
+         if( !$user->hasRole( 'Instructor' ) ) return false;
+         if( strtotime( $user->created_at ) <= strtotime('2015-08-12 23:59:59') && $this->second_tier_instructor_id > 0 ){
+             return $this->second_tier_instructor_id;
+         }
+         return false;
      }
 
 

@@ -11,6 +11,7 @@ class SiteController extends \BaseController {
             if(Input::has('skip-the-splashie')){
 //                $frontpageVideos  = FrontpageVideo::grid();
                 $categories = CourseCategory::limit(12);
+                $groups = CategoryGroup::orderBy('order','asc')->get();
                 
 //                Cache::forget('topCourses');
                 if ( !Cache::has('topCourses') ){
@@ -20,13 +21,18 @@ class SiteController extends \BaseController {
                 
                 $topCourses = Cache::get('topCourses');
                 $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
+                $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
                 
-                if(Auth::user()) Return View::make('site.homepage_authenticated')->with(compact('categories'));
+                
+                if(Auth::user()) Return View::make('site.homepage_authenticated')
+                    ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses'));
                 else{
                     if(Input::has('old-page'))
-                        Return View::make('site.homepage_unauthenticated_DEPR')->with( compact('categories', 'frontpageVideos', 'topCourses') );
+                        Return View::make('site.homepage_unauthenticated_DEPR')
+                        ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses') );
                     else
-                        Return View::make('site.homepage_unauthenticated')->with( compact('categories', 'frontpageVideos', 'topCourses') );
+                        Return View::make('site.homepage_unauthenticated')
+                            ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses') );
                 }
             }
             if( Auth::check() ){
@@ -63,6 +69,14 @@ class SiteController extends \BaseController {
 	{            
             Return View::make('site.classroom');
 	}
+
+// Temporary functions for new classroom UI
+
+	public function newclassroom()
+	{            
+            Return View::make('TEMPORARYVIEWS.new_classroom');
+	}
+
         
         public function crud(){
              Return View::make('TEMPORARYVIEWS.crud');
@@ -121,10 +135,31 @@ class SiteController extends \BaseController {
 //            dd($user);
 //        }
 
+        
+    public function discoverCourses($group=0){
+        if( $group == 0 ){
+            $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
+        }
+        else{
+            $cats = CategoryGroup::find($group)->categories()->lists('id');
+            $discoverCourses = Course::where('publish_status','approved')->whereIn( 'course_category_id', $cats )->orderBy( DB::raw('RAND()') )->limit(6)->get();
+        }
+        return View::make('site.discover_courses')->with( compact('discoverCourses') );
+    }
 
     public function loginTest(){
         $user = User::find(60);
         $user = User::find(74);
         Auth::login($user);
     }
+    
+    public function clearCache(){
+        DB::table('users')->update( [ 'confirmed' => 1] );
+        $user = User::orderBy('id','desc')->limit(1)->first();
+        dd($user);
+//        Cache::forget('topCourses');
+//        return 'ok';
+    }
+    
+
 }

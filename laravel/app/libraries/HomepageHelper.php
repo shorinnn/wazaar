@@ -16,11 +16,13 @@ class HomepageHelper{
         $helper = new CourseHelper();
         $courses = [];
         $catCourses = [];
+        $ids = [];
         
         // add the manually selected courses for homepage
         $featured = Course::where('featured','1')->get();
         foreach($featured as $course){
-            $courses[] = self::_prep( $course->id );
+            $courses[] = self::_prep( $course->id, true );
+            $ids[] = $course->id;
         }
         
         $maxLoops = 5;
@@ -41,11 +43,14 @@ class HomepageHelper{
                 $rand =  rand(0, $max);
                 // picked random course from top 3
                 $selectedCourse = $catCourses[$cat->id][$rand]['course_id'];
+                // skip, if this course already added
+                if( in_array( $selectedCourse, $ids ) ) continue;
                 
                 // remove it from category array so it doesn't show up again
                 unset( $catCourses[$cat->id][$rand] );
                 $catCourses[$cat->id] = array_values($catCourses[$cat->id]);
                 $courses[] = self::_prep( $selectedCourse );
+                $ids[] = $selectedCourse;
             }
             ++$i;
             // if after 5 attempts we have missing slots, kill the loop to avoid infinite loop
@@ -57,7 +62,7 @@ class HomepageHelper{
         return $courses;
     }
     
-    private static function _prep($id){
+    private static function _prep($id, $manual=false){
         $course = Course::find( $id );
         $course->preview = url('splash/logo.png');
         if( $course->previewImage != null ) $course->preview = cloudfrontUrl( $course->previewImage->url );

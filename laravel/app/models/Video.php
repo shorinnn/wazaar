@@ -19,14 +19,14 @@ class Video extends \LaravelBook\Ardent\Ardent
     public static function getPresetIdByAgent()
     {
         if (Agent::isMobile()){
-            return '1421660966371-o9l23s';
+            return  '1436779339512-wtkz9d';
         }
 
-        if (Agent::isTablet()){
+        /*if (Agent::isTablet()){
             return '1421661161826-cx6nmz';
-        }
+        }*/
 
-        return '1421661161826-cx6nmz';
+        return '1436790010046-k9rw9e';
     }
 
     public static function getByIdAndPreset($id, $presetId = null)

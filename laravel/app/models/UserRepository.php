@@ -29,8 +29,10 @@ class UserRepository
 //      $user->username = array_get($input, 'username');
         $user->email    = array_get($input, 'email');
         $user->username = 'U'.uniqid();
-        $user->first_name = Input::get('first_name');
-        $user->last_name = Input::get('last_name');
+//        $user->first_name = Input::get('first_name');
+        $user->first_name = array_get($input, 'first_name');
+//        $user->last_name = Input::get('last_name');
+        $user->last_name = array_get($input, 'last_name');
         $user->password = array_get($input, 'password');
         $user->instructor_agency_id = $instructorAgencyCookie;
 //        if( User::where('id', $secondTierInstructorCookie )->where( 'is_second_tier_instructor','yes' )->where( 'sti_approved','yes' )->count() == 1 ){
@@ -52,30 +54,38 @@ class UserRepository
         $url = action('SiteController@index');
         if($registersAsST!=null) $url = action('UsersController@registrationConfirmation' );
         $url = action('UsersController@registrationConfirmation' );
+        
 
+        $deliveredTags = [];
         // Save if valid. Password field will be hashed before save
         if($this->save($user)){
             $profileType = 'Student';
-            
+            $deliveredTags[] = 'student';
             $user = $this->attachRoles($user);
             if( $registersAsST!=null || ( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) ){
                 $user = $this->attachRoles($user, 1);
                 $profileType = 'Instructor';
+                $deliveredTags[] = 'instructor';
             }
             if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ){
                 $user = $this->attachRoles($user, 2);
                 $profileType = 'Affiliate';
+                $deliveredTags[] = 'affiliate';
             }
             $this->save_ltc($user, $ltc_cookie);
             
             if($registersAsST!=null){// create profile
                 $profileType = 'Instructor';
+                $deliveredTags[] = 'instructor';
+                $deliveredTags[] = 'stinstructor';
             }
 //                $name = explode( ' ', Input::get('name') );
 //                $first_name = ( !isset($name[1]) || empty($name[1]) ) ? 'First Name' : $name[1];
 //                $last_name = ( !isset($name[0]) || empty($name[0]) ) ? 'Last Name' : $name[0];
-                $first_name = Input::get('first_name');
-                $last_name = Input::get('last_name');
+//  ---              $first_name = Input::get('first_name');
+//     ----           $last_name = Input::get('last_name');
+                $first_name = array_get($input, 'first_name');
+                $last_name = array_get($input, 'last_name');
                 $profile = new Profile;
                 $profile->owner_id = $user->id; 
                 $profile->owner_type = $profileType;
@@ -85,12 +95,9 @@ class UserRepository
                 $profile->save();
 //            }
             
+
             // add user to DELIVERED
-//            $delivered = new DeliveredHelper();
-//            $response = $delivered->addUser( str_random(4), str_random(5), $user->email );
-//            if( $response->success ){
-//                $user->delivered_user_id = $response->data->clientId;
-//            }
+            $this->_addToDelivered($user, $deliveredTags);
             $user = User::find($user->id); 
             $user->url = $url;
             if($user->roles()->count() == 1){
@@ -100,6 +107,23 @@ class UserRepository
         }
         else return $user;
         
+    }
+    
+    private function _addToDelivered($user, $deliveredTags){
+        if( App::environment() != 'production' ) return;
+        $this->delivered = new DeliveredHelper();
+        // add the user to DELIVERED
+        $response = $this->delivered->addUser( $user->first_name, $user->last_name, $user->email );
+        if( is_array($response) && $response['success'] == true ){
+            $userData = $response['data'];
+            if( is_array($userData) ) $userData = json_decode(json_encode($userData), FALSE);
+            $user->delivered_user_id = $userData->id;
+            $user->updateUniques();
+            // associate tags with the user
+            foreach($deliveredTags as $tag){
+                $this->delivered->addTag('user-type-'.$tag, 'String', 1, $userData->id);
+            }
+        }
     }
     
     /**
@@ -112,6 +136,7 @@ class UserRepository
             $ltc_affiliate = LTCAffiliate::where('affiliate_id', $ltc)->first();
             if($ltc_affiliate !=null ){
                 $user->ltcAffiliate()->associate($ltc_affiliate);
+                $user->second_tier_affiliate_id = $ltc_affiliate->id;
                 $user->save();
             }            
         }
@@ -180,7 +205,9 @@ class UserRepository
         // Generate a random confirmation code
         $user->confirmation_code     = md5(uniqid(mt_rand(), true));
         
-         $profileType = 'Student';
+        $deliveredTags = [];
+        $profileType = 'Student';
+        $deliveredTags[] = 'student';
 
         // Save if valid. Password field will be hashed before save
         $this->save($user);
@@ -188,15 +215,19 @@ class UserRepository
         if( $registersAsST!=null || ( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) ){
             $user = $this->attachRoles($user, 1);
             $profileType = 'Instructor';
+            $deliveredTags[] = 'instructor';
+            $deliveredTags[] = 'stinstructor';
         }
         if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ){
             $user = $this->attachRoles($user, 2);
              $profileType = 'Affiliate';
+             $deliveredTags[] = 'affiliate';
         }
         $this->save_ltc($user, $ltc_cookie);
         
         if($registersAsST!=null){// create profile
             $profileType = 'Instructor';
+            $deliveredTags[] = 'instructor';
         }
             $first_name = $input['first_name'];
             $last_name = $input['last_name'];
@@ -208,6 +239,7 @@ class UserRepository
             $profile->email = $user->email;
             $profile->save();
 
+        $this->_addToDelivered($user, $deliveredTags);
         return $user;
     }
     
@@ -221,7 +253,8 @@ class UserRepository
     public function linkFacebook($input, $user_id, $facebook_id, $facebook_profile){
         $user = User::find($user_id);
         $input['email'] = $user->email;
-        if($this->login($input)){
+        $login = $this->login($input);
+        if( $login ){
             // link the account
             Auth::user()->confirmed = 1;
             Auth::user()->facebook_login_id = $facebook_id;

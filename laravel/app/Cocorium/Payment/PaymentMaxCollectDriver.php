@@ -15,17 +15,20 @@ class PaymentMaxCollectDriver implements PaymentInterface {
 
     public function makeUsingCreditCard($amount, $creditCardDetails, $otherParams = [])
     {
+
         $data = [
           'SiteId' => $this->sid,
           'SitePass' => $this->spw,
           'cardName' => $creditCardDetails['cardName'],
-          'cardNo' => $creditCardDetails['cardNo'],
+          'cardNo' => $creditCardDetails['cardNumber'],
           'cardMonth' => $creditCardDetails['cardMonth'],
           'cardYear' => $creditCardDetails['cardYear'],
-          'cvv2' => $creditCardDetails['cvv2'],
+          'cvv2' => $creditCardDetails['cardCVV'],
+          'adr1' => $creditCardDetails['address1'],
+          'adr2' => $creditCardDetails['address2'],
           'Amount' => $amount,
-          'Name' => $creditCardDetails['customerName'],
-          'Mail' => $creditCardDetails['customerEmail'],
+          'Name' => $creditCardDetails['firstName'] . ' ' . $creditCardDetails['lastName'],
+          'Mail' => $creditCardDetails['email'],
           'CustomerId' => 'lagsik',
           'CustomerPass' => 'taeigit'
 
@@ -34,7 +37,9 @@ class PaymentMaxCollectDriver implements PaymentInterface {
 
         $curl = new \anlutro\cURL\cURL();
         $url = $curl->buildUrl($this->endpoint,$data);
-        return $curl->get($url);
+        parse_str($curl->get($url)->body);
+
+        return compact('state','msg','TransactionId');
     }
 
     public function makeUsingBank($amount, $bankDetails, $otherParams = [])

@@ -24,10 +24,13 @@ if( !isset($_SERVER['HTTP_HOST'])){
 
 Route::resource('lp', 'LpController');
 Route::get('loginTest', 'SiteController@loginTest');
+Route::get('clear-cache/huehue', 'SiteController@clearCache');
+
 $wwwRoutes = function(){
 //Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
+    Route::get('discover-courses/{group}', 'SiteController@discoverCourses');
 	
     
     Route::get('/dash', 'SiteController@dashboard');
@@ -44,6 +47,7 @@ $wwwRoutes = function(){
 	Route::get('courses/edit/step_1', 'SiteController@edit_description');
 	Route::get('courses/edit/step_3', 'SiteController@edit_settings');
 	Route::get('checkout', 'SiteController@checkout');
+	Route::get('newclassroom', 'SiteController@newclassroom');
 
     // temporary tracking route
     Route::post('action-tracker', 'ActionController@track');
@@ -85,6 +89,7 @@ $wwwRoutes = function(){
         Route::resource('withdrawals', 'WithdrawalsController');
         Route::post('members/refund', 'MembersController@refund');
         Route::resource('members', 'MembersController');
+        Route::get('second-tier-publishers/stats', 'SecondTierPublishersController@stats');
         Route::resource('second-tier-publishers', 'SecondTierPublishersController');
         Route::resource('submissions', 'SubmissionsController');
         Route::get('instructor-agencies/instructors/{id}', 'InstructorAgenciesController@instructors');
@@ -100,9 +105,12 @@ $wwwRoutes = function(){
     Route::get('coursecategories/subcategories', 'CoursesCategoriesController@subcategories');
     Route::group(['prefix' => 'administration'], function (){
         Route::post('coursecategories/graphics_url/{category}', 'CoursesCategoriesController@graphics_url');
+        Route::put('coursecategories/{id}/group', 'CoursesCategoriesController@group');
         Route::resource('coursecategories', 'CoursesCategoriesController');
         Route::resource('coursesubcategories', 'CoursesSubcategoriesController');
         Route::resource('course-difficulties', 'CourseDifficultiesController');
+        Route::put('category-groups/{id}/group', 'CategoryGroupsController@group');
+        Route::resource('category-groups', 'CategoryGroupsController');
     });
 //});
 };
@@ -163,11 +171,10 @@ $wwwRoutes = function(){
     // classroom
     Route::get('classroom/resource/{id}', 'ClassroomController@resource');
     Route::get('classroom/gift/{id}', 'ClassroomController@gift');
-    Route::get('classroom/{slug}/dashboard', 'ClassroomController@dashboard');
+//    Route::get('classroom/{slug}/dashboard', 'ClassroomController@dashboard');
     Route::get('classroom/{slug}/testimonial', 'ClassroomController@testimonial');
     Route::get('classroom/{course}/{module}/{lesson}', 'ClassroomController@lesson');
-    Route::get('classroom/{slug}/', 'ClassroomController@dashboard');
-
+    Route::get("classroom/{slug}/", 'ClassroomController@dashboard');
     // Courses Controller
     Route::get('courses/mycourses', 'UsersController@login');
     Route::get('courses/view-discussion/{id}', 'CoursesController@viewDiscussion');
@@ -180,6 +187,7 @@ $wwwRoutes = function(){
     Route::get('courses/categories', 'CoursesController@categories');
     Route::get('courses/category/{slug}/{subcat}', 'CoursesController@subCategory');
     Route::get('courses/category/{slug}', 'CoursesController@category');
+    Route::get('courses/category/', 'CoursesController@category');
     Route::post('courses/{slug}/purchase/{lesson}', 'CoursesController@purchaseLesson');
     Route::post('courses/{slug}/crash/{lesson}', 'CoursesController@crashLesson');
     Route::post('courses/{slug}/crash/', 'CoursesController@crashCourse');
