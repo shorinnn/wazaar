@@ -337,8 +337,9 @@
      
     var $courseVideoInterval;
         var formData = $('#form-aws-credentials').serialize();
-        $vidUpload = jQuery('#upload-course-video');
+        var $vidUpload = jQuery('#upload-course-video');
         $vidUpload.fileupload({
+            dropzone:null,
             url: '{{UploadHelper::AWSVideosInputURL()}}',
             formData: {
                 key:$('#form-aws-credentials').find('input[name=key]').val(),

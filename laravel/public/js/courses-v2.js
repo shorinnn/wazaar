@@ -129,6 +129,7 @@ function addLesson(json){
     $('li.shr-editor-module-'+json.module+' ol').append(json.li);
    
     $('.step3-lesson-count').html( $('.new-lesson').length );
+    enableBlockFileUploader();
 }
 
 /**
@@ -214,6 +215,57 @@ function enableBlockFileUploader(e){
 }
 
 /**
+ * Enables AJAX file uploading for the specified element
+ * @param {object} $uploader The file object that is ajaxified
+ * @param {string} data-dropzone CSS Selector of the element to be used as the uploader's dropzone
+ * @param {string} data-progress-bar CSS selector of the element to be used as the uploader's progress bar
+ * @param {string} data-callback What method to run after upload is complete
+ * @method enableFileUploader
+ */
+function enableFileUploader($uploader){
+    dropzone = $uploader.attr('data-dropzone');
+    var progressbar = $uploader.attr('data-progress-bar');
+    upload_url = $uploader.closest('form').attr('action');
+    console.log(dropzone);
+    var $u = $uploader;
+    $u.fileupload({
+                dropZone: $(dropzone)
+            }).on('fileuploadadd', function (e, data) {
+                str =  $(progressbar).prop('outerHTML');
+                str += '<br /><br />';
+                bootbox.dialog({
+                    title: _('Uploading'),
+                    message: str
+                  });
+                callback = $uploader.attr('data-add-callback');
+                if( typeof(callback) !='undefined' ){
+                    return window[callback](e, data);
+                }
+            }).on('fileuploadprogress', function (e, data) {
+                var $progress = parseInt(data.loaded / data.total * 100, 10);
+                $(progressbar).css('width', $progress + '%');
+                $(progressbar).find('span').html($progress);
+                if($progress=='100') $(progressbar).find('span').html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+            }).on('fileuploadfail', function (e, data) {
+                $(progressbar).find('span').html('');
+                $(progressbar).css('width', 0 + '%');
+                $.each(data.files, function (index) {
+                    var error = $('<span class="alert alert-danger upload-error"/>').text( _('File upload failed.') );
+                    $(progressbar).css('width', 100 + '%');
+                    $(progressbar).find('span').html(error);
+                });
+                bootbox.hideAll();
+            }).on('fileuploaddone', function (e,data){
+                callback = $uploader.attr('data-callback');
+                if( typeof(callback) !=undefined ){
+                    window[callback](e, data);
+                    
+                }
+            });
+            console.log( $u );
+}
+
+/**
  * Called after the Video tab of a lesson is loaded, it ajaxifies the file upload form
  * 
  * 
@@ -244,6 +296,7 @@ function enableSettingOption(e){
  * @method blockFileUploaded
  */
 function blockFileUploaded(e, data){
+    
     lessonId = $(e.target).attr('data-lesson-id');
     var progressbar = $(e.target).attr('data-progress-bar');
 
@@ -265,6 +318,7 @@ function blockFileUploaded(e, data){
         $(progressbar).css('width', 0 + '%');
 //        console.log(result);
         $uploadTo.append(result.html);
+        bootbox.hideAll();
 //        $(e.target).parent().parent().parent().append(result.html);
     });
 //    if(result.status=='error'){
