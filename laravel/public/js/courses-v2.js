@@ -66,7 +66,10 @@ function reorderModulesAndLessons(){
         lessons.push(  { module:id, lessons: l} );
         ++i;
     });
-    
+    id = $('.course-id').val();
+    $.post( COCORIUM_APP_PATH+'courses/'+id+'/reorder', { modules:modules, lessons:lessons }, function(result){
+        console.log(result);
+    });
     return true;
 }
 
@@ -106,14 +109,13 @@ function prepareCourseDetails(json){
  * @param {json} e The json response of the create module call
  */
 function addModule(json){
-    var destination = '#modules-list';
-    var current = $('#modules-list > li').length + 1 * 1;
-    var id = json.id;
+    var destination = '.module-container';
     var module = json.html;
     $(destination).append(module);
-    sortablizeLessons('lessons-holder-'+id);
     restoreSubmitLabel( $('#modules-form') );
+    $('.drag-module').append( json.li );
     $('.step3-module-count').html( $('.new-module').length );
+//    var id = json.id;
 }
 
 /**
@@ -123,15 +125,10 @@ function addModule(json){
  * @method addLesson
  */
 function addLesson(json){
-    $('#lessons-holder-'+json.module).append(json.html);
-    $('#lessons-holder-'+json.module+' .lesson-no-video .a-add-video').click();
-    reorderLessons( 'lessons-holder-'+json.module );
-    if( $('.step-2-filled').val()=='0' && $('.lesson-options').length >= 0 ) {
-        $('.step-2-filled').val('1');
-        updateStepsRemaining();
-    }
+    $('div.shr-editor-module-'+json.module+' .lesson-container').append(json.html);
+    $('li.shr-editor-module-'+json.module+' ol').append(json.li);
+   
     $('.step3-lesson-count').html( $('.new-lesson').length );
-    enableBlockFileUploader();
 }
 
 /**
@@ -646,4 +643,63 @@ function toggleVisibility(e){
         $source.attr('data-visible', 'hide');
         $(dest).show();
     }
+}
+
+function sortablizeLsn(){
+    $('.drag-lesson').each(function(){
+        if( typeof( $(this).attr('data-sortablized')) =='undefined' ) {
+            $(this).attr('data-sortablized', 1);
+            el = $(this)[0];
+            var sortable = Sortable.create( el, {
+                animation: 150,
+                onEnd: function (evt) {
+                    console.log(evt);
+                    cls = $(evt.item).attr('class');
+                    $lesson = $('div.'+cls);
+                    i = 0;
+                    $lesson.parent().find('.shr-lesson').each(function(){
+                        if(i == evt.newIndex){
+                            if( evt.newIndex < evt.oldIndex ) $(this).before( $lesson );
+                            else $(this).after( $lesson );
+                        }
+                        ++i;
+                    });
+                    reorderModulesAndLessons();
+                }
+            });
+        }
+    });
+}
+
+function sortablizeMdl(){
+    $('.drag-module').each(function(){
+        if( typeof( $(this).attr('data-sortablized')) =='undefined' ) {
+            $(this).attr('data-sortablized', 1);
+            el = $(this)[0];
+            var sortable = Sortable.create( el, {
+                animation: 150,
+                onEnd: function (evt) {
+                    console.log(evt);
+                    cls = $(evt.item).attr('class');
+                    $module = $('div.'+cls);
+                    i = 0;
+                    $module.parent().find('.shr-editor-module').each(function(){
+                        if(i == evt.newIndex){
+                            if( evt.newIndex < evt.oldIndex ) $(this).before( $module );
+                            else $(this).after( $module );
+                        }
+                        ++i;
+                    });
+                    reorderModulesAndLessons();
+                }
+            });
+        }
+    });
+}
+
+
+$('body').delegate('.type-in-elements', 'keyup', typeInElemens);
+function typeInElemens(e){
+    elem = $(e.target).attr('data-elements');
+    $(elem).html( $(e.target).val() );
 }

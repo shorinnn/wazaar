@@ -23,7 +23,10 @@ class LessonsController extends \BaseController {
                 if(Request::ajax()){
                     $response = ['status' => 'success', 
                                  'module' => $lesson->module_id, 
-                                 'html' => View::make('courses.lessons.lesson')->with(compact('lesson'))->render() ];
+                                 'li' => View::make('courses.editor.v2.lesson_li')->with(compact('lesson'))->render() ,
+                                 'html' => View::make('courses.editor.v2.lesson')->with(compact('lesson'))->render()
+                            ];
+//                                 'html' => View::make('courses.lessons.lesson')->with(compact('lesson'))->render() ];
                     return json_encode($response);
                 }
                 else{

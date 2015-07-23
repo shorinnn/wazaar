@@ -32,6 +32,7 @@
     .inactive > *{
         pointer-events: none;
     }
+
 </style>
 
 @if (Session::get('success'))

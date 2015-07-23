@@ -598,4 +598,33 @@ class CoursesController extends \BaseController {
 
             return Response::json(['error' => 'Insufficient Parameters']);
         }
+        
+        public function reorder($id){
+            $course = Course::find($id);
+            if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
+                return Redirect::action('CoursesController@index');
+            }
+            if( Input::has('modules') ){
+                $i = 1;
+                foreach( Input::get('modules') as $module){
+                    $module = Module::where('course_id', $course->id)->where('id', $module)->update( ['order' => $i] );
+                    ++$i;
+                }
+
+            }
+            if( Input::has('lessons') ){
+                foreach( Input::get('lessons') as $data ){
+                    $module = $data['module'];
+                    $lessons = isset( $data['lessons'] ) ? $data['lessons'] : [];
+                    $i = 1;
+                    $module = Module::find($module);
+                    foreach($lessons as $lesson){                        
+                        if($module==null || $module->course_id != $course->id) continue;
+                        $lesson = Lesson::where('module_id', $module->id)->where('id', $lesson)->update( ['order' => $i] );
+                        ++$i;
+                    }
+                }
+            }
+            return Response::json(['status' => 'success']);
+        }
 }

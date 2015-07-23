@@ -194,6 +194,7 @@ Route::group(array('domain' => $domain), $wwwRoutes);
 Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 
 Route::group( array('domain' => $instructorSubdomain ), function(){
+    Route::post('courses/{id}/reorder', 'CoursesController@reorder');
     Route::get('courses/mycourses', 'CoursesController@myCourses');
     Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
     Route::get('courses/{slug}/dashboard', 'CoursesController@dashboard');

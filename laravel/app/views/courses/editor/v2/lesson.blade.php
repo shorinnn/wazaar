@@ -20,7 +20,8 @@
                                 <button type="submit"></button>
                         </div>
             <div>
-                <input type="text" name="name" class="lesson-title" placeholder="Enter lesson title" value="{{ $lesson->name }}" >
+                <input type="text" name="name" class="lesson-title type-in-elements" data-elements='.shr-lesson-{{$lesson->id}} > a'
+                       placeholder="Enter lesson title" value="{{ $lesson->name }}" >
             </div>
             <div>
                 <h6>DESCRIPTION

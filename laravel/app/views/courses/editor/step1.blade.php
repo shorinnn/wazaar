@@ -3,7 +3,7 @@
 
 <input type='hidden' class='course-id' value='{{ $course->id }}' />
 
-    
+
 @include('videos.archiveModal')
 
     <div class="row content-row margin-bottom-20">
