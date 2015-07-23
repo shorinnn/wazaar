@@ -5931,18 +5931,17 @@ a.load-remote > *{
     text-align: center;
 }
 
-.pagination-container ul li:last-of-type a {
-    background-position: center -31px;
+.pagination-container ul li:last-of-type a i{
+	margin-left: 8px;
 }
 
-.pagination-container ul li:first-of-type a {
-    background-position: center -1px;
+.pagination-container ul li:first-of-type a i{
+    margin-right: 8px;
 }
 
 .pagination-container .page-numbers-container {
     clear: both;
     margin: auto;
-	display: table;
     position: relative;
 }
 
@@ -7348,18 +7347,30 @@ p.tip::before{
 
 .pagination-container ul li:first-of-type,
 .pagination-container ul li:last-of-type{
-	height: 22px;
-	width: 22px;
+	height: auto;
+	width: auto;
+	position: absolute;
+}
+
+.pagination-container ul li:first-of-type{
+	left: 0;
+}
+
+.pagination-container ul li:last-of-type{
+	right: 0;
 }
 
 .pagination-container ul li:first-of-type a,
 .pagination-container ul li:last-of-type a{
-	height: 22px;
-	width: 22px;
+	width: auto;
 	display: block;
-	margin-top: 9px;
-	background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png");
-	background-repeat: no-repeat;
+	margin-top: 0;
+	padding: 0;
+	color: #0099ff;
+	font-size: 13px;
+	font-weight: 600;
+	/*background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png");
+	background-repeat: no-repeat;*/
 }
 
 .members-area .pagination-container ul li:first-of-type a{
