@@ -10005,6 +10005,10 @@ footer{
 }
 
 @media (max-width:991px){
+	header .top-menu .logged-out li a{
+		padding: 7px 8px;
+	}
+
 	.text-center-mobile{
 		text-align: center;
 	}
@@ -10181,12 +10185,12 @@ footer{
 }
 
 @media (min-width:768px) and (max-width: 800px) {
-	header .top-menu .logged-out li a{
-		padding: 11px 14px;
-	}
 }
 
 @media (max-width:767px){
+header .top-menu .logged-out li a{
+  padding: 7px 10px;
+}
 
 .user-thumb{
 	max-width: 70px;
@@ -10357,10 +10361,6 @@ header .top-menu .logged-out-header-search .catalogue-button em{
 
 .instructor-mycourses .course-wrapper .bottom-bar{
 	margin-top: 35px;
-}
-
-header .top-menu .logged-out li a{
-	padding: 7px 10px;
 }
 
 header .main-logo{
