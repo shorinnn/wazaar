@@ -23,9 +23,9 @@
 
                     	<div class="difficulty-levels">
                         	<div class="level-buttons-container">
-                            	<a href="{{url('courses/category?difficulty=1')}}" class="beginner level-buttons @if($difficultyLevel == 1) active @endif">Beginner</a>
-                                <a href="{{url('courses/category?difficulty=2')}}" class="advanced level-buttons @if($difficultyLevel == 2) active @endif">Advanced</a>
-                                <a href="{{url('courses/category?difficulty=3')}}" class="intermediate level-buttons @if($difficultyLevel == 3) active @endif">Intermediate</a>
+                            	<a href="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort')}}" class="beginner level-buttons @if($difficultyLevel == 1) active @endif">Beginner</a>
+                                <a href="{{Request::url() . '?difficulty=2&sort=' . Input::get('sort')}}" class="advanced level-buttons @if($difficultyLevel == 2) active @endif">Advanced</a>
+                                <a href="{{Request::url() . '?difficulty=3&sort=' . Input::get('sort')}}" class="intermediate level-buttons @if($difficultyLevel == 3) active @endif">Intermediate</a>
                             </div>
                             <div class="toggle-menus">
                             	<a href="#" class="menu menu-1"><i class="fa fa-th"></i></a>

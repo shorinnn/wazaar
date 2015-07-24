@@ -5,9 +5,10 @@ class CourseHelper {
      * @param null $category - The category ID or slug
      * @param string $timeFrame - AT = All Time, 24H = Last 24 Hours, 3D = 3 Days Ago, LW = Last Week, LM = Last Month
      * @param null $perPage - If paginated, set a numeric value to this
+     * @param array $otherFilters
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Pagination\Paginator|static[]
      */
-    public function bestSellers($category = null, $timeFrame = 'AT', $perPage = null)
+    public function bestSellers($category = null, $timeFrame = 'AT', $perPage = null, $otherFilters = [])
     {
         $courses = null;
 
@@ -26,7 +27,14 @@ class CourseHelper {
             else{
                 $courses = $courses->where('course_category_id',$category);
             }
+        }
 
+        $validFilters = ['course_difficulty_id'];
+
+        foreach($otherFilters as $filterKey => $filterVal){
+            if (in_array($filterKey, $validFilters) && !empty($filterVal)){
+                $courses = $courses->where($filterKey, $filterVal);
+            }
         }
 
         if (!empty($perPage)){
