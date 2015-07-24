@@ -6211,6 +6211,7 @@ a.load-remote > *{
 .listing-video label {
   position: absolute;
   top: -136px;
+  top: -98px;
   left: 63px;
   text-align: center;
 }

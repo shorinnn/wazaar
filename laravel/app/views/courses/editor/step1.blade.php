@@ -39,6 +39,7 @@
                                         <span></span>
                                     </div>
                                 </div>
+                                <em>Image used for listings thumbnail</em>
                                 @if($images->count() > 0)
                                 <span class="use-existing use-existing-preview" >
                                     <span class="use-existing">
@@ -50,7 +51,7 @@
                                 </span>
                                 @endif
                             </div>
-                            <em>Image used for listings thumbnail</em>
+                            
                         </div>
                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 listing-video">
                             <h6>Introduction video</h6>

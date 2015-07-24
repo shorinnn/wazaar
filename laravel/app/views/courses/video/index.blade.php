@@ -1,4 +1,4 @@
-
+<?php /*
 <div class="row">
     <div class="col-md-12 margin-top-10">
         <div class="course-video-upload-processing hidden" align="center">
@@ -15,8 +15,8 @@
             @endif
         </div>
     </div>
-</div>
-
+</div> -->
+*/?>
 <div class="row">
     <div class="col-md-12">
         <div class="image-upload">
