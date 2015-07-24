@@ -10,9 +10,9 @@
 
         .whats-hot-slider
         {
-			width:100%;
-			height: auto;
-			position: relative;
+            width:100%;
+            height: 330px;
+            position: relative;
         }
 
 
@@ -54,17 +54,17 @@
                                 <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">
                                 <div class="course-hover-data">
                                     @if( $course['discounted'] > 0)
-                                        <span class="video-length left"><i class="fa fa-clock-o"></i>
-                                        	<span class='countdown' data-final-date-seconds='{{ timeUntil($course['sale_ends_on'], true) }}'>{{ timeUntil($course['sale_ends_on']) }}</span>
-                                        </span>
-                                        <span class="discount-percent right">- ¥ {{ number_format( $course['discounted'], Config::get('custom.currency_decimals') ) }}</span>
+                                        <span class="discount-percent left">- ¥ {{ number_format( $course['discounted'], Config::get('custom.currency_decimals') ) }}</span>
+                                        <span class="video-length right"><i class="fa fa-clock-o"></i>
+                                                <span class='countdown' data-final-date-seconds='{{ timeUntil($course['sale_ends_on'], true) }}'>{{ timeUntil($course['sale_ends_on']) }}</span>
+                                            </span>
                                     @else
-                                        <span class="discount-percent right">¥ {{ number_format( $course['price'], Config::get('custom.currency_decimals') ) }}</span>
+                                        <span class="discount-percent left">¥ {{ number_format( $course['price'], Config::get('custom.currency_decimals') ) }}</span>
                                     @endif
                                 </div>
                             </div>
-                            <!-- <div class="clearfix">
-                               @if( $course['discounted'] > 0)
+                            <div class="clearfix">
+                                @if( $course['discounted'] > 0)
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{ timeProgress($course['sale_starts_on'], $course['sale_ends_on'] ) }}%;">
                                             <span class="sr-only">
@@ -78,7 +78,7 @@
                                         <span class="video-length countdown" data-final-date-seconds='{{ timeUntil($course['sale_ends_on'], true) }}'>{{ timeUntil($course['sale_ends_on']) }}</span>
                                     @endif
                                 </div>
-                            </div>-->
+                            </div>
                             <div class="course-title clearfix">
                                 <h4 class="clear left"> {{ $course['name'] }}</h4>
                                     <span class="discount-percent right">
@@ -101,8 +101,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <h1 class="text-center">{{trans('site/homepage.explore_our_categories')}}
                         <p class="lead">{{trans('site/homepage.we_have_organised_courses')}}
-                            <span class="block">{{trans('site/homepage.browse_categories_you_like')}}</span>
-                        </p>
+                            <span class="block">{{trans('site/homepage.browse_categories_you_like')}}</span></p>
                     </h1>
                 </div>
             </div>
@@ -124,56 +123,37 @@
                     </div>
                 @endforeach
             </div>
-
-            </section>
         </section>
-        <section class="container-fluid discover-section">
-            <div class="container">
-            	<nav class="navbar navbar-default">
-                    <div class="row discover-header">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-                        	<div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#discover-nav-menu" aria-expanded="false">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>                            	
-                                <h1 class="left navbar-brand">{{trans('site/homepage.discover')}}</h1>
-                            </div>
-                            <div class="collapse navbar-collapse" id="discover-nav-menu">
-                                <ul class="categories-menu nav navbar-nav">
-                                    <li>
-                                        <a class="load-remote" data-url="{{ action( 'SiteController@discoverCourses', 0 )}}" data-no-push-state="1"
-                                           data-target="#discover-courses-area">All</a>
-                                    </li>
-                                    
-                                    @foreach($groups as $group)
-                                    <li>
-                                        <a class="load-remote" data-url="{{ action( 'SiteController@discoverCourses', $group->id )}}"  data-no-push-state="1"
-                                           data-target="#discover-courses-area">{{ $group->name }}</a>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                                <div class="nav navbar-nav navbar-right">
-                                	<a href="{{ action('CoursesController@category','')}}">{{trans('site/homepage.browse_all_courses')}}</a>
-                                </div>                                    
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-            
-            <div id='discover-courses-area' class="container">
-                {{ View::make('site.discover_courses')->with( compact('discoverCourses') ) }}
-            </div>
-           
-            <div class="row">
-                <div class="text-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <a href="#" class="discover-more-button green-button extra-large-button">Discover more</a></div>
+    </section>
+    <section class="container-fluid discover-section">
+        <div class="container">
+            <div class="row discover-header">
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    <h1 class="left">{{trans('site/homepage.discover')}}</h1>
+                    <ul class="left categories-menu">
+                        <li>
+                            <a class="load-remote discover-links" data-url="{{ action( 'SiteController@discoverCourses', 0 )}}" data-no-push-state="1"
+                               data-callback='colorLinks' data-color='#0099ff' data-elem='.discover-links'
+                               data-target="#discover-courses-area">All</a>
+                        </li>
+                        
+                        @foreach($groups as $group)
+                        <li>
+                            <a class="load-remote discover-links" data-url="{{ action( 'SiteController@discoverCourses', $group->id )}}"  data-no-push-state="1"
+                               data-callback='colorLinks'  data-elem='.discover-links' data-color='#0099ff' data-target="#discover-courses-area">{{ $group->name }}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-right">
+                    <a href="{{ action('CoursesController@category','')}}">{{trans('site/homepage.browse_all_courses')}}</a>
                 </div>
             </div>
             
+            <div id='discover-courses-area'>
+                
+                {{ View::make('site.discover_courses')->with( compact('discoverCourses') ) }}
+            </div>
         </div>
     </section>
     <section class="become-an-instructor-section container-fluid">
@@ -189,15 +169,10 @@
             </div>
         </div>
     </section>
-	@stop
-        
-@section('extra_js')
-    <script type="text/javascript" src="{{url('js/moment.js')}}"></script>
+@stop
 
-    <script src="{{url('plugins/smoothscroll/jquery.kinetic.min.js')}}" type="text/javascript"></script>
-    <script src="{{url('plugins/smoothscroll/jquery-ui-1.10.3.custom.min.js')}}" type="text/javascript"></script>
-    <script src="{{url('plugins/smoothscroll/jquery.mousewheel.min.js')}}" type="text/javascript"></script>
-    <script src="{{url('plugins/smoothscroll/jquery.smoothdivscroll-1.3-min.js')}}" type="text/javascript"></script>
+@section('extra_js')
+    
     <script>
         $(function(){
             $('.whats-hot-slider').smoothDivScroll({
@@ -206,7 +181,7 @@
                 mousewheelScrolling: ""
             });
 
-            $('.whats-hot-slider').hover(function(){
+            $('.whats-hot-slider img').hover(function(){
                         $(".whats-hot-slider").smoothDivScroll("stopAutoScrolling");
                     },
                     function(){
@@ -229,8 +204,6 @@
                 }, 500);
 
             });
-
-
         });
     </script>
 @stop
