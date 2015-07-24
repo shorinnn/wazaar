@@ -138,14 +138,14 @@
             	<div class="row">
                 	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-details-player">
                             <div class="pre-view-image video-player">
-                                <img src="{{ cloudfrontUrl( $course->previewImage->url) }}" />
+                                <img src="{{ cloudfrontUrl( $course->previewImage->format('desc') ) }}" />
                             </div>
                         @if( $video==null )
                             <!--!-->       
                         @else
                         <div class="video-player video-container description-page video-container-toggler" style="display:none; background:none; text-align: right">
                             @if( Agent::isMobile() )
-                                <video id='myVideo' preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->url) }}">
+                                <video id='myVideo' preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
                                     <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Mobile Devices')
                                             ->first()->video_url }}" type="video/mp4">
                                 </video>
@@ -153,7 +153,7 @@
     
     
                                 <div class="videoContainer">
-                                    <video id="myVideo" preload="auto" poster="{{ cloudfrontUrl( $course->previewImage->url) }}" />
+                                    <video id="myVideo" preload="auto" poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}" />
                                         <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                                     ->first()->video_url }}" type="video/mp4">
                                         <p>Your browser does not support the video tag.</p>
