@@ -4688,6 +4688,86 @@ h5{
 .analytics-page .table td.link{
 	color: #0099ff;
 }
+
+.analytics-page .table .first-column{
+	border-left: solid 12px transparent;
+}
+
+.analytics-page .table .last-column{
+	padding-right: 24px;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.analytics-page .table th.last-column{
+	font-size: 11px;
+	font-weight: bold;
+	color: #798794;
+}
+
+.analytics-page .table .sorting-active i {
+    color: #798794;
+    font-size: 12px;
+    position:  absolute;
+    right: 8px;
+    top: 11px;
+}
+
+.table-wrapper .table-pagination{
+	border-top: solid 2px #e8eced;
+	background: #fff;
+	padding: 25px 30px;
+}
+
+.table-wrapper .table-pagination ul{
+	padding: 0 45px 0 17px;
+	margin: 0;
+	position: relative;
+	float: right;
+}
+
+.table-wrapper .table-pagination ul li{
+	float: left;
+}
+
+.table-wrapper .table-pagination ul li + li{
+	margin-left: 28px;
+}
+
+.table-wrapper .table-pagination ul li a{
+	font-size: 14px;
+	color: #798794;
+}
+
+.table-wrapper .table-pagination ul li a:hover,
+.table-wrapper .table-pagination ul li.active a{
+	color: #0099ff;
+	font-weight: 600;
+}
+
+.table-wrapper .table-pagination ul li.prev,
+.table-wrapper .table-pagination ul li.next{
+	position: absolute;
+	top: 0;
+}
+
+.table-wrapper .table-pagination ul li.prev a,
+.table-wrapper .table-pagination ul li.next a{
+	color: #0099ff;
+	font-size: 12px;
+}
+
+.table-wrapper .table-pagination ul li.next{
+	right: 0;
+}
+
+.table-wrapper .table-pagination ul li.prev{
+	left: 0;
+}
+
+
+
+
 /************* New Analytics Page End*************/
 
 
