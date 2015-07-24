@@ -43,7 +43,7 @@
         <h1>{{trans('site/homepage.what_is_hot')}}
             <p class="lead">{{trans('site/homepage.our_most_popular_courses')}}</p>
         </h1>
-
+        
         <div class="popular-courses-carousel container-fluid">
             <div class="whats-hot-slider">
                 @foreach($topCourses as $course)
@@ -172,13 +172,18 @@
 @stop
 
 @section('extra_js')
-    
+    <script type="text/javascript" src="{{url('js/moment.js')}}"></script>
+
+    <script src="{{url('plugins/smoothscroll/jquery.kinetic.min.js')}}" type="text/javascript"></script>
+    <script src="{{url('plugins/smoothscroll/jquery-ui-1.10.3.custom.min.js')}}" type="text/javascript"></script>
+    <script src="{{url('plugins/smoothscroll/jquery.mousewheel.min.js')}}" type="text/javascript"></script>
+    <script src="{{url('plugins/smoothscroll/jquery.smoothdivscroll-1.3-min.js')}}" type="text/javascript"></script>
     <script>
         $(function(){
             $('.whats-hot-slider').smoothDivScroll({
                 autoScrollingMode: "onStart",
                 manualContinuousScrolling: true,
-                mousewheelScrolling: ""
+                mousewheelScrolling: "",
             });
 
             $('.whats-hot-slider img').hover(function(){
