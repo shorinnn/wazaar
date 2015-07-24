@@ -93,6 +93,7 @@ $wwwRoutes = function(){
         Route::resource('members', 'MembersController');
         Route::get('second-tier-publishers/stats', 'SecondTierPublishersController@stats');
         Route::resource('second-tier-publishers', 'SecondTierPublishersController');
+        Route::get('submissions/all-courses', 'SubmissionsController@allCourses');
         Route::resource('submissions', 'SubmissionsController');
         Route::get('instructor-agencies/instructors/{id}', 'InstructorAgenciesController@instructors');
         Route::resource('instructor-agencies', 'InstructorAgenciesController');
