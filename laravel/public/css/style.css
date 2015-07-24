@@ -10825,3 +10825,7 @@ header .top-menu li{
 .inline-form{
     display:inline;
 }
+
+.pre-view-image img{
+    width:100%;
+}
