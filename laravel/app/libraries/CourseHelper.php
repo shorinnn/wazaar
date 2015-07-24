@@ -99,7 +99,7 @@ class CourseHelper {
     public static function getCourseSortOptions()
     {
         $options = [
-          ''    => trans('general.select-option'),
+          ''    => trans('general.select-sort'),
           'best-selling' => 'Best Selling',
           'date'         => 'Date'
         ];

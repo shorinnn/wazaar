@@ -110,5 +110,5 @@ return array(
     'mixed' => 'Mixed',
     'negative' => 'Negative',
     'st-referrals' => 'ST Referrals',
-    'select-option' => '-Select-'
+    'select-sort' => '-Sort Option-'
 );
