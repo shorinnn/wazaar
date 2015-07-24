@@ -56,7 +56,7 @@ class ConsolidateCoursesCommand extends ScheduledCommand
                 'course_free'                      => $course->free,
                 'course_affiliate_percentage'      => $course->affiliate_percentage,
                 'course_featured'                  => $course->featured,
-                'course_difficulty_id'             => $course->difficulty_id,
+                'course_difficulty_id'             => $course->course_difficulty_id,
                 'course_student_count'             => $course->student_count,
                 'course_sale'                      => $course->sale,
                 'course_sale_kind'                 => $course->sale_kind,

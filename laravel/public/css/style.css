@@ -4601,6 +4601,176 @@ h5{
 
 /************* New Classroom Pages End*************/
 
+
+/************* New Analytics Page End*************/
+
+.analytics-page {
+    background-color: #e8eced;
+}
+.analytics-page .table-wrapper{
+	border-radius: 4px;
+	overflow: hidden;
+	border: solid 1px #e0e1e2;
+	background: #fff;
+	margin-top: 25px;
+}
+
+.analytics-page .table-header{
+	padding: 13px 24px 14px;
+	
+}
+
+.analytics-page .table-header h1{
+	font-size: 20px;
+	color: #303941;
+	margin: 7px 0 0;
+}
+
+.analytics-page .table-header .search-affiliates{
+	border: solid 1px #cfd8df;
+	border-radius: 2px;
+	overflow: hidden;
+	height: 28px;
+	width: 230px;
+}
+
+.analytics-page .table-header .search-affiliates input{
+	float: left;
+	height: 28px;
+	width: 85.6%;
+	background: none;
+	border: none;
+	padding: 0 12px;
+	font-size: 13px;
+	color: #798794;
+}
+
+.analytics-page .table-header .search-affiliates button{
+	background: none;
+	border: none;
+	width: 14.4%;
+	height: 100%;
+}
+
+.analytics-page .table-header .search-affiliates button i{
+	position: relative;
+	top: 1px;
+	color: #a7b7c4;
+	font-size: 14px;
+}
+
+.analytics-page .table > thead{
+	background: #f7f9fa;
+}
+
+.analytics-page .table > thead th{
+	border: none;
+	font-size: 11px;
+	font-weight: bold;
+	color: #a7b7c4;
+	padding: 6px 12px;
+	text-transform: uppercase;
+	line-height: 18px;
+}
+
+.analytics-page .table tbody th,
+.analytics-page .table td{
+	font-size: 13px;
+	color: #303941;
+	line-height: 18px;
+	padding: 11px 12px;
+}
+
+.analytics-page .table tbody th{
+	margin-left: 12px;
+}
+
+.analytics-page .table td.link{
+	color: #0099ff;
+}
+
+.analytics-page .table .first-column{
+	border-left: solid 12px transparent;
+}
+
+.analytics-page .table .last-column{
+	padding-right: 24px;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.analytics-page .table th.last-column{
+	font-size: 11px;
+	font-weight: bold;
+	color: #798794;
+}
+
+.analytics-page .table .sorting-active i {
+    color: #798794;
+    font-size: 12px;
+    position:  absolute;
+    right: 8px;
+    top: 11px;
+}
+
+.table-wrapper .table-pagination{
+	border-top: solid 2px #e8eced;
+	background: #fff;
+	padding: 25px 30px;
+}
+
+.table-wrapper .table-pagination ul{
+	padding: 0 45px 0 17px;
+	margin: 0;
+	position: relative;
+	float: right;
+}
+
+.table-wrapper .table-pagination ul li{
+	float: left;
+}
+
+.table-wrapper .table-pagination ul li + li{
+	margin-left: 28px;
+}
+
+.table-wrapper .table-pagination ul li a{
+	font-size: 14px;
+	color: #798794;
+}
+
+.table-wrapper .table-pagination ul li a:hover,
+.table-wrapper .table-pagination ul li.active a{
+	color: #0099ff;
+	font-weight: 600;
+}
+
+.table-wrapper .table-pagination ul li.prev,
+.table-wrapper .table-pagination ul li.next{
+	position: absolute;
+	top: 0;
+}
+
+.table-wrapper .table-pagination ul li.prev a,
+.table-wrapper .table-pagination ul li.next a{
+	color: #0099ff;
+	font-size: 12px;
+}
+
+.table-wrapper .table-pagination ul li.next{
+	right: 0;
+}
+
+.table-wrapper .table-pagination ul li.prev{
+	left: 0;
+}
+
+
+
+
+/************* New Analytics Page End*************/
+
+
 /************* Old Classroom Pages **************/
 .classrooms-wrapper{
 	background: #f8f8f8;
@@ -10518,6 +10688,14 @@ header .top-menu li{
 }
 
 @media (max-width:475px){
+	header .top-menu .logged-out-header-search 
+	#catalogue-dropdown li.dropdown-list ul{
+		position: relative;
+		left: 0;
+		box-shadow: none;
+		border: none;
+	}
+	
 	.course-details-player .topControl{
 		width: 60%;
 	}

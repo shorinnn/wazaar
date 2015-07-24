@@ -48,6 +48,7 @@ $wwwRoutes = function(){
 	Route::get('courses/edit/step_3', 'SiteController@edit_settings');
 	Route::get('checkout', 'SiteController@checkout');
 	Route::get('newclassroom', 'SiteController@newclassroom');
+	Route::get('analytics', 'SiteController@analytics');
 
     // temporary tracking route
     Route::post('action-tracker', 'ActionController@track');

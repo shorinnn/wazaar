@@ -13,8 +13,8 @@ return array(
 	|
 	*/
 
-	'previous' => '&laquo; 前へ',
+	'previous' => '<i class="wa-chevron-left"></i>',
 
-	'next'     => '次へ &raquo;',
+	'next'     => '<i class="wa-chevron-right"></i>',
 
 );
