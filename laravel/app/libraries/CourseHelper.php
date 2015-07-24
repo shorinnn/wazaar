@@ -38,8 +38,10 @@ class CourseHelper {
 
     private function _rawCoursesObject(){
         return CourseConsolidatedPurchases::where('id' , '<>',0)
-            ->selectRaw('sum(purchase_price) as purchase_price, course_id')
-            ->groupBy('course_id');
+                    ->where('course_publish_status', 'approved')
+                    ->where('course_privacy_status','public')
+                    ->selectRaw('sum(purchase_price) as purchase_price, course_id')
+                    ->groupBy('course_id');
     }
 
     public function getBestSellersLastTwentyFourHours()
@@ -94,6 +96,16 @@ class CourseHelper {
         return $courses;
     }
 
+    public static function getCourseSortOptions()
+    {
+        $options = [
+          ''    => trans('general.select-sort'),
+          'best-selling' => 'Best Selling',
+          'date'         => 'Date'
+        ];
+
+        return $options;
+    }
 
 
 }
