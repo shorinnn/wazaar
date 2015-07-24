@@ -7,14 +7,21 @@
                         @if($category->name!='')
                             <p class="category-heading-title"> {{ $category->name }} 
                                 @if(isset($subcategory))
-                                    {{" > $subcategory->name"}}
+                                    {{@$subcategory->name}}
                                 @endif
 
-                                <!--<small>{{ $category->description }}</small>-->
+                                <!--<small>{{ @$category->description }}</small>-->
                             </p>
                         @endif
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="pull-left margin-top-20">
+                            <select class="form-control" name="sort" id="sort">
+                                <option value="">-Sort-</option>
+                                <option value="best-selling">Best Selling</option>
+                                <option value="date">Date</option>
+                            </select>
+                        </div>
                     	<div class="difficulty-levels">
                         	<div class="level-buttons-container">
                             	<a href="{{url('courses/category?difficulty=1')}}" class="beginner level-buttons @if($difficultyLevel == 1) active @endif">Beginner</a>
@@ -58,4 +65,18 @@
         
         </section>
 
+    @stop
+
+    @section('extra_js')
+        <script type="text/javascript">
+            $(function(){
+                $('#sort').on('change', function(){
+                    var sort = $("#sort option:selected").val();
+                    var loc = location.href;
+                    loc += loc.indexOf("?") === -1 ? "?" : "&";
+
+                    location.href = loc + "sort=" + sort;
+                });
+            });
+        </script>
     @stop

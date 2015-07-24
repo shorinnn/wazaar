@@ -278,6 +278,16 @@ class CoursesController extends \BaseController {
 
             $difficultyLevel = Input::get('difficulty') ?: null;
 
+            if (Input::has('sort')){
+                if (Input::get('sort') == 'best-selling'){
+                    $courseHelper = new CourseHelper();
+                    $category = new stdClass;
+                    $category->color_scheme = $category->name = $category->description = $category->id =  '';
+                    $courses = $courseHelper->bestSellers(null,'AT',9);
+                    return View::make('courses.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
+                }
+            }
+
             if($slug==''){
                 $courses = Course::with('courseDifficulty')->with('courseCategory')->with('courseSubcategory')->with('previewImage')
                     ->where(function($query){
