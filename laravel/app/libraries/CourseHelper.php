@@ -96,6 +96,16 @@ class CourseHelper {
         return $courses;
     }
 
+    public static function getCourseSortOptions()
+    {
+        $options = [
+          ''    => trans('general.select-option'),
+          'best-selling' => 'Best Selling',
+          'date'         => 'Date'
+        ];
+
+        return $options;
+    }
 
 
 }

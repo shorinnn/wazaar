@@ -5,23 +5,18 @@
             	<div class="row category-heading">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         @if($category->name!='')
-                            <p class="category-heading-title"> {{ $category->name }} 
+                            <p class="category-heading-title"> {{ $category->name }}
                                 @if(isset($subcategory))
-                                    {{@$subcategory->name}}
+                                    {{$subcategory->name}}
                                 @endif
-
-                                <!--<small>{{ @$category->description }}</small>-->
                             </p>
                         @endif
                     </div>
 
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="pull-left margin-top-20">
-                            <select class="form-control" name="sort" id="sort">
-                                <option value="">-Sort-</option>
-                                <option value="best-selling">Best Selling</option>
-                                <option value="date">Date</option>
-                            </select>
+                            {{Form::select('sort',CourseHelper::getCourseSortOptions(),Input::get('sort'),['class' => 'form-control'])}}
+
                         </div>
 
 
@@ -58,14 +53,14 @@
        	<div class="container">
         @foreach($courses as $course)
             {{ cycle(["<div class='row cat-row-$category->color_scheme'>",'','']) }}
-              {{ View::make('courses.course_box')->with(compact('course')) }} 
+              {{ View::make('courses.course_box')->with(compact('course')) }}
             {{ cycle(['','','</div>']) }}
         @endforeach
         </div>
         @if($courses->count() % 3!=0)
             </div>
         @endif
-        {{ $courses->links() }}
+        {{ $courses->appends(Input::only('sort','difficulty'))->links() }}
         
         </section>
 
@@ -74,12 +69,25 @@
     @section('extra_js')
         <script type="text/javascript">
             $(function(){
-                $('#sort').on('change', function(){
-                    var sort = $("#sort option:selected").val();
+                $('select[name=sort]').on('change', function(){
+                    var sort = $("select[name=sort] option:selected").val();
                     var loc = location.href;
                     loc += loc.indexOf("?") === -1 ? "?" : "&";
+                    var existingParams = document.URL.split('?');
 
-                    location.href = loc + "sort=" + sort;
+                    if (existingParams.length > 1){
+                        var params = existingParams[1].split('&');
+                        var validParams = new Array();
+                        for(var i = 0; i< params.length; i++){
+                            if (params[i].indexOf('sort') < 0){
+                                validParams.push(params[i]);
+                            }
+                        }
+                        location.href = existingParams[0] + '?' + validParams.join('&') + '&' + "sort=" + sort;
+                    }
+                    else {
+                        location.href = loc + "sort=" + sort;
+                    }
                 });
             });
         </script>
