@@ -89,6 +89,7 @@ $wwwRoutes = function(){
         
         Route::resource('withdrawals', 'WithdrawalsController');
         Route::post('members/refund', 'MembersController@refund');
+        Route::put('members/{id}/update-profile', 'MembersController@updateProfile');
         Route::resource('members', 'MembersController');
         Route::get('second-tier-publishers/stats', 'SecondTierPublishersController@stats');
         Route::resource('second-tier-publishers', 'SecondTierPublishersController');

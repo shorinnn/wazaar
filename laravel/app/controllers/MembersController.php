@@ -143,6 +143,22 @@ class MembersController extends \BaseController {
                 return json_encode( [ 'status' => 'success', 'html' => $html ] );
             }
         }
+        
+        public function updateProfile($id){
+            $update = DB::table('user_profiles')->where('owner_id', $id)->where( 'owner_type', Input::get('profile_type') )->update([
+                'first_name' => Input::get('first_name'),
+                'last_name' => Input::get('last_name'),
+            ]);
+            
+            if( $update ){
+                if( !Request::ajax() ) return Redirect::back();
+                else return json_encode( [ 'status' => 'success' ] );
+            }
+            else{
+                if( !Request::ajax() ) return Redirect::back();
+                else return json_encode( [ 'status' => 'error', 'errors' => trans('administration.error-updating-profile') ] );
+            }
+        }
 
 
 }
