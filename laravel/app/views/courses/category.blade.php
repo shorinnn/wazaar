@@ -3,7 +3,7 @@
 		<section class="container-fluid category-heading-container">
             <div class="container cat-row-{{$category->color_scheme}}">
             	<div class="row category-heading">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         @if($category->name!='')
                             <p class="category-heading-title"> {{ $category->name }} 
                                 @if(isset($subcategory))
@@ -14,7 +14,8 @@
                             </p>
                         @endif
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6">
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="pull-left margin-top-20">
                             <select class="form-control" name="sort" id="sort">
                                 <option value="">-Sort-</option>
@@ -22,6 +23,9 @@
                                 <option value="date">Date</option>
                             </select>
                         </div>
+
+
+
                     	<div class="difficulty-levels">
                         	<div class="level-buttons-container">
                             	<a href="{{url('courses/category?difficulty=1')}}" class="beginner level-buttons @if($difficultyLevel == 1) active @endif">Beginner</a>

@@ -46,7 +46,7 @@
           <section class="footer-container">
             <div class="container">
               <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-center-mobile">
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/footer-logo.png" alt="Wazaar" />
                   <p>&copy; Wazaar {{ date('Y') }}</p>
                 </div>
@@ -98,7 +98,7 @@
                 </div>              
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 	<div class="row">
-                    	<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                    	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                         	<!--<h5>ABOUT</h5>
                             <ul>
                             	<li>
@@ -112,7 +112,7 @@
                                 </li>
                             </ul>   -->                     
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center-mobile padding-bottom-20">
                         	<!--<h5>GET IN TOUCH</h5>-->
                             <p>電話番号：03-6206-8396　</p>
                             <p><!--{{trans('site/footer.mail')}}:info@wazaar.com-->メールアドレス：contact@wazaar.jp</p>                        

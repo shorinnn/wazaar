@@ -2446,6 +2446,12 @@ h5{
 	margin: -264px 0 0;
 }
 
+.pre-view-image.video-player {
+	max-width: 680px;
+	max-height: 385px;
+	overflow: hidden;
+}
+
 .course-details-player video{
 	border-radius: 5px;
 	overflow: hidden;
@@ -2690,7 +2696,7 @@ h5{
 }
 
 .lesson-topics li .lesson-name{
-	display: inline-block;
+	float: left;
 	color: #41474d;
 	font-size: 14px;
 	padding: 20px 20px 20px 0;
@@ -2699,12 +2705,12 @@ h5{
 .lesson-topics li span{
     background: #d7d8d9;
     border-radius: 26px;
-    display: inline-block;
+    float: left;
     height: 28px;
     line-height: 28px;
     position: relative;
     text-align: center;
-    top: 1px;
+    top: 14px;
 	margin-right: 22px;
     width: 28px;
 }
@@ -2804,16 +2810,14 @@ h5{
 
 .user-thumb{
 	float: left;
-	width: 93px;
+	/*width: 93px;*/
 }
 
 .user-thumb img{
 	display: block;
-	width: 70px;
-	height: 70px;
 	border: none;
 	margin: 0 auto;
-	border-radius: 70px;
+	border-radius: 100%;
 	background: #ebeced;
 }
 
@@ -2827,8 +2831,6 @@ h5{
 
 .user-review{
 	float: left;
-	margin-left: 30px;
-	max-width: 420px;
 	position: relative;
 }
 
@@ -2836,6 +2838,33 @@ h5{
 	clear: both;
 	color: #6e747a;
 	max-height: 90px;
+}
+
+.instructed-by p{
+	font-size: 13px;	
+	color: #798794;
+	margin: 0;
+}
+
+.instructed-by h4{
+	font-size: 15px;
+	font-weight: 600;
+	color: #798794;
+	margin: 0;#303941
+}
+
+.instructed-by h4 .name{
+	font-style: normal;
+	color: #303941;
+}
+
+.instructed-by .role{
+	display: block;
+	margin-top: 8px;
+	text-transform: uppercase;
+	font-size: 11px;
+	font-weight: bold;
+	color: #a7b7c4;
 }
 
 .fadeout-text {
@@ -3863,6 +3892,7 @@ h5{
 
 .classroom-view{
 	background-color: #18222b;
+	position: relative;
 }
 
 .classroom-view .classroom-header{
@@ -4104,11 +4134,13 @@ h5{
 	padding-bottom: 17px;
 }
 
+.questions-sidebar .questions-box.active,
 .questions-sidebar .questions-box:hover{
 	background: #303941;
 	cursor: pointer;
 }
 
+.questions-sidebar .questions-box.active .question-title,
 .questions-sidebar .questions-box:hover .question-title{
 	color: #fff;
 }
@@ -4294,6 +4326,7 @@ h5{
 	padding: 12px 30px;
 }
 
+.ask-question-fields .avatar,
 .discussion-sidebar-footer .avatar{
 	height: 36px;
 	width: 36px;
@@ -4314,6 +4347,256 @@ h5{
 	color: #798794;
 	font-size: 13px;
 	padding: 0 12px;
+}
+
+/*Ask question sidebar*/
+.ask-question-fields{
+	padding: 0 30px;
+}
+
+.ask-question-fields .avatar{
+	margin-top: 7px;
+	margin-right: 0;
+}
+
+.ask-question-fields form{
+	float: left;
+	width: 100%;
+}
+
+.ask-question-fields input{
+	border: solid #e0e1e2;
+	border-width: 0 0 1px;
+	padding: 0 3px;
+	font-size: 20px;
+	color: #303941;
+	height: 53px;
+	float: left;
+	margin-bottom: 42px;
+}
+
+.ask-question-fields textarea{
+	border: solid #e0e1e2;
+	border-width: 0 0 1px;
+	padding: 0 2px;
+	font-size: 13px;
+	color: #798794;
+	height: 42px;
+	resize: none;
+	margin: 0 0 20px;
+}
+
+.ask-question-fields-footer{
+	background: #fff;
+	border-top: solid 1px #e0e1e2;
+	padding: 12px 30px;
+	margin-top: 71%;
+}
+
+.ask-question-fields-footer .buttons{
+	float: right;
+}
+
+.ask-question-fields-footer .buttons .cancel{
+	margin-right: 20px;
+}
+
+/*Left Menu*/
+.classroom-view .slide-menu{
+	width: 300px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: -400px;
+	z-index: 8;
+	background: #fff;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.classroom-view .slide-menu.in{
+	left: 0;
+}
+
+
+.classroom-view .slide-menu .header{
+	padding: 22px 0 0;
+	background: #0099ff;
+}
+
+.classroom-view .slide-menu .header .course{
+	font-weight: bold;
+	font-size: 12px;
+	color: #fff;
+	float: left;
+}
+
+.classroom-view .slide-menu .header .course{
+	margin-left: 30px;
+}
+
+.classroom-view .slide-menu .header .course i{
+	position: relative;
+	top: 2px;
+	margin-right: 10px;
+	font-size: 14px;
+}
+
+.classroom-view .slide-menu .header .toggler{
+	font-size: 21px;
+	float: right;
+	color: #0073bf;
+	cursor: pointer;
+	margin-right: 30px;
+}
+
+.classroom-view .slide-menu .header h2{
+	font-size: 20px;
+	color: #fff;
+	margin: 27px 30px 30px;
+	line-height: 26px;
+}
+
+.classroom-view .slide-menu .header .progress-box{
+	padding: 18px 30px;
+	background: #0091f2;
+}
+
+.classroom-view .slide-menu .header .progress-box .progress{
+	height: 7px;
+	padding: 1px 2px;
+	border-radius: 5px;
+	background: #0082d9;
+	box-shadow: none;
+	width: 80%;
+	margin: 0;
+	display: inline-block;
+}
+
+.classroom-view .slide-menu .header .progress-box .progress-bar{
+	background: #fff;
+	border-radius: 5px;
+}
+
+.classroom-view .slide-menu .header .progress-box .progress-count{
+	margin-left: 19px;
+	font-size: 11px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.classroom-view .slide-menu .course-topics-box{
+	background: #fff;
+}
+
+.classroom-view .slide-menu .course-topics-box .topic-header{
+	background: #e8eced;
+	padding: 16px 23px;
+}
+
+.classroom-view .slide-menu .course-topics-box .topic-header h3{
+	font-size: 11px;
+	font-weight: bold;
+	color: #798794;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.classroom-view .slide-menu .course-topics-box .topic-header h3 em{
+	font-style: normal;
+}
+
+.classroom-view .slide-menu .course-topics-box .topic-header span{
+	font-size: 11px;
+	font-weight: bold;
+	color: #a7b7c4;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics{
+	padding: 0 25px 0;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul{
+	margin: 0;
+	padding: 25px 0 0;
+    border-left: solid 2px #e4e9ed;
+ }
+
+.classroom-view .slide-menu .course-topics-box .topics ul li{
+	padding-bottom: 20px;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a{
+	line-height: 18px;
+	font-size: 13px;
+	color: #798794;
+	padding-left: 24px;
+	display: block;
+	position: relative;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li.completed a{
+	color: #303941;
+	font-weight: 600;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a span{
+	position: absolute;
+	top: 3px;
+	left: -7px;
+	height: 12px;
+	width: 12px;
+	border: solid 2px transparent;
+	display: block;
+	border-radius: 12px;
+	padding: 1px;
+	background-color: #fff;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a:hover span{
+	border-color: #0099ff;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li.completed a:hover span{
+	border-color: transparent;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a span em{
+	font-style: normal;
+	display: inline-block;
+	height: 6px;
+	width: 6px;
+	border-radius: 6px;
+	background: #a7b7c4;
+	position: absolute;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a span i{
+	display: none;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a:hover span em{
+	background: #fff;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li a:focus,
+.classroom-view .slide-menu .course-topics-box .topics ul li a:hover{
+	outline: none;
+	color: #0099ff;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li.completed em{
+	display: none;
+}
+
+.classroom-view .slide-menu .course-topics-box .topics ul li.completed i{
+	display: block;
+	font-size: 11px;
+	color: #303941;
+	position: relative;
+	top: -4px;
+	left: -4px;
 }
 
 /************* New Classroom Pages End*************/
@@ -5648,18 +5931,17 @@ a.load-remote > *{
     text-align: center;
 }
 
-.pagination-container ul li:last-of-type a {
-    background-position: center -31px;
+.pagination-container ul li:last-of-type a i{
+	margin-left: 8px;
 }
 
-.pagination-container ul li:first-of-type a {
-    background-position: center -1px;
+.pagination-container ul li:first-of-type a i{
+    margin-right: 8px;
 }
 
 .pagination-container .page-numbers-container {
     clear: both;
     margin: auto;
-	display: table;
     position: relative;
 }
 
@@ -7065,18 +7347,30 @@ p.tip::before{
 
 .pagination-container ul li:first-of-type,
 .pagination-container ul li:last-of-type{
-	height: 22px;
-	width: 22px;
+	height: auto;
+	width: auto;
+	position: absolute;
+}
+
+.pagination-container ul li:first-of-type{
+	left: 0;
+}
+
+.pagination-container ul li:last-of-type{
+	right: 0;
 }
 
 .pagination-container ul li:first-of-type a,
 .pagination-container ul li:last-of-type a{
-	height: 22px;
-	width: 22px;
+	width: auto;
 	display: block;
-	margin-top: 9px;
-	background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png");
-	background-repeat: no-repeat;
+	margin-top: 0;
+	padding: 0;
+	color: #0099ff;
+	font-size: 13px;
+	font-weight: 600;
+	/*background-image: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/crud-components.png");
+	background-repeat: no-repeat;*/
 }
 
 .members-area .pagination-container ul li:first-of-type a{
@@ -9643,7 +9937,7 @@ footer{
 
 @media (max-width: 1200px) and (min-width: 991px){
 .course-data .column-1 div{
-	padding: 15px 30px 12px;
+	padding: 15px 30px 12px !important;
 }
 
 .video-container .control div.btn{
@@ -9711,6 +10005,14 @@ footer{
 }
 
 @media (max-width:991px){
+	header .top-menu .logged-out li a{
+		padding: 7px 8px;
+	}
+
+	.text-center-mobile{
+		text-align: center;
+	}
+
 	.course-detail-top-section .instructor{
 		text-align: center;
 	}
@@ -9882,8 +10184,18 @@ footer{
 	
 }
 
+@media (min-width:768px) and (max-width: 800px) {
+}
 
 @media (max-width:767px){
+header .top-menu .logged-out li a{
+  padding: 7px 10px;
+}
+
+.user-thumb{
+	max-width: 70px;
+}
+
 .module-box{
 	padding-right: 20px;
 }
@@ -9892,7 +10204,7 @@ footer{
 	width: 74%;
 }
 
-header .top-menu .logged-out-header-search form .catalogue-button em{
+header .top-menu .logged-out-header-search .catalogue-button em{
 	display: none;
 }
 
@@ -10050,6 +10362,16 @@ header .top-menu .logged-out-header-search form .catalogue-button em{
 .instructor-mycourses .course-wrapper .bottom-bar{
 	margin-top: 35px;
 }
+
+header .main-logo{
+	margin: 10px 20px 30px 0;
+}
+
+header .top-menu .logged-out-header-search{
+	margin: 25px 0;
+	clear: both;
+	float: none;
+}
 }
 
 @media (max-width:752px){
@@ -10132,6 +10454,15 @@ header .top-menu li{
 }
 
 @media (max-width:552px){
+	.lesson-topics li .buttons{
+		margin-top: 14px;
+	}
+	
+	.lesson-topics li .buttons .blue-button{
+		padding: 5px 10px !important;
+		font-size: 11px;
+	}
+	
 	.course-data .column-1 div{
 		padding: 15px 15px 12px !important;
 	}
@@ -10318,7 +10649,7 @@ header .top-menu li{
 	
 	.lesson-topics li .buttons{
 		margin-right: 10px;
-		float: none;
+		float: right;
 	}
 
 	.lesson-topics li .buttons a{
@@ -10333,6 +10664,10 @@ header .top-menu li{
 @media (max-width:353px){
 	.instructor-mycourses .course-wrapper .bottom-bar .status-box{
 		left: 1%;
+	}
+	
+	header .top-menu .logged-out-header-search form div input{
+		width: 130px;
 	}
 	
 }
@@ -10417,6 +10752,11 @@ header .top-menu li{
 .margin-bottom-15
 {
 	margin-bottom: 15px;
+}
+
+.margin-bottom-20
+{
+	margin-bottom: 20px !important;
 }
 
 .margin-bottom-30
