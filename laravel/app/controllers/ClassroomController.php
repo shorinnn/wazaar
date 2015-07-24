@@ -51,7 +51,8 @@ class ClassroomController extends \BaseController {
             if(Request::ajax()){
                 return View::make('courses.classroom.course_comments_ajax')->with( compact('course') );
             }
-            return View::make('courses.classroom.dashboard')->with( compact('course', 'student', 'video', 'nextLesson', 'currentLesson', 'gift', 'instructor') );
+            //return View::make('courses.classroom.dashboard')->with( compact('course', 'student', 'video', 'nextLesson', 'currentLesson', 'gift', 'instructor') );
+            return View::make('courses.classroom.new.index',compact('course', 'student', 'video', 'nextLesson', 'currentLesson', 'gift', 'instructor') );
         }
         
         public function testimonial($slug){
