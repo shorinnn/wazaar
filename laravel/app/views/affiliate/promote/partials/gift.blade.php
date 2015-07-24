@@ -45,11 +45,15 @@
     <br />
     <p>{{ trans('courses/promote.link') }}</p>
     <div class='tooltipable'>
+        <?php
+            $url  = action('CoursesController@show', $course->slug) .'?aid='.Auth::user()->affiliate_id.'&gid='.$gift->encryptedID();
+            if($tcode!='') $url.= '&tcode='.$tcode;
+        ?>
         <input type='text' class='form-control clipboardable' style='width:90%; float:left'
-               value='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}&gid={{$gift->encryptedID()}}'
-               data-clipboard-text='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}&gid={{$gift->encryptedID()}}' />
+               value='{{ $url }}'
+               data-clipboard-text='{{ $url }}' />
         <button class='btn btn-primary clipboardable'
-                data-clipboard-text='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}&gid={{$gift->encryptedID()}}'>
+                data-clipboard-text='{{ $url }}'>
             {{ trans('courses/promote.copy') }}</button>
         <br class='clearfix' />
     </div>

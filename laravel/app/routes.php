@@ -120,14 +120,17 @@ $wwwRoutes = function(){
 Route::group(array('domain' => $domain), $wwwRoutes);
 Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 
+Route::group(['prefix' => 'affiliate'], function (){
+    Route::get('promote/{course}', 'AffiliateController@promote');
+    Route::get('promote/{course}/{tcode}', 'AffiliateController@promote');
+    Route::post('gifts/{gift}/files', 'GiftsController@files');
+    Route::resource('gifts', 'GiftsController');
+    Route::resource('giftsfile', 'GiftsFileController');
+});
+
 // Affiliate promote links
 Route::group( array('domain' => $instructorSubdomain ), function(){
-    Route::group(['prefix' => 'affiliate'], function (){
-        Route::get('promote/{course}', 'AffiliateController@promote');
-        Route::post('gifts/{gift}/files', 'GiftsController@files');
-        Route::resource('gifts', 'GiftsController');
-        Route::resource('giftsfile', 'GiftsFileController');
-    });
+    
     
     Route::post('private-messages/massStore', 'PrivateMessagesController@massStore');
     Route::get('coursecategories/subcategories_instructor', 'CoursesCategoriesController@subcategories_instructor');
