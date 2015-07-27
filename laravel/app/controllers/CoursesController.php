@@ -294,12 +294,12 @@ class CoursesController extends \BaseController {
             if($slug==''){
                 $courses = Course::with('courseDifficulty')->with('courseCategory')->with('courseSubcategory')->with('previewImage')
                     ->where(function($query){
-                        $query->where('featured',0)
-                        ->where('publish_status', 'approved')
+//                        $query->where('featured',0)
+                        $query->where('publish_status', 'approved')
                         ->where('privacy_status','public')
                         ->orWhere(function($query2){
                             $query2->where('privacy_status','public')
-                                    ->where('featured',0)
+//                                    ->where('featured',0)
                                     ->where('publish_status', 'pending')
                                     ->where('pre_submit_data', '!=', "");
                         });
@@ -330,12 +330,12 @@ class CoursesController extends \BaseController {
             
             $courses = $category->courses()->with('courseDifficulty')->with('courseCategory')->with('courseSubcategory')->with('previewImage')
                     ->where(function($query){
-                        $query->where('featured',0)
-                        ->where('publish_status', 'approved')
+//                        ->where('featured',0)
+                        $query->where('publish_status', 'approved')
                         ->where('privacy_status','public')
                         ->orWhere(function($query2){
                             $query2->where('privacy_status','public')
-                                    ->where('featured',0)
+//                                    ->where('featured',0)
                                     ->where('publish_status', 'pending')
                                     ->where('pre_submit_data', '!=', "");
                         });

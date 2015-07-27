@@ -40,18 +40,6 @@
         </section>
         <section class="container-fluid category-box-container">
             
-			
-        @if( $featured = Course::featured()->where('course_category_id', $category->id)->first() )   
-            <div class="container cat-row-{{$category->color_scheme}}">
-            	<div class="row">      
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        FEATURED - is this even in use?!
-                         {{-- View::make('courses.course_box_featured')->with( compact('category') )->withCourse($featured) --}}
-                    </div>
-                </div>
-            </div>
-        @endif
-         
         <div class='ajax-content'>
              {{ View::make('courses.categories.courses')->with( compact('courses', 'category') ) }}
         </div>
