@@ -50,5 +50,16 @@ class SubmissionsController extends \BaseController {
                 return Redirect::back()->withError( trans('crud/errors.cannot_update_object',['object'=>'Course']).': '.format_errors($course->errors()->all()));
             }
 	}
+        
+        public function allCourses(){
+            $pagination = Input::get('view') > 0 ? Input::get('view') :  2;
+            
+            $submissions = Course::orderBy('id','desc')->paginate( $pagination );
+            
+            if( Request::ajax() ){
+                return View::make('administration.submissions.all.partials.table')->with( compact('submissions') );
+            }
+            Return View::make('administration.submissions.all.index')->with( compact('submissions') );
+        }
 
 }

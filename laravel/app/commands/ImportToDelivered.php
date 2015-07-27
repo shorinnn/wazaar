@@ -29,6 +29,18 @@ class ImportToDeliveredCommand extends Command {
 	{
 		parent::__construct();
 	}
+        
+        /**
+        * Get the console command options.
+        *
+        * @return array
+        */
+       protected function getOptions()
+       {
+           return array(
+               array('run', null, InputOption::VALUE_REQUIRED, 'What to run: all | import | updateTags | updateConfirmedTag | sorin')
+           );
+       }
 
 	/**
 	 * Execute the console command.
@@ -37,8 +49,15 @@ class ImportToDeliveredCommand extends Command {
 	 */
 	public function fire()
 	{
-            DeliveredImporter::import();
-            DeliveredImporter::updateTags();
+            $run = $this->option('run');
+            if( $run == null || strtolower($run) == 'all' ){
+                DeliveredImporter::import();
+                DeliveredImporter::updateTags();
+                DeliveredImporter::updateConfirmedTag();
+            }
+            else{
+                DeliveredImporter::$run();
+            }
 	}
 
 	

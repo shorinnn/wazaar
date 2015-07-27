@@ -35,6 +35,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
+    @yield('affiliate-toolbar')
     <div id="wrapper">
     	<header class="container-fluid">
         		{{ View::make('layouts.shared.header') }}

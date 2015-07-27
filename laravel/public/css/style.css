@@ -796,7 +796,7 @@ header .profile-name li:hover ul{
 
 .popular-courses-carousel{
 	padding: 0;
-	display: none;
+	/*display: none;*/
 	position: relative;
 }
 
@@ -961,13 +961,13 @@ header .profile-name li:hover ul{
 
 .discover-header a{
 	font-size: 14px;
-	color: #7e8e9e !important;
+	color: #7e8e9e;
 	display: block !important;
 	padding: 9px 0 6px !important;
 }
 
 .discover-header a:hover{
-	color: #0099ff !important;
+	color: #0099ff;
 }
 
 .discover-header .navbar-toggle{
@@ -11002,4 +11002,8 @@ header .top-menu li{
 
 .inline-form{
     display:inline;
+}
+
+.pre-view-image img{
+    width:100%;
 }

@@ -43,7 +43,7 @@
         <h1>{{trans('site/homepage.what_is_hot')}}
             <p class="lead">{{trans('site/homepage.our_most_popular_courses')}}</p>
         </h1>
-
+        
         <div class="popular-courses-carousel container-fluid">
             <div class="whats-hot-slider">
                 @foreach($topCourses as $course)
@@ -132,14 +132,15 @@
                     <h1 class="left">{{trans('site/homepage.discover')}}</h1>
                     <ul class="left categories-menu">
                         <li>
-                            <a class="load-remote" data-url="{{ action( 'SiteController@discoverCourses', 0 )}}" data-no-push-state="1"
+                            <a class="load-remote discover-links" data-url="{{ action( 'SiteController@discoverCourses', 0 )}}" data-no-push-state="1"
+                               data-callback='colorLinks' data-color='#0099ff' data-elem='.discover-links'
                                data-target="#discover-courses-area">All</a>
                         </li>
                         
                         @foreach($groups as $group)
                         <li>
-                            <a class="load-remote" data-url="{{ action( 'SiteController@discoverCourses', $group->id )}}"  data-no-push-state="1"
-                               data-target="#discover-courses-area">{{ $group->name }}</a>
+                            <a class="load-remote discover-links" data-url="{{ action( 'SiteController@discoverCourses', $group->id )}}"  data-no-push-state="1"
+                               data-callback='colorLinks'  data-elem='.discover-links' data-color='#0099ff' data-target="#discover-courses-area">{{ $group->name }}</a>
                         </li>
                         @endforeach
                     </ul>
@@ -182,7 +183,7 @@
             $('.whats-hot-slider').smoothDivScroll({
                 autoScrollingMode: "onStart",
                 manualContinuousScrolling: true,
-                mousewheelScrolling: ""
+                mousewheelScrolling: "",
             });
 
             $('.whats-hot-slider img').hover(function(){
@@ -208,8 +209,6 @@
                 }, 500);
 
             });
-
-
         });
     </script>
 @stop

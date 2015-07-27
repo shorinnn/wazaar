@@ -90,6 +90,7 @@ return array(
     'Beginner' => 'Beginner',
     'Intermediate' => 'Intermediate',
     'Expert' => 'Expert',
+    'All' => 'All',
     'verification-notice' => 'Well done. You have successfully registered. Please activate your account with the email we sent you.',
     'your-2tier-links' => 'Your 2-Tier Publisher Links',
     'COPY' => 'COPY',

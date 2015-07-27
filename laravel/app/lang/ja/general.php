@@ -59,6 +59,7 @@ return array(
     'Beginner' => '初級レベル',
     'Intermediate' => '中級レベル',
     'Expert' => '上級レベル',
+    'All' => 'すべてのレベル',
 //    'Beginner' => '初級',
 //    'Intermediate' => '中級',
 //    'Expert' => '上級',

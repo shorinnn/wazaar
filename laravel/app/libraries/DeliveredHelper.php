@@ -136,6 +136,12 @@ class DeliveredHelper
         return $call;
     }
 
+    public function findUser($keyword)
+    {
+        $call = $this->_call('users/find',compact('keyword'));
+        return $call;
+    }
+
     /**
      * Assign tag to a user
      * @param $tagName
@@ -147,6 +153,27 @@ class DeliveredHelper
     public function addTag($tagName, $tagType, $tagValue, $userId)
     {
         $call = $this->_call('tags',compact('tagName', 'tagType', 'tagValue', 'userId'));
+        return $call;
+    }
+
+    /**
+     * @param $id
+     * @param $userId
+     * @param $tagName
+     * @param $tagType
+     * @param $tagValue
+     * @return mixed|null
+     */
+
+    public function updateTag($id, $userId, $tagName, $tagType, $tagValue)
+    {
+        $call = $this->_call('tags/' . $id,compact('tagName', 'tagType', 'tagValue', 'userId'),'put');
+        return $call;
+    }
+
+    public function deleteTag($id)
+    {
+        $call = $this->_call('tags/' . $id,[],'delete');
         return $call;
     }
 

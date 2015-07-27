@@ -64,4 +64,5 @@ return array(
     'category-groups' => 'Course Category Groups',
     'add-group' => 'Add Group',
     'order' => 'Order',
+    'error-updating-profile' => 'Error updating profile'
 );

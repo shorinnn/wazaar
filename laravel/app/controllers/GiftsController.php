@@ -18,9 +18,10 @@ class GiftsController extends \BaseController {
                 $gift->course_id = Input::get('course_id');
                 $gift->affiliate_id = Auth::user()->id;
                 $gift->save();
+                $tcode = Input::get('tcode');
                 if(Request::ajax()){
                     $course = $gift->course;
-                    $response['html'] = View::make('affiliate.promote.partials.gift')->with( compact('gift', 'course') )->render();
+                    $response['html'] = View::make('affiliate.promote.partials.gift')->with( compact('gift', 'course', 'tcode') )->render();
                     $response['status'] = 'success';
                     $response['id'] = '#gift-textarea-'.$gift->id;
                     return json_encode($response);

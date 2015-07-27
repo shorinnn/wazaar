@@ -11,9 +11,10 @@
     }
     </style>
 @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
-<div style="background-color:silver;" class='text-center'>
-    <a href='{{ action('AffiliateController@promote', $course->slug)}}' class='btn btn-warning btn-sm'>{{ trans('courses/promote.promote') }}</a>
-</div>
+    @section('affiliate-toolbar')
+        {{ View::make('affiliate.affiliate-toolbar')->with( compact('course') ) }}
+    
+    @stop
 @endif
         <section class="container-fluid course-detail-top-section clearfix unauthenticated-homepage cat-box-{{$course->courseCategory->color_scheme}}">
                 @if($course->bannerImage != null)
@@ -138,14 +139,14 @@
             	<div class="row">
                 	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-details-player">
                             <div class="pre-view-image video-player">
-                                <img src="{{ cloudfrontUrl( $course->previewImage->url) }}" />
+                                <img src="{{ cloudfrontUrl( $course->previewImage->format('desc') ) }}" />
                             </div>
                         @if( $video==null )
                             <!--!-->       
                         @else
                         <div class="video-player video-container description-page video-container-toggler" style="display:none; background:none; text-align: right">
                             @if( Agent::isMobile() )
-                                <video id='myVideo' preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->url) }}">
+                                <video id='myVideo' preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
                                     <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Mobile Devices')
                                             ->first()->video_url }}" type="video/mp4">
                                 </video>
@@ -153,7 +154,7 @@
     
     
                                 <div class="videoContainer">
-                                    <video id="myVideo" preload="auto" poster="{{ cloudfrontUrl( $course->previewImage->url) }}" />
+                                    <video id="myVideo" preload="auto" poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}" />
                                         <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                                     ->first()->video_url }}" type="video/mp4">
                                         <p>Your browser does not support the video tag.</p>
@@ -442,24 +443,32 @@
                         </div>
                         @endforeach
                         
-                        <div class="reviews instructed-by clearfix module-box">
-                            <div class="row">
-                                <div class="user-thumb col-xs-3 col-sm-2 col-md-2 col-lg-2">
-                                	<img src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" class="img-responsive" />
-                                </div>
-                                <div class="user-review col-xs-9 col-sm-10 col-md-10 col-lg-10">
-                                  <div class="clearfix margin-bottom-20">
-                                  	<h4>Instructed by <em class="name"> Saulius Kirklys</em></h4>
-                                    <span class="role">Visual Designer</span>
-                                  </div>
-                                  <p class="regular-paragraph expandable-content">
-                                    Saulius is a designer, speaker and teacher. He designs great User interfaces at Cocorium.         
-                                  </p>
-                                  <div class="fadeout-text"></div>
-                                  <span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }}</span>                                
+                        @if( $course->assignedInstructor != null )
+                            <div class="reviews instructed-by clearfix module-box">
+                                <div class="row">
+                                    <div class="user-thumb col-xs-3 col-sm-2 col-md-2 col-lg-2">
+                                        @if($course->assignedInstructor->profile->photo == '')
+                                            <img src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" 
+                                                 class="img-responsive" />
+                                        @else
+                                            <img src="{{cloudfrontUrl( $course->assignedInstructor->profile->photo )}}" 
+                                                 class="img-responsive" />
+                                        @endif
+                                    </div>
+                                    <div class="user-review col-xs-9 col-sm-10 col-md-10 col-lg-10">
+                                      <div class="clearfix margin-bottom-20">
+                                        <h4>Instructed by <em class="name"> {{ $course->assignedInstructor->fullName() }}</em></h4>
+                                        <span class="role">{{ $course->assignedInstructor->profile->title }}</span>
+                                      </div>
+                                      <p class="regular-paragraph expandable-content">
+                                          {{ $course->assignedInstructor->profile->bio }}
+                                      </p>
+                                      <div class="fadeout-text"></div>
+                                      <span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }}</span>                                
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                         
                         @if($course->allTestimonials->count() > 0)
                         <div class="lesson-reviews">
