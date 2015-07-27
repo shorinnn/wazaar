@@ -206,7 +206,7 @@
                     	</div>
                         @endif                                        
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
                         @if( admin() )
                              <a href='{{ action( "ClassroomController@dashboard" ,['slug'=> $course->slug] ) }}' class="enroll-button">Classroom</a>
                         @endif

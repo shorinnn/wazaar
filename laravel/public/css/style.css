@@ -194,6 +194,10 @@ ul {
 	display: inline;
 }
 
+.inline-block{
+	display: inline-block;
+}
+
 .hide{
 	display: none;
 }
@@ -272,10 +276,11 @@ header .main-logo{
 header .top-menu{
 }
 
-header .top-menu .logged-in-top-menu{
+/******* Old Logged in menus design ************/
+/*header .top-menu .logged-in-top-menu{
 	padding: 0;
 	margin: 0;
-	float: left;
+	float: right;
 }
 
 header .top-menu .logged-in-top-menu li{
@@ -301,6 +306,38 @@ header .top-menu .logged-in-top-menu li a:hover::after{
 	width: 100%;
 	position: absolute;
 	bottom: 0;
+}*/
+/******* Old Logged in menus design ends************/
+
+header .top-menu .logged-in-top-menu{
+	padding: 0;
+	margin: 17px 30px 0 0;
+	float: left;
+	background: #242d36;
+	border-radius: 4px;
+}
+
+header .top-menu .logged-in-top-menu li{
+	display: inline-block;
+}
+
+header .top-menu .logged-in-top-menu li + li{
+	margin-left: 10px;
+}
+
+header .top-menu .logged-in-top-menu li a{
+	color: #a7b7c4;
+	font-size: 11px;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 10px 15px;
+	display: inline-block;
+	text-decoration: none;
+	position: relative;
+}
+
+header .top-menu .logged-in-top-menu li a:hover{
+	color: #03a2ff;
 }
 
 header .top-menu .logged-out-header-search{
@@ -312,7 +349,7 @@ header .top-menu .logged-out-header-search{
 
 header .top-menu .logged-out-header-search form{
 	float: left;
-	height: 100%;
+	height: 36px;
 }
 
 header .top-menu .logged-out-header-search .catalogue-button{
@@ -2491,25 +2528,27 @@ h5{
 	top: 0;
 	left: 50%;
 	cursor: pointer;
-	padding: 15px 22px 15px 22px;
+	padding: 15px 16px;
 	background-color: rgba(24, 34, 43, 0.5);
 	font-size: 16px;
 	color: #fff;
-	border-radius: 23px;
+	border-radius: 40px;
 	-webkit-transform: translate(-50%, 0);
 	-ms-transform: translate(-50%, 0);
 	transform: translate(-50%, 0);
 }
 
 .play-intro-button i{
-  padding-right: 10px;
-  font-size: 16px;
+  padding-right: 0;
+  /*padding-right: 10px;*/
+  font-size: 26px;
   position: relative;
   top: 1px;
 }
 
 .play-intro-button em{
 	font-style: normal;
+	display:none;
 }
 
 .course-data{
@@ -10142,6 +10181,12 @@ footer{
 }
 }
 
+@media (max-width:1140px){
+.logged-in-menu-holder{
+	float: left;
+}
+}
+
 @media (max-width:1002px){
 .big-box .price-tag{ 
 	top:auto;
@@ -10338,6 +10383,10 @@ footer{
 	.student-teacher-dashboard-container .dashboard-content header .title{
 		padding-left: 20px;
 	}
+	
+	.enroll-button-section .price{
+		margin-top: 0;
+	}
 }
 
 @media (max-width:900px){
@@ -10399,14 +10448,14 @@ header .top-menu .logged-out-header-search .catalogue-button em{
     max-width: 360px;
 }
 
-.play-intro-button{
+/*.play-intro-button{
 	padding: 0;
 	border-radius: 30px;
 	height: 30px;
 	width: 30px;
 	line-height: 30px;
 	text-align: center;
-}
+}*/
 
 .play-intro-button i{
     padding-right: 0;
@@ -10542,6 +10591,7 @@ header .top-menu .logged-out-header-search{
 	clear: both;
 	float: none;
 }
+
 }
 
 @media (max-width:752px){
@@ -10594,7 +10644,7 @@ header .top-menu li{
 }
 
 
-@media (max-width:618px){
+@media (max-width:620px){
 .course-detail-top-section .centered-contents .watch-video-button{
 	margin-top: 20px;
 }
@@ -10619,6 +10669,15 @@ header .top-menu li{
 
 .course-detail-top-section .centered-contents .video-player{
 	height: 273px;
+}
+
+header .top-profile-info{
+	float: none;
+}
+
+header .top-menu .logged-in-top-menu{
+	margin-right: 0;
+	margin-top: 0;
 }
 
 }
@@ -10839,7 +10898,7 @@ header .top-menu li{
 	}
 }
 
-@media (max-width:353px){
+@media (max-width:355px){
 	.instructor-mycourses .course-wrapper .bottom-bar .status-box{
 		left: 1%;
 	}
@@ -10847,7 +10906,10 @@ header .top-menu li{
 	header .top-menu .logged-out-header-search form div input{
 		width: 130px;
 	}
-	
+	header .top-menu .logged-in-top-menu li a{
+		font-size: 10px;
+		padding: 10px 6px;
+	}
 }
 
 @media (max-width:320px){
