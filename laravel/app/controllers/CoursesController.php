@@ -284,7 +284,8 @@ class CoursesController extends \BaseController {
                     $category = new stdClass;
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
                     $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel]);
-                    return View::make('courses.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
+                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
+                    return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
                 }
 
                 $sort = Input::get('sort');
@@ -314,12 +315,14 @@ class CoursesController extends \BaseController {
                 else{
                     $courses = $courses->orderBy('id','desc');
                 }
-
+                
                 $courses = $courses->paginate(9);
 
                 $category = new stdClass;
                 $category->color_scheme = $category->name = $category->description = $category->id =  '';
-                Return View::make('courses.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
+                if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
+                
+                Return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
             }
             if( !$category = CourseCategory::where('slug',$slug)->first() ){
                  return View::make('site.error_encountered');
@@ -352,7 +355,8 @@ class CoursesController extends \BaseController {
 
             $courses = $courses->paginate(9);
 
-            Return View::make('courses.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
+            if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
+            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
                             
         }
         
@@ -377,7 +381,7 @@ class CoursesController extends \BaseController {
                     })
                     
                     ->orderBy('id','Desc')->paginate(9);
-            Return View::make('courses.category')->with(compact('category','difficultyLevel'))->with(compact('courses'))->with(compact('subcategory'));
+            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'))->with(compact('subcategory'));
                     //->where('featured',0)->where('privacy_status','public')
         }
         

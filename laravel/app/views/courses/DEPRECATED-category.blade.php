@@ -23,7 +23,8 @@
 
                     	<div class="difficulty-levels">
                         	<div class="level-buttons-container">
-                            	<a href="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort')}}" class="beginner level-buttons @if($difficultyLevel == 1) active @endif">Beginner</a>
+                            	<a href="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort')}}" data-target="ajax-content" data-url="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort')}}"
+                                   class="load-remote beginner level-buttons @if($difficultyLevel == 1) active @endif">Beginner</a>
                                 <a href="{{Request::url() . '?difficulty=2&sort=' . Input::get('sort')}}" class="advanced level-buttons @if($difficultyLevel == 2) active @endif">Advanced</a>
                                 <a href="{{Request::url() . '?difficulty=3&sort=' . Input::get('sort')}}" class="intermediate level-buttons @if($difficultyLevel == 3) active @endif">Intermediate</a>
                             </div>
@@ -43,25 +44,16 @@
             <div class="container cat-row-{{$category->color_scheme}}">
             	<div class="row">      
                     <div class="col-xs-12 col-sm-12 col-md-12">
+                        FEATURED - is this even in use?!
                          {{ View::make('courses.course_box_featured')->with( compact('category') )->withCourse($featured) }}
                     </div>
                 </div>
             </div>
         @endif
          
-        
-       	<div class="container">
-        @foreach($courses as $course)
-            {{ cycle(["<div class='row cat-row-$category->color_scheme'>",'','']) }}
-              {{ View::make('courses.course_box')->with(compact('course')) }}
-            {{ cycle(['','','</div>']) }}
-        @endforeach
-        </div>
-        @if($courses->count() % 3!=0)
+            <div class='ajax-content'>
+               
             </div>
-        @endif
-        {{ $courses->appends(Input::only('sort','difficulty'))->links() }}
-        
         </section>
 
     @stop

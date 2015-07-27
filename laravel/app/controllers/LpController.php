@@ -64,34 +64,19 @@ class LpController extends \BaseController {
         }
     
         public function index(){
-            
-            
-            $users = $this->delivered->findUser('spiritualprotrader@gmail.com');
+            $users = $this->delivered->findUser('tagtest');
             $users = $users['data'];
-            dd($users);
-//            
+//            dd($users);
+             return;
             $users = $this->delivered->getUsers();
+            $user = $users['data'];
+            dd( $user[ count($user)-1] );
             
-            $users = $users['data'];
-            foreach($users as $user){
-                echo "$user[email] $user[id] <br />";
-            }
-            return;
-            if(is_array($user) ) $user = json_decode(json_encode($user), FALSE);
-            dd($user);
-           
-            $this->_updateTemplate();
-            $template = $this->_getTemplate();
-            dd($template);
-            if( Input::has('show-me-last-user') ){
-                $users = $this->delivered->getUsers();
-                $users= $users['data'];
-                $user = $users[ count($users) - 1];
-                print_r($user);
-            }
             
-            // remove from LP 
-            $remove_lp = [841, 370, 1278];
+//            $users = $this->delivered->findUser('nori46121@hotmail.co.jp');
+//            $users = $users['data'];
+//            dd($users);
+
 
 //            $list = $this->_getList();
 //            dd($list);

@@ -35,6 +35,7 @@ class UserRepository
         $user->last_name = array_get($input, 'last_name');
         $user->password = array_get($input, 'password');
         $user->instructor_agency_id = $instructorAgencyCookie;
+        $user->confirmed = 0;
 //        if( User::where('id', $secondTierInstructorCookie )->where( 'is_second_tier_instructor','yes' )->where( 'sti_approved','yes' )->count() == 1 ){
 //            $user->second_tier_instructor_id = $secondTierInstructorCookie;
 //        }
@@ -110,7 +111,7 @@ class UserRepository
     }
     
     private function _addToDelivered($user, $deliveredTags){
-        if( App::environment() != 'production' ) return;
+//        if( App::environment() != 'production' ) return;
         $this->delivered = new DeliveredHelper();
         // add the user to DELIVERED
         $response = $this->delivered->addUser( $user->first_name, $user->last_name, $user->email );
@@ -123,6 +124,8 @@ class UserRepository
             foreach($deliveredTags as $tag){
                 $this->delivered->addTag('user-type-'.$tag, 'String', 1, $userData->id);
             }
+            // add confirmed tag
+            $res = $this->delivered->addTag('email-confirmed', 'Integer', $user->confirmed, $userData->id);
         }
     }
     
@@ -513,6 +516,7 @@ class UserRepository
 
         if ($user) {
             $user->confirmed = true;
+            // todo: confirm on delivered too!
             $user->save();
             Auth::login($user);
             return $user;
