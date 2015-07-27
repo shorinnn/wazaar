@@ -8,7 +8,7 @@
                 </div>
             </div>
         	<div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
-     			       
+     			
             </div>
         	<div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
             
