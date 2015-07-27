@@ -274,6 +274,7 @@
            newBox.find('.delete-clonable').attr('data-delete', '.'+cssClass);
            newBox.find('.delete-clonable .fa').attr('data-delete', '.'+cssClass);
            $target.append(newBox);
+           $(newBox).find('input').focus();
            reorderClonable(name);
         }
         

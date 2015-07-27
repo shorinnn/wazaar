@@ -15,7 +15,9 @@
                 <span>Upload new</span>
                 <input type="file" hidden=""/>
             </label>
-            <a href="#" class="remove-video">Remove video</a>
+            @if( $lesson->blocks()->where('type','video')->count() > 0  ) 
+                <a href="#" class="remove-video">Remove video</a>
+            @endif
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <a class="edit-icon toggle-minimize"  data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'>

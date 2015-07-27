@@ -832,14 +832,16 @@ function minimizeAfterSave(result, e){
 }
 
 
-$('body').delegate('.click-on-enter', 'keyup', clickOnEnter);
+$('body').delegate('.click-on-enter', 'keyup keypress', clickOnEnter);
 function clickOnEnter(e){
-    e.preventDefault();
-    
-    if( $.trim( $(e.target).val() )  == '') return false;
-    if( e.which != 13) return false;
-    
-    link = $(e.target).attr('data-click');
-    $(link).click();
-    return false;
+    if( e.which == 13 ){
+        if( $.trim( $(e.target).val() )  == '') return false;
+        link = $(e.target).attr('data-click');
+        if( e.type=='keyup'){
+            $(link).click();
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }
 }
