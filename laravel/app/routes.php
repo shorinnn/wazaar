@@ -373,14 +373,6 @@ Route::post('courses/{id}/video/set-description','CoursesController@setVideoDesc
 
 Route::get('test', function(){
 
-    $cH = new CourseHelper();
-
-
-    $courses = $cH->bestSellers('EdRc6','AT',10);
-
-    foreach($courses as $course){
-        echo "<div>{$course->course->name} - {$course->course->courseCategory->name}</div>";
-    }
 
 
 });
