@@ -302,17 +302,23 @@ function loadRemote(e){
     var callback = $(e.target).attr('data-callback');
     elem = $(e.target);
     loadMethod = $(e.target).attr('data-load-method');
+    noPush = $(e.target).attr('data-no-push-state');
     while(typeof(url)=='undefined'){
         elem = elem.parent();
         url = elem.attr('data-url');
         target = elem.attr('data-target');
         callback = elem.attr('data-callback');  
+        noPush = elem.attr('data-no-push-state');  
         loadMethod = $(e.target).attr('data-load-method');
     }
     $(e.target).attr('data-loading', 1);
-    history.pushState({}, '', url);
+    
+    if( typeof( noPush ) == 'undefined'  ){ 
+        history.pushState({}, '', url);
+    }
     if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
-        $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+//        $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+        $(target).html( '<center><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></center> ');
         $(target).load(url, function(){
             $(e.target).attr('data-loading', 0);
             if( typeof(callback)!= 'undefined'){
@@ -1335,4 +1341,12 @@ function toggleSideMenu(){
 	$('.slide-menu-toggler').on('click', function(){
 		$('.slide-menu').toggleClass('in');	
 	});	
+}
+
+
+function colorLinks(e){
+    color = $(e.target).attr('data-color');
+    elem = $(e.target).attr('data-elem');
+    $(elem).removeAttr('style');
+    $(e.target).css('color', color);
 }

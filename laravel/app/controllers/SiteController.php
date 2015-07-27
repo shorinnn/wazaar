@@ -77,6 +77,11 @@ class SiteController extends \BaseController {
             Return View::make('TEMPORARYVIEWS.new_classroom');
 	}
 
+	public function analytics()
+	{            
+            Return View::make('TEMPORARYVIEWS.analytics');
+	}
+
         
         public function crud(){
              Return View::make('TEMPORARYVIEWS.crud');

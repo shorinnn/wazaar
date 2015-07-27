@@ -284,7 +284,7 @@ class CoursesController extends \BaseController {
                     $courseHelper = new CourseHelper();
                     $category = new stdClass;
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
-                    $courses = $courseHelper->bestSellers($slug,'AT',9);
+                    $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel]);
                     return View::make('courses.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
                 }
 
@@ -305,7 +305,7 @@ class CoursesController extends \BaseController {
                         });
                     });
 
-                if ($difficultyLevel){
+                if (!empty($difficultyLevel)){
                     $courses = $courses->where('course_difficulty_id', $difficultyLevel);
                 }
 
@@ -337,8 +337,21 @@ class CoursesController extends \BaseController {
                                     ->where('publish_status', 'pending')
                                     ->where('pre_submit_data', '!=', "");
                         });
-                    })
-                    ->orderBy('id','Desc')->paginate(9);
+                    });
+
+
+            if (!empty($difficultyLevel)){
+                $courses = $courses->where('course_difficulty_id', $difficultyLevel);
+            }
+
+            if ($sort == 'date'){
+                $courses = $courses->orderBy('created_at','desc');
+            }
+            else{
+                $courses = $courses->orderBy('id','desc');
+            }
+
+            $courses = $courses->paginate(9);
 
             Return View::make('courses.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
                             

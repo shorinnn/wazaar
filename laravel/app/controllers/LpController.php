@@ -64,13 +64,17 @@ class LpController extends \BaseController {
         }
     
         public function index(){
-            dd('to do stuff');
+            $users = $this->delivered->getUsers();
+            $users = $users['data'];
+            dd($users[0]);
+            
 //            $delete = [ 1, 2, 5, 9, 15, 16, 17, 18, 24, 25, 26, 27, 349, 387, 684, 4, 6, 7, 8, 10, 11, 360, 624, 675, 685, 984, 985, 1341, 1661, 2134
 //                , 2609, 2610];
             $delete = [1];
             foreach($delete as $d){
                 $res = $this->delivered->deleteUser($d);
             }
+            dd($res);
 //            
             $users = $this->delivered->getUsers();
             

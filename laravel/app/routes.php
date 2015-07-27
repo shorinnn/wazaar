@@ -48,6 +48,7 @@ $wwwRoutes = function(){
 	Route::get('courses/edit/step_3', 'SiteController@edit_settings');
 	Route::get('checkout', 'SiteController@checkout');
 	Route::get('newclassroom', 'SiteController@newclassroom');
+	Route::get('analytics', 'SiteController@analytics');
 
     // temporary tracking route
     Route::post('action-tracker', 'ActionController@track');
@@ -88,9 +89,11 @@ $wwwRoutes = function(){
         
         Route::resource('withdrawals', 'WithdrawalsController');
         Route::post('members/refund', 'MembersController@refund');
+        Route::put('members/{id}/update-profile', 'MembersController@updateProfile');
         Route::resource('members', 'MembersController');
         Route::get('second-tier-publishers/stats', 'SecondTierPublishersController@stats');
         Route::resource('second-tier-publishers', 'SecondTierPublishersController');
+        Route::get('submissions/all-courses', 'SubmissionsController@allCourses');
         Route::resource('submissions', 'SubmissionsController');
         Route::get('instructor-agencies/instructors/{id}', 'InstructorAgenciesController@instructors');
         Route::resource('instructor-agencies', 'InstructorAgenciesController');
@@ -117,14 +120,17 @@ $wwwRoutes = function(){
 Route::group(array('domain' => $domain), $wwwRoutes);
 Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 
+Route::group(['prefix' => 'affiliate'], function (){
+    Route::get('promote/{course}', 'AffiliateController@promote');
+    Route::get('promote/{course}/{tcode}', 'AffiliateController@promote');
+    Route::post('gifts/{gift}/files', 'GiftsController@files');
+    Route::resource('gifts', 'GiftsController');
+    Route::resource('giftsfile', 'GiftsFileController');
+});
+
 // Affiliate promote links
 Route::group( array('domain' => $instructorSubdomain ), function(){
-    Route::group(['prefix' => 'affiliate'], function (){
-        Route::get('promote/{course}', 'AffiliateController@promote');
-        Route::post('gifts/{gift}/files', 'GiftsController@files');
-        Route::resource('gifts', 'GiftsController');
-        Route::resource('giftsfile', 'GiftsFileController');
-    });
+    
     
     Route::post('private-messages/massStore', 'PrivateMessagesController@massStore');
     Route::get('coursecategories/subcategories_instructor', 'CoursesCategoriesController@subcategories_instructor');

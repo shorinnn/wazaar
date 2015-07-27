@@ -108,7 +108,37 @@
                 </table>
                 {{ Form::close() }}
             </div>
-		</div>
+        </div>
+            @foreach(DB::table('user_profiles')->where('owner_id', $user->id)->get() as $profile)
+            <div class="col-md-12">
+            <div class="table-responsive">
+                {{ Form::open(['action' => ['MembersController@updateProfile', $user->id], 'method' => 'PUT', 'data-callback' => 'formSaved',
+                            'id' =>'edit-form', 'class' => 'ajax-form'])}}
+                            <input type='hidden' name='profile_type' value='{{$profile->owner_type}}' />
+                <table class="table personal-info">
+                    <tr>
+                        <td class="title no-border">{{$profile->owner_type}} Profile</td>
+                        <td class="no-border"></td>
+                    </tr>
+                    <tr>
+                        <td class="title no-border">{{trans('general.first_name')}}</td>
+                        <td class="no-border"><input type='text' name='first_name' value='{{ $profile->first_name }}' /></td>
+                    </tr>
+                    <tr>
+                        <td class="title no-border">{{trans('general.last_name')}}</td>
+                        <td class="no-border"><input type='text' name='last_name' value='{{ $profile->last_name }}' /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            {{ Form::submit( trans('crud/labels.update'), ['class' => 'btn btn-default submit submit-button-2'] ) }}
+                        </td>
+                    </tr>
+                </table>
+                {{ Form::close() }}
+            </div>
+        </div>
+            
+            @endforeach
     </div>
 </div>
 @stop

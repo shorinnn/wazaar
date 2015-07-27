@@ -3,6 +3,7 @@ return [
     'currency_decimals'    => 0,
     'html_row_classes'     => [ 'first', 'second', 'third', 'fourth', 'fifth' ],
     'course_preview_image' => [ 'width' => '360', 'height' => '203', 'hi_res_width' => '720', 'hi_res_height' => '406', 
+                                'desc_width' => '1024', 'desc_height' => '576', 'desc_hi_res_width' => '2048', 'desc_hi_res_height' => '1152',
                                 'allowed_types' => ['.jpg', '.png', '.gif', '.bmp'] ],
     'course_banner_image'  => [ 'width' => '656', 'height' => '266', 'allowed_types' => ['.jpg', '.png', '.gif', '.bmp'] ],
     'course_is_new'        => [ 'maximum_students' => 20, 'maximum_months' => 6 ],

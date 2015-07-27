@@ -19,6 +19,36 @@ class CoursePreviewImage extends Ardent{
         $extension = mime_to_extension($mime);
         if( !in_array( $extension, Config::get('custom.course_preview_image.allowed_types') ) ) return false;
         
+        // upload description hi-res
+        Image::make($this->file_path)
+                ->resize( Config::get('custom.course_preview_image.desc_hi_res_width'),
+                          Config::get('custom.course_preview_image.desc_hi_res_height') )->save();
+        
+        $file = file_get_contents($this->file_path);
+        $s3 = AWS::get('s3');
+        $result = $s3->putObject(array(
+            'ACL'    => 'public-read',
+            'Bucket' => $_ENV['AWS_BUCKET'],
+            'ContentType' => $mime,
+            'Key'    => 'course_preview/desc-hi-res-'.$key.$extension,
+            'Body'   => $file
+        ));
+        
+        // upload desc regular size
+        Image::make($this->file_path)
+                ->resize( Config::get('custom.course_preview_image.desc_width'),
+                          Config::get('custom.course_preview_image.desc_height') )->save();
+        
+        $file = file_get_contents($this->file_path);
+        $s3 = AWS::get('s3');
+        $result = $s3->putObject(array(
+            'ACL'    => 'public-read',
+            'Bucket' => $_ENV['AWS_BUCKET'],
+            'ContentType' => $mime,
+            'Key'    => 'course_preview/desc-'.$key.$extension,
+            'Body'   => $file
+        ));
+        
         // upload hi-res
         Image::make($this->file_path)
                 ->resize( Config::get('custom.course_preview_image.hi_res_width'),
@@ -50,6 +80,13 @@ class CoursePreviewImage extends Ardent{
         ));
         unset($this->file_path);
         $this->url =  $result->get('ObjectURL');
+    }
+    
+    public function format($format='desc-hi-res'){
+        $url = explode('/', $this->url);
+        $url[ count($url)-1 ] = $format.'-'.$url[ count($url)-1 ];
+        $url = implode('/', $url);
+        return $url;
     }
 
 }

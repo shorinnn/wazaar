@@ -8,10 +8,10 @@ class AffiliateController extends \BaseController {
         $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy' ]]);
     }
 
-	public function promote($course)
+	public function promote($course, $tcode='')
 	{
             $course = Course::where('slug', $course)->first();
             $course->gifts = $course->gifts()->where('affiliate_id', Auth::user()->id)->get();
-            return View::make('affiliate.promote.promote')->with( compact('course') );
+            return View::make('affiliate.promote.promote')->with( compact('course', 'tcode') );
 	}
 }
