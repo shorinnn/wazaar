@@ -203,8 +203,8 @@
                                 </div>
                                 <span class="play-intro-button"><i class="wa-play"></i><em>{{ trans("courses/general.play-intro") }}</em></span>
                             @endif
-                        @endif                                        
                     	</div>
+                        @endif                                        
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section">
                         @if( admin() )
