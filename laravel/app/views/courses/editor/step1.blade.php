@@ -34,8 +34,10 @@
                                                data-target='#selected-previews'/>
                                     </label>
                                 </form>
+                                <p class="label-progress-bar label-progress-bar-preview-img"></p>
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                    <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" 
+                                         data-label=".label-progress-bar-preview-img" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                                         <span></span>
                                     </div>
                                 </div>
@@ -125,7 +127,7 @@
                                     <span class="cloned-number">{{$i}}</span>
                                     <!--<input type='text' name='requirements[]' data-clonable-max='5' value='{{$val}}' class="clonable clonable-{{time().$i}}"  /><br />-->
                                     <!--<a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"><i class="fa fa-times"></i></a>-->
-                                    <input type='text' name='requirements[]' value='{{$val}}' /><br />
+                                    <input type='text' name='requirements[]' class='click-on-enter' data-click='.clonable-req-click' value='{{$val}}' /><br />
                                     <a href="#" tabindex="-1" data-delete=".clonable-req-{{time().$i}}"
                                        class="style-one delete-clonable">
                                         <i class="fa fa-times" data-delete=".clonable-req-{{time().$i}}"></i>
@@ -137,14 +139,14 @@
         
                             <div class="relative clonable-input clearfix clonable-req-{{time().$i}}">
                                 <span class="cloned-number">{{$i}}</span>     
-                                    <input type='text' name='requirements[]'
+                                    <input type='text' name='requirements[]' class='click-on-enter'  data-click='.clonable-req-click' 
                                    @if(count($values)==0) required @endif /> 
                                     <a href="#" tabindex="-1" class="style-one delete-clonable"  data-delete=".clonable-req-{{time().$i}}">
                                         <i class="fa fa-times"  data-delete=".clonable-req-{{time().$i}}"></i>
                                     </a>
                             </div>
                         </div>
-                        <a href="#" class="clone-field" onclick="cloneBox(event)" data-class="clonable-req"
+                        <a href="#" class="clone-field clonable-req-click" onclick="cloneBox(event)" data-class="clonable-req"
                            data-name="requirements[]" data-target=".requirements-box">
                             <i class="fa fa-plus"></i> Add requirement...
                         </a>
@@ -159,7 +161,8 @@
                                 @foreach($values as $val)
                                 <div class="relative clearfix clonable-input clonable-who-{{time().$i}}">
                                     <span class="cloned-number">{{$i}}</span>
-                                    <input type='text' name='who_is_this_for[]' value='{{$val}}' /><br />
+                                    <input type='text' name='who_is_this_for[]' class='click-on-enter'  data-click='.clonable-who-click' 
+                                           value='{{$val}}' /><br />
                                      <a href="#" tabindex="-1" data-delete=".clonable-who-{{time().$i}}"
                                        class="style-one delete-clonable">
                                         <i class="fa fa-times" data-delete=".clonable-who-{{time().$i}}"></i>
@@ -171,7 +174,7 @@
                             
                             <div class="relative clearfix clonable-input clonable-who-{{time().$i}}">
                                 <span class="cloned-number">{{$i}}</span>
-                                <input type='text' name='who_is_this_for[]' /><br />
+                                <input type='text' name='who_is_this_for[]' class='click-on-enter'  data-click='.clonable-who-click' /><br />
                                  <a href="#" tabindex="-1" data-delete=".clonable-who-{{time().$i}}"
                                    class="style-one delete-clonable">
                                     <i class="fa fa-times" data-delete=".clonable-who-{{time().$i}}"></i>
@@ -179,7 +182,7 @@
                              </div>
                         </div>
                         
-                        <a href="#" class="clone-field" onclick="cloneBox(event)" data-class="clonable-who"
+                        <a href="#" class="clone-field clonable-who-click" onclick="cloneBox(event)" data-class="clonable-who"
                            data-name="who_is_this_for[]" data-target=".who-box">
                             <i class="fa fa-plus"></i> Add requirement...
                         </a>
@@ -196,7 +199,8 @@
                                 @foreach($values as $val)
                                     <div class="relative clearfix clonable-input clonable-what-{{time().$i}}">
                                         <span class="cloned-number">{{$i}}</span>
-                                        <input type='text' name='what_will_you_achieve[]' value='{{$val}}' /><br />
+                                        <input type='text' name='what_will_you_achieve[]' class='click-on-enter'  data-click='.clonable-what-click' 
+                                               value='{{$val}}' /><br />
                                          <a href="#" tabindex="-1" data-delete=".clonable-what-{{time().$i}}"
                                            class="style-one delete-clonable">
                                             <i class="fa fa-times" data-delete=".clonable-what-{{time().$i}}"></i>
@@ -208,14 +212,14 @@
 
                             <div class="relative clearfix clonable-input clonable-what-{{time().$i}}">
                                 <span class="cloned-number">{{$i}}</span>
-                                <input type='text' name='what_will_you_achieve[]' /><br />
+                                <input type='text' name='what_will_you_achieve[]' class='click-on-enter'  data-click='.clonable-what-click'  /><br />
                                  <a href="#" tabindex="-1" data-delete=".clonable-what-{{time().$i}}"
                                    class="style-one delete-clonable">
                                     <i class="fa fa-times" data-delete=".clonable-what-{{time().$i}}"></i>
                                 </a>
                             </div>  
                         </div> 
-                        <a href="#" class="clone-field" onclick="cloneBox(event)" data-class="clonable-what"
+                        <a href="#" class="clone-field clonable-what-click" onclick="cloneBox(event)" data-class="clonable-what"
                            data-name="what_will_you_achieve[]" data-target=".what-box">
                             <i class="fa fa-plus"></i> Add requirement...
                         </a>            

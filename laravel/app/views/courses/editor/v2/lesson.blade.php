@@ -1,4 +1,8 @@
-<div class="shr-lesson shr-lesson-{{$lesson->id}}">
+<div class="shr-lesson shr-lesson-{{$lesson->id}} shr-lesson-editor-{{$lesson->id}} 
+     if($lesson->module->course->modules()->count()>1 && $lesson->module->lessons()->count()>1)
+     lesson-minimized
+     endif
+     ">
      
     <div class="row lesson-data">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
@@ -14,20 +18,39 @@
             <a href="#" class="remove-video">Remove video</a>
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <a class="edit-icon toggle-minimize"  data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'>
+                <i class="fa fa-pencil pull-right" data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'></i>
+            </a>
+             <p class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-name'>{{$lesson->name}}</p>
+             <p class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-desc'>{{$lesson->description}}</p>
+             <div class='minimized-lesson-elem'>
+                 <!--<i class='fa fa-quote-left'></i> 1 Note-->
+                 
+                 <i class='fa fa-paperclip'></i> 
+                    <span class='attachment-counter-{{$lesson->id}}'>{{ $lesson->blocks()->where('type','file')->count() }}</span> 
+                    Attachments
+                 
+                 <a class="toggle-minimize"  data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'>
+                     <i class='fa fa-chevron-down' data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'></i> Show</a>
+             </div>
+             
+            <div class='maximized-elem'>
             {{ Form::open( ['action' => ['LessonsController@update', $lesson->module->id, $lesson->id ], 'method' => 'PUT', 
-                        'class' => 'ajax-form lesson-form-'.$lesson->id, 'data-save-indicator' => '.submit-lesson-'.$lesson->id ] )  }}
+                        'class' => 'ajax-form lesson-form-'.$lesson->id, 'data-save-indicator' => '.submit-lesson-'.$lesson->id,
+                     'data-callback' => 'minimizeAfterSave', 'data-elem' => ".shr-lesson-editor-".$lesson->id, 'data-error-list' => '.lesson-errors-'.$lesson->id] )  }}
                         <div style="display: none">
                                 <button type="submit"></button>
                         </div>
             <div>
-                <input type="text" name="name" class="lesson-title type-in-elements" data-elements='.shr-lesson-{{$lesson->id}} > a'
+                <input type="text" name="name" class="lesson-title type-in-elements" data-elements='.lesson-{{$lesson->id}}-copy-name'
                        placeholder="Enter lesson title" value="{{ $lesson->name }}" >
             </div>
             <div>
                 <h6>DESCRIPTION
                     <span class="lead"><span class="characters-desc-{{$lesson->id}}">360</span> Characters left</span>
                 </h6>
-                <textarea class='characters-left' data-target='.characters-desc-{{$lesson->id}}' maxlength="360" name="description" placeholder="Enter short lesson description...">{{ $lesson->description }}</textarea>
+                <textarea class='characters-left type-in-elements' data-target='.characters-desc-{{$lesson->id}}' maxlength="360"
+                data-elements='.lesson-{{$lesson->id}}-copy-desc' name="description" placeholder="Enter short lesson description...">{{ $lesson->description }}</textarea>
             </div>
             <div>
                 <h6>NOTES
@@ -82,6 +105,7 @@
                 </div>
             </div>
             {{ Form::close() }}
+            </div>
         </div>
     </div>
 <!--    <div class="row file-upload-row">
@@ -98,11 +122,22 @@
         </div>                    
     </div>-->
     <div class="row file-upload-row">
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        @if( $lesson->blocks()->where('type','file')->count() > 0)
+            <div class="uploader-area col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        @else
+            <div class="uploader-area col-xs-12">
+        @endif
             <i class="fa fa-cloud-upload"></i>
             <p class="regular-paragraph  lesson-dropzone-{{$lesson->id}}" style="border:1px silver dashed; padding:20px;">
                 Drag & Drop<br> files to upload
             </p>
+                <p class="label-progress-bar label-progress-bar-{{$lesson->id}}"></p>
+                <div class="progress" style="display: none">
+                    <div class="progress-bar progress-bar-striped active progress-bar-{{$lesson->id}}" role="progressbar" aria-valuenow="0"
+                        data-label=".label-progress-bar-{{$lesson->id}}" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        <span></span>
+                    </div>
+                </div>
             <label class="default-button large-button upload-button">
 <!--                <i class="fa fa-paperclip"></i>
                 <span>Select</span>
@@ -132,7 +167,13 @@
                 </form>
             </label>
         </div>
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 uploaded-files">
+        
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 uploaded-files"
+              @if( $lesson->blocks()->where('type','file')->count() == 0)
+                style='display:none'
+              @endif
+              >
+            
             <div style='display:none'>
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped active progress-bar-{{$lesson->id}}" role="progressbar" aria-valuenow="0"
@@ -155,6 +196,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <a href="#" class="green-button large-button submit-form submit-lesson-{{$lesson->id}}" data-form='.lesson-form-{{ $lesson->id }}'>Save changes</a>
             <a href="#" class="default-button large-button reset-form" data-form='.lesson-form-{{ $lesson->id }}'>Cancel</a>
+            
             <!--<a href="#" class="delete-lesson right"><i class="fa fa-trash-o"></i> Delete this lesson</a>-->
             
             <a href="{{ action('LessonsController@destroy', [ $lesson->module->id, $lesson->id]) }}" class="delete-lesson right link-to-remote-confirm"
@@ -165,6 +207,8 @@
                        data-message="{{ trans('crud/labels.you-sure-want-delete') }}" 
                        data-url="{{ action('LessonsController@destroy', [ $lesson->module->id, $lesson->id]) }}" ></i> Delete this lesson
                 </a>
+            <div class='input-error lesson-errors-{{$lesson->id}}'>
+             </div>
         </div>
     </div>
 </div>

@@ -25,10 +25,12 @@
 
     <!--<a href="#" class="delete-file"><i class="fa fa-trash-o"></i></a>-->
      <a href="{{ action('BlocksController@destroy', [ $file->lesson->id, $file->id]) }}" class="delete-file right link-to-remote-confirm"
-                   data-url="{{ action('BlocksController@destroy', [ $file->lesson->id, $file->id]) }}" data-callback = 'deleteItem' 
+                   data-url="{{ action('BlocksController@destroy', [ $file->lesson->id, $file->id]) }}" data-callback = 'deleteAttachment' 
+                   data-lesson='{{$file->lesson->id}}'
                    data-delete = '#uploaded-file-{{$file->id}}' data-message="{{ trans('crud/labels.you-sure-want-delete') }}">
          
-                    <i class="fa fa-trash-o" data-callback = 'deleteItem'  data-delete = '#uploaded-file-{{$file->id}}'
+                    <i class="fa fa-trash-o" data-callback = 'deleteAttachment'  data-delete = '#uploaded-file-{{$file->id}}'
+                       data-lesson='{{$file->lesson->id}}'
                        data-message="{{ trans('crud/labels.you-sure-want-delete') }}" 
                        data-url="{{ action('BlocksController@destroy', [ $file->lesson->id, $file->id]) }}" ></i>
                 </a>

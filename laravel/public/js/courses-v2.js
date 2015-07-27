@@ -225,36 +225,47 @@ function enableBlockFileUploader(e){
 function enableFileUploader($uploader){
     dropzone = $uploader.attr('data-dropzone');
     var progressbar = $uploader.attr('data-progress-bar');
+    var progressLabel = $(progressbar).attr('data-label');
+    $progressLabel = $(progressLabel);
     upload_url = $uploader.closest('form').attr('action');
-    console.log(dropzone);
+    
     var $u = $uploader;
     $u.fileupload({
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
-                str =  $(progressbar).prop('outerHTML');
-                str += '<br /><br />';
-                bootbox.dialog({
-                    title: _('Uploading'),
-                    message: str
-                  });
+                $(progressbar).parent().show();
+//                str =  $(progressbar).prop('outerHTML');
+//                str += '<br /><br />';
+//                bootbox.dialog({
+//                    title: _('Uploading'),
+//                    message: str
+//                  });
                 callback = $uploader.attr('data-add-callback');
                 if( typeof(callback) !='undefined' ){
                     return window[callback](e, data);
                 }
             }).on('fileuploadprogress', function (e, data) {
+                 $progressLabel = $(progressLabel);
                 var $progress = parseInt(data.loaded / data.total * 100, 10);
                 $(progressbar).css('width', $progress + '%');
-                $(progressbar).find('span').html($progress);
-                if($progress=='100') $(progressbar).find('span').html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                if( $progressLabel.length > 0 ) $progressLabel.html($progress);
+                else $(progressbar).find('span').html($progress);
+                if($progress=='100'){
+                    console.log( $progressLabel );
+                    if( $progressLabel.length > 0 ) $progressLabel.html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                    else $(progressbar).parent().find('span').html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                }
             }).on('fileuploadfail', function (e, data) {
+                $progressLabel = $(progressLabel);
                 $(progressbar).find('span').html('');
                 $(progressbar).css('width', 0 + '%');
                 $.each(data.files, function (index) {
                     var error = $('<span class="alert alert-danger upload-error"/>').text( _('File upload failed.') );
                     $(progressbar).css('width', 100 + '%');
-                    $(progressbar).find('span').html(error);
+                    if( $progressLabel.length > 0 ) $progressLabel.html(error);
+                    else $(progressbar).find('span').html(error);
                 });
-                bootbox.hideAll();
+                
             }).on('fileuploaddone', function (e,data){
                 callback = $uploader.attr('data-callback');
                 if( typeof(callback) !=undefined ){
@@ -262,7 +273,6 @@ function enableFileUploader($uploader){
                     
                 }
             });
-            console.log( $u );
 }
 
 /**
@@ -299,6 +309,8 @@ function blockFileUploaded(e, data){
     
     lessonId = $(e.target).attr('data-lesson-id');
     var progressbar = $(e.target).attr('data-progress-bar');
+    progressLabel = $(progressbar).attr('data-label');
+    var $progressLabel = $(progressLabel);
 
 //    $uploadTo = $(e.target).parent().parent().parent();
     uploadTo = $(e.target).attr('data-upload-to');
@@ -314,12 +326,28 @@ function blockFileUploaded(e, data){
         content: result.PostResponse.Location['#text']
     }, function(result){
         result = JSON.parse(result);
-        $(progressbar).find('span').html('');
-        $(progressbar).css('width', 0 + '%');
-//        console.log(result);
-        $uploadTo.append(result.html);
-        bootbox.hideAll();
-        calculateFileSizes();
+        if(result.status=='success'){
+            $(progressbar).find('span').html('');
+            $(progressbar).css('width', 0 + '%');
+    //        console.log(result);
+            $uploadTo.append(result.html);
+            $(progressbar).parent().hide();
+            $progressLabel.html('');
+            calculateFileSizes();
+            count = $('.uploaded-files-'+lessonId+' > li').length;
+            $('.attachment-counter-'+lessonId).html(count);
+            $('.shr-lesson-'+lessonId+' .uploaded-files').show();
+            $('.shr-lesson-'+lessonId+' .uploader-area ').addClass('col-lg-3');
+            $('.shr-lesson-'+lessonId+' .uploader-area ').addClass('col-md-3');
+            $('.shr-lesson-'+lessonId+' .uploader-area ').addClass('col-sm-3');
+        }
+        else{
+            $(progressbar).find('span').html( result.errors );
+            $(progressbar).css('width', 0 + '%');
+            $progressLabel.html(result.errors );
+        }
+        
+//        bootbox.hideAll();
         
 //        $(e.target).parent().parent().parent().append(result.html);
     });
@@ -360,6 +388,10 @@ function courseImageUploaded(e, data){
     var progressbar = $(e.target).attr('data-progress-bar');
     $(progressbar).find('span').html('');
     $(progressbar).css('width', 0 + '%');
+    $(progressbar).parent().hide();
+    progressLabel = $(progressbar).attr('data-label');
+    $(progressLabel).hide();
+    
     target = $(e.target).attr('data-target');
     console.log(data.result);
     result = JSON.parse(data.result);
@@ -773,4 +805,41 @@ function calculateFileSizes(){
             $obj.removeClass('calculate-file-size');
         });
     });
+}
+
+$('body').delegate('.toggle-minimize', 'click', toggleMinimize);
+function toggleMinimize(e){
+    if( $(e.target).hasClass('fa') ) $(e.target).toggleClass('fa-compress');
+    
+    cls = $(e.target).attr('data-class');
+    target = $(e.target).attr('data-target');
+    $(target).toggleClass( cls );
+    console.log('toggling minimize!!!');
+}
+
+
+function deleteAttachment( event, result ){
+    deleteItem(result, event);
+    lessonId = $(event.target).attr('data-lesson');
+    count = $('.uploaded-files-'+lessonId+' > li').length;
+    $('.attachment-counter-'+lessonId).html(count);
+}
+
+function minimizeAfterSave(result, e){
+    elem = $(e.target).attr('data-elem');
+    console.log( elem+' .toggle-minimize' );
+    $(elem+' .toggle-minimize').first().click();
+}
+
+
+$('body').delegate('.click-on-enter', 'keyup', clickOnEnter);
+function clickOnEnter(e){
+    e.preventDefault();
+    
+    if( $.trim( $(e.target).val() )  == '') return false;
+    if( e.which != 13) return false;
+    
+    link = $(e.target).attr('data-click');
+    $(link).click();
+    return false;
 }

@@ -29,6 +29,7 @@ class BlocksController extends \BaseController {
         }
         
         public function uploadFiles($lesson_id){
+            
             // make sure the upload limit hasn't been reached
             $lesson = Lesson::find($lesson_id);
             if( $lesson->blocks()->where('type','file')->count() > Config::get('custom.maximum_lesson_files') ){
