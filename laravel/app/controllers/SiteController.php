@@ -71,15 +71,21 @@ class SiteController extends \BaseController {
 	}
 
 // Temporary functions for new classroom UI
-
 	public function newclassroom()
 	{            
             Return View::make('TEMPORARYVIEWS.new_classroom');
 	}
 
+// Temporary functions for new Analytics UI
 	public function analytics()
 	{            
             Return View::make('TEMPORARYVIEWS.analytics');
+	}
+
+// Temporary functions for new Dashboard UI
+	public function newdashboard()
+	{            
+            Return View::make('TEMPORARYVIEWS.newdashboard');
 	}
 
         

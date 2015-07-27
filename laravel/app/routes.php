@@ -49,6 +49,7 @@ $wwwRoutes = function(){
 	Route::get('checkout', 'SiteController@checkout');
 	Route::get('newclassroom', 'SiteController@newclassroom');
 	Route::get('analytics', 'SiteController@analytics');
+	Route::get('newdashboard', 'SiteController@newdashboard');
 
     // temporary tracking route
     Route::post('action-tracker', 'ActionController@track');

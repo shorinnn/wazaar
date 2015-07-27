@@ -1063,7 +1063,7 @@ header .profile-name li:hover ul{
 .toggle-menus .menu:active,
 .difficulty-levels .level-buttons:hover,
 .difficulty-levels .level-buttons:focus,
-.difficulty-levels .level-buttons:active{
+.difficulty-levels .level-buttons.active{
 	background: #e3e5e6;
 }
 
