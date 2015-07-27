@@ -137,7 +137,7 @@
         <section class="container-fluid course-data">
         	<div class="container">
             	<div class="row">
-                	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-details-player">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-details-player">
                             <div class="pre-view-image video-player">
                                 <img src="{{ cloudfrontUrl( $course->previewImage->format('desc') ) }}" />
                             </div>
