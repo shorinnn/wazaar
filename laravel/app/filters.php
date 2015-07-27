@@ -13,7 +13,10 @@
 
 App::before(function($request)
 {
-    
+    if( Input::has('set-locale' )){
+        Session::put('locale', Input::get('set-locale') );
+    }
+    App::setLocale( Session::get('locale', Config::get('app.locale') ) );
     /** temporary mobile-desktop switcher **/
     if(Input::has('force-mobile')) Cookie::queue('force-mobile', 1, 60*24*30);
     if(Input::has('force-desktop')){

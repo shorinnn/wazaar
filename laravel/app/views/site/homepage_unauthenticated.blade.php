@@ -132,14 +132,20 @@
                     <h1 class="left">{{trans('site/homepage.discover')}}</h1>
                     <ul class="left categories-menu">
                         <li>
-                            <a class="load-remote discover-links" data-url="{{ action( 'SiteController@discoverCourses', 0 )}}" data-no-push-state="1"
+                            <a class="load-remote discover-links" data-url="{{ action( 'SiteController@discoverCourses', 0 )}}" 
                                data-callback='colorLinks' data-color='#0099ff' data-elem='.discover-links'
+                               @if(isset($selectedGroup) && $selectedGroup==0)
+                               style='color:#0099ff'
+                               @endif
                                data-target="#discover-courses-area">All</a>
                         </li>
                         
                         @foreach($groups as $group)
                         <li>
-                            <a class="load-remote discover-links" data-url="{{ action( 'SiteController@discoverCourses', $group->id )}}"  data-no-push-state="1"
+                            <a class="load-remote discover-links" data-url="{{ action( 'SiteController@discoverCourses', $group->id )}}" 
+                                @if(isset($selectedGroup) && $selectedGroup==$group->id)
+                                    style='color:#0099ff'
+                               @endif
                                data-callback='colorLinks'  data-elem='.discover-links' data-color='#0099ff' data-target="#discover-courses-area">{{ $group->name }}</a>
                         </li>
                         @endforeach

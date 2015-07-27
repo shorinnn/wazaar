@@ -292,6 +292,7 @@ function linkToRemote(e){
  * @method loadRemote
  */
 function loadRemote(e){
+    
     e.preventDefault();
     var nofollow = $(e.target).attr('data-nofollow');
     if( typeof(nofollow)!='undefined'&& nofollow==1 ) return false;
@@ -313,12 +314,15 @@ function loadRemote(e){
     }
     $(e.target).attr('data-loading', 1);
     
+    
     if( typeof( noPush ) == 'undefined'  ){ 
         history.pushState({}, '', url);
     }
     if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
 //        $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
         $(target).html( '<center><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></center> ');
+        console.log( url );
+        
         $(target).load(url, function(){
             $(e.target).attr('data-loading', 0);
             if( typeof(callback)!= 'undefined'){

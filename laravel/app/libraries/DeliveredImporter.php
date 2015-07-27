@@ -180,10 +180,12 @@ class DeliveredImporter {
                         if( $tag['tagName'] == 'email-confirmed' ){
                             $delivered->updateTag( $tag['id'], $deliveredID, 'email-confirmed', 'tagIntegerValue', $confirmed);
                             $added = true;
+                            $userCount++;
                         }
                     }
                     if( !$added ){
                         $delivered->addTag('email-confirmed', 'Integer', $confirmed, $deliveredID);
+                        $userCount++;
                     }
                     
                     // sleep every 25 users
