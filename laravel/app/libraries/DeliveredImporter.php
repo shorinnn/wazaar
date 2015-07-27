@@ -178,7 +178,7 @@ class DeliveredImporter {
                     $added = false;
                     foreach( $dUser['tags'] as $tag ){
                         if( $tag['tagName'] == 'email-confirmed' ){
-                            $delivered->updateTag( $tag['id'], 'tagIntegerValue', $confirmed );
+                            $delivered->updateTag( $tag['id'], $deliveredID, 'email-confirmed', 'tagIntegerValue', $confirmed);
                             $added = true;
                         }
                     }
