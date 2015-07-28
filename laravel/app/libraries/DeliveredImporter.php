@@ -117,7 +117,7 @@ class DeliveredImporter {
                         $userCount++;
                     }
                     foreach($requiredTags as $tag => $val){
-                        $delivered->addTag('user-type-'.$tag, 'String', 1, $deliveredID);
+                        $delivered->addTag('user-type-'.$tag, 'integer', 1, $deliveredID);
                         $tagCount++;
                     }
                     // sleep every 25 users
@@ -178,13 +178,13 @@ class DeliveredImporter {
                     $added = false;
                     foreach( $dUser['tags'] as $tag ){
                         if( $tag['tagName'] == 'email-confirmed' ){
-                            $delivered->updateTag( $tag['id'], $deliveredID, 'email-confirmed', 'tagIntegerValue', $confirmed);
+                            $delivered->updateTag( $tag['id'], $deliveredID, 'email-confirmed', 'integer', $confirmed);
                             $added = true;
                             $userCount++;
                         }
                     }
                     if( !$added ){
-                        $delivered->addTag('email-confirmed', 'Integer', $confirmed, $deliveredID);
+                        $delivered->addTag('email-confirmed', 'integer', $confirmed, $deliveredID);
                         $userCount++;
                     }
                     

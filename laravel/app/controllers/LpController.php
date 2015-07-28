@@ -64,10 +64,11 @@ class LpController extends \BaseController {
         }
     
         public function index(){
-//            $users = $this->delivered->findUser('tagtest');
-//            $users = $users['data'];
-////            dd($users);
-//             return;
+//            $this->delivered->deleteUser( 3193   );
+            $users = $this->delivered->findUser('finalconftest@mailinator.com');
+            $users = $users['data'];
+            print_r($users);
+             return;
             $users = $this->delivered->getUsers();
             $user = $users['data'];
             dd( $user[ count($user)-1 ] );
