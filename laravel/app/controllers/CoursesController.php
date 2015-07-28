@@ -283,8 +283,7 @@ class CoursesController extends \BaseController {
                     $courseHelper = new CourseHelper();
                     $category = new stdClass;
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
-                    $category = CourseCategory::where('slug', $slug)->first();
-                    $courses = $courseHelper->bestSellers($category->id,'AT',9,['course_difficulty_id' => $difficultyLevel]);
+                    $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel]);
                     if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
                     return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
                 }
