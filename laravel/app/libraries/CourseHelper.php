@@ -21,11 +21,12 @@ class CourseHelper {
         }
 
         if (!empty($category)){
-            if (is_string($category)){
-                $courses = $courses->where('course_category_slug', $category);
+            //if (is_string($category)){
+            if (is_numeric($category)){
+                $courses = $courses->where('course_category_id',$category);
             }
             else{
-                $courses = $courses->where('course_category_id',$category);
+                $courses = $courses->where('course_category_slug', $category);
             }
         }
 
