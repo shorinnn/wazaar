@@ -71,15 +71,21 @@ class SiteController extends \BaseController {
 	}
 
 // Temporary functions for new classroom UI
-
 	public function newclassroom()
 	{            
             Return View::make('TEMPORARYVIEWS.new_classroom');
 	}
 
+// Temporary functions for new Analytics UI
 	public function analytics()
 	{            
             Return View::make('TEMPORARYVIEWS.analytics');
+	}
+
+// Temporary functions for new Dashboard UI
+	public function newdashboard()
+	{            
+            Return View::make('TEMPORARYVIEWS.newdashboard');
 	}
 
         
@@ -149,7 +155,25 @@ class SiteController extends \BaseController {
             $cats = CategoryGroup::find($group)->categories()->lists('id');
             $discoverCourses = Course::where('publish_status','approved')->whereIn( 'course_category_id', $cats )->orderBy( DB::raw('RAND()') )->limit(6)->get();
         }
-        return View::make('site.discover_courses')->with( compact('discoverCourses') );
+        if( Request::ajax() )        return View::make('site.discover_courses')->with( compact('discoverCourses') );
+        else{
+                $categories = CourseCategory::limit(12);
+                $groups = CategoryGroup::orderBy('order','asc')->get();
+                $topCourses = Cache::get('topCourses');
+                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];                
+                
+                if(Auth::user()) Return View::make('site.homepage_authenticated')
+                    ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses'));
+                else{
+                    $selectedGroup = $group;
+                    if(Input::has('old-page'))
+                        Return View::make('site.homepage_unauthenticated_DEPR')
+                        ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'selectedGroup') );
+                    else
+                        Return View::make('site.homepage_unauthenticated')
+                            ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'selectedGroup') );
+                }
+        }
     }
 
     public function loginTest(){

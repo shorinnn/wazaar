@@ -30,11 +30,11 @@
 	height: 100%;
 	left: 0;
 	width: 100%;
-	background: -moz-linear-gradient(top , rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
-	background: -webkit-linear-gradient(top , rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
-	background: -o-linear-gradient(top , rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
-	background: -ms-linear-gradient(top , rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
-	background: linear-gradient(top , rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+	background: -moz-linear-gradient(top , rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+	background: -webkit-linear-gradient(top , rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+	background: -o-linear-gradient(top , rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+	background: -ms-linear-gradient(top , rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+	background: linear-gradient(top , rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
 }
 
 #lesson-video-overlay > div{

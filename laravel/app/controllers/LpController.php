@@ -64,40 +64,19 @@ class LpController extends \BaseController {
         }
     
         public function index(){
+//            $users = $this->delivered->findUser('tagtest');
+//            $users = $users['data'];
+////            dd($users);
+//             return;
             $users = $this->delivered->getUsers();
-            $users = $users['data'];
-            dd($users[0]);
+            $user = $users['data'];
+            dd( $user[ count($user)-1 ] );
             
-//            $delete = [ 1, 2, 5, 9, 15, 16, 17, 18, 24, 25, 26, 27, 349, 387, 684, 4, 6, 7, 8, 10, 11, 360, 624, 675, 685, 984, 985, 1341, 1661, 2134
-//                , 2609, 2610];
-            $delete = [1];
-            foreach($delete as $d){
-                $res = $this->delivered->deleteUser($d);
-            }
-            dd($res);
-//            
-            $users = $this->delivered->getUsers();
             
-            $users = $users['data'];
-            foreach($users as $user){
-                echo "$user[email] $user[id] <br />";
-            }
-            return;
-            if(is_array($user) ) $user = json_decode(json_encode($user), FALSE);
-            dd($user);
-           
-            $this->_updateTemplate();
-            $template = $this->_getTemplate();
-            dd($template);
-            if( Input::has('show-me-last-user') ){
-                $users = $this->delivered->getUsers();
-                $users= $users['data'];
-                $user = $users[ count($users) - 1];
-                print_r($user);
-            }
-            
-            // remove from LP 
-            $remove_lp = [841, 370, 1278];
+//            $users = $this->delivered->findUser('nori46121@hotmail.co.jp');
+//            $users = $users['data'];
+//            dd($users);
+
 
 //            $list = $this->_getList();
 //            dd($list);
