@@ -42,7 +42,7 @@
         </div>
 
         <div class="col-md-2">
-            <button class="btn btn-primary btn-sm" type="button" id="btn-apply-filter-courses-{{$freeCourse}}">Apply Filter</button>
+            <button class="btn btn-default btn-sm" type="button" id="btn-apply-filter-courses-{{$freeCourse}}">Apply Filter</button>
         </div>
     </div>
     {{Form::close()}}
