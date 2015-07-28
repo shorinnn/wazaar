@@ -151,7 +151,7 @@
                                             ->first()->video_url }}" type="video/mp4">
                                 </video>-->
                                 <video id='myVideo' preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
-                                    <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                                    <source src="{{ $video->formats()->where('resolution', 'Low Resolution')
                                             ->first()->video_url }}" type="video/mp4">
                                 </video>
                             @else
