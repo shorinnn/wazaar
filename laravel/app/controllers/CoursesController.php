@@ -277,9 +277,9 @@ class CoursesController extends \BaseController {
         public function category($slug=''){
             $difficultyLevel = Input::get('difficulty') ?: null;
             $sort = null;
-
             if (Input::has('sort')){
                 if (Input::get('sort') == 'best-selling'){
+                    
                     $courseHelper = new CourseHelper();
                     $category = new stdClass;
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
