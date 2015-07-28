@@ -67,7 +67,9 @@
                     @else
                     <div class="video-player" style="background:none; text-align: right">
                         @if( Agent::isMobile() )
-                            <video id='myVideo' controls><source src="{{ $video->formats()->where('resolution', 'Custom Preset for Mobile Devices')
+                            <!--<video id='myVideo' controls><source src="{{ $video->formats()->where('resolution', 'Custom Preset for Mobile Devices')
+                                        ->first()->video_url }}" type="video/mp4"></video>-->
+                            <video id='myVideo'  height="266" controls><source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                         ->first()->video_url }}" type="video/mp4"></video>
                         @else
                         <video id='myVideo'  height="266" controls><source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
