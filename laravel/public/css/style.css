@@ -4740,7 +4740,7 @@ h5{
 }
 
 .table-wrapper .table-pagination ul li a:hover,
-.table-wrapper .table-pagination ul li.active a{
+.table-wrapper .table-pagination ul li a.active{
 	color: #0099ff;
 	font-weight: 600;
 }

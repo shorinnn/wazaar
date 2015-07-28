@@ -1,23 +1,30 @@
-<table class="table table-striped">
-    <tbody>
-    <th>Rank</th>
-    <th>Username</th>
-    <th>Full Name</th>
-    <th>Sales(#)</th>
-    <th>Sales(¥)</th>
-    </tbody>
-    <tbody>
-    @foreach($topAffiliates as $index => $aff)
-        <tr>
-            <td>{{( ($pageNumber-1) * Config::get('wazaar.PAGINATION')) + ($index + 1)}}</td>
-            <td>{{$aff->username}}</td>
-            <td>{{$aff->full_name}}</td>
-            <td>{{$aff->sales_count}}</td>
-            <td>¥{{number_format($aff->total_sales)}}</td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
-<div class="pagination-top-affiliates">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Full name</th>
+                    <th>Sales (#)</th>
+                    <th class="text-right last-column sorting-active relative"> Sales (¥)</th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                @foreach($topAffiliates as $index => $aff)
+                <tr>
+                    <th scope="row">{{( ($pageNumber-1) * Config::get('wazaar.PAGINATION')) + ($index + 1)}}</th>
+                    <td class="link">{{$aff->username}}</td>
+                    <td>{{$aff->full_name}}	</td>
+                    <td>{{$aff->sales_count}}</td>
+                    <td class="text-right last-column">  ¥ {{$aff->sales_count}}</td>
+                </tr>
+                @endforeach
+
+                </tbody>
+            </table>
+        </div>
+<div class="table-pagination pagination-top-affiliates clearfix">
     {{$topAffiliates->appends(Input::only('taStartDate','taEndDate','affiliateId','sortOrder'))->links()}}
 </div>

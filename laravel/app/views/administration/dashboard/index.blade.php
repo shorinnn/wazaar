@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
     <div class="wrapper">
-        <div class="container affiliate-dashboard dashboard">
+        <div class="container affiliate-dashboard dashboard  analytics-page">
 
             <div class="row">
                 <div class="col-md-12">
@@ -109,6 +109,12 @@
                 @include('administration.dashboard.partials.user.topAffiliates')
             </div>
 
+
+            <div class="paid-and-free-courses-wrapper">
+                @include('administration.dashboard.partials.paidAndFreeCourses')
+            </div>
+
+            {{--
             <hr/>
 
             <div class="top-courses-free-wrapper">
@@ -119,7 +125,7 @@
 
             <div class="top-courses-purchased-wrapper">
                 {{$topCoursesPaidView}}
-            </div>
+            </div>--}}
         </div>
     </div>
 
@@ -206,7 +212,7 @@
             });
 
 
-            $('.affiliates-table-and-pagination').on('click', '.pagination-top-affiliates .pagination a',function ($e){
+            $('.affiliates-table-and-pagination').on('click', '.pagination-top-affiliates ul a',function ($e){
                 $e.preventDefault();
 
                 var $loc = $(this).attr('href');
@@ -228,7 +234,7 @@
                 },'json');
             });
 
-            $('.courses-table-and-pagination-yes').on('click', '.pagination-top-courses .pagination a',function ($e){
+            $('.courses-table-and-pagination-yes').on('click', '.pagination-top-courses ul a',function ($e){
                 $e.preventDefault();
 
                 var $loc = $(this).attr('href');
@@ -238,7 +244,7 @@
                 },'json');
             });
 
-            $('.courses-table-and-pagination-no').on('click', '.pagination-top-courses .pagination a',function ($e){
+            $('.courses-table-and-pagination-no').on('click', '.pagination-top-courses ul a',function ($e){
                 $e.preventDefault();
 
                 var $loc = $(this).attr('href');
