@@ -21,8 +21,7 @@ class CourseHelper {
         }
 
         if (!empty($category)){
-            //if (is_string($category)){
-            if ( Config::get('custom.use_id_for_slug') == true ){
+            if (is_string($category)){
                 $courses = $courses->where('course_category_slug', $category);
             }
             else{
