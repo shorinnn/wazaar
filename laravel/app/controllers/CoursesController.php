@@ -284,7 +284,6 @@ class CoursesController extends \BaseController {
                     $category = new stdClass;
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
                     $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel]);
-                    dd($courses);
                     if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
                     return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
                 }
