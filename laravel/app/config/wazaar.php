@@ -11,7 +11,7 @@ return [
     'S3_PROFILES_BUCKET' => 'profile_pictures',
     'TAX' => '.08',
     'API_URL' => 'http://cocorium.com/api/',
-    'PAGINATION' => 2,
+    'PAGINATION' => 10,
     'AWS_REGION_DOMAIN' => '//s3-ap-northeast-1.amazonaws.com',
     'AWS_VIDEO_INPUT_BUCKET' => 'videosinput-tokyo',
     'AWS_VIDEO_OUTPUT_BUCKET' => 'videosoutput-tokyo',
