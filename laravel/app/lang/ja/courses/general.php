@@ -78,6 +78,7 @@ return array(
     'your-progress' => 'Your Progress',
     'comments-posted' => 'Comments Posted',
     'about-course' => 'About Course',
+    'about-this-course' => 'コースの概要',
     'approval-status' => '教材のステータス',
     'sale-end-must-occur-after-start' => 'Sale End must occur after Sale Start',
     'course-must-be-free-or-500' => 'Course price must be 0 or minimum of 500',
@@ -162,6 +163,9 @@ jpeg, png',
     'wazaar-is-checking-your-product' => '商品は審査中です。',
     'enroll' => 'このコースを受講する',
     'enter-instructor-email' => '追加したい講師のメルアドを記入して下さい。',
-    'free_preview' => 'Free preview',
+    'free_preview' => 'プレビュー',
+    'what-you-will-learn' => 'コース終了後に得られるものは？',
+    'show-more-lessons' => 'もっと見る',
+    'show-less-lessons' => '元に戻る',
 );
 

@@ -28,6 +28,7 @@ return array(
     'affiliate_id' => 'Affiliate ID',
     'instructor_agency' => 'Instructor Agency',
     'student' => 'Student|Students',
+    'student_count' => 'Students',
     'published' => 'Published',
     'updated' => 'Updated',
     'select' => 'Select',
@@ -111,5 +112,6 @@ return array(
     'mixed' => 'Mixed',
     'negative' => 'Negative',
     'st-referrals' => 'ST Referrals',
-    'select-sort' => '-Sort Option-'
+    'select-sort' => '-Sort Option-',
+    'read-more' => 'Read More',
 );

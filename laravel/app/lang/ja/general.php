@@ -12,6 +12,7 @@ return array(
     'affiliate_agency' =>'アフィリエイトエージェンシー',
     'student' =>'生徒|生徒',
     'students' => '受講数',
+    'student_count' => '生徒数',
     'published' =>'月PublishedせPlease provide more context',
     'updated' =>'月UpdatedせPlease provide more context. Is this a message or a title?',
     'select' =>'選択',
@@ -21,6 +22,7 @@ return array(
     'module' =>'セクション',
     'video' =>'動画',
     'lesson' =>'レッスン',
+    'lessons' =>'レッスン数',
     'add_file' =>'ファイルを追加',
     'details' =>'詳細',
     'lesson_price' =>'受講費用',
@@ -87,5 +89,10 @@ return array(
     'i-agree' => '同意する',
     'accept' => '確認して次へ',
     'st-referrals' => '販売者登録者数',
+    'time' => 'ビデオファイル',
+    'recommends' => '平均評価',
+    'difficulty' => '難易度',
+    'share-this-lesson' => 'このレッスンを友達に教えたい！',
+    'read-more' => 'もっと見る',
  
 );
