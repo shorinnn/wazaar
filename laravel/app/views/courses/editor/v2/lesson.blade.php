@@ -11,10 +11,27 @@
             <div class="preview-thumb">
 
             </div>
-            <label class="default-button large-button upload-button">
-                <span>Upload new</span>
-                <input type="file" hidden=""/>
-            </label>
+            <div class="dropdown text-center">
+              <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Upload new
+                <i class="wa-chevron-down"></i>
+              </a>
+            
+              <ul class="dropdown-menu" aria-labelledby="upload-new">
+                <label class="upload-button">
+                    <span>Upload new video</span>
+                    <input type="file" hidden=""/>
+                </label>
+                <span class="use-existing use-existing-preview" >
+                    <span class="use-existing">
+                        <a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">
+                            {{trans('video.selectExisting')}}
+                        </a> 
+                    </span>
+                </span>
+              </ul>
+            </div>
+
             @if( $lesson->blocks()->where('type','video')->count() > 0  ) 
                 <a href="#" class="remove-video">Remove video</a>
             @endif
@@ -28,10 +45,11 @@
              <div class='minimized-lesson-elem'>
                  <!--<i class='fa fa-quote-left'></i> 1 Note-->
                  
-                 <i class='fa fa-paperclip'></i> 
+                 <span class="attachments">
+                 	<i class='fa fa-paperclip'></i> 
                     <span class='attachment-counter-{{$lesson->id}}'>{{ $lesson->blocks()->where('type','file')->count() }}</span> 
                     Attachments
-                 
+                </span>
                  <a class="toggle-minimize"  data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'>
                      <i class='fa fa-chevron-down' data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'></i> Show</a>
              </div>

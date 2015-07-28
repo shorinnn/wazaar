@@ -92,12 +92,41 @@
     .minimized-lesson-elem{
         display: none;
     }
+	.module-minimized .minimized-elem .minimized-description{
+		font-size: 13px;
+		color: #798794;
+	}
+	
     .lesson-minimized .minimized-lesson-elem{
         display: block;
     }
     .lesson-minimized:hover .minimized-lesson-elem{
         background-color:#e8eced;
     }
+
+    .lesson-minimized .minimized-lesson-elem .attachments{
+        color:#a7b7c4;
+		font-size: 13px;
+    }
+
+    .lesson-minimized .minimized-lesson-elem .toggle-minimize{
+		font-size: 12px;
+		font-weight: bold;
+		color: #069bff;
+		margin-left: 20px;
+		cursor: pointer;
+	}
+	.minimized-lesson-elem[class*=copy-name]{
+		font-size: 14px;
+		color: #41474c;
+		font-weight: 600;
+	}
+	
+	.minimized-lesson-elem[class*=copy-desc]{
+		font-size: 13px;
+		color: #798794;
+	}
+	
     .lesson-zone:hover .toggle-minimize{
         display:block !important;
         cursor: pointer;
@@ -107,7 +136,7 @@
     }
     .lesson-minimized .lesson-data{
         height: 250px;
-        overflow: hidden;
+        overflow: visible;
         border-bottom: 2px solid #E8ECED;
         background-color: transparent !Important;
     }

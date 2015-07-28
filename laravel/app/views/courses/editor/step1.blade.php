@@ -23,17 +23,35 @@
 
     <!--<p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
     <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>-->
-                                {{ Form::open(['action' => ['CoursesController@update', $course->slug], 'files' => true, 'method' => 'PUT']) }}
-                                    <label for="upload-preview-image" class="default-button large-button">
-                                        <span>{{ trans('courses/general.upload_image') }}</span>
-                                        <input type="file" hidden="" class='upload-preview-image' 
-                                               data-upload-url=""
-                                               id="upload-preview-image" name="preview_image" data-dropzone='.dropzone-preview'
-                                               data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' 
-                                               data-targez='#use-existing-preview > div > .radio-buttons'
-                                               data-target='#selected-previews'/>
-                                    </label>
-                                </form>
+                                <div class="dropdown listing-image-upload">
+                                  <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    Upload new
+                                    <i class="wa-chevron-down"></i>
+                                  </a>
+                                
+                                  <ul class="dropdown-menu" aria-labelledby="upload-new">
+                                    {{ Form::open(['action' => ['CoursesController@update', $course->slug], 'files' => true, 'method' => 'PUT']) }}
+                                        <label for="upload-preview-image" class="upload-button">
+                                            <span>{{ trans('courses/general.upload_image') }}</span>
+                                            <input type="file" hidden="" class='upload-preview-image' 
+                                                   data-upload-url=""
+                                                   id="upload-preview-image" name="preview_image" data-dropzone='.dropzone-preview'
+                                                   data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' 
+                                                   data-targez='#use-existing-preview > div > .radio-buttons'
+                                                   data-target='#selected-previews'/>
+                                        </label>
+                                    </form>
+                                    @if($images->count() > 0)
+                                    <span class="use-existing use-existing-preview" >
+                                        <span class="use-existing">
+                                            <a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">
+                                                {{trans('video.selectExisting')}}
+                                            </a> 
+                                        </span>
+                                    </span>
+                                    @endif
+                                  </ul>
+                                </div>
                                 <p class="label-progress-bar label-progress-bar-preview-img"></p>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" 
@@ -42,16 +60,6 @@
                                     </div>
                                 </div>
                                 <em>Image used for listings thumbnail</em>
-                                @if($images->count() > 0)
-                                <span class="use-existing use-existing-preview" >
-                                    <span class="use-existing">
-                                        <em class="or-text"> {{ trans('site/login.or') }}</em>
-                                        <a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">
-                                            {{trans('video.selectExisting')}}
-                                        </a> 
-                                    </span>
-                                </span>
-                                @endif
                             </div>
                             
                         </div>

@@ -27,7 +27,14 @@
                            data-html='true'></i>
                     </p>-->
             <div class="course-video-upload-button-progress relative">
-                <label for="upload-course-video" class="default-button">
+            <div class="dropdown listing-video-upload">
+              <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Upload new
+                <i class="wa-chevron-down"></i>
+              </a>
+            
+              <ul class="dropdown-menu" aria-labelledby="upload-new">
+                <label for="upload-course-video" class="upload-button">
                     
                     <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
                     <span>{{ trans('courses/curriculum.upload') }}</span>
@@ -41,6 +48,16 @@
                         <input type="file" multiple="multiple" name="file" class='upload-banner-image' id="upload-course-video" data-unique-key="{{$uniqueKey}}">
                     </form>
                 </label>
+            	<span class="use-existing use-existing-preview" id="use-existing-video">
+                    <span class="use-existing">
+                        <a href="#" class="course-video-select-existing-anchor">
+                            {{trans('video.selectExisting')}}
+                        </a>
+                    </span>
+                </span>
+              </ul>
+            </div>
+
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped active progress-bar-banner" id="progress-course-video" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                          aria-valuemax="100" style="width: 0%;">
@@ -56,14 +73,6 @@
 
 
 
-            <span class="use-existing use-existing-preview" id="use-existing-video">
-                <span class="use-existing">
-                    <em class="or-text"> {{ trans('site/login.or') }}</em>
-                    <a href="#" class="course-video-select-existing-anchor">
-                        {{trans('video.selectExisting')}}
-                    </a>
-                </span>
-            </span>
         </div>
     </div>
 </div>

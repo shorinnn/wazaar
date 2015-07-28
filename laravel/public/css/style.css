@@ -151,7 +151,6 @@ input[type="search"] {
 }
 
 button[disabled]{
-    background: #b2e0ff !important;
     cursor: not-allowed !important;
 }
 
@@ -6306,8 +6305,9 @@ a.load-remote > *{
 
 .listing-image label{
 	position: absolute;
-  	top: 70px;
+  	top: 75px;
   	left: 52px;
+	margin: 0;
 }
 
 .step1 .side-info{
@@ -6381,9 +6381,46 @@ a.load-remote > *{
 .listing-video label {
   position: absolute;
   top: -136px;
-  top: -98px;
+  top: -107px;
+  margin: 0;
   left: 63px;
-  text-align: center;
+}
+.step1 .listing-image-upload{
+    position: absolute;
+    top: 75px;
+    left: 57px;
+}
+
+.step1 .listing-video-upload{
+    position: absolute;
+    top: -106px;
+    left: 40px;
+}
+
+.step1 #upload-new i {
+    font-size: 11px;
+    position: relative;
+    top: 1px;
+}
+
+.step1 .listing-video label,
+.step1 .use-existing > a,
+.step1 .listing-image label{
+	position: relative;
+	top: 0;
+	left: 0;
+    width: 100%;
+    color: #798794 !important;
+    font-size: 13px !important;
+    display: block;
+    font-weight: normal;
+    padding: 12px 15px !important;
+}
+
+.step1 .listing-video label:hover,
+.step1 .use-existing > a:hover,
+.step1 .listing-image label:hover{
+	background: #f7f9fa;
 }
 
 .file-details .progress,
@@ -6400,7 +6437,7 @@ a.load-remote > *{
 .course-description-video-preview img{
 	width: 221px;
 	/*width: 268px;*/
-	height: auto;
+	height: 124px;
 	max-height: none !important;
 }
 
@@ -6437,8 +6474,8 @@ a.load-remote > *{
 	border: solid 1px #9E9E9E !important;
 	display: inline-block;
 	width: auto;
-	min-width: 223px;
-	height: 114px;
+	width: 223px;
+	height: 125px;
 	margin-bottom: 5px;
 	position: relative;
 }
@@ -6642,7 +6679,7 @@ a.load-remote > *{
 }
 
 .step2 .lesson-container .preview-thumb{
-	width: 158px;
+	width: 142px;
 	height: 80px;
 	position: relative;
 	border-radius: 2px;
@@ -6665,10 +6702,30 @@ a.load-remote > *{
 	max-width: 100%;
 }
 
+.step1 .lesson-container .use-existing > a,
+.step1 .lesson-container .upload-button,
+.step2 .lesson-container .use-existing > a,
 .step2 .lesson-container .upload-button{
-	margin-bottom: 14px;
 	width: 100%;
-	text-align: center;
+	color: #798794;
+	font-size: 13px;
+	display: block;
+	font-weight: normal;
+	padding: 12px 15px;
+}
+
+.step1 .lesson-container .use-existing > a:hover,
+.step1 .lesson-container .upload-button:hover,
+.step2 .lesson-container .use-existing > a:hover,
+.step2 .lesson-container .upload-button:hover{
+	background: #f7f9fa;
+}
+
+.step1 .lesson-container #upload-new i,
+.step2 .lesson-container #upload-new i{
+	font-size: 11px;
+	position: relative;
+	top: 1px;
 }
 
 .step2 .lesson-container .upload-button input{
@@ -6816,6 +6873,7 @@ a.load-remote > *{
 
 .step2 .lesson-container .file-upload-row .upload-button{
 	max-width: 118px;
+	display: inline-block !important;
 }
 
 .step2 .lesson-container .file-upload-row p{
