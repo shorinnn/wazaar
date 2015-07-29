@@ -77,6 +77,7 @@ class ClassroomController extends \BaseController {
             $module = $course->modules()->where('slug', $module)->first();
             $lesson = $module->lessons()->where('slug', $lesson)->with('blocks')->first();
             $video = $lesson->blocks()->where('type','video')->first();
+            if( $video != null ) $video = Video::find( $video->content );
 //            if( !$student->purchased( $course ) && !$student->purchased( $lesson ) ){
             $purchase = $student->purchases()->where('product_type','Lesson')->where('product_id', $lesson->id)->first();
             if( !$student->purchased($course) && $purchase==null && $lesson->price > 0 ){
@@ -114,11 +115,23 @@ class ClassroomController extends \BaseController {
             if($course->assigned_instructor_id > 0) $instructor = $course->assignedInstructor;
             
             if(Request::ajax()){
-                if( Input::has('ask') ) return View::make('courses.classroom.lesson_ask_ajax')->with( compact('lesson','student') );
-                else return View::make('courses.classroom.lesson_comments_ajax')->with( compact('lesson','student') );
+                $json['status'] = 'success';
+                $json['html'] =  View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
+                        'instructor', 'student') )->render();
+                return View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
+                        'instructor', 'student') )->render();
+                 return json_encode($json);
+//                if( Input::has('ask') ) return View::make('courses.classroom.lesson_ask_ajax')->with( compact('lesson','student') );
+//                else return View::make('courses.classroom.lesson_comments_ajax')->with( compact('lesson','student') );
             }
-            else return View::make('courses.classroom.lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                    'instructor', 'student') );
+            else{ 
+                if( Input::has('old') )
+                    return View::make('courses.classroom.lesson-old')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
+                        'instructor', 'student') );
+                else
+                    return View::make('courses.classroom.lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
+                        'instructor', 'student') );
+            }
         }
         
         public function resource($id){

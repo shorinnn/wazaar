@@ -1,4 +1,5 @@
 <div>
+    <p class='blade-location'>courses.classroom.discussions.reply</p>
     <div class='row' style='border:1px solid silver; background-color:white; margin:0px; padding: 5px'>
         <div class='col-lg-2'>
             <img  style='width:100%' src='{{ $reply->student->commentPicture('student') }}' />

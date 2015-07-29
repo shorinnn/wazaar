@@ -7,6 +7,7 @@ class DiscussionsController extends \BaseController {
             if(Request::ajax()){
                 $response['status'] = 'success';
                 $response['html'] = View::make('courses.classroom.discussions.replies')->with( compact('discussion') )->render();
+                $response['title'] = $discussion->title;
                 return json_encode($response);
             }
             return View::make('courses.classroom.discussions.replies')->with( compact('discussion') );
