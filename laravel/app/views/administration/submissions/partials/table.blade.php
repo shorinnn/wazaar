@@ -55,6 +55,11 @@
                                 @else
                                  {{ $course->instructor->commentName('instructor') }}
                                 @endif
+                                
+                                <br />
+                                <a href='{{ action('MembersController@show', $course->instructor_id) }}'>
+                                    {{ trans('crud/labels.view-user') }}
+                                </a>
                             </td>
                             <td>
                                 <a href="{{action('CoursesController@show', $course->slug)}}" target="_blank">
@@ -84,8 +89,15 @@
                                             'method' => 'PUT', 'id'=>'reject-form-'.$course->id, 'class' => 'ajax-form',
                                         'data-callback' => 'deleteItem', 'data-delete' => '#row-'.$course->id] ) }}
                                     <input type="hidden" name="value" value="rejected" />
-                                    <button type="submit" name='reject-course'  class="btn btn-danger delete-button" 
+                                    <button class='btn btn-link slide-toggler' data-target='#reason-box-{{$course->id}}'>[Reason]</button>
+                                    <button type="submit" name='reject_course'  class="btn btn-danger delete-button" 
                                             data-message="{{ trans('administration.sure-reject') }}?">{{ trans('administration.reject') }}</button>
+                                    <div id='reason-box-{{$course->id}}' style='display:none;'>
+                                        @if($course->instructor != null)
+                                            <h3>{{ $course->instructor->profile->email }}</h3>
+                                        @endif
+                                        <textarea id='reason-{{$course->id}}' name='reject_reason' style='background:white; height:100px'></textarea>
+                                    </div>
                                 {{ Form::close() }}
                             </td>
                         </tr>

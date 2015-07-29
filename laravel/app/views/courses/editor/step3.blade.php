@@ -14,6 +14,9 @@
                     {{ ucfirst( trans( 'courses/statuses.'.$course->publish_status ) ) }}
                 @endif
             </h4>
+        @if($course->publish_status=='rejected')
+            <p class='alert alert-danger'>{{ $course->reject_reason }}</p>
+        @endif
         @if($course->publish_status == 'unsubmitted')
             <p class="regular-paragraph">
                 {{ trans('courses/create.wazaar_must_review') }}
@@ -382,13 +385,17 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <button type='button' class="blue-button extra-large-button step-3-save-btn" onclick="saveStep3Form()">{{ trans('courses/general.saving-button') }}</button>
             <br />
-            
             @if($course->publish_status=='pending')
                 <button type='submit' disabled="disabled" class="disabled-button submit-for-approval blue-button extra-large-button">
                     {{ trans('courses/general.wazaar-is-checking-your-product')}}
                 </button>
             @else
-                <button type='submit' class="submit-for-approval blue-button extra-large-button">
+                @if( $course->videoHours(true, 'i') < 10)
+                    <button type='submit' disabled class="disabled submit-for-approval blue-button extra-large-button tooltipable"
+                            title='{{ trans('courses/general.upload-10-minutes-to-submit') }}'>
+                @else
+                    <button type='submit' class="submit-for-approval blue-button extra-large-button">
+                @endif
                     {{ trans('courses/general.submit-for-approval')}}
                 </button>
             @endif

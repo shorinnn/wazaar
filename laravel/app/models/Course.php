@@ -69,7 +69,7 @@ class Course extends Ardent{
         return $count;
     }
     
-    public function videoHours($includeUnpublished=true){
+    public function videoHours($includeUnpublished=true, $return = 'h'){
         // get all videos
         $vids = 0;
         $lessons = $modules = [0];
@@ -86,8 +86,12 @@ class Course extends Ardent{
                 }
             }
         }
+        if( $return == 's' ) return $vids;
         if($vids == 0) return $vids;
-        else return round( $vids / 60 / 60, 2);
+        else{
+            if( $return == 'i' ) return round( $vids / 60, 2 );
+            return round( $vids / 60 / 60, 2 );
+        }
     }
     
     public function lessonComments(){

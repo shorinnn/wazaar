@@ -167,5 +167,6 @@ jpeg, png',
     'what-you-will-learn' => 'コース終了後に得られるものは？',
     'show-more-lessons' => 'もっと見る',
     'show-less-lessons' => '元に戻る',
+    'upload-10-minutes-to-submit' => 'Upload 10 minutes of video content to submit'
 );
 

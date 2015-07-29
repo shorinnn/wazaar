@@ -418,6 +418,16 @@ function courseChangedTabs(e){
        if($(this).val() != '') str += "<li>"+$(this).val()+"</li>"; 
     });
     $('.by-the-end-ul').html(str);
+    // update submit button based on video minutes
+    id = $('.course-id').val();
+    $.get( COCORIUM_APP_PATH + 'courses/' + id + '/minutes', function( result ){
+        console.log(result + 'minutes!');
+        if( result >= 10 ){
+            $('.submit-for-approval').removeClass('disabled');
+            $('.submit-for-approval').removeAttr('disabled');
+            $('.steps-remaining p').html( '<span>' + _('Course Ready For Submission') +'</span>' );
+        }
+    });
 }
 
 function saveAndNextTab(e){

@@ -224,6 +224,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     
     Route::resource('courses', 'CoursesController');
     Route::get('courses/{slug}/custompercentage/', 'CoursesController@customPercentage');
+    Route::get('courses/{id}/minutes', 'CoursesController@minutes');
     // Modules routes
     Route::resource('courses.modules', 'ModulesController');
 

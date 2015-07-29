@@ -50,13 +50,13 @@
                 </h1>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<a href="#" class=" submit-for-approval blue-button large-button disabled-button right">
+<!--            	<a href="#" class=" submit-for-approval blue-button large-button disabled-button right">
                     @if($course->publish_status != 'pending')
                         {{ trans('courses/general.submit-for-approval') }}
                     @else
                         {{ trans('courses/general.wazaar-is-checking-your-product') }}
                     @endif
-                </a>
+                </a>-->
                 <a href='#' data-href="{{ action( 'CoursesController@show', $course->slug ) }}" class="default-button disabled-button large-button right preview-course-btn">
                 	{{ trans('courses/general.preview_course') }}
             	</a>
@@ -79,19 +79,25 @@
             
                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="right steps-remaining">
-                        @if( courseStepsRemaining($course)==0 || $course->publish_status!='unsubmitted')
+                        @if( $course->videoHours(true, 'i') >= 10 )
                             <p class="regular-paragraph no-margin">
                                <span>{{ trans('courses/general.course-ready-for-submission') }} </span>
                             </p>
                         @else
-                            <p class="regular-paragraph no-margin">
+                        <p class="regular-paragraph no-margin">
+                            <span>
+                                {{ trans('courses/general.upload-10-minutes-to-submit') }}
+                            </span>
+                        </p>
+<!--                            || courseStepsRemaining($course)==0 || $course->publish_status!='unsubmitted' 
+<p class="regular-paragraph no-margin">
                             {{ trans('courses/general.complete-x-steps-to-submit', ['steps' => courseStepsRemaining($course) ] )}}
-                            <br />
+                            <br />-->
 <!--                            {{ trans('courses/general.complete') }} 
                             <span>
                                 <span>{{ courseStepsRemaining($course) }}</span>
                                 {{ trans('courses/general.steps') }}</span> {{ trans('courses/general.to_submit_course') }}-->
-                            </p>
+                            <!--</p>-->
                         @endif
                     </div>
                 </div>

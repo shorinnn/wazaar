@@ -714,4 +714,9 @@ class CoursesController extends \BaseController {
 
             return Response::json(['error' => 'Insufficient Parameters']);
         }
+        
+        public function minutes($courseId = 0){
+            $course = Course::find( $courseId );
+            return $course->videoHours('i');
+        }
 }

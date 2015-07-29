@@ -108,9 +108,14 @@
                             <span class="default-button {{ $course->privacy_status }}">
                                 {{ trans('courses/general.my-courses-privacy.'.$course->privacy_status) }}
                             </span>
-                            <span class="default-button 
+                            <span
+                                @if($course->publish_status=='rejected')
+                                title="{{ $course->reject_reason }}"
+                                @endif
+                                class="default-button 
                                   @if($course->publish_status=='pending') submitted @endif
                                   @if($course->publish_status=='approved') published @endif
+                                  @if($course->publish_status=='rejected') tooltipable @endif
                                   ">
                                     {{ trans('courses/general.my-courses-publish.'.$course->publish_status) }}</span>
                             
