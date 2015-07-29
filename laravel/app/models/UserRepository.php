@@ -122,10 +122,10 @@ class UserRepository
             $user->updateUniques();
             // associate tags with the user
             foreach($deliveredTags as $tag){
-                $this->delivered->addTag('user-type-'.$tag, 'String', 1, $userData->id);
+                $this->delivered->addTag('user-type-'.$tag, 'integer', 1, $userData->id);
             }
             // add confirmed tag
-            $res = $this->delivered->addTag('email-confirmed', 'Integer', $user->confirmed, $userData->id);
+            $res = $this->delivered->addTag('email-confirmed', 'integer', $user->confirmed, $userData->id);
         }
     }
     
@@ -516,9 +516,24 @@ class UserRepository
 
         if ($user) {
             $user->confirmed = true;
-            // todo: confirm on delivered too!
             $user->save();
             Auth::login($user);
+            // todo: confirm on delivered too!
+            $delivered = new DeliveredHelper();
+            $deliveredUser = $delivered->findUser( $user->email );
+            $deliveredUser = $deliveredUser['data'];
+            if( count($deliveredUser) > 0){
+                $dUser = $deliveredUser[0];
+                foreach( $dUser['tags'] as $tag ){
+                    if( $tag['tagName'] == 'email-confirmed' ){
+                        $res = $delivered->updateTag( $tag['id'], $dUser['id'], 'email-confirmed', 'integer', 1);
+                        $added = true;
+                    }
+                }
+                if( !$added ){
+                    $res = $delivered->addTag('email-confirmed', 'integer', 1, $dUser['id']);
+                }
+            }
             return $user;
         } else {
             return false;

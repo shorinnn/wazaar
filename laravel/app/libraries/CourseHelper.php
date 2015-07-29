@@ -108,8 +108,10 @@ class CourseHelper {
     {
         $options = [
           ''    => trans('general.select-sort'),
-          'best-selling' => 'Best Selling',
-          'date'         => 'Date'
+          'best-selling' => 'Best Selling - High to Low',
+          'best-selling-low' => 'Best Selling - Low to High',
+          'date'         => 'Date - Newest First',
+          'date-oldest'         => 'Date - Oldest First',
         ];
 
         return $options;

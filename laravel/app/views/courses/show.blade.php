@@ -125,7 +125,9 @@
                                                 {{ $instructor->profile->bio }}
                                             @endif
                                         </p>                                                                  
-                                        <span class="show-full-description blue-button large-button" data-toggle="modal" data-target="#instructor-bio">Read more</span>
+                                        <span class="show-full-description blue-button large-button" data-toggle="modal" data-target="#instructor-bio">
+                                            {{ trans( 'general.read-more' ) }}
+                                        </span>
                                     @endif         
                                 @endif
                             </div>
@@ -266,7 +268,7 @@
                             
                         </div>
                     	<div class="number-of-students">
-                            <span>{{Lang::choice('general.student', $course->student_count)}}</span>
+                            <span>{{Lang::choice('general.student_count', $course->student_count)}}</span>
                             <em>{{ $course->student_count }} </em>
                             
                         </div>
@@ -443,8 +445,8 @@
                                 @endforeach
                             </ul>
                             <span class="hide-lesson-topics expandable-button show-more"
-                            	data-less-text='Show less lessons' 
-                                data-more-text='Show more lessons'>Show more lessons</span>
+                            	data-less-text='{{ trans('courses/general.show-less-lessons') }}' 
+                                data-more-text='{{ trans('courses/general.show-more-lessons') }}'>{{ trans('courses/general.show-more-lessons') }}</span>
                         </div>
                         @endforeach
                         

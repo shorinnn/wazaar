@@ -181,4 +181,6 @@ return array(
     'wazaar-is-checking-your-product' => 'Wazaar is checking your product',
     'enter-instructor-email' => 'Enter instructor email',
     'free_preview' => 'Free preview',
+    'show-more-lessons' => 'Show More Lessons',
+    'show-less-lessons' => 'Show Less Lessons',
 );
