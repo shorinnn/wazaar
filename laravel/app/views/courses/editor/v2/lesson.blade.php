@@ -38,7 +38,7 @@
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <a class="edit-icon toggle-minimize"  data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'>
-                <i class="fa fa-pencil pull-right" data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'></i>
+                <i class="fa fa-pencil pull-right lesson-toggle-icon-{{$lesson->id}}" data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'></i>
             </a>
              <p class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-name'>{{$lesson->name}}</p>
              <p class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-desc'>{{$lesson->description}}</p>
@@ -50,8 +50,8 @@
                     <span class='attachment-counter-{{$lesson->id}}'>{{ $lesson->blocks()->where('type','file')->count() }}</span> 
                     Attachments
                 </span>
-                 <a class="toggle-minimize"  data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'>
-                     <i class='fa fa-chevron-down' data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'></i> Show</a>
+                 <a class="toggle-minimize"  data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}'>
+                     <i class='fa fa-chevron-down' data-target='.shr-lesson-editor-{{$lesson->id}}' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}' data-class='lesson-minimized'></i> Show</a>
              </div>
              
             <div class='maximized-elem'>

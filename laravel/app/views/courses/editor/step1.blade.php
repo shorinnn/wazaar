@@ -379,6 +379,7 @@
                 alert(uploadErrors.join("\n"));
                 return false;
             } else {
+                $('.course-video-upload-button-progress').find('.progress').show();
                 data.submit();
             }
             window.reloadConfirm = true;
@@ -397,7 +398,7 @@
 
             setInterval(function(){
                 count++;
-                document.getElementById('video-transcoding-indicator-course-description').innerHTML = _("Video Currently Processing") + new Array(count % 4).join('.');
+                //document.getElementById('video-transcoding-indicator-course-description').innerHTML = _("Video Currently Processing") + new Array(count % 4).join('.');
             }, 500);
 
             if ($data.jqXHR.status == 201){
