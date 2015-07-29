@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 listing-image">
                             <h6>Listing image (thumbnail)</h6>
-                            <div class="file-details">
+                            <div class="file-details relative">
                                 <div class="course-listing-image-preview">
                                     @if($course->course_preview_image_id > 0)
                                     <img src="{{ cloudfrontUrl( $course->previewImage->url ) }}" />
@@ -23,40 +23,42 @@
 
     <!--<p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }}</p>
     <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>-->
-                                <div class="dropdown listing-image-upload">
-                                  <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    Upload new
-                                    <i class="wa-chevron-down"></i>
-                                  </a>
-                                
-                                  <ul class="dropdown-menu" aria-labelledby="upload-new">
-                                    {{ Form::open(['action' => ['CoursesController@update', $course->slug], 'files' => true, 'method' => 'PUT']) }}
-                                        <label for="upload-preview-image" class="upload-button">
-                                            <span>{{ trans('courses/general.upload_image') }}</span>
-                                            <input type="file" hidden="" class='upload-preview-image' 
-                                                   data-upload-url=""
-                                                   id="upload-preview-image" name="preview_image" data-dropzone='.dropzone-preview'
-                                                   data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' 
-                                                   data-targez='#use-existing-preview > div > .radio-buttons'
-                                                   data-target='#selected-previews'/>
-                                        </label>
-                                    </form>
-                                    @if($images->count() > 0)
-                                    <span class="use-existing use-existing-preview" >
-                                        <span class="use-existing">
-                                            <a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">
-                                                {{trans('video.selectExisting')}}
-                                            </a> 
+    							<div class="file-processing-handler">
+                                    <p class="label-progress-bar label-progress-bar-preview-img"></p>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" 
+                                             data-label=".label-progress-bar-preview-img" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown listing-image-upload">
+                                      <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        Upload new
+                                        <i class="wa-chevron-down"></i>
+                                      </a>
+                                    
+                                      <ul class="dropdown-menu" aria-labelledby="upload-new">
+                                        {{ Form::open(['action' => ['CoursesController@update', $course->slug], 'files' => true, 'method' => 'PUT']) }}
+                                            <label for="upload-preview-image" class="upload-button">
+                                                <span>{{ trans('courses/general.upload_image') }}</span>
+                                                <input type="file" hidden="" class='upload-preview-image' 
+                                                       data-upload-url=""
+                                                       id="upload-preview-image" name="preview_image" data-dropzone='.dropzone-preview'
+                                                       data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' 
+                                                       data-targez='#use-existing-preview > div > .radio-buttons'
+                                                       data-target='#selected-previews'/>
+                                            </label>
+                                        </form>
+                                        @if($images->count() > 0)
+                                        <span class="use-existing use-existing-preview" >
+                                            <span class="use-existing">
+                                                <a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">
+                                                    {{trans('video.selectExisting')}}
+                                                </a> 
+                                            </span>
                                         </span>
-                                    </span>
-                                    @endif
-                                  </ul>
-                                </div>
-                                <p class="label-progress-bar label-progress-bar-preview-img"></p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" 
-                                         data-label=".label-progress-bar-preview-img" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                                        <span></span>
+                                        @endif
+                                      </ul>
                                     </div>
                                 </div>
                                 <em>Image used for listings thumbnail</em>
@@ -65,14 +67,14 @@
                         </div>
                         <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 listing-video">
                             <h6>Introduction video</h6>
-                            <div class="file-details">
+                            <div class="file-details relative">
                                 <div class="course-description-video-preview">
                                     @if ($course->descriptionVideo)
                                     <img src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
                                     @endif
                                 </div>
-                                <em>Video on public course page</em>
                                 @include('courses.video.index')
+                                <em>Video on public course page</em>
                             </div>
                         </div>
                     </div>

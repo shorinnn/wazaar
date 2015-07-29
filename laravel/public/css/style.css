@@ -6386,21 +6386,30 @@ a.load-remote > *{
   left: 63px;
 }
 .step1 .listing-image-upload{
-    position: absolute;
-    top: 75px;
-    left: 57px;
+    position: relative;
+    top: 0;
+    left: 0;
+	margin: 10px 0;
 }
 
 .step1 .listing-video-upload{
-    position: absolute;
-    top: -106px;
-    left: 40px;
+    position: relative;
+    top: 0;
+    left: 0;
+	margin: 10px 0;
 }
 
 .step1 #upload-new i {
     font-size: 11px;
     position: relative;
     top: 1px;
+}
+
+.file-processing-handler {
+    margin-top: -60px;
+    position: relative;
+    text-align: center;
+    top: -37px;
 }
 
 .step1 .listing-video label,
@@ -6427,6 +6436,10 @@ a.load-remote > *{
 /*.file-details .use-existing,*/
 .file-details .course-video-thumb{
 	display: none;
+    margin: 0 auto !important;
+    position: relative;
+    top: 0;
+    width: 90% !important;
 }
 
 .course-video-thumb .video-title{
