@@ -810,6 +810,9 @@ function calculateFileSizes(){
 $('body').delegate('.toggle-minimize', 'click', toggleMinimize);
 function toggleMinimize(e){
     if( $(e.target).hasClass('fa') ) $(e.target).toggleClass('fa-compress');
+    if( typeof( $(e.target).attr('data-toggle-icon')) !='undefined' ){
+        $( $(e.target).attr('data-toggle-icon') ).toggleClass('fa-compress');
+    }
     
     cls = $(e.target).attr('data-class');
     target = $(e.target).attr('data-target');
