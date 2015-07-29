@@ -283,8 +283,8 @@ class CoursesController extends \BaseController {
                     $courseHelper = new CourseHelper();
                     $category = new stdClass;
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
-                    $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel]);
-                    if( Input::get('sort') == 'best-selling-low' ) $courses = $courses->reverse();
+                    $order = ( Input::get('sort') == 'best-selling-low' ) ? 'ASC' : 'DESC';
+                    $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel], $order);
                     if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
                     return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
                 }
@@ -312,6 +312,9 @@ class CoursesController extends \BaseController {
 
                 if ($sort == 'date'){
                     $courses = $courses->orderBy('created_at','desc');
+                }
+                else if ($sort == 'date-oldest'){
+                    $courses = $courses->orderBy('created_at','asc');
                 }
                 else{
                     $courses = $courses->orderBy('id','desc');
@@ -349,6 +352,9 @@ class CoursesController extends \BaseController {
 
             if ($sort == 'date'){
                 $courses = $courses->orderBy('created_at','desc');
+            }
+            else if ($sort == 'date-oldest'){
+                $courses = $courses->orderBy('created_at','asc');
             }
             else{
                 $courses = $courses->orderBy('id','desc');

@@ -50,6 +50,10 @@
     @section('extra_js')
         <script type="text/javascript">
             $(function(){
+                $('.level-buttons-container a').click(function(){
+                    $('.level-buttons-container a').removeClass('active');
+                });
+                
                 $('select[name=sort]').on('change', function(){
                     var sort = $("select[name=sort] option:selected").val();
                     var loc = location.href;
@@ -86,5 +90,6 @@
                 });
             }
             ajaxifyPagination(event);
+            
         </script>
     @stop

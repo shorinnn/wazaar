@@ -8,7 +8,7 @@ class CourseHelper {
      * @param array $otherFilters
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Pagination\Paginator|static[]
      */
-    public function bestSellers($category = null, $timeFrame = 'AT', $perPage = null, $otherFilters = [])
+    public function bestSellers($category = null, $timeFrame = 'AT', $perPage = null, $otherFilters = [], $sort = 'DESC')
     {
         $courses = null;
 
@@ -37,6 +37,8 @@ class CourseHelper {
             }
         }
 
+        $courses->orderBy('total_sales', $sort);
+        
         if (!empty($perPage)){
             return $courses->paginate($perPage);
         }
@@ -48,7 +50,7 @@ class CourseHelper {
         return CourseConsolidatedPurchases::where('id' , '<>',0)
                     ->where('course_publish_status', 'approved')
                     ->where('course_privacy_status','public')
-                    ->selectRaw('sum(purchase_price) as purchase_price, course_id')
+                    ->selectRaw('COUNT(id) AS total_sales, sum(purchase_price) as purchase_price, course_id')
                     ->groupBy('course_id');
     }
 
