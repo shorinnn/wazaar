@@ -278,12 +278,13 @@ class CoursesController extends \BaseController {
             $difficultyLevel = Input::get('difficulty') ?: null;
             $sort = null;
             if (Input::has('sort')){
-                if (Input::get('sort') == 'best-selling'){
+                if ( Input::get('sort') == 'best-selling' || Input::get("sort") == 'best-selling-low' ){
                     
                     $courseHelper = new CourseHelper();
                     $category = new stdClass;
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
                     $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel]);
+                    if( Input::get('sort') == 'best-selling-low' ) $courses = $courses->reverse();
                     if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
                     return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
                 }
