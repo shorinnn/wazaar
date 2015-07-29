@@ -3,8 +3,8 @@
     <div class="wrapper">
         <div class="container">
             <h3>Tracking Codes</h3>
-            <div class="row margin-bottom-20">
-                <table class="table table-bordered table-striped" id="table-tracking-codes">
+            <div class="row margin-bottom-20 analytics-page">
+                <table class="table" id="table-tracking-codes">
                     <thead>
                         <th>Tracking Code</th>
                         <th>Course</th>
