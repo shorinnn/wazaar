@@ -94,5 +94,6 @@ return array(
     'difficulty' => '難易度',
     'share-this-lesson' => 'このレッスンを友達に教えたい！',
     'read-more' => 'もっと見る',
+    'privacy-policy' => 'Privacy Policy',
  
 );

@@ -114,4 +114,5 @@ return array(
     'st-referrals' => 'ST Referrals',
     'select-sort' => '-Sort Option-',
     'read-more' => 'Read More',
+    'privacy-policy' => 'Privacy Policy',
 );

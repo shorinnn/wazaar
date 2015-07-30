@@ -190,5 +190,9 @@ class SiteController extends \BaseController {
 //        return 'ok';
     }
     
+    public function privacyPolicy(){
+        return View::make( 'site.privacy-policy' );
+    }
+    
 
 }

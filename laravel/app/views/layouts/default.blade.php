@@ -100,18 +100,18 @@
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 	<div class="row">
                     	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        	<!--<h5>ABOUT</h5>
+                        	<!--<h5>ABOUT</h5>-->
                             <ul>
                             	<li>
-                                	<a href="#">Company</a>
+                                	<a href="{{ action('SiteController@privacyPolicy') }}"> {{ trans('general.privacy-policy') }}</a>
                                 </li>
-                            	<li>
+<!--                            	<li>
                                 	<a href="#">Terms of Use</a>
                                 </li>
                             	<li>
                                 	<a href="#">Privacy Policy</a>
-                                </li>
-                            </ul>   -->                     
+                                </li>-->
+                            </ul>                        
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center-mobile padding-bottom-20">
                         	<!--<h5>GET IN TOUCH</h5>-->

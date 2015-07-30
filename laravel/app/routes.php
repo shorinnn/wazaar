@@ -31,6 +31,7 @@ $wwwRoutes = function(){
     // Site routes
     Route::get('/', 'SiteController@index');
     Route::get('discover-courses/{group}', 'SiteController@discoverCourses');
+    Route::get('privacy-policy', 'SiteController@privacyPolicy');
 	
     
     Route::get('/dash', 'SiteController@dashboard');
