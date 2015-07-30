@@ -113,6 +113,7 @@ class ClassroomController extends \BaseController {
             
             $instructor = $course->instructor;
             if($course->assigned_instructor_id > 0) $instructor = $course->assignedInstructor;
+            $student->load('viewedLessons');
             
             if(Request::ajax()){
                 $json['status'] = 'success';

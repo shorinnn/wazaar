@@ -35,6 +35,11 @@ class Module extends Ardent{
              $lesson->delete();
          }
      }
+     
+     public function completedLessons(){
+         $lessons = $this->lessons()->lists('id');
+         return ViewedLesson::whereIn('lesson_id', $lessons)->where('state','completed')->count();
+     }
     
    
 

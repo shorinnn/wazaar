@@ -382,6 +382,14 @@ class Student extends User{
         return false;
     }
     
+    private $_completedLessons = [];
+    public function isLessonCompleted(Lesson $lesson){
+        if( in_array ( $lesson->id, $this->viewedLessons()->where('state','completed')->lists('lesson_id' ) ) ){
+            return true;
+        }
+        return false;
+    }
+    
     /**
      * Marks a lesson as viewed
      * @param Lesson $lesson
@@ -400,7 +408,7 @@ class Student extends User{
     }
     
     public function courseProgress($course){
-        $complete = $this->viewedLessons()->where('course_id', $course->id)->count();
+        $complete = $this->viewedLessons()->where('state','completed')->where('course_id', $course->id)->count();
         $total = Lesson::where('published','yes')->whereIn('module_id', Module::where('course_id', $course->id)->lists('id') )->count();
         if($total == 0) return 0;
         return ceil( $complete * 100 / $total );

@@ -184,13 +184,14 @@
                 <div class="course-topics-box">
                     <div class="topic-header clearfix">
                         <h3 class="left"><em>{{$index+1}}. </em> {{$module->name}}</h3>
-                        <span class="right">1/5</span>
+                        <span class="right">{{$module->completedLessons()}} / {{ $module->lessons->count() }}</span>
                     </div>
                     <div class="topics">
                         <ul>
                             @foreach($module->lessons as $lesson)
                                 @if( $student->purchased($course) || $student->purchased( $lesson ) )
-                                    <li @if( $student->isLessonViewed($lesson) ) class="viewed" @endif>
+                                    <li class="@if( $student->isLessonViewed($lesson) ) active @endif
+                                        @if( $student->isLessonCompleted($lesson) ) completed @endif">
                                         <a href="#">{{$lesson->name}}<span><em></em><i class="wa-check"></i></span></a>
                                     </li>
                                 @endif
