@@ -25,7 +25,7 @@
     <p class="regular-paragraph">{{ trans('courses/general.available_formats') }}</p>-->
     							<div class="file-processing-handler">
                                     <p class="label-progress-bar label-progress-bar-preview-img"></p>
-                                    <div class="progress">
+                                    <div class="progress hidden">
                                         <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" 
                                              data-label=".label-progress-bar-preview-img" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                                             <span></span>
@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="dropdown listing-image-upload">
                                       <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        Upload new
+                                        Upload Image
                                         <i class="wa-chevron-down"></i>
                                       </a>
                                     
@@ -69,13 +69,17 @@
                             <h6>Introduction video</h6>
                             <div class="file-details relative">
                                 <div class="course-description-video-preview">
-                                    @if ($course->descriptionVideo)
-                                    <img src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
+                                    @if (isset($course->descriptionVideo->formats[0]))
+                                        <img src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
                                     @endif
+
                                 </div>
                                 @include('courses.video.index')
-                                <em>Video on public course page</em>
+
                             </div>
+                            <div class="clearfix"></div>
+                            <em>Video on public course page</em>
+
                         </div>
                     </div>
                 </div>
@@ -379,7 +383,8 @@
                 alert(uploadErrors.join("\n"));
                 return false;
             } else {
-                $('.course-video-upload-button-progress').find('.progress').show();
+                $('#introduction-video-wrapper').find('.upload-progress-wrapper').removeClass('hidden');
+                $('#introduction-video-wrapper').find('.upload-dropdown-wrapper').addClass('hidden');
                 data.submit();
             }
             window.reloadConfirm = true;
@@ -424,6 +429,10 @@
                                         $('.course-video-thumb').removeClass('hidden');
                                         $('.course-video-upload-button-progress').removeClass('hidden');
                                         $('#progress-course-video').css('width','0%');
+
+                                        $('#introduction-video-wrapper').find('.upload-progress-wrapper').addClass('hidden');
+                                        $('#introduction-video-wrapper').find('.upload-dropdown-wrapper').removeClass('hidden');
+
                                         console.log('CHANGED THUMBNAIL!');
                                         console.log($video);
                                     }

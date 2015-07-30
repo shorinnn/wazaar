@@ -118,6 +118,8 @@ class CoursesController extends \BaseController {
                 return View::make('courses.form_DEPRECATED',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
                         ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates', 'filePolicy' ));
             }
+
+
             return View::make($view,compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
                     ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates', 'filePolicy' ));
         }

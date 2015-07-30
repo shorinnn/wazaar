@@ -6435,7 +6435,7 @@ a.load-remote > *{
 .file-details .progress,
 /*.file-details .use-existing,*/
 .file-details .course-video-thumb{
-	display: none;
+	/*display: none;*/
     margin: 0 auto !important;
     position: relative;
     top: 0;
