@@ -1,4 +1,6 @@
-
+<script>
+    var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';
+</script>
 <style>
             .small-overlay{
                 position:fixed;
@@ -53,6 +55,7 @@
                         <div class="video-player video-container classroom-video" style="background:none; text-align: right">
                             <div class="videoContainer">
                                 @if( $video != null)
+                                
                                     <video id="myVideo" preload="auto">
                                         @if( Agent::isMobile() )
                                             <source src="{{ $video->formats()->where('resolution', 'Low Resolution')
@@ -105,6 +108,20 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if($video != null)
+                                <br /><br />
+                                    <select id='vid-quality' onchange='setVideoFormat()'>
+                                        @foreach($video->formats()->get() as $format)
+                                            <?php
+                                                $label = trim( str_replace( 'Custom Preset for', '', $format->resolution ) );
+                                                $checked = '';
+                                                if( Agent::isMobile() && $label == 'Mobile Devices') $checked = ' selected="selected"';
+                                                if( !Agent::isMobile() && $label == 'Desktop Devices') $checked = ' selected="selected"';
+                                            ?>
+                                            <option {{$checked}} value='{{ $format->video_url }}'>{{ $label }}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
                                 <div class="loading"></div>
                             </div>
                             <!--<div id="lesson-video-overlay">
@@ -133,7 +150,10 @@
                             </form>
                         </div>
                         <div class='question-holder'>
-                            @foreach($lesson->discussions()->orderBy('upvotes','desc')->get() as $discussion)
+                            @foreach($lesson->discussions()->where( 'student_id', Auth::user()->id )->get() as $discussion)
+                                {{ View::make('courses.classroom.discussions.question')->with( compact('discussion') ) }}
+                            @endforeach
+                            @foreach($lesson->discussions()->where( 'student_id', '!=', Auth::user()->id )->orderBy('upvotes','desc')->get() as $discussion)
                                 {{ View::make('courses.classroom.discussions.question')->with( compact('discussion') ) }}
                             @endforeach
                         </div>
@@ -180,5 +200,26 @@
                     </div>
                 </div>
             @endforeach
-
+<script>
+    if(typeof($)=='function'){
+        skinVideoControls();
+        $('#myVideo').on('timeupdate', function(e){
+            localStorage.setItem('vid-progress-'+videoHash, 
+            $('#myVideo')[0].currentTime );
+        });
+        if( localStorage.getItem('vid-progress-{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}') != 'undefined' ){
+            $('#myVideo')[0].currentTime =  localStorage.getItem('vid-progress-'+videoHash);
+        };
+    }
+    
+    function setVideoFormat(){
+        ct = $('#myVideo')[0].currentTime;
+        console.log( 'set format!');
+        url = $('#vid-quality').val();
+        $('#myVideo').attr('src', url);
+        $('#myVideo source').attr('src', url);
+        //skinVideoControls();
+        $('#myVideo')[0].currentTime = ct;
+    }
+</script>
            

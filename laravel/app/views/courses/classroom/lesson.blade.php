@@ -10,15 +10,15 @@
 
 @section('extra_js')
 <script>
+    var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';
     $(function(){
-        $('#myVideo').off('timeupdate');
         $('#myVideo').on('timeupdate', function(e){
-            localStorage.setItem('vid-progress-{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}', 
+            localStorage.setItem('vid-progress-'+videoHash, 
             $('#myVideo')[0].currentTime );
         });
-//        if( localStorage.getItem('vid-progress-{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}') != 'undefined' ){
-//            $('#myVideo')[0].currentTime =  localStorage.getItem('vid-progress-{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}');
-//        };
+        if( localStorage.getItem('vid-progress-{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}') != 'undefined' ){
+            $('#myVideo')[0].currentTime =  localStorage.getItem('vid-progress-'+videoHash);
+        };
     });
 
 </script>
