@@ -390,14 +390,20 @@
             window.reloadConfirm = true;
 
         }).on('fileuploadprogress', function ($e, $data) {
+
             var $progress = parseInt($data.loaded / $data.total * 100, 10);
             $('#progress-course-video').css('width',$progress + '%');
             $('#progress-course-video-percent-complete').html($progress + '%');
 
         }).bind('fileuploaddone', function ($e, $data) {
             window.reloadConfirm = false;
-            $('.course-video-upload-button-progress').addClass('hidden');
-            $('.course-video-upload-processing').removeClass('hidden');
+            //$('.course-video-upload-button-progress').addClass('hidden');
+            //$('.course-video-upload-processing').removeClass('hidden');
+
+            $('#introduction-video-wrapper').find('.upload-progress-wrapper').addClass('hidden');
+            $('#introduction-video-wrapper').find('.processing-wrapper').removeClass('hidden');
+
+
             $('.course-video-thumb').addClass('hidden');
             var count = 0;
 
@@ -431,6 +437,7 @@
                                         $('#progress-course-video').css('width','0%');
 
                                         $('#introduction-video-wrapper').find('.upload-progress-wrapper').addClass('hidden');
+                                        $('#introduction-video-wrapper').find('.processing-wrapper').addClass('hidden');
                                         $('#introduction-video-wrapper').find('.upload-dropdown-wrapper').removeClass('hidden');
 
                                         console.log('CHANGED THUMBNAIL!');

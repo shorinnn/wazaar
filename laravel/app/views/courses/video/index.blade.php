@@ -22,6 +22,7 @@
             <div class="course-video-upload-button-progress" id="introduction-video-wrapper">
                 <div class="file-processing-handler">
                     <div class="dropdown listing-video-upload">
+
                         <div class="upload-dropdown-wrapper">
                             <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 Upload Video
@@ -31,7 +32,6 @@
                             <ul class="dropdown-menu" aria-labelledby="upload-new" style="margin-left:30px">
                                 <label for="upload-course-video" class="upload-button">
 
-                                    <!--<div class="upload-file-button">{{ trans('crud/labels.upload_your_file') }}</div>-->
                                     <span>{{ trans('courses/curriculum.upload') }}</span>
                                     <form action="{{UploadHelper::AWSVideosInputURL()}}" enctype="multipart/form-data" method="POST" class="fileupload">
                                         <input type="hidden" name="key" value="{{Str::random(8)}}-${filename}">
@@ -63,9 +63,11 @@
                                 </div>
 
                             </div>
-
-
                         </div> <!-- //upload-progress-wrapper -->
+
+                        <div class="processing-wrapper hidden">
+                            <p class="label-progress-bar label-progress-bar-preview-img">{{trans('video.videoCurrentlyProcessing')}} <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif"></p>
+                        </div>
 
                     </div>
                 </div>
