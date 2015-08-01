@@ -161,7 +161,8 @@ Wazaarのミッションになります。
     
     <img src="img/contents/title09.png" alt="Wazaar 日本法人代表からの挨拶">
     <!-- movie -->
-    <iframe width="700" height="395" src="https://www.youtube.com/embed/noXIKl1WMiI" frameborder="0" scrolling="" class="movie01"></iframe>
+    <!--<iframe width="700" height="395" src="https://www.youtube.com/embed/noXIKl1WMiI" frameborder="0" scrolling="" class="movie01"></iframe>-->
+    <iframe width="700" height="395" src="https://www.youtube.com/embed/jfAgzc8RRYg" frameborder="0" scrolling="" class="movie01"></iframe>
     <!-- /movie -->
     
 </div>

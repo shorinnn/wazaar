@@ -54,7 +54,7 @@ function getErrors(){
 <div class="container">
     <img src="img/contents/title08.png" alt="是非、この予告編ビデオをご覧ください!">
     <!-- movie -->
-    <iframe width="700" height="395" src="https://www.youtube.com/embed/XdzS4CImA1g" frameborder="0" scrolling="" class="movie01"></iframe>
+    <iframe width="700" height="395" src="https://www.youtube.com/embed/tjwroFD40x8" frameborder="0" scrolling="" class="movie01"></iframe>
     <!-- /movie -->
     
     
@@ -309,6 +309,7 @@ Youtubeに投稿して、<span class="b-bg">年間約2億円</span>の広告を�
 <div class="bg06">
 	<div class="textbox">
     	<div class="container">
+<p>ワザールは2015年8月に始まる、これまでになかった全く新しいサービスです。</p>
 <p>
 ワザールは<br />
 2015年7月に始まる、<br />
@@ -536,7 +537,7 @@ Wazaarのミッションになります。
 <div class="container">
 	<img src="img/contents/title09.png" alt="Wazaar 日本法人代表からの挨拶">
     <!-- movie -->
-    <iframe width="700" height="395" src="https://www.youtube.com/embed/noXIKl1WMiI" frameborder="0" scrolling="" class="movie01"></iframe>
+    <iframe width="700" height="395" src="https://www.youtube.com/embed/jfAgzc8RRYg" frameborder="0" scrolling="" class="movie01"></iframe>
     <!-- /movie -->
 </div>
 

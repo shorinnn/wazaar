@@ -26,6 +26,7 @@ $(document).ready(function(){
  * @returns {Boolean} False
  */
 function formAjaxSubmit(e){
+    tinyMCE.triggerSave();
     form = $(e.target);
     form.find('.ajax-errors').remove();
     $.post( form.attr('action'), form.serialize(), function(result){
