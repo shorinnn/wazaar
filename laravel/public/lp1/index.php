@@ -38,7 +38,7 @@ function getErrors(){
         <?php endif;?>>
 <!-- header -->
 <header>
-<div id="header"><img src="img/header/01.png" /></div>
+<div id="header"><img src="img/header/01_1.png" /></div>
 </header>
 <!-- /header -->
 
