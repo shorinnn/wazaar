@@ -6488,10 +6488,11 @@ a.load-remote > *{
 
 .course-listing-image-preview img,
 .course-description-video-preview img{
-	width: 221px;
-	/*width: 268px;*/
-	height: 124px;
+    /*width: 221px;
+    width: 268px;
+	height: 124px;*/
 	max-height: none !important;
+    width:100%;
 }
 
 .content-row{
@@ -6526,11 +6527,13 @@ a.load-remote > *{
 .course-description-video-preview{
 	border: solid 1px #9E9E9E !important;
 	display: inline-block;
-	width: auto;
+	/*width: auto;
 	width: 223px;
-	height: 125px;
+	height: 125px;*/
 	margin-bottom: 5px;
 	position: relative;
+    width: 100%;
+    min-height: 200px;
 }
 /************** Editor step 1 ends ***************/
 
@@ -11347,7 +11350,7 @@ footer{
 
 @media (min-width: 1200px){
 	.container{
-	  width: 1032px;
+	  width: 1532px;
 	}
 }
 
