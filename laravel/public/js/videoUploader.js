@@ -8,21 +8,34 @@ var videoUploader = {
     'failCallBack' : undefined,
     'progressCallBack' : undefined,
     'intervalId' : 0,
+    'formData' : undefined,
+    'url' : undefined,
     'initialize' : function ($options){
         videoUploader.successCallBack = $options.successCallBack;
         videoUploader.failCallBack = $options.failCallBack;
         videoUploader.progressCallBack = $options.progressCallBack;
 
-        if ($options.dropZone == undefined){
-            videoUploader.fileUploadObj = $options.fileInputElem.fileupload({
+        var $finalOptions = {};
 
-            });
+        if ($options.formData !== undefined){
+            $finalOptions.formData = $options.formData;
+        }
+
+        if ($options.url !== undefined){
+            $finalOptions.url = $options.url;
+        }
+
+        if ($options.dropZone == undefined){
+            videoUploader.fileUploadObj = $options.fileInputElem.fileupload($finalOptions);
         }
         else{
-            videoUploader.fileUploadObj = $options.fileInputElem.fileupload({
-                dropZone: $options.dropZoneElem
-            });
+            $finalOptions.dropZone = $options.dropZoneElem;
+            videoUploader.fileUploadObj = $options.fileInputElem.fileupload($finalOptions);
         }
+
+
+
+        console.log(videoUploader);
 
         videoUploader.bindEvents();
     },

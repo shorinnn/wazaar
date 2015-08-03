@@ -12,5 +12,4 @@ return [
     'TAX' => '.08',
     'API_URL' => 'http://cocorium.com/api/',
     'PAGINATION' => 10
-
 ];
