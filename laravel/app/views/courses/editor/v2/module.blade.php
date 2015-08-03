@@ -51,7 +51,7 @@
     </div>
     <div class="lesson-container">
         @foreach($module->lessons()->orderBy('order','asc')->get() as $lesson)
-            {{ View::make('courses.editor.v2.lesson')->with( compact('lesson') )->first() }}
+            {{ View::make('courses.editor.v2.lesson')->with( compact('lesson') )->render() }}
         @endforeach
     </div>
     <div class="text-center">

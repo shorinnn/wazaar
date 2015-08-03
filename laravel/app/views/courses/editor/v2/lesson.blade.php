@@ -1,6 +1,8 @@
 <?php
   //NOTE: Not ideal, should be placed in a controller or helper, but this view is loaded from another view
+
   $block = Block::firstOrCreate(['lesson_id' => $lesson->id, 'type' => Block::TYPE_VIDEO]);
+  $video = LessonHelper::getVideoByBlock($block);
 ?>
 <div class="shr-lesson shr-lesson-{{$lesson->id}} shr-lesson-editor-{{$lesson->id}}
      if($lesson->module->course->modules()->count()>1 && $lesson->module->lessons()->count()>1)
@@ -13,7 +15,12 @@
             <div class="lesson-name"><span><em></em></span>Lesson 
                 <div class="inline-block lesson-module-{{$lesson->module->id}} lesson-order" data-id="{{$lesson->id}}">{{ $lesson->order }}</div></div>
             <div class="preview-thumb lesson-wrapper" id="lesson-wrapper-{{$lesson->id}}">
-                <img src="https://wazaardev.s3.amazonaws.com/course_preview/55b8d630ded23.png">
+
+                @if ($video)
+                    @if (@$video->transcode_status == Video::STATUS_COMPLETE)
+                        <img src="{{$video->formats[0]->thumbnail}}" />
+                    @endif
+                @endif
 
                 <div class="uploading-wrapper margin-top-15 hidden">
                     Uploading
