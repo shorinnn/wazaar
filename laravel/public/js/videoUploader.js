@@ -7,6 +7,7 @@ var videoUploader = {
     'successCallBack' : undefined,
     'failCallBack' : undefined,
     'progressCallBack' : undefined,
+    'fileAddedCallBack' : undefined,
     'intervalId' : 0,
     'formData' : undefined,
     'url' : undefined,
@@ -14,6 +15,10 @@ var videoUploader = {
         videoUploader.successCallBack = $options.successCallBack;
         videoUploader.failCallBack = $options.failCallBack;
         videoUploader.progressCallBack = $options.progressCallBack;
+
+        if ($options.fileAddedCallBack !== undefined){
+            videoUploader.fileAddedCallBack = $options.fileAddedCallBack;
+        }
 
         var $finalOptions = {};
 

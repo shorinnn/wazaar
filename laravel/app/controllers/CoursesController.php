@@ -106,7 +106,8 @@ class CoursesController extends \BaseController {
             
 //            $affiliates = ProductAffiliate::arrayWithProfile();
             $affiliates = [];
-            
+
+
             switch($step){
                 case 0: $view = 'courses.editor.form'; break;
                 case 1: $view = 'courses.editor.step1'; break;

@@ -1,4 +1,8 @@
-<div class="shr-lesson shr-lesson-{{$lesson->id}} shr-lesson-editor-{{$lesson->id}} 
+<?php
+  //NOTE: Not ideal, should be placed in a controller or helper, but this view is loaded from another view
+  $block = Block::firstOrCreate(['lesson_id' => $lesson->id, 'type' => Block::TYPE_VIDEO]);
+?>
+<div class="shr-lesson shr-lesson-{{$lesson->id}} shr-lesson-editor-{{$lesson->id}}
      if($lesson->module->course->modules()->count()>1 && $lesson->module->lessons()->count()>1)
      lesson-minimized
      endif
@@ -8,8 +12,17 @@
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
             <div class="lesson-name"><span><em></em></span>Lesson 
                 <div class="inline-block lesson-module-{{$lesson->module->id}} lesson-order" data-id="{{$lesson->id}}">{{ $lesson->order }}</div></div>
-            <div class="preview-thumb">
+            <div class="preview-thumb lesson-wrapper" id="lesson-wrapper-{{$lesson->id}}">
+                <img src="https://wazaardev.s3.amazonaws.com/course_preview/55b8d630ded23.png">
 
+                <div class="uploading-wrapper margin-top-15 hidden">
+                    Uploading
+                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif">
+                </div>
+                <div class="processing-wrapper margin-top-15 hidden">
+                    Processing
+                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif">
+                </div>
             </div>
             <div class="dropdown text-center">
               <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -194,7 +207,7 @@
             <h6>Files to accompany lesson</h6>
             <ul class=" uploaded-files-{{$lesson->id}}">
                 @foreach( $lesson->blocks()->where('type','file')->get() as $file )
-                    {{ View::make('courses.editor.v2.file')->with( compact('file') ) }}
+                    {{ View::make('courses.editor.v2.file')->with( compact('file') )->render() }}
                 @endforeach
                 
             </ul>
@@ -222,7 +235,7 @@
 </div>
 
 <script type="text/javascript">
-    var $blockId = 0;
+    var $blockId ={{$block->id}};
     var $lessonId = {{$lesson->id}};
     var $intervalId = 0;
 
@@ -238,12 +251,14 @@
                 policy:$('#form-aws-credentials').find('input[name=policy]').val(),
                 signature:$('#form-aws-credentials').find('input[name=signature]').val()
             },
+            'fileAddedCallBack' : function($e,$data){
+                console.log($data);
+            },
             'progressCallBack' : function ($data, $progressPercentage, $elem){
                 var $lessonId = $($data.fileInput[0]).attr("data-lesson-id");
-                $('#progress-bar-' + $lessonId).parent('.progress').removeClass('hide');
-                $('#progress-bar-' + $lessonId).css('width', $progressPercentage + '%');
-                $('#percent-complete-' + $lessonId).html($progressPercentage + '%');
-                $('#video-transcoding-indicator-' + $lessonId).addClass('hidden');
+                var $lessonWrapper = $('#lesson-wrapper-' + $lessonId);
+
+                $lessonWrapper.find('.uploading-wrapper').removeClass('hidden');
 
             },
             'failCallBack' : function ($data){
@@ -251,26 +266,14 @@
             },
             'successCallBack' : function ($data, $elem){
                 var $localLessonId = $($elem.fileInput[0]).attr("data-lesson-id");
-                var $localBlockId = $($elem.fileInput[0]).attr("data-block-id");
-                $('#video-transcoding-indicator-' + $localLessonId).removeClass('hidden');
 
-                function videoTranscodingAnimation(){
-                    var count = 0;
-                    animationInterval = setInterval(function(){
-                        count++;
-                        document.getElementById('video-transcoding-indicator-' + $localLessonId).innerHTML = _("Video Currently Processing") + new Array(count % 4).join('.');
-                    }, 500);
-                }
-                videoTranscodingAnimation();
-                $('.lesson-options-' + $localLessonId).find('#video-thumb-container').html("<em>Processing</em>");
-                $('.lesson-options-' + $localLessonId + '.buttons.active em').css('display', 'block');
-                $('.lesson-options-'+ $localLessonId +' .buttons.active').css({
-                    width: '120px',
-                    border: 'solid 1px #b0bfc1'
-                });
+                var $lessonWrapper = $('#lesson-wrapper-' + $localLessonId);
+
+                $lessonWrapper.find('.uploading-wrapper').addClass('hidden');
+                $lessonWrapper.find('.processing-wrapper').removeClass('hidden');
+
+
                 if ($data.videoId !== undefined) {
-                    //$('#video-player-container-' + $lessonId).find('#video-player').addClass('hide');
-                    $('#video-player-container-' + $localLessonId).find('#notify-warning-new-video').removeClass('hide');
                     $.post('/lessons/blocks/' + $localLessonId + '/video', {videoId : $data.videoId, blockId : $localBlockId });
                     console.log('has video id');
                     //Run timer to check for video transcode status

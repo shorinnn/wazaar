@@ -4,7 +4,7 @@
             <h2>Overview</h2>
             <ol class="drag-module">
                 @foreach($course->modules()->orderBy('order','asc')->get() as $module)
-                   {{ View::make('courses.editor.v2.module_li')->with( compact('module') ) }}
+                   {{ View::make('courses.editor.v2.module_li')->with( compact('module') )->render() }}
                 @endforeach
             </ol>
         </div>
@@ -13,7 +13,7 @@
         	<div class="curriculum-wrapper">
                 <div class="module-container">
                     @foreach($course->modules()->orderBy('order','asc')->get() as $module)
-                        {{ View::make('courses.editor.v2.module')->with( compact('module') ) }}
+                        {{ View::make('courses.editor.v2.module')->with( compact('module') )->render() }}
                     @endforeach
                 </div>
                 <div class="text-center add-new-module-container">

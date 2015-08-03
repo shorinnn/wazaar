@@ -12218,3 +12218,12 @@ header .top-menu li{
 .pre-view-image img{
     width:100%;
 }
+
+
+.lesson-wrapper .uploading-wrapper, .lesson-wrapper .processing-wrapper
+{
+    position: absolute;
+    z-index: 999;
+    top: 15px;
+    width: 140px;
+}
