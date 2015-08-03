@@ -135,7 +135,7 @@
          background-color: #F7F9FA !important;
     }
     .lesson-minimized .lesson-data{
-        height: 250px;
+        /*height: 290px;*/
         overflow: visible;
         border-bottom: 2px solid #E8ECED;
         background-color: transparent !Important;
@@ -179,14 +179,14 @@
         <input type='hidden' class='step-3-filled' value='{{ $course->course_difficulty_id > 0 ? 1 : 0}}' />
         <section class="container-fluid header">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="col-xs-12 col-sm-9 col-md-8 col-lg-8">
                     <h1>{{ trans('courses/general.edit') }}: {{ $course->name }}
                         <a href="{{ action('CoursesController@myCourses') }}" class="blue-button large-button back-to-course-list">
                             {{ trans('courses/general.back-to-course-list')}}
                         </a>
                     </h1>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
                     <!--            	<a href="#" class=" submit-for-approval blue-button large-button disabled-button right">
                     @if($course->publish_status != 'pending')
                         {{ trans('courses/general.submit-for-approval') }}
@@ -201,7 +201,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <a href="#" class="header-tabs regular-paragraph active load-remote-cache" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
                        data-url="{{ action('CoursesController@edit', $course->slug)}}/1" data-target='.course-ajax-holder .step1' data-steps-remaining='2 steps'
                        data-loaded='1' data-gif='ajax-loader-3.gif' >{{ trans('courses/general.course_description') }}</a>
@@ -214,7 +214,7 @@
 
                 </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <div class="right steps-remaining">
                         @if( $course->videoHours(true, 'i') >= 10 )
                             <p class="regular-paragraph no-margin">

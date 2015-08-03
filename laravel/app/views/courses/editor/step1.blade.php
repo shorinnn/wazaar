@@ -12,7 +12,7 @@
             <div class="row no-margin">
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 main-content">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 listing-image">
+                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 listing-image">
                             <h6>Listing image (thumbnail)</h6>
                             <div class="file-details relative">
                                 <div class="course-listing-image-preview">
@@ -65,7 +65,7 @@
                             </div>
                             
                         </div>
-                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 listing-video">
+                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 listing-video">
                             <h6>Introduction video</h6>
                             <div class="file-details relative">
                                 <div class="course-description-video-preview">

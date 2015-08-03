@@ -6527,20 +6527,19 @@ a.load-remote > *{
 .course-description-video-preview{
 	border: solid 1px #9E9E9E !important;
 	display: inline-block;
-	/*width: auto;
+	/*width: auto;*/
 	width: 223px;
-	height: 125px;*/
+	height: 125px;
 	margin-bottom: 5px;
 	position: relative;
-    width: 100%;
-    min-height: 200px;
+    /*width: 100%;
+    min-height: 200px;*/
 }
 /************** Editor step 1 ends ***************/
 
 /************** Editor step 2 ***************/
 .step2 .side-overview{
 	margin-top: 34px;
-	margin-left: 50px;
 }
 
 .step2 .side-overview h2{
@@ -6704,8 +6703,8 @@ a.load-remote > *{
 	font-size: 11px;
 	color: #0099ff;
 	font-weight: 600;
-	padding: 11px 5px;
-	display: block;
+	padding: 11px 5px 11px 25px;
+	display: inline-block;
 	margin-right: 19px;
 	text-align: center;
 	position: relative;
@@ -6735,7 +6734,7 @@ a.load-remote > *{
 }
 
 .step2 .lesson-container .preview-thumb{
-	width: 142px;
+	/*width: 142px;*/
 	height: 80px;
 	position: relative;
 	border-radius: 2px;
@@ -6793,6 +6792,7 @@ a.load-remote > *{
 	font-weight: bold;
 	color: #a7b7c4;
 	display: block;
+	margin-top: 18px;
 	text-align: center;
 }
 
@@ -6887,7 +6887,7 @@ a.load-remote > *{
 }
 
 .value-unit-two .unit{
-	padding: 0 25px;
+	padding: 0 20px;
 	font-size: 14px;
 	color: #7e8e9e;
 	height: 38px;
@@ -7412,7 +7412,7 @@ a.load-remote > *{
 
 .edit-course .header h1{
 	color: #303941;
-	margin: 0 0 11px;
+	margin: 30px 0 11px;
 	color: #303941;
 }
 
@@ -7443,7 +7443,7 @@ a.load-remote > *{
 .edit-course .header .steps-remaining{
 	padding: 10px 0 10px 27px;
 	border-left: solid 1px #e8eced;
-	margin: 26px 0 12px;
+	margin: 9px 0 12px;
 }
 
 .edit-course .header .steps-remaining span{
@@ -11350,7 +11350,8 @@ footer{
 
 @media (min-width: 1200px){
 	.container{
-	  width: 1532px;
+	  /*width: 1532px;*/
+	  width: 1032px;
 	}
 }
 
@@ -11597,6 +11598,18 @@ footer{
 	.enroll-button-section .price{
 		margin-top: 0;
 	}
+	.edit-course .header-tabs{
+		padding: 20px 30px;
+	}
+	
+	.listing-image .file-processing-handler,
+	.course-video-upload-button-progress {
+		max-width: 223px;
+	}
+	
+	.step1 .main-content{
+		border-right: none;
+	}
 }
 
 @media (max-width:900px){
@@ -11800,6 +11813,69 @@ header .top-menu .logged-out-header-search{
 	margin: 25px 0;
 	clear: both;
 	float: none;
+}
+.listing-image,
+.listing-video{
+	float: none;
+	margin: 0 auto 20px;
+	padding: 0;
+    width: 223px;
+}
+
+.step1 .side-info{
+	text-align: center;
+}
+
+.step1 .main-content {
+    margin: 20px 0 0;
+    padding: 17px 20px 0 !important;
+}
+
+.step2 .lesson-container .preview-thumb{
+	max-width: 142px;
+}
+
+.step2 .module-container .module-data .module-name{
+	max-width: 125px;
+	margin-bottom: 10px;
+}
+
+.edit-course .header > .row{
+	padding: 0 12px;
+}
+
+.edit-course .header > .row > div{
+	padding: 0;
+}
+
+.edit-course .header h1 .back-to-course-list{
+	margin: 15px 0;
+}
+
+.edit-course .header .default-button {
+	float: none;
+	margin: 0;
+}
+
+.edit-course .header h1{
+	margin: 30px 0 0;
+}
+
+.edit-course .header .steps-remaining {
+	border-left: none;
+	float: none;
+	margin: 0 0 12px;
+	padding: 10px 0;
+}
+.edit-course .header-tabs{
+	padding: 20px 7px;
+}
+
+.edit-course .header{
+	text-align: center;
+}
+.editor-settings-layout h4{
+	text-align: left;
 }
 
 }
@@ -12106,6 +12182,22 @@ header .top-menu .logged-in-top-menu{
 	.column-3 .add-to-wishlist-container .share-lesson{
 		margin-left: 0 !important;
 	}
+	
+	.value-unit-two .value{
+		padding-right: 3px !important;
+		padding-left: 4px !important;
+		width: 39px !important;
+	}
+	
+	.value-unit-two .unit{
+		padding: 0 10px;
+	}
+	
+	.step2 .lesson-container .footer-buttons .delete-lesson, 
+	.step2 .module-container .footer-buttons .delete-lesson{
+		float: left;
+	}
+	
 }
 
 @media (max-width:355px){
@@ -12120,6 +12212,20 @@ header .top-menu .logged-in-top-menu{
 		font-size: 10px;
 		padding: 10px 6px;
 	}
+	.value-unit-two .value{
+		width: 30px !important;
+	}
+	
+	.value-unit-two .unit{
+		padding: 0 4px;
+	}
+	
+	.step2 .lesson-container .footer-buttons .green-button, 
+	.step2 .module-container .footer-buttons .green-button,
+	.step2 .module-container .footer-buttons .default-button{
+		padding: 5px 10px;
+	}
+	
 }
 
 @media (max-width:320px){

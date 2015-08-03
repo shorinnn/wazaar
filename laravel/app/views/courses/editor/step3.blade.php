@@ -24,11 +24,11 @@
         @endif
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
             <h4 class="text-right">{{ trans('courses/curriculum.enable-ask-coach') }} 
             </h4>
         </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
             <div class="toggle-switch">
                 <label class="toggle-button
                        @if($course->ask_teacher=='enabled') active @endif" for="ask-enabled">
@@ -49,10 +49,10 @@
         
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
             <h4 class="text-right">{{ trans('courses/curriculum.enable-discussions') }}  </h4>
         </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
             <div class="toggle-switch">
                 <label class="toggle-button
                        @if($course->discussions=='yes') active @endif" for="discussions-enabled">
@@ -71,13 +71,13 @@
         
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
             <h4 class="text-right">
                 {{ ucwords( trans('courses/curriculum.privacy-title') ) }} 
             
             </h4>
         </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
             <div class="toggle-switch">
                 <label class="toggle-button
                        @if($course->privacy_status=='public') active @endif" for="privacy-public">
@@ -108,10 +108,10 @@
         * 
         */?>
     <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
             <h4 class="text-right">{{ trans('courses/general.difficulty') }}</h4>
         </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
             <div class="course-level toggle-switch btn-group clearfix">
                 <div class="clearfix">
                      @foreach($difficulties as $key=>$difficulty)
@@ -133,10 +133,10 @@
     
         @if($course->free == 'no')
         <div class="row editor-settings-layout margin-bottom-30">
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <h4 class="text-right">{{ trans('courses/general.price') }}</h4>
             </div>
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                 <div class="value-unit">
                         <!--<input type="text" name="amount">-->
                         {{  Form::text( 'price', money_val($course->price),
@@ -150,11 +150,11 @@
             
         </div>
         <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <h4 class="text-right">{{ trans('courses/general.affiliate_percentage') }} 
                 </h4>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="col-xs-12 col-sm-8 col-md-3 col-lg-3">
                 <div class="value-unit">
                     <input type="number" class='span2 clear right' name='affiliate_percentage' id='affiliate_percentage' 
                         max='68' min='0' data-parsley-errors-container='.no-parsley'
@@ -171,10 +171,10 @@
         </div>
         
         <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
             	<h4 class="text-right">{{ trans('courses/general.discount') }} </h4>
         	</div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                 <div class="value-unit">
                     {{ Form::text('sale', money_val($course->sale),
                         ['onkeyup' => 'toggleElementViaOther(event)', $notApprovedDisable => $notApprovedDisable,
@@ -193,10 +193,10 @@
         </div>
         <div class='sale-ends-on' @if($course->sale == 0) style='display:none' @endif >
             <div class="row editor-settings-layout margin-bottom-30">
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <h4 class="text-right">{{ trans('courses/general.sale_starts_on') }}</h4>
                 </div>
-                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <div class="calender">
                           <div class="clear clearfix input-group date">
                               {{ Form::text('sale_starts_on', null, [
@@ -210,10 +210,10 @@
                 </div>
             </div>
             <div class="row editor-settings-layout margin-bottom-30">
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <h4 class="text-right">{{ trans('courses/general.sale_ends_on') }}</h4>
                 </div>
-                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <div class="calender">
                         <div class="clear clearfix input-group date">
                             {{ Form::text('sale_ends_on', null, ['class'=>'form-control sales-end-calender datetimepicker',  
@@ -227,10 +227,10 @@
             </div>
         </div>
         <div class="row editor-settings-layout margin-bottom-30">
-        	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
             
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 update-discount">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 update-discount">
                 <button type='button' data-url='{{action('CoursesController@update', $course->slug)}}'
                         @if($course->publish_status != 'approved')
                             disabled='disabled'
@@ -251,7 +251,7 @@
         @endif
         
         <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
             <h4 class="text-right"> {{ trans('crud/labels.assigned_instructor') }}
                 <span id="assign-instructor-checkmark">
                 @if($assignedInstructor!=null)
@@ -260,7 +260,7 @@
                 </span>
             </h4>
         </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
             <input type='text' class='delayed-keyup'
                                                    id='assign-instructor' placeholder="{{ trans('courses/general.enter-instructor-email') }}"
                                                    data-delay='300'
@@ -288,10 +288,10 @@
     <div class="row category-row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <p class="regular-paragraph">{{ trans('courses/general.category') }}</p>
                 </div>
-                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text">
                         {{ Form::select('course_category_id', $categories, $course->course_category_id, ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 
                                     'data-url'=> action('CoursesCategoriesController@subcategories_instructor'), 'required', 'class'=>'']) }}
@@ -299,10 +299,10 @@
                 </div>
             </div>
             <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <p class="regular-paragraph">{{ trans('courses/general.subcategory') }}</p>
                 </div>
-                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text">
                         {{ Form::select('course_subcategory_id', $subcategories, $course->course_subcategory_id,
                                     ['id'=>'course_subcategory_id', 'class'=>'']) }}
@@ -310,10 +310,10 @@
                 </div>
             </div>
             <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <p class="regular-paragraph">{{ trans('courses/general.price') }}: </p>
                 </div>
-                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text">
                         @if($course->free=='yes')
                             {{ trans('courses/create.free-course-label') }}
@@ -324,18 +324,18 @@
                 </div>
             </div>
             <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <p class="regular-paragraph">{{ trans('courses/general.modules') }}: </p>
                 </div>
-                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text step3-module-count"> {{ $course->modules()->count() }}</p>
                 </div>
             </div>
             <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <p class="regular-paragraph">{{ trans('courses/general.total_lessons') }}: </p>
                 </div>
-                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <p class="regular-paragraph semibold-text step3-lesson-count"> {{ $course->lessonCount() }}</p>
                 </div>
             </div>
