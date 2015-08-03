@@ -40,7 +40,7 @@
               <ul class="dropdown-menu" aria-labelledby="upload-new">
                 <label class="upload-button">
                     <span>Upload new video</span>
-                    <input type="file" hidden="" id="fileupload-{{$lesson->id}}" name="file" data-lesson-id="{{$lesson->id}}"/>
+                    <input type="file" hidden="" id="fileupload-{{$lesson->id}}" name="file" data-block-id="{{$block->id}}" data-lesson-id="{{$lesson->id}}"/>
                 </label>
                 <span class="use-existing use-existing-preview" >
                     <span class="use-existing">
@@ -273,6 +273,8 @@
             },
             'successCallBack' : function ($data, $elem){
                 var $localLessonId = $($elem.fileInput[0]).attr("data-lesson-id");
+                var $localBlockId = $($elem.fileInput[0]).attr("data-block-id");
+                
                 var $lessonWrapper = $('#lesson-wrapper-' + $localLessonId);
 
                 $lessonWrapper.find('.uploading-wrapper').addClass('hidden');
@@ -280,14 +282,13 @@
 
 
                 if ($data.videoId !== undefined) {
-                    $.post('/lessons/blocks/' + $localLessonId + '/video', {videoId : $data.videoId, blockId : $blockId });
+                    $.post('/lessons/blocks/' + $localLessonId + '/video', {videoId : $data.videoId, blockId : $localBlockId });
                     console.log('has video id');
                     //Run timer to check for video transcode status
                     $intervalId = setInterval (function() {
                         console.log('interval running');
                         videoUploader.getVideo($data.videoId, function ($video){
 
-                            console.log($video);
                             if ($video.transcode_status == 'Complete'){
                                 console.log('Transcoding complete');
                                 $('#video-link-' + $localLessonId).addClass('done');
