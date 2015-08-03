@@ -102,6 +102,7 @@ class ClassroomController extends \BaseController {
                 return Redirect::to('/');
             }            
             $student->viewLesson( $lesson );
+            if( $video==null ) $student->viewLesson( $lesson, true );
             
             $lesson->ask_teacher_messages = $lesson->privateMessages()->where('type','ask_teacher')->where(function($query){
                 $query->where('sender_id', Auth::user()->id)->orWhere('recipient_id', Auth::user()->id);
@@ -165,6 +166,13 @@ class ClassroomController extends \BaseController {
                 header('location: '.$block->presignedUrl());
             }
         }
+        
+        public function completeLesson($id){
+            $student = Student::find( Auth::user()->id );
+            $lesson = Lesson::find($id);
+            $student->viewLesson($lesson, true);
+        }
+        
         public function gift($id){
             $id = PseudoCrypt::unhash($id);
             $gift = GiftFile::find($id);

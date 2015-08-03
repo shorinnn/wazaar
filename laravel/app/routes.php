@@ -183,6 +183,7 @@ $wwwRoutes = function(){
     Route::get('classroom/{slug}/testimonial', 'ClassroomController@testimonial');
     Route::get('classroom/{course}/{module}/{lesson}', 'ClassroomController@lesson');
     Route::get("classroom/{slug}/", 'ClassroomController@dashboard');
+    Route::get("classroom/complete-lesson/{id}", 'ClassroomController@completeLesson');
     // Courses Controller
     Route::get('courses/mycourses', 'UsersController@login');
     Route::get('courses/view-discussion/{id}', 'CoursesController@viewDiscussion');

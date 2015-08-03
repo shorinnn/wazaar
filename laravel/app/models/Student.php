@@ -394,10 +394,16 @@ class Student extends User{
      * Marks a lesson as viewed
      * @param Lesson $lesson
      */
-    public function viewLesson(Lesson $lesson){
-        if( !$this->isLessonViewed($lesson) ){
+    public function viewLesson(Lesson $lesson, $complete = false){
+        if( $complete==false && !$this->isLessonViewed($lesson) ){
             $view = ViewedLesson::create( ['student_id' => $this->id, 'lesson_id' => $lesson->id, 'course_id' => $lesson->module->course->id] );
         }
+        else if( $complete == true ){
+            $view = ViewedLesson::where( 'student_id', $this->id )->where( 'lesson_id', $lesson->id )->where( 'course_id', $lesson->module->course->id )->first();
+            $view->state = 'completed';
+            $view->updateUniques();
+        }
+        else{}
         return true;
     }
     

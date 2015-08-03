@@ -1,5 +1,6 @@
 <script>
     var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';
+    var lessonId = {{ $lesson->id }};
 </script>
 <style>
             .small-overlay{
@@ -192,7 +193,10 @@
                                 @if( $student->purchased($course) || $student->purchased( $lesson ) )
                                     <li class="@if( $student->isLessonViewed($lesson) ) active @endif
                                         @if( $student->isLessonCompleted($lesson) ) completed @endif">
-                                        <a href="#">{{$lesson->name}}<span><em></em><i class="wa-check"></i></span></a>
+                                        <a href="{{ action('ClassroomController@lesson', 
+                                            [ $lesson->module->course->slug,
+                                            $lesson->module->slug,
+                                            $lesson->slug]) }}">{{$lesson->name}}<span><em></em><i class="wa-check"></i></span></a>
                                     </li>
                                 @endif
                             @endforeach
@@ -211,6 +215,11 @@
         if( localStorage.getItem('vid-progress-{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}') != 'undefined' ){
             $('#myVideo')[0].currentTime =  localStorage.getItem('vid-progress-'+videoHash);
         };
+        
+        
+        $('#myVideo').on('ended', function(e){
+            lessonComplete( lessonId );
+        });
     }
     
     function setVideoFormat(){
@@ -221,6 +230,11 @@
         $('#myVideo source').attr('src', url);
         //skinVideoControls();
         $('#myVideo')[0].currentTime = ct;
+    }
+    
+    function lessonComplete(lesson){
+        localStorage.setItem( 'vid-progress-'+videoHash, 0 );
+        $.get( COCORIUM_APP_PATH+'classroom/complete-lesson/'+lesson );
     }
 </script>
            
