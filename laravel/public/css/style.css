@@ -1932,6 +1932,7 @@ header .profile-name li:hover ul{
 	text-align: center;
 	background: #0099ff;
 	border-radius: 4px;	
+	cursor: pointer;
 }
 
 .blue-button:hover{
@@ -1966,6 +1967,7 @@ header .profile-name li:hover ul{
 	background: #f7f9fa;
 	font-size: 13px;
 	color: #798794;
+	cursor: pointer;
 }
 
 .large-button{
@@ -6650,6 +6652,10 @@ a.load-remote > *{
 	margin-top: 2px;
 }
 
+.step2 .lesson-container .shr-lesson{
+	margin-top: 2px;
+}
+
 .step2 .lesson-container .lesson-data{
 	padding: 28px 30px 31px;
 	background: #fff;
@@ -6691,12 +6697,12 @@ a.load-remote > *{
 }
 
 .step2 .lesson-container .preview-thumb{
-	width: 142px;
-	height: 80px;
+	/*width: 142px;
+	height: 80px;*/
 	position: relative;
 	border-radius: 2px;
 	background-color: #363230;
-	margin: 20px auto 10px;
+	margin: 9px auto 10px;
 	overflow: hidden;
 	text-align: center;
 }
@@ -6749,6 +6755,7 @@ a.load-remote > *{
 	font-weight: bold;
 	color: #a7b7c4;
 	display: block;
+	margin-top: 18px;
 	text-align: center;
 }
 
@@ -6843,7 +6850,7 @@ a.load-remote > *{
 }
 
 .value-unit-two .unit{
-	padding: 0 25px;
+	padding: 0 20px;
 	font-size: 14px;
 	color: #7e8e9e;
 	height: 38px;
@@ -6991,7 +6998,44 @@ a.load-remote > *{
 	color: #ff0000;
 }
 
-/****** Lessons end **************/
+.minimized-lesson-elem .notes,
+.minimized-lesson-elem .attachments {
+    font-size: 13px;
+	font-weight: 600;
+	color: #a7b7c4;
+	margin-right: 25px;
+}
+
+.minimized-lesson-elem .notes i,
+.minimized-lesson-elem .attachments i{
+	color: #a7b7c4;
+	position: relative;
+	top: 0;
+	margin-right: 5px;
+}
+
+.minimized-lesson-elem .toggle-minimize{
+	font-size: 12px;
+	font-weight: bold;
+	color: #069bff;
+}
+
+.minimized-lesson-elem .toggle-minimize i{
+	margin-right: 5px;
+}
+
+.minimized-lesson-elem.regular-paragraph {
+    color: #798794;
+}
+
+h4.minimized-lesson-elem {
+    color: #41474c;
+}
+
+.lesson-data .edit-icon.toggle-minimize {
+	cursor: pointer;
+}
+/* Lessons end */
 
 .step2 .lesson-container .footer-buttons,
 .step2 .module-container .footer-buttons{
@@ -7369,7 +7413,6 @@ a.load-remote > *{
 .edit-course .header h1{
 	color: #303941;
 	margin: 30px 0 11px;
-	color: #303941;
 }
 
 /*.edit-course .header h1{
@@ -12124,8 +12167,17 @@ header .top-menu li{
 	margin-top: 40px !important;
 }
 
+.margin-top-45
+{
+	margin-top: 45px !important;
+}
+
 .margin-top-50 {
     margin-top: 50px !important;
+}
+
+.margin-top-55{
+    margin-top: 55px !important;
 }
 
 .margin-top-80{

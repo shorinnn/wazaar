@@ -83,7 +83,7 @@
                      <i class='fa fa-chevron-down' data-target='.shr-lesson-editor-{{$lesson->id}}' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}' data-class='lesson-minimized'></i> Show</a>
              </div>
              
-            <div class='maximized-elem'>
+            <div class='maximized-elem margin-top-30'>
             {{ Form::open( ['action' => ['LessonsController@update', $lesson->module->id, $lesson->id ], 'method' => 'PUT', 
                         'class' => 'ajax-form lesson-form-'.$lesson->id, 'data-save-indicator' => '.submit-lesson-'.$lesson->id,
                      'data-callback' => 'minimizeAfterSave', 'data-elem' => ".shr-lesson-editor-".$lesson->id, 'data-error-list' => '.lesson-errors-'.$lesson->id] )  }}
