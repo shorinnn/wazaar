@@ -12,10 +12,10 @@
      ">
      
     <div class="row lesson-data">
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="lesson-wrapper-{{$lesson->id}}">
             <div class="lesson-name"><span><em></em></span>Lesson 
                 <div class="inline-block lesson-module-{{$lesson->module->id}} lesson-order" data-id="{{$lesson->id}}">{{ $lesson->order }}</div></div>
-            <div class="preview-thumb lesson-wrapper" id="lesson-wrapper-{{$lesson->id}}">
+            <div class="preview-thumb lesson-wrapper">
 
                 @if ($video)
 
@@ -251,17 +251,16 @@
 </div>
 
 <script type="text/javascript">
-    var $blockId ={{$block->id}};
-    var $lessonId = {{$lesson->id}};
-    var $intervalId = 0;
-    var $key =   '{{$uniqueKey}}-${filename}'; //$('#form-aws-credentials').find('input[name=key]').val();//.replace("undefined","{{Str::random(8)}}");
+
+
+    var $intervalId{{$lesson->id}} = 0;
 
     $(function(){
         videoUploader.initialize({
-            'fileInputElem' : $('#fileupload-' + $lessonId),
+            'fileInputElem' : $('#fileupload-{{$lesson->id}}'),
             'url': '{{UploadHelper::AWSVideosInputURL()}}',
             'formData' : {
-                key:$key,
+                key:'{{$uniqueKey}}-${filename}',
                 AWSAccessKeyId:$('#form-aws-credentials').find('input[name=AWSAccessKeyId]').val(),
                 acl:$('#form-aws-credentials').find('input[name=acl]').val(),
                 success_action_status:$('#form-aws-credentials').find('input[name=success_action_status]').val(),
@@ -269,7 +268,8 @@
                 signature:$('#form-aws-credentials').find('input[name=signature]').val()
             },
             'fileAddedCallBack' : function($e, $data){
-                $('.lesson-control').addClass('hidden');
+                var $lessonId = $($data.fileInput[0]).attr("data-lesson-id");
+                $('#lesson-wrapper-' + $lessonId).find('.lesson-control').addClass('hidden');
             },
             'progressCallBack' : function ($data, $progressPercentage, $elem){
                 var $lessonId = $($data.fileInput[0]).attr("data-lesson-id");
@@ -296,7 +296,7 @@
                     $.post('/lessons/blocks/' + $localLessonId + '/video', {videoId : $data.videoId, blockId : $localBlockId });
                     console.log('has video id');
                     //Run timer to check for video transcode status
-                    $intervalId = setInterval (function() {
+                    $intervalId{{$lesson->id}} = setInterval (function() {
                         console.log('interval running');
                         videoUploader.getVideo($data.videoId, function ($video){
 
@@ -306,8 +306,8 @@
                                 $lessonWrapper.find('.video-preview').attr('src',$video.formats[0].thumbnail);
                                 $lessonWrapper.find('.video-preview').removeClass('hidden');
                                 $('.lesson-control').removeClass('hidden');
-                                
-                                clearInterval($intervalId);
+
+                                clearInterval($intervalId{{$lesson->id}});
                             }
                         }) }, 5000);
                 }
