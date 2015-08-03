@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="dropdown text-center lesson-control">
-              <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <a id="upload-new" class="default-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 Upload new
                 <i class="wa-chevron-down"></i>
               </a>
@@ -69,8 +69,8 @@
             <a class="edit-icon toggle-minimize"  data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'>
                 <i class="fa fa-pencil pull-right lesson-toggle-icon-{{$lesson->id}}" data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'></i>
             </a>
-             <p class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-name'>{{$lesson->name}}</p>
-             <p class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-desc'>{{$lesson->description}}</p>
+             <h4 class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-name margin-top-45'>{{$lesson->name}}</h4>
+             <p class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-desc regular-paragraph'>{{$lesson->description}}</p>
              <div class='minimized-lesson-elem'>
                  <!--<i class='fa fa-quote-left'></i> 1 Note-->
                  

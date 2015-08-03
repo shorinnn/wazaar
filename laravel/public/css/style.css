@@ -6696,7 +6696,7 @@ a.load-remote > *{
 	position: relative;
 	border-radius: 2px;
 	background-color: #363230;
-	margin: 28px auto 10px;
+	margin: 20px auto 10px;
 	overflow: hidden;
 	text-align: center;
 }
@@ -12174,6 +12174,14 @@ header .top-menu li{
 
 .padding-bottom-40{
 	padding-bottom: 40px !important;
+}
+
+.padding-bottom-45{
+	padding-bottom: 45px !important;
+}
+
+.padding-bottom-50{
+	padding-bottom: 50px !important;
 }
 
 .bolded, .bolded > *{
