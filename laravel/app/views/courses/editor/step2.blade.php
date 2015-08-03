@@ -1,6 +1,6 @@
 <div class="container-fluid">
 	<div class="row">
-    	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-2 side-overview">
+    	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 side-overview">
             <h2>Overview</h2>
             <ol class="drag-module">
                 @foreach($course->modules()->orderBy('order','asc')->get() as $module)
@@ -8,8 +8,7 @@
                 @endforeach
             </ol>
         </div>
-    	<div class="hidden-xs hidden-sm hidden-md col-lg-1"></div>
-    	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-6">
+    	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
         	<div class="curriculum-wrapper">
                 <div class="module-container">
                     @foreach($course->modules()->orderBy('order','asc')->get() as $module)
@@ -26,7 +25,6 @@
                 </div>
             </div>
         </div>
-    	<div class="hidden-xs hidden-sm hidden-md col-lg-2"></div>
     </div>
 </div>
 <script>

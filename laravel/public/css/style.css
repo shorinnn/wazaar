@@ -6497,7 +6497,6 @@ a.load-remote > *{
 /************** Editor step 2 ***************/
 .step2 .side-overview{
 	margin-top: 34px;
-	margin-left: 50px;
 }
 
 .step2 .side-overview h2{
@@ -7369,7 +7368,7 @@ a.load-remote > *{
 
 .edit-course .header h1{
 	color: #303941;
-	margin: 0 0 11px;
+	margin: 30px 0 11px;
 	color: #303941;
 }
 
