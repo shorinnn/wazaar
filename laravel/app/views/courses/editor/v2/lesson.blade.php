@@ -24,11 +24,16 @@
                     @else
                         <img src="" alt="" class="hidden video-preview"/>
                     @endif
+                @else
+                    <img src="" alt="" class="hidden video-preview"/>
                 @endif
 
                 <div class="uploading-wrapper margin-top-15 hidden">
-                    Uploading
-                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                            <span><span class="percent-complete"></span></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="processing-wrapper margin-top-15 hidden">
                     Processing
@@ -271,6 +276,7 @@
                 var $lessonWrapper = $('#lesson-wrapper-' + $lessonId);
 
                 $lessonWrapper.find('.uploading-wrapper').removeClass('hidden');
+                $lessonWrapper.find('.progress-bar').css('width', $progressPercentage + '%');
 
             },
             'failCallBack' : function ($data){
