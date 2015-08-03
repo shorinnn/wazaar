@@ -290,7 +290,7 @@
 
                 $lessonWrapper.find('.uploading-wrapper').addClass('hidden');
                 $lessonWrapper.find('.processing-wrapper').removeClass('hidden');
-                $('.lesson-control').removeClass('hidden');
+
 
                 if ($data.videoId !== undefined) {
                     $.post('/lessons/blocks/' + $localLessonId + '/video', {videoId : $data.videoId, blockId : $localBlockId });
@@ -305,7 +305,8 @@
                                 $lessonWrapper.find('.processing-wrapper').addClass('hidden');
                                 $lessonWrapper.find('.video-preview').attr('src',$video.formats[0].thumbnail);
                                 $lessonWrapper.find('.video-preview').removeClass('hidden');
-
+                                $('.lesson-control').removeClass('hidden');
+                                
                                 clearInterval($intervalId);
                             }
                         }) }, 5000);
