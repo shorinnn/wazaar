@@ -266,7 +266,6 @@
             },
             'successCallBack' : function ($data, $elem){
                 var $localLessonId = $($elem.fileInput[0]).attr("data-lesson-id");
-
                 var $lessonWrapper = $('#lesson-wrapper-' + $localLessonId);
 
                 $lessonWrapper.find('.uploading-wrapper').addClass('hidden');
@@ -274,7 +273,7 @@
 
 
                 if ($data.videoId !== undefined) {
-                    $.post('/lessons/blocks/' + $localLessonId + '/video', {videoId : $data.videoId, blockId : $localBlockId });
+                    $.post('/lessons/blocks/' + $localLessonId + '/video', {videoId : $data.videoId, blockId : $blockId });
                     console.log('has video id');
                     //Run timer to check for video transcode status
                     $intervalId = setInterval (function() {
