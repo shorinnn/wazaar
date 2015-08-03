@@ -1373,7 +1373,6 @@ function colorLinks(e){
     $(elem).removeAttr('style');
     $(e.target).css('color', color);
 }
-<<<<<<< HEAD
 
 $.expr[":"].contains = $.expr.createPseudo(function(arg) {
     return function( elem ) {
@@ -1386,5 +1385,3 @@ function searchDiscussions(){
     $('.questions-box').hide();
     $('span:contains("'+s+'")').parent().show();
 }
-=======
->>>>>>> editorBranch

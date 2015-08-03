@@ -4,266 +4,99 @@
 @stop
 
 @section('content')
-<style>
-    #save-indicator{
-        border:1px solid black;
-        background-color:white;
-        width:130px;
-        height:30px;
-        position:fixed;
-        top:100px;
-        left:-140px;
-        text-align: right;
-        padding-right: 10px;
-        white-space: nowrap;
-    }
-    
-    #publish-status-header{
-        font-size:15px;
-    }
-    .edit-course select{
-        width:auto;
-    }
-    .course-description-video-preview img, .course-listing-image-preview img{
-        height: 100%;
-        max-height: 100px;
-    }
-    
-        
-    .inactive > *{
-        pointer-events: none;
-    }
-    
-    /************ PROGRESS BAR **************/
-    .label-progress-bar{
-        font-size: 12px;
-        font-weight: normal !important;
-        margin: 0px !important;
-    }
-    .edit-course .progress, .progress{
-        background-color:gray;
-        height: 3px;
-    }
-    .progress-bar{
-        background-color: #069BFF;
-    }
-    
-    .step2 h2:hover, .step2 .description-text:hover{
-        background-color: initial;
-    }
-    /************ /PROGRESS BAR **************/
-    
-    /************ MINIMIZED MODULE **************/
-    .minimized-elem{
-        display: none;
-    }
-    .module-minimized .minimized-elem{
-        display: block;
-    }
-    .module-minimized:hover .minimized-elem{
-        background-color:#e8eced;
-    }
-    .module-minimized .module-data{
-        border:none !important;
-    }
-    .module-minimized .footer-buttons > *{
-        opacity:0;
-    }
-    .lesson-container .footer-buttons > *{
-        opacity:1;
-    }
-    
-    .module-zone:hover .toggle-minimize{
-        display:block !important;
-        cursor: pointer;
-    }
-    .module-minimized .module-zone{
-        height: 130px;
-        overflow: hidden;
-        border-bottom: 2px solid #E8ECED;
-    }
-    
-    .module-minimized .module-zone input, .module-minimized .module-zone textarea,  .module-minimized .module-zone button{
-        display:none !important;
-    }
-    /************ /MINIMIZED MODULE **************/
-    
-    /************ MINIMIZED LESSON **************/
-    .minimized-lesson-elem{
-        display: none;
-    }
-	.module-minimized .minimized-elem .minimized-description{
-		font-size: 13px;
-		color: #798794;
-	}
-	
-    .lesson-minimized .minimized-lesson-elem{
-        display: block;
-    }
-    .lesson-minimized:hover .minimized-lesson-elem{
-        background-color:#e8eced;
-    }
+    <style>
+        #save-indicator{
+            border:1px solid black;
+            background-color:white;
+            width:130px;
+            height:30px;
+            position:fixed;
+            top:100px;
+            left:-140px;
+            text-align: right;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
 
-    .lesson-minimized .minimized-lesson-elem .attachments{
-        color:#a7b7c4;
-		font-size: 13px;
-    }
+        #publish-status-header{
+            font-size:15px;
+        }
+        .edit-course select{
+            width:auto;
+        }
+        .course-description-video-preview img, .course-listing-image-preview img{
+            max-height: 100px;
+        }
+    </style>
 
-    .lesson-minimized .minimized-lesson-elem .toggle-minimize{
-		font-size: 12px;
-		font-weight: bold;
-		color: #069bff;
-		margin-left: 20px;
-		cursor: pointer;
-	}
-	.minimized-lesson-elem[class*=copy-name]{
-		font-size: 14px;
-		color: #41474c;
-		font-weight: 600;
-	}
-	
-	.minimized-lesson-elem[class*=copy-desc]{
-		font-size: 13px;
-		color: #798794;
-	}
-	
-    .lesson-zone:hover .toggle-minimize{
-        display:block !important;
-        cursor: pointer;
-    }
-    .lesson-minimized{
-         background-color: #F7F9FA !important;
-    }
-    .lesson-minimized .lesson-data{
-        height: 250px;
-        overflow: visible;
-        border-bottom: 2px solid #E8ECED;
-        background-color: transparent !Important;
-    }
-    
-    .lesson-minimized .footer-buttons, .lesson-minimized .file-upload-row{
-        display: none;
-    }
-    
-    .lesson-minimized .maximized-elem,.lesson-minimized .lesson-data input, .lesson-minimized .lesson-data textarea,  .lesson-minimized .lesson-data button{
-        display:none !important;
-    }
-    
-    .lesson-data .edit-icon{
-        display:none;
-    }
-    .lesson-data:hover .edit-icon{
-        display: block;
-        margin-right: -22px;
-        cursor:pointer;
-    }
-    /************ /MINIMIZED LESSON **************/
-    
-    /*** price box ***/
-    .value-unit-two input{
-        width:63px !Important;
-    }
-    /*** /price box ***/
-
-</style>
-
-@if (Session::get('success'))
-<div class="alert alert-success">{{ Session::get('success') }}</div>
-@endif
-@if (Session::get('error'))
-<div class="alert alert-danger">{{ Session::get('error') }}</div>
-@endif
-@include('videos.archiveModal')
-<div class="edit-course">
-    <input type='hidden' class='step-1-filled' value='{{ $course->short_description !='' ? 1 : 0}}' />
-    <input type='hidden' class='step-2-filled' value='{{ $course->lessonCount() >= 0 ? 1 : 0}}' />
-    <input type='hidden' class='step-3-filled' value='{{ $course->course_difficulty_id > 0 ? 1 : 0}}' />
-	<section class="container-fluid header">
-    	<div class="row">
-        	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<div class="video-preview-thumb">
-                	<div class="preview-overlay">
-                    	<i class="fa fa-eye"></i>
-                        <span>PREVIEW</span>
-                    </div>
-                </div>
-                <div class="left">
-                <ul class="breadcrumb">
-                    <li><a href="{{ action('CoursesController@myCourses') }}">Dashboard</a></li>
-                    <li class="active"><a href="#">Course Edit</a></li>
-                </ul>                    
-                <h1>{{ $course->name }}<span>DRAFT</span>
-                        <!--<a href="{{ action('CoursesController@myCourses') }}" class="blue-button large-button back-to-course-list">
+    @if (Session::get('success'))
+        <div class="alert alert-success">{{ Session::get('success') }}</div>
+    @endif
+    @if (Session::get('error'))
+        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+    @endif
+    @include('videos.archiveModal')
+    <div class="edit-course">
+        <input type='hidden' class='step-1-filled' value='{{ $course->short_description !='' ? 1 : 0}}' />
+        <input type='hidden' class='step-2-filled' value='{{ $course->lessonCount() >= 0 ? 1 : 0}}' />
+        <input type='hidden' class='step-3-filled' value='{{ $course->course_difficulty_id > 0 ? 1 : 0}}' />
+        <section class="container-fluid header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <h1>{{ trans('courses/general.edit') }}: {{ $course->name }}
+                        <a href="{{ action('CoursesController@myCourses') }}" class="blue-button large-button back-to-course-list">
                             {{ trans('courses/general.back-to-course-list')}}
-                        </a>-->
+                        </a>
                     </h1>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-<<<<<<< HEAD
-<!--            	<a href="#" class=" submit-for-approval blue-button large-button disabled-button right">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <!--            	<a href="#" class=" submit-for-approval blue-button large-button disabled-button right">
                     @if($course->publish_status != 'pending')
                         {{ trans('courses/general.submit-for-approval') }}
                     @else
-                        {{ trans('courses/general.wazaar-is-checking-your-product') }}
+                    {{ trans('courses/general.wazaar-is-checking-your-product') }}
                     @endif
-                </a>-->
-                <a href='#' data-href="{{ action( 'CoursesController@show', $course->slug ) }}" class="default-button disabled-button large-button right preview-course-btn">
-=======
-            	<a href="#" class=" submit-for-approval blue-button large-button disabled-button right">{{ trans('courses/general.submit') }}</a>
-                <!--<a href='#' data-href="{{ action( 'CoursesController@show', $course->slug ) }}" class="default-button disabled-button large-button right preview-course-btn">
->>>>>>> editorBranch
-                	{{ trans('courses/general.preview_course') }}
-            	</a>-->
+                            </a>-->
+                    <a href='#' data-href="{{ action( 'CoursesController@show', $course->slug ) }}" class="default-button disabled-button large-button right preview-course-btn">
+                        {{ trans('courses/general.preview_course') }}
+                    </a>
 
+                </div>
             </div>
-        </div>
-        <div class="row header-tabs-container">
-        	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-            	<a href="#" class="header-tabs active load-remote-cache" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
-                   data-url="{{ action('CoursesController@edit', $course->slug)}}/1" data-target='.course-ajax-holder .step1' data-steps-remaining='2 steps'
-                   data-loaded='1' data-gif='ajax-loader-3.gif' ><em>1</em>{{ trans('courses/general.description') }}</a>
-            	<a href="#" class="header-tabs load-remote-cache link-to-step-2" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
-                   data-url="{{ action('CoursesController@edit', $course->slug)}}/2" data-target='.course-ajax-holder .step2'  data-steps-remaining='1 step'
-                   data-gif='ajax-loader-3.gif' ><em>2</em>{{ trans('courses/general.curriculum') }}</a>
-            	<a href="#" class="header-tabs load-remote-cache link-to-step-3" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
-                   data-url="{{ action('CoursesController@edit', $course->slug)}}/3" data-target='.course-ajax-holder ._step3'  data-steps-remaining='0'
-                   data-gif='ajax-loader-3.gif' ><em>3</em>{{ trans('courses/general.settings') }}</a>
-                
-            </div>
-            
-               <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <a href="#" class="header-tabs regular-paragraph active load-remote-cache" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
+                       data-url="{{ action('CoursesController@edit', $course->slug)}}/1" data-target='.course-ajax-holder .step1' data-steps-remaining='2 steps'
+                       data-loaded='1' data-gif='ajax-loader-3.gif' >{{ trans('courses/general.course_description') }}</a>
+                    <a href="#" class="header-tabs regular-paragraph load-remote-cache link-to-step-2" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
+                       data-url="{{ action('CoursesController@edit', $course->slug)}}/2" data-target='.course-ajax-holder .step2'  data-steps-remaining='1 step'
+                       data-gif='ajax-loader-3.gif' >{{ trans('courses/general.curriculum') }}</a>
+                    <a href="#" class="header-tabs regular-paragraph load-remote-cache link-to-step-3" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
+                       data-url="{{ action('CoursesController@edit', $course->slug)}}/3" data-target='.course-ajax-holder ._step3'  data-steps-remaining='0'
+                       data-gif='ajax-loader-3.gif' >{{ trans('courses/general.settings') }}</a>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="right steps-remaining">
                         @if( $course->videoHours(true, 'i') >= 10 )
                             <p class="regular-paragraph no-margin">
-                               <span>{{ trans('courses/general.course-ready-for-submission') }} </span>
+                                <span>{{ trans('courses/general.course-ready-for-submission') }} </span>
                             </p>
                         @else
-                        <p class="regular-paragraph no-margin">
+                            <p class="regular-paragraph no-margin">
                             <span>
                                 {{ trans('courses/general.upload-10-minutes-to-submit') }}
                             </span>
-                        </p>
-<!--                            || courseStepsRemaining($course)==0 || $course->publish_status!='unsubmitted' 
-<p class="regular-paragraph no-margin">
-                            {{ trans('courses/general.complete-x-steps-to-submit', ['steps' => courseStepsRemaining($course) ] )}}
-                            <br />-->
-<!--                            {{ trans('courses/general.complete') }} 
-                            <span>
-                                <span>{{ courseStepsRemaining($course) }}</span>
-                                {{ trans('courses/general.steps') }}</span> {{ trans('courses/general.to_submit_course') }}-->
-<<<<<<< HEAD
-                            <!--</p>-->
-=======
-                            <!--</p>
->>>>>>> editorBranch
+                            </p>
+
                         @endif
                     </div>
-                </div>-->
-        </div>
-    </section>
-    <section class="container-fluid main course-editor">
-    	<div class="row course-ajax-holder">
+                </div>
+            </div>
+        </section>
+        <section class="container main course-editor">
+            <div class="row course-ajax-holder">
                 <form id="form-aws-credentials" action="">
                     <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
                     <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
@@ -272,20 +105,18 @@
                     <input type="hidden" name="policy" value="{{$awsPolicySig['base64Policy']}}">
                     <input type="hidden" name="signature" value="{{$awsPolicySig['signature']}}">
                 </form>
-            <div class='container step1' data-loaded='1'>
-                <input class="course-id" type="hidden" value="{{$course->id}}"/>
-                
-                {{ View::make('courses.editor.step1',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
-                        ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates', 'filePolicy' ) )->render() }}
+                <div class='step1' data-loaded='1'>
+                    <input class="course-id" type="hidden" value="{{$course->id}}"/>
+                    {{ View::make('courses.editor.step1',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
+                            ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates', 'filePolicy' ) ) }}
+                </div>
+                <div class='step2'></div>
+                <div class='_step3'></div>
             </div>
-            <div class='step2'></div>
-            <div class='container _step3'></div>
-        </div>
-    </section>
-</div>
-@include('videos.playerModal')
-<script>
-    var course_steps_remaining = {{ courseStepsRemaining($course) }};
-</script>
+        </section>
+    </div>
+    @include('videos.playerModal')
+    <script>
+        var course_steps_remaining = {{ courseStepsRemaining($course) }};
+    </script>
 @stop
-
