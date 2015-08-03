@@ -252,7 +252,7 @@
             'fileInputElem' : $('#fileupload-' + $lessonId),
             'url': '{{UploadHelper::AWSVideosInputURL()}}',
             'formData' : {
-                key:$('#form-aws-credentials').find('input[name=key]').val(),
+                key:$key,
                 AWSAccessKeyId:$('#form-aws-credentials').find('input[name=AWSAccessKeyId]').val(),
                 acl:$('#form-aws-credentials').find('input[name=acl]').val(),
                 success_action_status:$('#form-aws-credentials').find('input[name=success_action_status]').val(),
