@@ -25,8 +25,145 @@
             width:auto;
         }
         .course-description-video-preview img, .course-listing-image-preview img{
+            height: 100%;
             max-height: 100px;
         }
+        
+             
+    .inactive > *{
+        pointer-events: none;
+    }
+    
+    /************ PROGRESS BAR **************/
+    .label-progress-bar{
+        font-size: 12px;
+        font-weight: normal !important;
+        margin: 0px !important;
+    }
+    .edit-course .progress, .progress{
+        background-color:gray;
+        height: 3px;
+    }
+    .progress-bar{
+        background-color: #069BFF;
+    }
+    
+    .step2 h2:hover, .step2 .description-text:hover{
+        background-color: initial;
+    }
+    /************ /PROGRESS BAR **************/
+    
+    /************ MINIMIZED MODULE **************/
+    .minimized-elem{
+        display: none;
+    }
+    .module-minimized .minimized-elem{
+        display: block;
+    }
+    .module-minimized:hover .minimized-elem{
+        background-color:#e8eced;
+    }
+    .module-minimized .module-data{
+        border:none !important;
+    }
+    .module-minimized .footer-buttons > *{
+        opacity:0;
+    }
+    .lesson-container .footer-buttons > *{
+        opacity:1;
+    }
+    
+    .module-zone:hover .toggle-minimize{
+        display:block !important;
+        cursor: pointer;
+    }
+    .module-minimized .module-zone{
+        height: 130px;
+        overflow: hidden;
+        border-bottom: 2px solid #E8ECED;
+    }
+    
+    .module-minimized .module-zone input, .module-minimized .module-zone textarea,  .module-minimized .module-zone button{
+        display:none !important;
+    }
+    /************ /MINIMIZED MODULE **************/
+    
+    /************ MINIMIZED LESSON **************/
+    .minimized-lesson-elem{
+        display: none;
+    }
+	.module-minimized .minimized-elem .minimized-description{
+		font-size: 13px;
+		color: #798794;
+	}
+	
+    .lesson-minimized .minimized-lesson-elem{
+        display: block;
+    }
+    .lesson-minimized:hover .minimized-lesson-elem{
+        background-color:#e8eced;
+    }
+
+    .lesson-minimized .minimized-lesson-elem .attachments{
+        color:#a7b7c4;
+		font-size: 13px;
+    }
+
+    .lesson-minimized .minimized-lesson-elem .toggle-minimize{
+		font-size: 12px;
+		font-weight: bold;
+		color: #069bff;
+		margin-left: 20px;
+		cursor: pointer;
+	}
+	.minimized-lesson-elem[class*=copy-name]{
+		font-size: 14px;
+		color: #41474c;
+		font-weight: 600;
+	}
+	
+	.minimized-lesson-elem[class*=copy-desc]{
+		font-size: 13px;
+		color: #798794;
+	}
+	
+    .lesson-zone:hover .toggle-minimize{
+        display:block !important;
+        cursor: pointer;
+    }
+    .lesson-minimized{
+         background-color: #F7F9FA !important;
+    }
+    .lesson-minimized .lesson-data{
+        height: 250px;
+        overflow: visible;
+        border-bottom: 2px solid #E8ECED;
+        background-color: transparent !Important;
+    }
+    
+    .lesson-minimized .footer-buttons, .lesson-minimized .file-upload-row{
+        display: none;
+    }
+    
+    .lesson-minimized .maximized-elem,.lesson-minimized .lesson-data input, .lesson-minimized .lesson-data textarea,  .lesson-minimized .lesson-data button{
+        display:none !important;
+    }
+    
+    .lesson-data .edit-icon{
+        display:none;
+    }
+    .lesson-data:hover .edit-icon{
+        display: block;
+        margin-right: -22px;
+        cursor:pointer;
+    }
+    /************ /MINIMIZED LESSON **************/
+    
+    /*** price box ***/
+    .value-unit-two input{
+        width:63px !Important;
+    }
+    /*** /price box ***/
     </style>
 
     @if (Session::get('success'))
