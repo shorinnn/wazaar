@@ -19,9 +19,8 @@ class LessonHelper {
     {
         $videoId = $block->content;
 
-        if (is_null($videoId)){
+        if (is_numeric($videoId)){
             $video = Video::find($videoId);
-
             if ($video){
                 return $video;
             }

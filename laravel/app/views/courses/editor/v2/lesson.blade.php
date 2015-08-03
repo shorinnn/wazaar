@@ -18,8 +18,11 @@
             <div class="preview-thumb lesson-wrapper" id="lesson-wrapper-{{$lesson->id}}">
 
                 @if ($video)
+
                     @if (@$video->transcode_status == Video::STATUS_COMPLETE)
-                        <img src="{{$video->formats[0]->thumbnail}}" />
+                        <img class="video-preview" src="{{$video->formats[0]->thumbnail}}" />
+                    @else
+                        <img src="" alt="" class="hidden video-preview"/>
                     @endif
                 @endif
 
@@ -292,37 +295,12 @@
                         videoUploader.getVideo($data.videoId, function ($video){
 
                             if ($video.transcode_status == 'Complete'){
-                                console.log('Transcoding complete');
-                                $('#video-link-' + $localLessonId).addClass('done');
-                                $('#video-transcoding-indicator-' + $localLessonId).css('display', 'none');
-                                $('#lesson-'+$localLessonId).find('.lesson-no-video').removeClass('lesson-no-video');
+
+                                $lessonWrapper.find('.processing-wrapper').addClass('hidden');
+                                $lessonWrapper.find('.video-preview').attr('src',$video.formats[0].thumbnail);
+                                $lessonWrapper.find('.video-preview').removeClass('hidden');
+
                                 clearInterval($intervalId);
-                                var uploadedVideo = $('#video-player-container-' + $localLessonId).find('video');
-                                var videoDuration = $video.formats[0].duration;// uploadedVideo[0].duration;
-                                var timeFormat = function(seconds){
-                                    var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);
-                                    var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
-                                    return m+":"+s;
-                                };
-
-
-                                $('#lesson-'+ $localLessonId +' > .new-lesson').removeClass('gray').addClass('green');
-
-                                $('.lesson-options-'+ $localLessonId +' .buttons.active div#video-thumb-container').css({
-                                    display: 'block'
-                                });
-
-                                $('.lesson-options-' + $localLessonId).find(
-                                        '#video-thumb-container').html(
-                                        "<P></P><a href='#' class='fa fa-eye' data-toggle='modal' onclick='videoModal.show(this, event)' data-filename='"+ $video.original_filename +"' data-video-url='"+ $video.formats[0].video_url +"'></a> <img src='" + $video.formats[0].thumbnail +"'/>");
-                                $('.lesson-options-' + $localLessonId).find('#video-thumb-container p').text(videoDuration);
-                                $('#video-player-container-' + $lessonId).find('video').attr('src', $video.formats[0].video_url);
-
-                                $('.lesson-options-'+ $localLessonId +' .buttons.active div#video-thumb-container a').on('click', function(){
-                                    $('#uploadedVideoPlayer').html(videoVariable);
-                                });
-                                //$('#video-link-' + $lessonId).removeClass('load-remote-cache').trigger('click');
-                                //reload video partial
                             }
                         }) }, 5000);
                 }
