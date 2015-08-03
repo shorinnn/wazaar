@@ -53,7 +53,7 @@
                 </label>
                 <span class="use-existing use-existing-preview" >
                     <span class="use-existing">
-                        <a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">
+                        <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lesson->id}}">
                             {{trans('video.selectExisting')}}
                         </a> 
                     </span>
@@ -313,5 +313,6 @@
                 }
             }
         });
+
     });
 </script>

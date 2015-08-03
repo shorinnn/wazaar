@@ -51,7 +51,8 @@ var videoLookup = {
         videoLookup.callback = $callback;
 
 
-            $('#modules-list').on('click', '.show-videos-archive-modal', function ($e) {
+            $(document).on('click', '.show-videos-archive-modal', function ($e) {
+
                 $e.preventDefault();
                 videoLookup.lessonId = $(this).attr('data-lesson-id');
                 $('#videoFilter').val('');

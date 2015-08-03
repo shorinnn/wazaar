@@ -324,6 +324,15 @@
                     });
                     return;
                 }
+
+                //lesson video
+                if ($lessonId !== undefined && $videoId !== undefined){
+                    $.post('/lessons/blocks/' + $lessonId + '/video/assign',{videoId : $videoId}, function ($video){
+                        var $lessonWrapper = $('#lesson-wrapper-' + $lessonId);
+                        $lessonWrapper.find('.video-preview').attr('src',$video.formats[0].thumbnail);
+                    },'json');
+                }
+
             });
             enableFileUploader( $('#upload-preview-image') );
             enableFileUploader( $('#upload-banner-image') );

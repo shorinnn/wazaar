@@ -139,6 +139,7 @@ class BlocksController extends \BaseController {
         $block = Block::firstOrCreate(['lesson_id' => $lessonId, 'type' => Block::TYPE_VIDEO]);
         $block->content = Input::get('videoId');
         $block->save();
+        return Response::json(Video::with('formats')->find(Input::get('videoId')));
     }
     
     public function size($id){
