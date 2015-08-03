@@ -245,6 +245,7 @@
     var $blockId ={{$block->id}};
     var $lessonId = {{$lesson->id}};
     var $intervalId = 0;
+    var $key = $('#form-aws-credentials').find('input[name=key]').val().replace("undefined","{{Str::random(8)}}");
 
     $(function(){
         videoUploader.initialize({
@@ -274,7 +275,7 @@
             'successCallBack' : function ($data, $elem){
                 var $localLessonId = $($elem.fileInput[0]).attr("data-lesson-id");
                 var $localBlockId = $($elem.fileInput[0]).attr("data-block-id");
-                
+
                 var $lessonWrapper = $('#lesson-wrapper-' + $localLessonId);
 
                 $lessonWrapper.find('.uploading-wrapper').addClass('hidden');
