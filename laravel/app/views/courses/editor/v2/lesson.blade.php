@@ -40,7 +40,7 @@
                     <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif">
                 </div>
             </div>
-            <div class="dropdown text-center">
+            <div class="dropdown text-center lesson-control">
               <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 Upload new
                 <i class="wa-chevron-down"></i>
@@ -62,7 +62,7 @@
             </div>
 
             @if( $lesson->blocks()->where('type','video')->count() > 0  ) 
-                <a href="#" class="remove-video">Remove video</a>
+                <a href="#" class="remove-video lesson-control">Remove video</a>
             @endif
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -268,8 +268,8 @@
                 policy:$('#form-aws-credentials').find('input[name=policy]').val(),
                 signature:$('#form-aws-credentials').find('input[name=signature]').val()
             },
-            'fileAddedCallBack' : function($e,$data){
-                console.log($data);
+            'fileAddedCallBack' : function($e, $data){
+                $('.lesson-control').addClass('hidden');
             },
             'progressCallBack' : function ($data, $progressPercentage, $elem){
                 var $lessonId = $($data.fileInput[0]).attr("data-lesson-id");
@@ -290,7 +290,7 @@
 
                 $lessonWrapper.find('.uploading-wrapper').addClass('hidden');
                 $lessonWrapper.find('.processing-wrapper').removeClass('hidden');
-
+                $('.lesson-control').removeClass('hidden');
 
                 if ($data.videoId !== undefined) {
                     $.post('/lessons/blocks/' + $localLessonId + '/video', {videoId : $data.videoId, blockId : $localBlockId });
