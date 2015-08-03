@@ -4,7 +4,7 @@ class ModulesController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor' );
-            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy']]);
+            $this->beforeFilter('csrf', ['only' => [ 'store', 'update' ]]);
         }
         
         public function store($course){
@@ -14,7 +14,6 @@ class ModulesController extends \BaseController {
                 $response = ['status' => 'error', 'errors' => trans('crud/errors.error_occurred') ];
                 return json_encode($response);
             }
-            
             $module->course_id = $course->id;
             $module->name = '';
             $module->order = $course->modules->count() + 1;
@@ -22,7 +21,9 @@ class ModulesController extends \BaseController {
                 if(Request::ajax()){
                     $response = ['status' => 'success', 
                                  'id' => $module->id, 
-                                 'html' => View::make('courses.modules.module')->with(compact('module'))->render() ];
+                                 'li' => View::make('courses.editor.v2.module_li')->with(compact('module'))->render(),
+                                 'html' => View::make('courses.editor.v2.module')->with(compact('module'))->render() ];
+                    //'html' => View::make('courses.modules.module')->with(compact('module'))->render()
                     return json_encode($response);
                 }
                 else{
@@ -59,7 +60,8 @@ class ModulesController extends \BaseController {
             if($module!=null && ( $module->course->instructor->id == Auth::user()->id 
                     || $module->course->assigned_instructor_id == Auth::user()->id ) ){
                 $name = Input::get('name');
-                $module->$name = Input::get('value');
+                $module->fill( Input::all() );
+                
                 if($module->save()){
                     $response = ['status' => 'success'];
                     return json_encode($response);

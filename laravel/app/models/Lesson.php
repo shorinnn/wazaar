@@ -4,7 +4,7 @@ use LaravelBook\Ardent\Ardent;
 
 class Lesson extends Ardent {
 
-    public $fillable = ['name', 'order'];
+    public $fillable = [ 'name', 'order', 'description', 'notes', 'free_preview', 'individual_sale', 'price' ];
     public static $relationsData = array(
         'module' => array(self::BELONGS_TO, 'Module'),
         'blocks' => array(self::HAS_MANY, 'Block'),

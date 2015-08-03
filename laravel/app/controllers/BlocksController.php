@@ -4,7 +4,7 @@ class BlocksController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor' );
-            $this->beforeFilter('csrf', ['only' => [ 'saveText', 'destroy', 'uploadFileszzz', 'update']]);
+            $this->beforeFilter('csrf', ['only' => [ 'saveText', 'uploadFileszzz', 'update']]);
         }
         
         public function text($lesson_id){
@@ -29,6 +29,7 @@ class BlocksController extends \BaseController {
         }
         
         public function uploadFiles($lesson_id){
+            
             // make sure the upload limit hasn't been reached
             $lesson = Lesson::find($lesson_id);
             if( $lesson->blocks()->where('type','file')->count() > Config::get('custom.maximum_lesson_files') ){
@@ -48,8 +49,10 @@ class BlocksController extends \BaseController {
             $block->mime = $mime;
             $block->content = Input::get('content');
             $block->name = filenameFromS3Key( $block->key );
+            $block->size = '';
             if($block->save()){
-                return json_encode(['status'=>'success', 'html' => View::make('courses.blocks.file')->with(compact('block'))->render() ]);
+                return json_encode(['status'=>'success', 'html' => View::make('courses.editor.v2.file')->withFile($block)->render() ]);
+//                return json_encode(['status'=>'success', 'html' => View::make('courses.blocks.file')->with(compact('block'))->render() ]);
             }
             else{
                 return json_encode(['status'=>'error', 'errors' => trans('crud/errors.error_occurred').'[2]' ]); 
@@ -86,7 +89,7 @@ class BlocksController extends \BaseController {
                 $response = ['status' => 'success'];
                 return json_encode($response);
             }
-            $response = ['status' => 'error', 'errors' => trans('crud/errors.cannot_delete_object', 'Block') ];
+            $response = ['status' => 'error', 'errors' => trans( ['crud/errors.cannot_delete_object' => 'Block'] ) ];
             return json_encode($response);
         }
         
@@ -136,6 +139,11 @@ class BlocksController extends \BaseController {
         $block = Block::firstOrCreate(['lesson_id' => $lessonId, 'type' => Block::TYPE_VIDEO]);
         $block->content = Input::get('videoId');
         $block->save();
+    }
+    
+    public function size($id){
+        $file = Block::find($id);
+        return json_encode( ['val'=> $file->size(), 'id' => $id] );
     }
 
 

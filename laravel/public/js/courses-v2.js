@@ -56,15 +56,21 @@ function sortablizeLessons(id){
 
 function reorderModulesAndLessons(){
     var i = 1;
+    var modules = [];
+    var lessons = [];
     $('span.module-order').each(function(){
         $(this).html(i);
-        $(this).parent().parent().find('input.module-order').val(i);
-        $(this).parent().parent().find('input.module-order').trigger('change');
-        module_id = $(this).attr('data-module-id');
-        reorderLessons( 'lessons-holder-'+module_id );
+        id = $(this).attr('data-id');
+        modules.push( id );
+        l = reorderLessons( id );
+        lessons.push(  { module:id, lessons: l} );
         ++i;
     });
-
+    id = $('.course-id').val();
+    $.post( COCORIUM_APP_PATH+'courses/'+id+'/reorder', { modules:modules, lessons:lessons }, function(result){
+        console.log(result);
+    });
+    return true;
 }
 
 /**
@@ -74,12 +80,14 @@ function reorderModulesAndLessons(){
  */
 function reorderLessons(id){
     var i = 1;
-    $('#'+id+' span.lesson-order').each(function(){
+    lessons = [];
+    $('.lesson-module-'+id).each(function(){
         $(this).html(i);
-        $(this).parent().parent().find('input.lesson-order').val(i);
-        $(this).parent().parent().find('input.lesson-order').trigger('change');
+        id = $(this).attr('data-id');
+        lessons.push( id );
         ++i;
     });
+    return lessons;
 }
 
 /**
@@ -101,14 +109,13 @@ function prepareCourseDetails(json){
  * @param {json} e The json response of the create module call
  */
 function addModule(json){
-    var destination = '#modules-list';
-    var current = $('#modules-list > li').length + 1 * 1;
-    var id = json.id;
+    var destination = '.module-container';
     var module = json.html;
     $(destination).append(module);
-    sortablizeLessons('lessons-holder-'+id);
     restoreSubmitLabel( $('#modules-form') );
+    $('.drag-module').append( json.li );
     $('.step3-module-count').html( $('.new-module').length );
+//    var id = json.id;
 }
 
 /**
@@ -118,15 +125,11 @@ function addModule(json){
  * @method addLesson
  */
 function addLesson(json){
-    $('#lessons-holder-'+json.module).append(json.html);
-    $('#lessons-holder-'+json.module+' .lesson-no-video .a-add-video').click();
-    reorderLessons( 'lessons-holder-'+json.module );
-    if( $('.step-2-filled').val()=='0' && $('.lesson-options').length >= 0 ) {
-        $('.step-2-filled').val('1');
-        updateStepsRemaining();
-    }
+    $('div.shr-editor-module-'+json.module+' .lesson-container').append(json.html);
+    $('li.shr-editor-module-'+json.module+' ol').append(json.li);
+   
     $('.step3-lesson-count').html( $('.new-lesson').length );
-    activeLessonOption();
+    enableBlockFileUploader();
 }
 
 /**
@@ -202,13 +205,74 @@ function enableRTE(selector, changeCallback){
  */
 function enableBlockFileUploader(e){
 //    $uploader = $(e.target).parent().parent().parent().parent().find('[type=file]');
-    $uploader = $(e.target).parent().parent().parent().parent().find('.lesson-file-uploader');
-    console.log($uploader);
-    enableFileUploader($uploader);
-	
-	var actionPanel = $(e.target).parent().parent().parent().siblings('div[class*="action-panel"]');
-	var actionPanelHeight = $(actionPanel).height();
-	TweenMax.fromTo(actionPanel, 0.3, {marginBottom: '40px'}, {marginBottom: '0px'});
+    $('.lesson-file-uploader').each(function(){
+        if( typeof( $(this).attr('data-upload-enabled') ) =='undefined' ){
+            $(this).attr('data-upload-enabled', 1);
+            enableFileUploader( $(this) );
+        }
+    });
+    
+}
+
+/**
+ * Enables AJAX file uploading for the specified element
+ * @param {object} $uploader The file object that is ajaxified
+ * @param {string} data-dropzone CSS Selector of the element to be used as the uploader's dropzone
+ * @param {string} data-progress-bar CSS selector of the element to be used as the uploader's progress bar
+ * @param {string} data-callback What method to run after upload is complete
+ * @method enableFileUploader
+ */
+function enableFileUploader($uploader){
+    dropzone = $uploader.attr('data-dropzone');
+    var progressbar = $uploader.attr('data-progress-bar');
+    var progressLabel = $(progressbar).attr('data-label');
+    $progressLabel = $(progressLabel);
+    upload_url = $uploader.closest('form').attr('action');
+    
+    var $u = $uploader;
+    $u.fileupload({
+                dropZone: $(dropzone)
+            }).on('fileuploadadd', function (e, data) {
+                $(progressbar).parent().show();
+//                str =  $(progressbar).prop('outerHTML');
+//                str += '<br /><br />';
+//                bootbox.dialog({
+//                    title: _('Uploading'),
+//                    message: str
+//                  });
+                callback = $uploader.attr('data-add-callback');
+                if( typeof(callback) !='undefined' ){
+                    return window[callback](e, data);
+                }
+            }).on('fileuploadprogress', function (e, data) {
+                 $progressLabel = $(progressLabel);
+                var $progress = parseInt(data.loaded / data.total * 100, 10);
+                $(progressbar).css('width', $progress + '%');
+                if( $progressLabel.length > 0 ) $progressLabel.html($progress);
+                else $(progressbar).find('span').html($progress);
+                if($progress=='100'){
+                    console.log( $progressLabel );
+                    if( $progressLabel.length > 0 ) $progressLabel.html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                    else $(progressbar).parent().find('span').html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                }
+            }).on('fileuploadfail', function (e, data) {
+                $progressLabel = $(progressLabel);
+                $(progressbar).find('span').html('');
+                $(progressbar).css('width', 0 + '%');
+                $.each(data.files, function (index) {
+                    var error = $('<span class="alert alert-danger upload-error"/>').text( _('File upload failed.') );
+                    $(progressbar).css('width', 100 + '%');
+                    if( $progressLabel.length > 0 ) $progressLabel.html(error);
+                    else $(progressbar).find('span').html(error);
+                });
+                
+            }).on('fileuploaddone', function (e,data){
+                callback = $uploader.attr('data-callback');
+                if( typeof(callback) !=undefined ){
+                    window[callback](e, data);
+                    
+                }
+            });
 }
 
 /**
@@ -242,10 +306,15 @@ function enableSettingOption(e){
  * @method blockFileUploaded
  */
 function blockFileUploaded(e, data){
+    
     lessonId = $(e.target).attr('data-lesson-id');
     var progressbar = $(e.target).attr('data-progress-bar');
+    progressLabel = $(progressbar).attr('data-label');
+    var $progressLabel = $(progressLabel);
 
-    $uploadTo = $(e.target).parent().parent().parent();
+//    $uploadTo = $(e.target).parent().parent().parent();
+    uploadTo = $(e.target).attr('data-upload-to');
+    $uploadTo = $(uploadTo);
 //    console.log($uploadTo);
 
 //    result = JSON.parse(data.result);
@@ -257,10 +326,29 @@ function blockFileUploaded(e, data){
         content: result.PostResponse.Location['#text']
     }, function(result){
         result = JSON.parse(result);
-        $(progressbar).find('span').html('');
-        $(progressbar).css('width', 0 + '%');
-//        console.log(result);
-        $uploadTo.append(result.html);
+        if(result.status=='success'){
+            $(progressbar).find('span').html('');
+            $(progressbar).css('width', 0 + '%');
+    //        console.log(result);
+            $uploadTo.append(result.html);
+            $(progressbar).parent().hide();
+            $progressLabel.html('');
+            calculateFileSizes();
+            count = $('.uploaded-files-'+lessonId+' > li').length;
+            $('.attachment-counter-'+lessonId).html(count);
+            $('.shr-lesson-'+lessonId+' .uploaded-files').show();
+            $('.shr-lesson-'+lessonId+' .uploader-area ').addClass('col-lg-3');
+            $('.shr-lesson-'+lessonId+' .uploader-area ').addClass('col-md-3');
+            $('.shr-lesson-'+lessonId+' .uploader-area ').addClass('col-sm-3');
+        }
+        else{
+            $(progressbar).find('span').html( result.errors );
+            $(progressbar).css('width', 0 + '%');
+            $progressLabel.html(result.errors );
+        }
+        
+//        bootbox.hideAll();
+        
 //        $(e.target).parent().parent().parent().append(result.html);
     });
 //    if(result.status=='error'){
@@ -300,15 +388,15 @@ function courseImageUploaded(e, data){
     var progressbar = $(e.target).attr('data-progress-bar');
     $(progressbar).find('span').html('');
     $(progressbar).css('width', 0 + '%');
+    $(progressbar).parent().hide();
+    progressLabel = $(progressbar).attr('data-label');
+    $(progressLabel).hide();
+    
     target = $(e.target).attr('data-target');
     console.log(data.result);
     result = JSON.parse(data.result);
     $(target).append(result.html);
-    $('#use-existing-preview .radio-buttons').append( result.option );
-    insertSelectBorder();
-    $('#use-existing-preview .radio-buttons').find('[type=radio]').click();
-    $('.use-existing-preview .select-border').click();
-//    $(target).find('[type=radio]').click();
+    $(target).find('[type=radio]').click();
     $('.course-listing-image-preview').html( result.html );
 }
 
@@ -422,16 +510,6 @@ function courseChangedTabs(e){
        if($(this).val() != '') str += "<li>"+$(this).val()+"</li>"; 
     });
     $('.by-the-end-ul').html(str);
-    // update submit button based on video minutes
-    id = $('.course-id').val();
-    $.get( COCORIUM_APP_PATH + 'courses/' + id + '/minutes', function( result ){
-        console.log(result + 'minutes!');
-        if( result >= 10 ){
-            $('.submit-for-approval').removeClass('disabled');
-            $('.submit-for-approval').removeAttr('disabled');
-            $('.steps-remaining p').html( '<span>' + _('Course Ready For Submission') +'</span>' );
-        }
-    });
 }
 
 function saveAndNextTab(e){
@@ -522,9 +600,251 @@ function savedStep3(e,json){
     }, 1000);
 }
 
-function deleteCurriculumItem(result, event){
+function deleteCurriculumItem( event, result ){
+    console.log('DELETING ITEMZZZ');
+    identifier = $(event.target).attr('data-delete');
+    console.log(identifier);
     deleteItem(result, event);
     reorderModulesAndLessons();
     $('.step3-lesson-count').html( $('.new-lesson').length );
     $('.step3-module-count').html( $('.new-module').length );
+}
+
+
+$('body').delegate('a.link-to-remote-confirm', 'click', linkToRemoteConfirm);
+
+function linkToRemoteConfirm(e){
+    e.preventDefault();
+    // get the message from the clicked button, don't hard code it (so we can use localization)
+    msg = $(e.target).attr('data-message');
+    elem = $(e.target);
+    while(typeof(msg)=='undefined'){
+        elem = elem.parent();
+        msg = elem.attr('data-message');
+    }
+    if( !confirm(msg) ) return false;
+    
+    var nofollow = $(e.target).attr('data-nofollow');
+    if( typeof(nofollow)!='undefined'&& nofollow==1 ) return false;
+    
+    var loading = $(e.target).attr('data-loading');
+    if( typeof(loading)!='undefined'&& loading==1 ) return false;
+    
+    url = $(e.target).attr('data-url');
+    var callback = $(e.target).attr('data-callback');
+    elem = $(e.target);
+    while(typeof(url)=='undefined'){
+        elem = elem.parent();
+        url = elem.attr('data-url');
+        callback = elem.attr('data-callback');  
+        e.target = elem;
+    }
+    
+    $(elem).attr('data-old-label', $(elem).html() );
+    $(elem).html( '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $.get(url, function(result){
+        $(e.target).attr('data-loading', 0);
+        $(elem).html( $(elem).attr('data-old-label') );
+        result = JSON.parse(result);
+        if(result.status == 'success' ){
+            if( typeof(callback)!= 'undefined'){
+                window[callback](e, result);
+            }
+        }
+        else{
+            console.log( result );
+            $.bootstrapGrowl( _('An Error Occurred.'),{align:'center', type:'danger'} );
+        }
+    });
+
+}
+$('body').delegate('.reset-form', 'click', resetForm);
+function resetForm(e){
+    e.preventDefault();
+    form = $(e.target).attr('data-form');
+    $form = $(form);
+    $form[0].reset();
+}
+
+$('body').delegate('.submit-form', 'click', submitForm);
+function submitForm(e){
+    e.preventDefault();
+    form = $(e.target).attr('data-form');
+    $form = $(form);
+    $form.find('[type="submit"]').click();
+//    $form[0].submit();
+}
+
+/**
+ * Restores the form's submit button original label
+ * @method restoreSubmitLabel
+ * @param {jQuery form} $form
+ */
+function restoreSubmitLabel($form){
+    if( typeof( $form.attr('data-save-indicator') ) !='undefined' ){
+        indicator = $form.attr('data-save-indicator');
+        $indicator = $(indicator);
+        $indicator.html( $indicator.attr('data-old-label') );
+        $indicator.removeAttr('disabled');
+        return false;
+    }
+    
+    if( typeof( $form.attr('data-no-processing') ) == 'undefined' ||  $form.attr('data-no-processing') != 1){
+        $form.find('[type=submit]').html( $form.find('[type=submit]').attr('data-old-label') );
+        $form.find('[type=submit]').removeAttr('disabled');
+    }
+    
+}
+
+$('body').delegate('.characters-left', 'keyup', charactersLeft);
+function charactersLeft(e){
+    elem = $(e.target);
+    limit = $(elem).attr('maxlength');
+    current = $(elem).val().length;
+    remaining = limit - current;
+    display = $(elem).attr('data-target');
+    $(display).html(remaining);
+}
+
+function enableCharactersLeft(){
+    $('.characters-left').each(function(){
+        $(this).keyup();
+    });
+}
+
+function toggleTheClass(e){
+    $source = $(e.target);
+    dest = $source.attr('data-target');
+    cls = $source.attr('data-class');
+    $(dest).toggleClass(cls);
+}
+
+function toggleVisibility(e){
+    $source = $(e.target);
+    dest = $source.attr('data-target');
+    hide =  $source.attr('data-visible');
+    if ( hide == 'hide' ) {
+        $source.attr('data-visible', 'show');
+        $(dest).hide();
+    }
+    else {
+        $source.attr('data-visible', 'hide');
+        $(dest).show();
+    }
+}
+
+function sortablizeLsn(){
+    $('.drag-lesson').each(function(){
+        if( typeof( $(this).attr('data-sortablized')) =='undefined' ) {
+            $(this).attr('data-sortablized', 1);
+            el = $(this)[0];
+            var sortable = Sortable.create( el, {
+                animation: 150,
+                onEnd: function (evt) {
+                    console.log(evt);
+                    cls = $(evt.item).attr('class');
+                    $lesson = $('div.'+cls);
+                    i = 0;
+                    $lesson.parent().find('.shr-lesson').each(function(){
+                        if(i == evt.newIndex){
+                            if( evt.newIndex < evt.oldIndex ) $(this).before( $lesson );
+                            else $(this).after( $lesson );
+                        }
+                        ++i;
+                    });
+                    reorderModulesAndLessons();
+                }
+            });
+        }
+    });
+}
+
+function sortablizeMdl(){
+    $('.drag-module').each(function(){
+        if( typeof( $(this).attr('data-sortablized')) =='undefined' ) {
+            $(this).attr('data-sortablized', 1);
+            el = $(this)[0];
+            var sortable = Sortable.create( el, {
+                animation: 150,
+                onEnd: function (evt) {
+                    console.log(evt);
+                    cls = $(evt.item).attr('class');
+                    $module = $('div.'+cls);
+                    i = 0;
+                    $module.parent().find('.shr-editor-module').each(function(){
+                        if(i == evt.newIndex){
+                            if( evt.newIndex < evt.oldIndex ) $(this).before( $module );
+                            else $(this).after( $module );
+                        }
+                        ++i;
+                    });
+                    reorderModulesAndLessons();
+                }
+            });
+        }
+    });
+}
+
+
+$('body').delegate('.type-in-elements', 'keyup', typeInElemens);
+function typeInElemens(e){
+    elem = $(e.target).attr('data-elements');
+    $(elem).html( $(e.target).val() );
+}
+
+function calculateFileSizes(){
+    $('.calculate-file-size').each(function(){
+        id = $(this).attr('data-id');
+        obj = $(this);
+        $.get( COCORIUM_APP_PATH+'blocks/'+id+'/size', function(result){
+            result = JSON.parse(result);
+            $obj = $('.calculate-file-size-'+result.id);
+            console.log($obj);
+            $obj.html( result.val );
+            console.log( result.val );
+            $obj.removeClass('calculate-file-size');
+        });
+    });
+}
+
+$('body').delegate('.toggle-minimize', 'click', toggleMinimize);
+function toggleMinimize(e){
+    if( $(e.target).hasClass('fa') ) $(e.target).toggleClass('fa-compress');
+    if( typeof( $(e.target).attr('data-toggle-icon')) !='undefined' ){
+        $( $(e.target).attr('data-toggle-icon') ).toggleClass('fa-compress');
+    }
+    
+    cls = $(e.target).attr('data-class');
+    target = $(e.target).attr('data-target');
+    $(target).toggleClass( cls );
+    console.log('toggling minimize!!!');
+}
+
+
+function deleteAttachment( event, result ){
+    deleteItem(result, event);
+    lessonId = $(event.target).attr('data-lesson');
+    count = $('.uploaded-files-'+lessonId+' > li').length;
+    $('.attachment-counter-'+lessonId).html(count);
+}
+
+function minimizeAfterSave(result, e){
+    elem = $(e.target).attr('data-elem');
+    console.log( elem+' .toggle-minimize' );
+    $(elem+' .toggle-minimize').first().click();
+}
+
+
+$('body').delegate('.click-on-enter', 'keyup keypress', clickOnEnter);
+function clickOnEnter(e){
+    if( e.which == 13 ){
+        if( $.trim( $(e.target).val() )  == '') return false;
+        link = $(e.target).attr('data-click');
+        if( e.type=='keyup'){
+            $(link).click();
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }
 }

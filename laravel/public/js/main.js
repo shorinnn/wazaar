@@ -1158,6 +1158,7 @@ function skinVideoControls(){
 
 //Add blue border with a checkmark to selected images
 function insertSelectBorder(){
+        $('.use-existing-preview .select-border').off('click');
 	$('.use-existing-preview .select-border').on('click', function(){
 		$(this).toggleClass('display-border');
 		if($(this).hasClass('display-border')){
@@ -1372,6 +1373,7 @@ function colorLinks(e){
     $(elem).removeAttr('style');
     $(e.target).css('color', color);
 }
+<<<<<<< HEAD
 
 $.expr[":"].contains = $.expr.createPseudo(function(arg) {
     return function( elem ) {
@@ -1384,3 +1386,5 @@ function searchDiscussions(){
     $('.questions-box').hide();
     $('span:contains("'+s+'")').parent().show();
 }
+=======
+>>>>>>> editorBranch

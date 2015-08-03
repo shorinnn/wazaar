@@ -210,6 +210,7 @@ Route::group(array('domain' => $domain), $wwwRoutes);
 Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 
 Route::group( array('domain' => $instructorSubdomain ), function(){
+    Route::post('courses/{id}/reorder', 'CoursesController@reorder');
     Route::get('courses/mycourses', 'CoursesController@myCourses');
     Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
     Route::get('courses/{slug}/dashboard', 'CoursesController@dashboard');
@@ -227,19 +228,23 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::get('courses/{slug}/custompercentage/', 'CoursesController@customPercentage');
     Route::get('courses/{id}/minutes', 'CoursesController@minutes');
     // Modules routes
+    Route::get('course/{course}/module/{id}/destroy', 'ModulesController@destroy');
     Route::resource('courses.modules', 'ModulesController');
 
     // Lessons
+    Route::get('modules/{module}/lessons/{id}/destroy', 'LessonsController@destroy');
     Route::get('modules/{module}/lessons/{id}/details', 'LessonsController@details');
     Route::resource('modules.lessons', 'LessonsController');
 
     // Blocks
+    Route::get('/blocks/{id}/size', 'BlocksController@size');
     Route::group(['prefix' => 'lessons'], function (){
         Route::group(['prefix' => 'blocks'], function (){
             Route::get('/{lesson_id}/text', 'BlocksController@text');
             Route::post('/{lesson_id}/{block_id}/text', 'BlocksController@saveText');
             Route::get('/{lesson_id}/files', 'BlocksController@files');
             Route::post('/{lesson_id}/files', 'BlocksController@uploadFiles');
+            Route::get('/{lesson_id}/{id}', 'BlocksController@destroy');
             Route::delete('/{lesson_id}/{id}', 'BlocksController@destroy');
             Route::put('/{lesson_id}/{id}', 'BlocksController@update');
             Route::get('/{lesson_id}/video', 'BlocksController@video');

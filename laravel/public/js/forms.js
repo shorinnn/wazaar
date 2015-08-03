@@ -29,6 +29,10 @@ function formAjaxSubmit(e){
     tinyMCE.triggerSave();
     form = $(e.target);
     form.find('.ajax-errors').remove();
+    errorList = $(e.target).attr('data-error-list');
+    if( $(errorList).length> 0){
+        $(errorList).html( '' );
+    }
     $.post( form.attr('action'), form.serialize(), function(result){
         result = JSON.parse(result);
         if(result.status=='error'){
@@ -48,7 +52,11 @@ function formAjaxSubmit(e){
                 }
                 return false;
             }
-            form.find('[type="submit"]').after('<p class="alert alert-danger ajax-errors">'+result.errors+'</p>');
+            errorList = $(e.target).attr('data-error-list');
+            if( $(errorList).length> 0){
+                $(errorList).html( '<p>'+result.errors+'</p>' );
+            }
+            else form.find('[type="submit"]').after('<p class="alert alert-danger ajax-errors">'+result.errors+'</p>');
             return false;
         }
         restoreSubmitLabel(form);
@@ -91,14 +99,14 @@ function submittedFormButton(e){
         $indicator = $(indicator);
         $indicator.attr('data-old-label', $indicator.html());
         $indicator.attr('disabled', 'disabled');
-        $indicator.html( _('Processing...') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+        $indicator.html(' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
         return false;
     }
     
     if( typeof( $(e.target).attr('data-no-processing') ) == 'undefined' || $(e.target).attr('data-no-processing') != 1){
         $(e.target).find('[type=submit]').attr('data-old-label', $(e.target).find('[type=submit]').html());
         $(e.target).find('[type=submit]').attr('disabled', 'disabled');
-        $(e.target).find('[type=submit]').html( _('Processing...') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+        $(e.target).find('[type=submit]').html( ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
     }
     
 }
@@ -248,10 +256,12 @@ function reorderClonable(name){
  */
 function deleteClonable(e){
     e.preventDefault();
-    name = $(e.target).parent().find('input').attr('name');
+    del = $(e.target).attr('data-delete');
+    name = $(del).find('input').attr('name');
     if( $('[name="'+name+'"]').length == 1 ) return false;
     $(e.target).parent().fadeOut( function(){
         $(e.target).parent().remove();
+        $(del).remove();
         reorderClonable( name );
     });
     
@@ -267,6 +277,10 @@ function deleteClonable(e){
  */
 function deleteItem(result, event){
     identifier = $(event.target).attr('data-delete');
+    if( typeof(identifier) == 'undefined'){
+        identifier = $(result.target).attr('data-delete');
+    }
+    console.log(identifier);
     $(identifier).remove();
 }
 
@@ -360,7 +374,9 @@ function enableFileUploader($uploader){
     dropzone = $uploader.attr('data-dropzone');
     var progressbar = $uploader.attr('data-progress-bar');
     upload_url = $uploader.closest('form').attr('action');
-    $uploader.fileupload({
+    console.log(dropzone);
+    var $u = $uploader;
+    $u.fileupload({
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
                 callback = $uploader.attr('data-add-callback');

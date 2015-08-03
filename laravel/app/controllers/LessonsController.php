@@ -4,7 +4,7 @@ class LessonsController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor' );
-            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy']]);
+            $this->beforeFilter('csrf', ['only' => [ 'store', 'update' ]]);
         }
 
 	public function store($module){
@@ -23,7 +23,10 @@ class LessonsController extends \BaseController {
                 if(Request::ajax()){
                     $response = ['status' => 'success', 
                                  'module' => $lesson->module_id, 
-                                 'html' => View::make('courses.lessons.lesson')->with(compact('lesson'))->render() ];
+                                 'li' => View::make('courses.editor.v2.lesson_li')->with(compact('lesson'))->render() ,
+                                 'html' => View::make('courses.editor.v2.lesson')->with(compact('lesson'))->render()
+                            ];
+//                                 'html' => View::make('courses.lessons.lesson')->with(compact('lesson'))->render() ];
                     return json_encode($response);
                 }
                 else{
@@ -59,17 +62,21 @@ class LessonsController extends \BaseController {
             $lesson = Lesson::find($id);
             
             // validate Youtube/Vimeo Link if field is external_video_url
-            if(Input::get('name')=='external_video_url'){
-                if( !validateExternalVideo(Input::get('value')) ){
-                    $response = ['status' => 'error', 'errors' =>  trans('crud/errors.invalid_video_url') ];
-                    return json_encode($response);
-                }
-                    
-            }
+//            if(Input::get('name')=='external_video_url'){
+//                if( !validateExternalVideo(Input::get('value')) ){
+//                    $response = ['status' => 'error', 'errors' =>  trans('crud/errors.invalid_video_url') ];
+//                    return json_encode($response);
+//                }
+//                    
+//            }
             if($lesson!=null && ( $lesson->module->course->instructor->id == Auth::user()->id 
                     || $lesson->module->course->assigned_instructor_id == Auth::user()->id ) ){
                 $name = Input::get('name');
-                $lesson->$name = Input::get('value');
+//                $lesson->$name = Input::get('value');
+                $lesson->fill( Input::all() ); 
+                if( !Input::has('free_preview') ) $lesson->free_preview = 'no';
+                if( !Input::has('individual_sale') ) $lesson->individual_sale = 'no';
+                
                 if( $lesson->save() ){
                     $response = ['status' => 'success'];
                     if( $name=='external_video_url' ){

@@ -1,0 +1,1 @@
+<li class="shr-lesson-{{$lesson->id}}"><a href="#" class='lesson-{{$lesson->id}}-copy-name'>{{ $lesson->name }}</a></li>

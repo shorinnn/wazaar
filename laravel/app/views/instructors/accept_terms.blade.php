@@ -12,13 +12,13 @@
                 <div class="checkbox-item text-center">
                   <div class="checkbox-checkbox checkbox-checked">
                     <input id="checkbox-1" autocomplete="off" type="checkbox" name='accept' value='1' />                        
-                    <label for="checkbox-1" class="small-checkbox">
+                    <label for="checkbox-1" class="small-checkbox left terms-checkbox">
                     </label>
-                        {{ trans('general.i-agree') }}
+                        <span>{{ trans('general.i-agree') }}</span>
                   </div>  
                 </div>
             </div><br />
-    <button type='submit' class='btn btn-primary'>{{ trans('general.accept') }}</button>
+    <button type='submit' class='blue-button large-button'>{{ trans('general.accept') }}</button>
 {{ Form::close() }}
 </section>
 
