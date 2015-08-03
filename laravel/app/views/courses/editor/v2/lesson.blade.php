@@ -3,6 +3,7 @@
 
   $block = Block::firstOrCreate(['lesson_id' => $lesson->id, 'type' => Block::TYPE_VIDEO]);
   $video = LessonHelper::getVideoByBlock($block);
+  $uniqueKey = Str::random(8);
 ?>
 <div class="shr-lesson shr-lesson-{{$lesson->id}} shr-lesson-editor-{{$lesson->id}}
      if($lesson->module->course->modules()->count()>1 && $lesson->module->lessons()->count()>1)
@@ -40,7 +41,7 @@
               <ul class="dropdown-menu" aria-labelledby="upload-new">
                 <label class="upload-button">
                     <span>Upload new video</span>
-                    <input type="file" hidden="" id="fileupload-{{$lesson->id}}" name="file" data-unique-key="{{Str::random(8)}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lesson->id}}"/>
+                    <input type="file" hidden="" id="fileupload-{{$lesson->id}}" name="file" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lesson->id}}"/>
                 </label>
                 <span class="use-existing use-existing-preview" >
                     <span class="use-existing">
@@ -245,7 +246,7 @@
     var $blockId ={{$block->id}};
     var $lessonId = {{$lesson->id}};
     var $intervalId = 0;
-    var $key = $('#form-aws-credentials').find('input[name=key]').val();//.replace("undefined","{{Str::random(8)}}");
+    var $key =   '{{$uniqueKey}}-${filename}'; //$('#form-aws-credentials').find('input[name=key]').val();//.replace("undefined","{{Str::random(8)}}");
 
     $(function(){
         videoUploader.initialize({
