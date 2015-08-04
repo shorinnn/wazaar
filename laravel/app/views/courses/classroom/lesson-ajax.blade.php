@@ -117,12 +117,12 @@
                                                     <span class="bufferBar"></span>
                                                     <span class="timeBar"></span>
                                                 </div>
-                                                <div class="add-video-note">
+<!--                                                <div class="add-video-note">
                                                     <span class="note-number">11</span>
                                                     <form>
                                                         <input type="text" placeholder=" Add note ...">
                                                     </form>
-                                                </div>
+                                                </div>-->
                                             </div>
                                             <div class="volume-container">
                                                 <div class="volume" title="Set volume">
@@ -143,7 +143,6 @@
                                     </div>
                                 </div>
                                 @if($video != null)
-                                <br /><br />
                                     <select id='vid-quality' onchange='setVideoFormat()'>
                                         @foreach($video->formats()->get() as $format)
                                             <?php
@@ -172,7 +171,7 @@
                     <div class="header clearfix">
                         <a href="#" class="questions-tab-header active">{{ $lesson->discussions()->count() }} Questions</a>
                         
-                        <a href="#" class="notes-tab-header">10 Notes</a>
+                        <!--<a href="#" class="notes-tab-header">10 Notes</a>-->
                     </div>
                     <div class="tab-contents clear">
                         <div class="rows search-discussion-form">
