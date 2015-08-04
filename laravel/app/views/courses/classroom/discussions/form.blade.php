@@ -23,7 +23,7 @@
                     <input type="hidden" name="lesson_id" value="{{$lesson->id}}" />
 <!--                    <center>
                     <textarea name="title" class="form-control" placeholder="Your Question"></textarea>
-                        <button class="submit-for-approval blue-button extra-large-button">Post</button>
+                        <button class="submit-for-approval blue-button large-button">Post</button>
                     </center>-->
                     
                 </div>

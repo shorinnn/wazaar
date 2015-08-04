@@ -5108,7 +5108,7 @@ h6{
 	padding: 10px 20px 20px;
 	border-radius: 3px;
 	float: left;
-	max-width: 90%;
+	width: 85%;
 }
 
 .discussion-sidebar .replies-container .replies-box .name{
@@ -5166,14 +5166,17 @@ h6{
 
 .discussion-sidebar-footer form{
 	float: left;
-	width: 90%;
+	width: 85%;
 }
 
+.discussion-sidebar-footer form textarea,
 .discussion-sidebar-footer form input{
 	margin: 0;
 	color: #798794;
 	font-size: 13px;
 	padding: 0 12px;
+	height: 38px;
+	resize: none;
 }
 
 /*Ask question sidebar*/
@@ -12731,6 +12734,9 @@ header .top-menu .logged-in-top-menu{
 	.student-teacher-dashboard-container .dashboard-content section .buttons .continue-last-lesson{
 		float: left;
 	}
+	.classroom-video.video-container .topControl .add-video-note form{
+		width: 80%;
+	}
 
 }
 
@@ -12783,11 +12789,18 @@ header .top-menu .logged-in-top-menu{
 	.student-teacher-dashboard-container .dashboard-content header .data .current-lesson{
 		text-align: right;
 	}
+	.classroom-view .right-slide-menu{
+		width: 100%;
+	}
 }
 
 @media (max-width:402px){
 	.user-data-modal .or span{
 		width: 40%;
+	}
+	
+	.discussion-sidebar .replies-container .replies-box{
+		width: 80%;
 	}
 }
 

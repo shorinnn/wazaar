@@ -24,7 +24,12 @@
                     -moz-transition: all 0.5s;
                     transition: all 0.5s;
             }
-
+			
+			.discussion-sidebar,
+			.classroom-view .right-slide-menu > div{
+				height: 100%;
+			}
+			
             .classroom-view .right-slide-menu.in{
                     right: 0;
             }
