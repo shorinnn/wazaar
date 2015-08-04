@@ -6,12 +6,12 @@
   $uniqueKey = Str::random(8);
 ?>
 <div class="shr-lesson shr-lesson-{{$lesson->id}} shr-lesson-editor-{{$lesson->id}}
-     @if($lesson->module->course->modules()->count()>1 && $lesson->module->lessons()->count()>1)
-     lesson-minimized
+     @if($lesson->name != '')
+         lesson-minimized
      @endif
      ">
      
-    <div class="row lesson-data no-margin">
+    <div class="row lesson-data no-margin toggle-minimize"  data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}'>
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="lesson-wrapper-{{$lesson->id}}">
             <div class="lesson-name"><span><em></em></span>Lesson 
                 <div class="inline-block lesson-module-{{$lesson->module->id}} lesson-order" data-id="{{$lesson->id}}">{{ $lesson->order }}</div></div>
@@ -66,12 +66,12 @@
             @endif
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <a class="edit-icon toggle-minimize"  data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'>
-                <i class="fa fa-pencil pull-right lesson-toggle-icon-{{$lesson->id}}" data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'></i>
+            <a class="edit-icon toggle-minimize"  data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'>
+                <i class="fa fa-pencil pull-right lesson-toggle-icon-{{$lesson->id}}" data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'></i>
             </a>
              <p class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-name'>{{$lesson->name}}</p>
              <p class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-desc'>{{$lesson->description}}</p>
-             <div class='minimized-lesson-elem'>
+             <div class='minimized-lesson-elem no-highlight'>
                  <!--<i class='fa fa-quote-left'></i> 1 Note-->
                  
                  <span class="attachments">
@@ -79,8 +79,16 @@
                     <span class='attachment-counter-{{$lesson->id}}'>{{ $lesson->blocks()->where('type','file')->count() }}</span> 
                     Attachments
                 </span>
-                 <a class="toggle-minimize"  data-target='.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}'>
-                     <i class='fa fa-chevron-down' data-target='.shr-lesson-editor-{{$lesson->id}}' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}' data-class='lesson-minimized'></i> Show</a>
+                 <a class="show-files" onclick="showFiles(event, '.file-preview-{{$lesson->id}}')">
+                     <i class='fa fa-chevron-down'></i> Show</a>
+                     <div class="file-preview file-preview-{{$lesson->id}}">
+                         <ul class=" uploaded-files-{{$lesson->id}}">
+                            @foreach( $lesson->blocks()->where('type','file')->get() as $file )
+                                {{ View::make('courses.editor.v2.list-file')->with( compact('file') )->render() }}
+                            @endforeach
+
+                        </ul>
+                     </div>
              </div>
              
             <div class='maximized-elem'>
@@ -232,7 +240,8 @@
     <div class="row footer-buttons no-margin">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <a href="#" class="green-button large-button submit-form submit-lesson-{{$lesson->id}}" data-form='.lesson-form-{{ $lesson->id }}'>Save changes</a>
-            <a href="#" class="default-button large-button reset-form" data-form='.lesson-form-{{ $lesson->id }}'>Cancel</a>
+            <a href="#" class="default-button large-button reset-form toggle-minimize" data-form='.lesson-form-{{ $lesson->id }}'
+                data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}' >Cancel</a>
             
             <!--<a href="#" class="delete-lesson right"><i class="fa fa-trash-o"></i> Delete this lesson</a>-->
             

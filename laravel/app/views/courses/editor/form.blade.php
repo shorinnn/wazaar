@@ -73,7 +73,7 @@
         opacity:1;
     }
     
-    .module-zone:hover .toggle-minimize{
+    .module-zone:hover .toggle-minimize:not([type=reset]){
         display:block !important;
         cursor: pointer;
     }
@@ -100,7 +100,7 @@
     .lesson-minimized .minimized-lesson-elem{
         display: block;
     }
-    .lesson-minimized:hover .minimized-lesson-elem{
+    .lesson-minimized:hover .minimized-lesson-elem:not(.no-highlight){
         background-color:#e8eced;
     }
 
@@ -109,7 +109,7 @@
 		font-size: 13px;
     }
 
-    .lesson-minimized .minimized-lesson-elem .toggle-minimize{
+    .lesson-minimized .minimized-lesson-elem .toggle-minimize , .show-files{
 		font-size: 12px;
 		font-weight: bold;
 		color: #069bff;
@@ -145,6 +145,9 @@
         display: none;
     }
     
+    .lesson-minimized .lesson-control{
+        display: none !important;
+    }
     .lesson-minimized .maximized-elem,.lesson-minimized .lesson-data input, .lesson-minimized .lesson-data textarea,  .lesson-minimized .lesson-data button{
         display:none !important;
     }
@@ -230,6 +233,17 @@
         width:63px !Important;
     }
     /*** /price box ***/
+    
+    .file-preview{
+        background-color: white;
+        position: absolute;
+        padding: 10px;
+        display: none;
+    }
+    
+    .file-preview li{
+        margin:5px;
+    }
     </style>
 
     @if (Session::get('success'))

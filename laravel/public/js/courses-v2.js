@@ -807,17 +807,43 @@ function calculateFileSizes(){
     });
 }
 
-$('body').delegate('.toggle-minimize', 'click', toggleMinimize);
+$('body').delegate('a.toggle-minimize, button.toggle-minimize, .module-minimized div.toggle-minimize.module-data, .lesson-minimized div.toggle-minimize.lesson-data ', 'click', toggleMinimize);
 function toggleMinimize(e){
     if( $(e.target).hasClass('fa') ) $(e.target).toggleClass('fa-compress');
-    if( typeof( $(e.target).attr('data-toggle-icon')) !='undefined' ){
-        $( $(e.target).attr('data-toggle-icon') ).toggleClass('fa-compress');
-    }
+    
+    toggleIcon = $(e.target).attr('data-toggle-icon');
     
     cls = $(e.target).attr('data-class');
     target = $(e.target).attr('data-target');
+    
+    elem = $(e.target);
+    tries = 0;
+    var fromChild = false;
+    while( typeof(cls)=='undefined'){
+        elem = elem.parent();
+        cls = elem.attr('data-class');
+        target = $(elem).attr('data-target');
+        toggleIcon = $(elem).attr('data-toggle-icon');
+        console.log( target );
+        tries ++;
+        fromChild = true;
+        if( tries > 50) break;
+    }
+    e.preventDefault();
+    e.stopPropagation();
+    console.log( $(target).hasClass(cls) );
+    console.log( $(target) );
+    // dont minimize when clicking inside the box
+    if(fromChild && !$(target).hasClass(cls)){
+        console.log('FROM CHILD');
+        return false;
+    }
+    
     $(target).toggleClass( cls );
     console.log('toggling minimize!!!');
+    if( typeof( toggleIcon ) !='undefined' ){
+        $(toggleIcon).toggleClass('fa-compress');
+    }
 }
 
 
@@ -831,7 +857,7 @@ function deleteAttachment( event, result ){
 function minimizeAfterSave(result, e){
     elem = $(e.target).attr('data-elem');
     console.log( elem+' .toggle-minimize' );
-    $(elem+' .toggle-minimize').first().click();
+    $(elem+' a.toggle-minimize').first().click();
 }
 
 
@@ -847,4 +873,10 @@ function clickOnEnter(e){
         e.stopPropagation();
         return false;
     }
+}
+
+function showFiles(e, elem){
+    e.preventDefault();
+    e.stopPropagation();
+    $(elem).slideToggle();
 }
