@@ -6,7 +6,7 @@
     <div class="module-zone">
         {{ Form::model( $module, ['action' => ['ModulesController@update', $module->course->id, $module->id], 'method' => 'PUT', 'class' => 'ajax-form', 
                     'data-callback' => 'minimizeAfterSave', 'data-elem' => ".shr-editor-module-".$module->id] ) }}
-            <div class="row module-data">
+            <div class="row module-data no-margin">
                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                     <span class="module-name">Module <span data-id="{{$module->id}}" class="module-order">{{$module->order}}</span></span>
                 </div>
@@ -34,7 +34,7 @@
                     <div class="minimized-description minimized-elem minimized-desc-{{$module->id}}">{{ $module->description }}</div>
                 </div>
             </div>
-            <div class="row footer-buttons">
+            <div class="row footer-buttons no-margin">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <button type="submit" class="green-button large-button">Save changes</button>
                     <button type="reset" class="default-button large-button">Cancel</button>
