@@ -24,10 +24,11 @@ class DiscussionsController extends \BaseController {
 	{
             $discussion = new LessonDiscussion(Input::all());
             $discussion->student_id = Auth::user()->id;
+            $course = $discussion->lesson->module->course;
             if( $discussion->save() ){
                 if( Request::ajax() ){
                     $response['status'] = 'success';
-                    $response['html'] = View::make('courses.classroom.discussions.question')->with( compact('discussion') )->render();
+                    $response['html'] = View::make('courses.classroom.discussions.question')->with( compact('discussion', 'course') )->render();
                     return json_encode($response);
                 }
 		return Redirect::back();

@@ -1395,3 +1395,13 @@ function searchDiscussions(){
     $('.questions-box').hide();
     $('span:contains("'+s+'")').parent().show();
 }
+
+function showLessonQuestionForm(){
+    $('.right-slide-menu').html( $('#question-form').html() );
+    toggleRightBar();
+}
+
+function LessonQuestionAddToList(json, e){
+    addToList(json, e);
+    toggleRightBar();
+}

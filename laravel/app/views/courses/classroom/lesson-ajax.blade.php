@@ -183,7 +183,15 @@
                             @endforeach
                         </div>
                         
-                        {{ View::make('courses.classroom.discussions.form')->with( compact('lesson') ) }}
+                        <div class="ask-question">
+                            <div class="img-container">
+                                <img src="{{Auth::user()->commentPicture('student')}}" alt="" class="img-responsive">
+                            </div>
+                            <span onclick="showLessonQuestionForm()">Ask a question</span>
+                            <div style="display:none" id="question-form">
+                                {{ View::make('courses.classroom.discussions.form')->with( compact('lesson') ) }}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 

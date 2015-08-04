@@ -10,11 +10,11 @@ class DiscussionRepliesController extends \BaseController {
             $lesson = Lesson::find( $discussion->lesson_id );          
             $reply = new LessonDiscussionReply( Input::all() );
             $reply->student_id = Auth::user()->id;
-                
+            $course = $lesson->module->course;
             if( $reply->save() ){
                   if( Request::ajax() ){
                     $response['status'] = 'success';
-                    $response['html'] = View::make('courses.classroom.discussions.reply')->with( compact('reply') )->render();
+                    $response['html'] = View::make('courses.classroom.discussions.reply')->with( compact('reply', 'course') )->render();
                     return json_encode($response);
                 }
 		return Redirect::back();
