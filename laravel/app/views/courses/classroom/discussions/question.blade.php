@@ -2,7 +2,7 @@
 
     <span class="question-title">
         <a href='{{action( 'DiscussionsController@show', $discussion->id) }}' data-url='{{action( 'DiscussionsController@show', $discussion->id) }}'
-           data-callback='showClassroomQuestion' class='link-to-remote' data-property='html' data-target='.lesson-questions-replies'> 
+           data-callback='toggleRightBar' class='link-to-remote' data-property='html' data-target='.right-slide-menu'> 
             {{$discussion->title}} 
         </a>
     </span>
@@ -13,7 +13,7 @@
             <i class="fa fa-angle-up"></i>
         </a> |
         <a href='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'down' ] ) }}' class='link-to-remote' data-callback='updateHTML' data-property='votes'
-           data-url='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'down' ] ) }}'data-target='.discussion-votes-{{$discussion->id}}'>
+           data-url='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'down' ] ) }}' data-target='.discussion-votes-{{$discussion->id}}'>
             <i class="fa fa-angle-down"></i>
         </a>
     </div>
