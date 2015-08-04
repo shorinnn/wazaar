@@ -6,9 +6,9 @@
   $uniqueKey = Str::random(8);
 ?>
 <div class="shr-lesson shr-lesson-{{$lesson->id}} shr-lesson-editor-{{$lesson->id}}
-     if($lesson->module->course->modules()->count()>1 && $lesson->module->lessons()->count()>1)
+     @if($lesson->module->course->modules()->count()>1 && $lesson->module->lessons()->count()>1)
      lesson-minimized
-     endif
+     @endif
      ">
      
     <div class="row lesson-data">

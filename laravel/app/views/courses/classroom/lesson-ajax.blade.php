@@ -11,8 +11,32 @@
             header, footer{
                 display: none;
             }
+            
+            .classroom-view .right-slide-menu{
+                    width: 500px;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    right: -600px;
+                    z-index: 8;
+                    background: #fff;
+                    -webkit-transition: all 0.5s;
+                    -moz-transition: all 0.5s;
+                    transition: all 0.5s;
+            }
+
+            .classroom-view .right-slide-menu.in{
+                    right: 0;
+            }
+            
+            .classroom-view::-webkit-scrollbar {
+             display: none;
+            }
         </style>
+        
+            <div class="right-slide-menu"></div>
         <div class="row">
+            
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                 <div class="classroom-header row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -134,7 +158,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="overflow:hidden;">
                 <div class="questions-sidebar">
                     <div class="header clearfix">
                         <a href="#" class="questions-tab-header active">{{ $lesson->discussions()->count() }} Questions</a>
@@ -162,7 +186,10 @@
                         {{ View::make('courses.classroom.discussions.form')->with( compact('lesson') ) }}
                     </div>
                 </div>
+                
+                
             </div>
+                
         </div>
         <div class="slide-menu">
             <div class="header">
@@ -205,6 +232,11 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+        
+       
+            
+            
 <script>
     if(typeof($)=='function'){
         skinVideoControls();

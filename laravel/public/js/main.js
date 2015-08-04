@@ -1366,6 +1366,16 @@ function toggleSideMenu(){
 	});	
 }
 
+function toggleRightBar(e, json){
+    $('.right-slide-menu').toggleClass('in');
+    if( typeof(e) !='undefined' ){
+        var target = $(e.target).attr('data-target');
+        prop = $(e.target).attr('data-property');
+        val = json[prop];
+        $(target).html( val );
+    }
+}
+
 
 function colorLinks(e){
     color = $(e.target).attr('data-color');
