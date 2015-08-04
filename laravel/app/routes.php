@@ -50,7 +50,10 @@ $wwwRoutes = function(){
 	Route::get('checkout', 'SiteController@checkout');
 	Route::get('newclassroom', 'SiteController@newclassroom');
 	Route::get('analytics', 'SiteController@analytics');
-	Route::get('newdashboard', 'SiteController@newdashboard');
+	Route::get('studentdashboard', 'SiteController@studentdashboard');
+	Route::get('studentaccount', 'SiteController@studentaccount');
+	Route::get('studentcourse', 'SiteController@studentcourse');
+	Route::get('studentmessages', 'SiteController@studentmessages');
 
     // temporary tracking route
     Route::post('action-tracker', 'ActionController@track');

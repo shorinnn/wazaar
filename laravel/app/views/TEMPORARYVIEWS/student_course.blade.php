@@ -38,7 +38,7 @@
     <div class="container-fluid student-dashboard student-course">
     	<div class="container">
         	<div class="row">
-            	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 margin-top-25">
+            	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 margin-top-25">
                 	<div class="sidebar">
                         <div class="course-topics-box">
                             <div class="topic-header clearfix">
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-            	<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 margin-top-25">
+            	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 margin-top-25">
                 	<div class="question-answer-wrap">
                         <div class="row question-answer">
                             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
@@ -155,7 +155,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12 col-sm-9 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
                                 <div class="discussion-sidebar-footer clearfix">
                                     <div class="avatar">
                                         <img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" alt="" class="img-responsive">

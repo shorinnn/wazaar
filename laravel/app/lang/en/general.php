@@ -9,6 +9,7 @@ return array(
     'members' => 'Members',
     'user' => 'User',
     'time' => 'Time',
+	'upload_new_picture' => 'Upload new picture',
 	'recommends' => 'Recommends',
 	'difficulty' => 'Difficulty',
     'verify-email' => 'Verify Email',

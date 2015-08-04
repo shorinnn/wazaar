@@ -83,9 +83,21 @@ class SiteController extends \BaseController {
 	}
 
 // Temporary functions for new Dashboard UI
-	public function newdashboard()
+	public function studentdashboard()
 	{            
-            Return View::make('TEMPORARYVIEWS.newdashboard');
+            Return View::make('TEMPORARYVIEWS.student_dashboard');
+	}
+	public function studentaccount()
+	{            
+            Return View::make('TEMPORARYVIEWS.student_account');
+	}
+	public function studentcourse()
+	{            
+            Return View::make('TEMPORARYVIEWS.student_course');
+	}
+	public function studentmessages()
+	{            
+            Return View::make('TEMPORARYVIEWS.student_messages');
 	}
 
         
