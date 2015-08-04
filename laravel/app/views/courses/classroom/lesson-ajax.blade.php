@@ -1,6 +1,10 @@
 <script>
     var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';
     var lessonId = {{ $lesson->id }};
+    var currentLocation = '{{ action('ClassroomController@lesson', 
+                                            [ $lesson->module->course->slug,
+                                            $lesson->module->slug,
+                                            $lesson->slug] )}}';
 </script>
 <style>
             .small-overlay{
@@ -54,23 +58,23 @@
                                 <a href="{{ action('ClassroomController@lesson', 
                                             [ $prevLesson->module->course->slug,
                                             $prevLesson->module->slug,
-                                            $prevLesson->slug] )}}"
+                                            $prevLesson->slug] )}}#{{$prevLesson->slug}}"
                                     data-indicator-style='small'
                                     data-url="{{ action('ClassroomController@lesson', 
                                     [ $prevLesson->module->course->slug,
                                     $prevLesson->module->slug,
-                                    $prevLesson->slug] )}}" class="prev-button load-remote"  data-target='.classroom-view'><i class="wa-chevron-left"> {{ $prevLesson->name }}</i></a>
+                                    $prevLesson->slug] )}}#{{$prevLesson->slug}}" class="prev-button load-remote"  data-target='.classroom-view'><i class="wa-chevron-left"> {{ $prevLesson->name }}</i></a>
                             @endif
                             @if( $nextLesson != null )
                                 <a href="{{ action('ClassroomController@lesson', 
                                             [ $nextLesson->module->course->slug,
                                             $nextLesson->module->slug,
-                                            $nextLesson->slug] )}}" 
+                                            $nextLesson->slug] )}}#{{$nextLesson->slug}}" 
                                     data-indicator-style='small'
                                     data-url="{{ action('ClassroomController@lesson', 
                                     [ $nextLesson->module->course->slug,
                                     $nextLesson->module->slug,
-                                    $nextLesson->slug] )}}" class="next-button load-remote" data-target='.classroom-view'>{{ $nextLesson->name }} <i class="wa-chevron-right"></i></a>
+                                    $nextLesson->slug] )}}#{{$nextLesson->slug}}" class="next-button load-remote" data-target='.classroom-view'>{{ $nextLesson->name }} <i class="wa-chevron-right"></i></a>
                             @endif
                         </div>
                     </div>
@@ -275,6 +279,15 @@
     function lessonComplete(lesson){
         localStorage.setItem( 'vid-progress-'+videoHash, 0 );
         $.get( COCORIUM_APP_PATH+'classroom/complete-lesson/'+lesson );
+    }
+    
+    
+    window.onpopstate =  function(){
+        window.onpopstate = null;
+        window.location.href = window.location.href ;
+        window.location.reload();
+        console.log( window.location );
+        console.log('hash chanaged');
     }
 </script>
            
