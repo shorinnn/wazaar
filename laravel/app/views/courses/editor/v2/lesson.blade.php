@@ -11,7 +11,7 @@
      endif
      ">
      
-    <div class="row lesson-data">
+    <div class="row lesson-data no-margin">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="lesson-wrapper-{{$lesson->id}}">
             <div class="lesson-name"><span><em></em></span>Lesson 
                 <div class="inline-block lesson-module-{{$lesson->module->id}} lesson-order" data-id="{{$lesson->id}}">{{ $lesson->order }}</div></div>
@@ -158,7 +158,7 @@
         </div>
     </div>
 
-    <div class="row file-upload-row">
+    <div class="row file-upload-row no-margin">
         @if( $lesson->blocks()->where('type','file')->count() > 0)
             <div class="uploader-area col-xs-12 col-sm-3 col-md-3 col-lg-3">
         @else
@@ -229,7 +229,7 @@
             </ul>
         </div>                    
     </div>
-    <div class="row footer-buttons">
+    <div class="row footer-buttons no-margin">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <a href="#" class="green-button large-button submit-form submit-lesson-{{$lesson->id}}" data-form='.lesson-form-{{ $lesson->id }}'>Save changes</a>
             <a href="#" class="default-button large-button reset-form" data-form='.lesson-form-{{ $lesson->id }}'>Cancel</a>

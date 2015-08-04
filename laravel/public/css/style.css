@@ -4059,7 +4059,7 @@ h6{
 .student-dashboard.dashboardTabs .progress-value{
 	font-size: 20px;
 	color: #303941;
-	margin-right: 12px;
+	margin-right: 6px;
 }
 
 .student-dashboard.dashboardTabs .tab-content{
@@ -5381,8 +5381,9 @@ h6{
 	background-color: #fff;
 }
 
+.course-topics-box .topics ul li.active a span,
 .course-topics-box .topics ul li a:hover span{
-	border-color: #0099ff;
+	border-color: #0099ff !important;
 }
 
 .course-topics-box .topics ul li.completed a:hover span{
@@ -5403,14 +5404,16 @@ h6{
 	display: none;
 }
 
+.course-topics-box .topics ul li.active a span em,
 .course-topics-box .topics ul li a:hover span em{
 	background: #fff;
 }
 
 .course-topics-box .topics ul li a:focus,
+.course-topics-box .topics ul li.active a,
 .course-topics-box .topics ul li a:hover{
 	outline: none;
-	color: #0099ff;
+	color: #0099ff !important;
 }
 
 .course-topics-box .topics ul li.completed em{
