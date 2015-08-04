@@ -5099,6 +5099,11 @@ h6{
 	margin: 0;
 }
 
+.discussion-sidebar .replies-holder{
+    height: 63.5%;
+    overflow: scroll;
+}
+
 .discussion-sidebar .replies-container{
 	margin: 0 30px 12px;
 }

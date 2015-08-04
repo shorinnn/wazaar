@@ -80,7 +80,7 @@
     .module-minimized .module-zone{
         height: 130px;
         overflow: hidden;
-        border-bottom: 2px solid #E8ECED;
+        border-bottom: 0px solid #E8ECED;
     }
     
     .module-minimized .module-zone input, .module-minimized .module-zone textarea,  .module-minimized .module-zone button{
@@ -171,15 +171,15 @@
 	}
 	
 	.shr-editor-module .module-zone{
-		-webkit-transform: scale(1.1);
-		-moz-transform: scale(1.1);
-		-ms-transform: scale(1.1);
-		-o-transform: scale(1.1);
-		transform: scale(1.1);
+		-webkit-transform: scale(1.05, 1);
+		-moz-transform: scale(1.05, 1);
+		-ms-transform: scale(1.05, 1);
+		-o-transform: scale(1.05, 1);
+		transform: scale(1.05, 1);
 		position: relative;
 		z-index: 3;
 	    border-radius: 4px;
-		box-shadow: 1px 1px 8px 4px #d8dbdc;
+		box-shadow: 1px 1px 4px 2px #d8dbdc;
 		overflow: hidden;
 		-webkit-transition: all .2s ease-in-out;
 		-moz-transition: all .2s ease-in-out;
@@ -202,13 +202,13 @@
 	}
 
 	.lesson-container .shr-lesson:not(.lesson-minimized){
-		-webkit-transform: scale(1.1);
-		-moz-transform: scale(1.1);
-		-ms-transform: scale(1.1);
-		-o-transform: scale(1.1);
-		transform: scale(1.1);
+		-webkit-transform: scale(1.05, 1);
+		-moz-transform: scale(1.05, 1);
+		-ms-transform: scale(1.05, 1);
+		-o-transform: scale(1.05, 1);
+		transform: scale(1.05, 1);
 	    border-radius: 4px;
-		box-shadow: 1px 1px 8px 4px #d8dbdc;
+		box-shadow: 1px 1px 4px 2px #d8dbdc;
 		overflow: hidden;
 		position: relative;
 		z-index: 1;
