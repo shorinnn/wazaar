@@ -1366,6 +1366,16 @@ function toggleSideMenu(){
 	});	
 }
 
+function toggleRightBar(e, json){
+    $('.right-slide-menu').toggleClass('in');
+    if( typeof(e) !='undefined' ){
+        var target = $(e.target).attr('data-target');
+        prop = $(e.target).attr('data-property');
+        val = json[prop];
+        $(target).html( val );
+    }
+}
+
 
 function colorLinks(e){
     color = $(e.target).attr('data-color');
@@ -1384,4 +1394,14 @@ function searchDiscussions(){
     s = $('#question-search-box').val();
     $('.questions-box').hide();
     $('span:contains("'+s+'")').parent().show();
+}
+
+function showLessonQuestionForm(){
+    $('.right-slide-menu').html( $('#question-form').html() );
+    toggleRightBar();
+}
+
+function LessonQuestionAddToList(json, e){
+    addToList(json, e);
+    toggleRightBar();
 }

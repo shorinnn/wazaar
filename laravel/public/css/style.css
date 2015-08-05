@@ -4059,7 +4059,7 @@ h6{
 .student-dashboard.dashboardTabs .progress-value{
 	font-size: 20px;
 	color: #303941;
-	margin-right: 12px;
+	margin-right: 6px;
 }
 
 .student-dashboard.dashboardTabs .tab-content{
@@ -5099,6 +5099,11 @@ h6{
 	margin: 0;
 }
 
+.discussion-sidebar .replies-holder{
+    height: 63.5%;
+    overflow: scroll;
+}
+
 .discussion-sidebar .replies-container{
 	margin: 0 30px 12px;
 }
@@ -5108,7 +5113,7 @@ h6{
 	padding: 10px 20px 20px;
 	border-radius: 3px;
 	float: left;
-	max-width: 90%;
+	width: 85%;
 }
 
 .discussion-sidebar .replies-container .replies-box .name{
@@ -5166,14 +5171,17 @@ h6{
 
 .discussion-sidebar-footer form{
 	float: left;
-	width: 90%;
+	width: 85%;
 }
 
+.discussion-sidebar-footer form textarea,
 .discussion-sidebar-footer form input{
 	margin: 0;
 	color: #798794;
 	font-size: 13px;
 	padding: 0 12px;
+	height: 38px;
+	resize: none;
 }
 
 /*Ask question sidebar*/
@@ -5381,8 +5389,9 @@ h6{
 	background-color: #fff;
 }
 
+.course-topics-box .topics ul li.active a span,
 .course-topics-box .topics ul li a:hover span{
-	border-color: #0099ff;
+	border-color: #0099ff !important;
 }
 
 .course-topics-box .topics ul li.completed a:hover span{
@@ -5403,14 +5412,16 @@ h6{
 	display: none;
 }
 
+.course-topics-box .topics ul li.active a span em,
 .course-topics-box .topics ul li a:hover span em{
 	background: #fff;
 }
 
 .course-topics-box .topics ul li a:focus,
+.course-topics-box .topics ul li.active a,
 .course-topics-box .topics ul li a:hover{
 	outline: none;
-	color: #0099ff;
+	color: #0099ff !important;
 }
 
 .course-topics-box .topics ul li.completed em{
@@ -12728,6 +12739,9 @@ header .top-menu .logged-in-top-menu{
 	.student-teacher-dashboard-container .dashboard-content section .buttons .continue-last-lesson{
 		float: left;
 	}
+	.classroom-video.video-container .topControl .add-video-note form{
+		width: 80%;
+	}
 
 }
 
@@ -12780,11 +12794,18 @@ header .top-menu .logged-in-top-menu{
 	.student-teacher-dashboard-container .dashboard-content header .data .current-lesson{
 		text-align: right;
 	}
+	.classroom-view .right-slide-menu{
+		width: 100%;
+	}
 }
 
 @media (max-width:402px){
 	.user-data-modal .or span{
 		width: 40%;
+	}
+	
+	.discussion-sidebar .replies-container .replies-box{
+		width: 80%;
 	}
 }
 

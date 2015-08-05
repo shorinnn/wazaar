@@ -1,6 +1,10 @@
 <script>
     var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';
     var lessonId = {{ $lesson->id }};
+    var currentLocation = '{{ action('ClassroomController@lesson', 
+                                            [ $lesson->module->course->slug,
+                                            $lesson->module->slug,
+                                            $lesson->slug] )}}';
 </script>
 <style>
             .small-overlay{
@@ -11,8 +15,37 @@
             header, footer{
                 display: none;
             }
+            
+            .classroom-view .right-slide-menu{
+                    width: 500px;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    right: -600px;
+                    z-index: 8;
+                    background: #fff;
+                    -webkit-transition: all 0.5s;
+                    -moz-transition: all 0.5s;
+                    transition: all 0.5s;
+            }
+			
+			.discussion-sidebar,
+			.classroom-view .right-slide-menu > div{
+				height: 100%;
+			}
+			
+            .classroom-view .right-slide-menu.in{
+                    right: 0;
+            }
+            
+            .classroom-view::-webkit-scrollbar {
+             display: none;
+            }
         </style>
+        
+            <div class="right-slide-menu"></div>
         <div class="row">
+            
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                 <div class="classroom-header row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -30,23 +63,23 @@
                                 <a href="{{ action('ClassroomController@lesson', 
                                             [ $prevLesson->module->course->slug,
                                             $prevLesson->module->slug,
-                                            $prevLesson->slug] )}}"
+                                            $prevLesson->slug] )}}#{{$prevLesson->slug}}"
                                     data-indicator-style='small'
                                     data-url="{{ action('ClassroomController@lesson', 
                                     [ $prevLesson->module->course->slug,
                                     $prevLesson->module->slug,
-                                    $prevLesson->slug] )}}" class="prev-button load-remote"  data-target='.classroom-view'><i class="wa-chevron-left"> {{ $prevLesson->name }}</i></a>
+                                    $prevLesson->slug] )}}#{{$prevLesson->slug}}" class="prev-button load-remote"  data-target='.classroom-view'><i class="wa-chevron-left"> {{ $prevLesson->name }}</i></a>
                             @endif
                             @if( $nextLesson != null )
                                 <a href="{{ action('ClassroomController@lesson', 
                                             [ $nextLesson->module->course->slug,
                                             $nextLesson->module->slug,
-                                            $nextLesson->slug] )}}" 
+                                            $nextLesson->slug] )}}#{{$nextLesson->slug}}" 
                                     data-indicator-style='small'
                                     data-url="{{ action('ClassroomController@lesson', 
                                     [ $nextLesson->module->course->slug,
                                     $nextLesson->module->slug,
-                                    $nextLesson->slug] )}}" class="next-button load-remote" data-target='.classroom-view'>{{ $nextLesson->name }} <i class="wa-chevron-right"></i></a>
+                                    $nextLesson->slug] )}}#{{$nextLesson->slug}}" class="next-button load-remote" data-target='.classroom-view'>{{ $nextLesson->name }} <i class="wa-chevron-right"></i></a>
                             @endif
                         </div>
                     </div>
@@ -84,12 +117,12 @@
                                                     <span class="bufferBar"></span>
                                                     <span class="timeBar"></span>
                                                 </div>
-                                                <div class="add-video-note">
+<!--                                                <div class="add-video-note">
                                                     <span class="note-number">11</span>
                                                     <form>
                                                         <input type="text" placeholder=" Add note ...">
                                                     </form>
-                                                </div>
+                                                </div>-->
                                             </div>
                                             <div class="volume-container">
                                                 <div class="volume" title="Set volume">
@@ -110,7 +143,6 @@
                                     </div>
                                 </div>
                                 @if($video != null)
-                                <br /><br />
                                     <select id='vid-quality' onchange='setVideoFormat()'>
                                         @foreach($video->formats()->get() as $format)
                                             <?php
@@ -134,12 +166,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="overflow:hidden;">
                 <div class="questions-sidebar">
                     <div class="header clearfix">
                         <a href="#" class="questions-tab-header active">{{ $lesson->discussions()->count() }} Questions</a>
                         
-                        <a href="#" class="notes-tab-header">10 Notes</a>
+                        <!--<a href="#" class="notes-tab-header">10 Notes</a>-->
                     </div>
                     <div class="tab-contents clear">
                         <div class="rows search-discussion-form">
@@ -159,10 +191,21 @@
                             @endforeach
                         </div>
                         
-                        {{ View::make('courses.classroom.discussions.form')->with( compact('lesson') ) }}
+                        <div class="ask-question">
+                            <div class="img-container">
+                                <img src="{{Auth::user()->commentPicture('student')}}" alt="" class="img-responsive">
+                            </div>
+                            <span onclick="showLessonQuestionForm()">Ask a question</span>
+                            <div style="display:none" id="question-form">
+                                {{ View::make('courses.classroom.discussions.form')->with( compact('lesson') ) }}
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
+                
             </div>
+                
         </div>
         <div class="slide-menu">
             <div class="header">
@@ -205,6 +248,11 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+        
+       
+            
+            
 <script>
     if(typeof($)=='function'){
         skinVideoControls();
@@ -235,6 +283,15 @@
     function lessonComplete(lesson){
         localStorage.setItem( 'vid-progress-'+videoHash, 0 );
         $.get( COCORIUM_APP_PATH+'classroom/complete-lesson/'+lesson );
+    }
+    
+    
+    window.onpopstate =  function(){
+        window.onpopstate = null;
+        window.location.href = window.location.href ;
+        window.location.reload();
+        console.log( window.location );
+        console.log('hash chanaged');
     }
 </script>
            

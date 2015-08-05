@@ -1,7 +1,7 @@
 @extends('layouts.default')
         
 @section('content')
-    <div class="container-fluid classroom-view">
+    <div class="container-fluid classroom-view" style="overflow-x:hidden;">
         {{ View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
                         'instructor', 'student') ) }}
     </div>

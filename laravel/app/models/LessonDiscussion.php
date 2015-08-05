@@ -2,7 +2,7 @@
 use LaravelBook\Ardent\Ardent;
 
 class LessonDiscussion extends Ardent {
-	protected $fillable = ['student_id', 'lesson_id', 'title'];
+	protected $fillable = ['student_id', 'lesson_id', 'title', 'content'];
         public static $rules = [
             'lesson_id' => 'required|numeric|exists:lessons,id',
             'student_id' => 'required|numeric|exists:users,id',

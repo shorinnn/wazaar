@@ -73,14 +73,14 @@
         opacity:1;
     }
     
-    .module-zone:hover .toggle-minimize{
+    .module-zone:hover .toggle-minimize:not([type=reset]){
         display:block !important;
         cursor: pointer;
     }
     .module-minimized .module-zone{
         height: 130px;
         overflow: hidden;
-        border-bottom: 2px solid #E8ECED;
+        border-bottom: 0px solid #E8ECED;
     }
     
     .module-minimized .module-zone input, .module-minimized .module-zone textarea,  .module-minimized .module-zone button{
@@ -100,7 +100,7 @@
     .lesson-minimized .minimized-lesson-elem{
         display: block;
     }
-    .lesson-minimized:hover .minimized-lesson-elem{
+    .lesson-minimized:hover .minimized-lesson-elem:not(.no-highlight){
         background-color:#e8eced;
     }
 
@@ -109,7 +109,7 @@
 		font-size: 13px;
     }
 
-    .lesson-minimized .minimized-lesson-elem .toggle-minimize{
+    .lesson-minimized .minimized-lesson-elem .toggle-minimize , .show-files{
 		font-size: 12px;
 		font-weight: bold;
 		color: #069bff;
@@ -145,6 +145,9 @@
         display: none;
     }
     
+    .lesson-minimized .lesson-control{
+        display: none !important;
+    }
     .lesson-minimized .maximized-elem,.lesson-minimized .lesson-data input, .lesson-minimized .lesson-data textarea,  .lesson-minimized .lesson-data button{
         display:none !important;
     }
@@ -157,6 +160,72 @@
         margin-right: -22px;
         cursor:pointer;
     }
+	@media (min-width: 1200px){
+	.edit-course .main {
+		overflow: visible;
+	}
+	
+	.lesson-container .shr-lesson{
+		-webkit-transition: all .2s ease-in-out;
+		-moz-transition: all .2s ease-in-out;
+		-ms-transition: all .2s ease-in-out;
+		-o-transition: all .2s ease-in-out;
+		transition: all .2s ease-in-out;
+	}
+	
+	.shr-editor-module .module-zone{
+		-webkit-transform: scale(1.05, 1);
+		-moz-transform: scale(1.05, 1);
+		-ms-transform: scale(1.05, 1);
+		-o-transform: scale(1.05, 1);
+		transform: scale(1.05, 1);
+		position: relative;
+		z-index: 3;
+	    border-radius: 4px;
+		box-shadow: 1px 1px 4px 2px #d8dbdc;
+		overflow: hidden;
+		-webkit-transition: all .2s ease-in-out;
+		-moz-transition: all .2s ease-in-out;
+		-ms-transition: all .2s ease-in-out;
+		-o-transition: all .2s ease-in-out;
+		transition: all .2s ease-in-out;
+	}
+
+	.shr-editor-module.module-minimized .module-zone,
+	.lesson-container .lesson-minimized{
+		-webkit-transform: scale(1);
+		-moz-transform: scale(1);
+		-ms-transform: scale(1);
+		-o-transform: scale(1);
+		transform: scale(1);
+	    border-radius: 0;
+		box-shadow: none;
+		position: relative;
+		z-index: 0;
+	}
+
+	.lesson-container .shr-lesson:not(.lesson-minimized){
+		-webkit-transform: scale(1.05, 1);
+		-moz-transform: scale(1.05, 1);
+		-ms-transform: scale(1.05, 1);
+		-o-transform: scale(1.05, 1);
+		transform: scale(1.05, 1);
+	    border-radius: 4px;
+		box-shadow: 1px 1px 4px 2px #d8dbdc;
+		overflow: hidden;
+		position: relative;
+		z-index: 1;
+		-webkit-transition: all .2s ease-in-out;
+		-moz-transition: all .2s ease-in-out;
+		-ms-transition: all .2s ease-in-out;
+		-o-transition: all .2s ease-in-out;
+		transition: all .2s ease-in-out;
+	}
+	.step2 .shr-editor-module{
+		overflow: visible;
+	}
+}
+
     /************ /MINIMIZED LESSON **************/
     
     /*** price box ***/
@@ -164,6 +233,17 @@
         width:63px !Important;
     }
     /*** /price box ***/
+    
+    .file-preview{
+        background-color: white;
+        position: absolute;
+        padding: 10px;
+        display: none;
+    }
+    
+    .file-preview li{
+        margin:5px;
+    }
     </style>
 
     @if (Session::get('success'))
