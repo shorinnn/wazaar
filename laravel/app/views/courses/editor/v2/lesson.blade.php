@@ -83,8 +83,9 @@
                     <span class='attachment-counter-{{$lesson->id}}'>{{ $lesson->blocks()->where('type','file')->count() }}</span> 
                     {{ trans('courses/create.attachments') }}
                 </span>
-                 <a class="show-files" onclick="showFiles(event, '.file-preview-{{$lesson->id}}')">
-                     <i class='fa fa-chevron-down'></i> {{ trans('courses/create.show') }}</a>
+                 @if( count($lesson->attachments()) > 3)
+                    <a class="show-files" onclick="showFiles(event, '.file-preview-{{$lesson->id}}')">
+                        <i class='fa fa-chevron-down'></i> {{ trans('courses/create.show') }}</a>
                      <div class="file-preview file-preview-{{$lesson->id}}">
                          <ul class=" uploaded-files-{{$lesson->id}}">
                             @foreach( $lesson->blocks()->where('type','file')->get() as $file )
@@ -93,6 +94,7 @@
 
                         </ul>
                      </div>
+                 @endif
              </div>
              
             <div class='maximized-elem'>
