@@ -172,8 +172,8 @@
         @else
             <div class="uploader-area col-xs-12">
         @endif
-            <i class="fa fa-cloud-upload"></i>
-            <p class="regular-paragraph  lesson-dropzone-{{$lesson->id}}" style="border:1px silver dashed; padding:20px;">
+            <i class="fa hide fa-cloud-upload"></i>
+            <p class="regular-paragraph hide  dropzone lesson-dropzone-{{$lesson->id}}">
                 Drag & Drop<br> files to upload
             </p>
                 <p class="label-progress-bar label-progress-bar-{{$lesson->id}}"></p>
