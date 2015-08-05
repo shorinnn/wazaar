@@ -159,6 +159,28 @@ var Analytics = {
         });
     },
 
+    'ltcEarnings' :  function ($frequency, $elem){
+
+        $.get('/dashboard/ltcearnings/' + $frequency , function ($html){
+            $('#wrapper-ltc-earnings').html($html);
+
+            $('.ltc-earnings-dropdown a').removeClass('active');
+            $($elem).addClass('active');
+            if ($frequency == 'daily'){
+                $('#header-ltc-earnings-frequency').html(_("Today"));
+            }
+            else if($frequency == 'week'){
+                $('#header-ltc-earnings-frequency').html(_("This Week"));
+            }
+            else if($frequency == 'month'){
+                $('#header-ltc-earnings-frequency').html(_("This Month"));
+            }
+            else if($frequency == 'alltime'){
+                $('#header-ltc-earnings-frequency').html(_("All Time"));
+            }
+        });
+    },
+
     'trackingCodeStats' :  function ($frequency, $courseId, $code, $elem){
 
         $.get('/dashboard/course/' + $courseId + '/trackingcode/' + $code + '/stats/' + $frequency, function ($html){

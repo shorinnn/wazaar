@@ -12,6 +12,34 @@ class AnalyticsHelper
         $this->affiliateId = $affiliateId;
     }
 
+    private function dailyLtcEarnings($affiliateId, $dateFilter = '')
+    {
+        if (empty($dateFilter)) {
+            $dateFilter = $this->_frequencyEquivalence();
+        }
+
+        $filterQuery = " AND DATE(purchases.created_at) = '{$dateFilter}'";
+        return $this->_affiliateEarnings($affiliateId, $filterQuery);
+    }
+
+    private function weeklyLtcEarnings($affiliateId, $dateFilterStart, $dateFilterEnd)
+    {
+        $filterQuery = " AND DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+        return $this->_affiliateEarnings($affiliateId, $filterQuery);
+    }
+
+    private function monthlyLtcEarnings($affiliateId, $month, $year)
+    {
+        $filterQuery = " AND MONTH(purchases.created_at) = '{$month}' AND YEAR(purchases.created_at) = '{$year}'";
+        return $this->_affiliateEarnings($affiliateId, $filterQuery);
+    }
+
+    private function allTimeLtcEarnings($affiliateId, $year)
+    {
+        $filterQuery = " AND YEAR(purchases.created_at) = '{$year}'";
+        return $this->_affiliateEarnings($affiliateId, $filterQuery);
+    }
+
     private function dailyLtcRegistration($affiliateId, $dateFilter = '')
     {
         if (empty($dateFilter)) {
@@ -34,7 +62,6 @@ class AnalyticsHelper
         return $this->_affiliates($affiliateId, $filterQuery);
     }
 
-
     private function allTimeLtcRegistration($affiliateId, $year)
     {
         $filterQuery = " AND YEAR(users.created_at) = '{$year}'";
@@ -53,6 +80,22 @@ class AnalyticsHelper
             'data'        => $result,
             'count'       => count($result),
             'affiliates_count' => array_sum(array_column($result, 'affiliates_count')),
+        ];
+
+        return $output;
+    }
+
+    private function _affiliateEarnings($affiliateId, $filter = ''){
+        $sql = "SELECT sum(ltc_affiliate_earnings) as affiliates_earning FROM purchases WHERE ltc_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
+        $result = DB::select($sql);
+
+        $result = array_map(function ($val) {
+            return json_decode(json_encode($val), true);
+        }, $result);
+        $output = [
+            'data'        => $result,
+            'count'       => count($result),
+            'affiliates_earning' => array_sum(array_column($result, 'affiliates_earning')),
         ];
 
         return $output;
@@ -1066,6 +1109,167 @@ class AnalyticsHelper
         return $sql;
     }
 
+    public function affiliateEarningsLastFewDays($affiliateId = 0, $numOfDays = 7)
+    {
+        $affiliates = [];
+
+        for ($i = 0; $i <= $numOfDays; $i ++) {
+            $day   = date('l', strtotime("-$i day"));
+            $date  = date('Y-m-d', strtotime("-$i day"));
+            $label = $day;
+            if ($i === 0) {
+                $label = 'Today';
+            }
+            $affiliates[] = [
+                'label' => $label,
+                'date'  => $date,
+                'day'   => $this->dailyLtcEarnings($affiliateId, $date)
+            ];
+        }
+
+
+
+        $affTotal = $this->_getAffiliateEarningsTotal($affiliates, 'day');
+
+        $i = 0;
+
+        foreach ($affiliates as $aff) {
+            // avoid division by zero
+            if ($affTotal == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($aff['day']['affiliates_earning'] / $affTotal) * 100;
+            }
+
+            $affiliates[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i ++;
+        }
+
+        return compact('affiliates', 'affTotal');
+    }
+
+    public function affiliateEarningsLastFewWeeks($affiliateId, $numOfWeeks = 7)
+    {
+        $affiliates = [];
+
+        for ($i = 0; $i <= $numOfWeeks; $i ++) {
+            $start = date('Y-m-d', strtotime('-' . ($i + 1) . ' week'));
+            $end   = date('Y-m-d', strtotime("-$i week"));
+            $label = $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
+            if ($i === 0) {
+                $label = 'This week';
+            }
+            $affiliates[] = [
+                'label' => $label,
+                'start' => $start,
+                'end'   => $end,
+                'week'  => $this->weeklyLtcEarnings($affiliateId, $start,$end)
+            ];
+        }
+
+        $affTotal = $this->_getAffiliateEarningsTotal($affiliates, 'week');
+
+        $i = 0;
+
+        foreach ($affiliates as $aff) {
+            // avoid division by zero
+            if ($affTotal == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($aff['week']['affiliates_earning'] / $affTotal) * 100;
+            }
+
+            $affiliates[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i ++;
+        }
+
+        return compact('affiliates', 'affTotal');
+    }
+
+    public function affiliateEarningsLastFewMonths($affiliateId, $numOfMonths = 7)
+    {
+        $affiliates = [];
+
+        for ($i = 0; $i <= $numOfMonths; $i ++) {
+            $month = date('m', strtotime("-$i month"));
+            $year  = date('Y', strtotime("-$i month"));
+            $label = $i . (($i > 1) ? ' months' : ' month') . ' ago';
+            if ($i === 0) {
+                $label = 'This month';
+            }
+            $affiliates[] = [
+                'label'      => $label,
+                'month_date' => $month,
+                'year'       => $year,
+                'month'      => $this->monthlyLtcEarnings($affiliateId,$month,$year)
+            ];
+        }
+        $affTotal = $this->_getAffiliateEarningsTotal($affiliates, 'month');
+
+        $i = 0;
+
+        foreach ($affiliates as $aff) {
+            // avoid division by zero
+            if ($affTotal == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($aff['month']['affiliates_earning'] / $affTotal) * 100;
+            }
+
+            $affiliates[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i ++;
+        }
+
+        return compact('affiliates', 'affTotal');
+    }
+
+    public function affiliateEarningsLastFewYears($affiliateId, $numOfYears = 7)
+    {
+        $affiliates = [];
+
+        for ($i = 0; $i <= $numOfYears; $i ++) {
+            $year  = date('Y', strtotime("-$i year"));
+            $label = $i . (($i > 1) ? ' years' : ' year') . ' ago';
+
+            if ($i === 0) {
+                $label = 'This year';
+            }
+            $affiliates[] = [
+                'label'     => $label,
+                'year_date' => $year,
+                'year'      => $this->allTimeLtcEarnings($affiliateId,$year)
+            ];
+        }
+
+        $affTotal = $this->_getAffiliateEarningsTotal($affiliates, 'year');
+
+        $i = 0;
+
+        foreach ($affiliates as $aff) {
+            // avoid division by zero
+            if ($affTotal == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($aff['year']['affiliates_earning'] / $affTotal) * 100;
+            }
+
+            $affiliates[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i ++;
+        }
+
+        return compact('affiliates', 'affTotal');
+    }
+
+    private function _getAffiliateEarningsTotal($affiliates, $frequency)
+    {
+        $totalAff = 0;
+
+        foreach ($affiliates as $aff) {
+            $totalAff += $aff[$frequency]['affiliates_earning'];
+        }
+
+        return $totalAff;
+    }
 
 
 
