@@ -167,6 +167,31 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="overflow:hidden;">
+            	<div class="course-material">
+                	<div class="course-material-header expandable-button show-more" data-more-text="Show course materials" data-less-text="Hide course materials">
+                    	Show course materials <i class="wa-chevron-down"></i>
+                    </div>
+                    <div class="materials expandable-content ">
+                    	<ul class="clearfix">
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
+                        </ul>
+                        <a href="#" class="download-material large-button">Download all (.zip) - <span class="size">2MB</span></a>
+                    </div>
+                </div>
                 <div class="questions-sidebar">
                     <div class="header clearfix">
                         <a href="#" class="questions-tab-header active">{{ $lesson->discussions()->count() }} Questions</a>
