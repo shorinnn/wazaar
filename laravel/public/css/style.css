@@ -4475,9 +4475,137 @@ h6{
 }
 
 /*Student Messages*/
-.student-messages .message-preview{
+.student-messages .message-preview-wrap{
+	margin-top: 24px;
 	background: #f7f9fa;
+	border: solid 1px #e0e1e2;
+	border-radius: 4px 0 0 4px;
+	overflow: hidden;
 }
+
+.student-messages .message-preview-wrap .message-header h4{
+	color: #303941;
+	margin: 15px 0 12px;
+}
+
+.student-messages .message-preview-wrap .message-header form{
+	width: 100%;
+}
+
+.student-messages .message-preview-wrap .message-header form div{
+	border-radius: 4px;
+	border: solid 1px #cfd8df;
+	background: #fff;
+	overflow: hidden;
+	margin: 13px 0 14px;
+	height: 38px;
+}
+
+.student-messages .message-preview-wrap .message-header form div input{
+	width: 85%;
+	background: none;
+	border: none;
+	float: left;
+	height: 38px;
+	font-size: 13px;
+	padding: 0 12px;
+}
+
+.student-messages .message-preview-wrap .message-header form div button{
+	background: none;
+	border: none;
+	width: 15%;
+	float: left;
+	height: 38px;
+}
+
+.student-messages .message-preview-wrap .message-header form div button i{
+	color: #798794;
+	font-size: 16px;
+}
+
+.student-messages .message-preview-wrap .message-preview{
+	border-top: solid 1px #e0e1e2;
+	padding: 20px 0;
+}
+
+.student-messages .message-preview-wrap .message-preview:hover{
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.student-messages .message-preview-wrap .message-preview h4{
+	color: #303941;
+	margin: 0 0 10px;
+}
+
+.student-messages .message-preview-wrap .message-preview p{
+	margin: 0;
+	color: #657482;
+	line-height: 18px;
+}
+
+.student-messages .avatar {
+    float: left;
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    overflow: hidden;
+	background: #84909b;
+}
+
+.student-messages .full-messages{
+	background: #fff;
+	border: solid #e0e1e2;
+	border-width: 1px 1px 1px 0;
+	border-radius: 0 4px 4px 0;
+	margin-top: 25px;
+}
+
+.student-messages .full-messages .conversing-with{
+	padding: 12px 0;
+	border-bottom: solid 1px #e0e1e2;
+}
+
+.student-messages .full-messages .conversing-with .avatar{
+	margin-right: 13px;
+}
+
+.student-messages .full-messages .conversing-with p{
+	color: #657482;
+	margin: 10px 0 12px;
+	float: left;
+}
+
+.student-messages .full-messages .conversing-with .name{
+	color: #303941;
+	font-weight: bold;
+}
+
+.student-messages .full-messages .conversation .date{
+	display: block;
+	font-size: 12px;
+	color: #a7b7c4;
+}
+
+.student-messages .full-messages .conversation .date::before,
+.student-messages .full-messages .conversation .date::after{
+	content: "";
+	height: 1px;
+	background: #e0e1e2;
+	position: relative;
+	top: 0;
+}
+
+.student-messages .full-messages .conversation .date::after{
+	right: 0;
+}
+
+.student-messages .full-messages .conversation .date::before{
+	left: 0;
+}
+
+
 /********** New Dashboard UI Ends***************/
 
 /****************** CRUD Pages *******************/
@@ -12795,7 +12923,7 @@ header .top-menu .logged-in-top-menu{
 		text-align: right;
 	}
 	.classroom-view .right-slide-menu{
-		width: 100%;
+		width: 100% !important;
 	}
 }
 
