@@ -80,11 +80,11 @@ class ClassroomController extends \BaseController {
             if( $video != null ) $video = Video::find( $video->content );
 //            if( !$student->purchased( $course ) && !$student->purchased( $lesson ) ){
             $purchase = $student->purchases()->where('product_type','Lesson')->where('product_id', $lesson->id)->first();
-            if( !$student->purchased($course) && $purchase==null && $lesson->price > 0 ){
+            if( $lesson==null || !$student->purchased($course) && $purchase==null && $lesson->free_preview == 'no' ){
                 return Redirect::to('/');
             }
             if($student->id != $course->instructor_id && $student->id != $course->assigned_instructor_id ){
-                if( (!$student->purchased($course) && $purchase==null && $lesson->price==0) || ( !$student->purchased($course) && $purchase->free_product=='yes') ){
+                if( (!$student->purchased($course) && $purchase==null && $lesson->free_preview=='yes') || ( !$student->purchased($course) && $purchase!=null && $purchase->free_product=='yes') ){
                     return View::make('courses.classroom.crash_lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
                 }
             }

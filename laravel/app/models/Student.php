@@ -130,7 +130,7 @@ class Student extends User{
         }
         
         if($course->instructor->secondTierInstructor!=null) $purchase->second_tier_instructor_id = $course->instructor->second_tier_instructor_id;
-        
+        $purchase->instructor_id = $course->instructor_id;
         /******* Money fields **********/
         $purchase->balance_transaction_id = $paymentData['successData']['balance_transaction_id'];
         $purchase->original_price = $product->price;

@@ -69,6 +69,7 @@ class BasicOrderCest{
         
         $purchase = Purchase::orderBy('id','desc')->first();
         
+        $I->assertEquals( $course->instructor_id, $purchase->instructor_id);
         $I->assertLessThan( 1, $purchase->product_affiliate_id);
         $I->assertLessThan( 1, $purchase->ltc_affiliate_id);
         $I->assertLessThan( 1, $purchase->second_tier_affiliate_id);

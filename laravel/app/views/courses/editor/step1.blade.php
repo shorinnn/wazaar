@@ -5,15 +5,14 @@
 
 
 @include('videos.archiveModal')
-
     <div class="row content-row margin-bottom-20">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-            <h3>Presentation graphics</h3>
+            <h3>{{ trans('courses/create.presentation-graphics') }}</h3>
             <div class="row no-margin">
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 main-content">
                     <div class="row">
                         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 listing-image">
-                            <h6>Listing image (thumbnail)</h6>
+                            <h6>{{ trans('courses/create.listing-image-thumbnail') }}</h6>
                             <div class="file-details relative">
                                 <div class="course-listing-image-preview">
                                     @if($course->course_preview_image_id > 0)
@@ -33,7 +32,7 @@
                                     </div>
                                     <div class="dropdown listing-image-upload">
                                       <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        Upload Image
+                                        {{ trans('courses/general.upload_image') }}
                                         <i class="wa-chevron-down"></i>
                                       </a>
                                     
@@ -61,12 +60,12 @@
                                       </ul>
                                     </div>
                                 </div>
-                                <em>Image used for listings thumbnail</em>
+                                <em>{{ trans('courses/create.image-used-for-listings') }}</em>
                             </div>
                             
                         </div>
                         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 listing-video">
-                            <h6>Introduction video</h6>
+                            <h6>{{ trans('courses/create.introduction-video') }}</h6>
                             <div class="file-details relative">
                                 <div class="course-description-video-preview">
                                     @if (isset($course->descriptionVideo->formats[0]))
@@ -78,14 +77,14 @@
 
                             </div>
                             <div class="clearfix"></div>
-                            <em>Video on public course page</em>
+                            <em>{{ trans('courses/create.video-on-public-course-page') }}</em>
 
                         </div>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 side-info">
-                    <h4>Size and format</h4>
+                    <h4> {{ trans('courses/create.size-and-format') }}</h4>
                     <p class="regular-paragraph">{{ trans('courses/general.recommended_image_size') }} <br> {{ trans('courses/general.available_formats') }}</p>
                     <p class="regular-paragraph">{{ trans('courses/general.video_size') }}</p>
                 </div>
@@ -101,37 +100,37 @@
                 
     <div class="row content-row margin-bottom-20">
     	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-        	<h3>Course descriptions</h3>
+        	<h3>{{ trans('courses/general.course_description') }}</h3>
             	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 main-content">
                 	<div>
                         <h6>
                         {{ trans('courses/general.short_description') }}
                         </h6>
                         {{ Form::textarea('short_description', null,['id'=>'short_description', 'required' => 'required' ] ) }}
-                        <em>Will be used for listings description and introduction.</em>                           
+                        <em>{{ trans('courses/create.short-description-tip') }}</em>                           
                     </div>
                     <div class="margin-top-50">
                         <h6>
                         {{ trans('courses/general.full_description') }}
                         </h6>
                         {{ Form::textarea('description', null,['id'=>'description'] ) }}  
-                        <em>Will be used on course description page.</em>      
+                        <em>{{ trans('courses/create.short-description-tip') }}</em>      
                     </div>
                 </div>
                 
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 side-info">
-                	<h4>Tips</h4>
-                    <p class="regular-paragraph">Make it clear and short. Tell everything your student needs to know before buying a course.</p>
+                	<h4>{{ trans('courses/create.tips') }}</h4>
+                    <p class="regular-paragraph">{{ trans('courses/create.description-tips') }}</p>
                 </div>
         </div>
     </div>
     <div class="row content-row margin-bottom-20">
     	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
-        	<h3>Course descriptions</h3>
+        	<h3>{{ trans('courses/general.course_description') }}</h3>
             	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 main-content">
                 	<div>
-                    	<h4 class="clearfix">Requirements
-							<span class="lead regular-paragraph">What user need to know in order to complete course.</span>                        
+                    	<h4 class="clearfix">{{ trans('courses/general.requirements') }}
+                            <span class="lead regular-paragraph">{{ trans('courses/create.reqs-what-users-need') }}</span>                        
                         </h4>
                         <div class="margin-top-20 clearfix requirements-box">
 							<?php $i = 1;?>
@@ -162,7 +161,7 @@
                         </div>
                         <a href="#" class="clone-field clonable-req-click" onclick="cloneBox(event)" data-class="clonable-req"
                            data-name="requirements[]" data-target=".requirements-box">
-                            <i class="fa fa-plus"></i> Add requirement...
+                            <i class="fa fa-plus"></i> {{ trans('courses/create.add-requirement') }}
                         </a>
                     </div>
                     <div class="margin-top-80">
@@ -198,7 +197,7 @@
                         
                         <a href="#" class="clone-field clonable-who-click" onclick="cloneBox(event)" data-class="clonable-who"
                            data-name="who_is_this_for[]" data-target=".who-box">
-                            <i class="fa fa-plus"></i> Add requirement...
+                            <i class="fa fa-plus"></i> {{ trans('courses/create.add-requirement') }}
                         </a>
                         
                     </div>
@@ -235,14 +234,14 @@
                         </div> 
                         <a href="#" class="clone-field clonable-what-click" onclick="cloneBox(event)" data-class="clonable-what"
                            data-name="what_will_you_achieve[]" data-target=".what-box">
-                            <i class="fa fa-plus"></i> Add requirement...
+                            <i class="fa fa-plus"></i> {{ trans('courses/create.add-requirement') }}
                         </a>            
                     </div>
                 </div>
                 
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 side-info">
-                	<h4>Tips</h4>
-                    <p class="regular-paragraph">Make it clear and short. Tell everything your student needs to know before buying a course.</p>
+                	<h4>{{ trans('courses/create.tips')}}</h4>
+                    <p class="regular-paragraph">{{ trans('courses/create.reqs-tips') }}</p>
                 </div>
         </div>
     </div>

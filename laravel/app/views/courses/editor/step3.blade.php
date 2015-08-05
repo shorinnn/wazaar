@@ -279,7 +279,13 @@
 </div>
 
 <div class="right">
+    @if($course->publish_status=='pending') 
+    <button class="blue-button large-button submit-for-approval disabled-button" disabled>
+        {{ trans('courses/general.wazaar-is-checking-your-product')}}
+    </button>
+    @else
     <button class="blue-button large-button submit-for-approval">SUBMIT FOR APPROVAL</button>
+     @endif
 </div>
 
 </div>

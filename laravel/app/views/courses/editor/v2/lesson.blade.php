@@ -13,7 +13,7 @@
      
     <div class="row lesson-data no-margin toggle-minimize"  data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}'>
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="lesson-wrapper-{{$lesson->id}}">
-            <div class="lesson-name"><span><em></em></span>Lesson 
+            <div class="lesson-name"><span><em></em></span>{{ trans('general.lesson') }}  
                 <div class="inline-block lesson-module-{{$lesson->module->id}} lesson-order" data-id="{{$lesson->id}}">{{ $lesson->order }}</div></div>
             <div class="preview-thumb lesson-wrapper">
 
@@ -42,13 +42,13 @@
             </div>
             <div class="dropdown text-center lesson-control">
               <a id="upload-new" class="default-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                Upload new
+                {{ trans('video.upload-new') }}
                 <i class="wa-chevron-down"></i>
               </a>
             
               <ul class="dropdown-menu" aria-labelledby="upload-new">
                 <label class="upload-button">
-                    <span>Upload new video</span>
+                    <span>{{ trans('video.upload-new-video') }}</span>
                     <input type="file" hidden="" id="fileupload-lesson-{{$lesson->id}}" class="lesson-video-file" name="file" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lesson->id}}"/>
                 </label>
                 <span class="use-existing use-existing-preview" >
@@ -62,12 +62,16 @@
             </div>
 
             @if( $lesson->blocks()->where('type','video')->count() > 0  ) 
-                <a href="#" class="remove-video lesson-control">Remove video</a>
+                <a href="#" class="remove-video lesson-control">{{ trans('video.remove-video') }}</a>
             @endif
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <a class="edit-icon toggle-minimize"  data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'>
-                <i class="fa fa-pencil pull-right lesson-toggle-icon-{{$lesson->id}}" data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'></i>
+                <i class="fa fa-pencil
+                   @if($lesson->name == '')
+                       fa-compress
+                   @endif
+                   pull-right lesson-toggle-icon-{{$lesson->id}}" data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'></i>
             </a>
              <p class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-name'>{{$lesson->name}}</p>
              <p class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-desc'>{{$lesson->description}}</p>
@@ -77,10 +81,10 @@
                  <span class="attachments">
                  	<i class='fa fa-paperclip'></i> 
                     <span class='attachment-counter-{{$lesson->id}}'>{{ $lesson->blocks()->where('type','file')->count() }}</span> 
-                    Attachments
+                    {{ trans('courses/create.attachments') }}
                 </span>
                  <a class="show-files" onclick="showFiles(event, '.file-preview-{{$lesson->id}}')">
-                     <i class='fa fa-chevron-down'></i> Show</a>
+                     <i class='fa fa-chevron-down'></i> {{ trans('courses/create.show') }}</a>
                      <div class="file-preview file-preview-{{$lesson->id}}">
                          <ul class=" uploaded-files-{{$lesson->id}}">
                             @foreach( $lesson->blocks()->where('type','file')->get() as $file )
@@ -100,17 +104,17 @@
                         </div>
             <div>
                 <input type="text" name="name" class="lesson-title type-in-elements" data-elements='.lesson-{{$lesson->id}}-copy-name'
-                       placeholder="Enter lesson title" value="{{ $lesson->name }}" >
+                       placeholder="{{trans('courses/create.enter-lesson-name')}}" value="{{ $lesson->name }}" >
             </div>
             <div>
-                <h6>DESCRIPTION
+                <h6>{{ trans('courses/general.description') }}
                     <span class="lead"><span class="characters-desc-{{$lesson->id}}">360</span> Characters left</span>
                 </h6>
                 <textarea class='characters-left type-in-elements' data-target='.characters-desc-{{$lesson->id}}' maxlength="360"
                 data-elements='.lesson-{{$lesson->id}}-copy-desc' name="description" placeholder="Enter short lesson description...">{{ $lesson->description }}</textarea>
             </div>
             <div>
-                <h6>NOTES
+                <h6>{{ trans('courses/create.additional-lesson-notes') }}
                     <span class="lead"><span class="characters-notes-{{$lesson->id}}">360</span> Characters left</span>
                 </h6>
                 <textarea class='characters-left' data-target='.characters-notes-{{$lesson->id}}' maxlength="360" name="notes" placeholder="Add notes...">{{ $lesson->notes }}</textarea>
@@ -119,7 +123,7 @@
                 
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 switch-buttons">
                     <div class="">
-                        <h6>Free Preview<span class="tip" data-toggle="tooltip" data-placement="top" title="Some tips here">?</span></h6>
+                        <h6>{{ trans('courses/general.free-preview') }}<span class="tip" data-toggle="tooltip" data-placement="top" title="Some tips here">?</span></h6>
                         <label class="switch">
                             {{ Form::checkbox('free_preview','yes', ($lesson->free_preview=='yes') ? true : false, [
                                'class'=>'switch-input',
@@ -136,7 +140,7 @@
                 <div class="depends-on-free-{{$lesson->id}} col-xs-4 col-sm-4 col-md-4 col-lg-4 switch-buttons "
                      @if($lesson->free_preview=='yes') style='display:none' @endif">
                     <div class="">
-                        <h6>Individual sale <span class="tip" data-toggle="tooltip" data-placement="top" title="Some tips here">?</span></h6>
+                        <h6>{{ trans('courses/general.individual-sale') }} <span class="tip" data-toggle="tooltip" data-placement="top" title="Some tips here">?</span></h6>
                         <label class="switch">
                             {{ Form::checkbox('individual_sale','yes', ($lesson->individual_sale=='yes') ? true : false, 
                              ['class'=>'switch-input',
@@ -153,7 +157,7 @@
                      @if($lesson->individual_sale=='no') inactive @endif"
                      @if($lesson->free_preview=='yes') style='display:none' @endif">
                     <div class="clearfix">
-                        <h6>Lesson Price <span class="tip" data-toggle="tooltip" data-placement="top" title="Some tips here">?</span></h6>
+                        <h6>{{ trans('general.lesson_price') }} <span class="tip" data-toggle="tooltip" data-placement="top" title="Some tips here">?</span></h6>
                         <div class="value-unit-two">
                             <span class="unit">¥</span>
                             <input type="text" name="price" value="{{ $lesson->price }}" class="value">
@@ -239,9 +243,11 @@
     </div>
     <div class="row footer-buttons no-margin">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <a href="#" class="green-button large-button submit-form submit-lesson-{{$lesson->id}}" data-form='.lesson-form-{{ $lesson->id }}'>Save changes</a>
+            <a href="#" class="green-button large-button submit-form submit-lesson-{{$lesson->id}}" data-form='.lesson-form-{{ $lesson->id }}'>
+            {{ trans('courses/general.saving-button') }}</a>
             <a href="#" class="default-button large-button reset-form toggle-minimize" data-form='.lesson-form-{{ $lesson->id }}'
-                data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}' >Cancel</a>
+                data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}' >
+                {{ trans('courses/create.cancel') }}</a>
             
             <!--<a href="#" class="delete-lesson right"><i class="fa fa-trash-o"></i> Delete this lesson</a>-->
             
@@ -251,7 +257,8 @@
                 
                     <i class="fa fa-trash-o" data-callback = 'deleteCurriculumItem' data-delete = '.shr-lesson-{{$lesson->id}}'
                        data-message="{{ trans('crud/labels.you-sure-want-delete') }}" 
-                       data-url="{{ action('LessonsController@destroy', [ $lesson->module->id, $lesson->id]) }}" ></i> Delete this lesson
+                       data-url="{{ action('LessonsController@destroy', [ $lesson->module->id, $lesson->id]) }}" ></i> 
+                {{ trans('courses/create.delete-this-lesson') }}
                 </a>
             <div class='input-error lesson-errors-{{$lesson->id}}'>
              </div>
