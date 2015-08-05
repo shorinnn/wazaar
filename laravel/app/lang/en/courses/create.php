@@ -35,6 +35,7 @@ return array(
     'options-tip' => "Write the description for the lesson and set the individual lesson price.",
 	'wazaar_must_review' => 'Wazaar must review and approve your course before you can publish it.',
     'enter-module-name' => "Enter module name",
+    'enter-description' => "#Enter description",
     'enter-lesson-name' => "Enter lesson name",
     'additional-lesson-notes' => "Additional Lesson Notes",
     'paid-or-free' => 'Paid or free',
@@ -55,4 +56,9 @@ return array(
     'reqs-what-users-need' => 'What user need to know in order to complete course.',
     'add-requirement' => 'Add Requirement...',
     'reqs-tips' => 'Make it clear and short. Tell everything your student needs to know before buying a course.',
+    'overview' => 'Overview',
+    'delete-this-module' => 'Delete this module',
+    'attachments' => 'Attachments',
+    'show' => 'Show',
+    'delete-this-lesson' => 'Delete this lesson',
 );

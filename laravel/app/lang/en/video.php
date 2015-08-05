@@ -16,5 +16,7 @@ return [
     'noImage' => 'You don\'t have an image yet. Upload one now.',
     'previewImage' => 'Preview Image',
     'currentVideo' => 'Current video',
-    'videoCurrentlyProcessing' => 'Video Currently Processing'
+    'videoCurrentlyProcessing' => 'Video Currently Processing',
+    'upload-new' => 'Upload New',
+    'remove-video' => 'Remove Video',
 ];

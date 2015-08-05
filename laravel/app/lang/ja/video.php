@@ -12,5 +12,7 @@ return [
     'formatsSupported' => '対応フォーマット: mp4, avi, wmv',
     'maxFileSize' => '動画は2GBまで投稿可能',
     'myVideos' => 'マイ動画',
-    'useVideo' => '動画を使用する'
+    'useVideo' => '動画を使用する',
+    'upload-new' => '#Upload New',
+    'remove-video' => '#Remove Video',
 ];

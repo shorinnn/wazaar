@@ -30,6 +30,7 @@ return array(
     'options-tip' => "各レッスンの詳細と各レッスンをバラ売りするときの価格を明記してください。",    
 //    'enter-module-name' => "モジュール名を記入して下さい",
     'enter-module-name' => "セクション名を入力してください",
+    'enter-description' => "#Enter description",
     'enter-lesson-name' => "レッスン名を記入して下さい",
     'additional-lesson-notes' => "レッスンの補足説明",
     'give-title' => 'コースのタイトル名（60文字以内）',
@@ -55,4 +56,10 @@ return array(
     'reqs-what-users-need' => '#What user need to know in order to complete course.',
     'add-requirement' => '#Add Requirement...',
     'reqs-tips' => '#Make it clear and short. Tell everything your student needs to know before buying a course.',
+    'overview' => '#Overview',
+    'delete-this-module' => '#Delete this module',
+    'cancel' => '#Cancel',
+    'attachments' => '#Attachments',
+    'show' => '#Show',
+    'delete-this-lesson' => '#Delete this lesson',
 );
