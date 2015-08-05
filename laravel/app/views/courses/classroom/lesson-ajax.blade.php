@@ -285,6 +285,7 @@
 <script>
     if(typeof($)=='function'){
         skinVideoControls();
+        showMoreContent();
         $('#myVideo').on('timeupdate', function(e){
             localStorage.setItem('vid-progress-'+videoHash, 
             $('#myVideo')[0].currentTime );

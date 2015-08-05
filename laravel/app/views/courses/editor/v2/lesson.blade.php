@@ -67,7 +67,11 @@
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <a class="edit-icon toggle-minimize"  data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'>
-                <i class="fa fa-pencil pull-right lesson-toggle-icon-{{$lesson->id}}" data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'></i>
+                <i class="fa fa-pencil
+                   @if($lesson->name == '')
+                       fa-compress
+                   @endif
+                   pull-right lesson-toggle-icon-{{$lesson->id}}" data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized'></i>
             </a>
              <p class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-name'>{{$lesson->name}}</p>
              <p class='minimized-lesson-elem lesson-{{$lesson->id}}-copy-desc'>{{$lesson->description}}</p>

@@ -19,11 +19,13 @@
                         <span class='minimized-elem shr-editor-module-{{$module->id}}-copy-name'>{{$module->name}}</span>
                         <input class='type-in-elements' data-elements='.shr-editor-module-{{$module->id}}-copy-name' type="text" 
                                placeholder="{{trans('courses/create.enter-module-name')}}" name="name" value="{{ $module->name }}" /> 
-                        
                         <a data-class='module-minimized' 
                            data-target='div.shr-editor-module-{{$module->id}}' 
                            class="edit-icon toggle-minimize">
-                            <i class="fa fa-pencil toggle-module-id{{$module->id}}"  
+                            <i class="fa fa-pencil
+                               @if( $module->name == '')
+                                   fa-compress
+                               @endif toggle-module-id{{$module->id}}"  
                                data-class='module-minimized' 
                                data-target='div.shr-editor-module-{{$module->id}}' ></i>
                         </a>
