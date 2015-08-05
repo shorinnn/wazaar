@@ -83,8 +83,9 @@
                     <span class='attachment-counter-{{$lesson->id}}'>{{ $lesson->blocks()->where('type','file')->count() }}</span> 
                     {{ trans('courses/create.attachments') }}
                 </span>
-                 <a class="show-files" onclick="showFiles(event, '.file-preview-{{$lesson->id}}')">
-                     <i class='fa fa-chevron-down'></i> {{ trans('courses/create.show') }}</a>
+                 @if( count($lesson->attachments()) > 3)
+                    <a class="show-files" onclick="showFiles(event, '.file-preview-{{$lesson->id}}')">
+                        <i class='fa fa-chevron-down'></i> {{ trans('courses/create.show') }}</a>
                      <div class="file-preview file-preview-{{$lesson->id}}">
                          <ul class=" uploaded-files-{{$lesson->id}}">
                             @foreach( $lesson->blocks()->where('type','file')->get() as $file )
@@ -93,6 +94,7 @@
 
                         </ul>
                      </div>
+                 @endif
              </div>
              
             <div class='maximized-elem'>
@@ -176,8 +178,8 @@
         @else
             <div class="uploader-area col-xs-12">
         @endif
-            <i class="fa fa-cloud-upload"></i>
-            <p class="regular-paragraph  lesson-dropzone-{{$lesson->id}}" style="border:1px silver dashed; padding:20px;">
+            <i class="fa hide fa-cloud-upload"></i>
+            <p class="regular-paragraph hide  dropzone lesson-dropzone-{{$lesson->id}}">
                 Drag & Drop<br> files to upload
             </p>
                 <p class="label-progress-bar label-progress-bar-{{$lesson->id}}"></p>

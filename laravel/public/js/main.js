@@ -21,6 +21,7 @@ $(document).ready(function(){
 
     $('#curriculum .lessons').jScrollPane();
     $(".profile-name > li").removeClass("activate-dropdown");
+    $('body').delegate('.scroll-to-element', 'click', scrollToElement);
     $('body').delegate('.slide-toggler', 'click', slideToggle);
     $('body').delegate('a.load-remote', 'click', loadRemote);
     $('body').delegate('a.link-to-remote', 'click', linkToRemote);
@@ -1404,4 +1405,12 @@ function showLessonQuestionForm(){
 function LessonQuestionAddToList(json, e){
     addToList(json, e);
     toggleRightBar();
+}
+
+function scrollToElement(e){
+    e.preventDefault();
+    target = $(e.target).attr('data-target');
+     $('html, body').animate({
+        scrollTop: $(target).offset().top
+    }, 400);
 }

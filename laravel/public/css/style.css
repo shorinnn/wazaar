@@ -5011,7 +5011,7 @@ h6{
 /* Course Materials */
 .course-material{
 	max-height: 400px;
-	overflow-y: scroll;
+	overflow-y: auto;
 	position: relative;
 }
 
@@ -7491,7 +7491,7 @@ a.load-remote > *{
 
 .step2 .lesson-container .lesson-data textarea,
 .step2 .module-container .module-data textarea{
-	margin: 20px 0 0;
+	margin: 17px 0 0;
 	color: #798794;
 	line-height: 20px;
 	clear: both;
@@ -7533,19 +7533,19 @@ a.load-remote > *{
 	background: #fff;
 }
 
-.step2 .lesson-container .lesson-name{
+.step2 .lesson-container .shr-lesson .lesson-name{
 	text-transform: uppercase;
 	font-size: 11px;
 	color: #0099ff;
 	font-weight: 600;
-	padding: 11px 5px 11px 25px;
+	padding: 0 5px 0 25px;
 	display: inline-block;
 	margin-right: 19px;
 	text-align: center;
 	position: relative;
 }
 
-.step2 .lesson-container .lesson-name span{
+.step2 .lesson-container .shr-lesson .lesson-name span{
 	display: inline-block;
 	height: 12px;
 	width: 12px;
@@ -7553,8 +7553,16 @@ a.load-remote > *{
 	background: #fff;
 	border-radius: 12px;
 	position: absolute;
-	top: 13px;
 	left: 5px;
+	top: 2px;
+}
+
+.step2 .lesson-container .shr-lesson:not(.lesson-minimized) .lesson-name{
+	padding: 11px 5px 11px 25px;
+}
+
+.step2 .lesson-container .shr-lesson:not(.lesson-minimized) .lesson-name span{
+	top: 13px;
 }
 
 .step2 .lesson-container .lesson-name span em{
@@ -7634,13 +7642,14 @@ a.load-remote > *{
 .step2 .lesson-container h6{
 	color: #a7b7c4;
 	text-transform: uppercase;
-	margin: 29px 0 3px;
+	margin: 29px 0 0;
 }
 
 .step2 .lesson-container h6 .lead{
 	float: right;
 	font-size: 11px;
 	color: #a7b7c4;
+	margin: 0;
 }
 
 .step2 .lesson-container h6 .tip{
@@ -7658,6 +7667,7 @@ a.load-remote > *{
 .step2 .lesson-container .lesson-data textarea{
 	border: solid #e0e1e2;
 	border-width: 0 0 1px;
+	margin-bottom: 5px;
 }
 
 .step2 .lesson-container .switch-label{
@@ -7753,7 +7763,7 @@ a.load-remote > *{
 	border-width: 1px 0;
 	text-align: center;
 	background-color: #f7f9fa;
-	padding: 34px 0 45px;
+	padding: 34px 0 30px;
 	margin: 0;
 }
 
@@ -7772,6 +7782,9 @@ a.load-remote > *{
 	color: #a7b7c4;
 	margin: 17px 0 20px;
 	line-height: 18px; 
+}
+.step2 .lesson-container .dropzone{
+	/*border:1px silver dashed;*/
 }
 
 .step2 .lesson-container .file-upload-row .upload-button i{
