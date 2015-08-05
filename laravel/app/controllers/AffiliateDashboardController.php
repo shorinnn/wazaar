@@ -45,6 +45,27 @@ class AffiliateDashboardController extends BaseController
         }
     }
 
+    public function ltcEarningsView($frequency = '')
+    {
+        $frequencyOverride = 'day';
+        switch($frequency){
+            case 'alltime' :
+                $frequencyOverride = 'year';
+                $affiliates = $this->analyticsHelper->affiliateEarningsLastFewYears(Auth::id());break;
+            case 'week' :
+                $frequencyOverride = 'week';
+                $affiliates = $this->analyticsHelper->affiliateEarningsLastFewWeeks(Auth::id());break;
+            case 'month' :
+                $frequencyOverride = 'month';
+                $affiliates = $this->analyticsHelper->affiliateEarningsLastFewMonths(Auth::id());break;
+            default:
+                $affiliates = $this->analyticsHelper->affiliateEarningsLastFewDays(Auth::id());break;
+        }
+
+        if (is_array($affiliates)) {
+            return View::make('analytics.partials.ltcEarnings', compact('affiliates', 'frequencyOverride'))->render();
+        }
+    }
     public function salesView($frequency = '', $courseId = '', $trackingCode = '')
     {
         switch($frequency){
@@ -279,7 +300,8 @@ class AffiliateDashboardController extends BaseController
         $courseConversionView = $this->courseConversionView();
         $trackingCodeConversionView = $this->trackingCodeConversionView();
         $ltcRegistrationsView = $this->ltcRegistrationsView();
-        return View::make('affiliate.dashboard.index', compact('topCoursesView', 'salesView', 'trackingCodesSalesView', 'courseConversionView', 'trackingCodeConversionView','ltcRegistrationsView'));
+        $ltcEarningsView = $this->ltcEarningsView();
+        return View::make('affiliate.dashboard.index', compact('ltcEarningsView', 'topCoursesView', 'salesView', 'trackingCodesSalesView', 'courseConversionView', 'trackingCodeConversionView','ltcRegistrationsView'));
     }
 
 

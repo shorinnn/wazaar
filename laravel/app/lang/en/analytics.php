@@ -30,5 +30,6 @@ return
     'salesCount' => 'Sales Count',
     'newUsers'   => 'New Users',
 
-    'ltcRegistrations' => 'LTC Registrations'
+    'ltcRegistrations' => 'LTC Registrations',
+    'ltcEarnings' => 'LTC Earnings'
 ];

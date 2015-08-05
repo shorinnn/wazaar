@@ -186,6 +186,36 @@
                         </ul>
                     </div>
                 </div>
+
+                {{-- LTC Earnings --}}
+                <div class="col-md-4 col-sm-6 sol-xs-12">
+                    <div class="with-progress-bar">
+                        <div class="dropdown-wrapper">
+                            <button class="btn btn-default">
+                                {{trans('analytics.ltcEarnings')}} <span id="header-ltc-earnings-frequency">{{trans('analytics.today')}}</span> </button>
+                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu ltc-earnings-dropdown">
+                                <li>
+                                    <a class="active with-today" href="#" onclick="Analytics.ltcEarnings('daily',this); return false;">{{trans('analytics.today')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-weekly" href="#" onclick="Analytics.ltcEarnings('week', this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-monthly" href="#" onclick="Analytics.ltcEarnings('month', this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-alltime" href="#" onclick="Analytics.ltcEarnings('alltime', this); return false;">{{trans('analytics.allTime')}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul id="wrapper-ltc-earnings">
+                            {{$ltcEarningsView}}
+                        </ul>
+                    </div>
+                </div>
+
+                {{-- // LTC Earnings --}}
+
             </div>
 
 
