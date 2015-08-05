@@ -25,7 +25,7 @@
 
                         <div class="upload-dropdown-wrapper">
                             <a id="upload-new" class="default-button large-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                Upload Video
+                                {{ trans('courses/general.upload_video') }}
                                 <i class="wa-chevron-down"></i>
                             </a>
 

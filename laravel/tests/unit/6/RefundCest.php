@@ -82,6 +82,7 @@ class RefundCest{
         
         
         
+        $I->assertEquals( $purchase->instructor_id, $course->instructor_id );
         $I->assertNotEquals(0, $affiliate->second_tier_affiliate_id);
         $I->assertEquals( $purchase->purchase_price, 105 );
         $I->assertEquals( $purchase->original_price, 105 );
@@ -148,7 +149,7 @@ class RefundCest{
             'product_id' => $course->id, 'status' => 'complete', 'gc_fee' => 5] );
         
         $I->dontSeeRecord( 'purchases',[ 'id' => $purchase->id ] );
-        $I->seeRecord( 'purchase_refunds',[ 'purchase_id' => $purchase->id ] );
+        $I->seeRecord( 'purchase_refunds',[ 'purchase_id' => $purchase->id, 'instructor_id' => $purchase->instructor_id ] );
         
         $student = Student::where('username','sorin')->first();
         $affiliate = ProductAffiliate::find(5);

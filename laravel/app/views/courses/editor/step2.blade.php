@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="row">
     	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 side-overview">
-            <h2>Overview</h2>
+            <h2>{{ trans('courses/create.overview') }}</h2>
             <ol class="drag-module">
                 @foreach($course->modules()->orderBy('order','asc')->get() as $module)
                    {{ View::make('courses.editor.v2.module_li')->with( compact('module') )->render() }}

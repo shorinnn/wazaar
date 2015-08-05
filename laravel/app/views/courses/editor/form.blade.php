@@ -261,7 +261,7 @@
     @include('videos.archiveModal')
     <div class="edit-course">
         <input type='hidden' class='step-1-filled' value='{{ $course->short_description !='' ? 1 : 0}}' />
-        <input type='hidden' class='step-2-filled' value='{{ $course->lessonCount() >= 0 ? 1 : 0}}' />
+        <input type='hidden' class='step-2-filled' value='{{ $course->lessonCount() > 0 ? 1 : 0}}' />
         <input type='hidden' class='step-3-filled' value='{{ $course->course_difficulty_id > 0 ? 1 : 0}}' />
         <section class="container-fluid header">
             <div class="row">
@@ -302,7 +302,7 @@
 
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <div class="right steps-remaining">
-                        @if( $course->videoHours(true, 'i') >= 10 )
+<!--                        @if( $course->videoHours(true, 'i') >= 10 )
                             <p class="regular-paragraph no-margin">
                                 <span>{{ trans('courses/general.course-ready-for-submission') }} </span>
                             </p>
@@ -313,6 +313,22 @@
                             </span>
                             </p>
 
+                        @endif-->
+                        @if($course->publish_status=='pending')
+                                <p class="regular-paragraph no-margin">
+                                   <span>{{trans('courses/general.wazaar-is-checking-your-product')}} </span>
+                                </p>
+                        @else
+                            @if( courseStepsRemaining($course)==0 || $course->publish_status!='unsubmitted')
+                                <p class="regular-paragraph no-margin">
+                                   <span>{{ trans('courses/general.course-ready-for-submission') }} </span>
+                                </p>
+                            @else
+                                <p class="regular-paragraph no-margin">
+                                {{ trans('courses/general.complete-x-steps-to-submit', ['steps' => courseStepsRemaining($course) ] )}}
+                                <br />
+                                </p>
+                            @endif
                         @endif
                     </div>
                 </div>

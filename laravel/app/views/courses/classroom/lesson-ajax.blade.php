@@ -167,31 +167,35 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="overflow:hidden;">
-            	<div class="course-material">
-                	<div class="course-material-header expandable-button show-more" data-more-text="Show course materials" data-less-text="Hide course materials">
-                    	Show course materials <i class="wa-chevron-down"></i>
+                @if( count($lesson->attachments()) > 0)
+                    <div class="course-material">
+                            <div class="course-material-header expandable-button show-more" data-more-text="Show course materials" data-less-text="Hide course materials">
+                            Show course materials <i class="wa-chevron-down"></i>
+                        </div>
+                        <div class="materials expandable-content ">
+                            <ul class="clearfix">
+                                @foreach($lesson->blocks as $block)
+                                    @if($block->type == 'file')
+                                        <li>
+                                            <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}" target="_blank">
+                                                @if( strpos( $block->mime, 'image')!== false )
+                                                    <i class="fa fa-file-image-o"></i> 
+                                                @elseif( strpos( $block->mime, 'pdf' ) !== false )
+                                                    <i class="fa fa-file-pdf-o"></i> 
+                                                @else
+                                                    <i class='fa fa-file-text'></i>
+                                                @endif
+                                                {{ $block->name }}  
+                                                <span class="size">{{ $block->size() }}</span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                            <!--<a href="#" class="download-material large-button">Download all (.zip) - <span class="size">2MB</span></a>-->
+                        </div>
                     </div>
-                    <div class="materials expandable-content ">
-                    	<ul class="clearfix">
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        	<li><i class="fa fa-file"></i>Video_file_name_2015.mp4  <span class="size">1,2mb</span></li>
-                        </ul>
-                        <a href="#" class="download-material large-button">Download all (.zip) - <span class="size">2MB</span></a>
-                    </div>
-                </div>
+                @endif
                 <div class="questions-sidebar">
                     <div class="header clearfix">
                         <a href="#" class="questions-tab-header active">{{ $lesson->discussions()->count() }} Questions</a>
@@ -281,6 +285,7 @@
 <script>
     if(typeof($)=='function'){
         skinVideoControls();
+        showMoreContent();
         $('#myVideo').on('timeupdate', function(e){
             localStorage.setItem('vid-progress-'+videoHash, 
             $('#myVideo')[0].currentTime );

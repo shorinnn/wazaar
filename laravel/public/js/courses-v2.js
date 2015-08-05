@@ -129,6 +129,11 @@ function addLesson(json){
     $('li.shr-editor-module-'+json.module+' ol').append(json.li);
    
     $('.step3-lesson-count').html( $('.new-lesson').length );
+    
+    if( $('.step-2-filled').val()=='0' ) {
+        $('.step-2-filled').val('1');
+        updateStepsRemaining();
+    }
     enableBlockFileUploader();
 }
 

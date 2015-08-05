@@ -95,4 +95,12 @@ class Lesson extends Ardent {
         if($prev) return $prev;
         return false;
     }
+    
+    public function attachments(){
+        $attachments = [];
+        foreach($this->blocks as $block){
+            if($block->type=='file') $attachments[] = $block;
+        }
+        return $attachments;
+    }
 }
