@@ -5008,6 +5008,64 @@ h6{
 	margin: 0;
 }
 
+/* Course Materials */
+.course-material{
+	max-height: 400px;
+	overflow-y: scroll;
+	position: relative;
+}
+
+.course-material-header{
+	background: #798794;
+	padding: 23px 34px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #fff;
+	display: block;
+}
+
+.course-material-header i{
+	float: right;
+}
+
+.course-material .materials{
+	max-height: 0px;
+	padding: 0 34px;
+	background: #303941;
+}
+
+.course-material .materials ul{
+	padding: 0;
+	margin: 0;
+}
+
+.course-material .materials ul li{
+	margin-top: 24px;
+	font-size: 13px;
+	color: #a7b7c4;
+}
+
+.course-material .materials ul li i{
+	margin-right: 10px;
+	color: #798794;
+	font-size: 16px;
+}
+
+.course-material .materials ul li .size{
+	color: #798794;
+	margin-left: 7px;
+}
+
+.course-material .download-material{
+	background: #f7f9fa;
+	border-radius: 3px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #83909c;
+	display: inline-block;
+	margin: 24px 0;
+	border: solid 1px #cfd1d3;
+}
 
 /*Questions and Notes Sidebar*/
 .questions-sidebar{
