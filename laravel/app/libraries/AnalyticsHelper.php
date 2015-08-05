@@ -571,6 +571,7 @@ class AnalyticsHelper
 
         $query = $this->_salesRawQuery($filterQuery);
 
+
         return $this->_transformCoursePurchases($query);
     }
 
