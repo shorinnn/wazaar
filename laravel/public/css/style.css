@@ -12928,7 +12928,9 @@ header .top-menu .logged-in-top-menu{
 	.classroom-video.video-container .topControl .add-video-note form{
 		width: 80%;
 	}
-
+	.course-material .materials{
+		padding: 0 15px;
+	}
 }
 
 @media (max-width:475px){
