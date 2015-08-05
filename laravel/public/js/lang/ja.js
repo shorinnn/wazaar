@@ -25,5 +25,5 @@ var js_translation_map_ja = {
     'Hide' : 'Hide',
     'Password must be at least 6 characters long' : 'Password must be at least 6 characters long',
     'min-price-500' : 'ワザールで最低レッスン金額は500円以上ですので、500円以上の金額を設定して下さい。',
-    'Course Ready For Submission' : '商品は審査中です。'
+    'Course Ready For Submission' : '商品をご提出ください。'
 };
