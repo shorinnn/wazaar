@@ -47,7 +47,7 @@
         <div class="popular-courses-carousel container-fluid">
             <div class="whats-hot-slider">
                 @foreach($topCourses as $course)
-                    <div class="popular-courses">
+                    <div class="popular-courses @if( $course['discounted'] > 0) discounted-course @endif">
                         <a href="{{ action('CoursesController@show', $course['slug'] ) }}">
                             <div class="img-container">
                                 <!--<img class="img-responsive" alt="" src="{{ $course['preview'] }}">-->
@@ -186,7 +186,7 @@
                 mousewheelScrolling: "",
             });
 
-            $('.whats-hot-slider img').hover(function(){
+            $('.whats-hot-slider .popular-courses').hover(function(){
                         $(".whats-hot-slider").smoothDivScroll("stopAutoScrolling");
                     },
                     function(){
