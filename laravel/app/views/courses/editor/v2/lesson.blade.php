@@ -49,7 +49,7 @@
               <ul class="dropdown-menu" aria-labelledby="upload-new">
                 <label class="upload-button">
                     <span>Upload new video</span>
-                    <input type="file" hidden="" id="fileupload-{{$lesson->id}}" name="file" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lesson->id}}"/>
+                    <input type="file" hidden="" id="fileupload-lesson-{{$lesson->id}}" class="lesson-video-file" name="file" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lesson->id}}"/>
                 </label>
                 <span class="use-existing use-existing-preview" >
                     <span class="use-existing">
@@ -257,7 +257,7 @@
 
     $(function(){
         videoUploader.initialize({
-            'fileInputElem' : $('#fileupload-{{$lesson->id}}'),
+            'fileInputElem' : $('#fileupload-lesson-{{$lesson->id}}'),
             'url': '{{UploadHelper::AWSVideosInputURL()}}',
             'formData' : {
                 key:'{{$uniqueKey}}-${filename}',
