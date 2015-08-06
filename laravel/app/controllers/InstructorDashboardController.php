@@ -5,15 +5,71 @@ class InstructorDashboardController extends BaseController {
 
     public function __construct()
     {
-        $this->analyticsHelper = new AnalyticsHelper(false,Auth::id());
+        $this->analyticsHelper = new AnalyticsHelper(false,Auth::id(),'instructor');
     }
     public function index()
     {
-        $salesView = $this->sales();
-       return View::make('instructors.dashboard.index',compact('salesView'));
+        $sales = $this->_getSales();
+        $salesView = $this->salesView($sales);
+        $salesCountView = $this->salesCountView($sales);
+        $trackingCodesView = $this->trackingCodesView();
+        return View::make('instructors.dashboard.index',compact('salesView','salesCountView','trackingCodesView'));
     }
 
-    public function sales($frequency = '', $courseId = '', $trackingCode = '')
+    public function salesCountView($sales = '', $frequency = '', $courseId = '', $trackingCode = '')
+    {
+        if (empty($sales)){
+            $sales = $this->_getSales($frequency, $courseId = '', $trackingCode = '');
+        }
+
+        if (is_array($sales)) {
+            if ($frequency == 'week'){
+                return View::make('analytics.partials.salesWeeklyCount', compact('sales', 'frequency'))->render();
+            }
+            elseif($frequency == 'month'){
+                return View::make('analytics.partials.salesMonthlyCount', compact('sales', 'frequency'))->render();
+            }
+            elseif($frequency == 'alltime'){
+                return View::make('analytics.partials.salesYearlyCount', compact('sales', 'frequency'))->render();
+            }
+            else {
+                return View::make('analytics.partials.salesCount', compact('sales', 'frequency'))->render();
+            }
+        }
+    }
+
+    public function salesView($sales = '', $frequency = '', $courseId = '', $trackingCode = '')
+    {
+        if (empty($sales)){
+            $sales = $this->_getSales($frequency, $courseId = '', $trackingCode = '');
+        }
+
+
+        $frequencyOverride = $frequency;
+        switch($frequency){
+            case 'alltime' :
+                $frequencyOverride = 'year';
+                $sales = $this->analyticsHelper->salesLastFewYears(7);break;
+            case 'week' :
+                $sales = $this->analyticsHelper->salesLastFewWeeks(7);break;
+            case 'month' :
+                $sales = $this->analyticsHelper->salesLastFewMonths(7);break;
+            default:
+                $frequencyOverride = 'day';
+                $sales = $this->analyticsHelper->salesLastFewDays(7);break;
+        }
+
+        return View::make('administration.dashboard.partials.sales.count', compact('frequencyOverride', 'sales'))->render();
+    }
+
+    public function trackingCodesView($frequency = '', $courseId = '')
+    {
+        $trackingCodes = $this->analyticsHelper->trackingCodes($frequency,$courseId);
+        if (is_array($trackingCodes)) {
+            return View::make('analytics.partials.trackingCodes', compact('trackingCodes', 'frequency'))->render();
+        }
+    }
+    private function _getSales($frequency = '', $courseId = '', $trackingCode = '')
     {
         switch($frequency){
             case 'alltime' :
@@ -26,21 +82,6 @@ class InstructorDashboardController extends BaseController {
                 $sales = $this->analyticsHelper->salesLastFewDays(7, $courseId,$trackingCode);break;
         }
 
-
-
-        if (is_array($sales)) {
-            if ($frequency == 'week'){
-                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency'))->render();
-            }
-            elseif($frequency == 'month'){
-                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency'))->render();
-            }
-            elseif($frequency == 'alltime'){
-                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency'))->render();
-            }
-            else {
-                return View::make('analytics.partials.sales', compact('sales', 'frequency'))->render();
-            }
-        }
+        return $sales;
     }
 }

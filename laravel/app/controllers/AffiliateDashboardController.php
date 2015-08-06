@@ -7,7 +7,7 @@ class AffiliateDashboardController extends BaseController
     public function __construct()
     {
         $this->beforeFilter('affiliate|admin');
-        $this->analyticsHelper = new AnalyticsHelper(Auth::user()->hasRole('Admin') ? true : false, Auth::id());
+        $this->analyticsHelper = new AnalyticsHelper(Auth::user()->hasRole('Admin') ? true : false, Auth::id(), Auth::user()->hasRole('Admin') ? '' : 'affiliate');
     }
 
     public function index()

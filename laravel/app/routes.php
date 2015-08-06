@@ -340,7 +340,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
         Route::post('{id}/delete','VideosController@delete');
     });
 
-    Route::group(['prefix' => 'dashboard'], function(){
+    Route::group(['prefix' => 'analytics'], function(){
         Route::get('/', 'InstructorDashboardController@index');
     });
 });

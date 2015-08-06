@@ -41,7 +41,7 @@ class AnalyticsSeeder extends DatabaseSeeder
                 'updated_at'                     => $date
             ];
             $this->_createFakeHits([
-                'affiliate_id'  => 2,
+                'affiliate_id'  => 5,
                 'course_id'     => $courseId,
                 'tracking_code' => $trackingCode,
                 'created_at'    => $date,

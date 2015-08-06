@@ -70,7 +70,7 @@
                         </div>
 
                         <div id="wrapper-sales">
-
+                            {{$salesCountView}}
                         </div>
 
                     </div>
@@ -99,7 +99,7 @@
                             </ul>
                         </div>
                         <ul id="wrapper-tracking-codes">
-
+                            {{$trackingCodesView}}
                         </ul>
 
 

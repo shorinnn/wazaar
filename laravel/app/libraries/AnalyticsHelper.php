@@ -3,14 +3,17 @@
 class AnalyticsHelper
 {
 
-    protected $affiliateId;
+    protected $userId;
     protected $isAdmin;
+    protected $userType;
 
-    public function __construct($isAdmin, $affiliateId = 0)
+    public function __construct($isAdmin, $userId = 0, $userType = '')
     {
-        $this->isAdmin     = $isAdmin;
-        $this->affiliateId = $affiliateId;
+        $this->isAdmin  = $isAdmin;
+        $this->userId   = $userId;
+        $this->userType = $userType;
     }
+
 
     private function dailyLtcEarnings($affiliateId, $dateFilter = '')
     {
@@ -19,24 +22,28 @@ class AnalyticsHelper
         }
 
         $filterQuery = " AND DATE(purchases.created_at) = '{$dateFilter}'";
+
         return $this->_affiliateEarnings($affiliateId, $filterQuery);
     }
 
     private function weeklyLtcEarnings($affiliateId, $dateFilterStart, $dateFilterEnd)
     {
         $filterQuery = " AND DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
         return $this->_affiliateEarnings($affiliateId, $filterQuery);
     }
 
     private function monthlyLtcEarnings($affiliateId, $month, $year)
     {
         $filterQuery = " AND MONTH(purchases.created_at) = '{$month}' AND YEAR(purchases.created_at) = '{$year}'";
+
         return $this->_affiliateEarnings($affiliateId, $filterQuery);
     }
 
     private function allTimeLtcEarnings($affiliateId, $year)
     {
         $filterQuery = " AND YEAR(purchases.created_at) = '{$year}'";
+
         return $this->_affiliateEarnings($affiliateId, $filterQuery);
     }
 
@@ -47,54 +54,59 @@ class AnalyticsHelper
         }
 
         $filterQuery = " AND DATE(users.created_at) = '{$dateFilter}'";
+
         return $this->_affiliates($affiliateId, $filterQuery);
     }
 
     private function weeklyLtcRegistration($affiliateId, $dateFilterStart, $dateFilterEnd)
     {
         $filterQuery = " AND DATE(users.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
         return $this->_affiliates($affiliateId, $filterQuery);
     }
 
     private function monthlyLtcRegistration($affiliateId, $month, $year)
     {
         $filterQuery = " AND MONTH(users.created_at) = '{$month}' AND YEAR(users.created_at) = '{$year}'";
+
         return $this->_affiliates($affiliateId, $filterQuery);
     }
 
     private function allTimeLtcRegistration($affiliateId, $year)
     {
         $filterQuery = " AND YEAR(users.created_at) = '{$year}'";
+
         return $this->_affiliates($affiliateId, $filterQuery);
     }
 
     private function _affiliates($affiliateId, $filter = '')
     {
-        $sql = "SELECT count(id) as affiliates_count FROM users WHERE ltc_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
+        $sql    = "SELECT count(id) as affiliates_count FROM users WHERE ltc_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
         $result = DB::select($sql);
 
         $result = array_map(function ($val) {
             return json_decode(json_encode($val), true);
         }, $result);
         $output = [
-            'data'        => $result,
-            'count'       => count($result),
+            'data'             => $result,
+            'count'            => count($result),
             'affiliates_count' => array_sum(array_column($result, 'affiliates_count')),
         ];
 
         return $output;
     }
 
-    private function _affiliateEarnings($affiliateId, $filter = ''){
-        $sql = "SELECT sum(ltc_affiliate_earnings) as affiliates_earning FROM purchases WHERE ltc_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
+    private function _affiliateEarnings($affiliateId, $filter = '')
+    {
+        $sql    = "SELECT sum(ltc_affiliate_earnings) as affiliates_earning FROM purchases WHERE ltc_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
         $result = DB::select($sql);
 
         $result = array_map(function ($val) {
             return json_decode(json_encode($val), true);
         }, $result);
         $output = [
-            'data'        => $result,
-            'count'       => count($result),
+            'data'               => $result,
+            'count'              => count($result),
             'affiliates_earning' => array_sum(array_column($result, 'affiliates_earning')),
         ];
 
@@ -238,7 +250,6 @@ class AnalyticsHelper
         }
     }
 
-
     public function dailySales($courseId, $date = '', $trackingCode = '')
     {
         if (empty($date)) {
@@ -310,7 +321,6 @@ class AnalyticsHelper
 
         return compact('sales', 'salesTotal', 'salesCount');
     }
-
 
     public function salesLastFewDays($numOfDays, $courseId = 0, $trackingCode = '')
     {
@@ -922,7 +932,6 @@ class AnalyticsHelper
         return $output;
     }
 
-
     private function _purchaseRawQuery($criteria = '', $type = 'Course')
     {
 
@@ -934,13 +943,21 @@ class AnalyticsHelper
         if (!empty($type)) {
             $criteria .= " AND product_type='{$type}'";
         }
-
-        if (!$this->isAdmin AND !empty($this->affiliateId)) {
-            //$criteria .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
-            $criteria .= " AND (purchases.product_affiliate_id = '{$this->affiliateId}' )";
+        $sum = "SUM(purchases.purchase_price)";
+        //Sales for affiliates are taken from another column
+        if ($this->userType == 'affiliate') {
+            $sum = "IF(product_affiliate_id = '{$this->userId}', sum(`affiliate_earnings`),0) + IF(second_tier_affiliate_id = '{$this->userId}',sum(second_tier_affiliate_earnings),0)";
+        }
+        elseif($this->userType == 'instructor'){
+            $sum = "IF(instructor_id = '{$this->userId}', sum(`instructor_earnings`),0) + IF(second_tier_instructor_id = '{$this->userId}',sum(second_tier_instructor_earnings),0)";
         }
 
-        $sql = "SELECT courses.id, courses.`name`, SUM(purchases.purchase_price) as 'total_purchase'
+        //if (!$this->isAdmin AND !empty($this->userId)) {
+            //$criteria .= " AND (purchases.ltc_affiliate_id = '{$this->userId}' OR purchases.product_affiliate_id = '{$this->userId}' )";
+        //    $criteria .= " AND (purchases.product_affiliate_id = '{$this->userId}' )";
+        //}
+
+        $sql = "SELECT courses.id, courses.`name`, {$sum} as 'total_purchase'
                 FROM purchases
                 JOIN courses ON courses.id = purchases.product_id WHERE purchases.id <> 0
                 {$criteria}
@@ -957,15 +974,19 @@ class AnalyticsHelper
             $criteria = ' AND ' . $criteria;
         }
 
-        $sum = "SUM(purchases.purchase_price)";
-
+        $sum = 'SUM(purchases.purchase_price)';
+        $countCriteria = '';
         //Sales for affiliates are taken from another column
-        if (!$this->isAdmin AND !empty($this->affiliateId)) {
-            $sum = "sum(affiliate_earnings) + sum(second_tier_affiliate_earnings)";
-            $criteria .= " AND (purchases.product_affiliate_id = '{$this->affiliateId}' OR purchases.second_tier_affiliate_id = '{$this->affiliateId}')";
+        if ($this->userType == 'affiliate') {
+            $sum = "IF(product_affiliate_id = '{$this->userId}', sum(`affiliate_earnings`),0) + IF(second_tier_affiliate_id = '{$this->userId}',sum(second_tier_affiliate_earnings),0)";
+            $countCriteria = "AND  product_affiliate_id = '{$this->userId}' OR second_tier_affiliate_id = '{$this->userId}'";
+        }
+        elseif($this->userType == 'instructor'){
+            $sum = "IF(instructor_id = '{$this->userId}', sum(`instructor_earnings`),0) + IF(second_tier_instructor_id = '{$this->userId}',sum(second_tier_instructor_earnings),0)";
+            $countCriteria = "AND  instructor_id = '{$this->userId}' OR second_tier_instructor_id = '{$this->userId}'";
         }
 
-        $sql = "SELECT created_at, {$sum} as 'total_purchase', COUNT(purchases.id) as 'total_count'
+        $sql = "SELECT created_at, {$sum} as 'total_purchase', (SELECT COUNT(purchases.id) FROM purchases WHERE id <> 0 {$countCriteria} {$criteria}) as 'total_count'
                 FROM purchases WHERE id <> 0
                 {$criteria}
                 GROUP BY DATE(created_at)
@@ -981,13 +1002,18 @@ class AnalyticsHelper
             $criteria = ' AND ' . $criteria;
         }
 
-        if (!$this->isAdmin AND !empty($this->affiliateId)) {
-            $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
+        $purchaseCriteria = '';
+
+        if ($this->userType == 'affiliate') {
+            $purchaseCriteria = " AND (product_affiliate_id = '{$this->userId}' OR second_tier_affiliate_id = '{$this->userId}')";
+        }
+        elseif ($this->userType == 'instructor'){
+            $purchaseCriteria = " AND (instructor_id = '{$this->userId}' OR second_tier_instructor_id = '{$this->userId}')";
         }
 
         $sql = "SELECT course_id, tracking_code, count(tracking_code) as 'count', courses.name as 'course_name',
-                (SELECT sum(purchase_price) FROM purchases WHERE tracking_code = tracking_code_hits.tracking_code) as 'purchase_total',
-                (SELECT count(purchase_price) FROM purchases WHERE tracking_code = tracking_code_hits.tracking_code) as 'purchase_count'
+                (SELECT sum(purchase_price) FROM purchases WHERE tracking_code = tracking_code_hits.tracking_code {$purchaseCriteria}) as 'purchase_total',
+                (SELECT count(purchase_price) FROM purchases WHERE tracking_code = tracking_code_hits.tracking_code {$purchaseCriteria}) as 'purchase_count'
                 FROM tracking_code_hits
                 JOIN courses ON courses.id = tracking_code_hits.course_id WHERE tracking_code_hits.id <> 0
                  {$criteria}
@@ -1010,11 +1036,24 @@ class AnalyticsHelper
 
         $criteriaPurchase  = $criteria;
         $criteriaPurchase2 = $criteria;
-        if (!$this->isAdmin AND !empty($this->affiliateId)) {
-            $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
-            $criteriaPurchase .= " AND cp.product_affiliate_id = '{$this->affiliateId}'";
-            $criteriaPurchase2 .= " AND purchases.product_affiliate_id = '{$this->affiliateId}'";
+
+        if ($this->userType == 'affiliate') {
+            $criteria .= " AND (affiliate_id = '{$this->userId}')";
+            $criteriaPurchase .= " AND (cp.product_affiliate_id = '{$this->userId}' OR cp.second_tier_affiliate_id = '{$this->userId}')";
+            $criteriaPurchase2 .= " AND (purchases.product_affiliate_id = '{$this->userId}' OR purchases.second_tier_affiliate_id = '{$this->userId}')";
         }
+        elseif ($this->userType == 'instructor'){
+            //$purchaseCriteria = " AND (instructor_id = '{$this->userId}' OR second_tier_instructor_id = '{$this->userId}')";
+            $criteria .= " AND (affiliate_id = '{$this->userId}')";
+            $criteriaPurchase .= " AND (cp.instructor_id = '{$this->userId}' OR cp.second_tier_instructor_id = '{$this->userId}')";
+            $criteriaPurchase2 .= " AND (purchases.instructor_id = '{$this->userId}' OR purchases.second_tier_instructor_id = '{$this->userId}')";
+        }
+
+        /*if (!$this->isAdmin AND !empty($this->userId)) {
+            $criteria .= " AND affiliate_id = '{$this->userId}'";
+            $criteriaPurchase .= " AND cp.product_affiliate_id = '{$this->userId}'";
+            $criteriaPurchase2 .= " AND purchases.product_affiliate_id = '{$this->userId}'";
+        }*/
 
         $sql = "SELECT courses.`name`, cp.product_id,
                (
@@ -1064,11 +1103,23 @@ class AnalyticsHelper
 
         $criteriaPurchase  = $criteria;
         $criteriaPurchase2 = $criteria;
-        if (!$this->isAdmin AND !empty($this->affiliateId)) {
-            $criteria .= " AND affiliate_id = '{$this->affiliateId}'";
-            $criteriaPurchase .= " AND (cp.ltc_affiliate_id = '{$this->affiliateId}' OR cp.product_affiliate_id = '{$this->affiliateId}' )";
-            $criteriaPurchase2 .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
+
+        if ($this->userType == 'affiliate') {
+            $criteria .= " AND (affiliate_id = '{$this->userId}')";
+            $criteriaPurchase .= " AND (cp.product_affiliate_id = '{$this->userId}' OR cp.second_tier_affiliate_id = '{$this->userId}')";
+            $criteriaPurchase2 .= " AND (purchases.product_affiliate_id = '{$this->userId}' OR purchases.second_tier_affiliate_id = '{$this->userId}')";
         }
+        elseif ($this->userType == 'instructor'){
+            $criteria .= " AND (affiliate_id = '{$this->userId}')";
+            $criteriaPurchase .= " AND (cp.instructor_id = '{$this->userId}' OR cp.second_tier_instructor_id = '{$this->userId}')";
+            $criteriaPurchase2 .= " AND (purchases.instructor_id = '{$this->userId}' OR purchases.second_tier_instructor_id = '{$this->userId}')";
+        }
+
+        /*if (!$this->isAdmin AND !empty($this->userId)) {
+            $criteria .= " AND affiliate_id = '{$this->userId}'";
+            $criteriaPurchase .= " AND (cp.ltc_affiliate_id = '{$this->userId}' OR cp.product_affiliate_id = '{$this->userId}' )";
+            $criteriaPurchase2 .= " AND (purchases.ltc_affiliate_id = '{$this->userId}' OR purchases.product_affiliate_id = '{$this->userId}' )";
+        }*/
 
         $sql = "SELECT DISTINCT cp.tracking_code, cp.product_id,
                (
@@ -1131,7 +1182,6 @@ class AnalyticsHelper
         }
 
 
-
         $affTotal = $this->_getAffiliateEarningsTotal($affiliates, 'day');
 
         $i = 0;
@@ -1166,7 +1216,7 @@ class AnalyticsHelper
                 'label' => $label,
                 'start' => $start,
                 'end'   => $end,
-                'week'  => $this->weeklyLtcEarnings($affiliateId, $start,$end)
+                'week'  => $this->weeklyLtcEarnings($affiliateId, $start, $end)
             ];
         }
 
@@ -1204,7 +1254,7 @@ class AnalyticsHelper
                 'label'      => $label,
                 'month_date' => $month,
                 'year'       => $year,
-                'month'      => $this->monthlyLtcEarnings($affiliateId,$month,$year)
+                'month'      => $this->monthlyLtcEarnings($affiliateId, $month, $year)
             ];
         }
         $affTotal = $this->_getAffiliateEarningsTotal($affiliates, 'month');
@@ -1240,7 +1290,7 @@ class AnalyticsHelper
             $affiliates[] = [
                 'label'     => $label,
                 'year_date' => $year,
-                'year'      => $this->allTimeLtcEarnings($affiliateId,$year)
+                'year'      => $this->allTimeLtcEarnings($affiliateId, $year)
             ];
         }
 
@@ -1274,8 +1324,6 @@ class AnalyticsHelper
         return $totalAff;
     }
 
-
-
     public function affiliatesLastFewDays($affiliateId = 0, $numOfDays = 7)
     {
         $affiliates = [];
@@ -1293,7 +1341,6 @@ class AnalyticsHelper
                 'day'   => $this->dailyLtcRegistration($affiliateId, $date)
             ];
         }
-
 
 
         $affTotal = $this->_getAffiliatesTotal($affiliates, 'day');
@@ -1330,7 +1377,7 @@ class AnalyticsHelper
                 'label' => $label,
                 'start' => $start,
                 'end'   => $end,
-                'week'  => $this->weeklyLtcRegistration($affiliateId, $start,$end)
+                'week'  => $this->weeklyLtcRegistration($affiliateId, $start, $end)
             ];
         }
 
@@ -1368,7 +1415,7 @@ class AnalyticsHelper
                 'label'      => $label,
                 'month_date' => $month,
                 'year'       => $year,
-                'month'      => $this->monthlyLtcRegistration($affiliateId,$month,$year)
+                'month'      => $this->monthlyLtcRegistration($affiliateId, $month, $year)
             ];
         }
         $affTotal = $this->_getAffiliatesTotal($affiliates, 'month');
@@ -1403,7 +1450,7 @@ class AnalyticsHelper
             $affiliates[] = [
                 'label'     => $label,
                 'year_date' => $year,
-                'year'      => $this->allTimeLtcRegistration($affiliateId,$year)
+                'year'      => $this->allTimeLtcRegistration($affiliateId, $year)
             ];
         }
 
@@ -1431,12 +1478,11 @@ class AnalyticsHelper
         $totalAff = 0;
 
         foreach ($affiliates as $aff) {
-                $totalAff += $aff[$frequency]['affiliates_count'];
+            $totalAff += $aff[$frequency]['affiliates_count'];
         }
 
         return $totalAff;
     }
-
 
     private function _frequencyEquivalence($frequency = null)
     {

@@ -9,7 +9,7 @@ return
     'sales' => 'Sales',
     'trackingCodeConverting' => 'Tracking Code Converting',
     'trackingCode' => 'Tracking Code',
-    'topTrackingCodes' => 'Stats',
+    'stats' => 'Stats',
     'topCourses' => 'Top Courses',
     'topConvertingCourses' => 'Top Converting Courses',
 
