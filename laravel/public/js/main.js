@@ -21,6 +21,7 @@ $(document).ready(function(){
 
     $('#curriculum .lessons').jScrollPane();
     $(".profile-name > li").removeClass("activate-dropdown");
+    $('body').delegate('.scroll-to-element', 'click', scrollToElement);
     $('body').delegate('.slide-toggler', 'click', slideToggle);
     $('body').delegate('a.load-remote', 'click', loadRemote);
     $('body').delegate('a.link-to-remote', 'click', linkToRemote);
@@ -1369,6 +1370,8 @@ function toggleSideMenu(){
 function toggleRightBar(e, json){
     $('.right-slide-menu').toggleClass('in');
     if( typeof(e) !='undefined' ){
+        if( $('#myVideo').length > 0 ) $('#myVideo')[0].pause();
+        
         var target = $(e.target).attr('data-target');
         prop = $(e.target).attr('data-property');
         val = json[prop];
@@ -1404,4 +1407,12 @@ function showLessonQuestionForm(){
 function LessonQuestionAddToList(json, e){
     addToList(json, e);
     toggleRightBar();
+}
+
+function scrollToElement(e){
+    e.preventDefault();
+    target = $(e.target).attr('data-target');
+     $('html, body').animate({
+        scrollTop: $(target).offset().top
+    }, 400);
 }

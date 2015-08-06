@@ -30,7 +30,11 @@
                         </button>
                         <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                             <ul>
-                                @foreach(CourseCategory::withCourses() as $category)
+                                <?php
+                                    $categories = CourseCategory::withCourses();
+                                    $categories->load( 'courseSubcategories' );
+                                ?>
+                                @foreach( $categories as $category)
     
                                         @if($category->courseSubcategories)
                                             <li  class="dropdown-list"><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a> <i class="wa-chevron-right"></i>
@@ -147,6 +151,9 @@
             <div class="top-profile-info">          
                 <span class="profile-level">12</span>
                 <div class="profile-thumbnail">
+                    <?php
+                    Auth::user()->load('roles', 'profiles');
+                    ?>
                     @if(Auth::user()->hasRole('Instructor'))
                     <img style="height: 30px; width: 30px; border-radius: 30px;" 
                              src="{{ cloudfrontUrl( Instructor::find(Auth::user()->id)->profile->photo ) }}" alt="">
@@ -183,9 +190,10 @@
     
                                 </a>
                                 <?php
-                                    $received = $student->receivedMessages()->unread( $student->id )->with('sender.profiles')->with('sender')->with('course')->get();
+//                                    $received = $student->receivedMessages()->unread( $student->id )->with('sender.profiles')->with('sender')->with('course')->get();
+//                                    @if( $received->count() > 0)
                                 ?>
-                                @if( $received->count() > 0)
+                                @if( 1 == 2)
                                 <style>
                                     .notification-number:hover div {
                                         display:block !important;
@@ -247,7 +255,7 @@
                         </button>
                         <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                             <ul>
-                                @foreach(CourseCategory::withCourses() as $category)
+                                @foreach($categories as $category)
     
                                         @if($category->courseSubcategories)
                                             <li  class="dropdown-list"><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a> <i class="wa-chevron-right"></i>

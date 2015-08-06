@@ -571,6 +571,7 @@ class AnalyticsHelper
 
         $query = $this->_salesRawQuery($filterQuery);
 
+
         return $this->_transformCoursePurchases($query);
     }
 
@@ -956,13 +957,15 @@ class AnalyticsHelper
             $criteria = ' AND ' . $criteria;
         }
 
-        if (!$this->isAdmin AND !empty($this->affiliateId)) {
-            //$criteria .= " AND (purchases.ltc_affiliate_id = '{$this->affiliateId}' OR purchases.product_affiliate_id = '{$this->affiliateId}' )";
-            $criteria .= " AND (purchases.product_affiliate_id = '{$this->affiliateId}' )";
+        $sum = "SUM(purchases.purchase_price)";
 
+        //Sales for affiliates are taken from another column
+        if (!$this->isAdmin AND !empty($this->affiliateId)) {
+            $sum = "sum(affiliate_earnings) + sum(second_tier_affiliate_earnings)";
+            $criteria .= " AND (purchases.product_affiliate_id = '{$this->affiliateId}' OR purchases.second_tier_affiliate_id = '{$this->affiliateId}')";
         }
 
-        $sql = "SELECT created_at, SUM(purchases.purchase_price) as 'total_purchase', COUNT(purchases.id) as 'total_count'
+        $sql = "SELECT created_at, {$sum} as 'total_purchase', COUNT(purchases.id) as 'total_count'
                 FROM purchases WHERE id <> 0
                 {$criteria}
                 GROUP BY DATE(created_at)

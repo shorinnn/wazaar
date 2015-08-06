@@ -339,6 +339,10 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
         Route::any('user/archive','VideosController@userArchive');
         Route::post('{id}/delete','VideosController@delete');
     });
+
+    Route::group(['prefix' => 'dashboard'], function(){
+        Route::get('/', 'InstructorDashboardController@index');
+    });
 });
 
 ##Dashboard Group
