@@ -642,6 +642,10 @@ class Student extends User{
          }
          return false;
      }
+     
+     public function lastLessonInCourse($course){
+         return $this->viewedLessons()->where('course_id', $course->id)->orderBy('updated_at','desc')->first();
+     }
 
 
 

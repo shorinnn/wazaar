@@ -103,4 +103,10 @@ class Lesson extends Ardent {
         }
         return $attachments;
     }
+    
+    public function lessonPosition(){
+        $modules = $this->module->course->modules()->where('order','<', $this->module->order)->lists('id');
+        if( count($modules)==0 ) $modules = [0];
+        return $this->module->lessons()->where('order','<',$this->order)->count() + Lesson::whereIn('module_id', $modules)->count() + 1;
+    }
 }

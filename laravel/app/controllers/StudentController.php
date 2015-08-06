@@ -9,7 +9,9 @@ class StudentController extends \BaseController {
 	public function mycourses()
 	{    
             $student = Student::find( Auth::user()->id );
-            return View::make('student.mycourses')->with( compact('student') );
+            $lastLesson = $student->viewedLessons()->orderBy('updated_at','desc')->first();
+            $courses = $student->purchases()->where('product_type','Course')->get();
+            return View::make('student.mycourses')->with( compact('student', 'lastLesson', 'courses') );
 	}
         
         
