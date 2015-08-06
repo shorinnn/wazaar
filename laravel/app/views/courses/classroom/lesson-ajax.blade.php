@@ -41,6 +41,62 @@
             .classroom-view::-webkit-scrollbar {
              display: none;
             }
+			.video-quality-wrap{
+				float: left;
+				padding-top: 3px;
+			}
+			
+			.video-quality-wrap .dropdown-menu > li > a:hover,
+			.video-quality-wrap .dropdown-menu > li > a,
+			.video-quality-wrap .dropdown-toggle:hover,
+			.video-quality-wrap .dropdown-toggle{
+				font-weight: normal;
+				font-size: 10px !important;
+				color: #a7b5c2;
+				box-shadow: none !important;
+				background: none;
+				cursor: pointer;
+			}
+
+			.video-quality-wrap .dropdown-menu > li > a:hover{
+				color: #fff;
+			}
+			
+			.video-quality-wrap .dropdown-menu > li > a b,
+			.video-quality-wrap .dropdown-toggle b{
+				font-size: 12px;
+				font-weight: bold;
+			}
+			
+			.video-quality-wrap .dropdown-menu{
+				bottom: 120%;
+				left: -40px;
+				box-shadow: none;
+				border: none;
+				min-width: 130px;
+				padding: 0 0 9px !important;
+				background: #242d36;
+			}
+			
+			.video-quality-wrap .dropdown-menu > li > a{
+				padding: 15px 20px 6px;
+			}
+			
+			.video-quality-wrap .dropdown-menu > li > a{
+				text-align: left;
+			}
+			
+			.video-quality-wrap .fa.fa-caret-down {
+				bottom: -13px;
+				color: #242d36;
+				font-size: 21px;
+				left: 60px;
+				position: absolute;
+				z-index: 1;
+			}											
+			.video-quality-wrap .dropdown-toggle{
+				padding: 6px 0;
+			}
         </style>
         
             <div class="right-slide-menu"></div>
@@ -133,6 +189,17 @@
                                             </div>
                                             <div class="time hidden-xs">
                                                 <span class="duration"></span>
+                                            </div>
+                                            <div class="btn-group dropup video-quality-wrap">
+                                                <a class="btn dropdown-toggle" data-toggle="dropdown" style="font-size: 12px;" aria-expanded="false"><b style="">HD</b> 720p
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                      <li class="dropdown-submenu"><a><b>Low</b> 480p</a></li>
+                                                      <li class="dropdown-submenu"><a><b>HD</b> 720p</a></li>
+                                                      <li class="dropdown-submenu"><a><b>Full HD</b> 1080p</a></li>
+                                                      <i class="fa fa-caret-down"> </i>
+                                                </ul>
+                                                
                                             </div>
                                             <div class="sound sound2 btn hidden-xs" title="Mute/Unmute sound">
                                                 <i class="wa-sound"></i>

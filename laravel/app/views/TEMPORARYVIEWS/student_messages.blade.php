@@ -84,8 +84,145 @@
                         </div>
                     </div>
                     <div class="row conversation">
+                    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+                        	<span class="date"><em>Yesterday</em></span>                        
+                        </div>
                     	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        	<span class="date">Yesterday</span>
+                            <div class="row margin-bottom-25">
+                            	<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+									<div class="avatar">
+                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" alt="" class="img-responsive">
+                                    </div>
+                                    <div class="replies-box">
+                                        <p class="regular-paragraph">I'm looking for any kind of resource, including those that are highly technical, those directed to experienced 
+                                        UI/UX designers, and just interesting philosophical works that inform awesome modern/current web UIs/UXs (like Quora's!).</p>
+                                        
+                                        <span class="arrow-left"> </span>
+                                    </div> 
+                                </div>
+                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-md-offset-1 col-lg-offset-1 no-padding">
+                                	<span class="message-time">12:34</span>
+                                </div>
+                            </div>
+                            <div class="row margin-bottom-25">
+                            	<div class="col-xs-10 col-sm-10 col-md-11 col-lg-11">
+                                    <div class="student-reply">
+                                        <p class="regular-paragraph">I'm looking for any kind of resource, including those that are highly technical, those directed to experienced 
+                                        UI/UX designers</p>
+                                        
+                                        <span class="arrow-right"> </span>
+                                    </div> 
+                                </div>
+                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 no-padding">
+                                	<span class="message-time">12:34</span>
+                                </div>
+                            </div>
+                            <div class="row margin-bottom-25">
+                            	<div class="col-xs-10 col-sm-10 col-md-11 col-lg-11">
+                                    <div class="student-reply">
+                                        <p class="regular-paragraph">I'm looking for any kind of resource, including those that are highly technical, those directed to experienced 
+                                        UI/UX designers</p>
+                                        
+                                        <span class="arrow-right"> </span>
+                                    </div> 
+                                </div>
+                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 no-padding">
+                                	<span class="message-time">12:34</span>
+                                </div>
+                            </div>
+                            <div class="row margin-bottom-25">
+                            	<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+									<div class="avatar">
+                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" alt="" class="img-responsive">
+                                    </div>
+                                    <div class="replies-box">
+                                        <p class="regular-paragraph">You are welcome!</p>
+                                        
+                                        <span class="arrow-left"> </span>
+                                    </div> 
+                                </div>
+                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-md-offset-1 col-lg-offset-1 no-padding">
+                                	<span class="message-time">12:34</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row conversation">
+                    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+                        	<span class="date"><em>Today</em></span>                        
+                        </div>
+                    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="row margin-bottom-25">
+                            	<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+									<div class="avatar">
+                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" alt="" class="img-responsive">
+                                    </div>
+                                    <div class="replies-box">
+                                        <p class="regular-paragraph">I'm looking for any kind of resource, including those that are highly technical, those directed to experienced 
+                                        UI/UX designers, and just interesting philosophical works that inform awesome modern/current web UIs/UXs (like Quora's!).</p>
+                                        
+                                        <span class="arrow-left"> </span>
+                                    </div> 
+                                </div>
+                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-md-offset-1 col-lg-offset-1 no-padding">
+                                	<span class="message-time">12:34</span>
+                                </div>
+                            </div>
+                            <div class="row margin-bottom-25">
+                            	<div class="col-xs-10 col-sm-10 col-md-11 col-lg-11">
+                                    <div class="student-reply">
+                                        <p class="regular-paragraph">I'm looking for any kind of resource, including those that are highly technical, those directed to experienced 
+                                        UI/UX designers</p>
+                                        
+                                        <span class="arrow-right"> </span>
+                                    </div> 
+                                </div>
+                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 no-padding">
+                                	<span class="message-time">12:34</span>
+                                </div>
+                            </div>
+                            <div class="row margin-bottom-25">
+                            	<div class="col-xs-10 col-sm-10 col-md-11 col-lg-11">
+                                    <div class="student-reply">
+                                        <p class="regular-paragraph">I'm looking for any kind of resource, including those that are highly technical, those directed to experienced 
+                                        UI/UX designers</p>
+                                        
+                                        <span class="arrow-right"> </span>
+                                    </div> 
+                                </div>
+                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 no-padding">
+                                	<span class="message-time">12:34</span>
+                                </div>
+                            </div>
+                            <div class="row margin-bottom-25">
+                            	<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+									<div class="avatar">
+                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" alt="" class="img-responsive">
+                                    </div>
+                                    <div class="replies-box">
+                                        <p class="regular-paragraph">I'm looking for any kind of resource, including those that are highly technical, those directed to experienced 
+                                        UI/UX designers, and just interesting philosophical works that inform awesome modern/current web UIs/UXs (like Quora's!).</p>
+                                        
+                                        <span class="arrow-left"> </span>
+                                    </div> 
+                                </div>
+                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-md-offset-1 col-lg-offset-1 no-padding">
+                                	<span class="message-time">12:34</span>
+                                </div>
+                            </div>
+                            <div class="row discussion-sidebar-footer-wrap">
+                                <div class="col-xs-12 col-sm-12 col-md-11 col-lg-11">
+                                    <div class="discussion-sidebar-footer clearfix">
+                                        <div class="avatar">
+                                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" alt="" class="img-responsive">
+                                        </div>
+                                        <form>
+                                            <input type="text" placeholder="Write a message">
+                                        </form>
+                                    </div>  
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -250,7 +250,7 @@
 	width: 60%;
 	margin-top: 12px;
 	overflow: hidden;
-	margin-right: 2%;
+	margin-right: 1%;
 }
 /* control bottom part */
 .video-container .btmControl{
@@ -280,7 +280,7 @@
 }
 .video-container .control div.btnPlay{
   background-position: center 5px;
-  margin-right: 2.4%;
+  margin-right: 1%;
 }
 .video-container .control div.paused{
   background-position: center bottom;
@@ -316,7 +316,7 @@
 }
 .video-container .control div.btnFS{
   background-position: center -281px;
-  float: right;
+  float: left;
 }
 .video-container .control div.btnLight{
   background:url(control.png) no-repeat -44px -60px;
@@ -504,7 +504,7 @@
 	width: auto;
 	font-size: 13px;
 	color: #a7b5c2;
-	margin-right: 2%;
+	margin-right: 1%;
 }
 
 .video-container .btmControl{

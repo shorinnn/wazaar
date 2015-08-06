@@ -354,7 +354,8 @@
                         return message;
                     }
                 });
-
+				
+				$('[data-toggle="popover"]').popover();
 
 				$('.showRegister').click(function(){
 					$('.modal').modal('hide');
