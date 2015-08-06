@@ -330,8 +330,11 @@
                         <ul>
                             @foreach($module->lessons as $lesson)
                                 @if( $student->purchased($course) || $student->purchased( $lesson ) )
-                                    <li class="@if( $student->isLessonViewed($lesson) ) active @endif
-                                        @if( $student->isLessonCompleted($lesson) ) completed @endif">
+                                    <li class="@if( $student->isLessonCompleted($lesson) ) 
+                                            completed 
+                                        @elseif( $student->isLessonViewed($lesson) )
+                                            active
+                                        @endif">
                                         <a href="{{ action('ClassroomController@lesson', 
                                             [ $lesson->module->course->slug,
                                             $lesson->module->slug,
