@@ -386,6 +386,13 @@ class Course extends Ardent{
         elseif( $this->reviews_positive_score <= 40 ) return trans('general.negative');
         else return trans('general.negative');
     }
+    
+    public function firstModule(){
+        foreach( $this->modules as $module ){
+            if($module->order == 1) return $module;
+        }
+        return null;
+    }
 
 
 }
