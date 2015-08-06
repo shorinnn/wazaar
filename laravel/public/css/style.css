@@ -4016,6 +4016,10 @@ h6{
 	display: inline-block;
 }
 
+.student-dashboard.top-section .radial-progress #progress-circle-top-1{
+	margin: 0 auto 23px;
+}
+
 .student-dashboard.top-section .blue-button{
 	position: relative;
 	z-index: 6;
@@ -4059,6 +4063,8 @@ h6{
 .student-dashboard.dashboardTabs .progress-value{
 	font-size: 20px;
 	color: #303941;
+	position: relative;
+	top: 11px;
 	margin-right: 6px;
 }
 
@@ -4412,6 +4418,7 @@ h6{
 	margin: 0 0 30px;
 }
 
+.student-messages .avatar,
 .student-course .avatar{
 	float: left;
 	margin-right: 12px;
@@ -4421,6 +4428,7 @@ h6{
 	overflow: hidden;
 }
 
+.student-messages .replies-box,
 .student-course .replies-box{
 	background: #f7f9fa;
 	padding: 10px 20px 20px;
@@ -4430,6 +4438,7 @@ h6{
 	border: solid 1px #e0e1e2;
 }
 
+.student-messages .replies-box .name,
 .student-course .replies-box .name{
 	font-size: 13px;
 	font-weight: 600;
@@ -4439,6 +4448,7 @@ h6{
 	float: left;
 }
 
+.student-messages .replies-box .role.teacher,
 .student-course .replies-box .role.teacher{
 	padding: 6px 8px;
 	border: solid 1px #0099ff;
@@ -4448,6 +4458,7 @@ h6{
 	float: left;
 }
 
+.student-messages .replies-box .role.others,
 .student-course .replies-box .role.others{
 	margin-top: 6px;
 	font-size: 13px;
@@ -4455,6 +4466,7 @@ h6{
 	float: left;
 }
 
+.student-messages .replies-box .reply,
 .student-course .replies-box .reply{
 	clear: both;
 	margin: 18px 0 0;
@@ -4463,12 +4475,14 @@ h6{
 	line-height: 20px;
 }
 
+.student-messages .discussion-sidebar-footer,
 .student-course .discussion-sidebar-footer{
 	position: relative;
 	border: none;
 	padding: 24px 0;
 }
 
+.student-messages .discussion-sidebar-footer .avatar,
 .student-course .discussion-sidebar-footer .avatar{
 	width: 38px;
 	height: 38px;
@@ -4534,6 +4548,11 @@ h6{
 	cursor: pointer;
 }
 
+.student-messages .message-preview-wrap .message-preview .avatar{
+	float: none;
+	margin: 0 auto;
+}
+
 .student-messages .message-preview-wrap .message-preview h4{
 	color: #303941;
 	margin: 0 0 10px;
@@ -4583,29 +4602,113 @@ h6{
 }
 
 .student-messages .full-messages .conversation .date{
-	display: block;
-	font-size: 12px;
-	color: #a7b7c4;
-}
-
-.student-messages .full-messages .conversation .date::before,
-.student-messages .full-messages .conversation .date::after{
-	content: "";
-	height: 1px;
-	background: #e0e1e2;
-	position: relative;
-	top: 0;
-}
-
-.student-messages .full-messages .conversation .date::after{
-	right: 0;
+    display: block;
+    font-size: 12px;
+    color: #a7b7c4;
+    text-align: center;
+    margin: 30px 0;
+    position: relative;
 }
 
 .student-messages .full-messages .conversation .date::before{
+    content: "";
+    height: 1px;
+    background: #e0e1e2;
+    position: absolute;
+    top: 8px;
 	left: 0;
+    width: 100%;
+}
+
+.student-messages .full-messages .conversation .date em{
+    font-style: normal;
+    background-color: #fff;
+    padding: 0 5px;
+    text-align: center;
+    position: relative;
+    z-index: 6;
+}
+
+.student-messages .full-messages .message-time{
+	font-size: 12px;
+	color: #a7b7c4;
+	margin-top: 15px;
+	display: block;
+}
+
+.student-messages .replies-box{
+	width: 88%;
+	padding: 13px 13px 18px;
+	position: relative;
+}
+
+.student-messages .replies-box .arrow-left{
+    border-bottom: 9px solid transparent;
+    border-right: 9px solid #e0e1e2;
+    border-top: 9px solid transparent;
+    height: 0;
+    left: -9px;
+    position: absolute;
+    top: 10px;
+    width: 0;
 }
 
 
+.student-messages .replies-box .arrow-left::after{
+    border-bottom: 9px solid transparent;
+    border-right: 9px solid #f7f9fa;
+    border-top: 10px solid transparent;
+    content: "";
+    height: 0;
+    left: 2px;
+    position: absolute;
+    top: -10px;
+    width: 0;
+}
+
+.student-messages .student-reply{
+    border-radius: 2px;
+    border: solid 1px #e0e1e2;
+    background: #fff;
+    padding: 13px 13px 18px;
+    width: 80%;
+    float: right;
+	position: relative;
+}
+
+.student-messages .student-reply .arrow-right{
+    border-bottom: 11px solid transparent;
+    border-left: 11px solid #e0e1e2;
+    border-top: 11px solid transparent;
+    height: 0;
+    position: absolute;
+    right: -11px;
+    top: 10px;
+    width: 0;
+}
+
+.student-messages .student-reply .arrow-right::after{
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid white;
+    border-top: 10px solid transparent;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 1px;
+    top: -10px;
+    width: 0;
+}
+
+.student-messages .student-reply p,
+.student-messages .replies-box p{
+	line-height: 20px;
+	color: #303941;
+	margin: 0;
+}
+
+.student-messages .discussion-sidebar-footer-wrap{
+	border-top: solid 1px #e0e1e2;
+}
 /********** New Dashboard UI Ends***************/
 
 /****************** CRUD Pages *******************/
@@ -7399,8 +7502,12 @@ a.load-remote > *{
 
 .step2 .side-overview li{ 
 	display: block;
-	margin-top: 22px; 
+	padding-top: 18px;
+	padding-bottom: 5px; 
 	text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+	overflow: hidden;
 }
 
 .step2 .side-overview li a{
@@ -7624,6 +7731,10 @@ a.load-remote > *{
 	font-size: 11px;
 	position: relative;
 	top: 1px;
+}
+
+.step2 .lesson-container #upload-new{
+	display: block;
 }
 
 .step2 .lesson-container .upload-button input{
@@ -12188,6 +12299,9 @@ footer{
 	.carousel-inner .container-fluid .row{
 		margin: 0 -15px 0 -15px;
 	}
+	.classroom-video.video-container .topControl{
+		width: 66%;
+	}
 }
 
 @media (max-width: 1200px){
@@ -12874,6 +12988,9 @@ header .top-menu .logged-in-top-menu{
 .discussion-sidebar-footer form{
 	width: 78%;
 }
+.student-messages .replies-box{
+	width: 80%;
+}
 
 }
 
@@ -12907,6 +13024,10 @@ header .top-menu .logged-in-top-menu{
 	.column-3 .add-to-wishlist-container .share-lesson, 
 	.column-3 .add-to-wishlist-container input, .column-3 div span{
 		font-size: 12px;
+	}
+	
+	.student-messages .replies-box{
+		width: 80%;
 	}
 }
 
@@ -13121,7 +13242,9 @@ header .top-menu .logged-in-top-menu{
 	.step2 .module-container .footer-buttons .delete-lesson{
 		float: left;
 	}
-	
+	.student-messages .replies-box {
+		width: 75%;
+	}	
 }
 
 @media (max-width:355px){
@@ -13148,6 +13271,10 @@ header .top-menu .logged-in-top-menu{
 	
 	.discussion-sidebar-footer form{
 		width: 100%;
+	}
+
+	.student-messages .discussion-sidebar-footer form{
+		width: 75%;
 	}
 	
 	.value-unit-two .value{
@@ -13264,6 +13391,11 @@ header .top-menu .logged-in-top-menu{
 .margin-bottom-20
 {
 	margin-bottom: 20px !important;
+}
+
+.margin-bottom-25
+{
+	margin-bottom: 25px !important;
 }
 
 .margin-bottom-30

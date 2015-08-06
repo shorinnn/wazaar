@@ -384,10 +384,11 @@ class Student extends User{
     
     private $_completedLessons = [];
     public function isLessonCompleted(Lesson $lesson){
-        if( in_array ( $lesson->id, $this->viewedLessons()->where('state','completed')->lists('lesson_id' ) ) ){
-            return true;
+        $completed = false;
+        foreach( $this->viewedLessons as $l ){
+            if( $lesson->id == $l->lesson_id && $l->state=='completed' ) $completed = true;
         }
-        return false;
+        return $completed;
     }
     
     /**
@@ -408,14 +409,29 @@ class Student extends User{
     }
     
     public function currentLesson($course){
-        $lesson = $this->viewedLessons()->where('course_id', $course->id)->orderBy('id', 'desc')->first();
+        $lesson = null;
+        $order = 0;
+        foreach($this->viewedLessons as $l){
+            if( $l->lesson->course_id == $course->id && $l->lesson->order > $order ){
+                $lesson = $l->lesson;
+                $order = $lesson->order;
+            }
+        }
         if($lesson==null) return null;
         return $lesson->lesson;
     }
     
     public function courseProgress($course){
-        $complete = $this->viewedLessons()->where('state','completed')->where('course_id', $course->id)->count();
-        $total = Lesson::where('published','yes')->whereIn('module_id', Module::where('course_id', $course->id)->lists('id') )->count();
+        $complete = 0;
+        foreach($this->viewedLessons->all() as $viewed){
+            if( $viewed->state=='completed' && $viewed->course_id == $course->id ) $complete++;
+        }
+        $total = 0;
+        foreach( $course->allModules as $module ){
+            foreach( $module->lessons as $lesson ){
+                if( $lesson->published == 'yes' ) $total++;
+            }
+        }
         if($total == 0) return 0;
         return ceil( $complete * 100 / $total );
     }
@@ -641,6 +657,18 @@ class Student extends User{
              return $this->second_tier_instructor_id;
          }
          return false;
+     }
+     
+     public function lastLessonInCourse($course){   
+         $last = null;
+         $updated = '0000-00-00 00:00:00';
+         foreach( $this->viewedLessons as $lesson ){
+             if( $lesson->course_id == $course->id && $lesson->updated_at > $updated ){
+                 $updated = $lesson->updated_at;
+                 $last = $lesson;
+             }
+         }
+         return $last;
      }
 
 

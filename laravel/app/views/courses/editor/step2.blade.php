@@ -1,6 +1,6 @@
 <div class="container-fluid">
 	<div class="row">
-    	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 side-overview">
+    	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 side-overview">
             <h2>{{ trans('courses/create.overview') }}</h2>
             <ol class="drag-module">
                 @foreach($course->modules()->orderBy('order','asc')->get() as $module)
@@ -8,7 +8,7 @@
                 @endforeach
             </ol>
         </div>
-    	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+    	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
         	<div class="curriculum-wrapper">
                 <div class="module-container">
                     @foreach($course->modules()->orderBy('order','asc')->get() as $module)

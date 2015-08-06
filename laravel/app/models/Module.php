@@ -40,6 +40,14 @@ class Module extends Ardent{
          $lessons = $this->lessons()->lists('id');
          return ViewedLesson::whereIn('lesson_id', $lessons)->where('state','completed')->count();
      }
+     
+     public function firstLesson(){
+         return false;
+         foreach( $this->lessons as $lesson ){
+             if( $lesson->order == 1 ) return $lesson;
+         }
+         return false;
+     }
     
    
 

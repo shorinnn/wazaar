@@ -1370,6 +1370,8 @@ function toggleSideMenu(){
 function toggleRightBar(e, json){
     $('.right-slide-menu').toggleClass('in');
     if( typeof(e) !='undefined' ){
+        if( $('#myVideo').length > 0 ) $('#myVideo')[0].pause();
+        
         var target = $(e.target).attr('data-target');
         prop = $(e.target).attr('data-property');
         val = json[prop];
