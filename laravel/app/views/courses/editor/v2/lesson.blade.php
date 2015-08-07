@@ -178,9 +178,9 @@
         @else
             <div class="uploader-area col-xs-12">
         @endif
-            <i class="fa hide fa-cloud-upload"></i>
-            <p class="regular-paragraph hide  dropzone lesson-dropzone-{{$lesson->id}}">
-                Drag & Drop<br> files to upload
+            <i class="fa fa-cloud-upload"></i>
+            <p class="regular-paragraph  dropzone lesson-dropzone-{{$lesson->id}}">
+                <!--Drag & Drop<br> files to upload-->Upload Files
             </p>
                 <p class="label-progress-bar label-progress-bar-{{$lesson->id}}"></p>
                 <div class="progress" style="display: none">
@@ -208,7 +208,7 @@
 
 
                         <i class="fa fa-paperclip"></i>
-                        <span>Select</span>
+                        <span>Select file</span>
                         <input type='file' name='file' id='file-upload-{{$lesson->id}}' data-dropzone='.lesson-dropzone-{{$lesson->id}}' 
                        class='lesson-file-uploader' data-upload-to=".uploaded-files-{{$lesson->id}}"
                        data-progress-bar='.progress-bar-{{$lesson->id}}' data-callback='blockFileUploaded' 

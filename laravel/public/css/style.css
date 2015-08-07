@@ -4953,6 +4953,10 @@ h6{
 	position: relative;
 }
 
+.classroom-view .video-container .control div.btnFS{
+	float: right;
+}
+
 .classroom-view .classroom-header{
 	padding-top: 10px;
 	margin-bottom: 54px;
