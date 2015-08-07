@@ -13,13 +13,13 @@
 
 
         @foreach($topAffiliates as $index => $aff)
-        <tr>
-            <th scope="row">{{( ($pageNumber-1) * Config::get('wazaar.PAGINATION')) + ($index + 1)}}</th>
-            <td class="link">{{$aff->username}}</td>
-            <td>{{$aff->full_name}}	</td>
-            <td>{{$aff->sales_count}}</td>
-            <td class="text-right last-column">  ¥ {{$aff->sales_count}}</td>
-        </tr>
+            <tr>
+                <th scope="row">{{( ($pageNumber-1) * Config::get('wazaar.PAGINATION')) + ($index + 1)}}</th>
+                <td class="link">{{$aff->username}}</td>
+                <td>{{$aff->full_name}}	</td>
+                <td>{{$aff->sales_count}}</td>
+                <td class="text-right last-column">  ¥ {{$aff->sales_count}}</td>
+            </tr>
         @endforeach
 
         </tbody>

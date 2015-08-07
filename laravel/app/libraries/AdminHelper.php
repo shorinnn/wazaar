@@ -18,6 +18,26 @@ class AdminHelper
         if($index===false) return '-';
         return $index + 1;
     }
+    public function topAffiliatesByInstructor($instructorId, $startDate = '', $endDate = '', $sortOrder = 0)
+    {
+        $filter = " AND (purchases.instructor_id = '{$instructorId}' OR purchases.second_tier_instructor_id='{$instructorId}')";
+
+        if (!empty($startDate) AND !empty($endDate)){
+            $startDate =  date('Y-m-d',strtotime($startDate));
+            $endDate =  date('Y-m-d',strtotime($endDate));
+            $filter .= " AND purchases.created_at BETWEEN '{$startDate}' AND '{$endDate}'";
+        }
+
+        $sortOrders = [
+            '',
+            'total_sales ASC',
+            'total_sales DESC',
+            'sales_count ASC',
+            'sales_count DESC',
+        ];
+
+        return $this->_topAffiliates($filter, $sortOrders[$sortOrder])->paginate(Config::get('wazaar.PAGINATION'));
+    }
 
     public function topAffiliates($affiliateId = 0, $startDate = '', $endDate = '', $sortOrder = 0)
     {

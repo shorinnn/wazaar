@@ -5,6 +5,7 @@
                                             [ $lesson->module->course->slug,
                                             $lesson->module->slug,
                                             $lesson->slug] )}}';
+
 </script>
 <style>
             .small-overlay{
@@ -368,6 +369,14 @@
         $('#myVideo').on('ended', function(e){
             lessonComplete( lessonId );
         });
+		
+		/*var askQuestionHeight = $('.ask-question').height();
+		var tabContents = $('.questions-sidebar .tab-contents').height();
+		var newQuestionHolderHeight = tabContents - askQuestionHeight;
+		$('.question-holder').height(newQuestionHolderHeight);
+		console.log(newQuestionHolderHeight);*/		
+
+
     }
     
     function setVideoFormat(){

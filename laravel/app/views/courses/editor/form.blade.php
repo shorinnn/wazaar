@@ -160,7 +160,7 @@
         margin-right: -22px;
         cursor:pointer;
     }
-	/*@media (min-width: 1200px){
+	@media (min-width: 1200px){
 	.edit-course .main {
 		overflow: visible;
 	}
@@ -185,11 +185,11 @@
 	    border-radius: 4px;
 		box-shadow: 1px 1px 4px 2px #d8dbdc;
 		overflow: hidden;
-		-webkit-transition: all .2s ease-in-out;
+		/*-webkit-transition: all .2s ease-in-out;
 		-moz-transition: all .2s ease-in-out;
 		-ms-transition: all .2s ease-in-out;
 		-o-transition: all .2s ease-in-out;
-		transition: all .2s ease-in-out;
+		transition: all .2s ease-in-out;*/
 	}
 
 	.shr-editor-module.module-minimized .module-zone,
@@ -230,7 +230,7 @@
 	.step2 .shr-editor-module{
 		overflow: visible;
 	}
-}*/
+}
 
     /************ /MINIMIZED LESSON **************/
     

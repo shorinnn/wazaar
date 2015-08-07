@@ -5176,6 +5176,10 @@ h6{
 	min-height: 500px;
 }
 
+.questions-sidebar .tab-contents{
+	height: 100%;
+}
+
 .questions-sidebar .header{
 	padding: 0 30px;
 	text-align: center;
@@ -5248,6 +5252,10 @@ h6{
 .questions-sidebar .questions-box{
 	padding-top: 20px;
 	padding-bottom: 17px;
+}
+
+.questions-sidebar .questions-box > div{
+	color: #a7b7c4;
 }
 
 .questions-sidebar .questions-box.active,
@@ -12295,6 +12303,12 @@ footer{
 
 }
 
+@media (max-width: 1250px) and (min-width: 991px){
+.questions-sidebar .ask-question .img-container{
+	margin-right: 10px;
+}
+}
+
 @media (max-width: 1600px) {
 	.carousel-inner .container-fluid .row{
 		margin: 0 -15px 0 -15px;
@@ -12308,6 +12322,49 @@ footer{
 	.step2 .side-overview{
 		margin-left: 0;
 	}
+}
+
+@media (min-width: 991px){
+	.questions-sidebar{
+		position: fixed;
+		height: 100%;
+		width: 24%;
+	}
+	
+	.questions-sidebar .ask-question{
+		margin-top: 0;
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		background: #242d36;
+	}
+	
+	.question-holder{
+		overflow: scroll;
+	}
+.questions-sidebar .tab-contents {
+    height: 92%;
+    position: relative;
+}
+.questions-sidebar .search-discussion-form {
+    background: #242d36 none repeat scroll 0 0;
+    left: 0;
+    padding-bottom: 16px;
+    padding-top: 12px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.question-holder {
+    height: 84%;
+    overflow: scroll;
+    position: relative;
+    top: 65px;
+}
+
+.questions-box .question-title {
+    padding-right: 19%;
+}
 }
 
 @media (min-width: 1200px){

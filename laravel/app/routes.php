@@ -342,6 +342,11 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
 
     Route::group(['prefix' => 'analytics'], function(){
         Route::get('/', 'InstructorDashboardController@index');
+        Route::get('sales/{frequency}/{courseId?}/{trackingCode?}', 'InstructorDashboardController@salesView');
+        Route::get('sales/count/{frequency?}','InstructorDashboardController@salesCountView');
+        Route::get('trackingcodessales/{frequency}/{courseId?}','InstructorDashboardController@trackingCodesView');
+        Route::get('trackingcodetable/{frequency}/{courseId}','InstructorDashboardController@trackingCodesTableView');
+
     });
 });
 
