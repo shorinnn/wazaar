@@ -403,6 +403,8 @@
 					keyboard: true,
 					show: false	
 				}); 
+					
+
 			});
 		</script>
     	

@@ -11,7 +11,7 @@
 
 @section('extra_js')
 <script>
-    var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';
+    var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';	
     $(function(){
         $('#myVideo').on('timeupdate', function(e){
             localStorage.setItem('vid-progress-'+videoHash, 
@@ -26,6 +26,5 @@
             lessonComplete( lessonId );
         });
     });
-
 </script>
 @stop
