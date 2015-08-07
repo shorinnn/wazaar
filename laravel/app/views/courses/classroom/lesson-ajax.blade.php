@@ -103,7 +103,7 @@
             <div class="right-slide-menu"></div>
         <div class="row">
             
-            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 slide-to-left">
                 <div class="classroom-header row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <span class="left-menu slide-menu-toggler">

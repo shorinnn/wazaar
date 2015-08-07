@@ -224,12 +224,12 @@
                                        ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
                                      </span>
                                      <button class="clearfix enroll-button blue-button extra-large-button">
-                                     {{ trans("courses/general.enroll") }} 
+                                     {{ trans("courses/general.course-enroll") }}
                                 @else 
                                      <span class="price clearfix">
                                      </span>
                                      <button class="clearfix enroll-button blue-button extra-large-button" disabled="disabled" data-toggle="tooltip" data-placement="left" title="Available for customers">
-                                      {{ trans("courses/general.enroll") }} 
+                                      {{ trans("courses/general.course-enroll") }}
 
                                 @endif
                                    </button>

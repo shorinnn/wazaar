@@ -2717,8 +2717,8 @@ h6{
 }
 
 .course-data .column-1 .number-of-lessons{
-	padding-right: 49px;
-	padding-left: 49px;
+	padding-right: 30px;
+	padding-left: 30px;
 }
 
 .course-data .column-2 div i,
@@ -2730,23 +2730,23 @@ h6{
 }
 
 .course-data .column-1 .number-of-students{
-	padding-right: 45px;
-	padding-left: 45px;
+	padding-right: 30px;
+	padding-left: 30px;
 }
 
 .course-data .column-1 .number-of-videos{
-	padding-left: 53px;
-	padding-right: 53px;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 .course-data .column-1 .recommends{
-	padding-left: 34px;
-	padding-right: 34px;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 .course-data .column-1 .difficulty-level{
-	padding-right: 35px;
-	padding-left: 35px;
+	padding-right: 30px;
+	padding-left: 30px;
 }
 
 .course-data .column-1 .star-rating{
@@ -5549,6 +5549,16 @@ h6{
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
+}
+
+.slide-to-left{
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.slide-to-left.in{
+    margin-left: -505px;
 }
 
 .classroom-view .slide-menu.in{

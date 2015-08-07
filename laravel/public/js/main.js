@@ -1368,7 +1368,16 @@ function toggleSideMenu(){
 }
 
 function toggleRightBar(e, json){
+    if( typeof(e) !='undefined' && typeof( $(e.target).attr('data-property') ) !='undefined' && $('.right-slide-menu').hasClass('in') ){
+        var target = $(e.target).attr('data-target');
+        prop = $(e.target).attr('data-property');
+        val = json[prop];
+        $(target).html( val );
+        return false;
+    }
+    
     $('.right-slide-menu').toggleClass('in');
+    $('.slide-to-left').toggleClass('in');
     if( typeof(e) !='undefined' ){
         if( $('#myVideo').length > 0 ) $('#myVideo')[0].pause();
         
