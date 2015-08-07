@@ -2729,24 +2729,9 @@ h6{
 	display: none;
 }
 
-.course-data .column-1 .number-of-students{
-	padding-right: 30px;
-	padding-left: 30px;
-}
-
-.course-data .column-1 .number-of-videos{
-	padding-left: 30px;
-	padding-right: 30px;
-}
-
-.course-data .column-1 .recommends{
-	padding-left: 30px;
-	padding-right: 30px;
-}
-
-.course-data .column-1 .difficulty-level{
-	padding-right: 30px;
-	padding-left: 30px;
+.course-data .column-1 div{
+	padding-right: 25px;
+	padding-left: 25px;
 }
 
 .course-data .column-1 .star-rating{
@@ -12390,7 +12375,7 @@ footer{
 
 @media (max-width: 1200px) and (min-width: 991px){
 .course-data .column-1 div{
-	padding: 15px 30px 12px !important;
+	padding: 15px 20px 12px !important;
 }
 
 .video-container .control div.btn{
