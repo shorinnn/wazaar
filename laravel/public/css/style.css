@@ -5547,6 +5547,16 @@ h6{
 	transition: all 0.5s;
 }
 
+.slide-to-left{
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.slide-to-left.in{
+    margin-left: -505px;
+}
+
 .classroom-view .slide-menu.in{
 	left: 0;
 }
