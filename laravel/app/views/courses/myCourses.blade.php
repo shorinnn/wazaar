@@ -87,7 +87,7 @@
                             @if($course->student_count==0)
                                 {{ Form::open(['action' => ['CoursesController@destroy', $course->id], 
                                                'method' => 'delete', 'id'=>'course-form-'.$course->id,
-                                               'class' => 'ajax-form inline-block', 'data-callback' => 'deleteItem', 'data-delete' => '.course-row-'.$course->id]) }}
+                                               'class' => 'ajax-form inline-block pull-right', 'data-callback' => 'deleteItem', 'data-delete' => '.course-row-'.$course->id]) }}
                                     <button class="btn btn-danger delete-button" data-message="{{ trans('crud/labels.you-sure-want-delete') }}" type="submit" >
                                         <i class="fa fa-trash-o"></i> {{trans('crud/labels.delete')}}</button>
                                 {{ Form::close() }}
