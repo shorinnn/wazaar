@@ -191,17 +191,32 @@
                                             <div class="time hidden-xs">
                                                 <span class="duration"></span>
                                             </div>
+                                             @if($video != null)
                                             <div class="btn-group dropup video-quality-wrap">
-                                                <a class="btn dropdown-toggle" data-toggle="dropdown" style="font-size: 12px;" aria-expanded="false"><b style="">HD</b> 720p
+                                                <a class="btn dropdown-toggle" data-toggle="dropdown" style="font-size: 12px;" aria-expanded="false">
+                                                    <b style="" class='quality-label'>
+                                                        @if(  Agent::isMobile() )
+                                                            SD
+                                                        @else
+                                                            HD
+                                                        @endif
+                                                    </b>
                                                 </a>
                                                 <ul class="dropdown-menu">
-                                                      <li class="dropdown-submenu"><a><b>Low</b> 480p</a></li>
-                                                      <li class="dropdown-submenu"><a><b>HD</b> 720p</a></li>
-                                                      <li class="dropdown-submenu"><a><b>Full HD</b> 1080p</a></li>
+                                                      @foreach($video->formats()->get() as $format)
+                                                        <?php
+                                                            if( strpos($format->resolution, 'Mobile') !== false ) $label = 'SD';
+                                                            else $label = 'HD';
+                                                        ?>
+                                                        
+                                                      <li onclick='setQuality(this)' class="dropdown-submenu" data-label='{{$label}}' data-quality='{{ $format->video_url }}'><a><b>{{$label}}</b></a></li>
+                                                    @endforeach
                                                       <i class="fa fa-caret-down"> </i>
                                                 </ul>
                                                 
                                             </div>
+                                            @endif
+                                            
                                             <div class="sound sound2 btn hidden-xs" title="Mute/Unmute sound">
                                                 <i class="wa-sound"></i>
                                                 <i class="fa fa-volume-off"></i>
@@ -210,7 +225,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if($video != null)
+<!--                                if($video != null)
                                     <select id='vid-quality' onchange='setVideoFormat()'>
                                         @foreach($video->formats()->get() as $format)
                                             <?php
@@ -222,7 +237,7 @@
                                             <option {{$checked}} value='{{ $format->video_url }}'>{{ $label }}</option>
                                         @endforeach
                                     </select>
-                                @endif
+                                endif-->
                                 <div class="loading"></div>
                             </div>
                             <!--<div id="lesson-video-overlay">
@@ -387,6 +402,17 @@
         $('#myVideo source').attr('src', url);
         //skinVideoControls();
         $('#myVideo')[0].currentTime = ct;
+    }
+    
+    function setQuality(elem){
+        ct = $('#myVideo')[0].currentTime;
+        console.log( 'set format!');
+        url = $(elem).attr('data-quality');
+        $('#myVideo').attr('src', url);
+        $('#myVideo source').attr('src', url);
+        //skinVideoControls();
+        $('#myVideo')[0].currentTime = ct;
+        $('.quality-label').html( $(elem).attr('data-label') );
     }
     
     function lessonComplete(lesson){
