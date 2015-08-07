@@ -23,23 +23,23 @@
                     <div>
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default" type="button">
-                                {{trans('analytics.sales')}} <span id="header-top-courses-frequency">{{trans('analytics.today')}}</span></button>
-                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu top-courses-dropdown">
+                                {{trans('analytics.sales')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
+                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
-                                    <a class="active with-today" href="#" onclick="Analytics.topCourses('daily','', this); return false;">{{trans('analytics.today')}}</a>
+                                    <a class="with-today" href="#" onclick="Analytics.Sales('daily','','',this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-weekly" href="#" onclick="Analytics.topCourses('week','', this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                    <a class="with-weekly" href="#" onclick="Analytics.Sales('week','','',this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-monthly" href="#" onclick="Analytics.topCourses('month','', this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                    <a class="with-monthly" href="#" onclick="Analytics.Sales('month','','',this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-alltime" href="#" onclick="Analytics.topCourses('alltime','', this); return false;">{{trans('analytics.allTime')}}</a>
+                                    <a class="with-alltime" href="#" onclick="Analytics.Sales('alltime','','',this); return false;">{{trans('analytics.allTime')}}</a>
                                 </li>
                             </ul>
                         </div>
-                        <ul id="wrapper-top-courses">
+                        <ul id="wrapper-sales">
                             {{$salesView}}
                         </ul>
                     </div>
@@ -52,24 +52,24 @@
                     <div id="sales-today">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                {{trans('analytics.salesCount')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
-                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-dropdown">
+                                {{trans('analytics.salesCount')}} <span id="header-sales-count-frequency">{{trans('analytics.today')}}</span></button>
+                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-count-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.sales('daily','','', this); return false;">{{trans('analytics.today')}}</a>
+                                    <a class="active" href="#" onclick="Analytics.SalesCount('daily', this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="" href="#" onclick="Analytics.sales('week','','', this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                    <a class="" href="#" onclick="Analytics.SalesCount('week', this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="" href="#" onclick="Analytics.sales('month','','', this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                    <a class="" href="#" onclick="Analytics.SalesCount('month', this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="" href="#" onclick="Analytics.sales('alltime','','', this); return false;">{{trans('analytics.alltime')}}</a>
+                                    <a class="" href="#" onclick="Analytics.SalesCount('alltime', this); return false;">{{trans('analytics.alltime')}}</a>
                                 </li>
                             </ul>
                         </div>
 
-                        <div id="wrapper-sales">
+                        <div id="wrapper-sales-count">
                             {{$salesCountView}}
                         </div>
 
@@ -122,84 +122,8 @@
                             </div>
                         </form>
                     </div>
-
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Rank</th>
-                                <th>Username</th>
-                                <th>Full name</th>
-                                <th>Sales (#)</th>
-                                <th class="text-right last-column sorting-active relative"> Sales (¥)<i class="fa fa-arrow-down"></i></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td class="link">WazaarAffiliate</td>
-                                <td>Affialiate Wazaar	</td>
-                                <td>57</td>
-                                <td class="text-right last-column">  ¥ 23,624</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="first-column">2</th>
-                                <td class="link">vstreich</td>
-                                <td>Feeney Aiden</td>
-                                <td>2</td>
-                                <td class="text-right last-column">¥ 64</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="first-column">3</th>
-                                <td class="link">affiliate</td>
-                                <td>Instructor Wazaar</td>
-                                <td>3</td>
-                                <td class="text-right last-column">  ¥ 50</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="first-column">4</th>
-                                <td class="link">eloise88</td>
-                                <td>Corkery Milford</td>
-                                <td>4</td>
-                                <td class="text-right last-column">¥ 43</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="first-column">5</th>
-                                <td class="link">WazaarAffiliate	</td>
-                                <td>Affialiate Wazaar	</td>
-                                <td>4</td>
-                                <td class="text-right last-column">¥ 41</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="table-pagination clearfix">
-                        <ul>
-                            <li class="prev">
-                                <a href="#"><i class="wa-chevron-left"></i></a>
-                            </li>
-                            <li class="active">
-                                <a href="#">1</a>
-                            </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li>
-                                <a href="#">6</a>
-                            </li>
-                            <li class="next">
-                                <a href="#"><i class="wa-chevron-right"></i></a>
-                            </li>
-                        </ul>
+                    <div>
+                        {{$topAffiliates}}
                     </div>
                 </div>
             </div>
@@ -217,5 +141,5 @@
 @stop
 
 @section('extra_js')
-    <script type="text/javascript" src="{{url('js/analytics.js')}}"></script>
+    <script type="text/javascript" src="{{url('js/instructor-analytics.js')}}"></script>
 @stop
