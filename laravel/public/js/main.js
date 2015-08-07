@@ -1384,6 +1384,7 @@ function toggleSideMenu(){
 }
 
 function toggleRightBar(e, json){
+    
     if( isset(json) && typeof(e) !='undefined' && typeof( $(e.target).attr('data-property') ) !='undefined' && $('.right-slide-menu').hasClass('in') ){
         var target = $(e.target).attr('data-target');
         prop = $(e.target).attr('data-property');
@@ -1397,7 +1398,6 @@ function toggleRightBar(e, json){
     $('.slide-to-left').toggleClass('in');
     
     if( !isset(json) ) return false;
-    console.log('TOGGLE RIGHT BAR');
     
     if( typeof(e) !='undefined' ){
         if( $('#myVideo').length > 0 ) $('#myVideo')[0].pause();

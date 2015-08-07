@@ -5554,7 +5554,10 @@ h6{
 }
 
 .slide-to-left.in{
-    margin-left: -505px;
+    /*margin-left: -505px;*/
+     width: -moz-calc(75% - 505px);
+    width: -webkit-calc(75% - 505px);
+    width: calc(75% - 505px);
 }
 
 .classroom-view .slide-menu.in{
