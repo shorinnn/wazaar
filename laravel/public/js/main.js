@@ -1396,6 +1396,7 @@ function toggleRightBar(e, json){
     
     $('.right-slide-menu').toggleClass('in');
     $('.slide-to-left').toggleClass('in');
+    $('body').toggleClass('discussion-opened');
     
     if( !isset(json) ) return false;
     
