@@ -3,6 +3,11 @@
  * @class Main 
  */
 // JavaScript Document
+
+function isset(variable){
+    if( typeof(variable)=='undefined') return false;
+    return true;
+}
 var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 $(document).ready(function(){
     $('.countdown').each(function(){
@@ -257,15 +262,26 @@ function linkToRemote(e){
     url = $(e.target).attr('data-url');
     var callback = $(e.target).attr('data-callback');
     elem = $(e.target);
+    preFunction = $(e.target).attr('data-pre-function');
+    loadingContainer = $(e.target).attr('data-loading-container');
     while(typeof(url)=='undefined'){
         elem = elem.parent();
         url = elem.attr('data-url');
+        preFunction = elem.attr('data-pre-function');
         callback = elem.attr('data-callback');  
+        loadingContainer = elem.attr('data-loading-container');  
         e.target = elem;
     }
     
-    $(elem).attr('data-old-label', $(elem).html() );
-    $(elem).html( '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    if( !isset(loadingContainer) ){
+        $(elem).attr('data-old-label', $(elem).html() );
+        $(elem).html( '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    }
+    else{
+        $(loadingContainer).html('<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    }
+    if( typeof(preFunction) !='undefined') window[preFunction](e);
+    
     $.get(url, function(result){
         $(e.target).attr('data-loading', 0);
         $(elem).html( $(elem).attr('data-old-label') );
@@ -1368,16 +1384,21 @@ function toggleSideMenu(){
 }
 
 function toggleRightBar(e, json){
-    if( typeof(e) !='undefined' && typeof( $(e.target).attr('data-property') ) !='undefined' && $('.right-slide-menu').hasClass('in') ){
+    if( isset(json) && typeof(e) !='undefined' && typeof( $(e.target).attr('data-property') ) !='undefined' && $('.right-slide-menu').hasClass('in') ){
         var target = $(e.target).attr('data-target');
         prop = $(e.target).attr('data-property');
         val = json[prop];
         $(target).html( val );
         return false;
     }
+    if( !isset(json) && isset(e) && typeof( $(e.target).attr('data-property') )!='undefined'  && $('.right-slide-menu').hasClass('in') ) return false;
     
     $('.right-slide-menu').toggleClass('in');
     $('.slide-to-left').toggleClass('in');
+    
+    if( !isset(json) ) return false;
+    console.log('TOGGLE RIGHT BAR');
+    
     if( typeof(e) !='undefined' ){
         if( $('#myVideo').length > 0 ) $('#myVideo')[0].pause();
         
