@@ -5,6 +5,7 @@
                                             [ $lesson->module->course->slug,
                                             $lesson->module->slug,
                                             $lesson->slug] )}}';
+
 </script>
 <style>
             .small-overlay{
@@ -330,8 +331,11 @@
                         <ul>
                             @foreach($module->lessons as $lesson)
                                 @if( $student->purchased($course) || $student->purchased( $lesson ) )
-                                    <li class="@if( $student->isLessonViewed($lesson) ) active @endif
-                                        @if( $student->isLessonCompleted($lesson) ) completed @endif">
+                                    <li class="@if( $student->isLessonCompleted($lesson) ) 
+                                            completed 
+                                        @elseif( $student->isLessonViewed($lesson) )
+                                            active
+                                        @endif">
                                         <a href="{{ action('ClassroomController@lesson', 
                                             [ $lesson->module->course->slug,
                                             $lesson->module->slug,
@@ -365,6 +369,14 @@
         $('#myVideo').on('ended', function(e){
             lessonComplete( lessonId );
         });
+		
+		/*var askQuestionHeight = $('.ask-question').height();
+		var tabContents = $('.questions-sidebar .tab-contents').height();
+		var newQuestionHolderHeight = tabContents - askQuestionHeight;
+		$('.question-holder').height(newQuestionHolderHeight);
+		console.log(newQuestionHolderHeight);*/		
+
+
     }
     
     function setVideoFormat(){

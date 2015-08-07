@@ -411,14 +411,26 @@ class Student extends User{
     public function currentLesson($course){
         $lesson = null;
         $order = 0;
+        $module = 0;
         foreach($this->viewedLessons as $l){
-            if( $l->lesson->course_id == $course->id && $l->lesson->order > $order ){
-                $lesson = $l->lesson;
-                $order = $lesson->order;
+            if( $l->course_id == $course->id ){
+                if( $l->lesson->module_id > $module){
+                    $lesson = $l->lesson;
+                    $order = $l->lesson->order;
+                    $module = $l->lesson->module_id;
+                }
+                elseif( $l->lesson->module_id == $module ){
+                    if( $l->lesson->order > $order  ){
+                        $lesson = $l->lesson;
+                        $order = $l->lesson->order;
+                        $module = $l->lesson->module_id;
+                    }
+                }
+                else{}
             }
         }
         if($lesson==null) return null;
-        return $lesson->lesson;
+        return $lesson;
     }
     
     public function courseProgress($course){
