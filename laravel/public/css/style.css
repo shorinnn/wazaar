@@ -4936,6 +4936,17 @@ h6{
 .classroom-view{
 	background-color: #18222b;
 	position: relative;
+	height: 100%;
+}
+
+.discussion-opened{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.discussion-opened .classroom-view{
+	height: 100%;
 }
 
 .classroom-view .video-container .control div.btnFS{
@@ -12662,6 +12673,14 @@ footer{
 	.step1 .main-content{
 		border-right: none;
 	}
+
+	.slide-to-left.in{
+		/*margin-left: -505px;*/
+		 width: -moz-calc(100% - 505px);
+		width: -webkit-calc(100% - 505px);
+		width: calc(100% - 505px);
+	}
+
 }
 
 @media (max-width:900px){
