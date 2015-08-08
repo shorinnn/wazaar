@@ -62,6 +62,11 @@ $(document).ready(function(){
 	  rescaleBckgrdOverlay();
    	  skinVideoControls();
 	});
+	
+	$(".classroom-view #myVideo").resize(function() {
+   	  skinVideoControls();
+	});
+
 });
 
 function videoGridBoxIn(){
