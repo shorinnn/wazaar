@@ -225,19 +225,6 @@
                                         </div>
                                     </div>
                                 </div>
-<!--                                if($video != null)
-                                    <select id='vid-quality' onchange='setVideoFormat()'>
-                                        @foreach($video->formats()->get() as $format)
-                                            <?php
-                                                $label = trim( str_replace( 'Custom Preset for', '', $format->resolution ) );
-                                                $checked = '';
-                                                if( Agent::isMobile() && $label == 'Mobile Devices') $checked = ' selected="selected"';
-                                                if( !Agent::isMobile() && $label == 'Desktop Devices') $checked = ' selected="selected"';
-                                            ?>
-                                            <option {{$checked}} value='{{ $format->video_url }}'>{{ $label }}</option>
-                                        @endforeach
-                                    </select>
-                                endif-->
                                 <div class="loading"></div>
                             </div>
                             <!--<div id="lesson-video-overlay">
