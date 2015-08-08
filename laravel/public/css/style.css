@@ -4949,6 +4949,10 @@ h6{
 	height: 100%;
 }
 
+.discussion-opened .classroom-video.video-container .topControl{
+	width: 60%;
+}
+
 .classroom-view .video-container .control div.btnFS{
 	float: right;
 }
