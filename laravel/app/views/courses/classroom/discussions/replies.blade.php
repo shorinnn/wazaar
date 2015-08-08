@@ -23,7 +23,7 @@
                     </div>
                     
                     <div class="replies-holder">
-                        @foreach($discussion->replies()->orderBy('created_at','Desc')->orderBy('upvotes','desc')->get() as $reply)
+                        @foreach($discussion->replies()->orderBy('upvotes','desc')->orderBy('created_at','Desc')->get() as $reply)
                             {{ View::make('courses.classroom.discussions.reply')->with( compact('reply', 'course') ) }}
                         @endforeach
                     </div>

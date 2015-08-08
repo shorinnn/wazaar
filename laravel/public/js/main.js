@@ -1398,10 +1398,11 @@ function toggleRightBar(e, json){
         return false;
     }
     if( !isset(json) && isset(e) && typeof( $(e.target).attr('data-property') )!='undefined'  && $('.right-slide-menu').hasClass('in') ) return false;
-    
+    $('.play-intro-button').hide();
     $('.right-slide-menu').toggleClass('in');
     $('.slide-to-left').toggleClass('in');
     $('body').toggleClass('discussion-opened');
+    setTimeout( skinVideoControls, 501 );
     
     if( !isset(json) ) return false;
     
