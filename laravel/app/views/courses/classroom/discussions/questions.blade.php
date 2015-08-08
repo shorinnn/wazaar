@@ -8,7 +8,7 @@
     <h1>Questions</h1>
     
     <div class='question-holder'>
-        @foreach($lesson->discussions()->orderBy('upvotes','desc')->get() as $discussion)
+        @foreach($lesson->discussions()->orderBy('created_at','desc')->get() as $discussion)
             {{ View::make('courses.classroom.discussions.question')->with( compact('discussion') ) }}
         @endforeach
     </div>
