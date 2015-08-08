@@ -12341,6 +12341,20 @@ footer{
 	}
 }
 
+@media (max-width: 1500px) and (min-width: 1400px){
+.discussion-opened .classroom-video.video-container .topControl{
+	width: 50%;
+}
+	
+}
+
+@media (max-width: 1400px) and (min-width: 1200px){
+.discussion-opened .classroom-video.video-container .topControl{
+	width: 40%;
+}
+	
+}
+
 @media (min-width: 991px){
 	.questions-sidebar{
 		position: fixed;
