@@ -64,7 +64,7 @@ var Analytics = {
 
     'SalesCount' : function ($frequency, $elem){
         Analytics.activateLoader();
-        $.get('/analytics/sales/count/' + $frequency , function ($html){
+        $.get('/analytics/sales/get-count/' + $frequency , function ($html){
             $('.sales-count-dropdown a').removeClass('active');
             $($elem).addClass('active');
             if ($frequency == 'today'){
