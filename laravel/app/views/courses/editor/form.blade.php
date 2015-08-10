@@ -376,6 +376,12 @@
             json = JSON.parse(json);
             $dest.html( json.embed_code);
         }
+        
+        function externalVideoAdded(e){
+                target = $(e.target);
+                $localLessonId = target.attr('data-lesson');
+                $('#lesson-'+$localLessonId).find('.lesson-no-video').removeClass('lesson-no-video');
+        }
 
     </script>
 @stop

@@ -70,7 +70,7 @@
                 <div class='external-video-preview preview-{{$lesson->id}}'>
                     {{ externalVideoPreview($lesson->external_video_url) }}
                 </div>
-                <input type="text" class="ajax-updatable" onkeyup="externalVideoAdded(event)" data-lesson='{{$lesson->id}}'
+                <input type="text" class="ajax-updatable" data-lesson='{{$lesson->id}}'
                        data-callback='externalVideoPreview' data-target='.preview-{{$lesson->id}}'
                        data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}' placeholder='Youtube or Vimeo Link'
                                   data-name='external_video_url' id='external-video-{{$lesson->id}}' value="{{ $lesson->external_video_url }}" />
