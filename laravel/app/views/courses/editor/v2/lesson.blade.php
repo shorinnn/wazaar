@@ -20,7 +20,7 @@
                 @if ($video)
 
                     @if (@$video->transcode_status == Video::STATUS_COMPLETE)
-                        <img class="video-preview" src="{{$video->formats[0]->thumbnail}}" />
+                        <img class="video-preview" data-video-url="{{$video->formats[0]->video_url}}" onclick="showVideoPreview(this)" src="{{$video->formats[0]->thumbnail}}" />
                     @else
                         <img src="" alt="" class="hidden video-preview"/>
                     @endif
@@ -269,8 +269,6 @@
 </div>
 
 <script type="text/javascript">
-
-
     var $intervalId{{$lesson->id}} = 0;
 
     $(function(){
@@ -322,6 +320,7 @@
 
                                 $lessonWrapper.find('.processing-wrapper').addClass('hidden');
                                 $lessonWrapper.find('.video-preview').attr('src',$video.formats[0].thumbnail);
+                                $lessonWrapper.find('.video-preview').attr('data-video-url',$video.formats[0].video_url);
                                 $lessonWrapper.find('.video-preview').removeClass('hidden');
                                 $('.lesson-control').removeClass('hidden');
 

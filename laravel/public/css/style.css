@@ -7730,6 +7730,8 @@ a.load-remote > *{
 
 .step2 .lesson-container .preview-thumb img{
 	max-width: 100%;
+        height:100%;
+        width:100%;
 }
 
 .step1 .lesson-container .use-existing > a,

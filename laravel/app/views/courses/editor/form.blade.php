@@ -357,5 +357,16 @@
     @include('videos.playerModal')
     <script>
         var course_steps_remaining = {{ courseStepsRemaining($course) }};
+        
+        function showVideoPreview(elem){
+            url = $(elem).attr('data-video-url');
+            video = '<video style="width:100%" preload="auto"controls=1><source src="'+url+'" type="video/mp4"></video>';
+            bootbox.dialog({ 
+                title: _('Video Preview'),
+                message: video
+            });
+            skinVideoControls();
+        }
+
     </script>
 @stop
