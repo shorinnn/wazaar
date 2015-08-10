@@ -26,14 +26,16 @@ class UsersController extends Controller
             Cookie::queue('st', null, -1);
             Cookie::forget('st');
         }
-        
+        $extraText = '';
         if( $instructor_account === 'instructor' ){
             Cookie::queue("register_instructor", 1, 30);
+            $extraText = trans('general.register-instructor');
         }
         if( $instructor_account === 'affiliate' ){
             Cookie::queue("register_affiliate", 1, 30);
+            $extraText = trans('general.register-affiliate');
         }
-        return View::make(Config::get('confide::signup_form'))->with( compact('instructor_account') );
+        return View::make(Config::get('confide::signup_form'))->with( compact('instructor_account', 'extraText') );
     }
     
     /**

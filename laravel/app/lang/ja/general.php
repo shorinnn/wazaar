@@ -95,5 +95,7 @@ return array(
     'share-this-lesson' => 'このレッスンを友達に教えたい！',
     'read-more' => 'もっと見る',
     'privacy-policy' => 'Privacy Policy',
+    'register-instructor' => 'Register for instructor account',
+    'register-affiliate' => 'Register for affiliate account',
  
 );

@@ -126,6 +126,8 @@ Route::group(array('domain' => $domain), $wwwRoutes);
 Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 
 Route::group(['prefix' => 'affiliate'], function (){
+    Route::get('accept-terms', 'AffiliateController@acceptTerms');
+    Route::post('accept-terms', 'AffiliateController@doAcceptTerms');
     Route::get('promote/{course}', 'AffiliateController@promote');
     Route::get('promote/{course}/{tcode}', 'AffiliateController@promote');
     Route::post('gifts/{gift}/files', 'GiftsController@files');

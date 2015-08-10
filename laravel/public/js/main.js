@@ -1453,3 +1453,17 @@ function scrollToElement(e){
         scrollTop: $(target).offset().top
     }, 400);
 }
+
+$('body').on('click', '.affiliate-toolbar-toggler', toggleAffiliateToolbar);
+var hideAffiliateToolbar = 0;
+function toggleAffiliateToolbar(e){
+    $('div.affiliate-toolbar').toggleClass( 'minimized' );
+    $('div.affiliate-toolbar').toggleClass( 'tooltipable' );
+    $('div.affiliate-toolbar').toggleClass( 'affiliate-toolbar-toggler' );
+    $('.affiliate-toolbar-toggler-btn').toggleClass( 'affiliate-toolbar-toggler' );
+    $('.tooltipable').tooltip();
+    localStorage.setItem('hideAffiliateToolbar', hideAffiliateToolbar);
+    
+    console.log('toggling');
+}
+    
