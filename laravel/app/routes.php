@@ -130,6 +130,9 @@ Route::group(['prefix' => 'affiliate'], function (){
     Route::post('accept-terms', 'AffiliateController@doAcceptTerms');
     Route::get('promote/{course}', 'AffiliateController@promote');
     Route::get('promote/{course}/{tcode}', 'AffiliateController@promote');
+    Route::get('become-affiliate', 'AffiliateController@becomeAffiliate');
+    Route::post('become-affiliate', 'AffiliateController@doBecomeAffiliate');
+    
     Route::post('gifts/{gift}/files', 'GiftsController@files');
     Route::resource('gifts', 'GiftsController');
     Route::resource('giftsfile', 'GiftsFileController');

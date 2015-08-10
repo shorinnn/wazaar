@@ -14,7 +14,7 @@
     <div class="row lesson-data no-margin toggle-minimize"  data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}'>
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="lesson-wrapper-{{$lesson->id}}">
             
-            @if(App::environment()=='local')
+            @if(App::environment()!='production')
             <a href='{{ action('ClassroomController@lesson', 
                                             [ $lesson->module->course->slug,
                                             $lesson->module->slug,

@@ -4,7 +4,7 @@ class AffiliateController extends \BaseController {
     
     public function __construct()
     {
-        $this->beforeFilter( 'affiliate' );
+        $this->beforeFilter( 'affiliate', ['except' => ['becomeAffiliate','doBecomeAffiliate'] ] );
         $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy' ]]);
     }
 
@@ -25,11 +25,27 @@ class AffiliateController extends \BaseController {
             if( Input::get('accept') != 1 ) return View::make('affiliate.at');
             Auth::user()->accepted_affiliate_terms = 'yes';
             Auth::user()->updateUniques();
-            if( Session::has('redirect-after-accept') ){
-                $url = Session::get('redirect-after-accept');
-                Session::forget('redirect-after-accept');
-                return Redirect::to( $url );
-            }
+//            if( Session::has('redirect-after-accept') ){
+//                $url = Session::get('redirect-after-accept');
+//                Session::forget('redirect-after-accept');
+//                return Redirect::to( $url );
+//            }
             return Redirect::action('SiteController@index');
+        }
+        
+        public function becomeAffiliate(){
+            $a = ProductAffiliate::find( Auth::user()->id );
+            return View::make('affiliate.become');
+        }
+        
+        public function doBecomeAffiliate(){
+            if( Input::get('accept') != 1 ) return View::make('affiliate.become');
+            
+            $users = new UserRepository();
+            $users->become( 'Affiliate', Auth::user(), null, Cookie::get('aid') );
+                
+            Auth::user()->accepted_affiliate_terms = 'yes';
+            Auth::user()->updateUniques();
+            return Redirect::action('ProfileController@index');
         }
 }
