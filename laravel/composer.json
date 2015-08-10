@@ -22,7 +22,8 @@
                 "fzaninotto/faker": "1.4.0",
                 "fitztrev/laravel-html-minify": "1.*",
 		"anlutro/curl": "0.6.*",
-                "indatus/dispatcher" : "1.4"
+                "indatus/dispatcher" : "1.4",
+		"vimeo/vimeo-api": "^1.2"
 	},
 	"autoload": {
 		"classmap": [

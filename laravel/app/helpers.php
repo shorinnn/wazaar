@@ -571,10 +571,17 @@ function externalVideoPreview($url, $big=false){
     $width = $big ? 1280 : 560;
     $height = $big ? 720 : 315;
     if( $id = parse_yturl($url) ){
-        $preview = '<iframe width="'.$width.'" height="'.$height.'" src="https://www.youtube.com/embed/'.$id.'" frameborder="0" allowfullscreen></iframe>';
+//        $preview = '<iframe width="'.$width.'" height="'.$height.'" src="https://www.youtube.com/embed/'.$id.'" frameborder="0" allowfullscreen></iframe>';
+        $preview = '<img data-video-url="https://www.youtube.com/embed/'.$id.'" data-yt=1  onclick="showVideoPreview(this)" src="http://img.youtube.com/vi/'.$id.'/0.jpg" width="100%"/>';
     }
     if( $id = get_vimeoid($url)){
-        $preview = '<iframe src="https://player.vimeo.com/video/'.$id.'?color=ffffff&title=0&portrait=0&badge=0" width="'.$width.'" height="'.$height.'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+        $vimeo = new \Vimeo\Vimeo( Config::get('custom.vimeo.client_id'), Config::get('custom.vimeo.client_secret') );
+        $vimeo->setToken( Config::get('custom.vimeo.access_token') );
+        $response = $vimeo->request('/videos/'.$id, array('per_page' => 2), 'GET');
+        
+        $link = $response['body']['pictures']['sizes'][1]['link'];
+//        $preview = '<iframe src="https://player.vimeo.com/video/'.$id.'?color=ffffff&title=0&portrait=0&badge=0" width="'.$width.'" height="'.$height.'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+        $preview = '<img data-video-url="https://player.vimeo.com/video/'.$id.'" data-v=1  onclick="showVideoPreview(this)" src="'.$link.'" width="100%" />';
     }
     return $preview;
 }

@@ -13,56 +13,68 @@
      
     <div class="row lesson-data no-margin toggle-minimize"  data-target='div.shr-lesson-editor-{{$lesson->id}}' data-class='lesson-minimized' data-toggle-icon='.lesson-toggle-icon-{{$lesson->id}}'>
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="lesson-wrapper-{{$lesson->id}}">
-            <div class="lesson-name"><span><em></em></span>{{ trans('general.lesson') }}  
+            @if($lesson->module->course->paid=='yes')
+              <div class="lesson-name"><span><em></em></span>{{ trans('general.lesson') }}  
                 <div class="inline-block lesson-module-{{$lesson->module->id}} lesson-order" data-id="{{$lesson->id}}">{{ $lesson->order }}</div></div>
-            <div class="preview-thumb lesson-wrapper">
+                <div class="preview-thumb lesson-wrapper">
 
-                @if ($video)
+                    @if ($video)
 
-                    @if (@$video->transcode_status == Video::STATUS_COMPLETE)
-                        <img class="video-preview" data-video-url="{{$video->formats[0]->video_url}}" onclick="showVideoPreview(this)" src="{{$video->formats[0]->thumbnail}}" />
+                        @if (@$video->transcode_status == Video::STATUS_COMPLETE)
+                            <img class="video-preview" data-video-url="{{$video->formats[0]->video_url}}" onclick="showVideoPreview(this)" src="{{$video->formats[0]->thumbnail}}" />
+                        @else
+                            <img src="" alt="" class="hidden video-preview"/>
+                        @endif
                     @else
                         <img src="" alt="" class="hidden video-preview"/>
                     @endif
-                @else
-                    <img src="" alt="" class="hidden video-preview"/>
-                @endif
 
-                <div class="uploading-wrapper margin-top-15 hidden">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                            <span><span class="percent-complete"></span></span>
+                    <div class="uploading-wrapper margin-top-15 hidden">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                <span><span class="percent-complete"></span></span>
+                            </div>
                         </div>
                     </div>
+                    <div class="processing-wrapper margin-top-15 hidden">
+                        Processing
+                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif">
+                    </div>
                 </div>
-                <div class="processing-wrapper margin-top-15 hidden">
-                    Processing
-                    <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif">
-                </div>
-            </div>
-            <div class="dropdown text-center lesson-control">
-              <a id="upload-new" class="default-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                {{ trans('video.upload-new') }}
-                <i class="wa-chevron-down"></i>
-              </a>
-            
-              <ul class="dropdown-menu" aria-labelledby="upload-new">
-                <label class="upload-button">
-                    <span>{{ trans('video.upload-new-video') }}</span>
-                    <input type="file" hidden="" id="fileupload-lesson-{{$lesson->id}}" class="lesson-video-file" name="file" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lesson->id}}"/>
-                </label>
-                <span class="use-existing use-existing-preview" >
-                    <span class="use-existing">
-                        <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lesson->id}}">
-                            {{trans('video.selectExisting')}}
-                        </a> 
-                    </span>
-                </span>
-              </ul>
-            </div>
+                <div class="dropdown text-center lesson-control">
+                  <a id="upload-new" class="default-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    {{ trans('video.upload-new') }}
+                    <i class="wa-chevron-down"></i>
+                  </a>
 
-            @if( $lesson->blocks()->where('type','video')->count() > 0  ) 
-                <a href="#" class="remove-video lesson-control">{{ trans('video.remove-video') }}</a>
+                  <ul class="dropdown-menu" aria-labelledby="upload-new">
+                    <label class="upload-button">
+                        <span>{{ trans('video.upload-new-video') }}</span>
+                        <input type="file" hidden="" id="fileupload-lesson-{{$lesson->id}}" class="lesson-video-file" name="file" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lesson->id}}"/>
+                    </label>
+                    <span class="use-existing use-existing-preview" >
+                        <span class="use-existing">
+                            <a href="#" class="show-videos-archive-modal" data-lesson-id="{{$lesson->id}}">
+                                {{trans('video.selectExisting')}}
+                            </a> 
+                        </span>
+                    </span>
+                  </ul>
+                </div>
+
+                @if( $lesson->blocks()->where('type','video')->count() > 0  ) 
+                    <a href="#" class="remove-video lesson-control">{{ trans('video.remove-video') }}</a>
+                @endif
+            @else
+                
+                <div class='external-video-preview preview-{{$lesson->id}}'>
+                    {{ externalVideoPreview($lesson->external_video_url) }}
+                </div>
+                <input type="text" class="ajax-updatable" onkeyup="externalVideoAdded(event)" data-lesson='{{$lesson->id}}'
+                       data-callback='externalVideoPreview' data-target='.preview-{{$lesson->id}}'
+                       data-url='{{action('LessonsController@update', [$lesson->module->id, $lesson->id] )}}' placeholder='Youtube or Vimeo Link'
+                                  data-name='external_video_url' id='external-video-{{$lesson->id}}' value="{{ $lesson->external_video_url }}" />
+            
             @endif
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">

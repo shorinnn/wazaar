@@ -73,7 +73,9 @@ class LessonsController extends \BaseController {
                     || $lesson->module->course->assigned_instructor_id == Auth::user()->id ) ){
                 $name = Input::get('name');
 //                $lesson->$name = Input::get('value');
-                $lesson->fill( Input::all() ); 
+                if( $name != 'external_video_url' ) $lesson->fill( Input::all() ); 
+                else $lesson->external_video_url = Input::get('value');
+                
                 if( !Input::has('free_preview') ) $lesson->free_preview = 'no';
                 if( !Input::has('individual_sale') ) $lesson->individual_sale = 'no';
                 
