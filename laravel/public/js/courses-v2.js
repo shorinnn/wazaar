@@ -517,20 +517,26 @@ function courseChangedTabs(e){
     $('.by-the-end-ul').html(str);
 }
 
+var editorStepSubmit = true;
 function saveAndNextTab(e){
     $('html, body').animate({
         scrollTop: $("body").offset().top
     }, 500);
     formSaved(e);
+    editorStepSubmit = false;
     $('.header-tabs.active').next('.header-tabs').click();
+    $form = $('');
+    restoreSubmitLabel( $form );
 }
 
 function saveStep1Form(){
-    $('.step-1-form').attr('data-old-callback', $('.step-1-form').attr('data-callback'));
-    $('.step-1-form').attr('data-callback', 'savedStep1');
-    $('.step-1-form').attr('data-save-indicator', '.step-1-save-btn');
-    $('.step-1-form').submit();
-   
+    if( editorStepSubmit==true ){
+        $('.step-1-form').attr('data-old-callback', $('.step-1-form').attr('data-callback'));
+        $('.step-1-form').attr('data-callback', 'savedStep1');
+        $('.step-1-form').attr('data-save-indicator', '.step-1-save-btn');
+        $('.step-1-form').submit();
+    }
+    else editorStepSubmit = true;
 }
 
 function savedStep1(e,json){

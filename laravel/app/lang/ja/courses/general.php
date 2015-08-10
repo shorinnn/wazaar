@@ -168,8 +168,9 @@ jpeg, png',
     'show-more-lessons' => 'もっと見る',
     'show-less-lessons' => '元に戻る',
     'upload-10-minutes-to-submit' => 'Upload 10 minutes of video content to submit',
-    'upload_image' => '#Upload Image',
-    'upload_video' => '#Upload Video',
-    'video_size' => '#Video should be 16:9 or else it will be cropped',
+    'upload_image' => '画像を投稿する',
+    'upload_video' => '動画を投稿する',
+    'video_size' => 'ビデオと写真の画面サイズは16:9のものをご利用ください。それ以外のものは正しく表示されない可能性があります。',
+    'course-enroll' => '受講する！',
 );
 

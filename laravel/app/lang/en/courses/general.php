@@ -183,5 +183,6 @@ return array(
     'free_preview' => 'Free preview',
     'show-more-lessons' => 'Show More Lessons',
     'show-less-lessons' => 'Show Less Lessons',
-    'upload-10-minutes-to-submit' => 'Upload 10 minutes of video content to submit'
+    'upload-10-minutes-to-submit' => 'Upload 10 minutes of video content to submit',
+    'course-enroll' => 'Enroll',
 );

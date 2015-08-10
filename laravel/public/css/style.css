@@ -2717,8 +2717,8 @@ h6{
 }
 
 .course-data .column-1 .number-of-lessons{
-	padding-right: 49px;
-	padding-left: 49px;
+	padding-right: 30px;
+	padding-left: 30px;
 }
 
 .course-data .column-2 div i,
@@ -2729,24 +2729,9 @@ h6{
 	display: none;
 }
 
-.course-data .column-1 .number-of-students{
-	padding-right: 45px;
-	padding-left: 45px;
-}
-
-.course-data .column-1 .number-of-videos{
-	padding-left: 53px;
-	padding-right: 53px;
-}
-
-.course-data .column-1 .recommends{
-	padding-left: 34px;
-	padding-right: 34px;
-}
-
-.course-data .column-1 .difficulty-level{
-	padding-right: 35px;
-	padding-left: 35px;
+.course-data .column-1 div{
+	padding-right: 25px;
+	padding-left: 25px;
 }
 
 .course-data .column-1 .star-rating{
@@ -4951,6 +4936,25 @@ h6{
 .classroom-view{
 	background-color: #18222b;
 	position: relative;
+	height: 100%;
+}
+
+.discussion-opened{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.discussion-opened .classroom-view{
+	height: 100%;
+}
+
+.discussion-opened .classroom-video.video-container .topControl{
+	width: 60%;
+}
+
+.classroom-view .video-container .control div.btnFS{
+	float: right;
 }
 
 .classroom-view .classroom-header{
@@ -5545,6 +5549,19 @@ h6{
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
+}
+
+.slide-to-left{
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.slide-to-left.in{
+    /*margin-left: -505px;*/
+     width: -moz-calc(75% - 505px);
+    width: -webkit-calc(75% - 505px);
+    width: calc(75% - 505px);
 }
 
 .classroom-view .slide-menu.in{
@@ -12324,6 +12341,20 @@ footer{
 	}
 }
 
+@media (max-width: 1500px) and (min-width: 1400px){
+.discussion-opened .classroom-video.video-container .topControl{
+	width: 50%;
+}
+	
+}
+
+@media (max-width: 1400px) and (min-width: 1200px){
+.discussion-opened .classroom-video.video-container .topControl{
+	width: 40%;
+}
+	
+}
+
 @media (min-width: 991px){
 	.questions-sidebar{
 		position: fixed;
@@ -12376,7 +12407,7 @@ footer{
 
 @media (max-width: 1200px) and (min-width: 991px){
 .course-data .column-1 div{
-	padding: 15px 30px 12px !important;
+	padding: 15px 20px 12px !important;
 }
 
 .video-container .control div.btn{
@@ -12660,6 +12691,14 @@ footer{
 	.step1 .main-content{
 		border-right: none;
 	}
+
+	.slide-to-left.in{
+		/*margin-left: -505px;*/
+		 width: -moz-calc(100% - 505px);
+		width: -webkit-calc(100% - 505px);
+		width: calc(100% - 505px);
+	}
+
 }
 
 @media (max-width:900px){

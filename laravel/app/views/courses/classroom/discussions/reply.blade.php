@@ -20,5 +20,16 @@
             @endif
         </div>
         <p class="reply"> {{ $reply->content }} </p>
+                <div class='pull-right'>
+                    <span class='reply-votes-{{$reply->id}}'>{{ (int)$reply->upvotes }}</span>
+                    <a href='{{ action( 'DiscussionRepliesController@vote',[ $reply->id, 'up' ] ) }}' class='link-to-remote' data-callback='updateHTML' data-property='votes'
+                       data-url='{{ action( 'DiscussionRepliesController@vote',[ $reply->id, 'up' ] ) }}' data-target='.reply-votes-{{$reply->id}}'>
+                        <i class="fa fa-angle-up"></i>
+                    </a> |
+                    <a href='{{ action( 'DiscussionRepliesController@vote',[ $reply->id, 'down' ] ) }}' class='link-to-remote' data-callback='updateHTML' data-property='votes'
+                       data-url='{{ action( 'DiscussionRepliesController@vote',[ $reply->id, 'down' ] ) }}'data-target='.reply-votes-{{$reply->id}}'>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                </div>
     </div>
 </div>

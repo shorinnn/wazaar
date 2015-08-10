@@ -102,13 +102,21 @@
     	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
         	<h3>{{ trans('courses/general.course_description') }}</h3>
             	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 main-content">
-                	<div>
+                    <div>
+                        <h6>
+                        {{ trans('courses/create.title') }}
+                        </h6>
+                        {{ Form::text('name', null,['id'=>'name', 'required' => 'required' ] ) }}                    
+                    </div>
+                    
+                    <div>
                         <h6>
                         {{ trans('courses/general.short_description') }}
                         </h6>
                         {{ Form::textarea('short_description', null,['id'=>'short_description', 'required' => 'required' ] ) }}
                         <em>{{ trans('courses/create.short-description-tip') }}</em>                           
                     </div>
+                    
                     <div class="margin-top-50">
                         <h6>
                         {{ trans('courses/general.full_description') }}
@@ -129,8 +137,8 @@
         	<h3>{{ trans('courses/general.course_description') }}</h3>
             	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 main-content">
                 	<div>
-                    	<h4 class="clearfix">{{ trans('courses/general.requirements') }}
-                            <span class="lead regular-paragraph">{{ trans('courses/create.reqs-what-users-need') }}</span>                        
+                    	<h4 class="clearfix">{{ trans('courses/create.requirements') }}
+                            <span class="lead regular-paragraph">{{ trans('courses/create.reqs-what-users-need') }}</span>                      
                         </h4>
                         <div class="margin-top-20 clearfix requirements-box">
 							<?php $i = 1;?>
@@ -166,7 +174,7 @@
                     </div>
                     <div class="margin-top-80">
                         <h4>{{ trans('courses/general.who_is_this_for') }}
-                        	<span class="lead regular-paragraph">{{ trans('courses/general.who-benefits-most') }}</span>
+                        	<span class="lead regular-paragraph">{{ trans('courses/create.who-benefits-most') }}</span>
                         </h4>
                         <div class="margin-top-20 clearfix who-box">
                             <?php $i = 1;?>

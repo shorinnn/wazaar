@@ -61,4 +61,5 @@ return array(
     'attachments' => 'Attachments',
     'show' => 'Show',
     'delete-this-lesson' => 'Delete this lesson',
+    'title' => 'Title'
 );

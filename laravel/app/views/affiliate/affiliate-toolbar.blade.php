@@ -1,6 +1,6 @@
 <div style="background-color:silver;" class='text-center'>
     {{ trans('courses/promote.your-link') }}
-    <input type='text' class='clipboardable' style='width:400px; background-color:white'
+    <input type='text' style='width:400px; background-color:white'
            id='affiliate-toolbar-link'
            value='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}'
            data-clipboard-text='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}' />
