@@ -4,7 +4,7 @@ class AffiliateController extends \BaseController {
     
     public function __construct()
     {
-        $this->beforeFilter( 'affiliate' );
+        $this->beforeFilter( 'affiliate', ['except' => ['becomeAffiliate','doBecomeAffiliate'] ] );
         $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy' ]]);
     }
 
@@ -31,5 +31,15 @@ class AffiliateController extends \BaseController {
                 return Redirect::to( $url );
             }
             return Redirect::action('SiteController@index');
+        }
+        
+        public function becomeAffiliate(){
+            $users = new UserRepository();
+            $users->become( 'Affiliate', Auth::user(), Cookie::get('stpi') );
+                
+            
+            $a = ProductAffiliate::find( Auth::user()->id );
+            if( !Session::has('redirect-after-accept') ) Session::put('redirect-after-accept', $_SERVER['HTTP_REFERER']);
+            return View::make('affiliate.at');
         }
 }
