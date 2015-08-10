@@ -106,6 +106,9 @@ class UsersController extends Controller
             $error = implode('<br />',$user->errors()->all());
             $input = Input::all();
             unset($input['password']);
+            if( Input::has('register_affiliate') ) $error.= '<br/>If you already have a student account, log in and click the Become Affiliate button';
+            if( Input::has('register_instructor') ) $error.= '<br/>If you already have a student account, log in and click the Become Instructor button';
+            
             if(Request::ajax()) return json_encode( [ 'status' => 'error', 'errors' => $user->errors()->getMessages() ] );
             return Redirect::back()->with('error', $error)->withInput( $input );//Redirect::action('UsersController@create')
 
@@ -147,6 +150,7 @@ class UsersController extends Controller
                 $err_msg = Lang::get('confide::confide.alerts.not_confirmed');
             } else {
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
+                
             }
             $input = Input::all();
             unset($input['password']);
@@ -512,6 +516,7 @@ class UsersController extends Controller
             $dot = getenv('AWS_MACHINE_IDENTIFIER') == 'Wazaar.' ? 1 : 0;
             return Redirect::to("login?dot=$dot");
         }
+        if( Auth::user()->hasRole('Affiliate') ) return Redirect::action('AffiliateController@acceptTerms');
         return View::make('confide.mail_verified');
     }
     

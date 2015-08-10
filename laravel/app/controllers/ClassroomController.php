@@ -73,7 +73,7 @@ class ClassroomController extends \BaseController {
             $course = Course::where('slug', $course)->first();
             $student = Student::find( Auth::user()->id );
             if( $course==null  ){
-                return Redirect::to('/a');
+                return Redirect::to('/');
             }
             $module = $course->modules()->where('slug', $module)->first();
             $lesson = $module->lessons()->where('slug', $lesson)->with('blocks')->first();
@@ -83,7 +83,7 @@ class ClassroomController extends \BaseController {
              if($student->id != $course->instructor_id && $student->id != $course->assigned_instructor_id ){
                 $purchase = $student->purchases()->where('product_type','Lesson')->where('product_id', $lesson->id)->first();
                 if( $lesson==null || !$student->purchased($course) && $purchase==null && $lesson->free_preview == 'no' ){
-                    return Redirect::to('/b');
+                    return Redirect::to('/');
                 }
            
                 if( (!$student->purchased($course) && $purchase==null && $lesson->free_preview=='yes') || ( !$student->purchased($course) && $purchase!=null && $purchase->free_product=='yes') ){
@@ -95,13 +95,13 @@ class ClassroomController extends \BaseController {
             if($course->payment_type=='subscription'){
 //                if( !in_array($lesson->module->id, $student->subscriptionModules($course)->lists('id'))){
                 if( !$student->isLessonSubscribedTo( $lesson ) ){
-                    return Redirect::to('/c');
+                    return Redirect::to('/');
                 }
             }
             
             $lesson->comments = $lesson->comments()->orderBy('id','desc')->where('reply_to', null)->with('poster')->paginate( 2 );
             if( $lesson==null || $lesson->module->course->id != $course->id ){
-                return Redirect::to('/d');
+                return Redirect::to('/');
             }            
             $student->viewLesson( $lesson );
             if( $video==null ) $student->viewLesson( $lesson, true );
