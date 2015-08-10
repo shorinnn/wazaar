@@ -11,9 +11,9 @@ class StudentController extends \BaseController {
             $student = Student::find( Auth::user()->id );
             $student->load( 'viewedLessons.lesson' );
             $lastLesson = $student->viewedLessons()->orderBy('updated_at','desc')->first();
-            $lastLesson->load( 'lesson.module.course', 'lesson.module', 'lesson' );
+            if($lastLesson != null )            $lastLesson->load( 'lesson.module.course', 'lesson.module', 'lesson' );
             $courses = $student->purchases()->where('product_type','Course')->get();
-            $courses->load( 'product.modules.lessons', 'product.modules', 'product' );
+            if( $courses != null ) $courses->load( 'product.modules.lessons', 'product.modules', 'product' );
             $wishlist = $student->wishlistItems;
 //            $wishlist = [];
 //            $courses = [];
