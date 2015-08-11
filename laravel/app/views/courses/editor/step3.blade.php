@@ -284,7 +284,7 @@
         {{ trans('courses/general.wazaar-is-checking-your-product')}}
     </button>
     @else
-    <button class="blue-button large-button submit-for-approval">SUBMIT FOR APPROVAL</button>
+    <button class="blue-button large-button submit-for-approval">{{ trans('courses/create.submit-for-approval')}}</button>
      @endif
 </div>
 

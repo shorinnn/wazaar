@@ -55,6 +55,7 @@ return array(
     'sale_ends_on' => "Sale Ends On",
     'sale_ends_in' => "Sale Ends In",
     'description' => 'Description',
+    'lesson-description' => 'Description',
     'what_you_will_achieve' => 'What you will achieve at the end of the course',
     'your_teacher' => 'Your Teacher',
     'curriculum' => 'Curriculum',

@@ -65,4 +65,8 @@ return array(
     'show' => '#Show',
     'delete-this-lesson' => '#Delete this lesson',
     'title' => 'コースのタイトル名（60文字以内）',
+    'enter-short-lesson-description' => 'レッスンの短い簡単な説明を記載してください',
+    'add-notes' => 'レッスンの補足的な説明を記載してください',
+    'submit-for-approval' => '審査へ商品を提出する',
+    'select-existing-image' => '投稿済みの画像から選択',
 );
