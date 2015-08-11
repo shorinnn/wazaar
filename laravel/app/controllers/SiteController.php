@@ -22,8 +22,6 @@ class SiteController extends \BaseController {
                 $topCourses = Cache::get('topCourses');
                 $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
                 $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
-                
-                
                 if(Auth::user()) Return View::make('site.homepage_authenticated')
                     ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses'));
                 else{

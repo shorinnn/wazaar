@@ -20,7 +20,7 @@
                                             $lesson->module->slug,
                                             $lesson->slug] )}}'>[View Lesson maxxy]</a>
             @endif
-            @if($lesson->module->course->paid=='yes')
+            @if($lesson->module->course->free=='no')
               <div class="lesson-name"><span><em></em></span>{{ trans('general.lesson') }}  
                 <div class="inline-block lesson-module-{{$lesson->module->id}} lesson-order" data-id="{{$lesson->id}}">{{ $lesson->order }}</div></div>
                 <div class="preview-thumb lesson-wrapper">

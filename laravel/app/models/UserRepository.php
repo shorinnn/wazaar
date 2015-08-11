@@ -490,7 +490,8 @@ class UserRepository
             $user->second_tier_instructor_id = $secondTierInstructorCookie;
         }
         if( $secondTierAffiliate != null  ){
-            $user->second_tier_affiliate_id = $secondTierAffiliate;
+            $secondTierAffiliate = LTCAffiliate::where('affiliate_id', $secondTierAffiliate)->first();
+            if($secondTierAffiliate!=null) $user->second_tier_affiliate_id = $secondTierAffiliate->id;
         }
         $user->save();
         return true;
