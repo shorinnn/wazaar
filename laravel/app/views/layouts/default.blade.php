@@ -40,7 +40,6 @@
     	<header class="container-fluid">
         		{{ View::make('layouts.shared.header') }}
         </header>
-        
         @yield('content')
 
         <footer>

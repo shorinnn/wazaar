@@ -14,6 +14,10 @@
                     }
                 </style>        
             @endif
+            <?php
+                $categories = CourseCategory::withCourses();
+                $categories->load( 'courseSubcategories' );
+            ?>
             
             @if(Auth::check())
             <?php
@@ -30,10 +34,7 @@
                         </button>
                         <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                             <ul>
-                                <?php
-                                    $categories = CourseCategory::withCourses();
-                                    $categories->load( 'courseSubcategories' );
-                                ?>
+                                
                                 @foreach( $categories as $category)
     
                                         @if($category->courseSubcategories)
@@ -126,7 +127,7 @@
         <div class="clearfix right logged-in-menu-holder">
             <ul class="logged-in-top-menu">
                 
-                @if($student->hasRole('Affiliate'))
+                @if(Auth::check() && $student->hasRole('Affiliate'))
                     <li>
                         <a href="#">Affiliate{{trans('site/homepage.dashboard')}}</a>
                     </li>
@@ -152,15 +153,15 @@
                 <span class="profile-level">12</span>
                 <div class="profile-thumbnail">
                     <?php
-                    Auth::user()->load('roles', 'profiles');
+                    if( Auth::check() ) Auth::user()->load('roles', 'profiles');
                     ?>
-                    @if(Auth::user()->hasRole('Instructor'))
+                    @if(Auth::check() && Auth::user()->hasRole('Instructor') && Instructor::find(Auth::user()->id)->profile!=null )
                     <img style="height: 30px; width: 30px; border-radius: 30px;" 
                              src="{{ cloudfrontUrl( Instructor::find(Auth::user()->id)->profile->photo ) }}" alt="">
-                    @elseif(Auth::user()->hasRole('Instructor'))
+                    @elseif(Auth::check() && Auth::user()->hasRole('Affiliate') && LTCAffiliate::find(Auth::user()->id)->profile != null)
                     <img style="height: 30px; width: 30px; border-radius: 30px;" 
-                             src="{{ cloudfrontUrl( ProductAffiliate::find(Auth::user()->id)->profile->photo ) }}" alt="">
-                    @elseif( $student->profile )
+                             src="{{ cloudfrontUrl( LTCAffiliate::find(Auth::user()->id)->profile->photo ) }}" alt="">
+                    @elseif(Auth::check() &&  $student->profile )
                         <img style="height: 30px; width: 30px; border-radius: 30px;" 
                              src="{{ cloudfrontUrl( Student::find(Auth::user()->id)->profile->photo ) }}" alt="">
                        
@@ -226,8 +227,6 @@
         </div>
         @else
             
-            
-            
             @if( Route::currentRouteAction()!='UsersController@login' && Route::currentRouteAction()!='UsersController@create')
             <style>
                 .top-menu .main-logo {
@@ -255,6 +254,8 @@
                         </button>
                         <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                             <ul>
+                                
+                               
                                 @foreach($categories as $category)
     
                                         @if($category->courseSubcategories)
