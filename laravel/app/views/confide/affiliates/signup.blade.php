@@ -13,18 +13,7 @@
             	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
             </a>
             <div class="user-data-modal clearfix">
-                @if(isset($extraText))
-                    <h1 class="clearfix">{{ $extraText }}</h1>
-                @else
                     <h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
-                @endif
-                @if($instructor_account!='affiliate')
-                    <div class="login-social-buttons clearfix">
-                            <a href="{{ url('login-with-facebook') }}" class="login-facebook"><span>{{ trans ('site/register.register-with-facebook') }}</span></a>
-                        <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
-                    </div>
-                    <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
-                @endif
                 
                 <p class="regular-paragraph text-center light-gray-text">{{ trans('site/register.enter-new-email-and-password') }}</p>
                 <div class="form-container clearfix">
@@ -33,17 +22,9 @@
                             {{Session::get('error')}}
                         </div>
                     @endif
-                    <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8">
+                    <form method="POST" action="{{ action('AffiliateController@store') }}" accept-charset="UTF-8">
                         <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
-                        @if(isset($st))
-                            <input type="hidden" name="st" value="1" />
-                        @endif
-                        @if( isset($instructor_account) && $instructor_account =='instructor')
-                            <input type="hidden" name="register_instructor" value="1" />
-                        @endif
-                        @if( isset($instructor_account) && $instructor_account =='affiliate')
-                            <input type="hidden" name="register_affiliate" value="1" />
-                        @endif
+                        <input type="hidden" name="register_affiliate" value="1" />
                         <fieldset>
                             
                             
@@ -85,7 +66,7 @@
             </div>
             <div class="user-data-modal-footer text-center">
                 <span class="margin-right-15">{{ trans('site/register.already-have-an-account') }}</span>
-                <a href="{{ action('UsersController@login') }}" class='showLogin'>{{ trans('site/register.login') }}</a>
+                <a href="{{ action('AffiliateController@login') }}" class='showLogin'>{{ trans('site/register.login') }}</a>
             </div>
         </div>
     </div>

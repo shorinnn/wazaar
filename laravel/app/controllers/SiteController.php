@@ -7,7 +7,7 @@ class SiteController extends \BaseController {
         }
 
 	public function index()
-	{         
+	{
             if(Input::has('skip-the-splashie')){
 //                $frontpageVideos  = FrontpageVideo::grid();
                 $categories = CourseCategory::limit(12);

@@ -305,6 +305,14 @@ Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 
 
 Route::group( array('domain' => $affiliateSubdomain ), function(){    
+    
+    Route::get('register', 'AffiliateController@create');
+    Route::post('register', 'AffiliateController@store');
+    Route::get('login', 'AffiliateController@login');
+    Route::post('login', 'AffiliateController@doLogin');
+    Route::get('forgot-password', 'AffiliateController@forgotPassword');
+    Route::post('forgot-password', 'AffiliateController@doForgotPassword');
+    
     Route::group(['prefix' => 'dashboard'], function (){
         Route::get('/','AffiliateDashboardController@index');
         Route::get('topcourses/{frequency}/{courseId?}', 'AffiliateDashboardController@topCoursesView');

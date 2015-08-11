@@ -166,11 +166,7 @@
                     </h1>
                     <a href="#" class="blue-button large-button">{{ trans('general.register') }}</a>
                 </div>
-                <br />
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                    <h1>Become Affiliate</h1>
-                    <a href="{{ action('AffiliateController@becomeAffiliate') }}" class="blue-button large-button">{{ trans('general.register') }}</a>
-                </div>
+                
             </div>
         </div>
     </section>

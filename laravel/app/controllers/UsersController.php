@@ -106,9 +106,7 @@ class UsersController extends Controller
             $error = implode('<br />',$user->errors()->all());
             $input = Input::all();
             unset($input['password']);
-            if( Input::has('register_affiliate') ) $error.= '<br/>If you already have a student account, log in and click the Become Affiliate button';
-            if( Input::has('register_instructor') ) $error.= '<br/>If you already have a student account, log in and click the Become Instructor button';
-            
+          
             if(Request::ajax()) return json_encode( [ 'status' => 'error', 'errors' => $user->errors()->getMessages() ] );
             return Redirect::back()->with('error', $error)->withInput( $input );//Redirect::action('UsersController@create')
 
@@ -432,7 +430,8 @@ class UsersController extends Controller
     {
         $old = Config::get('queue.default');
         Config::set('queue.default', 'sync');
-        if (Confide::forgotPassword(Input::get('email'))) {
+        
+        if ( Confide::forgotPassword( Input::get('email') ) ) {
             Config::set('queue.default', $old);
             $notice_msg = Lang::get('confide::confide.alerts.password_forgot');
             return Redirect::action('UsersController@login')
@@ -476,6 +475,10 @@ class UsersController extends Controller
         // By passing an array with the token, password and confirmation
         if ($this->users->resetPassword($input)) {
             $notice_msg = Lang::get('confide::confide.alerts.password_reset');
+            if( $this->users->affiliateReset == true ){
+                return Redirect::action('AffiliateController@login')
+                ->with('notice', $notice_msg);
+            }
             return Redirect::action('UsersController@login')
                 ->with('notice', $notice_msg);
         } else {
