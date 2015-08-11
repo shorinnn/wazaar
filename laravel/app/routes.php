@@ -344,8 +344,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
         Route::get('/', 'InstructorDashboardController@index');
         Route::get('sales/get-count/{frequency?}','InstructorDashboardController@salesCountView');
         Route::get('sales/{frequency}/{courseId?}/{trackingCode?}', 'InstructorDashboardController@salesView');
-        Route::get('trackingcodessales/{frequency}/{courseId?}','InstructorDashboardController@trackingCodesView');
-        Route::get('trackingcodetable/{frequency}/{courseId}','InstructorDashboardController@trackingCodesTableView');
+        Route::any('affiliatestable','InstructorDashboardController@topAffiliatesTableView');
 
     });
 });

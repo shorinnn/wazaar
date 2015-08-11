@@ -18,9 +18,13 @@ class AdminHelper
         if($index===false) return '-';
         return $index + 1;
     }
-    public function topAffiliatesByInstructor($instructorId, $startDate = '', $endDate = '', $sortOrder = 0)
+    public function topAffiliatesByInstructor($instructorId, $affiliateId = 0, $startDate = '', $endDate = '', $sortOrder = 0)
     {
         $filter = " AND (purchases.instructor_id = '{$instructorId}' OR purchases.second_tier_instructor_id='{$instructorId}')";
+
+        if (!empty($affiliateId)){
+            $filter .= " AND (purchases.product_affiliate_id = '{$affiliateId}' OR purchases.second_tier_affiliate_id = '{$affiliateId}')";
+        }
 
         if (!empty($startDate) AND !empty($endDate)){
             $startDate =  date('Y-m-d',strtotime($startDate));
@@ -139,7 +143,7 @@ class AdminHelper
         }
         return  DB::table('purchases')
                 ->select(
-                          DB::raw("SUM(purchase_price) as total_sales"),
+                          DB::raw("SUM(affiliate_earnings) as total_sales"),
                           DB::raw("COUNT(purchases.id) as sales_count"),
                          'product_affiliate_id',
                           DB::raw("CONCAT(`user_profiles`.last_name, ' ', user_profiles.first_name) as full_name"),
