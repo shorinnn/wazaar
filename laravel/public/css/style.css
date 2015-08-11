@@ -4957,6 +4957,23 @@ h6{
 	float: right;
 }
 
+.classroom-view .classroom-video .videoContainer{
+    position: relative;
+    padding-bottom: 56.25%;
+	height: 0; 
+	overflow: hidden;
+}
+ 
+.classroom-view .classroom-video .videoContainer iframe,
+.classroom-view .classroom-video .videoContainer object,
+.classroom-view .classroom-video .videoContainer embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .classroom-view .classroom-header{
 	padding-top: 10px;
 	margin-bottom: 54px;
@@ -7730,6 +7747,8 @@ a.load-remote > *{
 
 .step2 .lesson-container .preview-thumb img{
 	max-width: 100%;
+        height:100%;
+        width:100%;
 }
 
 .step1 .lesson-container .use-existing > a,

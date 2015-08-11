@@ -19,7 +19,7 @@ return array(
     'assigned-instructor' => '月Assigned Instructorせplease provide more context',
     'default-instructor-bio' => '講師の基本プロフィール',
     'custom-course-bio' => '月Custom Course Bioせplease provide more context',
-    'upload' => 'アップロード',
+    'upload' => '動画を投稿する',
     'enable-discussions' => '掲示板の開設',
     'discussion-no' => 'いいえ',
     'discussion-yes' => 'はい',

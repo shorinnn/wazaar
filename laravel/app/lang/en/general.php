@@ -116,4 +116,6 @@ return array(
     'select-sort' => '-Sort Option-',
     'read-more' => 'Read More',
     'privacy-policy' => 'Privacy Policy',
+    'register-instructor' => 'Register for instructor account',
+    'register-affiliate' => 'Register for affiliate account',
 );

@@ -10,6 +10,8 @@ function isset(variable){
 }
 var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 $(document).ready(function(){
+    console.log( getCookie('hideAffiliateToolbar') );
+    if( getCookie('hideAffiliateToolbar')=='true' ) toggleAffiliateToolbar(event);
     $('.countdown').each(function(){
         seconds = $(this).attr('data-final-date-seconds')
         time = moment().add(seconds, 'seconds').format('YYYY/MM/DD HH:mm:ss');
@@ -1453,3 +1455,27 @@ function scrollToElement(e){
         scrollTop: $(target).offset().top
     }, 400);
 }
+
+$('body').on('click', '.affiliate-toolbar-toggler', toggleAffiliateToolbar);
+var hideAffiliateToolbar = false;
+function toggleAffiliateToolbar(e){
+    $('div.affiliate-toolbar').toggleClass( 'minimized' );
+    $('div.affiliate-toolbar').toggleClass( 'tooltipable' );
+    $('div.affiliate-toolbar').toggleClass( 'affiliate-toolbar-toggler' );
+    $('.affiliate-toolbar-toggler-btn').toggleClass( 'affiliate-toolbar-toggler' );
+    $('.tooltipable').tooltip();
+    hideAffiliateToolbar = !hideAffiliateToolbar;
+    document.cookie="hideAffiliateToolbar="+hideAffiliateToolbar; 
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+    

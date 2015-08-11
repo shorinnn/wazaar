@@ -18,7 +18,9 @@
                 	<a href="{{ action( 'StudentController@mycourses' ) }}" class="back-to-courses"><i class="wa-chevron-left"></i>Back to courses</a>
                 	<h1>{{ $course->name }}</h1>
                     <p>
-                    Current lesson {{$currentLesson->module->order}}.{{$currentLesson->order}}. {{ $currentLesson->name }}
+                        @if($currentLesson != null)
+                            Current lesson {{$currentLesson->module->order}}.{{$currentLesson->order}}. {{ $currentLesson->name }}
+                        @endif
                     </p>
                 </div>
             </div>
@@ -36,12 +38,21 @@
                             <span></span>
                         </div>
                     </div>
-                    <a href="{{
-                        action('ClassroomController@lesson', 
-                                            [ $currentLesson->module->course->slug,
-                                            $currentLesson->module->slug,
-                                            $currentLesson->slug])
-                       }}" class="resume-course large-button blue-button"><i class="wa-play"></i>Resume course</a>
+                        @if($currentLesson != null)
+                        <a href="{{
+                            action('ClassroomController@lesson', 
+                                                [ $currentLesson->module->course->slug,
+                                                $currentLesson->module->slug,
+                                                $currentLesson->slug])
+                           }}" class="resume-course large-button blue-button"><i class="wa-play"></i>Resume course</a>
+                       @else
+                        <a href="{{
+                            action('ClassroomController@lesson', 
+                                                [ $nextLesson->module->course->slug,
+                                                $nextLesson->module->slug,
+                                                $nextLesson->slug])
+                           }}" class="resume-course large-button blue-button"><i class="wa-play"></i>Start course</a>
+                       @endif
                 </div>
             </div>
         </div>

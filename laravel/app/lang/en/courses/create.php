@@ -61,5 +61,9 @@ return array(
     'attachments' => 'Attachments',
     'show' => 'Show',
     'delete-this-lesson' => 'Delete this lesson',
-    'title' => 'Title'
+    'title' => 'Title',
+    'enter-short-lesson-description' => 'Enter short lesson description',
+    'add-notes' => 'Add Notes',
+    'submit-for-approval' => 'SUBMIT FOR APPROVAL',
+    'select-existing-image' => 'Select Existing',
 );

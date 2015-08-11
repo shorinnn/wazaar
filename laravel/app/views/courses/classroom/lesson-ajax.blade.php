@@ -146,7 +146,6 @@
                         <div class="video-player video-container classroom-video" style="background:none; text-align: right">
                             <div class="videoContainer">
                                 @if( $video != null)
-                                
                                     <video id="myVideo" preload="auto">
                                         @if( Agent::isMobile() )
                                             <source src="{{ $video->formats()->where('resolution', 'Low Resolution')
@@ -157,6 +156,10 @@
                                         @endif
                                         <p>Your browser does not support the video tag.</p>
                                     </video>
+                                @else
+                                    @if($lesson->external_video_url != '')
+                                    {{ externalVideoPreview($lesson->external_video_url, true, true) }}
+                                    @endif
                                 @endif
                                 <div class="control-container clearfix">
                                     <div class="control">

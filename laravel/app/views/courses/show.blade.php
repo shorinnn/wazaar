@@ -141,8 +141,11 @@
             	<div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-details-player">
                             <div class="pre-view-image video-player">
-                                <img src="{{ cloudfrontUrl( $course->previewImage->format('desc') ) }}" />
+                                @if($course->previewImage !=null)
+                                    <img src="{{ cloudfrontUrl( $course->previewImage->format('desc') ) }}" />
+                                @endif
                             </div>
+                        
                         @if( $video==null )
                             <!--!-->       
                         @else

@@ -1,6 +1,11 @@
 @extends('layouts.default')
         
 @section('content')
+	<style>
+		html{
+			background: #18222b;
+		}
+	</style>
     <div class="container-fluid classroom-view" style="overflow-x:hidden;">
 
         {{ View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',

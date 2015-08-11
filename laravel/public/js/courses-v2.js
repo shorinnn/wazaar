@@ -530,10 +530,12 @@ function saveAndNextTab(e){
 }
 
 function saveStep1Form(){
-    if( editorStepSubmit==true ){
-        $('.step-1-form').attr('data-old-callback', $('.step-1-form').attr('data-callback'));
-        $('.step-1-form').attr('data-callback', 'savedStep1');
-        $('.step-1-form').attr('data-save-indicator', '.step-1-save-btn');
+    if( editorStepSubmit==true  ){
+        if( $('.step-1-form').parsley().isValid() ){
+            $('.step-1-form').attr('data-old-callback', $('.step-1-form').attr('data-callback'));
+            $('.step-1-form').attr('data-callback', 'savedStep1');
+            $('.step-1-form').attr('data-save-indicator', '.step-1-save-btn');
+        }
         $('.step-1-form').submit();
     }
     else editorStepSubmit = true;
@@ -543,6 +545,7 @@ function savedStep1(e,json){
     $('.step-1-form').attr('data-callback', $('.step-1-form').attr('data-old-callback'));
     $('.step-1-form').removeAttr('data-old-callback');
     $('.step-1-form').removeAttr('data-save-indicator');
+    console.log(json);
     savingAnimation(0);
     setTimeout(function(){
         savingAnimation(1);

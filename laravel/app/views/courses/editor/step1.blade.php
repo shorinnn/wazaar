@@ -52,7 +52,7 @@
                                         <span class="use-existing use-existing-preview" >
                                             <span class="use-existing">
                                                 <a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">
-                                                    {{trans('video.selectExisting')}}
+                                                    {{trans('courses/create.select-existing-image')}}
                                                 </a> 
                                             </span>
                                         </span>
@@ -69,7 +69,7 @@
                             <div class="file-details relative">
                                 <div class="course-description-video-preview">
                                     @if (isset($course->descriptionVideo->formats[0]))
-                                        <img src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
+                                        <img data-video-url='{{ $course->descriptionVideo->formats[0]->video_url }}' onclick="showVideoPreview(this)" src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
                                     @endif
 
                                 </div>
@@ -327,7 +327,7 @@
                         $('#course-video-anchor').html($video.original_filename);
                         $('#course-video-anchor').attr('data-filename',$video.original_filename);
                         $('#course-video-anchor').attr('data-video-url',$video.formats[0].video_url);
-                        $('.course-description-video-preview').html("<img src='" +  $video.formats[0].thumbnail + "' />");
+                        $('.course-description-video-preview').html("<img onclick='showVideoPreview(this)' data-video-url='"+$video.formats[0].video_url+"' src='" +  $video.formats[0].thumbnail + "' />");
                     });
                     return;
                 }
@@ -448,7 +448,7 @@
                                         $('#course-video-anchor').attr('data-filename',$video.original_filename);
                                         $('#course-video-anchor').attr('data-video-url',$video.formats[0].video_url);
                                         $('#course-video-anchor').html($video.original_filename);
-                                        $('.course-description-video-preview').html("<img src='" +  $video.formats[0].thumbnail + "' />");
+                                        $('.course-description-video-preview').html("<img onclick='showVideoPreview(this)' data-video-url='"+$video.formats[0].video_url+"' src='" +  $video.formats[0].thumbnail + "' />");
                                         $('.course-video-thumb').removeClass('hidden');
                                         $('.course-video-upload-button-progress').removeClass('hidden');
                                         $('#progress-course-video').css('width','0%');

@@ -469,7 +469,7 @@ class UserRepository
      * @param User $user The user object
      * @return boolean True on success, false on failure
      */
-    public function become($role, User $user, $secondTierInstructorCookie = null){
+    public function become($role, User $user, $secondTierInstructorCookie = null, $secondTierAffiliate = null){
         // usable roles
         if(!in_array($role, ['Student', 'Instructor', 'Affiliate'])) return false;
         
@@ -488,6 +488,10 @@ class UserRepository
         if( $secondTierInstructorCookie!=null && 
                 User::where('id', $secondTierInstructorCookie )->where( 'is_second_tier_instructor','yes' )->where( 'sti_approved','yes' )->count() == 1 ){
             $user->second_tier_instructor_id = $secondTierInstructorCookie;
+        }
+        if( $secondTierAffiliate != null  ){
+            $secondTierAffiliate = LTCAffiliate::where('affiliate_id', $secondTierAffiliate)->first();
+            if($secondTierAffiliate!=null) $user->second_tier_affiliate_id = $secondTierAffiliate->id;
         }
         $user->save();
         return true;
