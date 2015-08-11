@@ -225,10 +225,6 @@
             </div>
         </div>
         @else
-        <?php
-        dd ($categories);
-        dd(22);
-        ?>
             
             @if( Route::currentRouteAction()!='UsersController@login' && Route::currentRouteAction()!='UsersController@create')
             <style>
