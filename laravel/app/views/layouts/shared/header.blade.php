@@ -14,6 +14,10 @@
                     }
                 </style>        
             @endif
+            <?php
+                $categories = CourseCategory::withCourses();
+                $categories->load( 'courseSubcategories' );
+            ?>
             
             @if(Auth::check())
             <?php
@@ -30,10 +34,7 @@
                         </button>
                         <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                             <ul>
-                                <?php
-                                    $categories = CourseCategory::withCourses();
-                                    $categories->load( 'courseSubcategories' );
-                                ?>
+                                
                                 @foreach( $categories as $category)
     
                                         @if($category->courseSubcategories)

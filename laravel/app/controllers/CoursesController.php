@@ -370,8 +370,69 @@ class CoursesController extends \BaseController {
             Return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
                             
         }
-        
         public function subCategory($slug='', $subcat=''){
+            if( !$category = CourseCategory::where('slug',$slug)->first() ){
+                 return View::make('site.error_encountered');
+            }
+            if( !$subcategory = CourseSubcategory::where('slug',$subcat)->first() ){
+                 return View::make('site.error_encountered');
+            }
+            
+            $difficultyLevel = Input::get('difficulty') ?: null;
+            $sort = null;
+            if (Input::has('sort')){
+                if ( Input::get('sort') == 'best-selling' || Input::get("sort") == 'best-selling-low' ){
+                    
+                    $courseHelper = new CourseHelper();
+                    $category = new stdClass;
+                    $category->color_scheme = $category->name = $category->description = $category->id =  '';
+                    $order = ( Input::get('sort') == 'best-selling-low' ) ? 'ASC' : 'DESC';
+                    $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel], $order, $subcat);
+                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
+                    return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
+                }
+
+                $sort = Input::get('sort');
+            }
+
+            
+            
+            $courses = $subcategory->courses()->with('courseDifficulty')->with('courseCategory')->with('courseSubcategory')->with('previewImage')
+                    ->where(function($query){
+//                        ->where('featured',0)
+                        $query->where('publish_status', 'approved')
+                        ->where('privacy_status','public')
+                        ->orWhere(function($query2){
+                            $query2->where('privacy_status','public')
+//                                    ->where('featured',0)
+                                    ->where('publish_status', 'pending')
+                                    ->where('pre_submit_data', '!=', "");
+                        });
+                    });
+
+
+            if (!empty($difficultyLevel)){
+                $courses = $courses->where('course_difficulty_id', $difficultyLevel);
+            }
+
+            if ($sort == 'date'){
+                $courses = $courses->orderBy('created_at','desc');
+            }
+            else if ($sort == 'date-oldest'){
+                $courses = $courses->orderBy('created_at','asc');
+            }
+            else{
+                $courses = $courses->orderBy('id','desc');
+            }
+
+            $courses = $courses->paginate(9);
+
+            if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
+            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
+                            
+        }
+        
+        public function zzsubCategory($slug='', $subcat=''){
             $difficultyLevel = Input::get('difficulty') ?: null;
 
             $category =  CourseCategory::where('slug',$slug)->first();

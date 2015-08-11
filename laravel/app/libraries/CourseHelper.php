@@ -8,7 +8,7 @@ class CourseHelper {
      * @param array $otherFilters
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Pagination\Paginator|static[]
      */
-    public function bestSellers($category = null, $timeFrame = 'AT', $perPage = null, $otherFilters = [], $sort = 'DESC')
+    public function bestSellers($category = null, $timeFrame = 'AT', $perPage = null, $otherFilters = [], $sort = 'DESC', $subcategory = null)
     {
         $courses = null;
 
@@ -20,7 +20,15 @@ class CourseHelper {
             default: $courses = $this->_rawCoursesObject();
         }
 
-        if (!empty($category)){
+        if (!empty($subcategory)){
+            if (is_string($subcategory)){
+                $courses = $courses->where('course_subcategory_slug', $subcategory);
+            }
+            else{
+                $courses = $courses->where('course_subcategory_id',$subcategory);
+            }
+        }
+        else if (!empty($category)){
             if (is_string($category)){
                 $courses = $courses->where('course_category_slug', $category);
             }
@@ -28,6 +36,7 @@ class CourseHelper {
                 $courses = $courses->where('course_category_id',$category);
             }
         }
+        else{}
 
         $validFilters = ['course_difficulty_id'];
 
