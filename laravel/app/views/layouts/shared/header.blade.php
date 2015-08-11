@@ -154,10 +154,10 @@
                     <?php
                     Auth::user()->load('roles', 'profiles');
                     ?>
-                    @if(Auth::user()->hasRole('Instructor'))
+                    @if(Auth::user()->hasRole('Instructor') && Instructor::find(Auth::user()->id)->profile!=null )
                     <img style="height: 30px; width: 30px; border-radius: 30px;" 
                              src="{{ cloudfrontUrl( Instructor::find(Auth::user()->id)->profile->photo ) }}" alt="">
-                    @elseif(Auth::user()->hasRole('Instructor'))
+                    @elseif(Auth::user()->hasRole('Affiliate') && ProductAffiliate::find(Auth::user()->id)->profile != null)
                     <img style="height: 30px; width: 30px; border-radius: 30px;" 
                              src="{{ cloudfrontUrl( ProductAffiliate::find(Auth::user()->id)->profile->photo ) }}" alt="">
                     @elseif( $student->profile )
