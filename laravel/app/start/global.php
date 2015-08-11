@@ -90,6 +90,3 @@ App::down(function()
 
 require app_path().'/filters.php';
 require app_path().'/events.php';
-
-//if( admin() ) 
-    Config::set('app.debug', true);
