@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-
+            <h2>Course: {{$course->name}}</h2>
             <div class="row top-activities">
                 {{-- Total Sales in Yen --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
@@ -27,16 +27,16 @@
                                 {{trans('analytics.sales')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
-                                    <a class="with-today" href="#" onclick="Analytics.Sales('daily','','',this); return false;">{{trans('analytics.today')}}</a>
+                                    <a class="with-today" href="#" onclick="Analytics.Sales('daily',{{$course->id}},'',this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-weekly" href="#" onclick="Analytics.Sales('week','','',this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                    <a class="with-weekly" href="#" onclick="Analytics.Sales('week',{{$course->id}},'',this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-monthly" href="#" onclick="Analytics.Sales('month','','',this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                    <a class="with-monthly" href="#" onclick="Analytics.Sales('month',{{$course->id}},'',this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="with-alltime" href="#" onclick="Analytics.Sales('alltime','','',this); return false;">{{trans('analytics.allTime')}}</a>
+                                    <a class="with-alltime" href="#" onclick="Analytics.Sales('alltime',{{$course->id}},'',this); return false;">{{trans('analytics.allTime')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -56,16 +56,16 @@
                                 {{trans('analytics.salesCount')}} <span id="header-sales-count-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-count-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.SalesCount('daily', this); return false;">{{trans('analytics.today')}}</a>
+                                    <a class="active" href="#" onclick="Analytics.SalesCount('daily',{{$course->id}}, this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="" href="#" onclick="Analytics.SalesCount('week', this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                    <a class="" href="#" onclick="Analytics.SalesCount('week',{{$course->id}}, this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="" href="#" onclick="Analytics.SalesCount('month', this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                    <a class="" href="#" onclick="Analytics.SalesCount('month',{{$course->id}}, this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="" href="#" onclick="Analytics.SalesCount('alltime', this); return false;">{{trans('analytics.alltime')}}</a>
+                                    <a class="" href="#" onclick="Analytics.SalesCount('alltime',{{$course->id}}, this); return false;">{{trans('analytics.alltime')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -78,7 +78,35 @@
                 </div>
                 {{-- // Number of Sales (Count) --}}
 
+                {{-- Top Tracking Codes --}}
+                <div class="col-md-4 col-sm-6 sol-xs-12">
+                    <div>
+                        <div class="dropdown-wrapper">
+                            <button class="btn btn-default">
+                                {{trans('analytics.topTrackingCodes')}} <span id="header-tracking-codes-frequency">{{trans('analytics.today')}}</span></button>
+                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu tracking-codes-dropdown">
+                                <li>
+                                    <a class="active with-today" href="#" onclick="Analytics.trackingSalesCodes('daily',{{$course->id}}, this); return false;">{{trans('analytics.today')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-weekly" href="#" onclick="Analytics.trackingSalesCodes('week',{{$course->id}}, this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-monthly" href="#" onclick="Analytics.trackingSalesCodes('month',{{$course->id}}, this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-alltime" href="#" onclick="Analytics.trackingSalesCodes('alltime',{{$course->id}}, this); return false;">{{trans('analytics.allTime')}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul id="wrapper-tracking-codes">
+                            {{$trackingCodesView}}
+                        </ul>
 
+
+                    </div>
+                </div>
+                {{-- // Top Tracking Codes --}}
 
 
             </div>
@@ -86,7 +114,7 @@
 
             <div class="row">
                 <div class="top-affiliates-table table-wrapper">
-                    @include('instructors.dashboard.partials.coursesTable')
+                    @include('administration.dashboard.partials.user.topAffiliates')
                 </div>
             </div>
 
