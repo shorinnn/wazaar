@@ -1982,6 +1982,16 @@ header .profile-name li:hover ul{
 	background: #008eed;
 }
 
+.blue-button-shadow{
+	font-weight: bold;
+	font-size: 11px;
+	background: #119bf8;
+	border-bottom: solid 2px #0f8bdf;
+	-webkit-box-shadow: 0px 2px 0px #e7e8e9;
+    -moz-box-shadow: 0px 2px 0px #e7e8e9;
+    box-shadow: 0px 2px 0px #e7e8e9;
+}
+
 .green-button{
 	background: #33a619;
 }
@@ -4695,6 +4705,421 @@ h6{
 	border-top: solid 1px #e0e1e2;
 }
 /********** New Dashboard UI Ends***************/
+
+
+/********** Affiliates Gift UI***************/
+.affiliate-top-header{
+	background: #e8eced;
+	padding: 12px 50px;
+}
+
+.affiliate-top-header p{
+	font-weight: 600;
+	color: #798794;
+	margin: 5px 23px 5px 0;
+}
+
+.affiliate-top-header input[type='text']{
+	height: 28px;
+	background: #fff;
+	font-size: 13px;
+	color: #0099ff;
+	width: 75%;
+	margin: 0;
+}
+
+.affiliate-top-header .add-gift,
+.affiliate-top-header .add-tracking-id{
+	margin: 6px 0;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 11px;
+	color: #798794;
+	display: block;
+	border: none;
+	background: none;
+	padding: 0;
+}
+
+.affiliate-top-header .add-gift i,
+.affiliate-top-header .add-tracking-id i{
+	font-size: 12px;
+	margin-right: 7px;
+}
+
+.affiliate-top-header .add-gift i.fa-gift{
+	font-size: 15px;
+	position: relative;
+	top: 1px;
+}
+
+.affiliate-top-header .add-gift i.wa-chevron-down{
+	font-size: 10px;
+	margin: 0 0 0 5px;
+	position: relative;
+	top: 1px;
+}
+
+.affiliate-top-header .activate-dropdown .add-gift:hover,
+.affiliate-top-header .activate-dropdown.open .add-gift{
+	color: #119bf8;
+}
+
+.affiliate-top-header .dropdown-menu{
+	border-radius: 3px;
+	padding: 19px 20px;
+	border: solid 1px #e0e1e2;
+	-webkit-box-shadow: 0px 0px 14px 0px #cececf;
+	-moz-box-shadow: 0px 0px 14px 0px #cececf;
+	-o-box-shadow: 0px 0px 14px 0px #cececf;
+	-ms-box-shadow: 0px 0px 14px 0px #cececf;
+	box-shadow: 0px 0px 14px 0px #cececf;
+}
+
+.affiliate-top-header .dropdown-menu .arrow-top{
+    border-bottom: 11px solid #e0e1e2;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    height: 0;
+    position: absolute;
+    right: 30px;
+    top: -10px;
+    width: 0;
+}
+
+.affiliate-top-header .dropdown-menu .arrow-top::after{
+    border-bottom: 10px solid white;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: -10px;
+    top: 1px;
+    width: 0;
+}
+
+.affiliate-top-header .dropdown-menu .select-file{
+	display: block;
+}
+
+.affiliate-top-header .dropdown-menu .select-file i{
+	margin-right: 7px;
+}
+
+.affiliate-top-header .dropdown-menu #add-gift{
+	display: none;
+}
+
+.gift-modal .uploaded-files li,
+.affiliate-top-header .dropdown-menu .uploaded-files li{
+	margin: 0 0 15px;
+	font-size: 13px;	
+}
+
+.gift-modal .uploaded-files li a,
+.affiliate-top-header .dropdown-menu .uploaded-files li a{
+	color: #303941;
+}
+
+.gift-modal .uploaded-files li .file-size,
+.affiliate-top-header .dropdown-menu .uploaded-files li .file-size{
+	color: #a7b7c4;
+	margin-left: 7px;
+}
+
+.gift-modal .uploaded-files li .progress-box,
+.affiliate-top-header .dropdown-menu .uploaded-files li .progress-box{
+	display: block;
+	margin-top: 4px;
+}
+
+.gift-modal .uploaded-files li .progress-label,
+.affiliate-top-header .dropdown-menu .uploaded-files li .progress-label{
+	float: left;
+	font-size: 10px;
+	color: #798794;
+	display: block;
+}
+
+.gift-modal .uploaded-files li .progress,
+.affiliate-top-header .dropdown-menu .uploaded-files li .progress{
+	float: right;
+	width: 40%;
+	height: 2px;
+	box-shadow: none;
+	border-radius: 0;
+	margin: 8px 0 0;
+	background: #ebeced;
+}
+
+.gift-modal .uploaded-files li .progress-bar,
+.affiliate-top-header .dropdown-menu .uploaded-files li .progress-bar{
+	background: #119bf8;
+}
+
+.affiliate-top-header .dropzone{
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.affiliate-top-header .dropzone i{
+	color: #a7b7c4;
+	font-size: 26px;
+	margin: 0 0 18px;
+}
+
+.affiliate-top-header .dropzone p{
+	margin: 0;
+	font-weight: 600;
+	color: #a7b7c4;
+}
+
+.affiliate-gift-wrap{
+	background: #fff;
+	border-radius: 3px;
+	border: solid 1px #e0e1e2;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.affiliate-gift-wrap .gift-coupon{
+	margin: 20px 0;
+}
+
+.affiliate-gift-wrap .description-wrap{
+}
+
+.affiliate-gift-wrap .description{
+	margin: 36px 0 20px;
+	float: left;
+	width: 70%
+}
+
+.affiliate-gift-wrap .description h3{
+	color: #303941;
+	margin: 0 0 9px;
+}
+
+.affiliate-gift-wrap .description h3 .name{
+	color: #0099ff;
+}
+
+.affiliate-gift-wrap .description p{
+	margin: 0;
+	color: #798794;
+	line-height: 20px;
+}
+
+.affiliate-gift-wrap .open-button-wrap{
+	float: right;
+	width: 20%;
+	margin-top: 48px;
+	text-align: center;
+}
+
+.affiliate-gift-wrap .open-gift{
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.affiliate-gift-wrap .files-wrap{
+	border-top: solid 1px #e0e1e2;
+	background: #f7f9fa;
+}
+
+.affiliate-gift-wrap .download-files-wrap{
+	display: none;
+}
+
+.affiliate-gift-wrap .files-wrap .toggle-button{
+	font-size: 12px;
+	font-weight: bold;
+	display: block;
+	color: #798794;
+	cursor: pointer;
+	margin: 23px 0 23px 8px;
+}
+
+.affiliate-gift-wrap .files-wrap .toggle-button i{
+	margin-right: 9px;
+}
+
+.affiliate-gift-wrap .files-wrap .default-button{
+	font-size: 12px;
+	font-weight: bold;
+	color: #798794;
+	margin: 12px 24px 12px 0;
+}
+
+.affiliate-gift-wrap .files-wrap .file-size{
+	font-size: 13px;
+	color: #798794;
+	margin-top: 5px;
+}
+
+.affiliate-gift-wrap .files-wrap.toggle-container{
+	border-top: solid 1px #e0e1e2;
+	padding-top: 4px;
+	padding-bottom: 20px;
+	background: #f7f9fa;
+}
+
+.affiliate-gift-wrap .files-wrap.toggle-container .file{
+	margin-top: 14px;
+}
+
+.affiliate-gift-wrap .files-wrap.toggle-container .file i{
+	margin-right: 9px;
+	color: #8d99a4;
+}
+
+.affiliate-gift-wrap .files-wrap.toggle-container .file .file-name{
+	color: #303941;
+}
+
+.affiliate-gift-wrap .files-wrap.toggle-container .file .file-size{
+	color: #a7b7c4;
+	margin-left: 8px;
+}
+
+.gift-modal{
+	background: #f7f9fa;
+	border-radius: 4px;
+	position: relative;
+	overflow: hidden;
+	border: solid 1px #e0e1e2;
+}
+
+.gift-modal .close-button{
+	position: absolute;
+	top: 26px;
+	right: 23px;
+	color: #a7b7c4;
+	font-size: 14px;
+}
+
+.gift-modal h3{
+	padding: 22px 23px 25px;
+	background: #fff;
+	border-bottom: solid 1px #e0e1e2;
+	color: #798794;
+	margin: 0;
+}
+
+.gift-modal h6{
+	color: #a7b7c4;
+	text-transform: uppercase;
+	margin: 20px 0 4px;
+}
+
+.gift-modal .delete-button{
+	color: #a7b7c4;
+	font-weight: bold;
+	font-size: 12px;
+	float: right;
+	cursor: pointer;
+}
+
+.gift-modal .characters-left{
+	color: #a7b7c4;
+	font-size: 11px;
+	float: right;	
+}
+
+.gift-modal .delete-button i{
+	font-size: 14px;
+	margin-right: 7px;
+}
+
+.gift-modal .wrap input{
+	margin: 0 0 15px;
+	height: 44px;
+	color: #303941;
+	font-size: 13px;
+	padding: 0;
+	border-radius: 0;
+	border: solid #e0e1e2;
+	border-width: 0 0 1px;
+}
+
+.gift-modal .wrap{
+	padding: 0 23px;
+	border-bottom: solid 1px #e0e1e2;
+}
+
+.gift-modal .wrap .copy-link{
+	height: 38px;
+	background: #fff;
+	border: solid 1px #cfd8df;
+	border-radius: 3px;
+	padding: 0 13px;
+	color: #303941;
+}
+
+.gift-modal .wrap .copy{
+	color: #119bf8;
+	font-size: 11px;
+	font-weight: bold;
+	position: absolute;
+	right: 30px;
+	top: 12px;
+	text-transform: uppercase;
+}
+
+.gift-modal .dropzone{
+	text-align: center;
+}
+
+.gift-modal .dropzone i.fa.fa-cloud-upload{
+	color: #a7b7c4;
+	font-size: 26px;
+	margin: 30px 0 17px;
+}
+
+.gift-modal .dropzone p{
+	margin: 0 0 20px;
+	color: #a7b7c4
+}
+
+.gift-modal .dropzone .select-file{
+	margin-bottom: 33px;
+}
+
+.gift-modal .dropzone .select-file i{
+	margin-right: 7px;
+}
+
+.gift-modal .create-another-gift{
+	padding: 23px 0;
+	text-align: center;
+	background: #fff;
+}
+
+.gift-modal .create-another-gift a{
+	font-size: 12px;
+	font-weight: bold;
+	color: #119bf8;
+}
+
+.gift-modal .create-another-gift i.fa.fa-plus{
+	margin-right: 5px;
+}
+
+.gift-modal .uploaded-files{
+	padding: 33px 15px;
+}
+
+.gift-modal .uploaded-files li .progress-label{
+	margin-right: 13px;
+}
+
+.gift-modal .uploaded-files li .progress{
+	width: 70%;
+	float: left;
+}
+
+/********** Affiliates Gift UI Ends***************/
 
 /****************** CRUD Pages *******************/
 .pagination{
@@ -13234,6 +13659,20 @@ header .top-menu .logged-in-top-menu{
 	.classroom-view .right-slide-menu{
 		width: 100% !important;
 	}
+}
+
+@media (max-width:490px){
+	.gift-modal .wrap .copy {
+		color: #119bf8;
+		font-size: 11px;
+		font-weight: bold;
+		position: relative;
+		text-transform: uppercase;
+		margin-bottom: 10px;
+		display: block;
+		right: 0;
+		top: 0;
+	}	
 }
 
 @media (max-width:402px){

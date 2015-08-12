@@ -393,8 +393,6 @@
 						
 				$('#video-grid').on('slide.bs.carousel', function () {
 				})		
-				 
-			
 				
 				$('.datepicker').datepicker();
 				$('[data-toggle="tooltip"]').tooltip();
