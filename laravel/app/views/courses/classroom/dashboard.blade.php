@@ -88,8 +88,8 @@
                 </div>
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 margin-top-25">
                     @if($gift != null)
-                            <div class="container affiliate-gift-wrap">
-                                <div class="row description-wrap">
+                            <div class="affiliate-gift-wrap">
+                                <div class="row description-wrap no-margin">
                                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 text-center">
                                         <img class="img-responsive gift-coupon inline-block" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/gift-coupon.png" alt="">
                                 </div>
@@ -106,7 +106,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row files-wrap download-files-wrap">
+                            <div class="row files-wrap download-files-wrap no-margin">
                                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                                         <a href="#collapseExample" class="toggle-button show-more" data-toggle="collapse" data-less-text="Hide files" data-more-text="Show files">
                                         <i class="wa-chevron-down"></i>Show files
@@ -117,7 +117,7 @@
                                     <span class="file-size">{{$gift->files->count()}} files </span>
                                 </div>    
                             </div>
-                            <div class="row files-wrap toggle-container collapse" id="collapseExample">
+                            <div class="row files-wrap toggle-container collapse no-margin" id="collapseExample">
                                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                                 </div>
                                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">

@@ -4728,17 +4728,36 @@ h6{
 	margin: 0;
 }
 
+.affiliate-top-header select{
+    height: 28px;
+    margin: 0;
+}
+
 .affiliate-top-header .add-gift,
 .affiliate-top-header .add-tracking-id{
 	margin: 6px 0;
 	text-transform: uppercase;
 	font-weight: bold;
-	font-size: 11px;
-	color: #798794;
+	font-size: 11px !important;
+	color: #798794 !important;
 	display: block;
 	border: none;
-	background: none;
+	background: none !important;
 	padding: 0;
+	cursor: pointer;
+}
+
+.affiliate-top-header .add-tracking-id{
+	color: #000 !important;
+	border: 1px solid transparent;
+}
+
+.affiliate-top-header .add-tracking-id:focus{
+	background: #fff !important;
+	color: #798794 !important;
+	padding: 0 10px;
+	border: 1px solid #cfd8df;
+	cursor: auto;
 }
 
 .affiliate-top-header .add-gift i,
@@ -4913,7 +4932,7 @@ h6{
 
 .affiliate-gift-wrap .open-button-wrap{
 	float: right;
-	width: 20%;
+	width: 30%;
 	margin-top: 48px;
 	text-align: center;
 }

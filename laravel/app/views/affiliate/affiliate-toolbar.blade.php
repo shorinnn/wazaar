@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8">
                         <!--<a href="#" class="add-tracking-id"><i class="fa fa-plus"></i>Add Tracking ID</a>-->
-                        <input type='text' id='affiliate-toolbar-tracking' placeholder="Add Tracking ID" style='width:150px; background-color:white'
+                        <input class="add-tracking-id" type='text' id='affiliate-toolbar-tracking' placeholder="Add Tracking ID" style='width:150px; background-color:white'
                onkeyup='addAffiliateTracking() '/>
                     </div>
                     <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
