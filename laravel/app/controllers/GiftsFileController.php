@@ -16,6 +16,7 @@ class GiftsFileController extends \BaseController {
             }
             $file = new GiftFile();
             $file->gift_id = $gift->id;
+            $file->size = formatSizeUnits( filesize( Input::file('file')->getRealPath() ) );
             // scan for viruses!
 //            if ( App::environment( 'production' ) ){
                 $scan_result = shell_exec('clamscan '.Input::file('file')->getRealPath() );

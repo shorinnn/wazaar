@@ -86,8 +86,64 @@
                             @endforeach
                     </div>
                 </div>
-            	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 margin-top-25">
-                	<div class="question-answer-wrap">
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 margin-top-25">
+                    @if($gift != null)
+                            <div class="container affiliate-gift-wrap">
+                                <div class="row description-wrap">
+                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 text-center">
+                                        <img class="img-responsive gift-coupon inline-block" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/gift-coupon.png" alt="">
+                                </div>
+                                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                        <div class="description">
+                                        <h3>
+                                            Course Gift from <span class="name">
+                                                {{$gift->affiliate->fullName() }}</span>
+                                        </h3>
+                                        <p>{{ $gift->text }}</p>
+                                    </div>
+                                    <div class="open-button-wrap">
+                                        <span class="open-gift blue-button large-button blue-button-shadow">Open Gift</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row files-wrap download-files-wrap">
+                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                        <a href="#collapseExample" class="toggle-button show-more" data-toggle="collapse" data-less-text="Hide files" data-more-text="Show files">
+                                        <i class="wa-chevron-down"></i>Show files
+                                    </a>
+                                </div>
+                                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                    <span style='opacity:0' class="default-button large-button">Download all files in zip</span>
+                                    <span class="file-size">{{$gift->files->count()}} files </span>
+                                </div>    
+                            </div>
+                            <div class="row files-wrap toggle-container collapse" id="collapseExample">
+                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                </div>
+                                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                        <ul>
+                                            @foreach($gift->files as $file)
+                                                <li class="file">
+                                                        <a href="{{ $file->presignedUrl() }}">
+                                                        @if( strpos( $file->mime, 'image')!== false )
+                                                          <i class="fa fa-file-image-o"></i> 
+                                                        @elseif( strpos( $file->mime, 'pdf' ) !== false )
+                                                          <i class="fa fa-file-pdf-o"></i> 
+                                                        @else
+                                                          <i class='fa fa-file-text'></i>
+                                                        @endif
+                                                        <span class="file-name regular-paragraph">{{ $file->name }}</span>
+                                                        <span class="file-size regular-paragraph">{{ $file->size }}</span>
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                    </ul>
+                                </div>    
+                            </div>
+                        </div>
+                    @else
+                    
+                        <div class="question-answer-wrap">
                         <div class="row question-answer">
                             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
                                 <div class="row question no-margin">
@@ -160,9 +216,22 @@
                                 </div>  
                             </div>
                         </div>
-                    </div>              
-            	</div>
+                    </div>
+                    
+                    @endif
+                </div>
             </div>
         </div>    
     </div>
+@stop
+
+@section('extra_js')
+<script>
+    $(".open-gift").click(function(){
+            $(".download-files-wrap").show();
+            $(".open-button-wrap").hide();
+            $(".affiliate-gift-wrap .description").css({width: "100%"});
+    });
+
+</script>
 @stop
