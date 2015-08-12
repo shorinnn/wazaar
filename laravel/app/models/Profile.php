@@ -21,4 +21,10 @@ class Profile extends CocoriumArdent
     {
         return $this->attributes['last_name'] . ' ' . $this->attributes['first_name'];
     }
+    
+    public function getEmailAttribute(){
+        $email = $this['attributes']['email'];
+        if( $this->owner_type == 'Affiliate' ) return str_replace ('#waa#-', '', $email);
+        return $email;
+    }
 }

@@ -10,9 +10,13 @@ class LTCAffiliate extends User{
     public static $relationsData = array(
         'affiliated' => array(self::HAS_MANY, 'User', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id'),
         'sales' => array(self::HAS_MANY, 'Purchase', 'foreignKey' => 'ltc_affiliate_id'),
-        'profile' => array(self::MORPH_ONE, 'Profile', 'name'=>'owner'),
+//        'profile' => array(self::MORPH_ONE, 'Profile', 'name'=>'owner'),
         'allTransactions' => [ self::HAS_MANY, 'Transaction', 'foreignKey'=>'user_id' ],
     );
+    
+    public function getProfileAttribute(){
+        return Profile::where('owner_id', $this->id)->where('owner_type', 'Affiliate')->first();
+    }
     
     public function getTransactionsAttribute(){
         $types = [

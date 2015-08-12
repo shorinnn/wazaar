@@ -7,7 +7,7 @@ class SiteController extends \BaseController {
         }
 
 	public function index()
-	{         
+	{
             if(Input::has('skip-the-splashie')){
 //                $frontpageVideos  = FrontpageVideo::grid();
                 $categories = CourseCategory::limit(12);
@@ -80,7 +80,7 @@ class SiteController extends \BaseController {
             Return View::make('TEMPORARYVIEWS.analytics');
 	}
 
-// Temporary functions for new Dashboard UI
+// Temporary functions for new Dashboard UI 
 	public function studentdashboard()
 	{            
             Return View::make('TEMPORARYVIEWS.student_dashboard');
@@ -98,7 +98,13 @@ class SiteController extends \BaseController {
             Return View::make('TEMPORARYVIEWS.student_messages');
 	}
 
-        
+
+// Temporary functions for new Dashboard UI 
+	public function affiliategift1()
+	{            
+            Return View::make('TEMPORARYVIEWS.affiliategift1');
+	}
+      
         public function crud(){
              Return View::make('TEMPORARYVIEWS.crud');
         }

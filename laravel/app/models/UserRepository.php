@@ -28,6 +28,9 @@ class UserRepository
 
 //      $user->username = array_get($input, 'username');
         $user->email    = array_get($input, 'email');
+        if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ){
+            $user->email = '#waa#-'.$user->email;
+        }
         $user->username = 'U'.uniqid();
 //        $user->first_name = Input::get('first_name');
         $user->first_name = array_get($input, 'first_name');
@@ -60,19 +63,23 @@ class UserRepository
         $deliveredTags = [];
         // Save if valid. Password field will be hashed before save
         if($this->save($user)){
-            $profileType = 'Student';
-            $deliveredTags[] = 'student';
-            $user = $this->attachRoles($user);
-            if( $registersAsST!=null || ( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) ){
-                $user = $this->attachRoles($user, 1);
-                $profileType = 'Instructor';
-                $deliveredTags[] = 'instructor';
-            }
+            // no student role for Affiliate
             if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ){
                 $user = $this->attachRoles($user, 2);
                 $profileType = 'Affiliate';
                 $deliveredTags[] = 'affiliate';
             }
+            else{
+                $profileType = 'Student';
+                $deliveredTags[] = 'student';
+                $user = $this->attachRoles($user);
+            }
+            if( $registersAsST!=null || ( isset( $roles['instructor'] ) && $roles['instructor'] == 1 ) ){
+                $user = $this->attachRoles($user, 1);
+                $profileType = 'Instructor';
+                $deliveredTags[] = 'instructor';
+            }
+            
             $this->save_ltc($user, $ltc_cookie);
             
             if($registersAsST!=null){// create profile
@@ -434,13 +441,14 @@ class UserRepository
      */
     public function resetPassword($input)
     {
+        $this->affiliateReset = false;
         $result = false;
         $user   = Confide::userByResetPasswordToken($input['token']);
-
         if ($user) {
             $user->password              = $input['password'];
             $user->password_confirmation = $input['password_confirmation'];
             $result = $this->save($user);
+            if($user->isAffiliate()) $this->affiliateReset = true;
         }
 
         // If result is positive, destroy token
@@ -517,10 +525,11 @@ class UserRepository
         $identity = ['confirmation_code' => $code];
         $Eloquent = new \Zizaco\Confide\EloquentRepository();
         $user = $Eloquent->getUserByIdentity($identity);
-
         if ($user) {
-            $user->confirmed = true;
-            $user->save();
+            $user->confirmed = 1;
+            if( ! $user->updateUniques() ){
+                dd( $user->errors()->all() );
+            }
             Auth::login($user);
             // todo: confirm on delivered too!
             $delivered = new DeliveredHelper();

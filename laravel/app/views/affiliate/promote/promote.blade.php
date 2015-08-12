@@ -1,15 +1,18 @@
 <section>
 
-    {{ Form::open([ 'action' => 'GiftsController@store', 'class' => 'ajax-form', 'data-callback '=> 'addGift' ]) }}
-    <button type='submit' class='btn btn-primary'> {{ trans('courses/promote.add-gift') }}</button>
-    <input type='hidden' name='course_id' value='{{ $course->id }}' />
-    <input type='hidden' name='tcode' value='{{ $tcode }}' />
-    {{ Form::close() }}
-    <div id='gifts'>
+    
+    <div id='gifts' class='col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 no-padding gift-modal'>
         @foreach($course->gifts as $gift)
         {{ View::make('affiliate.promote.partials.gift')->with( compact('gift', 'course', 'tcode') ) }}
         @endforeach
     </div>
+    <center>
+        {{ Form::open([ 'action' => 'GiftsController@store', 'class' => 'ajax-form', 'data-callback '=> 'addGift' ]) }}
+            <button type='submit' class='btn btn-link'> <i class='fa fa-plus'></i> {{ trans('courses/promote.add-gift') }}</button>
+            <input type='hidden' name='course_id' value='{{ $course->id }}' />
+            <input type='hidden' name='tcode' value='{{ $tcode }}' />
+        {{ Form::close() }}
+    </center>
 
 </section>   
 
@@ -56,6 +59,16 @@ function giftFileUploaded(e, data) {
     }
     dest = $(e.target).attr('id');
     $('.' + dest).append(result.html);
+//    $(progressbar).hide();
+    $(progressbar).parent().hide();
+    progressLabel = $(progressbar).attr('data-label');
+    var $progressLabel = $(progressLabel);
+    $progressLabel.html('');
+    giftID = $(e.target).attr('data-gift-id');
+    $('.gift-'+giftID).find('.dropzone').addClass('col-lg-3');
+    $('.gift-'+giftID).find('.files-wrapper').addClass('col-lg-9');
+    console.log('rearranged cols!!!!!!!!!!!!!   ');
+    
 }
 
 $(function () {

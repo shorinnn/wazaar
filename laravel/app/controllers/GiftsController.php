@@ -43,6 +43,7 @@ class GiftsController extends \BaseController {
                 return Redirect::back();
             }
             $gift->text = Input::get('text');
+            $gift->title = Input::get('title');
             $gift->save();
             if(Request::ajax()){
                 return json_encode(['status'=>'success']);
