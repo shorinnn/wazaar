@@ -5364,6 +5364,12 @@ h6{
 	height: 100%;
 }
 
+.classroom-view .right-slide-menu.in > img{
+    left: 50%;
+    position: relative;
+    top: 50%;
+}
+
 .discussion-opened{
 	position: absolute;
 	width: 100%;
