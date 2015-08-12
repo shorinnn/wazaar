@@ -18,6 +18,7 @@ class AnalyticsSeeder extends DatabaseSeeder
 
             $firstTierEarning  = 0;
             $secondTierEarning = 0;
+            $instructorEarning = $purchasePrice * .02;
 
             if ($firstTier) {
                 $firstTierEarning = $purchasePrice * .05;
@@ -35,6 +36,8 @@ class AnalyticsSeeder extends DatabaseSeeder
                 'ltc_affiliate_earnings'         => $purchasePrice * .02,
                 'product_affiliate_id'           => 5,
                 'second_tier_affiliate_id'       => 5,
+                'instructor_id'                  => 4,
+                'instructor_earnings'            => $instructorEarning,
                 'purchase_price'                 => $purchasePrice,
                 'tracking_code'                  => $trackingCode,
                 'created_at'                     => $date,

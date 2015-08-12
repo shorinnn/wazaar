@@ -6,7 +6,7 @@ use Zizaco\Entrust\HasRole;
 
 
 class User extends Ardent implements ConfideUserInterface
-{
+{  
     use ConfideUser{
         save as confideSave;
     }
@@ -17,11 +17,21 @@ class User extends Ardent implements ConfideUserInterface
      public static $relationsData = array(
         'profiles' => [ self::HAS_MANY, 'Profile', 'foreignKey' => 'owner_id' ],
      );
+     
+     private $_realEmail = false;
+     
+     public function getEmailAttribute(){
+        $email = $this['attributes']['email'];
+        if($this->_realEmail) return $email;
+        if( $this->isAffiliate() ) return str_replace ('#waa#-', '', $email);
+        return $email;
+     }
     
     /**
      * Make Ardent and Confide save methods compatible
      */
     public function save(array $rules = Array(), array $customMessages = Array(), array $options = Array(), Closure $beforeSave = NULL, Closure $afterSave = NULL){
+        if( $this->isAffiliate() ) $this->_realEmail = true;
         return $this->confideSave();
     }
     
@@ -60,6 +70,7 @@ class User extends Ardent implements ConfideUserInterface
         DB::table('assigned_roles')->where('user_id', $this->id)->delete();
     }
     
+
     /**
      * Ardent updateUniques does not work with confide user
      * @return boolean
@@ -70,6 +81,7 @@ class User extends Ardent implements ConfideUserInterface
             $this->errors()->add(0, trans('crud/errors.attr_taken', ['attr' => 'Affiliate ID']) );
             return false;
         }
+        
     }
     
     public function firstName(){
@@ -148,6 +160,15 @@ class User extends Ardent implements ConfideUserInterface
         else{
             return '//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg';
         }
+    }
+    
+    public function isAffiliate(){
+        if($this->hasRole('Affiliate')) return true;
+        return false;
+    }
+    public function getReminderEmail() {
+        return $this['attributes']['email'];
+//        parent::getReminderEmail();
     }
 
 }

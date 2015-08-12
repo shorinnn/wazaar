@@ -52,7 +52,7 @@
                                         <span class="use-existing use-existing-preview" >
                                             <span class="use-existing">
                                                 <a href="#" onclick="$('#existing-previews-modal').modal('show'); return false;">
-                                                    {{trans('video.selectExisting')}}
+                                                    {{trans('courses/create.select-existing-image')}}
                                                 </a> 
                                             </span>
                                         </span>

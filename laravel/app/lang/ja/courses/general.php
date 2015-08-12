@@ -34,6 +34,7 @@ return array(
     'sale_ends_on' =>'割引終了日時',
     'sale_ends_in' =>'Sale Ends In',
     'description' =>'コース情報',
+    'lesson-description' =>'レッスン情報',
     'what_you_will_achieve' =>'このコースで達成できること',
     'your_teacher' =>'担当講師',
     'curriculum' =>'カリキュラム',

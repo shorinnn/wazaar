@@ -11,6 +11,7 @@
                         <ul>
                             <li class="right-twenty-margin">
                                 <a href="#" class="active">Dashboard</a>
+                                
                             </li>
                         </ul>
                     </div>
@@ -221,13 +222,13 @@
                 var $btn = $(this);
                 $btn.button('loading');
 
-                $.post('/dashboard/admin/affiliatestable', $formData, function ($resp){
+                $.post('/analytics/affiliatestable', $formData, function ($resp){
                     $('.affiliates-table-and-pagination').html($resp.html);
                     $btn.button('reset');
                 },'json');
             });
 
-            $('.courses-table-and-pagination-yes').on('click', '.pagination-top-courses ul a',function ($e){
+            /*$('.courses-table-and-pagination-yes').on('click', '.pagination-top-courses ul a',function ($e){
                 $e.preventDefault();
 
                 var $loc = $(this).attr('href');
@@ -245,11 +246,7 @@
                 $.post($loc, function ($resp){
                     $('.courses-table-and-pagination-no').html($resp.html);
                 },'json');
-            });
-
-            
-
-
+            });*/
         });
     </script>
 @stop

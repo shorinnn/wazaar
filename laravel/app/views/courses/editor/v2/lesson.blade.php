@@ -128,17 +128,18 @@
                        placeholder="{{trans('courses/create.enter-lesson-name')}}" value="{{ $lesson->name }}" >
             </div>
             <div>
-                <h6>{{ trans('courses/general.description') }}
+                <h6>{{ trans('courses/general.lesson-description') }}
                     <span class="lead"><span class="characters-desc-{{$lesson->id}}">360</span> Characters left</span>
                 </h6>
                 <textarea class='characters-left type-in-elements' data-target='.characters-desc-{{$lesson->id}}' maxlength="360"
-                data-elements='.lesson-{{$lesson->id}}-copy-desc' name="description" placeholder="Enter short lesson description...">{{ $lesson->description }}</textarea>
+                data-elements='.lesson-{{$lesson->id}}-copy-desc' name="description" placeholder="{{trans('courses/create.enter-short-lesson-description')}}">{{ $lesson->description }}</textarea>
             </div>
             <div>
                 <h6>{{ trans('courses/create.additional-lesson-notes') }}
                     <span class="lead"><span class="characters-notes-{{$lesson->id}}">360</span> Characters left</span>
                 </h6>
-                <textarea class='characters-left' data-target='.characters-notes-{{$lesson->id}}' maxlength="360" name="notes" placeholder="Add notes...">{{ $lesson->notes }}</textarea>
+                <textarea class='characters-left' data-target='.characters-notes-{{$lesson->id}}' maxlength="360" name="notes" 
+                          placeholder="{{trans('courses/create.add-notes')}}">{{ $lesson->notes }}</textarea>
             </div>
             <div class="row">
                 

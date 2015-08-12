@@ -102,6 +102,11 @@ class InstructorDashboardController extends BaseController {
     {
         $sortOrder = 0;
         $pageNumber = Input::has('page') ? Input::get('page') : 1;
+        $affiliateId = 0;
+
+        if (Input::has('affiliateId')){
+            $affiliateId = Input::get('affiliateId');
+        }
 
         if (Input::has('taStartDate')){
             $taStartDate = Input::get('taStartDate');
@@ -110,7 +115,7 @@ class InstructorDashboardController extends BaseController {
         }
 
         $adminHelper = new AdminHelper();
-        $topAffiliates = $adminHelper->topAffiliatesByInstructor(Auth::id(),$taStartDate, $taEndDate,$sortOrder);
+        $topAffiliates = $adminHelper->topAffiliatesByInstructor(Auth::id(), $affiliateId,$taStartDate, $taEndDate,$sortOrder);
         $topAffiliates->setBaseUrl('analytics/affiliates-table');
 
         $view = View::make('instructors.dashboard.topAffiliates',compact('topAffiliates', 'taStartDate', 'taEndDate', 'pageNumber'))->render();
