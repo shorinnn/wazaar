@@ -1,90 +1,94 @@
-<?php 
-class InstructorDashboardController extends BaseController {
+<?php
+
+class InstructorDashboardController extends BaseController
+{
 
     protected $analyticsHelper;
 
     public function __construct()
     {
-        $this->analyticsHelper = new AnalyticsHelper(false,Auth::id(),'instructor');
+        $this->analyticsHelper = new AnalyticsHelper(false, Auth::id(), 'instructor');
     }
+
     public function index()
     {
-        $sales = $this->_getSales();
-        $salesView = $this->salesView($sales);
-        $salesCountView = $this->salesCountView($sales);
-        $trackingCodesView = $this->trackingCodesView();
-        $topAffiliatesTable = $this->topAffiliatesTableView('','',false);
-        return View::make('instructors.dashboard.index',compact('salesView','salesCountView','trackingCodesView','topAffiliatesTable'));
+        $salesView      = $this->salesView();
+        $salesCountView = $this->salesCountView();
+        $courses        = Course::where('instructor_id', Auth::id())->get();
+
+        return View::make('instructors.dashboard.index', compact('salesView', 'salesCountView', 'courses'));
     }
 
-    public function salesCountView($frequency = '', $sales = '',$courseId = '', $trackingCode = '')
+    public function course($courseSlug = '')
     {
-        if (empty($sales)){
-            //$sales = $this->_getSales($frequency, $courseId = '', $trackingCode = '');
+        $course = Course::where('instructor_id', Auth::id())->where('slug', $courseSlug)->first();
+
+        if ($course) {
+            $salesView          = $this->salesView('', $course->id);
+            $salesCountView     = $this->salesCountView('', '', $course->id);
+            $trackingCodesView  = $this->trackingCodesView('', $course->id);
+            $topAffiliatesTable = $this->topAffiliatesTableView('', '', false);
+
+            return View::make('instructors.dashboard.course',compact('course', 'salesView', 'salesCountView', 'trackingCodesView', 'topAffiliatesTable'));
         }
 
+        return Redirect::to('analytics');
+    }
+
+    public function salesCountView($frequency = '', $courseId = '', $trackingCode = '')
+    {
         $frequencyOverride = $frequency;
-        switch($frequency){
+        $sales = null;
+        switch ($frequency) {
             case 'alltime' :
                 $frequencyOverride = 'year';
-                $sales = $this->analyticsHelper->salesLastFewYears(7);break;
+                $sales             = $this->analyticsHelper->salesLastFewYears(7, $courseId);
+                break;
             case 'week' :
-                $sales = $this->analyticsHelper->salesLastFewWeeks(7);break;
+                $sales = $this->analyticsHelper->salesLastFewWeeks(7, $courseId);
+                break;
             case 'month' :
-                $sales = $this->analyticsHelper->salesLastFewMonths(7);break;
+                $sales = $this->analyticsHelper->salesLastFewMonths(7, $courseId);
+                break;
             default:
                 $frequencyOverride = 'day';
-                $sales = $this->analyticsHelper->salesLastFewDays(7);break;
+                $sales             = $this->analyticsHelper->salesLastFewDays(7, $courseId);
+                break;
         }
 
-        return View::make('administration.dashboard.partials.sales.count', compact('frequencyOverride', 'sales'))->render();
+        return View::make('administration.dashboard.partials.sales.count',
+            compact('frequencyOverride', 'sales'))->render();
 
 
-
-
-
-        /*if (is_array($sales)) {
-            if ($frequency == 'week'){
-                return View::make('analytics.partials.salesWeeklyCount', compact('sales', 'frequency'))->render();
-            }
-            elseif($frequency == 'month'){
-                return View::make('analytics.partials.salesMonthlyCount', compact('sales', 'frequency'))->render();
-            }
-            elseif($frequency == 'alltime'){
-                return View::make('analytics.partials.salesYearlyCount', compact('sales', 'frequency'))->render();
-            }
-            else {
-                return View::make('analytics.partials.salesCount', compact('sales', 'frequency'))->render();
-            }
-        }*/
     }
 
     public function salesView($frequency = '', $courseId = '', $trackingCode = '')
     {
-        switch($frequency){
+        $sales = null;
+        switch ($frequency) {
             case 'alltime' :
-                $sales = $this->analyticsHelper->salesLastFewYears(5, $courseId,$trackingCode);break;
+                $sales = $this->analyticsHelper->salesLastFewYears(5, $courseId, $trackingCode);
+                break;
             case 'week' :
-                $sales = $this->analyticsHelper->salesLastFewWeeks(7,$courseId,$trackingCode);break;
+                $sales = $this->analyticsHelper->salesLastFewWeeks(7, $courseId, $trackingCode);
+                break;
             case 'month' :
-                $sales = $this->analyticsHelper->salesLastFewMonths(7,$courseId,$trackingCode);break;
+                $sales = $this->analyticsHelper->salesLastFewMonths(7, $courseId, $trackingCode);
+                break;
             default:
-                $sales = $this->analyticsHelper->salesLastFewDays(7, $courseId,$trackingCode);break;
+                $sales = $this->analyticsHelper->salesLastFewDays(7, $courseId, $trackingCode);
+                break;
         }
 
 
-
         if (is_array($sales)) {
-            if ($frequency == 'week'){
+            if ($frequency == 'week') {
                 return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency'))->render();
-            }
-            elseif($frequency == 'month'){
+            } elseif ($frequency == 'month') {
                 return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency'))->render();
-            }
-            elseif($frequency == 'alltime'){
+            } elseif ($frequency == 'alltime') {
                 return View::make('analytics.partials.salesYearly', compact('sales', 'frequency'))->render();
-            }
-            else {
+            } else {
                 return View::make('analytics.partials.sales', compact('sales', 'frequency'))->render();
             }
         }
@@ -92,7 +96,7 @@ class InstructorDashboardController extends BaseController {
 
     public function trackingCodesView($frequency = '', $courseId = '')
     {
-        $trackingCodes = $this->analyticsHelper->trackingCodes($frequency,$courseId);
+        $trackingCodes = $this->analyticsHelper->trackingCodes($frequency, $courseId);
         if (is_array($trackingCodes)) {
             return View::make('analytics.partials.trackingCodes', compact('trackingCodes', 'frequency'))->render();
         }
@@ -100,48 +104,33 @@ class InstructorDashboardController extends BaseController {
 
     public function topAffiliatesTableView($taStartDate = '', $taEndDate = '', $returnAsJson = true)
     {
-        $sortOrder = 0;
-        $pageNumber = Input::has('page') ? Input::get('page') : 1;
+        $sortOrder   = 0;
+        $pageNumber  = Input::has('page') ? Input::get('page') : 1;
         $affiliateId = 0;
 
-        if (Input::has('affiliateId')){
+        if (Input::has('affiliateId')) {
             $affiliateId = Input::get('affiliateId');
         }
 
-        if (Input::has('taStartDate')){
+        if (Input::has('taStartDate')) {
             $taStartDate = Input::get('taStartDate');
-            $taEndDate = Input::get('taEndDate');
-            $sortOrder = Input::get('sortOrder');
+            $taEndDate   = Input::get('taEndDate');
+            $sortOrder   = Input::get('sortOrder');
         }
 
-        $adminHelper = new AdminHelper();
-        $topAffiliates = $adminHelper->topAffiliatesByInstructor(Auth::id(), $affiliateId,$taStartDate, $taEndDate,$sortOrder);
+        $adminHelper   = new AdminHelper();
+        $topAffiliates = $adminHelper->topAffiliatesByInstructor(Auth::id(), $affiliateId, $taStartDate, $taEndDate,
+            $sortOrder);
         $topAffiliates->setBaseUrl('analytics/affiliates-table');
 
-        $view = View::make('instructors.dashboard.topAffiliates',compact('topAffiliates', 'taStartDate', 'taEndDate', 'pageNumber'))->render();
+        $view = View::make('instructors.dashboard.topAffiliates',
+            compact('topAffiliates', 'taStartDate', 'taEndDate', 'pageNumber'))->render();
 
 
-        if ($returnAsJson){
+        if ($returnAsJson) {
             return Response::json(['html' => $view]);
-        }
-        else {
+        } else {
             return $view;
         }
-    }
-
-    private function _getSales($frequency = '', $courseId = '', $trackingCode = '')
-    {
-        switch($frequency){
-            case 'alltime' :
-                $sales = $this->analyticsHelper->salesLastFewYears(5, $courseId,$trackingCode);break;
-            case 'week' :
-                $sales = $this->analyticsHelper->salesLastFewWeeks(7,$courseId,$trackingCode);break;
-            case 'month' :
-                $sales = $this->analyticsHelper->salesLastFewMonths(7,$courseId,$trackingCode);break;
-            default:
-                $sales = $this->analyticsHelper->salesLastFewDays(7, $courseId,$trackingCode);break;
-        }
-
-        return $sales;
     }
 }
