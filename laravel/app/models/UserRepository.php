@@ -479,7 +479,7 @@ class UserRepository
      */
     public function become($role, User $user, $secondTierInstructorCookie = null, $secondTierAffiliate = null){
         // usable roles
-        if(!in_array($role, ['Student', 'Instructor', 'Affiliate'])) return false;
+        if(!in_array($role, ['Student', 'Instructor' ])) return false;
         
         try{
             $role = Role::where('name', $role)->first();

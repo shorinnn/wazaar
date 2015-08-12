@@ -280,25 +280,64 @@ class UserCest{
         $student = User::where('username','student')->first();
         $I->assertEquals(2, $student->roles()->count());
     }
+    public function registerAsAffiliate(UnitTester $I){
+        User::unguard();
+        $data = ['first_name' => 'First', 'last_name' => 'Last',
+            'username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 
+            'password_confirmation' => 'pass'];
+        $user = $this->users->signup( $data, null, [ 'affiliate' => 1 ] );
+        $user = User::find( $user->id );
+        $I->assertFalse($user->hasRole('Student'));
+        $I->assertFalse($user->hasRole('Instructor'));
+        $I->assertFalse($user->hasRole('Admin'));
+        $I->assertTrue($user->hasRole('Affiliate'));
+        $I->assertEquals($user->affiliate_id, $user->id);
+        $I->assertEquals( $user->second_tier_affiliate_id, null );
+    }
     
-    public function makeStudentAffiliate(UnitTester $I){
+    public function registerAsAffiliateExistingEmail(UnitTester $I){
+        User::unguard();
+        $I->seeRecord('users',['email' => 'student@mailinator.com']);
+        
+        $data = ['first_name' => 'First', 'last_name' => 'Last',
+            'username' => 'latest_user', 'email' => 'student@mailinator.com', 'password' => 'pass', 
+            'password_confirmation' => 'pass'];
+        $user = $this->users->signup( $data, null, [ 'affiliate' => 1 ] );
+        $user = User::find( $user->id );
+        $I->assertFalse($user->hasRole('Student'));
+        $I->assertFalse($user->hasRole('Instructor'));
+        $I->assertFalse($user->hasRole('Admin'));
+        $I->assertTrue($user->hasRole('Affiliate'));
+        $I->assertEquals($user->affiliate_id, $user->id);
+        $I->assertEquals( $user->second_tier_affiliate_id, null );
+        $I->seeRecord('users', ['email' => '#waa#-student@mailinator.com', 'id' => $user->id] );
+        $I->assertEquals( $user->email, 'student@mailinator.com' );
+    }
+    public function registerAsAffiliateWithReferal(UnitTester $I){
+        DB::table('users')->where('id', 2)->update(['affiliate_id' => 2]);
+        User::unguard();
+        $data = ['first_name' => 'First', 'last_name' => 'Last',
+            'username' => 'latest_user', 'email' => 'latest_user@mailinator.com', 'password' => 'pass', 
+            'password_confirmation' => 'pass'];
+        $user = $this->users->signup( $data, 2, [ 'affiliate' => 1 ] );
+        $user = User::find( $user->id );
+        $I->assertFalse($user->hasRole('Student'));
+        $I->assertFalse($user->hasRole('Instructor'));
+        $I->assertFalse($user->hasRole('Admin'));
+        $I->assertTrue($user->hasRole('Affiliate'));
+        $I->assertEquals($user->affiliate_id, $user->id);
+        $I->assertEquals($user->second_tier_affiliate_id, 2);
+    }
+    
+    public function failMakeStudentAffiliate(UnitTester $I){
         $student = User::where('username','student')->first();
         $I->assertTrue($student->id > 0);
         $this->users->become('Affiliate', $student);
         $student = User::where('username','student')->first();
-        $I->assertTrue($student->hasRole('Affiliate'));
-        $I->assertEquals($student->affiliate_id, $student->id);
+        $I->assertFalse($student->hasRole('Affiliate'));
+        $I->assertNotEquals($student->affiliate_id, $student->id);
     }
     
-    public function makeStudentAffiliateOnlyOnce(UnitTester $I){
-        $student = User::where('username','student')->first();
-        $I->assertTrue($student->id > 0);
-        $this->users->become('Affiliate', $student);
-        $student = User::where('username','student')->first();
-        $this->users->become('Affiliate', $student);
-        $student = User::where('username','student')->first();
-        $I->assertEquals(2, $student->roles()->count());
-    }
     
     public function failBecomingAdmin(UnitTester $I){
         $student = User::where('username','student')->first();
@@ -315,7 +354,7 @@ class UserCest{
     }
     
     public function changeAffiliateID(UnitTester $I){
-        $student = User::where('username','affiliate')->first();
+        $student = LTCAffiliate::where('username','affiliate')->first();
         $I->assertTrue($student->id > 0);
         $student->affiliate_id = 'Updated5';
         $student->save();
