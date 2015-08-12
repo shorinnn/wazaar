@@ -142,6 +142,7 @@ function restoreSubmitLabel($form){
  * @returns {bool} True if confirmed, false otherwise
  */
 function confirmDelete(e){
+    console.log( e.target);
     // get the message from the clicked button, don't hard code it (so we can use localization)
     msg = $(e.target).attr('data-message');
     elem = $(e.target);
@@ -373,33 +374,52 @@ function savingAnimation(stop) {
 function enableFileUploader($uploader){
     dropzone = $uploader.attr('data-dropzone');
     var progressbar = $uploader.attr('data-progress-bar');
+    var progressLabel = $(progressbar).attr('data-label');
+    $progressLabel = $(progressLabel);
     upload_url = $uploader.closest('form').attr('action');
-    console.log(dropzone);
+    
     var $u = $uploader;
     $u.fileupload({
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
+                $(progressbar).parent().show();
+//                str =  $(progressbar).prop('outerHTML');
+//                str += '<br /><br />';
+//                bootbox.dialog({
+//                    title: _('Uploading'),
+//                    message: str
+//                  });
                 callback = $uploader.attr('data-add-callback');
                 if( typeof(callback) !='undefined' ){
                     return window[callback](e, data);
                 }
             }).on('fileuploadprogress', function (e, data) {
+                 $progressLabel = $(progressLabel);
                 var $progress = parseInt(data.loaded / data.total * 100, 10);
                 $(progressbar).css('width', $progress + '%');
-                $(progressbar).find('span').html($progress);
-                if($progress=='100') $(progressbar).find('span').html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                if( $progressLabel.length > 0 ) $progressLabel.html($progress);
+                else $(progressbar).find('span').html($progress);
+                if($progress=='100'){
+                    console.log( $progressLabel );
+                    if( $progressLabel.length > 0 ) $progressLabel.html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                    else $(progressbar).parent().find('span').html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                }
             }).on('fileuploadfail', function (e, data) {
+                $progressLabel = $(progressLabel);
                 $(progressbar).find('span').html('');
                 $(progressbar).css('width', 0 + '%');
                 $.each(data.files, function (index) {
                     var error = $('<span class="alert alert-danger upload-error"/>').text( _('File upload failed.') );
                     $(progressbar).css('width', 100 + '%');
-                    $(progressbar).find('span').html(error);
+                    if( $progressLabel.length > 0 ) $progressLabel.html(error);
+                    else $(progressbar).find('span').html(error);
                 });
+                
             }).on('fileuploaddone', function (e,data){
                 callback = $uploader.attr('data-callback');
                 if( typeof(callback) !=undefined ){
                     window[callback](e, data);
+                    
                 }
             });
 }

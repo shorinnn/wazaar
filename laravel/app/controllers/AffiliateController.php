@@ -15,6 +15,13 @@ class AffiliateController extends \BaseController {
 	{
             $course = Course::where('slug', $course)->first();
             $course->gifts = $course->gifts()->where('affiliate_id', Auth::user()->id)->get();
+            if( $course->gifts->count() == 0 ){
+                $gift = new Gift();
+                $gift->course_id = $course->id;
+                $gift->affiliate_id = Auth::user()->id;
+                $gift->save();
+                $course->gifts->add( $gift );
+            }
             return View::make('affiliate.promote.promote')->with( compact('course', 'tcode') );
 	}
         

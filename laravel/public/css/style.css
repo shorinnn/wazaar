@@ -14038,3 +14038,17 @@ header .top-menu .logged-in-top-menu{
     width: 140px;
     color: #fff;
 }
+
+.label-progress-bar{
+    font-size: 12px;
+    font-weight: normal !important;
+    margin: 0px !important;
+}
+.edit-course .progress, .progress{
+    background-color:gray;
+    height: 3px;
+}
+.progress-bar{
+    background-color: #069BFF;
+}
+       
