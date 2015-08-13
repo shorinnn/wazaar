@@ -4746,10 +4746,19 @@ h6{
 	padding: 0;
 	cursor: pointer;
 }
-
+	
 .affiliate-top-header .add-tracking-id{
 	color: #000 !important;
+    position:relative;
 	border: 1px solid transparent;
+}
+
+.affiliate-top-header .add-tracking-id:before {
+	position:absolute;
+	font-family: FontAwesome;
+	top:0;
+	left:-5px;
+	content: "\f067";
 }
 
 .affiliate-top-header .add-tracking-id:focus{
