@@ -25,7 +25,7 @@ class InstructorDashboardController extends BaseController
 
         if ($course) {
             $salesView          = $this->salesView('', $course->id);
-            $salesCountView     = $this->salesCountView('', '', $course->id);
+            $salesCountView     = $this->salesCountView('',  $course->id);
             $trackingCodesView  = $this->trackingCodesView('', $course->id);
             $topAffiliatesTable = $this->topAffiliatesTableView('', '', false);
 

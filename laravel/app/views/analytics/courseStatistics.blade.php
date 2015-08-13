@@ -124,7 +124,7 @@
             <div class="row margin-bottom-20">
 
 					<div class="col-md-3">
-                    	<h4 class="date-range-header">Date Range</h4>
+                    	<h4 class="date-range-header">{{trans('analytics.dateRange')}}</h4>
                     </div>
                     <div class='col-md-3'>
                         <div class="form-group">
