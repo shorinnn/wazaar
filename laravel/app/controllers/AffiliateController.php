@@ -51,6 +51,9 @@ class AffiliateController extends \BaseController {
     public function create($instructor_account = 'affiliate')
     {
         $extraText = trans('general.register-affiliate');
+        if(Auth::guest() && Input::has('stai')){
+            Cookie::queue('stai', Input::get('stai'), 60*24*30);
+        }
         return View::make( 'confide.affiliates.signup' )->with( compact('instructor_account', 'extraText') );
     }
     
@@ -58,7 +61,7 @@ class AffiliateController extends \BaseController {
     {
         $roles['affiliate'] = Input::get('register_affiliate');//Cookie::get('register_affiliate');
         $st = Input::get('st');
-        $user = $this->users->signup( Input::all(), Cookie::get('ltc'), $roles, Cookie::get('stpi'), Cookie::get('iai'), $st );
+        $user = $this->users->signup( Input::all(), Cookie::get('stai'), $roles, Cookie::get('stpi'), Cookie::get('iai'), $st );
         
         if ( $user!=null && $user->id) {
             try{
@@ -87,6 +90,7 @@ class AffiliateController extends \BaseController {
             Cookie::queue('ltc', null, -1);
             Cookie::queue('st', null, -1);
             Cookie::queue('iai', null, -1);
+            Cookie::queue('stai', null, -1);
             Cookie::queue('stpi', null, -1);
             Auth::login($user);
             if(Request::ajax()) return json_encode( [ 'status' => 'success', 'url' => $user->url ] );

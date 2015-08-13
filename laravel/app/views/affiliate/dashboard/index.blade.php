@@ -6,19 +6,15 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="header clearfix">
-                        <img alt="" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/thumbnails/top-profile-thumbnail.png">
-                        <p class="lead">Welcome Jerome</p>
-                        <ul>
-                            <li class="right-twenty-margin">
-                                <a href="#" class="active">Dashboard</a>
-                            </li>
-                            <li class="right-twenty-margin">
-                                <a href="#">Tracking codes</a>
-                            </li>
-                            <li>
-                                <a href="#">Account Settings</a>
-                            </li>
-                        </ul>
+                        <div class="row">
+                            <div class="col-lg-3"> 
+                                Use this link to refer users: </div>
+                            <div class="col-lg-9">
+                                <input type="text" readonly="" 
+                                             value="{{ action('AffiliateController@create' )}}?stai={{ Auth::user()->affiliate_id }}" />
+                            </div>
+                        </div>
+                       
                     </div>
                 </div>
             </div>
