@@ -187,7 +187,7 @@ h4.date-range-header{
 
 #sales-today ul li, .with-progress-bar ul li{
 	color: #849598;
-	margin: 14px 0;
+	margin: 18px 0 0;
 	font-size: 12px;
 }
 
@@ -223,7 +223,7 @@ h4.date-range-header{
 #sales-today ul li > em, .with-progress-bar ul li > em{
 	font-style: normal;
 	width: auto;
-	float: left;
+	float: right;
 	text-align: right;
 	display: inline-block;
 }
