@@ -217,11 +217,12 @@ h4.date-range-header{
     border-radius: 4px;
     background: #96cf2d;
     margin-bottom: 0 !important;
+	margin-top: 0;
 }
 
 #sales-today ul li > em, .with-progress-bar ul li > em{
 	font-style: normal;
-	width: 60px;
+	width: auto;
 	float: left;
 	text-align: right;
 	display: inline-block;

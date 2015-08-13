@@ -50,6 +50,9 @@
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <ul class="nav nav-pills" role="tablist">
                         <li role="presentation" class="active">
+                        	<a href="#enrolled" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">Enrolled</a>
+                        </li>
+                        <li role="presentation" class="active">
                         	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">Enrolled</a>
                         </li>
                         <li role="presentation">

@@ -55,6 +55,7 @@ $wwwRoutes = function(){
 	Route::get('studentcourse', 'SiteController@studentcourse');
 	Route::get('studentmessages', 'SiteController@studentmessages');
 	Route::get('affiliategift1', 'SiteController@affiliategift1');
+	Route::get('instructordashboard', 'SiteController@instructordashboard');
 
     // temporary tracking route
     Route::post('action-tracker', 'ActionController@track');
