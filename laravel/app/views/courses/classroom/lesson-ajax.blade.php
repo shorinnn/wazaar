@@ -147,12 +147,15 @@
                             <div class="videoContainer">
                                 @if( $video != null)
                                     <video id="myVideo" preload="auto">
-                                        @if( Agent::isMobile() )
+                                        @if( Agent::isMobile() &&  $video->formats()->where('resolution', 'Low Resolution')
+                                                    ->first() != null)
                                             <source src="{{ $video->formats()->where('resolution', 'Low Resolution')
                                                     ->first()->video_url }}" type="video/mp4">
-                                        @else
+                                        @elseif($video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                                                            ->first() != null)
                                             <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                                             ->first()->video_url }}" type="video/mp4">
+                                        @else
                                         @endif
                                         <p>Your browser does not support the video tag.</p>
                                     </video>
@@ -411,12 +414,15 @@
     }
     
     
-    window.onpopstate =  function(){
+    window.onpopstate =  function(e){
+        console.log('e state:');
+        console.log(e.state);
+        if(e.state==null) return;
         window.onpopstate = null;
         window.location.href = window.location.href ;
         window.location.reload();
-        console.log( window.location );
-        console.log('hash chanaged');
+//        console.log( window.location );
+//        console.log('hash chanaged');
     }
 </script>
            
