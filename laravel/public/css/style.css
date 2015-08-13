@@ -3840,90 +3840,91 @@ h6{
 
 /********** New Dashboard UI ***************/
 /* Students Dashboard */
-.student-dashboard.top-section{
+.new-dashboard.top-section{
 	background: #18222b;
 	padding-bottom: 10px;
 }
 
-.student-dashboard{
+.new-dashboard{
 	background: #ebeced;
 }
 
-.student-dashboard .sidebar{
+.new-dashboard .sidebar{
 	border: solid 1px #e0e1e2;
 	margin-top: -282px;
 }
 
-.student-dashboard .sidebar .upload-picture-button,
-.student-dashboard .sidebar .read-message,
-.student-dashboard .sidebar .name,
-.student-dashboard .sidebar .message{
+.new-dashboard .sidebar .upload-picture-button,
+.new-dashboard .sidebar .read-message,
+.new-dashboard .sidebar .name,
+.new-dashboard .sidebar .message{
 	border-top: solid 1px #e0e1e2;
 	background: #fff;
 	padding: 20px 24px;
 	display: block;
 }
 
-.student-dashboard .sidebar .upload-picture-button,
-.student-dashboard .sidebar .read-message{
+.new-dashboard .sidebar .upload-picture-button,
+.new-dashboard .sidebar .read-message{
 	padding: 11px 24px;
 }
 
-.student-dashboard .sidebar .message{
+.new-dashboard .sidebar .message{
 	padding: 15px 24px;
 }
 
-.student-dashboard .sidebar .name:hover,
-.student-dashboard .sidebar .message:hover{
+.new-dashboard .sidebar .name:hover,
+.new-dashboard .sidebar .message:hover{
 	background: #f7f9fa;
 }
 
-.student-dashboard .profile-picture-holder{
+.new-dashboard .profile-picture-holder{
 	border-radius: 4px 4px 0 0;
 	width: 238px;
 	height: 216px;
+	max-width: 100%;
 	overflow: hidden;
 }
 
-.student-dashboard .sidebar .name{
+.new-dashboard .sidebar .name{
 	padding: 23px 24px 28px;
 	background: #f7f9fa;
 }
 
-.student-dashboard .sidebar .name h2{
+.new-dashboard .sidebar .name h2{
 	font-size: 18px;
 	font-weight: normal;
 	color: #18222b;
 	margin: 0 0 10px;
 }
 
-.student-dashboard .sidebar .edit-profile{
+.new-dashboard .sidebar .edit-profile{
 	font-size: 11px;
 	font-weight: bold;
 	color: #03a2ff;
 	text-transform: uppercase;
 }
 
-.student-dashboard .sidebar .edit-profile i{
+.new-dashboard .sidebar .edit-profile i{
 	position: relative;
 	top: 1px;
 	font-size: 12px;
 	margin-right: 7px;
 }
 
-.student-dashboard .sidebar .message-count{
+.new-dashboard .sidebar .message-count{
 	font-size: 18px;
 	font-weight: normal;
 	color: #657482;
 	margin: 0;
 }
 
-.student-dashboard .sidebar .message-count i{
+.new-dashboard .sidebar .message-count i{
 	font-size: 20px;
 	margin-right: 6px;
 }
 
-.student-dashboard .sidebar .message-count .count{
+.new-dashboard .sidebar .message-count .count{
 	font-size: 13px;
 	font-weight: 600;
 	color: #0099ff;
@@ -3931,13 +3932,13 @@ h6{
 	line-height: 26px;
 }
 
-.student-dashboard .sidebar .message-preview h4{
+.new-dashboard .sidebar .message-preview h4{
 	color: #303941;
 	margin: 0;
 	position: relative;
 }
 
-.student-dashboard .sidebar .message-preview h4 .date{
+.new-dashboard .sidebar .message-preview h4 .date{
 	float: right;
 	font-size: 11px;
 	color: #a7b7c4;
@@ -3946,7 +3947,7 @@ h6{
 	top: 2px;
 }
 
-.student-dashboard .sidebar .message-preview.unread h4::before{
+.new-dashboard .sidebar .message-preview.unread h4::before{
 	height: 5px;
 	width: 5px;
 	border-radius: 5px;
@@ -3957,44 +3958,44 @@ h6{
 	content: '';
 }
 
-.student-dashboard .sidebar .message-preview p{
+.new-dashboard .sidebar .message-preview p{
 	color: #657482;
 	margin: 10px 0 0;
 }
 
-.student-dashboard.top-section .lesson-description{
+.new-dashboard.top-section .lesson-description{
 	margin-top: 45px;
 	margin-bottom: -28px;
 }
 
-.student-dashboard.top-section .lesson-description .current-lesson-row{
+.new-dashboard.top-section .lesson-description .current-lesson-row{
 	position: relative;
 	top: -28px;
 }
 
-.student-dashboard.top-section .lesson-description .img-wrap{
+.new-dashboard.top-section .lesson-description .img-wrap{
 	border-radius: 4px;
 	/*height: 78px;
 	overflow: hidden;*/
 }
 
-.student-dashboard.top-section .lesson-description h2{
+.new-dashboard.top-section .lesson-description h2{
 	font-size: 20px;
 	color: #fff;
 	margin: 0;
 	font-weight: normal;
 }
 
-.student-dashboard.top-section .lesson-description h3{
+.new-dashboard.top-section .lesson-description h3{
 	color: #fff;
 	margin: 0 0 14px;
 }
 
-.student-dashboard.top-section .lesson-description p{
+.new-dashboard.top-section .lesson-description p{
 	color: #657482;
 }
 
-.student-dashboard.top-section .lesson-description .current-lesson{
+.new-dashboard.top-section .lesson-description .current-lesson{
 	font-size: 11px;
 	font-weight: bold;
 	color: #657482;
@@ -4003,36 +4004,36 @@ h6{
 	text-transform: uppercase;
 }
 
-.student-dashboard.top-section .lesson-description .current-lesson-title{
+.new-dashboard.top-section .lesson-description .current-lesson-title{
 	color: #a7b7c4;
 }
 
-.student-dashboard.top-section .radial-progress{
+.new-dashboard.top-section .radial-progress{
 	display: inline-block;
 }
 
-.student-dashboard.top-section .radial-progress #progress-circle-top-1{
+.new-dashboard.top-section .radial-progress #progress-circle-top-1{
 	margin: 0 auto 23px;
 }
 
-.student-dashboard.top-section .blue-button{
+.new-dashboard.top-section .blue-button{
 	position: relative;
 	z-index: 6;
 }
 
-.student-dashboard.top-section .radial-progress .progress-radial{
+.new-dashboard.top-section .radial-progress .progress-radial{
 	margin-bottom: 23px;
 	display: inline-block;
 }
 
-.student-dashboard.top-section .radial-progress i{
+.new-dashboard.top-section .radial-progress i{
 	position: relative;
 	top: 1px;
 	margin-right: 10px;
 }
 
 /* Radial Progress Bar */
-.student-dashboard.top-section .progress-radial {
+.new-dashboard.top-section .progress-radial {
   position: relative;
   width: 100px;
   height: 100px;
@@ -4041,7 +4042,7 @@ h6{
   background-color: tomato;
 }
 
-.student-dashboard.top-section .progress-radial .overlay {
+.new-dashboard.top-section .progress-radial .overlay {
     background-color: #18222b;
     border-radius: 50%;
     font-size: 26px;
@@ -4055,7 +4056,7 @@ h6{
 	color: #03a2ff;
 }
 
-.student-dashboard.dashboardTabs .progress-value{
+.new-dashboard.dashboardTabs .progress-value{
 	font-size: 20px;
 	color: #303941;
 	position: relative;
@@ -4063,81 +4064,81 @@ h6{
 	margin-right: 6px;
 }
 
-.student-dashboard.dashboardTabs .tab-content{
+.new-dashboard.dashboardTabs .tab-content{
 	margin-top: 25px;
 	border-radius: 4px;
 	border: solid 1px #e0e1e2;
 	overflow: hidden;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson{
+.new-dashboard.dashboardTabs .enrolled-lesson{
 	padding: 10px;
 	background: #fff;
 	border-top: solid 1px #ebeced !important;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson .image-wrap{
+.new-dashboard.dashboardTabs .enrolled-lesson .image-wrap{
 	/*max-height: 78px;
 	max-width: 140px;*/
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson .finished,
-.student-dashboard.dashboardTabs .enrolled-lesson .review{
+.new-dashboard.dashboardTabs .enrolled-lesson .finished,
+.new-dashboard.dashboardTabs .enrolled-lesson .review{
 	display: none;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson .finished{
+.new-dashboard.dashboardTabs .enrolled-lesson .finished{
 	font-size: 15px;
 	font-weight: 600;
 	color: #47bc23;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson .finished i{
+.new-dashboard.dashboardTabs .enrolled-lesson .finished i{
 	font-size: 12px;
 	margin-right: 8px;
 	position: relative;
 	top: 1px;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson .review{
+.new-dashboard.dashboardTabs .enrolled-lesson .review{
 	color: #657482;
 	text-indent: 25px;
 	margin-top: 3px;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson.finished-lesson{
+.new-dashboard.dashboardTabs .enrolled-lesson.finished-lesson{
 	
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .finished,
-.student-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .review{
+.new-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .finished,
+.new-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .review{
 	display: block;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .enrolled-lessons-progress img,
-.student-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .progress-value{
+.new-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .enrolled-lessons-progress img,
+.new-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .progress-value{
 	display: none;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson:hover{
+.new-dashboard.dashboardTabs .enrolled-lesson:hover{
 	background: #f7f9fa;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lessons-progress{
+.new-dashboard.dashboardTabs .enrolled-lessons-progress{
 	margin-top: 21px;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson h4{
+.new-dashboard.dashboardTabs .enrolled-lesson h4{
 	font-size: 14px;
 	font-weight: 600;
 	margin: 8px 0 14px;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson a{
+.new-dashboard.dashboardTabs .enrolled-lesson a{
 	color: #03a2ff;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson p{
+.new-dashboard.dashboardTabs .enrolled-lesson p{
 	color: #798794;
 	margin: 0 0 7px;
 }
@@ -4230,13 +4231,13 @@ h6{
 }
 
 /*Dashboard Tab Header*/
-.student-dashboard.dashboardTabs-header{
+.new-dashboard.dashboardTabs-header{
 	border: solid #cfd1d3;
 	border-width: 0 0 1px;
 	background: #fff;
 }
 
-.student-dashboard.dashboardTabs-header a{
+.new-dashboard.dashboardTabs-header a{
 	padding: 23px 22px;
 	font-size: 14px;
 	color: #657482 !important;
@@ -4246,23 +4247,23 @@ h6{
 	border-radius: 0;
 }
 
-.student-dashboard.dashboardTabs-header a:hover,
-.student-dashboard.dashboardTabs-header li.active a{
+.new-dashboard.dashboardTabs-header a:hover,
+.new-dashboard.dashboardTabs-header li.active a{
 	border-color: #0099ff;
 	color: #0099ff !important;
 	background: none;
 }
 
 /*Student account*/
-.student-dashboard.student-account .sidebar{
+.new-dashboard.student-account .sidebar{
 	margin-top: -70px;
 }
 
-.student-dashboard .upload-picture-button input{
+.new-dashboard .upload-picture-button input{
 	display: none;
 }
 
-.student-dashboard.top-section h1{
+.new-dashboard.top-section h1{
 	font-size: 20px;
 	color: #fff;
 	margin: 70px 0 28px;
@@ -4344,7 +4345,7 @@ h6{
 	color: #a7b7c4;
 }
 
-.student-dashboard.student-course .sidebar{
+.new-dashboard.student-course .sidebar{
 	margin-top: 0;
 }
 
@@ -13127,21 +13128,21 @@ footer{
 		margin-top: 0;
 	}
 
-	.student-dashboard.top-section .radial-progress .progress-radial{
+	.new-dashboard.top-section .radial-progress .progress-radial{
 		display: block;
 		margin: 0 auto 20px;
 	}
 
-	.student-dashboard.top-section .radial-progress{
+	.new-dashboard.top-section .radial-progress{
 		margin-bottom: 20px;
 		margin-top: 25px;
 	}
 	
-	.student-dashboard.top-section .lesson-description{
+	.new-dashboard.top-section .lesson-description{
 		margin-bottom: 0;
 	}
 	
-	.student-dashboard.top-section .lesson-description .current-lesson-row{
+	.new-dashboard.top-section .lesson-description .current-lesson-row{
 		top: 0;
 	}
 
@@ -13382,12 +13383,12 @@ header .top-menu .logged-out-header-search{
 	float: none;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lesson .image-wrap,
-.student-dashboard.top-section .lesson-description .img-wrap{
+.new-dashboard.dashboardTabs .enrolled-lesson .image-wrap,
+.new-dashboard.top-section .lesson-description .img-wrap{
 	margin-bottom: 20px;
 }
 
-.student-dashboard.dashboardTabs .enrolled-lessons-progress{
+.new-dashboard.dashboardTabs .enrolled-lessons-progress{
 	margin: 20px 0;
 }
 

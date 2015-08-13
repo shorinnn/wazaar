@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-	<div class="container-fluid student-dashboard top-section">
+	<div class="container-fluid new-dashboard top-section">
     	<div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid student-dashboard dashboardTabs-header">
+    <div class="container-fluid new-dashboard dashboardTabs-header">
     	<div class="container">
         	<div class="row">
             	<div class="hidden-xs hidden-sm col-md-3 col-lg-3">
@@ -63,7 +63,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid student-dashboard dashboardTabs">
+    <div class="container-fluid new-dashboard dashboardTabs">
     	<div class="container">
         	<div class="row">
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 pull-right">
