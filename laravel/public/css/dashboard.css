@@ -25,6 +25,20 @@
 	color: #7aa826;
 }
 
+.dashboard .header input{
+	margin: 0;
+}
+
+.dashboard .header > .row{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.dashboard .header > .row .col-lg-3{
+	margin-top: 9px;
+	font-size: 14px;
+}
+
 .affiliate-dashboard .header img{
 	float: left;
 }
