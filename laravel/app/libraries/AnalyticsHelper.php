@@ -331,7 +331,7 @@ class AnalyticsHelper
             $date  = date('Y-m-d', strtotime("-$i day"));
             $label = $day;
             if ($i === 0) {
-                $label = 'Today';
+                $label = trans('analytics.today');
             }
             $sales[] = [
                 'label' => $label,
@@ -1172,7 +1172,7 @@ class AnalyticsHelper
             $date  = date('Y-m-d', strtotime("-$i day"));
             $label = $day;
             if ($i === 0) {
-                $label = 'Today';
+                $label = trans('analytics.today');
             }
             $affiliates[] = [
                 'label' => $label,
@@ -1333,7 +1333,7 @@ class AnalyticsHelper
             $date  = date('Y-m-d', strtotime("-$i day"));
             $label = $day;
             if ($i === 0) {
-                $label = 'Today';
+                $label = trans('analytics.today');
             }
             $affiliates[] = [
                 'label' => $label,
