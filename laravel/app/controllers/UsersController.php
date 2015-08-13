@@ -69,7 +69,8 @@ class UsersController extends Controller
         
         if ( $user!=null && $user->id) {
             try{
-                $subject = '販売者アカウント確認のご連絡';
+//                $subject = '販売者アカウント確認のご連絡';
+                $subject = 'アカウント確認のご連絡';
                 $view = 'confide.emails.regular_confirm';
                 $lastName = $user->last_name;
                 if($user->is_second_tier_instructor=='yes'){

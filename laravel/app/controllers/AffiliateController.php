@@ -51,6 +51,7 @@ class AffiliateController extends \BaseController {
     public function create($instructor_account = 'affiliate')
     {
         $extraText = trans('general.register-affiliate');
+        
         if(Auth::guest() && Input::has('stai')){
             Cookie::queue('stai', Input::get('stai'), 60*24*30);
         }
@@ -65,7 +66,8 @@ class AffiliateController extends \BaseController {
         
         if ( $user!=null && $user->id) {
             try{
-                $subject = '販売者アカウント確認のご連絡';
+//                $subject = '販売者アカウント確認のご連絡';
+                $subject = 'アフィリエイターアカウントのご連絡';
                 $view = 'confide.emails.regular_confirm';
                 $lastName = $user->last_name;
                 if (Config::get('confide::signup_email')) {

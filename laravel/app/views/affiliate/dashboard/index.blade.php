@@ -8,7 +8,7 @@
                     <div class="header clearfix">
                         <div class="row">
                             <div class="col-lg-3"> 
-                                Use this link to refer users: </div>
+                                {{ trans('general.affiliate-ref-link') }} </div>
                             <div class="col-lg-9">
                                 <input type="text" readonly="" 
                                              value="{{ action('AffiliateController@create' )}}?stai={{ Auth::user()->affiliate_id }}" />

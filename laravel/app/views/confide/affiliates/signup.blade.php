@@ -13,7 +13,7 @@
             	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
             </a>
             <div class="user-data-modal clearfix">
-                    <h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
+                    <h1 class="clearfix">{{ trans('general.register-affiliate') }}</h1>
                 
                 <p class="regular-paragraph text-center light-gray-text">{{ trans('site/register.enter-new-email-and-password') }}</p>
                 <div class="form-container clearfix">

@@ -118,7 +118,7 @@
                     <form>
                         <div>
                             <button><i class="wa-search"></i></button>
-                            <input type="search" name="header-search" class="header-search" placeholder="Search...">
+                            <input type="search" name="header-search" class="header-search" placeholder="{{ trans('general.search') }}">
                         </div>
                     </form>
                 </div>
@@ -129,7 +129,7 @@
                 
                 @if(Auth::check() && $student->hasRole('Affiliate'))
                     <li>
-                        <a href="#">Affiliate{{trans('site/homepage.dashboard')}}</a>
+                        <a href="#">{{trans('general.affiliate-dash')}}</a>
                     </li>
                 @endif
                 
@@ -339,7 +339,7 @@
                     <form>
                         <div>
                             <button><i class="wa-search"></i></button>
-                            <input type="search" name="header-search" class="header-search" placeholder="Search...">
+                            <input type="search" name="header-search" class="header-search" placeholder="{{ trans('general.search') }}">
                         </div>
                     </form>
                 </div>

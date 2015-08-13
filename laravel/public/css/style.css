@@ -2153,7 +2153,7 @@ header .profile-name li:hover ul{
 	font-size: 18px;
 	line-height: 30px;
 	color: #303941;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	margin: 0 0 5.5%;
 }
 

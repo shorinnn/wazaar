@@ -75,7 +75,7 @@ return array(
     'i-agree' => 'I Agree',
     'please-wait' => 'Please Wait',
     'register-2-tier' => '販売者２ティア登録',
-    'browse-courses' => 'Browse Courses',
+    'browse-courses' => '商品を検索する！',
     'begin_creating_your_course' => '動画教材の制作を開始しましょう！',
     'click-go-to-begin' => 'クリックを押して今すぐ始めましょう！',
     'verify-go-button' => '次へ！',
@@ -96,6 +96,10 @@ return array(
     'read-more' => 'もっと見る',
     'privacy-policy' => 'プライバシーポリシー',
     'register-instructor' => 'Register for instructor account',
-    'register-affiliate' => 'Register for affiliate account',
+    'register-affiliate' => 'アフィリエイター登録はこちら！',
+    'affiliate-dash' => 'アフィリエイト・ダッシュボード',
+    'catalogue' => '商品カテゴリー',
+    'search' => '検索',
+    'affiliate-ref-link' => 'アフィリエイト 2ティアリンク',
  
 );
