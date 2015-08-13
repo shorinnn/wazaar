@@ -36,5 +36,13 @@ return
     'dateRange' => 'Date Range',
     'updateChart' => 'Update Chart',
 
-    'course' => 'Course'
+    'course' => 'Course',
+
+    'Monday' => 'Monday',
+    'Tuesday' => 'Tuesday',
+    'Wednesday' => 'Wednesday',
+    'Thursday' => 'Thursday',
+    'Friday' => 'Friday',
+    'Saturday' => 'Saturday',
+    'Sunday' => 'Sunday'
 ];

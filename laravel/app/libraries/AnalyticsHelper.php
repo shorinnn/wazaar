@@ -327,7 +327,7 @@ class AnalyticsHelper
         $sales = [];
 
         for ($i = 0; $i <= $numOfDays; $i ++) {
-            $day   = date('l', strtotime("-$i day"));
+            $day   =  trans('analytics.' . date('l', strtotime("-$i day"))) ;
             $date  = date('Y-m-d', strtotime("-$i day"));
             $label = $day;
             if ($i === 0) {
@@ -1168,7 +1168,7 @@ class AnalyticsHelper
         $affiliates = [];
 
         for ($i = 0; $i <= $numOfDays; $i ++) {
-            $day   = date('l', strtotime("-$i day"));
+            $day   = trans('analytics.' . date('l', strtotime("-$i day"))) ;//date('l', strtotime("-$i day"));
             $date  = date('Y-m-d', strtotime("-$i day"));
             $label = $day;
             if ($i === 0) {
@@ -1329,7 +1329,7 @@ class AnalyticsHelper
         $affiliates = [];
 
         for ($i = 0; $i <= $numOfDays; $i ++) {
-            $day   = date('l', strtotime("-$i day"));
+            $day   = trans('analytics.' . date('l', strtotime("-$i day"))) ;//date('l', strtotime("-$i day"));
             $date  = date('Y-m-d', strtotime("-$i day"));
             $label = $day;
             if ($i === 0) {
