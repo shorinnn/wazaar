@@ -15,14 +15,10 @@
                 </style>        
             @endif
             <?php
-                $categories = CourseCategory::withCourses();
-                $categories->load( 'courseSubcategories' );
+                
             ?>
             
             @if(Auth::check())
-            <?php
-            $student = Student::find(Auth::user()->id);
-            ?>
         <div class="clearfix left">
             <div class="logged-out-header-search text-center">
                 <div class="clearfix inline-block">
@@ -32,24 +28,32 @@
                             <i class="wa-tiny-list"></i>
                             <em>{{trans('general.catalogue')}}</em>
                         </button>
+                        
                         <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                             <ul>
+                                <?php echo Flatten::section('header-categories-catalog', 10, function ()  { 
+                                    $categories = CourseCategory::withCourses();
+                                    $categories->load( 'courseSubcategories' );?>
+                               
                                 
-                                @foreach( $categories as $category)
-    
-                                        @if($category->courseSubcategories)
-                                            <li  class="dropdown-list"><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a> <i class="wa-chevron-right"></i>
-                                                <ul>
-                                                    @foreach($category->courseSubcategories as $subCategory)
-                                                        <li><a href="{{url('courses/category/' . $category->slug . '/' . $subCategory->slug)}}">{{$subCategory->name}}</a></li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
-                                        @else
-                                        <li><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a></li>
-                                        @endif
-    
-                                @endforeach
+                                    @foreach( $categories as $category)
+
+                                            @if($category->courseSubcategories)
+                                                <li  class="dropdown-list"><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a> <i class="wa-chevron-right"></i>
+                                                    <ul>
+                                                        @foreach($category->courseSubcategories as $subCategory)
+                                                            <li><a href="{{url('courses/category/' . $category->slug . '/' . $subCategory->slug)}}">{{$subCategory->name}}</a></li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @else
+                                            <li><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a></li>
+                                            @endif
+
+                                    @endforeach
+                                    
+                                    <?php }); ?>
+                                
                                 <!--<li>
                                     <a href="#">Business & Marketing</a>
                                 </li>
@@ -127,7 +131,7 @@
         <div class="clearfix right logged-in-menu-holder">
             <ul class="logged-in-top-menu">
                 
-                @if(Auth::check() && $student->hasRole('Affiliate'))
+                @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
                     <li>
                         <a href="#">{{trans('general.affiliate-dash')}}</a>
                     </li>
@@ -143,32 +147,31 @@
                     </li>
                 @endif
                 
-                @if(Auth::check() && $student->hasRole('Instructor'))
+                @if(Auth::check() && Auth::user()->hasRole('Instructor'))
                     <li>
                         <a href="{{ action('CoursesController@myCourses') }}">{{trans('site/homepage.teach')}}</a>
                     </li>
                 @endif
             </ul>
             <div class="top-profile-info">          
+                
                 <span class="profile-level">12</span>
                 <div class="profile-thumbnail">
-                    <?php
-                    if( Auth::check() ) Auth::user()->load('roles', 'profiles');
-                    ?>
-                    @if(Auth::check() && Auth::user()->hasRole('Instructor') && Instructor::find(Auth::user()->id)->profile!=null )
+          
+                    @if( Auth::user()->_profile('Instructor') !=null )
                     <img style="height: 30px; width: 30px; border-radius: 30px;" 
-                             src="{{ cloudfrontUrl( Instructor::find(Auth::user()->id)->profile->photo ) }}" alt="">
-                    @elseif(Auth::check() && Auth::user()->hasRole('Affiliate') && LTCAffiliate::find(Auth::user()->id)->profile != null)
+                             src="{{ cloudfrontUrl( Auth::user()->_profile('Instructor')->photo ) }}" alt="">
+                    @elseif( Auth::user()->_profile('Affiliate') != null)
                     <img style="height: 30px; width: 30px; border-radius: 30px;" 
-                             src="{{ cloudfrontUrl( LTCAffiliate::find(Auth::user()->id)->profile->photo ) }}" alt="">
-                    @elseif(Auth::check() &&  $student->profile )
+                             src="{{ cloudfrontUrl( Auth::user()->_profile('Affiliate')->photo ) }}" alt="">
+                    @elseif( Auth::user()->_profile('Student') !=null )
                         <img style="height: 30px; width: 30px; border-radius: 30px;" 
-                             src="{{ cloudfrontUrl( Student::find(Auth::user()->id)->profile->photo ) }}" alt="">
-                       
+                             src="{{ cloudfrontUrl( Auth::user()->_profile('Student')->photo ) }}" alt="">
                     @else
                         <img style="height: 30px; width: 30px; border-radius: 30px;" 
                              src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" alt="">
                     @endif
+                   
                 </div>
                 <ul class="profile-name">
                     <li class="activate-dropdown">
@@ -204,11 +207,11 @@
                                         {{ $received->count() }}
                                         <div style="background-color:white; position:absolute; right:0px; display:none; width: 300px; font-size:12px;">
                                             <table class="table table-striped">
-                                                @foreach( $student->grouppedNotifications( $received ) as $key => $notification)
+                                                foreach( $student->grouppedNotifications( $received ) as $key => $notification)
                                                 <tr><td>
                                                     <a href="{{ $notification['url'] }}">{{ $notification['text'] }}</a>
                                                     </td></tr>
-                                                @endforeach
+                                                endforeach
                                             </table>
                                         </div>
                                     </span>
@@ -255,22 +258,28 @@
                         <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                             <ul>
                                 
+                               <?php echo Flatten::section('header-categories-catalog', 10, function ()  { 
+                                    $categories = CourseCategory::withCourses();
+                                    $categories->load( 'courseSubcategories' );?>
                                
-                                @foreach($categories as $category)
-    
-                                        @if($category->courseSubcategories)
-                                            <li  class="dropdown-list"><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a> <i class="wa-chevron-right"></i>
-                                                <ul>
-                                                    @foreach($category->courseSubcategories as $subCategory)
-                                                        <li><a href="{{url('courses/category/' . $category->slug . '/' . $subCategory->slug)}}">{{$subCategory->name}}</a></li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
-                                        @else
-                                        <li><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a></li>
-                                        @endif
-    
-                                @endforeach
+                                
+                                    @foreach( $categories as $category)
+
+                                            @if($category->courseSubcategories)
+                                                <li  class="dropdown-list"><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a> <i class="wa-chevron-right"></i>
+                                                    <ul>
+                                                        @foreach($category->courseSubcategories as $subCategory)
+                                                            <li><a href="{{url('courses/category/' . $category->slug . '/' . $subCategory->slug)}}">{{$subCategory->name}}</a></li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @else
+                                            <li><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a></li>
+                                            @endif
+
+                                    @endforeach
+                                    
+                                    <?php }); ?>
                                 <!--<li>
                                     <a href="#">Business & Marketing</a>
                                 </li>
