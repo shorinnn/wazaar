@@ -13,7 +13,6 @@ class SiteController extends \BaseController {
                 $categories = CourseCategory::limit(12);
                 $groups = CategoryGroup::orderBy('order','asc')->get();
                 
-//                Cache::forget('topCourses');
                 if ( !Cache::has('topCourses') ){
                     $top = HomepageHelper::generateVariations(8);
                     Cache::add('topCourses', $top, 30);
@@ -21,7 +20,9 @@ class SiteController extends \BaseController {
                 
                 $topCourses = Cache::get('topCourses');
                 $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
+                
                 $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
+                
                 if(Auth::user()) Return View::make('site.homepage_authenticated')
                     ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses'));
                 else{

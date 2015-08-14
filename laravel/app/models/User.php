@@ -101,6 +101,7 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     private function _affiliateDefaultProfile(){
+        return $this->profile;
         foreach($this->profiles as $profile){
             if( $profile->type=='Affiliate') return $profile;
         }
@@ -147,30 +148,51 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     public function commentName($user_type){
-        if($user_type=='student') $user = Student::find($this->id);
-        else if($user_type=='instructor') $user = Instructor::find($this->id);
-        else if($user_type=='instructor_agency') $user = InstructorAgency::find($this->id);
-        else $user = LTCAffiliate::find($this->id);
-        if( $user->profile ){
-            return $user->profile->first_name.' '.$user->profile->last_name;
+        if($user_type=='student') $user_type='Student';
+        else if($user_type=='instructor') $user_type='Instructor';
+        else  $user_type='Affiliate';
+        $profile = $this->_profile( $user_type );
+        if( $profile != null){
+            if( Config::get('first_name_first') == true ) return $profile->first_name.' '.$profile->last_name;
+            return $profile->last_name.' '.$profile->first_name;
         }
         else{
-            if($user->first_name=='') return $user->email;
-            else return $user->first_name.' '.$user->last_name;
+            return $this->email;
         }
+//        if($user_type=='student') $user = Student::find($this->id);
+//        else if($user_type=='instructor') $user = Instructor::find($this->id);
+//        else if($user_type=='instructor_agency') $user = InstructorAgency::find($this->id);
+//        else $user = LTCAffiliate::find($this->id);
+//        if( $user->profile ){
+//            return $user->profile->first_name.' '.$user->profile->last_name;
+//        }
+//        else{
+//            if($user->first_name=='') return $user->email;
+//            else return $user->first_name.' '.$user->last_name;
+//        }
     }
     
     public function commentPicture($user_type){
-        if($user_type=='student') $user = Student::find($this->id);
-        else if($user_type=='instructor') $user = Instructor::find($this->id);
-        else if($user_type=='instructor_agency') $user = InstructorAgency::find($this->id);
-        else $user = LTCAffiliate::find($this->id);
-        if( $user->profile ){
-            return $user->profile->photo;
+        if($user_type=='student') $user_type='Student';
+        else if($user_type=='instructor') $user_type='Instructor';
+        else  $user_type='Affiliate';
+        $profile = $this->_profile( $user_type );
+        if( $profile != null){
+            return $profile->photo;
         }
         else{
             return '//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg';
         }
+//        if($user_type=='student') $user = Student::find($this->id);
+//        else if($user_type=='instructor') $user = Instructor::find($this->id);
+//        else if($user_type=='instructor_agency') $user = InstructorAgency::find($this->id);
+//        else $user = LTCAffiliate::find($this->id);
+//        if( $user->profile ){
+//            return $user->profile->photo;
+//        }
+//        else{
+//            return '//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg';
+//        }
     }
     
     public function isAffiliate(){

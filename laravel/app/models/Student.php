@@ -439,7 +439,8 @@ class Student extends User{
             if( $viewed->state=='completed' && $viewed->course_id == $course->id ) $complete++;
         }
         $total = 0;
-        foreach( $course->allModules as $module ){
+        
+        foreach( $course->modules as $module ){
             foreach( $module->lessons as $lesson ){
                 if( $lesson->published == 'yes' ) $total++;
             }
