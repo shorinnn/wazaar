@@ -23,7 +23,6 @@ $(document).ready(function(){
     });
     
     $('.tooltipable').tooltip();
-//    $("body").tooltip({ selector: '[data-toggle="tooltip"]' });
     enableClipboard();
 
     $('#curriculum .lessons').jScrollPane();
@@ -92,8 +91,7 @@ function enableClipboard(){
     
     client.on( "ready", function( readyEvent ) {
       client.on( "aftercopy", function( event ) {
-        // `this` === `client`
-        // `event.target` === the element that was clicked
+          
         $(event.target).closest('.tooltipable').attr('title', _('Copied!') );
         $(event.target).closest('.tooltipable').attr('data-original-title', _('Copied!') );
         $(event.target).closest('.tooltipable').tooltip('show');
@@ -238,7 +236,7 @@ function prepareLoadRemote(e){
         $(e.target).attr('data-load-method', $(e.target).closest('.load-remote').attr('data-load-method'));
     }
     $(e.target).attr('data-target', $(e.target).closest('.load-remote').attr('data-target'));
-//    history.pushState({}, '', $(e.target).attr("href"));
+    
     loadRemote(e);
 }
 
@@ -395,7 +393,7 @@ function loadRemote(e){
         history.pushState({}, '', url);
     }
     if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
-//        $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+        
         console.log( url );
         if( typeof(indicatorStyle)=='undefined')
             $(target).html( '<center><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></center> ');
@@ -535,24 +533,12 @@ function loadRemoteCache(e){
 	});
 
     $(target).load(url, function(responseText, textStatus, req){
-//        if(textStatus == "error") {
-//            $(target).html( _( '<p class="ajax-load-error">Request failed. Trying again in 5 seconds</p>') );
-//            setTimeout(loadRemoteCache, 5000, e);
-//            return;
-//        }
         elem.attr('data-loaded','1');
         elem.addClass('dataLoaded');
         if( typeof(callback)!= 'undefined'){
             window[callback](e);
         }
     });
-//    $(target).load('fail'+url, function(){
-//        elem.attr('data-loaded','1');
-//        elem.addClass('dataLoaded');
-//        if( typeof(callback)!= 'undefined'){
-//            window[callback](e);
-//        }
-//    });
 }
 
 
@@ -984,12 +970,7 @@ function skinVideoControls(){
                 if(video[0].paused || video[0].ended) {
                     $('.play-intro-button').show();
                 }
-		/*$('#lesson-video-overlay').css({
-			height: playerHeight	
-		});*/
-		/*$('#lesson-video-overlay > div').css({
-			maxWidth: playerWidth
-		});*/
+                
 
 	}
 	//remove default control when JS loaded
@@ -1367,23 +1348,6 @@ function showMoreContent(){
 		});
 	});
 }
-
-/*function stickyFooter(){
-	var bodyHeight = $("body").height();
-	var vwptHeight = $(window).height();
-	var contentWrapper = $('#wrapper');
-	contentWrapper.css('height', bodyHeight);
-	if (vwptHeight > bodyHeight) {
-	  $("footer").css({
-	  	position: 'absolute',
-		bottom: 0,
-		width: '100%'
-		});
-	}
-	else if(vwptHeight <= bodyHeight){
-	  $("footer").css("position","relative");
-	}
-}*/
 
 function rescaleBckgrdOverlay(){
 	var bckgrdImageHeight = $('#user-data-bckgrd-img').css('height');

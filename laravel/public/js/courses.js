@@ -256,15 +256,11 @@ function blockFileUploaded(e, data){
     progressLabel = $(progressbar).attr('data-label');
     var $progressLabel = $(progressLabel);
 
-//    $uploadTo = $(e.target).parent().parent().parent();
     uploadTo = $(e.target).attr('data-upload-to');
     $uploadTo = $(uploadTo);
-//    console.log($uploadTo);
 
-//    result = JSON.parse(data.result);
     result = xmlToJson(data.result);
     awsResponse = result;
-//    console.log(result);
     $.post(COCORIUM_APP_PATH + 'lessons/blocks/'+lessonId+'/files', {
         key: result.PostResponse.Key['#text'],
         content: result.PostResponse.Location['#text']
@@ -273,7 +269,6 @@ function blockFileUploaded(e, data){
         if(result.status=='success'){
             $(progressbar).find('span').html('');
             $(progressbar).css('width', 0 + '%');
-    //        console.log(result);
             $uploadTo.append(result.html);
             $(progressbar).parent().hide();
             $progressLabel.html('');
@@ -290,17 +285,8 @@ function blockFileUploaded(e, data){
             $(progressbar).css('width', 0 + '%');
             $progressLabel.html(result.errors );
         }
-        
-//        bootbox.hideAll();
-        
-//        $(e.target).parent().parent().parent().append(result.html);
+       
     });
-//    if(result.status=='error'){
-////        $(e.target).closest('form').after("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
-//        $(e.target).closest('form').prepend("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
-//        return false;
-//    }
-//    $(e.target).parent().parent().parent().append(result.html);
 }
 
 /**
@@ -420,7 +406,6 @@ function adjustDiscount(e){
     val = parseInt(e.val());
     kind = e.attr('data-saleType');
     kind = $("[name='"+kind+"']").val();
-//    if(kind=='amount' && val>0) val =  round2( val, 10 );
     val =  round2( val, 10 );
     e.val( val );
 }
@@ -428,14 +413,6 @@ function adjustDiscount(e){
 function courseChangedTabs(e){
     $('.header-tabs').removeClass('active');
     $(e.target).addClass('active');
-//    remaining = $(e.target).attr('data-steps-remaining');
-//    if(remaining==0){
-//        $('.steps-remaining').hide();
-//    }
-//    else{
-//        $('.steps-remaining').find('span').html( _(remaining) );
-//        $('.steps-remaining').show();
-//    }
     // update who is for
     str = '';
     $('[name="who_is_this_for[]"]').each(function(){

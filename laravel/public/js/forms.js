@@ -64,7 +64,7 @@ function formAjaxSubmit(e){
         }
         restoreSubmitLabel(form);
         if( typeof(form.attr('data-callback'))!='undefined' ){
-//          window[form.attr('data-callback')](result, e);
+            
             fn = form.attr('data-callback').split('.');
             if(fn.length == 1) window[ fn[0] ](result, e);
             else{
@@ -385,12 +385,7 @@ function enableFileUploader($uploader){
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
                 $(progressbar).parent().show();
-//                str =  $(progressbar).prop('outerHTML');
-//                str += '<br /><br />';
-//                bootbox.dialog({
-//                    title: _('Uploading'),
-//                    message: str
-//                  });
+                
                 callback = $uploader.attr('data-add-callback');
                 if( typeof(callback) !='undefined' ){
                     return window[callback](e, data);
@@ -477,7 +472,6 @@ function setReplyTo(e){
     id = $(e.target).attr('data-id');
     name = $(e.target).prev('.name').html();
     
-    //$box = $(e.target).parent().parent().find('.replies').first();
     $box = $('.replies-comment-'+id);
     $box.find('.comment-form-reply').remove();
     id =  '.replies-' + $box.parent().attr('id');
@@ -563,7 +557,6 @@ function submitForm(e){
     form = $(e.target).attr('data-form');
     $form = $(form);
     $form.find('[type="submit"]').click();
-//    $form[0].submit();
 }
 
 function clickOnEnter(e){
