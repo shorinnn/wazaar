@@ -4143,6 +4143,73 @@ h6{
 	margin: 0 0 7px;
 }
 
+.new-dashboard.dashboardTabs .enrolled-lesson p .created-on,
+.new-dashboard.dashboardTabs .enrolled-lesson p .status{
+	width: 95px;
+	font-size: 11px;
+	font-weight: bold;
+	color: #a7b7c4;
+	display: inline-block;
+	text-transform: uppercase;
+}
+
+.instructor-dashboard.dashboardTabs .enrolled-lesson p em{
+	color: #657482;
+	font-style: normal;
+}
+
+.instructor-dashboard.dashboardTabs .enrolled-lesson p .public{
+	margin-left: 15px;
+	position: relative;
+}
+
+.instructor-dashboard.dashboardTabs .enrolled-lesson p .public::before{
+    height: 5px;
+    width: 5px;
+    border-radius: 5px;
+    background: #a7b7c4;
+    position: absolute;
+    top: 7px;
+    left: -9px;
+    content: '';
+}
+
+.instructor-dashboard.dashboardTabs .enrolled-lesson h4 a{
+	color: #303941;
+}
+
+.instructor-dashboard.dashboardTabs .enrolled-lesson h4 .lesson-status{
+	margin-left: 15px;
+	display: inline-block;
+	padding: 6px;
+	border-radius: 2px;
+	font-size: 11px;
+	color: #fff;
+	font-weight: bold;
+	text-transform: uppercase;
+	position: relative;
+	top: 1px;
+}
+
+.instructor-dashboard.dashboardTabs .enrolled-lesson h4 .lesson-status.draft{
+	background: #cfd8df;
+}
+
+.instructor-dashboard.dashboardTabs .enrolled-lesson h4 .lesson-status.approved{
+	background: #6fc423;
+}
+
+.instructor-dashboard.dashboardTabs .enrolled-lesson h4 .lesson-status.pending{
+	background: #0099ff;
+}
+
+.instructor-dashboard.dashboardTabs .enrolled-lesson h4 a:hover{
+	color: #03a2ff;
+}
+
+.instructor-dashboard.dashboardTabs .enrolled-lesson:hover {
+    background: #fff;
+}
 /* -------------------------------------
  * Mixin for progress-% class
  * ------------------------------------- */
@@ -4237,7 +4304,7 @@ h6{
 	background: #fff;
 }
 
-.new-dashboard.dashboardTabs-header a{
+.new-dashboard.dashboardTabs-header li a{
 	padding: 23px 22px;
 	font-size: 14px;
 	color: #657482 !important;
@@ -4247,7 +4314,11 @@ h6{
 	border-radius: 0;
 }
 
-.new-dashboard.dashboardTabs-header a:hover,
+.new-dashboard.dashboardTabs-header .add-new-course{
+	margin-top: 15px;
+}
+
+.new-dashboard.dashboardTabs-header li a:hover,
 .new-dashboard.dashboardTabs-header li.active a{
 	border-color: #0099ff;
 	color: #0099ff !important;
