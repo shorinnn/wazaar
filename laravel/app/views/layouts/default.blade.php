@@ -143,7 +143,7 @@
                                 <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.login-with-facebook') }}</a>
                                 <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
                             </div>
-                            <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
+                            <div class="orr"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
                             <p class="intro-paragraph text-center">{{ trans('general.enter-email-and-password') }}</p>
                             <div class="form-container clearfix">
                             <form id='login-form' role="form" method="POST" onsubmit="return loginValidator.validate(event);"
@@ -209,7 +209,7 @@
                                 <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.register-with-facebook') }}</a>
                                 <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
                             </div>
-                            <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
+                            <div class="orr"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
                             <p class="intro-paragraph text-center">{{ trans('general.enter-new-email-and-password') }}</p>
                             <div class="form-container clearfix">
                                 <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8" id="register-form"

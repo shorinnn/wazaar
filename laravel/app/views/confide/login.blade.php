@@ -14,7 +14,7 @@
                             <a href="{{ url('login-with-facebook') }}" class="login-facebook"><span>{{ trans('site/login.sign-in-with-fb') }}</span></a>
                             <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
                         </div>
-                        <div class="or"><span class="left-line"></span>{{ trans('site/login.or') }}<span class="right-line"></span></div>
+                        <div class="orr"><span class="left-line"></span>{{ trans('site/login.or') }}<span class="right-line"></span></div>
                     
                     <p class="regular-paragraph text-center light-gray-text">{{ trans('general.enter-email-and-password') }}</p>
                     <div class="form-container clearfix">
