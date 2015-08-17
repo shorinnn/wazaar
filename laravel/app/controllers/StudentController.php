@@ -12,11 +12,14 @@ class StudentController extends \BaseController {
             $student->load( 'viewedLessons.lesson' );
             $lastLesson = $student->viewedLessons()->orderBy('updated_at','desc')->first();
             if($lastLesson != null )            $lastLesson->load( 'lesson.module.course', 'lesson.module', 'lesson' );
+
+            
             $courses = $student->purchases()->where('product_type','Course')->get();
             if( $courses != null ) $courses->load( 'product.modules.lessons', 'product.modules', 'product' );
+
             $wishlist = $student->wishlistItems;
-//            $wishlist = [];
-//            $courses = [];
+            if($wishlist !=null )$wishlist->load('course');
+            
             return View::make('student.mycourses')->with( compact('student', 'lastLesson', 'courses', 'wishlist') );
 	}
         

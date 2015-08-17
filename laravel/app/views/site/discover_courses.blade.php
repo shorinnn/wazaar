@@ -1,6 +1,6 @@
 <div class="row">
     @foreach( $discoverCourses->take(3) as $course )
- 
+     <?php echo Flatten::section('discover-course-'.$course->id, 10, function () use ($course) { ?>
         <div class="col-xs-12 col-sm-6 col-md-4">
             <a href="{{ action('CoursesController@show', $course->slug) }}" class="small-box-link-wrapper">
                 <div class="object small-box small-box-one">
@@ -62,9 +62,12 @@
                 </div>
             </a>
         </div>
+    
+    <?php }); ?>
     @endforeach
     
     @foreach( $discoverCourses->slice(3)->take(3) as $course )
+     <?php echo Flatten::section('discover-course-'.$course->id, 10, function () use ($course) { ?>
  
         <div class="col-xs-12 col-sm-6 col-md-4">
             <a href="{{ action('CoursesController@show', $course->slug) }}" class="small-box-link-wrapper">
@@ -127,6 +130,7 @@
                 </div>
             </a>
         </div>
+    <?php }); ?>
     @endforeach
 
 </div>

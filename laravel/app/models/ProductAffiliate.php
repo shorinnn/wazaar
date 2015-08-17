@@ -152,6 +152,10 @@ class ProductAffiliate extends User{
 
         return null;
     }
+    
+    public function getProfileAttribute(){
+        return Profile::where('owner_id', $this->id)->where('owner_type', 'Affiliate')->first();
+    }
 
     public static function profileLists()
     {

@@ -19,14 +19,14 @@ class ClassroomController extends \BaseController {
             if($course->payment_type=='subscription'){
                     $course->modules = $student->subscriptionModules($course)->get();
                 }
-            $course->comments = $course->comments()->orderBy('id','desc')->paginate( 2 );
-            $unread = $student->receivedMessages()->unread( $student->id );
-            $student->unreadAnswers = $unread->where('type','ask_teacher')->where('course_id', $course->id)->get();
-            $unread = $student->receivedMessages()->unread( $student->id );
-            $student->unreadAnnouncements = $unread->where('type','mass_message')->where('course_id', $course->id)->get();
+//            $course->comments = $course->comments()->orderBy('id','desc')->paginate( 2 );
+//            $unread = $student->receivedMessages()->unread( $student->id );
+//            $student->unreadAnswers = $unread->where('type','ask_teacher')->where('course_id', $course->id)->get();
+//            $unread = $student->receivedMessages()->unread( $student->id );
+//            $student->unreadAnnouncements = $unread->where('type','mass_message')->where('course_id', $course->id)->get();
             
-            $student->announcements = $student->receivedMessages()->where('type','mass_message')->where('course_id', $course->id)->orderBy('id','desc')->get();
-            $student->answers = $student->receivedMessages()->where('type','ask_teacher')->where('course_id', $course->id)->orderBy('id','desc')->get();
+//            $student->announcements = $student->receivedMessages()->where('type','mass_message')->where('course_id', $course->id)->orderBy('id','desc')->get();
+//            $student->answers = $student->receivedMessages()->where('type','ask_teacher')->where('course_id', $course->id)->orderBy('id','desc')->get();
             
             if( $course==null || ( 
                     !$student->purchased( $course ) && 
@@ -40,7 +40,8 @@ class ClassroomController extends \BaseController {
             $nextLesson = $video = $student->nextLesson($course);
             
             $currentLesson = $student->currentLesson($course);
-            if( $video ) $video = $video->blocks()->where('type','video')->first();
+            $video = null;
+//            if( $video ) $video = $video->blocks()->where('type','video')->first();
 //            $video = $course->videoBlocks();
 //            if($video!=null) $video = $video->first();
             $gift = $student->purchases()->where('product_id', $course->id)->where('product_type','course')->first();

@@ -2,15 +2,15 @@
 @section('content')
     <div class="wrapper">
         <div class="container">
-            <h3>Tracking Codes</h3>
+            <h3>{{trans('analytics.trackingCodes')}}</h3>
             <div class="row margin-bottom-20 analytics-page">
                 <table class="table" id="table-tracking-codes">
                     <thead>
-                        <th>Tracking Code</th>
-                        <th>Course</th>
-                        <th>Clicks</th>
-                        <th>Sales</th>
-                        <th>Conversion</th>
+                        <th>{{trans('analytics.trackingCode')}}</th>
+                        <th>{{trans('analytics.course')}}</th>
+                        <th>{{trans('analytics.clicks')}}</th>
+                        <th>{{trans('analytics.sales')}}</th>
+                        <th>{{trans('analytics.conversion')}}</th>
                     </thead>
 
                     <tbody>

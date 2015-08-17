@@ -101,23 +101,35 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     private function _affiliateDefaultProfile(){
-        $profile = Profile::where('owner_type','Affiliate')->where('owner_id', $this->id)->first();
-        if( $profile && $profile !=null){
-            return $profile;
+        return $this->profile;
+        foreach($this->profiles as $profile){
+            if( $profile->type=='Affiliate') return $profile;
         }
-        else return null;
+        return null;
+//        if( $profile && $profile !=null){
+//            return $profile;
+//        }
+//        else return null;
+//        $profile = Profile::where('owner_type','Affiliate')->where('owner_id', $this->id)->first();
     }
     
     private function _defaultProfile( ){
         if( is_a($this,'ProductAffiliate') || is_a($this,'LTCAffiliate') ) return $this->_affiliateDefaultProfile();
         if( $this->profiles && $this->profiles !=null){
-            if( $this->profiles()->where('owner_type','Instructor')->first() != null ) 
-                    return $this->profiles()->where('owner_type','Instructor')->first();
-            if( $this->profiles()->where('owner_type','Affiliate')->first() != null ) 
-                    return $this->profiles()->where('owner_type','Affiliate')->first();
-            if( $this->profiles()->where('owner_type','Student')->first() != null ) 
-                    return $this->profiles()->where('owner_type','Student')->first();
+            $types = [ 'Instructor', 'Affiliate', 'Student' ];
+            foreach($types as $type){
+                foreach($this->profiles as $profile){
+                    if( $profile->owner_type == $type) return $profile;
+                }
+            }
             return null;
+//            if( $this->profiles()->where('owner_type','Instructor')->first() != null ) 
+//                    return $this->profiles()->where('owner_type','Instructor')->first();
+//            if( $this->profiles()->where('owner_type','Affiliate')->first() != null ) 
+//                    return $this->profiles()->where('owner_type','Affiliate')->first();
+//            if( $this->profiles()->where('owner_type','Student')->first() != null ) 
+//                    return $this->profiles()->where('owner_type','Student')->first();
+//            return null;
         }
         else if( $this->profile && $this->profile !=null) return $this->profile;
         else return null;
@@ -136,30 +148,51 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     public function commentName($user_type){
-        if($user_type=='student') $user = Student::find($this->id);
-        else if($user_type=='instructor') $user = Instructor::find($this->id);
-        else if($user_type=='instructor_agency') $user = InstructorAgency::find($this->id);
-        else $user = LTCAffiliate::find($this->id);
-        if( $user->profile ){
-            return $user->profile->first_name.' '.$user->profile->last_name;
+        if($user_type=='student') $user_type='Student';
+        else if($user_type=='instructor') $user_type='Instructor';
+        else  $user_type='Affiliate';
+        $profile = $this->_profile( $user_type );
+        if( $profile != null){
+            if( Config::get('first_name_first') == true ) return $profile->first_name.' '.$profile->last_name;
+            return $profile->last_name.' '.$profile->first_name;
         }
         else{
-            if($user->first_name=='') return $user->email;
-            else return $user->first_name.' '.$user->last_name;
+            return $this->email;
         }
+//        if($user_type=='student') $user = Student::find($this->id);
+//        else if($user_type=='instructor') $user = Instructor::find($this->id);
+//        else if($user_type=='instructor_agency') $user = InstructorAgency::find($this->id);
+//        else $user = LTCAffiliate::find($this->id);
+//        if( $user->profile ){
+//            return $user->profile->first_name.' '.$user->profile->last_name;
+//        }
+//        else{
+//            if($user->first_name=='') return $user->email;
+//            else return $user->first_name.' '.$user->last_name;
+//        }
     }
     
     public function commentPicture($user_type){
-        if($user_type=='student') $user = Student::find($this->id);
-        else if($user_type=='instructor') $user = Instructor::find($this->id);
-        else if($user_type=='instructor_agency') $user = InstructorAgency::find($this->id);
-        else $user = LTCAffiliate::find($this->id);
-        if( $user->profile ){
-            return $user->profile->photo;
+        if($user_type=='student') $user_type='Student';
+        else if($user_type=='instructor') $user_type='Instructor';
+        else  $user_type='Affiliate';
+        $profile = $this->_profile( $user_type );
+        if( $profile != null){
+            return $profile->photo;
         }
         else{
             return '//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg';
         }
+//        if($user_type=='student') $user = Student::find($this->id);
+//        else if($user_type=='instructor') $user = Instructor::find($this->id);
+//        else if($user_type=='instructor_agency') $user = InstructorAgency::find($this->id);
+//        else $user = LTCAffiliate::find($this->id);
+//        if( $user->profile ){
+//            return $user->profile->photo;
+//        }
+//        else{
+//            return '//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg';
+//        }
     }
     
     public function isAffiliate(){
@@ -169,6 +202,14 @@ class User extends Ardent implements ConfideUserInterface
     public function getReminderEmail() {
         return $this['attributes']['email'];
 //        parent::getReminderEmail();
+    }
+    
+    public function _profile( $type='Student' ){
+        if( !$this->hasRole( $type ) ) return null;
+        foreach( $this->profiles as $profile ){
+            if( $profile->owner_type == $type ) return $profile;
+        }
+        return null;
     }
 
 }

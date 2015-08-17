@@ -9,6 +9,7 @@ return
     'sales' => 'Sales',
     'trackingCodeConverting' => 'Tracking Code Converting',
     'trackingCode' => 'Tracking Code',
+    'trackingCodes' => 'Tracking Codes',
     'stats' => 'Stats',
     'topCourses' => 'Top Courses',
     'topConvertingCourses' => 'Top Converting Courses',
@@ -27,9 +28,21 @@ return
     'alltime' => 'All Time',
     'today' => 'Today',
 
-    'salesCount' => 'Sales Count',
     'newUsers'   => 'New Users',
 
     'ltcRegistrations' => 'LTC Registrations',
-    'ltcEarnings' => 'LTC Earnings'
+    'ltcEarnings' => 'LTC Earnings',
+
+    'dateRange' => 'Date Range',
+    'updateChart' => 'Update Chart',
+
+    'course' => 'Course',
+
+    'Monday' => 'Monday',
+    'Tuesday' => 'Tuesday',
+    'Wednesday' => 'Wednesday',
+    'Thursday' => 'Thursday',
+    'Friday' => 'Friday',
+    'Saturday' => 'Saturday',
+    'Sunday' => 'Sunday'
 ];

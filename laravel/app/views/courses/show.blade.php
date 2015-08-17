@@ -94,7 +94,6 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-push-8 col-lg-push-8">
                             <div class="instructor margin-top-30 margin-bottom-30">
-                                <!--<h2>{{ trans('courses/general.instructor') }}</h2>-->
                                 @if( $instructor!=null )
                                     @if($instructor->profile == null)
                                         <div class="clearfix">
@@ -264,6 +263,7 @@
                     </div>
                 </div>
             	<div class="row">
+                <?php echo Flatten::section('courses-show-details'.$course->id, Config::get('custom.cache-expiry.course-desc-top-details'), function () use( $course )  { ?>
                 	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 column-1">
                     	<div class="number-of-lessons">
                             <span>{{ trans("general.lessons") }}</span>
@@ -290,15 +290,8 @@
                                 <em> {{ trans('general.'.$course->courseDifficulty->name) }}</em>
                             
                         </div>
-                    	<!--<div class="star-rating">
-                        	<em>{{ $course->total_reviews }}</em>
-                            <span>
-                            {{-- singplural($course->total_reviews, 'REVIEWS') --}}
-                            {{ Lang::choice( 'courses/general.reviews', $course->total_reviews) }}
-                            <!--{{ trans("general.reviews") }}-->
-                            <!--</span>
-                        </div>-->
                     </div>
+                <?php }); ?>
                 	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 column-3">
                         <div class="add-to-wishlist-container clearfix">
                         	
@@ -312,8 +305,10 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </section>
+        <?php echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { ?>
         <section class="course-description-container container-fluid clearfix">
             @if($course->bannerImage==='has banner bro')
                 <img src='{{$course->bannerImage->url}}' />
@@ -425,26 +420,7 @@
                                         
                                         </div>
                                     </li>
-                            	<!--<li>
-                                	<a href="#">Welcome to Marketing in a Digital World
-                                    	<span>5 min</span>
-                                    </a>
-                                </li>
-                            	<li>
-                                	<a href="#">What is Marketing?
-                                    	<span>Reading</span>
-                                    </a>
-                                </li>
-                            	<li>
-                                	<a href="#">Getting to Know Your Classmates
-                                    	<span>Quiz</span>
-                                    </a>
-                                </li>
-                            	<li>
-                                	<a href="#">Social Media
-                                    	<span>11 min</span>
-                                    </a>
-                                </li>-->
+                            	
                                 @endforeach
                             </ul>
                             <span class="hide-lesson-topics expandable-button show-more"
@@ -499,95 +475,17 @@
                             </a>
                         </div>
                         @endif
-                        <!--<div class="curriculum clearfix clear">
-                            <h3 class="text-center">
-                                <!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/divider.jpg" alt="">-->
-                                <!--{{ trans('courses/general.curriculum') }}
-                            </h3>
-        
-                            @foreach($course->modules as $module)
-                            <div class="clearfix">
-                                
-                                    <div class="modules module-1 clearfix clear">
-                                        <p>{{trans('courses/general.module')}} {{ $module->order }}</p>
-                                        <span>{{ $module->name }}</span>
-                                    </div>                        
-                                <ul class="lesson-container">
-                                    @foreach($module->lessons as $lesson)
-                                        @if($lesson->id == $module->lessons->last()->id)
-                                            <li class="lessons lesson-1">
-                                        @else
-                                            <li class="lessons lesson-1 bordered">
-                                        @endif
-                                            <span>{{trans('courses/general.lesson')}} {{ $lesson->order }}</span>
-                                            <p>{{ $lesson->name }}</p>
-                                            @if($lesson->price==0)
-                                            
-                                            {{ Form::open( [ 'action' => ['CoursesController@crashLesson', $course->slug, $lesson->slug ] ] ) }}
-                                                <button type="submit" class='btn crash-lesson-button pull-right'
-                                                @if( Auth::guest() || !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) )
-                                                    disabled="disabled" data-crash-disabled='1'
-                                                @endif
-                                                        >{{ trans('courses/general.crash_class') }}</button>
-                                            {{ Form::close() }}
-                                            
-                                            @else
-                                            
-                                            {{ Form::open( [ 'action' => ['CoursesController@purchaseLesson', $course->slug, $lesson->id ] ] ) }}
-                                            <!--<a href="#" class="crash-lesson-button">CRASH LESSON</a>-->
-                                            <!--<button class="btn crash-lesson-button pull-right" 
-                                                    @if( Auth::guest() || !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) )
-                                                    disabled="disabled" data-crash-disabled='1'
-                                                    @endif
-                                                    >{{ trans('courses/general.purchase') }}</button>
-                                            {{ Form::close() }}
-                                            
-                                            @endif
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                
-                            </div>
-                            @endforeach
-                        </div>-->
+                        
               		</div>
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="sidebar"> 
-                            <!--<div class="money-back">
-                        		<small>{{ trans('general.you-are-backed-by-our') }}</small>                           
-                                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/30-days-coupon.png" alt="">
-                                <p>{{ trans('general.money-back-guarantee') }}</p>
-                            </div>-->
-                            <!--<div class="who-its-for">
-                                 @if($who_for = json2Array($course->who_is_this_for))
-                                <ul>
-                                    @foreach($who_for as $who)
-                                        <li>{{$who}}</li>
-                                    @endforeach
-                                </ul>
-                                 @endif
-                            </div>-->
-
-
-                            <!--<div class="testimonial-block">        
-                                <div class="testimonials">
-                                    @if($course->testimonials->count() > 1)
-                                    <h4> {{ trans('courses/general.testimonials') }}</h4>
-                                        <p>
-                                         {{{ $course->testimonials->last()->content }}}
-                                        </p>
-                                        <span class="name">
-                                            {{$course->testimonials->last()->student->first_name}}
-                                            {{$course->testimonials->last()->student->last_name}}
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>-->
+                            
                         </div>
                     </div>
                 </div>
             </div>
-		</section>                        
+		</section>        
+        <?php }); ?>
         @if(Auth::guest() || !Auth::user()->hasRole('Instructor'))
             <section class="container-fluid become-an-instructor description">
                 <div class="container">

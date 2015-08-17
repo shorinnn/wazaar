@@ -303,6 +303,7 @@ class PrivateMessageCest{
     public function countAllUnreadStudentMessages(UnitTester $I){
         $student = Student::where('username','student')->first();
         $student2 = Student::where('username', 'sorin')->first();
+        DB::table('purchases')->where('student_id', 3)->update(['student_id' => $student2->id]);
         $student3 = Student::where('username', 'mac')->first();
         $reply = new PrivateMessage([ 'sender_id' => $student->id, 'recipient_id' => $student2->id, 'content' => 'Test']);
         $reply->type = 'student_conversation';

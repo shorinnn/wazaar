@@ -157,7 +157,6 @@
             </div>
             
             <div id='discover-courses-area'>
-                
                 {{ View::make('site.discover_courses')->with( compact('discoverCourses') ) }}
             </div>
         </div>

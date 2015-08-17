@@ -17,13 +17,13 @@ class DatabaseSeeder extends Seeder {
         $this->call('CourseSubcategorySeeder');
         $this->call('CourseDifficultySeeder');
         $this->call('CoursesSeeder');
-        $this->call('PurchasesSeeder');
         $this->call('CoursePreviewImagesSeeder');
         $this->call('ModulesSeeder');
         $this->call('LessonsSeeder');
         $this->call('VideosSeeder');
         $this->call('BlocksSeeder');
         $this->call('AnalyticsSeeder');
+        $this->call('PurchasesSeeder');
         $this->call('ProfileSeeder');
         $this->call('TestimonialsSeeder');
         $this->call('InstructorAgenciesSeeder');
@@ -851,8 +851,8 @@ P.S
 class PurchasesSeeder extends Seeder {
 
     public function run() {
-        DB::table('purchases')->delete();
-        Purchase::unguard();
+//        DB::table('purchases')->delete();
+//        Purchase::unguard();
         Purchase::create(['product_id' => 6, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5]);
         Purchase::create(['product_id' => 5, 'product_type' => 'Course', 'student_id' => 3, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 2]);
         Purchase::create(['product_id' => 6, 'product_type' => 'Course', 'student_id' => 9, 'ltc_affiliate_id' => 5, 'product_affiliate_id' => 5]);
