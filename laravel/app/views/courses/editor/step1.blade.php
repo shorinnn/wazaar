@@ -269,7 +269,7 @@
 
 
 @section('extra_js')
-<script src="{{url('js/courses-v2.js')}}"></script>
+
 <script src="{{url('plugins/uploader/js/vendor/jquery.ui.widget.js')}}"></script>
 <script src="{{url('plugins/uploader/js/jquery.iframe-transport.js')}}"></script>
 <script src="{{url('plugins/uploader/js/jquery.fileupload.js')}}"></script>

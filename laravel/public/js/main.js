@@ -28,17 +28,20 @@ $(document).ready(function(){
 
     $('#curriculum .lessons').jScrollPane();
     $(".profile-name > li").removeClass("activate-dropdown");
+    $('body').delegate('.type-in-elements', 'keyup', typeInElemens);
+    $('body').delegate('.characters-left', 'keyup', charactersLeft);
     $('body').delegate('.scroll-to-element', 'click', scrollToElement);
     $('body').delegate('.slide-toggler', 'click', slideToggle);
     $('body').delegate('a.load-remote', 'click', loadRemote);
     $('body').delegate('a.link-to-remote', 'click', linkToRemote);
+    $('body').delegate('a.link-to-remote-confirm', 'click', linkToRemoteConfirm);
     $('body').delegate('.form-to-remote-link', 'submit', formToRemoteLink);
     $('body').delegate('.load-remote a', 'click', prepareLoadRemote);
     $('body').delegate('a.load-more-ajax', 'click', loadMoreComments);
     $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
     $('body').delegate('.btnLink', 'click', goTo);
-	$('body').delegate('#video-grid .boxes', 'mouseenter', videoGridBoxIn);
-	$('body').delegate('#video-grid .boxes', 'mouseleave', videoGridBoxOut);
+    $('body').delegate('#video-grid .boxes', 'mouseenter', videoGridBoxIn);
+    $('body').delegate('#video-grid .boxes', 'mouseleave', videoGridBoxOut);
     $('body').delegate('.delayed-keyup', 'keyup', delayedKeyup);
 	$('button.join-class').mousedown(function(){
 		$(this).addClass('pushdown');
@@ -305,6 +308,53 @@ function linkToRemote(e){
     });
 
 }
+
+function linkToRemoteConfirm(e){
+    e.preventDefault();
+    // get the message from the clicked button, don't hard code it (so we can use localization)
+    msg = $(e.target).attr('data-message');
+    elem = $(e.target);
+    while(typeof(msg)=='undefined'){
+        elem = elem.parent();
+        msg = elem.attr('data-message');
+    }
+    if( !confirm(msg) ) return false;
+    
+    var nofollow = $(e.target).attr('data-nofollow');
+    if( typeof(nofollow)!='undefined'&& nofollow==1 ) return false;
+    
+    var loading = $(e.target).attr('data-loading');
+    if( typeof(loading)!='undefined'&& loading==1 ) return false;
+    
+    url = $(e.target).attr('data-url');
+    var callback = $(e.target).attr('data-callback');
+    elem = $(e.target);
+    while(typeof(url)=='undefined'){
+        elem = elem.parent();
+        url = elem.attr('data-url');
+        callback = elem.attr('data-callback');  
+        e.target = elem;
+    }
+    
+    $(elem).attr('data-old-label', $(elem).html() );
+    $(elem).html( '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $.get(url, function(result){
+        $(e.target).attr('data-loading', 0);
+        $(elem).html( $(elem).attr('data-old-label') );
+        result = JSON.parse(result);
+        if(result.status == 'success' ){
+            if( typeof(callback)!= 'undefined'){
+                window[callback](e, result);
+            }
+        }
+        else{
+            console.log( result );
+            $.bootstrapGrowl( _('An Error Occurred.'),{align:'center', type:'danger'} );
+        }
+    });
+
+}
+
 /**
  * Event handler for a.load-remote<br />
  * It loads the resource specified at data-url into the element specified at data-target
@@ -1479,3 +1529,64 @@ function getCookie(cname) {
     return "";
 }
     
+function charactersLeft(e){
+    elem = $(e.target);
+    limit = $(elem).attr('maxlength');
+    current = $(elem).val().length;
+    remaining = limit - current;
+    display = $(elem).attr('data-target');
+    $(display).html(remaining);
+}
+
+function enableCharactersLeft(){
+    $('.characters-left').each(function(){
+        $(this).keyup();
+    });
+}
+
+function toggleTheClass(e){
+    $source = $(e.target);
+    dest = $source.attr('data-target');
+    cls = $source.attr('data-class');
+    $(dest).toggleClass(cls);
+}
+
+function toggleVisibility(e){
+    $source = $(e.target);
+    dest = $source.attr('data-target');
+    hide =  $source.attr('data-visible');
+    if ( hide == 'hide' ) {
+        $source.attr('data-visible', 'show');
+        $(dest).hide();
+    }
+    else {
+        $source.attr('data-visible', 'hide');
+        $(dest).show();
+    }
+}
+
+function typeInElemens(e){
+    elem = $(e.target).attr('data-elements');
+    $(elem).html( $(e.target).val() );
+}
+
+function calculateFileSizes(){
+    $('.calculate-file-size').each(function(){
+        id = $(this).attr('data-id');
+        obj = $(this);
+        $.get( COCORIUM_APP_PATH+'blocks/'+id+'/size', function(result){
+            result = JSON.parse(result);
+            $obj = $('.calculate-file-size-'+result.id);
+            console.log($obj);
+            $obj.html( result.val );
+            console.log( result.val );
+            $obj.removeClass('calculate-file-size');
+        });
+    });
+}
+
+function showFiles(e, elem){
+    e.preventDefault();
+    e.stopPropagation();
+    $(elem).slideToggle();
+}

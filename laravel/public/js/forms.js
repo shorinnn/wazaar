@@ -15,6 +15,9 @@ $(document).ready(function(){
     $('body').delegate('.reply-to', 'click', setReplyTo);
     $('body').delegate('.cancel-reply', 'click', cancelReply);
     $('body').delegate('.toggle-disable', 'change', toggleDisable);
+    $('body').delegate('.reset-form', 'click', resetForm);
+    $('body').delegate('.submit-form', 'click', submitForm);
+    $('body').delegate('.click-on-enter', 'keyup keypress', clickOnEnter);
 });
 
 /**
@@ -122,7 +125,6 @@ function restoreSubmitLabel($form){
         $indicator = $(indicator);
         $indicator.html( $indicator.attr('data-old-label') );
         $indicator.removeAttr('disabled');
-        $form.removeAttr('data-save-indicator');
         return false;
     }
     
@@ -548,3 +550,32 @@ function toggleVisible(e){
         $(dest).show();
     }
 }
+
+function resetForm(e){
+    e.preventDefault();
+    form = $(e.target).attr('data-form');
+    $form = $(form);
+    $form[0].reset();
+}
+
+function submitForm(e){
+    e.preventDefault();
+    form = $(e.target).attr('data-form');
+    $form = $(form);
+    $form.find('[type="submit"]').click();
+//    $form[0].submit();
+}
+
+function clickOnEnter(e){
+    if( e.which == 13 ){
+        if( $.trim( $(e.target).val() )  == '') return false;
+        link = $(e.target).attr('data-click');
+        if( e.type=='keyup'){
+            $(link).click();
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }
+}
+
