@@ -371,11 +371,7 @@
                             </p>
                             <ul class="lesson-topics expandable-content clearfix">
                             @foreach($module->lessons as $lesson)
-                                @if($lesson->id == $module->lessons->last()->id)
-                                    <li class="lessons lesson-1">
-                                @else
-                                    <li class="lessons lesson-1 bordered clearfix">                                    	                                    
-                                @endif
+                                <li class="lessons lesson-1 bordered clearfix">     
                                 		<span><i class="wa-play"></i></span>
                                         <a href="#" class="clearfix lesson-name">{{ $lesson->name }}
                                         	
