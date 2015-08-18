@@ -1867,7 +1867,7 @@ header .activate-dropdown:hover ul{
 	display: inline-block;
 }
 
-.user-data-modal .or{
+.user-data-modal .orr{
 	width: 100%;
 	margin: 25px 0 22px;
 }
@@ -1877,31 +1877,31 @@ header .activate-dropdown:hover ul{
 	margin: 0;
 }
 
-.user-data-modal .or span{
+.user-data-modal .orr span{
 	background: #e3e5e6;
 	height: 1px;
 	width: 44%;
 	margin-top: 8px;
 }
 
-.user-data-modal .or em{
+.user-data-modal .orr em{
 	float: left;
 	font-size: 13px;
 	color: #303941;
 	margin: 0 14px;
 }
 
-.user-data-modal .or::after,
-.user-data-modal .or::before{
+.user-data-modal .orr::after,
+.user-data-modal .orr::before{
 	display: none;
 }
 
 
-.user-data-modal .or .left-line{
+.user-data-modal .orr .left-line{
 	float: left;
 }
 
-.user-data-modal .or .right-line{
+.user-data-modal .orr .right-line{
 	float: right;
 }
 
@@ -2490,7 +2490,7 @@ header .activate-dropdown:hover ul{
 	background-color: #ee7632;
 }*/
 
-.or{
+.orr{
 	width: 125px;
 	margin: 40px auto;
 	color: #849598;
@@ -2499,8 +2499,8 @@ header .activate-dropdown:hover ul{
 	position: relative;
 }
 
-.or::after,
-.or::before{
+.orr::after,
+.orr::before{
 	position: absolute;
 	top: 9px;
 	display: block;
@@ -2510,11 +2510,11 @@ header .activate-dropdown:hover ul{
 	background: #e5e8e9;
 }
 
-.or::before{
+.orr::before{
 	left: 0;
 }
 
-.or::after{
+.orr::after{
 	right: 0;
 }
 
@@ -7767,13 +7767,13 @@ p.tip::before{
 	text-decoration: none;
 }
 
-.course-enroll-wrapper span.or{
+.course-enroll-wrapper span.orr{
 	display: block;
 	width: 140px;
 }
 
-.course-enroll-wrapper span.or:after, 
-.course-enroll-wrapper span.or:before{
+.course-enroll-wrapper span.orr:after, 
+.course-enroll-wrapper span.orr:before{
 	width: 54px;
 }
 
@@ -9640,7 +9640,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
     text-align: center;
     top: 0;
 	padding-top: 12px;
-	background: rgba(0, 0, 0, 0.8)
+	background: rgba(0, 0, 0, 0.8);
     visibility: hidden;
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;

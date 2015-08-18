@@ -10,7 +10,7 @@ class ModulesController extends \BaseController {
         public function store($course){
             $module = new Module();
             $course = Course::find($course);
-            if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
+            if( !admin() && $course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 $response = ['status' => 'error', 'errors' => trans('crud/errors.error_occurred') ];
                 return json_encode($response);
             }
@@ -44,7 +44,7 @@ class ModulesController extends \BaseController {
         public function destroy($course, $id){
             $module = Module::find($id);
             if($module!=null && ( $module->course->instructor->id == Auth::user()->id 
-                    || $module->course->assigned_instructor_id == Auth::user()->id ) ){
+                    || $module->course->assigned_instructor_id == Auth::user()->id || admin() ) ){
                 $module->delete();
                 $response = ['status' => 'success'];
                 if(!Request::ajax()) return Redirect::back();
@@ -58,7 +58,7 @@ class ModulesController extends \BaseController {
         public function update($course, $id){
             $module = Module::find($id);
             if($module!=null && ( $module->course->instructor->id == Auth::user()->id 
-                    || $module->course->assigned_instructor_id == Auth::user()->id ) ){
+                    || $module->course->assigned_instructor_id == Auth::user()->id || admin() ) ){
                 $name = Input::get('name');
                 $module->fill( Input::all() );
                 

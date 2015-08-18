@@ -20,7 +20,8 @@
         background-image:url('http://www.mytreedb.com/uploads/mytreedb/loader/ajax_loader_blue_32.gif');
     }
 </style>
-
+<a href="{{ action('EmailTemplatesController@edit', 'course-approved' )}}">Edit Approved Email</a> |
+<a href="{{ action('EmailTemplatesController@edit', 'course-rejected' )}}">Edit Rejected Email</a> 
 {{ View::make('administration.submissions.partials.table')->with( compact('submissions') ) }}
 
 @stop

@@ -1,0 +1,157 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save-dev',
+1 verbose cli   'gulp-concat-css' ]
+2 info using npm@2.11.3
+3 info using node@v0.12.7
+4 verbose install initial load of /home/vagrant/Code/wazaar/laravel/package.json
+5 verbose installManyTop reading scoped package data from /home/vagrant/Code/wazaar/laravel/node_modules/gulp/package.json
+6 verbose installManyTop reading scoped package data from /home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat/package.json
+7 verbose installManyTop reading scoped package data from /home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css/package.json
+8 verbose installManyTop reading scoped package data from /home/vagrant/Code/wazaar/laravel/node_modules/gulp-minify-css/package.json
+9 verbose installManyTop reading scoped package data from /home/vagrant/Code/wazaar/laravel/node_modules/gulp-rename/package.json
+10 verbose installManyTop reading scoped package data from /home/vagrant/Code/wazaar/laravel/node_modules/gulp-rev/package.json
+11 verbose installManyTop reading scoped package data from /home/vagrant/Code/wazaar/laravel/node_modules/gulp-rev-outdated/package.json
+12 verbose installManyTop reading scoped package data from /home/vagrant/Code/wazaar/laravel/node_modules/gulp-uglify/package.json
+13 verbose installManyTop reading scoped package data from /home/vagrant/Code/wazaar/laravel/node_modules/rimraf/package.json
+14 verbose installManyTop reading scoped package data from /home/vagrant/Code/wazaar/laravel/node_modules/through2/package.json
+15 info package.json gulp-concat-css@2.2.0 No license field.
+16 info package.json gulp-concat@2.5.2 No license field.
+17 info package.json gulp-rename@1.2.2 No license field.
+18 verbose readDependencies loading dependencies from /home/vagrant/Code/wazaar/laravel/package.json
+19 verbose install gulp-concat-css is installed as 2.2.0
+20 silly cache add args [ 'gulp-concat-css', null ]
+21 verbose cache add spec gulp-concat-css
+22 silly cache add parsed spec { raw: 'gulp-concat-css',
+22 silly cache add   scope: null,
+22 silly cache add   name: 'gulp-concat-css',
+22 silly cache add   rawSpec: '',
+22 silly cache add   spec: '*',
+22 silly cache add   type: 'range' }
+23 silly addNamed gulp-concat-css@*
+24 verbose addNamed "*" is a valid semver range for gulp-concat-css
+25 silly addNameRange { name: 'gulp-concat-css', range: '*', hasData: false }
+26 silly mapToRegistry name gulp-concat-css
+27 silly mapToRegistry using default registry
+28 silly mapToRegistry registry https://registry.npmjs.org/
+29 silly mapToRegistry uri https://registry.npmjs.org/gulp-concat-css
+30 verbose addNameRange registry:https://registry.npmjs.org/gulp-concat-css not in flight; fetching
+31 verbose request uri https://registry.npmjs.org/gulp-concat-css
+32 verbose request no auth needed
+33 info attempt registry request try #1 at 9:46:51 PM
+34 verbose request id c43930635523ef14
+35 verbose etag "C398QGYHB31DA8AXJACH64UWI"
+36 http request GET https://registry.npmjs.org/gulp-concat-css
+37 http 304 https://registry.npmjs.org/gulp-concat-css
+38 silly get cb [ 304,
+38 silly get   { date: 'Mon, 17 Aug 2015 21:46:51 GMT',
+38 silly get     via: '1.1 varnish',
+38 silly get     'cache-control': 'max-age=60',
+38 silly get     etag: '"C398QGYHB31DA8AXJACH64UWI"',
+38 silly get     age: '0',
+38 silly get     connection: 'keep-alive',
+38 silly get     'x-served-by': 'cache-ams4142-AMS',
+38 silly get     'x-cache': 'HIT',
+38 silly get     'x-cache-hits': '1',
+38 silly get     'x-timer': 'S1439848011.913458,VS0,VE377',
+38 silly get     vary: 'Accept' } ]
+39 verbose etag https://registry.npmjs.org/gulp-concat-css from cache
+40 verbose get saving gulp-concat-css to /home/vagrant/.npm/registry.npmjs.org/gulp-concat-css/.cache.json
+41 silly addNameRange number 2 { name: 'gulp-concat-css', range: '*', hasData: true }
+42 silly addNameRange versions [ 'gulp-concat-css',
+42 silly addNameRange   [ '0.1.1',
+42 silly addNameRange     '0.1.3',
+42 silly addNameRange     '0.1.4',
+42 silly addNameRange     '0.2.0',
+42 silly addNameRange     '1.0.0',
+42 silly addNameRange     '1.1.0',
+42 silly addNameRange     '1.1.1',
+42 silly addNameRange     '1.2.0',
+42 silly addNameRange     '2.0.0',
+42 silly addNameRange     '2.1.0',
+42 silly addNameRange     '2.1.1',
+42 silly addNameRange     '2.1.2',
+42 silly addNameRange     '2.2.0' ] ]
+43 silly addNamed gulp-concat-css@2.2.0
+44 verbose addNamed "2.2.0" is a plain semver version for gulp-concat-css
+45 silly cache afterAdd gulp-concat-css@2.2.0
+46 verbose afterAdd /home/vagrant/.npm/gulp-concat-css/2.2.0/package/package.json not in flight; writing
+47 verbose afterAdd /home/vagrant/.npm/gulp-concat-css/2.2.0/package/package.json written
+48 silly install resolved [ { name: 'gulp-concat-css',
+48 silly install resolved     description: 'Concatenate css files, rebasing urls and inlining @import',
+48 silly install resolved     version: '2.2.0',
+48 silly install resolved     homepage: 'https://github.com/mariocasciaro/gulp-concat-css',
+48 silly install resolved     author: { name: 'Mario Casciaro' },
+48 silly install resolved     repository:
+48 silly install resolved      { type: 'git',
+48 silly install resolved        url: 'git://github.com/mariocasciaro/gulp-concat-css.git' },
+48 silly install resolved     bugs: { url: 'https://github.com/mariocasciaro/gulp-concat-css/issues' },
+48 silly install resolved     licenses: [ [Object] ],
+48 silly install resolved     dependencies:
+48 silly install resolved      { 'gulp-util': '~3.0.1',
+48 silly install resolved        'lodash.defaults': '^3.0.0',
+48 silly install resolved        'parse-import': '^2.0.0',
+48 silly install resolved        rework: '~1.0.0',
+48 silly install resolved        'rework-import': '^2.0.0',
+48 silly install resolved        'rework-plugin-url': '^1.0.1',
+48 silly install resolved        through2: '~1.1.1' },
+48 silly install resolved     devDependencies: { chai: '^1.10.0', mocha: '^2.1.0' },
+48 silly install resolved     scripts: { test: 'node_modules/mocha/bin/mocha test/*.js --reporter spec' },
+48 silly install resolved     keywords: [ 'gulpplugin', 'concat', 'css', 'import', 'merge', 'inline' ],
+48 silly install resolved     gitHead: 'bac037cb5d2a6ddbc1172b65d9929aa7577c0110',
+48 silly install resolved     _id: 'gulp-concat-css@2.2.0',
+48 silly install resolved     _shasum: '25f28126a9da8a0f583e0897b3fb8425229c5282',
+48 silly install resolved     _from: 'gulp-concat-css@*',
+48 silly install resolved     _npmVersion: '1.4.28',
+48 silly install resolved     _npmUser: { name: 'mariocasciaro', email: 'contact@mariocasciaro.me' },
+48 silly install resolved     maintainers: [ [Object] ],
+48 silly install resolved     dist:
+48 silly install resolved      { shasum: '25f28126a9da8a0f583e0897b3fb8425229c5282',
+48 silly install resolved        tarball: 'http://registry.npmjs.org/gulp-concat-css/-/gulp-concat-css-2.2.0.tgz' },
+48 silly install resolved     directories: {},
+48 silly install resolved     _resolved: 'https://registry.npmjs.org/gulp-concat-css/-/gulp-concat-css-2.2.0.tgz',
+48 silly install resolved     readme: 'ERROR: No README data found!' } ]
+49 info install gulp-concat-css@2.2.0 into /home/vagrant/Code/wazaar/laravel
+50 info installOne gulp-concat-css@2.2.0
+51 verbose installOne of gulp-concat-css to /home/vagrant/Code/wazaar/laravel not in flight; installing
+52 verbose lock using /home/vagrant/.npm/_locks/gulp-concat-css-9560cce0b4b9fadb.lock for /home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css
+53 silly install write writing gulp-concat-css 2.2.0 to /home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css
+54 verbose unbuild node_modules/gulp-concat-css
+55 info preuninstall gulp-concat-css@2.2.0
+56 info uninstall gulp-concat-css@2.2.0
+57 verbose unbuild rmStuff gulp-concat-css@2.2.0 from /home/vagrant/Code/wazaar/laravel/node_modules
+58 info postuninstall gulp-concat-css@2.2.0
+59 silly gentlyRm /home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css is being purged from base /home/vagrant/Code/wazaar/laravel
+60 verbose gentlyRm don't care about contents; nuking /home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css
+61 silly vacuum-fs purging /home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css
+62 verbose unlock done using /home/vagrant/.npm/_locks/gulp-concat-css-9560cce0b4b9fadb.lock for /home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css
+63 verbose stack Error: EIO, rmdir '/home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css'
+63 verbose stack     at Error (native)
+64 verbose cwd /home/vagrant/Code/wazaar/laravel
+65 error Linux 3.13.0-24-generic
+66 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "--save-dev" "gulp-concat-css"
+67 error node v0.12.7
+68 error npm  v2.11.3
+69 error path /home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css
+70 error code EIO
+71 error errno -5
+72 error EIO, rmdir '/home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css'
+73 error If you need help, you may report this error at:
+73 error     <https://github.com/npm/npm/issues>
+74 verbose exit [ -5, true ]
+75 verbose unbuild node_modules/gulp-concat-css
+76 info preuninstall gulp-concat-css@2.2.0
+77 info uninstall gulp-concat-css@2.2.0
+78 verbose unbuild rmStuff gulp-concat-css@2.2.0 from /home/vagrant/Code/wazaar/laravel/node_modules
+79 info postuninstall gulp-concat-css@2.2.0
+80 silly gentlyRm /home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css is being purged from base /home/vagrant/Code/wazaar/laravel
+81 verbose gentlyRm don't care about contents; nuking /home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css
+82 silly vacuum-fs purging /home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css
+83 error error rolling back Error: EIO, rmdir '/home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css'
+83 error error rolling back     at Error (native)
+83 error error rolling back  { [Error: EIO, rmdir '/home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css']
+83 error error rolling back   errno: -5,
+83 error error rolling back   code: 'EIO',
+83 error error rolling back   path: '/home/vagrant/Code/wazaar/laravel/node_modules/gulp-concat-css' }

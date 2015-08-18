@@ -283,6 +283,7 @@
     <button class="blue-button large-button submit-for-approval disabled-button" disabled>
         {{ trans('courses/general.wazaar-is-checking-your-product')}}
     </button>
+    <button type='button' class="blue-button large-button step-3-save-btn" onclick="saveStep3Form()">{{ trans('courses/general.saving-button') }}</button>
     @else
     <button type='button' class="blue-button large-button step-3-save-btn" onclick="saveStep3Form()">{{ trans('courses/general.saving-button') }}</button>
     <button class="blue-button large-button submit-for-approval">{{ trans('courses/create.submit-for-approval')}}</button>

@@ -44,6 +44,31 @@ class SubmissionsController extends \BaseController {
                $course->reject_reason = '';    
             }
             if( $course->updateUniques () ){
+                $user = $course->instructor;
+                if(Input::get('value')=='approved'){
+                    $subject = 'Course Approved';
+                    $content = EmailTemplate::where('tag','course-approved')->first()->content;
+                }
+                else{
+                    $subject = 'Course Rejected';
+                    $content = EmailTemplate::where('tag','course-rejected')->first()->content;
+                }
+                
+                $content = str_replace('@NAME@', $user->commentName("Instructor"), $content);
+                $content = str_replace('@COURSENAME@', $course->name, $content);
+                $content = str_replace('@LINK@', action('CoursesController@show', $course->slug), $content);
+                $content = str_replace('@REASONS@', $course->reject_reason, $content);
+                Mail::send(
+                        'emails.simple',
+                        compact( 'content' ),
+                        function ($message) use ($user, $subject) {
+                            $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
+                            $message
+                                ->to($user->email, $user->email)
+                                ->subject( $subject );
+                        }
+                    );
+                    
                 if(Request::ajax()) return json_encode( ['status'=>'success'] );
                 return Redirect::back()->withSuccess( trans('crud/errors.object_updated', ['object'=>'Course'] ));
             }

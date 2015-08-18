@@ -15,6 +15,9 @@ $(document).ready(function(){
     $('body').delegate('.reply-to', 'click', setReplyTo);
     $('body').delegate('.cancel-reply', 'click', cancelReply);
     $('body').delegate('.toggle-disable', 'change', toggleDisable);
+    $('body').delegate('.reset-form', 'click', resetForm);
+    $('body').delegate('.submit-form', 'click', submitForm);
+    $('body').delegate('.click-on-enter', 'keyup keypress', clickOnEnter);
 });
 
 /**
@@ -61,7 +64,7 @@ function formAjaxSubmit(e){
         }
         restoreSubmitLabel(form);
         if( typeof(form.attr('data-callback'))!='undefined' ){
-//          window[form.attr('data-callback')](result, e);
+            
             fn = form.attr('data-callback').split('.');
             if(fn.length == 1) window[ fn[0] ](result, e);
             else{
@@ -122,7 +125,6 @@ function restoreSubmitLabel($form){
         $indicator = $(indicator);
         $indicator.html( $indicator.attr('data-old-label') );
         $indicator.removeAttr('disabled');
-        $form.removeAttr('data-save-indicator');
         return false;
     }
     
@@ -383,12 +385,7 @@ function enableFileUploader($uploader){
                 dropZone: $(dropzone)
             }).on('fileuploadadd', function (e, data) {
                 $(progressbar).parent().show();
-//                str =  $(progressbar).prop('outerHTML');
-//                str += '<br /><br />';
-//                bootbox.dialog({
-//                    title: _('Uploading'),
-//                    message: str
-//                  });
+                
                 callback = $uploader.attr('data-add-callback');
                 if( typeof(callback) !='undefined' ){
                     return window[callback](e, data);
@@ -475,7 +472,6 @@ function setReplyTo(e){
     id = $(e.target).attr('data-id');
     name = $(e.target).prev('.name').html();
     
-    //$box = $(e.target).parent().parent().find('.replies').first();
     $box = $('.replies-comment-'+id);
     $box.find('.comment-form-reply').remove();
     id =  '.replies-' + $box.parent().attr('id');
@@ -548,3 +544,31 @@ function toggleVisible(e){
         $(dest).show();
     }
 }
+
+function resetForm(e){
+    e.preventDefault();
+    form = $(e.target).attr('data-form');
+    $form = $(form);
+    $form[0].reset();
+}
+
+function submitForm(e){
+    e.preventDefault();
+    form = $(e.target).attr('data-form');
+    $form = $(form);
+    $form.find('[type="submit"]').click();
+}
+
+function clickOnEnter(e){
+    if( e.which == 13 ){
+        if( $.trim( $(e.target).val() )  == '') return false;
+        link = $(e.target).attr('data-click');
+        if( e.type=='keyup'){
+            $(link).click();
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }
+}
+

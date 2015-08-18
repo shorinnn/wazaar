@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{url('css/bootstrap-datetimepicker.css')}}">
     <link rel="Stylesheet" type="text/css" href="{{ url('css/smoothDivScroll.css') }}" />
 
+
     @yield('extra_css')
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -143,7 +144,7 @@
                                 <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.login-with-facebook') }}</a>
                                 <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
                             </div>
-                            <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
+                            <div class="orr"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
                             <p class="intro-paragraph text-center">{{ trans('general.enter-email-and-password') }}</p>
                             <div class="form-container clearfix">
                             <form id='login-form' role="form" method="POST" onsubmit="return loginValidator.validate(event);"
@@ -209,7 +210,7 @@
                                 <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.register-with-facebook') }}</a>
                                 <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
                             </div>
-                            <div class="or"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
+                            <div class="orr"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
                             <p class="intro-paragraph text-center">{{ trans('general.enter-new-email-and-password') }}</p>
                             <div class="form-container clearfix">
                                 <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8" id="register-form"
@@ -335,7 +336,9 @@
         
 
     @endif
-    
+
+    <script src="{{url('plugins/mediaelements/mediaelement-and-player.min.js')}}"></script>
+
     @yield('extra_js')
 		<script type="text/javascript">
                 window.reloadConfirm = false;
@@ -343,6 +346,7 @@
                          window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
                          _.setTranslation( js_translation_map_{{ Config::get('app.locale') }} );
 			$(document).ready(function() {
+                //$('video,audio').mediaelementplayer();
 				$('.popular-courses-carousel').show();
                 jQuery(window).bind('beforeunload', function(e) {
 

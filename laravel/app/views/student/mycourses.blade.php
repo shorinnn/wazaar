@@ -167,6 +167,11 @@
 <script src='{{ url('js/progressbar.min.js')}}'></script>
 <script>
     $(function(){
+            var hash = window.location.hash;
+            if( isset(hash) ){
+                $('[href="'+hash+'"]').click();
+            }
+            
             $('.progress-circle').each(function(){
                 var $elem = $(this);
                 var text = $elem.attr('data-text');

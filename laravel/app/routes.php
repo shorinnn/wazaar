@@ -111,6 +111,7 @@ $wwwRoutes = function(){
         Route::post('email/publishers', 'AdminEmailController@sendPublishers');
         Route::get('frontpage/featured-courses', 'FrontpageController@featuredCourses');
         Route::post('frontpage/featured-courses', 'FrontpageController@doFeaturedCourses');
+        Route::resource('email-templates', 'EmailTemplatesController');
     });
 
     // Course Categories
