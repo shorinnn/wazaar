@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-    <div class="container-fluid student-dashboard student-messages">
+    <div class="container-fluid new-dashboard student-messages">
     	<div class="container">
         	<div class="row">
             	<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 message-preview-wrap">

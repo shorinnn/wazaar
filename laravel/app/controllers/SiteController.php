@@ -104,8 +104,18 @@ class SiteController extends \BaseController {
             Return View::make('TEMPORARYVIEWS.instructor_dashboard');
 	}
 
+	public function instructorcourse()
+	{            
+            Return View::make('TEMPORARYVIEWS.instructor_course');
+	}
 
-// Temporary functions for new Dashboard UI 
+	public function instructorquestions()
+	{            
+            Return View::make('TEMPORARYVIEWS.instructor_questions');
+	}
+
+
+// Temporary functions for Affiliate Gift UX
 	public function affiliategift1()
 	{            
             Return View::make('TEMPORARYVIEWS.affiliategift1');
