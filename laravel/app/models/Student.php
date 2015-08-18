@@ -117,7 +117,23 @@ class Student extends User{
         if( !$this->canPurchase($product) ) return false;
         // if this is the first purchase, set the LTC affiliates - DROPPED
 //        if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
-        $course = ( get_class($product)=='Course' ) ? $product : $product->module->course;
+        if( get_class($product)=='Course' ){
+            $course = $product;
+            if( $course->publish_status == 'pending' ){
+                if( $course->pre_submit_data !='' ) {
+                    $old = json_decode( $course->pre_submit_data );
+                    foreach($old as $k => $v){
+                        $course->$k = $v;
+                        $product->$k = $v;
+                    }
+                }
+            }
+        } 
+        else{
+            $course = $product->module->course;
+        }  
+        
+        
         
         $purchase = new Purchase;
 
