@@ -1970,7 +1970,13 @@ header .profile-name li:hover ul{
 	background: #0099ff;
 	border-radius: 4px;	
 }
-
+.green-button i,
+.blue-button i{
+    font-size: 15px;
+    position: relative;
+    top: 1px;
+    margin-right: 3px;
+}
 .blue-button:hover{
 	color: #fff;
 	background: #33adff;
@@ -3854,6 +3860,10 @@ h6{
 	margin-top: -282px;
 }
 
+.instructor-dashboard .sidebar{
+	margin-top: -157px;
+}
+
 .new-dashboard .sidebar .upload-picture-button,
 .new-dashboard .sidebar .read-message,
 .new-dashboard .sidebar .name,
@@ -3947,6 +3957,7 @@ h6{
 	top: 2px;
 }
 
+.student-messages .message-preview.unread .avatar::before,
 .new-dashboard .sidebar .message-preview.unread h4::before{
 	height: 5px;
 	width: 5px;
@@ -4068,7 +4079,6 @@ h6{
 	margin-top: 25px;
 	border-radius: 4px;
 	border: solid 1px #e0e1e2;
-	overflow: hidden;
 }
 
 .new-dashboard.dashboardTabs .enrolled-lesson{
@@ -4128,7 +4138,7 @@ h6{
 	margin-top: 21px;
 }
 
-.new-dashboard.dashboardTabs .enrolled-lesson h4{
+.new-dashboard.dashboardTabs h4{
 	font-size: 14px;
 	font-weight: 600;
 	margin: 8px 0 14px;
@@ -4138,13 +4148,18 @@ h6{
 	color: #03a2ff;
 }
 
-.new-dashboard.dashboardTabs .enrolled-lesson p{
+.new-dashboard.dashboardTabs p{
 	color: #798794;
 	margin: 0 0 7px;
 }
 
-.new-dashboard.dashboardTabs .enrolled-lesson p .created-on,
-.new-dashboard.dashboardTabs .enrolled-lesson p .status{
+.new-dashboard.dashboardTabs .teaching-lesson .image-wrap{
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.new-dashboard.dashboardTabs .teaching-lesson p .created-on,
+.new-dashboard.dashboardTabs .teaching-lesson p .status{
 	width: 95px;
 	font-size: 11px;
 	font-weight: bold;
@@ -4153,17 +4168,124 @@ h6{
 	text-transform: uppercase;
 }
 
-.instructor-dashboard.dashboardTabs .enrolled-lesson p em{
+
+.new-dashboard.dashboardTabs .settings{
+	float: right;
+}
+
+.new-dashboard.dashboardTabs .settings-button{
+	border: none;
+	background: none;
+}
+
+.new-dashboard.dashboardTabs .settings-button i{
+	color: #a7b7c4;
+	font-size: 10px;
+}
+
+.new-dashboard.dashboardTabs .settings-button i.fa-cog{
+	font-size: 18px;
+}
+
+.new-dashboard.dashboardTabs .settings .dropdown-menu{
+	min-width: 138px;
+	border-radius: 3px;
+	border: solid 1px #e0e1e2;
+	left: -10px;
+	top: 25px;
+	padding: 0;
+	margin: 0;
+	-webkit-box-shadow: 1px 1px 8px 1px #dfdfdf;
+	-moz-box-shadow: 1px 1px 8px 1px #dfdfdf;
+	-o-box-shadow: 1px 1px 8px 1px #dfdfdf;
+	-ms-box-shadow: 1px 1px 8px 1px #dfdfdf;
+	box-shadow: 1px 1px 8px 1px #dfdfdf;
+}
+
+.new-dashboard.dashboardTabs .settings .dropdown-menu a{
+	padding: 14px 0 15px 24px;
+	font-size: 13px;
+	font-weight: normal;
+	color: #657482;
+	display: block;
+}
+
+.new-dashboard.dashboardTabs .settings .dropdown-menu a:hover{
+	background: #f7f9fa;
+	color: #303941;
+}
+
+.new-dashboard.dashboardTabs .settings .dropdown-menu a.delete{
+	border-top: solid 1px #e0e1e2;
+}
+
+.new-dashboard.dashboardTabs .lesson-status.draft{
+	background: #cfd8df;
+}
+
+.new-dashboard.dashboardTabs .lesson-status.approved{
+	background: #6fc423;
+}
+
+.new-dashboard.dashboardTabs .lesson-status.pending{
+	background: #0099ff;
+}
+
+
+/*Instructor Dashboard*/
+.instructor-dashboard.top-section{
+	padding-top: 45px;
+	padding-bottom: 50px;
+}
+
+.instructor-dashboard .activity-today h2{
+	color: #fff;
+	font-size: 20px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.instructor-dashboard .activity-today h2 i{
+	margin-left: 7px;
+	color: #a7b7c4;
+	font-size: 11px;
+}
+
+.instructor-dashboard .activity-today .count{
+	font-size: 26px;
+	color: #fff;
+	margin-right: 2px;
+}
+
+.instructor-dashboard .activity-today .small-graph{
+	position: relative;
+	top: -3px;
+}
+
+.instructor-dashboard .activity-today p{
+	text-transform: uppercase;
+	color: #657482;
+	font-size: 11px;
+	font-weight: bold;
+	margin: 4px 0 0;
+}
+
+.instructor-dashboard.dashboardTabs .tab-content{
+	margin-top: 0;
+	border: none;
+}
+
+.instructor-dashboard.dashboardTabs .teaching-lesson p em{
 	color: #657482;
 	font-style: normal;
 }
 
-.instructor-dashboard.dashboardTabs .enrolled-lesson p .public{
+.instructor-dashboard.dashboardTabs .teaching-lesson p .public{
 	margin-left: 15px;
 	position: relative;
 }
 
-.instructor-dashboard.dashboardTabs .enrolled-lesson p .public::before{
+.instructor-dashboard.dashboardTabs .teaching-lesson p .public::before{
     height: 5px;
     width: 5px;
     border-radius: 5px;
@@ -4174,11 +4296,25 @@ h6{
     content: '';
 }
 
-.instructor-dashboard.dashboardTabs .enrolled-lesson h4 a{
+.instructor-dashboard.dashboardTabs .row-1{
+	padding: 24px;
+	background: #fff;
+	border-radius: 4px 4px 0 0;
+}
+
+.instructor-dashboard.dashboardTabs .teaching-lesson h4{
+	margin: 0 0 17px;
+}
+
+.instructor-dashboard.dashboardTabs .teaching-lesson p{
+	margin: 0;
+}
+
+.instructor-dashboard.dashboardTabs .teaching-lesson h4 a{
 	color: #303941;
 }
 
-.instructor-dashboard.dashboardTabs .enrolled-lesson h4 .lesson-status{
+.instructor-dashboard.dashboardTabs .teaching-lesson h4 .lesson-status{
 	margin-left: 15px;
 	display: inline-block;
 	padding: 6px;
@@ -4188,28 +4324,217 @@ h6{
 	font-weight: bold;
 	text-transform: uppercase;
 	position: relative;
-	top: 1px;
+	top: -1px;
 }
 
-.instructor-dashboard.dashboardTabs .enrolled-lesson h4 .lesson-status.draft{
-	background: #cfd8df;
-}
-
-.instructor-dashboard.dashboardTabs .enrolled-lesson h4 .lesson-status.approved{
-	background: #6fc423;
-}
-
-.instructor-dashboard.dashboardTabs .enrolled-lesson h4 .lesson-status.pending{
-	background: #0099ff;
-}
-
-.instructor-dashboard.dashboardTabs .enrolled-lesson h4 a:hover{
+.instructor-dashboard.dashboardTabs .teaching-lesson h4 a:hover{
 	color: #03a2ff;
 }
 
-.instructor-dashboard.dashboardTabs .enrolled-lesson:hover {
+.instructor-dashboard.dashboardTabs .teaching-lesson:hover {
     background: #fff;
 }
+
+.instructor-dashboard.dashboardTabs .row-2{
+	background: #f7f9fa;
+	padding: 16px 0;
+	border-radius: 0 0 4px 4px;
+	border-top: solid 1px #e8eced;
+}
+
+.instructor-dashboard.dashboardTabs .row-2 p{
+	font-size: 11px;
+	font-weight: bold;
+	color: #a7b7c4;
+	text-transform: uppercase;
+}
+
+.instructor-dashboard.dashboardTabs .row-2 p i{
+	margin-right: 8px;
+	font-size: 16px;
+}
+
+.instructor-dashboard.dashboardTabs .row-2 p .count{
+	color: #657482;
+	margin-left: 14px;
+}
+
+.instructor-dashboard.dashboardTabs .row-2 p .count.new{
+	color: #e54b2d;
+}
+
+/*Instructor Course*/
+.instructor-course .question-answer .question .replies-box{
+	background: none;
+	border: none;
+}
+
+.instructor-course .question-answer .date{
+	font-size: 13px;
+	float: right;
+	color: #a7b7c4;
+}
+
+.instructor-course .question-answer .question .replies-box .name{
+	font-size: 14px;
+	font-weight: 600;
+	color: #303941;
+	float: left;
+}
+
+.instructor-course .question-answer .role,
+.instructor-course .question-answer .name{
+	margin-top: 0 !important;
+}
+
+.instructor-course .question-answer .question .replies-box .name .lead{
+	font-style: normal;
+	color: #657482;
+	font-size: 14px;
+}
+
+.instructor-course .question-answer .question .replies-box h2{
+	font-size: 20px;
+	font-weight: normal;
+	margin: 24px 0 0;
+	color: #303941;
+	line-height: 26px;
+}
+
+.instructor-course .question-answer .question .replies-box .reply{
+	margin-top: 18px;
+}
+
+.instructor-course .discussion-sidebar-footer{
+	padding: 24px 15px !important;
+}
+
+.instructor-course .discussion-sidebar-footer form{
+	width: 89%;
+}
+
+.instructor-course .vote-reply{
+	margin-top: 10px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #a7b7c4;
+}
+
+.instructor-course .vote-reply i{
+	margin-left: 10px;
+	margin-right: 10px;
+	position: relative;
+	top: 0;
+	font-size: 10px;
+}
+
+.instructor-course .vote-reply .reply-button{
+	position: relative;
+	margin-left: 10px;
+}
+
+.instructor-course .message-preview-wrap .last-reply::before,
+.instructor-course .vote-reply .reply-button::before{
+    height: 5px;
+    width: 5px;
+    border-radius: 5px;
+    content: " ";
+    position: absolute;
+    left: -15px;
+    top: 6px;
+    background: #84909b;
+}
+
+.instructor-course .tab-content{
+	background: #f7f9fa;
+	border: solid 1px #e0e1e2;
+	border-radius: 4px;
+}
+
+.instructor-course .answer{
+	margin: 12px 0 0;
+}
+
+.instructor-course .question-answer-wrap{
+	border-radius: 0 !important;
+	border: solid #e0e1e2 !important;
+	border-width: 0 0 0 1px !important;
+}
+
+.instructor-course .message-preview-wrap{
+	border-width: 0 0 1px 0 !important;
+	border-radius: 0 !Important;
+}
+
+.instructor-course .message-preview-wrap .message-header{
+	padding: 0 10px;
+}
+
+.instructor-course .message-preview-wrap .message-preview{
+	padding: 20px 15px !important;
+}
+
+.instructor-course .message-preview-wrap .message-preview h3 a{
+	font-size: 14px;
+	font-weight: 600;
+	color: #0099ff;
+	position: relative;
+}
+.instructor-course .message-preview-wrap .message-preview h3{
+	margin: 0 0 9px;
+}
+
+.instructor-course .message-preview-wrap .message-preview p{
+	font-size: 13px;
+}
+
+.instructor-course .message-preview-wrap .number-of-replies{
+	color: #a7b7c4;
+	font-size: 15px;
+	display: inline-block;
+	margin-top: 15px;
+}
+.instructor-course .message-preview-wrap .number-of-replies i{
+	margin-left: 2px;
+}
+.instructor-course .message-preview-wrap .last-reply{
+	margin-left: 20px;
+	position: relative;
+}
+.instructor-course .message-preview-wrap .message-preview.active h3 a,
+.instructor-course .message-preview-wrap .message-preview:hover h3 a{
+	color: #303941;
+}
+.instructor-course .message-preview-wrap .message-preview{
+	position: relative;
+}
+
+.instructor-course .message-preview-wrap .message-preview::before{
+    background: none;
+    position: absolute;
+    left: 1px;
+    margin: 1px 0;
+    height: 98%;
+    width: 2px;
+    content: '';
+    top: 0;
+    display: block;
+}
+
+.instructor-course .message-preview-wrap .message-preview.active::before{
+    background: #0099ff;
+}
+.new-dashboard .message-preview-wrap .message-preview.unread h3 a::before{
+    height: 5px;
+    width: 5px;
+    border-radius: 5px;
+    content: " ";
+    position: absolute;
+    left: -15px;
+    top: 6px;
+    background: #0099ff;
+}
+
 /* -------------------------------------
  * Mixin for progress-% class
  * ------------------------------------- */
@@ -4312,6 +4637,7 @@ h6{
 	border-width: 0 0 2px;
 	background: none !important;
 	border-radius: 0;
+	font-weight: bold;
 }
 
 .new-dashboard.dashboardTabs-header .add-new-course{
@@ -4377,6 +4703,7 @@ h6{
 }
 
 /*Student Course*/
+.instructor-course .profile-picture-holder,
 .student-course .profile-picture-holder{
 	width: auto;
 	height: 136px;
@@ -4385,6 +4712,7 @@ h6{
 	top: 50px;
 }
 
+.instructor-course.top-section .back-to-courses,
 .student-course.top-section .back-to-courses{
 	font-size: 11px;
 	font-weight: bold;
@@ -4395,6 +4723,7 @@ h6{
 	text-transform: uppercase;
 }
 
+.instructor-course.top-section .back-to-courses i,
 .student-course.top-section .back-to-courses i{
 	position: relative;
 	top: 1px;
@@ -4402,6 +4731,7 @@ h6{
 	margin-right: 7px;
 }
 
+.instructor-course.top-section h1,
 .student-course.top-section h1{
 	font-size: 20px;
 	font-weight: normal;
@@ -4410,6 +4740,7 @@ h6{
 
 }
 
+.instructor-course.top-section p,
 .student-course.top-section p{
 	margin: 0 0 10px;
 	font-size: 14px;
@@ -4420,6 +4751,7 @@ h6{
 	margin-top: 0;
 }
 
+.instructor-course .course-topics-box .topic-header,
 .student-course .course-topics-box .topic-header{
 	background: #f7f9fa;
 }
@@ -4452,6 +4784,7 @@ h6{
 	background: #0099ff;
 }
 
+.instructor-course .edit-course,
 .student-course.percentage-completed .resume-course{
 	float: right;
 }
@@ -4462,6 +4795,7 @@ h6{
 	margin-right: 10px;
 }
 
+.instructor-course .question-answer-wrap,
 .student-course .question-answer-wrap{
 	background: #fff;
 	overflow: hidden;
@@ -4469,23 +4803,29 @@ h6{
 	border: solid 1px #e0e1e2;
 }
 
+.instructor-course .question-answer,
 .student-course .question-answer{
 	padding: 35px 0 33px;
 	border-bottom: solid 1px #e0e1e2;
 }
 
+.student-messages .question h3,
+.instructor-course .question h3,
 .student-course .question h3{
 	line-height: 26px;
 	color: #303941;
 	margin: 0 0 16px;
 }
 
+.student-messages .question p,
+.instructor-course .question p,
 .student-course .question p{
 	color: #798794;
 	margin: 0 0 30px;
 }
 
 .student-messages .avatar,
+.instructor-course .avatar,
 .student-course .avatar{
 	float: left;
 	margin-right: 12px;
@@ -4496,6 +4836,7 @@ h6{
 }
 
 .student-messages .replies-box,
+.instructor-course .replies-box,
 .student-course .replies-box{
 	background: #f7f9fa;
 	padding: 10px 20px 20px;
@@ -4506,6 +4847,7 @@ h6{
 }
 
 .student-messages .replies-box .name,
+.instructor-course .replies-box .name,
 .student-course .replies-box .name{
 	font-size: 13px;
 	font-weight: 600;
@@ -4516,6 +4858,7 @@ h6{
 }
 
 .student-messages .replies-box .role.teacher,
+.instructor-course .replies-box .role.teacher,
 .student-course .replies-box .role.teacher{
 	padding: 6px 8px;
 	border: solid 1px #0099ff;
@@ -4526,6 +4869,7 @@ h6{
 }
 
 .student-messages .replies-box .role.others,
+.instructor-course .replies-box .role.others,
 .student-course .replies-box .role.others{
 	margin-top: 6px;
 	font-size: 13px;
@@ -4534,6 +4878,7 @@ h6{
 }
 
 .student-messages .replies-box .reply,
+.instructor-course .replies-box .reply,
 .student-course .replies-box .reply{
 	clear: both;
 	margin: 18px 0 0;
@@ -4543,6 +4888,7 @@ h6{
 }
 
 .student-messages .discussion-sidebar-footer,
+.instructor-course .discussion-sidebar-footer,
 .student-course .discussion-sidebar-footer{
 	position: relative;
 	border: none;
@@ -4550,30 +4896,30 @@ h6{
 }
 
 .student-messages .discussion-sidebar-footer .avatar,
+.instructor-course .discussion-sidebar-footer .avatar,
 .student-course .discussion-sidebar-footer .avatar{
 	width: 38px;
 	height: 38px;
 }
 
 /*Student Messages*/
-.student-messages .message-preview-wrap{
+.new-dashboard .message-preview-wrap{
 	margin-top: 24px;
 	background: #f7f9fa;
 	border: solid 1px #e0e1e2;
-	border-radius: 4px 0 0 4px;
 	overflow: hidden;
 }
 
-.student-messages .message-preview-wrap .message-header h4{
+.new-dashboard .message-preview-wrap .message-header h4{
 	color: #303941;
 	margin: 15px 0 12px;
 }
 
-.student-messages .message-preview-wrap .message-header form{
+.new-dashboard .message-preview-wrap .message-header form{
 	width: 100%;
 }
 
-.student-messages .message-preview-wrap .message-header form div{
+.new-dashboard .message-preview-wrap .message-header form div{
 	border-radius: 4px;
 	border: solid 1px #cfd8df;
 	background: #fff;
@@ -4582,7 +4928,7 @@ h6{
 	height: 38px;
 }
 
-.student-messages .message-preview-wrap .message-header form div input{
+.new-dashboard .message-preview-wrap .message-header form div input{
 	width: 85%;
 	background: none;
 	border: none;
@@ -4592,7 +4938,7 @@ h6{
 	padding: 0 12px;
 }
 
-.student-messages .message-preview-wrap .message-header form div button{
+.new-dashboard .message-preview-wrap .message-header form div button{
 	background: none;
 	border: none;
 	width: 15%;
@@ -4600,52 +4946,73 @@ h6{
 	height: 38px;
 }
 
-.student-messages .message-preview-wrap .message-header form div button i{
+.new-dashboard .message-preview-wrap .message-header form div button i{
 	color: #798794;
 	font-size: 16px;
 }
 
-.student-messages .message-preview-wrap .message-preview{
+.new-dashboard .message-preview-wrap .message-preview{
 	border-top: solid 1px #e0e1e2;
 	padding: 20px 0;
 }
 
-.student-messages .message-preview-wrap .message-preview:hover{
+.new-dashboard .message-preview-wrap .message-preview.active,
+.new-dashboard .message-preview-wrap .message-preview:hover{
 	background-color: #fff;
 	cursor: pointer;
 }
 
-.student-messages .message-preview-wrap .message-preview .avatar{
+.new-dashboard .message-preview-wrap .message-preview .avatar{
 	float: none;
 	margin: 0 auto;
 }
 
-.student-messages .message-preview-wrap .message-preview h4{
+.new-dashboard .message-preview-wrap .message-preview h4{
 	color: #303941;
 	margin: 0 0 10px;
 }
 
-.student-messages .message-preview-wrap .message-preview p{
+.new-dashboard .message-preview-wrap .message-preview p{
 	margin: 0;
 	color: #657482;
 	line-height: 18px;
 }
+.student-messages > .container{
+	background: #f7f9fa;
+	margin-top: 25px;
+	border: solid 1px #e0e1e2;
+	border-radius: 4px;
+	overflow: hidden;
+}
+.student-messages .message-preview-wrap{
+	margin-top: 0;
+	border-width: 0 0 1px 0;
+}
+.student-messages .message-preview .col-lg-2{
+	padding: 0;
+}
 
 .student-messages .avatar {
-    float: left;
+	float: left;
     height: 40px;
     width: 40px;
     border-radius: 40px;
     overflow: hidden;
 	background: #84909b;
+	position: relative;
 }
-
+.student-messages .message-preview.unread .avatar::before{
+	top: 50%;
+}
+.student-messages .message-preview .avatar{
+    float: right !important;
+    overflow: visible;
+}
 .student-messages .full-messages{
 	background: #fff;
 	border: solid #e0e1e2;
-	border-width: 1px 1px 1px 0;
-	border-radius: 0 4px 4px 0;
-	margin-top: 25px;
+	border-width: 0 0 0 1px;
+	margin-top: 0;
 }
 
 .student-messages .full-messages .conversing-with{
@@ -13628,14 +13995,11 @@ header .top-menu .logged-in-top-menu{
 	margin-right: 0;
 	margin-top: 0;
 }
-.student-course .replies-box{
+.new-dashboard .replies-box{
 	max-width: 80%;
 }
 .discussion-sidebar-footer form{
 	width: 78%;
-}
-.student-messages .replies-box{
-	width: 80%;
 }
 
 }
@@ -13764,6 +14128,9 @@ header .top-menu .logged-in-top-menu{
 	}
 	.classroom-view .right-slide-menu{
 		width: 100% !important;
+	}
+	.instructor-course .question-answer .date{
+		float: left;
 	}
 }
 
@@ -13902,8 +14269,8 @@ header .top-menu .logged-in-top-menu{
 	.step2 .module-container .footer-buttons .delete-lesson{
 		float: left;
 	}
-	.student-messages .replies-box {
-		width: 75%;
+	.new-dashboard .replies-box{
+		width: 73%;
 	}	
 }
 
@@ -13930,10 +14297,6 @@ header .top-menu .logged-in-top-menu{
 	}
 	
 	.discussion-sidebar-footer form{
-		width: 100%;
-	}
-
-	.student-messages .discussion-sidebar-footer form{
 		width: 75%;
 	}
 	
@@ -13986,6 +14349,18 @@ header .top-menu .logged-in-top-menu{
 
 .no-padding{
 	 padding: 0 !important;
+}
+.no-padding-left{
+	 padding-left: 0 !important;
+}
+.no-padding-right{
+	 padding-right: 0 !important;
+}
+.no-padding-top{
+	 padding-top: 0 !important;
+}
+.no-padding-bottom{
+	 padding-bottom: 0 !important;
 }
 
 .no-margin
