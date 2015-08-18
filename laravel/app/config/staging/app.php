@@ -134,6 +134,7 @@ return array(
                 'Cocorium\CocoriumServiceProvider',
                 'Indatus\Dispatcher\ServiceProvider',
                 'Cocorium\DynamoSessionServiceProvider',
+                'Flatten\FlattenServiceProvider',
 	),
 
 	/*
@@ -205,7 +206,8 @@ return array(
 		'AWS'               => 'Aws\Laravel\AwsFacade',
 		'Image' 			=> 'Intervention\Image\Facades\Image',
 		'Agent'             => 'Jenssegers\Agent\Facades\Agent',
-        'cURL'              => 'anlutro\cURL\Laravel\cURL'
+                'cURL'              => 'anlutro\cURL\Laravel\cURL',
+                'Flatten' => 'Flatten\Facades\Flatten',
 	),
 
 );
