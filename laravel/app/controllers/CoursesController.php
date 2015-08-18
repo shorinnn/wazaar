@@ -476,6 +476,23 @@ class CoursesController extends \BaseController {
             if( $course==null)   {
                 return View::make('site.error_encountered');
             }
+            
+            if( $course->publish_status != 'approved' ){
+                if( $course->publish_status == 'pending' ){
+                    if( $course->pre_submit_data !='' ) {
+                        $old = json_decode( $course->pre_submit_data );
+                        foreach($old as $k => $v) $course->$k = $v;
+                    }
+                    else{
+                        if( Auth::guest() ) return Redirect::action('SiteController@index');
+                        if( !admin() && $course->instructor_id != Auth::user()->id  && $course->assigned_instructor_id != Auth::user()->id ) return Redirect::action('SiteController@index');
+                    }
+                }
+                else{
+                    if( Auth::guest() ) return Redirect::action('SiteController@index');
+                    if( !admin() && $course->instructor_id != Auth::user()->id  && $course->assigned_instructor_id != Auth::user()->id ) return Redirect::action('SiteController@index');
+                }
+            }
             if(Auth::check() && Auth::user()->hasRole('Admin') && Input::has('view-old-version')){
                 if( $course->pre_submit_data !='' ) {
                     $old = json_decode( $course->pre_submit_data );
@@ -498,10 +515,7 @@ class CoursesController extends \BaseController {
                     $student->saveReferral(Input::get('aid'), $course->id);
                 }
             }
-//            $video = $course->videoBlocks();
-//            if($video!=null) $video = $video->first();
-            // temporary video TODO: remove this
-//            Course::whereNull('description_video_id')->update(['description_video_id' => 1]);
+            
             $video = $course->descriptionVideo;
 
             if( serveMobile() ) 
@@ -517,6 +531,13 @@ class CoursesController extends \BaseController {
             }
             
             $course = Course::where('slug', $slug)->first();
+            if( $course->publish_status == 'pending' ){
+                if( $course->pre_submit_data !='' ) {
+                    $old = json_decode( $course->pre_submit_data );
+                    foreach($old as $k => $v) $course->$k = $v;
+                }
+            }
+            
             $student = Student::current(Auth::user());
             $purchaseData = [];
             // gift
