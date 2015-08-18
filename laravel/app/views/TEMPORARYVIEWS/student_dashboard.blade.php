@@ -256,7 +256,7 @@
                       <div role="tabpanel" class="tab-pane fade" id="wishlist">...</div>
                     </div>                
                 </div>
-            	<div class="hidden-xs hidden-sm col-md-3 col-lg-3">
+            	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                 	<div class="sidebar">
                         <div class="profile-picture-holder">
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" class="img-responsive">

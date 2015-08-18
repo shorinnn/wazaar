@@ -4235,9 +4235,12 @@ h6{
 /*Instructor Dashboard*/
 .instructor-dashboard.top-section{
 	padding-top: 45px;
-	padding-bottom: 50px;
+	padding-bottom: 30px;
 }
 
+.instructor-dashboard .activity-today > div {
+    margin-bottom: 20px;
+}
 .instructor-dashboard .activity-today h2{
 	color: #fff;
 	font-size: 20px;
@@ -4312,10 +4315,12 @@ h6{
 
 .instructor-dashboard.dashboardTabs .teaching-lesson h4 a{
 	color: #303941;
+	display: inline-block;
+	margin-bottom: 7px;
+	margin-right: 15px;
 }
 
 .instructor-dashboard.dashboardTabs .teaching-lesson h4 .lesson-status{
-	margin-left: 15px;
 	display: inline-block;
 	padding: 6px;
 	border-radius: 2px;
@@ -4337,9 +4342,15 @@ h6{
 
 .instructor-dashboard.dashboardTabs .row-2{
 	background: #f7f9fa;
-	padding: 16px 0;
 	border-radius: 0 0 4px 4px;
 	border-top: solid 1px #e8eced;
+}
+.instructor-dashboard.dashboardTabs .row-2 > div{
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+.instructor-dashboard.dashboardTabs .row-2 > div + div{
+	border-left: solid 1px #e8eced;
 }
 
 .instructor-dashboard.dashboardTabs .row-2 p{
@@ -13615,7 +13626,13 @@ footer{
 		width: -webkit-calc(100% - 505px);
 		width: calc(100% - 505px);
 	}
-
+	.new-dashboard .sidebar,
+	.instructor-dashboard .sidebar{
+		margin-top: 25px;
+	}
+	.new-dashboard .profile-picture-holder{
+		display: none;
+	}
 }
 
 @media (max-width:900px){
@@ -13957,7 +13974,13 @@ header .top-menu li{
 		float: left;
 		margin-left: 14px;
 	}
-	
+	.new-dashboard.dashboardTabs-header .add-new-course {
+		margin-top: 15px;
+		display: block;
+		clear: both;
+		float: left;
+		margin: 20px 0 10px;
+	}
 }
 
 @media (max-width:620px){
@@ -14038,6 +14061,19 @@ header .top-menu .logged-in-top-menu{
 	
 	.student-messages .replies-box{
 		width: 80%;
+	}
+	.row-2 > div,
+	.row-1 > div {
+		border: none;
+		float: none;
+		width: 100%;
+	}
+	.instructor-dashboard .teaching-lesson .image-wrap{
+		margin-bottom: 20px;
+	}
+	.new-dashboard.dashboardTabs .settings{
+		margin: 10px 0;
+		float: none;
 	}
 }
 
