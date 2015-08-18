@@ -14081,4 +14081,21 @@ header .top-menu .logged-in-top-menu{
 .progress-bar{
     background-color: #069BFF;
 }
-       
+
+.video-thumb-box {
+    width: 180px !important;
+    height: 200px;
+    border: 1px solid #ccc;
+    margin: 3px;
+    padding: 5px;
+}
+
+.video-thumb-box img
+{
+    width: 100px;
+}
+
+.video-thumb-box .file-name
+{
+    font-size: 12px;
+}

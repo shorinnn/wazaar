@@ -59,4 +59,13 @@ class Video extends \LaravelBook\Ardent\Ardent
 
         return $video;
     }
+
+    public function getTrimmedOriginalFilenameAttribute()
+    {
+        $originalFilenameSegments = explode('-',$this->attributes['original_filename']);
+        unset($originalFilenameSegments[0]);
+        $trimmedSegments = array_values($originalFilenameSegments);
+
+        return implode('-',$trimmedSegments);
+    }
 }
