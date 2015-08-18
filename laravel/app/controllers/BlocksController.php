@@ -89,7 +89,7 @@ class BlocksController extends \BaseController {
                 $response = ['status' => 'success'];
                 return json_encode($response);
             }
-            $response = ['status' => 'error', 'errors' => trans( ['crud/errors.cannot_delete_object' => 'Block'] ) ];
+            $response = ['status' => 'error', 'errors' => trans( 'crud/errors.cannot_delete_object', ['object'  => 'Block' ] ) ];
             return json_encode($response);
         }
         

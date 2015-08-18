@@ -141,15 +141,15 @@ class CoursesController extends \BaseController {
         public function update($slug){
             $course = Course::where('slug',$slug)->first();
             
-            if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
-                if( admin() ){
-                    if( Request::ajax() ){
-                        $response = ['status' => 'success', 'url' => action('CoursesController@edit', $course->slug) ];
-                        return json_encode($response);
-                    }
-                    return Redirect::action('CoursesController@edit', $course->slug)
-                            ->withSuccess( trans('crud/errors.object_updated',['object' => 'Course']) );
-                }
+            if(!admin() && $course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
+//                if( admin() ){
+//                    if( Request::ajax() ){
+//                        $response = ['status' => 'success', 'url' => action('CoursesController@edit', $course->slug) ];
+//                        return json_encode($response);
+//                    }
+//                    return Redirect::action('CoursesController@edit', $course->slug)
+//                            ->withSuccess( trans('crud/errors.object_updated',['object' => 'Course']) );
+//                }
                 
                 return Redirect::action('CoursesController@index');
             }

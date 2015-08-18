@@ -10,7 +10,7 @@ class LessonsController extends \BaseController {
 	public function store($module){
             $lesson = new Lesson();
             $module = Module::find($module);
-            if($module->course->instructor->id != Auth::user()->id && $module->course->assigned_instructor_id != Auth::user()->id){
+            if( !admin() && $module->course->instructor->id != Auth::user()->id && $module->course->assigned_instructor_id != Auth::user()->id){
                 $response = ['status' => 'error', 'errors' => trans('crud/errors.error_occurred') ];
                 return json_encode($response);
             }
@@ -47,7 +47,7 @@ class LessonsController extends \BaseController {
         public function destroy($module, $id){
             $lesson = Lesson::find($id);
             if($lesson!=null && ( $lesson->module->course->instructor->id == Auth::user()->id 
-                    || $lesson->module->course->assigned_instructor_id == Auth::user()->id ) ){
+                    || $lesson->module->course->assigned_instructor_id == Auth::user()->id || admin() ) ){
                 $lesson->delete();
                 $response = ['status' => 'success'];
                 if(!Request::ajax()) return Redirect::back();
@@ -70,7 +70,7 @@ class LessonsController extends \BaseController {
 //                    
 //            }
             if($lesson!=null && ( $lesson->module->course->instructor->id == Auth::user()->id 
-                    || $lesson->module->course->assigned_instructor_id == Auth::user()->id ) ){
+                    || $lesson->module->course->assigned_instructor_id == Auth::user()->id || admin() ) ){
                 $name = Input::get('name');
 //                $lesson->$name = Input::get('value');
                 if( $name != 'external_video_url' ) $lesson->fill( Input::all() ); 
@@ -91,14 +91,14 @@ class LessonsController extends \BaseController {
                     return json_encode($response);
                 }
             }
-            $response = ['status' => 'error', 'errors' =>  trans('crud/errors.cannot_save_object', 'Lesson') ];
+            $response = ['status' => 'error', 'errors' =>  trans( 'crud/errors.cannot_save_object', [ 'object' => 'Lesson'] ) ];
             return json_encode($response);
         }
         
         public function details($module, $id){
             $lesson = Lesson::find($id);
             if( $lesson!=null && ( $lesson->module->course->instructor->id == Auth::user()->id 
-                    || $lesson->module->course->assigned_instructor_id == Auth::user()->id )  ){
+                    || $lesson->module->course->assigned_instructor_id == Auth::user()->id || admin() )  ){
                 return View::make('courses.lessons.details')->with(compact('lesson'));
             }
         }
