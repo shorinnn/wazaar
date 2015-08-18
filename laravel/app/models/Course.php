@@ -69,6 +69,10 @@ class Course extends Ardent{
         return $count;
     }
     
+    public function getVideoMinutesAttribute(){
+        return $this->videoHours(true, 'i');
+    }
+    
     public function videoHours($includeUnpublished=true, $return = 'h'){
         // get all videos
         $vids = 0;

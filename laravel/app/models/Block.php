@@ -74,6 +74,13 @@ class Block extends Ardent{
         return true;
     }
     
+    public function afterSave(){
+        if($this->type=='video'){
+            $this->lesson->module->course->video_minutes = $this->lesson->module->course->videoMinutes;
+            $this->lesson->module->course->updateUniques();
+        }
+    }
+    
     /**
      * Delete S3 file
      */
@@ -103,7 +110,6 @@ class Block extends Ardent{
         }
         return $this->size;
     }
-    
    
 
 }

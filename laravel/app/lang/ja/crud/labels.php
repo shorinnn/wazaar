@@ -36,4 +36,5 @@ return array(
     'cannot-delete-students-purchased' => 'Cannot delete - students purchased course',
     'category-groups' => 'Category Groups',
     'view-user' => 'View User',
+    'filter' => 'Filter',
 );

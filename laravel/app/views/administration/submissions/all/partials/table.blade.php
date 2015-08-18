@@ -16,6 +16,22 @@
                      <div class="activate-dropdown">
                         <button aria-expanded="false" data-toggle="dropdown" 
                                 class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
+                            {{ trans('crud/labels.filter') }}
+                        </button>
+                        <ul id="table-header-dropdown"
+                            data-target='.ajax-content' data-load-method="fade"
+                            aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu  load-remote">
+                            <li>
+                                <a class="profile-button" href="?{{ appendToQueryString('filter', 'all' ) }}">All</a>
+                                <a class="profile-button" href="?{{ appendToQueryString('filter', 'promo' ) }}">Has Promo Video</a>
+                                <a class="profile-button" href="?{{ appendToQueryString('filter', 'video' ) }}">+5 min Video</a>
+                            </li>
+     
+                        </ul>
+                    </div>               
+                     <div class="activate-dropdown" style='right:140px;'>
+                        <button aria-expanded="false" data-toggle="dropdown" 
+                                class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
                             {{ trans('crud/labels.view') }}
                         </button>
                         <ul id="table-header-dropdown"
@@ -38,6 +54,7 @@
                         <tr id='row-{{$course->id}}'>
                             <td class="hidden-xs">
                                  {{ $course->name}}
+                                 {{ $course->videoMinutes }}
                                  <br />
                                  {{ $course->created_at }}
                             </td>
@@ -47,6 +64,8 @@
                                 @else
                                  {{ $course->instructor->commentName('instructor') }}
                                 @endif
+                                <br />
+                                {{ $course->instructor->email }}
                             </td>
                             <td>
                                 <a href="{{action('CoursesController@show', $course->slug)}}" target="_blank">

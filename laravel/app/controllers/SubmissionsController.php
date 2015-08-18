@@ -82,7 +82,13 @@ class SubmissionsController extends \BaseController {
         public function allCourses(){
             $pagination = Input::get('view') > 0 ? Input::get('view') :  2;
             
-            $submissions = Course::orderBy('id','desc')->paginate( $pagination );
+            
+            if(Input::get('filter')=='promo')
+               $submissions = Course::with('instructor')->orderBy('id','desc')->where('description_video_id', '>', 0)->paginate( $pagination );
+            elseif(Input::get('filter')=='video')
+               $submissions = Course::with('instructor')->orderBy('id','desc')->where('video_minutes', '>', 5)->paginate( $pagination );
+            else    
+               $submissions = Course::with('instructor')->orderBy('id','desc')->paginate( $pagination );
             
             if( Request::ajax() ){
                 return View::make('administration.submissions.all.partials.table')->with( compact('submissions') );
