@@ -108,7 +108,8 @@
             <div class="row">
                 @foreach($categories->take(6)->get() as $cat)
                     <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="{{ action( 'CoursesController@category', $cat->slug ) }}">
+                        <a href="{{ action( 'CoursesController@category', $cat->slug ) }}" class="business">
+                        	<em></em>
                             <span> {{ $cat->name }}</span>
                         </a>
                     </div>
@@ -117,7 +118,8 @@
             <div class="row">
                 @foreach($categories->skip(6)->take(6)->get() as $cat)
                     <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="{{ action( 'CoursesController@category', $cat->slug ) }}">
+                        <a href="{{ action( 'CoursesController@category', $cat->slug ) }}" class="investment">
+                        	<em></em>
                             <span> {{ $cat->name }}</span>
                         </a>
                     </div>

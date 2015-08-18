@@ -972,16 +972,97 @@ header .profile-name li:hover ul{
 }
 
 .homepage.explore-category .category-box a{
-	background-color: #18222b;
 	display: block;
 	width: 100%;
-	height: 100%;
+	height: 120px;
 	min-height: 126px;
 	border-radius: 4px;
-	padding: 70px 20px 20px;
+	padding: 0 20px 20px;
 	text-align: center;
 	line-height: 16px;
 	margin-bottom: 12px;
+}
+.homepage.explore-category .category-box a em{
+	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/Home_icons.png');
+	background-repeat: no-repeat;
+	display: inline-block;
+	height: 60px;
+	width: 60px;
+	font-style: normal;
+	margin-top: 18px;
+	margin-bottom: 5px;
+}
+.homepage.explore-category .category-box .business{
+	background-color: #433e66;
+}
+.homepage.explore-category .category-box .business em{
+	background-position: 0 0;
+}
+.homepage.explore-category .category-box .investment{
+	background-color: #49562d;
+}
+.homepage.explore-category .category-box .investment em{
+	background-position: -60px 0;
+}
+.homepage.explore-category .category-box .web-and-it{
+	background-color: #595646;
+}
+.homepage.explore-category .category-box .web-and-it em{
+	background-position: -120px 0;
+}
+.homepage.explore-category .category-box .fitness-and-sports{
+	background-color: #3e3949;
+}
+.homepage.explore-category .category-box .fitness-and-sports em{
+	background-position: -180px 0;
+}
+.homepage.explore-category .category-box .beauty-and-health{
+	background-color: #623b36;
+}
+.homepage.explore-category .category-box .beauty-and-health em{
+	background-position: -240px 0;
+}
+.homepage.explore-category .category-box .cooking{
+	background-color: #453632;
+}
+.homepage.explore-category .category-box .cooking em{
+	background-position: -300px 0;
+}
+.homepage.explore-category .category-box .language{
+	background-color: #623b36;
+}
+.homepage.explore-category .category-box .language em{
+	background-position: 0px -60px;
+}
+.homepage.explore-category .category-box .personal-development{
+	background-color: #453632;
+}
+.homepage.explore-category .category-box .personal-development em{
+	background-position: -60px -60px;
+}
+.homepage.explore-category .category-box .photo-and-video{
+	background-color: #433e66;
+}
+.homepage.explore-category .category-box .photo-and-video em{
+	background-position: -120px -60px;
+}
+.homepage.explore-category .category-box .music{
+	background-color: #32383e;
+}
+.homepage.explore-category .category-box .music em{
+	background-position: -180px -60px;
+}
+.homepage.explore-category .category-box .handmade-craft{
+	background-color: #453632;
+}
+.homepage.explore-category .category-box .handmade-craft em{
+	background-position: -240px -60px;
+}
+.homepage.explore-category .category-box .hobbies{
+	background-color: #433e66;
+}
+.homepage.explore-category .category-box .hobbies em{
+	background-position: -300px -60px;
 }
 
 .homepage.explore-category .category-box span{
@@ -989,6 +1070,8 @@ header .profile-name li:hover ul{
 	text-transform: uppercase;
 	color: #ebeced;
 	font-size: 12px;
+	display: block;
+	font-weight: bold;
 }
 
 .discover-section{
@@ -14231,6 +14314,12 @@ header .top-menu .logged-in-top-menu{
 	}
 	.student-course .replies-box{
 		width: 70%;
+	}
+	.homepage.explore-category .category-box a{
+		line-height: 12px;
+	}
+	.homepage.explore-category .category-box span{
+		font-size: 11px;
 	}
 	
 }
