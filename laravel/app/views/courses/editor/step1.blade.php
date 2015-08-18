@@ -320,6 +320,7 @@
                 /**** if lesson is 0 or undefined, this means we are looking up for a video intended to a course(description) ***/
                 if ($lessonId == 0 || $lessonId == undefined){
                     var $courseId = $('.course-id').val();
+
                     //make post call to update course
                     $.post('/courses/'+ $courseId +'/video/set-description',{videoId: $videoId});
 
@@ -334,9 +335,11 @@
 
                 //lesson video
                 if ($lessonId !== undefined && $videoId !== undefined){
+
                     $.post('/lessons/blocks/' + $lessonId + '/video/assign',{videoId : $videoId}, function ($video){
                         var $lessonWrapper = $('#lesson-wrapper-' + $lessonId);
                         $lessonWrapper.find('.video-preview').attr('src',$video.formats[0].thumbnail);
+                        $lessonWrapper.find('.video-preview').attr('data-video-url',$video.formats[0].video_url);
                     },'json');
                 }
 

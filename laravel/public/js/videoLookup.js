@@ -28,7 +28,7 @@ var videoLookup = {
             });
         });
 
-        $('#modal-body-videos').on('click', '.videos-lookup-pagination-wrapper .page-numbers-container ul li a', function($e){
+        $('#modal-body-videos').on('click', '.videos-lookup-pagination-wrapper ul li a', function($e){
             $e.preventDefault();
 
             var $url = $(this).attr('href');
