@@ -119,15 +119,8 @@ class Student extends User{
 //        if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
         if( get_class($product)=='Course' ){
             $course = $product;
-            if( $course->publish_status == 'pending' ){
-                if( $course->pre_submit_data !='' ) {
-                    $old = json_decode( $course->pre_submit_data );
-                    foreach($old as $k => $v){
-                        $course->$k = $v;
-                        $product->$k = $v;
-                    }
-                }
-            }
+            $course = courseApprovedVersion( $product );
+            $product = courseApprovedVersion( $product );
         } 
         else{
             $course = $product->module->course;

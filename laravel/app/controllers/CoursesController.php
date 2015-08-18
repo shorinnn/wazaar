@@ -477,29 +477,19 @@ class CoursesController extends \BaseController {
                 return View::make('site.error_encountered');
             }
             
+            $course = courseApprovedVersion( $course );
             if( $course->publish_status != 'approved' ){
-                if( $course->publish_status == 'pending' ){
-                    if( $course->pre_submit_data !='' ) {
-                        $old = json_decode( $course->pre_submit_data );
-                        foreach($old as $k => $v) $course->$k = $v;
-                    }
-                    else{
-                        if( Auth::guest() ) return Redirect::action('SiteController@index');
-                        if( !admin() && $course->instructor_id != Auth::user()->id  && $course->assigned_instructor_id != Auth::user()->id ) return Redirect::action('SiteController@index');
-                    }
-                }
-                else{
-                    if( Auth::guest() ) return Redirect::action('SiteController@index');
-                    if( !admin() && $course->instructor_id != Auth::user()->id  && $course->assigned_instructor_id != Auth::user()->id ) return Redirect::action('SiteController@index');
-                }
+                if( Auth::guest() ) return Redirect::action('SiteController@index');
+                if( !admin() && $course->instructor_id != Auth::user()->id  && $course->assigned_instructor_id != Auth::user()->id ) return Redirect::action('SiteController@index');
             }
-            if(Auth::check() && Auth::user()->hasRole('Admin') && Input::has('view-old-version')){
-                if( $course->pre_submit_data !='' ) {
-                    $old = json_decode( $course->pre_submit_data );
-                    foreach($old as $k => $v) $course->$k = $v;
-                    $course->name = "[OLD VERSION] ".$course->name;
-                }
-            }
+            
+//            if(Auth::check() && Auth::user()->hasRole('Admin') && Input::has('view-old-version')){
+//                if( $course->pre_submit_data !='' ) {
+//                    $old = json_decode( $course->pre_submit_data );
+//                    foreach($old as $k => $v) $course->$k = $v;
+//                    $course->name = "[OLD VERSION] ".$course->name;
+//                }
+//            }
             $instructor = $course->instructor;
             if( $course->assigned_instructor_id != null && $course->details_displays == 'assigned_instructor'){
                 $instructor = $course->assignedInstructor;
@@ -531,12 +521,7 @@ class CoursesController extends \BaseController {
             }
             
             $course = Course::where('slug', $slug)->first();
-            if( $course->publish_status == 'pending' ){
-                if( $course->pre_submit_data !='' ) {
-                    $old = json_decode( $course->pre_submit_data );
-                    foreach($old as $k => $v) $course->$k = $v;
-                }
-            }
+            $course = courseApprovedVersion( $course );
             
             $student = Student::current(Auth::user());
             $purchaseData = [];

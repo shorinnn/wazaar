@@ -63,17 +63,13 @@
                             </td>
                             <td>
                                 <a href="{{action('CoursesController@show', $course->slug)}}" target="_blank">
-                                    {{ trans('crud/labels.view') }}
+                                    {{ trans('crud/labels.view-old-version') }}
                                 </a>
                                 
                                 <a href="{{action('CoursesController@edit', $course->slug)}}" target="_blank">
                                     {{ trans('crud/labels.edit') }}
                                 </a>
-                                @if($course->pre_submit_data!='')
-                                    <a href="{{action('CoursesController@show', $course->slug)}}?view-old-version=1" target="_blank">
-                                        {{ trans('crud/labels.view-old-version') }}
-                                    </a>
-                                @endif
+                               
                             </td>
                             <td>
                                 {{ Form::open( ['action' => array('SubmissionsController@update', $course->id), 

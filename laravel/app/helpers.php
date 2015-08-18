@@ -646,3 +646,15 @@ function formatSizeUnits($bytes){
 
         return $bytes;
 }
+
+
+function courseApprovedVersion($course){
+    if( $course->approved_data != ''){
+        $approvedData = json_decode( $course->approved_data );
+        foreach($approvedData as $k => $v){
+            if($k=='student_count' || $k=='total_reviews' || $k=='reviews_positive_score') continue;
+            $course->$k = $v;
+        }
+    }
+    return $course;
+}
