@@ -39,7 +39,7 @@
                                     @foreach( $categories as $category)
 
                                             @if($category->courseSubcategories)
-                                                <li  class="dropdown-list"><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a> <i class="wa-chevron-right"></i>
+                                                <li  class="dropdown-list"><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}} <i class="wa-chevron-right"></i></a> 
                                                     <ul>
                                                         @foreach($category->courseSubcategories as $subCategory)
                                                             <li><a href="{{url('courses/category/' . $category->slug . '/' . $subCategory->slug)}}">{{$subCategory->name}}</a></li>
@@ -266,7 +266,7 @@
                                     @foreach( $categories as $category)
 
                                             @if($category->courseSubcategories)
-                                                <li  class="dropdown-list"><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a> <i class="wa-chevron-right"></i>
+                                                <li  class="dropdown-list"><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}<i class="wa-chevron-right"></i></a> 
                                                     <ul>
                                                         @foreach($category->courseSubcategories as $subCategory)
                                                             <li><a href="{{url('courses/category/' . $category->slug . '/' . $subCategory->slug)}}">{{$subCategory->name}}</a></li>

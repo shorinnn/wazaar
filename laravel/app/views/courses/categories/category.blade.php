@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <div class="pull-left margin-top-20">
+                        <div class="pull-right margin-top-20">
                             {{Form::select('sort',CourseHelper::getCourseSortOptions(),Input::get('sort'),['class' => 'form-control'])}}
 
                         </div>

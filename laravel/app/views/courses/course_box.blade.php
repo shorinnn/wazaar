@@ -13,13 +13,13 @@
                         @endif
                         class="img-responsive" alt="">
                     <span class="video-play-button"><em></em></span>
-                    <span class="likes">{{ $course->reviews_positive_score }}</span>
+                    <span class="likes"><i class="wa-like"></i>{{ $course->reviews_positive_score }}</span>
             <span class="box-overlay">
                 <p>{{trans('general.lesson')}}</p>
                 <p>{{trans('general.weeks-of-learning')}}</p>
                 <div class="footer clearfix">
-                    <div class="heart-icon"></div>
-                    <div class="highly-recommend">{{trans('general.highly-recommend')}}</div>
+                    <div class="heart-icon"><i class="wa-Heart"></i></div>
+                    <div class="highly-recommend"><i class="wa-like"></i>{{trans('general.highly-recommend')}}</div>
                 </div>
             </span>
                 </div>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="next_">
                             <div class="students-attending">
-                                {{ $course->student_count }}
+                               <i class="wa-user-n"></i> {{ $course->student_count }}
                             </div>
                         </div>
                         <div class="price-tag-container clearfix">
