@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{url('css/bootstrap-datetimepicker.css')}}">
     <link rel="Stylesheet" type="text/css" href="{{ url('css/smoothDivScroll.css') }}" />
 
+
     @yield('extra_css')
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -335,7 +336,9 @@
         
 
     @endif
-    
+
+    <script src="{{url('plugins/mediaelements/mediaelement-and-player.min.js')}}"></script>
+
     @yield('extra_js')
 		<script type="text/javascript">
                 window.reloadConfirm = false;
@@ -343,6 +346,7 @@
                          window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
                          _.setTranslation( js_translation_map_{{ Config::get('app.locale') }} );
 			$(document).ready(function() {
+                //$('video,audio').mediaelementplayer();
 				$('.popular-courses-carousel').show();
                 jQuery(window).bind('beforeunload', function(e) {
 

@@ -1061,23 +1061,26 @@ function skinVideoControls(){
 		updatebar(e.pageX);
 	});
 	$(document).on('mouseup', function(e) {
+
 		if(timeDrag) {
 			timeDrag = false;
 			updatebar(e.pageX);
 		}
 	});
 	$(document).on('mousemove', function(e) {
+
 		if(timeDrag) {
 			updatebar(e.pageX);
 		}
 	});
 	var updatebar = function(x) {
 		var progress = $('.videoContainer .progress');
-		
+
 		//calculate drag position
 		//and update video currenttime
 		//as well as progress bar
                 video = $('#myVideo');
+        //console.log(video);
 		var maxduration = video[0].duration;
                 console.log('MAXDURATION IS '+maxduration);
 		var position = x - progress.offset().left;
@@ -1091,7 +1094,9 @@ function skinVideoControls(){
 		$('.timeBar').css('width',percentage+'%');	
                 ct =  maxduration * percentage / 100;
                 console.log(' CURRENT TIME IS: '+ct);
-		video[0].currentTime = ct;
+		video.currentTime = ct;
+
+        console.log('Updated TIME IS: ' + video.currentTime);
 	};
 
 	//VOLUME BAR
