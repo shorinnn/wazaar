@@ -33,62 +33,11 @@
                                 <i class="wa-chevron-left"></i> {{$course->courseCategory->name }}
                             </a>
                         </li>
-                        <!--<li class="tags">
-                            <a href="#">Information</a>
-                        </li>
-                        <li class="tags">
-                            <a href="#">Tech & Design </a>
-                        </li>
-                        <li class="tags">
-                            <a href="#">Engineering</a>
-                        </li>-->
+
                     </ul>
                 </div>
-                <!--<ol class="breadcrumb">
-                              <li><a href="{{action('CoursesController@category', [$course->courseCategory->slug] )}}">{{ $course->courseCategory->name }}</a></li>
-                              <li class="active">
-                                  <a href='{{action('CoursesController@subCategory', [$course->courseCategory->slug, $course->courseSubcategory->slug] )}}'>
-                                      {{ $course->courseSubcategory->name }}
-                                  </a></li>
-                            </ol>-->
                 <h1> {{ $course->name }}</h1>
-                <!--
-                            
-                            <div class="clearfix banner-content-wrapper">
-                                <div class="number-of-students"></div>
-                                <a href="#bottom-student-reviews" class="number-of-reviews">                   
-                                    <span>{{ $course->reviews_positive_score }}%</span>
-                                </a>
-                                    @if($course->isDiscounted())
-                                        <div class="white-box">
-                                            <div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>
-                                    @else
-                        <div class="white-box not-on-sale">
-                            <!--<div class="sale-ends">SALE ENDS IN {{$course->discount_ends_in}}</div>-->
 
-                <!--
-                               
-                                    @endif
-
-
-                        <!--<a href="#" class="crash-class">CRASH CLASS</a>-->
-
-                <!--
-                            <div class="clearfix wishlist-and-social">
-
-                                <!--<a href="#" class="add-to-wishlist">Add to Wishlist</a>-->
-                <!--
-
-                               <ul class="social-icons">
-                                       <li><a href="#" class="twitter-icon"></a></li>
-                                       <li><a href="#" class="fb-icon"></a></li>
-                                       <li><a href="#" class="google-icon"></a></li>
-                               </ul>
-                           </div>
-                       </div>
-                   </div>
-
-               -->
             </div>
         </div>
         <div class="row">
@@ -150,10 +99,6 @@
                 @else
                     <div class="video-player video-container description-page video-container-toggler" style="display:none; background:none; text-align: right">
                         @if( Agent::isMobile() )
-                            <!--<video id='myVideo' preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
-                                    <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Mobile Devices')
-                                            ->first()->video_url }}" type="video/mp4">
-                                </video>-->
                             <video id='myVideo' preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
                                 <source src="{{ $video->formats()->where('resolution', 'Low Resolution')
                                             ->first()->video_url }}" type="video/mp4">
@@ -215,55 +160,75 @@
                 @endif
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
-                @if( admin() )
-                    <a href='{{ action( "ClassroomController@dashboard" ,['slug'=> $course->slug] ) }}' class="enroll-button">Classroom</a>
-                @endif
+
                 @if($course->cost() > 0)
                     {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
 
-                    @if(Auth::guest() || Student::find(Auth::user()->id)->canPurchase($course) )
+                    @if(Auth::guest() || $student->canPurchase($course) )
                         <span class="price clearfix">
                                        ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
                                      </span>
                         <button class="clearfix enroll-button blue-button extra-large-button">
-                            {{ trans("courses/general.course-enroll") }}
-                            @else
-                                <span class="price clearfix">
+                            {{ trans("courses/general.enter-classroom") }}
+                        </button>
+                    @elseif(Auth::check() && $student->purchased($course) )
+                        <span class="price clearfix">
                                      </span>
-                                <button class="clearfix enroll-button blue-button extra-large-button" disabled="disabled" data-toggle="tooltip" data-placement="left" title="Available for customers">
-                                    {{ trans("courses/general.course-enroll") }}
+                        <a class="clearfix enroll-button blue-button extra-large-button"
+                           href="{{ action('ClassroomController@dashboard', $course->slug)}}">
+                            {{ trans("courses/general.enter-classroom") }}
+                        </a>
+                    @else
+                        <span class="price clearfix">
+                                     </span>
+                        <button class="clearfix enroll-button blue-button extra-large-button" disabled="disabled" data-toggle="tooltip" data-placement="left" title="Available for customers">
+                            {{ trans("courses/general.enter-classroom") }}
+                        </button>
+                    @endif
 
-                                    @endif
-                                </button>
-                                <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
-                                <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
-                                {{Form::close()}}
-                                <!--@if($course->isDiscounted())
+                    <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
+                    <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
+                    {{Form::close()}}
+                    <!--@if($course->isDiscounted())
                                 <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
                                     You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                             @endif-->
                         @else
-                                {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
-                                @if(Auth::guest() || Student::find(Auth::user()->id)->canPurchase($course) )
+                    {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
+                                @if(Auth::guest() || $student->canPurchase($course) )
+                                    <span class="price clearfix">
+                                     </span>
                                      <button class="clearfix enroll-button blue-button extra-large-button join-class margin-top-50">
+                                         {{ trans("courses/general.enter-classroom") }}
+                                     </button>
+                                @elseif(Auth::check() && $student->purchased($course) )
+                                    <span class="price clearfix">
+                                     </span>
+                                     <a class="clearfix enroll-button blue-button extra-large-button" 
+                                        href="{{ action('ClassroomController@dashboard', $course->slug)}}">
+                                         {{ trans("courses/general.enter-classroom") }}
+                                     </a>
                                 @else
-                                        <button class="clearfix enroll-button blue-button extra-large-button join-class margin-top-50" disabled="disabled">
-                                   @endif
-                                {{ trans("courses/general.enroll_for_free") }}
-                                   </button>
-                            {{Form::close()}}
+                            <span class="price clearfix">
+                             </span>
+                             <button class="clearfix enroll-button blue-button extra-large-button join-class margin-top-50" disabled="disabled">
+                                 {{ trans("courses/general.enter-classroom") }}
+                                     </button>
+                                @endif
+
+                    {{Form::close()}}
                             
                             @if($course->isDiscounted())
                                 <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
                                     You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                             @endif
-                                @endif
+                    @endif
 
 
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                    <?php echo Flatten::section('courses-show-details'.$course->id, Config::get('custom.cache-expiry.course-desc-top-details'), function () use( $course )  { ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <?php echo Flatten::section('courses-show-details'.$course->id, Config::get('custom.cache-expiry.course-desc-top-details'), function () use( $course )  { ?>
                 	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 column-1">
                     	<div class="number-of-lessons">
                             <span>{{ trans("general.lessons") }}</span>
@@ -301,7 +266,7 @@
                                     <input type='submit' class="add-to-wishlist" value='{{trans('courses/general.add_to_wishlist')}}' />
                                 {{Form::close()}}
                         	<!--<a href="#">{{ trans("general.add-to-wishlist") }}</a>-->
-                                <a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>
+                    <a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>
             </div>
         </div>
     </div>

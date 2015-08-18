@@ -9,7 +9,9 @@ class WishlistController extends \BaseController {
         
         public function store(){
             WishlistItem::create( [ 'student_id' => Auth::user()->id, 'course_id' => Input::get('id') ] );
-            return Redirect::action('StudentController@wishlist');
+            $url = action('StudentController@mycourses');
+            $url.='#wishlist';
+            return Redirect::to($url);
         }
         
         public function destroy($id){

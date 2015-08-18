@@ -47,7 +47,7 @@
                 <form>
                 	<button class="add-to-order">ADD TO ORDER</button>
                 </form>
-                <span class="or">Or</span>
+                <span class="orr">Or</span>
                 <a href="#" class="begin-my-learning">BEGIN MY LEARNING</a>
                 <span class="bottom-course-title">Javascript Advanced Animations II</span>
             </div>

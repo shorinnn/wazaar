@@ -173,5 +173,6 @@ jpeg, png',
     'upload_video' => '動画を投稿する',
     'video_size' => 'ビデオと写真の画面サイズは16:9のものをご利用ください。それ以外のものは正しく表示されない可能性があります。',
     'course-enroll' => '受講する！',
+    'enter-classroom' => 'Enter Classroom',
 );
 

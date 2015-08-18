@@ -23,22 +23,24 @@ $(document).ready(function(){
     });
     
     $('.tooltipable').tooltip();
-//    $("body").tooltip({ selector: '[data-toggle="tooltip"]' });
     enableClipboard();
 
     $('#curriculum .lessons').jScrollPane();
     $(".profile-name > li").removeClass("activate-dropdown");
+    $('body').delegate('.type-in-elements', 'keyup', typeInElemens);
+    $('body').delegate('.characters-left', 'keyup', charactersLeft);
     $('body').delegate('.scroll-to-element', 'click', scrollToElement);
     $('body').delegate('.slide-toggler', 'click', slideToggle);
     $('body').delegate('a.load-remote', 'click', loadRemote);
     $('body').delegate('a.link-to-remote', 'click', linkToRemote);
+    $('body').delegate('a.link-to-remote-confirm', 'click', linkToRemoteConfirm);
     $('body').delegate('.form-to-remote-link', 'submit', formToRemoteLink);
     $('body').delegate('.load-remote a', 'click', prepareLoadRemote);
     $('body').delegate('a.load-more-ajax', 'click', loadMoreComments);
     $('body').delegate('a.load-remote-cache', 'click', loadRemoteCache);
     $('body').delegate('.btnLink', 'click', goTo);
-	$('body').delegate('#video-grid .boxes', 'mouseenter', videoGridBoxIn);
-	$('body').delegate('#video-grid .boxes', 'mouseleave', videoGridBoxOut);
+    $('body').delegate('#video-grid .boxes', 'mouseenter', videoGridBoxIn);
+    $('body').delegate('#video-grid .boxes', 'mouseleave', videoGridBoxOut);
     $('body').delegate('.delayed-keyup', 'keyup', delayedKeyup);
 	$('button.join-class').mousedown(function(){
 		$(this).addClass('pushdown');
@@ -89,8 +91,7 @@ function enableClipboard(){
     
     client.on( "ready", function( readyEvent ) {
       client.on( "aftercopy", function( event ) {
-        // `this` === `client`
-        // `event.target` === the element that was clicked
+          
         $(event.target).closest('.tooltipable').attr('title', _('Copied!') );
         $(event.target).closest('.tooltipable').attr('data-original-title', _('Copied!') );
         $(event.target).closest('.tooltipable').tooltip('show');
@@ -235,7 +236,7 @@ function prepareLoadRemote(e){
         $(e.target).attr('data-load-method', $(e.target).closest('.load-remote').attr('data-load-method'));
     }
     $(e.target).attr('data-target', $(e.target).closest('.load-remote').attr('data-target'));
-//    history.pushState({}, '', $(e.target).attr("href"));
+    
     loadRemote(e);
 }
 
@@ -305,6 +306,53 @@ function linkToRemote(e){
     });
 
 }
+
+function linkToRemoteConfirm(e){
+    e.preventDefault();
+    // get the message from the clicked button, don't hard code it (so we can use localization)
+    msg = $(e.target).attr('data-message');
+    elem = $(e.target);
+    while(typeof(msg)=='undefined'){
+        elem = elem.parent();
+        msg = elem.attr('data-message');
+    }
+    if( !confirm(msg) ) return false;
+    
+    var nofollow = $(e.target).attr('data-nofollow');
+    if( typeof(nofollow)!='undefined'&& nofollow==1 ) return false;
+    
+    var loading = $(e.target).attr('data-loading');
+    if( typeof(loading)!='undefined'&& loading==1 ) return false;
+    
+    url = $(e.target).attr('data-url');
+    var callback = $(e.target).attr('data-callback');
+    elem = $(e.target);
+    while(typeof(url)=='undefined'){
+        elem = elem.parent();
+        url = elem.attr('data-url');
+        callback = elem.attr('data-callback');  
+        e.target = elem;
+    }
+    
+    $(elem).attr('data-old-label', $(elem).html() );
+    $(elem).html( '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $.get(url, function(result){
+        $(e.target).attr('data-loading', 0);
+        $(elem).html( $(elem).attr('data-old-label') );
+        result = JSON.parse(result);
+        if(result.status == 'success' ){
+            if( typeof(callback)!= 'undefined'){
+                window[callback](e, result);
+            }
+        }
+        else{
+            console.log( result );
+            $.bootstrapGrowl( _('An Error Occurred.'),{align:'center', type:'danger'} );
+        }
+    });
+
+}
+
 /**
  * Event handler for a.load-remote<br />
  * It loads the resource specified at data-url into the element specified at data-target
@@ -345,7 +393,7 @@ function loadRemote(e){
         history.pushState({}, '', url);
     }
     if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
-//        $(target).html( _('loading...') + '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+        
         console.log( url );
         if( typeof(indicatorStyle)=='undefined')
             $(target).html( '<center><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></center> ');
@@ -485,24 +533,12 @@ function loadRemoteCache(e){
 	});
 
     $(target).load(url, function(responseText, textStatus, req){
-//        if(textStatus == "error") {
-//            $(target).html( _( '<p class="ajax-load-error">Request failed. Trying again in 5 seconds</p>') );
-//            setTimeout(loadRemoteCache, 5000, e);
-//            return;
-//        }
         elem.attr('data-loaded','1');
         elem.addClass('dataLoaded');
         if( typeof(callback)!= 'undefined'){
             window[callback](e);
         }
     });
-//    $(target).load('fail'+url, function(){
-//        elem.attr('data-loaded','1');
-//        elem.addClass('dataLoaded');
-//        if( typeof(callback)!= 'undefined'){
-//            window[callback](e);
-//        }
-//    });
 }
 
 
@@ -934,12 +970,7 @@ function skinVideoControls(){
                 if(video[0].paused || video[0].ended) {
                     $('.play-intro-button').show();
                 }
-		/*$('#lesson-video-overlay').css({
-			height: playerHeight	
-		});*/
-		/*$('#lesson-video-overlay > div').css({
-			maxWidth: playerWidth
-		});*/
+                
 
 	}
 	//remove default control when JS loaded
@@ -1323,23 +1354,6 @@ function showMoreContent(){
 	});
 }
 
-/*function stickyFooter(){
-	var bodyHeight = $("body").height();
-	var vwptHeight = $(window).height();
-	var contentWrapper = $('#wrapper');
-	contentWrapper.css('height', bodyHeight);
-	if (vwptHeight > bodyHeight) {
-	  $("footer").css({
-	  	position: 'absolute',
-		bottom: 0,
-		width: '100%'
-		});
-	}
-	else if(vwptHeight <= bodyHeight){
-	  $("footer").css("position","relative");
-	}
-}*/
-
 function rescaleBckgrdOverlay(){
 	var bckgrdImageHeight = $('#user-data-bckgrd-img').css('height');
 	var bckgrdImageWidth  = $('#user-data-bckgrd-img').css('width');
@@ -1484,3 +1498,64 @@ function getCookie(cname) {
     return "";
 }
     
+function charactersLeft(e){
+    elem = $(e.target);
+    limit = $(elem).attr('maxlength');
+    current = $(elem).val().length;
+    remaining = limit - current;
+    display = $(elem).attr('data-target');
+    $(display).html(remaining);
+}
+
+function enableCharactersLeft(){
+    $('.characters-left').each(function(){
+        $(this).keyup();
+    });
+}
+
+function toggleTheClass(e){
+    $source = $(e.target);
+    dest = $source.attr('data-target');
+    cls = $source.attr('data-class');
+    $(dest).toggleClass(cls);
+}
+
+function toggleVisibility(e){
+    $source = $(e.target);
+    dest = $source.attr('data-target');
+    hide =  $source.attr('data-visible');
+    if ( hide == 'hide' ) {
+        $source.attr('data-visible', 'show');
+        $(dest).hide();
+    }
+    else {
+        $source.attr('data-visible', 'hide');
+        $(dest).show();
+    }
+}
+
+function typeInElemens(e){
+    elem = $(e.target).attr('data-elements');
+    $(elem).html( $(e.target).val() );
+}
+
+function calculateFileSizes(){
+    $('.calculate-file-size').each(function(){
+        id = $(this).attr('data-id');
+        obj = $(this);
+        $.get( COCORIUM_APP_PATH+'blocks/'+id+'/size', function(result){
+            result = JSON.parse(result);
+            $obj = $('.calculate-file-size-'+result.id);
+            console.log($obj);
+            $obj.html( result.val );
+            console.log( result.val );
+            $obj.removeClass('calculate-file-size');
+        });
+    });
+}
+
+function showFiles(e, elem){
+    e.preventDefault();
+    e.stopPropagation();
+    $(elem).slideToggle();
+}

@@ -186,4 +186,5 @@ return array(
     'show-less-lessons' => 'Show Less Lessons',
     'upload-10-minutes-to-submit' => 'Upload 10 minutes of video content to submit',
     'course-enroll' => 'Enroll',
+    'enter-classroom' => 'Enter Classroom',
 );

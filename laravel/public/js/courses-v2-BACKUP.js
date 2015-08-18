@@ -9,7 +9,6 @@ $(document).ready(function(){
     
     $('body').delegate('.add-lesson', 'click', addLesson);    
     $('body').delegate('.show-reply-form', 'click', showReplyForm);    
-    $('body').delegate('a.toggle-minimize, button.toggle-minimize, .module-minimized div.toggle-minimize.module-data, .lesson-minimized div.toggle-minimize.lesson-data ', 'click', toggleMinimize);
 	activeLessonOption(); 
     
     // Make the modules list sortable
@@ -221,6 +220,67 @@ function enableBlockFileUploader(e){
 }
 
 /**
+ * Enables AJAX file uploading for the specified element
+ * @param {object} $uploader The file object that is ajaxified
+ * @param {string} data-dropzone CSS Selector of the element to be used as the uploader's dropzone
+ * @param {string} data-progress-bar CSS selector of the element to be used as the uploader's progress bar
+ * @param {string} data-callback What method to run after upload is complete
+ * @method enableFileUploader
+ */
+function enableFileUploader($uploader){
+    dropzone = $uploader.attr('data-dropzone');
+    var progressbar = $uploader.attr('data-progress-bar');
+    var progressLabel = $(progressbar).attr('data-label');
+    $progressLabel = $(progressLabel);
+    upload_url = $uploader.closest('form').attr('action');
+    
+    var $u = $uploader;
+    $u.fileupload({
+                dropZone: $(dropzone)
+            }).on('fileuploadadd', function (e, data) {
+                $(progressbar).parent().show();
+//                str =  $(progressbar).prop('outerHTML');
+//                str += '<br /><br />';
+//                bootbox.dialog({
+//                    title: _('Uploading'),
+//                    message: str
+//                  });
+                callback = $uploader.attr('data-add-callback');
+                if( typeof(callback) !='undefined' ){
+                    return window[callback](e, data);
+                }
+            }).on('fileuploadprogress', function (e, data) {
+                 $progressLabel = $(progressLabel);
+                var $progress = parseInt(data.loaded / data.total * 100, 10);
+                $(progressbar).css('width', $progress + '%');
+                if( $progressLabel.length > 0 ) $progressLabel.html($progress);
+                else $(progressbar).find('span').html($progress);
+                if($progress=='100'){
+                    console.log( $progressLabel );
+                    if( $progressLabel.length > 0 ) $progressLabel.html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                    else $(progressbar).parent().find('span').html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                }
+            }).on('fileuploadfail', function (e, data) {
+                $progressLabel = $(progressLabel);
+                $(progressbar).find('span').html('');
+                $(progressbar).css('width', 0 + '%');
+                $.each(data.files, function (index) {
+                    var error = $('<span class="alert alert-danger upload-error"/>').text( _('File upload failed.') );
+                    $(progressbar).css('width', 100 + '%');
+                    if( $progressLabel.length > 0 ) $progressLabel.html(error);
+                    else $(progressbar).find('span').html(error);
+                });
+                
+            }).on('fileuploaddone', function (e,data){
+                callback = $uploader.attr('data-callback');
+                if( typeof(callback) !=undefined ){
+                    window[callback](e, data);
+                    
+                }
+            });
+}
+
+/**
  * Called after the Video tab of a lesson is loaded, it ajaxifies the file upload form
  * 
  * 
@@ -242,6 +302,7 @@ function enableSettingOption(e){
 	TweenMax.fromTo(actionPanel, 0.3, {marginBottom: '40px'}, {marginBottom: '0px'});
 }
 
+
 /**
  * Called after the lesson file has been uploaded, it resets the progress bar 
  * and includes the new object in the UI
@@ -256,11 +317,15 @@ function blockFileUploaded(e, data){
     progressLabel = $(progressbar).attr('data-label');
     var $progressLabel = $(progressLabel);
 
+//    $uploadTo = $(e.target).parent().parent().parent();
     uploadTo = $(e.target).attr('data-upload-to');
     $uploadTo = $(uploadTo);
+//    console.log($uploadTo);
 
+//    result = JSON.parse(data.result);
     result = xmlToJson(data.result);
     awsResponse = result;
+//    console.log(result);
     $.post(COCORIUM_APP_PATH + 'lessons/blocks/'+lessonId+'/files', {
         key: result.PostResponse.Key['#text'],
         content: result.PostResponse.Location['#text']
@@ -269,6 +334,7 @@ function blockFileUploaded(e, data){
         if(result.status=='success'){
             $(progressbar).find('span').html('');
             $(progressbar).css('width', 0 + '%');
+    //        console.log(result);
             $uploadTo.append(result.html);
             $(progressbar).parent().hide();
             $progressLabel.html('');
@@ -285,8 +351,17 @@ function blockFileUploaded(e, data){
             $(progressbar).css('width', 0 + '%');
             $progressLabel.html(result.errors );
         }
-       
+        
+//        bootbox.hideAll();
+        
+//        $(e.target).parent().parent().parent().append(result.html);
     });
+//    if(result.status=='error'){
+////        $(e.target).closest('form').after("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
+//        $(e.target).closest('form').prepend("<p class='alert alert-danger ajax-error'>"+result.errors+'</p>');
+//        return false;
+//    }
+//    $(e.target).parent().parent().parent().append(result.html);
 }
 
 /**
@@ -406,6 +481,7 @@ function adjustDiscount(e){
     val = parseInt(e.val());
     kind = e.attr('data-saleType');
     kind = $("[name='"+kind+"']").val();
+//    if(kind=='amount' && val>0) val =  round2( val, 10 );
     val =  round2( val, 10 );
     e.val( val );
 }
@@ -413,6 +489,14 @@ function adjustDiscount(e){
 function courseChangedTabs(e){
     $('.header-tabs').removeClass('active');
     $(e.target).addClass('active');
+//    remaining = $(e.target).attr('data-steps-remaining');
+//    if(remaining==0){
+//        $('.steps-remaining').hide();
+//    }
+//    else{
+//        $('.steps-remaining').find('span').html( _(remaining) );
+//        $('.steps-remaining').show();
+//    }
     // update who is for
     str = '';
     $('[name="who_is_this_for[]"]').each(function(){
@@ -541,6 +625,128 @@ function deleteCurriculumItem( event, result ){
 }
 
 
+$('body').delegate('a.link-to-remote-confirm', 'click', linkToRemoteConfirm);
+
+function linkToRemoteConfirm(e){
+    e.preventDefault();
+    // get the message from the clicked button, don't hard code it (so we can use localization)
+    msg = $(e.target).attr('data-message');
+    elem = $(e.target);
+    while(typeof(msg)=='undefined'){
+        elem = elem.parent();
+        msg = elem.attr('data-message');
+    }
+    if( !confirm(msg) ) return false;
+    
+    var nofollow = $(e.target).attr('data-nofollow');
+    if( typeof(nofollow)!='undefined'&& nofollow==1 ) return false;
+    
+    var loading = $(e.target).attr('data-loading');
+    if( typeof(loading)!='undefined'&& loading==1 ) return false;
+    
+    url = $(e.target).attr('data-url');
+    var callback = $(e.target).attr('data-callback');
+    elem = $(e.target);
+    while(typeof(url)=='undefined'){
+        elem = elem.parent();
+        url = elem.attr('data-url');
+        callback = elem.attr('data-callback');  
+        e.target = elem;
+    }
+    
+    $(elem).attr('data-old-label', $(elem).html() );
+    $(elem).html( '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    $.get(url, function(result){
+        $(e.target).attr('data-loading', 0);
+        $(elem).html( $(elem).attr('data-old-label') );
+        result = JSON.parse(result);
+        if(result.status == 'success' ){
+            if( typeof(callback)!= 'undefined'){
+                window[callback](e, result);
+            }
+        }
+        else{
+            console.log( result );
+            $.bootstrapGrowl( _('An Error Occurred.'),{align:'center', type:'danger'} );
+        }
+    });
+
+}
+$('body').delegate('.reset-form', 'click', resetForm);
+function resetForm(e){
+    e.preventDefault();
+    form = $(e.target).attr('data-form');
+    $form = $(form);
+    $form[0].reset();
+}
+
+$('body').delegate('.submit-form', 'click', submitForm);
+function submitForm(e){
+    e.preventDefault();
+    form = $(e.target).attr('data-form');
+    $form = $(form);
+    $form.find('[type="submit"]').click();
+//    $form[0].submit();
+}
+
+/**
+ * Restores the form's submit button original label
+ * @method restoreSubmitLabel
+ * @param {jQuery form} $form
+ */
+function restoreSubmitLabel($form){
+    if( typeof( $form.attr('data-save-indicator') ) !='undefined' ){
+        indicator = $form.attr('data-save-indicator');
+        $indicator = $(indicator);
+        $indicator.html( $indicator.attr('data-old-label') );
+        $indicator.removeAttr('disabled');
+        return false;
+    }
+    
+    if( typeof( $form.attr('data-no-processing') ) == 'undefined' ||  $form.attr('data-no-processing') != 1){
+        $form.find('[type=submit]').html( $form.find('[type=submit]').attr('data-old-label') );
+        $form.find('[type=submit]').removeAttr('disabled');
+    }
+    
+}
+
+$('body').delegate('.characters-left', 'keyup', charactersLeft);
+function charactersLeft(e){
+    elem = $(e.target);
+    limit = $(elem).attr('maxlength');
+    current = $(elem).val().length;
+    remaining = limit - current;
+    display = $(elem).attr('data-target');
+    $(display).html(remaining);
+}
+
+function enableCharactersLeft(){
+    $('.characters-left').each(function(){
+        $(this).keyup();
+    });
+}
+
+function toggleTheClass(e){
+    $source = $(e.target);
+    dest = $source.attr('data-target');
+    cls = $source.attr('data-class');
+    $(dest).toggleClass(cls);
+}
+
+function toggleVisibility(e){
+    $source = $(e.target);
+    dest = $source.attr('data-target');
+    hide =  $source.attr('data-visible');
+    if ( hide == 'hide' ) {
+        $source.attr('data-visible', 'show');
+        $(dest).hide();
+    }
+    else {
+        $source.attr('data-visible', 'hide');
+        $(dest).show();
+    }
+}
+
 function sortablizeLsn(){
     $('.drag-lesson').each(function(){
         if( typeof( $(this).attr('data-sortablized')) =='undefined' ) {
@@ -593,6 +799,29 @@ function sortablizeMdl(){
     });
 }
 
+
+$('body').delegate('.type-in-elements', 'keyup', typeInElemens);
+function typeInElemens(e){
+    elem = $(e.target).attr('data-elements');
+    $(elem).html( $(e.target).val() );
+}
+
+function calculateFileSizes(){
+    $('.calculate-file-size').each(function(){
+        id = $(this).attr('data-id');
+        obj = $(this);
+        $.get( COCORIUM_APP_PATH+'blocks/'+id+'/size', function(result){
+            result = JSON.parse(result);
+            $obj = $('.calculate-file-size-'+result.id);
+            console.log($obj);
+            $obj.html( result.val );
+            console.log( result.val );
+            $obj.removeClass('calculate-file-size');
+        });
+    });
+}
+
+$('body').delegate('a.toggle-minimize, button.toggle-minimize, .module-minimized div.toggle-minimize.module-data, .lesson-minimized div.toggle-minimize.lesson-data ', 'click', toggleMinimize);
 function toggleMinimize(e){
     if( $(e.target).hasClass('fa') ) $(e.target).toggleClass('fa-compress');
     
@@ -631,6 +860,7 @@ function toggleMinimize(e){
     }
 }
 
+
 function deleteAttachment( event, result ){
     deleteItem(result, event);
     lessonId = $(event.target).attr('data-lesson');
@@ -642,4 +872,25 @@ function minimizeAfterSave(result, e){
     elem = $(e.target).attr('data-elem');
     console.log( elem+' .toggle-minimize' );
     $(elem+' a.toggle-minimize').first().click();
+}
+
+
+$('body').delegate('.click-on-enter', 'keyup keypress', clickOnEnter);
+function clickOnEnter(e){
+    if( e.which == 13 ){
+        if( $.trim( $(e.target).val() )  == '') return false;
+        link = $(e.target).attr('data-click');
+        if( e.type=='keyup'){
+            $(link).click();
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }
+}
+
+function showFiles(e, elem){
+    e.preventDefault();
+    e.stopPropagation();
+    $(elem).slideToggle();
 }

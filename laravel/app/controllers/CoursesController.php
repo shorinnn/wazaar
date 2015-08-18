@@ -487,14 +487,14 @@ class CoursesController extends \BaseController {
             if( $course->assigned_instructor_id != null && $course->details_displays == 'assigned_instructor'){
                 $instructor = $course->assignedInstructor;
             }
-            
+            $student = null;
+            if(Auth::check()) $student = Student::find(Auth::user()->id);
             $course->allTestimonials = $course->testimonials()->orderBy('id', 'desc')->limit(2)->get();
             if(Input::has('aid')){
 //                Cookie::queue("aid-$course->id", Input::get('aid'), 60*24*30);
                 Cookie::queue("aid", Input::get('aid'), 60*24*30);
                 // store this in the DB as well, in case the cookies get deleted
                 if(Auth::check()) {
-                    $student = Student::find(Auth::user()->id);
                     $student->saveReferral(Input::get('aid'), $course->id);
                 }
             }
@@ -505,9 +505,9 @@ class CoursesController extends \BaseController {
             $video = $course->descriptionVideo;
 
             if( serveMobile() ) 
-                Return View::make('MOBILE_VERSION.courses.show')->with(compact('course'))->with(compact('student'))->with( compact('video') )->with( compact('instructor') );
+                Return View::make('MOBILE_VERSION.courses.show')->with(compact('course', 'student', 'video', 'instructor') );
             else    
-                Return View::make('courses.show')->with(compact('course'))->with(compact('student'))->with( compact('video') )->with( compact('instructor') );
+                Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor') );
         } 
         
         public function purchase($slug){
