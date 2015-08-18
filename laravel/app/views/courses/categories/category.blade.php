@@ -3,7 +3,7 @@
 		<section class="container-fluid category-heading-container">
             <div class="container cat-row-{{$category->color_scheme}}">
             	<div class="row category-heading">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                         @if($category->name!='')
                             <p class="category-heading-title"> {{ $category->name }}
                                 @if(isset($subcategory))
@@ -13,25 +13,38 @@
                         @endif
                     </div>
 
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <div class="pull-right margin-top-20">
-                            {{Form::select('sort',CourseHelper::getCourseSortOptions(),Input::get('sort'),['class' => 'form-control'])}}
-
-                        </div>
-
-
-                    	<div class="difficulty-levels">
-                        	<div class="level-buttons-container">
-                            	<a href="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort')}}"  data-target=".ajax-content" data-url="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort')}}"
-                                   data-callback="ajaxifyPagination" class="load-remote beginner level-buttons @if($difficultyLevel == 1) active @endif">Beginner</a>
-                                <a href="{{Request::url() . '?difficulty=2&sort=' . Input::get('sort')}}" data-target=".ajax-content" data-url="{{Request::url() . '?difficulty=2&sort=' . Input::get('sort')}}" 
-                                   data-callback="ajaxifyPagination" class="load-remote advanced level-buttons @if($difficultyLevel == 2) active @endif">Intermediate</a>
-                                <a href="{{Request::url() . '?difficulty=3&sort=' . Input::get('sort')}}"  data-target=".ajax-content" data-url="{{Request::url() . '?difficulty=3&sort=' . Input::get('sort')}}" 
-                                   data-callback="ajaxifyPagination" class="load-remote intermediate level-buttons @if($difficultyLevel == 3) active @endif">Advanced</a>
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    	<div class="clearfix right">
+                            <div class="sort-options"><label>Sort by:</label>
+                                {{Form::select('sort',CourseHelper::getCourseSortOptions(),Input::get('sort'),['class' => 'form-control'])}}
+                            <div class="date-dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Date
+                                    <i class="wa-chevron-down"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <li><a href="#">Yesterday</a></li>
+                                    <li><a href="#">1 weeek</a></li>
+                                    <li><a href="#">1 month</a></li>
+                                    <li><a href="#">1 year</a></li>
+                                </ul>
                             </div>
-                            <div class="toggle-menus">
-                            	<a href="#" class="menu menu-1"><i class="fa fa-th"></i></a>
-                                <a href="#" class="menu menu-2"><i class="fa fa-th-list"></i></a>
+                            </div>
+    
+    
+                            <div class="difficulty-levels">
+                                <div class="level-buttons-container">
+                                    <a href="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort')}}"  data-target=".ajax-content" data-url="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort')}}"
+                                       data-callback="ajaxifyPagination" class="load-remote beginner level-buttons @if($difficultyLevel == 1) active @endif">Beginner</a>
+                                    <a href="{{Request::url() . '?difficulty=2&sort=' . Input::get('sort')}}" data-target=".ajax-content" data-url="{{Request::url() . '?difficulty=2&sort=' . Input::get('sort')}}" 
+                                       data-callback="ajaxifyPagination" class="load-remote advanced level-buttons @if($difficultyLevel == 2) active @endif">Intermediate</a>
+                                    <a href="{{Request::url() . '?difficulty=3&sort=' . Input::get('sort')}}"  data-target=".ajax-content" data-url="{{Request::url() . '?difficulty=3&sort=' . Input::get('sort')}}" 
+                                       data-callback="ajaxifyPagination" class="load-remote intermediate level-buttons @if($difficultyLevel == 3) active @endif">Advanced</a>
+                                </div>
+                                <div class="toggle-menus">
+                                    <a href="#" class="menu menu-1"><i class="fa fa-th"></i></a>
+                                    <a href="#" class="menu menu-2"><i class="fa fa-th-list"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
