@@ -50,13 +50,13 @@
                 </div>
                 <div class="dropdown text-center lesson-control">
                   <a id="upload-new" class="default-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    {{ trans('video.upload-new') }}
+                    {{ trans('video.course-upload-new') }}
                     <i class="wa-chevron-down"></i>
                   </a>
 
                   <ul class="dropdown-menu" aria-labelledby="upload-new">
                     <label class="upload-button">
-                        <span>{{ trans('video.upload-new-video') }}</span>
+                        <span>{{ trans('video.course-upload-new-video') }}</span>
                         <input type="file" hidden="" id="fileupload-lesson-{{$lesson->id}}" class="lesson-video-file" name="file" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lesson->id}}"/>
                     </label>
                     <span class="use-existing use-existing-preview" >
@@ -202,7 +202,8 @@
         @endif
             <i class="fa fa-cloud-upload"></i>
             <p class="regular-paragraph  dropzone lesson-dropzone-{{$lesson->id}}">
-                <!--Drag & Drop<br> files to upload-->Upload Files
+                <!--Drag & Drop<br> files to upload-->
+                {{ trans('courses/create.upload-files') }}
             </p>
                 <p class="label-progress-bar label-progress-bar-{{$lesson->id}}"></p>
                 <div class="progress" style="display: none">
@@ -230,7 +231,7 @@
 
 
                         <i class="fa fa-paperclip"></i>
-                        <span>Select file</span>
+                        <span>{{ trans('courses/create.select-file') }}</span>
                         <input type='file' name='file' id='file-upload-{{$lesson->id}}' data-dropzone='.lesson-dropzone-{{$lesson->id}}' 
                        class='lesson-file-uploader' data-upload-to=".uploaded-files-{{$lesson->id}}"
                        data-progress-bar='.progress-bar-{{$lesson->id}}' data-callback='blockFileUploaded' 

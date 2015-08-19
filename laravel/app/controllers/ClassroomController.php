@@ -104,8 +104,13 @@ class ClassroomController extends \BaseController {
             if( $lesson==null || $lesson->module->course->id != $course->id ){
                 return Redirect::to('/');
             }            
-            $student->viewLesson( $lesson );
-            if( $video==null ) $student->viewLesson( $lesson, true );
+            if( $student->purchases()->where('product_id',$lesson->module->course->id)->where('product_type','Course')->count() > 0
+                    ||
+                   $student->purchases()->where('product_id',$lesson->id)->where('product_type','Lesson')->count() > 0 ){
+                
+                $student->viewLesson( $lesson );
+                if( $video==null ) $student->viewLesson( $lesson, true );
+            }
             
             $lesson->ask_teacher_messages = $lesson->privateMessages()->where('type','ask_teacher')->where(function($query){
                 $query->where('sender_id', Auth::user()->id)->orWhere('recipient_id', Auth::user()->id);

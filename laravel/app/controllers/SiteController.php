@@ -226,5 +226,9 @@ class SiteController extends \BaseController {
         return View::make( 'site.privacy-policy' );
     }
     
+    public function about(){
+        return View::make( 'site.about' );
+    }
+    
 
 }

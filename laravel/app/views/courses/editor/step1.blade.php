@@ -114,7 +114,7 @@
                         {{ trans('courses/general.short_description') }}
                         </h6>
                         {{ Form::textarea('short_description', null,['id'=>'short_description', 'required' => 'required' ] ) }}
-                        <em>{{ trans('courses/create.short-description-tip') }}</em>                           
+                        <!--<em>{{ trans('courses/create.short-description-tip') }}</em>-->                           
                     </div>
                     
                     <div class="margin-top-50">
@@ -122,7 +122,7 @@
                         {{ trans('courses/general.full_description') }}
                         </h6>
                         {{ Form::textarea('description', null,['id'=>'description'] ) }}  
-                        <em>{{ trans('courses/create.short-description-tip') }}</em>      
+                        <!--<em>{{ trans('courses/create.short-description-tip') }}</em>-->      
                     </div>
                 </div>
                 
