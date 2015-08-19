@@ -28,9 +28,9 @@
                     </h1>
                     <a href="#" class="blue-button large-button round-button how-it-works"><i class="fa fa-play-circle"></i>{{trans('site/homepage.how_it_works')}}</a>
                     <div class="home-search-form">
-                        <form>
+                        <form action='{{ action('CoursesController@search') }}'>
                             <div>
-                                <input type="search" name="home-search" class="left" placeholder="What do you want to learn?">
+                                <input type="search" name="term" class="left" placeholder="What do you want to learn?">
                                 <button><i class="fa fa-search"></i></button>
                             </div>
                         </form>

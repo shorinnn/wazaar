@@ -8,7 +8,7 @@ class CourseHelper {
      * @param array $otherFilters
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Pagination\Paginator|static[]
      */
-    public function bestSellers($category = null, $timeFrame = 'AT', $perPage = null, $otherFilters = [], $sort = 'DESC', $subcategory = null)
+    public function bestSellers($category = null, $timeFrame = 'AT', $perPage = null, $otherFilters = [], $sort = 'DESC', $subcategory = null, $searchString='')
     {
         $courses = null;
 
@@ -44,6 +44,12 @@ class CourseHelper {
             if (in_array($filterKey, $validFilters) && !empty($filterVal)){
                 $courses = $courses->where($filterKey, $filterVal);
             }
+        }
+        if( $searchString!='' ){
+            $courses = $courses->where(function($query) use ($searchString) {
+                $query->where( 'course_name', 'like', "%$searchString%" )
+                    ->orWhere( 'course_description', 'like', "%$searchString%" );
+            });
         }
 
         $courses->orderBy('total_sales', $sort);
