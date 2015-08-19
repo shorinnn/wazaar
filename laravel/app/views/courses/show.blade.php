@@ -169,7 +169,7 @@
                                            ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
                                          </span>
                             <button class="clearfix enroll-button blue-button extra-large-button">
-                                {{ trans("courses/general.enter-classroom") }}
+                                {{ trans("courses/general.course-enroll") }}
                             </button>
                         @elseif(Auth::check() && $student->purchased($course) )
                             <span class="price clearfix">
@@ -182,7 +182,7 @@
                             <span class="price clearfix">
                                          </span>
                             <button class="clearfix enroll-button blue-button extra-large-button" disabled="disabled" data-toggle="tooltip" data-placement="left" title="Available for customers">
-                                {{ trans("courses/general.enter-classroom") }}
+                                {{ trans("courses/general.course-enroll") }}
                             </button>
                         @endif
 
@@ -199,7 +199,7 @@
                                     <span class="price clearfix">
                                      </span>
                                      <button class="clearfix enroll-button blue-button extra-large-button join-class margin-top-50">
-                                         {{ trans("courses/general.enter-classroom") }}
+                                         {{ trans("courses/general.course-enroll") }}
                                      </button>
                                 @elseif(Auth::check() && $student->purchased($course) )
                                     <span class="price clearfix">
@@ -212,7 +212,7 @@
                             <span class="price clearfix">
                              </span>
                              <button class="clearfix enroll-button blue-button extra-large-button join-class margin-top-50" disabled="disabled">
-                                 {{ trans("courses/general.enter-classroom") }}
+                                 {{ trans("courses/general.course-enroll") }}
                                      </button>
                                 @endif
 
@@ -229,7 +229,7 @@
                                            ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
                                          </span>
                             <button class="clearfix enroll-button blue-button extra-large-button">
-                                {{ trans("courses/general.enter-classroom") }}
+                                {{ trans("courses/general.course-enroll") }}
                             </button>
                         <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
                         <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
