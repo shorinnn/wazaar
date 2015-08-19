@@ -114,7 +114,7 @@
                         {{ trans('courses/general.short_description') }}
                         </h6>
                         {{ Form::textarea('short_description', null,['id'=>'short_description', 'required' => 'required' ] ) }}
-                        <em>{{ trans('courses/create.short-description-tip') }}</em>                           
+                        <!--<em>{{ trans('courses/create.short-description-tip') }}</em>-->                           
                     </div>
                     
                     <div class="margin-top-50">
@@ -122,7 +122,7 @@
                         {{ trans('courses/general.full_description') }}
                         </h6>
                         {{ Form::textarea('description', null,['id'=>'description'] ) }}  
-                        <em>{{ trans('courses/create.short-description-tip') }}</em>      
+                        <!--<em>{{ trans('courses/create.short-description-tip') }}</em>-->      
                     </div>
                 </div>
                 
@@ -148,7 +148,7 @@
                                     <span class="cloned-number">{{$i}}</span>
                                     <!--<input type='text' name='requirements[]' data-clonable-max='5' value='{{$val}}' class="clonable clonable-{{time().$i}}"  /><br />-->
                                     <!--<a href="#" tabindex="-1" class="style-one delete-clonable clonable-{{time().$i}}"><i class="fa fa-times"></i></a>-->
-                                    <input type='text' name='requirements[]' class='click-on-enter' data-click='.clonable-req-click' value='{{$val}}' /><br />
+                                    <input type='text' name='requirements[]' class='click-on-enter' data-callback="cloneStep1Box"  data-click='.clonable-req-click' value='{{$val}}' /><br />
                                     <a href="#" tabindex="-1" data-delete=".clonable-req-{{time().$i}}"
                                        class="style-one delete-clonable">
                                         <i class="fa fa-times" data-delete=".clonable-req-{{time().$i}}"></i>
@@ -160,7 +160,7 @@
         
                             <div class="relative clonable-input clearfix clonable-req-{{time().$i}}">
                                 <span class="cloned-number">{{$i}}</span>     
-                                    <input type='text' name='requirements[]' class='click-on-enter'  data-click='.clonable-req-click' 
+                                    <input type='text' name='requirements[]' class='click-on-enter' data-callback="cloneStep1Box"   data-click='.clonable-req-click' 
                                    @if(count($values)==0) required @endif /> 
                                     <a href="#" tabindex="-1" class="style-one delete-clonable"  data-delete=".clonable-req-{{time().$i}}">
                                         <i class="fa fa-times"  data-delete=".clonable-req-{{time().$i}}"></i>
@@ -182,7 +182,7 @@
                                 @foreach($values as $val)
                                 <div class="relative clearfix clonable-input clonable-who-{{time().$i}}">
                                     <span class="cloned-number">{{$i}}</span>
-                                    <input type='text' name='who_is_this_for[]' class='click-on-enter'  data-click='.clonable-who-click' 
+                                    <input type='text' name='who_is_this_for[]' class='click-on-enter' data-callback="cloneStep1Box"  data-click='.clonable-who-click' 
                                            value='{{$val}}' /><br />
                                      <a href="#" tabindex="-1" data-delete=".clonable-who-{{time().$i}}"
                                        class="style-one delete-clonable">
@@ -195,7 +195,7 @@
                             
                             <div class="relative clearfix clonable-input clonable-who-{{time().$i}}">
                                 <span class="cloned-number">{{$i}}</span>
-                                <input type='text' name='who_is_this_for[]' class='click-on-enter'  data-click='.clonable-who-click' /><br />
+                                <input type='text' name='who_is_this_for[]' class='click-on-enter'  data-callback="cloneStep1Box"  data-click='.clonable-who-click' /><br />
                                  <a href="#" tabindex="-1" data-delete=".clonable-who-{{time().$i}}"
                                    class="style-one delete-clonable">
                                     <i class="fa fa-times" data-delete=".clonable-who-{{time().$i}}"></i>
@@ -220,7 +220,7 @@
                                 @foreach($values as $val)
                                     <div class="relative clearfix clonable-input clonable-what-{{time().$i}}">
                                         <span class="cloned-number">{{$i}}</span>
-                                        <input type='text' name='what_will_you_achieve[]' class='click-on-enter'  data-click='.clonable-what-click' 
+                                        <input type='text' name='what_will_you_achieve[]' class='click-on-enter'  data-callback="cloneStep1Box"   data-click='.clonable-what-click' 
                                                value='{{$val}}' /><br />
                                          <a href="#" tabindex="-1" data-delete=".clonable-what-{{time().$i}}"
                                            class="style-one delete-clonable">
@@ -233,7 +233,7 @@
 
                             <div class="relative clearfix clonable-input clonable-what-{{time().$i}}">
                                 <span class="cloned-number">{{$i}}</span>
-                                <input type='text' name='what_will_you_achieve[]' class='click-on-enter'  data-click='.clonable-what-click'  /><br />
+                                <input type='text' name='what_will_you_achieve[]' class='click-on-enter' data-callback="cloneStep1Box"   data-click='.clonable-what-click'  /><br />
                                  <a href="#" tabindex="-1" data-delete=".clonable-what-{{time().$i}}"
                                    class="style-one delete-clonable">
                                     <i class="fa fa-times" data-delete=".clonable-what-{{time().$i}}"></i>
@@ -281,11 +281,23 @@
 <script src="{{url('js/bootstrap-datetimepicker.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
 
+        function cloneStep1Box(e){
+           e.preventDefault();
+           link = $(e.target).attr('data-click');
+           
+           target = $(link).attr('data-target'); 
+           name = $(link).attr('data-name'); 
+           cssClass = $(link).attr('data-class'); 
+           if( $("[name='"+name+"']").filter(function () { return this.value.length == 0}).length > 0 ) return false;
+           $(link).click();
+        }
+        
         function cloneBox(e){
            e.preventDefault();
            target = $(e.target).attr('data-target'); 
            name = $(e.target).attr('data-name'); 
            cssClass = $(e.target).attr('data-class'); 
+                     
            cssClass += '-'+uniqueId();
            $target = $(target);
            newBox = $target.find('.relative').last().clone();

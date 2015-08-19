@@ -119,10 +119,10 @@
                             </ul>
                         </div>
                     </div>
-                    <form>
+                    <form action='{{ action('CoursesController@search') }}'>
                         <div>
                             <button><i class="wa-search"></i></button>
-                            <input type="search" name="header-search" class="header-search" placeholder="{{ trans('general.search') }}">
+                            <input type="search" name="term" class="header-search" value='{{Input::get('term')}}' placeholder="{{ trans('general.search') }}">
                         </div>
                     </form>
                 </div>

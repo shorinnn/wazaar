@@ -280,7 +280,7 @@
                     {{ trans('courses/general.wazaar-is-checking-your-product') }}
                     @endif
                             </a>-->
-                    <a href='#' data-href="{{ action( 'CoursesController@show', $course->slug ) }}" class="default-button disabled-button large-button right preview-course-btn">
+                    <a href='#' data-href="{{ action( 'CoursesController@show', $course->slug ) }}?is-preview=1" class="default-button disabled-button large-button right preview-course-btn">
                         {{ trans('courses/general.preview_course') }}
                     </a>
 

@@ -376,7 +376,8 @@ function loadRemote(e){
     elem = $(e.target);
     loadMethod = $(e.target).attr('data-load-method');
     noPush = $(e.target).attr('data-no-push-state');
-    indicatorStyle = $(e.target).attr('data-indicator-style')
+    indicatorStyle = $(e.target).attr('data-indicator-style');
+    failSafe = 0;
     while(typeof(url)=='undefined'){
         elem = elem.parent();
         url = elem.attr('data-url');
@@ -385,6 +386,8 @@ function loadRemote(e){
         noPush = elem.attr('data-no-push-state');  
         loadMethod = $(e.target).attr('data-load-method');
         indicatorStyle = elem.attr('data-indicator-style')
+        if(failSafe > 50) return;
+        failSave++;
     }
     $(e.target).attr('data-loading', 1);
     

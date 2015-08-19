@@ -66,4 +66,6 @@ return array(
     'add-notes' => 'Add Notes',
     'submit-for-approval' => 'SUBMIT FOR APPROVAL',
     'select-existing-image' => 'Select Existing',
+    'upload-files' => 'Upload Files',
+    'select-file' => 'Select file',
 );

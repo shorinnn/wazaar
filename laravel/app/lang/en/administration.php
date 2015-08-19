@@ -30,7 +30,7 @@ return array(
     'category-sales-rank' => 'Category Sales Rank',
     'status' => 'Status',
     'course-categories' => 'Course Categories',
-    'color-scheme' => 'Color Scheme',
+    'color-scheme' => 'Icon / Color Scheme',
     'browse' => 'Browse',
     'course-difficulties' => 'Course Difficulties',
     'request-type' => 'Request Type',

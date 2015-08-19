@@ -1,4 +1,5 @@
-1440023729s:3025:"        <div class="col-xs-12 col-sm-6 col-md-4">
+1440025966s:3022:" 
+        <div class="col-xs-12 col-sm-6 col-md-4">
             <a href="http://wazaar.dev/courses/cJio3" class="small-box-link-wrapper">
                 <div class="object small-box small-box-one">
                     <!--<div class="level">Beginner</div>-->
@@ -12,7 +13,7 @@
                             class="img-responsive" alt="" style="max-height: 182px"  />-->
                         <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">
                         <span class="video-play-button"><em></em></span>
-                        <span class="likes"><i class="wa-like"></i>0</span>         
+                        <span class="likes"><i class="wa-like"></i>0</span>       
                         <span class="box-overlay">
                             <p>Lesson</p>
                             <p>weeks of learning</p>
@@ -28,7 +29,7 @@
                             <p>Short:  You get a beginner award after completing the course.</p>
                         </div>
                         <div class="bottom-contents clearfix">
-                            <div class="difficulty-bar beginner">
+                            <div class="difficulty-bar  beginner">
                                                                                                     <span class="bar-1"></span>
                                                             </div>
                             <div class="next_">
@@ -36,7 +37,7 @@
                                     <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
                                 </div>-->
                                 <div class="students-attending">
-                                <i class="wa-user-n"></i>
+                                	<i class="wa-user-n"></i>
                                     0
                                 </div>
                             </div>
@@ -50,5 +51,4 @@
                 </div>
             </a>
         </div>
-    
     ";

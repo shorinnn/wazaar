@@ -50,13 +50,13 @@
                 </div>
                 <div class="dropdown text-center lesson-control">
                   <a id="upload-new" class="default-button" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    {{ trans('video.upload-new') }}
+                    {{ trans('video.course-upload-new') }}
                     <i class="wa-chevron-down"></i>
                   </a>
 
                   <ul class="dropdown-menu" aria-labelledby="upload-new">
                     <label class="upload-button">
-                        <span>{{ trans('video.upload-new-video') }}</span>
+                        <span>{{ trans('video.course-upload-new-video') }}</span>
                         <input type="file" hidden="" id="fileupload-lesson-{{$lesson->id}}" class="lesson-video-file" name="file" data-unique-key="{{$uniqueKey}}" data-block-id="{{$block->id}}" data-lesson-id="{{$lesson->id}}"/>
                     </label>
                     <span class="use-existing use-existing-preview" >
@@ -141,52 +141,54 @@
                 <textarea class='characters-left' data-target='.characters-notes-{{$lesson->id}}' maxlength="360" name="notes" 
                           placeholder="{{trans('courses/create.add-notes')}}">{{ $lesson->notes }}</textarea>
             </div>
-            <div class="row">
-                
-                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 switch-buttons">
-                    <div class="">
-                        <h6>{{ trans('courses/general.free-preview') }}<span class="tip" data-toggle="tooltip" data-placement="top" title="Some tips here">?</span></h6>
-                        <label class="switch">
-                            {{ Form::checkbox('free_preview','yes', ($lesson->free_preview=='yes') ? true : false, [
-                               'class'=>'switch-input',
-                               'onchange' => 'toggleVisibility(event)',
-                               'data-target' => ".depends-on-free-$lesson->id",
-                               'data-visible' => ($lesson->free_preview=='no') ? 'hide':'show'
-                            ] ) }}
-                            <!--<input type="checkbox" id="free-preview-{{$lesson->id}}" name="free_preview" value="yes" class="switch-input" />-->
-                            <span class="switch-label" data-on="Yes" data-off="No"></span>
-                            <span class="switch-handle"></span>
-                        </label>
+             @if( $lesson->module->course->free == 'no' )
+                <div class="row">
+
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 switch-buttons">
+                        <div class="">
+                            <h6>{{ trans('courses/general.free-preview') }}<span class="tip" data-toggle="tooltip" data-placement="top" title="Some tips here">?</span></h6>
+                            <label class="switch">
+                                {{ Form::checkbox('free_preview','yes', ($lesson->free_preview=='yes') ? true : false, [
+                                   'class'=>'switch-input',
+                                   'onchange' => 'toggleVisibility(event)',
+                                   'data-target' => ".depends-on-free-$lesson->id",
+                                   'data-visible' => ($lesson->free_preview=='no') ? 'hide':'show'
+                                ] ) }}
+                                <!--<input type="checkbox" id="free-preview-{{$lesson->id}}" name="free_preview" value="yes" class="switch-input" />-->
+                                <span class="switch-label" data-on="Yes" data-off="No"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="depends-on-free-{{$lesson->id}} col-xs-4 col-sm-4 col-md-4 col-lg-4 switch-buttons "
-                     @if($lesson->free_preview=='yes') style='display:none' @endif">
-                    <div class="">
-                        <h6>{{ trans('courses/general.individual-sale') }} <span class="tip" data-toggle="tooltip" data-placement="top" title="Some tips here">?</span></h6>
-                        <label class="switch">
-                            {{ Form::checkbox('individual_sale','yes', ($lesson->individual_sale=='yes') ? true : false, 
-                             ['class'=>'switch-input',
-                               'onchange' => 'toggleTheClass(event)',
-                               'data-target' => ".depends-on-individual-$lesson->id",
-                               'data-class' => 'inactive'
-                             ] ) }}
-                            <span class="switch-label" data-on="Yes" data-off="No"></span>
-                            <span class="switch-handle"></span>
-                        </label>
+                    <div class="depends-on-free-{{$lesson->id}} col-xs-4 col-sm-4 col-md-4 col-lg-4 switch-buttons "
+                         @if($lesson->free_preview=='yes') style='display:none' @endif">
+                        <div class="">
+                            <h6>{{ trans('courses/general.individual-sale') }} <span class="tip" data-toggle="tooltip" data-placement="top" title="Some tips here">?</span></h6>
+                            <label class="switch">
+                                {{ Form::checkbox('individual_sale','yes', ($lesson->individual_sale=='yes') ? true : false, 
+                                 ['class'=>'switch-input',
+                                   'onchange' => 'toggleTheClass(event)',
+                                   'data-target' => ".depends-on-individual-$lesson->id",
+                                   'data-class' => 'inactive'
+                                 ] ) }}
+                                <span class="switch-label" data-on="Yes" data-off="No"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="depends-on-free-{{$lesson->id}} depends-on-individual-{{$lesson->id}} col-xs-4 col-sm-4 col-md-4 col-lg-4 
-                     @if($lesson->individual_sale=='no') inactive @endif"
-                     @if($lesson->free_preview=='yes') style='display:none' @endif">
-                    <div class="clearfix">
-                        <h6>{{ trans('general.lesson_price') }} <span class="tip" data-toggle="tooltip" data-placement="top" title="Some tips here">?</span></h6>
-                        <div class="value-unit-two">
-                            <span class="unit">¥</span>
-                            <input type="text" name="price" value="{{ $lesson->price }}" class="value">
+                    <div class="depends-on-free-{{$lesson->id}} depends-on-individual-{{$lesson->id}} col-xs-4 col-sm-4 col-md-4 col-lg-4 
+                         @if($lesson->individual_sale=='no') inactive @endif"
+                         @if($lesson->free_preview=='yes') style='display:none' @endif">
+                        <div class="clearfix">
+                            <h6>{{ trans('general.lesson_price') }} <span class="tip" data-toggle="tooltip" data-placement="top" title="Some tips here">?</span></h6>
+                            <div class="value-unit-two">
+                                <span class="unit">¥</span>
+                                <input type="text" name="price" value="{{ $lesson->price }}" class="value">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+             @endif
             {{ Form::close() }}
             </div>
         </div>
@@ -200,7 +202,8 @@
         @endif
             <i class="fa fa-cloud-upload"></i>
             <p class="regular-paragraph  dropzone lesson-dropzone-{{$lesson->id}}">
-                <!--Drag & Drop<br> files to upload-->Upload Files
+                <!--Drag & Drop<br> files to upload-->
+                {{ trans('courses/create.upload-files') }}
             </p>
                 <p class="label-progress-bar label-progress-bar-{{$lesson->id}}"></p>
                 <div class="progress" style="display: none">
@@ -228,7 +231,7 @@
 
 
                         <i class="fa fa-paperclip"></i>
-                        <span>Select file</span>
+                        <span>{{ trans('courses/create.select-file') }}</span>
                         <input type='file' name='file' id='file-upload-{{$lesson->id}}' data-dropzone='.lesson-dropzone-{{$lesson->id}}' 
                        class='lesson-file-uploader' data-upload-to=".uploaded-files-{{$lesson->id}}"
                        data-progress-bar='.progress-bar-{{$lesson->id}}' data-callback='blockFileUploaded' 

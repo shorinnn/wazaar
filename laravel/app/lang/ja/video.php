@@ -14,5 +14,7 @@ return [
     'myVideos' => 'マイ動画',
     'useVideo' => '動画を使用する',
     'upload-new' => 'ビデオ新規投稿',
+    'course-upload-new' => 'ビデオの投稿',
     'remove-video' => 'ビデオの削除',
+    'course-upload-new-video' => 'ビデオの新規投稿',
 ];

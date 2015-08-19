@@ -28,9 +28,9 @@
                     </h1>
                     <a href="#" class="blue-button large-button round-button how-it-works"><i class="wa-play"></i>{{trans('site/homepage.how_it_works')}}</a>
                     <div class="home-search-form">
-                        <form>
+                        <form action='{{ action('CoursesController@search') }}'>
                             <div>
-                                <input type="search" name="home-search" class="left" placeholder="What do you want to learn?">
+                                <input type="search" name="term" class="left" placeholder="What do you want to learn?">
                                 <button><i class="wa-search"></i></button>
                             </div>
                         </form>
@@ -108,9 +108,8 @@
             <div class="row">
                 @foreach($categories->take(6)->get() as $cat)
                     <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="{{ action( 'CoursesController@category', $cat->slug ) }}" class="business">
-                        	<em></em>
-                            <span> {{ $cat->name }}</span>
+                        <a href="{{ action( 'CoursesController@category', $cat->slug ) }}" class="{{$cat->graphics_url}}">
+                            <em></em><span> {{ $cat->name }}</span>
                         </a>
                     </div>
                 @endforeach
@@ -118,9 +117,8 @@
             <div class="row">
                 @foreach($categories->skip(6)->take(6)->get() as $cat)
                     <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
-                        <a href="{{ action( 'CoursesController@category', $cat->slug ) }}" class="investment">
-                        	<em></em>
-                            <span> {{ $cat->name }}</span>
+                        <a href="{{ action( 'CoursesController@category', $cat->slug ) }}" class="{{$cat->graphics_url}}">
+                            <em></em><span> {{ $cat->name }}</span>
                         </a>
                     </div>
                 @endforeach

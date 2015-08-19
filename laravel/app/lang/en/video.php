@@ -18,5 +18,7 @@ return [
     'currentVideo' => 'Current video',
     'videoCurrentlyProcessing' => 'Video Currently Processing',
     'upload-new' => 'Upload New',
+    'course-upload-new' => 'Upload New',
     'remove-video' => 'Remove Video',
+    'course-upload-new-video' => 'Upload New Video',
 ];

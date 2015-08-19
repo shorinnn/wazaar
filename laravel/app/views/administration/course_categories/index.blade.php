@@ -7,7 +7,7 @@
                 
                 <ul id='items-list'>
                     @foreach(CourseCategory::all() as $category)
-                        {{ View::make('administration.course_categories.category')->with( compact('category') ) }}
+                        {{ View::make('administration.course_categories.category')->with( compact('category', 'cssClasses') ) }}
                     @endforeach
                 </ul>            
             </div>

@@ -3,7 +3,11 @@ $presenter = new Illuminate\Pagination\BootstrapPresenter($paginator);
 ?>
 
 <?php if ($paginator->getLastPage() > 1): ?>
-		<div class="pagination-container clear">
+            <?php if( isset($paginator->_presenterTableMode) && $paginator->_presenterTableMode==true ):?>
+                <div class="table-pagination clear">
+            <?php else: ?>
+                <div class="pagination-container clear">
+            <?php endif;?>
             <ul>
             <?php echo with(new MaxPresenter($paginator))->render(); ?>
             </u>

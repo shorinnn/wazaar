@@ -105,10 +105,10 @@
                             	<li>
                                 	<a href="{{ action('SiteController@privacyPolicy') }}"> {{ trans('general.privacy-policy') }}</a>
                                 </li>
-<!--                            	<li>
-                                	<a href="#">Terms of Use</a>
-                                </li>
                             	<li>
+                                	<a href="{{ action('SiteController@about') }}">特定商取引法に関する表示 </a>
+                                </li>
+<!--                            	<li>
                                 	<a href="#">Privacy Policy</a>
                                 </li>-->
                             </ul>                        
