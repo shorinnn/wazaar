@@ -50,41 +50,29 @@
         {{ trans('administration.color-scheme') }}:
         <br />
         <form class="clearfix">
-            <div class="radio-buttons clearfix">
-            @for($i=1; $i<10; $i++)
+            <div class="radio-buttons clearfix homepage explore-category">
+                <?php $i = 0;?>
+            @foreach( $cssClasses as $css )
                 <?php
-                $checked = $i==$category->color_scheme ? 'checked="checked"' : '' ;
+                $i++;
+                $checked = $css==$category->graphics_url ? 'checked="checked"' : '' ;
                 ?>
-                <div class="radio-checkbox radio-checked">
-                <input id="color-scheme-{{$category->id}}-{{$i}}" {{$checked}} type='radio' name='color_scheme[{{$category->id}}]' value='{{$i}}'  class='ajax-updatable' 
-               data-url='{{action('CoursesCategoriesController@update', $category->id )}}' data-name='color_scheme' />
+                <div class="radio-checkbox radio-checked col-lg-3" style="margin-bottom:10px">
+                <input id="color-scheme-{{$category->id}}-{{$i}}" {{$checked}} type='radio' name='graphics_url[{{$category->id}}]' value='{{$css}}'  class='ajax-updatable' 
+               data-url='{{action('CoursesCategoriesController@update', $category->id )}}' data-name='graphics_url' />
                <label for="color-scheme-{{$category->id}}-{{$i}}" class="small-radio"></label>
-                <div class='color-scheme-thumb unauthenticated-homepage cat-box-{{$i}}'></div>
+               
+                    <div class=" category-box">
+                            <a href="#" class="{{$css}}">
+                                <em></em><span> {{$css}}</span>
+                            </a>
+                    </div>
                 </div>
-            @endfor
+            @endforeach
 			</div>
         </form>
         <br />
-        <br />
-        
-        {{ trans('general.homepage_graphic') }}
-        
-        {{ View::make('administration.course_categories.graphics')->with(compact('category')) }}
-        
-        <form method='post' class='ajax-form clearfix' action='{{action('CoursesCategoriesController@graphics_url', $category->id)}}'>
-            <input type='hidden' name='_token' value='{{ csrf_token() }}' />
-            <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
-            <div class="fileUpload btn btn-primary">
-            <span>{{ trans('administration.browse') }}</span>
-            <input type='file' name='file' id='file-upload-{{$category->id}}' data-dropzone='' data-replace='#category-graphics-{{$category->id}}'
-                   class='ajax-file-uploader upload' data-progress-bar='.progress-bar-{{$category->id}}' data-callback='replaceElementWithUploaded' />
-            </div>
-        </form>
-        <div class="progress clear">
-            <div class="progress-bar progress-bar-striped active progress-bar-{{$category->id}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                <span></span>
-            </div>
-        </div>
+       
     </div>
     
     <ul class="first-sub" id="subcategory-holder-{{$category->id}}">

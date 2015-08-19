@@ -30,7 +30,7 @@ return array(
     'category-sales-rank' => 'カテゴリ売上ランキング',
     'status' => '月Statusせ',
     'course-categories' => 'コースカテゴリ',
-    'color-scheme' => '月StatusせPlease provide more context',
+    'color-scheme' => 'Graphics / Color scheme',
     'browse' => 'Browse',
     'course-difficulties' => 'コース難易度',
     'request-type' => 'リクエストタイプ',

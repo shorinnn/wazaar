@@ -8,7 +8,9 @@ class CoursesCategoriesController extends \BaseController {
         }
         
         public function index(){
-            Return View::make('administration.course_categories.index');
+            $cssClasses = [ 'business', 'investment', 'web-and-it', 'fitness-and-sports', 'beauty-and-health', 'cooking', 'language',
+                            'personal-development', 'photo-and-video', 'music', 'handmade-craft', 'hobbies' ];
+            Return View::make('administration.course_categories.index')->with( compact('cssClasses') );
         }
         
         public function store(){
