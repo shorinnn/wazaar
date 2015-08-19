@@ -20,6 +20,7 @@ function sortablizeModulesAndLessons(){
     var el = document.getElementById('modules-list');
     if( $('#modules-list').length > 0){
         var sortable = Sortable.create(el, {
+            group: 'modules',
             animation: 150, 
             handle: '.sortable-handle',
             onEnd: function (evt) {
@@ -47,6 +48,7 @@ function sortablizeModulesAndLessons(){
 function sortablizeLessons(id){
     var el = document.getElementById(id);
     var sortable = Sortable.create(el, {
+        group: 'lessons',
         animation: 150, 
         handle: '.sortable-handle',
         onEnd: function (evt) {
@@ -80,10 +82,15 @@ function reorderModulesAndLessons(){
  * @method reorderLessons
  */
 function reorderLessons(id){
-    var i = 1;
     lessons = [];
-    $('.lesson-module-'+id).each(function(){
-        $(this).html(i);
+    var i = 1;
+    $('.shr-editor-module-'+id+' .lesson-order').each(function(){
+            $(this).html(i);
+            ++i;
+    });
+    
+    var i = 1;
+    $('.shr-editor-module-'+id+' .lesson-li').each(function(){
         id = $(this).attr('data-id');
         lessons.push( id );
         ++i;
@@ -518,15 +525,25 @@ function sortablizeLsn(){
             $(this).attr('data-sortablized', 1);
             el = $(this)[0];
             var sortable = Sortable.create( el, {
+                group: 'lessons-drag',
                 animation: 150,
                 onEnd: function (evt) {
                     console.log(evt);
                     cls = $(evt.item).attr('class');
                     $lesson = $('div.'+cls);
                     i = 0;
-                    $lesson.parent().find('.shr-lesson').each(function(){
+                    module = $(evt.item).parent().attr('data-module-id');
+
+                    console.log('MODULE IS: '+module);
+                    console.log(evt.newIndex);
+//                    $lesson.parent().find('.shr-lesson').each(function(){
+                    if(evt.newIndex >= $('.shr-editor-module-'+module).find('.shr-lesson').length){
+                        $('.shr-editor-module-'+module).find('.shr-lesson').last().after( $lesson );
+                    }
+                    
+                    $('.shr-editor-module-'+module).find('.shr-lesson').each(function(){
                         if(i == evt.newIndex){
-                            if( evt.newIndex < evt.oldIndex ) $(this).before( $lesson );
+                            if( evt.newIndex <= evt.oldIndex ) $(this).before( $lesson );
                             else $(this).after( $lesson );
                         }
                         ++i;
@@ -544,6 +561,7 @@ function sortablizeMdl(){
             $(this).attr('data-sortablized', 1);
             el = $(this)[0];
             var sortable = Sortable.create( el, {
+                group: 'modules-drag',
                 animation: 150,
                 onEnd: function (evt) {
                     console.log(evt);

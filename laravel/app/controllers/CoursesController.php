@@ -870,9 +870,13 @@ class CoursesController extends \BaseController {
                     $lessons = isset( $data['lessons'] ) ? $data['lessons'] : [];
                     $i = 1;
                     $module = Module::find($module);
-                    foreach($lessons as $lesson){                        
-                        if($module==null || $module->course_id != $course->id) continue;
-                        $lesson = Lesson::where('module_id', $module->id)->where('id', $lesson)->update( ['order' => $i] );
+                    foreach($lessons as $lesson){       
+                        $lesson = Lesson::where('id', $lesson)->first();
+                        if( $module==null || $module->course_id != $course->id ) continue;
+                        if( $lesson->module->course_id != $course->id ) continue;
+                        $lesson->order = $i;
+                        $lesson->module_id = $module->id;
+                        $lesson->updateUniques();
                         ++$i;
                     }
                 }
