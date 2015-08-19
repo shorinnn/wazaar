@@ -161,39 +161,39 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
 
-                @if($course->cost() > 0)
-                    {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                @if($course->cost() > 0 && !Input::has('is-preview') )
+                        {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
 
-                    @if(Auth::guest() || $student->canPurchase($course) )
-                        <span class="price clearfix">
-                                       ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
-                                     </span>
-                        <button class="clearfix enroll-button blue-button extra-large-button">
-                            {{ trans("courses/general.enter-classroom") }}
-                        </button>
-                    @elseif(Auth::check() && $student->purchased($course) )
-                        <span class="price clearfix">
-                                     </span>
-                        <a class="clearfix enroll-button blue-button extra-large-button"
-                           href="{{ action('ClassroomController@dashboard', $course->slug)}}">
-                            {{ trans("courses/general.enter-classroom") }}
-                        </a>
-                    @else
-                        <span class="price clearfix">
-                                     </span>
-                        <button class="clearfix enroll-button blue-button extra-large-button" disabled="disabled" data-toggle="tooltip" data-placement="left" title="Available for customers">
-                            {{ trans("courses/general.enter-classroom") }}
-                        </button>
-                    @endif
-
-                    <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
-                    <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
-                    {{Form::close()}}
-                    <!--@if($course->isDiscounted())
-                                <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
-                                    You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
-                            @endif-->
+                        @if(Auth::guest() || $student->canPurchase($course) )
+                            <span class="price clearfix">
+                                           ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                         </span>
+                            <button class="clearfix enroll-button blue-button extra-large-button">
+                                {{ trans("courses/general.enter-classroom") }}
+                            </button>
+                        @elseif(Auth::check() && $student->purchased($course) )
+                            <span class="price clearfix">
+                                         </span>
+                            <a class="clearfix enroll-button blue-button extra-large-button"
+                               href="{{ action('ClassroomController@dashboard', $course->slug)}}">
+                                {{ trans("courses/general.enter-classroom") }}
+                            </a>
                         @else
+                            <span class="price clearfix">
+                                         </span>
+                            <button class="clearfix enroll-button blue-button extra-large-button" disabled="disabled" data-toggle="tooltip" data-placement="left" title="Available for customers">
+                                {{ trans("courses/general.enter-classroom") }}
+                            </button>
+                        @endif
+
+                        <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
+                        <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
+                        {{Form::close()}}
+                        @if($course->isDiscounted())
+                            <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
+                                You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
+                        @endif
+                @elseif( !Input::has('is-preview') )
                     {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
                                 @if(Auth::guest() || $student->canPurchase($course) )
                                     <span class="price clearfix">
@@ -216,12 +216,28 @@
                                      </button>
                                 @endif
 
-                    {{Form::close()}}
+                     {{Form::close()}}
                             
                             @if($course->isDiscounted())
                                 <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
                                     You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                             @endif
+                            
+                    @else
+                        {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                            <span class="price clearfix">
+                                           ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                         </span>
+                            <button class="clearfix enroll-button blue-button extra-large-button">
+                                {{ trans("courses/general.enter-classroom") }}
+                            </button>
+                        <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
+                        <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
+                        {{Form::close()}}
+                        @if($course->isDiscounted())
+                            <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
+                                You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
+                        @endif
                     @endif
 
 
