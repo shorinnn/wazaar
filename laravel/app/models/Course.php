@@ -98,6 +98,30 @@ class Course extends Ardent{
         }
     }
     
+    public function videoDuration(){
+        // get all videos
+        $vids = 0;
+        $lessons = $modules = [0];
+        $modules = Module::where('course_id', $this->id)->lists('id');
+        if(count($modules) > 0){
+            $lessons = Lesson::whereIn('module_id', $modules)->where('published', 'yes')->lists('id');
+            
+            if( count($lessons) > 0 ){
+                $videos = Block::whereIn('lesson_id', $lessons)->where('type', 'video')->get();
+                foreach($videos as $vid){
+                    $vid = DB::table('video_formats')->where( 'video_id', $vid->content )->first();
+                    if($vid!=null) $vids += $vid->duration;
+                }
+            }
+        }
+        
+        $minutes = round( $vids / 60 );
+        if( $minutes < 120 ) return "$minutes m";
+        else{
+            return round( $minutes/ 60 ).' h';
+        }
+    }
+    
     public function lessonComments(){
         $lessons = $modules = [0];
         $modules = Module::where('course_id', $this->id)->lists('id');
