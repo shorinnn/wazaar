@@ -573,7 +573,7 @@ function externalVideoPreview($url, $big=false, $iframe=false){
 //    $height = $big ? 720 : 315;
     $height = $big ? 480 : 315;
     if( $id = parse_yturl($url) ){
-        if($iframe) $preview = '<iframe width="'.$width.'" height="'.$height.'" src="https://www.youtube.com/embed/'.$id.'" frameborder="0" allowfullscreen></iframe>';
+        if($iframe) $preview = '<iframe width="'.$width.'" height="'.$height.'" src="https://www.youtube.com/embed/'.$id.'?showinfo=0" frameborder="0" allowfullscreen></iframe>';
         else $preview = '<img data-video-url="https://www.youtube.com/embed/'.$id.'" data-yt=1  onclick="showVideoPreview(this)" src="http://img.youtube.com/vi/'.$id.'/0.jpg" width="100%"/>';
     }
     if( $id = get_vimeoid($url)){
