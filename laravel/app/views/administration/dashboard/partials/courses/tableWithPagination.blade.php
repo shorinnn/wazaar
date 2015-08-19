@@ -22,6 +22,7 @@
             </tbody>
         </table>
         <div class="pagination-top-courses table-pagination">
+            <?php $courses->_presenterTableMode = true;?>
             {{$courses->appends(Input::except('_token'))->links()}}
         </div>
     </div>

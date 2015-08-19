@@ -244,7 +244,7 @@
                             </div>
                         </div>
                         <div class="row">
-                        <?php //echo Flatten::section('courses-show-details'.$course->id, Config::get('custom.cache-expiry.course-desc-top-details'), function () use( $course )  { ?>
+                        <?php echo Flatten::section('courses-show-details'.$course->id, Config::get('custom.cache-expiry.course-desc-top-details'), function () use( $course )  { ?>
                 	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 column-1">
                     	<div class="number-of-lessons">
                             <span>{{ trans("general.lessons") }}</span>
@@ -272,7 +272,7 @@
                             
                         </div>
                     </div>
-                <?php// }); ?>
+                <?php }); ?>
                 	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 column-3">
                         <div class="add-to-wishlist-container clearfix">
                         	
@@ -289,7 +289,7 @@
 
     </div>
 </section>
-<?php //echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { ?>
+<?php echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { ?>
 <section class="course-description-container container-fluid clearfix">
     @if($course->bannerImage==='has banner bro')
         <img src='{{$course->bannerImage->url}}' />
@@ -462,7 +462,7 @@
         </div>
     </div>
 </section>
-<?php //}); ?>
+<?php }); ?>
 @if(Auth::guest() || !Auth::user()->hasRole('Instructor'))
     <section class="container-fluid become-an-instructor description">
         <div class="container">
