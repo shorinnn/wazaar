@@ -563,8 +563,10 @@ function clickOnEnter(e){
     if( e.which == 13 ){
         if( $.trim( $(e.target).val() )  == '') return false;
         link = $(e.target).attr('data-click');
+        callback = $(e.target).attr('data-callback');
         if( e.type=='keyup'){
-            $(link).click();
+            if( !isset(callback)) $(link).click();
+            else window[callback](e);
         }
         e.preventDefault();
         e.stopPropagation();
