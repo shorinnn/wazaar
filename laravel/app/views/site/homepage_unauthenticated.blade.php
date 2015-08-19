@@ -26,12 +26,12 @@
                         {{trans('site/homepage.take_skill_to_new_level')}}
                         <p class="lead">{{trans('site/homepage.learning_has_never_been_easier')}}</p>
                     </h1>
-                    <a href="#" class="blue-button large-button round-button how-it-works"><i class="fa fa-play-circle"></i>{{trans('site/homepage.how_it_works')}}</a>
+                    <a href="#" class="blue-button large-button round-button how-it-works"><i class="wa-play"></i>{{trans('site/homepage.how_it_works')}}</a>
                     <div class="home-search-form">
                         <form>
                             <div>
                                 <input type="search" name="home-search" class="left" placeholder="What do you want to learn?">
-                                <button><i class="fa fa-search"></i></button>
+                                <button><i class="wa-search"></i></button>
                             </div>
                         </form>
                     </div>
@@ -63,7 +63,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="clearfix">
+                            <div class="">
                                 @if( $course['discounted'] > 0)
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{ timeProgress($course['sale_starts_on'], $course['sale_ends_on'] ) }}%;">
@@ -130,31 +130,39 @@
     <section class="container-fluid discover-section">
         <div class="container">
             <div class="row discover-header">
-                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-                    <h1 class="left">{{trans('site/homepage.discover')}}</h1>
-                    <ul class="left categories-menu">
-                        <li>
-                            <a class="load-remote discover-links" data-url="{{ action( 'SiteController@discoverCourses', 0 )}}" 
-                               data-callback='colorLinks' data-color='#0099ff' data-elem='.discover-links'
-                               @if(isset($selectedGroup) && $selectedGroup==0)
-                               style='color:#0099ff'
-                               @endif
-                               data-target="#discover-courses-area">All</a>
-                        </li>
-                        
-                        @foreach($groups as $group)
-                        <li>
-                            <a class="load-remote discover-links" data-url="{{ action( 'SiteController@discoverCourses', $group->id )}}" 
-                                @if(isset($selectedGroup) && $selectedGroup==$group->id)
-                                    style='color:#0099ff'
-                               @endif
-                               data-callback='colorLinks'  data-elem='.discover-links' data-color='#0099ff' data-target="#discover-courses-area">{{ $group->name }}</a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-right">
-                    <a href="{{ action('CoursesController@category','')}}">{{trans('site/homepage.browse_all_courses')}}</a>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+                	<div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                        </button>
+                        <h1 class="left navbar-brand">{{trans('site/homepage.discover')}}</h1>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="categories-menu nav navbar-nav">
+                            <li>
+                                <a class="load-remote discover-links active" data-url="{{ action( 'SiteController@discoverCourses', 0 )}}" 
+                                   data-callback='colorLinks' data-color='#0099ff' data-elem='.discover-links'
+                                   @if(isset($selectedGroup) && $selectedGroup==0)
+                                   style='color:#0099ff'
+                                   @endif
+                                   data-target="#discover-courses-area">All</a>
+                            </li>
+                            
+                            @foreach($groups as $group)
+                            <li>
+                                <a class="load-remote discover-links" data-url="{{ action( 'SiteController@discoverCourses', $group->id )}}" 
+                                    @if(isset($selectedGroup) && $selectedGroup==$group->id)
+                                        style='color:#0099ff'
+                                   @endif
+                                   data-callback='colorLinks'  data-elem='.discover-links' data-color='#0099ff' data-target="#discover-courses-area">{{ $group->name }}</a>
+                            </li>
+                            @endforeach
+                        </ul>
+                        <a href="{{ action('CoursesController@category','')}}" class="nav navbar-nav navbar-right">{{trans('site/homepage.browse_all_courses')}}</a>
+                    </div>
                 </div>
             </div>
             

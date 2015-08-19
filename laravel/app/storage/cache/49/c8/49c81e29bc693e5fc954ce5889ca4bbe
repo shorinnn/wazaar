@@ -1,0 +1,54 @@
+1440025371s:3072:" 
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <a href="http://wazaar.dev/courses/Glq6j" class="small-box-link-wrapper">
+                <div class="object small-box small-box-one">
+                    <!--<div class="level">Beginner</div>-->
+                    <!--            <div class="new-tag">NEW</div>
+                    -->
+                    <div class="img-container">
+<!--                        <img 
+                             
+                                src="https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg"
+                                                       
+                            class="img-responsive" alt="" style="max-height: 182px"  />-->
+                        <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">
+                        <span class="video-play-button"><em></em></span>
+                        <span class="likes"><i class="wa-like"></i>0</span>       
+                        <span class="box-overlay">
+                            <p>Lesson</p>
+                            <p>weeks of learning</p>
+                            <div class="footer clearfix">
+                                <div class="heart-icon"><i class="wa-Heart"></i></div>
+                                <div class="highly-recommend"><i class="wa-like"></i>No rating yet</div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="course-box-content clearfix">
+                        <h2>Obscure Course no one buys</h2>
+                        <div class="short-description-container">
+                            <p>Create your very first application in 2 weeks! You get a beginner award after completing the course.</p>
+                        </div>
+                        <div class="bottom-contents clearfix">
+                            <div class="difficulty-bar  beginner">
+                                                                                                    <span class="bar-1"></span>
+                                                            </div>
+                            <div class="next_">
+                                <!--<div class="learn-more">
+                                    <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
+                                </div>-->
+                                <div class="students-attending">
+                                	<i class="wa-user-n"></i>
+                                    0
+                                </div>
+                            </div>
+                            <div class="price-tag-container clearfix">
+                                <div class="price-tag">
+                                    ¥ 2,720
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    ";

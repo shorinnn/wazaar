@@ -1,0 +1,1241 @@
+1440024900a:8:{i:0;a:8:{i:0;a:43:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"2";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"1";s:12:"payment_type";s:8:"one_time";s:4:"name";s:17:"Javascript Primer";s:4:"slug";s:5:"EdRc6";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:16:"Short: JS - the.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"1390.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"1";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"200.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 08:47:03";s:12:"sale_ends_on";s:19:"2015-08-11 09:57:03";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:1;a:43:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"6";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"4";s:21:"course_subcategory_id";s:1:"4";s:12:"payment_type";s:8:"one_time";s:4:"name";s:21:"Music App Development";s:4:"slug";s:5:"wXmSO";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"4930.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"100.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-10 22:57:03";s:12:"sale_ends_on";s:19:"2015-08-12 22:43:43";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"6";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:2;a:43:{s:2:"id";s:2:"10";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"5";s:21:"course_subcategory_id";s:1:"5";s:12:"payment_type";s:8:"one_time";s:4:"name";s:24:"Beauty Javascript Primer";s:4:"slug";s:5:"BBE4U";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:30:"JS - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"3120.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:3;a:43:{s:2:"id";s:1:"6";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"5";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"3";s:21:"course_subcategory_id";s:1:"3";s:12:"payment_type";s:8:"one_time";s:4:"name";s:27:"Investments App Development";s:4:"slug";s:5:"huKqI";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2260.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"2";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905dd23aa96.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"5";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905dd23aa96.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:4;a:43:{s:2:"id";s:1:"1";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"1";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"1";s:12:"payment_type";s:8:"one_time";s:4:"name";s:15:"App Development";s:4:"slug";s:5:"cJio3";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:61:"Short:  You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"1850.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"100.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 07:57:03";s:12:"sale_ends_on";s:19:"2015-08-11 12:43:43";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"1";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cbf4783a.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:5;a:43:{s:2:"id";s:1:"7";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"3";s:21:"course_subcategory_id";s:1:"3";s:12:"payment_type";s:8:"one_time";s:4:"name";s:29:"Investments Javascript Primer";s:4:"slug";s:5:"KE3eL";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:30:"JS - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:9:"185000.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:6;a:43:{s:2:"id";s:2:"11";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"7";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"5";s:21:"course_subcategory_id";s:1:"5";s:12:"payment_type";s:8:"one_time";s:4:"name";s:17:"Beauty PHP Primer";s:4:"slug";s:5:"nUwsX";s:11:"description";s:31:"PHP - the best language around.";s:17:"short_description";s:31:"PHP - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2920.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"3";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"7";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:7;a:43:{s:2:"id";s:1:"3";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"3";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"7";s:12:"payment_type";s:8:"one_time";s:4:"name";s:10:"PHP Primer";s:4:"slug";s:5:"qxAQ9";s:11:"description";s:31:"PHP - the best language around.";s:17:"short_description";s:38:"Short: PHP - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"1310.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"3";s:13:"student_count";s:3:"242";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-02-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d56385ce.png";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"3";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d56385ce.png";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}}i:1;a:8:{i:0;a:43:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"2";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"1";s:12:"payment_type";s:8:"one_time";s:4:"name";s:17:"Javascript Primer";s:4:"slug";s:5:"EdRc6";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:16:"Short: JS - the.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"1390.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"1";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"200.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 08:47:03";s:12:"sale_ends_on";s:19:"2015-08-11 09:57:03";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:1;a:43:{s:2:"id";s:1:"5";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"4";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"2";s:21:"course_subcategory_id";s:1:"2";s:12:"payment_type";s:8:"one_time";s:4:"name";s:24:"Business App Development";s:4:"slug";s:5:"5ac2F";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:29:"Short Create your very first.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"3080.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"1";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"300.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 05:10:23";s:12:"sale_ends_on";s:19:"2015-08-11 23:50:23";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"6";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:05";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"4";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:2;a:43:{s:2:"id";s:1:"4";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"7";s:12:"payment_type";s:8:"one_time";s:4:"name";s:20:"PHP Primer Revisited";s:4:"slug";s:5:"TGtEC";s:11:"description";s:42:"PHP - the best language around. REVISITED.";s:17:"short_description";s:17:"Short: REVISITED.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2130.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"3";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:3;a:43:{s:2:"id";s:2:"14";s:13:"instructor_id";s:2:"11";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"9";s:22:"course_banner_image_id";s:1:"1";s:18:"course_category_id";s:1:"6";s:21:"course_subcategory_id";s:1:"6";s:12:"payment_type";s:8:"one_time";s:4:"name";s:89:"３ヶ月で10キロ痩せてハイパフォーマーになる『体』やり直し講座";s:4:"slug";s:5:"eS7Ig";s:11:"description";s:13274:"
+                            正直に告白します。
+<br /><br />
+率直に言って、本講座は、すべての人のためのものでありません。
+<br /><br />
+ご購入いただいても、全ての人のお役に立つことはできませんので、
+もし、間違って購入してしまった場合は、30日以内であれば、全額返金させていただきます。
+<br /><br />
+しかし、あなたが30〜40代の男性会社員でかつ、
+【このコースの対象者】に記載されているような
+健康上の問題があって、それをなんとか解決して、
+最高のコンディションで仕事をしたい！と考えるなら
+本講座は必ずあなたのお役に立てると確信しています。
+<br /><br />
+【体は資本】というのは、ビジネスの世界ではよく使われます。
+<br /><br />
+体が良いコンディションでなければ、
+ここ一番の商談や重要なミーティングで
+いい結果を残すことは難しいですから。
+<br /><br />
+『20代の頃は朝まで飲んでも寝ずに仕事なんてザラだった。』
+こんな武勇伝の１つや２つはあなたも持っているでしょう。
+<br /><br />
+しかし、30代に入って、朝まで飲んで寝ずに仕事！なんて生活をしていると、
+疲れが全く抜けず、体はひどく重く感じ、仕事中に息切れに立ち眩みなんてことが
+日常茶飯事になります。
+<br /><br />
+体が完全に悲鳴を上げており、
+気がつけばお腹はぽっこりと膨らんでいます。
+<br /><br />
+健康管理は二の次、
+とにかく目の前の仕事をがむしゃらに頑張って、
+気合と根性で乗り切るという
+ラグビー部や、アメリカンフットボール部のような
+超体育会系ののりが許されるのは、20代までです。
+<br /><br />
+30代になると、20代と比較しても基礎代謝が落ちているので、
+毎日規則正しく「同じ生活」「同じ食事量」を保っていたとしても
+気がつけば確実に太っていきます。
+<br /><br />
+さらに、過度な飲酒や、運動不足、不適切な食生活、喫煙を続けると、
+内蔵脂肪はどんどんたまり、もっとも怖い病気、つまり、動脈硬化、
+高脂血症、血栓症、高血圧、糖尿病などの生活習慣病をひき起こします。
+<br /><br />
+この状態が悪化すると、
+仕事どころか日常生活は完全に支障を来たしますし
+残りの人生をベットの上で要介護状態になります。
+<br /><br />
+周りの知人や親戚で生活習慣病を
+引き起こしている人の話を、
+一人や二人は聞いたことありませんか？
+<br /><br />
+今は他人の話ですが、あなたも
+このまま健康問題を放っておくと、
+あなた自身の問題として、
+いつかブーメランのように戻ってきます。
+<br /><br />
+お金を持っていると、
+すぐに散財してしまう人は家計簿をつけて、
+お金の管理をできるようになることは非常に大切なことです。
+<br /><br />
+それと同じように、
+不健康な生活をしていて、
+将来的に【生活習慣病】を引き起こすリスクがある人も、
+バランスの取れた食事や適度な有酸素運動や筋肉トレーニングによって、
+健康な生活習慣を身につけて、体をコントロールする術を学ぶことも
+とても大切になっています。
+<br /><br />
+冒頭から長々と話してしまいましたが、
+<br /><br />
+自己紹介が遅れて申し訳ございません。
+<br /><br />
+はじめまして。
+<br /><br />
+私は谷けいじと申します。
+<br /><br />
+東京都内でパーソナルジムの運営をしながら、
+実際におなかが出始めた会社員を
+3ヶ月で10ｋｇ痩せさせて、ビジネスパーソンとして
+最高の体のコンディションを維持するための
+トレーニングを指導しています。
+<br /><br />
+私は大学を卒業した後は、
+スポーツトレーナーとしての道を選択し、
+イチロー選手、三浦知良選手、 青木功選手、
+杉山愛選手を指導する小山裕史先生に師事し、
+筋肉の柔軟性を意識した初動負荷理論を利用した
+トレーニング法で、香川県のトレーニングジムや
+介護施設、複合型健康増進施設などで、
+2歳から105歳のプロスポーツ選手からモデルまで
+約2000名以上の方を実際に指導して、
+健康問題を解決するお手伝いをしてきました。
+<br /><br />
+ですので、誰よりも健康についての理論を学び、
+その理論でたくさんの人の健康問題を解決してきたことに
+揺るぎない自信を持っています。
+<br /><br />
+みなさんの中には、
+ありとあらゆるダイエットも
+試されたことがある人もいるでしょう。
+<br /><br />
+朝バナナダイエット、断食ダイエット、
+低炭水化物ダイエット、プロテインダイエット、
+リンゴダイエットなどなど、世の中にはたくさんの
+ダイエット方法があります。
+<br /><br />
+しかし、特定の食品に依存するダイエット法は、
+肉体的にも精神的にもストレスがたまりやすく、
+ちょっとしたことがきっかけで、
+堤防が決壊したかのように、
+ドカ食いしてしまい、
+結局はリバウンドしてしまいがちです。
+<br /><br />
+また、同一人物とは全く思えない、
+駅前の看板に掲載されている衝撃的な写真、
+お腹がぽっこり出た写真と、お腹がシックスパックに割れた
+ビフォー・アフターの写真を見て、高額な費用を払い
+、特定のプライベートジムに行かれたことがある人もいるでしょう。
+<br /><br />
+2ヶ月間、ご飯などの炭水化物は一切取らない。
+食べていいいのは鶏肉、サラダ、プロテインにサプリのみ。
+<br /><br />
+これで筋肉トレーニングを
+2ヶ月間ガンガンすれば体重は確実に減り、
+シックパックにはなることは私も保証します。
+<br /><br />
+ただし、
+ここに大きな落とし穴がありますし、
+多くの人はそれに気づいていません。
+<br /><br />
+このトレーニング方法では、
+将来的な健康は全く考慮されていない上に、
+過度に偏った食生活のため、
+2ヶ月間のストイックなトレーニングを過ごした後は
+今まで制限されていた食べ物を急激に食べてしまい、
+リバンドしてしまう人がたくさんいるのです。
+<br /><br />
+事実、私のトレーニングジムでは
+大手のプライベートジムで高額なお金を払い、
+2ヶ月の厳しいトレーニングにも耐えて、
+見事なシックスパックの体を手に入れたにも関わらず、
+結局、また元のぽっこりお腹が出たビジネスパーソンからの
+入会が後を絶たないという状況です。
+<br /><br />
+では、どうすれば
+苦々しいぽっこりと出たお腹をひっこめ、
+イチロー選手のように、24時間/365日、
+最高の体のコンディションを維持できる
+一流ビジネスパーソンのボディを手に入れる
+ことができるのでしょうか？
+<br /><br />
+ご存知のように、
+世の中にはダイエットに
+関する情報が散乱しています。
+<br /><br />
+健康に関する情報も散乱していますが、
+厚生労働省の調査によると、30〜40代男性の
+30％は肥満ですし、別の言い方をすれば、
+生活習慣病予備軍になります。
+<br /><br />
+多くの人は情報社会の中で、
+日々たくさんの情報に接しているので、
+どの情報が良いのかどうが迷ってしまい、
+結局は行動できないか、もしくは、
+熟考に熟考を重ねた結果、残念なことに
+明らかに誤った方法を選択するケースが
+よくあります。
+<br /><br />
+しかし、初動負荷理論を徹底的に学び、
+2,000以上のクライアントを健康に導いた私は
+あるときに気づきました。
+<br /><br />
+お腹がぽっこり出た、
+不健康極まりない会社員でも、
+私のトレーニング法に従えば、
+お腹はすぐに引込み、顔色は良くなり、
+生活習慣病におびえていた日々は嘘のように
+最高の体のコンディションを24時間/365日
+維持できる一流ビジネスパーソンのボディを
+手に入れる秘訣を発見したのです。
+<br /><br />
+私のトレーニングでは、
+あなたが健康な体を取り戻すために、
+・特定の食品だけを食べ続けたり、
+・筋トレだけをがむしゃらにやり続けたり
+ということは実施しません。
+<br /><br />
+私のトレーニングで、
+筋力トレーニング、脂肪を落とすトレーニング、食事改善以上に
+重視しているものがあります。
+<br /><br />
+それは、
+イチロー選手、三浦知良選手、 青木功選手、杉山愛選手も
+実施している、初動負荷理論を応用した体の柔軟性を極限まで
+高めるトレーニングです。
+<br /><br />
+体の柔軟性を高める
+トレーニングを実施すると、
+体の新陳代謝が一気に上がります。
+<br /><br />
+その結果、
+疲れを感じづらくなりますし、
+肩こりがなくなり、腰痛も緩和します。
+<br /><br />
+さらに、ストレスの度合いが大幅に減少し、
+重かった体もすっかり軽く感じます。
+<br /><br />
+体の体調がよくなり、
+仕事の集中力が上がりますので、
+ミスが減り、残業時間が減って、
+仕事の業績も上がります。
+<br /><br />
+おまけに、体はキレッキレッに
+なりますから、スーツが似合い
+モテるようになります。
+<br /><br />
+本講座では、3ヶ月間を
+１プラス3つのフェーズに分けて、
+各フェーズごとに、トレーニングの効果を
+最大限に高めるために、
+<br /><br />
+・体の柔軟性を高めるトレーニング
+・脂肪を落とすトレーニング
+・筋力トレーニング下記のトレーニング
+の内容と配分を変えていきます。
+<br /><br />
+さらに10項目に及ぶ門外不出の成功の鍵を
+私、谷けいじからあなたにお伝えします。
+<br /><br />
+想像してみてください。
+<br /><br />
+3ヶ月後、
+あなたは悪夢のような日々にようやくピリオドを打ち、
+ぽっこり出たお腹は完全に引込め、肩こりも腰痛もなく、
+体は鳥のように軽く、最高のコンディションで仕事ができているのです。
+<br /><br />
+あなたはわずかな投資を惜しんで、
+生活習慣病に怯えながら、生活する道を選びますか？
+<br /><br />
+それとも、私のもとで仕事ができる
+一流ビジネスパーソンの健康ボディを手に入れますか？
+<br /><br />
+今すぐ、お申込みください。
+最後までお読みいただき本当にありがとうございました。
+<br /><br />
+パーソナルトレーナー　
+谷けいじ
+<br /><br />
+P.S 
+<br /><br />
+私には悪夢のような思い出があります。
+<br /><br />
+将来的に、
+体操のオリンピック代表選手を目指し
+厳しいながらも夢のある生活を送っていた
+高校二年生のある日、
+重度の腰椎椎間板ヘルニアを発症し 
+体を全く曲げることもできず、
+授業も立って受けることしかできないという
+ドン底の状況に陥ったのです。
+<br /><br />
+鍼灸、カイロプラクティック、整体、そして飲み薬など
+ありとあらゆる方法を試しましたが完全に駄目でした。
+<br /><br />
+「もう一生大好きな体操をすることができないのか？」
+そう思うと悔しくて悔しくて涙が止まりませんでした。
+<br />
+そんな絶望の淵にいた私を救ってくれたのが、
+私の自宅の近所で、初動負荷理論を応用した
+トレーニングを指導していた先生だったのです。
+<br /><br />
+その先生の指導によるリハビリの結果、
+ヘルニアは完治し、高校三年生の国体では
+香川県チームとして、史上初の決勝に進出し
+私はキャプテンとして大活躍することができました。
+<br /><br />
+その時の経験から、
+私は一人でも多くの人々の健康問題を解決する、
+昔、私を救ってくれた先生のような
+素晴らしいトレーナーになろうと決意したのです。
+<br /><br />
+本動画を通して一人でも
+多くの方の健康問題を解決できることを
+心から楽しみにしております。
+";s:17:"short_description";s:60:"「モテボディ養成講座（仮）」（フロント）";s:20:"description_video_id";N;s:15:"who_is_this_for";s:1159:"[
+                             "どんなに眠っても疲れが取れないと感じる人",
+                             "体がものすごく重いと感じる人",
+                             "仕事中によく目眩がする人",
+                             "肩こりがひどいと感じる人",
+                             "ぽっこり出たお腹が気になる人",
+                             "肥満で股擦れを起こしている人",
+                             "会社の健康診断で生活習慣病と診断された人",
+                             "運動や食事で生活習慣を変えたいが、具体的にどうすればよいのかわからない人",
+                             "最高のコンディションを常に維持したいと思う人",
+                             "ダイエットをしてリバウンドをしない方法を知りたい人",
+                             "とにかくダイエットと名のつくものに全て手を出して失敗した人",
+                             "高額プライベートジムに行きたいがお金がない人"
+                            ]";s:21:"what_will_you_achieve";s:1001:"[
+                            "一日16時間働いても疲れを感じないコンディション",
+                            "健康問題に不安を感じない最高の安心感",
+                            "肩こり、腰痛を感じない元気な体",
+                            "20代のようなキレッキレッの体",
+                            "ぽっこりお腹解消、割れた腹筋",
+                            "リバウンドしない体とその理論",
+                            "20代のような若々しい体の張り、潤い。",
+                            "かっこ良くスーツを着こなすモテボディ",
+                            "女性社員からの羨望の眼差し",
+                            "150%アップの集中力",
+                            "残業時間が減り、プライベート時間が増える。",
+                            "会社からの赤丸急上昇の評価、昇給"
+                            ]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2370.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"150.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-07 08:57:03";s:12:"sale_ends_on";s:19:"2015-08-19 08:57:03";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"3";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:05";s:7:"preview";s:65:"https://wazaardev.s3.amazonaws.com/course_preview/demo-course.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"9";s:13:"instructor_id";s:1:"4";s:3:"url";s:65:"https://wazaardev.s3.amazonaws.com/course_preview/demo-course.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:4;a:43:{s:2:"id";s:2:"11";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"7";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"5";s:21:"course_subcategory_id";s:1:"5";s:12:"payment_type";s:8:"one_time";s:4:"name";s:17:"Beauty PHP Primer";s:4:"slug";s:5:"nUwsX";s:11:"description";s:31:"PHP - the best language around.";s:17:"short_description";s:31:"PHP - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2920.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"3";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"7";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:5;a:43:{s:2:"id";s:1:"7";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"3";s:21:"course_subcategory_id";s:1:"3";s:12:"payment_type";s:8:"one_time";s:4:"name";s:29:"Investments Javascript Primer";s:4:"slug";s:5:"KE3eL";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:30:"JS - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:9:"185000.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:6;a:43:{s:2:"id";s:1:"9";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"5";s:21:"course_subcategory_id";s:1:"5";s:12:"payment_type";s:8:"one_time";s:4:"name";s:22:"Beauty App Development";s:4:"slug";s:5:"YrVGR";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"4880.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:7;a:43:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"6";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"4";s:21:"course_subcategory_id";s:1:"4";s:12:"payment_type";s:8:"one_time";s:4:"name";s:21:"Music App Development";s:4:"slug";s:5:"wXmSO";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"4930.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"100.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-10 22:57:03";s:12:"sale_ends_on";s:19:"2015-08-12 22:43:43";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"6";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}}i:2;a:8:{i:0;a:43:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"2";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"1";s:12:"payment_type";s:8:"one_time";s:4:"name";s:17:"Javascript Primer";s:4:"slug";s:5:"EdRc6";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:16:"Short: JS - the.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"1390.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"1";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"200.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 08:47:03";s:12:"sale_ends_on";s:19:"2015-08-11 09:57:03";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:1;a:43:{s:2:"id";s:1:"7";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"3";s:21:"course_subcategory_id";s:1:"3";s:12:"payment_type";s:8:"one_time";s:4:"name";s:29:"Investments Javascript Primer";s:4:"slug";s:5:"KE3eL";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:30:"JS - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:9:"185000.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:2;a:43:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"6";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"4";s:21:"course_subcategory_id";s:1:"4";s:12:"payment_type";s:8:"one_time";s:4:"name";s:21:"Music App Development";s:4:"slug";s:5:"wXmSO";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"4930.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"100.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-10 22:57:03";s:12:"sale_ends_on";s:19:"2015-08-12 22:43:43";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"6";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:3;a:43:{s:2:"id";s:2:"15";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"8";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"6";s:21:"course_subcategory_id";s:1:"6";s:12:"payment_type";s:8:"one_time";s:4:"name";s:26:"Obscure Course no one buys";s:4:"slug";s:5:"Glq6j";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2720.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:4;a:43:{s:2:"id";s:2:"11";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"7";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"5";s:21:"course_subcategory_id";s:1:"5";s:12:"payment_type";s:8:"one_time";s:4:"name";s:17:"Beauty PHP Primer";s:4:"slug";s:5:"nUwsX";s:11:"description";s:31:"PHP - the best language around.";s:17:"short_description";s:31:"PHP - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2920.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"3";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"7";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:5;a:43:{s:2:"id";s:2:"13";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"8";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"6";s:21:"course_subcategory_id";s:1:"6";s:12:"payment_type";s:8:"one_time";s:4:"name";s:22:"Health App Development";s:4:"slug";s:5:"28OUd";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2630.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:6;a:43:{s:2:"id";s:2:"10";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"5";s:21:"course_subcategory_id";s:1:"5";s:12:"payment_type";s:8:"one_time";s:4:"name";s:24:"Beauty Javascript Primer";s:4:"slug";s:5:"BBE4U";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:30:"JS - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"3120.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:7;a:43:{s:2:"id";s:1:"5";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"4";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"2";s:21:"course_subcategory_id";s:1:"2";s:12:"payment_type";s:8:"one_time";s:4:"name";s:24:"Business App Development";s:4:"slug";s:5:"5ac2F";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:29:"Short Create your very first.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"3080.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"1";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"300.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 05:10:23";s:12:"sale_ends_on";s:19:"2015-08-11 23:50:23";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"6";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:05";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"4";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}}i:3;a:8:{i:0;a:43:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"2";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"1";s:12:"payment_type";s:8:"one_time";s:4:"name";s:17:"Javascript Primer";s:4:"slug";s:5:"EdRc6";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:16:"Short: JS - the.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"1390.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"1";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"200.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 08:47:03";s:12:"sale_ends_on";s:19:"2015-08-11 09:57:03";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:1;a:43:{s:2:"id";s:1:"5";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"4";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"2";s:21:"course_subcategory_id";s:1:"2";s:12:"payment_type";s:8:"one_time";s:4:"name";s:24:"Business App Development";s:4:"slug";s:5:"5ac2F";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:29:"Short Create your very first.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"3080.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"1";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"300.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 05:10:23";s:12:"sale_ends_on";s:19:"2015-08-11 23:50:23";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"6";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:05";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"4";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:2;a:43:{s:2:"id";s:2:"12";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"5";s:21:"course_subcategory_id";s:1:"5";s:12:"payment_type";s:8:"one_time";s:4:"name";s:27:"Beauty PHP Primer Revisited";s:4:"slug";s:5:"Pofga";s:11:"description";s:42:"PHP - the best language around. REVISITED.";s:17:"short_description";s:42:"PHP - the best language around. REVISITED.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"4080.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"3";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:3;a:43:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"6";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"4";s:21:"course_subcategory_id";s:1:"4";s:12:"payment_type";s:8:"one_time";s:4:"name";s:21:"Music App Development";s:4:"slug";s:5:"wXmSO";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"4930.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"100.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-10 22:57:03";s:12:"sale_ends_on";s:19:"2015-08-12 22:43:43";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"6";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:4;a:43:{s:2:"id";s:1:"6";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"5";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"3";s:21:"course_subcategory_id";s:1:"3";s:12:"payment_type";s:8:"one_time";s:4:"name";s:27:"Investments App Development";s:4:"slug";s:5:"huKqI";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2260.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"2";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905dd23aa96.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"5";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905dd23aa96.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:5;a:43:{s:2:"id";s:2:"15";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"8";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"6";s:21:"course_subcategory_id";s:1:"6";s:12:"payment_type";s:8:"one_time";s:4:"name";s:26:"Obscure Course no one buys";s:4:"slug";s:5:"Glq6j";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2720.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:6;a:43:{s:2:"id";s:2:"13";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"8";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"6";s:21:"course_subcategory_id";s:1:"6";s:12:"payment_type";s:8:"one_time";s:4:"name";s:22:"Health App Development";s:4:"slug";s:5:"28OUd";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2630.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:7;a:43:{s:2:"id";s:1:"7";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"3";s:21:"course_subcategory_id";s:1:"3";s:12:"payment_type";s:8:"one_time";s:4:"name";s:29:"Investments Javascript Primer";s:4:"slug";s:5:"KE3eL";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:30:"JS - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:9:"185000.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}}i:4;a:8:{i:0;a:43:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"2";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"1";s:12:"payment_type";s:8:"one_time";s:4:"name";s:17:"Javascript Primer";s:4:"slug";s:5:"EdRc6";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:16:"Short: JS - the.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"1390.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"1";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"200.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 08:47:03";s:12:"sale_ends_on";s:19:"2015-08-11 09:57:03";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:1;a:43:{s:2:"id";s:1:"5";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"4";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"2";s:21:"course_subcategory_id";s:1:"2";s:12:"payment_type";s:8:"one_time";s:4:"name";s:24:"Business App Development";s:4:"slug";s:5:"5ac2F";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:29:"Short Create your very first.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"3080.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"1";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"300.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 05:10:23";s:12:"sale_ends_on";s:19:"2015-08-11 23:50:23";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"6";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:05";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"4";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:2;a:43:{s:2:"id";s:1:"7";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"3";s:21:"course_subcategory_id";s:1:"3";s:12:"payment_type";s:8:"one_time";s:4:"name";s:29:"Investments Javascript Primer";s:4:"slug";s:5:"KE3eL";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:30:"JS - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:9:"185000.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:3;a:43:{s:2:"id";s:2:"11";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"7";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"5";s:21:"course_subcategory_id";s:1:"5";s:12:"payment_type";s:8:"one_time";s:4:"name";s:17:"Beauty PHP Primer";s:4:"slug";s:5:"nUwsX";s:11:"description";s:31:"PHP - the best language around.";s:17:"short_description";s:31:"PHP - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2920.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"3";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"7";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:4;a:43:{s:2:"id";s:1:"3";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"3";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"7";s:12:"payment_type";s:8:"one_time";s:4:"name";s:10:"PHP Primer";s:4:"slug";s:5:"qxAQ9";s:11:"description";s:31:"PHP - the best language around.";s:17:"short_description";s:38:"Short: PHP - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"1310.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"3";s:13:"student_count";s:3:"242";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-02-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d56385ce.png";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"3";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d56385ce.png";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:5;a:43:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"6";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"4";s:21:"course_subcategory_id";s:1:"4";s:12:"payment_type";s:8:"one_time";s:4:"name";s:21:"Music App Development";s:4:"slug";s:5:"wXmSO";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"4930.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"100.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-10 22:57:03";s:12:"sale_ends_on";s:19:"2015-08-12 22:43:43";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"6";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:6;a:43:{s:2:"id";s:2:"14";s:13:"instructor_id";s:2:"11";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"9";s:22:"course_banner_image_id";s:1:"1";s:18:"course_category_id";s:1:"6";s:21:"course_subcategory_id";s:1:"6";s:12:"payment_type";s:8:"one_time";s:4:"name";s:89:"３ヶ月で10キロ痩せてハイパフォーマーになる『体』やり直し講座";s:4:"slug";s:5:"eS7Ig";s:11:"description";s:13274:"
+                            正直に告白します。
+<br /><br />
+率直に言って、本講座は、すべての人のためのものでありません。
+<br /><br />
+ご購入いただいても、全ての人のお役に立つことはできませんので、
+もし、間違って購入してしまった場合は、30日以内であれば、全額返金させていただきます。
+<br /><br />
+しかし、あなたが30〜40代の男性会社員でかつ、
+【このコースの対象者】に記載されているような
+健康上の問題があって、それをなんとか解決して、
+最高のコンディションで仕事をしたい！と考えるなら
+本講座は必ずあなたのお役に立てると確信しています。
+<br /><br />
+【体は資本】というのは、ビジネスの世界ではよく使われます。
+<br /><br />
+体が良いコンディションでなければ、
+ここ一番の商談や重要なミーティングで
+いい結果を残すことは難しいですから。
+<br /><br />
+『20代の頃は朝まで飲んでも寝ずに仕事なんてザラだった。』
+こんな武勇伝の１つや２つはあなたも持っているでしょう。
+<br /><br />
+しかし、30代に入って、朝まで飲んで寝ずに仕事！なんて生活をしていると、
+疲れが全く抜けず、体はひどく重く感じ、仕事中に息切れに立ち眩みなんてことが
+日常茶飯事になります。
+<br /><br />
+体が完全に悲鳴を上げており、
+気がつけばお腹はぽっこりと膨らんでいます。
+<br /><br />
+健康管理は二の次、
+とにかく目の前の仕事をがむしゃらに頑張って、
+気合と根性で乗り切るという
+ラグビー部や、アメリカンフットボール部のような
+超体育会系ののりが許されるのは、20代までです。
+<br /><br />
+30代になると、20代と比較しても基礎代謝が落ちているので、
+毎日規則正しく「同じ生活」「同じ食事量」を保っていたとしても
+気がつけば確実に太っていきます。
+<br /><br />
+さらに、過度な飲酒や、運動不足、不適切な食生活、喫煙を続けると、
+内蔵脂肪はどんどんたまり、もっとも怖い病気、つまり、動脈硬化、
+高脂血症、血栓症、高血圧、糖尿病などの生活習慣病をひき起こします。
+<br /><br />
+この状態が悪化すると、
+仕事どころか日常生活は完全に支障を来たしますし
+残りの人生をベットの上で要介護状態になります。
+<br /><br />
+周りの知人や親戚で生活習慣病を
+引き起こしている人の話を、
+一人や二人は聞いたことありませんか？
+<br /><br />
+今は他人の話ですが、あなたも
+このまま健康問題を放っておくと、
+あなた自身の問題として、
+いつかブーメランのように戻ってきます。
+<br /><br />
+お金を持っていると、
+すぐに散財してしまう人は家計簿をつけて、
+お金の管理をできるようになることは非常に大切なことです。
+<br /><br />
+それと同じように、
+不健康な生活をしていて、
+将来的に【生活習慣病】を引き起こすリスクがある人も、
+バランスの取れた食事や適度な有酸素運動や筋肉トレーニングによって、
+健康な生活習慣を身につけて、体をコントロールする術を学ぶことも
+とても大切になっています。
+<br /><br />
+冒頭から長々と話してしまいましたが、
+<br /><br />
+自己紹介が遅れて申し訳ございません。
+<br /><br />
+はじめまして。
+<br /><br />
+私は谷けいじと申します。
+<br /><br />
+東京都内でパーソナルジムの運営をしながら、
+実際におなかが出始めた会社員を
+3ヶ月で10ｋｇ痩せさせて、ビジネスパーソンとして
+最高の体のコンディションを維持するための
+トレーニングを指導しています。
+<br /><br />
+私は大学を卒業した後は、
+スポーツトレーナーとしての道を選択し、
+イチロー選手、三浦知良選手、 青木功選手、
+杉山愛選手を指導する小山裕史先生に師事し、
+筋肉の柔軟性を意識した初動負荷理論を利用した
+トレーニング法で、香川県のトレーニングジムや
+介護施設、複合型健康増進施設などで、
+2歳から105歳のプロスポーツ選手からモデルまで
+約2000名以上の方を実際に指導して、
+健康問題を解決するお手伝いをしてきました。
+<br /><br />
+ですので、誰よりも健康についての理論を学び、
+その理論でたくさんの人の健康問題を解決してきたことに
+揺るぎない自信を持っています。
+<br /><br />
+みなさんの中には、
+ありとあらゆるダイエットも
+試されたことがある人もいるでしょう。
+<br /><br />
+朝バナナダイエット、断食ダイエット、
+低炭水化物ダイエット、プロテインダイエット、
+リンゴダイエットなどなど、世の中にはたくさんの
+ダイエット方法があります。
+<br /><br />
+しかし、特定の食品に依存するダイエット法は、
+肉体的にも精神的にもストレスがたまりやすく、
+ちょっとしたことがきっかけで、
+堤防が決壊したかのように、
+ドカ食いしてしまい、
+結局はリバウンドしてしまいがちです。
+<br /><br />
+また、同一人物とは全く思えない、
+駅前の看板に掲載されている衝撃的な写真、
+お腹がぽっこり出た写真と、お腹がシックスパックに割れた
+ビフォー・アフターの写真を見て、高額な費用を払い
+、特定のプライベートジムに行かれたことがある人もいるでしょう。
+<br /><br />
+2ヶ月間、ご飯などの炭水化物は一切取らない。
+食べていいいのは鶏肉、サラダ、プロテインにサプリのみ。
+<br /><br />
+これで筋肉トレーニングを
+2ヶ月間ガンガンすれば体重は確実に減り、
+シックパックにはなることは私も保証します。
+<br /><br />
+ただし、
+ここに大きな落とし穴がありますし、
+多くの人はそれに気づいていません。
+<br /><br />
+このトレーニング方法では、
+将来的な健康は全く考慮されていない上に、
+過度に偏った食生活のため、
+2ヶ月間のストイックなトレーニングを過ごした後は
+今まで制限されていた食べ物を急激に食べてしまい、
+リバンドしてしまう人がたくさんいるのです。
+<br /><br />
+事実、私のトレーニングジムでは
+大手のプライベートジムで高額なお金を払い、
+2ヶ月の厳しいトレーニングにも耐えて、
+見事なシックスパックの体を手に入れたにも関わらず、
+結局、また元のぽっこりお腹が出たビジネスパーソンからの
+入会が後を絶たないという状況です。
+<br /><br />
+では、どうすれば
+苦々しいぽっこりと出たお腹をひっこめ、
+イチロー選手のように、24時間/365日、
+最高の体のコンディションを維持できる
+一流ビジネスパーソンのボディを手に入れる
+ことができるのでしょうか？
+<br /><br />
+ご存知のように、
+世の中にはダイエットに
+関する情報が散乱しています。
+<br /><br />
+健康に関する情報も散乱していますが、
+厚生労働省の調査によると、30〜40代男性の
+30％は肥満ですし、別の言い方をすれば、
+生活習慣病予備軍になります。
+<br /><br />
+多くの人は情報社会の中で、
+日々たくさんの情報に接しているので、
+どの情報が良いのかどうが迷ってしまい、
+結局は行動できないか、もしくは、
+熟考に熟考を重ねた結果、残念なことに
+明らかに誤った方法を選択するケースが
+よくあります。
+<br /><br />
+しかし、初動負荷理論を徹底的に学び、
+2,000以上のクライアントを健康に導いた私は
+あるときに気づきました。
+<br /><br />
+お腹がぽっこり出た、
+不健康極まりない会社員でも、
+私のトレーニング法に従えば、
+お腹はすぐに引込み、顔色は良くなり、
+生活習慣病におびえていた日々は嘘のように
+最高の体のコンディションを24時間/365日
+維持できる一流ビジネスパーソンのボディを
+手に入れる秘訣を発見したのです。
+<br /><br />
+私のトレーニングでは、
+あなたが健康な体を取り戻すために、
+・特定の食品だけを食べ続けたり、
+・筋トレだけをがむしゃらにやり続けたり
+ということは実施しません。
+<br /><br />
+私のトレーニングで、
+筋力トレーニング、脂肪を落とすトレーニング、食事改善以上に
+重視しているものがあります。
+<br /><br />
+それは、
+イチロー選手、三浦知良選手、 青木功選手、杉山愛選手も
+実施している、初動負荷理論を応用した体の柔軟性を極限まで
+高めるトレーニングです。
+<br /><br />
+体の柔軟性を高める
+トレーニングを実施すると、
+体の新陳代謝が一気に上がります。
+<br /><br />
+その結果、
+疲れを感じづらくなりますし、
+肩こりがなくなり、腰痛も緩和します。
+<br /><br />
+さらに、ストレスの度合いが大幅に減少し、
+重かった体もすっかり軽く感じます。
+<br /><br />
+体の体調がよくなり、
+仕事の集中力が上がりますので、
+ミスが減り、残業時間が減って、
+仕事の業績も上がります。
+<br /><br />
+おまけに、体はキレッキレッに
+なりますから、スーツが似合い
+モテるようになります。
+<br /><br />
+本講座では、3ヶ月間を
+１プラス3つのフェーズに分けて、
+各フェーズごとに、トレーニングの効果を
+最大限に高めるために、
+<br /><br />
+・体の柔軟性を高めるトレーニング
+・脂肪を落とすトレーニング
+・筋力トレーニング下記のトレーニング
+の内容と配分を変えていきます。
+<br /><br />
+さらに10項目に及ぶ門外不出の成功の鍵を
+私、谷けいじからあなたにお伝えします。
+<br /><br />
+想像してみてください。
+<br /><br />
+3ヶ月後、
+あなたは悪夢のような日々にようやくピリオドを打ち、
+ぽっこり出たお腹は完全に引込め、肩こりも腰痛もなく、
+体は鳥のように軽く、最高のコンディションで仕事ができているのです。
+<br /><br />
+あなたはわずかな投資を惜しんで、
+生活習慣病に怯えながら、生活する道を選びますか？
+<br /><br />
+それとも、私のもとで仕事ができる
+一流ビジネスパーソンの健康ボディを手に入れますか？
+<br /><br />
+今すぐ、お申込みください。
+最後までお読みいただき本当にありがとうございました。
+<br /><br />
+パーソナルトレーナー　
+谷けいじ
+<br /><br />
+P.S 
+<br /><br />
+私には悪夢のような思い出があります。
+<br /><br />
+将来的に、
+体操のオリンピック代表選手を目指し
+厳しいながらも夢のある生活を送っていた
+高校二年生のある日、
+重度の腰椎椎間板ヘルニアを発症し 
+体を全く曲げることもできず、
+授業も立って受けることしかできないという
+ドン底の状況に陥ったのです。
+<br /><br />
+鍼灸、カイロプラクティック、整体、そして飲み薬など
+ありとあらゆる方法を試しましたが完全に駄目でした。
+<br /><br />
+「もう一生大好きな体操をすることができないのか？」
+そう思うと悔しくて悔しくて涙が止まりませんでした。
+<br />
+そんな絶望の淵にいた私を救ってくれたのが、
+私の自宅の近所で、初動負荷理論を応用した
+トレーニングを指導していた先生だったのです。
+<br /><br />
+その先生の指導によるリハビリの結果、
+ヘルニアは完治し、高校三年生の国体では
+香川県チームとして、史上初の決勝に進出し
+私はキャプテンとして大活躍することができました。
+<br /><br />
+その時の経験から、
+私は一人でも多くの人々の健康問題を解決する、
+昔、私を救ってくれた先生のような
+素晴らしいトレーナーになろうと決意したのです。
+<br /><br />
+本動画を通して一人でも
+多くの方の健康問題を解決できることを
+心から楽しみにしております。
+";s:17:"short_description";s:60:"「モテボディ養成講座（仮）」（フロント）";s:20:"description_video_id";N;s:15:"who_is_this_for";s:1159:"[
+                             "どんなに眠っても疲れが取れないと感じる人",
+                             "体がものすごく重いと感じる人",
+                             "仕事中によく目眩がする人",
+                             "肩こりがひどいと感じる人",
+                             "ぽっこり出たお腹が気になる人",
+                             "肥満で股擦れを起こしている人",
+                             "会社の健康診断で生活習慣病と診断された人",
+                             "運動や食事で生活習慣を変えたいが、具体的にどうすればよいのかわからない人",
+                             "最高のコンディションを常に維持したいと思う人",
+                             "ダイエットをしてリバウンドをしない方法を知りたい人",
+                             "とにかくダイエットと名のつくものに全て手を出して失敗した人",
+                             "高額プライベートジムに行きたいがお金がない人"
+                            ]";s:21:"what_will_you_achieve";s:1001:"[
+                            "一日16時間働いても疲れを感じないコンディション",
+                            "健康問題に不安を感じない最高の安心感",
+                            "肩こり、腰痛を感じない元気な体",
+                            "20代のようなキレッキレッの体",
+                            "ぽっこりお腹解消、割れた腹筋",
+                            "リバウンドしない体とその理論",
+                            "20代のような若々しい体の張り、潤い。",
+                            "かっこ良くスーツを着こなすモテボディ",
+                            "女性社員からの羨望の眼差し",
+                            "150%アップの集中力",
+                            "残業時間が減り、プライベート時間が増える。",
+                            "会社からの赤丸急上昇の評価、昇給"
+                            ]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2370.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"150.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-07 08:57:03";s:12:"sale_ends_on";s:19:"2015-08-19 08:57:03";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"3";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:05";s:7:"preview";s:65:"https://wazaardev.s3.amazonaws.com/course_preview/demo-course.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"9";s:13:"instructor_id";s:1:"4";s:3:"url";s:65:"https://wazaardev.s3.amazonaws.com/course_preview/demo-course.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:7;a:43:{s:2:"id";s:2:"12";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"5";s:21:"course_subcategory_id";s:1:"5";s:12:"payment_type";s:8:"one_time";s:4:"name";s:27:"Beauty PHP Primer Revisited";s:4:"slug";s:5:"Pofga";s:11:"description";s:42:"PHP - the best language around. REVISITED.";s:17:"short_description";s:42:"PHP - the best language around. REVISITED.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"4080.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"3";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}}i:5;a:8:{i:0;a:43:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"2";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"1";s:12:"payment_type";s:8:"one_time";s:4:"name";s:17:"Javascript Primer";s:4:"slug";s:5:"EdRc6";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:16:"Short: JS - the.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"1390.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"1";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"200.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 08:47:03";s:12:"sale_ends_on";s:19:"2015-08-11 09:57:03";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:1;a:43:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"6";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"4";s:21:"course_subcategory_id";s:1:"4";s:12:"payment_type";s:8:"one_time";s:4:"name";s:21:"Music App Development";s:4:"slug";s:5:"wXmSO";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"4930.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"100.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-10 22:57:03";s:12:"sale_ends_on";s:19:"2015-08-12 22:43:43";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"6";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:2;a:43:{s:2:"id";s:2:"15";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"8";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"6";s:21:"course_subcategory_id";s:1:"6";s:12:"payment_type";s:8:"one_time";s:4:"name";s:26:"Obscure Course no one buys";s:4:"slug";s:5:"Glq6j";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2720.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:3;a:43:{s:2:"id";s:1:"5";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"4";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"2";s:21:"course_subcategory_id";s:1:"2";s:12:"payment_type";s:8:"one_time";s:4:"name";s:24:"Business App Development";s:4:"slug";s:5:"5ac2F";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:29:"Short Create your very first.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"3080.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"1";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"300.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 05:10:23";s:12:"sale_ends_on";s:19:"2015-08-11 23:50:23";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"6";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:05";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"4";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:4;a:43:{s:2:"id";s:2:"11";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"7";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"5";s:21:"course_subcategory_id";s:1:"5";s:12:"payment_type";s:8:"one_time";s:4:"name";s:17:"Beauty PHP Primer";s:4:"slug";s:5:"nUwsX";s:11:"description";s:31:"PHP - the best language around.";s:17:"short_description";s:31:"PHP - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2920.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"3";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"7";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e55b4886.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:5;a:43:{s:2:"id";s:2:"13";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"8";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"6";s:21:"course_subcategory_id";s:1:"6";s:12:"payment_type";s:8:"one_time";s:4:"name";s:22:"Health App Development";s:4:"slug";s:5:"28OUd";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2630.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:6;a:43:{s:2:"id";s:1:"6";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"5";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"3";s:21:"course_subcategory_id";s:1:"3";s:12:"payment_type";s:8:"one_time";s:4:"name";s:27:"Investments App Development";s:4:"slug";s:5:"huKqI";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2260.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"2";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905dd23aa96.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"5";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905dd23aa96.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:7;a:43:{s:2:"id";s:1:"9";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"5";s:21:"course_subcategory_id";s:1:"5";s:12:"payment_type";s:8:"one_time";s:4:"name";s:22:"Beauty App Development";s:4:"slug";s:5:"YrVGR";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"4880.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}}i:6;a:8:{i:0;a:43:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"2";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"1";s:12:"payment_type";s:8:"one_time";s:4:"name";s:17:"Javascript Primer";s:4:"slug";s:5:"EdRc6";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:16:"Short: JS - the.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"1390.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"1";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"200.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 08:47:03";s:12:"sale_ends_on";s:19:"2015-08-11 09:57:03";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:1;a:43:{s:2:"id";s:1:"7";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"3";s:21:"course_subcategory_id";s:1:"3";s:12:"payment_type";s:8:"one_time";s:4:"name";s:29:"Investments Javascript Primer";s:4:"slug";s:5:"KE3eL";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:30:"JS - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:9:"185000.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:2;a:43:{s:2:"id";s:1:"4";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"7";s:12:"payment_type";s:8:"one_time";s:4:"name";s:20:"PHP Primer Revisited";s:4:"slug";s:5:"TGtEC";s:11:"description";s:42:"PHP - the best language around. REVISITED.";s:17:"short_description";s:17:"Short: REVISITED.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2130.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"3";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:3;a:43:{s:2:"id";s:1:"5";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"4";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"2";s:21:"course_subcategory_id";s:1:"2";s:12:"payment_type";s:8:"one_time";s:4:"name";s:24:"Business App Development";s:4:"slug";s:5:"5ac2F";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:29:"Short Create your very first.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"3080.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"1";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"300.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 05:10:23";s:12:"sale_ends_on";s:19:"2015-08-11 23:50:23";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"6";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:05";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"4";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:4;a:43:{s:2:"id";s:2:"10";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"5";s:21:"course_subcategory_id";s:1:"5";s:12:"payment_type";s:8:"one_time";s:4:"name";s:24:"Beauty Javascript Primer";s:4:"slug";s:5:"BBE4U";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:30:"JS - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"3120.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:5;a:43:{s:2:"id";s:2:"14";s:13:"instructor_id";s:2:"11";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"9";s:22:"course_banner_image_id";s:1:"1";s:18:"course_category_id";s:1:"6";s:21:"course_subcategory_id";s:1:"6";s:12:"payment_type";s:8:"one_time";s:4:"name";s:89:"３ヶ月で10キロ痩せてハイパフォーマーになる『体』やり直し講座";s:4:"slug";s:5:"eS7Ig";s:11:"description";s:13274:"
+                            正直に告白します。
+<br /><br />
+率直に言って、本講座は、すべての人のためのものでありません。
+<br /><br />
+ご購入いただいても、全ての人のお役に立つことはできませんので、
+もし、間違って購入してしまった場合は、30日以内であれば、全額返金させていただきます。
+<br /><br />
+しかし、あなたが30〜40代の男性会社員でかつ、
+【このコースの対象者】に記載されているような
+健康上の問題があって、それをなんとか解決して、
+最高のコンディションで仕事をしたい！と考えるなら
+本講座は必ずあなたのお役に立てると確信しています。
+<br /><br />
+【体は資本】というのは、ビジネスの世界ではよく使われます。
+<br /><br />
+体が良いコンディションでなければ、
+ここ一番の商談や重要なミーティングで
+いい結果を残すことは難しいですから。
+<br /><br />
+『20代の頃は朝まで飲んでも寝ずに仕事なんてザラだった。』
+こんな武勇伝の１つや２つはあなたも持っているでしょう。
+<br /><br />
+しかし、30代に入って、朝まで飲んで寝ずに仕事！なんて生活をしていると、
+疲れが全く抜けず、体はひどく重く感じ、仕事中に息切れに立ち眩みなんてことが
+日常茶飯事になります。
+<br /><br />
+体が完全に悲鳴を上げており、
+気がつけばお腹はぽっこりと膨らんでいます。
+<br /><br />
+健康管理は二の次、
+とにかく目の前の仕事をがむしゃらに頑張って、
+気合と根性で乗り切るという
+ラグビー部や、アメリカンフットボール部のような
+超体育会系ののりが許されるのは、20代までです。
+<br /><br />
+30代になると、20代と比較しても基礎代謝が落ちているので、
+毎日規則正しく「同じ生活」「同じ食事量」を保っていたとしても
+気がつけば確実に太っていきます。
+<br /><br />
+さらに、過度な飲酒や、運動不足、不適切な食生活、喫煙を続けると、
+内蔵脂肪はどんどんたまり、もっとも怖い病気、つまり、動脈硬化、
+高脂血症、血栓症、高血圧、糖尿病などの生活習慣病をひき起こします。
+<br /><br />
+この状態が悪化すると、
+仕事どころか日常生活は完全に支障を来たしますし
+残りの人生をベットの上で要介護状態になります。
+<br /><br />
+周りの知人や親戚で生活習慣病を
+引き起こしている人の話を、
+一人や二人は聞いたことありませんか？
+<br /><br />
+今は他人の話ですが、あなたも
+このまま健康問題を放っておくと、
+あなた自身の問題として、
+いつかブーメランのように戻ってきます。
+<br /><br />
+お金を持っていると、
+すぐに散財してしまう人は家計簿をつけて、
+お金の管理をできるようになることは非常に大切なことです。
+<br /><br />
+それと同じように、
+不健康な生活をしていて、
+将来的に【生活習慣病】を引き起こすリスクがある人も、
+バランスの取れた食事や適度な有酸素運動や筋肉トレーニングによって、
+健康な生活習慣を身につけて、体をコントロールする術を学ぶことも
+とても大切になっています。
+<br /><br />
+冒頭から長々と話してしまいましたが、
+<br /><br />
+自己紹介が遅れて申し訳ございません。
+<br /><br />
+はじめまして。
+<br /><br />
+私は谷けいじと申します。
+<br /><br />
+東京都内でパーソナルジムの運営をしながら、
+実際におなかが出始めた会社員を
+3ヶ月で10ｋｇ痩せさせて、ビジネスパーソンとして
+最高の体のコンディションを維持するための
+トレーニングを指導しています。
+<br /><br />
+私は大学を卒業した後は、
+スポーツトレーナーとしての道を選択し、
+イチロー選手、三浦知良選手、 青木功選手、
+杉山愛選手を指導する小山裕史先生に師事し、
+筋肉の柔軟性を意識した初動負荷理論を利用した
+トレーニング法で、香川県のトレーニングジムや
+介護施設、複合型健康増進施設などで、
+2歳から105歳のプロスポーツ選手からモデルまで
+約2000名以上の方を実際に指導して、
+健康問題を解決するお手伝いをしてきました。
+<br /><br />
+ですので、誰よりも健康についての理論を学び、
+その理論でたくさんの人の健康問題を解決してきたことに
+揺るぎない自信を持っています。
+<br /><br />
+みなさんの中には、
+ありとあらゆるダイエットも
+試されたことがある人もいるでしょう。
+<br /><br />
+朝バナナダイエット、断食ダイエット、
+低炭水化物ダイエット、プロテインダイエット、
+リンゴダイエットなどなど、世の中にはたくさんの
+ダイエット方法があります。
+<br /><br />
+しかし、特定の食品に依存するダイエット法は、
+肉体的にも精神的にもストレスがたまりやすく、
+ちょっとしたことがきっかけで、
+堤防が決壊したかのように、
+ドカ食いしてしまい、
+結局はリバウンドしてしまいがちです。
+<br /><br />
+また、同一人物とは全く思えない、
+駅前の看板に掲載されている衝撃的な写真、
+お腹がぽっこり出た写真と、お腹がシックスパックに割れた
+ビフォー・アフターの写真を見て、高額な費用を払い
+、特定のプライベートジムに行かれたことがある人もいるでしょう。
+<br /><br />
+2ヶ月間、ご飯などの炭水化物は一切取らない。
+食べていいいのは鶏肉、サラダ、プロテインにサプリのみ。
+<br /><br />
+これで筋肉トレーニングを
+2ヶ月間ガンガンすれば体重は確実に減り、
+シックパックにはなることは私も保証します。
+<br /><br />
+ただし、
+ここに大きな落とし穴がありますし、
+多くの人はそれに気づいていません。
+<br /><br />
+このトレーニング方法では、
+将来的な健康は全く考慮されていない上に、
+過度に偏った食生活のため、
+2ヶ月間のストイックなトレーニングを過ごした後は
+今まで制限されていた食べ物を急激に食べてしまい、
+リバンドしてしまう人がたくさんいるのです。
+<br /><br />
+事実、私のトレーニングジムでは
+大手のプライベートジムで高額なお金を払い、
+2ヶ月の厳しいトレーニングにも耐えて、
+見事なシックスパックの体を手に入れたにも関わらず、
+結局、また元のぽっこりお腹が出たビジネスパーソンからの
+入会が後を絶たないという状況です。
+<br /><br />
+では、どうすれば
+苦々しいぽっこりと出たお腹をひっこめ、
+イチロー選手のように、24時間/365日、
+最高の体のコンディションを維持できる
+一流ビジネスパーソンのボディを手に入れる
+ことができるのでしょうか？
+<br /><br />
+ご存知のように、
+世の中にはダイエットに
+関する情報が散乱しています。
+<br /><br />
+健康に関する情報も散乱していますが、
+厚生労働省の調査によると、30〜40代男性の
+30％は肥満ですし、別の言い方をすれば、
+生活習慣病予備軍になります。
+<br /><br />
+多くの人は情報社会の中で、
+日々たくさんの情報に接しているので、
+どの情報が良いのかどうが迷ってしまい、
+結局は行動できないか、もしくは、
+熟考に熟考を重ねた結果、残念なことに
+明らかに誤った方法を選択するケースが
+よくあります。
+<br /><br />
+しかし、初動負荷理論を徹底的に学び、
+2,000以上のクライアントを健康に導いた私は
+あるときに気づきました。
+<br /><br />
+お腹がぽっこり出た、
+不健康極まりない会社員でも、
+私のトレーニング法に従えば、
+お腹はすぐに引込み、顔色は良くなり、
+生活習慣病におびえていた日々は嘘のように
+最高の体のコンディションを24時間/365日
+維持できる一流ビジネスパーソンのボディを
+手に入れる秘訣を発見したのです。
+<br /><br />
+私のトレーニングでは、
+あなたが健康な体を取り戻すために、
+・特定の食品だけを食べ続けたり、
+・筋トレだけをがむしゃらにやり続けたり
+ということは実施しません。
+<br /><br />
+私のトレーニングで、
+筋力トレーニング、脂肪を落とすトレーニング、食事改善以上に
+重視しているものがあります。
+<br /><br />
+それは、
+イチロー選手、三浦知良選手、 青木功選手、杉山愛選手も
+実施している、初動負荷理論を応用した体の柔軟性を極限まで
+高めるトレーニングです。
+<br /><br />
+体の柔軟性を高める
+トレーニングを実施すると、
+体の新陳代謝が一気に上がります。
+<br /><br />
+その結果、
+疲れを感じづらくなりますし、
+肩こりがなくなり、腰痛も緩和します。
+<br /><br />
+さらに、ストレスの度合いが大幅に減少し、
+重かった体もすっかり軽く感じます。
+<br /><br />
+体の体調がよくなり、
+仕事の集中力が上がりますので、
+ミスが減り、残業時間が減って、
+仕事の業績も上がります。
+<br /><br />
+おまけに、体はキレッキレッに
+なりますから、スーツが似合い
+モテるようになります。
+<br /><br />
+本講座では、3ヶ月間を
+１プラス3つのフェーズに分けて、
+各フェーズごとに、トレーニングの効果を
+最大限に高めるために、
+<br /><br />
+・体の柔軟性を高めるトレーニング
+・脂肪を落とすトレーニング
+・筋力トレーニング下記のトレーニング
+の内容と配分を変えていきます。
+<br /><br />
+さらに10項目に及ぶ門外不出の成功の鍵を
+私、谷けいじからあなたにお伝えします。
+<br /><br />
+想像してみてください。
+<br /><br />
+3ヶ月後、
+あなたは悪夢のような日々にようやくピリオドを打ち、
+ぽっこり出たお腹は完全に引込め、肩こりも腰痛もなく、
+体は鳥のように軽く、最高のコンディションで仕事ができているのです。
+<br /><br />
+あなたはわずかな投資を惜しんで、
+生活習慣病に怯えながら、生活する道を選びますか？
+<br /><br />
+それとも、私のもとで仕事ができる
+一流ビジネスパーソンの健康ボディを手に入れますか？
+<br /><br />
+今すぐ、お申込みください。
+最後までお読みいただき本当にありがとうございました。
+<br /><br />
+パーソナルトレーナー　
+谷けいじ
+<br /><br />
+P.S 
+<br /><br />
+私には悪夢のような思い出があります。
+<br /><br />
+将来的に、
+体操のオリンピック代表選手を目指し
+厳しいながらも夢のある生活を送っていた
+高校二年生のある日、
+重度の腰椎椎間板ヘルニアを発症し 
+体を全く曲げることもできず、
+授業も立って受けることしかできないという
+ドン底の状況に陥ったのです。
+<br /><br />
+鍼灸、カイロプラクティック、整体、そして飲み薬など
+ありとあらゆる方法を試しましたが完全に駄目でした。
+<br /><br />
+「もう一生大好きな体操をすることができないのか？」
+そう思うと悔しくて悔しくて涙が止まりませんでした。
+<br />
+そんな絶望の淵にいた私を救ってくれたのが、
+私の自宅の近所で、初動負荷理論を応用した
+トレーニングを指導していた先生だったのです。
+<br /><br />
+その先生の指導によるリハビリの結果、
+ヘルニアは完治し、高校三年生の国体では
+香川県チームとして、史上初の決勝に進出し
+私はキャプテンとして大活躍することができました。
+<br /><br />
+その時の経験から、
+私は一人でも多くの人々の健康問題を解決する、
+昔、私を救ってくれた先生のような
+素晴らしいトレーナーになろうと決意したのです。
+<br /><br />
+本動画を通して一人でも
+多くの方の健康問題を解決できることを
+心から楽しみにしております。
+";s:17:"short_description";s:60:"「モテボディ養成講座（仮）」（フロント）";s:20:"description_video_id";N;s:15:"who_is_this_for";s:1159:"[
+                             "どんなに眠っても疲れが取れないと感じる人",
+                             "体がものすごく重いと感じる人",
+                             "仕事中によく目眩がする人",
+                             "肩こりがひどいと感じる人",
+                             "ぽっこり出たお腹が気になる人",
+                             "肥満で股擦れを起こしている人",
+                             "会社の健康診断で生活習慣病と診断された人",
+                             "運動や食事で生活習慣を変えたいが、具体的にどうすればよいのかわからない人",
+                             "最高のコンディションを常に維持したいと思う人",
+                             "ダイエットをしてリバウンドをしない方法を知りたい人",
+                             "とにかくダイエットと名のつくものに全て手を出して失敗した人",
+                             "高額プライベートジムに行きたいがお金がない人"
+                            ]";s:21:"what_will_you_achieve";s:1001:"[
+                            "一日16時間働いても疲れを感じないコンディション",
+                            "健康問題に不安を感じない最高の安心感",
+                            "肩こり、腰痛を感じない元気な体",
+                            "20代のようなキレッキレッの体",
+                            "ぽっこりお腹解消、割れた腹筋",
+                            "リバウンドしない体とその理論",
+                            "20代のような若々しい体の張り、潤い。",
+                            "かっこ良くスーツを着こなすモテボディ",
+                            "女性社員からの羨望の眼差し",
+                            "150%アップの集中力",
+                            "残業時間が減り、プライベート時間が増える。",
+                            "会社からの赤丸急上昇の評価、昇給"
+                            ]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2370.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"150.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-07 08:57:03";s:12:"sale_ends_on";s:19:"2015-08-19 08:57:03";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"3";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:05";s:7:"preview";s:65:"https://wazaardev.s3.amazonaws.com/course_preview/demo-course.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"9";s:13:"instructor_id";s:1:"4";s:3:"url";s:65:"https://wazaardev.s3.amazonaws.com/course_preview/demo-course.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:6;a:43:{s:2:"id";s:1:"6";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"5";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"3";s:21:"course_subcategory_id";s:1:"3";s:12:"payment_type";s:8:"one_time";s:4:"name";s:27:"Investments App Development";s:4:"slug";s:5:"huKqI";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2260.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"2";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905dd23aa96.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"5";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905dd23aa96.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:7;a:43:{s:2:"id";s:2:"15";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"8";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"6";s:21:"course_subcategory_id";s:1:"6";s:12:"payment_type";s:8:"one_time";s:4:"name";s:26:"Obscure Course no one buys";s:4:"slug";s:5:"Glq6j";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2720.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}}i:7;a:8:{i:0;a:43:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"2";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"1";s:12:"payment_type";s:8:"one_time";s:4:"name";s:17:"Javascript Primer";s:4:"slug";s:5:"EdRc6";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:16:"Short: JS - the.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"1390.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"1";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"200.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-11 08:47:03";s:12:"sale_ends_on";s:19:"2015-08-11 09:57:03";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"2";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905cf824c1c.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:1;a:43:{s:2:"id";s:1:"6";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"5";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"3";s:21:"course_subcategory_id";s:1:"3";s:12:"payment_type";s:8:"one_time";s:4:"name";s:27:"Investments App Development";s:4:"slug";s:5:"huKqI";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2260.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"2";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905dd23aa96.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"5";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905dd23aa96.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:2;a:43:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"6";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"4";s:21:"course_subcategory_id";s:1:"4";s:12:"payment_type";s:8:"one_time";s:4:"name";s:21:"Music App Development";s:4:"slug";s:5:"wXmSO";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"4930.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"100.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-10 22:57:03";s:12:"sale_ends_on";s:19:"2015-08-12 22:43:43";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"6";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e2a26130.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:3;a:43:{s:2:"id";s:2:"15";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"8";s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"6";s:21:"course_subcategory_id";s:1:"6";s:12:"payment_type";s:8:"one_time";s:4:"name";s:26:"Obscure Course no one buys";s:4:"slug";s:5:"Glq6j";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2720.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"8";s:13:"instructor_id";s:1:"4";s:3:"url";s:67:"https://wazaardev.s3.amazonaws.com/course_preview/54905e838a388.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:4;a:43:{s:2:"id";s:2:"14";s:13:"instructor_id";s:2:"11";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";s:1:"9";s:22:"course_banner_image_id";s:1:"1";s:18:"course_category_id";s:1:"6";s:21:"course_subcategory_id";s:1:"6";s:12:"payment_type";s:8:"one_time";s:4:"name";s:89:"３ヶ月で10キロ痩せてハイパフォーマーになる『体』やり直し講座";s:4:"slug";s:5:"eS7Ig";s:11:"description";s:13274:"
+                            正直に告白します。
+<br /><br />
+率直に言って、本講座は、すべての人のためのものでありません。
+<br /><br />
+ご購入いただいても、全ての人のお役に立つことはできませんので、
+もし、間違って購入してしまった場合は、30日以内であれば、全額返金させていただきます。
+<br /><br />
+しかし、あなたが30〜40代の男性会社員でかつ、
+【このコースの対象者】に記載されているような
+健康上の問題があって、それをなんとか解決して、
+最高のコンディションで仕事をしたい！と考えるなら
+本講座は必ずあなたのお役に立てると確信しています。
+<br /><br />
+【体は資本】というのは、ビジネスの世界ではよく使われます。
+<br /><br />
+体が良いコンディションでなければ、
+ここ一番の商談や重要なミーティングで
+いい結果を残すことは難しいですから。
+<br /><br />
+『20代の頃は朝まで飲んでも寝ずに仕事なんてザラだった。』
+こんな武勇伝の１つや２つはあなたも持っているでしょう。
+<br /><br />
+しかし、30代に入って、朝まで飲んで寝ずに仕事！なんて生活をしていると、
+疲れが全く抜けず、体はひどく重く感じ、仕事中に息切れに立ち眩みなんてことが
+日常茶飯事になります。
+<br /><br />
+体が完全に悲鳴を上げており、
+気がつけばお腹はぽっこりと膨らんでいます。
+<br /><br />
+健康管理は二の次、
+とにかく目の前の仕事をがむしゃらに頑張って、
+気合と根性で乗り切るという
+ラグビー部や、アメリカンフットボール部のような
+超体育会系ののりが許されるのは、20代までです。
+<br /><br />
+30代になると、20代と比較しても基礎代謝が落ちているので、
+毎日規則正しく「同じ生活」「同じ食事量」を保っていたとしても
+気がつけば確実に太っていきます。
+<br /><br />
+さらに、過度な飲酒や、運動不足、不適切な食生活、喫煙を続けると、
+内蔵脂肪はどんどんたまり、もっとも怖い病気、つまり、動脈硬化、
+高脂血症、血栓症、高血圧、糖尿病などの生活習慣病をひき起こします。
+<br /><br />
+この状態が悪化すると、
+仕事どころか日常生活は完全に支障を来たしますし
+残りの人生をベットの上で要介護状態になります。
+<br /><br />
+周りの知人や親戚で生活習慣病を
+引き起こしている人の話を、
+一人や二人は聞いたことありませんか？
+<br /><br />
+今は他人の話ですが、あなたも
+このまま健康問題を放っておくと、
+あなた自身の問題として、
+いつかブーメランのように戻ってきます。
+<br /><br />
+お金を持っていると、
+すぐに散財してしまう人は家計簿をつけて、
+お金の管理をできるようになることは非常に大切なことです。
+<br /><br />
+それと同じように、
+不健康な生活をしていて、
+将来的に【生活習慣病】を引き起こすリスクがある人も、
+バランスの取れた食事や適度な有酸素運動や筋肉トレーニングによって、
+健康な生活習慣を身につけて、体をコントロールする術を学ぶことも
+とても大切になっています。
+<br /><br />
+冒頭から長々と話してしまいましたが、
+<br /><br />
+自己紹介が遅れて申し訳ございません。
+<br /><br />
+はじめまして。
+<br /><br />
+私は谷けいじと申します。
+<br /><br />
+東京都内でパーソナルジムの運営をしながら、
+実際におなかが出始めた会社員を
+3ヶ月で10ｋｇ痩せさせて、ビジネスパーソンとして
+最高の体のコンディションを維持するための
+トレーニングを指導しています。
+<br /><br />
+私は大学を卒業した後は、
+スポーツトレーナーとしての道を選択し、
+イチロー選手、三浦知良選手、 青木功選手、
+杉山愛選手を指導する小山裕史先生に師事し、
+筋肉の柔軟性を意識した初動負荷理論を利用した
+トレーニング法で、香川県のトレーニングジムや
+介護施設、複合型健康増進施設などで、
+2歳から105歳のプロスポーツ選手からモデルまで
+約2000名以上の方を実際に指導して、
+健康問題を解決するお手伝いをしてきました。
+<br /><br />
+ですので、誰よりも健康についての理論を学び、
+その理論でたくさんの人の健康問題を解決してきたことに
+揺るぎない自信を持っています。
+<br /><br />
+みなさんの中には、
+ありとあらゆるダイエットも
+試されたことがある人もいるでしょう。
+<br /><br />
+朝バナナダイエット、断食ダイエット、
+低炭水化物ダイエット、プロテインダイエット、
+リンゴダイエットなどなど、世の中にはたくさんの
+ダイエット方法があります。
+<br /><br />
+しかし、特定の食品に依存するダイエット法は、
+肉体的にも精神的にもストレスがたまりやすく、
+ちょっとしたことがきっかけで、
+堤防が決壊したかのように、
+ドカ食いしてしまい、
+結局はリバウンドしてしまいがちです。
+<br /><br />
+また、同一人物とは全く思えない、
+駅前の看板に掲載されている衝撃的な写真、
+お腹がぽっこり出た写真と、お腹がシックスパックに割れた
+ビフォー・アフターの写真を見て、高額な費用を払い
+、特定のプライベートジムに行かれたことがある人もいるでしょう。
+<br /><br />
+2ヶ月間、ご飯などの炭水化物は一切取らない。
+食べていいいのは鶏肉、サラダ、プロテインにサプリのみ。
+<br /><br />
+これで筋肉トレーニングを
+2ヶ月間ガンガンすれば体重は確実に減り、
+シックパックにはなることは私も保証します。
+<br /><br />
+ただし、
+ここに大きな落とし穴がありますし、
+多くの人はそれに気づいていません。
+<br /><br />
+このトレーニング方法では、
+将来的な健康は全く考慮されていない上に、
+過度に偏った食生活のため、
+2ヶ月間のストイックなトレーニングを過ごした後は
+今まで制限されていた食べ物を急激に食べてしまい、
+リバンドしてしまう人がたくさんいるのです。
+<br /><br />
+事実、私のトレーニングジムでは
+大手のプライベートジムで高額なお金を払い、
+2ヶ月の厳しいトレーニングにも耐えて、
+見事なシックスパックの体を手に入れたにも関わらず、
+結局、また元のぽっこりお腹が出たビジネスパーソンからの
+入会が後を絶たないという状況です。
+<br /><br />
+では、どうすれば
+苦々しいぽっこりと出たお腹をひっこめ、
+イチロー選手のように、24時間/365日、
+最高の体のコンディションを維持できる
+一流ビジネスパーソンのボディを手に入れる
+ことができるのでしょうか？
+<br /><br />
+ご存知のように、
+世の中にはダイエットに
+関する情報が散乱しています。
+<br /><br />
+健康に関する情報も散乱していますが、
+厚生労働省の調査によると、30〜40代男性の
+30％は肥満ですし、別の言い方をすれば、
+生活習慣病予備軍になります。
+<br /><br />
+多くの人は情報社会の中で、
+日々たくさんの情報に接しているので、
+どの情報が良いのかどうが迷ってしまい、
+結局は行動できないか、もしくは、
+熟考に熟考を重ねた結果、残念なことに
+明らかに誤った方法を選択するケースが
+よくあります。
+<br /><br />
+しかし、初動負荷理論を徹底的に学び、
+2,000以上のクライアントを健康に導いた私は
+あるときに気づきました。
+<br /><br />
+お腹がぽっこり出た、
+不健康極まりない会社員でも、
+私のトレーニング法に従えば、
+お腹はすぐに引込み、顔色は良くなり、
+生活習慣病におびえていた日々は嘘のように
+最高の体のコンディションを24時間/365日
+維持できる一流ビジネスパーソンのボディを
+手に入れる秘訣を発見したのです。
+<br /><br />
+私のトレーニングでは、
+あなたが健康な体を取り戻すために、
+・特定の食品だけを食べ続けたり、
+・筋トレだけをがむしゃらにやり続けたり
+ということは実施しません。
+<br /><br />
+私のトレーニングで、
+筋力トレーニング、脂肪を落とすトレーニング、食事改善以上に
+重視しているものがあります。
+<br /><br />
+それは、
+イチロー選手、三浦知良選手、 青木功選手、杉山愛選手も
+実施している、初動負荷理論を応用した体の柔軟性を極限まで
+高めるトレーニングです。
+<br /><br />
+体の柔軟性を高める
+トレーニングを実施すると、
+体の新陳代謝が一気に上がります。
+<br /><br />
+その結果、
+疲れを感じづらくなりますし、
+肩こりがなくなり、腰痛も緩和します。
+<br /><br />
+さらに、ストレスの度合いが大幅に減少し、
+重かった体もすっかり軽く感じます。
+<br /><br />
+体の体調がよくなり、
+仕事の集中力が上がりますので、
+ミスが減り、残業時間が減って、
+仕事の業績も上がります。
+<br /><br />
+おまけに、体はキレッキレッに
+なりますから、スーツが似合い
+モテるようになります。
+<br /><br />
+本講座では、3ヶ月間を
+１プラス3つのフェーズに分けて、
+各フェーズごとに、トレーニングの効果を
+最大限に高めるために、
+<br /><br />
+・体の柔軟性を高めるトレーニング
+・脂肪を落とすトレーニング
+・筋力トレーニング下記のトレーニング
+の内容と配分を変えていきます。
+<br /><br />
+さらに10項目に及ぶ門外不出の成功の鍵を
+私、谷けいじからあなたにお伝えします。
+<br /><br />
+想像してみてください。
+<br /><br />
+3ヶ月後、
+あなたは悪夢のような日々にようやくピリオドを打ち、
+ぽっこり出たお腹は完全に引込め、肩こりも腰痛もなく、
+体は鳥のように軽く、最高のコンディションで仕事ができているのです。
+<br /><br />
+あなたはわずかな投資を惜しんで、
+生活習慣病に怯えながら、生活する道を選びますか？
+<br /><br />
+それとも、私のもとで仕事ができる
+一流ビジネスパーソンの健康ボディを手に入れますか？
+<br /><br />
+今すぐ、お申込みください。
+最後までお読みいただき本当にありがとうございました。
+<br /><br />
+パーソナルトレーナー　
+谷けいじ
+<br /><br />
+P.S 
+<br /><br />
+私には悪夢のような思い出があります。
+<br /><br />
+将来的に、
+体操のオリンピック代表選手を目指し
+厳しいながらも夢のある生活を送っていた
+高校二年生のある日、
+重度の腰椎椎間板ヘルニアを発症し 
+体を全く曲げることもできず、
+授業も立って受けることしかできないという
+ドン底の状況に陥ったのです。
+<br /><br />
+鍼灸、カイロプラクティック、整体、そして飲み薬など
+ありとあらゆる方法を試しましたが完全に駄目でした。
+<br /><br />
+「もう一生大好きな体操をすることができないのか？」
+そう思うと悔しくて悔しくて涙が止まりませんでした。
+<br />
+そんな絶望の淵にいた私を救ってくれたのが、
+私の自宅の近所で、初動負荷理論を応用した
+トレーニングを指導していた先生だったのです。
+<br /><br />
+その先生の指導によるリハビリの結果、
+ヘルニアは完治し、高校三年生の国体では
+香川県チームとして、史上初の決勝に進出し
+私はキャプテンとして大活躍することができました。
+<br /><br />
+その時の経験から、
+私は一人でも多くの人々の健康問題を解決する、
+昔、私を救ってくれた先生のような
+素晴らしいトレーナーになろうと決意したのです。
+<br /><br />
+本動画を通して一人でも
+多くの方の健康問題を解決できることを
+心から楽しみにしております。
+";s:17:"short_description";s:60:"「モテボディ養成講座（仮）」（フロント）";s:20:"description_video_id";N;s:15:"who_is_this_for";s:1159:"[
+                             "どんなに眠っても疲れが取れないと感じる人",
+                             "体がものすごく重いと感じる人",
+                             "仕事中によく目眩がする人",
+                             "肩こりがひどいと感じる人",
+                             "ぽっこり出たお腹が気になる人",
+                             "肥満で股擦れを起こしている人",
+                             "会社の健康診断で生活習慣病と診断された人",
+                             "運動や食事で生活習慣を変えたいが、具体的にどうすればよいのかわからない人",
+                             "最高のコンディションを常に維持したいと思う人",
+                             "ダイエットをしてリバウンドをしない方法を知りたい人",
+                             "とにかくダイエットと名のつくものに全て手を出して失敗した人",
+                             "高額プライベートジムに行きたいがお金がない人"
+                            ]";s:21:"what_will_you_achieve";s:1001:"[
+                            "一日16時間働いても疲れを感じないコンディション",
+                            "健康問題に不安を感じない最高の安心感",
+                            "肩こり、腰痛を感じない元気な体",
+                            "20代のようなキレッキレッの体",
+                            "ぽっこりお腹解消、割れた腹筋",
+                            "リバウンドしない体とその理論",
+                            "20代のような若々しい体の張り、潤い。",
+                            "かっこ良くスーツを着こなすモテボディ",
+                            "女性社員からの羨望の眼差し",
+                            "150%アップの集中力",
+                            "残業時間が減り、プライベート時間が増える。",
+                            "会社からの赤丸急上昇の評価、昇給"
+                            ]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2370.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";s:6:"150.00";s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";s:19:"2015-08-07 08:57:03";s:12:"sale_ends_on";s:19:"2015-08-19 08:57:03";s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"3";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:05";s:7:"preview";s:65:"https://wazaardev.s3.amazonaws.com/course_preview/demo-course.jpg";s:10:"discounted";i:0;s:13:"preview_image";a:5:{s:2:"id";s:1:"9";s:13:"instructor_id";s:1:"4";s:3:"url";s:65:"https://wazaardev.s3.amazonaws.com/course_preview/demo-course.jpg";s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";}}i:5;a:43:{s:2:"id";s:1:"7";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"3";s:21:"course_subcategory_id";s:1:"3";s:12:"payment_type";s:8:"one_time";s:4:"name";s:29:"Investments Javascript Primer";s:4:"slug";s:5:"KE3eL";s:11:"description";s:30:"JS - the best language around.";s:17:"short_description";s:30:"JS - the best language around.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:9:"185000.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"2";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:6;a:43:{s:2:"id";s:1:"4";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"1";s:21:"course_subcategory_id";s:1:"7";s:12:"payment_type";s:8:"one_time";s:4:"name";s:20:"PHP Primer Revisited";s:4:"slug";s:5:"TGtEC";s:11:"description";s:42:"PHP - the best language around. REVISITED.";s:17:"short_description";s:17:"Short: REVISITED.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"2130.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"3";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}i:7;a:43:{s:2:"id";s:1:"9";s:13:"instructor_id";s:1:"4";s:22:"assigned_instructor_id";N;s:16:"details_displays";s:10:"instructor";s:23:"course_preview_image_id";N;s:22:"course_banner_image_id";N;s:18:"course_category_id";s:1:"5";s:21:"course_subcategory_id";s:1:"5";s:12:"payment_type";s:8:"one_time";s:4:"name";s:22:"Beauty App Development";s:4:"slug";s:5:"YrVGR";s:11:"description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:17:"short_description";s:100:"Create your very first application in 2 weeks! You get a beginner award after completing the course.";s:20:"description_video_id";N;s:15:"who_is_this_for";s:94:"["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]";s:21:"what_will_you_achieve";s:32:"["Something", "Something Else!"]";s:12:"requirements";s:2:"[]";s:5:"price";s:7:"4880.00";s:4:"free";s:2:"no";s:20:"affiliate_percentage";s:1:"0";s:8:"featured";s:1:"0";s:20:"course_difficulty_id";s:1:"1";s:13:"student_count";s:1:"0";s:9:"force_new";s:1:"0";s:4:"sale";N;s:9:"sale_kind";s:6:"amount";s:14:"sale_starts_on";N;s:12:"sale_ends_on";N;s:14:"privacy_status";s:6:"public";s:14:"publish_status";s:8:"approved";s:13:"reject_reason";N;s:11:"ask_teacher";s:7:"enabled";s:11:"discussions";s:3:"yes";s:8:"show_bio";s:7:"default";s:10:"custom_bio";N;s:13:"total_reviews";s:1:"0";s:22:"reviews_positive_score";s:3:"100";s:15:"pre_submit_data";N;s:10:"created_at";s:19:"2015-08-11 08:57:03";s:10:"updated_at";s:19:"2015-08-11 08:57:03";s:7:"preview";s:33:"http://wazaar.dev/splash/logo.png";s:10:"discounted";i:0;s:13:"preview_image";N;}}}

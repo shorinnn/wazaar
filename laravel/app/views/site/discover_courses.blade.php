@@ -18,13 +18,13 @@
                             class="img-responsive" alt="" style="max-height: 182px"  />-->
                         <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">
                         <span class="video-play-button"><em></em></span>
-                        <span class="likes">{{ $course->likes() }}</span>         
+                        <span class="likes"><i class="wa-like"></i>{{ $course->likes() }}</span>         
                         <span class="box-overlay">
                             <p>Lesson</p>
                             <p>weeks of learning</p>
                             <div class="footer clearfix">
-                                <div class="heart-icon"></div>
-                                <div class="highly-recommend">{{ $course->rating() }}</div>
+                                <div class="heart-icon"><i class="wa-Heart"></i></div>
+                                <div class="highly-recommend"><i class="wa-like"></i>{{ $course->rating() }}</div>
                             </div>
                         </span>
                     </div>
@@ -49,6 +49,7 @@
                                     <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
                                 </div>-->
                                 <div class="students-attending">
+                                <i class="wa-user-n"></i>
                                     {{ $course->student_count }}
                                 </div>
                             </div>
@@ -86,13 +87,13 @@
                             class="img-responsive" alt="" style="max-height: 182px"  />-->
                         <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">
                         <span class="video-play-button"><em></em></span>
-                        <span class="likes">{{ $course->likes() }}</span>       
+                        <span class="likes"><i class="wa-like"></i>{{ $course->likes() }}</span>       
                         <span class="box-overlay">
                             <p>Lesson</p>
                             <p>weeks of learning</p>
                             <div class="footer clearfix">
-                                <div class="heart-icon"></div>
-                                <div class="highly-recommend">{{ $course->rating() }}</div>
+                                <div class="heart-icon"><i class="wa-Heart"></i></div>
+                                <div class="highly-recommend"><i class="wa-like"></i>{{ $course->rating() }}</div>
                             </div>
                         </span>
                     </div>
@@ -117,6 +118,7 @@
                                     <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
                                 </div>-->
                                 <div class="students-attending">
+                                	<i class="wa-user-n"></i>
                                     {{ $course->student_count }}
                                 </div>
                             </div>

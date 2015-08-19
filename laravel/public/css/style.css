@@ -417,7 +417,7 @@ header .top-menu .logged-out-header-search .activate-dropdown.open button i{
 header .top-menu .logged-out-header-search #catalogue-dropdown{
 	padding: 0;
 	margin: 8px 0 0;
-	min-width: 200px;
+	min-width: 225px;
 	-moz-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.176);
 	-webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.176);
 	box-shadow: 0 6px 10px rgba(0, 0, 0, 0.176);
@@ -438,6 +438,7 @@ header .top-menu .logged-out-header-search #catalogue-dropdown::before{
 
 header .top-menu .logged-out-header-search #catalogue-dropdown > ul{
 	position: relative;
+	padding: 5px 0;
 }
 
 header .top-menu .logged-out-header-search #catalogue-dropdown li.dropdown-list ul li,
@@ -486,6 +487,7 @@ header .top-menu .logged-out-header-search #catalogue-dropdown li.dropdown-list{
 header .top-menu .logged-out-header-search #catalogue-dropdown li.dropdown-list a{
 	color: #657482;
 	display: block;
+	text-align: left;
 	padding: 15px 12px 15px 26px;
 }
 
@@ -773,7 +775,7 @@ header .profile-name li:hover ul{
 }
 
 .homepage-header .how-it-works i{
-    font-size: 18px;
+    font-size: 14px;
     padding-bottom: 3px;
     padding-right: 10px;
     position: relative;
@@ -812,7 +814,6 @@ header .profile-name li:hover ul{
 	
 .homepage-carousel{
 	background: #ebeced;
-	padding-bottom: 80px;
 }
 
 .homepage-carousel h1{
@@ -826,6 +827,7 @@ header .profile-name li:hover ul{
 	font-size: 14px;
 	color: #7e8e9e;
 	margin: 8px 0 0;
+	line-height: 22px;
 }
 
 .homepage-carousel .slick-prev, 
@@ -870,7 +872,9 @@ header .profile-name li:hover ul{
 	height: 235px;*/
 	margin-right: 20px;
 }
-
+.popular-courses-carousel .popular-courses:hover .img-container img{
+	opacity: 0.8;
+}
 .popular-courses-carousel .course-hover-data{
 	opacity: 0;
 	padding: 4% 15px;
@@ -891,7 +895,7 @@ header .profile-name li:hover ul{
 	padding-right: 6px;
 }
 
-.popular-courses-carousel .popular-courses:hover .course-hover-data{
+.popular-courses-carousel .popular-courses.discounted-course .course-hover-data{ 
 	opacity: 1;
 }
 
@@ -945,6 +949,8 @@ header .profile-name li:hover ul{
 .popular-courses-carousel .course-title h4{
 	color: #283947;
 	margin: 0;
+	width: 70%;
+	line-height: 18px;
 }
 
 .popular-courses-carousel .course-title .discount-percent{
@@ -952,7 +958,10 @@ header .profile-name li:hover ul{
 	font-weight: 600;
 	color: #0099ff;
 }
-
+.popular-courses-carousel .popular-courses.discounted-course .course-title .discount-percent{
+	color: rgb(242, 114, 114);
+	text-decoration: line-through;
+}
 .homepage.explore-category{
 	background: #fff;
 	margin-bottom: 120px; 
@@ -961,11 +970,15 @@ header .profile-name li:hover ul{
 .homepage.explore-category h1{
 	color: #303941;
 	margin: 95px 0 35px;
+	font-weight: normal;
 }
 
 .homepage.explore-category h1 .lead{
 	color: #7e8e9e;
 	margin: 17px 0 0;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 22px;
 }
 
 .homepage.explore-category .category-box{
@@ -1092,7 +1105,7 @@ header .profile-name li:hover ul{
 
 .discover-header h1{
 	color: #303941 !important;
-	margin: 3px 45px 0 0;
+	margin: 5px 45px 0 0;
 	padding: 0;
 	font-size: 26px;
 }
@@ -1112,14 +1125,20 @@ header .profile-name li:hover ul{
 	color: #7e8e9e;
 	display: block !important;
 	padding: 9px 0 6px !important;
+	margin: 0;
 }
-
-.discover-header a:hover{
-	color: #0099ff;
+.discover-header a.active,
+.discover-header a:hover {
+    color: #0099ff;
+    background-color: transparent !important;
+    cursor: pointer;
 }
 
 .discover-header .navbar-toggle{
 	margin-right: 0;
+}
+.discover-header .navbar-toggle .icon-bar {
+    background-color: #7e8e9e;
 }
 
 .discover-more-button{
@@ -1664,7 +1683,7 @@ header .profile-name li:hover ul{
 	height: 16px;
 	width: 16px;
 	position: relative;
-	margin-right: 23px;
+	margin-right: 22px;
 	margin-top: 25px;
 }
 
