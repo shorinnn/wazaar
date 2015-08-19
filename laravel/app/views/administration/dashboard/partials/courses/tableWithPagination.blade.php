@@ -21,12 +21,10 @@
             @endforeach
             </tbody>
         </table>
-        <div class="pagination-top-courses table-pagination">
+        <div class="pagination-top-courses table-pagination clearfix">
             {{$courses->appends(Input::except('_token'))->links()}}
         </div>
     </div>
 
 
 </div>
-
-

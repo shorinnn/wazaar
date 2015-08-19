@@ -394,7 +394,9 @@
 					interval: false,
 					wrap: false
 				});	
-						
+				
+				$('.table-pagination > div').removeClass('pagination-container');
+				
 				$('#video-grid').on('slide.bs.carousel', function () {
 				})		
 				
