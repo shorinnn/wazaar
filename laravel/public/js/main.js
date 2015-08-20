@@ -1595,3 +1595,32 @@ function enableRTE(selector, changeCallback){
         statusbar: false
     });
 }
+
+$('body').delegate('.wishlist-change-button', 'click', wishlistChange);
+function wishlistChange(e){
+    e.preventDefault();
+    e.stopPropagation();
+    $target = $(e.target);
+    if( $target.attr('data-auth')==0 ){
+        $target.attr('data-original-title',  _( 'Login to add to wishlist' ) );
+        $target.animate({'margin-left':'-5px'},50).
+                animate({'margin-left':'+5px'},50).
+                animate({'margin-left':'-5px'},50).
+                animate({'margin-left':'0px'},50);
+        return false;
+    }
+    url = $target.attr('data-url');
+    state = $target.attr('data-state') == 1 ? 0 : 1;
+    $target.attr('data-state', state);
+    if( state == 0 ){
+        $target.addClass('fa-heart-o');
+        $target.removeClass('fa-heart');
+        $target.attr('data-original-title',  _('Add to wishlist') );
+    }
+    else{
+        $target.removeClass('fa-heart-o');
+        $target.addClass('fa-heart');
+        $target.attr('data-original-title',  _('Remove from wishlist') );
+    }
+    $.get(url+'/'+state,function(){});
+}

@@ -9,6 +9,11 @@ class SiteController extends \BaseController {
 
 	public function index()
 	{
+            $wishlisted = [];
+            if( Auth::check() ){
+                $student = Student::find( Auth::user()->id );
+                $wishlisted = $student->wishlistItems()->lists( 'course_id' );
+            }
             if(Input::has('skip-the-splashie')){
 //                $frontpageVideos  = FrontpageVideo::grid();
                 $categories = CourseCategory::limit(12);
@@ -24,15 +29,17 @@ class SiteController extends \BaseController {
                 
                 $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
                 
-                if(Auth::user()) Return View::make('site.homepage_authenticated')
-                    ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses'));
+                if(Auth::user()){
+                    Return View::make('site.homepage_authenticated')
+                            ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses', 'wishlisted'));
+                }
                 else{
                     if(Input::has('old-page'))
                         Return View::make('site.homepage_unauthenticated_DEPR')
-                        ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses') );
+                        ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'wishlisted') );
                     else
                         Return View::make('site.homepage_unauthenticated')
-                            ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses') );
+                            ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted') );
                 }
             }
             if( Auth::check() ){
@@ -181,6 +188,11 @@ class SiteController extends \BaseController {
 
         
     public function discoverCourses($group=0){
+        $wishlisted = [];
+        if( Auth::check() ){
+            $student = Student::find( Auth::user()->id );
+            $wishlisted = $student->wishlistItems()->lists( 'course_id' );
+        }
         if( $group == 0 ){
             $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
         }
@@ -188,7 +200,7 @@ class SiteController extends \BaseController {
             $cats = CategoryGroup::find($group)->categories()->lists('id');
             $discoverCourses = Course::where('publish_status','approved')->whereIn( 'course_category_id', $cats )->orderBy( DB::raw('RAND()') )->limit(6)->get();
         }
-        if( Request::ajax() )        return View::make('site.discover_courses')->with( compact('discoverCourses') );
+        if( Request::ajax() )        return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted') );
         else{
                 $categories = CourseCategory::limit(12);
                 $groups = CategoryGroup::orderBy('order','asc')->get();
@@ -196,15 +208,15 @@ class SiteController extends \BaseController {
                 $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];                
                 
                 if(Auth::user()) Return View::make('site.homepage_authenticated')
-                    ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses'));
+                    ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses', 'wishlisted'));
                 else{
                     $selectedGroup = $group;
                     if(Input::has('old-page'))
                         Return View::make('site.homepage_unauthenticated_DEPR')
-                        ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'selectedGroup') );
+                        ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'selectedGroup', 'wishlisted') );
                     else
                         Return View::make('site.homepage_unauthenticated')
-                            ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'selectedGroup') );
+                            ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'selectedGroup', 'wishlisted') );
                 }
         }
     }

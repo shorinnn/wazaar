@@ -181,6 +181,7 @@ $wwwRoutes = function(){
     Route::get('private-messages/thread/{id}', 'PrivateMessagesController@thread');
     Route::resource('private-messages', 'PrivateMessagesController');
     //Wishlist
+    Route::get('wishlist/change/{slug}/{action}', 'WishlistController@change');
     Route::resource('wishlist', 'WishlistController');
     // Follow relationships
     Route::resource('followers', 'FollowersController');

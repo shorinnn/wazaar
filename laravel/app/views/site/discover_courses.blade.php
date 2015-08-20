@@ -1,7 +1,9 @@
 <div class="row">
     
     @foreach( $discoverCourses->take(3) as $course )
-     <?php echo Flatten::section('discover-course-'.$course->id, 10, function () use ($course) { ?>
+     <?php 
+     $course = courseApprovedVersion($course);
+     echo Flatten::section('top-discover-course-'.$course->id, Config::get('custom.cache-expiry.course-box'), function () use ($course) { ?>
         <div class="col-xs-12 col-sm-6 col-md-4">
             <a href="{{ action('CoursesController@show', $course->slug) }}" class="small-box-link-wrapper">
                 <div class="object small-box small-box-one">
@@ -23,10 +25,22 @@
                         <span class="box-overlay">
                             <p>Lesson</p>
                             <p>weeks of learning</p>
+                             <?php });?>
+                            
                             <div class="footer clearfix">
-                                <div class="heart-icon"><i class="wa-Heart"></i></div>
+                                <div class="heart-icon">
+                                    @if( !in_array($course->id, $wishlisted) )
+                                        <i class="fa fa-heart-o tooltipable wishlist-change-button" title="Add to wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                           data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0"></i>
+                                    @else
+                                        <i class="fa fa-heart tooltipable wishlist-change-button" title="Remove from wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                           data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1"></i>
+                                    @endif
+                                </div>
                                 <div class="highly-recommend"><i class="wa-like"></i>{{ $course->reviews_positive_score }}%</div>
                             </div>
+                            
+                            <?php echo Flatten::section('bottom-discover-course-'.$course->id, Config::get('custom.cache-expiry.course-box'), function () use ($course) { ?>
                         </span>
                     </div>
                     <div class="course-box-content clearfix">
@@ -70,7 +84,9 @@
     @endforeach
     
     @foreach( $discoverCourses->slice(3)->take(3) as $course )
-     <?php echo Flatten::section('discover-course-'.$course->id, 10, function () use ($course) { ?>
+     <?php 
+     $course = courseApprovedVersion($course);
+     echo Flatten::section('top-discover-course-'.$course->id, Config::get('custom.cache-expiry.course-box'), function () use ($course) { ?>
  
         <div class="col-xs-12 col-sm-6 col-md-4">
             <a href="{{ action('CoursesController@show', $course->slug) }}" class="small-box-link-wrapper">
@@ -93,10 +109,20 @@
                         <span class="box-overlay">
                             <p>Lesson</p>
                             <p>weeks of learning</p>
+                             <?php });?>
                             <div class="footer clearfix">
-                                <div class="heart-icon"><i class="wa-Heart"></i></div>
+                                <div class="heart-icon">
+                                    @if( !in_array($course->id, $wishlisted) )
+                                        <i class="fa fa-heart-o tooltipable wishlist-change-button" title="Add to wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                           data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0"></i>
+                                    @else
+                                        <i class="fa fa-heart tooltipable wishlist-change-button" title="Remove from wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                           data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1"></i>
+                                    @endif
+                                </div>
                                 <div class="highly-recommend"><i class="wa-like"></i>{{ $course->rating() }}</div>
                             </div>
+                            <?php echo Flatten::section('bottom-discover-course-'.$course->id, Config::get('custom.cache-expiry.course-box'), function () use ($course) { ?>
                         </span>
                     </div>
                     <div class="course-box-content clearfix">

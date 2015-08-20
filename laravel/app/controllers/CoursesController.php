@@ -281,6 +281,11 @@ class CoursesController extends \BaseController {
         public function category($slug=''){
             $difficultyLevel = Input::get('difficulty') ?: null;
             $sort = null;
+            $wishlisted = [];
+            if( Auth::check() ){
+                $student = Student::find( Auth::user()->id );
+                $wishlisted = $student->wishlistItems()->lists( 'course_id' );
+            }
             if (Input::has('sort')){
                 if ( Input::get('sort') == 'best-selling' || Input::get("sort") == 'best-selling-low' ){
                     
@@ -289,8 +294,8 @@ class CoursesController extends \BaseController {
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
                     $order = ( Input::get('sort') == 'best-selling-low' ) ? 'ASC' : 'DESC';
                     $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel], $order);
-                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
-                    return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
+                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with( compact( 'category', 'courses', 'wishlisted' ) );
+                    return View::make('courses.categories.category')->with( compact( 'category', 'difficultyLevel', 'courses', 'wishlisted') );
                 }
 
                 $sort = Input::get('sort');
@@ -328,9 +333,9 @@ class CoursesController extends \BaseController {
 
                 $category = new stdClass;
                 $category->color_scheme = $category->name = $category->description = $category->id =  '';
-                if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
+                if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted' ));
                 
-                Return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
+                Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'courses', 'wishlisted'));
             }
             if( !$category = CourseCategory::where('slug',$slug)->first() ){
                  return View::make('site.error_encountered');
@@ -366,8 +371,8 @@ class CoursesController extends \BaseController {
 
             $courses = $courses->paginate(9);
 
-            if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
-            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
+            if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
+            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses'));
                             
         }
         
@@ -381,6 +386,11 @@ class CoursesController extends \BaseController {
             
             $difficultyLevel = Input::get('difficulty') ?: null;
             $sort = null;
+            $wishlisted = [];
+            if( Auth::check() ){
+                $student = Student::find( Auth::user()->id );
+                $wishlisted = $student->wishlistItems()->lists( 'course_id' );
+            }
             if (Input::has('sort')){
                 if ( Input::get('sort') == 'best-selling' || Input::get("sort") == 'best-selling-low' ){
                     
@@ -389,8 +399,8 @@ class CoursesController extends \BaseController {
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
                     $order = ( Input::get('sort') == 'best-selling-low' ) ? 'ASC' : 'DESC';
                     $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel], $order, $subcat);
-                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
-                    return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
+                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted' ) );
+                    return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses') );
                 }
 
                 $sort = Input::get('sort');
@@ -428,13 +438,18 @@ class CoursesController extends \BaseController {
 
             $courses = $courses->paginate(9);
 
-            if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
-            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
+            if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
+            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted') );
                             
         }
         
         public function search(){
             $difficultyLevel = Input::get('difficulty') ?: null;
+            $wishlisted = [];
+            if( Auth::check() ){
+                $student = Student::find( Auth::user()->id );
+                $wishlisted = $student->wishlistItems()->lists( 'course_id' );
+            }
             $sort = null;
             $category = new stdClass;
             $category->color_scheme = $category->name = $category->description = $category->id =  '';
@@ -446,8 +461,8 @@ class CoursesController extends \BaseController {
                     $courseHelper = new CourseHelper();
                     $order = ( Input::get('sort') == 'best-selling-low' ) ? 'ASC' : 'DESC';
                     $courses = $courseHelper->bestSellers(null,'AT',9,['course_difficulty_id' => $difficultyLevel], $order, null, $search );
-                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses'));
-                    return View::make('courses.categories.category')->with(compact('category','difficultyLevel'))->with(compact('courses'));
+                    if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
+                    return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses'));
                 }
 
                 $sort = Input::get('sort');
@@ -487,8 +502,8 @@ class CoursesController extends \BaseController {
 
             $courses = $courses->paginate(9);
 
-            if( Request::ajax() ) Return View::make('courses.categories.courses')->with( compact('courses', 'category', 'difficultyLevel' ) );
-            Return View::make('courses.categories.category')->with( compact('difficultyLevel', 'courses','category', 'difficultyLevel') );
+            if( Request::ajax() ) Return View::make('courses.categories.courses')->with( compact('courses', 'category', 'difficultyLevel', 'wishlisted' ) );
+            Return View::make('courses.categories.category')->with( compact('difficultyLevel', 'courses','category', 'difficultyLevel', 'wishlisted') );
                             
         }
         
@@ -537,6 +552,12 @@ class CoursesController extends \BaseController {
                 return View::make('site.error_encountered');
             }
             
+            $wishlisted = [];
+            if( Auth::check() ){
+                $student = Student::find( Auth::user()->id );
+                $wishlisted = $student->wishlistItems()->lists( 'course_id' );
+            }
+            
             $course = courseApprovedVersion( $course );
             if( $course->publish_status != 'approved' ){
                 if( Auth::guest() ) return Redirect::action('SiteController@index');
@@ -569,9 +590,9 @@ class CoursesController extends \BaseController {
             $video = $course->descriptionVideo;
 
             if( serveMobile() ) 
-                Return View::make('MOBILE_VERSION.courses.show')->with(compact('course', 'student', 'video', 'instructor') );
+                Return View::make('MOBILE_VERSION.courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') );
             else    
-                Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor') );
+                Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') );
         } 
         
         public function purchase($slug){

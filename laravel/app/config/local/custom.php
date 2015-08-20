@@ -25,5 +25,6 @@ return [
         'student-dash-first-lesson' => 60,
         'student-dash-completed-course' => 60,
         'student-dash-wishlist-course' => 60,
+        'course-box' => 60,
     ]
 ];

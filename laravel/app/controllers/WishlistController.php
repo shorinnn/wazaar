@@ -11,7 +11,24 @@ class WishlistController extends \BaseController {
             WishlistItem::create( [ 'student_id' => Auth::user()->id, 'course_id' => Input::get('id') ] );
             $url = action('StudentController@mycourses');
             $url.='#wishlist';
+            if( Request::ajax() ) return 1;
             return Redirect::to($url);
+        }
+        
+        public function change($slug='', $action=1){
+            $course = Course::where('slug', $slug)->first();
+            if($course==null) return 0;
+            if( $action==1 ){
+                WishlistItem::create( [ 'student_id' => Auth::user()->id, 'course_id' => $course->id ] );
+                $url = action('StudentController@mycourses');
+                $url.='#wishlist';
+                if( Request::ajax() ) return 1;
+                return Redirect::to($url);
+            }
+            else{
+                WishlistItem::where('student_id', Auth::user()->id)->where('course_id', $course->id)->delete();
+                return 1;
+            }
         }
         
         public function destroy($id){
