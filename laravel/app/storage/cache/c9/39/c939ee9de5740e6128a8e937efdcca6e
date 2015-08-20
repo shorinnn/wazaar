@@ -1,5 +1,4 @@
-1440025371s:3140:" 
-        <div class="col-xs-12 col-sm-6 col-md-4">
+1440076871s:3143:"        <div class="col-xs-12 col-sm-6 col-md-4">
             <a href="http://wazaar.dev/courses/TGtEC" class="small-box-link-wrapper">
                 <div class="object small-box small-box-one">
                     <!--<div class="level">Beginner</div>-->
@@ -12,7 +11,7 @@
                             class="img-responsive" alt="" style="max-height: 182px"  />-->
                         <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">
                         <span class="video-play-button"><em></em></span>
-                        <span class="likes"><i class="wa-like"></i>0</span>       
+                        <span class="likes"><i class="wa-like"></i>0</span>         
                         <span class="box-overlay">
                             <p>Lesson</p>
                             <p>weeks of learning</p>
@@ -28,7 +27,7 @@
                             <p>Short: REVISITED.</p>
                         </div>
                         <div class="bottom-contents clearfix">
-                            <div class="difficulty-bar  advanced">
+                            <div class="difficulty-bar advanced">
                                                                                                     <span class="bar-1"></span>
                                                                     <span class="bar-2"></span>
                                                                     <span class="bar-3"></span>
@@ -38,7 +37,7 @@
                                     <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
                                 </div>-->
                                 <div class="students-attending">
-                                	<i class="wa-user-n"></i>
+                                <i class="wa-user-n"></i>
                                     0
                                 </div>
                             </div>
@@ -52,4 +51,5 @@
                 </div>
             </a>
         </div>
+    
     ";

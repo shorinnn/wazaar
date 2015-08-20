@@ -93,8 +93,9 @@ body {
 	padding: 0;
 	color: #000;
 	line-height: 16px !important;
-	/*font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;*/
-	font: 16px 'Open Sans', Helvetica, sans-serif;
+	/*font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;
+	font: 16px 'Open Sans', Helvetica, sans-serif;*/
+	font-family: 'ＭＳ Ｐゴシック', 'MS PGothic', 'メイリオ', Meiryo, sans-serif;
 }
 
 html{
@@ -1519,7 +1520,7 @@ header .profile-name li:hover ul{
 	clear: both;
 	position: absolute;
 	bottom: 11px;
-	width: 100%;
+	width: 97%;
 	padding-right: 10px;
 }
 
