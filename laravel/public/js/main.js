@@ -1444,8 +1444,10 @@ function toggleRightBar(e, json){
 function colorLinks(e){
     color = $(e.target).attr('data-color');
     elem = $(e.target).attr('data-elem');
-    $(elem).removeAttr('style');
-    $(e.target).css('color', color);
+//    $(elem).removeAttr('style');
+//    $(e.target).css('color', color);
+    $(elem).removeClass('active');
+    $(e.target).addClass('active');
 }
 
 $.expr[":"].contains = $.expr.createPseudo(function(arg) {

@@ -1,4 +1,5 @@
 <div class="row">
+    
     @foreach( $discoverCourses->take(3) as $course )
      <?php echo Flatten::section('discover-course-'.$course->id, 10, function () use ($course) { ?>
         <div class="col-xs-12 col-sm-6 col-md-4">
@@ -40,9 +41,10 @@
                                     if($course->courseDifficulty->name=='Intermediate') $difficulty = 2;
                                     if($course->courseDifficulty->name=='Expert') $difficulty = 3;
                                 ?>
-                                @for($i = 0; $i<$difficulty; ++$i)
-                                    <span class="bar-{{$i+1}}"></span>
-                                @endfor
+                                <span class="bar-1"></span>
+                                <span class="bar-2"></span>
+                                <span class="bar-3"></span>
+                          
                             </div>
                             <div class="next_">
                                 <!--<div class="learn-more">
@@ -109,9 +111,9 @@
                                     if($course->courseDifficulty->name=='Intermediate') $difficulty = 2;
                                     if($course->courseDifficulty->name=='Expert') $difficulty = 3;
                                 ?>
-                                @for($i = 0; $i<$difficulty; ++$i)
-                                    <span class="bar-{{$i+1}}"></span>
-                                @endfor
+                                <span class="bar-1"></span>
+                                <span class="bar-2"></span>
+                                <span class="bar-3"></span>
                             </div>
                             <div class="next_">
                                 <!--<div class="learn-more">

@@ -28,7 +28,9 @@ class Course extends Ardent{
         'course_subcategory_id' => 'numeric',
         'course_preview_image_id' => 'numeric',
         'course_banner_image_id' => 'numeric',
-        'sale' => 'numeric'
+        'sale' => 'numeric',
+        'short_description' => 'max:120',
+        'description' => 'max:300',
     ];
     
     public static $relationsData = array(
