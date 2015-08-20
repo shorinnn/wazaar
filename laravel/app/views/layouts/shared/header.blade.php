@@ -125,7 +125,7 @@
             </div>
         </div>
         <div class="clearfix right logged-in-menu-holder">
-            
+            @if( isset($headerShowTopLinks) )
                 <ul class="logged-in-top-menu">
                 
                 @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
@@ -150,7 +150,7 @@
                     </li>
                 @endif
             </ul>
-            asd
+            @endif
             <div class="top-profile-info">          
                 
                 <span class="profile-level">12</span>
