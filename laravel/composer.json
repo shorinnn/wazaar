@@ -24,7 +24,8 @@
 		"anlutro/curl": "0.6.*",
                 "indatus/dispatcher" : "1.4",
 		"vimeo/vimeo-api": "^1.2",
-		"anahkiasen/flatten": "^0.5.1"
+		"anahkiasen/flatten": "^0.5.1",
+		"stripe/stripe-php": "^3.2"
 	},
 	"autoload": {
 		"classmap": [

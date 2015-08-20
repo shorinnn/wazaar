@@ -279,9 +279,9 @@ class AnalyticsHelper
         for ($i = 0; $i <= $numOfWeeks; $i ++) {
             $start = date('Y-m-d', strtotime('-' . ($i + 1) . ' week'));
             $end   = date('Y-m-d', strtotime("-$i week"));
-            $label = $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
+            $label = trans('analytics.' .  $i . (($i > 1) ? 'Weeks' : 'Week') . 'Ago');// $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
             if ($i === 0) {
-                $label = 'This week';
+                $label = trans('analytics.thisWeek');// 'This week';
             }
             $sales[] = [
                 'label' => $label,
@@ -379,9 +379,9 @@ class AnalyticsHelper
         for ($i = 0; $i <= $numOfMonths; $i ++) {
             $month = date('m', strtotime("-$i month"));
             $year  = date('Y', strtotime("-$i month"));
-            $label = $i . (($i > 1) ? ' months' : ' month') . ' ago';
+            $label =  trans('analytics.' .  $i . (($i > 1) ? 'Months' : 'Month') . 'Ago');
             if ($i === 0) {
-                $label = 'This month';
+                $label = trans('analytics.thisMonth');
             }
             $sales[] = [
                 'label'      => $label,
@@ -429,9 +429,9 @@ class AnalyticsHelper
 
         for ($i = 0; $i <= $numOfYears; $i ++) {
             $year  = date('Y', strtotime("-$i year"));
-            $label = $i . (($i > 1) ? ' years' : ' year') . ' ago';
+            $label = trans('analytics.' .  $i . (($i > 1) ? 'Years' : 'Year') . 'Ago');
             if ($i === 0) {
-                $label = 'This year';
+                $label =  trans('analytics.thisYear');// 'This year';
             }
             $sales[] = [
                 'label'     => $label,
@@ -1208,9 +1208,9 @@ class AnalyticsHelper
         for ($i = 0; $i <= $numOfWeeks; $i ++) {
             $start = date('Y-m-d', strtotime('-' . ($i + 1) . ' week'));
             $end   = date('Y-m-d', strtotime("-$i week"));
-            $label = $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
+            $label = trans('analytics.' .  $i . (($i > 1) ? 'Weeks' : 'Week') . 'Ago'); //$i . (($i > 1) ? ' weeks' : ' week') . ' ago';
             if ($i === 0) {
-                $label = 'This week';
+                $label = trans('analytics.thisWeek');// 'This week';
             }
             $affiliates[] = [
                 'label' => $label,
@@ -1246,9 +1246,9 @@ class AnalyticsHelper
         for ($i = 0; $i <= $numOfMonths; $i ++) {
             $month = date('m', strtotime("-$i month"));
             $year  = date('Y', strtotime("-$i month"));
-            $label = $i . (($i > 1) ? ' months' : ' month') . ' ago';
+            $label = trans('analytics.'. $i . (($i > 1) ? 'Months' : 'Month') . 'Ago');// $i . (($i > 1) ? ' months' : ' month') . ' ago';
             if ($i === 0) {
-                $label = 'This month';
+                $label = trans('analytics.thisMonth');// 'This month';
             }
             $affiliates[] = [
                 'label'      => $label,
@@ -1282,10 +1282,10 @@ class AnalyticsHelper
 
         for ($i = 0; $i <= $numOfYears; $i ++) {
             $year  = date('Y', strtotime("-$i year"));
-            $label = $i . (($i > 1) ? ' years' : ' year') . ' ago';
+            $label = trans('analytics.'. $i . (($i > 1) ? 'Years' : 'Year') . 'Ago');
 
             if ($i === 0) {
-                $label = 'This year';
+                $label = trans('analytics.thisYear');// 'This year';
             }
             $affiliates[] = [
                 'label'     => $label,
@@ -1369,9 +1369,9 @@ class AnalyticsHelper
         for ($i = 0; $i <= $numOfWeeks; $i ++) {
             $start = date('Y-m-d', strtotime('-' . ($i + 1) . ' week'));
             $end   = date('Y-m-d', strtotime("-$i week"));
-            $label = $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
+            $label = trans('analytics.' .  $i . (($i > 1) ? 'Weeks' : 'Week') . 'Ago'); // $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
             if ($i === 0) {
-                $label = 'This week';
+                $label = trans('analytics.thisWeek');
             }
             $affiliates[] = [
                 'label' => $label,
@@ -1407,9 +1407,9 @@ class AnalyticsHelper
         for ($i = 0; $i <= $numOfMonths; $i ++) {
             $month = date('m', strtotime("-$i month"));
             $year  = date('Y', strtotime("-$i month"));
-            $label = $i . (($i > 1) ? ' months' : ' month') . ' ago';
+            $label = trans('analytics.'. $i . (($i > 1) ? 'Months' : 'Month') . 'Ago');
             if ($i === 0) {
-                $label = 'This month';
+                $label = trans('analytics.thisMonth');
             }
             $affiliates[] = [
                 'label'      => $label,
@@ -1443,9 +1443,9 @@ class AnalyticsHelper
 
         for ($i = 0; $i <= $numOfYears; $i ++) {
             $year  = date('Y', strtotime("-$i year"));
-            $label = $i . (($i > 1) ? ' years' : ' year') . ' ago';
+            $label = trans('analytics.'. $i . (($i > 1) ? 'Years' : 'Year') . 'Ago');
             if ($i === 0) {
-                $label = 'This year';
+                $label = trans('analytics.thisYear');// 'This year';
             }
             $affiliates[] = [
                 'label'     => $label,
