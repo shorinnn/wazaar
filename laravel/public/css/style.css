@@ -1548,6 +1548,9 @@ header .profile-name li:hover ul{
     position: relative;
     top: 8px;
 }
+.heart-icon i.fa.fa-heart{
+	color: #0099ff;
+}
 .highly-recommend{
 	height: 30px;
 	float: right;

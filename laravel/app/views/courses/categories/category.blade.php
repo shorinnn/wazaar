@@ -59,7 +59,7 @@
         <section class="container-fluid category-box-container">
             
         <div class='ajax-content'>
-             {{ View::make('courses.categories.courses')->with( compact('courses', 'category') ) }}
+             {{ View::make('courses.categories.courses')->with( compact( 'courses', 'category', 'wishlisted' ) ) }}
         </div>
         </section>
 
