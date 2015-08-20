@@ -28,6 +28,8 @@ return array(
 
 	'url' => 'http://www.cocorium.com',
 	'base_url' => 'cocorium.com',
+//	'url' => 'http://www.wazaar.dev',
+//	'base_url' => 'wazaar.dev',
 
 	/*
 	|--------------------------------------------------------------------------
