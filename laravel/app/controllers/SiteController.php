@@ -4,6 +4,7 @@ class SiteController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'auth', [ 'only' => ['dashboard'] ] );
+//            View::share( 'headerShowTopLinks', 1 );
         }
 
 	public function index()

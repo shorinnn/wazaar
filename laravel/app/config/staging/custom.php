@@ -11,7 +11,7 @@ return [
     'maximum_lesson_files' => 10,
     'course_attachments' => ['.jpg', '.png', '.gif', '.bmp', '.txt', '.pdf', '.zip'],
     'use_id_for_slug' => true,
-    'short_desc_max_chars' => 100,
+    'short_desc_max_chars' => 41,
     'earnings' => ['instructor_percentage' => 68, 'site_percentage' => 30, 'ltc_percentage' => [3, 8], 'second_tier_percentage' => 2, 
                    'second_tier_instructor_percentage' => 2, 'self_promotion_instructor_percentage' => 80, 'self_promotion_site_percentage' => 20 ],
     'cashout' => [ 'fee' => 15, 'threshold' => 50, 'start_date' => '01-01-2015' ],
