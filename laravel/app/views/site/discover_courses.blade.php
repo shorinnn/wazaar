@@ -25,7 +25,7 @@
                             <p>weeks of learning</p>
                             <div class="footer clearfix">
                                 <div class="heart-icon"><i class="wa-Heart"></i></div>
-                                <div class="highly-recommend"><i class="wa-like"></i>{{ $course->rating() }}</div>
+                                <div class="highly-recommend"><i class="wa-like"></i>{{ $course->reviews_positive_score }}%</div>
                             </div>
                         </span>
                     </div>
