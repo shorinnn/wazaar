@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "97e8f4f2c05c83c58b8583dfd31db017",
+    "hash": "3d9aa0f1cbb0d3b70333faab02851fd5",
     "packages": [
         {
             "name": "anahkiasen/flatten",
@@ -1133,12 +1133,12 @@
             "version": "v2.1.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jenssegers/laravel-agent.git",
+                "url": "https://github.com/jenssegers/agent.git",
                 "reference": "7e04968dd85dfba150c8c4a98a34eed6f6a6df01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jenssegers/laravel-agent/zipball/7e04968dd85dfba150c8c4a98a34eed6f6a6df01",
+                "url": "https://api.github.com/repos/jenssegers/agent/zipball/7e04968dd85dfba150c8c4a98a34eed6f6a6df01",
                 "reference": "7e04968dd85dfba150c8c4a98a34eed6f6a6df01",
                 "shasum": ""
             },
@@ -2700,6 +2700,61 @@
                 "stack"
             ],
             "time": "2014-11-23 20:37:11"
+        },
+        {
+            "name": "stripe/stripe-php",
+            "version": "v3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stripe/stripe-php.git",
+                "reference": "ae629cdadf088983f3f7bcd6bd5856fc0feaf104"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/ae629cdadf088983f3f7bcd6bd5856fc0feaf104",
+                "reference": "ae629cdadf088983f3f7bcd6bd5856fc0feaf104",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "~0.6.1",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Stripe\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stripe and contributors",
+                    "homepage": "https://github.com/stripe/stripe-php/contributors"
+                }
+            ],
+            "description": "Stripe PHP Library",
+            "homepage": "https://stripe.com/",
+            "keywords": [
+                "api",
+                "payment processing",
+                "stripe"
+            ],
+            "time": "2015-08-17 23:42:30"
         },
         {
             "name": "swiftmailer/swiftmailer",

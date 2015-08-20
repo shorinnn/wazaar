@@ -18,7 +18,7 @@
                 <p>{{trans('general.lesson')}}</p>
                 <p>{{trans('general.weeks-of-learning')}}</p>
                 <div class="footer clearfix">
-                    <div class="heart-icon"><i class="wa-Heart"></i></div>
+                    <div class="heart-icon" data-toggle="tooltip" data-placement="top" title="Add to wishlist"><i class="wa-Heart"></i></div>
                     <div class="highly-recommend"><i class="wa-like"></i>{{trans('general.highly-recommend')}}</div>
                 </div>
             </span>
@@ -30,13 +30,14 @@
                         </p>
                     </div>
                     <div class="bottom-contents clearfix">
-                        <div class="difficulty-bar advanced">
+                        <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}"
+                        data-toggle="tooltip" data-placement="top" title="Difficulty: Intermediate">
                             <span class="bar-1"></span>
                             <span class="bar-2"></span>
                             <span class="bar-3"></span>
                         </div>
                         <div class="next_">
-                            <div class="students-attending">
+                            <div class="students-attending" data-toggle="tooltip" data-placement="top" title="Students enrolled">
                                <i class="wa-user-n"></i> {{ $course->student_count }}
                             </div>
                         </div>

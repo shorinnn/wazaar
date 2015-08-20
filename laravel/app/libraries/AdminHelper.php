@@ -163,9 +163,9 @@ class AdminHelper
         for ($i = 0; $i <= $numOfDays; $i++){
             $day = date('l',strtotime("-$i day"));
             $date = date('Y-m-d',strtotime("-$i day"));
-            $label = $day;
+            $label =  trans('analytics.' . $day);// $day;
             if ($i === 0){
-                $label = 'Today';
+                $label = trans('analytics.today');// 'Today';
             }
 
             $users[] = ['label' => $label, 'date' => $date, 'today' =>$this->_dailyUsers($date)];
@@ -203,10 +203,10 @@ class AdminHelper
 
             $startDate = date('Y-m-d',strtotime('-' . ($i+1) .  ' week'));
             $endDate = date('Y-m-d',strtotime("-$i week"));
-            $label = $i . ( ($i > 1) ? ' weeks' : ' week') . ' ago';
+            $label = trans('analytics.' .  $i . (($i > 1) ? 'Weeks' : 'Week') . 'Ago');// $i . ( ($i > 1) ? ' weeks' : ' week') . ' ago';
 
             if ($i === 0){
-                $label = 'This Week';
+                $label = trans('analytics.thisWeek');
             }
 
             $users[] = ['label' => $label, 'start' => $startDate, 'end' => $endDate, 'week' =>$this->_weeklyUsers($startDate, $endDate)];
@@ -243,9 +243,9 @@ class AdminHelper
         for ($i = 0; $i <= $numOfMonths; $i++){
             $month = date('m',strtotime("-$i month"));
             $year = date('Y',strtotime("-$i month"));
-            $label = $i . ( ($i > 1) ? ' months' : ' month') . ' ago';
+            $label = trans('analytics.' .  $i . (($i > 1) ? 'Months' : 'Month') . 'Ago');
             if ($i === 0){
-                $label = 'This month';
+                $label = trans('analytics.thisMonth');// 'This month';
             }
             $users[] = ['label' => $label, 'month_date' => $month, 'year' => $year, 'month' =>$this->_monthlyUsers($year,$month)];
         }
@@ -279,9 +279,9 @@ class AdminHelper
 
         for ($i = 0; $i <= $numOfYears; $i++){
             $year = date('Y',strtotime("-$i year"));
-            $label = $i . ( ($i > 1) ? ' years' : ' year') . ' ago';
+            $label = trans('analytics.' .  $i . (($i > 1) ? 'Years' : 'Year') . 'Ago');
             if ($i === 0){
-                $label = 'This year';
+                $label = trans('analytics.thisYear');
             }
             $users[] = ['label' => $label, 'year' => $year, 'alltime' => $this->_yearlyUsers($year)];
         }

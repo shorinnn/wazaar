@@ -141,20 +141,24 @@
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="categories-menu nav navbar-nav">
                             <li>
-                                <a class="load-remote discover-links active" data-url="{{ action( 'SiteController@discoverCourses', 0 )}}" 
+                                <a data-url="{{ action( 'SiteController@discoverCourses', 0 )}}" 
                                    data-callback='colorLinks' data-color='#0099ff' data-elem='.discover-links'
-                                   @if(isset($selectedGroup) && $selectedGroup==0)
-                                   style='color:#0099ff'
+                                   class="load-remote discover-links
+                                   @if( !isset($selectedGroup) || $selectedGroup==0 )
+                                    active
                                    @endif
+                                   "
                                    data-target="#discover-courses-area">All</a>
                             </li>
                             
                             @foreach($groups as $group)
                             <li>
-                                <a class="load-remote discover-links" data-url="{{ action( 'SiteController@discoverCourses', $group->id )}}" 
-                                    @if(isset($selectedGroup) && $selectedGroup==$group->id)
-                                        style='color:#0099ff'
-                                   @endif
+                                <a  data-url="{{ action( 'SiteController@discoverCourses', $group->id )}}" 
+                                    class="load-remote discover-links
+                                    @if( isset($selectedGroup) && $selectedGroup==$group->id )
+                                        active
+                                    @endif
+                                   "
                                    data-callback='colorLinks'  data-elem='.discover-links' data-color='#0099ff' data-target="#discover-courses-area">{{ $group->name }}</a>
                             </li>
                             @endforeach
