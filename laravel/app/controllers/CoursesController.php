@@ -438,7 +438,7 @@ class CoursesController extends \BaseController {
             $sort = null;
             $category = new stdClass;
             $category->color_scheme = $category->name = $category->description = $category->id =  '';
-            $search = Input::get('term');
+            $search = trim( Input::get('term') );
             
             if (Input::has('sort')){
                 if ( Input::get('sort') == 'best-selling' || Input::get("sort") == 'best-selling-low' ){

@@ -30,7 +30,7 @@
                         </p>
                     </div>
                     <div class="bottom-contents clearfix">
-                        <div class="difficulty-bar advanced">
+                        <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}">
                             <span class="bar-1"></span>
                             <span class="bar-2"></span>
                             <span class="bar-3"></span>
