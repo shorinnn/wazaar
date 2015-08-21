@@ -268,42 +268,15 @@
       </div>
     </div>    
     <!-- Register Modal ends -->
-	@if( getenv('USE_COMMENTABLE_RESOURCES')==true )
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        <script src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/js/parsley.min.js"></script>-->
-        <script src="{{url("js/jquery.min.js")}}"></script>
+    @if( App::environment() == 'PPProduction' || Input::has('use-gulp') )
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
-        <script src="{{url("js/bootstrap.min.js")}}"></script>
-        <script src="{{url("js/jquery.bootstrap-growl.min.js")}}"></script>
-        <script src="{{url("js/lang/parsley/".Config::get('app.locale').".js")}}" /></script>
-        <script src="{{url("js/parsley.min.js")}}"></script>
-        <script src="{{url("js/forms.js")}}"></script>
-        <script src="{{url("js/validations.js")}}"></script>
-        <script src="{{url("js/courses.js")}}"></script>
-        <script src="{{url("js/cocoriumTracker.js")}}"></script>
-        <script src="{{url("js/tweenmax.min.js")}}"></script>
-        <script src="{{url("js/Sortable.min.js")}}"></script>
-        <script src="{{url("js/pluralize.js")}}"></script>
-        <script src="{{url("js/jquery.mousewheel.js")}}"></script>
-        <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
-        <script src="{{url("js/main.js")}}"></script>
-        <script src="{{url("js/messages.js")}}"></script>
-        <script src="{{url("js/slick.js")}}"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
         <script src="http://www.localeplanet.com/api/translate.js" /></script>
-        <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
-		<script src="{{url("js/jquery.tinycarousel.js")}}"></script>
-        
-        <script src="{{url("js/jquery.videobackground.js")}}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
-        <script src="{{url("plugins/zero-clipboard/ZeroClipboard.min.js")}}"></script>
-        <!--<script src="{{url("js/select.js")}}"></script>-->
-        <script src="{{url("js/bootstrap-datepicker.js")}}"></script>
-        <script type="text/javascript" src="{{url('js/bootbox.js')}}"></script>
-        <script type="text/javascript" src="{{url('js/jquery.countdown.min.js')}}"></script>
-
+        <script src="{{url("js-assets/" . asset_path('core.min.js') ) }}"></script>
     @else
         <!--<script src="{{ url("assets/js/". asset_path('core.min.js') )}}"></script>-->
     

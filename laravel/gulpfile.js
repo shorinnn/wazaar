@@ -24,6 +24,7 @@ gulp.task('js', function(){
     
     /****** core files ***************/
     return gulp.src( [
+        './public/plugins/zero-clipboard/ZeroClipboard.min.js',
         './public/js/jquery.bootstrap-growl.min.js',
         './public/js/lang/parsley/en.js',
         './public/js/lang/parsley/ja.js',
@@ -39,20 +40,21 @@ gulp.task('js', function(){
         './public/js/main.js',
         './public/js/messages.js',
         './public/js/slick.js',
+        './public/js/lang/en.js',
+        './public/js/lang/ja.js',
         './public/js/messages.js',
         './public/js/lang/en.js',
         './public/js/jquery.tinycarousel.js',
         './public/js/jquery.videobackground.js',
-        './public/js/plugins/zero-clipboard/ZeroClipboard.min.js',
         './public/js/bootstrap-datepicker.js',
         './public/js/mailcheck.min.js',
         './public/js/bootbox.js'
         ] )
     .pipe(uglify())
     .pipe(concat('core.min.js'))
-    .pipe(gulp.dest('./public/assets/js'))
+    .pipe(gulp.dest('./public/js-assets'))
     .pipe(rev())
-    .pipe(gulp.dest('./public/assets/js'))
+    .pipe(gulp.dest('./public/js-assets'))
     .pipe(rev.manifest('./public/assets/rev-manifest.json',{ merge:true }))
     .pipe(gulp.dest(''));
     
@@ -87,6 +89,9 @@ function cleaner() {
 
 gulp.task('clean', [ 'js', 'css' ], function() {
     gulp.src( ['./public/css-assets/*.*'], {read: false})
+        .pipe( revOutdated(1) ) // leave 1 latest asset file for every file name prefix. 
+        .pipe( cleaner() );
+    gulp.src( ['./public/js-assets/*.*'], {read: false})
         .pipe( revOutdated(1) ) // leave 1 latest asset file for every file name prefix. 
         .pipe( cleaner() );
     gulp.src( ['./public/assets/**/*.*'], {read: false})
