@@ -5,25 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('page_title') Wazaar</title>    
-	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
-    <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
+    
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{{url('css/video-player.css')}}">
-    <link rel="stylesheet" href="{{url('css/style.css')}}">
-    <link rel="stylesheet" href="{{url('css/dashboard.css')}}">
-    <link rel="stylesheet" href="{{url('css/generic.css')}}">
-    <link rel="stylesheet" href="{{url('css/select-style.css')}}">
-    <link rel="stylesheet" href="{{url('css/ui-components.css')}}">
-    <link rel="stylesheet" href="{{url('css/jquery.jscrollpane.css')}}">
-    <link rel="stylesheet" href="{{url('plugins/slider/css/slider.css')}}">
-    <link rel="stylesheet" href="{{url('css/jquery.videobackground.css')}}">
-    <link rel="stylesheet" href="{{url('css/slick.css')}}">
-    <link rel="stylesheet" href="{{url('css/slick-theme.css')}}">
-    <link rel="stylesheet" href="{{url('css/datepicker.css')}}">
-    <link rel="stylesheet" href="{{url('css/bootstrap-datetimepicker.css')}}">
-    <link rel="Stylesheet" type="text/css" href="{{ url('css/smoothDivScroll.css') }}" />
-
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    @if( App::environment() == 'PPProduction' || Input::has('use-gulp') )
+        <link rel="stylesheet" href="{{ url('css-assets/'. asset_path('all.min.css') ) }}" />
+    @else
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
+        <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
+        <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{url('css/video-player.css')}}">
+        <link rel="stylesheet" href="{{url('css/style.css')}}">
+        <link rel="stylesheet" href="{{url('css/dashboard.css')}}">
+        <link rel="stylesheet" href="{{url('css/generic.css')}}">
+        <link rel="stylesheet" href="{{url('css/select-style.css')}}">
+        <link rel="stylesheet" href="{{url('css/ui-components.css')}}">
+        <link rel="stylesheet" href="{{url('css/jquery.jscrollpane.css')}}">
+        <link rel="stylesheet" href="{{url('plugins/slider/css/slider.css')}}">
+        <link rel="stylesheet" href="{{url('css/jquery.videobackground.css')}}">
+        <link rel="stylesheet" href="{{url('css/slick.css')}}">
+        <link rel="stylesheet" href="{{url('css/slick-theme.css')}}">
+        <link rel="stylesheet" href="{{url('css/datepicker.css')}}">
+        <link rel="stylesheet" href="{{url('css/bootstrap-datetimepicker.css')}}">
+        <link rel="Stylesheet" type="text/css" href="{{ url('css/smoothDivScroll.css') }}" />
+    @endif
 
     @yield('extra_css')
     <!--[if lt IE 9]>
@@ -33,7 +39,7 @@
     <![endif]-->
     
 
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
 </head>
 <body>
     @yield('affiliate-toolbar')
