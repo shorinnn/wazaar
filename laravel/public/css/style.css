@@ -226,6 +226,10 @@ ul {
 	display: inline-block;
 }
 
+.display-table{
+	display: table;
+}
+
 .hide{
 	display: none;
 }
@@ -2808,8 +2812,9 @@ h6{
 /****** Skinning Course Description Video *************/
 .course-details-player .control-container{
 	position: absolute;
-	bottom: 2px;
-	width: 100%;
+	bottom: 0;
+	margin: 10px;
+	width: 97%;
 	border-radius: 0 0 5px 5px;
 	visibility: hidden;
 	opacity: 0;
@@ -2831,7 +2836,7 @@ h6{
 /****** Skinning Course Description Video Ends *************/
 
 .course-details-player{
-	margin: -264px 0 0;
+	margin: -200px 0 0;
 }
 
 .pre-view-image.video-player {
@@ -2879,7 +2884,7 @@ h6{
 	top: 0;
 	left: 50%;
 	cursor: pointer;
-	padding: 15px 16px;
+	padding: 14px 23px;
 	background-color: rgba(24, 34, 43, 0.5);
 	font-size: 16px;
 	color: #fff;
@@ -2890,16 +2895,13 @@ h6{
 }
 
 .play-intro-button i{
-  padding-right: 0;
-  /*padding-right: 10px;*/
-  font-size: 26px;
+  padding-right: 13px;
   position: relative;
   top: 1px;
 }
 
 .play-intro-button em{
 	font-style: normal;
-	display:none;
 }
 
 .course-data{
@@ -2908,10 +2910,9 @@ h6{
 }
 
 .course-data .column-1 div{
-	float: left;
-	margin: 25px 0;
 	padding-top: 15px;
 	padding-bottom: 12px;
+	display: table-cell;
 }
 
 .course-data .column-1 div + div{
@@ -2919,8 +2920,8 @@ h6{
 }
 
 .course-data .column-1 .number-of-lessons{
-	padding-right: 30px;
-	padding-left: 30px;
+	/*padding-right: 30px;
+	padding-left: 30px;*/
 }
 
 .course-data .column-2 div i,
@@ -2932,8 +2933,8 @@ h6{
 }
 
 .course-data .column-1 div{
-	padding-right: 25px;
-	padding-left: 25px;
+	/*padding-right: 25px;
+	padding-left: 25px;*/
 }
 
 .course-data .column-1 .star-rating{
@@ -2947,8 +2948,9 @@ h6{
 
 .column-3 .add-to-wishlist-container{
 	/*margin: 61px 0 0;*/
-	padding-left: 23px;
+	padding-left: 20px;
 	margin-top: 13px;
+	margin-bottom: 25px;
 }
 
 .column-3 .add-to-wishlist-container .share-lesson,
@@ -2986,6 +2988,7 @@ h6{
 	color: #7e8e9e;
 	display: block;
 	font-weight: 600;
+	text-align: center;
 	text-transform: uppercase;
 }
 
@@ -3009,7 +3012,6 @@ h6{
 	color: #0099ff;
 	display: block;
 	margin-top: 27px;
-	margin-bottom: 27px;
 }
 
 .enroll-button-section .enroll-button{
@@ -3017,7 +3019,7 @@ h6{
 	display: block;
 	border: solid #0089e5;
 	border-width: 0 0 2px;
-	margin: 0;
+	margin: 27px 0 0;
 	border-radius: 4px;
 	font-size: 14px;
 	color: #fff;
@@ -3061,11 +3063,11 @@ h6{
 	padding: 0;
 	margin: 0;
 	max-height: 115px;
-	border-top: solid 1px #ebeced;
+	border-bottom: solid 1px #ebeced;
 }
 
 .lesson-topics li{
-	border-bottom: solid 1px #ebeced;
+	border-top: solid 1px #ebeced;
 	background-color: #f7f9fa;
 	padding-left: 27px;
 }
@@ -3074,7 +3076,9 @@ h6{
 	float: left;
 	color: #41474d;
 	font-size: 14px;
-	padding: 20px 20px 20px 0;
+	padding: 0 20px 0 0 !important;
+	line-height: 56px;
+	height: 56px;
 }
 
 .lesson-topics li span{
@@ -3094,7 +3098,7 @@ h6{
     font-size: 13px;
 	color: #fff;
 	position: relative;
-	top: 1px;
+	top: 0;
 	left: 1px;
 }
 
@@ -3112,12 +3116,17 @@ h6{
 .lesson-topics li .buttons .reading-button{
 	border-color: transparent;
 	background-color: transparent;
+   	color: #798794;
+    display: inline-block;
+    font-size: 13px;
+    padding: 10px 0;
 }
 
 .lesson-topics li .buttons .buy-button,
 .lesson-topics li .buttons .preview-button{
 	font-size: 12px;
 	font-weight: bold;
+	margin-left: 25px;
 }
 
 .lesson-topics li em{
@@ -3130,14 +3139,6 @@ h6{
 
 .lesson-topics li:hover{
 	background-color: #fffbeb;
-}
-
-.lesson-topics li:hover .lesson-name{
-	font-weight: 600;
-}
-
-.lesson-topics li:hover span{
-	background: #8751e6;
 }
 
 .lesson-topics li:hover em{
@@ -3422,7 +3423,7 @@ h6{
 
 .category-tags ul li.back-to-category a{
 	background: none;
-	color: #cbbde7;
+	color: #94a2ae;
 }
 
 .category-tags ul li.back-to-category a i{
@@ -3431,8 +3432,10 @@ h6{
 }
 
 .course-detail-top-section .instructor .show-full-description{
-	margin: 10px 0 0 23px;
+	margin: 25px 0 0 23px;
 	cursor: pointer;
+	display: block;
+	color: #0099ff;
 }
 
 /*********** Course Details main content *************/
@@ -13884,14 +13887,9 @@ header .top-menu .logged-out-header-search .catalogue-button em{
     max-width: 360px;
 }
 
-/*.play-intro-button{
-	padding: 0;
-	border-radius: 30px;
-	height: 30px;
-	width: 30px;
-	line-height: 30px;
-	text-align: center;
-}*/
+.play-intro-button{
+	padding: 15px 16px;
+}
 
 .play-intro-button i{
     padding-right: 0;
@@ -14496,7 +14494,7 @@ header .top-menu .logged-in-top-menu{
 	
 	.lesson-topics li .buttons{
 		margin-right: 10px;
-		float: right;
+		float: left;
 	}
 
 	.lesson-topics li .buttons a{

@@ -150,7 +150,6 @@
                     </li>
                 @endif
             </ul>
-            asd
             <div class="top-profile-info">          
                 
                 <span class="profile-level">12</span>

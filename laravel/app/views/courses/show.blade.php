@@ -73,7 +73,7 @@
                                     {{ $instructor->profile->bio }}
                                 @endif
                             </p>
-                            <span class="show-full-description blue-button large-button" data-toggle="modal" data-target="#instructor-bio">
+                            <span class="show-full-description" data-toggle="modal" data-target="#instructor-bio">
                                             {{ trans( 'general.read-more' ) }}
                                         </span>
                         @endif
@@ -172,14 +172,14 @@
                                 {{ trans("courses/general.course-enroll") }}
                             </button>
                         @elseif(Auth::check() && $student->purchased($course) )
-                            <span class="price clearfix">
+                            <span class="price clearfix hide">
                                          </span>
                             <a class="clearfix enroll-button blue-button extra-large-button"
                                href="{{ action('ClassroomController@dashboard', $course->slug)}}">
                                 {{ trans("courses/general.enter-classroom") }}
                             </a>
                         @else
-                            <span class="price clearfix">
+                            <span class="price clearfix hide">
                                          </span>
                             <button class="clearfix enroll-button blue-button extra-large-button" disabled="disabled" data-toggle="tooltip" data-placement="left" title="Available for customers">
                                 {{ trans("courses/general.course-enroll") }}
@@ -196,20 +196,20 @@
                 @elseif( !Input::has('is-preview') )
                     {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
                                 @if(Auth::guest() || $student->canPurchase($course) )
-                                    <span class="price clearfix">
+                                    <span class="price clearfix hide">
                                      </span>
                                      <button class="clearfix enroll-button blue-button extra-large-button join-class margin-top-50">
                                          {{ trans("courses/general.course-enroll") }}
                                      </button>
                                 @elseif(Auth::check() && $student->purchased($course) )
-                                    <span class="price clearfix">
+                                    <span class="price clearfix hide">
                                      </span>
                                      <a class="clearfix enroll-button blue-button extra-large-button" 
                                         href="{{ action('ClassroomController@dashboard', $course->slug)}}">
                                          {{ trans("courses/general.enter-classroom") }}
                                      </a>
                                 @else
-                            <span class="price clearfix">
+                            <span class="price clearfix hide">
                              </span>
                              <button class="clearfix enroll-button blue-button extra-large-button join-class margin-top-50" disabled="disabled">
                                  {{ trans("courses/general.course-enroll") }}
@@ -245,7 +245,7 @@
                         </div>
                         <div class="row">
                         <?php echo Flatten::section('courses-show-details'.$course->id, Config::get('custom.cache-expiry.course-desc-top-details'), function () use( $course )  { ?>
-                	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 column-1">
+                	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 column-1 display-table margin-top-25 margin-bottom-25">
                     	<div class="number-of-lessons">
                             <span>{{ trans("general.lessons") }}</span>
                             <em>{{ $course->lessonCount(false) }}</em>
@@ -276,14 +276,18 @@
                 	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 column-3">
                         <div class="add-to-wishlist-container clearfix">
                         	@if( !in_array($course->id, $wishlisted) )
+                            	<span>
                                     <i class="fa fa-heart-o tooltipable wishlist-change-button" title="Add to wishlist" data-auth="{{ intval(Auth::check() )}}"
                                        data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0">
                                 @else
+                                <span>
                                     <i class="fa fa-heart tooltipable wishlist-change-button" title="Remove from wishlist" data-auth="{{ intval(Auth::check() )}}"
                                        data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1">
                                 @endif
-                                {{ trans('courses/general.add_to_wishlist')}}
+                                
                                 </i>
+                                {{ trans('courses/general.add_to_wishlist')}}
+                                </span>
                                 <br />
                                 <br />
                                 <?php
@@ -317,7 +321,7 @@
                     <div class="alert alert-danger">{{{ Session::get('error') }}}</div>
                 @endif
                 <div class="course-description no-margin-top module-box padding-top-30 padding-bottom-20">
-                    <h2>{{ trans('courses/general.about-this-course') }}</h2>
+                    <h2 class="no-margin-top">{{ trans('courses/general.about-this-course') }}</h2>
                     <p class="intro-paragraph expandable-content short-text">
                         {{$course->description}}
                     </p>
@@ -376,7 +380,7 @@
                                             && VideoFormat::where('video_id', $lesson->blocks()->where('type','video')->first()->content )
                                                     ->first() !=null
                                             )
-                                            <a href="#" class="default-button reading-button large-button">
+                                            <a href="#" class="reading-button">
                                                 {{
                                                     VideoFormat::where('video_id', $lesson->blocks()->where('type','video')->first()->content )->first()
                                                             ->duration
@@ -477,13 +481,15 @@
 </section>
 <?php }); ?>
 @if(Auth::guest() || !Auth::user()->hasRole('Instructor'))
-    <section class="container-fluid become-an-instructor description">
+    <section class="become-an-instructor-section container-fluid">
+        <span class="background-image-overlay"></span>
         <div class="container">
             <div class="row">
-                <div class="col-xs-12">
-                    <h1>{{ trans('site/homepage.become') }}</h1>
-                    <h2>{{ trans('site/homepage.an-instructor') }}</h2>
-                    <a href="{{ action('InstructorsController@become') }}"><span>{{trans('site/homepage.get-started')}}</span></a>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                    <h1>{{trans('site/homepage.be-an-instructor')}}
+                        <p class="lead intro-paragraph">{{trans('site/homepage.earn_for_creating_course')}}</p>
+                    </h1>
+                    <a href="#" class="blue-button large-button">{{ trans('general.register') }}</a>
                 </div>
             </div>
         </div>
