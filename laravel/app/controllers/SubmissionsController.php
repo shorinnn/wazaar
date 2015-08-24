@@ -49,6 +49,9 @@ class SubmissionsController extends \BaseController {
                 if(Input::get('value')=='approved'){
                     $subject = 'Course Approved';
                     $content = EmailTemplate::where('tag','course-approved')->first()->content;
+                    Flatten::flushSection( 'courses-show-details'.$course->id );
+                    Flatten::flushSection( 'course-show-detailed-desc'.$course->id );
+                    
                 }
                 else{
                     $subject = 'Course Rejected';

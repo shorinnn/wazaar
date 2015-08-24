@@ -558,8 +558,9 @@ class CoursesController extends \BaseController {
                 $wishlisted = $student->wishlistItems()->lists( 'course_id' );
             }
             
-            $course = courseApprovedVersion( $course );
-            if( $course->publish_status != 'approved' ){
+            if( !Input::has('is-preview') ) $course = courseApprovedVersion( $course );
+            
+            if( $course->publish_status != 'approved' && $course->approved_data == '' ){
                 if( Auth::guest() ) return Redirect::action('SiteController@index');
                 if( !admin() && $course->instructor_id != Auth::user()->id  && $course->assigned_instructor_id != Auth::user()->id ) return Redirect::action('SiteController@index');
             }
