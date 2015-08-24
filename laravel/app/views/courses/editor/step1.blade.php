@@ -66,19 +66,30 @@
                         </div>
                         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 listing-video">
                             <h6>{{ trans('courses/create.introduction-video') }}</h6>
-                            <div class="file-details relative">
-                                <div class="course-description-video-preview">
-                                    @if (isset($course->descriptionVideo->formats[0]))
-                                        <img data-video-url='{{ $course->descriptionVideo->formats[0]->video_url }}' onclick="showVideoPreview(this)" src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
-                                    @endif
+                            @if( $course->paid == 'yes') 
+                                <div class="file-details relative">
+                                    <div class="course-description-video-preview">
+                                        @if (isset($course->descriptionVideo->formats[0]))
+                                            <img data-video-url='{{ $course->descriptionVideo->formats[0]->video_url }}' onclick="showVideoPreview(this)" src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
+                                        @endif
 
+                                    </div>
+                                    @include('courses.video.index')
+                                    
                                 </div>
-                                @include('courses.video.index')
-
-                            </div>
-                            <div class="clearfix"></div>
-                            <em>{{ trans('courses/create.video-on-public-course-page') }}</em>
-
+                                <div class="clearfix"></div>
+                                <em>{{ trans('courses/create.video-on-public-course-page') }}</em>
+                            @else
+                                <div class='external-video-preview preview-course'>
+                                    {{ externalVideoPreview($course->external_video_url) }}
+                                </div>             
+                                <input type="text" class="ajax-updatable" data-course='{{$course->id}}'
+                                      data-callback='externalVideoPreview' data-target='.preview-course'
+                                      data-url='{{action('CoursesController@updateExternalVideo', $course->id )}}' placeholder='Youtube or Vimeo Link'
+                                      data-name='external_video_url' 
+                                      id='external-video-course' value="{{ $course->external_video_url }}" />
+                
+                            @endif
                         </div>
                     </div>
                 </div>

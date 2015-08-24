@@ -2909,7 +2909,10 @@ h6{
 	background: #fff;
 	border-bottom: solid 1px #cfd1d3;
 }
-
+.course-data .column-1{
+	display: table;
+	margin-top: 22px;
+}
 .course-data .column-1 div{
 	padding-top: 15px;
 	padding-bottom: 12px;
@@ -3057,7 +3060,7 @@ h6{
 }
 
 .course-description h2{
-	margin: 29px 30px 22px;
+	margin: 0 30px 22px;
 }
 
 .lesson-topics{
@@ -6086,7 +6089,7 @@ h6{
 .classroom-view .classroom-header .left-menu{
 	cursor: pointer;
 	padding: 8px 32px 8px 0;
-	font-size: 21px;
+	font-size: 17px;
 	color: #fff;
 	display: inline-block;
 	margin-top: 5px;
@@ -6095,6 +6098,8 @@ h6{
 
 .classroom-view .classroom-header .logo{
 	margin: 0 29px;
+	position: relative;
+	top: 7px;
 	display: inline-block;
 	width: 50px;
 }
@@ -6122,7 +6127,7 @@ h6{
 
 .classroom-view .classroom-header .navigate-lessons-buttons a{
 	display: inline-block;
-	padding: 14px 15px;
+	padding: 11px 15px;
 	color: #fff;
 	font-weight: bold;
 	border-radius: 3px;

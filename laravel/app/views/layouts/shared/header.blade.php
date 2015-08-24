@@ -181,9 +181,11 @@
                             <?php /*-- <li>
                                 <a class="profile-button" href="{{ action('ProfileController@index') }}">{{trans('site/menus.profile')}}</a>
                             </li> */?>
+                            @if( !Auth::user()->hasRole('Affiliate') )
                             <li>
                                 <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
                             </li>
+                            @endif
                             <li>
                                 <a class="settings-button" href="#">{{trans('site/menus.analytics')}}</a>
                             </li>

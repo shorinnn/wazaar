@@ -829,12 +829,12 @@ P.S
 //        $js->sale = '33';
 //        $js->sale_kind = 'percentage';
 //        $js->sale_ends_on = date('Y-m-d H:i:s', strtotime('+ 4 day 2 hour'));
-        $js->updateUniques();
+//        $js->updateUniques();
         $js = Course::find(14);
 //        $js->sale = '20';
 //        $js->sale_kind = 'percentage';
 //        $js->sale_ends_on = date('Y-m-d H:i:s', strtotime('+ 4 day 2 hour'));
-        $js->updateUniques();
+//        $js->updateUniques();
 
         Course::create(['name' => 'Obscure Course no one buys', 'slug' => 'no-one-buys', 'instructor_id' => 4, 'course_category_id' => 6, 'course_subcategory_id' => 6,
             'price' => rand(1000, 5000), 'course_difficulty_id' => 1, 'course_preview_image_id' => 8,

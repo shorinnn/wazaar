@@ -17,7 +17,7 @@ class ProfileController extends Controller
 
     public function index($type = '')
     {
-        $isProfileNew = $this->userHelper->isProfileNew();
+        /*$isProfileNew = $this->userHelper->isProfileNew();
 
         if ($isProfileNew OR Input::get('step') == 2) {
             $step = Input::has('step') ? Input::get('step') : 1;
@@ -36,10 +36,41 @@ class ProfileController extends Controller
 
             $availableProfiles = $this->userHelper->profilesByType($trueType);
             return View::make('profile.index', compact('profile', 'type','availableProfiles'));
+        }*/
+
+
+        if (empty($type)) {
+            $type = $this->userHelper->activeProfileType();
         }
+
+        $profile = $this->userHelper->getProfileByType($type)->profile;
+
+        if (empty($profile)){
+            $profile =  $this->userHelper->createProfileFromType($type);
+        }
+
+        return View::make('profile.v2.index', compact('profile', 'type'));
     }
 
-    public function uploadProfilePicture()
+    public function postUpdateProfile()
+    {
+        $type = Input::get('type');
+        $profile = $this->userHelper->getProfileByType($type)->profile;
+
+        $validation = Validator::make(Input::all(),$this->userHelper->profileValidationRules());
+
+        if ($validation->fails()){
+            return Response::json(['success' => 0, 'errors' => $validation->messages()->all()]);
+        }
+
+        $profile->first_name = Input::get('first_name');
+        $profile->last_name = Input::get('last_name');
+        $profile->email = Input::get('email');
+        $profile->bio = Input::get('bio');
+        $profile->save();
+    }
+
+    public function postUploadProfilePicture()
     {
         $validationRule = ['profilePicture' => 'image|required'];
         $validator = Validator::make(Input::only('profilePicture'), $validationRule);

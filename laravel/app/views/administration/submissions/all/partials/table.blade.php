@@ -23,6 +23,7 @@
                             aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu  load-remote">
                             <li>
                                 <a class="profile-button" href="?{{ appendToQueryString('filter', 'all' ) }}">All</a>
+                                <a class="profile-button" href="?{{ appendToQueryString('filter', 'approved' ) }}">Approved</a>
                                 <a class="profile-button" href="?{{ appendToQueryString('filter', 'promo' ) }}">Has Promo Video</a>
                                 <a class="profile-button" href="?{{ appendToQueryString('filter', 'video' ) }}">+5 min Video</a>
                             </li>
@@ -54,7 +55,8 @@
                         <tr id='row-{{$course->id}}'>
                             <td class="hidden-xs">
                                  {{ $course->name}}
-                                 {{ $course->videoMinutes }}
+                                 ( {{ $course->videoMinutes }} Vid. Minutes )
+                            
                                  <br />
                                  {{ $course->created_at }}
                             </td>
