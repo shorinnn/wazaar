@@ -94,8 +94,11 @@
                     @endif
                 </div>
 
+               
                 @if( $video==null )
-                    <!--!-->
+                    <div class="videoContainer">
+                        {{ externalVideoPreview($course->external_video_url, false, true) }}
+                    </div>
                 @else
                     <div class="video-player video-container description-page video-container-toggler" style="display:none; background:none; text-align: right">
                         @if( Agent::isMobile() )
@@ -328,7 +331,7 @@
 @section('extra_js')
     <script>
         $(function(){
-            if( $('#myVideo').length > 0){
+            if( $('#myVideo').length > 0 || $('.videoContainer').length > 0  ){
                 console.log('READY!');
                 $('.pre-view-image').hide();
                 $('.video-container-toggler').show();

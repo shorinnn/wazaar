@@ -202,6 +202,7 @@ $wwwRoutes = function(){
     Route::get('courses/mycourses', 'UsersController@login');
     Route::get('courses/view-discussion/{id}', 'CoursesController@viewDiscussion');
     Route::put('courses/{slug}/submit-for-approval', 'CoursesController@submitForApproval');
+    
     Route::get('courses/search-instructor/{email}', 'CoursesController@searchInstructor');
     Route::get('courses/search-instructor/', 'CoursesController@searchInstructor');
     
@@ -226,6 +227,7 @@ Route::group(array('domain' => $domain), $wwwRoutes);
 Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 
 Route::group( array('domain' => $instructorSubdomain ), function(){
+    Route::put('courses/{id}/updateExternalVideo', 'CoursesController@updateExternalVideo');
     Route::post('courses/{id}/reorder', 'CoursesController@reorder');
     Route::get('courses/mycourses', 'CoursesController@myCourses');
     Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
