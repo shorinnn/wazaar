@@ -90,6 +90,8 @@ class SubmissionsController extends \BaseController {
                $submissions = Course::with('instructor')->orderBy('id','desc')->where('description_video_id', '>', 0)->paginate( $pagination );
             elseif(Input::get('filter')=='video')
                $submissions = Course::with('instructor')->orderBy('id','desc')->where('video_minutes', '>', 5)->paginate( $pagination );
+            elseif(Input::get('filter')=='approved')
+               $submissions = Course::with('instructor')->orderBy('id','desc')->where('publish_status', 'approved' )->paginate( $pagination );
             else    
                $submissions = Course::with('instructor')->orderBy('id','desc')->paginate( $pagination );
             
