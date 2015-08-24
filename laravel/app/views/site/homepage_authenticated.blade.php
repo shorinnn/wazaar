@@ -169,7 +169,7 @@
             </div>
             
             <div id='discover-courses-area'>
-                {{ View::make('site.discover_courses')->with( compact('discoverCourses') ) }}
+                {{ View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted') ) }}
             </div>
         </div>
     </section>

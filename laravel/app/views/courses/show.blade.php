@@ -275,12 +275,25 @@
                 <?php }); ?>
                 	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 column-3">
                         <div class="add-to-wishlist-container clearfix">
-                        	
-                        	{{Form::open(['action' => ['WishlistController@store'] ])}}
-                                    <input type='hidden' name='id' value='{{ $course->id }}' />
-                                    <i class="wa-Heart"></i>
-                                    <input type='submit' class="add-to-wishlist" value='{{trans('courses/general.add_to_wishlist')}}' />
-                                {{Form::close()}}
+                        	@if( !in_array($course->id, $wishlisted) )
+                                    <i class="fa fa-heart-o tooltipable wishlist-change-button" title="Add to wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                       data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0">
+                                @else
+                                    <i class="fa fa-heart tooltipable wishlist-change-button" title="Remove from wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                       data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1">
+                                @endif
+                                {{ trans('courses/general.add_to_wishlist')}}
+                                </i>
+                                <br />
+                                <br />
+                                <?php
+                                
+//                        	{{//Form::open(['action' => ['WishlistController@store'] ])}}
+//                                    <input type='hidden' name='id' value='{{// $course->id }}' />
+//                                    <i class="wa-Heart"></i>
+//                                    <input type='submit' class="add-to-wishlist" value='{{//trans('courses/general.add_to_wishlist')}}' />
+//                                {{//Form::close()}}
+                                    ?>
                         	<!--<a href="#">{{ trans("general.add-to-wishlist") }}</a>-->
                     <a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>
             </div>

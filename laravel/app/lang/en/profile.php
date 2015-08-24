@@ -3,6 +3,11 @@
 return
     [
         'pageTitle'            => 'Edit Profile',
+        'tab'                  => 'Profile',
+        'tabPassword'          => 'Password',
+        'tabBankDetails'       => 'Bank details',
+        'tabOtherInfo'         => 'Other info',
+        'yourAccount'          => 'Your account',
         'pageTitleNew'         => 'Set Up Your Profile',
         'errorHeading'         => 'The following errors were found',
         'headerPhoto'          => 'Photo',
@@ -20,6 +25,7 @@ return
             'email' => 'Email',
             'firstName' => 'First Name',
             'lastName' => 'Last Name',
+            'bio' => 'Describe yourself',
             'address1' => 'Address 1',
             'address2' => 'Address 2',
             'city'      => 'City',

@@ -93,8 +93,10 @@ body {
 	padding: 0;
 	color: #000;
 	line-height: 16px !important;
-	/*font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;*/
+	/*font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;
+	font-family: 'ＭＳ Ｐゴシック', 'MS PGothic', 'メイリオ', Meiryo, sans-serif;*/
 	font: 16px 'Open Sans', Helvetica, sans-serif;
+        overflow:auto;/** added because gulp version is messed **/
 }
 
 html{
@@ -392,7 +394,10 @@ header .top-menu .logged-out-header-search .catalogue-button{
 	background: #242d36;
 	outline: none;
 }
-
+header .top-menu .logged-out-header-search .catalogue-button:hover i,
+header .top-menu .logged-out-header-search .catalogue-button:hover{
+	color: #fff;
+}
 header .top-menu .logged-out-header-search .catalogue-button i{
 	color: #a7b5c2;
 	font-size: 13px;
@@ -1175,6 +1180,7 @@ header .profile-name li:hover ul{
 
 .category-heading{
 	margin-bottom: 24px;
+	padding: 0 26px;
 }
 
 .category-heading-title{
@@ -1184,7 +1190,14 @@ header .profile-name li:hover ul{
 	padding: 12px 0 0;
 	color: #18222b;
 }
-
+.category-heading-title i {
+    font-size: 12px;
+    margin: 0 5px;
+    color: #b6b9bc;
+}
+.category-heading-title a:hover{
+	color: #0099ff;
+}
 .category-heading-title::after{
 	border-color: #b6b9bc transparent;
 	border-style: solid;
@@ -1194,7 +1207,8 @@ header .profile-name li:hover ul{
 	position: relative;
 	right: -3px;
 	bottom: -15px;
-	width: 0;	
+	width: 0;
+	display: none;	
 }
 
 .difficulty-levels{
@@ -1224,7 +1238,7 @@ header .profile-name li:hover ul{
 	color: #667078;
 	font-size: 13px;
 	text-align: center;
-	line-height: 32px;
+	line-height: 30px;
 	display: block;
 }
 .toggle-menus .menu:hover,
@@ -1354,7 +1368,6 @@ header .profile-name li:hover ul{
   	position:relative;
   	margin-top:29px;
 	box-shadow: 0px 0px 0px 1px #fff;
-	overflow: hidden;
 	-webkit-transition: box-shadow 0.1s ;
 	-moz-transition: box-shadow 0.1s;
 	transition: box-shadow 0.1s;
@@ -1471,7 +1484,6 @@ header .profile-name li:hover ul{
   	position:relative;
   	margin-top:29px;
 	box-shadow: 0px 0px 0px 1px #fff;
-	overflow: hidden;
 	-webkit-transition: box-shadow 0.1s ;
 	-moz-transition: box-shadow 0.1s;
 	transition: box-shadow 0.1s;
@@ -1519,7 +1531,7 @@ header .profile-name li:hover ul{
 	clear: both;
 	position: absolute;
 	bottom: 11px;
-	width: 100%;
+	width: 97%;
 	padding-right: 10px;
 }
 
@@ -1536,6 +1548,9 @@ header .profile-name li:hover ul{
     font-size: 15px;
     position: relative;
     top: 8px;
+}
+.heart-icon i.fa.fa-heart{
+	color: #0099ff;
 }
 .highly-recommend{
 	height: 30px;
@@ -1597,11 +1612,12 @@ header .profile-name li:hover ul{
 	right: 10px;
 	display: inline-block;
 	padding-left: 12px;
+	padding-right: 12px;
 	font-size: 11px;
 	font-weight: 600;
 	height: 30px;
 	line-height: 30px;
-	width: 60px;
+	width: auto;
 	color: #fff;
 	border-radius: 3px;
 	overflow: hidden;
@@ -1621,7 +1637,7 @@ header .profile-name li:hover ul{
   	font-size:15px;
   	color:#283947;
   	font-weight: 600;
-	margin: 0 0 22px;  
+	margin: 0 0 20px;  
   	clear:both;
 	white-space: nowrap;
 	overflow: hidden;
@@ -4836,7 +4852,7 @@ h6{
 
 /*Student account*/
 .new-dashboard.student-account .sidebar{
-	margin-top: -70px;
+	margin-top: -123px;
 }
 
 .new-dashboard .upload-picture-button input{
@@ -4865,7 +4881,11 @@ h6{
 	margin: 0 0 33px;
 	border-bottom: solid 1px #ebeced;
 }
-
+.student-account .profile-input-rows .cvv-tip{
+	color: #0099ff;
+	margin-left: 3px;
+	cursor: pointer;
+}
 .student-account .profile-input-rows label{
 	font-size: 14px;
 	font-weight: 600;
@@ -13799,7 +13819,7 @@ footer{
 	}
 	.new-dashboard .sidebar,
 	.instructor-dashboard .sidebar{
-		margin-top: 25px;
+		margin-top: 25px !important;
 	}
 	.new-dashboard .profile-picture-holder{
 		display: none;

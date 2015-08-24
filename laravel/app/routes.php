@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -181,6 +180,7 @@ $wwwRoutes = function(){
     Route::get('private-messages/thread/{id}', 'PrivateMessagesController@thread');
     Route::resource('private-messages', 'PrivateMessagesController');
     //Wishlist
+    Route::get('wishlist/change/{slug}/{action}', 'WishlistController@change');
     Route::resource('wishlist', 'WishlistController');
     // Follow relationships
     Route::resource('followers', 'FollowersController');
@@ -305,6 +305,8 @@ $wwwRoutes = function(){
         ##
         Route::post('{id}/update', 'ProfileController@update');
     });
+
+    Route::controller('profile','ProfileController');
 //});
 };
 Route::group(array('domain' => $domain), $wwwRoutes);

@@ -1,11 +1,13 @@
     @extends('layouts.default')
     @section('content')	
 		<section class="container-fluid category-heading-container">
-            <div class="container cat-row-{{$category->color_scheme}}">
+            <div class="container-fluid cat-row-{{$category->color_scheme}}">
             	<div class="row category-heading">
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <p class="category-heading-title">
+                    </p>
                         @if($category->name!='')
-                            <p class="category-heading-title"> {{ $category->name }}
+                            <p class="category-heading-title"> <a href="#">{{ $category->name }}</a> <i class="wa-chevron-right"></i>
                                 @if(isset($subcategory))
                                     {{$subcategory->name}}
                                 @endif
@@ -57,7 +59,7 @@
         <section class="container-fluid category-box-container">
             
         <div class='ajax-content'>
-             {{ View::make('courses.categories.courses')->with( compact('courses', 'category') ) }}
+             {{ View::make('courses.categories.courses')->with( compact( 'courses', 'category', 'wishlisted' ) ) }}
         </div>
         </section>
 

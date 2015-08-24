@@ -14,10 +14,6 @@
                     }
                 </style>        
             @endif
-            <?php
-                
-            ?>
-            
             @if(Auth::check())
         <div class="clearfix left">
             <div class="logged-out-header-search text-center">
@@ -129,7 +125,8 @@
             </div>
         </div>
         <div class="clearfix right logged-in-menu-holder">
-            <ul class="logged-in-top-menu">
+            @if( isset($headerShowTopLinks) )
+                <ul class="logged-in-top-menu">
                 
                 @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
                     <li>
@@ -153,6 +150,7 @@
                     </li>
                 @endif
             </ul>
+            @endif
             <div class="top-profile-info">          
                 
                 <span class="profile-level">12</span>

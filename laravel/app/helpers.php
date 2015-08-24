@@ -494,7 +494,7 @@ function asset_path($filename) {
     } else {
         $manifest = [];
     }
-
+    
     if (array_key_exists($filename, $manifest)) {
         return $manifest[$filename];
     }

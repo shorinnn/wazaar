@@ -1,8 +1,9 @@
 {{ $courses->appends(Input::only('sort','difficulty'))->links() }}
-<div class="container load-remote">
+<div class="container">
+    
     @foreach($courses as $course)
     {{ cycle(["<div class='row cat-row-$category->color_scheme'>",'','']) }}
-    {{ View::make('courses.course_box')->with(compact('course')) }}
+        {{ View::make('courses.course_box')->with( compact('course', 'wishlisted') ) }}
     {{ cycle(['','','</div>']) }}
     @endforeach
 </div>
