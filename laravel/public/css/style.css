@@ -96,6 +96,7 @@ body {
 	/*font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;
 	font-family: 'ＭＳ Ｐゴシック', 'MS PGothic', 'メイリオ', Meiryo, sans-serif;*/
 	font: 16px 'Open Sans', Helvetica, sans-serif;
+        overflow:auto;/** added because gulp version is messed **/
 }
 
 html{
