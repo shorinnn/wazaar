@@ -14,4 +14,3 @@ tests/_output/*
 .DS_Store?
 ../nbproject/*
 app/storage/*
-
