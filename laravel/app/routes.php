@@ -305,6 +305,8 @@ $wwwRoutes = function(){
         ##
         Route::post('{id}/update', 'ProfileController@update');
     });
+
+    Route::controller('profile','ProfileController');
 //});
 };
 Route::group(array('domain' => $domain), $wwwRoutes);

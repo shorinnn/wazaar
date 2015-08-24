@@ -13,5 +13,9 @@ tests/_output/*
 */.DS_Store
 .DS_Store?
 ../nbproject/*
+<<<<<<< HEAD
+app/storage/*
+=======
 app/storage/cache/*
 
+>>>>>>> e7cb37e2cbc334321c6a5f6bc38e731bbbf94fd8

@@ -85,7 +85,8 @@ class UserHelper
     {
         return [
             'first_name' => 'required',
-            'last_name' => 'required'
+            'last_name' => 'required',
+            'email' => 'email'
         ];
     }
 
