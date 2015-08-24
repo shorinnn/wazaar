@@ -6,8 +6,7 @@ class AffiliateController extends \BaseController {
         $this->users = $users;
         $this->beforeFilter( 'affiliate', ['except' => [ 'becomeAffiliate', 'doBecomeAffiliate', 'create', 'store', 'login', 
             'doLogin', 'forgotPassword', 'doForgotPassword' ] ] );
-        $this->beforeFilter('guest', ['only' => ['create', 'store', 'login', 
-            'doLogin', 'forgotPassword', 'doForgotPassword' ]]);
+        $this->beforeFilter('guest', ['only' => [ 'login', 'doLogin', 'forgotPassword', 'doForgotPassword' ]]);
         $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy' ]]);
     }
 
@@ -52,7 +51,7 @@ class AffiliateController extends \BaseController {
     {
         $extraText = trans('general.register-affiliate');
         
-        if(Auth::guest() && Input::has('stai')){
+        if( Input::has('stai')){
             Cookie::queue('stai', Input::get('stai'), 60*24*30);
         }
         return View::make( 'confide.affiliates.signup' )->with( compact('instructor_account', 'extraText') );
@@ -60,6 +59,8 @@ class AffiliateController extends \BaseController {
     
     public function store()
     {
+        if( Auth::check() ) Session::flush();
+        
         $roles['affiliate'] = Input::get('register_affiliate');//Cookie::get('register_affiliate');
         $st = Input::get('st');
         $user = $this->users->signup( Input::all(), Cookie::get('stai'), $roles, Cookie::get('stpi'), Cookie::get('iai'), $st );
