@@ -91,9 +91,13 @@ class Course extends Ardent{
                     if($vid!=null) $vids += $vid->duration;
                 }
             }
+            
+            // lesson videos
+            $lessons = DB::table('lessons')->whereIn('id', $lessons)->sum('video_duration');
+            $vids += $lessons;
         }
-        if( $return == 's' ) return $vids;
         if($vids == 0) return $vids;
+        if( $return == 's' ) return $vids;
         else{
             if( $return == 'i' ) return round( $vids / 60, 2 );
             return round( $vids / 60 / 60, 2 );
@@ -115,6 +119,8 @@ class Course extends Ardent{
                     if($vid!=null) $vids += $vid->duration;
                 }
             }
+            $lessons = DB::table('lessons')->whereIn('id', $lessons)->sum('video_duration');
+            $vids += $lessons;
         }
         
         $minutes = round( $vids / 60 );

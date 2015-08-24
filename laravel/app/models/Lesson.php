@@ -22,6 +22,8 @@ class Lesson extends Ardent {
         if (Config::get('custom.use_id_for_slug') == true) {
             DB::table($this->getTable())->where('id', $this->id)->update(['slug' => PseudoCrypt::hash( $this->id )]);
         }
+        $this->module->course->video_minutes = $this->module->course->videoMinutes;
+        $this->module->course->updateUniques();
     }
 
     public function beforeSave() {
@@ -39,6 +41,23 @@ class Lesson extends Ardent {
             $this->errors()->add(0, 'ワザールで最低レッスン金額は500円以上ですので、500円以上の金額を設定して下さい。' );
             return false;
         }
+        
+        if( $this->external_video_url != ''){
+            if( $id = parse_yturl($this->external_video_url) ){
+                $video = Youtube::getVideoInfo( $id ); 
+                $this->video_duration = getYTDurationSeconds($video->contentDetails->duration);
+            }
+            
+            if( $id = get_vimeoid($this->external_video_url) ){
+                $vimeo = new \Vimeo\Vimeo( Config::get('custom.vimeo.client_id'), Config::get('custom.vimeo.client_secret') );
+                $vimeo->setToken( Config::get('custom.vimeo.access_token') );
+                $response = $vimeo->request('/videos/'.$id, array('per_page' => 2), 'GET');
+                $this->video_duration = $response['body']['duration'];
+            }
+        }
+        else $this->video_duration = 0;
+        
+       
     }
 
     public function beforeDelete() {
