@@ -6,22 +6,21 @@
             <span class="question-title">
                     {{$discussion->title}} 
             </span>
-           <div class='pull-right' style='font-size: 12px'>
-                <span class='discussion-votes discussion-votes-{{$discussion->id}}'>{{ (int)$discussion->upvotes }}</span>
-                <span href='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'up' ] ) }}' class='link-to-remote' data-callback='updateHTML' data-property='votes'
-                   data-url='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'up' ] ) }}' data-target='.discussion-votes-{{$discussion->id}}'>
-                    <i class="fa fa-angle-up"></i>
-                </span><!--  |
-                <a href='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'down' ] ) }}' class='link-to-remote' data-callback='updateHTML' data-property='votes'
-                   data-url='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'down' ] ) }}' data-target='.discussion-votes-{{$discussion->id}}'>
-                    <i class="fa fa-angle-down"></i>
-                </a>-->
-            </div>
 
             <span class="replies-count">
                 @if( $discussion->replies->count() > 0)
                     {{$discussion->replies->count()}} responses
-                    <em class='right discussion-votes discussion-votes-{{$discussion->id}}'>{{ (int)$discussion->upvotes }}</em>
+                   <div class='pull-right inline-block' style='font-size: 12px'>
+                        <span class='discussion-votes discussion-votes-{{$discussion->id}}'>{{ (int)$discussion->upvotes }}</span>
+                        <span href='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'up' ] ) }}' class='link-to-remote' data-callback='updateHTML' data-property='votes'
+                           data-url='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'up' ] ) }}' data-target='.discussion-votes-{{$discussion->id}}'>
+                            <i class="fa fa-angle-up"></i>
+                        </span><!--  |
+                        <a href='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'down' ] ) }}' class='link-to-remote' data-callback='updateHTML' data-property='votes'
+                           data-url='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'down' ] ) }}' data-target='.discussion-votes-{{$discussion->id}}'>
+                            <i class="fa fa-angle-down"></i>
+                        </a>-->
+                    </div>
                 @else
                     Be first to respond
                 @endif
