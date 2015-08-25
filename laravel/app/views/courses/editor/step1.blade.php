@@ -66,7 +66,7 @@
                         </div>
                         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 listing-video">
                             <h6>{{ trans('courses/create.introduction-video') }}</h6>
-                            @if( $course->paid == 'yes') 
+                            @if( $course->free == 'no') 
                                 <div class="file-details relative">
                                     <div class="course-description-video-preview">
                                         @if (isset($course->descriptionVideo->formats[0]))
