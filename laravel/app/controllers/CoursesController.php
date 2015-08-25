@@ -6,6 +6,8 @@ class CoursesController extends \BaseController {
             $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'dashboard',
                 'customPercentage', 'updateExternalVideo'] ] );
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
+
+            
         }
 
 	public function index()
