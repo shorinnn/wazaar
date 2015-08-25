@@ -135,6 +135,7 @@ return array(
                 'Indatus\Dispatcher\ServiceProvider',
                 'Cocorium\DynamoSessionServiceProvider',
                 'Flatten\FlattenServiceProvider',
+                'Alaouy\Youtube\YoutubeServiceProvider',
 	),
 
 	/*

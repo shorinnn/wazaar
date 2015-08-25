@@ -658,3 +658,29 @@ function courseApprovedVersion($course){
     }
     return $course;
 }
+function getYTDurationSeconds($duration){
+    preg_match_all('/[0-9]+[HMS]/',$duration,$matches);
+    $duration=0;
+    foreach($matches as $match){
+        //echo '<br> ========= <br>';       
+        //print_r($match);      
+        foreach($match as $portion){        
+            $unite=substr($portion,strlen($portion)-1);
+            switch($unite){
+                case 'H':{  
+                    $duration +=    substr($portion,0,strlen($portion)-1)*60*60;            
+                }break;             
+                case 'M':{                  
+                    $duration +=substr($portion,0,strlen($portion)-1)*60;           
+                }break;             
+                case 'S':{                  
+                    $duration +=    substr($portion,0,strlen($portion)-1);          
+                }break;
+            }
+        }
+    //  echo '<br> duratrion : '.$duration;
+    //echo '<br> ========= <br>';
+    }
+     return $duration;
+
+}

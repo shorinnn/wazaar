@@ -3,8 +3,11 @@
 class CoursesController extends \BaseController {
     
         public function __construct(){
-            $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'dashboard','customPercentage'] ] );
+            $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'dashboard',
+                'customPercentage', 'updateExternalVideo'] ] );
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
+
+            
         }
 
 	public function index()
@@ -558,8 +561,9 @@ class CoursesController extends \BaseController {
                 $wishlisted = $student->wishlistItems()->lists( 'course_id' );
             }
             
-            $course = courseApprovedVersion( $course );
-            if( $course->publish_status != 'approved' ){
+            if( !Input::has('is-preview') ) $course = courseApprovedVersion( $course );
+            
+            if( $course->publish_status != 'approved' && $course->approved_data == '' ){
                 if( Auth::guest() ) return Redirect::action('SiteController@index');
                 if( !admin() && $course->instructor_id != Auth::user()->id  && $course->assigned_instructor_id != Auth::user()->id ) return Redirect::action('SiteController@index');
             }
@@ -904,5 +908,23 @@ class CoursesController extends \BaseController {
             }
             return Response::json(['status' => 'success']);
 
+        }
+        
+        public function updateExternalVideo($id){
+            $course = Course::find($id);
+            
+            if(!admin() && $course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
+                return Redirect::action('CoursesController@index');
+            }
+            
+            $course->external_video_url = Input::get('value');
+            if( $course->updateUniques() ){
+                $response = ['status' => 'success'];
+                $response['embed_code'] = externalVideoPreview( Input::get('value') );
+            }
+            else{
+                $response = ['status' => 'error', 'errors' => format_errors( $lesson->errors()->all() ) ];
+            }
+            return json_encode($response);
         }
 }
