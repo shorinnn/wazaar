@@ -303,7 +303,7 @@
   background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/volume-control-icons.png') !important; 
   background-repeat: no-repeat;
   border:none;
-  float:left;
+  float:right;
 }
 .video-container .control div.sound2{
   background-position: left -92px;
@@ -316,7 +316,7 @@
 }
 .video-container .control div.btnFS{
   background-position: center -281px;
-  float: left;
+  float: right;
 }
 .video-container .control div.btnLight{
   background:url(control.png) no-repeat -44px -60px;
@@ -509,7 +509,7 @@
 
 .video-container .btmControl{
 	padding: 0 2%;
-	margin: 20px 0;
+	margin: 10px 0;
 }
 
 .btnPlay{

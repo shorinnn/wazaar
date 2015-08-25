@@ -2234,6 +2234,34 @@ header .profile-name li:hover ul{
 	background: #b2e0ff;
 }
 
+.transparent-button{
+	font-size: 12px;
+	font-weight: bold;
+}
+.transparent-button i{
+	margin-right: 7px;
+}
+.transparent-button-default{
+	color: #798794;
+}
+.transparent-button-inline,
+.transparent-button-primary{
+	color: #0099ff;
+}
+.transparent-button-inline{
+	position: relative;
+	display: inline-block;
+}
+.transparent-button-inline::before,
+.transparent-button-inline::after{
+	content: "...";
+	color: #8997a5;
+}
+.transparent-button:hover{
+	color: #0099ff;
+	text-decoration: underline;
+}
+
 .form-container input:-moz-placeholder,
 .form-container input::-moz-placeholder,
 .form-container input:-ms-input-placeholder,
@@ -2950,31 +2978,27 @@ h6{
 	text-transform: uppercase;
 }
 
-.column-3 .add-to-wishlist-container{
+.add-to-wishlist-container{
 	/*margin: 61px 0 0;*/
 	padding-left: 20px;
 	margin-top: 13px;
 	margin-bottom: 25px;
 }
 
-.column-3 .add-to-wishlist-container .share-lesson,
-.column-3 .add-to-wishlist-container input{
+.add-to-wishlist-container .share-lesson,
+.add-to-wishlist-container input{
 	margin: 0 0 34px;
 	display: inline-block !important;
 	padding: 0;
 }
 
-.column-3 .add-to-wishlist-container i{
-	padding-right: 6px;
+.add-to-wishlist-container i{
+	padding-right: 15px;
 	position: relative;
 	color: #7e8e9e;
 	font-size: 18px;
 	top: 2px;
  }
-
-.column-3 .add-to-wishlist-container .share-lesson i{
-	padding-right: 15px;
-}
 
 .course-data .column-2 div em,
 .course-data .column-1 div em{
@@ -2996,8 +3020,9 @@ h6{
 	text-transform: uppercase;
 }
 
-.column-3 .add-to-wishlist-container .share-lesson,
-.column-3 .add-to-wishlist-container input,
+.add-to-wishlist-container .share-lesson,
+.add-to-wishlist-container input,
+.add-to-wishlist-container span,
 .column-3 div span{
 	font-size: 13px;
 	font-weight: 600;
@@ -3006,7 +3031,10 @@ h6{
 	background: none;
 	border: none;
 }
-
+.add-to-wishlist-container .share-lesson,
+.add-to-wishlist-container span{
+	line-height: 40px;
+}
 .enroll-button-section{
 	padding-left: 35px;
 }
@@ -3421,7 +3449,7 @@ h6{
 .course-detail-top-section .instructor p{
 	color: #a7b7c4;
 	margin-left: 23px;
-	height: 110px;
+	max-height: 110px;
 	margin-bottom: 8px;
 }
 
@@ -3439,7 +3467,6 @@ h6{
 	margin: 25px 0 0 23px;
 	cursor: pointer;
 	display: block;
-	color: #0099ff;
 }
 
 /*********** Course Details main content *************/
@@ -6059,11 +6086,6 @@ h6{
 .discussion-opened .classroom-video.video-container .topControl{
 	width: 60%;
 }
-
-.classroom-view .video-container .control div.btnFS{
-	float: right;
-}
-
 .classroom-view .classroom-video .videoContainer{
     position: relative;
     padding-bottom: 56.25%;
@@ -6366,6 +6388,7 @@ h6{
 	color: #798794;
 	padding-left: 13px;
 	height: 36px;
+	line-height: 36px;
 	width: 85%;
 }
 
@@ -6416,7 +6439,10 @@ h6{
 	width: auto !important;
 	color: #697480;
 }
-
+.questions-box .replies-count .likes{
+	float: right;
+	font-style: normal;
+}
 .questions-sidebar .ask-question{
 	border-top: solid 1px #18222b;
 	padding: 12px 30px;
@@ -6697,9 +6723,11 @@ h6{
 
 .classroom-view .slide-menu .header{
 	padding: 22px 0 0;
-	background: #0099ff;
+	background: rgba(0, 153, 255, 0.8);
 }
-
+.classroom-view .slide-menu .header:hover{
+	background: rgba(0, 153, 255, 1);
+}
 .classroom-view .slide-menu .header .course{
 	font-weight: bold;
 	font-size: 12px;
@@ -6835,7 +6863,7 @@ h6{
 }
 
 .course-topics-box .topics ul li.completed a:hover span{
-	border-color: transparent;
+	border-color: transparent !important;
 }
 
 .course-topics-box .topics ul li a span em{

@@ -73,9 +73,9 @@
                                     {{ $instructor->profile->bio }}
                                 @endif
                             </p>
-                            <span class="show-full-description" data-toggle="modal" data-target="#instructor-bio">
-                                            {{ trans( 'general.read-more' ) }}
-                                        </span>
+                            <span class="show-full-description transparent-button transparent-button-primary" data-toggle="modal" data-target="#instructor-bio">
+                                {{ trans( 'general.read-more' ) }}
+                            </span>
                         @endif
                     @endif
                 </div>
@@ -142,11 +142,11 @@
                                             <div class="time hidden-xs">
                                                 <span class="duration"></span>
                                             </div>
+                                            <div class="btnFS btn" title="Switch to full screen"><i class="wa-expand"></i></div>
                                             <div class="sound sound2 btn hidden-xs" title="Mute/Unmute sound">
                                                 <i class="wa-sound"></i>
                                                 <i class="fa fa-volume-off"></i>
                                             </div>
-                                            <div class="btnFS btn" title="Switch to full screen"><i class="wa-expand"></i></div>
                                         </div>
  
                                     </div>
@@ -272,8 +272,6 @@
                                 
                                 	</i>{{ trans('courses/general.add_to_wishlist')}}
                                 </span>
-                                <br />
-                                <br />
                                 <?php
                                  
 //                          {{//Form::open(['action' => ['WishlistController@store'] ])}}
