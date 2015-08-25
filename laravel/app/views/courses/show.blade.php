@@ -171,7 +171,7 @@
                         ?>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
- 
+ 				<div class="enroll-button-wrap">
                 @if($course->cost() > 0 && !Input::has('is-preview') )
                         {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
  
@@ -252,7 +252,7 @@
                                 You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                         @endif
                     @endif
- 
+ 					</div>
                      <div class="column-3">
                         <div class="add-to-wishlist-container clearfix">
                             @if( !in_array($course->id, $wishlisted) )

@@ -13559,6 +13559,9 @@ footer{
 	  /*width: 1532px;*/
 	  width: 1032px;
 	}
+	.enroll-button-wrap {
+		height: 184px;
+	}
 }
 
 @media (max-width: 1200px) and (min-width: 991px){
