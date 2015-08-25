@@ -110,6 +110,9 @@
 			.full-height{
 				height: 100%;
 			}
+			.slide-to-left.in .video-row{
+				margin-top: 25%;
+			}
         </style>
         
             <div class="right-slide-menu"></div>
@@ -153,7 +156,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" style="margin-top: 25%;">
+                <div class="row video-row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="video-player video-container classroom-video" style="background:none; text-align: right">
                             
