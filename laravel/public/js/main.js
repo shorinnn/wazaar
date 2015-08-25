@@ -1459,7 +1459,7 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 function searchDiscussions(){
     s = $('#question-search-box').val();
     $('.questions-box').hide();
-    $('span:contains("'+s+'")').parent().show();
+    $('span.question-title:contains("'+s+'")').parent().parent().show();
 }
 
 function showLessonQuestionForm(){

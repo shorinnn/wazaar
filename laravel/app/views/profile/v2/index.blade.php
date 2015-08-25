@@ -88,7 +88,7 @@
                                         {{Form::hidden('type',$type)}}
 
                                         <div class="row no-margin" align="center">
-                                            <button class="btn btn-primary" type="button" id="btn-update-profile">{{trans('general.update')}}</button>
+                                            <button class="btn btn-primary" data-loading-text="{{trans('general.updating')}}" type="button" id="btn-update-profile">{{trans('general.update')}}</button>
                                         </div>
                                     </form>
                                 </div>
@@ -98,13 +98,20 @@
                             <div class="profile-input-rows">
                                 <h4>Change password</h4>
                                 <div class="clearfix">
-                                    <form>
+                                    <form action="{{url('profile/change-password')}}" method="post" id="form-change-password">
+
+                                        <div class="alert alert-error hidden" role="alert" id="errors-change-password">
+                                            <ul>
+
+                                            </ul>
+                                        </div>
+
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                                 <label>Current password</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-5">
-                                                <input type="password" placeholder="*********" />
+                                                <input type="password" name="old_password"/>
                                             </div>
                                         </div>
                                         <div class="row no-margin">
@@ -112,7 +119,7 @@
                                                 <label>New password</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-5">
-                                                <input type="password" placeholder="" />
+                                                <input type="password" name="new_password" placeholder="" />
                                             </div>
                                         </div>
                                         <div class="row no-margin">
@@ -120,8 +127,12 @@
                                                 <label>Repeat password</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-5">
-                                                <input type="password" placeholder="" />
+                                                <input type="password" name="new_password_confirmation" placeholder="" />
                                             </div>
+                                        </div>
+                                        {{Form::hidden('type',$type)}}
+                                        <div class="row no-margin" align="center">
+                                            <button class="btn btn-primary" data-loading-text="{{trans('general.updating')}}" type="button" id="btn-change-password">{{trans('general.update')}}</button>
                                         </div>
                                     </form>
                                 </div>
@@ -131,62 +142,72 @@
                             <div class="profile-input-rows">
                                 <h4>Bank Details</h4>
                                 <div class="clearfix">
-                                    <form>
+                                    {{Form::open(['url' => url('profile/update-bank-details'), 'id' => 'form-update-bank'])}}
+
+                                    <div class="alert alert-error hidden" role="alert" id="errors-update-bank">
+                                        <ul>
+
+                                        </ul>
+                                    </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Bank Number</label>
+                                                <label>{{trans('profile.bankName')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
-                                                <input type="text" placeholder="" />
+                                               {{Form::text('bank_name',$profile->bank_name)}}
                                             </div>
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Bank Code</label>
+                                                <label>{{trans('profile.bankCode')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
-                                                <input type="text" placeholder="" />
+                                                {{Form::text('bank_code',$profile->bank_code)}}
                                             </div>
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Branch Name</label>
+                                                <label>{{trans('profile.branchName')}}</label>
                                             </div>
-                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
-                                                <input type="text" placeholder="" />
+                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
+                                                {{Form::text('branch_name',$profile->branch_name)}}
                                             </div>
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Branch Code</label>
+                                                <label>{{trans('profile.branchCode')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
-                                                <input type="text" placeholder="" />
+                                                {{Form::text('branch_code',$profile->branch_code)}}
                                             </div>
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Account Type</label>
+                                                <label>{{trans('profile.accountType')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
-                                                <input type="text" placeholder="" />
+                                                {{Form::text('account_type',$profile->account_type)}}
                                             </div>
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Account Number</label>
+                                                <label>{{trans('profile.accountNumber')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
-                                                <input type="text" placeholder="" />
+                                                {{Form::text('account_number',$profile->account_number)}}
                                             </div>
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Beneficiary</label>
+                                                <label>{{trans('profile.beneficiary')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
-                                                <input type="text" placeholder="" />
+                                                {{Form::text('beneficiary_name',$profile->beneficiary_name)}}
                                             </div>
+                                            {{Form::hidden('type',$type)}}
+                                        </div>
+                                        <div class="row no-margin" align="center">
+                                            <button class="btn btn-primary" data-loading-text="{{trans('general.updating')}}" type="button" id="btn-update-bank">{{trans('general.update')}}</button>
                                         </div>
                                     </form>
                                 </div>
@@ -196,59 +217,67 @@
                         {{-- Other Info Tab --}}
                         <div role="tabpanel" class="tab-pane fade in" id="other-info">
                             <div class="profile-input-rows">
-                                <h4>Other Information</h4>
+                                <h4>{{trans('profile.otherInformation')}}</h4>
                                 <div class="clearfix">
-                                    <form>
+                                    {{Form::open(['url' => url('profile/update-other-info'), 'id' => 'form-update-info'])}}
+
+                                    <div class="alert alert-error hidden" role="alert" id="errors-update-info">
+                                        <ul>
+
+                                        </ul>
+                                    </div>
                                         <div class="row no-margin">
                                             <div class="col-md-4">
-                                                <label>ZIP Code</label>
+                                                <label>{{trans('profile.form.zip')}}</label>
                                             </div>
-                                            <div class="col-md-2">
-                                                <input type="text" placeholder="" />
+                                            <div class="col-md-4">
+                                                {{Form::text('zip',$profile->zip)}}
                                             </div>
-                                            <div class="col-md-2">
-                                                <input type="text" placeholder="" />
+
+                                        </div>
+                                        <div class="row no-margin">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                <label>{{trans('profile.form.prefecture')}}</label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-5">
+                                                {{Form::text('prefecture',$profile->prefecture)}}
                                             </div>
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Prefecture</label>
+                                                <label>{{trans('profile.form.address1')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-5">
-                                                <input type="text" placeholder="" />
+                                                {{Form::text('address1',$profile->address_1)}}
                                             </div>
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Address 1</label>
+                                                <label>{{trans('profile.form.address2')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-5">
-                                                <input type="text" placeholder="" />
-                                            </div>
-                                        </div>
-                                        <div class="row no-margin">
-                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Address 2</label>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-5">
-                                                <input type="text" placeholder="" />
+                                                {{Form::text('address2',$profile->address_2)}}
                                             </div>
                                         </div><div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Company Nae</label>
+                                                <label>{{trans('profile.form.company')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-5">
-                                                <input type="text" placeholder="" />
+                                                {{Form::text('company',$profile->company)}}
                                             </div>
                                         </div><div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Telephone #</label>
+                                                <label>{{trans('profile.form.telephone')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-5">
-                                                <input type="text" placeholder="" />
+                                                {{Form::text('telephone',$profile->telephone)}}
                                             </div>
                                         </div>
 
+                                    <div class="row no-margin" align="center">
+                                        <button class="btn btn-primary" data-loading-text="{{trans('general.updating')}}" type="button" id="btn-update-info">{{trans('general.update')}}</button>
+                                    </div>
+                                    {{Form::hidden('type',$type)}}
                                     </form>
                                 </div>
                             </div>
@@ -257,9 +286,10 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                    <form action="{{url('profile/upload-profile-picture')}}" enctype="multipart/form-data" method="post">
                     <div class="sidebar">
                         <div class="profile-picture-holder">
-                            <img src="{{@$profile->photo}}" alt="" class="img-responsive"/>
+                            <img src="{{@$profile->photo}}" alt="" id="img-profile-picture" class="img-responsive"/>
                         </div>
                         <div class="upload-picture-button text-center">
                             <label for="upload-new-photo" class="default-button large-button">
@@ -273,6 +303,8 @@
                             <span class="count">(2)</span>
                         </a>
                     </div>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -285,7 +317,12 @@
     <script type="text/javascript">
         $(function(){
             $('#btn-update-profile').on('click', function(){
+                var $btn = $(this);
+                $btn.button('loading');
                 var $data = $('#form-profile').serialize();
+
+
+
                 $('#errors-profile ul').html('');
                 $.post('/profile/update-profile',$data, function ($response){
                     if ($response.success == 0){
@@ -295,8 +332,79 @@
 
                         $('#errors-profile').removeClass('hidden');
                     }
+                    $btn.button('reset');
                 },'json');
             });
-        })
+
+            $('#btn-change-password').on('click', function(){
+                var $data = $('#form-change-password').serialize();
+                var $btn = $(this);
+                $btn.button('loading');
+                $('#errors-change-password ul').html('');
+                $.post('/profile/change-password',$data, function ($response){
+                    if ($response.success == 0){
+                        for (var $errorKey in $response.errors){
+                            $('#errors-change-password ul').append('<li><i class="fa fa-exclamation"></i> '+ $response.errors[$errorKey] +'</li>');
+                        }
+
+                        $('#errors-change-password').removeClass('hidden');
+
+                    }
+                    $btn.button('reset');
+                },'json');
+            });
+
+            $('#btn-update-bank').on('click', function(){
+                var $data = $('#form-update-bank').serialize();
+                var $btn = $(this);
+                $btn.button('loading');
+                $('#errors-update-bank ul').html('');
+                $.post('/profile/update-bank-details',$data, function ($response){
+                    if ($response.success == 0){
+                        for (var $errorKey in $response.errors){
+                            $('#errors-update-bank ul').append('<li><i class="fa fa-exclamation"></i> '+ $response.errors[$errorKey] +'</li>');
+                        }
+
+                        $('#errors-update-bank').removeClass('hidden');
+
+                    }
+
+                    $btn.button('reset');
+                },'json');
+            });
+
+            $('#btn-update-info').on('click', function(){
+                var $data = $('#form-update-info').serialize();
+                var $btn = $(this);
+                $btn.button('loading');
+                $('#errors-update-info ul').html('');
+                $.post('/profile/update-other-info',$data, function ($response){
+                    if ($response.success == 0){
+                        for (var $errorKey in $response.errors){
+                            $('#errors-update-info ul').append('<li><i class="fa fa-exclamation"></i> '+ $response.errors[$errorKey] +'</li>');
+                        }
+
+                        $('#errors-update-info').removeClass('hidden');
+
+                    }
+
+                    $btn.button('reset');
+                },'json');
+            });
+
+            $('#upload-new-photo').fileupload()
+                    .bind('fileuploadprogress', function ($e, $data){
+                        var $progress = parseInt($data.loaded / $data.total * 100, 10);
+                        console.log($progress);
+                    })
+                    .bind('fileuploaddone',function ($e,$data){
+                        if ($data.result.success == 1){
+                            $('#img-profile-picture').attr('src',$data.result.photo_url);
+                        }
+            });
+
+            $('input[name=zip]').mask('999-9999');
+
+        });
     </script>
 @stop

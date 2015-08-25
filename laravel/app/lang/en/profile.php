@@ -13,49 +13,62 @@ return
         'headerPhoto'          => 'Photo',
         'headerPersonal'       => 'Personal',
         'headerSocial'         => 'Social Media',
-        'headerFinancial'         => 'Financial',
+        'headerFinancial'      => 'Financial',
+        'oldPasswordIncorrect' => 'Current Password Incorrect',
+        'bankName'             => 'Bank Name',
+        'bankNumber'           => 'Bank Number',
+        'bankCode'             => 'Bank Code',
+        'branchCode'           => 'Branch Code',
+        'branchName'           => 'Branch Name',
+        'beneficiary'          => 'Beneficiary',
+        'accountType'          => 'Account Type',
+        'accountNumber'        => 'Account Number',
+        'otherInformation'     => 'Other Information',
         'new'                  =>
             [
                 'step1' => 'Step 1: Upload Your Photo or Picture',
                 'step2' => 'Step 2: Enter Additional Data'
             ],
         'allowedPictureFormat' => 'Note: Allowed formats are only jpg, png or gif',
-        'form' =>
-        [
-            'email' => 'Email',
-            'firstName' => 'First Name',
-            'lastName' => 'Last Name',
-            'bio' => 'Describe yourself',
-            'address1' => 'Address 1',
-            'address2' => 'Address 2',
-            'city'      => 'City',
-            'zip'       => 'ZIP',
-            'website'   => 'Website URL',
-            'google'    => 'Google Plus',
-            'facebook'  => 'Facebook',
-            'twitter'   => 'Twitter',
-            'linkedin'  => 'LinkedIn',
-            'youtube'   => 'Youtube',
-            'bank-code'   => 'Bank Code',
-            'bank-name'   => 'Bank Name',
-            'branch-code'   => 'Branch Code',
-            'branch-name'   => 'Branch name',
-            'account-type'   => 'Account Type',
-            'account-number'   => 'Account Number',
-            'beneficiary-name'   => 'Beneficiary Name',
-            'account-types' =>
+        'form'                 =>
             [
-                'ordinary' => 'Ordinary Savings Account',
-                'checking' => 'Checking Account',
-                'savings' => 'Savings Account',
-                'others' => 'Others'
+                'email'            => 'Email',
+                'firstName'        => 'First Name',
+                'lastName'         => 'Last Name',
+                'bio'              => 'Describe yourself',
+                'prefecture'       => 'Prefecture',
+                'telephone'        => 'Telephone',
+                'address1'         => 'Address 1',
+                'address2'         => 'Address 2',
+                'company'          => 'Company',
+                'city'             => 'City',
+                'zip'              => 'ZIP',
+                'website'          => 'Website URL',
+                'google'           => 'Google Plus',
+                'facebook'         => 'Facebook',
+                'twitter'          => 'Twitter',
+                'linkedin'         => 'LinkedIn',
+                'youtube'          => 'Youtube',
+                'bank-code'        => 'Bank Code',
+                'bank-name'        => 'Bank Name',
+                'branch-code'      => 'Branch Code',
+                'branch-name'      => 'Branch name',
+                'account-type'     => 'Account Type',
+                'account-number'   => 'Account Number',
+                'beneficiary-name' => 'Beneficiary Name',
+                'account-types'    =>
+                    [
+                        'ordinary' => 'Ordinary Savings Account',
+                        'checking' => 'Checking Account',
+                        'savings'  => 'Savings Account',
+                        'others'   => 'Others'
+                    ],
+                'title'            => 'Title'
             ],
-            'title' => 'Title'
-        ],
-        'updateSuccessful' => 'Profile updated successfully',
-        'profile' => 'Profile',
-        'affiliate' => 'Affiliate',
-        'instructor' => 'Instructor',
-        'student'   => 'Student'
+        'updateSuccessful'     => 'Profile updated successfully',
+        'profile'              => 'Profile',
+        'affiliate'            => 'Affiliate',
+        'instructor'           => 'Instructor',
+        'student'              => 'Student'
 
     ];

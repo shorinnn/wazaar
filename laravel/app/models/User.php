@@ -205,7 +205,7 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     public function _profile( $type='Student' ){
-        if( !$this->hasRole( $type ) ) return null;
+        if( !$this->hasRole( $type ) || $this->profiles == null ) return null;
         foreach( $this->profiles as $profile ){
             if( $profile->owner_type == $type ) return $profile;
         }

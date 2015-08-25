@@ -142,11 +142,12 @@ class UserRepository
      * @param string|null $ltc The affiliate id or NULL
      */
     public function save_ltc($user, $ltc=null){
+        $user = Student::find( $user->id );
         if( $ltc != null ){
             $ltc_affiliate = LTCAffiliate::where('affiliate_id', $ltc)->first();
             if($ltc_affiliate !=null ){
-                $user->ltcAffiliate()->associate($ltc_affiliate);
-                $user->second_tier_affiliate_id = $ltc_affiliate->id;
+                if( $user->hasRole('Affiliate') ) $user->second_tier_affiliate_id = $ltc_affiliate->id;
+                else $user->ltc_affiliate_id = $ltc_affiliate->id;
                 $user->save();
             }            
         }
