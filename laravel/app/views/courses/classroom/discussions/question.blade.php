@@ -6,17 +6,17 @@
             <span class="question-title">
                     {{$discussion->title}} 
             </span>
-        <!--    <div class='pull-right' style='font-size: 12px'>
-                <span class='discussion-votes-{{$discussion->id}}'>{{ (int)$discussion->upvotes }}</span>
-                <a href='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'up' ] ) }}' class='link-to-remote' data-callback='updateHTML' data-property='votes'
+           <div class='pull-right' style='font-size: 12px'>
+                <span class='discussion-votes discussion-votes-{{$discussion->id}}'>{{ (int)$discussion->upvotes }}</span>
+                <span href='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'up' ] ) }}' class='link-to-remote' data-callback='updateHTML' data-property='votes'
                    data-url='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'up' ] ) }}' data-target='.discussion-votes-{{$discussion->id}}'>
                     <i class="fa fa-angle-up"></i>
-                </a> |
+                </span><!--  |
                 <a href='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'down' ] ) }}' class='link-to-remote' data-callback='updateHTML' data-property='votes'
                    data-url='{{ action( 'DiscussionsController@vote',[ $discussion->id, 'down' ] ) }}' data-target='.discussion-votes-{{$discussion->id}}'>
                     <i class="fa fa-angle-down"></i>
-                </a>
-            </div>-->
+                </a>-->
+            </div>
 
             <span class="replies-count">
                 @if( $discussion->replies->count() > 0)

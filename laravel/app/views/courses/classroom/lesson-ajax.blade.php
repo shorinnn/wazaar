@@ -8,6 +8,9 @@
 
 </script>
 <style>
+    span.link-to-remote, span.discussion-votes{
+        color:#428BCA
+    }
             .small-overlay{
                 position:fixed;
                 top: 50%;
