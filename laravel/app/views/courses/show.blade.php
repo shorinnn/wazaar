@@ -73,9 +73,9 @@
                                     {{ $instructor->profile->bio }}
                                 @endif
                             </p>
-                            <span class="show-full-description" data-toggle="modal" data-target="#instructor-bio">
-                                            {{ trans( 'general.read-more' ) }}
-                                        </span>
+                            <span class="show-full-description transparent-button transparent-button-primary" data-toggle="modal" data-target="#instructor-bio">
+                                {{ trans( 'general.read-more' ) }}
+                            </span>
                         @endif
                     @endif
                 </div>
@@ -271,8 +271,6 @@
                                 
                                 	</i>{{ trans('courses/general.add_to_wishlist')}}
                                 </span>
-                                <br />
-                                <br />
                                 <?php
                                  
 //                          {{//Form::open(['action' => ['WishlistController@store'] ])}}
