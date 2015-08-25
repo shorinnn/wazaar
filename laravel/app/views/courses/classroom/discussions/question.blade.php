@@ -21,6 +21,7 @@
             <span class="replies-count">
                 @if( $discussion->replies->count() > 0)
                     {{$discussion->replies->count()}} responses
+                    <em class="likes">3 Likes</em>
                 @else
                     Be first to respond
                 @endif

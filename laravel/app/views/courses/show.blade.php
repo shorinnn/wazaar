@@ -142,11 +142,11 @@
                                             <div class="time hidden-xs">
                                                 <span class="duration"></span>
                                             </div>
+                                            <div class="btnFS btn" title="Switch to full screen"><i class="wa-expand"></i></div>
                                             <div class="sound sound2 btn hidden-xs" title="Mute/Unmute sound">
                                                 <i class="wa-sound"></i>
                                                 <i class="fa fa-volume-off"></i>
                                             </div>
-                                            <div class="btnFS btn" title="Switch to full screen"><i class="wa-expand"></i></div>
                                         </div>
  
                                     </div>

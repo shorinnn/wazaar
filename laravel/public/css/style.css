@@ -6086,11 +6086,6 @@ h6{
 .discussion-opened .classroom-video.video-container .topControl{
 	width: 60%;
 }
-
-.classroom-view .video-container .control div.btnFS{
-	float: right;
-}
-
 .classroom-view .classroom-video .videoContainer{
     position: relative;
     padding-bottom: 56.25%;
@@ -6393,6 +6388,7 @@ h6{
 	color: #798794;
 	padding-left: 13px;
 	height: 36px;
+	line-height: 36px;
 	width: 85%;
 }
 
@@ -6443,7 +6439,10 @@ h6{
 	width: auto !important;
 	color: #697480;
 }
-
+.questions-box .replies-count .likes{
+	float: right;
+	font-style: normal;
+}
 .questions-sidebar .ask-question{
 	border-top: solid 1px #18222b;
 	padding: 12px 30px;
@@ -6724,9 +6723,11 @@ h6{
 
 .classroom-view .slide-menu .header{
 	padding: 22px 0 0;
-	background: #0099ff;
+	background: rgba(0, 153, 255, 0.8);
 }
-
+.classroom-view .slide-menu .header:hover{
+	background: rgba(0, 153, 255, 1);
+}
 .classroom-view .slide-menu .header .course{
 	font-weight: bold;
 	font-size: 12px;
@@ -6862,7 +6863,7 @@ h6{
 }
 
 .course-topics-box .topics ul li.completed a:hover span{
-	border-color: transparent;
+	border-color: transparent !important;
 }
 
 .course-topics-box .topics ul li a span em{
