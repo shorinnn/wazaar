@@ -120,5 +120,6 @@ return array(
     'register-affiliate' => 'Register for affiliate account',
     'affiliate-ref-link' => 'Use this link to refer users:',
     'search' => 'Search',
-    'update' => 'Update'
+    'update' => 'Update',
+    'updating' => 'Updating...'
 );

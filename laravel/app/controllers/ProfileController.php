@@ -67,16 +67,16 @@ class ProfileController extends Controller
         $profile->last_name = Input::get('last_name');
         $profile->email = Input::get('email');
         $profile->bio = Input::get('bio');
-        $profile->save();
+        $profile->updateUniques();
     }
 
-    public function postUploadProfilePicture()
+    public function uploadProfilePicture()
     {
         $validationRule = ['profilePicture' => 'image|required'];
         $validator = Validator::make(Input::only('profilePicture'), $validationRule);
 
         if ($validator->fails()){
-            return Redirect::back()->with('errors', $validator->messages()->all());
+            return Response::json(['success' => 0,'errors' => $validator->messages()->all()]);
         }
 
         $imagePath = $this->uploadHelper->uploadImage('profilePicture');
@@ -88,12 +88,75 @@ class ProfileController extends Controller
             $this->userHelper->saveProfile(Auth::id(), $profileData);
 
             unset($imagePath);
-
-            return Redirect::to('profile/?step=2');
+            return Response::json(['success' => 1,'photo_url' => $pictureUrl]);
+            //return Redirect::to('profile/?step=2');
         }
         else{
-            return Redirect::back()->with('errors',['Something wrong happened']); //Should probably throw an exception
+            //return Redirect::back()->with('errors',['Something wrong happened']); //Should probably throw an exception
+            return Response::json(['success' => 0],500);
         }
+    }
+
+    public function postChangePassword()
+    {
+        $rules = ['old_password' => 'required', 'new_password' => 'required|confirmed'];
+        $validator = Validator::make(Input::all(),$rules);
+
+        if ($validator->fails()){
+            return Response::json(['success' => 0,'errors' => $validator->messages()->all()]);
+        }
+
+
+        if (!Hash::check(Input::get('old_password'), Auth::user()->password))
+        {
+            return Response::json(['success' => 0,'errors' => [trans('profile.oldPasswordIncorrect')]]);
+        }
+
+
+        $user = Auth::user();
+        $user->password = Hash::make(Input::get('new_password'));
+        $user->save();
+        return Response::json(['success' => 1]);
+    }
+
+    public function postUpdateBankDetails()
+    {
+        $rules = ['bank_code' => 'required','bank_name' => 'required','branch_name' => 'required','branch_code' => 'required','account_type' => 'required','account_number' => 'required','beneficiary_name' => 'required'];
+
+        $validator = Validator::make(Input::all(),$rules);
+
+        if ($validator->fails()){
+            return Response::json(['success' => 0,'errors' => $validator->messages()->all()]);
+        }
+
+        $type = Input::get('type');
+        $profile = $this->userHelper->getProfileByType($type)->profile;
+
+        //$profile->bank_number = Input::get('bank_number');
+        $profile->bank_code = Input::get('bank_code');
+        $profile->bank_name = Input::get('bank_name');
+        $profile->branch_name = Input::get('branch_name');
+        $profile->branch_code = Input::get('branch_code');
+        $profile->account_type = Input::get('account_type');
+        $profile->account_number = Input::get('account_number');
+        $profile->beneficiary_name = Input::get('beneficiary_name');
+        $profile->updateUniques();
+
+        return Response::json(['success' => 1]);
+    }
+
+    public function postUpdateOtherInfo()
+    {
+        $type = Input::get('type');
+        $profile = $this->userHelper->getProfileByType($type)->profile;
+        $profile->address_1 = Input::get('address1');
+        $profile->address_2 = Input::get('address2');
+        $profile->zip = Input::get('zip');
+        $profile->prefecture = Input::get('prefecture');
+        $profile->company = Input::get('company');
+        $profile->telephone = Input::get('telephone');
+        $profile->updateUniques();
+        return Response::json(['success' => 1]);
     }
 
     public function storeNewProfile()
