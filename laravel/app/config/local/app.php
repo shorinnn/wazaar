@@ -15,8 +15,8 @@ return array(
 	'debug' => true,
 	'url' => 'http://wazaar.dev',
 	'base_url' => 'wazaar.dev',
-//	'url' => 'http://1e888907.ngrok.io',
-//	'base_url' => '1e888907.ngrok.io',
+// 'url' => 'http://8698e2b3.ngrok.io',
+// 'base_url' => '8698e2b3.ngrok.io',
         'locale' => 'en',
         'providers' => append_config(
 		[

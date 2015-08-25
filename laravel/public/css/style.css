@@ -2865,7 +2865,7 @@ h6{
 /****** Skinning Course Description Video Ends *************/
 
 .course-details-player{
-	margin: -200px 0 0;
+	margin: -160px 0 0;
 }
 
 .pre-view-image.video-player {
@@ -2940,6 +2940,7 @@ h6{
 .course-data .column-1{
 	display: table;
 	margin-top: 22px;
+	width: 100%;
 }
 .course-data .column-1 div{
 	padding-top: 15px;

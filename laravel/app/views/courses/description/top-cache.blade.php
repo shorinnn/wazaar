@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 column-1">
+<div class="column-1">
     <div class="number-of-lessons">
         <span>{{ trans("general.lessons") }}</span>
         <em>{{ $course->lessonCount(false) }}</em>

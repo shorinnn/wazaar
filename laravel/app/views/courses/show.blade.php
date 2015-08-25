@@ -161,6 +161,14 @@
                         @endif
                     </div>
                 @endif
+                        <?php
+                        if( Input::has('is-preview') ) echo View::make('courses.description.top-cache')->withCourse($course);
+                        else{
+                            echo Flatten::section('courses-show-details'.$course->id, Config::get('custom.cache-expiry.course-desc-top-details'), function () use( $course )  {
+                                echo View::make('courses.description.top-cache')->withCourse($course);
+                            }); 
+                        }
+                        ?>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
  
@@ -245,20 +253,7 @@
                         @endif
                     @endif
  
- 
-                            </div>
-                        </div>
-                        <div class="row">
-                             
-                        <?php
-                        if( Input::has('is-preview') ) echo View::make('courses.description.top-cache')->withCourse($course);
-                        else{
-                            echo Flatten::section('courses-show-details'.$course->id, Config::get('custom.cache-expiry.course-desc-top-details'), function () use( $course )  {
-                                echo View::make('courses.description.top-cache')->withCourse($course);
-                            }); 
-                        }
-                        ?>
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 column-3">
+                     <div class="column-3">
                         <div class="add-to-wishlist-container clearfix">
                             @if( !in_array($course->id, $wishlisted) )
                             	<span>
@@ -281,10 +276,15 @@
 //                                {{//Form::close()}}
                                     ?>
                             <!--<a href="#">{{ trans("general.add-to-wishlist") }}</a>-->
-                    <a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>
-            </div>
-        </div>
-    </div>
+                            <a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>
+                        </div>
+                    </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                             
+    	</div>
  
     </div>
 </section>
