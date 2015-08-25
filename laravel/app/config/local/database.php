@@ -1,5 +1,5 @@
 <?php
-
+$readIndex = rand(0, getenv('DB_READ_HOSTS_COUNT')-1 );
 return array(
 
 	/*
@@ -53,8 +53,13 @@ return array(
 		),
 
 		'mysql' => array(
+                        'read' => [
+                            'host'      => getenv('DB_READ_HOSTS.'.$readIndex),
+                        ],
+                        'write' => [
+                            'host'      => getenv('DB_HOST'),
+                        ],
 			'driver'    => 'mysql',
-			'host'      => getenv('DB_HOST'),
 			'database'  => getenv('DB_NAME'),
 			'username'  => getenv('DB_USERNAME'),
 			'password'  => getenv('DB_PASSWORD'),
