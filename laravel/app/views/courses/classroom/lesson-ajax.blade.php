@@ -111,9 +111,7 @@
 				height: 100%;
 			}
 			.slide-to-left.in .video-row{
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
+				margin-top: 25%;
 			}
         </style>
         
