@@ -8,8 +8,10 @@
 
 </script>
 <style>
-    span.link-to-remote, span.discussion-votes{
-        color:#428BCA
+    span.link-to-remote, .discussion-votes{
+        /*color:#428BCA;*/
+		color: #697480;
+		font-style: normal;
     }
             .small-overlay{
                 position:fixed;
@@ -46,7 +48,7 @@
              display: none;
             }
 			.video-quality-wrap{
-				float: left;
+				float: right;
 				padding-top: 3px;
 			}
 			
@@ -100,6 +102,10 @@
 			}											
 			.video-quality-wrap .dropdown-toggle{
 				padding: 6px 0;
+			}
+			.slide-to-left.in .navigate-lessons-buttons,
+			.slide-to-left.in .control-container {
+			  display: none;
 			}
         </style>
         
@@ -202,6 +208,12 @@
                                             <div class="time hidden-xs">
                                                 <span class="duration"></span>
                                             </div>
+                                            
+                                            <div class="btnFS btn" title="Switch to full screen"><i class="wa-expand"></i></div>
+                                            <div class="sound sound2 btn hidden-xs" title="Mute/Unmute sound">
+                                                <i class="wa-sound"></i>
+                                                <i class="fa fa-volume-off"></i>
+                                            </div>
                                              @if($video != null)
                                             <div class="btn-group dropup video-quality-wrap">
                                                 <a class="btn dropdown-toggle" data-toggle="dropdown" style="font-size: 12px;" aria-expanded="false">
@@ -227,12 +239,6 @@
                                                 
                                             </div>
                                             @endif
-                                            
-                                            <div class="btnFS btn" title="Switch to full screen"><i class="wa-expand"></i></div>
-                                            <div class="sound sound2 btn hidden-xs" title="Mute/Unmute sound">
-                                                <i class="wa-sound"></i>
-                                                <i class="fa fa-volume-off"></i>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -2981,7 +2981,6 @@ h6{
 
 .add-to-wishlist-container{
 	/*margin: 61px 0 0;*/
-	padding-left: 20px;
 	margin-top: 13px;
 	margin-bottom: 25px;
 }
@@ -6694,11 +6693,12 @@ h6{
 .classroom-view .slide-menu{
 	width: 300px;
 	height: 100%;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: -400px;
 	z-index: 8;
 	background: #fff;
+	overflow-x: scroll;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
