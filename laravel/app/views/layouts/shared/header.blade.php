@@ -35,15 +35,15 @@
                                     @foreach( $categories as $category)
 
                                             @if($category->courseSubcategories)
-                                                <li  class="dropdown-list"><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}} <i class="wa-chevron-right"></i></a> 
+                                                <li  class="dropdown-list"><a href="{{Config::get('app.url') .'/courses/category/' . $category->slug}}">{{$category->name}} <i class="wa-chevron-right"></i></a>
                                                     <ul>
                                                         @foreach($category->courseSubcategories as $subCategory)
-                                                            <li><a href="{{url('courses/category/' . $category->slug . '/' . $subCategory->slug)}}">{{$subCategory->name}}</a></li>
+                                                            <li><a href="{{Config::get('app.url')  . '/courses/category/' . $category->slug . '/' . $subCategory->slug}}">{{$subCategory->name}}</a></li>
                                                         @endforeach
                                                     </ul>
                                                 </li>
                                             @else
-                                            <li><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a></li>
+                                            <li><a href="{{Config::get('app.url')  . '/courses/category/' . $category->slug}}">{{$category->name}}</a></li>
                                             @endif
 
                                     @endforeach
@@ -266,15 +266,15 @@
                                     @foreach( $categories as $category)
 
                                             @if($category->courseSubcategories)
-                                                <li  class="dropdown-list"><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}<i class="wa-chevron-right"></i></a> 
+                                                <li  class="dropdown-list"><a href="{{Config::get('app.url') . '/courses/category/' . $category->slug}}">{{$category->name}}<i class="wa-chevron-right"></i></a>
                                                     <ul>
                                                         @foreach($category->courseSubcategories as $subCategory)
-                                                            <li><a href="{{url('courses/category/' . $category->slug . '/' . $subCategory->slug)}}">{{$subCategory->name}}</a></li>
+                                                            <li><a href="{{Config::get('app.url')  . '/courses/category/' . $category->slug . '/' . $subCategory->slug }}">{{$subCategory->name}}</a></li>
                                                         @endforeach
                                                     </ul>
                                                 </li>
                                             @else
-                                            <li><a href="{{url('courses/category/' . $category->slug)}}">{{$category->name}}</a></li>
+                                            <li><a href="{{Config::get('app.url')  . '/courses/category/' . $category->slug}}">{{$category->name}}</a></li>
                                             @endif
 
                                     @endforeach
