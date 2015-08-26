@@ -113,6 +113,18 @@
 			.slide-to-left.in .video-row{
 				margin-top: 25%;
 			}
+			.classroom-content-row{
+				margin-top: 52px;
+			}
+			.classroom-content-row h3{
+				margin: 0 0 30px;
+				color: #fff;
+			}
+			.classroom-content-row p{
+				color: #798794;
+				line-height: 18px;
+				margin: 0 0 25px;
+			}
         </style>
         
             <div class="right-slide-menu"></div>
@@ -256,6 +268,22 @@
                             </div>-->
                             <span class="play-intro-button"><i class="wa-play"></i><em>{{ trans("courses/general.play-intro") }}</em></span>
                         </div>
+                    </div>
+                </div>
+                <div class="row classroom-content-row">
+                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    	<h3>Lesson content</h3>
+                        <p class="regular-paragraph">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                        </p>
+                    	<h3>Lesson content</h3>
+                        <p class="regular-paragraph">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                        </p>
                     </div>
                 </div>
             </div>
