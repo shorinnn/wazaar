@@ -102,6 +102,9 @@ return array(
 	|
 	*/
 
-	'attributes' => array(),
+	'attributes' => array(
+            'short_description' => 'サブタイトル',
+            'description' => 'コースの概要',
+        ),
 
 );
