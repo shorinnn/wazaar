@@ -81,7 +81,7 @@ var videoUploader = {
                 //console.log($data.files[0].name);
                 if ($data.files[0].name !== undefined){
                     var $elem = $(this)[0];
-                    $.post('/video/add-by-filename',{videoFilename: $data.uniqueKey + '-' + $data.files[0].name}, function ($response){
+                    $.post('/video/add-by-filename',{videoFilename: $data.files[0].name, uniqueKey: $data.uniqueKey}, function ($response){
                         videoUploader.successCallBack($response, $data);
                     },'json')
                 }
