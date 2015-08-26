@@ -382,6 +382,14 @@
                 $localLessonId = target.attr('data-lesson');
                 $('#lesson-'+$localLessonId).find('.lesson-no-video').removeClass('lesson-no-video');
         }
+        
+        function removePromoVideo(e){
+            e.preventDefault();
+            course = $('.course-id').val();
+            $.post(COCORIUM_APP_PATH+'courses/'+course+'/remove-promo', function(){
+                $('.course-description-video-preview').find('img').remove();
+            });
+        }
 
 
     </script>

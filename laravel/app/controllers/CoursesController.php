@@ -4,7 +4,7 @@ class CoursesController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'dashboard',
-                'customPercentage', 'updateExternalVideo'] ] );
+                'customPercentage', 'updateExternalVideo', 'removePromo'] ] );
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
 
             
@@ -923,7 +923,24 @@ class CoursesController extends \BaseController {
                 $response['embed_code'] = externalVideoPreview( Input::get('value') );
             }
             else{
-                $response = ['status' => 'error', 'errors' => format_errors( $lesson->errors()->all() ) ];
+                $response = ['status' => 'error', 'errors' => format_errors( $course->errors()->all() ) ];
+            }
+            return json_encode($response);
+        }
+        
+        public function removePromo($id){
+            $course = Course::find($id);
+            
+            if(!admin() && $course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
+                return Redirect::action('CoursesController@index');
+            }
+            
+            $course->description_video_id = null;
+            if( $course->updateUniques() ){
+                $response = ['status' => 'success'];
+            }
+            else{
+                $response = ['status' => 'error', 'errors' => format_errors( $course->errors()->all() ) ];
             }
             return json_encode($response);
         }
