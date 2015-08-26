@@ -297,8 +297,10 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="overflow:hidden;">
                 @if( count($lesson->attachments()) > 0)
+                
                     <div class="course-material">
                             <div class="course-material-header expandable-button show-more" data-more-text="Show course materials" data-less-text="Hide course materials">
                             Show course materials <i class="wa-chevron-down"></i>
@@ -327,6 +329,7 @@
                         </div>
                     </div>
                 @endif
+                
                 <div class="questions-sidebar">
                     <div class="header clearfix">
                         <a href="#" class="questions-tab-header active">{{ $lesson->discussions()->count() }} Questions</a>
@@ -392,12 +395,14 @@
                     </div>
                     <div class="topics">
                         <ul>
+                            <?php $thisLesson = $lesson; ?>
                             @foreach($module->lessons as $lesson)
                                 @if( $student->purchased($course) || $student->purchased( $lesson ) )
                                     <li class="@if( $student->isLessonCompleted($lesson) ) 
                                             completed 
-                                        @elseif( $student->isLessonViewed($lesson) )
+                                        @elseif( $lesson->id == $thisLesson->id ) )
                                             active
+                                        @else
                                         @endif">
                                         <a href="{{ action('ClassroomController@lesson', 
                                             [ $lesson->module->course->slug,
