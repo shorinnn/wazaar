@@ -257,6 +257,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     // Blocks
     Route::get('/blocks/{id}/size', 'BlocksController@size');
     Route::group(['prefix' => 'lessons'], function (){
+        Route::post('video/delete','BlocksController@deleteLessonVideo');
         Route::group(['prefix' => 'blocks'], function (){
             Route::get('/{lesson_id}/text', 'BlocksController@text');
             Route::post('/{lesson_id}/{block_id}/text', 'BlocksController@saveText');

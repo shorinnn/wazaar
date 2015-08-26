@@ -383,5 +383,6 @@
                 $('#lesson-'+$localLessonId).find('.lesson-no-video').removeClass('lesson-no-video');
         }
 
+
     </script>
 @stop

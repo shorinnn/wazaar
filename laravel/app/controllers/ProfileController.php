@@ -68,6 +68,7 @@ class ProfileController extends Controller
         $profile->email = Input::get('email');
         $profile->bio = Input::get('bio');
         $profile->updateUniques();
+        return Response::json(['success' => 1]);
     }
 
     public function uploadProfilePicture()
