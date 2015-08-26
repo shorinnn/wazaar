@@ -70,7 +70,7 @@
                                 <div class="file-details relative">
                                     <div class="course-description-video-preview">
                                         @if (isset($course->descriptionVideo->formats[0]))
-                                            <img data-video-url='{{ $course->descriptionVideo->formats[0]->video_url }}' onclick="showVideoPreview(this)" src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
+                                            <img data-filename="{{$course->descriptionVideo->original_filename}}" data-video-url='{{ $course->descriptionVideo->formats[0]->video_url }}' onclick="showVideoPreview(this)" src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
                                         @endif
 
                                     </div>
