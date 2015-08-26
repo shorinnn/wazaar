@@ -13864,6 +13864,9 @@ footer{
 	.new-dashboard .profile-picture-holder{
 		display: none;
 	}
+	.classroom-view .classroom-header{
+		width: 100%;
+	}
 }
 
 @media (max-width:900px){
