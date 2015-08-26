@@ -100,6 +100,7 @@
                     <p class="regular-paragraph">{{ trans('courses/general.video_size') }}</p>
                 </div>
             </div>
+            <br />
         </div>
     </div>
 {{ Form::model($course, ['action' => ['CoursesController@update', $course->slug], 'data-parsley-validate' => '1',
