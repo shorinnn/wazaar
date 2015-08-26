@@ -30,7 +30,6 @@ class Course extends Ardent{
         'course_banner_image_id' => 'numeric',
         'sale' => 'numeric',
         'short_description' => 'max:41',
-        'description' => 'max:300',
     ];
     
     public static $relationsData = array(
