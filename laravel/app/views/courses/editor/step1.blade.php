@@ -70,7 +70,7 @@
                                 <div class="file-details relative">
                                     <div class="course-description-video-preview">
                                         @if (isset($course->descriptionVideo->formats[0]))
-                                            <img data-video-url='{{ $course->descriptionVideo->formats[0]->video_url }}' onclick="showVideoPreview(this)" src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
+                                            <img data-filename="{{$course->descriptionVideo->original_filename}}" data-video-url='{{ $course->descriptionVideo->formats[0]->video_url }}' onclick="showVideoPreview(this)" src="{{ $course->descriptionVideo->formats[0]->thumbnail }}" />
                                         @endif
 
                                     </div>
@@ -461,7 +461,7 @@
                     var $elem = $(this)[0];
                     var $courseId = $('.course-id').val();
 
-                    $.post('/video/add-by-filename',{videoFilename: $data.uniqueKey + '-' + $data.files[0].name}, function ($response){
+                    $.post('/video/add-by-filename',{videoFilename: $data.files[0].name, uniqueKey: $data.uniqueKey}, function ($response){
                         $.post('/courses/'+ $courseId +'/video/set-description',{videoId: $response.videoId});
                         $courseVideoInterval = setInterval (function() {
                             $.ajax({

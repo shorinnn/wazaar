@@ -313,7 +313,7 @@
                             </span>
                             </p>
 
-                        @endif-->
+                        @endif  -->
                         @if($course->publish_status=='pending')
                                 <p class="regular-paragraph no-margin">
                                    <span>{{trans('courses/general.wazaar-is-checking-your-product')}} </span>
@@ -337,7 +337,7 @@
         <section class="container main course-editor">
             <div class="row course-ajax-holder">
                 <form id="form-aws-credentials" action="">
-                    <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
+                    <input type="hidden" name="key" value="{{$uniqueKey}}">
                     <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
                     <input type="hidden" name="acl" value="private">
                     <input type="hidden" name="success_action_status" value="201">
@@ -364,7 +364,7 @@
             if( isset( $(elem).attr('data-yt') ) ) video = '<center><iframe width="530" height="315" src="'+url+'" frameborder="0" allowfullscreen></iframe></center>';
             if( isset( $(elem).attr('data-v') ) ) video = '<center><iframe src="'+url+'?color=ffffff&title=0&portrait=0&badge=0" width="530" height="315" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></center>';
             bootbox.dialog({ 
-                title: _('Video Preview'),
+                title: _('Video Preview') + ' (' + $(elem).attr('data-filename') + ')',
                 message: video
             });
             skinVideoControls();

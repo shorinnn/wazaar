@@ -44,14 +44,16 @@ class VideosController extends BaseController
     {
         if (Input::has('videoFilename')){
             $filename = Input::get('videoFilename');
+            $uniqueKey = Input::get('uniqueKey');
             $video = Video::create([
                 'original_filename' => $filename,
+                'input_key' => $uniqueKey,
                 'created_by_id' => Auth::id()
             ]);
 
             if ($video) {
                 $videoId = $video->id;
-                $this->videoHelper->createTranscodingJobFromKey($videoId,$filename);
+                $this->videoHelper->createTranscodingJobFromKey($videoId,$uniqueKey);
                 return Response::json(compact('videoId'));
             }
         }

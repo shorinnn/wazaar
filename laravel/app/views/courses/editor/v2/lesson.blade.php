@@ -3,7 +3,7 @@
 
   $block = Block::firstOrCreate(['lesson_id' => $lesson->id, 'type' => Block::TYPE_VIDEO]);
   $video = LessonHelper::getVideoByBlock($block);
-  $uniqueKey = Str::random(8);
+  $uniqueKey = Str::random(16);
 ?>
 <div class="shr-lesson shr-lesson-{{$lesson->id}} shr-lesson-editor-{{$lesson->id}}
      @if($lesson->name != '')
@@ -28,7 +28,7 @@
                     @if ($video)
 
                         @if (@$video->transcode_status == Video::STATUS_COMPLETE)
-                            <img class="video-preview" data-video-url="{{$video->formats[0]->video_url}}" onclick="showVideoPreview(this)" src="{{$video->formats[0]->thumbnail}}" />
+                            <img class="video-preview" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="showVideoPreview(this)" src="{{$video->formats[0]->thumbnail}}" />
                         @else
                             <img src="" alt="" class="hidden video-preview"/>
                         @endif
@@ -299,7 +299,7 @@
             'fileInputElem' : $('#fileupload-lesson-{{$lesson->id}}'),
             'url': '{{UploadHelper::AWSVideosInputURL()}}',
             'formData' : {
-                key:'{{$uniqueKey}}-${filename}',
+                key:'{{$uniqueKey}}',
                 AWSAccessKeyId:$('#form-aws-credentials').find('input[name=AWSAccessKeyId]').val(),
                 acl:$('#form-aws-credentials').find('input[name=acl]').val(),
                 success_action_status:$('#form-aws-credentials').find('input[name=success_action_status]').val(),

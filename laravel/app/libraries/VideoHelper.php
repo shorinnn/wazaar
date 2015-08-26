@@ -82,7 +82,7 @@ class VideoHelper
                         $jobId = $transcodeJob['Job']['Id'];
 
                         $video                   = Video::find($videoId);
-                        $video->input_key        = $inputKey;
+                        //$video->input_key        = $inputKey;
                         $video->transcode_job_id = $jobId;
                         $video->transcode_status = $transcodeJob['Job']['Status'];
                         $video->save(); //update video record
