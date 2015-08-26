@@ -125,6 +125,16 @@
 				line-height: 18px;
 				margin: 0 0 25px;
 			}
+			.classroom-view .classroom-header {
+			  position: fixed;
+			  z-index: 1;
+			  width: 76%;
+			  padding-bottom: 10px;
+			  background-color: #18222b;
+			}			
+			.video-row {
+			  margin-top: 106px;
+			}
         </style>
         
             <div class="right-slide-menu"></div>
