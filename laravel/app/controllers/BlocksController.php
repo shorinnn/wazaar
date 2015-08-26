@@ -147,5 +147,17 @@ class BlocksController extends \BaseController {
         return json_encode( ['val'=> $file->size(), 'id' => $id] );
     }
 
+    public function deleteLessonVideo()
+    {
+        $lessonId = Input::get('lessonId');
+        $block = Block::where('lesson_id',$lessonId)->first();
+
+        if ($block){
+            $block->delete();
+        }
+    }
+
+
+
 
 }

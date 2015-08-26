@@ -280,68 +280,7 @@
                                     @endforeach
                                     
                                     <?php }); ?>
-                                <!--<li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li class="dropdown-list">
-                                    Business & Marketing <i class="wa-chevron-right"></i>
-                                    <ul>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>                                
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li> -->
+
                             </ul>
                         </div>
                     </div>
@@ -355,11 +294,9 @@
             </div>
             <ul class="logged-out hidden-xs">
                 <li>
-                    <!--<a href="{{ action('UsersController@login') }}" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> -->
-                    <a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> 
+                    <a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a>
                 </li>
                 <li class="register-button">
-                    <!--<a href="{{ action('UsersController@create') }}" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
                     <a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>
                 </li>
             </ul>

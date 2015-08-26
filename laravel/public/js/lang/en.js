@@ -26,5 +26,6 @@ var js_translation_map_en = {
     'Show' : 'Show',
     'Hide' : 'Hide',
     'Password must be at least 6 characters long' : 'Password must be at least 6 characters long',
-    'min-price-500' : 'Minimum value: 500'
+    'min-price-500' : 'Minimum value: 500',
+    'Are you sure?' : 'Are you sure?'
 };
