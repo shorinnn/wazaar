@@ -140,6 +140,7 @@
 				white-space: pre-wrap;
 				width: 100%;
 				min-height: 42px;
+				max-height: 490px;
 				font-size: 13px;
 				color: #798794;
 				padding: 5px;

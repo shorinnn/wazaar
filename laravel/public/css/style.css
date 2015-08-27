@@ -6666,10 +6666,11 @@ h6{
 .ask-question-fields textarea{
 	border: solid #e0e1e2;
 	border-width: 0 0 1px;
-	padding: 0 2px;
+	padding: 0 5px;
 	font-size: 13px;
 	color: #798794;
 	min-height: 42px;
+	max-height: 490px;
 	resize: none;
 	margin: 0 0 20px;
 }

@@ -90,8 +90,7 @@ function resizeVideo(){
   
 		  $(this).css('height', hiddenDiv.height());
   
-	  });​
-  });
+	  });});
  
 
 </script>
