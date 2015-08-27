@@ -6,6 +6,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="header clearfix">
+                        @if( Auth::user()->sawLetter != 1 )
+                            {{ View::make('affiliate.welcome-letter') }}
+                        @endif
                         <div class="row">
                             <div class="col-lg-3"> 
                                 {{ trans('general.affiliate-ref-link') }} </div>
