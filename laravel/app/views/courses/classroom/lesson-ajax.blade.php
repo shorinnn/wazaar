@@ -25,7 +25,7 @@
             .classroom-view .right-slide-menu{
                     width: 500px;
                     height: 100%;
-                    position: absolute;
+                    position: fixed;
                     top: 0;
                     right: -600px;
                     z-index: 8;
@@ -41,7 +41,7 @@
 			}
 			
             .classroom-view .right-slide-menu.in{
-                    right: 0;
+                    right: 16px;
             }
             
             .classroom-view::-webkit-scrollbar {
@@ -127,13 +127,23 @@
 			}
 			.classroom-view .classroom-header {
 			  position: fixed;
-			  z-index: 1;
+			  z-index: 6;
 			  width: 76%;
 			  padding-bottom: 10px;
 			  background-color: #18222b;
 			}			
 			.video-row {
 			  margin-top: 106px;
+			}
+			.hiddendiv {
+				display: none;
+				white-space: pre-wrap;
+				width: 100%;
+				min-height: 42px;
+				font-size: 13px;
+				color: #798794;
+				padding: 5px;
+				word-wrap: break-word;
 			}
         </style>
         
@@ -446,7 +456,7 @@
 
 
     }
-    
+
     function setVideoFormat(){
         ct = $('#myVideo')[0].currentTime;
         console.log( 'set format!');

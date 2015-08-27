@@ -6669,7 +6669,7 @@ h6{
 	padding: 0 2px;
 	font-size: 13px;
 	color: #798794;
-	height: 42px;
+	min-height: 42px;
 	resize: none;
 	margin: 0 0 20px;
 }
@@ -6678,7 +6678,9 @@ h6{
 	background: #fff;
 	border-top: solid 1px #e0e1e2;
 	padding: 12px 30px;
-	margin-top: 71%;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
 .ask-question-fields-footer .buttons{
