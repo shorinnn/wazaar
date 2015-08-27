@@ -31,5 +31,25 @@
             lessonComplete( lessonId );
         });
     });
+	
+$(document).ready(function(){
+	resizeVideo()
+});
+
+$(window).resize(function() {
+	resizeVideo()	
+});
+	
+function resizeVideo(){
+	var screenHeight = $(window).height();
+	var screenWidth = $(window).width();
+	
+	var classroomHeaderHeight = $(".classroom-header").height(); 
+
+	var videoControlHeight = $(".control-container").height();
+
+	$("#myVideo").innerHeight(screenHeight - videoControlHeight - 102);
+ }
+
 </script>
 @stop
