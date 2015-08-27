@@ -41,12 +41,16 @@ $(window).resize(function() {
 });
 	
 function resizeVideo(){
+        $("#myVideo").removeAttr('style');
 	var screenHeight = $(window).height();
 	var screenWidth = $(window).width();
+	var videoControlHeight = $(".control-container").height();
+        
+        screenHeight2 = screenHeight - videoControlHeight - 102;
+        if( screenWidth/screenHeight2 <= 1.778 ) return;
 	
 	var classroomHeaderHeight = $(".classroom-header").height(); 
 
-	var videoControlHeight = $(".control-container").height();
 
 	$("#myVideo").innerHeight(screenHeight - videoControlHeight - 102);
  }
