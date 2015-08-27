@@ -88,16 +88,21 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-details-player">
-                <div class="pre-view-image video-player">
+<!--                <div class="pre-view-image video-player">
                     @if($course->previewImage !=null)
                         <img src="{{ cloudfrontUrl( $course->previewImage->format('desc') ) }}" />
                     @endif
-                </div>
+                </div>-->
  
                 
                 @if( $video==null )
                     @if($course->external_video_url != '')
-                        <div class="videoContainer">
+                        <div class="pre-view-image video-player" onclick="playVideo(this)" style="cursor:pointer">
+                            <span class="play-intro-button" style="top: 162.5px; display: inline;"><i class="wa-play"></i><em>Play intro</em></span>
+                            
+                            <img src="{{ cloudfrontUrl( $course->previewImage->format('desc') ) }}" />
+                        </div>
+                        <div class="videoContainer" id="videoContainer" style="display:none">
                             {{ externalVideoPreview($course->external_video_url, false, true) }}
                         </div>
                     @endif
@@ -336,10 +341,16 @@
  
 @section('extra_js')
     <script>
+        function playVideo(div){
+            thevid=document.getElementById('videoContainer');
+            thevid.style.display='block'; 
+            div.style.display='none';
+            $("iframe").attr("src", $("iframe").attr("src").replace("autoplay=0", "autoplay=1"));
+        }
         $(function(){
             if( $('#myVideo').length > 0 || $('.videoContainer').length > 0  ){
                 console.log('READY!');
-                $('.pre-view-image').hide();
+//                $('.pre-view-image').first().hide();
                 $('.video-container-toggler').show();
                 skinVideoControls();
             }

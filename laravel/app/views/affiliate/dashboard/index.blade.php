@@ -209,6 +209,36 @@
 
                 {{-- // LTC Earnings --}}
 
+
+                {{-- 2 Tier Signups --}}
+                <div class="col-md-4 col-sm-6 sol-xs-12">
+                    <div class="with-progress-bar">
+                        <div class="dropdown-wrapper">
+                            <button class="btn btn-default">
+                                {{trans('analytics.2TierSignups')}} <span id="header-second-tier-registrations-frequency">{{trans('analytics.today')}}</span> </button>
+                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu tracking-code-conversions-dropdown">
+                                <li>
+                                    <a class="active with-today" href="#" onclick="Analytics.twoTierRegistrations('daily',this); return false;">{{trans('analytics.today')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-weekly" href="#" onclick="Analytics.twoTierRegistrations('week', this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-monthly" href="#" onclick="Analytics.twoTierRegistrations('month', this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-alltime" href="#" onclick="Analytics.twoTierRegistrations('alltime', this); return false;">{{trans('analytics.allTime')}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul id="wrapper-second-tier-registrations">
+                            {{$secondTierRegistrationsView}}
+                        </ul>
+                    </div>
+                </div>
+
+                {{-- // 2 Tier Signups --}}
+
             </div>
             <div id="ajax-loader-wrapper" class="hidden">
                 <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>

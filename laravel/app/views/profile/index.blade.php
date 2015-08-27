@@ -63,7 +63,7 @@
                     {{Form::hidden('type', $type)}}
                     <div class="pull-right">{{Form::submit('Update',['class' => 'btn btn-success'])}}</div>
                     <div class="clearfix"></div>
-                </form>
+                {{Form::close()}}
             </div>
         </div>
     </div>

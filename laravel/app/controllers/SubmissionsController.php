@@ -51,11 +51,12 @@ class SubmissionsController extends \BaseController {
                     $content = EmailTemplate::where('tag','course-approved')->first()->content;
                     Flatten::flushSection( 'courses-show-details'.$course->id );
                     Flatten::flushSection( 'course-show-detailed-desc'.$course->id );
-                    
+                    $from = array('address' => 'no-reply@wazaar.jp', 'name' => 'Wazaar');
                 }
                 else{
                     $subject = 'Course Rejected';
                     $content = EmailTemplate::where('tag','course-rejected')->first()->content;
+                    $from = array('address' => 'contact@minkare.jp', 'name' => 'Wazaar');
                 }
                 
                 $content = str_replace('@NAME@', $user->commentName("Instructor"), $content);
@@ -65,10 +66,11 @@ class SubmissionsController extends \BaseController {
                 Mail::send(
                         'emails.simple',
                         compact( 'content' ),
-                        function ($message) use ($user, $subject) {
+                        function ($message) use ($user, $subject, $from) {
                             $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
                             $message
                                 ->to($user->email, $user->email)
+                                ->from( $from['address'], $from['name'])
                                 ->subject( $subject );
                         }
                     );

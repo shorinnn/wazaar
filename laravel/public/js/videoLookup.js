@@ -76,3 +76,23 @@ var videoLookup = {
             });
     }
 }
+
+$(function(){
+
+    $(document).on('click','.remove-video', function($e){
+        $e.preventDefault();
+        var $lessonId = $(this).attr('data-lesson-id');
+        var $elem = $(this);
+        if (!isNaN($lessonId)){
+            bootbox.confirm(_("Are you sure?"), function(result) {
+                if (result){
+                    $.post('/lessons/video/delete',{lessonId : $lessonId}, function (){
+                        $('img#video-preview-' + $lessonId).attr('src','');
+                        $elem.addClass('hidden');
+                    });
+
+                }
+            });
+        }
+    });
+});

@@ -50,6 +50,11 @@
                                         </a>
                                     </span>
                                 </span>
+                                <span>
+                                    <span class="use-existing">
+                                        <a href="#" onclick="removePromoVideo(event)">{{ trans('video.remove-video') }}</a>
+                                    </span>
+                                </span>
                             </ul>
                         </div> <!-- //upload-dropdown-wrapper -->
 

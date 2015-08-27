@@ -26,9 +26,8 @@
                 <div class="preview-thumb lesson-wrapper">
 
                     @if ($video)
-
                         @if (@$video->transcode_status == Video::STATUS_COMPLETE)
-                            <img class="video-preview" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="showVideoPreview(this)" src="{{$video->formats[0]->thumbnail}}" />
+                            <img class="video-preview" id="video-preview-{{$lesson->id}}" data-filename="{{$video->original_filename}}" data-video-url="{{$video->formats[0]->video_url}}" onclick="showVideoPreview(this)" src="{{$video->formats[0]->thumbnail}}" />
                         @else
                             <img src="" alt="" class="hidden video-preview"/>
                         @endif
@@ -69,9 +68,9 @@
                   </ul>
                 </div>
 
-                @if( $lesson->blocks()->where('type','video')->count() > 0  ) 
-                    <a href="#" class="remove-video lesson-control">{{ trans('video.remove-video') }}</a>
-                @endif
+
+                    <a href="#" data-lesson-id="{{$lesson->id}}" class="remove-video lesson-control @if(!$video) hidden @endif">{{ trans('video.remove-video') }}</a>
+
             @else
                 
                 <div class='external-video-preview preview-{{$lesson->id}}'>

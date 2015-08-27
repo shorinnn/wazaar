@@ -18,6 +18,7 @@ class AdminHelper
         if($index===false) return '-';
         return $index + 1;
     }
+
     public function topAffiliatesByInstructor($instructorId, $affiliateId = 0, $startDate = '', $endDate = '', $sortOrder = 0)
     {
         $filter = " AND (purchases.instructor_id = '{$instructorId}' OR purchases.second_tier_instructor_id='{$instructorId}')";
@@ -107,9 +108,6 @@ class AdminHelper
             return $topCourses;
         }
     }
-
-
-
 
     /**************************************** PRIVATE METHODS *********************************************************/
 

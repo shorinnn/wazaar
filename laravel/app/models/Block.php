@@ -104,7 +104,7 @@ class Block extends Ardent{
     public function size(){
         if($this->size == ''){ 
             $head = array_change_key_case(get_headers($this->presignedUrl(), TRUE));
-            $filesize = $head['content-length'];
+            $filesize = isset( $head['content-length'] ) ? $head['content-length'] : 0;
             $this->size = formatSizeUnits( $filesize );
             $this->updateUniques();
         }

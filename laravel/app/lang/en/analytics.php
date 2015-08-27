@@ -77,7 +77,9 @@ return
     '4YearsAgo' => '4 Years Ago',
     '5YearsAgo' => '5 Years Ago',
     '6YearsAgo' => '6 Years Ago',
-    '7YearsAgo' => '7 Years Ago'
+    '7YearsAgo' => '7 Years Ago',
+
+    '2TierSignups' => '2 Tier Signups'
 
 
 ];

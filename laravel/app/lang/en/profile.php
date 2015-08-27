@@ -49,14 +49,14 @@ return
                 'twitter'          => 'Twitter',
                 'linkedin'         => 'LinkedIn',
                 'youtube'          => 'Youtube',
-                'bank-code'        => 'Bank Code',
-                'bank-name'        => 'Bank Name',
-                'branch-code'      => 'Branch Code',
-                'branch-name'      => 'Branch name',
-                'account-type'     => 'Account Type',
-                'account-number'   => 'Account Number',
-                'beneficiary-name' => 'Beneficiary Name',
-                'account-types'    =>
+                'bankCode'        => 'Bank Code',
+                'bankName'        => 'Bank Name',
+                'branchCode'      => 'Branch Code',
+                'branchName'      => 'Branch name',
+                'accountType'     => 'Account Type',
+                'accountNumber'   => 'Account Number',
+                'beneficiaryName' => 'Beneficiary Name',
+                'accountTypes'    =>
                     [
                         'ordinary' => 'Ordinary Savings Account',
                         'checking' => 'Checking Account',
@@ -69,6 +69,7 @@ return
         'profile'              => 'Profile',
         'affiliate'            => 'Affiliate',
         'instructor'           => 'Instructor',
-        'student'              => 'Student'
+        'student'              => 'Student',
+        'changePassword' => 'Change Password'
 
     ];
