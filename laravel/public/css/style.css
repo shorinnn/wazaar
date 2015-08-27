@@ -6448,7 +6448,9 @@ h6{
 	padding: 12px 30px;
 	margin-top: 180px;
 }
-
+.questions-sidebar .ask-question.active{
+	display: none;
+}
 .questions-sidebar .ask-question .img-container{
 	float: left;
 	margin-right: 20px;
@@ -6634,6 +6636,7 @@ h6{
 	font-size: 13px;
 	padding: 0 12px;
 	height: 38px;
+	line-height: 38px;
 	resize: none;
 }
 
@@ -13551,7 +13554,9 @@ footer{
     position: relative;
     top: 65px;
 }
-
+.discussion-opened .question-holder{
+	height: 91%;
+}
 .questions-box .question-title {
     padding-right: 19%;
 }
