@@ -112,9 +112,9 @@ class ClassroomController extends \BaseController {
                 if( $video==null ) $student->viewLesson( $lesson, true );
             }
             
-            $lesson->ask_teacher_messages = $lesson->privateMessages()->where('type','ask_teacher')->where(function($query){
-                $query->where('sender_id', Auth::user()->id)->orWhere('recipient_id', Auth::user()->id);
-            })->orderBy('id','desc')->paginate( 2 );
+//            $lesson->ask_teacher_messages = $lesson->privateMessages()->where('type','ask_teacher')->where(function($query){
+//                $query->where('sender_id', Auth::user()->id)->orWhere('recipient_id', Auth::user()->id);
+//            })->orderBy('id','desc')->paginate( 2 );
             
             $nextLesson = $lesson->next();
             $prevLesson = $lesson->prev();

@@ -1413,12 +1413,19 @@ function toggleSideMenu(){
 }
 
 function toggleRightBar(e, json){
+    $('.ask-question').removeClass('active');
+    $('.questions-box').removeClass('active');
     
+    if( showingQuestionForm ){
+        showingQuestionForm = false;
+        $('.ask-question').addClass('active');
+    }
     if( isset(json) && typeof(e) !='undefined' && typeof( $(e.target).attr('data-property') ) !='undefined' && $('.right-slide-menu').hasClass('in') ){
         var target = $(e.target).attr('data-target');
         prop = $(e.target).attr('data-property');
         val = json[prop];
         $(target).html( val );
+        $(e.target).parent().addClass('active');
         return false;
     }
     if( !isset(json) && isset(e) && typeof( $(e.target).attr('data-property') )!='undefined'  && $('.right-slide-menu').hasClass('in') ) return false;
@@ -1462,8 +1469,10 @@ function searchDiscussions(){
     $('span.question-title:contains("'+s+'")').parent().parent().show();
 }
 
+var showingQuestionForm = false;
 function showLessonQuestionForm(){
     $('.right-slide-menu').html( $('#question-form').html() );
+    showingQuestionForm = true;
     toggleRightBar();
 }
 
