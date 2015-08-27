@@ -23,6 +23,28 @@ class AffiliateDashboardController extends BaseController
         }
     }
 
+    public function secondTierRegistrationsView($frequency = '')
+    {
+        $frequencyOverride = 'day';
+        switch($frequency){
+            case 'alltime' :
+                $frequencyOverride = 'year';
+                $affiliates = $this->analyticsHelper->secondAffiliatesLastFewYears(Auth::id());break;
+            case 'week' :
+                $frequencyOverride = 'week';
+                $affiliates = $this->analyticsHelper->secondAffiliatesLastFewWeeks(Auth::id());break;
+            case 'month' :
+                $frequencyOverride = 'month';
+                $affiliates = $this->analyticsHelper->secondAffiliatesLastFewMonths(Auth::id());break;
+            default:
+                $affiliates = $this->analyticsHelper->secondAffiliatesLastFewDays(Auth::id());break;
+        }
+
+        if (is_array($affiliates)) {
+            return View::make('analytics.partials.ltcRegistrations', compact('affiliates', 'frequencyOverride'))->render();
+        }
+    }
+
     public function ltcRegistrationsView($frequency = '')
     {
         $frequencyOverride = 'day';
@@ -300,8 +322,9 @@ class AffiliateDashboardController extends BaseController
         $courseConversionView = $this->courseConversionView();
         $trackingCodeConversionView = $this->trackingCodeConversionView();
         $ltcRegistrationsView = $this->ltcRegistrationsView();
+        $secondTierRegistrationsView = $this->secondTierRegistrationsView();
         $ltcEarningsView = $this->ltcEarningsView();
-        return View::make('affiliate.dashboard.index', compact('ltcEarningsView', 'topCoursesView', 'salesView', 'trackingCodesSalesView', 'courseConversionView', 'trackingCodeConversionView','ltcRegistrationsView'));
+        return View::make('affiliate.dashboard.index', compact('secondTierRegistrationsView','ltcEarningsView', 'topCoursesView', 'salesView', 'trackingCodesSalesView', 'courseConversionView', 'trackingCodeConversionView','ltcRegistrationsView'));
     }
 
 

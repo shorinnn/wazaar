@@ -343,6 +343,7 @@ Route::group( array('domain' => $affiliateSubdomain ), function(){
         Route::get('trackingcodetable/{frequency}/{courseId}','AffiliateDashboardController@trackingCodesTableView');
         Route::get('trackingcodes/all', 'AffiliateDashboardController@trackingCodesAll');
         Route::get('ltcregistrations/{frequency}','AffiliateDashboardController@ltcRegistrationsView');
+        Route::get('second-tier-registrations/{frequency}','AffiliateDashboardController@secondTierRegistrationsView');
         Route::get('ltcearnings/{frequency}','AffiliateDashboardController@ltcEarningsView');
     });
 });

@@ -96,6 +96,58 @@ class AnalyticsHelper
         return $output;
     }
 
+
+    private function dailySecondAffiliateRegistration($affiliateId, $dateFilter = '')
+    {
+        if (empty($dateFilter)) {
+            $dateFilter = $this->_frequencyEquivalence();
+        }
+
+        $filterQuery = " AND DATE(users.created_at) = '{$dateFilter}'";
+
+        return $this->_secondAffiliates($affiliateId, $filterQuery);
+    }
+
+    private function weeklySecondAffiliateRegistration($affiliateId, $dateFilterStart, $dateFilterEnd)
+    {
+        $filterQuery = " AND DATE(users.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        return $this->_secondAffiliates($affiliateId, $filterQuery);
+    }
+
+    private function monthlySecondAffiliateRegistration($affiliateId, $month, $year)
+    {
+        $filterQuery = " AND MONTH(users.created_at) = '{$month}' AND YEAR(users.created_at) = '{$year}'";
+
+        return $this->_secondAffiliates($affiliateId, $filterQuery);
+    }
+
+    private function allTimeSecondAffiliateRegistration($affiliateId, $year)
+    {
+        $filterQuery = " AND YEAR(users.created_at) = '{$year}'";
+
+        return $this->_secondAffiliates($affiliateId, $filterQuery);
+    }
+
+    private function _secondAffiliates($affiliateId, $filter = '')
+    {
+        $sql    = "SELECT count(id) as affiliates_count FROM users WHERE second_tier_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
+        $result = DB::select($sql);
+
+        $result = array_map(function ($val) {
+            return json_decode(json_encode($val), true);
+        }, $result);
+        $output = [
+            'data'             => $result,
+            'count'            => count($result),
+            'affiliates_count' => array_sum(array_column($result, 'affiliates_count')),
+        ];
+
+        return $output;
+    }
+
+
+
     private function _affiliateEarnings($affiliateId, $filter = '')
     {
         $sql    = "SELECT sum(ltc_affiliate_earnings) as affiliates_earning FROM purchases WHERE ltc_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
@@ -1451,6 +1503,154 @@ class AnalyticsHelper
                 'label'     => $label,
                 'year_date' => $year,
                 'year'      => $this->allTimeLtcRegistration($affiliateId, $year)
+            ];
+        }
+
+        $affTotal = $this->_getAffiliatesTotal($affiliates, 'year');
+
+        $i = 0;
+
+        foreach ($affiliates as $aff) {
+            // avoid division by zero
+            if ($affTotal == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($aff['year']['affiliates_count'] / $affTotal) * 100;
+            }
+
+            $affiliates[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i ++;
+        }
+
+        return compact('affiliates', 'affTotal');
+    }
+    public function secondAffiliatesLastFewDays($affiliateId = 0, $numOfDays = 7)
+    {
+        $affiliates = [];
+
+        for ($i = 0; $i <= $numOfDays; $i ++) {
+            $day   = trans('analytics.' . date('l', strtotime("-$i day"))) ;//date('l', strtotime("-$i day"));
+            $date  = date('Y-m-d', strtotime("-$i day"));
+            $label = $day;
+            if ($i === 0) {
+                $label = trans('analytics.today');
+            }
+            $affiliates[] = [
+                'label' => $label,
+                'date'  => $date,
+                'day'   => $this->dailySecondAffiliateRegistration($affiliateId, $date)
+            ];
+        }
+
+
+        $affTotal = $this->_getAffiliatesTotal($affiliates, 'day');
+
+        $i = 0;
+
+        foreach ($affiliates as $aff) {
+            // avoid division by zero
+            if ($affTotal == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($aff['day']['affiliates_count'] / $affTotal) * 100;
+            }
+
+            $affiliates[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i ++;
+        }
+
+        return compact('affiliates', 'affTotal');
+    }
+
+    public function secondAffiliatesLastFewWeeks($affiliateId, $numOfWeeks = 7)
+    {
+        $affiliates = [];
+
+        for ($i = 0; $i <= $numOfWeeks; $i ++) {
+            $start = date('Y-m-d', strtotime('-' . ($i + 1) . ' week'));
+            $end   = date('Y-m-d', strtotime("-$i week"));
+            $label = trans('analytics.' .  $i . (($i > 1) ? 'Weeks' : 'Week') . 'Ago'); // $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
+            if ($i === 0) {
+                $label = trans('analytics.thisWeek');
+            }
+            $affiliates[] = [
+                'label' => $label,
+                'start' => $start,
+                'end'   => $end,
+                'week'  => $this->weeklySecondAffiliateRegistration($affiliateId, $start, $end)
+            ];
+        }
+
+        $affTotal = $this->_getAffiliatesTotal($affiliates, 'week');
+
+        $i = 0;
+
+        foreach ($affiliates as $aff) {
+            // avoid division by zero
+            if ($affTotal == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($aff['week']['affiliates_count'] / $affTotal) * 100;
+            }
+
+            $affiliates[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i ++;
+        }
+
+        return compact('affiliates', 'affTotal');
+    }
+
+    public function secondAffiliatesLastFewMonths($affiliateId, $numOfMonths = 7)
+    {
+        $affiliates = [];
+
+        for ($i = 0; $i <= $numOfMonths; $i ++) {
+            $month = date('m', strtotime("-$i month"));
+            $year  = date('Y', strtotime("-$i month"));
+            $label = trans('analytics.'. $i . (($i > 1) ? 'Months' : 'Month') . 'Ago');
+            if ($i === 0) {
+                $label = trans('analytics.thisMonth');
+            }
+            $affiliates[] = [
+                'label'      => $label,
+                'month_date' => $month,
+                'year'       => $year,
+                'month'      => $this->monthlySecondAffiliateRegistration($affiliateId, $month, $year)
+            ];
+        }
+        $affTotal = $this->_getAffiliatesTotal($affiliates, 'month');
+
+        $i = 0;
+
+        foreach ($affiliates as $aff) {
+            // avoid division by zero
+            if ($affTotal == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($aff['month']['affiliates_count'] / $affTotal) * 100;
+            }
+
+            $affiliates[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+            $i ++;
+        }
+
+        return compact('affiliates', 'affTotal');
+    }
+
+    public function secondAffiliatesLastFewYears($affiliateId, $numOfYears = 7)
+    {
+        $affiliates = [];
+
+        for ($i = 0; $i <= $numOfYears; $i ++) {
+            $year  = date('Y', strtotime("-$i year"));
+            $label = trans('analytics.'. $i . (($i > 1) ? 'Years' : 'Year') . 'Ago');
+            if ($i === 0) {
+                $label = trans('analytics.thisYear');// 'This year';
+            }
+            $affiliates[] = [
+                'label'     => $label,
+                'year_date' => $year,
+                'year'      => $this->allTimeSecondAffiliateRegistration($affiliateId, $year)
             ];
         }
 

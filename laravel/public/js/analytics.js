@@ -159,6 +159,28 @@ var Analytics = {
         });
     },
 
+    'twoTierRegistrations' :  function ($frequency, $elem){
+
+        $.get('/dashboard/second-tier-registrations/' + $frequency , function ($html){
+            $('#wrapper-second-tier-registrations').html($html);
+
+            $('.tracking-code-conversions-dropdown a').removeClass('active');
+            $($elem).addClass('active');
+            if ($frequency == 'daily'){
+                $('#header-second-tier-registrations-frequency').html(_("Today"));
+            }
+            else if($frequency == 'week'){
+                $('#header-second-tier-registrations-frequency').html(_("This Week"));
+            }
+            else if($frequency == 'month'){
+                $('#header-second-tier-registrations-frequency').html(_("This Month"));
+            }
+            else if($frequency == 'alltime'){
+                $('#header-second-tier-registrations-frequency').html(_("All Time"));
+            }
+        });
+    },
+
     'ltcEarnings' :  function ($frequency, $elem){
 
         $.get('/dashboard/ltcearnings/' + $frequency , function ($html){
