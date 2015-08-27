@@ -101,5 +101,6 @@ return array(
     'catalogue' => '商品カテゴリー',
     'search' => '検索',
     'affiliate-ref-link' => 'アフィリエイト 2ティアリンク',
+    'update' => '更新する'
  
 );

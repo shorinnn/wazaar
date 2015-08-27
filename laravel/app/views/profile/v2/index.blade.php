@@ -46,6 +46,14 @@
                                 <div class="clearfix">
                                     <form id="form-profile">
                                         <div class="row no-margin">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                <label>{{trans('profile.form.lastName')}}</label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
+                                                {{Form::text('last_name',$profile->last_name)}}
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin">
 
                                             <div class="alert alert-error hidden" role="alert" id="errors-profile">
                                                 <ul>
@@ -60,14 +68,7 @@
                                                 {{Form::text('first_name',$profile->first_name)}}
                                             </div>
                                         </div>
-                                        <div class="row no-margin">
-                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>{{trans('profile.form.lastName')}}</label>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
-                                                {{Form::text('last_name',$profile->last_name)}}
-                                            </div>
-                                        </div>
+
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                                 <label>{{trans('profile.form.email')}}</label>
@@ -96,7 +97,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane fade in" id="password">
                             <div class="profile-input-rows">
-                                <h4>Change password</h4>
+                                <h4>{{trans('profile.changePassword')}}</h4>
                                 <div class="clearfix">
                                     <form action="{{url('profile/change-password')}}" method="post" id="form-change-password">
 
@@ -108,7 +109,7 @@
 
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Current password</label>
+                                                <label>{{trans('profile.currentPassword')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-5">
                                                 <input type="password" name="old_password"/>
@@ -116,7 +117,7 @@
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>New password</label>
+                                                <label>{{trans('profile.newPassword')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-5">
                                                 <input type="password" name="new_password" placeholder="" />
@@ -124,7 +125,7 @@
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>Repeat password</label>
+                                                <label>{{trans('profile.repeatPassword')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-5">
                                                 <input type="password" name="new_password_confirmation" placeholder="" />
@@ -140,7 +141,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane fade in" id="bank-details">
                             <div class="profile-input-rows">
-                                <h4>Bank Details</h4>
+                                <h4>{{trans('profile.tabBankDetails')}}</h4>
                                 <div class="clearfix">
                                     {{Form::open(['url' => url('profile/update-bank-details'), 'id' => 'form-update-bank'])}}
 
@@ -151,7 +152,7 @@
                                     </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>{{trans('profile.bankName')}}</label>
+                                                <label>{{trans('profile.form.bankName')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
                                                {{Form::text('bank_name',$profile->bank_name)}}
@@ -159,7 +160,7 @@
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>{{trans('profile.bankCode')}}</label>
+                                                <label>{{trans('profile.form.bankCode')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
                                                 {{Form::text('bank_code',$profile->bank_code)}}
@@ -167,7 +168,7 @@
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>{{trans('profile.branchName')}}</label>
+                                                <label>{{trans('profile.form.branchName')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
                                                 {{Form::text('branch_name',$profile->branch_name)}}
@@ -175,7 +176,7 @@
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>{{trans('profile.branchCode')}}</label>
+                                                <label>{{trans('profile.form.branchCode')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
                                                 {{Form::text('branch_code',$profile->branch_code)}}
@@ -183,15 +184,22 @@
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>{{trans('profile.accountType')}}</label>
+                                                <label>{{trans('profile.form.accountType')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
-                                                {{Form::text('account_type',$profile->account_type)}}
+                                                {{Form::select('account_type',
+                                            [
+                                              '1' =>  trans('profile.form.accountTypes.ordinary'),
+                                              '2' =>  trans('profile.form.accountTypes.checking'),
+                                              '4' =>  trans('profile.form.accountTypes.savings'),
+                                              '9' =>  trans('profile.form.accountTypes.others')
+                                            ]
+                                            , @$profile->account_type, ['class' => 'form-control'])}}
                                             </div>
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>{{trans('profile.accountNumber')}}</label>
+                                                <label>{{trans('profile.form.accountNumber')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
                                                 {{Form::text('account_number',$profile->account_number)}}
@@ -199,7 +207,7 @@
                                         </div>
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>{{trans('profile.beneficiary')}}</label>
+                                                <label>{{trans('profile.form.beneficiaryName')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
                                                 {{Form::text('beneficiary_name',$profile->beneficiary_name)}}

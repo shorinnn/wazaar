@@ -4,6 +4,11 @@ return
     [
         'pageTitle'            => 'プロフィール編集',
         'pageTitleNew'         => 'プロフィールを設定します',
+        'tab'                  => 'プロフィール',
+        'tabPassword'          => 'パスワード',
+        'tabBankDetails'       => '銀行の詳細',
+        'tabOtherInfo'         => 'その他',
+        'yourAccount'          => 'アカウントの設定',
         'errorHeading'         => '以下のエラーがあります',
         'headerPhoto'          => '写真',
         'headerPersonal'       => 'Personal　Please provide more context',
@@ -19,7 +24,11 @@ return
         [
             'email' => 'Eメールアドレス',
             'firstName' => '下のお名前',
+            'prefecture' => '県',
+            'company' => '会社',
+            'telephone' => '電話',
             'lastName' => '名字',
+            'bio' => '経歴',
             'address1' => '住所 1',
             'address2' => '住所 2',
             'city'      => '市区町村',
@@ -30,14 +39,14 @@ return
             'twitter'   => 'Twitter',
             'linkedin'  => 'LinkedIn',
             'youtube'   => 'Youtube',
-            'bank-code'   => '銀行コード',
-            'bank-name'   => ' 銀行名',
-            'branch-code'   => '支店コー',
-            'branch-name'   => '支店名',
-            'account-type'   => '普通口座',
-            'account-number'   => '口座番号',
-            'beneficiary-name'   => '受取人名',
-            'account-types' =>
+            'bankCode'   => '銀行コード',
+            'bankName'   => ' 銀行名',
+            'branchCode'   => '支店コー',
+            'branchName'   => '支店名',
+            'accountType'   => '普通口座',
+            'accountNumber'   => '口座番号',
+            'beneficiaryName'   => '受取人名',
+            'accountTypes' =>
             [
                 'ordinary' => '普通口座',
                 'checking' => '当座口座',
@@ -50,6 +59,12 @@ return
         'profile' => 'プロフィール',
         'affiliate' => 'アフィリエイト',
         'instructor' => '講師',
-        'student'   => '生徒'
+        'student'   => '生徒',
+        'update' => '更新する',
+        'changePassword' => 'パスワードを変更する',
+        'currentPassword' => '現在のパスワード',
+        'newPassword' => '新しいパスワード',
+        'repeatPassword' => '新しいパスワード（確認要）',
+        'otherInformation'     => 'その他情報',
 
     ];
