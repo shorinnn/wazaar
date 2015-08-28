@@ -191,7 +191,28 @@
                 </div>
                 <div class="row video-row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="video-player video-container classroom-video" style="background:none; text-align: right">
+                        @if( $video != null)
+                            <video id="myVideo" preload="auto" style="width: 100%">
+                                @if( Agent::isMobile() &&  $video->formats()->where('resolution', 'Low Resolution')
+                                            ->first() != null)
+                                    <source src="{{ $video->formats()->where('resolution', 'Low Resolution')
+                                                    ->first()->video_url }}" type="video/mp4">
+                                @elseif($video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                                                    ->first() != null)
+                                    <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                                                            ->first()->video_url }}" type="video/mp4">
+                                @else
+                                @endif
+                                <p>Your browser does not support the video tag.</p>
+                            </video>
+                        @else
+                            @if($lesson->external_video_url != '')
+                                <div class="videoContainer">
+                                    {{ externalVideoPreview($lesson->external_video_url, true, true) }}
+                                </div>
+                            @endif
+                        @endif
+{{--                        <div class="video-player video-container classroom-video" style="background:none; text-align: right">
                             
                                 @if( $video != null)
                                     <video id="myVideo" preload="auto">
@@ -288,7 +309,7 @@
                                 </div>
                             </div>-->
                             <span class="play-intro-button"><i class="wa-play"></i><em>{{ trans("courses/general.play-intro") }}</em></span>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="row classroom-content-row">

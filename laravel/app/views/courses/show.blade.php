@@ -107,7 +107,7 @@
                         </div>
                     @endif
                 @else
-                    <video style="width: 500px" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
+                    <video style="width: 100%" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
                         <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                                     ->first()->video_url }}" type="video/mp4">
                         <p>Your browser does not support the video tag.</p>
