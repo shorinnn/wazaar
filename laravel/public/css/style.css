@@ -9539,11 +9539,16 @@ a.load-remote > *{
 	padding: 0;
 	background-color: transparent;
 }
-
+.edit-course .header .breadcrumb i{
+	color: #aebcc8;
+	font-size: 11px;
+	margin: 0 7px;
+}
 .edit-course .header .breadcrumb > li + li:before{
 	color: #a7b7c4;
 	position: relative;
 	top: 2px;
+	display: none;
 }
 
 .edit-course .header .breadcrumb a{
@@ -9559,7 +9564,7 @@ a.load-remote > *{
 
 .edit-course .header h1{
 	color: #303941;
-	margin: 30px 0 11px;
+	margin: 5px 0 11px;
 	color: #303941;
 }
 
@@ -9580,6 +9585,7 @@ a.load-remote > *{
 	text-transform: uppercase;
 	color: #fff;
 	font-weight: 600;
+	border-radius: 2px;
 }
 
 .edit-course .header h1 .back-to-course-list{
@@ -9589,8 +9595,7 @@ a.load-remote > *{
 }
 .edit-course .header .steps-remaining{
 	padding: 10px 0 10px 27px;
-	border-left: solid 1px #e8eced;
-	margin: 9px 0 12px;
+	margin: 9px 0 10px;
 }
 
 .edit-course .header .steps-remaining span{

@@ -252,108 +252,103 @@
     }
     </style>
 
-    @if (Session::get('success'))
-        <div class="alert alert-success">{{ Session::get('success') }}</div>
-    @endif
-    @if (Session::get('error'))
-        <div class="alert alert-danger">{{ Session::get('error') }}</div>
-    @endif
-    @include('videos.archiveModal')
-    <div class="edit-course">
-        <input type='hidden' class='step-1-filled' value='{{ $course->short_description !='' ? 1 : 0}}' />
-        <input type='hidden' class='step-2-filled' value='{{ $course->lessonCount() > 0 ? 1 : 0}}' />
-        <input type='hidden' class='step-3-filled' value='{{ $course->course_difficulty_id > 0 ? 1 : 0}}' />
-        <section class="container-fluid header">
-            <div class="row">
-                <div class="col-xs-12 col-sm-9 col-md-8 col-lg-8">
-                    <h1>{{ trans('courses/general.edit') }}: {{ $course->name }}
-                        <a href="{{ action('CoursesController@myCourses') }}" class="blue-button large-button back-to-course-list">
-                            {{ trans('courses/general.back-to-course-list')}}
-                        </a>
-                    </h1>
-                </div>
-                <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
-                    <!--            	<a href="#" class=" submit-for-approval blue-button large-button disabled-button right">
-                    @if($course->publish_status != 'pending')
-                        {{ trans('courses/general.submit-for-approval') }}
-                    @else
-                    {{ trans('courses/general.wazaar-is-checking-your-product') }}
-                    @endif
-                            </a>-->
-                    <a href='#' data-href="{{ action( 'CoursesController@show', $course->slug ) }}?is-preview=1" class="default-button disabled-button large-button right preview-course-btn">
-                        {{ trans('courses/general.preview_course') }}
-                    </a>
 
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                    <a href="#" class="header-tabs regular-paragraph active load-remote-cache" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
-                       data-url="{{ action('CoursesController@edit', $course->slug)}}/1" data-target='.course-ajax-holder .step1' data-steps-remaining='2 steps'
-                       data-loaded='1' data-gif='ajax-loader-3.gif' >{{ trans('courses/general.course_description') }}</a>
-                    <a href="#" class="header-tabs regular-paragraph load-remote-cache link-to-step-2" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
-                       data-url="{{ action('CoursesController@edit', $course->slug)}}/2" data-target='.course-ajax-holder .step2'  data-steps-remaining='1 step'
-                       data-gif='ajax-loader-3.gif' >{{ trans('courses/general.curriculum') }}</a>
-                    <a href="#" class="header-tabs regular-paragraph load-remote-cache link-to-step-3" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
-                       data-url="{{ action('CoursesController@edit', $course->slug)}}/3" data-target='.course-ajax-holder ._step3'  data-steps-remaining='0'
-                       data-gif='ajax-loader-3.gif' >{{ trans('courses/general.settings') }}</a>
-
-                </div>
-
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <div class="right steps-remaining">
-<!--                        @if( $course->videoHours(true, 'i') >= 10 )
-                            <p class="regular-paragraph no-margin">
-                                <span>{{ trans('courses/general.course-ready-for-submission') }} </span>
-                            </p>
-                        @else
-                            <p class="regular-paragraph no-margin">
-                            <span>
-                                {{ trans('courses/general.upload-10-minutes-to-submit') }}
-                            </span>
-                            </p>
-
-                        @endif  -->
-                        @if($course->publish_status=='pending')
-                                <p class="regular-paragraph no-margin">
-                                   <span>{{trans('courses/general.wazaar-is-checking-your-product')}} </span>
-                                </p>
-                        @else
-                            @if( courseStepsRemaining($course)==0 || $course->publish_status!='unsubmitted')
-                                <p class="regular-paragraph no-margin">
-                                   <span>{{ trans('courses/general.course-ready-for-submission') }} </span>
-                                </p>
-                            @else
-                                <p class="regular-paragraph no-margin">
-                                {{ trans('courses/general.complete-x-steps-to-submit', ['steps' => courseStepsRemaining($course) ] )}}
-                                <br />
-                                </p>
-                            @endif
-                        @endif
+@if (Session::get('success'))
+<div class="alert alert-success">{{ Session::get('success') }}</div>
+@endif
+@if (Session::get('error'))
+<div class="alert alert-danger">{{ Session::get('error') }}</div>
+@endif
+@include('videos.archiveModal')
+<div class="edit-course">
+    <input type='hidden' class='step-1-filled' value='{{ $course->short_description !='' ? 1 : 0}}' />
+    <input type='hidden' class='step-2-filled' value='{{ $course->lessonCount() >= 0 ? 1 : 0}}' />
+    <input type='hidden' class='step-3-filled' value='{{ $course->course_difficulty_id > 0 ? 1 : 0}}' />
+	<section class="container-fluid header">
+    	<div class="row">
+        	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            	<div class="video-preview-thumb">
+                	<div class="preview-overlay">
+                    	<i class="fa fa-eye"></i>
+                        <span>PREVIEW</span>
                     </div>
                 </div>
+                <div class="left">
+                <ul class="breadcrumb">
+                    <li><a href="{{ action('CoursesController@myCourses') }}">Dashboard</a><i class="wa-chevron-right"></i></li>
+                    <li class="active"><a href="#">Course Edit</a></li>
+                </ul>                    
+                <h1>{{ $course->name }}<span>DRAFT</span>
+                        <!--<a href="{{ action('CoursesController@myCourses') }}" class="blue-button large-button back-to-course-list">
+                            {{ trans('courses/general.back-to-course-list')}}
+                        </a>-->
+                    </h1>
+                </div>
             </div>
-        </section>
-        <section class="container main course-editor">
-            <div class="row course-ajax-holder">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            	<a href="#" class=" submit-for-approval blue-button large-button right">{{ trans('courses/general.submit') }}</a>
+                <!--<a href='#' data-href="{{ action( 'CoursesController@show', $course->slug ) }}" class="default-button disabled-button large-button right preview-course-btn">
+                	{{ trans('courses/general.preview_course') }}
+            	</a>-->
+
+            </div>
+        </div>
+        <div class="row header-tabs-container">
+        	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            	<a href="#" class="header-tabs active load-remote-cache" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
+                   data-url="{{ action('CoursesController@edit', $course->slug)}}/1" data-target='.course-ajax-holder .step1' data-steps-remaining='2 steps'
+                   data-loaded='1' data-gif='ajax-loader-3.gif' ><em>1</em>{{ trans('courses/general.description') }}</a>
+            	<a href="#" class="header-tabs load-remote-cache link-to-step-2" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
+                   data-url="{{ action('CoursesController@edit', $course->slug)}}/2" data-target='.course-ajax-holder .step2'  data-steps-remaining='1 step'
+                   data-gif='ajax-loader-3.gif' ><em>2</em>{{ trans('courses/general.curriculum') }}</a>
+            	<a href="#" class="header-tabs load-remote-cache link-to-step-3" data-callback='courseChangedTabs' data-cached-callback='courseChangedTabs'
+                   data-url="{{ action('CoursesController@edit', $course->slug)}}/3" data-target='.course-ajax-holder ._step3'  data-steps-remaining='0'
+                   data-gif='ajax-loader-3.gif' ><em>3</em>{{ trans('courses/general.settings') }}</a>
+
+                <div class="right steps-remaining">
+                    @if( courseStepsRemaining($course)==0 || $course->publish_status!='unsubmitted')
+                        <p class="regular-paragraph no-margin">
+                           <span>{{ trans('courses/general.course-ready-for-submission') }} </span>
+                        </p>
+                    @else
+                        <p class="regular-paragraph no-margin">
+                        {{ trans('courses/general.complete-x-steps-to-submit', ['steps' => courseStepsRemaining($course) ] )}}
+                        <br />
+                         {{ trans('courses/general.complete') }} 
+                        <span>
+                            <span>{{ courseStepsRemaining($course) }}</span>
+                            {{ trans('courses/general.steps') }}</span> {{ trans('courses/general.to_submit_course') }}
+                        </p>
+                    @endif
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid main course-editor">
+    	<div class="row course-ajax-holder">
                 <form id="form-aws-credentials" action="">
-                    <input type="hidden" name="key" value="{{$uniqueKey}}">
+                    <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
                     <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
                     <input type="hidden" name="acl" value="private">
                     <input type="hidden" name="success_action_status" value="201">
                     <input type="hidden" name="policy" value="{{$awsPolicySig['base64Policy']}}">
                     <input type="hidden" name="signature" value="{{$awsPolicySig['signature']}}">
                 </form>
-                <div class='step1' data-loaded='1'>
-                    <input class="course-id" type="hidden" value="{{$course->id}}"/>
-                    {{ View::make('courses.editor.step1',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
-                            ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates', 'filePolicy' ) ) }}
-                </div>
-                <div class='step2'></div>
-                <div class='_step3'></div>
+            <div class='container step1' data-loaded='1'>
+                <input class="course-id" type="hidden" value="{{$course->id}}"/>
+                
+                {{ View::make('courses.editor.step1',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
+                        ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates', 'filePolicy' ) )->render() }}
             </div>
-        </section>
-    </div>
+            <div class='step2'></div>
+            <div class='container _step3'></div>
+        </div>
+    </section>
+</div>
+
+
+
     @include('videos.playerModal')
     <script>
         var course_steps_remaining = {{ courseStepsRemaining($course) }};
