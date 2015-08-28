@@ -8654,6 +8654,7 @@ a.load-remote > *{
 	width: 223px;
 	height: 125px;
 	margin-bottom: 5px;
+	background-color: #e8eced;
 	position: relative;
     /*width: 100%;
     min-height: 200px;*/
@@ -9803,12 +9804,6 @@ a.load-remote > *{
 	text-align: center;
 	margin-top: 80px;
 }
-
-.next-step-button button{
-	display: block;
-	width: 100%;
-}
-
 .category-row{
 	position: relative;
 }
