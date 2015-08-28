@@ -107,6 +107,12 @@
                         </div>
                     @endif
                 @else
+                    <video style="width: 100%" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
+                        <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                                                    ->first()->video_url }}" type="video/mp4">
+                        <p>Your browser does not support the video tag.</p>
+                    </video>
+                    {{--
                     <div class="video-player video-container description-page video-container-toggler" style="display:none; background:none; text-align: right">
                         @if( Agent::isMobile() )
                             <video id='myVideo' preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
@@ -114,17 +120,17 @@
                                             ->first()->video_url }}" type="video/mp4">
                             </video>
                         @else
- 
- 
+
+
                             <div class="videoContainer">
-                                <video id="myVideo" preload="auto" poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}" />
+                                <video id="myVideo" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
                                 <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                                     ->first()->video_url }}" type="video/mp4">
                                 <p>Your browser does not support the video tag.</p>
                                 </video>
                                 <div class="control-container clearfix">
                                     <div class="control">
- 
+
                                         <div class="btmControl clearfix">
                                             <div class="btnPlay btn" title="Play/Pause video">
                                                 <i class="wa-play"></i>
@@ -155,7 +161,7 @@
                                                 <i class="fa fa-volume-off"></i>
                                             </div>
                                         </div>
- 
+
                                     </div>
                                 </div>
                                 <div class="loading"></div>
@@ -167,6 +173,7 @@
                             <span class="play-intro-button"><i class="wa-play"></i><em>{{ trans("courses/general.play-intro") }}</em></span>
                         @endif
                     </div>
+                    --}}
                 @endif
                         <?php
                         if( Input::has('is-preview') ) echo View::make('courses.description.top-cache')->withCourse($course);

@@ -191,104 +191,27 @@
                 </div>
                 <div class="row video-row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="video-player video-container classroom-video" style="background:none; text-align: right">
-                            
-                                @if( $video != null)
-                                    <video id="myVideo" preload="auto">
-                                        @if( Agent::isMobile() &&  $video->formats()->where('resolution', 'Low Resolution')
-                                                    ->first() != null)
-                                            <source src="{{ $video->formats()->where('resolution', 'Low Resolution')
+                        @if( $video != null)
+                            <video controls preload="auto" style="width: 100%">
+                                @if( Agent::isMobile() &&  $video->formats()->where('resolution', 'Low Resolution')
+                                            ->first() != null)
+                                    <source src="{{ $video->formats()->where('resolution', 'Low Resolution')
                                                     ->first()->video_url }}" type="video/mp4">
-                                        @elseif($video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
-                                                            ->first() != null)
-                                            <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                                @elseif($video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
+                                                    ->first() != null)
+                                    <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                                             ->first()->video_url }}" type="video/mp4">
-                                        @else
-                                        @endif
-                                        <p>Your browser does not support the video tag.</p>
-                                    </video>
                                 @else
-                                    @if($lesson->external_video_url != '')
-                                        <div class="videoContainer">
-                                            {{ externalVideoPreview($lesson->external_video_url, true, true) }}
-                                        </div>
-                                    @endif
                                 @endif
-                                <div class="control-container clearfix">
-                                    <div class="control">
-
-                                        <div class="btmControl clearfix">
-                                            <div class="btnPlay btn" title="Play/Pause video">
-                                                <i class="wa-play"></i>
-                                                <i class="wa-pause"></i>
-                                            </div>
-                                            <div class="time hidden-xs">
-                                                <span class="current"></span>
-                                            </div>
-                                            <div class="topControl">
-                                                <div class="progress">
-                                                    <span class="bufferBar"></span>
-                                                    <span class="timeBar"></span>
-                                                </div>
-<!--                                                <div class="add-video-note">
-                                                    <span class="note-number">11</span>
-                                                    <form>
-                                                        <input type="text" placeholder=" Add note ...">
-                                                    </form>
-                                                </div>-->
-                                            </div>
-                                            <div class="volume-container">
-                                                <div class="volume" title="Set volume">
-                                                        <span class="volumeBar">
-                                                            <em></em>
-                                                        </span>
-                                                </div>
-                                            </div>
-                                            <div class="time hidden-xs">
-                                                <span class="duration"></span>
-                                            </div>
-                                            
-                                            <div class="btnFS btn" title="Switch to full screen"><i class="wa-expand"></i></div>
-                                            <div class="sound sound2 btn hidden-xs" title="Mute/Unmute sound">
-                                                <i class="wa-sound"></i>
-                                                <i class="fa fa-volume-off"></i>
-                                            </div>
-                                             @if($video != null)
-                                            <div class="btn-group dropup video-quality-wrap">
-                                                <a class="btn dropdown-toggle" data-toggle="dropdown" style="font-size: 12px;" aria-expanded="false">
-                                                    <b style="" class='quality-label'>
-                                                        @if(  Agent::isMobile() )
-                                                            SD
-                                                        @else
-                                                            HD
-                                                        @endif
-                                                    </b>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                      @foreach($video->formats()->get() as $format)
-                                                        <?php
-                                                            if( strpos($format->resolution, 'Mobile') !== false ) $label = 'SD';
-                                                            else $label = 'HD';
-                                                        ?>
-                                                        
-                                                      <li onclick='setQuality(this)' class="dropdown-submenu" data-label='{{$label}}' data-quality='{{ $format->video_url }}'><a><b>{{$label}}</b></a></li>
-                                                    @endforeach
-                                                      <i class="fa fa-caret-down"> </i>
-                                                </ul>
-                                                
-                                            </div>
-                                            @endif
-                                        </div>
-                                    </div>
+                                <p>Your browser does not support the video tag.</p>
+                            </video>
+                        @else
+                            @if($lesson->external_video_url != '')
+                                <div class="videoContainer">
+                                    {{ externalVideoPreview($lesson->external_video_url, true, true) }}
                                 </div>
-                                <div class="loading"></div>
-                            
-                            <!--<div id="lesson-video-overlay">
-                                <div>
-                                </div>
-                            </div>-->
-                            <span class="play-intro-button"><i class="wa-play"></i><em>{{ trans("courses/general.play-intro") }}</em></span>
-                        </div>
+                            @endif
+                        @endif
                     </div>
                 </div>
                 <div class="row classroom-content-row">
