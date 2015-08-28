@@ -9,8 +9,10 @@ function isset(variable){
     return true;
 }
 var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
+
 $(document).ready(function(){
-    console.log( getCookie('hideAffiliateToolbar') );
+    makeBoxesExpandable();
+    
     if( getCookie('hideAffiliateToolbar')=='true' ) toggleAffiliateToolbar(event);
     $('.countdown').each(function(){
         seconds = $(this).attr('data-final-date-seconds')
@@ -72,6 +74,28 @@ $(document).ready(function(){
 	});
 
 });
+
+function makeBoxesExpandable(){
+    var txt = $('.expandable-textarea'),
+    hiddenDiv = $(document.createElement('div')),
+    content = null;
+    
+    txt.addClass('txtstuff');
+    hiddenDiv.addClass('hiddendiv common');
+
+    $('body').append(hiddenDiv);
+    txt.off('keyup');
+//	txt.on('keyup', function () {
+    $('body').delegate('.expandable-textarea', 'keyup', function(){
+            content = $(this).val();
+
+            content = content.replace(/\n/g, '<br>');
+            hiddenDiv.html(content + '<br class="lbr">');
+
+            $(this).css('height', hiddenDiv.height());
+
+    });
+}
 
 function videoGridBoxIn(){
 	TweenMax.to($(this), 0.3, {zIndex: 9, scale: '1.2'});

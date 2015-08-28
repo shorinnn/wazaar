@@ -6448,7 +6448,9 @@ h6{
 	padding: 12px 30px;
 	margin-top: 180px;
 }
-
+.questions-sidebar .ask-question.active{
+	display: none;
+}
 .questions-sidebar .ask-question .img-container{
 	float: left;
 	margin-right: 20px;
@@ -6634,6 +6636,7 @@ h6{
 	font-size: 13px;
 	padding: 0 12px;
 	height: 38px;
+	line-height: 38px;
 	resize: none;
 }
 
@@ -6666,10 +6669,11 @@ h6{
 .ask-question-fields textarea{
 	border: solid #e0e1e2;
 	border-width: 0 0 1px;
-	padding: 0 2px;
+	padding: 0 5px;
 	font-size: 13px;
 	color: #798794;
-	height: 42px;
+	min-height: 42px;
+	max-height: 490px;
 	resize: none;
 	margin: 0 0 20px;
 }
@@ -6678,7 +6682,9 @@ h6{
 	background: #fff;
 	border-top: solid 1px #e0e1e2;
 	padding: 12px 30px;
-	margin-top: 71%;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
 .ask-question-fields-footer .buttons{
@@ -13548,7 +13554,9 @@ footer{
     position: relative;
     top: 65px;
 }
-
+.discussion-opened .question-holder{
+	height: 91%;
+}
 .questions-box .question-title {
     padding-right: 19%;
 }
@@ -13865,7 +13873,7 @@ footer{
 		display: none;
 	}
 	.classroom-view .classroom-header{
-		width: 100%;
+		width: 100% !important;
 	}
 }
 

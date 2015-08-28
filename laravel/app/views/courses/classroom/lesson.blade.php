@@ -31,5 +31,45 @@
             lessonComplete( lessonId );
         });
     });
+	
+$(document).ready(function(){
+	resizeVideo()
+});
+
+var rtime;
+var timeout = false;
+var delta = 200;
+$(window).resize(function() {
+    rtime = new Date();
+    if (timeout === false) {
+        timeout = true;
+        setTimeout(resizeend, delta);
+    }
+});
+
+function resizeend() {
+    if (new Date() - rtime < delta) {
+        setTimeout(resizeend, delta);
+    } else {
+        timeout = false;
+        resizeVideo();
+    }               
+}
+
+function resizeVideo(){
+    $("#myVideo").removeAttr('style');
+	var screenHeight = $(window).height();
+	var screenWidth = $(window).width();
+	var videoControlHeight = $(".control-container").height();
+        
+	screenHeight2 = screenHeight - videoControlHeight - 102;
+	if( screenWidth/screenHeight2 <= 1.778 ) return;
+	
+	var classroomHeaderHeight = $(".classroom-header").height(); 
+
+
+	$("#myVideo").innerHeight(screenHeight - videoControlHeight - 102);
+ } 
+
 </script>
 @stop

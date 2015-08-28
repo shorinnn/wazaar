@@ -10,9 +10,13 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <h2>
                         <img src="images/registered-mark.png" alt="" class="inline-block" />
-                        <span class="block">{{ trans('acl.congratulations') }} </span>
-                            <!--<span class="name">Saulius,</span></span> -->
-                        <span class="block">{{ trans('acl.you-registered-on-wazaar') }}</span>
+                        @if( Auth::user()->hasRole('Affiliate') )
+                        <span class="block">おめでとうございます！ ワザールのアフィリエイターとして登録されました！</span>
+                        <span class='block'>大変お手数ですが、もう一つだけ手続きが残っておりますので、よろしくお願いします！ </span>
+                        @else
+                            <span class="block">{{ trans('acl.congratulations') }} </span>
+                            <span class="block">{{ trans('acl.you-registered-on-wazaar') }}</span>
+                        @endif
                     </h2>
                 </div>
             </div>
@@ -40,6 +44,8 @@
                         @else
                             @if(Auth::user()->hasRole('Instructor') )
                                 <h3>{{ trans('general.begin_creating_your_course') }}</h3>
+                            @elseif(Auth::user()->hasRole('Affiliate') )
+                                <h3>商品を検索して、プロモーションをかけましょう！</h3>
                             @else
                                 <h3>{{ trans('general.browse-courses') }}</h3>
                             @endif

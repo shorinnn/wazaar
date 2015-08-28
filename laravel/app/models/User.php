@@ -211,5 +211,22 @@ class User extends Ardent implements ConfideUserInterface
         }
         return null;
     }
+    
+    public function getCustom($key=null){
+        $custom = ( trim($this->custom) == '') ? '{}' : $this->custom;
+        $custom = json_decode($custom);
+        if($key==null) return $custom;
+        else{
+            if( isset($custom->$key)) return $custom->$key;
+            return null;
+        }
+    }
+    
+    public function setCustom($key, $val){
+        $custom = $this->getCustom();
+        $custom->$key = $val;
+        $this->custom = json_encode($custom);
+        return true;
+    }
 
 }

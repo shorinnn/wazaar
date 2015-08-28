@@ -1,6 +1,6 @@
-{{ Form::open( ['action' => 'DiscussionsController@store', 'class' =>'ajax-form', 'data-callback'=>'LessonQuestionAddToList', 
+{{ Form::open( ['action' => 'DiscussionsController@store', 'class' =>'ajax-form full-height', 'data-callback'=>'LessonQuestionAddToList', 
                                         'data-destination' => '.question-holder', 'data-prepend' => 'true'  ] ) }}
-<div class="no-padding">
+<div class="no-padding full-height">
     <div class="discussion-sidebar">
         <div class="discussion-sidebar-header">
             <h2>Ask question</h2>
@@ -18,7 +18,7 @@
                         <input type="text" name="title" placeholder="What would you like to ask?">
                     </div>
                     <div>
-                        <textarea name='content' placeholder="Describe more details on your subject"></textarea>
+                        <textarea class="expandable-textarea" name='content' placeholder="Describe more details on your subject"></textarea>
                     </div>
                     <input type="hidden" name="lesson_id" value="{{$lesson->id}}" />
 <!--                    <center>
