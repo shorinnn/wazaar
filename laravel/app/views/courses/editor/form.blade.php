@@ -288,7 +288,7 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <!--<a href="#" class=" submit-for-approval blue-button large-button right">{{ trans('courses/general.submit') }}</a>
                 <a href="/courses/{{$course->slug}}?preview=1"></a>-->
-                <a href='#' data-href="{{ action( 'CoursesController@show', $course->slug ) }}" class="default-button large-button right preview-course-btn">
+                <a href='#' data-href="{{url('courses/' . $course->slug . '?preview=1')}}" class="default-button large-button right preview-course-btn">
                 	{{ trans('courses/general.preview_course') }}
             	</a>
 
