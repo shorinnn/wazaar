@@ -218,6 +218,9 @@
                                 @endif
                             </li>
                             <li>
+                                <a class="settings-button" href="{{ action('ProfileController@index')}}">{{trans('site/menus.profile')}}</a>
+                            </li>
+                            <li>
                                 <a class="settings-button" href="{{ action('ProfileController@settings')}}">{{trans('site/menus.settings')}}</a>
                             </li>
                             <li>
