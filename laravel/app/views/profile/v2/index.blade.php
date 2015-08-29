@@ -305,11 +305,11 @@
                                 <input type="file" hidden="" class='' id="upload-new-photo" name="profilePicture"/>
                             </label>
                         </div>
-                        <a href="#" class="message-count message">
+<!--                        <a href="#" class="message-count message">
                             <i class="fa fa-comment-o"></i>
                             Messages
                             <span class="count">(2)</span>
-                        </a>
+                        </a>-->
                     </div>
                     </form>
 
