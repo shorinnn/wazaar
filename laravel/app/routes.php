@@ -407,6 +407,8 @@ Route::group(['prefix' => 'payment'], function (){
     Route::get('do-payment/{reference}','PaymentController@renderGCForm');
 });
 
+Route::controller('payment','PaymentController');
+
 
 ## API Routes
 Route::group(['prefix' => 'api'], function(){

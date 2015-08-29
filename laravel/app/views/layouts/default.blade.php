@@ -268,6 +268,10 @@
       </div>
     </div>    
     <!-- Register Modal ends -->
+
+
+    @include('payment.paymentModal')
+
     @if( App::environment() == 'PPProduction' || Input::has('use-gulp') )
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
@@ -316,8 +320,8 @@
 
 
     @endif
-
-    <script src="{{url('plugins/mediaelements/mediaelement-and-player.min.js')}}"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript" src="{{url('js/cocorium.payment.js')}}"></script>
 
     @yield('extra_js')
 		<script type="text/javascript">

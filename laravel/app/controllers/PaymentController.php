@@ -83,14 +83,81 @@ class PaymentController extends BaseController
             return Redirect::to('profile');
         }
 
-        return View::make('payment.index', compact('productPartial', 'student', 'renderForm', 'product','finalCost','amountToPay'));
+        return View::make('payment.index',
+            compact('productPartial', 'student', 'renderForm', 'product', 'finalCost', 'amountToPay'));
+    }
+
+    //Initial Payment where student has no CC details provided yet
+    public function postProcessStripe()
+    {
+        if (Input::has('token')) {
+            $stripeHelper = new StripeHelper(Input::get('token'));
+            $user         = Auth::user();
+
+            $stripeCustomerId = $user->stripe_customer_id;
+
+            if (empty($stripeCustomerId)){
+                //Create Stripe Customer
+                $stripeCustomer = $stripeHelper->createCustomer($user->email);
+                if ($stripeCustomer){
+                    $stripeCustomerId = $stripeCustomer->id;
+                    $user->stripe_customer_id = $stripeCustomerId;
+                    $user->updateUniques();
+                }
+                else{
+                    //adding of customer error
+                    //TODO: Error dispatch
+                }
+            }
+
+
+            if (!empty($stripeCustomerId)){
+                $chargeResponse = $stripeHelper->charge($stripeCustomerId,Input::get('amount'));
+
+                //Store Payment Reference
+                $responseObj = [
+                    'last4'     => $chargeResponse->source->last4,
+                    'card'      => $chargeResponse->source->brand,
+                    'exp_month' => $chargeResponse->source->exp_month,
+                    'exp_year'  => $chargeResponse->source->exp_year
+                ];
+
+                PaymentLog::create([
+                    'user_id'   => Auth::id(),
+                    'success'   => 1,
+                    'reference' => $chargeResponse->id,
+                    'response'  => json_encode($responseObj)
+                ]);
+
+                //Payment Successfull
+                return Response::json(['success' => 1]);
+            }
+        }
+        return Response::josn(['success' => 0, 'error' => 'Payment Error. Please try again']);
+    }
+
+    public function postProcessExistingStripePayment()
+    {
+        $stripeHelper = new StripeHelper('');
+
+        if (!empty(Auth::user()->stripe_customer_id)){
+            $cardId = Input::get('cardId');
+            $chargeResponse = $stripeHelper->charge(Auth::user()->stripe_customer_id,Input::get('amount'),$cardId);
+
+            if ($chargeResponse){
+                return Response::json(['success' => 1]);
+            }
+        }
+
+        return Response::json(['success' => 0]);
     }
 
     public function process()
     {
         if (Session::has('productType') AND Session::has('productID')) {
 
-            $validator = Validator::make(Input::only('firstName','lastName','email','zip','city'), $this->paymentHelper->creditCardValidationRules(),
+            $validator = Validator::make(Input::only('firstName', 'lastName', 'email', 'zip', 'city'),
+                $this->paymentHelper->creditCardValidationRules(),
                 $this->paymentHelper->creditCardValidationMessages());
 
             if ($validator->fails()) {
@@ -104,7 +171,8 @@ class PaymentController extends BaseController
                 $product = $this->_getProductDetailsByTypeAndID(Session::get('productType'), Session::get('productID'));
 
                 if (!$student->canPurchase($product)) { //for some reason, it happened that student can no longer purchase it during transit
-                    return Redirect::back()->with('errors' , [trans('payment.cannotPurchase')]);//return Redirect::back()->with('errors', [trans('payment.cannotPurchase')]);
+                    return Redirect::back()->with('errors',
+                        [trans('payment.cannotPurchase')]);//return Redirect::back()->with('errors', [trans('payment.cannotPurchase')]);
                 }
                 $paymentDetails = [
                     'reference'        => $reference,
@@ -112,31 +180,32 @@ class PaymentController extends BaseController
                     'finalCost'        => Session::get('amountToPay')
                 ];
 
-                $payee   = Input::only('firstName', 'lastName', 'email', 'city', 'zip');
-                $expiry = explode('/',Input::get('cardExpiry'));
-                $data = Input::all();
-                $data['cardYear'] = @$expiry[1];
+                $payee             = Input::only('firstName', 'lastName', 'email', 'city', 'zip');
+                $expiry            = explode('/', Input::get('cardExpiry'));
+                $data              = Input::all();
+                $data['cardYear']  = @$expiry[1];
                 $data['cardMonth'] = @$expiry[0];
-                $payment = $this->paymentHelper->processCreditCardPayment($paymentDetails['finalCost'],$data);//$paymentDetails, $payee, $student);
+                $payment           = $this->paymentHelper->processCreditCardPayment($paymentDetails['finalCost'],
+                    $data);//$paymentDetails, $payee, $student);
 
-                if ($payment[0]){
+                if ($payment[0]) {
                     //Success!
-                    $cookie_id = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
+                    $cookie_id   = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
                     $paymentData = [
                         'successData' => [
                             'balance_transaction_id' => Session::get('balanceTransactionID'),
-                            'processor_fee' => 0,
-                            'tax' => Session::get('taxValue'),
-                            'giftID' => Session::get('giftID'),
-                            'balance_used' => Session::get('balanceUsed'),
-                            'REF' => $payment[1],
-                            'ORDERID' => $payment[1]
+                            'processor_fee'          => 0,
+                            'tax'                    => Session::get('taxValue'),
+                            'giftID'                 => Session::get('giftID'),
+                            'balance_used'           => Session::get('balanceUsed'),
+                            'REF'                    => $payment[1],
+                            'ORDERID'                => $payment[1]
                         ]
                     ];
 //                    $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $paymentData);
-                    $purchase  = $student->purchase($product, Cookie::get("aid"), $paymentData);
+                    $purchase = $student->purchase($product, Cookie::get("aid"), $paymentData);
                     if (!$purchase) {
-                        $redirectUrl = url('payment',['errors' => [trans('payment.cannotPurchase')]]);
+                        $redirectUrl = url('payment', ['errors' => [trans('payment.cannotPurchase')]]);
                     }
                     Session::forget('productType');
                     Session::forget('productID');
@@ -150,7 +219,7 @@ class PaymentController extends BaseController
                     return Redirect::to($redirectUrl);
                 }
 
-                return Redirect::back()->with('errors',$payment[1]);
+                return Redirect::back()->with('errors', $payment[1]);
                 /*if (isset($payment['successData'])) {
 
                     $paymentRequest = [
@@ -194,8 +263,8 @@ class PaymentController extends BaseController
 
             $orderStatus = $this->paymentHelper->getOrderStatus($paymentRequest->gc_order_id);
 
-            $statusId  = 0;
-            $productId = 0;
+            $statusId    = 0;
+            $productId   = 0;
             $redirectUrl = '';
 
             if (isset($orderStatus['successData']['STATUSID'])) {
@@ -206,15 +275,15 @@ class PaymentController extends BaseController
             if ($statusId >= 800 && $productId <> 11) {
                 //successful payment
 
-                $payment = [];
-                $variables                                          = json_decode($paymentRequest->variables, true);
+                $payment   = [];
+                $variables = json_decode($paymentRequest->variables, true);
 
                 $student = Student::current(Auth::user());
                 $product = $this->_getProductDetailsByTypeAndID($variables['productType'], $variables['productID']);
 
                 if (!$student->canPurchase($product)) { //for some reason, it happened that student can no longer purchase it during transit
                     //return Redirect::back()->with('errors', [trans('payment.cannotPurchase')]);
-                    $redirectUrl = url('payment',['errors' => [trans('payment.cannotPurchase')]]);
+                    $redirectUrl = url('payment', ['errors' => [trans('payment.cannotPurchase')]]);
                 }
 
                 $payment['successData']['ORDERID']                  = $paymentRequest->gc_order_id;
@@ -228,9 +297,9 @@ class PaymentController extends BaseController
 
                 $cookie_id = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
 //                $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $payment);
-                $purchase  = $student->purchase($product, Cookie::get("aid"), $payment);
+                $purchase = $student->purchase($product, Cookie::get("aid"), $payment);
                 if (!$purchase) {
-                    $redirectUrl = url('payment',['errors' => [trans('payment.cannotPurchase')]]);
+                    $redirectUrl = url('payment', ['errors' => [trans('payment.cannotPurchase')]]);
                 }
                 Session::forget('productType');
                 Session::forget('productID');
@@ -246,7 +315,8 @@ class PaymentController extends BaseController
                 //payment did not work as planned, failed
                 $redirectUrl = url('payment/?canceled=true');
             }
-            return View::make('payment.callback',compact('redirectUrl'));
+
+            return View::make('payment.callback', compact('redirectUrl'));
             //return View::make('payment.gcForm',compact('paymentRequest'));
         }
     }
@@ -291,7 +361,7 @@ class PaymentController extends BaseController
                     // cookie name contains only the course id, so if this is a lesson, fetch the course id
                     $cookie_id = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
 //                    $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $payment);
-                    $purchase  = $student->purchase($product, Cookie::get("aid"), $payment);
+                    $purchase = $student->purchase($product, Cookie::get("aid"), $payment);
                     if (!$purchase) {
                         return Redirect::back()->with('errors', [trans('payment.cannotPurchase')]);
                     }

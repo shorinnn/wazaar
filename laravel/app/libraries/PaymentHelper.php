@@ -112,4 +112,27 @@ class PaymentHelper
         $response = json_decode($call->body, true);
         return $response;
     }
+
+
+    public static function hasExistingPaymentMethods()
+    {
+        return PaymentLog::where('user_id',Auth::id())->where('success',1)->count() > 0;
+    }
+
+    public static function getPaymentMethods()
+    {
+        return PaymentLog::where('user_id',Auth::id())->where('success',1)->get();
+    }
+
+    public static function getCCIcon($card)
+    {
+        $card = strtolower($card);
+
+        switch($card){
+            case 'visa' : return 'cc-visa';break;
+            case 'mastercard' : return 'cc-mastercard';break;
+            case 'jcb' : return 'cc-jcb';break;
+        }
+        return 'credit-card';
+    }
 }

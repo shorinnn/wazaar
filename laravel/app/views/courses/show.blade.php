@@ -193,9 +193,18 @@
                             <span class="price clearfix">
                                            ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
                                          </span>
+                            {{--
                             <button class="clearfix enroll-button blue-button extra-large-button">
                                 {{ trans("courses/general.course-enroll") }}
                             </button>
+                            --}}
+
+                            <button class="clearfix enroll-button blue-button extra-large-button" type="button"
+                                    onclick="Payment.showForm(this,event);"
+                                    data-product-type="course"
+                                    data-product-id="{{$course->id}}"
+                                    data-item-name="{{$course->name}}"
+                                    data-price="{{$course->cost()}}">{{ trans("courses/general.course-enroll") }}</button>
                         @elseif(Auth::check() && $student->purchased($course) )
                             <span class="price clearfix hide">
                                          </span>
@@ -347,6 +356,7 @@
  
  
 @section('extra_js')
+    <script src="https://checkout.stripe.com/checkout.js"></script>
     <script>
         function playVideo(div){
             thevid=document.getElementById('videoContainer');
@@ -382,5 +392,8 @@
  
             @endif
         });
+
+
+
     </script>
 @stop
