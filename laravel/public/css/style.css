@@ -2809,7 +2809,9 @@ h6{
 	color: #fff;
 	margin: 0;
 }
-
+.course-detail-top-section .instructor {
+    height: 200px;
+}
 .course-description p{
 	color: #dbcef2;
 }
@@ -2865,7 +2867,7 @@ h6{
 /****** Skinning Course Description Video Ends *************/
 
 .course-details-player{
-	margin: -160px 0 0;
+	margin: -230px 0 0;
 }
 
 .pre-view-image.video-player {
@@ -3449,7 +3451,7 @@ h6{
 .course-detail-top-section .instructor p{
 	color: #a7b7c4;
 	margin-left: 23px;
-	max-height: 110px;
+	max-height: 72px;
 	margin-bottom: 8px;
 }
 
@@ -8654,6 +8656,7 @@ a.load-remote > *{
 	width: 223px;
 	height: 125px;
 	margin-bottom: 5px;
+	background-color: #e8eced;
 	position: relative;
     /*width: 100%;
     min-height: 200px;*/
@@ -9538,11 +9541,16 @@ a.load-remote > *{
 	padding: 0;
 	background-color: transparent;
 }
-
+.edit-course .header .breadcrumb i{
+	color: #aebcc8;
+	font-size: 11px;
+	margin: 0 7px;
+}
 .edit-course .header .breadcrumb > li + li:before{
 	color: #a7b7c4;
 	position: relative;
 	top: 2px;
+	display: none;
 }
 
 .edit-course .header .breadcrumb a{
@@ -9558,7 +9566,7 @@ a.load-remote > *{
 
 .edit-course .header h1{
 	color: #303941;
-	margin: 30px 0 11px;
+	margin: 5px 0 11px;
 	color: #303941;
 }
 
@@ -9579,6 +9587,7 @@ a.load-remote > *{
 	text-transform: uppercase;
 	color: #fff;
 	font-weight: 600;
+	border-radius: 2px;
 }
 
 .edit-course .header h1 .back-to-course-list{
@@ -9588,8 +9597,7 @@ a.load-remote > *{
 }
 .edit-course .header .steps-remaining{
 	padding: 10px 0 10px 27px;
-	border-left: solid 1px #e8eced;
-	margin: 9px 0 12px;
+	margin: 9px 0 10px;
 }
 
 .edit-course .header .steps-remaining span{
@@ -9803,12 +9811,6 @@ a.load-remote > *{
 	text-align: center;
 	margin-top: 80px;
 }
-
-.next-step-button button{
-	display: block;
-	width: 100%;
-}
-
 .category-row{
 	position: relative;
 }
@@ -13568,7 +13570,7 @@ footer{
 	  width: 1032px;
 	}
 	.enroll-button-wrap {
-		height: 184px;
+		height: 117px;
 	}
 }
 

@@ -175,5 +175,8 @@ jpeg, png',
     'course-enroll' => '受講する！',
     'enter-classroom' => '学習を開始する！',
     'free' => '無料',
+    'instructed-by' => '講師プロフィール',
+    'profile-more' => 'もっと見る',
+    'profile-less' => 'もとに戻る',
 );
 

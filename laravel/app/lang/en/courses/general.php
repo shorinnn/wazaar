@@ -188,4 +188,7 @@ return array(
     'course-enroll' => 'Enroll',
     'enter-classroom' => 'Enter Classroom',
     'free' => 'Free',
+    'instructed-by' => 'Instructed By',
+    'profile-more' => 'more',
+    'profile-less' => 'less',
 );
