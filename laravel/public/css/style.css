@@ -2809,7 +2809,9 @@ h6{
 	color: #fff;
 	margin: 0;
 }
-
+.course-detail-top-section .instructor {
+    height: 200px;
+}
 .course-description p{
 	color: #dbcef2;
 }
@@ -2865,7 +2867,7 @@ h6{
 /****** Skinning Course Description Video Ends *************/
 
 .course-details-player{
-	margin: -160px 0 0;
+	margin: -230px 0 0;
 }
 
 .pre-view-image.video-player {
@@ -3449,7 +3451,7 @@ h6{
 .course-detail-top-section .instructor p{
 	color: #a7b7c4;
 	margin-left: 23px;
-	max-height: 110px;
+	max-height: 72px;
 	margin-bottom: 8px;
 }
 
