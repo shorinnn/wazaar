@@ -186,9 +186,9 @@
                                 <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
                             </li>
                             @endif
-                            <li>
+<!--                            <li>
                                 <a class="settings-button" href="#">{{trans('site/menus.analytics')}}</a>
-                            </li>
+                            </li>-->
                             <li>
                                 <a class="settings-button" href="{{ action('PrivateMessagesController@index') }}">{{trans('site/menus.messages')}}
     
@@ -220,9 +220,9 @@
                             <li>
                                 <a class="settings-button" href="{{ action('ProfileController@index')}}">{{trans('site/menus.profile')}}</a>
                             </li>
-                            <li>
+<!--                            <li>
                                 <a class="settings-button" href="{{ action('ProfileController@settings')}}">{{trans('site/menus.settings')}}</a>
-                            </li>
+                            </li>-->
                             <li>
                                 <a class="settings-button" href="{{ action('UsersController@logout') }}">{{trans('site/menus.logout')}}</a>
                             </li>

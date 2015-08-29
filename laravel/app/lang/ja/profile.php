@@ -23,11 +23,11 @@ return
         'form' =>
         [
             'email' => 'Eメールアドレス',
-            'firstName' => '下のお名前',
+            'firstName' => '名',
             'prefecture' => '県',
             'company' => '会社',
             'telephone' => '電話',
-            'lastName' => '名字',
+            'lastName' => '姓',
             'bio' => '経歴',
             'address1' => '住所 1',
             'address2' => '住所 2',
