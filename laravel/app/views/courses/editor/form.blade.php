@@ -266,32 +266,30 @@
     <input type='hidden' class='step-3-filled' value='{{ $course->course_difficulty_id > 0 ? 1 : 0}}' />
 	<section class="container-fluid header">
     	<div class="row">
-        	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            	<div class="video-preview-thumb">
-                	<div class="preview-overlay">
-                    	<i class="fa fa-eye"></i>
-                        <span>PREVIEW</span>
-                    </div>
-                </div>
-                <div class="left">
-                <ul class="breadcrumb">
-                    <li><a href="{{ action('CoursesController@myCourses') }}">Dashboard</a><i class="wa-chevron-right"></i></li>
-                    <li class="active"><a href="#">Course Edit</a></li>
-                </ul>                    
-                <h1>{{ $course->name }}<span>DRAFT</span>
-                        <!--<a href="{{ action('CoursesController@myCourses') }}" class="blue-button large-button back-to-course-list">
-                            {{ trans('courses/general.back-to-course-list')}}
-                        </a>-->
-                    </h1>
-                </div>
+        	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-left">
+                        <div class="video-preview-thumb">
+                            <div class="preview-overlay">
+                                <i class="fa fa-eye"></i>
+                                <span>PREVIEW</span>
+                            </div>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li><a href="{{ action('CoursesController@myCourses') }}">Dashboard</a><i class="wa-chevron-right"></i></li>
+                            <li class="active"><a href="#">Course Edit</a></li>
+                        </ul>                    
+                        <h1 class="">{{ $course->name }}<span>DRAFT</span>
+                                <!--<a href="{{ action('CoursesController@myCourses') }}" class="blue-button large-button back-to-course-list">
+                                    {{ trans('courses/general.back-to-course-list')}}
+                                </a>-->
+                        </h1>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-right margin-bottom-15">
                 <!--<a href="#" class=" submit-for-approval blue-button large-button right">{{ trans('courses/general.submit') }}</a>
                 <a href="/courses/{{$course->slug}}?preview=1"></a>-->
-                <a href='#' data-href="{{url('courses/' . $course->slug . '?preview=1')}}" class="default-button large-button right preview-course-btn">
+				<a href="#" class=" submit-for-approval blue-button large-button disabled-button">{{ trans('courses/general.submit') }}</a>                
+                <a href='#' data-href="{{url('courses/' . $course->slug . '?preview=1')}}" class="default-button large-button preview-course-btn">
                 	{{ trans('courses/general.preview_course') }}
             	</a>
-
             </div>
         </div>
         <div class="row header-tabs-container">
@@ -327,23 +325,25 @@
         </div>
     </section>
     <section class="container-fluid main course-editor">
-    	<div class="row course-ajax-holder">
-                <form id="form-aws-credentials" action="">
-                    <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
-                    <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
-                    <input type="hidden" name="acl" value="private">
-                    <input type="hidden" name="success_action_status" value="201">
-                    <input type="hidden" name="policy" value="{{$awsPolicySig['base64Policy']}}">
-                    <input type="hidden" name="signature" value="{{$awsPolicySig['signature']}}">
-                </form>
-            <div class='container step1' data-loaded='1'>
-                <input class="course-id" type="hidden" value="{{$course->id}}"/>
-                
-                {{ View::make('courses.editor.step1',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
-                        ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates', 'filePolicy' ) )->render() }}
+    	<div class="container">
+            <div class="row course-ajax-holder">
+                    <form id="form-aws-credentials" action="">
+                        <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
+                        <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
+                        <input type="hidden" name="acl" value="private">
+                        <input type="hidden" name="success_action_status" value="201">
+                        <input type="hidden" name="policy" value="{{$awsPolicySig['base64Policy']}}">
+                        <input type="hidden" name="signature" value="{{$awsPolicySig['signature']}}">
+                    </form>
+                <div class='container step1' data-loaded='1'>
+                    <input class="course-id" type="hidden" value="{{$course->id}}"/>
+                    
+                    {{ View::make('courses.editor.step1',compact('awsPolicySig','uniqueKey' ,'course', 'images', 'bannerImages', 'assignedInstructor', 'difficulties'))
+                            ->with(compact('categories', 'subcategories', 'assignableInstructors', 'affiliates', 'filePolicy' ) )->render() }}
+                </div>
+                <div class='step2'></div>
+                <div class='container _step3'></div>
             </div>
-            <div class='step2'></div>
-            <div class='container _step3'></div>
         </div>
     </section>
 </div>

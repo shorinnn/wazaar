@@ -9222,6 +9222,8 @@ a.load-remote > *{
 
 .submit-for-approval{
 	margin-top: 20px;
+	margin-right: 20px !important;
+	padding: 11px 25px;
 	text-transform: uppercase;
 }
 
@@ -14134,10 +14136,6 @@ header .top-menu .logged-out-header-search{
 .edit-course .header .default-button {
 	float: none;
 	margin: 0;
-}
-
-.edit-course .header h1{
-	margin: 30px 0 0;
 }
 
 .edit-course .header .steps-remaining {
