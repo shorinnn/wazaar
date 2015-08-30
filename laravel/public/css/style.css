@@ -5823,6 +5823,79 @@ h6{
 	width: 70%;
 	float: left;
 }
+.welcome-message-wrap{
+	margin-bottom: 47px;
+}
+.affiliate-welcome{
+	background: #fff;
+	border-radius: 4px 4px 0 0;
+	border: solid 1px #e0e1e2;
+	padding: 62px 0 0 70px;
+	position: relative;
+}
+.affiliate-welcome .close {
+	position: absolute;
+	top: 24px;
+	right: 24px;
+	color: #cfd8df;
+	font-size: 20px;
+}
+.affiliate-welcome .contents{
+	padding-bottom: 45px;
+}
+.affiliate-welcome h2{
+	color: #303941;
+	font-size: 20px;
+	font-weight: normal;
+	margin: 0 0 39px;
+}
+.affiliate-welcome h2 .name{
+	color: #0099ff;
+}
+.affiliate-welcome-footer p,
+.affiliate-welcome p{
+	font-size: 14px;
+	color: #798794;
+	line-height: 20px;
+	margin: 0 0 26px;
+}
+.affiliate-welcome p a{
+	color: #0099ff;
+}
+.affiliate-welcome em{
+	font-size: 13px;
+	color: #798794;
+	line-height: 20px;
+}
+.affiliate-welcome img {
+    margin-bottom: -2px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+	margin-right: 4%;
+}
+.affiliate-welcome-footer{
+	background: #18222b;
+	border-radius: 0 0 4px 4px;
+	padding: 15px 0 15px 70px;
+	border: solid #e0e1e2;
+	border-width: 0 1px;
+}
+.affiliate-welcome-footer p{
+	margin: 0;
+	line-height: 30px;
+}
+.affiliate-welcome-footer input{
+	border-radius: 4px;
+	height: 30px;
+	line-height: 30px;
+	background: #fff;
+	border: none;
+	font-size: 13px;
+	color: #0099ff;
+	margin: 0;
+	width: 90%;
+}
 
 /********** Affiliates Gift UI Ends***************/
 
@@ -13655,7 +13728,12 @@ footer{
 	header .top-menu .logged-out li a{
 		padding: 7px 8px;
 	}
-
+	.affiliate-welcome-footer{
+		padding: 15px 20px;
+	}
+	.affiliate-welcome{
+		padding: 62px 20px 0;
+	}
 	.text-center-mobile{
 		text-align: center;
 	}

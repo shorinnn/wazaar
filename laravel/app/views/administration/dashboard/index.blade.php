@@ -2,7 +2,7 @@
 @section('content')
     <div class="wrapper">
         <div class="container affiliate-dashboard dashboard  analytics-page">
-
+			            
             <div class="row">
                 <div class="col-md-12">
                     <div class="header clearfix">
@@ -20,6 +20,45 @@
                             </li>
                         </ul>
                     </div>
+                </div>
+            </div>
+
+            <div class="row welcome-message-wrap">
+            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                	<div class="affiliate-welcome">
+                    	<i class="fa fa-times close"></i>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 contents">
+                                <h2>Welcome to the Wazaar affiliate club <a href="#" class="name">Saulius Kirklys!</a></h2>
+                                <p>We are excited to have you here and we hope this will be an amazing opportunity for you.</p>
+                                <p>Below, you will find your 2-tier affiliate link, as well as the dashboard to track all your sales.</p>
+                                <p>We have quite an advanced sales tracking system that we hope we don’t need to teach because it’s so easy to use. 
+                                    But if you have any questions, please feel free to contact me personally at <a href="mailto:michael@wazaar.jp">michael@wazaar.jp</a> and I, or one of our 
+                                    staff will help you out!
+                                </p>
+                                <p>To start looking for products to promote, go <a href="#">browse our courses.</a></p>
+                                <div class="margin-top-15">
+                                    <em class="block">I look forward to hearing from you and talking with you soon!</em>
+                                    <em class="block">Michael</em>
+                                    <em class="block">CEO Wazaar</em>
+                                </div>
+                            </div>
+                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/michael.png" class="img-responsive hidden-xs hidden-sm">
+                            
+                        </div>
+                    </div>
+                	<div class="affiliate-welcome-footer">
+                        <div class="row">
+                        	<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                            	<p>Use this link to refer users:</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+                            	<form>
+                                	<input type="text" readonly="readonly" value="http://www.wazaar.jp/courses/J3dfsa?affid=1223">
+                                </form>
+                            </div>
+                        </div>
+                	</div>
                 </div>
             </div>
 
@@ -278,7 +317,9 @@
                 },'json');
             });
 
-
+			$(".affiliate-welcome .close").on("click", function(){
+				$(".welcome-message-wrap").hide();	
+			});
 
         });
     </script>
