@@ -95,8 +95,9 @@ class PaymentController extends BaseController
             $user         = Auth::user();
 
             $stripeCustomerId = $user->stripe_customer_id;
+            $card = null;
 
-            if (empty($stripeCustomerId)){
+            if (empty($stripeCustomerId)){ // If this is the FIRST purchase, we will set-up the customer
                 //Create Stripe Customer
                 $stripeCustomer = $stripeHelper->createCustomer($user->email);
                 if ($stripeCustomer){
@@ -109,17 +110,24 @@ class PaymentController extends BaseController
                     //TODO: Error dispatch
                 }
             }
+            else{ //Customer is adding an EXTRA card
+                $card = $stripeHelper->createCard($stripeCustomerId);
+            }
 
 
             if (!empty($stripeCustomerId)){
                 $chargeResponse = $stripeHelper->charge($stripeCustomerId,Input::get('amount'));
 
+                if (empty($card)){
+                    $card = $chargeResponse->source;
+                }
                 //Store Payment Reference
                 $responseObj = [
-                    'last4'     => $chargeResponse->source->last4,
-                    'card'      => $chargeResponse->source->brand,
-                    'exp_month' => $chargeResponse->source->exp_month,
-                    'exp_year'  => $chargeResponse->source->exp_year
+                    'card_id'   => $card->id,
+                    'last4'     => $card->last4,
+                    'card'      => $card->brand,
+                    'exp_month' => $card->exp_month,
+                    'exp_year'  => $card->exp_year
                 ];
 
                 PaymentLog::create([
@@ -149,6 +157,24 @@ class PaymentController extends BaseController
             }
         }
 
+        return Response::json(['success' => 0]);
+    }
+
+    public function postRemovePaymentLog()
+    {
+        $id = Input::get('id');
+
+        $paymentLog = PaymentLog::where('user_id',Auth::id())->where('id',$id)->first();
+        if ($paymentLog){
+            //Tell stripe to remove card
+            $stripeHelper = new StripeHelper('');
+            $deleteResponse = $stripeHelper->deleteCard(Auth::user()->stripe_customer_id, $paymentLog->response['card_id']);
+
+            if ($deleteResponse) {
+                $paymentLog->delete();
+                return Response::json(['success' => 1]);
+            }
+        }
         return Response::json(['success' => 0]);
     }
 

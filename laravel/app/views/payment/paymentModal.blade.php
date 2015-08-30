@@ -31,8 +31,8 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-                <button type="button" class="btn btn-success" id="btn-pay" onclick="Payment.doPay(event);"><i class="fa fa-money"></i> Pay</button>
+                <button type="button" class="btn btn-default" id="btn-close-pay" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                <button type="button" class="btn btn-success" id="btn-pay" onclick="Payment.doPay(event);"><i class="fa fa-money"></i> <span class="pay-label">Pay</span></button>
             </div>
         </div>
     </div>

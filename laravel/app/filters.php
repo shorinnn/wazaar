@@ -161,7 +161,7 @@ Route::filter('instructor', function(){
 });
 
 Route::filter('affiliate', function(){
-    if(Auth::guest()) return Redirect::guest( action('UsersController@login') );
+    if(Auth::guest()) return Redirect::guest( action('AffiliateController@login') );
     if(!Auth::user()->hasRole('Affiliate')) return Redirect::action('SiteController@index');
 });
 

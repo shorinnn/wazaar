@@ -159,6 +159,35 @@ class MembersController extends \BaseController {
                 else return json_encode( [ 'status' => 'error', 'errors' => trans('administration.error-updating-profile') ] );
             }
         }
+        
+        public function createVip(){
+            return View::make('administration.members.vip.create');
+        }
+        
+        public function storeVip(){
+            $this->users = new UserRepository();
+            $roles['affiliate'] = 1;
+            $st = null;
+            $user = $this->users->signup( Input::all(), null, $roles, null, null, null);
+            if ( $user!=null && $user->id) {
+                unset($user->url);
+                $user->has_ltc = 'yes';
+                $user->is_vip = 'yes';
+                $user->confirmed = 1;
+                if($user->save()){
+                    $success = 'Super VIP account created';
+                    return View::make('administration.members.vip.create')->withSuccess($success);
+                }
+                else{
+                    $error = implode('<br />',$user->errors()->all());
+                    return View::make('administration.members.vip.create')->withErr($error);
+                }
+            }
+            else{
+                $error = implode('<br />',$user->errors()->all());
+                return View::make('administration.members.vip.create')->withErr($error);
+            }
+        }
 
 
 }

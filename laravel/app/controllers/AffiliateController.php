@@ -9,6 +9,11 @@ class AffiliateController extends \BaseController {
         $this->beforeFilter('guest', ['only' => [ 'login', 'doLogin', 'forgotPassword', 'doForgotPassword' ]]);
         $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy' ]]);
     }
+    
+        public function index(){
+            if( Auth::guest() ) return Redirect::action('AffiliateController@login');
+            else return Redirect::action('AffiliateDashboardController@index');
+        }
 
 	public function promote($course, $tcode='')
 	{

@@ -19,23 +19,27 @@ var Payment = {
         $event.preventDefault();
         var $whichPayment = $('input[name=whichPayment]:checked').val();
 
-        if ($whichPayment == 'new'){
-            Payment.doNewPayment()
+        if ($whichPayment == 'existing'){
+            Payment.doExistingPayment();
         }
         else{
-            Payment.doExistingPayment();
+            Payment.doNewPayment()
         }
 
 
     },
     'doExistingPayment' : function(){
         var $cardId = $('input[name=radioPaymentOption]:checked').val();
-
-        $.post('/payment/process-existing-stripe-payment', {cardId: $cardId,productId: Payment.productId, productType: Payment.productType, amount: Payment.amount},function (){
-
-        });
+        $('#btn-pay').attr('disabled','disabled');
+        $.post('/payment/process-existing-stripe-payment', {cardId: $cardId,productId: Payment.productId, productType: Payment.productType, amount: Payment.amount},function ($response){
+            if ($response.success == 1){
+                alert('Payment successful');
+                window.location.reload();
+            }
+        },'json');
     },
     'doNewPayment' : function(){
+        $('#btn-pay').attr('disabled','disabled');
         var $ccName = $('#cardName').val();
         var $ccNumber = $('#cardNumber').val();
         var $ccExpiryMonth = $('#expiryMonth').val();
@@ -74,7 +78,10 @@ var Payment = {
             // response contains id and card, which contains additional card details
             var token = $response.id;
             $.post('/payment/process-stripe',{token: token, productId: Payment.productId, productType: Payment.productType, amount: Payment.amount}, function ($response){
-
+                if ($response.success == 1){
+                    alert('Payment successful');
+                    window.location.reload();
+                }
             },'json');
 
         }
@@ -85,6 +92,7 @@ var Payment = {
 $(function(){
     Stripe.setPublishableKey('pk_test_vJFKFUdO903PH27xZOS3eLMn');
 
+    //Choose Existing Card or Add New event handler
     $('input[name=whichPayment]').on('click', function (){
         if($(this).val() == 'new'){
             $('.existing-card-wrapper').addClass('hidden');
@@ -94,5 +102,19 @@ $(function(){
             $('.new-card-wrapper').addClass('hidden');
             $('.existing-card-wrapper').removeClass('hidden');
         }
+    });
+    //Remove existing card event handler
+    $('.remove-card').on('click', function($e){
+        $e.preventDefault();
+        var $elem = $(this);
+        var $id = $elem.attr('data-payment-log-id');
+        bootbox.confirm(_('Are you sure?'), function ($response){
+            if ($response){
+                $.post('/payment/remove-payment-log',{id: $id}, function($response){
+                    $elem.parent().parent().remove();
+                },'json');
+            }
+        });
+
     });
 });

@@ -16,41 +16,64 @@ class StripeHelper
 
     public function charge($customerId, $amount, $cardId = '', $currency = 'SGD')
     {
-        try{
+        try {
             $chargeArr = [
-                'amount'      => $amount,
-                'currency'    => $currency,
+                'amount'   => $amount,
+                'currency' => $currency,
                 'customer' => $customerId
             ];
 
-            if (!empty($cardId)){
+            if (!empty($cardId)) {
                 $chargeArr['source'] = $cardId;
             }
-
 
             $response = \Stripe\Charge::create($chargeArr);
 
             return $response;
         } catch (Exception $ex) {
             // Card was declined.
-            echo $ex->getMessage();
+            //echo $ex->getMessage();
             return false;
         }
     }
 
     public function createCustomer($email)
     {
-        try{
+        try {
             return \Stripe\Customer::create(array(
-                "email" => $email,
+                "email"       => $email,
                 "description" => "Customer with email {$email}",
-                "source" => $this->token // obtained with Stripe.js
+                "source"      => $this->token // obtained with Stripe.js
             ));
+        } catch (Exception $ex) {
+            //echo $ex->getMessage();
+            return false;
+        }
+    }
+
+    public function createCard($customerId)
+    {
+        try{
+            $cu = \Stripe\Customer::retrieve($customerId);
+            $card = $cu->sources->create(['source' => $this->token]);
+            return $card;
+
+        }
+        catch(Exception $ex){
+            //echo $ex->getMessage();
+            return false;
+        }
+    }
+
+    public function deleteCard($customerId,$cardId)
+    {
+        try{
+            $cu = \Stripe\Customer::retrieve($customerId);
+            $cu->sources->retrieve($cardId)->delete();
+            return true;
         }
         catch(Exception $ex){
             return false;
         }
-
     }
-
 }
