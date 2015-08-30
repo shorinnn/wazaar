@@ -1,4 +1,4 @@
-<?php
+f<?php
 
 class AffiliateController extends \BaseController {
     
@@ -57,7 +57,7 @@ class AffiliateController extends \BaseController {
         $extraText = trans('general.register-affiliate');
         
         if( Input::has('stai')){
-            Cookie::queue('stai', Input::get('stai'), 60*24*30);
+//            Cookie::queue('stai', Input::get('stai'), 60*24*30);
         }
         return View::make( 'confide.affiliates.signup' )->with( compact('instructor_account', 'extraText') );
     }
@@ -68,7 +68,9 @@ class AffiliateController extends \BaseController {
         
         $roles['affiliate'] = Input::get('register_affiliate');//Cookie::get('register_affiliate');
         $st = Input::get('st');
-        $user = $this->users->signup( Input::all(), Cookie::get('stai'), $roles, Cookie::get('stpi'), Cookie::get('iai'), $st );
+        $stai = Cookie::get('stai');
+        $stai = null;
+        $user = $this->users->signup( Input::all(), $stai, $roles, Cookie::get('stpi'), Cookie::get('iai'), $st );
         
         if ( $user!=null && $user->id) {
             try{
