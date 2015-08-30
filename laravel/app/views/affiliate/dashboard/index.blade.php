@@ -5,20 +5,23 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="header clearfix hidden">
-                        @if( Auth::user()->sawLetter != 1 )
-                            {{ View::make('affiliate.welcome-letter') }}
-                        @endif
-                        <div class="row">
-                            <div class="col-lg-3"> 
-                                {{ trans('general.affiliate-ref-link') }} </div>
-                            <div class="col-lg-9">
-                                <input type="text" readonly="" 
-                                             value="{{ action('AffiliateController@create' )}}?stai={{ Auth::user()->affiliate_id }}" />
+                    @if(Auth::user()->is_vip == 'yes')
+                    <h1 style='color: #DAA520'> ランク: SUPER VIP</h1>
+                        <div class="header clearfix">
+                            @if( 'dont-show' == 'until-skinned' && Auth::user()->sawLetter != 1 )
+                                {{ View::make('affiliate.welcome-letter') }}
+                            @endif
+                            <div class="row">
+                                <div class="col-lg-3"> 
+                                    {{ trans('general.affiliate-ref-link') }} </div>
+                                <div class="col-lg-9">
+                                    <input type="text" readonly="" 
+                                                 value="{{ action('AffiliateController@create' )}}?stai={{ Auth::user()->affiliate_id }}" />
+                                </div>
                             </div>
+
                         </div>
-                       
-                    </div>
+                    @endif
                 </div>
             </div>
 
