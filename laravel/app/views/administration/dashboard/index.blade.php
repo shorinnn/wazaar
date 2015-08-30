@@ -317,10 +317,6 @@
                 },'json');
             });
 
-			$(".affiliate-welcome .close").on("click", function(){
-				$(".welcome-message-wrap").hide();	
-			});
-
         });
     </script>
 @stop
