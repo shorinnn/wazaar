@@ -113,9 +113,6 @@
 			.slide-to-left.in .video-row{
 				margin-top: 25%;
 			}
-			.classroom-content-row{
-				margin-top: 52px;
-			}
 			.classroom-content-row h3{
 				margin: 0 0 30px;
 				color: #fff;
@@ -279,7 +276,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class='question-holder'>
+                        <div class='question-holder scroll-pane'>
                             @foreach($lesson->discussions()->where( 'student_id', Auth::user()->id )->get() as $discussion)
                                 {{ View::make('courses.classroom.discussions.question')->with( compact('discussion') ) }}
                             @endforeach
@@ -304,7 +301,7 @@
             </div>
                 
         </div>
-        <div class="slide-menu">
+        <div class="slide-menu scroll-pane">
             <div class="header">
                 <div class="clearfix">
                     <a href="#" class="course"><i class="wa-chevron-left"></i>Course</a>

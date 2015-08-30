@@ -5898,6 +5898,36 @@ h6{
 	margin: 0;
 	width: 90%;
 }
+.supervip-affiliate-link{
+	border-radius: 4px;
+	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/supervip-bckgrd-pattern.png');
+	background-repeat: repeat;
+	background-size: cover;
+	min-height: 255px;
+	border: solid 1px #e0e1e2;
+	margin:  35px 0;
+}
+.supervip-affiliate-link .supervip-badge{
+	margin: 26px 0 0 62px;
+}
+.supervip-affiliate-link h1{
+	margin: 77px 0 24px;
+	color: #fff;
+}
+.supervip-affiliate-link input{
+	margin: 0;
+	color: #ffa100;
+	font-size: 13px;
+	font-weight: 600;
+	text-align: center;
+	border: none;
+	background: #303941;
+	height: 50px;
+	line-height: 50px;
+	width: 76%;
+}
+
+
 
 /********** Affiliates Gift UI Ends***************/
 
@@ -14254,6 +14284,21 @@ header .top-menu .logged-out-header-search{
 }
 .editor-settings-layout h4{
 	text-align: left;
+}
+.supervip-affiliate-link .supervip-badge{
+	margin: 26px 0 0;
+}
+.supervip-affiliate-link{
+	text-align: center;
+}
+.supervip-affiliate-link img{
+	display: inline-block;
+}
+.supervip-affiliate-link h1{
+	margin: 30px 0 24px;
+}
+.supervip-affiliate-link input{
+	margin: 0 0 26px;
 }
 
 }

@@ -281,6 +281,8 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
         <script src="{{url("js-assets/" . asset_path('core.min.js') ) }}"></script>
+        <script src="{{url("js/jquery.mousewheel.js")}}"></script>
+        <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
     @else
         <!--<script src="{{ url("assets/js/". asset_path('core.min.js') )}}"></script>-->
     

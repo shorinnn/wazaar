@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     
-                    <div class="replies-holder">
+                    <div class="replies-holder scroll-pane">
                         @foreach($discussion->replies()->orderBy('upvotes','desc')->orderBy('created_at','Desc')->get() as $reply)
                             {{ View::make('courses.classroom.discussions.reply')->with( compact('reply', 'course') ) }}
                         @endforeach

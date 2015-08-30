@@ -33,7 +33,8 @@
     });
 	
 $(document).ready(function(){
-	resizeVideo()
+	resizeVideo();
+	$('.scroll-pane').jScrollPane();
 });
 
 var rtime;
