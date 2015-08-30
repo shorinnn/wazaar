@@ -11,7 +11,7 @@
                                 <img src="{{ $discussion->student->commentPicture('student') }}" alt="" class="img-responsive">
                             </div>
                             <span class="name block">{{ $discussion->student->fullName() }}</span>
-                            <span class="role">
+                            <span class="role clearfix">
                                  @if($discussion->student->profile !=null)
                                     {{ $discussion->student->profile->title }}
                                 @endif

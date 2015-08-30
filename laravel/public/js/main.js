@@ -11,8 +11,10 @@ function isset(variable){
 var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 
 $(document).ready(function(){
-    makeBoxesExpandable();
     
+    $('body').delegate('.expandable-textarea', 'keyup', function(){
+		makeBoxesExpandable();
+	});
     if( getCookie('hideAffiliateToolbar')=='true' ) toggleAffiliateToolbar(event);
     $('.countdown').each(function(){
         seconds = $(this).attr('data-final-date-seconds')

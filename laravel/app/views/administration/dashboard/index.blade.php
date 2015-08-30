@@ -22,7 +22,8 @@
                     </div>
                 </div>
             </div>
-
+			
+            <!--SuperVIP Welcome Letter-->
             <div class="row welcome-message-wrap">
             	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 	<div class="supervip-affiliate-link">
@@ -38,7 +39,8 @@
                 	</div>
                 </div>
             </div>
-
+			<!--SuperVIP Welcome Letter Ends-->
+            
             <div class="row top-activities">
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div class="with-progress-bar">
