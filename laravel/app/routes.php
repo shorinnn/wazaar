@@ -321,6 +321,7 @@ Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 
 Route::group( array('domain' => $affiliateSubdomain ), function(){    
     
+    Route::get('/', 'AffiliateController@index');
     Route::get('register', 'AffiliateController@create');
     Route::post('register', 'AffiliateController@store');
     Route::get('login', 'AffiliateController@login');
