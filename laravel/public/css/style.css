@@ -14296,6 +14296,7 @@ header .top-menu .logged-out-header-search{
 }
 .supervip-affiliate-link h1{
 	margin: 30px 0 24px;
+        padding:0 20px;
 }
 .supervip-affiliate-link input{
 	margin: 0 0 26px;
