@@ -41,7 +41,7 @@ return
             'youtube'   => 'Youtube',
             'bankCode'   => '銀行コード',
             'bankName'   => ' 銀行名',
-            'branchCode'   => '支店コー',
+            'branchCode'   => '支店コード',
             'branchName'   => '支店名',
             'accountType'   => '普通口座',
             'accountNumber'   => '口座番号',
