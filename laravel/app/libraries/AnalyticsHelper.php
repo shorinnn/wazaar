@@ -7,6 +7,8 @@ class AnalyticsHelper
     protected $isAdmin;
     protected $userType;
 
+    const CACHE = 15;
+
     public function __construct($isAdmin, $userId = 0, $userType = '')
     {
         $this->isAdmin  = $isAdmin;
@@ -82,7 +84,13 @@ class AnalyticsHelper
     private function _affiliates($affiliateId, $filter = '')
     {
         $sql    = "SELECT count(id) as affiliates_count FROM users WHERE ltc_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
-        $result = DB::select($sql);
+
+        $result = Cache::remember('affiliates', self::CACHE, function() use($sql)
+        {
+            return DB::select($sql);
+        });
+
+        //$result = DB::select($sql);
 
         $result = array_map(function ($val) {
             return json_decode(json_encode($val), true);
@@ -132,7 +140,13 @@ class AnalyticsHelper
     private function _secondAffiliates($affiliateId, $filter = '')
     {
         $sql    = "SELECT count(id) as affiliates_count FROM users WHERE second_tier_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
-        $result = DB::select($sql);
+
+        $result = Cache::remember('second_affiliates', self::CACHE, function() use($sql)
+        {
+            return DB::select($sql);
+        });
+
+        //$result = DB::select($sql);
 
         $result = array_map(function ($val) {
             return json_decode(json_encode($val), true);
@@ -151,7 +165,11 @@ class AnalyticsHelper
     private function _affiliateEarnings($affiliateId, $filter = '')
     {
         $sql    = "SELECT sum(ltc_affiliate_earnings) as affiliates_earning FROM purchases WHERE ltc_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
-        $result = DB::select($sql);
+        //$result = DB::select($sql);
+        $result = Cache::remember('affiliate_earnings', self::CACHE, function() use($sql)
+        {
+            return DB::select($sql);
+        });
 
         $result = array_map(function ($val) {
             return json_decode(json_encode($val), true);
@@ -767,9 +785,14 @@ class AnalyticsHelper
         $filterQuery = " AND DATE(created_at) = '{$dateFilter}'";
 
 
-        $query = $this->_codeStatisticsRawQuery($courseId, $trackingCode, $filterQuery);
+        $sql = $this->_codeStatisticsRawQuery($courseId, $trackingCode, $filterQuery);
 
-        return DB::select($query);
+        $result = Cache::remember('daily_hit_sales', self::CACHE, function() use($sql)
+        {
+            return DB::select($sql);
+        });
+        return $result;
+        //return DB::select($query);
     }
 
     public function weeklyHitsSales($courseId, $trackingCode)
@@ -779,9 +802,15 @@ class AnalyticsHelper
 
         $filterQuery = " AND DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        $query = $this->_codeStatisticsRawQuery($courseId, $trackingCode, $filterQuery);
+        $sql = $this->_codeStatisticsRawQuery($courseId, $trackingCode, $filterQuery);
 
-        return DB::select($query);
+        $result = Cache::remember('weekly_hits_sales', self::CACHE, function() use($sql)
+        {
+            return DB::select($sql);
+        });
+
+        return $result;
+        //return DB::select($query);
     }
 
     public function monthlyHitsSales($courseId, $trackingCode)
@@ -791,18 +820,30 @@ class AnalyticsHelper
 
         $filterQuery = " AND DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
-        $query = $this->_codeStatisticsRawQuery($courseId, $trackingCode, $filterQuery);
+        $sql = $this->_codeStatisticsRawQuery($courseId, $trackingCode, $filterQuery);
 
-        return DB::select($query);
+        $result = Cache::remember('monthly_hits_sales', self::CACHE, function() use($sql)
+        {
+            return DB::select($sql);
+        });
+
+        return $result;
+        //return DB::select($query);
     }
 
     public function allTimeHitsSales($courseId, $trackingCode)
     {
         $filterQuery = "";
 
-        $query = $this->_codeStatisticsRawQuery($courseId, $trackingCode, $filterQuery);
+        $sql = $this->_codeStatisticsRawQuery($courseId, $trackingCode, $filterQuery);
 
-        return DB::select($query);
+        $result = Cache::remember('alltime_hits_sales', self::CACHE, function() use($sql)
+        {
+            return DB::select($sql);
+        });
+
+        return $sql;
+        //return DB::select($query);
     }
 
     public function dailyCourseConversion($courseId)
@@ -954,9 +995,15 @@ class AnalyticsHelper
         return compact('labels', 'data');
     }
 
-    private function _transformCoursePurchases($query)
+    private function _transformCoursePurchases($sql)
     {
-        $result = DB::select($query);
+        //$result = DB::select($sql);
+
+        $result = Cache::remember('course_purchases', self::CACHE, function() use($sql)
+        {
+            return DB::select($sql);
+        });
+
         $result = array_map(function ($val) {
             return json_decode(json_encode($val), true);
         }, $result);
@@ -970,9 +1017,15 @@ class AnalyticsHelper
         return $output;
     }
 
-    private function _transformCoursePurchaseConversion($query)
+    private function _transformCoursePurchaseConversion($sql)
     {
-        $result = DB::select($query);
+        //$result = DB::select($query);
+
+        $result = Cache::remember('course_purchase_conversion', self::CACHE, function() use($sql)
+        {
+            return DB::select($sql);
+        });
+
         $result = array_map(function ($val) {
             return json_decode(json_encode($val), true);
         }, $result);
