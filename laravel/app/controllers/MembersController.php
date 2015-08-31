@@ -14,7 +14,7 @@ class MembersController extends \BaseController {
 	 */
 	public function index()
 	{
-            $pagination = Input::get('view') > 0 ? Input::get('view') :  2;
+            $pagination = Input::get('view') > 0 ? Input::get('view') :  20;
             
             $url_filters = [];
             $params = array_merge( $_GET, array("type" => "student", 'page' => 1));
