@@ -57,7 +57,7 @@ class AffiliateController extends \BaseController {
         $extraText = trans('general.register-affiliate');
         
         if( Input::has('stai')){
-//            Cookie::queue('stai', Input::get('stai'), 60*24*30);
+            Cookie::queue('stai', Input::get('stai'), 60*24*30);
         }
         return View::make( 'confide.affiliates.signup' )->with( compact('instructor_account', 'extraText') );
     }
@@ -69,7 +69,6 @@ class AffiliateController extends \BaseController {
         $roles['affiliate'] = Input::get('register_affiliate');//Cookie::get('register_affiliate');
         $st = Input::get('st');
         $stai = Cookie::get('stai');
-        $stai = null;
         $user = $this->users->signup( Input::all(), $stai, $roles, Cookie::get('stpi'), Cookie::get('iai'), $st );
         
         if ( $user!=null && $user->id) {
@@ -184,6 +183,12 @@ class AffiliateController extends \BaseController {
                 ->withInput()
                 ->with('error', $error_msg);
         }
+    }
+    
+    public function hideLetter(){
+        $user = Auth::user();
+        $user->setCustom('saw_aff_welcome_letter' ,1);
+        $user->save();
     }
         
 //        public function becomeAffiliate(){

@@ -132,6 +132,7 @@ Route::group(array('domain' => $domain), $wwwRoutes);
 Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 
 Route::group(['prefix' => 'affiliate'], function (){
+    Route::get('hide-letter', 'AffiliateController@hideLetter');
     Route::get('accept-terms', 'AffiliateController@acceptTerms');
     Route::post('accept-terms', 'AffiliateController@doAcceptTerms');
     Route::get('promote/{course}', 'AffiliateController@promote');

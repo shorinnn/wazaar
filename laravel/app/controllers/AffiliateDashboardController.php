@@ -13,13 +13,9 @@ class AffiliateDashboardController extends BaseController
     public function index()
     {
         $user =  Auth::user();
-//        $sawLetter = $user->getCustom('saw_aff_welcome_letter');
-//        if($sawLetter != 1){
-//            $user->setCustom('saw_aff_welcome_letter' ,1);
-//            $user->save();
-//        }
-//        if(Input::has('show-letter-again')) $sawLetter = null;
-//        Auth::user()->sawLetter = $sawLetter;
+        $sawLetter = $user->getCustom('saw_aff_welcome_letter');
+        if(Input::has('show-letter-again')) $sawLetter = null;
+        Auth::user()->sawLetter = $sawLetter;
         return $this->_affiliateDashboard();
     }
 

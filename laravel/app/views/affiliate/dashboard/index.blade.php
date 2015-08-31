@@ -15,8 +15,17 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
                                                 <h1>アフィエイト２ティアの募集はこちらのリンクをお使いください！</h1>
-                                                <!--<input type="text" readonly="readonly" value="{{ action('AffiliateController@create' )}}?stai={{ Auth::user()->affiliate_id }}">-->
-                                                <input type="text" readonly="readonly" value="９月1日（火）の18時以降にリンクが表示されます。" />
+                                                <?php
+                                                $date = new DateTime();
+                                                $date->setTimezone(new DateTimeZone('Asia/Tokyo'));
+                                                $now = strtotime( $date->format('Y-m-d H:i:s') ) ;
+                                                $show_on = strtotime( '2015-09-01 17:45:00' );
+                                                ?>
+                                                @if( $now > $show_on)
+                                                    <input type="text" readonly="readonly" value="{{ action('AffiliateController@create' )}}?stai={{ Auth::user()->affiliate_id }}">
+                                                @else
+                                                    <input type="text" readonly="readonly" value="９月1日（火）の18時以降にリンクが表示されます。" />
+                                                @endif
                                             </div>
                                         </div>
                                         </div>
@@ -40,7 +49,17 @@
                                         <p>{{ trans('general.affiliate-ref-link') }}</p>
                                     </div>
                                     <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
-                                        <input type="text" readonly="" value="９月10日（木）にリンクが表示されます。" />
+                                         <?php
+                                            $date = new DateTime();
+                                            $date->setTimezone(new DateTimeZone('Asia/Tokyo'));
+                                            $now = strtotime( $date->format('Y-m-d H:i:s') ) ;
+                                            $show_on = strtotime( '2015-09-10 17:45:00' );
+                                        ?>
+                                        @if( $now > $show_on)
+                                            <input type="text" readonly="" value="{{ action('AffiliateController@create' )}}?stai={{ Auth::user()->affiliate_id }}" />
+                                        @else
+                                            <input type="text" readonly="" value="９月10日（木）にリンクが表示されます。" />
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -288,4 +307,9 @@
 
 @section('extra_js')
     <script type="text/javascript" src="{{url('js/analytics.js')}}"></script>
+    <script>
+        function hideLetter(){
+            $.get('{{action("AffiliateController@hideLetter")}}');
+        }
+    </script>
 @stop

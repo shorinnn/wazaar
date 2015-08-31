@@ -1,5 +1,7 @@
 <div class="affiliate-welcome">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="fa fa-times"></i></button>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="hideLetter();">
+        <i class="fa fa-times"></i>
+    </button>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 contents">
             <p>ワザール・アフィリエイトクラブにようこそ！</p>
