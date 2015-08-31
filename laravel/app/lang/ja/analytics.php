@@ -77,5 +77,7 @@ return
     '4YearsAgo' => '4 年前',
     '5YearsAgo' => '5 年前',
     '6YearsAgo' => '6 年前',
-    '7YearsAgo' => '7 年前'
+    '7YearsAgo' => '7 年前',
+
+    '2TierSignups' => 'アフィリエイト２ティア登録者数'
 ];
