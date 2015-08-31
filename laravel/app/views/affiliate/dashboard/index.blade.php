@@ -40,7 +40,7 @@
                                         <p>{{ trans('general.affiliate-ref-link') }}</p>
                                     </div>
                                     <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
-                                        <input type="text" readonly="" value="９月10日（火）の18時以降にリンクが表示されます。" />
+                                        <input type="text" readonly="" value="９月10日（木）にリンクが表示されます。" />
                                     </div>
                                 </div>
                             </div>
