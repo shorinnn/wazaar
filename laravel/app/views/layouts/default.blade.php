@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,10 +41,12 @@
 
     
 </head>
-<body>
+<body>    
     @yield('affiliate-toolbar')
+
     <div id="wrapper">
     	<header class="container-fluid">
+           
         		{{ View::make('layouts.shared.header') }}
         </header>
         @yield('content')

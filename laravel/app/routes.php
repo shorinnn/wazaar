@@ -20,7 +20,6 @@ if( !isset($_SERVER['HTTP_HOST'])){
     $domain = $instructorSubdomain = $affiliateSubdomain = Request::getHost();
 }
 //Route::get('mandrill-test', 'SiteController@mandrillTest');
-
 Route::resource('lp', 'LpController');
 Route::get('loginTest', 'SiteController@loginTest');
 Route::get('clear-cache/huehue', 'SiteController@clearCache');
