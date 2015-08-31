@@ -29,7 +29,7 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="fa fa-times"></i></button>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 contents">
-            <h2>Welcome to the Wazaar affiliate club <a href="#" class="name">Saulius Kirklys!</a></h2>
+            <h2>Welcome to the Wazaar affiliate club <a href="#" class="name">{{ Auth::user()->fullName() }}!</a></h2>
             <p>ワザールのアフィリエイター登録、. 本当にありがとうございます！</p>
             <p>ワザールの日本法人代表（株式会社みんカレ）の峯山と申します. 下記にはアフィリエイト２ティアリンクやアフィリエイト収入などを. 計測できるダッシュボードなどを準備しております。</p>
             <p>近日中に使い方のマニュアルなども整備させていただきます。</p>

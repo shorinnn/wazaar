@@ -3,16 +3,36 @@
     <div class="wrapper">
         <div class="container affiliate-dashboard dashboard">
 
-            <div class="row">
-                <div class="col-md-12">
+            
                     @if(Auth::user()->is_vip == 'yes')
-                    <h1 style='color: #DAA520'> ランク: SUPER VIP</h1>
-                        <div class="header clearfix hidden">
-                            <div class="row welcome-message-wrap">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-success" role='alert'>
-                                    @if( 'dont-show' == 'until-skinned' && Auth::user()->sawLetter != 1 )
-                                        {{ View::make('affiliate.welcome-letter') }}
-                                    @endif
+                        <div class="row">
+                            <div class="col-md-12">
+    <!--                        <div class="row welcome-message-wrap">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">-->
+                                        <div class="supervip-affiliate-link">
+                                        <div class="row">
+                                                <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                                                <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/supervip-badge.png" class="supervip-badge img-responsive">
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+                                                <h1>ユーザーを参照するためにこのリンクを使用します。</h1>
+                                                <input type="text" readonly="readonly" value="{{ action('AffiliateController@create' )}}?stai={{ Auth::user()->affiliate_id }}">
+                                            </div>
+                                        </div>
+                                        </div>
+    <!--                            </div>
+                            </div>-->
+                            </div>
+                        </div>
+                    @endif
+                    
+                    <!--<div class="row">-->
+                        <div class="row welcome-message-wrap">&nbsp;
+                    @if(Auth::user()->is_vip == 'no' &&  Auth::user()->sawLetter != 1)
+                       
+                            
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert" role='alert'>
+                                    {{ View::make('affiliate.welcome-letter') }}
                                     <!--<div class="row">
                                         <div class="col-lg-3"> 
                                             {{ trans('general.affiliate-ref-link') }} </div>
@@ -22,7 +42,7 @@
                                         </div>
                                     </div>-->
                                     <div class="affiliate-welcome-footer">
-                                        <div class="row hidden">
+                                        <div class="row">
                                             <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
                                                 <p>{{ trans('general.affiliate-ref-link') }}</p>
                                             </div>
@@ -31,12 +51,13 @@
                                             </div>
                                         </div>
                                     </div>
-								</div>
-                            </div>
-                        </div>
+                                </div>
+                      
+                            
                     @endif
-                </div>
-            </div>
+                    </div>
+                <!--</div>-->
+                
 
             <div class="row top-activities">
                 <div class="col-md-4 col-sm-6 sol-xs-12">
