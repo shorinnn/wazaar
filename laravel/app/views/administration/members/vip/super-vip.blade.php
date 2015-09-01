@@ -20,7 +20,7 @@
                 <td>{{ $rank }}</td>
                 <td>{{$vip->first_name}}</td>
                 <td>{{$vip->last_name}}</td>
-                <td>{{$vip->email}}</td>
+                <td>{{ str_replace('#waa#-','', $vip->email) }}</td>
                 <td>{{$vip->ref_count}}</td>
             </tr>
             <?php ++$rank;?>
