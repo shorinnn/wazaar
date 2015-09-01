@@ -15,7 +15,9 @@
             <div class="user-data-modal clearfix">
                     <h1 class="clearfix">{{ trans('general.register-affiliate') }}</h1>
                 
-                <p class="regular-paragraph text-center light-gray-text">{{ trans('site/register.enter-new-email-and-password') }}</p>
+                <p class="regular-paragraph text-center light-gray-text">
+                    ワザールで１０年に一度の大チャンスを掴みたい人のは今すぐ登録！
+                </p>
                 <div class="form-container clearfix">
                     @if (Session::has('error'))
                         <div class="alert alert-danger">

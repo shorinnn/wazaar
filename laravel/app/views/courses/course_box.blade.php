@@ -36,7 +36,7 @@
                            
                     </div>
 					<div class="highly-recommend">
-                    	<i class="wa-like"></i> {{ $course->reviews_positive_score }}% {{trans('general.highly-recommend')}}
+                    	<i class="wa-like"></i> {{ $course->reviews_positive_score }}% {{ $course->rating() }}
                     </div> 
                 </div>
                 <?php echo Flatten::section('bottom-course-box-'.$course->id, Config::get('custom.cache-expiry.course-box'), function () use ($course) { ?>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="bottom-contents clearfix">
                         <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}"
-                        data-toggle="tooltip" data-placement="top" title="Difficulty: Intermediate">
+                        data-toggle="tooltip" data-placement="top" title="Difficulty: {{ $course->courseDifficulty->name }}">
                             <span class="bar-1"></span>
                             <span class="bar-2"></span>
                             <span class="bar-3"></span>

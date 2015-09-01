@@ -1,4 +1,3 @@
-{{ $courses->appends(Input::only('sort','difficulty'))->links() }}
 <div class="container">
     
     @foreach($courses as $course)

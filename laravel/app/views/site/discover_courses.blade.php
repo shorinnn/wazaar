@@ -38,7 +38,7 @@
                                     @endif
                                 </div>
                                 <div class="highly-recommend">
-                                	<i class="wa-like"></i>{{ $course->reviews_positive_score }}% {{trans('general.highly-recommend')}}
+                                	<i class="wa-like"></i>{{ $course->reviews_positive_score }}% {{ $course->rating() }}
                                 </div>
                             </div>
                             
@@ -52,7 +52,7 @@
                         </div>
                         <div class="bottom-contents clearfix">
                             <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}"
-                            data-toggle="tooltip" data-placement="top" title="Difficulty: Intermediate">
+                            data-toggle="tooltip" data-placement="top" title="Difficulty: {{  $course->courseDifficulty->name }}">
                                 <?php
                                     $difficulty = 1;
                                     if($course->courseDifficulty->name=='Intermediate') $difficulty = 2;
@@ -108,7 +108,7 @@
                             class="img-responsive" alt="" style="max-height: 182px"  />-->
                         <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">
                         <span class="video-play-button"><em></em></span>
-                        <span class="likes"><i class="wa-like"></i>{{ $course->likes() }}</span>       
+                        <span class="likes"><i class="wa-like"></i>{{  $course->reviews_positive_score  }}</span>       
                         <span class="box-overlay">
                             <p>Lesson</p>
                             <p>weeks of learning</p>
@@ -134,7 +134,8 @@
                             <p>{{ $course->short_description }}</p>
                         </div>
                         <div class="bottom-contents clearfix">
-                            <div class="difficulty-bar  {{ difficultyToCss($course->courseDifficulty->name) }}">
+                            <div class="difficulty-bar  {{ difficultyToCss($course->courseDifficulty->name) }}"
+                               data-toggle="tooltip" data-placement="top"  title="Difficulty: {{  $course->courseDifficulty->name }}">
                                 <?php
                                     $difficulty = 1;
                                     if($course->courseDifficulty->name=='Intermediate') $difficulty = 2;
