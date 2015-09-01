@@ -10,10 +10,13 @@
 	<div class="row">
     	<div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-sm-offset-2 col-md-offset-3 col-lg-offset-4">
         	<a href="" class="modal-box-logo clearfix">
-            	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
+            	<!--<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">-->
             </a>
             <div class="user-data-modal clearfix">
-                    <h1 class="clearfix">{{ trans('general.register-affiliate') }}</h1>
+                <p class="text-center"  style="margin-top: -75px;">
+                    <img src="{{ url('images/Logo-affiliate.png')}}"/>
+                </p>
+                    <h1 class="clearfix" style="margin-top:0px">{{ trans('general.register-affiliate') }}</h1>
                 
                 <p class="regular-paragraph text-center light-gray-text">
                     ワザールで１０年に一度の大チャンスを掴みたい人は今すぐご登録をお願いします！
