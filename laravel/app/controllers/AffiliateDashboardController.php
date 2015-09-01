@@ -29,6 +29,8 @@ class AffiliateDashboardController extends BaseController
 
     public function secondTierRegistrationsView($frequency = '')
     {
+        if(Auth::user()->is_vip=='no') return '';
+        
         $frequencyOverride = 'day';
         switch($frequency){
             case 'alltime' :
@@ -43,7 +45,7 @@ class AffiliateDashboardController extends BaseController
             default:
                 $affiliates = $this->analyticsHelper->secondAffiliatesLastFewDays(Auth::id());break;
         }
-
+        
         if (is_array($affiliates)) {
             return View::make('analytics.partials.ltcRegistrations', compact('affiliates', 'frequencyOverride'))->render();
         }
