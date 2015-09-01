@@ -143,10 +143,10 @@ class AnalyticsHelper
 
 //        $result = Cache::remember('second_affiliates', self::CACHE, function() use($sql)
 //        {
-            return DB::select($sql);
+//            return DB::select($sql);
 //        });
 
-        //$result = DB::select($sql);
+        $result = DB::select($sql);
 
         $result = array_map(function ($val) {
             return json_decode(json_encode($val), true);
