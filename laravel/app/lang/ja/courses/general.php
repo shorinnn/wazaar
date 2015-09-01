@@ -178,5 +178,12 @@ jpeg, png',
     'instructed-by' => '講師プロフィール',
     'profile-more' => 'もっと見る',
     'profile-less' => 'もとに戻る',
+    'sort' => [
+        'best-selling-all-time' => 'Best selling All time',
+        'best-selling-this-month' => 'Best selling this month',
+        'best-selling-this-week' => 'Best selling this week',
+        'recent-courses' => 'Recent courses',
+        'oldest-courses' => 'Oldest courses',
+    ]
 );
 

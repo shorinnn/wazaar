@@ -7,8 +7,9 @@
                     <p class="category-heading-title">
                     </p>
                         @if($category->name!='')
-                            <p class="category-heading-title"> <a href="#">{{ $category->name }}</a> <i class="wa-chevron-right"></i>
+                            <p class="category-heading-title"> <a href="#">{{ $category->name }}</a> 
                                 @if(isset($subcategory))
+                                    <i class="wa-chevron-right"></i>
                                     {{$subcategory->name}}
                                 @endif
                             </p>
@@ -18,8 +19,8 @@
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                     	<div class="clearfix right">
                             <div class="sort-options"><label>Sort by:</label>
-                                {{Form::select('sort',CourseHelper::getCourseSortOptions(),Input::get('sort'),['class' => 'form-control'])}}
-                            <div class="date-dropdown">
+                                {{ Form::select('sort', CourseHelper::getCourseSortOptions(), Input::get('sort'), ['class' => 'form-control'] ) }}
+<!--                            <div class="date-dropdown">
                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Date
                                     <i class="wa-chevron-down"></i>
@@ -30,7 +31,7 @@
                                     <li><a href="#">1 month</a></li>
                                     <li><a href="#">1 year</a></li>
                                 </ul>
-                            </div>
+                            </div>-->
                             </div>
     
     
@@ -38,7 +39,10 @@
                                 <div class="level-buttons-container">
                                     <a href="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort').'&term='. Input::get('term') }}"  data-target=".ajax-content" 
                                        data-url="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort'). '&term='. Input::get('term') }}"
-                                       data-callback="ajaxifyPagination" class="load-remote beginner level-buttons @if($difficultyLevel == 1) active @endif">Beginner</a>
+                                       data-callback="ajaxifyPagination" class="load-remote beginner  level-buttons @if(!isset($difficultyLevel) || $difficultyLevel == 0 ) active @endif">All</a>
+                                    <a href="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort').'&term='. Input::get('term') }}"  data-target=".ajax-content" 
+                                       data-url="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort'). '&term='. Input::get('term') }}"
+                                       data-callback="ajaxifyPagination" class="load-remote advanced level-buttons @if($difficultyLevel == 1) active @endif">Beginner</a>
                                     <a href="{{Request::url() . '?difficulty=2&sort=' . Input::get('sort').'&term='. Input::get('term') }}" data-target=".ajax-content" 
                                        data-url="{{Request::url() . '?difficulty=2&sort=' . Input::get('sort').'&term='. Input::get('term') }}" 
                                        data-callback="ajaxifyPagination" class="load-remote advanced level-buttons @if($difficultyLevel == 2) active @endif">Intermediate</a>

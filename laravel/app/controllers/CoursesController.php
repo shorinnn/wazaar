@@ -290,13 +290,20 @@ class CoursesController extends \BaseController {
                 $wishlisted = $student->wishlistItems()->lists( 'course_id' );
             }
             if (Input::has('sort')){
-                if ( Input::get('sort') == 'best-selling' || Input::get("sort") == 'best-selling-low' ){
+                if ( Input::get('sort') == 'best-at' || Input::get("sort") == 'best-m' || Input::get("sort") == 'best-w' ){
+                    
+                    switch(Input::get('sort')){
+                        case 'best-at': $timeframe = 'AT'; break;
+                        case 'best-m': $timeframe = 'LM'; break;
+                        case 'best-w': $timeframe = 'LW'; break;
+                        default: $timeframe = 'AT';
+                    }
                     
                     $courseHelper = new CourseHelper();
                     $category = new stdClass;
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
                     $order = ( Input::get('sort') == 'best-selling-low' ) ? 'ASC' : 'DESC';
-                    $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel], $order);
+                    $courses = $courseHelper->bestSellers($slug, $timeframe, 9, ['course_difficulty_id' => $difficultyLevel], $order);
                     if(Request::ajax() ) Return View::make('courses.categories.courses')->with( compact( 'category', 'courses', 'wishlisted' ) );
                     return View::make('courses.categories.category')->with( compact( 'category', 'difficultyLevel', 'courses', 'wishlisted') );
                 }
@@ -395,13 +402,20 @@ class CoursesController extends \BaseController {
                 $wishlisted = $student->wishlistItems()->lists( 'course_id' );
             }
             if (Input::has('sort')){
-                if ( Input::get('sort') == 'best-selling' || Input::get("sort") == 'best-selling-low' ){
+                if ( Input::get('sort') == 'best-at' || Input::get("sort") == 'best-m' || Input::get("sort") == 'best-w' ){
+                    
+                    switch(Input::get('sort')){
+                        case 'best-at': $timeframe = 'AT'; break;
+                        case 'best-m': $timeframe = 'LM'; break;
+                        case 'best-w': $timeframe = 'LW'; break;
+                        default: $timeframe = 'AT';
+                    }
                     
                     $courseHelper = new CourseHelper();
                     $category = new stdClass;
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
                     $order = ( Input::get('sort') == 'best-selling-low' ) ? 'ASC' : 'DESC';
-                    $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel], $order, $subcat);
+                    $courses = $courseHelper->bestSellers($slug, $timeframe, 9, ['course_difficulty_id' => $difficultyLevel], $order, $subcat);
                     if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted' ) );
                     return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses') );
                 }
@@ -425,7 +439,7 @@ class CoursesController extends \BaseController {
                     });
 
 
-            if (!empty($difficultyLevel)){
+            if (!empty($difficultyLevel) && $difficultyLevel > 0){
                 $courses = $courses->where('course_difficulty_id', $difficultyLevel);
             }
 

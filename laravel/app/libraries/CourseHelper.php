@@ -123,14 +123,21 @@ class CourseHelper {
 
     public static function getCourseSortOptions()
     {
+//        $options = [
+//          ''    => trans('general.select-sort'),
+//          'best-selling' => 'Best Selling - High to Low',
+//          'best-selling-low' => 'Best Selling - Low to High',
+//          'date'         => 'Date - Newest First',
+//          'date-oldest'         => 'Date - Oldest First',
+//        ];
         $options = [
-          ''    => trans('general.select-sort'),
-          'best-selling' => 'Best Selling - High to Low',
-          'best-selling-low' => 'Best Selling - Low to High',
-          'date'         => 'Date - Newest First',
-          'date-oldest'         => 'Date - Oldest First',
+            ''    => trans('general.select-sort'),
+            'best-at' => trans('courses/general.sort.best-selling-all-time'), 
+            'best-m' => trans('courses/general.sort.best-selling-this-month'), 
+            'best-w' => trans('courses/general.sort.best-selling-this-week'), 
+            'date' => trans('courses/general.sort.recent-courses'),
+            'date-oldest' => trans('courses/general.sort.oldest-courses')
         ];
-
         return $options;
     }
 

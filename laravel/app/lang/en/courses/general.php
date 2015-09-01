@@ -191,4 +191,11 @@ return array(
     'instructed-by' => 'Instructed By',
     'profile-more' => 'more',
     'profile-less' => 'less',
+    'sort' => [
+        'best-selling-all-time' => 'Best selling All time',
+        'best-selling-this-month' => 'Best selling this month',
+        'best-selling-this-week' => 'Best selling this week',
+        'recent-courses' => 'Recent courses',
+        'oldest-courses' => 'Oldest courses',
+    ]
 );
