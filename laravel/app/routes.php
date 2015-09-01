@@ -96,12 +96,14 @@ $wwwRoutes = function(){
         Route::post('withdrawals/bank-file/', 'WithdrawalsController@downloadBankFile');
         
         Route::resource('withdrawals', 'WithdrawalsController');
-        Route::post('members/refund', 'MembersController@refund');
         Route::put('members/{id}/update-profile', 'MembersController@updateProfile');
+        Route::post('members/refund', 'MembersController@refund');
         Route::get('members/create-vip', 'MembersController@createVip');
         Route::post('members/create-vip', 'MembersController@storeVip');
         Route::get('members/super-vip', 'MembersController@superVip');
+
         Route::resource('members', 'MembersController');
+        
         Route::get('second-tier-publishers/stats', 'SecondTierPublishersController@stats');
         Route::resource('second-tier-publishers', 'SecondTierPublishersController');
         Route::get('submissions/all-courses', 'SubmissionsController@allCourses');

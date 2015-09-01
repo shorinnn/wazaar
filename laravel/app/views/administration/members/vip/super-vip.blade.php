@@ -7,7 +7,7 @@
      <thead>
          <tr>
             <td>RANK</td>
-            <td>FIRST NAME}</td>
+            <td>FIRST NAME</td>
             <td>LAST NAME</td>
             <td>EMAIL</td>
             <td>REF. COUNT</td>

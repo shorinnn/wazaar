@@ -42,8 +42,10 @@
 	<div class="row">
     	<div class="col-md-12">
             <div class="table-responsive">
-                {{ Form::model($user, ['action' => ['MembersController@update', $user->id], 'method' => 'PUT', 'data-callback' => 'formSaved',
+                {{ Form::model($user, ['action' => ['MembersController@update', $user->id], 
+                            'method' => 'PUT', 'data-callback' => 'formSaved',
                             'id' =>'edit-form', 'class' => 'ajax-form'])}}
+
                 <table class="table personal-info">
                     <tr>
                         <td class="title no-border">{{trans('general.email')}}</td>
