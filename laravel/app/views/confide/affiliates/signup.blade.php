@@ -16,7 +16,7 @@
                     <h1 class="clearfix">{{ trans('general.register-affiliate') }}</h1>
                 
                 <p class="regular-paragraph text-center light-gray-text">
-                    ワザールで１０年に一度の大チャンスを掴みたい人のは今すぐ登録！
+                    ワザールで１０年に一度の大チャンスを掴みたい人は今すぐご登録をお願いします！
                 </p>
                 <div class="form-container clearfix">
                     @if (Session::has('error'))
