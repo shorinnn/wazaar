@@ -66,14 +66,15 @@
                                             {{ View::make('courses.followed_form')->withInstructor($instructor) }}
                                         @endif-->
                                         <!--<h4>{{ trans('general.about') }} {{$instructor->profile->first_name}}</h4>-->
-                            <p class="clearfix regular-paragraph expandable-content short-text">
+                            <p class="clearfix regular-paragraph expandable-content short-text instructor-bio-p">
                                 @if( $course->show_bio=='custom' )
                                     {{ $course->custom_bio }}
                                 @else
                                     {{ $instructor->profile->bio }}
                                 @endif
                             </p>
-                            <span class="show-full-description transparent-button transparent-button-primary" data-toggle="modal" data-target="#instructor-bio">
+                            <span class="show-full-description transparent-button transparent-button-primary instructor-bio-btn" data-toggle="modal" 
+                                  style='display:none' data-target="#instructor-bio">
                                 {{ trans( 'general.read-more' ) }}
                             </span>
                         @endif
@@ -352,10 +353,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="myModalLabel">
+                        @if($instructor->profile == null)
+                            {{$instructor->first_name}} {{$instructor->last_name}}
+                        @else
+                            {{$instructor->profile->first_name}} {{$instructor->profile->last_name}}
+                        @endif
+                    </h4>
                 </div>
                 <div class="modal-body">
-                    ...
+                    @if( $course->show_bio=='custom' )
+                        {{ $course->custom_bio }}
+                    @else
+                        {{ $instructor->profile->bio }}
+                    @endif
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -376,7 +387,10 @@
             div.style.display='none';
             $("iframe").attr("src", $("iframe").attr("src").replace("autoplay=0", "autoplay=1"));
         }
-        $(function(){
+        $(function(){            
+            if( $('.instructor-bio-p').getLines() > 4){
+                $('.instructor-bio-btn').show();
+            }
             if( $('#myVideo').length > 0 || $('.videoContainer').length > 0  ){
                 console.log('READY!');
 //                $('.pre-view-image').first().hide();
