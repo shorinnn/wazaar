@@ -313,7 +313,7 @@ function linkToRemote(e){
         $(loadingContainer).html('<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
     }
     if( typeof(preFunction) !='undefined') window[preFunction](e);
-    
+    url+='#ajax';
     $.get(url, function(result){
         $(e.target).attr('data-loading', 0);
         $(elem).html( $(elem).attr('data-old-label') );
@@ -360,6 +360,7 @@ function linkToRemoteConfirm(e){
     
     $(elem).attr('data-old-label', $(elem).html() );
     $(elem).html( '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    url+='#ajax';
     $.get(url, function(result){
         $(e.target).attr('data-loading', 0);
         $(elem).html( $(elem).attr('data-old-label') );
@@ -387,7 +388,7 @@ function linkToRemoteConfirm(e){
  * @param {string} data-target CSS selector of the element that receives the new content
  * @method loadRemote
  */
-function loadRemote(e){
+function    loadRemote(e){
     
     e.preventDefault();
     var nofollow = $(e.target).attr('data-nofollow');
@@ -420,7 +421,7 @@ function loadRemote(e){
         history.pushState({}, '', url);
     }
     if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
-        
+        url+='#ajax';
         console.log( url );
         if( typeof(indicatorStyle)=='undefined')
             $(target).html( '<center><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></center> ');
