@@ -63,7 +63,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 	<div class="row">
                     	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        	<!--<h5>Courses</h5>
+                        	<h5>Courses</h5>
                             <ul>
                             	<li>
                                 	<a href="#">Data Science</a>
@@ -80,10 +80,10 @@
                             	<li>
                                 	<a href="#">Office Productivity</a>
                                 </li>
-                            </ul>-->
+                            </ul>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        	<!--<h5>&nbsp;</h5>
+                        	<h5>&nbsp;</h5>
                             <ul>
                             	<li>
                                 	<a href="#">Design</a>
@@ -100,7 +100,7 @@
                             	<li>
                                 	<a href="#">Health & Fitness</a>
                                 </li>
-                            </ul>  -->                      
+                            </ul>                    
                         </div>
                     </div>
                   <!--{{trans('site/footer.all-rights-reserved')}}<br/>
@@ -109,23 +109,28 @@
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 	<div class="row">
                     	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        	<!--<h5>ABOUT</h5>-->
+                        	<h5>ABOUT</h5>
                             <ul>
                             	<li>
-                                	<a href="{{ action('SiteController@privacyPolicy') }}"> {{ trans('general.privacy-policy') }}</a>
+                                	<a href="{{ action('SiteController@privacyPolicy') }}">Company </a>
                                 </li>
                             	<li>
                                 	<a href="{{ action('SiteController@about') }}">特定商取引法に関する表示 </a>
                                 </li>
-<!--                            	<li>
-                                	<a href="#">Privacy Policy</a>
-                                </li>-->
+	                           	<li>
+                                	<a href="#">{{ trans('general.privacy-policy') }}</a>
+                                </li>
                             </ul>                        
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center-mobile padding-bottom-20">
-                        	<!--<h5>GET IN TOUCH</h5>-->
-                            <p>電話番号：03-6206-8396　</p>
-                            <p><!--{{trans('site/footer.mail')}}:info@wazaar.com-->メールアドレス：contact@wazaar.jp</p>                        
+                        	<h5>GET IN TOUCH</h5>
+                            <p><!--電話番号：-->03-6206-8396　</p>
+                            <p><!--{{trans('site/footer.mail')}}:info@wazaar.comメールアドレス：-->contact@wazaar.jp</p>  
+                            <div class="social-icons">
+                            	<a href="#" class="inline-block"><i class="fa fa-facebook"></i></a>
+                            	<a href="#" class="inline-block"><i class="fa fa-twitter"></i></a>
+                            	<a href="#" class="inline-block"><i class="fa fa-rss"></i></a>
+                            </div>                      
                         </div>
                     </div>
                 </div>

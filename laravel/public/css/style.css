@@ -7731,6 +7731,12 @@ footer{
 	display: block;
 	margin: 15px 0 0;
 }
+.footer-container .social-icons a{
+	display: inline-block;
+}
+.footer-container .social-icons a + a{
+	margin-left: 13px;
+}
 /************** IE8 Fix *************/
 .ie8 .cat-row-1 > div.col-md-4,
 .ie8 .cat-row-2 > div.col-md-4,
