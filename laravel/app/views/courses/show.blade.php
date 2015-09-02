@@ -195,7 +195,8 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
  				<div class="enroll-button-wrap">
                 @if($course->cost() > 0 && !Input::has('preview') )
-                        {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                        <?php 
+                        /*{{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
  
                         @if(Auth::guest() || $student->canPurchase($course) )
                             <span class="price clearfix">
@@ -236,6 +237,8 @@
                             <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
                                 You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                         @endif
+                         */ ?>
+                         
                 @elseif( !Input::has('preview') )
                     {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
                                 @if(Auth::guest() || $student->canPurchase($course) )
