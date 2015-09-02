@@ -5824,7 +5824,7 @@ h6{
 	float: left;
 }
 .welcome-message-wrap{
-	margin-bottom: 47px;
+	/*margin-bottom: 47px;*/
 }
 .affiliate-welcome{
 	background: #fff;
@@ -14299,6 +14299,7 @@ header .top-menu .logged-out-header-search{
 }
 .supervip-affiliate-link h1{
 	margin: 30px 0 24px;
+        padding:0 20px;
 }
 .supervip-affiliate-link input{
 	margin: 0 0 26px;

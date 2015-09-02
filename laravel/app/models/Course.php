@@ -411,6 +411,11 @@ class Course extends Ardent{
         else return $this->total_reviews * $this->reviews_positive_score / 100;
     }
     
+    public function reviewsScore(){
+        if( $this->total_reviews == 0 ) return '-';
+        return $this->reviews_positive_score.'%';
+    }
+    
     public function rating(){
         if( $this->total_reviews == 0 ) return trans('general.no-rating-yet');
         

@@ -17,6 +17,7 @@
             @if(Auth::check())
         <div class="clearfix left">
             <div class="logged-out-header-search text-center">
+                <?php if('dont-show' == 'yes'):?>
                 <div class="clearfix inline-block">
                     <div class="activate-dropdown left relative">
                         <button aria-expanded="false" data-toggle="dropdown" 
@@ -49,69 +50,6 @@
                                     @endforeach
                                     
                                     <?php }); ?>
-                                
-                                <!--<li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li class="dropdown-list">
-                                    Business & Marketing <i class="wa-chevron-right"></i>
-                                    <ul>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>                                
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -122,6 +60,7 @@
                         </div>
                     </form>
                 </div>
+                <?php endif;?>
             </div>
         </div>
         <div class="clearfix right logged-in-menu-holder">
@@ -189,7 +128,7 @@
 <!--                            <li>
                                 <a class="settings-button" href="#">{{trans('site/menus.analytics')}}</a>
                             </li>-->
-                            <li>
+                            <li style="display:none">
                                 <a class="settings-button" href="{{ action('PrivateMessagesController@index') }}">{{trans('site/menus.messages')}}
     
                                 </a>
@@ -251,6 +190,7 @@
                 </li>
             </ul>
             <div class="logged-out-header-search text-center">
+                 <?php if('dont-show' == 'yes'):?>
             	<div class="clearfix inline-block">
                     <div class="activate-dropdown left relative">
                         <button aria-expanded="false" data-toggle="dropdown" 
@@ -294,6 +234,7 @@
                         </div>
                     </form>
                 </div>
+                <?php endif;?>
             </div>
             <ul class="logged-out hidden-xs">
                 <li>

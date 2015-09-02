@@ -14,7 +14,7 @@ class MembersController extends \BaseController {
 	 */
 	public function index()
 	{
-            $pagination = Input::get('view') > 0 ? Input::get('view') :  2;
+            $pagination = Input::get('view') > 0 ? Input::get('view') :  20;
             
             $url_filters = [];
             $params = array_merge( $_GET, array("type" => "student", 'page' => 1));
@@ -187,6 +187,14 @@ class MembersController extends \BaseController {
                 $error = implode('<br />',$user->errors()->all());
                 return View::make('administration.members.vip.create')->withErr($error);
             }
+        }
+        
+        public function superVip(){
+            $result = DB::select("SELECT `id` as `theID`, `first_name`, `last_name`, `email`,
+                (SELECT COUNT(id) FROM `users` WHERE `second_tier_affiliate_id` = theID) AS `ref_count` FROM `users` WHERE `is_vip` = 'yes' 
+                ORDER BY `ref_count` DESC");
+            return View::make('administration.members.vip.super-vip')->withVips($result);
+            
         }
 
 

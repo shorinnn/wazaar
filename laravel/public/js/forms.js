@@ -17,7 +17,7 @@ $(document).ready(function(){
     $('body').delegate('.toggle-disable', 'change', toggleDisable);
     $('body').delegate('.reset-form', 'click', resetForm);
     $('body').delegate('.submit-form', 'click', submitForm);
-    $('body').delegate('.click-on-enter', 'keyup keypress', clickOnEnter);
+    $('body').delegate('.click-on-enter', 'keyup', clickOnEnter);
 });
 
 /**
@@ -558,9 +558,25 @@ function submitForm(e){
     $form = $(form);
     $form.find('[type="submit"]').click();
 }
-
+var japaneseDoubleEnter = true;
+var doubleEnterPrevChar = false;
 function clickOnEnter(e){
-    if( e.which == 13 ){
+    var runFunction = false;
+    if( japaneseDoubleEnter ){
+        if( e.which == 13 ){
+            if( doubleEnterPrevChar ){
+                runFunction = true;
+                doubleEnterPrevChar = false;
+            }
+            else doubleEnterPrevChar = true;
+        }
+        else doubleEnterPrevChar = false;
+    }
+    else{
+        if( e.which == 13 ) runFunction = true;
+    }
+    
+    if( runFunction ){
         if( $.trim( $(e.target).val() )  == '') return false;
         link = $(e.target).attr('data-click');
         callback = $(e.target).attr('data-callback');

@@ -532,7 +532,22 @@ class UserRepository
                 dd( $user->errors()->all() );
             }
             Auth::login($user);
-            // todo: confirm on delivered too!
+            
+            //email affiliates
+            if( $user->hasRole('Affiliate')){
+                $user = User::find($user->id);
+                Mail::send(
+                        'emails.to-affiliates',
+                        compact('user' ),
+                        function ($message) use ($user) {
+                            $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
+                            $message
+                                ->to($user->email, $user->fullName() )
+                                ->subject( 'ワザールのアフィリエイタークラブへのご登録、無事に完了しました！' );
+                        }
+                    );
+            }
+            
             $delivered = new DeliveredHelper();
             $deliveredUser = $delivered->findUser( $user->email );
             $deliveredUser = $deliveredUser['data'];

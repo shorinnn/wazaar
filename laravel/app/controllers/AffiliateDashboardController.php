@@ -13,13 +13,9 @@ class AffiliateDashboardController extends BaseController
     public function index()
     {
         $user =  Auth::user();
-//        $sawLetter = $user->getCustom('saw_aff_welcome_letter');
-//        if($sawLetter != 1){
-//            $user->setCustom('saw_aff_welcome_letter' ,1);
-//            $user->save();
-//        }
-//        if(Input::has('show-letter-again')) $sawLetter = null;
-//        Auth::user()->sawLetter = $sawLetter;
+        $sawLetter = $user->getCustom('saw_aff_welcome_letter');
+        if(Input::has('show-letter-again')) $sawLetter = null;
+        Auth::user()->sawLetter = $sawLetter;
         return $this->_affiliateDashboard();
     }
 
@@ -33,6 +29,8 @@ class AffiliateDashboardController extends BaseController
 
     public function secondTierRegistrationsView($frequency = '')
     {
+        if(Auth::user()->is_vip=='no') return '';
+        
         $frequencyOverride = 'day';
         switch($frequency){
             case 'alltime' :
@@ -47,7 +45,7 @@ class AffiliateDashboardController extends BaseController
             default:
                 $affiliates = $this->analyticsHelper->secondAffiliatesLastFewDays(Auth::id());break;
         }
-
+        
         if (is_array($affiliates)) {
             return View::make('analytics.partials.ltcRegistrations', compact('affiliates', 'frequencyOverride'))->render();
         }

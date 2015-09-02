@@ -1,5 +1,7 @@
 <?php
-
+// for some reason D:\Dropbox\Documente\NetBeansProjects\wazaar\laravel\vendor\laravel\framework\src\Illuminate\Foundation\start.php 
+// > Request::enableHttpMethodParameterOverride(); fails, so re-enabling it here
+\Illuminate\Support\Facades\Request::enableHttpMethodParameterOverride();
 return array(
 
 	/*
@@ -13,7 +15,12 @@ return array(
 	|
 	*/
 
-	'debug' => false,
+	'debug' =>  value(function(){     
+            if( \Illuminate\Support\Facades\Input::has('set-debug') && \Illuminate\Support\Facades\Input::get('set-debug')=='yes-ryan-please')
+                return true;
+            else
+                return false;
+        }),
 
 	/*
 	|--------------------------------------------------------------------------
