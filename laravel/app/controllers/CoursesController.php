@@ -575,7 +575,7 @@ class CoursesController extends \BaseController {
                 $wishlisted = $student->wishlistItems()->lists( 'course_id' );
             }
             
-            if( !Input::has('is-preview') ) $course = courseApprovedVersion( $course );
+            if( !Input::has('preview') ) $course = courseApprovedVersion( $course );
             
             if( $course->publish_status != 'approved' && $course->approved_data == '' ){
                 if( Auth::guest() ) return Redirect::action('SiteController@index');
