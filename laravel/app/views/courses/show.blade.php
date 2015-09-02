@@ -184,7 +184,7 @@
                     --}}
                 @endif
                         <?php
-                        if( Input::has('preview') ) echo View::make('courses.description.top-cache')->withCourse($course);
+                        if( Input::has('preview') || 1==1) echo View::make('courses.description.top-cache')->withCourse($course);
                         else{
                             echo Flatten::section('courses-show-details'.$course->id, Config::get('custom.cache-expiry.course-desc-top-details'), function () use( $course )  {
                                 echo View::make('courses.description.top-cache')->withCourse($course);
@@ -196,7 +196,8 @@
  				<div class="enroll-button-wrap">
                 @if($course->cost() > 0 && !Input::has('preview') )
                         <?php 
-                        /*{{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                        /*UNCOMMENT THIS
+                         * {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
  
                         @if(Auth::guest() || $student->canPurchase($course) )
                             <span class="price clearfix">
@@ -335,7 +336,7 @@
     </div>
 </section>
 <?php 
-    if( Input::has('preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
+    if( Input::has('preview') || 1==1) echo View::make('courses.description.bottom-cache')->withCourse($course);
     else{
         echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { 
             echo View::make('courses.description.bottom-cache')->withCourse($course);
