@@ -575,7 +575,7 @@ class CoursesController extends \BaseController {
                 $wishlisted = $student->wishlistItems()->lists( 'course_id' );
             }
             
-            if( !Input::has('is-preview') ) $course = courseApprovedVersion( $course );
+            if( !Input::has('preview') ) $course = courseApprovedVersion( $course );
             
             if( $course->publish_status != 'approved' && $course->approved_data == '' ){
                 if( Auth::guest() ) return Redirect::action('SiteController@index');
@@ -610,7 +610,7 @@ class CoursesController extends \BaseController {
             if( serveMobile() ) 
                 Return View::make('MOBILE_VERSION.courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') );
             else    
-                Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') );
+                Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') )->render();
         } 
         
         public function purchase($slug){

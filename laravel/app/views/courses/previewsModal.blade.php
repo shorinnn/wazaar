@@ -10,7 +10,7 @@
                 <div id="modal-body-videos">
 
                     <div class="row">
-                        <div class="radio-buttons clearfix">
+                        <div class="radio-buttons clearfix all-img-previews-modal">
 
                                 @foreach($images as $img)
                                     {{ View::make('courses.preview_image')->with(compact('img', 'course')) }}

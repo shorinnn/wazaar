@@ -1634,6 +1634,9 @@ function wishlistChange(e){
     e.preventDefault();
     e.stopPropagation();
     $target = $(e.target);
+    iconHolder = $target.attr('data-icon-holder');
+    console.log(iconHolder);
+    textHolder = $target.attr('data-text-holder');
     if( $target.attr('data-auth')==0 ){
         $target.attr('data-original-title',  _( 'Login to add to wishlist' ) );
         $target.animate({'margin-left':'-5px'},50).
@@ -1644,16 +1647,94 @@ function wishlistChange(e){
     }
     url = $target.attr('data-url');
     state = $target.attr('data-state') == 1 ? 0 : 1;
+    if( isset(iconHolder) ){
+      $('.wishlist-change-button').attr('data-state', state);
+    }
     $target.attr('data-state', state);
+    
     if( state == 0 ){
-        $target.addClass('fa-heart-o');
-        $target.removeClass('fa-heart');
-        $target.attr('data-original-title',  _('Add to wishlist') );
+        if( isset(iconHolder) ){
+            console.log('has icon holder');
+            $(iconHolder).addClass('fa-heart-o');
+            $(iconHolder).removeClass('fa-heart');
+            $('.wishlist-change-button').attr('data-original-title',  _('Add to wishlist') );
+            $('.wishlist-change-button').parent().attr('data-original-title',  _('Add to wishlist') );
+            $(textHolder).html(_('Add to wishlist') );
+        }
+        else{
+            $target.addClass('fa-heart-o');
+            $target.removeClass('fa-heart');
+            $target.attr('data-original-title',  _('Add to wishlist') );
+        }
+        
+        
     }
     else{
-        $target.removeClass('fa-heart-o');
-        $target.addClass('fa-heart');
-        $target.attr('data-original-title',  _('Remove from wishlist') );
+        if( isset(iconHolder) ){
+            console.log('has icon holder');
+            $(iconHolder).removeClass('fa-heart-o');
+            $(iconHolder).addClass('fa-heart');
+            $('.wishlist-change-button').attr('data-original-title',  _('Remove from wishlist') );
+            $('.wishlist-change-button').parent().attr('data-original-title',  _('Remove from wishlist') );
+            $(textHolder).html(_('Remove from wishlist') );
+        }
+        else{
+            $target.removeClass('fa-heart-o');
+            $target.addClass('fa-heart');
+            $target.attr('data-original-title',  _('Remove from wishlist') );
+        }
+        
+        
     }
     $.get(url+'/'+state,function(){});
 }
+void function $getLines($){    
+    function countLines($element){
+        var lines          = 0;
+        var greatestOffset = void 0;
+
+        $element.find('character').each(function(){
+            if(!greatestOffset || this.offsetTop > greatestOffset){
+                greatestOffset = this.offsetTop;
+                ++lines;
+            }
+        });
+        
+        return lines;
+    }
+    
+    $.fn.getLines = function $getLines(){
+        var lines = 0;
+        var clean = this;
+        var dirty = this.clone();
+        
+        (function wrapCharacters(fragment){
+            var parent = fragment;
+            
+            $(fragment).contents().each(function(){                
+                if(this.nodeType === Node.ELEMENT_NODE){
+                    wrapCharacters(this);
+                }
+                else if(this.nodeType === Node.TEXT_NODE){
+                    void function replaceNode(text){
+                        var characters = document.createDocumentFragment();
+                        
+                        text.nodeValue.replace(/[\s\S]/gm, function wrapCharacter(character){
+                            characters.appendChild($('<character>' + character + '</>')[0]);
+                        });
+                        
+                        parent.replaceChild(characters, text);
+                    }(this);
+                }
+            });
+        }(dirty[0]));
+        
+        clean.replaceWith(dirty);
+
+        lines = countLines(dirty);
+        
+        dirty.replaceWith(clean);
+        
+        return lines;
+    };
+}(jQuery);

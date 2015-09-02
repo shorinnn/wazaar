@@ -45,7 +45,7 @@
                                                        id="upload-preview-image" name="preview_image" data-dropzone='.dropzone-preview'
                                                        data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' 
                                                        data-targez='#use-existing-preview > div > .radio-buttons'
-                                                       data-target='#selected-previews'/>
+                                                       data-target='.all-img-previews-modal'/>
                                             </label>
                                         </form>
                                         @if($images->count() > 0)

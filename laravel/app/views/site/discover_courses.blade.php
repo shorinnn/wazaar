@@ -23,8 +23,7 @@
                         <span class="video-play-button"><em></em></span>
                         <span class="likes"><i class="wa-like"></i>{{ $course->reviewsScore() }}</span>         
                         <span class="box-overlay">
-                            <p>Lesson</p>
-                            <p>weeks of learning</p>
+                             <p>{{ $course->courseDifficulty->name }}</p>
                              <?php });?>
                             
                             <div class="footer clearfix">
@@ -51,7 +50,7 @@
                             <p>{{ $course->short_description }}</p>
                         </div>
                         <div class="bottom-contents clearfix">
-                            <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}"
+<!--                            <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}"
                             data-toggle="tooltip" data-placement="top" title="Difficulty: {{  $course->courseDifficulty->name }}">
                                 <?php
                                     $difficulty = 1;
@@ -62,7 +61,7 @@
                                 <span class="bar-2"></span>
                                 <span class="bar-3"></span>
                           
-                            </div>
+                            </div>-->
                             <div class="next_">
                                 <!--<div class="learn-more">
                                     <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
@@ -110,8 +109,7 @@
                         <span class="video-play-button"><em></em></span>
                         <span class="likes"><i class="wa-like"></i>{{  $course->reviewsScore()  }}</span>       
                         <span class="box-overlay">
-                            <p>Lesson</p>
-                            <p>weeks of learning</p>
+                             <p>{{ $course->courseDifficulty->name }}</p>
                              <?php });?>
                             <div class="footer clearfix">
                                 <div class="heart-icon">
@@ -134,7 +132,7 @@
                             <p>{{ $course->short_description }}</p>
                         </div>
                         <div class="bottom-contents clearfix">
-                            <div class="difficulty-bar  {{ difficultyToCss($course->courseDifficulty->name) }}"
+<!--                            <div class="difficulty-bar  {{ difficultyToCss($course->courseDifficulty->name) }}"
                                data-toggle="tooltip" data-placement="top"  title="Difficulty: {{  $course->courseDifficulty->name }}">
                                 <?php
                                     $difficulty = 1;
@@ -144,7 +142,7 @@
                                 <span class="bar-1"></span>
                                 <span class="bar-2"></span>
                                 <span class="bar-3"></span>
-                            </div>
+                            </div>-->
                             <div class="next_">
                                 <!--<div class="learn-more">
                                     <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
