@@ -533,27 +533,27 @@ class UsersController extends Controller
         
             $this->delivered = new DeliveredHelper();
             $total = $this->delivered->getUsers();
-            if( Input::has('set-debug') ){
-                dd($total);
-            }
-            $users = $total['data'];
-            
-            $total = 0;
-            $stpi = User::where('is_second_tier_instructor','yes')->get();
-            foreach($stpi as $s){
-                if($s->id != Auth::user()->id) continue;
-                $emails = [];
-                $count = 0;
-                foreach($users as $user){
-                    foreach($user['tags']  as $tag){
-                        if( $tag['tagName'] == 'second-tier-publisher-id' && ($tag['tagIntegerValue']==$s->id ||  $tag['tagStringValue']==$s->id ) ){
-                           $count ++;
+            if($total == null) $ref = 0;
+            else{
+                $users = $total['data'];
+
+                $total = 0;
+                $stpi = User::where('is_second_tier_instructor','yes')->get();
+                foreach($stpi as $s){
+                    if($s->id != Auth::user()->id) continue;
+                    $emails = [];
+                    $count = 0;
+                    foreach($users as $user){
+                        foreach($user['tags']  as $tag){
+                            if( $tag['tagName'] == 'second-tier-publisher-id' && ($tag['tagIntegerValue']==$s->id ||  $tag['tagStringValue']==$s->id ) ){
+                               $count ++;
+                            }
                         }
                     }
                 }
+                $ref = $count;
+                Cache::add( 'sti-for-'.Auth::user()->id , $ref, 30);
             }
-            $ref = $count;
-            Cache::add( 'sti-for-'.Auth::user()->id , $ref, 30);
         }
         else $ref = Cache::get( 'sti-for-'.Auth::user()->id );
         
