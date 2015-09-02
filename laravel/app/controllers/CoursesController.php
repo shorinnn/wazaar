@@ -610,7 +610,7 @@ class CoursesController extends \BaseController {
             if( serveMobile() ) 
                 Return View::make('MOBILE_VERSION.courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') );
             else    
-                Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') );
+                Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') )->render();
         } 
         
         public function purchase($slug){

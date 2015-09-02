@@ -107,6 +107,7 @@
                             {{ externalVideoPreview($course->external_video_url, false, true) }}
                         </div>
                     @endif
+                    
                 @else
                     <video style="width: 100%" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
                         <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
@@ -385,7 +386,8 @@
             thevid=document.getElementById('videoContainer');
             thevid.style.display='block'; 
             div.style.display='none';
-            $("iframe").attr("src", $("iframe").attr("src").replace("autoplay=0", "autoplay=1"));
+//            $("iframe").attr("src", $("iframe").attr("data-src").replace("autoplay=0", "autoplay=1"));
+             $("#embeded-video")[0].src += "&autoplay=1";
         }
         $(function(){            
             if( $('.instructor-bio-p').getLines() > 4){
