@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="{{url('css/select-style.css')}}">
         <link rel="stylesheet" href="{{url('css/ui-components.css')}}">
         <link rel="stylesheet" href="{{url('css/jquery.jscrollpane.css')}}">
+        <link rel="stylesheet" href="{{url('css/jquery.custom-scrollbar.css')}}">
         <link rel="stylesheet" href="{{url('plugins/slider/css/slider.css')}}">
         <link rel="stylesheet" href="{{url('css/jquery.videobackground.css')}}">
         <link rel="stylesheet" href="{{url('css/slick.css')}}">
@@ -306,6 +307,7 @@
         <script src="{{url("js/pluralize.js")}}"></script>
         <script src="{{url("js/jquery.mousewheel.js")}}"></script>
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
+        <script src="{{url("js/jquery.custom-scrollbar.js")}}"></script>
         <script src="{{url("js/main.js")}}"></script>
         <script src="{{url("js/messages.js")}}"></script>
         <script src="{{url("js/slick.js")}}"></script>
@@ -344,6 +346,8 @@
                     }
                 });
 				
+			    $(".scroll-pane").customScrollbar();
+		
 				$('[data-toggle="popover"]').popover();
 
 				$('.showRegister').click(function(){

@@ -676,7 +676,7 @@ header .profile-name > li.open button::after{
 header .profile-name ul{
 	position: absolute;
 	background: #fff;
-	padding: 0;
+	padding: 5px 0;
 	margin: -4px 0 0;
 	width: 100%;
 	z-index: 1;
@@ -13680,7 +13680,7 @@ footer{
 }
 .question-holder {
     height: 84%;
-    overflow: scroll;
+    overflow: auto;
     position: relative;
     top: 75px;
 }
@@ -13689,6 +13689,9 @@ footer{
 }
 .questions-box .question-title {
     padding-right: 19%;
+}
+.video-wrap {
+    min-height: 370px;
 }
 }
 

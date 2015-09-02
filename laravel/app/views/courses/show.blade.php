@@ -94,7 +94,7 @@
                     @endif
                 </div>-->
  
-                
+                <div class="video-wrap">
                 @if( $video==null )
                     @if($course->external_video_url != '')
                         <div class="pre-view-image video-player" onclick="playVideo(this)" style="cursor:pointer">
@@ -175,6 +175,7 @@
                     </div>
                     --}}
                 @endif
+                </div>
                         <?php
                         if( Input::has('is-preview') ) echo View::make('courses.description.top-cache')->withCourse($course);
                         else{
