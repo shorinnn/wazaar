@@ -533,7 +533,11 @@ class UsersController extends Controller
         
             $this->delivered = new DeliveredHelper();
             $total = $this->delivered->getUsers();
+            if( Input::has('set-debug') ){
+                dd($total);
+            }
             $users = $total['data'];
+            
             $total = 0;
             $stpi = User::where('is_second_tier_instructor','yes')->get();
             foreach($stpi as $s){
