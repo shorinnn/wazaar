@@ -41,6 +41,7 @@ return array(
     'crash_class' =>'受講する',
     'who_is_this_for?' =>'こんな方におすすめ',
     'add_to_wishlist' =>'ウィッシュリストに追加',
+    'remove_from_wishlist' =>'REMOVE FROM WISHLIST',
     'reviews' => 'レビュー | レビュー',
 //    'module' => 'モジュール',
     'module' =>'セクション',

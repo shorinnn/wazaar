@@ -279,16 +279,28 @@
                      <div class="column-3">
                         <div class="add-to-wishlist-container clearfix">
                             @if( !in_array($course->id, $wishlisted) )
-                            	<span>
-                                    <i class="fa fa-heart-o tooltipable wishlist-change-button" title="Add to wishlist" data-auth="{{ intval(Auth::check() )}}"
-                                       data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0">
+                            	<span class="tooltipable" title="{{ trans('courses/general.add_to_wishlist')}}" style='display:inline' >
+                                    <i class="wish-icon-holder fa fa-heart-o  wishlist-change-button" data-auth="{{ intval(Auth::check() )}}" 
+                                      data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0" style="display:inline"
+                                      data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'></i>
+                                    <span style='display:inline' class='wish-text-holder wishlist-change-button' data-auth="{{ intval(Auth::check() )}}" 
+                                      data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0" style="display:inline"
+                                      data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'>
+                                        {{ trans('courses/general.add_to_wishlist')}}</span>
                                 @else
-                                <span>
-                                    <i class="fa fa-heart tooltipable wishlist-change-button" title="Remove from wishlist" data-auth="{{ intval(Auth::check() )}}"
-                                       data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1">
+                                <span class="tooltipable" title="{{ trans('courses/general.remove_from_wishlist')}}" style='display:inline'>
+                                    <i class="wish-icon-holder fa fa-heart wishlist-change-button" data-auth="{{ intval(Auth::check() )}}"
+                                       data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1" style="display:inline"
+                                       data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'></i>
+                                    <span style='display:inline' class='wish-text-holder wishlist-change-button'
+                                           data-auth="{{ intval(Auth::check() )}}"
+                                       data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1" style="display:inline"
+                                       data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'>
+                                        {{ trans('courses/general.remove_from_wishlist')}}</span>
                                 @endif
                                 
-                                	</i>{{ trans('courses/general.add_to_wishlist')}}
+                                    
+                                    
                                 </span>
                                 <?php
                                  
@@ -299,7 +311,7 @@
 //                                {{//Form::close()}}
                                     ?>
                             <!--<a href="#">{{ trans("general.add-to-wishlist") }}</a>-->
-                            <a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>
+                            <br /><a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>
                         </div>
                     </div>
 

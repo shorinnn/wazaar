@@ -1634,6 +1634,9 @@ function wishlistChange(e){
     e.preventDefault();
     e.stopPropagation();
     $target = $(e.target);
+    iconHolder = $target.attr('data-icon-holder');
+    console.log(iconHolder);
+    textHolder = $target.attr('data-text-holder');
     if( $target.attr('data-auth')==0 ){
         $target.attr('data-original-title',  _( 'Login to add to wishlist' ) );
         $target.animate({'margin-left':'-5px'},50).
@@ -1644,16 +1647,44 @@ function wishlistChange(e){
     }
     url = $target.attr('data-url');
     state = $target.attr('data-state') == 1 ? 0 : 1;
+    if( isset(iconHolder) ){
+      $('.wishlist-change-button').attr('data-state', state);
+    }
     $target.attr('data-state', state);
+    
     if( state == 0 ){
-        $target.addClass('fa-heart-o');
-        $target.removeClass('fa-heart');
-        $target.attr('data-original-title',  _('Add to wishlist') );
+        if( isset(iconHolder) ){
+            console.log('has icon holder');
+            $(iconHolder).addClass('fa-heart-o');
+            $(iconHolder).removeClass('fa-heart');
+            $('.wishlist-change-button').attr('data-original-title',  _('Add to wishlist') );
+            $('.wishlist-change-button').parent().attr('data-original-title',  _('Add to wishlist') );
+            $(textHolder).html(_('Add to wishlist') );
+        }
+        else{
+            $target.addClass('fa-heart-o');
+            $target.removeClass('fa-heart');
+            $target.attr('data-original-title',  _('Add to wishlist') );
+        }
+        
+        
     }
     else{
-        $target.removeClass('fa-heart-o');
-        $target.addClass('fa-heart');
-        $target.attr('data-original-title',  _('Remove from wishlist') );
+        if( isset(iconHolder) ){
+            console.log('has icon holder');
+            $(iconHolder).removeClass('fa-heart-o');
+            $(iconHolder).addClass('fa-heart');
+            $('.wishlist-change-button').attr('data-original-title',  _('Remove from wishlist') );
+            $('.wishlist-change-button').parent().attr('data-original-title',  _('Remove from wishlist') );
+            $(textHolder).html(_('Remove from wishlist') );
+        }
+        else{
+            $target.removeClass('fa-heart-o');
+            $target.addClass('fa-heart');
+            $target.attr('data-original-title',  _('Remove from wishlist') );
+        }
+        
+        
     }
     $.get(url+'/'+state,function(){});
 }
