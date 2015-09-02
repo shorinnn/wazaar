@@ -19,8 +19,9 @@
                     <span class="video-play-button"><em></em></span>
                     <span class="likes"><i class="wa-like"></i>{{ $course->reviewsScore() }}</span>
             <span class="box-overlay">
-                <p>{{trans('general.lesson')}}</p>
-                <p>{{trans('general.weeks-of-learning')}}</p>
+<!--                <p>{{trans('general.lesson')}}</p>
+                <p>{{trans('general.weeks-of-learning')}}</p>-->
+                <p>{{ $course->courseDifficulty->name }}</p>
                  <?php });?>
                 
                 <div class="footer clearfix">
@@ -51,12 +52,12 @@
                         </p>
                     </div>
                     <div class="bottom-contents clearfix">
-                        <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}"
+<!--                        <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}"
                         data-toggle="tooltip" data-placement="top" title="Difficulty: {{ $course->courseDifficulty->name }}">
                             <span class="bar-1"></span>
                             <span class="bar-2"></span>
                             <span class="bar-3"></span>
-                        </div>
+                        </div>-->
                         <div class="next_">
                             <div class="students-attending" data-toggle="tooltip" data-placement="top" title="Students enrolled">
                                <i class="wa-user-n"></i> {{ $course->student_count }}

@@ -37,15 +37,14 @@
     
                             <div class="difficulty-levels">
                                 <div class="level-buttons-container">
-                                    <a href="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort').'&term='. Input::get('term') }}"  data-target=".ajax-content" 
-                                       data-url="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort'). '&term='. Input::get('term') }}"
+                                    <a href="{{Request::url() . '?difficulty=0&sort=' . Input::get('sort').'&term='. Input::get('term') }}"  data-target=".ajax-content" 
+                                       data-url="{{Request::url() . '?difficulty=0&sort=' . Input::get('sort'). '&term='. Input::get('term') }}"
                                        data-callback="ajaxifyPagination" class="load-remote beginner  level-buttons @if(!isset($difficultyLevel) || $difficultyLevel == 0 ) active @endif">All</a>
                                     <a href="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort').'&term='. Input::get('term') }}"  data-target=".ajax-content" 
                                        data-url="{{Request::url() . '?difficulty=1&sort=' . Input::get('sort'). '&term='. Input::get('term') }}"
                                        data-callback="ajaxifyPagination" class="load-remote advanced level-buttons @if($difficultyLevel == 1) active @endif">Beginner</a>
-                                    <a href="{{Request::url() . '?difficulty=2&sort=' . Input::get('sort').'&term='. Input::get('term') }}" data-target=".ajax-content" 
-                                       data-url="{{Request::url() . '?difficulty=2&sort=' . Input::get('sort').'&term='. Input::get('term') }}" 
-                                       data-callback="ajaxifyPagination" class="load-remote advanced level-buttons @if($difficultyLevel == 2) active @endif">Intermediate</a>
+                                    
+                                       
                                     <a href="{{Request::url() . '?difficulty=3&sort=' . Input::get('sort').'&term='. Input::get('term') }}"  data-target=".ajax-content" 
                                        data-url="{{Request::url() . '?difficulty=3&sort=' . Input::get('sort'). '&term='. Input::get('term') }}" 
                                        data-callback="ajaxifyPagination" class="load-remote intermediate level-buttons @if($difficultyLevel == 3) active @endif">Advanced</a>

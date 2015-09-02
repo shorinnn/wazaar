@@ -392,7 +392,7 @@ class CourseDifficultySeeder extends Seeder {
         DB::table('course_difficulties')->delete();
         CourseDifficulty::unguard();
         CourseDifficulty::create(['name' => 'Beginner']);
-        CourseDifficulty::create(['name' => 'Intermediate']);
+//        CourseDifficulty::create(['name' => 'Intermediate']);
         CourseDifficulty::create(['name' => 'Expert']);
     }
 
@@ -413,7 +413,7 @@ class CoursesSeeder extends Seeder {
             'what_will_you_achieve' => '["Something", "Something Else!"]',
             'sale' => '100', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 3600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 13600)]);
         Course::create(['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 1,
-            'price' => rand(1000, 5000), 'course_difficulty_id' => '2',
+            'price' => rand(1000, 5000), 'course_difficulty_id' => '1',
             'description' => 'JS - the best language around.',
             'short_description' => 'Short: JS - the.',
             'student_count' => 0, 'requirements' => '[]',
@@ -423,7 +423,7 @@ class CoursesSeeder extends Seeder {
             'sale' => '200', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 3600)
         ]);
         Course::create(['name' => 'PHP Primer', 'slug' => 'php-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,
-            'price' => rand(1000, 5000), 'course_difficulty_id' => 3,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => '2',
             'description' => 'PHP - the best language around.',
             'short_description' => 'Short: PHP - the best language around.',
             'student_count' => 0, 'requirements' => '[]',
@@ -431,7 +431,7 @@ class CoursesSeeder extends Seeder {
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create(['name' => 'PHP Primer Revisited', 'slug' => 'php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,
-            'price' => rand(1000, 5000), 'course_difficulty_id' => 3,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => '2',
             'description' => 'PHP - the best language around. REVISITED.',
             'short_description' => 'Short: REVISITED.', 'requirements' => '[]',
             'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
@@ -454,7 +454,7 @@ class CoursesSeeder extends Seeder {
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create(['name' => 'Investments Javascript Primer', 'slug' => 'investments-javascript-primer', 'instructor_id' => 4, 'course_category_id' => 3, 'course_subcategory_id' => 3,
-            'price' => 185000.99, 'course_difficulty_id' => '2', 'description' => 'JS - the best language around.',
+            'price' => 185000.99, 'course_difficulty_id' => '1', 'description' => 'JS - the best language around.',
             'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
@@ -474,18 +474,18 @@ class CoursesSeeder extends Seeder {
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create(['name' => 'Beauty Javascript Primer', 'slug' => 'beauty-javascript-primer', 'instructor_id' => 4, 'course_category_id' => 5, 'course_subcategory_id' => 5, 'price' => rand(1000, 5000),
-            'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0,
+            'course_difficulty_id' => '1', 'description' => 'JS - the best language around.', 'student_count' => 0,
             'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create(['name' => 'Beauty PHP Primer', 'slug' => 'beauty-php-primer', 'instructor_id' => 4, 'course_category_id' => 5, 'course_subcategory_id' => 5,
-            'price' => rand(1000, 5000), 'course_difficulty_id' => 3, 'affiliate_percentage' => 0,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => '2', 'affiliate_percentage' => 0,
             'description' => 'PHP - the best language around.', 'student_count' => 0, 'course_preview_image_id' => 7,
             'privacy_status' => 'public', 'requirements' => '[]',
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create(['name' => 'Beauty PHP Primer Revisited', 'slug' => 'beauty-php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 5, 'course_subcategory_id' => 5,
-            'price' => rand(1000, 5000), 'course_difficulty_id' => 3, 'affiliate_percentage' => 0, 'requirements' => '[]',
+            'price' => rand(1000, 5000), 'course_difficulty_id' => '2', 'affiliate_percentage' => 0, 'requirements' => '[]',
             'description' => 'PHP - the best language around. REVISITED.', 'student_count' => 0, 'privacy_status' => 'public',
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
