@@ -272,6 +272,7 @@
  					</div>
 */?>
                 @else
+                <?php/* UNCOMMENT
                     {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
                         <span class="price clearfix">
                             @if($course->cost()>0)
@@ -290,6 +291,8 @@
                         <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
                             You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                     @endif
+                 * 
+                 */?>
                 @endif
                      <div class="column-3">
                         <div class="add-to-wishlist-container clearfix">
