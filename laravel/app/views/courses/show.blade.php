@@ -184,7 +184,7 @@
                     --}}
                 @endif
                         <?php
-                        if( Input::has('preview') || 1==1) echo View::make('courses.description.top-cache')->withCourse($course);
+                        if( Input::has('preview') ) echo View::make('courses.description.top-cache')->withCourse($course);
                         else{
                             echo Flatten::section('courses-show-details'.$course->id, Config::get('custom.cache-expiry.course-desc-top-details'), function () use( $course )  {
                                 echo View::make('courses.description.top-cache')->withCourse($course);
@@ -195,9 +195,7 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
  				<div class="enroll-button-wrap">
                 @if($course->cost() > 0 && !Input::has('preview') )
-                        <?php 
-                        /*UNCOMMENT THIS
-                         * {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                        {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
  
                         @if(Auth::guest() || $student->canPurchase($course) )
                             <span class="price clearfix">
@@ -238,13 +236,8 @@
                             <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
                                 You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                         @endif
-                         */ ?>
-                         
                 @elseif( !Input::has('preview') )
-                    <?php
-                    /* UNCOMMENT THIS
-                     * {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
-                     
+                    {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
                                 @if(Auth::guest() || $student->canPurchase($course) )
                                     <span class="price clearfix hide">{{trans('courses/general.free') }} </span>
                                      <button class="clearfix enroll-button blue-button extra-large-button join-class margin-top-50">
@@ -270,9 +263,8 @@
                                     You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                             @endif
  					</div>
-*/?>
+
                 @else
-                <?php/* UNCOMMENT
                     {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
                         <span class="price clearfix">
                             @if($course->cost()>0)
@@ -291,8 +283,6 @@
                         <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
                             You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                     @endif
-                 * 
-                 */?>
                 @endif
                      <div class="column-3">
                         <div class="add-to-wishlist-container clearfix">
@@ -342,7 +332,7 @@
     </div>
 </section>
 <?php 
-    if( Input::has('preview') || 1==1) echo View::make('courses.description.bottom-cache')->withCourse($course);
+    if( Input::has('preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
     else{
         echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { 
             echo View::make('courses.description.bottom-cache')->withCourse($course);

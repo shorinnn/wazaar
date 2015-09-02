@@ -657,6 +657,10 @@ function courseApprovedVersion($course){
             $course->$k = $v;
         }
     }
+    if($course->courseDifficulty == null){
+        if($course->course_difficulty_id == 2) $course->course_difficulty_id = 3;
+        if($course->course_difficulty_id == 4) $course->course_difficulty_id = 1;
+    }
     return $course;
 }
 function getYTDurationSeconds($duration){
