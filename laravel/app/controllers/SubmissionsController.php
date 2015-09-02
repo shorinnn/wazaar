@@ -33,7 +33,9 @@ class SubmissionsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-            $course = Course::find($id);
+            
+            $course = Course::find($id);	
+
             if($course==null){
                 return Redirect::action('SubmissionsController@index')->withError( trans('crud/errors.object_doesnt_exist', ['object' => 'Course' ]) );
             }
@@ -44,7 +46,7 @@ class SubmissionsController extends \BaseController {
                $course->approved_data = json_encode($course);
                $course->reject_reason = '';    
             }
-            if( $course->updateUniques () ){
+            if( $course->forceSave() ){
                 $user = $course->instructor;
                 if(Input::get('value')=='approved'){
                     $subject = 'Course Approved';
