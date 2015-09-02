@@ -2182,7 +2182,7 @@ header .profile-name li:hover ul{
 /*************** Heading styles ***********************/
 h1{
 	font-size: 26px;
-	font-weight: normal;
+	font-weight: normal !important;
 }
 h2{
 	font-size: 18px;
@@ -6560,7 +6560,7 @@ a.load-remote > *{
 }
 .edit-course .header .steps-remaining{
 	padding: 10px 0 10px 27px;
-	margin: 9px 0 10px;
+	margin: 9px 0 0;
 }
 .edit-course .header .steps-remaining span{
 	color: #0099ff;
