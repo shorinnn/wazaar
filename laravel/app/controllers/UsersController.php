@@ -139,8 +139,8 @@ class UsersController extends Controller
                 return json_encode( ['status' => 'success'] );
             }
             
-            if(Auth::user()->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
-            elseif( Auth::user()->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
+            //if(Auth::user()->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+            if( Auth::user()->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
             return Redirect::intended('/');
         } else {
             if ($this->users->isThrottled($input)) {
@@ -239,8 +239,8 @@ class UsersController extends Controller
 //        Auth::login($user);
         Auth::loginUsingId( $id );
         Session::forget('f');
-        if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
-        elseif( $user->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
+        //if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
+        if( $user->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
         else return Redirect::intended('/');
     }
     
@@ -525,6 +525,7 @@ class UsersController extends Controller
     }
     
     public function links(){
+        return Redirect::action('SiteController@index');
         if(Auth::guest() || Auth::user()->is_second_tier_instructor=='no'){
             return Redirect::action('SiteController@index');
         }

@@ -43,7 +43,7 @@ class SiteController extends \BaseController {
                 }
             }
             if( Auth::check() ){
-                if( Auth::user()->is_second_tier_instructor == 'yes' ) return Redirect::action('UsersController@links');
+//                if( Auth::user()->is_second_tier_instructor == 'yes' ) return Redirect::action('UsersController@links');
                 if( Auth::user()->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
             }
             return View::make('splash');
