@@ -47,7 +47,7 @@
                         @if($instructor->profile == null)
                             <div class="clearfix">
                                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/profile_pictures/avatar-placeholder.jpg" alt="" >
-                                <em>{{$instructor->first_name}} {{$instructor->last_name}}</em>
+                                <em>{{$instructor->last_name}} {{$instructor->first_name}} </em>
                             </div>
                             <p class="clearfix regular-paragraph">
                                 @if( $course->show_bio=='custom' )
@@ -59,7 +59,7 @@
                         @else
                             <div class="clearfix">
                                 <img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $instructor->profile->photo }}" alt="" >
-                                <em class="name">{{$instructor->profile->first_name}} {{$instructor->profile->last_name}}</em>
+                                <em class="name">{{$instructor->profile->last_name}} {{$instructor->profile->first_name}} </em>
                                 <span class="instructor-skills">{{ $instructor->profile->title }}</span>
                             </div>
                             <!--@if(Auth::check())
@@ -355,9 +355,9 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">
                         @if($instructor->profile == null)
-                            {{$instructor->first_name}} {{$instructor->last_name}}
+                            {{$instructor->last_name}} {{$instructor->first_name}} 
                         @else
-                            {{$instructor->profile->first_name}} {{$instructor->profile->last_name}}
+                            {{$instructor->profile->last_name}} {{$instructor->profile->first_name}} 
                         @endif
                     </h4>
                 </div>
