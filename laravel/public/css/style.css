@@ -2374,7 +2374,6 @@ h1, h2, h3, h4, h5{
 .add-to-wishlist-container .share-lesson,
 .add-to-wishlist-container input{
 	margin: 0 0 34px;
-	display: inline-block !important;
 	padding: 0;
 }
 .add-to-wishlist-container i{
