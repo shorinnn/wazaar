@@ -3,15 +3,21 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">{{trans('video.myVideos')}}</h4>
+                <h4 class="modal-title">{{trans('video.choose_file')}}</h4>
             </div>
-            <div class="modal-body clearfix">
+            <div class="modal-body no-padding clearfix">
 
                 <div id="modal-body-videos">
-                    <div class="row">
-                        <div class="form-group">
-                            <input type="text" name="videoFilter" id="videoFilter" placeholder="Filter" class="form-control">
-                            <!--<button id="btnGoFilterVideo">Go</button>-->
+                    <div class="row no-margin">
+                        <div class="form-group no-margin search-wrap clearfix">
+                        	<div class="filter-wrap col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                                <input type="text" name="videoFilter" id="videoFilter" placeholder="Search file name ..." class="form-control">
+                                <button id="btnGoFilterVideo"><i class="wa-search"></i></button>
+                            </div>
+                            <div class="toggle-menus block text-right inline-block col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                                <a href="#" class="menu menu-1"><i class="fa fa-th"></i></a>
+                                <a href="#" class="menu menu-2"><i class="fa fa-th-list"></i></a>
+                            </div>
                         </div>
                     </div>
 
@@ -23,8 +29,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('crud/labels.close')}}</button>
-                <button type="button" class="btn btn-primary disabled" id="btn-use-video">{{trans('video.useVideo')}}</button>
+                <button type="button" class="default-button large-button" data-dismiss="modal">{{trans('crud/labels.close')}}</button>
+                <button type="button" class="blue-button large-button disabled" id="btn-use-video">{{trans('video.useVideo')}}</button>
                 <button type="button" class="btn btn-danger disabled" id="btn-delete-video">{{trans('crud/labels.delete')}}</button>
             </div>
         </div><!-- /.modal-content -->

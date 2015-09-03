@@ -11,11 +11,11 @@
 
                     <div class="row">
                         <div class="radio-buttons clearfix all-img-previews-modal">
-
+							<ul class="list-unstyled video-list-thumbs row no-margin clearfix">
                                 @foreach($images as $img)
                                     {{ View::make('courses.preview_image')->with(compact('img', 'course')) }}
                                 @endforeach
-
+							</ul>
                         </div>
                     </div>
 
@@ -23,7 +23,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-close-previews" class="btn btn-default" data-dismiss="modal">{{trans('crud/labels.close')}}</button>
+                <button type="button" id="btn-close-previews" class="default-button large-button" data-dismiss="modal">{{trans('crud/labels.close')}}</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

@@ -1718,6 +1718,7 @@ header .profile-name li:hover ul{
 .green-button{
 	background: #33a619;
 	box-shadow: none;
+	border: none;
 }
 .green-button:hover{
 	color: #fff;
@@ -7491,6 +7492,193 @@ select option.suspended{
 	display: none;
 	margin: 0 15px 15px;
 }
+#selected-previews{
+	height: auto;
+    margin: 0 auto;
+    width: 350px;
+}
+
+#selected-previews img{
+    height: auto;
+    width: 350px;
+}
+
+.uploadFile{
+	height: 30px;
+	font-size: 14px;
+	color: #849598;
+	border: solid 1px #849598;
+	width: 524px;
+	display: block;
+	margin: 30px auto 0;
+	position: relative;
+	background: #fff;
+	overflow: hidden;
+	border-radius: 5px;
+}
+
+.uploadFile input.upload-banner-image,
+.uploadFile input.upload-preview-image{
+	border: none;
+	width: 100%;
+	height: 100%;
+    cursor: pointer;
+    font-size: 12px;
+	font-weight: normal;
+    padding: 0;
+    position: absolute;
+    top: 0;
+	left: 0;
+	outline: none;
+	text-indent: 25px;
+    z-index: 0;
+	opacity: 0;
+}
+
+.uploadFile span{
+	display: block;
+	line-height: 30px;
+	text-align: center;
+	position: relative;
+    background: #b0bfc1;
+    border: medium none;
+    border-radius: 5px 0 0 5px;
+    color: #fff;
+    font-size: 12px;
+    height: 30px;
+    position: relative;
+    text-transform: uppercase;
+    transition: all 0.2s ease-out 0s;
+    width: 97px;
+}
+
+.uploadFile span:hover{
+	cursor: pointer;
+}
+
+.progress {
+    background: none repeat scroll 0 0 #ececec;
+    height: 6px;
+    margin: 15px auto 0;
+    width: 100%;
+	max-width: 524px;
+}
+
+.progress-bar {
+    background: none repeat scroll 0 0 #92cc2e;
+    border-radius: 6px;
+    height: 100%;
+    overflow: hidden;
+    width: 60%;
+}
+
+.use-existing{
+	display: block;
+	text-align: center;
+	margin: 30px 0;
+	font-size: 24px;
+	color: #000;
+}
+
+.use-existing-preview .or-text {
+    color: #ccc;
+    font-size: 20px;
+    font-style: normal;
+    margin: 0;
+    text-align: center;
+}
+
+.use-existing-preview .use-existing > a {
+    color: #0099ff;
+    font-size: 18px;
+    padding: 15px 5px;
+    text-align: center;
+}
+
+.use-existing-preview .radio-buttons{
+	float: none;
+	margin: 0;
+}
+
+.use-existing-preview .radio-buttons .radio-checkbox{
+	margin-bottom: 20px;
+}
+
+.instructor-course-editor .use-existing-preview .radio-buttons img{
+	float: left;
+	height: 94px;
+	width: 167px;
+}
+
+.use-existing-preview .radio-buttons .select-border{
+	height: 94px;
+	width: 167px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/photo_select_border-small.png') no-repeat center center;
+	opacity: 0;
+}
+
+.use-existing-preview .radio-buttons .select-border.display-border{
+	opacity: 1;
+}
+
+.use-existing-preview .radio-buttons label{
+	float: left;
+	display: none;
+}
+
+.radio-checked.radio-checkbox > div {
+    height: 120px;
+	position: relative;
+    width: 120px;
+}
+
+.use-existing-preview .radio-checked.radio-checkbox > div{
+	width: 167px;
+	height: 94px;
+}
+
+#course-edit .who-its-for{
+	margin-top: 50px;
+}
+
+#course-edit .payment-section {
+    margin: 40px auto 0;
+    max-width: 524px;
+}
+
+.payment-section .set-slider{
+	width: 60px;
+	margin-top: 10px;
+}
+
+.payment-section .percentage-slider label{
+	/*max-width: 100px;*/
+}
+
+.payment-section .percentage-slider > div{
+	max-width: 345px;
+	float: right;
+}
+
+.payment-section .submit-button{
+	outline: none;
+    border: medium none;
+    border-radius: 5px;
+    box-shadow: none;
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    padding: 8px 20px;
+	background: #0099ff;
+	margin: 62px 0;
+	float: right;
+	left: 0;
+	position: relative;
+}
+
 /*************** My Courses **********************/
 .mycourses-wrapper{
 	height: 100%;
@@ -8855,17 +9043,149 @@ header .top-menu li{
     background-color: #069BFF;
 }
 .video-thumb-box {
-    width: 180px !important;
+    /*width: 180px !important;
     height: 200px;
     border: 1px solid #ccc;
-    margin: 3px;
-    padding: 5px;
+    padding: 5px;*/
+	margin: 0;
+	height: 149px;
+    
 }
-.video-thumb-box img
-{
-    width: 100px;
+.video-thumb-box a{
+	display: block;
+	position: relative;
 }
-.video-thumb-box .file-name
-{
+.video-thumb-box .duration {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 2px;
+    bottom: 0;
+    color: #fff;
+	margin: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px;
+    position: absolute;
+    right: 0;
+}
+.video-thumb-box .file-name {
     font-size: 12px;
+	color: #798794;
+	line-height: 18px;
+    display: inline-block;
+}
+.modal-title{
+	font-size: 15px;
+	font-weight: 600;
+	color: #798794;
+}
+#modal-body-videos .search-wrap {
+    background: #f7f9fa;
+    border-bottom: 1px solid #e0e1e2;
+    padding: 20px;
+}
+#modal-body-videos .video-list-container{
+	padding: 20px 5px;
+}
+#modal-body-videos .filter-wrap {
+    background: #fff;
+    border: 1px solid #cfd8df;
+    border-radius: 3px;
+    padding: 0;
+}
+#modal-body-videos .filter-wrap i{
+	color: #a7b7c4;
+	position: relative;
+	top: 2px;
+}
+#modal-body-videos .filter-wrap input{
+	border: none;
+	width: 90%;
+	margin: 0;
+}
+#modal-body-videos .filter-wrap button{
+	width: 9%;
+	border: none;
+	height: 30px;
+	background: none;
+}
+#modal-body-videos .toggle-menus{
+	width: auto;
+	padding: 0;
+	float: right !important;
+	height: 40px;
+	margin: 0;
+	background: #fff;
+}
+#modal-body-videos .toggle-menus .menu i{
+	top: 0;
+	line-height: 38px;
+}
+.video-thumb-box img{
+    width: 100%;
+}
+.video-thumb-box .thumb-container{
+	height: auto;
+	margin: 1px 1px 0;
+	z-index: 2;
+	overflow: hidden;
+}
+.video-thumb-box input{
+	display: none;
+}
+.video-thumb-box label{
+	display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+	z-index: 3;
+    width: 100%;
+}
+.video-thumb-box em{   
+	background: none;
+    display: block;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    top: -1px;
+    width: 100%;
+    z-index: 1;
+}
+.video-thumb-box i{
+	line-height: 26px;
+	color: #fff;
+	font-size: 11px;
+	width: 26px;
+	height: 26px;
+	display: block;
+	border-radius: 26px;
+	background: #0099ff;
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	z-index: 5;
+	text-align: center;
+	opacity: 0;
+}
+.video-thumb-box input[type='radio']:checked ~ em{
+	background: #0099ff;
+}
+.video-thumb-box input[type="radio"] ~ span {
+	padding: 5px;
+}
+.video-thumb-box input[type="radio"]:checked ~ span {
+    color: #fff;
+    position: relative;
+    z-index: 3;
+}
+.video-thumb-box input[type="radio"]:checked ~ i{
+	opacity: 1;
+}
+.video-thumbs .videos-lookup-pagination-wrapper {
+    padding: 0 15px;
+}
+.modal-footer {
+    background: #f7f9fa;
+}
+.modal-content{
+	overflow: hidden;
 }
