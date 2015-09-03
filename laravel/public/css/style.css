@@ -4319,6 +4319,7 @@ h1, h2, h3, h4, h5{
 	margin: 0;
 	width: 90%;
 }
+.vip-affiliate-link,
 .supervip-affiliate-link{
 	border-radius: 4px;
 	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/supervip-bckgrd-pattern.png');
@@ -4328,13 +4329,16 @@ h1, h2, h3, h4, h5{
 	border: solid 1px #e0e1e2;
 	margin:  35px 0;
 }
+.vip-affiliate-link .vip-badge,
 .supervip-affiliate-link .supervip-badge{
 	margin: 26px 0 0 62px;
 }
+.vip-affiliate-link h1,
 .supervip-affiliate-link h1{
 	margin: 77px 0 24px;
 	color: #fff;
 }
+.vip-affiliate-link input,
 .supervip-affiliate-link input{
 	margin: 0;
 	color: #ffa100;
@@ -4346,6 +4350,9 @@ h1, h2, h3, h4, h5{
 	height: 50px;
 	line-height: 50px;
 	width: 76%;
+}
+.vip-affiliate-link input{
+	color: #0099ff;
 }
 /********** Affiliates Gift UI Ends***************/
 /****************** CRUD Pages *******************/
