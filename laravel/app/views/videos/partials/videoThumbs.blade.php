@@ -11,7 +11,9 @@
                         <div>
                             <input type="radio" class="radio-video-id" name="radioVideoId" id="radio-video-{{$video->id}}" value="{{$video->id}}">
                             <label for="radio-video-{{$video->id}}" class="small-radio"></label>
+                            <em></em>
                             <span class="file-name">{{$video->trimmed_original_filename}}</span>
+                            <i class="wa-check"></i>
                         </div>
 
                         

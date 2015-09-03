@@ -5,12 +5,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">{{trans('video.choose_file')}}</h4>
             </div>
-            <div class="modal-body clearfix">
+            <div class="modal-body no-padding clearfix">
 
                 <div id="modal-body-videos">
-                    <div class="row">
-                        <div class="form-group clearfix">
-                        	<div class="filter-wrap col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                    <div class="row no-margin">
+                        <div class="form-group no-margin search-wrap clearfix">
+                        	<div class="filter-wrap col-xs-12 col-sm-10 col-md-10 col-lg-10">
                                 <input type="text" name="videoFilter" id="videoFilter" placeholder="Search file name ..." class="form-control">
                                 <button id="btnGoFilterVideo"><i class="wa-search"></i></button>
                             </div>
