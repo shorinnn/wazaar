@@ -378,12 +378,14 @@ function linkToRemoteConfirm(e){
 
 }
 
+if (history.popState) {
+    //immediately replace state to ensure popstate works for inital page
+    history.replaceState(true, null, window.location.pathname);
+}
 $(window).on("popstate", function(e) {
-    window.location = location.href; return;
-    console.log(e.originalEvent);
-    if (e.originalEvent.state !== null) {
+//    if (e.originalEvent.state !== null) {
       window.location = location.href;
-    }
+//    }
   });
 
 /**
@@ -396,7 +398,7 @@ $(window).on("popstate", function(e) {
  * @param {string} data-target CSS selector of the element that receives the new content
  * @method loadRemote
  */
-function    loadRemote(e){
+function loadRemote(e){
     
     e.preventDefault();
     var nofollow = $(e.target).attr('data-nofollow');
