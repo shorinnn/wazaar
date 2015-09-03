@@ -313,7 +313,7 @@ function linkToRemote(e){
         $(loadingContainer).html('<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
     }
     if( typeof(preFunction) !='undefined') window[preFunction](e);
-    url+='#ajax';
+    url+='#!ajax=true';
     $.get(url, function(result){
         $(e.target).attr('data-loading', 0);
         $(elem).html( $(elem).attr('data-old-label') );
@@ -360,7 +360,7 @@ function linkToRemoteConfirm(e){
     
     $(elem).attr('data-old-label', $(elem).html() );
     $(elem).html( '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
-    url+='#ajax';
+    url+='#!ajax=true';
     $.get(url, function(result){
         $(e.target).attr('data-loading', 0);
         $(elem).html( $(elem).attr('data-old-label') );
@@ -377,6 +377,13 @@ function linkToRemoteConfirm(e){
     });
 
 }
+
+$(window).on("popstate", function(e) {
+    if (e.originalEvent.state !== null) {
+      window.location = location.href;
+      console.log('load page');
+    }
+  });
 
 /**
  * Event handler for a.load-remote<br />
@@ -416,13 +423,14 @@ function    loadRemote(e){
     }
     $(e.target).attr('data-loading', 1);
     
-    
+     
     if( typeof( noPush ) == 'undefined'  ){ 
         history.pushState({}, '', url);
     }
+    url+='#!ajax=true';
+    console.log( url );
     if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
-        url+='#ajax';
-        console.log( url );
+       
         if( typeof(indicatorStyle)=='undefined')
             $(target).html( '<center><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></center> ');
         else{
