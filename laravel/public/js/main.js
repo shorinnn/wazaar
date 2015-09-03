@@ -1642,7 +1642,8 @@ function enableRTE(selector, changeCallback){
             "insertdatetime media table contextmenu paste save"
         ],
         toolbar: "bold | bullist numlist",
-        statusbar: false
+        statusbar: false,
+        paste_as_text: true
     });
 }
 

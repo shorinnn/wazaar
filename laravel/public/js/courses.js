@@ -167,7 +167,7 @@ function enableLessonRTE(e){
             savingAnimation(1);
             return true;
         },
-        
+         paste_as_text: true,
         plugins: [
             "advlist autolink autosave lists link image charmap print preview anchor",
             "searchreplace visualblocks code fullscreen",
