@@ -20,10 +20,8 @@ $(document).ready(function(){
     console.log( history.popState );
     $(window).on("popstate", function(e) {
         console.log( history.popState );
-//        if (e.originalEvent.state !== null) {
           if( !canPopState )return false;
           window.location = location.href;
-//        }
       });
     
     makeBoxesExpandable();
@@ -436,7 +434,8 @@ function loadRemote(e){
     if( typeof( noPush ) == 'undefined'  ){ 
         history.pushState({}, '', url);
     }
-    url+='#!ajax=true';
+    if( url.indexOf('?')== -1 ) url+='?ajax=true';
+    else url+='&ajax=true';
     console.log( url );
     if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
        
