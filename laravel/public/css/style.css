@@ -8504,19 +8504,25 @@ header .top-menu .logged-out-header-search{
 .editor-settings-layout h4{
 	text-align: left;
 }
+
+.vip-affiliate-link .vip-badge,
 .supervip-affiliate-link .supervip-badge{
 	margin: 26px 0 0;
 }
+.vip-affiliate-link,
 .supervip-affiliate-link{
 	text-align: center;
 }
+.vip-affiliate-link img,
 .supervip-affiliate-link img{
 	display: inline-block;
 }
+.vip-affiliate-link h1,
 .supervip-affiliate-link h1{
 	margin: 30px 0 24px;
         padding:0 20px;
 }
+.vip-affiliate-link input,
 .supervip-affiliate-link input{
 	margin: 0 0 26px;
 }
