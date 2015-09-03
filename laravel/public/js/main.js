@@ -12,7 +12,18 @@ var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 
 $(document).ready(function(){
     
-	 makeBoxesExpandable();
+    if (history.popState) {
+        //immediately replace state to ensure popstate works for inital page
+        history.replaceState(true, null, window.location.pathname);
+    }
+    console.log( history.popState );
+    $(window).on("popstate", function(e) {
+    //    if (e.originalEvent.state !== null) {
+          window.location = location.href;
+    //    }
+      });
+    
+    makeBoxesExpandable();
     if( getCookie('hideAffiliateToolbar')=='true' ) toggleAffiliateToolbar(event);
     $('.countdown').each(function(){
         seconds = $(this).attr('data-final-date-seconds')
@@ -378,15 +389,7 @@ function linkToRemoteConfirm(e){
 
 }
 
-if (history.popState) {
-    //immediately replace state to ensure popstate works for inital page
-    history.replaceState(true, null, window.location.pathname);
-}
-$(window).on("popstate", function(e) {
-//    if (e.originalEvent.state !== null) {
-      window.location = location.href;
-//    }
-  });
+
 
 /**
  * Event handler for a.load-remote<br />
