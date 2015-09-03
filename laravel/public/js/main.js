@@ -379,9 +379,10 @@ function linkToRemoteConfirm(e){
 }
 
 $(window).on("popstate", function(e) {
+    window.location = location.href; return;
+    console.log(e.originalEvent);
     if (e.originalEvent.state !== null) {
       window.location = location.href;
-      console.log('load page');
     }
   });
 
