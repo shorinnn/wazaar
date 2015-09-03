@@ -29,7 +29,7 @@ class AffiliateDashboardController extends BaseController
 
     public function secondTierRegistrationsView($frequency = '')
     {
-        if(Auth::user()->is_vip=='no') return '';
+        if(Auth::user()->is_super_vip=='no') return '';
         
         $frequencyOverride = 'day';
         switch($frequency){
