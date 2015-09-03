@@ -12,7 +12,7 @@ class User extends Ardent implements ConfideUserInterface
     }
 
     use HasRole;
-    protected $fillable = ['first_name', 'last_name', 'email', 'username', 'affiliate_id', 'sti_approved', 'has_ltc']; 
+    protected $fillable = ['first_name', 'last_name', 'email', 'username', 'affiliate_id', 'sti_approved', 'has_ltc', 'is_vip']; 
     
      public static $relationsData = array(
         'profiles' => [ self::HAS_MANY, 'Profile', 'foreignKey' => 'owner_id' ],

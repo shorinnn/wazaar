@@ -172,10 +172,12 @@ class MembersController extends \BaseController {
             if ( $user!=null && $user->id) {
                 unset($user->url);
                 $user->has_ltc = 'yes';
-                $user->is_vip = 'yes';
+                if(Input::get('vip-type')=='super') $user->is_super_vip = 'yes';
+                if(Input::get('vip-type')=='regular') $user->is_vip = 'yes';
                 $user->confirmed = 1;
                 if($user->save()){
-                    $success = 'Super VIP account created';
+                    if(Input::get('vip-type')=='super') $success = 'Super VIP account created';
+                    else $success = 'VIP account created';
                     return View::make('administration.members.vip.create')->withSuccess($success);
                 }
                 else{
@@ -191,7 +193,7 @@ class MembersController extends \BaseController {
         
         public function superVip(){
             $result = DB::select("SELECT `id` as `theID`, `first_name`, `last_name`, `email`,
-                (SELECT COUNT(id) FROM `users` WHERE `second_tier_affiliate_id` = theID) AS `ref_count` FROM `users` WHERE `is_vip` = 'yes' 
+                (SELECT COUNT(id) FROM `users` WHERE `second_tier_affiliate_id` = theID) AS `ref_count` FROM `users` WHERE `is_super_vip` = 'yes' 
                 ORDER BY `ref_count` DESC");
             return View::make('administration.members.vip.super-vip')->withVips($result);
             

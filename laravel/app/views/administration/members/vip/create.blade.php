@@ -22,7 +22,7 @@
 </style>
 <div class='row'>
     <div class='col-lg-6'>
-        <h1>Create Super VIP account </h1>
+        <h1>Create VIP account </h1>
         @if(isset($err))
             <div class='alert alert-warning alert-danger'>
                 {{$err}}
@@ -37,6 +37,12 @@
                         <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                         <input type="hidden" name="register_affiliate" value="1" />
                         <fieldset>
+                            <div class="form-group ">
+                                <select name="vip-type">
+                                    <option value="super">Super VIP</option>
+                                    <option value="regular">VIP</option>
+                                </select>
+                            </div>
                             <div class="form-group ">
                                 <input class="form-control" 
                                        placeholder="{{ trans('site/register.last-name-placeholder') }}" 

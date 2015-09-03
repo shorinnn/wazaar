@@ -3,7 +3,7 @@
     <div class="wrapper">
         <div class="container affiliate-dashboard dashboard">
 
-                    @if(Auth::user()->is_vip == 'yes')
+                    @if(Auth::user()->is_super_vip == 'yes')
                         <div class="row">
                             <div class="col-md-12">
     <!--                        <div class="row welcome-message-wrap">
@@ -33,11 +33,41 @@
                             </div>-->
                             </div>
                         </div>
+                    @elseif(Auth::user()->is_vip == 'yes')
+                        <div class="row">
+                            <div class="col-md-12">
+    <!--                        <div class="row welcome-message-wrap">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">-->
+                                        <div class="supervip-affiliate-link">
+                                        <div class="row">
+                                                <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                                                <img src="{{ url('images/VIP_badge.png') }}" class="supervip-badge img-responsive">
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+                                                <h1>アフィエイト２ティアの募集はこちらのリンクをお使いください！</h1>
+                                                <?php
+                                                $date = new DateTime();
+                                                $date->setTimezone(new DateTimeZone('Asia/Tokyo'));
+                                                $now = strtotime( $date->format('Y-m-d H:i:s') ) ;
+                                                $show_on = strtotime( '2015-09-04 17:45:00' );
+                                                ?>
+                                                @if( $now > $show_on)
+                                                    <input type="text" readonly="readonly" value="{{ action('AffiliateController@create' )}}?stai={{ Auth::user()->affiliate_id }}">
+                                                @else
+                                                    <input type="text" readonly="readonly" value="９月4日（金）の18時以降にリンクが表示されます。" />
+                                                @endif
+                                            </div>
+                                        </div>
+                                        </div>
+    <!--                            </div>
+                            </div>-->
+                            </div>
+                        </div>
                     @else
                     
                     <!--<div class="row">-->
                     <div class="row welcome-message-wrap">&nbsp;
-                        @if(Auth::user()->is_vip == 'no' &&  Auth::user()->sawLetter != 1)
+                        @if(Auth::user()->is_super_vip == 'no' &&  Auth::user()->sawLetter != 1)
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert" role='alert' style="margin-bottom:0px;">
                                     {{ View::make('affiliate.welcome-letter') }}
                             </div> 

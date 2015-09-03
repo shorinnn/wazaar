@@ -63,6 +63,19 @@
                             'yes' => trans('courses/curriculum.yes')
                         ]) }}</td>
                     </tr>
+                    <tr>
+                        <td class="title no-border">VIP:</td>
+                        <td class="no-border">
+                            @if($user->is_super_vip=='yes')
+                                SUPER VIP
+                            @else
+                                {{ Form::select('is_vip',[
+                                'no' => trans('courses/curriculum.no'),
+                                'yes' => trans('courses/curriculum.yes')
+                            ]) }}
+                            @endif
+                        </td>
+                    </tr>
                     @endif
                     @if($user->hasRole('Instructor'))
                      <tr>
