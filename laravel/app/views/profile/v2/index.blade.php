@@ -297,7 +297,12 @@
                     <form action="{{url('profile/upload-profile-picture')}}" enctype="multipart/form-data" method="post">
                     <div class="sidebar">
                         <div class="profile-picture-holder">
-                            <img src="{{@$profile->photo}}" alt="" id="img-profile-picture" class="img-responsive"/>
+                            
+                            @if( isset($profile->photo) && trim($profile->photo) !='' )
+                                <img src="{{@$profile->photo}}" alt="" id="img-profile-picture" class="img-responsive"/>
+                            @else
+                                <img src="http://s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg" alt="" id="img-profile-picture" class="img-responsive"/>
+                            @endif
                         </div>
                         <div class="upload-picture-button text-center">
                             <label for="upload-new-photo" class="default-button large-button">

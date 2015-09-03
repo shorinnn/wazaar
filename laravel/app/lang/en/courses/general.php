@@ -198,5 +198,10 @@ return array(
         'best-selling-this-week' => 'Best selling this week',
         'recent-courses' => 'Recent courses',
         'oldest-courses' => 'Oldest courses',
+    ],
+    'filter' => [
+        'all' => 'All',
+        'beginner' => 'Beginner',
+        'advanced' => 'Advanced',
     ]
 );

@@ -180,11 +180,15 @@ jpeg, png',
     'profile-more' => 'もっと見る',
     'profile-less' => 'もとに戻る',
     'sort' => [
-        'best-selling-all-time' => 'Best selling All time',
-        'best-selling-this-month' => 'Best selling this month',
-        'best-selling-this-week' => 'Best selling this week',
-        'recent-courses' => 'Recent courses',
-        'oldest-courses' => 'Oldest courses',
+        'best-selling-all-time' => '売れ筋教材（全期間）',
+        'best-selling-this-month' => '売れ筋教材（今月）',
+        'best-selling-this-week' => '売れ筋教材（今週）',
+        'recent-courses' => '新教材',
+        'oldest-courses' => '旧教材'
+    ],
+    'filter' => [
+        'all' => '全てのレベル',
+        'beginner' => '初心者向け',
+        'advanced' => '上級者向け',
     ]
 );
-
