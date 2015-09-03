@@ -12,7 +12,19 @@ var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 
 $(document).ready(function(){
     
-	 makeBoxesExpandable();
+    var canPopState = false;
+    setTimeout(function(){
+        canPopState = true;
+    },20);
+
+    console.log( history.popState );
+    $(window).on("popstate", function(e) {
+        console.log( history.popState );
+          if( !canPopState )return false;
+          window.location = location.href;
+      });
+    
+    makeBoxesExpandable();
     if( getCookie('hideAffiliateToolbar')=='true' ) toggleAffiliateToolbar(event);
     $('.countdown').each(function(){
         seconds = $(this).attr('data-final-date-seconds')
@@ -378,13 +390,7 @@ function linkToRemoteConfirm(e){
 
 }
 
-$(window).on("popstate", function(e) {
-    window.location = location.href; return;
-    console.log(e.originalEvent);
-    if (e.originalEvent.state !== null) {
-      window.location = location.href;
-    }
-  });
+
 
 /**
  * Event handler for a.load-remote<br />
@@ -396,7 +402,7 @@ $(window).on("popstate", function(e) {
  * @param {string} data-target CSS selector of the element that receives the new content
  * @method loadRemote
  */
-function    loadRemote(e){
+function loadRemote(e){
     
     e.preventDefault();
     var nofollow = $(e.target).attr('data-nofollow');
@@ -428,7 +434,8 @@ function    loadRemote(e){
     if( typeof( noPush ) == 'undefined'  ){ 
         history.pushState({}, '', url);
     }
-    url+='#!ajax=true';
+    if( url.indexOf('?')== -1 ) url+='?ajax=true';
+    else url+='&ajax=true';
     console.log( url );
     if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
        
