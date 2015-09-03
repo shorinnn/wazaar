@@ -11,10 +11,12 @@ body {
 
 html{
 	height: 100%;
+	background: url("https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/background-images/background-image.jpg") no-repeat scroll center center;
 }
 
 body {
 	min-height: 100%;
+	background-color:  rgba(27, 35, 42, 0.9);
 }
 
 a {
@@ -121,16 +123,11 @@ a:hover{
 
 #wrapper{
 	width: 100%;
-	background-size: cover;
-	background-image: url(background-image.jpg);
-	background-repeat: no-repeat;
-	background-position: center center;
 }
 
 #container{
 	width: 100%;
 	height: auto;
-	background-color: rgba(27, 35, 42, 0.8);
 }
 
 #splash-youtube-player{
