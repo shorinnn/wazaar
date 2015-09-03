@@ -9,6 +9,7 @@ class SiteController extends \BaseController {
 
 	public function index()
 	{
+            
             $wishlisted = [];
             if( Auth::check() ){
                 $student = Student::find( Auth::user()->id );
