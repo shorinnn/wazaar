@@ -12,17 +12,18 @@ var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 
 $(document).ready(function(){
     
-//    if (history.popState) {
-//        //immediately replace state to ensure popstate works for inital page
-//        history.replaceState(true, null, window.location.pathname);
-//    }
-    history.pushState({}, '', location.href);
+    var canPopState = false;
+    setTimeout(function(){
+        canPopState = true;
+    },20);
+
     console.log( history.popState );
     $(window).on("popstate", function(e) {
         console.log( history.popState );
-        if (e.originalEvent.state !== null) {
+//        if (e.originalEvent.state !== null) {
+          if( !canPopState )return false;
           window.location = location.href;
-        }
+//        }
       });
     
     makeBoxesExpandable();
