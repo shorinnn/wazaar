@@ -8855,14 +8855,69 @@ header .top-menu li{
     background-color: #069BFF;
 }
 .video-thumb-box {
-    width: 180px !important;
+    /*width: 180px !important;
     height: 200px;
     border: 1px solid #ccc;
-    margin: 3px;
-    padding: 5px;
+    padding: 5px;*/
+	margin: 0 0 40px;
+    
 }
-.video-thumb-box img
-{
+.video-thumb-box .duration {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 2px;
+    bottom: 0;
+    color: #fff;
+	margin: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px;
+    position: absolute;
+    right: 0;
+}
+.video-thumb-box .file-name {
+    font-size: 12px;
+	color: #798794;
+	line-height: 18px;
+}
+.modal-title{
+	font-size: 15px;
+	font-weight: 600;
+	color: #798794;
+}
+#modal-body-videos .filter-wrap{
+	border: 1px solid #cfd8df;
+	margin: 0 13px;
+	padding: 0;
+	border-radius: 3px;
+}
+#modal-body-videos .filter-wrap i{
+	color: #a7b7c4;
+	position: relative;
+	top: 2px;
+}
+#modal-body-videos .filter-wrap input{
+	border: none;
+	width: 90%;
+	margin: 0;
+}
+#modal-body-videos .filter-wrap button{
+	width: 9%;
+	border: none;
+	height: 30px;
+	background: none;
+}
+#modal-body-videos .toggle-menus{
+	width: auto;
+	padding: 0;
+	float: right !important;
+	height: 38px;
+	margin: 0 13px 0 0;
+}
+#modal-body-videos .toggle-menus .menu i{
+	top: 0;
+	line-height: 38px;
+}
+.video-thumb-box img{
     width: 100px;
 }
 .video-thumb-box .file-name
