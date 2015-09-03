@@ -1108,7 +1108,7 @@ header .profile-name li:hover ul{
 	background: #ebeced;
 	border: solid #e3e5e6;
 	border-width: 1px 0;
-	padding-bottom: 200px;
+	padding-bottom: 50px;
 }
 .category-box-container .pagination-container{
 	margin-top: 50px;
@@ -1687,17 +1687,21 @@ header .profile-name li:hover ul{
 .green-button,
 .blue-button{
 	display: inline-block;
-	border: none;
-	font-weight: 600;
-	font-size: 13px;
+	border: solid #0089e5;
+	border-width: 0 0 2px;
+	font-weight: bold;
+	font-size: 12px;
 	color: #fff;
 	text-align: center;
-	background: #0099ff;
+	background: #119bf8;
 	border-radius: 4px;	
+	-webkit-box-shadow: 0px 2px 0px #e7e8e9;
+    -moz-box-shadow: 0px 2px 0px #e7e8e9;
+    box-shadow: 0px 2px 0px #e7e8e9;
 }
 .green-button i,
 .blue-button i{
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
     top: 1px;
     margin-right: 3px;
@@ -1711,30 +1715,35 @@ header .profile-name li:hover ul{
 	color: #fff;
 	background: #008eed;
 }
-.blue-button-shadow{
-	font-weight: bold;
-	font-size: 11px;
-	background: #119bf8;
-	border-bottom: solid 2px #0f8bdf;
-	-webkit-box-shadow: 0px 2px 0px #e7e8e9;
-    -moz-box-shadow: 0px 2px 0px #e7e8e9;
-    box-shadow: 0px 2px 0px #e7e8e9;
-}
 .green-button{
 	background: #33a619;
+	box-shadow: none;
 }
 .green-button:hover{
 	color: #fff;
 	background: #3cbf1f;
 }
 .default-button{
-	padding: 9px 15px;
+	padding: 9px 12px;
 	border-radius: 3px;
 	display: inline-block;
 	border: solid 1px #cfd1d3;
 	background: #f7f9fa;
-	font-size: 13px;
+	font-size: 12px;
+	font-weight: bold;
 	color: #798794;
+}
+.default-button:hover{
+	background: #fff;
+	color: #798794;
+}
+.default-button:focus,
+.default-button:active{
+	background: #e8eced;
+	color: #798794;
+}
+.small-button{
+	padding: 9px 13px;
 }
 .large-button{
 	padding: 10px 25px;
@@ -1749,6 +1758,8 @@ header .profile-name li:hover ul{
 	background: #b2e0ff;
 	cursor: not-allowed;
 	color: #fff;
+	box-shadow: none;
+	border: none;	
 }
 .disabled-button:hover{
 	background: #b2e0ff;
@@ -6297,7 +6308,54 @@ a.load-remote > *{
 .step2 .module-container .footer-buttons .delete-lesson i{
 	margin-right: 11px;
 }
+#videos-acrhive-modal.modal {
+    z-index: 1041;
+}
+
+.modal-backdrop.fade.in {
+    z-index: 0;
+}
+
+ul.list-unstyled.video-list-thumbs.row li a h2 {
+	font-size: 14px;
+	max-width: 100%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	overflow: hidden;
+}
+
+ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
+	font-size: 14px;
+}
+
+#videos-acrhive-modal #modal-body-videos ul.list-unstyled.video-list-thumbs.row{
+	float: none;
+}
+
+#videos-acrhive-modal #modal-body-videos ul.list-unstyled.video-list-thumbs.row li{
+	margin-bottom: 20px;
+}
+
+#videos-acrhive-modal #modal-body-videos ul.list-unstyled.video-list-thumbs.row h2 label{
+	float: left;
+	margin-left: 0;
+}
+
+#videos-acrhive-modal #modal-body-videos ul.list-unstyled.video-list-thumbs.row h2 .file-name {
+    display: block;
+    float: left;
+    line-height: 20px;
+    max-width: 80%;
+	margin-left: 5px;
+    overflow: hidden;
+}
+
 /************** Editor step 2 ends ***************/
+/************** Editor step 3 ***************/
+.container._step3{
+	margin-top: 29px !important;
+}
+/************** Editor step 3 ends ***************/
 .submit-for-approval{
 	margin-top: 20px;
 	margin-right: 20px !important;
@@ -6612,6 +6670,7 @@ a.load-remote > *{
 .edit-course .left-content{
 	background: #fff;
 	padding: 35px 30px 20%;
+	border-radius: 4px;
 }
 .edit-course .left-content .plan-your-curriculum{
 	margin-top: 60px;
@@ -7717,8 +7776,11 @@ footer{
 	clear:both;
 }
 .footer-container{ 
-	background-color: #e8eced;
+	background-color: #fff;
 	padding: 62px 0 62px;
+}
+.gray-footer .footer-container{ 
+	background-color: #e8eced;
 }
 .footer-container h5{
 	color: #303941;
