@@ -382,7 +382,7 @@
 
             $('#btn-close-previews').on('click', function (){
                 $('#selected-previews').html('');
-                $('.display-border').each(function (){
+                $('.thumb-container').each(function (){
                     console.log($(this).parent().find('img').attr('src'));
 //                        $('#selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
                     $('.course-listing-image-preview').html("<img src='" +  $(this).parent().find('img').attr('src') + "' />");

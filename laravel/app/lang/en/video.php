@@ -2,6 +2,7 @@
 
 return [
     'title' => 'Videos',
+    'choose' => 'Choose',
     'choose_file' => 'Choose file',
     'uploadHere' => 'Upload videos here',
     'willAppearHere' => 'Your video will appear here when it\'s processed successfully',

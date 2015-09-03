@@ -1694,10 +1694,11 @@ header .profile-name li:hover ul{
 	color: #fff;
 	text-align: center;
 	background: #119bf8;
-	border-radius: 4px;	
-	-webkit-box-shadow: 0px 2px 0px #e7e8e9;
+	border-radius: 4px;
+	box-shadow: none;
+	/*-webkit-box-shadow: 0px 2px 0px #e7e8e9;
     -moz-box-shadow: 0px 2px 0px #e7e8e9;
-    box-shadow: 0px 2px 0px #e7e8e9;
+    box-shadow: 0px 2px 0px #e7e8e9;*/
 }
 .green-button i,
 .blue-button i{
