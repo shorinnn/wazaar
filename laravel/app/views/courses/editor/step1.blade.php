@@ -382,11 +382,15 @@
 
             $('#btn-close-previews').on('click', function (){
                 $('#selected-previews').html('');
-                $('.thumb-container').each(function (){
-                    console.log($(this).parent().find('img').attr('src'));
-//                        $('#selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
-                    $('.course-listing-image-preview').html("<img src='" +  $(this).parent().find('img').attr('src') + "' />");
-                });
+				if($('.video-thumb-box input:radio:checked').length > 0){
+					console.log($('.video-thumb-box input:radio:checked').parent().parent().find('img').attr('src'));
+					$('.course-listing-image-preview').html("<img src='" +  $('.video-thumb-box input:radio:checked').parent().parent().find('img').attr('src') + "' />");
+				}
+                //$('.thumb-container').each(function (){
+                   // console.log($(this).find('img').attr('src'));
+                        //$('#selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
+                    //$('.course-listing-image-preview').html("<img src='" +  $(this).find('img').attr('src') + "' />");
+                //});
             });
 
             $('#btn-close-previews-banner').on('click', function (){
