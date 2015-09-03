@@ -382,9 +382,9 @@
 
             $('#btn-close-previews').on('click', function (){
                 $('#selected-previews').html('');
-				if($('.video-thumb-box input:radio:checked').length > 0){
-					console.log($('.video-thumb-box input:radio:checked').parent().parent().find('img').attr('src'));
-					$('.course-listing-image-preview').html("<img src='" +  $('.video-thumb-box input:radio:checked').parent().parent().find('img').attr('src') + "' />");
+				if($('.image-thumb-box input:radio:checked').length > 0){
+					console.log($('.image-thumb-box input:radio:checked').parent().parent().find('img').attr('src'));
+					$('.course-listing-image-preview').html("<img src='" +  $('.image-thumb-box input:radio:checked').parent().parent().find('img').attr('src') + "' />");
 				}
                 //$('.thumb-container').each(function (){
                    // console.log($(this).find('img').attr('src'));
