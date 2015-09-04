@@ -47,13 +47,16 @@
                                     <form id="form-profile">
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                               <label>{{trans('profile.form.name')}}</label>
+                                               <label><!--{{trans('profile.form.name')}}-->{{trans('profile.form.firstName')}}</label>
                                             </div>
-                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6 tooltipable"  title="{{trans('profile.form.name-tooltip')}}">
-                                                {{trans('profile.form.lastName')}}
+                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                                            {{Form::text('first_name',$profile->first_name, ['class' => 'col-xs-3'])}}
+                                            </div>
+                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                                            <label>{{trans('profile.form.lastName')}}</label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 tooltipable"  title="{{trans('profile.form.name-tooltip')}}">                                                
                                                 {{Form::text('last_name',$profile->last_name, ['class' => 'col-xs-3'])}}
-                                                {{trans('profile.form.firstName')}}
-                                                {{Form::text('first_name',$profile->first_name, ['class' => 'col-xs-3'])}}
                                             </div>
                                         </div>
                                         <div class="row no-margin">
@@ -92,7 +95,7 @@
                                         {{Form::hidden('type',$type)}}
 
                                         <div class="row no-margin" align="center">
-                                            <button class="btn btn-primary" data-loading-text="{{trans('general.updating')}}" type="button" id="btn-update-profile">{{trans('general.update')}}</button>
+                                            <button class="blue-button large-button" data-loading-text="{{trans('general.updating')}}" type="button" id="btn-update-profile">{{trans('general.update')}}</button>
                                         </div>
                                     </form>
                                 </div>
