@@ -30,47 +30,55 @@
         $('#myVideo').on('ended', function(e){
             lessonComplete( lessonId );
         });
+
     });
 	
-$(document).ready(function(){
-	resizeVideo();
-	$('.scroll-pane').jScrollPane();
-});
+	$(document).ready(function(){
+		resizeVideo();
+	});
 
-var rtime;
-var timeout = false;
-var delta = 200;
-$(window).resize(function() {
-    rtime = new Date();
-    if (timeout === false) {
-        timeout = true;
-        setTimeout(resizeend, delta);
-    }
-});
+	$('body').delegate('.scroll-pane', 'keyup', function(){
+		$(".scroll-pane").customScrollbar({
+			skin: "wazaar-skin", 
+			hScroll: false,
+			updateOnWindowResize: true
+	 	})
+	});
 
-function resizeend() {
-    if (new Date() - rtime < delta) {
-        setTimeout(resizeend, delta);
-    } else {
-        timeout = false;
-        resizeVideo();
-    }               
-}
+	var rtime;
+	var timeout = false;
+	var delta = 200;
+	$(window).resize(function() {
+		rtime = new Date();
+		if (timeout === false) {
+			timeout = true;
+			setTimeout(resizeend, delta);
+		}
+	});
 
-function resizeVideo(){
-    $("#myVideo").removeAttr('style');
-	var screenHeight = $(window).height();
-	var screenWidth = $(window).width();
-	var videoControlHeight = $(".control-container").height();
-        
-	screenHeight2 = screenHeight - videoControlHeight - 102;
-	if( screenWidth/screenHeight2 <= 1.778 ) return;
+	function resizeend() {
+		if (new Date() - rtime < delta) {
+			setTimeout(resizeend, delta);
+		} else {
+			timeout = false;
+			resizeVideo();
+		}               
+	}
 	
-	var classroomHeaderHeight = $(".classroom-header").height(); 
-
-
-	$("#myVideo").innerHeight(screenHeight - videoControlHeight - 102);
- } 
+	function resizeVideo(){
+		$("#myVideo").removeAttr('style');
+		var screenHeight = $(window).height();
+		var screenWidth = $(window).width();
+		var videoControlHeight = $(".control-container").height();
+			
+		screenHeight2 = screenHeight - videoControlHeight - 102;
+		if( screenWidth/screenHeight2 <= 1.778 ) return;
+		
+		var classroomHeaderHeight = $(".classroom-header").height(); 
+	
+	
+		$("#myVideo").innerHeight(screenHeight - videoControlHeight - 102);
+	 } 
 
 </script>
 @stop

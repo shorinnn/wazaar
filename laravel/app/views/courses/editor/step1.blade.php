@@ -36,7 +36,7 @@
                                         <i class="wa-chevron-down"></i>
                                       </a>
                                     
-                                      <ul class="dropdown-menu" aria-labelledby="upload-new">
+                                      <ul class="dropdown-menu" aria-labelledby="upload-new" style="margin-left: 30px;">
                                         {{ Form::open(['action' => ['CoursesController@update', $course->slug], 'files' => true, 'method' => 'PUT']) }}
                                             <label for="upload-preview-image" class="upload-button">
                                                 <span>{{ trans('courses/general.upload_image') }}</span>

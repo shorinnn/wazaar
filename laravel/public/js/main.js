@@ -23,7 +23,7 @@ $(document).ready(function(){
           if( !canPopState )return false;
           window.location = location.href;
       });
-    
+
     makeBoxesExpandable();
     if( getCookie('hideAffiliateToolbar')=='true' ) toggleAffiliateToolbar(event);
     $('.countdown').each(function(){

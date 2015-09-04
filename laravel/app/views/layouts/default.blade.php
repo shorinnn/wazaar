@@ -333,10 +333,14 @@
                         //window.reloadConfirm = false;
                         return message;
                     }
+					
+					$(".scroll-pane").customScrollbar({
+					  skin: "default-skin", 
+					  hScroll: false,
+					  updateOnWindowResize: true
+					 })
                 });
-				
-			    $(".scroll-pane").customScrollbar();
-		
+								 
 				$('[data-toggle="popover"]').popover();
 
 				$('.showRegister').click(function(){
