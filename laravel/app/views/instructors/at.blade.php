@@ -24,6 +24,7 @@
 <section class="container text-center">
     <div style='border:1px solid silver; padding:10px; margin:20px; height:400px; overflow-y: scroll'>
         @include('instructors.terms')
+    </div>
         
         {{ Form::open( ['InstructorsController@doAcceptTerms' ] ) }}
         <div class="checkbox-buttons text-center" style="display: block; float:none">
@@ -45,7 +46,6 @@
         </div>
             <button type='submit' class='large-button blue-button margin-bottom-20'>{{ trans('general.accept') }}</button>
         {{ Form::close() }}
-    </div>
 </section>
 
 @stop
