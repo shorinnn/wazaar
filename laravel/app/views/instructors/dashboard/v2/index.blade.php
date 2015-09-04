@@ -192,7 +192,7 @@
                             @else
                                 http://s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg
                             @endif
-                            ) no-repeat center center; background-color:white'
+                            ) no-repeat center center; background-color:white; background-size:100%'
                              >
                         </div>
                         <div href="#" class="name">
