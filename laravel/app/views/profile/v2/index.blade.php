@@ -47,10 +47,13 @@
                                     <form id="form-profile">
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>{{trans('profile.form.lastName')}}</label>
+                                               <label>{{trans('profile.form.name')}}</label>
                                             </div>
-                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
-                                                {{Form::text('last_name',$profile->last_name)}}
+                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6 tooltipable"  title="{{trans('profile.form.name-tooltip')}}">
+                                                {{trans('profile.form.lastName')}}
+                                                {{Form::text('last_name',$profile->last_name, ['class' => 'col-xs-3'])}}
+                                                {{trans('profile.form.firstName')}}
+                                                {{Form::text('first_name',$profile->first_name, ['class' => 'col-xs-3'])}}
                                             </div>
                                         </div>
                                         <div class="row no-margin">
@@ -62,10 +65,10 @@
                                             </div>
 
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>{{trans('profile.form.firstName')}}</label>
+                                                
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
-                                                {{Form::text('first_name',$profile->first_name)}}
+                                               
                                             </div>
                                         </div>
 

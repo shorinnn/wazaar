@@ -23,6 +23,8 @@ return
         'form' =>
         [
             'email' => 'Eメールアドレス',
+            'name'      => '氏名',
+            'name-tooltip' => '法人の場合は担当者名',
             'firstName' => '名',
             'prefecture' => '県',
             'company' => '会社',

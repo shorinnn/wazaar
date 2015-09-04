@@ -33,6 +33,8 @@ return
         'form'                 =>
             [
                 'email'            => 'Email',
+                'name'             => 'Name',
+                'name-tooltip'     => 'Name Tooltip',
                 'firstName'        => 'First Name',
                 'lastName'         => 'Last Name',
                 'bio'              => 'Describe yourself',
