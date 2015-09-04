@@ -59,7 +59,13 @@
                         @else
                             <div class="clearfix">
                                 <img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $instructor->profile->photo }}" alt="" >
-                                <em class="name">{{$instructor->profile->last_name}} {{$instructor->profile->first_name}} </em>
+                                <em class="name">
+                                    @if($course->details_name=='person')
+                                        {{$instructor->profile->last_name}} {{$instructor->profile->first_name}} 
+                                    @else
+                                        {{$instructor->profile->corporation_name}}
+                                    @endif
+                                </em>
                                 <span class="instructor-skills">{{ $instructor->profile->title }}</span>
                             </div>
                             <!--@if(Auth::check())
