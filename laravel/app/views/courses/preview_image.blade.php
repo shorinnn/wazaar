@@ -15,7 +15,7 @@
             </div>
         </div>-->
         	
-                <li class="col-xs-6 col-sm-4 col-md-3 col-lg-3 radio-checkbox radio-checked image-thumb-box">
+                <li class="col-xs-4 col-sm-4 col-md-3 col-lg-3 radio-checkbox radio-checked image-thumb-box">
                     <a href="#">
                     	<div class="thumb-container relative">
                 			<img src="{{$img->url}}" height="94" width="167" />
