@@ -13,6 +13,7 @@
 
 .scrollable .viewport .overview {
   position: absolute;
+  width: 100%;
 }
 
 .scrollable .scroll-bar {
@@ -78,6 +79,32 @@
 }
 
 .scrollable.default-skin .scroll-bar:hover .thumb {
+  opacity: 0.6;
+}
+
+/* Wazaar skin*/
+.scrollable.wazaar-skin {
+  padding-right: 20px;
+  padding-bottom: 6px;
+}
+
+.scrollable.wazaar-skin .scroll-bar.vertical {
+  width: 6px;
+}
+
+.scrollable.wazaar-skin .scroll-bar.horizontal {
+  height: 6px;
+}
+
+.scrollable.wazaar-skin .scroll-bar .thumb {
+  background-color: #303941;
+  opacity: 0.4;
+  border-radius: 3px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+.scrollable.wazaar-skin .scroll-bar:hover .thumb {
   opacity: 0.6;
 }
 

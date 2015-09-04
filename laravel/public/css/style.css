@@ -4555,25 +4555,6 @@ h1, h2, h3, h4, h5{
     width: 100%;
 }
 /************* New Classroom Pages *************/
-::-webkit-scrollbar {
-	width: 12px;
-} 
-::-webkit-scrollbar-track {
-      background-color: #e0e1e2;
-} /* the new scrollbar will have a flat appearance with the set background color */
-::-webkit-scrollbar-thumb {
-      background-color: #a7b7c4; 
-	  widtth: 6px;
-	  margin: 0 3px;
-	  border-radius: 12px;
-} /* this will style the thumb, ignoring the track */
-::-webkit-scrollbar-button {
-      background-color: #7c2929;
-	  display: none;
-} /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
-::-webkit-scrollbar-corner {
-      background-color: #e0e1e2;
-} /* if both the vertical and the horizontal bars appear, then perhaps the right bottom corner also needs to be styled */
 .classroom-view{
 	background-color: #18222b;
 	position: relative;
@@ -4994,7 +4975,7 @@ h1, h2, h3, h4, h5{
 }
 .discussion-sidebar .replies-holder{
     height: 63.5%;
-    overflow: scroll;
+    overflow: auto;
 }
 .discussion-sidebar .replies-container{
 	margin: 0 30px 12px;
@@ -5123,7 +5104,7 @@ h1, h2, h3, h4, h5{
 	left: -400px;
 	z-index: 8;
 	background: #fff;
-	overflow-x: scroll;
+	overflow: auto;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
@@ -8076,7 +8057,7 @@ footer{
 		background: #242d36;
 	}	
 	.question-holder{
-		overflow: scroll;
+		overflow: auto;
 	}
 	.questions-sidebar .tab-contents {
 		height: 92%;
@@ -8105,6 +8086,9 @@ footer{
 	}
 	.video-wrap {
 		min-height: 370px;
+	}
+	.modal-footer button + button {
+		margin-left: 18px !important;
 	}
 }
 @media (min-width: 1200px){
@@ -9113,7 +9097,7 @@ header .top-menu li{
     padding: 20px;
 }
 #modal-body-videos .video-list-container{
-	padding: 20px 5px;
+	padding: 20px 15px;
 }
 .modal-content .filter-wrap {
     background: #fff;
@@ -9226,6 +9210,16 @@ header .top-menu li{
 }
 .modal-footer {
     background: #f7f9fa;
+}
+.modal-footer button{
+	text-transform: uppercase;
+	font-size: 11px;
+	font-weight: bold;
+}
+.modal-footer #btn-delete-video {
+    padding: 10px 25px;
+    position: relative;
+    top: 2px;
 }
 .modal-content{
 	overflow: hidden;

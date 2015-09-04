@@ -13,7 +13,7 @@
                     </div>
                     <div class="toggle-menus block text-right inline-block col-xs-4 col-sm-2 col-md-2 col-lg-2">
                         <a href="#" class="menu menu-1"><i class="fa fa-th"></i></a>
-                        <a href="#" class="menu menu-2"><i class="fa fa-th-list"></i></a>
+                        <a href="#" class="menu menu-2"><i class="fa fa-bars"></i></a>
                     </div>
                 </div>
             </div>

@@ -143,12 +143,18 @@
 				padding: 5px;
 				word-wrap: break-word;
 			}
+			.slide-to-left{
+				overflow: auto;
+			}
+			.classroom-content-row{
+				padding-top: 50px;
+			}
         </style>
         
             <div class="right-slide-menu"></div>
         <div class="row full-height">
             
-            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 slide-to-left full-height">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 slide-to-left full-height scroll-pane">
                 <div class="classroom-header row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <span class="left-menu slide-menu-toggler">
@@ -404,7 +410,6 @@
         localStorage.setItem( 'vid-progress-'+videoHash, 0 );
         $.get( COCORIUM_APP_PATH+'classroom/complete-lesson/'+lesson );
     }
-    
     
     window.onpopstate =  function(e){
         console.log('e state:');
