@@ -4,7 +4,7 @@ class MembersController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter('admin');
-            $this->beforeFilter('csrf', ['only' => [ 'update','destroy' ]]);
+            $this->beforeFilter('csrf', ['only' => [ 'update','destroy', 'loginAs' ]]);
         }
 
 	/**
@@ -197,6 +197,12 @@ class MembersController extends \BaseController {
                 ORDER BY `ref_count` DESC");
             return View::make('administration.members.vip.super-vip')->withVips($result);
             
+        }
+        
+        public function loginAs(){
+            $user = User::find( Input::get('id') );
+            Auth::login( $user );
+            return Redirect::action('SiteController@index');
         }
 
 

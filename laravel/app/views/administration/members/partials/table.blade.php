@@ -99,6 +99,13 @@
                                 	<span>{{trans('crud/labels.edit')}}</span>
                                 </a>
                             </td>
+                            <td class="edit">
+                                {{ Form::open( ['action' => ['MembersController@loginAs'] ]) }}
+                                
+                                    <input type='hidden' name='id' value='{{$member->id}}' />
+                                    <button class='btn btn-primary'>Login</button>
+                                {{ Form::close() }}
+                            </td>
                             <td class="delete">
                                 {{ Form::open(array('action' => array('MembersController@destroy', $member->id), 'method' => 'delete', 'id'=>'member-form-'.$member->id)) }}
                                 <button class="btn btn-danger delete-button" data-message="Are you sure you want to delete? (msg coming from btn)"

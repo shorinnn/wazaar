@@ -29,7 +29,7 @@
                         <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                             <ul>
                                 <?php echo Flatten::section('header-categories-catalog', 10, function ()  { 
-                                    $categories = CourseCategory::withCourses();
+                                    $categories = CourseCategory::has('allCourses')->withCourses();
                                     $categories->load( 'courseSubcategories' );?>
                                
                                 
@@ -202,7 +202,7 @@
                             <ul>
                                 
                                <?php echo Flatten::section('header-categories-catalog', 10, function ()  { 
-                                    $categories = CourseCategory::withCourses();
+                                    $categories = CourseCategory::has('allCourses')->withCourses();
                                     $categories->load( 'courseSubcategories' );?>
                                
                                 

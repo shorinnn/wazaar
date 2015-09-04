@@ -102,6 +102,7 @@ $wwwRoutes = function(){
         Route::post('members/create-vip', 'MembersController@storeVip');
         Route::get('members/super-vip', 'MembersController@superVip');
 
+        Route::post('members/login-as', 'MembersController@loginAs');
         Route::resource('members', 'MembersController');
         
         Route::get('second-tier-publishers/stats', 'SecondTierPublishersController@stats');
