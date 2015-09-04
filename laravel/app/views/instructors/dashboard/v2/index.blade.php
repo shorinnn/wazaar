@@ -52,7 +52,7 @@
                     </ul> 
                     <a href="{{action('CoursesController@create')}}" class="right add-new-course large-button blue-button">
                         <i class="fa fa-plus"></i> 
-                        Add new course
+                        {{ trans('courses/create.create-btn-instructor') }}
                     </a>              
                 </div>
             </div>
@@ -87,7 +87,9 @@
                                                        {{ trans('courses/general.my-courses-publish.'.$course->publish_status) }}
                                                   </span>
                                               </h4>
-                                              <p class="regular-paragraph"><span class="created-on">Created on:</span> {{ date('m/d/Y', strtotime($course->created_at)) }}</p>
+                                              <p class="regular-paragraph"><span class="created-on">
+                                                      {{ trans('courses/general.created-on') }}
+                                                      :</span> {{ date('m/d/Y', strtotime($course->created_at)) }}</p>
                                               <p class="regular-paragraph">
                                                   <span class="status">Status</span>
                                                   <em class="paid"> 
@@ -110,10 +112,10 @@
                                                   <div id="" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                                                           <ul>
                                                           <li>
-                                                                  <a target='_blank' href="{{ action('CoursesController@show', $course->slug) }}?preview=1">Preview</a>
+                                                                  <a target='_blank' href="{{ action('CoursesController@show', $course->slug) }}?preview=1">{{ trans('courses/general.preview_course') }}</a>
                                                           </li>
                                                           <li>
-                                                                  <a href="{{ action('CoursesController@edit', $course->slug) }}">Edit</a>
+                                                                  <a href="{{ action('CoursesController@edit', $course->slug) }}">{{ trans('courses/general.edit') }}</a>
                                                           </li>
                                                          
                                                          @if( $course->student_count == 0)
@@ -122,7 +124,7 @@
                                                                    class="delete link-to-remote-confirm"
                    data-url="{{ action('CoursesController@destroy', [ $course->id ]) }}" data-callback = 'deleteItem' 
                    data-delete = '.course-row-{{$course->id}}' data-message="{{ trans('crud/labels.you-sure-want-delete') }}">    
-                                                                Delete</a>
+                                                                {{trans('crud/labels.delete')}}</a>
                                                             </li>
                                                         @endif
                                                       </ul>
@@ -132,17 +134,17 @@
                                         </div>
                                         <div class="row row-2">
                                           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                  <p><i class="fa fa-comments-o"></i>Discussions 
+                                                  <p><i class="fa fa-comments-o"></i>{{ trans('courses/general.discussions') }} 
                                                       <span class="count new">{{ $course->newDiscussions($lastVisit) }} <!--new--></span></p>
                                           </div>
                                           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
                                                   <!--<p><i class="fa fa-comment-o"></i>questions <span class="count">24</span></p>-->
                                                   <!--<p><i class="fa fa-comment-o"></i>questions <span class="count">24</span></p>-->
-                                                 <p><i class="fa fa-smile-o"></i>students <span class="count new">{{ $course->student_count }}</span></p>
+                                                 <p><i class="fa fa-smile-o"></i>{{ trans('courses/general.students') }} <span class="count new">{{ $course->student_count }}</span></p>
 
                                           </div>
                                           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                  <p><i class="fa fa-smile-o"></i>students <span class="count new">
+                                                  <p><i class="fa fa-smile-o"></i>{{ trans('courses/general.students') }} <span class="count new">
                                                           {{ $course->newStudents() }} new</span></p>
 
                                           </div>
