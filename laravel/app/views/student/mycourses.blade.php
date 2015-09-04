@@ -82,13 +82,15 @@
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <ul class="nav nav-pills" role="tablist">
                         <li role="presentation" class="active">
-                        	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">Enrolled</a>
+                        	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">
+                                {{trans('general.enrolled')}}</a>
                         </li>
                         <li role="presentation">
-                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">Finished</a>
+                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">
+                                {{trans('general.finished')}}</a>
                         </li>
                         <li role="presentation" class="dropdown">
-                          <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab" aria-controls="wishlist">Wishlist</a>
+                          <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab" aria-controls="wishlist">{{trans('general.wishlist')}}</a>
                         </li>
                     </ul>               
                 </div>
@@ -130,7 +132,7 @@
                         </div>
                         <div href="#" class="name">
                             <h2>{{ Auth::user()->commentName('student') }}</h2>
-                            <a href="{{action('ProfileController@index')}}" class="edit-profile"><i class="fa fa-cog"></i>Edit profile</a>
+                            <a href="{{action('ProfileController@index')}}" class="edit-profile"><i class="fa fa-cog"></i>{{ trans('general.edit-profile') }}</a>
                         </div>
                     </div>
                 </div>

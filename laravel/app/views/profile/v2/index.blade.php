@@ -51,17 +51,20 @@
                                             </div>
                                             
                                             <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
-                                                <label>{{trans('profile.form.firstName')}}</label>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                                                {{Form::text('first_name',$profile->first_name, ['class' => 'col-xs-3'])}}
-                                            </div>
-                                            <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
                                                  <label>{{trans('profile.form.lastName')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-2 col-md-2 col-lg-" >                                                
                                                 {{Form::text('last_name',$profile->last_name, ['class' => 'col-xs-3'])}}
                                             </div>
+                                            
+                                            
+                                            <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
+                                                <label>{{trans('profile.form.firstName')}}</label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                                                {{Form::text('first_name',$profile->first_name, ['class' => 'col-xs-3'])}}
+                                            </div>
+                                            
                                             
                                         </div>
                                         <div class="row no-margin">

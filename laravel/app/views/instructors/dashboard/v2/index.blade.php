@@ -8,22 +8,22 @@
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <div class="row activity-today">
                     	<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        	<h2>Activity today<i class="wa-chevron-down"></i></h2>
+                        	<h2>{{trans('general.activity-today')}}<i class="wa-chevron-down"></i></h2>
                         </div>
                     	<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
                         	<span class="count">-</span>
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/small-graph.png" class="small-graph">
-                            <p>new users</p>
+                            <p>{{trans('general.new-users')}}</p>
                         </div>
                     	<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
                         	<span class="count">-</span>
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/small-graph.png" class="small-graph">
-                            <p>new questions</p>
+                            <p>{{trans('general.new-questions')}}</p>
                         </div>
                     	<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
                         	<span class="count">-</span>
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/small-graph.png" class="small-graph">
-                            <p>new discussions</p>
+                            <p>{{trans('general.new-discussions')}}</p>
                         </div>
                     </div>
                 </div>
@@ -38,16 +38,21 @@
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <ul class="nav nav-pills left" role="tablist">
                         <li role="presentation" class="active">
-                        	<a href="#teaching" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">Teaching</a>
+                        	<a href="#teaching" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">
+                                    {{trans('general.teaching')}}
+                                </a>
                         </li>
                         <li role="presentation" class="">
-                        	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">Enrolled</a>
+                        	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">
+                                {{trans('general.enrolled')}}</a>
                         </li>
                         <li role="presentation">
-                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">Finished</a>
+                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">
+                                 {{trans('general.finished')}}</a>
                         </li>
                         <li role="presentation" class="dropdown">
-                          <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab" aria-controls="wishlist">Wishlist</a>
+                          <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab" aria-controls="wishlist">
+                           {{trans('general.wishlist')}}</a>
                         </li>
                     </ul> 
                     <a href="{{action('CoursesController@create')}}" class="right add-new-course large-button blue-button">
@@ -88,10 +93,10 @@
                                                   </span>
                                               </h4>
                                               <p class="regular-paragraph"><span class="created-on">
-                                                      {{ trans('courses/general.created-on') }}
+                                                      {{ trans('general.created-on') }}
                                                       :</span> {{ date('m/d/Y', strtotime($course->created_at)) }}</p>
                                               <p class="regular-paragraph">
-                                                  <span class="status">Status</span>
+                                                  <span class="status">{{ trans('general.status') }}</span>
                                                   <em class="paid"> 
                                                         @if($course->free=='yes')
                                                             {{ trans('courses/create.free') }}
@@ -192,7 +197,7 @@
                         </div>
                         <div href="#" class="name">
                             <h2>{{ Auth::user()->commentName('instructor') }}</h2>
-                            <a href="{{action('ProfileController@index')}}" class="edit-profile"><i class="fa fa-cog"></i>Edit profile</a>
+                            <a href="{{action('ProfileController@index')}}" class="edit-profile"><i class="fa fa-cog"></i>{{ trans('general.edit-profile') }}</a>
                         </div>
                     </div>
                 </div>

@@ -134,5 +134,16 @@ return array(
     'affiliate-ref-link' => 'Use this link to refer users:',
     'search' => 'Search',
     'update' => 'Update',
-    'updating' => 'Updating...'
+    'updating' => 'Updating...',
+    'edit-profile' => 'Edit profile',
+    'teaching' => 'Teaching',
+    'enrolled' => 'Enrolled',
+    'finished' => 'Finished',
+    'wishlist' => 'Wishlist',
+    'new-users'=>'New users',
+    'new-questions'=>'New questions',
+    'new-discussions'=>'New discussions',
+    'created-on'=>'Created on',
+    'status' => 'Status',
+    'activity-today' => 'Activity Today',
 );
