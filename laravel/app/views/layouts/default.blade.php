@@ -62,46 +62,28 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 	<div class="row">
-                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        	<h5>{{ trans('general.courses') }}</h5>
-                            <ul>
-                            	<li>
-                                	<a href="#">{{ trans('general.data_science') }}</a>
-                                </li>
-                            	<li>
-                                	<a href="#">{{ trans('general.development') }}</a>
-                                </li>
-                            	<li>
-                                	<a href="#">{{ trans('general.business') }}</a>
-                                </li>
-                            	<li>
-                                	<a href="#">{{ trans('general.it_and_software') }}</a>
-                                </li>
-                            	<li>
-                                	<a href="#">{{ trans('general.office_productivity') }}</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        	<h5>&nbsp;</h5>
-                            <ul>
-                            	<li>
-                                	<a href="#">{{ trans('general.design') }}</a>
-                                </li>
-                            	<li>
-                                	<a href="#">{{ trans('general.marketing') }}</a>
-                                </li>
-                            	<li>
-                                	<a href="#">{{ trans('general.lifestyle') }}</a>
-                                </li>
-                            	<li>
-                                	<a href="#">{{ trans('general.photography') }}</a>
-                                </li>
-                            	<li>
-                                	<a href="#">{{ trans('general.health_and_fitness') }}</a>
-                                </li>
-                            </ul>                    
-                        </div>
+                            <?php echo Flatten::section('footer-categories-link', 10, function ()  { ?>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <h5>{{ trans('general.courses') }}</h5>
+                                    <ul>
+                                        @foreach( DB::table('course_categories')->whereRaw('id % 2 = 0')->get() as $cat)
+                                            <li>
+                                                    <a href="{{ action('CoursesController@category', $cat->slug) }}">{{ $cat->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <h5>&nbsp;</h5>
+                                    <ul>
+                                        @foreach( DB::table('course_categories')->whereRaw('id % 2 != 0')->get() as $cat)
+                                            <li>
+                                                    <a href="{{ action('CoursesController@category', $cat->slug)  }}">{{ $cat->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>                    
+                                </div>
+                            <?php });?>
                     </div>
                   <!--{{trans('site/footer.all-rights-reserved')}}<br/>
                   &copy; {{ date('Y') }}-->
@@ -109,21 +91,21 @@
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 	<div class="row">
                     	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        	<h5>{{ trans('general.about') }}</h5>
+                        	<h5>{{ trans('footer.about') }}</h5>
                             <ul>
-                            	<li>
-                                	<a href="{{ action('SiteController@privacyPolicy') }}">{{ trans('general.company') }}</a>
-                                </li>
+<!--                            	<li>
+                                	<a href="#">{{ trans('footer.company') }}</a>
+                                </li>-->
                             	<li>
                                 	<a href="{{ action('SiteController@about') }}">特定商取引法に関する表示 </a>
                                 </li>
 	                           	<li>
-                                	<a href="#">{{ trans('general.privacy-policy') }}</a>
+                                	<a href="{{ action('SiteController@privacyPolicy') }}">{{ trans('general.privacy-policy') }}</a>
                                 </li>
                             </ul>                        
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center-mobile padding-bottom-20">
-                        	<h5>GET IN TOUCH</h5>
+                        	<h5>{{ trans('footer.get-in-touch') }}</h5>
                             <p><!--電話番号：-->03-6206-8396　</p>
                             <p><!--{{trans('site/footer.mail')}}:info@wazaar.comメールアドレス：-->contact@minkare.jp</p>  
                             <div class="social-icons">

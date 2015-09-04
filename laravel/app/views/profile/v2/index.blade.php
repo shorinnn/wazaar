@@ -45,19 +45,24 @@
                                 <h4>{{trans('profile.pageTitle')}}</h4>
                                 <div class="clearfix">
                                     <form id="form-profile">
-                                        <div class="row no-margin">
+                                        <div class="row no-margin tooltipable"  title="{{trans('profile.form.name-tooltip')}}">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                               <label><!--{{trans('profile.form.name')}}-->{{trans('profile.form.firstName')}}</label>
+                                               <label>{{trans('profile.form.name')}}</label>
+                                            </div>
+                                            
+                                            <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
+                                                <label>{{trans('profile.form.firstName')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                                            {{Form::text('first_name',$profile->first_name, ['class' => 'col-xs-3'])}}
+                                                {{Form::text('first_name',$profile->first_name, ['class' => 'col-xs-3'])}}
                                             </div>
-                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                                            <label>{{trans('profile.form.lastName')}}</label>
+                                            <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
+                                                 <label>{{trans('profile.form.lastName')}}</label>
                                             </div>
-                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 tooltipable"  title="{{trans('profile.form.name-tooltip')}}">                                                
+                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-" >                                                
                                                 {{Form::text('last_name',$profile->last_name, ['class' => 'col-xs-3'])}}
                                             </div>
+                                            
                                         </div>
                                         <div class="row no-margin">
 
@@ -74,6 +79,23 @@
                                                
                                             </div>
                                         </div>
+                                        
+                                        <div class="row no-margin tooltipable" title="{{trans('profile.form.corporation-name-tooltip')}}">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                <label>{{trans('profile.form.corporation-name')}}</label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6 " >
+                                                {{Form::text('corporation_name',$profile->corporation_name)}}
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin tooltipable" title="{{trans('profile.form.department-tooltip')}}">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                <label>{{trans('profile.form.department')}}</label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6 " >
+                                                {{Form::text('department',$profile->department)}}
+                                            </div>
+                                        </div>
 
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
@@ -83,6 +105,7 @@
                                                 {{Form::text('email',$profile->email)}}
                                             </div>
                                         </div>
+                                        
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                                 <label>{{trans('profile.form.bio')}}</label>
@@ -219,6 +242,15 @@
                                                 {{Form::text('beneficiary_name',$profile->beneficiary_name)}}
                                             </div>
                                             {{Form::hidden('type',$type)}}
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                                            {{trans('profile.form.bank-bottom-text')}}
+                                            <br />
+                                            <br />
+                                            </div>
+                                            <div class="col-sm-1 col-md-1 col-lg-1"></div>
                                         </div>
                                         <div class="row no-margin" align="center">
                                             <button class="btn btn-primary" data-loading-text="{{trans('general.updating')}}" type="button" id="btn-update-bank">{{trans('general.update')}}</button>
