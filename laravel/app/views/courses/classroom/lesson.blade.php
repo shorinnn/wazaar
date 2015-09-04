@@ -37,12 +37,13 @@
 		resizeVideo();
 	});
 
-	$(".scroll-pane").customScrollbar({
-	  skin: "wazaar-skin", 
-	  hScroll: false,
-	  updateOnWindowResize: true
-	 })
-		
+	$('body').delegate('.scroll-pane', 'keyup', function(){
+		$(".scroll-pane").customScrollbar({
+			skin: "wazaar-skin", 
+			hScroll: false,
+			updateOnWindowResize: true
+	 	})
+	});
 
 	var rtime;
 	var timeout = false;

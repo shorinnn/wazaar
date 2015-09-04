@@ -41,7 +41,7 @@
 			}
 			
             .classroom-view .right-slide-menu.in{
-                    right: 16px;
+                    right: 0;
             }
             
             .classroom-view::-webkit-scrollbar {
