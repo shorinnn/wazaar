@@ -8569,6 +8569,9 @@ header .top-menu li{
 .course-data .column-1 div em{
 	font-size: 14px;
 }
+.modal-content .filter-wrap input{
+	width: 80% !important;
+}
 }
 @media (max-width:665px){
 	.student-course.percentage-completed .resume-course{
@@ -9060,6 +9063,11 @@ header .top-menu li{
 .progress-bar{
     background-color: #069BFF;
 }
+#videos-archive-modal .modal-body,
+#existing-previews-modal .modal-body{
+	height: 375px;
+	overflow: auto;
+}
 .image-thumb-box,
 .video-thumb-box {
     /*width: 180px !important;
@@ -9099,7 +9107,7 @@ header .top-menu li{
 	font-weight: 600;
 	color: #798794;
 }
-#modal-body-videos .search-wrap {
+.modal-content .search-wrap {
     background: #f7f9fa;
     border-bottom: 1px solid #e0e1e2;
     padding: 20px;
@@ -9107,29 +9115,29 @@ header .top-menu li{
 #modal-body-videos .video-list-container{
 	padding: 20px 5px;
 }
-#modal-body-videos .filter-wrap {
+.modal-content .filter-wrap {
     background: #fff;
     border: 1px solid #cfd8df;
     border-radius: 3px;
     padding: 0;
 }
-#modal-body-videos .filter-wrap i{
+.modal-content .filter-wrap i{
 	color: #a7b7c4;
 	position: relative;
 	top: 2px;
 }
-#modal-body-videos .filter-wrap input{
+.modal-content .filter-wrap input{
 	border: none;
 	width: 90%;
 	margin: 0;
 }
-#modal-body-videos .filter-wrap button{
+.modal-content .filter-wrap button{
 	width: 9%;
 	border: none;
 	height: 30px;
 	background: none;
 }
-#modal-body-videos .toggle-menus{
+.modal-content .toggle-menus{
 	width: auto;
 	padding: 0;
 	float: right !important;
@@ -9137,7 +9145,7 @@ header .top-menu li{
 	margin: 0;
 	background: #fff;
 }
-#modal-body-videos .toggle-menus .menu i{
+.modal-content .toggle-menus .menu i{
 	top: 0;
 	line-height: 38px;
 }
@@ -9150,6 +9158,7 @@ header .top-menu li{
 	height: auto;
 	margin: 1px 1px 0;
 	z-index: 2;
+	max-height: 105px;
 	overflow: hidden;
 }
 .image-thumb-box input,
