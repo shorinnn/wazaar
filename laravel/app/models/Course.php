@@ -433,6 +433,22 @@ class Course extends Ardent{
         }
         return null;
     }
+    
+    public function newStudents(){
+        $sevenDaysAgo = date('Y-m-d H:i:s', strtotime('- 7 day') );
+        
+        return Purchase::where('product_type', 'Course')->where('product_id', $this->id)
+                ->where('created_at', '> ', $sevenDaysAgo)->remember(60 * 24)->count();
+    }
+    
+    public function newDiscussions($lastVisit){
+        if (time() - $lastVisit > 7*24*60*60) $lastVisit = ('- 7 day');
+        $modules = $this->modules->lists('id');
+        if(count($modules)==0) $modules = [0];
+        $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
+        if(count($lessons)==0) $lessons = [0];
+        return LessonDiscussion::whereIn('lesson_id', $lessons)->remember(10)->count();
+    }
 
 
 }

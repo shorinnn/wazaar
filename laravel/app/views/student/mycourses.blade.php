@@ -132,30 +132,6 @@
                             <h2>{{ Auth::user()->commentName('student') }}</h2>
                             <a href="{{action('ProfileController@index')}}" class="edit-profile"><i class="fa fa-cog"></i>Edit profile</a>
                         </div>
-                        <a href="#" class="message-count message">
-                        	<i class="fa fa-comment-o"></i>
-                            Messages
-                            <span class="count">(2)</span>
-                        </a>
-                        <a href="#" class="message-preview unread message">
-                        	<h4>Jeremy Wong <span class="date">Yesterday</span></h4>
-                            <p class="regular-paragraph">I am new to course creation. I have many doubts and i am ... </p>
-                        </a>
-                        <a href="#" class="message-preview message">
-                        	<h4>Jeremy Wong <span class="date">Yesterday</span></h4>
-                            <p class="regular-paragraph">I am new to course creation. I have many doubts and i am ... </p>
-                        </a>
-                        <a href="#" class="message-preview unread message">
-                        	<h4>Jeremy Wong <span class="date">Yesterday</span></h4>
-                            <p class="regular-paragraph">I am new to course creation. I have many doubts and i am ... </p>
-                        </a>
-                        <a href="#" class="message-preview message">
-                        	<h4>Jeremy Wong <span class="date">Yesterday</span></h4>
-                            <p class="regular-paragraph">I am new to course creation. I have many doubts and i am ... </p>
-                        </a>
-                        <div class="text-center read-message">
-                        	<a href="#" class="default-button large-button">Read all messages</a>
-                        </div>
                     </div>
                 </div>
             </div>

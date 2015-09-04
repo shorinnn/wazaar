@@ -5,7 +5,7 @@ class CoursesController extends \BaseController {
         public function __construct(){
             $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'dashboard',
                 'customPercentage', 'updateExternalVideo', 'removePromo'] ] );
-            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
+            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroyxxx', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
 
             
         }
@@ -265,6 +265,12 @@ class CoursesController extends \BaseController {
         public function myCourses(){
             
             $instructor = Instructor::find(Auth::user()->id);
+            $lastVisit = Auth::user()->getCustom('last-instructor-dash-visit');
+            
+            if( time() - $lastVisit > 60*60*24){
+                Auth::user()->setCustom( 'last-instructor-dash-visit', time() );
+                Auth::user()->save();
+            }
             if( $instructor->accepted_instructor_terms!='yes' ){
                 return Redirect::action('InstructorsController@acceptTerms');
             }
@@ -273,6 +279,15 @@ class CoursesController extends \BaseController {
                         $query->where('instructor_read', 'no');
                     } ] )
                     ->paginate(10);
+            $profile = $instructor->profile;
+            
+            $student = Student::find( Auth::user()->id );
+            $purchasedCourses = $student->purchases()->where('product_type','Course')->get();
+            $wishlist = $student->wishlistItems;
+            if($wishlist !=null )$wishlist->load('course');
+            
+            return View::make('instructors.dashboard.v2.index')->with(compact('courses', 'instructor', 'profile', 'lastVisit', 
+                    'student', 'purchasedCourses', 'wishlist'));
             Return View::make('courses.myCourses')->with(compact('courses'));
         }
         
