@@ -167,6 +167,9 @@ input[type='text']:-ms-input-placeholder,
 input[type='text']::-webkit-input-placeholder{
 	color: #798794;	
 }
+textarea{
+	padding: 12px !important;
+}
 ul {
 	margin: 0;
 	padding: 0;
@@ -7981,6 +7984,7 @@ footer{
 .footer-container h5{
 	color: #303941;
 	margin: 0 0 6px;
+	text-transform: uppercase;
 }
 .footer-container p,
 .footer-container a{

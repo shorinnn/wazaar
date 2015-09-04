@@ -63,22 +63,22 @@
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 	<div class="row">
                     	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        	<h5>Courses</h5>
+                        	<h5>{{ trans('general.courses') }}</h5>
                             <ul>
                             	<li>
-                                	<a href="#">Data Science</a>
+                                	<a href="#">{{ trans('general.data_science') }}</a>
                                 </li>
                             	<li>
-                                	<a href="#">Development</a>
+                                	<a href="#">{{ trans('general.development') }}</a>
                                 </li>
                             	<li>
-                                	<a href="#">Business</a>
+                                	<a href="#">{{ trans('general.business') }}</a>
                                 </li>
                             	<li>
-                                	<a href="#">IT & Software</a>
+                                	<a href="#">{{ trans('general.it_and_software') }}</a>
                                 </li>
                             	<li>
-                                	<a href="#">Office Productivity</a>
+                                	<a href="#">{{ trans('general.office_productivity') }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -86,19 +86,19 @@
                         	<h5>&nbsp;</h5>
                             <ul>
                             	<li>
-                                	<a href="#">Design</a>
+                                	<a href="#">{{ trans('general.design') }}</a>
                                 </li>
                             	<li>
-                                	<a href="#">Marketing</a>
+                                	<a href="#">{{ trans('general.marketing') }}</a>
                                 </li>
                             	<li>
-                                	<a href="#">Lifestyle</a>
+                                	<a href="#">{{ trans('general.lifestyle') }}</a>
                                 </li>
                             	<li>
-                                	<a href="#">Photography</a>
+                                	<a href="#">{{ trans('general.photography') }}</a>
                                 </li>
                             	<li>
-                                	<a href="#">Health & Fitness</a>
+                                	<a href="#">{{ trans('general.health_and_fitness') }}</a>
                                 </li>
                             </ul>                    
                         </div>
@@ -109,10 +109,10 @@
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 	<div class="row">
                     	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        	<h5>ABOUT</h5>
+                        	<h5>{{ trans('general.about') }}</h5>
                             <ul>
                             	<li>
-                                	<a href="{{ action('SiteController@privacyPolicy') }}">Company </a>
+                                	<a href="{{ action('SiteController@privacyPolicy') }}">{{ trans('general.company') }}</a>
                                 </li>
                             	<li>
                                 	<a href="{{ action('SiteController@about') }}">特定商取引法に関する表示 </a>

@@ -30,7 +30,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="default-button large-button" data-dismiss="modal">{{trans('crud/labels.close')}}</button>
-                <button type="button" class="blue-button large-button disabled" id="btn-use-video">{{trans('video.useVideo')}}</button>
+                <button type="button" class="blue-button large-button disabled" id="btn-use-video">{{trans('video.choose')}}</button>
                 <button type="button" class="btn btn-danger disabled" id="btn-delete-video">{{trans('crud/labels.delete')}}</button>
             </div>
         </div><!-- /.modal-content -->
