@@ -55,8 +55,8 @@ class Video extends \LaravelBook\Ardent\Ardent
         }
 
         //TODO: Set config values for the numbers below
-        $video = $video->remember(10)->paginate(6);
-        
+        //$video = $video->remember(10)->paginate(6);// no more pagination!
+        $video = $video->remember(10)->get();
         return $video;
     }
 

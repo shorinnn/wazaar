@@ -26,6 +26,6 @@
 
     </ul>
     <div class="videos-lookup-pagination-wrapper">
-        {{$videos->appends(Input::only('filter'))->links()}}
+        {{--$videos->appends(Input::only('filter'))->links()--}}
     </div>
 </div>
