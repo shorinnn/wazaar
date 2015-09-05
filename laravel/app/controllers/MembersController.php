@@ -86,6 +86,7 @@ class MembersController extends \BaseController {
 	 */
 	public function update($id)
 	{
+            User::unguard();
             $user = User::find($id);
             if($user==null){
                 return Redirect::action('MembersController@index')->withError( trans('crud/errors.object_doesnt_exist', ['object' => 'User' ]) );
