@@ -29,9 +29,9 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                    <a target='_blank' href="http://{{ getDomainFromEmail(Auth::user()->email )}}" class="blue-button large-button">
+<!--                    <a target='_blank' href="http://{{ getDomainFromEmail(Auth::user()->email )}}" class="blue-button large-button">
                         {{ trans('acl.verify-email')}}
-                    </a>
+                    </a>-->
                 </div>
             </div>
             <div class="row invite-friends deactivated">
