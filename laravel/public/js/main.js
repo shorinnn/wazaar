@@ -12,17 +12,17 @@ var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 
 $(document).ready(function(){
     
-    var canPopState = false;
-    setTimeout(function(){
-        canPopState = true;
-    },20);
-
-    console.log( history.popState );
-    $(window).on("popstate", function(e) {
-        console.log( history.popState );
-          if( !canPopState )return false;
-          window.location = location.href;
-      });
+//    var canPopState = false;
+//    setTimeout(function(){
+//        canPopState = true;
+//    },20);
+//
+//    console.log( history.popState );
+//    $(window).on("popstate", function(e) {
+//        console.log( history.popState );
+//          if( !canPopState )return false;
+//          window.location = location.href;
+//      });
 
     makeBoxesExpandable();
     if( getCookie('hideAffiliateToolbar')=='true' ) toggleAffiliateToolbar(event);
