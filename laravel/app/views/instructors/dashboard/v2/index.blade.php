@@ -81,6 +81,8 @@
                                                     <a href="{{ $course->previewImage->url }}" target="_blank">
                                                         <img src="{{ $course->previewImage->url }}" class="img-responsive" />
                                                     </a>
+                                                    @else
+                                                        <p style="margin-top:35px;">{{ trans('courses/create.no-uploaded-image') }}</p>
                                                     @endif 
                                               </div>
 

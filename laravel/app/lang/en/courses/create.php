@@ -68,4 +68,5 @@ return array(
     'select-existing-image' => 'Select Existing',
     'upload-files' => 'Upload Files',
     'select-file' => 'Select file',
+    'no-uploaded-image' => 'No uploaded image',
 );
