@@ -46,6 +46,7 @@ class SiteController extends \BaseController {
             if( Auth::check() ){
 //                if( Auth::user()->is_second_tier_instructor == 'yes' ) return Redirect::action('UsersController@links');
                 if( Auth::user()->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
+                if( Auth::user()->hasRole('Affiliate') ) return Redirect::action('AffiliateDashboardController@index');
             }
             return View::make('splash');
 	}
