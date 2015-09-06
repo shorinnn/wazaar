@@ -24,7 +24,7 @@ $(document).ready(function(){
           window.location = location.href;
       });
 
-    makeBoxesExpandable();
+    //makeBoxesExpandable();
     if( getCookie('hideAffiliateToolbar')=='true' ) toggleAffiliateToolbar(event);
     $('.countdown').each(function(){
         seconds = $(this).attr('data-final-date-seconds')
@@ -87,7 +87,7 @@ $(document).ready(function(){
 
 });
 
-function makeBoxesExpandable(){
+/*function makeBoxesExpandable(){
     var txt = $('.expandable-textarea'),
     hiddenDiv = $(document.createElement('div')),
     content = null;
@@ -107,7 +107,7 @@ function makeBoxesExpandable(){
             $(this).css('height', hiddenDiv.height());
 
     });
-}
+}*/
 
 function videoGridBoxIn(){
 	TweenMax.to($(this), 0.3, {zIndex: 9, scale: '1.2'});

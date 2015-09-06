@@ -297,6 +297,7 @@
         <script src="{{url("js/jquery.mousewheel.js")}}"></script>
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
         <script src="{{url("js/jquery.custom-scrollbar.js")}}"></script>
+        <script src="{{url("js/autogrow.min.js")}}"></script>
         <script src="{{url("js/main.js")}}"></script>
         <script src="{{url("js/messages.js")}}"></script>
         <script src="{{url("js/slick.js")}}"></script>
@@ -390,7 +391,11 @@
 					show: false	
 				}); 
 					
-
+			/*var opts = {
+				animate: true
+				, cloneClass: 'faketextarea'
+			};
+			$('textarea').autogrow(opts);*/
 			});
 		</script>
     	

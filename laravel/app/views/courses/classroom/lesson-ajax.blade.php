@@ -119,7 +119,6 @@
 			}
 			.classroom-content-row p{
 				color: #798794;
-				line-height: 18px;
 				margin: 0 0 25px;
 			}
 			.classroom-view .classroom-header {

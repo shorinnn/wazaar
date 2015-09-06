@@ -88,7 +88,6 @@ body {
 	margin: 0;
 	padding: 0;
 	color: #000;
-	line-height: 16px !important;
 	/*font: 16px 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro', Meiryo, 'メイリオ', "MS P Gothic", 'ＭＳ Ｐゴシック',Lato, Helvetica, sans-serif;
 	font-family: 'ＭＳ Ｐゴシック', 'MS PGothic', 'メイリオ', Meiryo, sans-serif;*/
 	font: 16px 'Open Sans', Helvetica, sans-serif;
@@ -169,6 +168,8 @@ input[type='text']::-webkit-input-placeholder{
 }
 textarea{
 	padding: 12px !important;
+	height: auto;
+	min-height: 38px;
 }
 ul {
 	margin: 0;
@@ -1123,7 +1124,7 @@ header .profile-name li:hover ul{
 	background-color: #ffffff !important;
  	border-radius: 4px;
 	height: auto;
-  	max-height: 394px;
+  	max-height: 405px;
 	max-width: 360px;
   	background-repeat:no-repeat;
   	position:relative;
@@ -2197,35 +2198,40 @@ header .profile-name li:hover ul{
 
 /*************** Heading styles ***********************/
 h1{
-	font-size: 26px;
+	font-size: 36px;
+	line-height: 34px;
 	font-weight: normal !important;
 }
 h2{
-	font-size: 18px;
+	font-size: 20px;
+	line-height: 26px;
 }
 h3{
 	font-size: 15px;
+	line-height: 22px;
 }
 h4{
 	font-size: 14px;
+	line-height: 20px;
 }
 h5{
 	font-size: 13px;
+	line-height: 20px;
 }
 h6{
 	font-size: 11px;
 	font-weight: bold;
 }
-h1, h2, h3, h4, h5{
+h2, h3, h4, h5, h6{
 	font-weight: 600;
 }
 .intro-paragraph{
 	font-size: 14px;
-	line-height: 18px;
+	line-height: 22px;
 }
 .regular-paragraph{
 	font-size: 13px;
-	line-height: 18px;
+	line-height: 20px;
 }
 .light-gray-text{
 	color: #7e8e9e;
@@ -2739,7 +2745,7 @@ h1, h2, h3, h4, h5{
 	font-size: 13px;
 	color: #2e343b;
 	margin-bottom: 10px;
-	line-height: 18px;
+	line-height: 20px;
 	padding-left: 20px;
 	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/check-icon.png');
 	background-repeat: no-repeat;
@@ -3589,7 +3595,6 @@ h1, h2, h3, h4, h5{
 .student-messages .question h3,
 .instructor-course .question h3,
 .student-course .question h3{
-	line-height: 26px;
 	color: #303941;
 	margin: 0 0 16px;
 }
@@ -3731,7 +3736,7 @@ h1, h2, h3, h4, h5{
 .new-dashboard .message-preview-wrap .message-preview p{
 	margin: 0;
 	color: #657482;
-	line-height: 18px;
+	line-height: 20px;
 }
 .student-messages > .container{
 	background: #f7f9fa;
@@ -5215,7 +5220,7 @@ h1, h2, h3, h4, h5{
 	padding-bottom: 20px;
 }
 .course-topics-box .topics ul li a{
-	line-height: 18px;
+	line-height: 20px;
 	font-size: 13px;
 	color: #798794;
 	padding-left: 24px;
@@ -6586,7 +6591,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 }
 .edit-course .header h1{
 	color: #303941;
-	margin: 5px 0 11px;
+	margin: 0 0 11px;
 	color: #303941;
 }
 .edit-course .header h1 span{
@@ -6779,7 +6784,7 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .edit-course .right-content .file-details p{
 	color: #798794;
 	margin: 0;
-	line-height: 18px;
+	line-height: 20px;
 }
 .edit-course .right-content .file-details .default-button{
 	margin-top: 20px;
@@ -9083,7 +9088,7 @@ header .top-menu li{
 .video-thumb-box .file-name {
     font-size: 12px;
 	color: #798794;
-	line-height: 18px;
+	line-height: 20px;
     display: inline-block;
 }
 .modal-title{
