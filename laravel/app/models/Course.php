@@ -16,7 +16,7 @@ class Course extends Ardent{
     protected $dates = [ 'sale_starts_on', 'sale_ends_on' ];
     public $fillable = ['name', 'slug', 'description', 'short_description', 'price', 'course_difficulty_id', 'course_category_id', 'course_subcategory_id',
         'course_preview_image_id',  'course_banner_image_id', 'privacy_status', 'who_is_this_for', 'affiliate_percentage', 
-        'payment_type', 'requirements','description_video_id', 'discussions'];
+        'payment_type', 'requirements','description_video_id', 'discussions', 'details_name' ];
     
     public static $rules = [
         'name' => 'required|unique:courses',
@@ -432,6 +432,22 @@ class Course extends Ardent{
             if($module->order == 1) return $module;
         }
         return null;
+    }
+    
+    public function newStudents(){
+        $sevenDaysAgo = date('Y-m-d H:i:s', strtotime('- 7 day') );
+        
+        return Purchase::where('product_type', 'Course')->where('product_id', $this->id)
+                ->where('created_at', '> ', $sevenDaysAgo)->remember(60 * 24)->count();
+    }
+    
+    public function newDiscussions($lastVisit){
+        if (time() - $lastVisit > 7*24*60*60) $lastVisit = ('- 7 day');
+        $modules = $this->modules->lists('id');
+        if(count($modules)==0) $modules = [0];
+        $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
+        if(count($lessons)==0) $lessons = [0];
+        return LessonDiscussion::whereIn('lesson_id', $lessons)->remember(10)->count();
     }
 
 

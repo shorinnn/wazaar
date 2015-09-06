@@ -66,7 +66,7 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                         <h5>{{ trans('general.courses') }}</h5>
                                     <ul>
-                                        @foreach( DB::table('course_categories')->whereRaw('id % 2 = 0')->get() as $cat)
+                                        @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 = 0')->get() as $cat)
                                             <li>
                                                     <a href="{{ action('CoursesController@category', $cat->slug) }}">{{ $cat->name }}</a>
                                             </li>
@@ -76,7 +76,7 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                         <h5>&nbsp;</h5>
                                     <ul>
-                                        @foreach( DB::table('course_categories')->whereRaw('id % 2 != 0')->get() as $cat)
+                                        @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 != 0')->get() as $cat)
                                             <li>
                                                     <a href="{{ action('CoursesController@category', $cat->slug)  }}">{{ $cat->name }}</a>
                                             </li>

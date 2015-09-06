@@ -71,4 +71,5 @@ return array(
     'select-existing-image' => '投稿済みの画像から選択',
     'upload-files' => 'ファイル投稿',
     'select-file' => 'ファイル選択',
+    'no-uploaded-image' => 'No uploaded image',
 );

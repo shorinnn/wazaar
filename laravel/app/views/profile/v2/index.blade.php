@@ -51,17 +51,20 @@
                                             </div>
                                             
                                             <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
-                                                <label>{{trans('profile.form.firstName')}}</label>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-                                                {{Form::text('first_name',$profile->first_name, ['class' => 'col-xs-3'])}}
-                                            </div>
-                                            <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
                                                  <label>{{trans('profile.form.lastName')}}</label>
                                             </div>
                                             <div class="col-xs-12 col-sm-2 col-md-2 col-lg-" >                                                
                                                 {{Form::text('last_name',$profile->last_name, ['class' => 'col-xs-3'])}}
                                             </div>
+                                            
+                                            
+                                            <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
+                                                <label>{{trans('profile.form.firstName')}}</label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                                                {{Form::text('first_name',$profile->first_name, ['class' => 'col-xs-3'])}}
+                                            </div>
+                                            
                                             
                                         </div>
                                         <div class="row no-margin">
@@ -334,13 +337,21 @@
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                     <form action="{{url('profile/upload-profile-picture')}}" enctype="multipart/form-data" method="post">
                     <div class="sidebar">
-                        <div class="profile-picture-holder">
+                        <div class="profile-picture-holder"
+                             style='background:url(
+                             @if( isset($profile->photo) && trim($profile->photo) !='' )
+                                {{ $profile->photo }}
+                            @else
+                                http://s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg
+                            @endif
+                            ) no-repeat center center; background-color:white; background-size:100%'
+                             >
                             
-                            @if( isset($profile->photo) && trim($profile->photo) !='' )
+<!--                            @if( isset($profile->photo) && trim($profile->photo) !='' )
                                 <img src="{{@$profile->photo}}" alt="" id="img-profile-picture" class="img-responsive"/>
                             @else
                                 <img src="http://s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg" alt="" id="img-profile-picture" class="img-responsive"/>
-                            @endif
+                            @endif-->
                         </div>
                         <div class="upload-picture-button text-center">
                             <label for="upload-new-photo" class="default-button large-button">

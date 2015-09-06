@@ -111,6 +111,15 @@
                             </div>
                         </td>
                     </tr>
+     
+                    <tr>
+                        <td class="title no-border">{{trans('administration.verified')}}</td>
+                        <td class="no-border">
+                            <div>
+                                {{ Form::select('confirmed',['0'=>'No', '1'=>'Yes'] ) }}
+                            </div>
+                        </td>
+                    </tr>
                     <tr class="no-border">
                         <td class="title no-border">{{trans('general.registered')}}</td>
                         <td class="no-border">{{ $user->created_at }} {{ $user->created_at->diffForHumans() }}</td>

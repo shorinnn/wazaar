@@ -105,6 +105,15 @@ return array(
     'upload_new_picture' => '新規写真を投稿',
     'select-sort' => '検索オプション',
     'courses' => 'コース情報',
-     
- 
+    'edit-profile' => 'プロフィールの編集',
+    'teaching' => '講義中',
+    'enrolled' => '学習中',
+    'finished' => '学習済み',
+    'wishlist' => 'お気に入り',
+    'new-users'=>'新しい受講生',
+    'new-questions'=>'新しい質問',
+    'new-discussions'=>'新しい投稿',
+    'created-on'=>'作成日',
+    'status' => 'ステータス',
+    'activity-today' => '今日の重要指標'
 );
