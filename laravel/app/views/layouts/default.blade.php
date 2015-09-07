@@ -322,8 +322,11 @@
 
 
     @endif
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-    <script type="text/javascript" src="{{url('js/cocorium.payment.js')}}"></script>
+
+
+    {{-- Payment Scripts --}}
+    {{--<script type="text/javascript" src="https://js.stripe.com/v2/"></script>--}}
+    <script type="text/javascript" src="{{url('js/cocorium.payment-max.js')}}"></script>
 
     @yield('extra_js')
 		<script type="text/javascript">
