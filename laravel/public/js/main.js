@@ -1458,6 +1458,7 @@ function toggleRightBar(e, json){
     if($('.course-question-sidebar').length >= 1){
         $('.course-question-sidebar').toggleClass('in');
     }
+
     $('.ask-question').removeClass('active');
     $('.questions-box').removeClass('active');
     
@@ -1476,6 +1477,10 @@ function toggleRightBar(e, json){
     if( !isset(json) && isset(e) && typeof( $(e.target).attr('data-property') )!='undefined'  && $('.right-slide-menu').hasClass('in') ) return false;
     $('.play-intro-button').hide();
     $('.right-slide-menu').toggleClass('in');
+    console.log($('.right-slide-menu.in .ask-question-fields .clearfix input[type=text]').length);
+    if($('.right-slide-menu.in .ask-question-fields .clearfix input[type=text]').length >= 1){
+        $('.right-slide-menu.in .ask-question-fields .clearfix input[type=text]').focus();
+    }
     $('.slide-to-left').toggleClass('in');
     $('body').toggleClass('discussion-opened');
     setTimeout( skinVideoControls, 501 );
