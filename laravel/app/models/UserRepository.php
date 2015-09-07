@@ -118,7 +118,7 @@ class UserRepository
     }
     
     private function _addToDelivered($user, $deliveredTags){
-        if( App::environment() != 'production' ) return;
+        if( App::environment() == 'local' || App::environment() == 'testing' ) return;
         $this->delivered = new DeliveredHelper();
         // add the user to DELIVERED
         $response = $this->delivered->addUser( $user->first_name, $user->last_name, $user->email );
