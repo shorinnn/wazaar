@@ -332,6 +332,8 @@
 	border-bottom-color: #e3e5e6;
 	border-radius: 0;
 }
+.checkout-modal input[type="radio"]{
+}
 .checkout-modal .cards-wrap.active{
 	background: #fff;
 	border: solid #e3e5e6;
@@ -369,6 +371,11 @@
 .checkout-modal .card-logo.visa{
 	background-position: right 0;
 }
+.checkout-modal .new-card.active{
+    background: #fff;
+    border-color: #e3e5e6;
+    border-radius: 4px;
+}
 .checkout-modal .new-card .cc-card-button{
 	visibility: hidden;
 }
@@ -383,6 +390,7 @@
 }
 .checkout-modal .new-cc-form{
 	padding-top: 12px;
+	display: none;
 }
 .checkout-modal .new-cc-form label{
 	margin: 0 0 10px;
@@ -420,7 +428,7 @@
                         <div class="row">
                             <div>
                             	<form>
-                            	<div class="cards-wrap clearfix active">
+                            	<div class="cards-wrap clearfix">
                                 	<span class="cc-card-button radio-style-2">
                                         <input type="radio" name="credit-card-id" id="card-1">
                                         <label class="small-radio-2" for="card-1"></label>
@@ -518,6 +526,19 @@
 			$(".open-button-wrap").hide();
 			$(".affiliate-gift-wrap .description").css({width: "100%"});
 		});
+		
+		$('.add-new-card').on('click', function(){
+			$('.new-cc-form').show();
+			$('.new-cc-form').css('border-top', 'solid 1px #e3e5e6')
+			$('.new-card').addClass('active');
+			$('.card-details').css('margin-bottom', '15px');
+		})
+		
+		$('.checkout-modal input[type="radio"]:checked').parent().parent().addClass("active");
+		$('.checkout-modal input[type="radio"]').click(function () {
+			$('.checkout-modal input[type="radio"]:not(:checked)').parent().parent('.cards-wrap').removeClass("active");
+			$('.checkout-modal input[type="radio"]:checked').parent().parent().addCla.ss("active");
+    	});  
 	});
 
 </script>

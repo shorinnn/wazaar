@@ -181,6 +181,9 @@
             @endif
             <ul class="logged-out visible-xs-block hidden-sm hidden-md hidden-lg">
                 <li>
+                    <a href="http://wazaar.jp/courses/category"> {{trans('general.browse-courses')}}</a> 
+                </li>
+                <li>
                     <!--<a href="{{ action('UsersController@login') }}" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> -->
                     <a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a> 
                 </li>
@@ -237,6 +240,9 @@
                 <?php endif;?>
             </div>
             <ul class="logged-out hidden-xs">
+                <li>
+                    <a href="http://wazaar.jp/courses/category"> {{trans('general.browse-courses')}}</a> 
+                </li>
                 <li>
                     <a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a>
                 </li>
