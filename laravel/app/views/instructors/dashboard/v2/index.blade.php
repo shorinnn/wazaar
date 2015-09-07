@@ -89,10 +89,14 @@
                                             </div>
                                             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
                                               <h4>
-                                                  <a href="{{ action('CoursesController@show', $course->slug) }}">{{$course->name}}</a>
-                                                  <span class="lesson-status {{$course->publish_status}}">
-                                                       {{ trans('courses/general.my-courses-publish.'.$course->publish_status) }}
-                                                  </span>
+                                                  @if($course->publish_status=='approved')
+                                                      {{$course->name}}
+                                                  @else
+                                                      <a href="{{ action('CoursesController@show', $course->slug) }}">{{$course->name}}</a>
+                                                  @endif
+                                                      <span class="lesson-status {{$course->publish_status}}">
+                                                           {{ trans('courses/general.my-courses-publish.'.$course->publish_status) }}
+                                                      </span>
                                               </h4>
                                               <p class="regular-paragraph"><span class="created-on">
                                                       {{ trans('general.created-on') }}
