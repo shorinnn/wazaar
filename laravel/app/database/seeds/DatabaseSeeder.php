@@ -392,7 +392,7 @@ class CourseDifficultySeeder extends Seeder {
         DB::table('course_difficulties')->delete();
         CourseDifficulty::unguard();
         CourseDifficulty::create(['name' => 'Beginner']);
-        CourseDifficulty::create(['name' => 'Intermediate']);
+//        CourseDifficulty::create(['name' => 'Intermediate']);
         CourseDifficulty::create(['name' => 'Expert']);
     }
 
@@ -413,7 +413,7 @@ class CoursesSeeder extends Seeder {
             'what_will_you_achieve' => '["Something", "Something Else!"]',
             'sale' => '100', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 3600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 13600)]);
         Course::create(['name' => 'Javascript Primer', 'slug' => 'javascript-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 1,
-            'price' => rand(1000, 5000), 'course_difficulty_id' => '2',
+            'price' => rand(1000, 5000), 'course_difficulty_id' => '1',
             'description' => 'JS - the best language around.',
             'short_description' => 'Short: JS - the.',
             'student_count' => 0, 'requirements' => '[]',
@@ -423,7 +423,7 @@ class CoursesSeeder extends Seeder {
             'sale' => '200', 'sale_starts_on' => date('Y-m-d H:i:s', time() - 600), 'sale_ends_on' => date('Y-m-d H:i:s', time() + 3600)
         ]);
         Course::create(['name' => 'PHP Primer', 'slug' => 'php-primer', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,
-            'price' => rand(1000, 5000), 'course_difficulty_id' => 3,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => '2',
             'description' => 'PHP - the best language around.',
             'short_description' => 'Short: PHP - the best language around.',
             'student_count' => 0, 'requirements' => '[]',
@@ -431,7 +431,7 @@ class CoursesSeeder extends Seeder {
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create(['name' => 'PHP Primer Revisited', 'slug' => 'php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 1, 'course_subcategory_id' => 7,
-            'price' => rand(1000, 5000), 'course_difficulty_id' => 3,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => '2',
             'description' => 'PHP - the best language around. REVISITED.',
             'short_description' => 'Short: REVISITED.', 'requirements' => '[]',
             'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0,
@@ -454,7 +454,7 @@ class CoursesSeeder extends Seeder {
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create(['name' => 'Investments Javascript Primer', 'slug' => 'investments-javascript-primer', 'instructor_id' => 4, 'course_category_id' => 3, 'course_subcategory_id' => 3,
-            'price' => 185000.99, 'course_difficulty_id' => '2', 'description' => 'JS - the best language around.',
+            'price' => 185000.99, 'course_difficulty_id' => '1', 'description' => 'JS - the best language around.',
             'student_count' => 0, 'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
@@ -474,18 +474,18 @@ class CoursesSeeder extends Seeder {
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create(['name' => 'Beauty Javascript Primer', 'slug' => 'beauty-javascript-primer', 'instructor_id' => 4, 'course_category_id' => 5, 'course_subcategory_id' => 5, 'price' => rand(1000, 5000),
-            'course_difficulty_id' => '2', 'description' => 'JS - the best language around.', 'student_count' => 0,
+            'course_difficulty_id' => '1', 'description' => 'JS - the best language around.', 'student_count' => 0,
             'privacy_status' => 'public', 'affiliate_percentage' => 0, 'requirements' => '[]',
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create(['name' => 'Beauty PHP Primer', 'slug' => 'beauty-php-primer', 'instructor_id' => 4, 'course_category_id' => 5, 'course_subcategory_id' => 5,
-            'price' => rand(1000, 5000), 'course_difficulty_id' => 3, 'affiliate_percentage' => 0,
+            'price' => rand(1000, 5000), 'course_difficulty_id' => '2', 'affiliate_percentage' => 0,
             'description' => 'PHP - the best language around.', 'student_count' => 0, 'course_preview_image_id' => 7,
             'privacy_status' => 'public', 'requirements' => '[]',
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
         Course::create(['name' => 'Beauty PHP Primer Revisited', 'slug' => 'beauty-php-primer-revisited', 'instructor_id' => 4, 'course_category_id' => 5, 'course_subcategory_id' => 5,
-            'price' => rand(1000, 5000), 'course_difficulty_id' => 3, 'affiliate_percentage' => 0, 'requirements' => '[]',
+            'price' => rand(1000, 5000), 'course_difficulty_id' => '2', 'affiliate_percentage' => 0, 'requirements' => '[]',
             'description' => 'PHP - the best language around. REVISITED.', 'student_count' => 0, 'privacy_status' => 'public',
             'who_is_this_for' => '["Beginners that don’t know anything about C++ ","Existing who want to pick up javascript."]',
             'what_will_you_achieve' => '["Something", "Something Else!"]']);
@@ -941,117 +941,111 @@ class LessonsSeeder extends Seeder {
 class VideosSeeder extends Seeder {
 
     public function run() {
-        /* DB::table('videos')->delete();
-          Video::unguard();
-          Video::create( [ 'original_filename' => '9LoQlTLkj6DCaDdo1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-          'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9' ] );
-          DB::table('video_formats')->delete();
-          VideoFormat::unguard();
-          VideoFormat::insert( [ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4', 'preset_id' => '1421660966371-o9l23s',
-          'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 9, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s-00001.png',
-          'video_url' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4' ] );
-
-          VideoFormat::insert( [ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4', 'preset_id' => '1421661161826-cx6nmz',
-          'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 9, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-          'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4' ] ); */
-
         DB::table('videos')->delete();
         Video::unguard();
-        Video::create([ 'original_filename' => '9LoQlTLkj6DCaDdo1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        
+        Video::create([ 'original_filename' => '9LoQlTLkj6DCaDdo1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'video1.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'video2.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'video3.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'vidoe4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'video5.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'video6.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'video7.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
+        Video::create([ 'original_filename' => 'ibyXNQcL6cW61aEV-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => '', 'transcode_job_id' => '']);
+        Video::create([ 'original_filename' => 'JVNuURiDiLZNwcVn-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'JVNuURiDiLZNwcVn-sample-mp4.mp4', 'transcode_job_id' => '1438238165348-1f0o8n']);
+        Video::create([ 'original_filename' => '9jSX5PAYLBo3rQjN-japanese-video.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => '9jSX5PAYLBo3rQjN-japanese-video.mp4', 'transcode_job_id' => '1438238869126-oewxr3']);
+        Video::create([ 'original_filename' => 'T8GzuW5LegfyQRvO-SampleVideo_1080x720_50mb.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => '', 'transcode_job_id' => '']);
+        Video::create([ 'original_filename' => 'undefined-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'undefined-sample-mp4.mp4', 'transcode_job_id' => '1438573865132-axao4p']);
+        Video::create([ 'original_filename' => 'undefined-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'undefined-sample-mp4.mp4', 'transcode_job_id' => '1438577152950-e0skul']);
+        Video::create([ 'original_filename' => 'undefined-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'undefined-sample-mp4.mp4', 'transcode_job_id' => '1438577731683-b3gmz6']);
+        Video::create([ 'original_filename' => 'undefined-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'undefined-sample-mp4.mp4', 'transcode_job_id' => '1438578945138-ys4giu']);
+        Video::create([ 'original_filename' => 'undefined-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'undefined-sample-mp4.mp4', 'transcode_job_id' => '1438579776174-nn0rp4']);
+        Video::create([ 'original_filename' => 'undefined-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'undefined-sample-mp4.mp4', 'transcode_job_id' => '1438580143010-yqg4q9']);
+        Video::create([ 'original_filename' => 'o6xv5EuH-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'o6xv5EuH-sample-mp4.mp4', 'transcode_job_id' => '1438580409112-co8izi']);
+        Video::create([ 'original_filename' => 'eLTpslgE-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'eLTpslgE-sample-mp4.mp4', 'transcode_job_id' => '1438583258632-k0mdh1']);
+        Video::create([ 'original_filename' => 'lAVf4pNG-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'lAVf4pNG-sample-mp4.mp4', 'transcode_job_id' => '1438585260544-oho54z']);
+        Video::create([ 'original_filename' => 'hUNclAav-japanese-video.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'hUNclAav-japanese-video.mp4', 'transcode_job_id' => '1438585376929-j1ihy9']);
+        Video::create([ 'original_filename' => 'sjxdtdgM-japanese-video.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'sjxdtdgM-japanese-video.mp4', 'transcode_job_id' => '1438585849751-n6rfgo']);
+        Video::create([ 'original_filename' => 'x4L7qDXl-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'x4L7qDXl-sample-mp4.mp4', 'transcode_job_id' => '1438586376917-25dqn6']);
+        Video::create([ 'original_filename' => 'eafSg7cO-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'eafSg7cO-sample-mp4.mp4', 'transcode_job_id' => '1438586539421-w1yue2']);
+        Video::create([ 'original_filename' => 'DuMkqi3r-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'DuMkqi3r-sample-mp4.mp4', 'transcode_job_id' => '1438587378374-tjopnh']);
+        Video::create([ 'original_filename' => 'XShocx8i-vid.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'XShocx8i-vid.mp4', 'transcode_job_id' => '1439473665664-xtmklz']);
+        Video::create([ 'original_filename' => 'dL2jagFG-SampleVideo_1080x720_50mb.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'dL2jagFG-SampleVideo_1080x720_50mb.mp4', 'transcode_job_id' => '1440443370660-yu3492']);
+        Video::create([ 'original_filename' => 'c6TTISgO-japanese-video.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'c6TTISgO-japanese-video.mp4', 'transcode_job_id' => '1440494345607-y00r82']);
+        Video::create([ 'original_filename' => 'w76IvHPt-sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'w76IvHPt-sample-mp4.mp4', 'transcode_job_id' => '1440572371176-jvebvt']);
+        Video::create([ 'original_filename' => 'sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'tV2OBx0q', 'transcode_job_id' => '1440572811015-u86efm']);
+        Video::create([ 'original_filename' => 'sample-mp4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4, 'input_key' => 'NM6HVGCByknBYPOI', 'transcode_job_id' => '1440573176934-fwourm']);
 
-        Video::create([ 'original_filename' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
-
-        Video::create([ 'original_filename' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
-        Video::create([ 'original_filename' => 'video1.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
-        Video::create([ 'original_filename' => 'video2.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
-        Video::create([ 'original_filename' => 'video3.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
-        Video::create([ 'original_filename' => 'vidoe4.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
-        Video::create([ 'original_filename' => 'video5.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
-        Video::create([ 'original_filename' => 'video6.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
-        Video::create([ 'original_filename' => 'video7.mp4', 'transcode_status' => 'Complete', 'created_by_id' => 4,
-            'input_key' => 'MRSIjNWfPAw1uqHl', 'transcode_job_id' => '1423833200559-5oxoy9']);
 
         DB::table('video_formats')->delete();
         VideoFormat::unguard();
-        VideoFormat::insert([ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4', 'preset_id' => '1421660966371-o9l23s',
-            'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 66, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4']);
+        
+        VideoFormat::insert([ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4', 'preset_id' => '1421660966371-o9l23s', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 66, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421660966371o9l23s.mp4']);
+        VideoFormat::insert([ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 66, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 2, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 80, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 2, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 80, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 3, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 3, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 4, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 122, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 4, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 122, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 5, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 5, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 6, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 200, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 6, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 200, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 7, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 30, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 7, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 30, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 8, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 67, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 8, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 67, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 9, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 45, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 9, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 45, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 10, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 12, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 10, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 12, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png', 'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
+        VideoFormat::insert([ 'video_id' => 12, 'output_key' => 'JVNuURiDiLZNwcVn-sample-mp4.mp41436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'JVNuURiDiLZNwcVn-sample-mp4.mp41436790010046k9rw9e-00001.png', 'video_url' => 'JVNuURiDiLZNwcVn-sample-mp4.mp41436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 12, 'output_key' => 'JVNuURiDiLZNwcVn-sample-mp4.mp41436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'JVNuURiDiLZNwcVn-sample-mp4.mp41436779339512wtkz9d-00001.png', 'video_url' => 'JVNuURiDiLZNwcVn-sample-mp4.mp41436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 12, 'output_key' => 'JVNuURiDiLZNwcVn-sample-mp4.mp41436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'JVNuURiDiLZNwcVn-sample-mp4.mp41436790034239byka2c-00001.png', 'video_url' => 'JVNuURiDiLZNwcVn-sample-mp4.mp41436790034239byka2c.mp4']);
+        VideoFormat::insert([ 'video_id' => 13, 'output_key' => '9jSX5PAYLBo3rQjN-japanese-video.mp41436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 558, 'thumbnail' => '9jSX5PAYLBo3rQjN-japanese-video.mp41436790010046k9rw9e-00001.png', 'video_url' => '9jSX5PAYLBo3rQjN-japanese-video.mp41436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 13, 'output_key' => '9jSX5PAYLBo3rQjN-japanese-video.mp41436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 558, 'thumbnail' => '9jSX5PAYLBo3rQjN-japanese-video.mp41436779339512wtkz9d-00001.png', 'video_url' => '9jSX5PAYLBo3rQjN-japanese-video.mp41436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 13, 'output_key' => '9jSX5PAYLBo3rQjN-japanese-video.mp41436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 558, 'thumbnail' => '9jSX5PAYLBo3rQjN-japanese-video.mp41436790034239byka2c-00001.png', 'video_url' => '9jSX5PAYLBo3rQjN-japanese-video.mp41436790034239byka2c.mp4']);
+        VideoFormat::insert([ 'video_id' => 22, 'output_key' => 'eLTpslgE-sample-mp4.mp41436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'eLTpslgE-sample-mp4.mp41436790010046k9rw9e-00001.png', 'video_url' => 'eLTpslgE-sample-mp4.mp41436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 22, 'output_key' => 'eLTpslgE-sample-mp4.mp41436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'eLTpslgE-sample-mp4.mp41436779339512wtkz9d-00001.png', 'video_url' => 'eLTpslgE-sample-mp4.mp41436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 22, 'output_key' => 'eLTpslgE-sample-mp4.mp41436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'eLTpslgE-sample-mp4.mp41436790034239byka2c-00001.png', 'video_url' => 'eLTpslgE-sample-mp4.mp41436790034239byka2c.mp4']);
+        VideoFormat::insert([ 'video_id' => 23, 'output_key' => 'lAVf4pNG-sample-mp4.mp41436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'lAVf4pNG-sample-mp4.mp41436790010046k9rw9e-00001.png', 'video_url' => 'lAVf4pNG-sample-mp4.mp41436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 23, 'output_key' => 'lAVf4pNG-sample-mp4.mp41436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'lAVf4pNG-sample-mp4.mp41436779339512wtkz9d-00001.png', 'video_url' => 'lAVf4pNG-sample-mp4.mp41436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 23, 'output_key' => 'lAVf4pNG-sample-mp4.mp41436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'lAVf4pNG-sample-mp4.mp41436790034239byka2c-00001.png', 'video_url' => 'lAVf4pNG-sample-mp4.mp41436790034239byka2c.mp4']);
+        VideoFormat::insert([ 'video_id' => 24, 'output_key' => 'hUNclAav-japanese-video.mp41436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 558, 'thumbnail' => 'hUNclAav-japanese-video.mp41436790010046k9rw9e-00001.png', 'video_url' => 'hUNclAav-japanese-video.mp41436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 24, 'output_key' => 'hUNclAav-japanese-video.mp41436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 558, 'thumbnail' => 'hUNclAav-japanese-video.mp41436779339512wtkz9d-00001.png', 'video_url' => 'hUNclAav-japanese-video.mp41436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 24, 'output_key' => 'hUNclAav-japanese-video.mp41436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 558, 'thumbnail' => 'hUNclAav-japanese-video.mp41436790034239byka2c-00001.png', 'video_url' => 'hUNclAav-japanese-video.mp41436790034239byka2c.mp4']);
+        VideoFormat::insert([ 'video_id' => 25, 'output_key' => 'sjxdtdgM-japanese-video.mp41436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 558, 'thumbnail' => 'sjxdtdgM-japanese-video.mp41436790010046k9rw9e-00001.png', 'video_url' => 'sjxdtdgM-japanese-video.mp41436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 25, 'output_key' => 'sjxdtdgM-japanese-video.mp41436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 558, 'thumbnail' => 'sjxdtdgM-japanese-video.mp41436779339512wtkz9d-00001.png', 'video_url' => 'sjxdtdgM-japanese-video.mp41436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 25, 'output_key' => 'sjxdtdgM-japanese-video.mp41436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 558, 'thumbnail' => 'sjxdtdgM-japanese-video.mp41436790034239byka2c-00001.png', 'video_url' => 'sjxdtdgM-japanese-video.mp41436790034239byka2c.mp4']);
+        VideoFormat::insert([ 'video_id' => 26, 'output_key' => 'x4L7qDXl-sample-mp4.mp41436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'x4L7qDXl-sample-mp4.mp41436790010046k9rw9e-00001.png', 'video_url' => 'x4L7qDXl-sample-mp4.mp41436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 26, 'output_key' => 'x4L7qDXl-sample-mp4.mp41436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'x4L7qDXl-sample-mp4.mp41436779339512wtkz9d-00001.png', 'video_url' => 'x4L7qDXl-sample-mp4.mp41436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 26, 'output_key' => 'x4L7qDXl-sample-mp4.mp41436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'x4L7qDXl-sample-mp4.mp41436790034239byka2c-00001.png', 'video_url' => 'x4L7qDXl-sample-mp4.mp41436790034239byka2c.mp4']);
+        VideoFormat::insert([ 'video_id' => 27, 'output_key' => 'eafSg7cO-sample-mp4.mp41436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'eafSg7cO-sample-mp4.mp41436790010046k9rw9e-00001.png', 'video_url' => 'eafSg7cO-sample-mp4.mp41436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 27, 'output_key' => 'eafSg7cO-sample-mp4.mp41436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'eafSg7cO-sample-mp4.mp41436779339512wtkz9d-00001.png', 'video_url' => 'eafSg7cO-sample-mp4.mp41436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 27, 'output_key' => 'eafSg7cO-sample-mp4.mp41436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'eafSg7cO-sample-mp4.mp41436790034239byka2c-00001.png', 'video_url' => 'eafSg7cO-sample-mp4.mp41436790034239byka2c.mp4']);
+        VideoFormat::insert([ 'video_id' => 28, 'output_key' => 'DuMkqi3r-sample-mp4.mp41436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'DuMkqi3r-sample-mp4.mp41436790010046k9rw9e-00001.png', 'video_url' => 'DuMkqi3r-sample-mp4.mp41436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 28, 'output_key' => 'DuMkqi3r-sample-mp4.mp41436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'DuMkqi3r-sample-mp4.mp41436779339512wtkz9d-00001.png', 'video_url' => 'DuMkqi3r-sample-mp4.mp41436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 28, 'output_key' => 'DuMkqi3r-sample-mp4.mp41436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'DuMkqi3r-sample-mp4.mp41436790034239byka2c-00001.png', 'video_url' => 'DuMkqi3r-sample-mp4.mp41436790034239byka2c.mp4']);
+        VideoFormat::insert([ 'video_id' => 29, 'output_key' => 'XShocx8i-vid.mp41436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 5, 'thumbnail' => 'XShocx8i-vid.mp41436790010046k9rw9e-00001.png', 'video_url' => 'XShocx8i-vid.mp41436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 29, 'output_key' => 'XShocx8i-vid.mp41436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 5, 'thumbnail' => 'XShocx8i-vid.mp41436779339512wtkz9d-00001.png', 'video_url' => 'XShocx8i-vid.mp41436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 29, 'output_key' => 'XShocx8i-vid.mp41436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 5, 'thumbnail' => 'XShocx8i-vid.mp41436790034239byka2c-00001.png', 'video_url' => 'XShocx8i-vid.mp41436790034239byka2c.mp4']);
+        VideoFormat::insert([ 'video_id' => 30, 'output_key' => 'dL2jagFG-SampleVideo_1080x720_50mb.mp41436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 282, 'thumbnail' => 'dL2jagFG-SampleVideo_1080x720_50mb.mp41436790010046k9rw9e-00001.png', 'video_url' => 'dL2jagFG-SampleVideo_1080x720_50mb.mp41436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 30, 'output_key' => 'dL2jagFG-SampleVideo_1080x720_50mb.mp41436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 282, 'thumbnail' => 'dL2jagFG-SampleVideo_1080x720_50mb.mp41436779339512wtkz9d-00001.png', 'video_url' => 'dL2jagFG-SampleVideo_1080x720_50mb.mp41436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 30, 'output_key' => 'dL2jagFG-SampleVideo_1080x720_50mb.mp41436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 282, 'thumbnail' => 'dL2jagFG-SampleVideo_1080x720_50mb.mp41436790034239byka2c-00001.png', 'video_url' => 'dL2jagFG-SampleVideo_1080x720_50mb.mp41436790034239byka2c.mp4']);
+        VideoFormat::insert([ 'video_id' => 31, 'output_key' => 'c6TTISgO-japanese-video.mp41436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 558, 'thumbnail' => 'c6TTISgO-japanese-video.mp41436790010046k9rw9e-00001.png', 'video_url' => 'c6TTISgO-japanese-video.mp41436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 31, 'output_key' => 'c6TTISgO-japanese-video.mp41436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 558, 'thumbnail' => 'c6TTISgO-japanese-video.mp41436779339512wtkz9d-00001.png', 'video_url' => 'c6TTISgO-japanese-video.mp41436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 31, 'output_key' => 'c6TTISgO-japanese-video.mp41436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 558, 'thumbnail' => 'c6TTISgO-japanese-video.mp41436790034239byka2c-00001.png', 'video_url' => 'c6TTISgO-japanese-video.mp41436790034239byka2c.mp4']);
+        VideoFormat::insert([ 'video_id' => 33, 'output_key' => 'tV2OBx0q1436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'tV2OBx0q1436790010046k9rw9e-00001.png', 'video_url' => 'tV2OBx0q1436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 33, 'output_key' => 'tV2OBx0q1436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'tV2OBx0q1436779339512wtkz9d-00001.png', 'video_url' => 'tV2OBx0q1436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 33, 'output_key' => 'tV2OBx0q1436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'tV2OBx0q1436790034239byka2c-00001.png', 'video_url' => 'tV2OBx0q1436790034239byka2c.mp4']);
+        VideoFormat::insert([ 'video_id' => 34, 'output_key' => 'NM6HVGCByknBYPOI1436790010046k9rw9e.mp4', 'preset_id' => '1436790010046-k9rw9e', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'NM6HVGCByknBYPOI1436790010046k9rw9e-00001.png', 'video_url' => 'NM6HVGCByknBYPOI1436790010046k9rw9e.mp4']);
+        VideoFormat::insert([ 'video_id' => 34, 'output_key' => 'NM6HVGCByknBYPOI1436779339512wtkz9d.mp4', 'preset_id' => '1436779339512-wtkz9d', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'NM6HVGCByknBYPOI1436779339512wtkz9d-00001.png', 'video_url' => 'NM6HVGCByknBYPOI1436779339512wtkz9d.mp4']);
+        VideoFormat::insert([ 'video_id' => 34, 'output_key' => 'NM6HVGCByknBYPOI1436790034239byka2c.mp4', 'preset_id' => '1436790034239-byka2c', 'resolution' => 'Custom Preset for Mobile Devices', 'duration' => 26, 'thumbnail' => 'NM6HVGCByknBYPOI1436790034239byka2c-00001.png', 'video_url' => 'NM6HVGCByknBYPOI1436790034239byka2c.mp4']);
 
-        VideoFormat::insert([ 'video_id' => 1, 'output_key' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 66, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-
-        VideoFormat::insert([ 'video_id' => 2, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 80, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-        VideoFormat::insert([ 'video_id' => 2, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 80, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-
-        VideoFormat::insert([ 'video_id' => 3, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-        VideoFormat::insert([ 'video_id' => 3, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-
-        VideoFormat::insert([ 'video_id' => 4, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 122, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-        VideoFormat::insert([ 'video_id' => 4, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 122, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-
-        VideoFormat::insert([ 'video_id' => 5, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-        VideoFormat::insert([ 'video_id' => 5, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 155, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-
-        VideoFormat::insert([ 'video_id' => 6, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 200, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-        VideoFormat::insert([ 'video_id' => 6, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 200, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-
-        VideoFormat::insert([ 'video_id' => 7, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 30, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-        VideoFormat::insert([ 'video_id' => 7, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 30, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-
-        VideoFormat::insert([ 'video_id' => 8, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 67, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-        VideoFormat::insert([ 'video_id' => 8, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 67, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-
-        VideoFormat::insert([ 'video_id' => 9, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 45, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-        VideoFormat::insert([ 'video_id' => 9, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 45, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-
-        VideoFormat::insert([ 'video_id' => 10, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 12, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
-        VideoFormat::insert([ 'video_id' => 10, 'output_key' => '0DS3K8sSnZdXObUd1421660966371o9l23s.mp4', 'preset_id' => '1421661161826-cx6nmz',
-            'resolution' => 'Custom Preset for Desktop Devices', 'duration' => 12, 'thumbnail' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz-00001.png',
-            'video_url' => 'MRSIjNWfPAw1uqHl1421661161826cx6nmz.mp4']);
     }
 
 }

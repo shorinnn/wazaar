@@ -3,19 +3,19 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">{{ trans('crud/labels.or_use_existing') }}</h4>
+                <h4 class="modal-title text-left">{{ trans('crud/labels.or_use_existing') }}</h4>
             </div>
             <div class="modal-body clearfix">
 
                 <div id="modal-body-videos">
 
                     <div class="row">
-                        <div class="radio-buttons clearfix">
-
+                        <div class="radio-buttons clearfix all-img-previews-modal">
+							<ul class="list-unstyled video-list-thumbs row no-margin clearfix">
                                 @foreach($images as $img)
                                     {{ View::make('courses.preview_image')->with(compact('img', 'course')) }}
                                 @endforeach
-
+							</ul>
                         </div>
                     </div>
 
@@ -23,7 +23,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-close-previews" class="btn btn-default" data-dismiss="modal">{{trans('crud/labels.close')}}</button>
+                <button type="button" id="btn-close-previews" class="default-button large-button" data-dismiss="modal">{{trans('crud/labels.close')}}</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

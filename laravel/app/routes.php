@@ -20,7 +20,6 @@ if( !isset($_SERVER['HTTP_HOST'])){
     $domain = $instructorSubdomain = $affiliateSubdomain = Request::getHost();
 }
 //Route::get('mandrill-test', 'SiteController@mandrillTest');
-
 Route::resource('lp', 'LpController');
 Route::get('loginTest', 'SiteController@loginTest');
 Route::get('clear-cache/huehue', 'SiteController@clearCache');
@@ -97,11 +96,16 @@ $wwwRoutes = function(){
         Route::post('withdrawals/bank-file/', 'WithdrawalsController@downloadBankFile');
         
         Route::resource('withdrawals', 'WithdrawalsController');
-        Route::post('members/refund', 'MembersController@refund');
         Route::put('members/{id}/update-profile', 'MembersController@updateProfile');
+        Route::post('members/refund', 'MembersController@refund');
         Route::get('members/create-vip', 'MembersController@createVip');
         Route::post('members/create-vip', 'MembersController@storeVip');
+        Route::get('members/super-vip', 'MembersController@superVip');
+        Route::get('members/vip', 'MembersController@vip');
+
+        Route::post('members/login-as', 'MembersController@loginAs');
         Route::resource('members', 'MembersController');
+        
         Route::get('second-tier-publishers/stats', 'SecondTierPublishersController@stats');
         Route::resource('second-tier-publishers', 'SecondTierPublishersController');
         Route::get('submissions/all-courses', 'SubmissionsController@allCourses');
@@ -133,6 +137,7 @@ Route::group(array('domain' => $domain), $wwwRoutes);
 Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 
 Route::group(['prefix' => 'affiliate'], function (){
+    Route::get('hide-letter', 'AffiliateController@hideLetter');
     Route::get('accept-terms', 'AffiliateController@acceptTerms');
     Route::post('accept-terms', 'AffiliateController@doAcceptTerms');
     Route::get('promote/{course}', 'AffiliateController@promote');
@@ -154,6 +159,8 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
 
     Route::get('courses/search-instructor/{email}', 'CoursesController@searchInstructor');
     Route::get('courses/search-instructor/', 'CoursesController@searchInstructor');
+    Route::get('courses/{id}/delete', 'CoursesController@destroy');
+    Route::post('courses/{id}/set-field', 'CoursesController@setField');
 });
 
 $wwwRoutes = function(){

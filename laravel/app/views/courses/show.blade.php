@@ -47,7 +47,7 @@
                         @if($instructor->profile == null)
                             <div class="clearfix">
                                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/profile_pictures/avatar-placeholder.jpg" alt="" >
-                                <em>{{$instructor->first_name}} {{$instructor->last_name}}</em>
+                                <em>{{$instructor->last_name}} {{$instructor->first_name}} </em>
                             </div>
                             <p class="clearfix regular-paragraph">
                                 @if( $course->show_bio=='custom' )
@@ -59,21 +59,28 @@
                         @else
                             <div class="clearfix">
                                 <img style='max-height: 120px; max-width: 120px; border-radius:50% ' src="{{ $instructor->profile->photo }}" alt="" >
-                                <em class="name">{{$instructor->profile->first_name}} {{$instructor->profile->last_name}}</em>
+                                <em class="name">
+                                    @if($course->details_name=='person')
+                                        {{$instructor->profile->last_name}} {{$instructor->profile->first_name}} 
+                                    @else
+                                        {{$instructor->profile->corporation_name}}
+                                    @endif
+                                </em>
                                 <span class="instructor-skills">{{ $instructor->profile->title }}</span>
                             </div>
                             <!--@if(Auth::check())
                                             {{ View::make('courses.followed_form')->withInstructor($instructor) }}
                                         @endif-->
                                         <!--<h4>{{ trans('general.about') }} {{$instructor->profile->first_name}}</h4>-->
-                            <p class="clearfix regular-paragraph expandable-content short-text">
+                            <p class="clearfix regular-paragraph expandable-content short-text instructor-bio-p">
                                 @if( $course->show_bio=='custom' )
                                     {{ $course->custom_bio }}
                                 @else
                                     {{ $instructor->profile->bio }}
                                 @endif
                             </p>
-                            <span class="show-full-description transparent-button transparent-button-primary" data-toggle="modal" data-target="#instructor-bio">
+                            <span class="show-full-description transparent-button transparent-button-primary instructor-bio-btn" data-toggle="modal" 
+                                  style='display:none' data-target="#instructor-bio">
                                 {{ trans( 'general.read-more' ) }}
                             </span>
                         @endif
@@ -94,7 +101,7 @@
                     @endif
                 </div>-->
  
-                
+                <div class="video-wrap">
                 @if( $video==null )
                     @if($course->external_video_url != '')
                         <div class="pre-view-image video-player" onclick="playVideo(this)" style="cursor:pointer">
@@ -105,7 +112,14 @@
                         <div class="videoContainer" id="videoContainer" style="display:none">
                             {{ externalVideoPreview($course->external_video_url, false, true) }}
                         </div>
+                    @else
+                        <div class="pre-view-image video-player">
+                            @if($course->previewImage !=null)
+                                <img src="{{ cloudfrontUrl( $course->previewImage->format('desc') ) }}" />
+                            @endif
+                        </div>
                     @endif
+                    
                 @else
                     <video style="width: 100%" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
                         <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
@@ -175,8 +189,9 @@
                     </div>
                     --}}
                 @endif
+                </div>
                         <?php
-                        if( Input::has('is-preview') ) echo View::make('courses.description.top-cache')->withCourse($course);
+                        if( Input::has('preview') ) echo View::make('courses.description.top-cache')->withCourse($course);
                         else{
                             echo Flatten::section('courses-show-details'.$course->id, Config::get('custom.cache-expiry.course-desc-top-details'), function () use( $course )  {
                                 echo View::make('courses.description.top-cache')->withCourse($course);
@@ -185,8 +200,8 @@
                         ?>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
- 				<div class="enroll-button-wrap">
-                @if($course->cost() > 0 && !Input::has('is-preview') )
+                <div class="enroll-button-wrap">
+                @if($course->cost() > 0 && !Input::has('preview') )
                         {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
  
                         @if(Auth::guest() || $student->canPurchase($course) )
@@ -213,9 +228,9 @@
                                 {{ trans("courses/general.enter-classroom") }}
                             </a>
                         @else
-                            <span class="price clearfix">
-                                           ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
-                                         </span>
+                                <span class="price clearfix">
+                                   ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                 </span>
                             <button class="clearfix enroll-button blue-button extra-large-button" disabled="disabled" data-toggle="tooltip" data-placement="left" title="Available for customers">
                                 {{ trans("courses/general.course-enroll") }}
                             </button>
@@ -228,22 +243,23 @@
                             <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
                                 You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                         @endif
-                @elseif( !Input::has('is-preview') )
+                @elseif( !Input::has('preview') )
+                
                     {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
                                 @if(Auth::guest() || $student->canPurchase($course) )
-                                    <span class="price clearfix hide">{{trans('courses/general.free') }} </span>
-                                     <button class="clearfix enroll-button blue-button extra-large-button join-class margin-top-50">
+                                    <span class="price clearfix ">{{trans('courses/general.free') }}</span>
+                                     <button class="clearfix enroll-button blue-button extra-large-button join-class">
                                          {{ trans("courses/general.course-enroll") }}
                                      </button>
                                 @elseif(Auth::check() && $student->purchased($course) )
-                                    <span class="price clearfix hide">{{trans('courses/general.free') }}</span>
+                                    <span class="price clearfix ">{{trans('courses/general.free') }}</span>
                                      <a class="clearfix enroll-button blue-button extra-large-button"
                                         href="{{ action('ClassroomController@dashboard', $course->slug)}}">
                                          {{ trans("courses/general.enter-classroom") }}
                                      </a>
                                 @else
-                            <span class="price clearfix hide">{{trans('courses/general.free') }}</span>
-                             <button class="clearfix enroll-button blue-button extra-large-button join-class margin-top-50" disabled="disabled">
+                            <span class="price clearfix ">{{trans('courses/general.free') }}</span>
+                             <button class="clearfix enroll-button blue-button extra-large-button join-class" disabled="disabled">
                                  {{ trans("courses/general.course-enroll") }}
                                      </button>
                                 @endif
@@ -254,41 +270,54 @@
                                 <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
                                     You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                             @endif
-                             
-                    @else
-                        {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
-                            <span class="price clearfix">
-                                @if($course->cost()>0)
-                                    ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
-                                @else
-                                    {{trans('courses/general.free') }}
-                                @endif
-                                         </span>
-                            <button class="clearfix enroll-button blue-button extra-large-button">
-                                {{ trans("courses/general.course-enroll") }}
-                            </button>
-                        <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
-                        <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
-                        {{Form::close()}}
-                        @if($course->isDiscounted())
-                            <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
-                                You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
-                        @endif
+                            
+                @else
+                    {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                        <span class="price clearfix">
+                            @if($course->cost()>0)
+                                ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                            @else
+                                {{trans('courses/general.free') }}
+                            @endif
+                                     </span>
+                        <button class="clearfix enroll-button blue-button extra-large-button">
+                            {{ trans("courses/general.course-enroll") }}
+                        </button>
+                    <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
+                    <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
+                    {{Form::close()}}
+                    @if($course->isDiscounted())
+                        <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
+                            You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                     @endif
- 					</div>
+                @endif
+               
+                    </div>
                      <div class="column-3">
                         <div class="add-to-wishlist-container clearfix">
                             @if( !in_array($course->id, $wishlisted) )
-                            	<span>
-                                    <i class="fa fa-heart-o tooltipable wishlist-change-button" title="Add to wishlist" data-auth="{{ intval(Auth::check() )}}"
-                                       data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0">
+                            	<span class="tooltipable" title="{{ trans('courses/general.add_to_wishlist')}}" style="display:inline-block !important">
+                                    <i class="wish-icon-holder fa fa-heart-o  wishlist-change-button" data-auth="{{ intval(Auth::check() )}}" 
+                                      data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0" style="display:inline"
+                                      data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'></i>
+                                    <span style='display:inline' class='wish-text-holder wishlist-change-button' data-auth="{{ intval(Auth::check() )}}" 
+                                      data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0" style="display:inline"
+                                      data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'>
+                                        {{ trans('courses/general.add_to_wishlist')}}</span>
                                 @else
-                                <span>
-                                    <i class="fa fa-heart tooltipable wishlist-change-button" title="Remove from wishlist" data-auth="{{ intval(Auth::check() )}}"
-                                       data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1">
+                                <span class="tooltipable" title="{{ trans('courses/general.remove_from_wishlist')}}"  style="display:inline-block !important">
+                                    <i class="wish-icon-holder fa fa-heart wishlist-change-button" data-auth="{{ intval(Auth::check() )}}"
+                                       data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1" style="display:inline"
+                                       data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'></i>
+                                    <span style='display:inline' class='wish-text-holder wishlist-change-button'
+                                           data-auth="{{ intval(Auth::check() )}}"
+                                       data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1" style="display:inline"
+                                       data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'>
+                                        {{ trans('courses/general.remove_from_wishlist')}}</span>
                                 @endif
                                 
-                                	</i>{{ trans('courses/general.add_to_wishlist')}}
+                                    
+                                    
                                 </span>
                                 <?php
                                  
@@ -301,18 +330,15 @@
                             <!--<a href="#">{{ trans("general.add-to-wishlist") }}</a>-->
                             <a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>
                         </div>
-                    </div>
 
                             </div>
                         </div>
-                        <div class="row">
-                             
     	</div>
  
     </div>
 </section>
 <?php 
-    if( Input::has('is-preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
+    if( Input::has('preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
     else{
         echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { 
             echo View::make('courses.description.bottom-cache')->withCourse($course);
@@ -340,10 +366,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="myModalLabel">
+                        @if($instructor->profile == null)
+                            {{$instructor->last_name}} {{$instructor->first_name}} 
+                        @else
+                            {{$instructor->profile->last_name}} {{$instructor->profile->first_name}} 
+                        @endif
+                    </h4>
                 </div>
                 <div class="modal-body">
-                    ...
+                    @if( $course->show_bio=='custom' )
+                        {{ $course->custom_bio }}
+                    @else
+                        {{ $instructor->profile->bio }}
+                    @endif
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -362,9 +398,13 @@
             thevid=document.getElementById('videoContainer');
             thevid.style.display='block'; 
             div.style.display='none';
-            $("iframe").attr("src", $("iframe").attr("src").replace("autoplay=0", "autoplay=1"));
+//            $("iframe").attr("src", $("iframe").attr("data-src").replace("autoplay=0", "autoplay=1"));
+             $("#embeded-video")[0].src += "&autoplay=1";
         }
-        $(function(){
+        $(function(){            
+            if( $('.instructor-bio-p').getLines() > 4){
+                $('.instructor-bio-btn').show();
+            }
             if( $('#myVideo').length > 0 || $('.videoContainer').length > 0  ){
                 console.log('READY!');
 //                $('.pre-view-image').first().hide();

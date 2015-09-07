@@ -21,10 +21,9 @@
                             class="img-responsive" alt="" style="max-height: 182px"  />-->
                         <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">
                         <span class="video-play-button"><em></em></span>
-                        <span class="likes"><i class="wa-like"></i>{{ $course->reviews_positive_score }}%</span>         
+                        <span class="likes"><i class="wa-like"></i>{{ $course->reviewsScore() }}</span>         
                         <span class="box-overlay">
-                            <p>Lesson</p>
-                            <p>weeks of learning</p>
+                             <p>{{ $course->courseDifficulty->name }}</p>
                              <?php });?>
                             
                             <div class="footer clearfix">
@@ -38,7 +37,7 @@
                                     @endif
                                 </div>
                                 <div class="highly-recommend">
-                                	<i class="wa-like"></i>{{ $course->reviews_positive_score }}% {{trans('general.highly-recommend')}}
+                                	<i class="wa-like"></i>{{ $course->reviewsScore() }} {{ $course->rating() }}
                                 </div>
                             </div>
                             
@@ -51,8 +50,8 @@
                             <p>{{ $course->short_description }}</p>
                         </div>
                         <div class="bottom-contents clearfix">
-                            <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}"
-                            data-toggle="tooltip" data-placement="top" title="Difficulty: Intermediate">
+<!--                            <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}"
+                            data-toggle="tooltip" data-placement="top" title="Difficulty: {{  $course->courseDifficulty->name }}">
                                 <?php
                                     $difficulty = 1;
                                     if($course->courseDifficulty->name=='Intermediate') $difficulty = 2;
@@ -62,7 +61,7 @@
                                 <span class="bar-2"></span>
                                 <span class="bar-3"></span>
                           
-                            </div>
+                            </div>-->
                             <div class="next_">
                                 <!--<div class="learn-more">
                                     <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
@@ -108,10 +107,9 @@
                             class="img-responsive" alt="" style="max-height: 182px"  />-->
                         <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">
                         <span class="video-play-button"><em></em></span>
-                        <span class="likes"><i class="wa-like"></i>{{ $course->likes() }}</span>       
+                        <span class="likes"><i class="wa-like"></i>{{  $course->reviewsScore()  }}</span>       
                         <span class="box-overlay">
-                            <p>Lesson</p>
-                            <p>weeks of learning</p>
+                             <p>{{ $course->courseDifficulty->name }}</p>
                              <?php });?>
                             <div class="footer clearfix">
                                 <div class="heart-icon">
@@ -134,7 +132,8 @@
                             <p>{{ $course->short_description }}</p>
                         </div>
                         <div class="bottom-contents clearfix">
-                            <div class="difficulty-bar  {{ difficultyToCss($course->courseDifficulty->name) }}">
+<!--                            <div class="difficulty-bar  {{ difficultyToCss($course->courseDifficulty->name) }}"
+                               data-toggle="tooltip" data-placement="top"  title="Difficulty: {{  $course->courseDifficulty->name }}">
                                 <?php
                                     $difficulty = 1;
                                     if($course->courseDifficulty->name=='Intermediate') $difficulty = 2;
@@ -143,7 +142,7 @@
                                 <span class="bar-1"></span>
                                 <span class="bar-2"></span>
                                 <span class="bar-3"></span>
-                            </div>
+                            </div>-->
                             <div class="next_">
                                 <!--<div class="learn-more">
                                     <a href="http://wazaar.dev/courses/cJio3">Learn more</a>

@@ -40,6 +40,24 @@
                 </div>
             </div>
 			<!--SuperVIP Welcome Letter Ends-->
+
+            <!--VIP Welcome Letter-->
+            <div class="row welcome-message-wrap vip">
+            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                	<div class="vip-affiliate-link">
+                    	<div class="row">
+                        	<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                            	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/misc-images/VIP_badge.png" class="vip-badge img-responsive">
+                            </div>
+                            <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+                            	<h1>ユーザーを参照するためにこのリンクを使用します。</h1>
+                                <input type="text" readonly="readonly" value="http://www.wazaar.jp/courses/J3dfsa?affid=1223">
+                            </div>
+                        </div>
+                	</div>
+                </div>
+            </div>
+			<!--VIP Welcome Letter Ends-->
             
             <div class="row top-activities">
                 <div class="col-md-4 col-sm-6 sol-xs-12">

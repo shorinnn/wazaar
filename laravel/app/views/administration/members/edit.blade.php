@@ -42,8 +42,10 @@
 	<div class="row">
     	<div class="col-md-12">
             <div class="table-responsive">
-                {{ Form::model($user, ['action' => ['MembersController@update', $user->id], 'method' => 'PUT', 'data-callback' => 'formSaved',
+                {{ Form::model($user, ['action' => ['MembersController@update', $user->id], 
+                            'method' => 'PUT', 'data-callback' => 'formSaved',
                             'id' =>'edit-form', 'class' => 'ajax-form'])}}
+
                 <table class="table personal-info">
                     <tr>
                         <td class="title no-border">{{trans('general.email')}}</td>
@@ -60,6 +62,19 @@
                             'no' => trans('courses/curriculum.no'),
                             'yes' => trans('courses/curriculum.yes')
                         ]) }}</td>
+                    </tr>
+                    <tr>
+                        <td class="title no-border">VIP:</td>
+                        <td class="no-border">
+                            @if($user->is_super_vip=='yes')
+                                SUPER VIP
+                            @else
+                                {{ Form::select('is_vip',[
+                                'no' => trans('courses/curriculum.no'),
+                                'yes' => trans('courses/curriculum.yes')
+                            ]) }}
+                            @endif
+                        </td>
                     </tr>
                     @endif
                     @if($user->hasRole('Instructor'))
@@ -93,6 +108,15 @@
                         <td class="no-border">
                             <div>
                                 {{ Form::select('status',['Active'=>'Active', 'Suspended'=>'Suspended'] ) }}
+                            </div>
+                        </td>
+                    </tr>
+     
+                    <tr>
+                        <td class="title no-border">{{trans('administration.verified')}}</td>
+                        <td class="no-border">
+                            <div>
+                                {{ Form::select('confirmed',['0'=>'No', '1'=>'Yes'] ) }}
                             </div>
                         </td>
                     </tr>

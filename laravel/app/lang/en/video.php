@@ -2,6 +2,8 @@
 
 return [
     'title' => 'Videos',
+    'choose' => 'Choose',
+    'choose_file' => 'Choose file',
     'uploadHere' => 'Upload videos here',
     'willAppearHere' => 'Your video will appear here when it\'s processed successfully',
     'doesNotSupportHtml5' => 'Your browser does not support HTML 5.',

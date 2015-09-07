@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="{{url('css/select-style.css')}}">
         <link rel="stylesheet" href="{{url('css/ui-components.css')}}">
         <link rel="stylesheet" href="{{url('css/jquery.jscrollpane.css')}}">
+        <link rel="stylesheet" href="{{url('css/jquery.custom-scrollbar.css')}}">
         <link rel="stylesheet" href="{{url('plugins/slider/css/slider.css')}}">
         <link rel="stylesheet" href="{{url('css/jquery.videobackground.css')}}">
         <link rel="stylesheet" href="{{url('css/slick.css')}}">
@@ -41,10 +42,12 @@
 
     
 </head>
-<body>
+<body>    
     @yield('affiliate-toolbar')
+
     <div id="wrapper">
     	<header class="container-fluid">
+           
         		{{ View::make('layouts.shared.header') }}
         </header>
         @yield('content')
@@ -59,46 +62,28 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 	<div class="row">
-                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        	<!--<h5>Courses</h5>
-                            <ul>
-                            	<li>
-                                	<a href="#">Data Science</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Development</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Business</a>
-                                </li>
-                            	<li>
-                                	<a href="#">IT & Software</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Office Productivity</a>
-                                </li>
-                            </ul>-->
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        	<!--<h5>&nbsp;</h5>
-                            <ul>
-                            	<li>
-                                	<a href="#">Design</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Marketing</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Lifestyle</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Photography</a>
-                                </li>
-                            	<li>
-                                	<a href="#">Health & Fitness</a>
-                                </li>
-                            </ul>  -->                      
-                        </div>
+                            <?php echo Flatten::section('footer-categories-link', 10, function ()  { ?>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <h5>{{ trans('general.courses') }}</h5>
+                                    <ul>
+                                        @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 = 0')->get() as $cat)
+                                            <li>
+                                                    <a href="{{ action('CoursesController@category', $cat->slug) }}">{{ $cat->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <h5>&nbsp;</h5>
+                                    <ul>
+                                        @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 != 0')->get() as $cat)
+                                            <li>
+                                                    <a href="{{ action('CoursesController@category', $cat->slug)  }}">{{ $cat->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>                    
+                                </div>
+                            <?php });?>
                     </div>
                   <!--{{trans('site/footer.all-rights-reserved')}}<br/>
                   &copy; {{ date('Y') }}-->
@@ -106,23 +91,29 @@
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 	<div class="row">
                     	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        	<!--<h5>ABOUT</h5>-->
+                        	<h5>{{ trans('footer.about') }}</h5>
                             <ul>
-                            	<li>
-                                	<a href="{{ action('SiteController@privacyPolicy') }}"> {{ trans('general.privacy-policy') }}</a>
-                                </li>
+<!--                            	<li>
+                                	<a href="#">{{ trans('footer.company') }}</a>
+                                </li>-->
                             	<li>
                                 	<a href="{{ action('SiteController@about') }}">特定商取引法に関する表示 </a>
                                 </li>
-<!--                            	<li>
-                                	<a href="#">Privacy Policy</a>
-                                </li>-->
+	                           	<li>
+                                	<a href="{{ action('SiteController@privacyPolicy') }}">{{ trans('general.privacy-policy') }}</a>
+                                </li>
                             </ul>                        
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center-mobile padding-bottom-20">
-                        	<!--<h5>GET IN TOUCH</h5>-->
-                            <p>電話番号：03-6206-8396　</p>
-                            <p><!--{{trans('site/footer.mail')}}:info@wazaar.com-->メールアドレス：contact@wazaar.jp</p>                        
+                        	<h5>{{ trans('footer.get-in-touch') }}</h5>
+                            <p><!--電話番号：-->03-6206-8396　</p>
+                            <a href="http://wazaar.co.jp/contact/">お問い合わせ</a>
+                            <p><!--{{trans('site/footer.mail')}}:info@wazaar.comメールアドレス：-->contact@minkare.jp</p>  
+                            <div class="social-icons">
+                            	<a href="#" class="inline-block"><i class="fa fa-facebook"></i></a>
+                            	<a href="#" class="inline-block"><i class="fa fa-twitter"></i></a>
+                            	<a href="#" class="inline-block"><i class="fa fa-rss"></i></a>
+                            </div>                      
                         </div>
                     </div>
                 </div>
@@ -306,6 +297,8 @@
         <script src="{{url("js/pluralize.js")}}"></script>
         <script src="{{url("js/jquery.mousewheel.js")}}"></script>
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
+        <!-- <script src="{{url("js/jquery.custom-scrollbar.js")}}"></script> -->
+        <script src="{{url("js/autogrow.min.js")}}"></script>
         <script src="{{url("js/main.js")}}"></script>
         <script src="{{url("js/messages.js")}}"></script>
         <script src="{{url("js/slick.js")}}"></script>
@@ -345,8 +338,10 @@
                         //window.reloadConfirm = false;
                         return message;
                     }
-                });
-				
+					
+					           
+			});
+								 
 				$('[data-toggle="popover"]').popover();
 
 				$('.showRegister').click(function(){
@@ -395,9 +390,16 @@
 					keyboard: true,
 					show: false	
 				}); 
-					
-
-			});
+				
+				$('body').on('click','textarea',function(){
+					var opts = {
+						animate: true
+						, cloneClass: 'faketextarea'
+					};
+					$('textarea').autogrow(opts);
+					});
+				})		
+							
 		</script>
     	
             <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/delaunay.js"></script>

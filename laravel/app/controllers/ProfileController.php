@@ -65,6 +65,8 @@ class ProfileController extends Controller
 
         $profile->first_name = Input::get('first_name');
         $profile->last_name = Input::get('last_name');
+        $profile->corporation_name = Input::get('corporation_name');
+        $profile->department = Input::get('department');
         $profile->email = Input::get('email');
         $profile->bio = Input::get('bio');
         $profile->updateUniques();
@@ -115,9 +117,12 @@ class ProfileController extends Controller
 
 
         $user = Auth::user();
-        $user->password = Hash::make(Input::get('new_password'));
-        $user->save();
-        return Response::json(['success' => 1]);
+//        $user->password = $user->password_confirmation = Hash::make(Input::get('new_password'));
+        $user->password = $user->password_confirmation = Input::get('new_password');
+        
+        
+        if( $user->updateUniques() ) return Response::json(['success' => 1]);
+        else return Response::json(['success' => 0, 'errors'=> $user->errors()->all()]);
     }
 
     public function postUpdateBankDetails()

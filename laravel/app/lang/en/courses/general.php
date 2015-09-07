@@ -71,6 +71,7 @@ return array(
     'used_on_description_page' => 'Will be used on course description page.',
     'used_on_listings_description' => 'Will be used for listings description and introduction.',
     'add_to_wishlist' => 'Add To Wishlist',
+    'remove_from_wishlist' =>'REMOVE FROM WISHLIST',
     'payment_type' => 'Payment Type',
     'one_time' => 'One Time',
 	'listing_image_thumbnail' => 'Listing image (thumbnail)',
@@ -191,4 +192,16 @@ return array(
     'instructed-by' => 'Instructed By',
     'profile-more' => 'more',
     'profile-less' => 'less',
+    'sort' => [
+        'best-selling-all-time' => 'Best selling All time',
+        'best-selling-this-month' => 'Best selling this month',
+        'best-selling-this-week' => 'Best selling this week',
+        'recent-courses' => 'Recent courses',
+        'oldest-courses' => 'Oldest courses',
+    ],
+    'filter' => [
+        'all' => 'All',
+        'beginner' => 'Beginner',
+        'advanced' => 'Advanced',
+    ]
 );

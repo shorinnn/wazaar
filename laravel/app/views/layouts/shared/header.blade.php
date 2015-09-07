@@ -17,6 +17,7 @@
             @if(Auth::check())
         <div class="clearfix left">
             <div class="logged-out-header-search text-center">
+                <?php if('dont-show' == 'yes'):?>
                 <div class="clearfix inline-block">
                     <div class="activate-dropdown left relative">
                         <button aria-expanded="false" data-toggle="dropdown" 
@@ -28,7 +29,7 @@
                         <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                             <ul>
                                 <?php echo Flatten::section('header-categories-catalog', 10, function ()  { 
-                                    $categories = CourseCategory::withCourses();
+                                    $categories = CourseCategory::has('allCourses')->withCourses();
                                     $categories->load( 'courseSubcategories' );?>
                                
                                 
@@ -49,69 +50,6 @@
                                     @endforeach
                                     
                                     <?php }); ?>
-                                
-                                <!--<li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li class="dropdown-list">
-                                    Business & Marketing <i class="wa-chevron-right"></i>
-                                    <ul>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Entrepreneurship</a>
-                                        </li>                                
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li>
-                                <li>
-                                    <a href="#">Business & Marketing</a>
-                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -122,6 +60,7 @@
                         </div>
                     </form>
                 </div>
+                <?php endif;?>
             </div>
         </div>
         <div class="clearfix right logged-in-menu-holder">
@@ -181,7 +120,7 @@
                             <?php /*-- <li>
                                 <a class="profile-button" href="{{ action('ProfileController@index') }}">{{trans('site/menus.profile')}}</a>
                             </li> */?>
-                            @if( !Auth::user()->hasRole('Affiliate') )
+                            @if( !Auth::user()->hasRole('Affiliate') &&  !Auth::user()->hasRole('Instructor') )
                             <li>
                                 <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
                             </li>
@@ -189,7 +128,7 @@
 <!--                            <li>
                                 <a class="settings-button" href="#">{{trans('site/menus.analytics')}}</a>
                             </li>-->
-                            <li>
+                            <li style="display:none">
                                 <a class="settings-button" href="{{ action('PrivateMessagesController@index') }}">{{trans('site/menus.messages')}}
     
                                 </a>
@@ -251,6 +190,7 @@
                 </li>
             </ul>
             <div class="logged-out-header-search text-center">
+                 <?php if('dont-show' == 'yes'):?>
             	<div class="clearfix inline-block">
                     <div class="activate-dropdown left relative">
                         <button aria-expanded="false" data-toggle="dropdown" 
@@ -262,7 +202,7 @@
                             <ul>
                                 
                                <?php echo Flatten::section('header-categories-catalog', 10, function ()  { 
-                                    $categories = CourseCategory::withCourses();
+                                    $categories = CourseCategory::has('allCourses')->withCourses();
                                     $categories->load( 'courseSubcategories' );?>
                                
                                 
@@ -294,6 +234,7 @@
                         </div>
                     </form>
                 </div>
+                <?php endif;?>
             </div>
             <ul class="logged-out hidden-xs">
                 <li>

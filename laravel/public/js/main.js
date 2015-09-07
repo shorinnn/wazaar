@@ -12,7 +12,26 @@ var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 
 $(document).ready(function(){
     
-	 makeBoxesExpandable();
+//    var canPopState = false;
+//    setTimeout(function(){
+//        canPopState = true;
+//    },20);
+//
+//    console.log( history.popState );
+//    $(window).on("popstate", function(e) {
+//        console.log( history.popState );
+//          if( !canPopState )return false;
+//          window.location = location.href;
+//      });
+
+	$("#affiliate-toolbar-tracking").on("focus", function(){
+	  $(".fa.fa-plus").hide();
+	});
+	$("#affiliate-toolbar-tracking").on("blur", function(){
+	  $(".fa.fa-plus").show();
+	});	
+
+    makeBoxesExpandable();
     if( getCookie('hideAffiliateToolbar')=='true' ) toggleAffiliateToolbar(event);
     $('.countdown').each(function(){
         seconds = $(this).attr('data-final-date-seconds')
@@ -76,25 +95,19 @@ $(document).ready(function(){
 });
 
 function makeBoxesExpandable(){
-    var txt = $('.expandable-textarea'),
-    hiddenDiv = $(document.createElement('div')),
-    content = null;
-    
-    txt.addClass('txtstuff');
-    hiddenDiv.addClass('hiddendiv common');
-
-    $('body').append(hiddenDiv);
-    txt.off('keyup');
-//	txt.on('keyup', function () {
-    $('body').delegate('.expandable-textarea', 'keyup', function(){
-            content = $(this).val();
-
-            content = content.replace(/\n/g, '<br>');
-            hiddenDiv.html(content + '<br class="lbr">');
-
-            $(this).css('height', hiddenDiv.height());
-
-    });
+    $('body').delegate('textarea', 'keyup', function(){
+		var opts = {
+			animate: true
+			, cloneClass: 'faketextarea'
+		};
+		$('textarea').autogrow(opts);
+	});
+	
+		/*$(".scroll-pane").customScrollbar({
+			skin: "wazaar-skin", 
+			hScroll: false,
+			updateOnWindowResize: true
+		});*/
 }
 
 function videoGridBoxIn(){
@@ -313,7 +326,7 @@ function linkToRemote(e){
         $(loadingContainer).html('<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
     }
     if( typeof(preFunction) !='undefined') window[preFunction](e);
-    
+    url+='#!ajax=true';
     $.get(url, function(result){
         $(e.target).attr('data-loading', 0);
         $(elem).html( $(elem).attr('data-old-label') );
@@ -360,6 +373,7 @@ function linkToRemoteConfirm(e){
     
     $(elem).attr('data-old-label', $(elem).html() );
     $(elem).html( '<img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+    url+='#!ajax=true';
     $.get(url, function(result){
         $(e.target).attr('data-loading', 0);
         $(elem).html( $(elem).attr('data-old-label') );
@@ -376,6 +390,8 @@ function linkToRemoteConfirm(e){
     });
 
 }
+
+
 
 /**
  * Event handler for a.load-remote<br />
@@ -415,13 +431,15 @@ function loadRemote(e){
     }
     $(e.target).attr('data-loading', 1);
     
-    
+     
     if( typeof( noPush ) == 'undefined'  ){ 
         history.pushState({}, '', url);
     }
+    if( url.indexOf('?')== -1 ) url+='?ajax=true';
+    else url+='&ajax=true';
+    console.log( url );
     if(typeof(loadMethod)=='undefined' || loadMethod=='load'){
-        
-        console.log( url );
+       
         if( typeof(indicatorStyle)=='undefined')
             $(target).html( '<center><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></center> ');
         else{
@@ -1245,7 +1263,7 @@ function skinVideoControls(){
 
 //Add blue border with a checkmark to selected images
 function insertSelectBorder(){
-        $('.use-existing-preview .select-border').off('click');
+    $('.use-existing-preview .select-border').off('click');
 	$('.use-existing-preview .select-border').on('click', function(){
 		$(this).toggleClass('display-border');
 		if($(this).hasClass('display-border')){
@@ -1625,7 +1643,8 @@ function enableRTE(selector, changeCallback){
             "insertdatetime media table contextmenu paste save"
         ],
         toolbar: "bold | bullist numlist",
-        statusbar: false
+        statusbar: false,
+        paste_as_text: true
     });
 }
 
@@ -1634,6 +1653,9 @@ function wishlistChange(e){
     e.preventDefault();
     e.stopPropagation();
     $target = $(e.target);
+    iconHolder = $target.attr('data-icon-holder');
+    console.log(iconHolder);
+    textHolder = $target.attr('data-text-holder');
     if( $target.attr('data-auth')==0 ){
         $target.attr('data-original-title',  _( 'Login to add to wishlist' ) );
         $target.animate({'margin-left':'-5px'},50).
@@ -1644,16 +1666,94 @@ function wishlistChange(e){
     }
     url = $target.attr('data-url');
     state = $target.attr('data-state') == 1 ? 0 : 1;
+    if( isset(iconHolder) ){
+      $('.wishlist-change-button').attr('data-state', state);
+    }
     $target.attr('data-state', state);
+    
     if( state == 0 ){
-        $target.addClass('fa-heart-o');
-        $target.removeClass('fa-heart');
-        $target.attr('data-original-title',  _('Add to wishlist') );
+        if( isset(iconHolder) ){
+            console.log('has icon holder');
+            $(iconHolder).addClass('fa-heart-o');
+            $(iconHolder).removeClass('fa-heart');
+            $('.wishlist-change-button').attr('data-original-title',  _('Add to wishlist') );
+            $('.wishlist-change-button').parent().attr('data-original-title',  _('Add to wishlist') );
+            $(textHolder).html(_('Add to wishlist') );
+        }
+        else{
+            $target.addClass('fa-heart-o');
+            $target.removeClass('fa-heart');
+            $target.attr('data-original-title',  _('Add to wishlist') );
+        }
+        
+        
     }
     else{
-        $target.removeClass('fa-heart-o');
-        $target.addClass('fa-heart');
-        $target.attr('data-original-title',  _('Remove from wishlist') );
+        if( isset(iconHolder) ){
+            console.log('has icon holder');
+            $(iconHolder).removeClass('fa-heart-o');
+            $(iconHolder).addClass('fa-heart');
+            $('.wishlist-change-button').attr('data-original-title',  _('Remove from wishlist') );
+            $('.wishlist-change-button').parent().attr('data-original-title',  _('Remove from wishlist') );
+            $(textHolder).html(_('Remove from wishlist') );
+        }
+        else{
+            $target.removeClass('fa-heart-o');
+            $target.addClass('fa-heart');
+            $target.attr('data-original-title',  _('Remove from wishlist') );
+        }
+        
+        
     }
     $.get(url+'/'+state,function(){});
 }
+void function $getLines($){    
+    function countLines($element){
+        var lines          = 0;
+        var greatestOffset = void 0;
+
+        $element.find('character').each(function(){
+            if(!greatestOffset || this.offsetTop > greatestOffset){
+                greatestOffset = this.offsetTop;
+                ++lines;
+            }
+        });
+        
+        return lines;
+    }
+    
+    $.fn.getLines = function $getLines(){
+        var lines = 0;
+        var clean = this;
+        var dirty = this.clone();
+        
+        (function wrapCharacters(fragment){
+            var parent = fragment;
+            
+            $(fragment).contents().each(function(){                
+                if(this.nodeType === Node.ELEMENT_NODE){
+                    wrapCharacters(this);
+                }
+                else if(this.nodeType === Node.TEXT_NODE){
+                    void function replaceNode(text){
+                        var characters = document.createDocumentFragment();
+                        
+                        text.nodeValue.replace(/[\s\S]/gm, function wrapCharacter(character){
+                            characters.appendChild($('<character>' + character + '</>')[0]);
+                        });
+                        
+                        parent.replaceChild(characters, text);
+                    }(this);
+                }
+            });
+        }(dirty[0]));
+        
+        clean.replaceWith(dirty);
+
+        lines = countLines(dirty);
+        
+        dirty.replaceWith(clean);
+        
+        return lines;
+    };
+}(jQuery);

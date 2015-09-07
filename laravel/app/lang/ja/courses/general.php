@@ -41,6 +41,7 @@ return array(
     'crash_class' =>'受講する',
     'who_is_this_for?' =>'こんな方におすすめ',
     'add_to_wishlist' =>'ウィッシュリストに追加',
+    'remove_from_wishlist' =>'REMOVE FROM WISHLIST',
     'reviews' => 'レビュー | レビュー',
 //    'module' => 'モジュール',
     'module' =>'セクション',
@@ -178,5 +179,16 @@ jpeg, png',
     'instructed-by' => '講師プロフィール',
     'profile-more' => 'もっと見る',
     'profile-less' => 'もとに戻る',
+    'sort' => [
+        'best-selling-all-time' => '売れ筋教材（全期間）',
+        'best-selling-this-month' => '売れ筋教材（今月）',
+        'best-selling-this-week' => '売れ筋教材（今週）',
+        'recent-courses' => '新教材',
+        'oldest-courses' => '旧教材'
+    ],
+    'filter' => [
+        'all' => '全てのレベル',
+        'beginner' => '初心者向け',
+        'advanced' => '上級者向け',
+    ]
 );
-

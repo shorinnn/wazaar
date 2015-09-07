@@ -140,12 +140,10 @@ class AnalyticsHelper
     private function _secondAffiliates($affiliateId, $filter = '')
     {
         $sql    = "SELECT count(id) as affiliates_count FROM users WHERE second_tier_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
-
         //$result = Cache::remember('second_affiliates', self::CACHE, function() use($sql)
         //{
         //    return DB::select($sql);
         //});
-
         $result = DB::select($sql);
 
         $result = array_map(function ($val) {

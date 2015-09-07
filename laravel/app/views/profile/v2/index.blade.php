@@ -45,13 +45,27 @@
                                 <h4>{{trans('profile.pageTitle')}}</h4>
                                 <div class="clearfix">
                                     <form id="form-profile">
-                                        <div class="row no-margin">
+                                        <div class="row no-margin tooltipable"  title="{{trans('profile.form.name-tooltip')}}">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>{{trans('profile.form.lastName')}}</label>
+                                               <label>{{trans('profile.form.name')}}</label>
                                             </div>
-                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
-                                                {{Form::text('last_name',$profile->last_name)}}
+                                            
+                                            <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
+                                                 <label>{{trans('profile.form.lastName')}}</label>
                                             </div>
+                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-" >                                                
+                                                {{Form::text('last_name',$profile->last_name, ['class' => 'col-xs-3'])}}
+                                            </div>
+                                            
+                                            
+                                            <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
+                                                <label>{{trans('profile.form.firstName')}}</label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                                                {{Form::text('first_name',$profile->first_name, ['class' => 'col-xs-3'])}}
+                                            </div>
+                                            
+                                            
                                         </div>
                                         <div class="row no-margin">
 
@@ -62,10 +76,27 @@
                                             </div>
 
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                                <label>{{trans('profile.form.firstName')}}</label>
+                                                
                                             </div>
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
-                                                {{Form::text('first_name',$profile->first_name)}}
+                                               
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row no-margin tooltipable" title="{{trans('profile.form.corporation-name-tooltip')}}">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                <label>{{trans('profile.form.corporation-name')}}</label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6 " >
+                                                {{Form::text('corporation_name',$profile->corporation_name)}}
+                                            </div>
+                                        </div>
+                                        <div class="row no-margin tooltipable" title="{{trans('profile.form.department-tooltip')}}">
+                                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                                <label>{{trans('profile.form.department')}}</label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6 " >
+                                                {{Form::text('department',$profile->department)}}
                                             </div>
                                         </div>
 
@@ -77,6 +108,7 @@
                                                 {{Form::text('email',$profile->email)}}
                                             </div>
                                         </div>
+                                        
                                         <div class="row no-margin">
                                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                                 <label>{{trans('profile.form.bio')}}</label>
@@ -89,7 +121,7 @@
                                         {{Form::hidden('type',$type)}}
 
                                         <div class="row no-margin" align="center">
-                                            <button class="btn btn-primary" data-loading-text="{{trans('general.updating')}}" type="button" id="btn-update-profile">{{trans('general.update')}}</button>
+                                            <button class="blue-button large-button" data-loading-text="{{trans('general.updating')}}" type="button" id="btn-update-profile">{{trans('general.update')}}</button>
                                         </div>
                                     </form>
                                 </div>
@@ -214,6 +246,15 @@
                                             </div>
                                             {{Form::hidden('type',$type)}}
                                         </div>
+                                        <div class="row">
+                                            <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                                            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                                            {{trans('profile.form.bank-bottom-text')}}
+                                            <br />
+                                            <br />
+                                            </div>
+                                            <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                                        </div>
                                         <div class="row no-margin" align="center">
                                             <button class="btn btn-primary" data-loading-text="{{trans('general.updating')}}" type="button" id="btn-update-bank">{{trans('general.update')}}</button>
                                         </div>
@@ -296,8 +337,21 @@
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                     <form action="{{url('profile/upload-profile-picture')}}" enctype="multipart/form-data" method="post">
                     <div class="sidebar">
-                        <div class="profile-picture-holder">
-                            <img src="{{@$profile->photo}}" alt="" id="img-profile-picture" class="img-responsive"/>
+                        <div class="profile-picture-holder"
+                             style='background:url(
+                             @if( isset($profile->photo) && trim($profile->photo) !='' )
+                                {{ $profile->photo }}
+                            @else
+                                http://s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg
+                            @endif
+                            ) no-repeat center center; background-color:white; background-size:100%'
+                             >
+                            
+<!--                            @if( isset($profile->photo) && trim($profile->photo) !='' )
+                                <img src="{{@$profile->photo}}" alt="" id="img-profile-picture" class="img-responsive"/>
+                            @else
+                                <img src="http://s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg" alt="" id="img-profile-picture" class="img-responsive"/>
+                            @endif-->
                         </div>
                         <div class="upload-picture-button text-center">
                             <label for="upload-new-photo" class="default-button large-button">

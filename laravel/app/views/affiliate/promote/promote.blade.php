@@ -1,16 +1,18 @@
 <section>
 
     
-    <div id='gifts' class='col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 no-padding gift-modal'>
+    <div id='gifts' class='col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding gift-modal'>
         @foreach($course->gifts as $gift)
         {{ View::make('affiliate.promote.partials.gift')->with( compact('gift', 'course', 'tcode') ) }}
         @endforeach
     </div>
     <center>
         {{ Form::open([ 'action' => 'GiftsController@store', 'class' => 'ajax-form', 'data-callback '=> 'addGift' ]) }}
-            <button type='submit' class='btn btn-link'> <i class='fa fa-plus'></i> {{ trans('courses/promote.add-gift') }}</button>
-            <input type='hidden' name='course_id' value='{{ $course->id }}' />
-            <input type='hidden' name='tcode' value='{{ $tcode }}' />
+        	<div class="create-another-gift clear">
+                <button type='submit' class=''> <i class='fa fa-plus'></i> {{ trans('courses/promote.add-gift') }}</button>
+                <input type='hidden' name='course_id' value='{{ $course->id }}' />
+                <input type='hidden' name='tcode' value='{{ $tcode }}' />
+                </div>
         {{ Form::close() }}
     </center>
 

@@ -26,6 +26,7 @@ return array(
 	'get-started' => 'Get Started',
 	'browse-category' => 'Browse Category',
 	'be-an-instructor' => 'Become an instructor',
+        'register' => 'REGISTER!',
         'become' => 'BECOME',
 	'an-instructor' => 'AN INSTRUCTOR',
 	'view-all' => 'View all',

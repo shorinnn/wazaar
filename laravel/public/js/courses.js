@@ -167,7 +167,7 @@ function enableLessonRTE(e){
             savingAnimation(1);
             return true;
         },
-        
+         paste_as_text: true,
         plugins: [
             "advlist autolink autosave lists link image charmap print preview anchor",
             "searchreplace visualblocks code fullscreen",
@@ -303,8 +303,12 @@ function courseImageUploaded(e, data){
     target = $(e.target).attr('data-target');
     console.log(data.result);
     result = JSON.parse(data.result);
-    $(target).append(result.html);
-    $(target).find('[type=radio]').click();
+    $(target).append(result.option);
+    insertSelectBorder();
+//    $(target).find('[type=radio]').last().click();
+//    $(target).find('.select-border').last().click();
+//    $(target).find('.select-border').last().click();
+    $('.image-thumb-box input:radio').last().click();
     $('.course-listing-image-preview').html( result.html );
 }
 

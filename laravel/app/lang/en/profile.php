@@ -33,6 +33,12 @@ return
         'form'                 =>
             [
                 'email'            => 'Email',
+                'name'             => 'Name',
+                'name-tooltip'     => 'Name Tooltip',
+                'corporation-name' => 'Corporation Name',
+                'corporation-name-tooltip' => 'Corporation Name Tooltip',
+                'department' => 'Department',
+                'department-tooltip' => 'Department Tooltip',
                 'firstName'        => 'First Name',
                 'lastName'         => 'Last Name',
                 'bio'              => 'Describe yourself',
@@ -63,7 +69,8 @@ return
                         'savings'  => 'Savings Account',
                         'others'   => 'Others'
                     ],
-                'title'            => 'Title'
+                'title'            => 'Title',
+                'bank-bottom-text' => 'Bank Bottom Text'
             ],
         'updateSuccessful'     => 'Profile updated successfully',
         'profile'              => 'Profile',

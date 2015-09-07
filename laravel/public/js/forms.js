@@ -178,7 +178,7 @@ function updateSlug(e){
  * @param {object} elem HTML dropdown
  * @param {string} data-target What dropdown to populate (css selector)
  */
-function populateDropdown(elem){
+function populateDropdown(elem, callback){
     target = $(elem).attr('data-target');
     target = $(target);
     target.empty();
@@ -194,6 +194,8 @@ function populateDropdown(elem){
             target.append(o);
         }
         target.attr('disabled', false);
+        
+        if( isset(callback) ) callback();
     });
 }
 

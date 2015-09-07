@@ -24,7 +24,32 @@
         @endif
     </div>
     <div class="row editor-settings-layout margin-bottom-30">
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <h4 class="text-right">
+                {{ trans('courses/general.category') }}
+            </h4>
+        </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                {{ Form::select('course_category_id', $categories, null,  
+                                    ['onChange'=>'populateDropdown(this)', 'data-target'=>'#course_subcategory_id', 
+                                    'data-url'=> action('CoursesCategoriesController@subcategories_instructor'), 'required']) }}
+        </div>
+    </div>
+    <div class="row editor-settings-layout margin-bottom-30">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <h4 class="text-right">
+                {{ trans('courses/general.subcategory') }}
+            </h4>
+        </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                <select name='course_subcategory_id' id='course_subcategory_id' required>
+                    <option value=''>{{ trans('courses/general.subcategory') }}</option>
+                </select>
+            </div>
+    </div>
+        
+    <div class="row editor-settings-layout margin-bottom-30">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
             <h4 class="text-right">{{ trans('courses/curriculum.enable-ask-coach') }} 
             </h4>
         </div>
@@ -275,6 +300,16 @@
         </div>
         
     </div>
+        <div class="row editor-settings-layout margin-bottom-30">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <h4 class="text-right"> Course Display Name For
+            </h4>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            {{ Form::select( 'details_name',[ 'person' => 'Person', 'corporation' => 'Corporation'], $course->details_name ) }}
+        </div>
+        
+    </div>
         
 </div>
 
@@ -420,6 +455,17 @@
 <script src="{{url('js/moment.js')}}" type="text/javascript"></script>
 <script src="{{url('js/bootstrap-datetimepicker.js')}}" type="text/javascript"></script>
 <script type="text/javascript"> 
+    var catDD = $('[name="course_category_id"]');
+    
+    function setCourseSubcat(){
+        $('#course_subcategory_id').val( {{$course->course_subcategory_id}} );
+        console.log('{{$course->course_subcategory_id}}');
+    }
+    
+    populateDropdown( catDD[0], setCourseSubcat);
+    
+    
+    
     $('.datetimepicker').datetimepicker( { 
         sideBySide:true,
         extraFormats: ['YYYY-MM-DD hh:mm:s']

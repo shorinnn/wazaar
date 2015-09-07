@@ -569,11 +569,11 @@ function filenameFromS3Key($url){
 function externalVideoPreview($url, $big=false, $iframe=false){
     $preview = '';
 //    $width = $big ? 1280 : 560;
-    $width = $big ? 853 : 560;
+    $width = $big ? 853 : 658;
 //    $height = $big ? 720 : 315;
-    $height = $big ? 480 : 315;
+    $height = $big ? 480 : 370;
     if( $id = parse_yturl($url) ){
-        if($iframe) $preview = '<iframe width="'.$width.'" height="'.$height.'" src="https://www.youtube.com/embed/'.$id.'?showinfo=0&autoplay=0" frameborder="0" allowfullscreen></iframe>';
+        if($iframe) $preview = '<iframe id="embeded-video" width="'.$width.'" height="'.$height.'" src="https://www.youtube.com/embed/'.$id.'?showinfo=0" frameborder="0" allowfullscreen></iframe>';
         else $preview = '<img data-video-url="https://www.youtube.com/embed/'.$id.'" data-yt=1  onclick="showVideoPreview(this)" src="http://img.youtube.com/vi/'.$id.'/0.jpg" width="100%"/>';
     }
     if( $id = get_vimeoid($url)){
@@ -582,7 +582,7 @@ function externalVideoPreview($url, $big=false, $iframe=false){
         $response = $vimeo->request('/videos/'.$id, array('per_page' => 2), 'GET');
         
         $link = $response['body']['pictures']['sizes'][1]['link'];
-        if($iframe) $preview = '<iframe src="https://player.vimeo.com/video/'.$id.'?color=ffffff&title=0&portrait=0&badge=0&autoplay=0" width="'.$width.'" height="'.$height.'"     frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+        if($iframe) $preview = '<iframe  id="embeded-video" src="https://player.vimeo.com/video/'.$id.'?color=ffffff&title=0&portrait=0&badge=0" width="'.$width.'" height="'.$height.'"     frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
         else $preview = '<img data-video-url="https://player.vimeo.com/video/'.$id.'" data-v=1  onclick="showVideoPreview(this)" src="'.$link.'" width="100%" />';
     }
     return $preview;
@@ -657,6 +657,10 @@ function courseApprovedVersion($course){
             $course->$k = $v;
         }
     }
+    if($course->courseDifficulty == null){
+        if($course->course_difficulty_id == 2) $course->course_difficulty_id = 3;
+        if($course->course_difficulty_id == 4) $course->course_difficulty_id = 1;
+    }
     return $course;
 }
 function getYTDurationSeconds($duration){
@@ -684,4 +688,9 @@ function getYTDurationSeconds($duration){
     }
      return $duration;
 
+}
+
+function strip_tags_and_attributes($text, $tags){
+    $text = strip_tags($text, $tags);
+    return preg_replace("/<([a-z][a-z0-9]*)[^>]*?(\/?)>/i",'<$1$2>', $text);
 }

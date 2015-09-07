@@ -3,7 +3,7 @@
             {{ Form::open(array('action' => ['GiftsController@destroy', $gift->id], 'method' => 'delete', 
                         'class' => 'ajax-form inline-block pull-right', 'data-callback' => 'deleteItem', 'data-delete' => '.gift-'.$gift->id )) }}
                         
-                        <button type='submit' name="delete-gift-{{$gift->id}}" class="delete-button btn btn-link" 
+                        <button type='submit' name="delete-gift-{{$gift->id}}" class="delete-button" 
                             data-message="{{ trans('crud/labels.you-sure-want-delete') }}"><i class="fa fa-trash"></i>Delete
                         </button>
             {{ Form::close() }}
@@ -14,7 +14,7 @@
         <!--<span class="characters-left">178 Characters left</span>-->
     </h6>
     <input type="text" name='text' placeholder="What do you have to say?"  value='{{$gift->text}}'>
-    <button type='submit' class='btn btn-xs'>Save</button>
+    <button type='submit' class='blue-button'>Save</button>
     {{ Form::close() }}
     <h6>Gift link</h6>
     <form class="relative">
@@ -67,3 +67,9 @@
     </div>
     </div>
 </div>
+<script>
+$(document).ready(function(e) {
+    $('#gift-ui-holder').parent().parent('.modal-body').css('padding', '0px');
+    $('#gift-ui-holder').parents('.modal-dialog').addClass('gift-ui-modal');
+});
+</script>

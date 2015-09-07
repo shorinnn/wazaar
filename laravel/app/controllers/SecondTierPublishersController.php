@@ -55,6 +55,7 @@ class SecondTierPublishersController extends \BaseController {
 	}
         
         public function stats(){
+            return "Page temporarily disabled";
             $this->delivered = new DeliveredHelper();
             $total = $this->delivered->getUsers();
             $users = $total['data'];

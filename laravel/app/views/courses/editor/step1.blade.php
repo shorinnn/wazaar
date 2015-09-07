@@ -36,7 +36,7 @@
                                         <i class="wa-chevron-down"></i>
                                       </a>
                                     
-                                      <ul class="dropdown-menu" aria-labelledby="upload-new">
+                                      <ul class="dropdown-menu" aria-labelledby="upload-new" style="margin-left: 30px;">
                                         {{ Form::open(['action' => ['CoursesController@update', $course->slug], 'files' => true, 'method' => 'PUT']) }}
                                             <label for="upload-preview-image" class="upload-button">
                                                 <span>{{ trans('courses/general.upload_image') }}</span>
@@ -45,7 +45,7 @@
                                                        id="upload-preview-image" name="preview_image" data-dropzone='.dropzone-preview'
                                                        data-progress-bar='.progress-bar-preview' data-callback='courseImageUploaded' 
                                                        data-targez='#use-existing-preview > div > .radio-buttons'
-                                                       data-target='#selected-previews'/>
+                                                       data-target='.all-img-previews-modal'/>
                                             </label>
                                         </form>
                                         @if($images->count() > 0)
@@ -382,11 +382,18 @@
 
             $('#btn-close-previews').on('click', function (){
                 $('#selected-previews').html('');
-                $('.display-border').each(function (){
-                    console.log($(this).parent().find('img').attr('src'));
-//                        $('#selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
-                    $('.course-listing-image-preview').html("<img src='" +  $(this).parent().find('img').attr('src') + "' />");
-                });
+                if($('.image-thumb-box input:radio:checked').length > 0){
+                        console.log($('.image-thumb-box input:radio:checked').parent().parent().find('img').attr('src'));
+                        $('.course-listing-image-preview').html("<img src='" +  $('.image-thumb-box input:radio:checked').parent().parent().find('img').attr('src') + "' />");
+                        var $courseId = $('.course-id').val();
+                        val = $('[name="course_preview_image_id"]:checked').val();
+                        $.post('/courses/'+ $courseId +'/set-field/',{name: 'course_preview_image_id', val: val});
+                }
+                //$('.thumb-container').each(function (){
+                   // console.log($(this).find('img').attr('src'));
+                        //$('#selected-previews').append("<img width='100' src='" +  $(this).parent().find('img').attr('src') + "' />");
+                    //$('.course-listing-image-preview').html("<img src='" +  $(this).find('img').attr('src') + "' />");
+                //});
             });
 
             $('#btn-close-previews-banner').on('click', function (){

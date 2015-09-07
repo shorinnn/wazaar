@@ -4,8 +4,8 @@ class CoursesController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'dashboard',
-                'customPercentage', 'updateExternalVideo', 'removePromo'] ] );
-            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
+                'customPercentage', 'updateExternalVideo', 'removePromo', 'setField'] ] );
+            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroyxxx', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
 
             
         }
@@ -241,6 +241,14 @@ class CoursesController extends \BaseController {
             }
         }
         
+         public function setField($id){
+            $course = Course::find($id);
+            if(!admin() && $course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
+                return Redirect::action('CoursesController@index');
+            }
+            DB::table('courses')->where('id', $id)->update( [ Input::get('name') => Input::get('val') ] );
+         }
+        
         public function submitForApproval($slug){
             $course = Course::where('slug',$slug)->first();
             if($course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
@@ -265,6 +273,12 @@ class CoursesController extends \BaseController {
         public function myCourses(){
             
             $instructor = Instructor::find(Auth::user()->id);
+            $lastVisit = Auth::user()->getCustom('last-instructor-dash-visit');
+            
+            if( time() - $lastVisit > 60*60*24){
+                Auth::user()->setCustom( 'last-instructor-dash-visit', time() );
+                Auth::user()->save();
+            }
             if( $instructor->accepted_instructor_terms!='yes' ){
                 return Redirect::action('InstructorsController@acceptTerms');
             }
@@ -273,6 +287,15 @@ class CoursesController extends \BaseController {
                         $query->where('instructor_read', 'no');
                     } ] )
                     ->paginate(10);
+            $profile = $instructor->profile;
+            
+            $student = Student::find( Auth::user()->id );
+            $purchasedCourses = $student->purchases()->where('product_type','Course')->get();
+            $wishlist = $student->wishlistItems;
+            if($wishlist !=null )$wishlist->load('course');
+            
+            return View::make('instructors.dashboard.v2.index')->with(compact('courses', 'instructor', 'profile', 'lastVisit', 
+                    'student', 'purchasedCourses', 'wishlist'));
             Return View::make('courses.myCourses')->with(compact('courses'));
         }
         
@@ -290,13 +313,20 @@ class CoursesController extends \BaseController {
                 $wishlisted = $student->wishlistItems()->lists( 'course_id' );
             }
             if (Input::has('sort')){
-                if ( Input::get('sort') == 'best-selling' || Input::get("sort") == 'best-selling-low' ){
+                if ( Input::get('sort') == 'best-at' || Input::get("sort") == 'best-m' || Input::get("sort") == 'best-w' ){
+                    
+                    switch(Input::get('sort')){
+                        case 'best-at': $timeframe = 'AT'; break;
+                        case 'best-m': $timeframe = 'LM'; break;
+                        case 'best-w': $timeframe = 'LW'; break;
+                        default: $timeframe = 'AT';
+                    }
                     
                     $courseHelper = new CourseHelper();
                     $category = new stdClass;
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
                     $order = ( Input::get('sort') == 'best-selling-low' ) ? 'ASC' : 'DESC';
-                    $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel], $order);
+                    $courses = $courseHelper->bestSellers($slug, $timeframe, 9, ['course_difficulty_id' => $difficultyLevel], $order);
                     if(Request::ajax() ) Return View::make('courses.categories.courses')->with( compact( 'category', 'courses', 'wishlisted' ) );
                     return View::make('courses.categories.category')->with( compact( 'category', 'difficultyLevel', 'courses', 'wishlisted') );
                 }
@@ -395,13 +425,20 @@ class CoursesController extends \BaseController {
                 $wishlisted = $student->wishlistItems()->lists( 'course_id' );
             }
             if (Input::has('sort')){
-                if ( Input::get('sort') == 'best-selling' || Input::get("sort") == 'best-selling-low' ){
+                if ( Input::get('sort') == 'best-at' || Input::get("sort") == 'best-m' || Input::get("sort") == 'best-w' ){
+                    
+                    switch(Input::get('sort')){
+                        case 'best-at': $timeframe = 'AT'; break;
+                        case 'best-m': $timeframe = 'LM'; break;
+                        case 'best-w': $timeframe = 'LW'; break;
+                        default: $timeframe = 'AT';
+                    }
                     
                     $courseHelper = new CourseHelper();
                     $category = new stdClass;
                     $category->color_scheme = $category->name = $category->description = $category->id =  '';
                     $order = ( Input::get('sort') == 'best-selling-low' ) ? 'ASC' : 'DESC';
-                    $courses = $courseHelper->bestSellers($slug,'AT',9,['course_difficulty_id' => $difficultyLevel], $order, $subcat);
+                    $courses = $courseHelper->bestSellers($slug, $timeframe, 9, ['course_difficulty_id' => $difficultyLevel], $order, $subcat);
                     if(Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted' ) );
                     return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses') );
                 }
@@ -425,7 +462,7 @@ class CoursesController extends \BaseController {
                     });
 
 
-            if (!empty($difficultyLevel)){
+            if (!empty($difficultyLevel) && $difficultyLevel > 0){
                 $courses = $courses->where('course_difficulty_id', $difficultyLevel);
             }
 
@@ -561,7 +598,7 @@ class CoursesController extends \BaseController {
                 $wishlisted = $student->wishlistItems()->lists( 'course_id' );
             }
             
-            if( !Input::has('is-preview') ) $course = courseApprovedVersion( $course );
+            if( !Input::has('preview') ) $course = courseApprovedVersion( $course );
             
             if( $course->publish_status != 'approved' && $course->approved_data == '' ){
                 if( Auth::guest() ) return Redirect::action('SiteController@index');
@@ -596,7 +633,7 @@ class CoursesController extends \BaseController {
             if( serveMobile() ) 
                 Return View::make('MOBILE_VERSION.courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') );
             else    
-                Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') );
+                Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') )->render();
         } 
         
         public function purchase($slug){
