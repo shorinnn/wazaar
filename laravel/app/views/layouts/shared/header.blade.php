@@ -169,6 +169,13 @@
                     </li>
                 </ul>
             </div>
+            @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
+            <ul class="logged-out" style="margin-right: 15px;">
+                <li>
+                    <a href="http://wazaar.jp/courses/category"> {{trans('general.browse-courses')}}</a> 
+                </li>
+            </ul>
+            @endif
         </div>
         @else
             
