@@ -173,6 +173,7 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     public function commentPicture($user_type){
+        $user_type = strtolower($user_type);
         if($user_type=='student') $user_type='Student';
         else if($user_type=='instructor') $user_type='Instructor';
         else  $user_type='Affiliate';
