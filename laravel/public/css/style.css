@@ -2251,6 +2251,7 @@ h2, h3, h4, h5, h6{
 .course-detail-top-section h1{
 	color: #fff;
 	margin: 0;
+	font-size: 26px;
 }
 .course-detail-top-section .instructor {
     height: 200px;
@@ -3902,12 +3903,17 @@ h2, h3, h4, h5, h6{
 /********** Affiliates Gift UI***************/
 .affiliate-top-header{
 	background: #e8eced;
-	padding: 12px 50px;
+	padding: 12px 40px;
 }
 .affiliate-top-header p{
 	font-weight: 600;
 	color: #798794;
 	margin: 5px 23px 5px 0;
+}
+.affiliate-top-header .fa.fa-plus{
+    color: #798794;
+    font-size: 12px;
+    margin-right: 2px;
 }
 .affiliate-top-header input[type='text']{
 	height: 28px;
@@ -3916,10 +3922,13 @@ h2, h3, h4, h5, h6{
 	color: #0099ff;
 	width: 75%;
 	margin: 0;
+	display: inline-block;
 }
 .affiliate-top-header select{
     height: 28px;
-    margin: 0;
+    margin: 0 13px 0 0;
+    background: white;
+    width: 156px;
 }
 .affiliate-top-header .add-gift,
 .affiliate-top-header .add-tracking-id{
@@ -4158,7 +4167,8 @@ h2, h3, h4, h5, h6{
 	border-radius: 4px;
 	position: relative;
 	overflow: hidden;
-	border: solid 1px #e0e1e2;
+	border: solid #e0e1e2;
+	border-width:0 0 1px 0;
 }
 .gift-modal .close-button{
 	position: absolute;
@@ -5061,7 +5071,6 @@ h2, h3, h4, h5, h6{
 	font-size: 13px;
 	padding: 0 12px;
 	height: 38px;
-	line-height: 38px;
 	resize: none;
 }
 /*Ask question sidebar*/

@@ -2,23 +2,24 @@
     <div class="row">
         @if( Auth::user()->accepted_affiliate_terms == 'yes' ) 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <select style='background:white;width:145px; padding:5px;' id='linkWithDD' onchange='linkWith()'>
+                <select id='linkWithDD' onchange='linkWith()'>
                     <option value='0'>Link Without Gift</option>
                     <option value='1'>Link With Gift</option>
                 </select>
                 <input type="text" readonly="" id='affiliate-toolbar-link' value='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}' />
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 no-padding">
-                <div class="row">
+                <div class="row no-margin">
                     <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8">
                         <!--<a href="#" class="add-tracking-id"><i class="fa fa-plus"></i>Add Tracking ID</a>-->
+                        <i class="fa fa-plus"></i>
                         <input class="add-tracking-id" type='text' id='affiliate-toolbar-tracking' placeholder="Add Tracking ID" style='width:150px; background-color:white'
                onkeyup='addAffiliateTracking() '/>
                     </div>
                     <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
                         <div class="activate-dropdown">
 
-                            <button aria-expanded="false" data-toggle="dropdown" class="add-gift dropdown-toggle" type="button" 
+                            <button aria-expanded="false" data-toggle="dropdown" class="add-gift dropdown-toggle right" type="button" 
                                     onclick="affiliateGiftUI('{{$course->slug}}')" id="add-gift-dropdown">
                                 <i class="fa fa-gift"></i>
                                 <span>Manage Gifts</span>
@@ -64,6 +65,13 @@
         
         
         $('#affiliate-toolbar-link').val( link );
+
+		$("#affiliate-toolbar-tracking").on("focus", function(){
+		  $(".fa.fa-plus").hide();
+		});
+		$("#affiliate-toolbar-tracking").on("blur", function(){
+		  $(".fa.fa-plus").show();
+		});	
         
     }
     
@@ -84,5 +92,4 @@
         }
          $('#linkWithDD').val(0);
     }
-
 </script>

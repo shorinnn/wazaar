@@ -248,7 +248,7 @@
                     {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
                                 @if(Auth::guest() || $student->canPurchase($course) )
                                     <span class="price clearfix ">{{trans('courses/general.free') }}</span>
-                                     <button class="clearfix enroll-button blue-button extra-large-button join-class margin-top-50">
+                                     <button class="clearfix enroll-button blue-button extra-large-button join-class">
                                          {{ trans("courses/general.course-enroll") }}
                                      </button>
                                 @elseif(Auth::check() && $student->purchased($course) )
@@ -259,7 +259,7 @@
                                      </a>
                                 @else
                             <span class="price clearfix ">{{trans('courses/general.free') }}</span>
-                             <button class="clearfix enroll-button blue-button extra-large-button join-class margin-top-50" disabled="disabled">
+                             <button class="clearfix enroll-button blue-button extra-large-button join-class" disabled="disabled">
                                  {{ trans("courses/general.course-enroll") }}
                                      </button>
                                 @endif

@@ -14,7 +14,7 @@
         <!--<span class="characters-left">178 Characters left</span>-->
     </h6>
     <input type="text" name='text' placeholder="What do you have to say?"  value='{{$gift->text}}'>
-    <button type='submit' class='btn btn-xs'>Save</button>
+    <button type='submit' class='blue-button'>Save</button>
     {{ Form::close() }}
     <h6>Gift link</h6>
     <form class="relative">

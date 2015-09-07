@@ -350,7 +350,15 @@
 							hScroll: false,
 							updateOnWindowResize: true
 						})
-					})                
+					})     
+					           
+					$("#affiliate-toolbar-tracking").on("focus", function(){
+					  $(".fa.fa-plus").hide();
+					});
+					$("#affiliate-toolbar-tracking").on("blur", function(){
+					  $(".fa.fa-plus").show();
+					});	
+
 			});
 								 
 				$('[data-toggle="popover"]').popover();
