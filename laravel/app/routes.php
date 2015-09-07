@@ -160,6 +160,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::get('courses/search-instructor/{email}', 'CoursesController@searchInstructor');
     Route::get('courses/search-instructor/', 'CoursesController@searchInstructor');
     Route::get('courses/{id}/delete', 'CoursesController@destroy');
+    Route::post('courses/{id}/set-field', 'CoursesController@setField');
 });
 
 $wwwRoutes = function(){
