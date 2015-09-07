@@ -135,6 +135,16 @@ class UserRepository
             // add confirmed tag
             $res = $this->delivered->addTag('email-confirmed', 'integer', $user->confirmed, $userData->id);
         }
+        else{
+            $users = $this->delivered->findUser( $user->email );
+            if( count($users) > 0){
+                $user = $users['data'][0];
+                // associate tags with the user
+                foreach($deliveredTags as $tag){
+                    $this->delivered->addTag('user-type-'.$tag, 'integer', 1, $user['id']);
+                }
+            }
+        }
     }
     
     /**
