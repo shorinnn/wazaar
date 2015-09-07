@@ -107,6 +107,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center-mobile padding-bottom-20">
                         	<h5>{{ trans('footer.get-in-touch') }}</h5>
                             <p><!--電話番号：-->03-6206-8396　</p>
+                            <a href="http://wazaar.co.jp/contact/">お問い合わせ</a>
                             <p><!--{{trans('site/footer.mail')}}:info@wazaar.comメールアドレス：-->contact@minkare.jp</p>  
                             <div class="social-icons">
                             	<a href="#" class="inline-block"><i class="fa fa-facebook"></i></a>
@@ -335,12 +336,22 @@
                         return message;
                     }
 					
-					$(".scroll-pane").customScrollbar({
-					  skin: "default-skin", 
-					  hScroll: false,
-					  updateOnWindowResize: true
-					 })
-                });
+					$('body').delegate('.scroll-pane', 'keyup', function(){
+						$(".scroll-pane").customScrollbar({
+							skin: "wazaar-skin", 
+							hScroll: false,
+							updateOnWindowResize: true
+						})
+					});
+						
+					$('body').on('click','.scroll-pane',function(){
+						$(".scroll-pane").customScrollbar({
+							skin: "wazaar-skin", 
+							hScroll: false,
+							updateOnWindowResize: true
+						})
+					})                
+			});
 								 
 				$('[data-toggle="popover"]').popover();
 
@@ -390,13 +401,16 @@
 					keyboard: true,
 					show: false	
 				}); 
-					
-			/*var opts = {
-				animate: true
-				, cloneClass: 'faketextarea'
-			};
-			$('textarea').autogrow(opts);*/
-			});
+				
+				$('body').on('click','textarea',function(){
+					var opts = {
+						animate: true
+						, cloneClass: 'faketextarea'
+					};
+					$('textarea').autogrow(opts);
+					});
+				})		
+							
 		</script>
     	
             <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/delaunay.js"></script>

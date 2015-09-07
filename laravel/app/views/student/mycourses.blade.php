@@ -97,7 +97,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid new-dashboard dashboardTabs">
+    <div class="container-fluid new-dashboard dashboardTabs padding-bottom-25">
     	<div class="container">
         	<div class="row">
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 pull-right">

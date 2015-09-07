@@ -134,7 +134,7 @@
 
 <div class="container">
 	<div class="row">
-    	<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 no-padding gift-modal">
+    	<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 no-padding gift-modal no-padding">
         	<h3>Gifts</h3>
             <i class="fa fa-times close-button"></i>
             <div class="wrap">
@@ -171,7 +171,7 @@
         </div>
     </div>
 	<div class="row margin-top-20">
-    	<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 gift-modal">
+    	<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 gift-modal no-padding">
         	<h3>Gifts</h3>
             <i class="fa fa-times close-button"></i>
             <div class="wrap">

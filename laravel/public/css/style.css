@@ -1179,6 +1179,7 @@ header .profile-name li:hover ul{
     float: left;
     height: 30px;
     width: 30px;
+	line-height: 30px;
     border-radius: 3px;
     background: rgba(0, 0, 0, 0.6);
     text-align: center;
@@ -1187,7 +1188,6 @@ header .profile-name li:hover ul{
 .heart-icon i {
     font-size: 15px;
     position: relative;
-    top: 8px;
 }
 .heart-icon i.fa.fa-heart{
 	color: #0099ff;
@@ -2993,6 +2993,7 @@ h2, h3, h4, h5, h6{
 .new-dashboard.top-section .radial-progress{
 	display: inline-block;
 }
+.new-dashboard.top-section .radial-progress .progress-circle,
 .new-dashboard.top-section .radial-progress #progress-circle-top-1{
 	margin: 0 auto 23px;
 }
@@ -3195,7 +3196,6 @@ h2, h3, h4, h5, h6{
 	margin: 4px 0 0;
 }
 .instructor-dashboard.dashboardTabs .tab-content{
-	margin-top: 0;
 	border: none;
 }
 .instructor-dashboard.dashboardTabs .teaching-lesson p em{
@@ -3452,7 +3452,17 @@ h2, h3, h4, h5, h6{
 	color: #0099ff !important;
 	background: none;
 }
+.student-messages,
+.student-course{
+	padding-bottom: 25px;
+}
 /*Student account*/
+.student-dashboard.student-course{
+	background: #ebeced;
+}
+.student-dashboard.student-course.top-section{
+	background: #18222b;
+}
 .new-dashboard.student-account .sidebar{
 	margin-top: -123px;
 }
@@ -3508,6 +3518,7 @@ h2, h3, h4, h5, h6{
 	border-radius: 4px;
 	position: relative;
 	top: 50px;
+	background: #ebeced;
 }
 .instructor-course.top-section .back-to-courses,
 .student-course.top-section .back-to-courses{
@@ -3515,7 +3526,7 @@ h2, h3, h4, h5, h6{
 	font-weight: bold;
 	color: #049cf6;
 	display: block;
-	margin-bottom: 14px;
+	margin-bottom: 2px;
 	margin-top: 50px;
 	text-transform: uppercase;
 }
@@ -3530,13 +3541,13 @@ h2, h3, h4, h5, h6{
 .student-course.top-section h1{
 	font-size: 20px;
 	font-weight: normal;
-	margin: 0 0 14px;
+	margin: 0 0 2px;
 	color: #fff;
 
 }
 .instructor-course.top-section p,
 .student-course.top-section p{
-	margin: 0 0 10px;
+	margin: 0 0 25px;
 	font-size: 14px;
 	color: #a7b7c4;
 }
@@ -5085,6 +5096,7 @@ h2, h3, h4, h5, h6{
 	max-height: 490px;
 	resize: none;
 	margin: 0 0 20px;
+	overflow: auto !important;
 }
 .ask-question-fields-footer{
 	background: #fff;
@@ -6689,9 +6701,9 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	color: #798794;
 }
 .edit-course textarea{
-	min-height: 83px;
 	padding: 12px;
 	resize: none;
+	height: auto;
 }
 .edit-course input{
 	margin-bottom: 10px;
@@ -8053,6 +8065,7 @@ footer{
 		position: fixed;
 		height: 100%;
 		width: 24%;
+		z-index: 9;
 	}	
 	.questions-sidebar .ask-question{
 		margin-top: 0;
@@ -8991,6 +9004,9 @@ header .top-menu li{
 }
 .padding-bottom-20{
 	padding-bottom: 20px;
+}
+.padding-bottom-25{
+	padding-bottom: 25px;
 }
 .padding-bottom-30{
 	padding-bottom: 30px !important;

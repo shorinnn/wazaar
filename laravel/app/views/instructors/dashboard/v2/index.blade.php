@@ -68,10 +68,10 @@
         	<div class="row">
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 pull-right">
                     <div class="tab-content">
-                      <div role="tabpanel" class="tab-pane fade in active" id="teaching">
+                      <div role="tabpanel" class="tab-pane fade in active margin-bottom-25" id="teaching">
                           
                           @foreach($courses as $course)
-                            <div class="row margin-top-25 course-row-{{$course->id}}">
+                            <div class="row margin-bottom-25 course-row-{{$course->id}}">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="clearfix teaching-lesson no-border finished-lesson">
                                         <div class="row row-1">
@@ -164,12 +164,12 @@
                           {{ $courses->links() }}
                           
                       </div>
-                      <div role="tabpanel" class="tab-pane fade" id="enrolled">
+                      <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="enrolled">
                           @foreach($purchasedCourses as $course)
                                {{View::make('student.dashboard.enrolled-course')->with( compact( 'course', 'student' ) ) }}
                           @endforeach
                       </div>
-                      <div role="tabpanel" class="tab-pane fade" id="finished">
+                      <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="finished">
                           @foreach($purchasedCourses as $course)
                               <?php
                               $course = $course->product;
@@ -178,7 +178,7 @@
                                {{View::make('student.dashboard.completed-course')->with( compact( 'course', 'student' ) ) }}
                           @endforeach
                       </div>
-                      <div role="tabpanel" class="tab-pane fade" id="wishlist">
+                      <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="wishlist">
                           @foreach($wishlist as $course)
                                {{View::make('student.dashboard.wishlist-course')->with( compact( 'course', 'student' ) ) }}
                           @endforeach
