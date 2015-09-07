@@ -24,16 +24,22 @@ class InstructorsController extends \BaseController {
         
         public function become()
 	{
-            Return View::make('instructors/become');
+            $users = new UserRepository();
+            $users->become( 'Instructor', Auth::user(), Cookie::get('stpi') );
+            return Redirect::action('CoursesController@myCourses');
+//            Return View::make('instructors/become');
 	}
         
         public function doBecome(){
             $users = new UserRepository();
             if( $users->become( 'Instructor', Auth::user(), Cookie::get('stpi') ) ){
+                return Redirect::action('CoursesController@myCourses');
                 return Redirect::action('InstructorsController@index')->withSuccess( trans('instructors/general.congratulations_become_instructor') );
             }
             else{
-                return Redirect::action('InstructorsController@index')->withError( trans('instructors/general.already_instructor') );
+                return Redirect::action('CoursesController@myCourses');
+                return Redirect::action('InstructorsController@index')->withSuccess( trans('instructors/general.congratulations_become_instructor') );
+//                return Redirect::action('InstructorsController@index')->withError( trans('instructors/general.already_instructor') );
             }
         }
         

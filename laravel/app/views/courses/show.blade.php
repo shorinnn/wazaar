@@ -351,10 +351,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                    <h1>{{trans('site/homepage.be-an-instructor')}}
-                        <p class="lead intro-paragraph">{{trans('site/homepage.earn_for_creating_course')}}</p>
-                    </h1>
-                    <a href="#" class="blue-button large-button">{{ trans('general.register') }}</a>
+                    <h1>{{trans('site/homepage.be-an-instructor')}}</h1>
+                    <a href="{{ action('InstructorsController@become') }}" class="blue-button large-button">{{ trans('general.register') }}</a>
                 </div>
             </div>
         </div>
