@@ -336,21 +336,6 @@
                         return message;
                     }
 					
-					$('body').delegate('.scroll-pane', 'keyup', function(){
-						$(".scroll-pane").customScrollbar({
-							skin: "wazaar-skin", 
-							hScroll: false,
-							updateOnWindowResize: true
-						})
-					});
-						
-					$('body').on('click','.scroll-pane',function(){
-						$(".scroll-pane").customScrollbar({
-							skin: "wazaar-skin", 
-							hScroll: false,
-							updateOnWindowResize: true
-						})
-					})     
 					           
 			});
 								 

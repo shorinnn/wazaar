@@ -103,11 +103,11 @@ function makeBoxesExpandable(){
 		$('textarea').autogrow(opts);
 	});
 	
-		$(".scroll-pane").customScrollbar({
+		/*$(".scroll-pane").customScrollbar({
 			skin: "wazaar-skin", 
 			hScroll: false,
 			updateOnWindowResize: true
-		});
+		});*/
 }
 
 function videoGridBoxIn(){
