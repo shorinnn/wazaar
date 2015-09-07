@@ -72,4 +72,7 @@ return array(
     'upload-files' => 'ファイル投稿',
     'select-file' => 'ファイル選択',
     'no-uploaded-image' => 'No uploaded image',
+    'course-display-name-for' => '商品ページの販売者名の表記',
+    'person' => '個人（担当者）名',
+    'corporation' => '法人名'
 );
