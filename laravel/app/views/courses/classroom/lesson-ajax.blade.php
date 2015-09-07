@@ -246,7 +246,7 @@
                                 @foreach($lesson->blocks as $block)
                                     @if($block->type == 'file')
                                         <li>
-                                            <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}" target="_blank" data-toggle="tooltip" title="{{ $block->size() }}">
+                                            <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}" target="_blank" data-toggle="tooltip" title="{{ $block->name() }}">
                                                 @if( strpos( $block->mime, 'image')!== false )
                                                     <i class="fa fa-file-image-o pull-left"></i> 
                                                 @elseif( strpos( $block->mime, 'pdf' ) !== false )

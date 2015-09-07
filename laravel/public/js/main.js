@@ -1385,7 +1385,7 @@ function showMoreContent(){
 				$content.css('max-height', 'none');
 				$link.html(('<i class="fa fa-chevron-up"></i>') + $link.attr('data-less-text'));
 				TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
-				
+				$('[data-toggle="tooltip"]').tooltip();
 			} else if($link.hasClass('show-less')){
 				$link.removeClass('show-less');
 				$link.addClass('show-more');
@@ -1477,7 +1477,6 @@ function toggleRightBar(e, json){
     if( !isset(json) && isset(e) && typeof( $(e.target).attr('data-property') )!='undefined'  && $('.right-slide-menu').hasClass('in') ) return false;
     $('.play-intro-button').hide();
     $('.right-slide-menu').toggleClass('in');
-    console.log($('.right-slide-menu.in .ask-question-fields .clearfix input[type=text]').length);
     if($('.right-slide-menu.in .ask-question-fields .clearfix input[type=text]').length >= 1){
         $('.right-slide-menu.in .ask-question-fields .clearfix input[type=text]').focus();
     }
