@@ -4817,9 +4817,13 @@ h2, h3, h4, h5, h6{
 	margin: 0;
 }
 .course-material .materials ul li{
-	margin-top: 24px;
+	/*margin-top: 24px;*/
+	padding: 12px 0px;
 	font-size: 13px;
 	color: #a7b7c4;
+}
+.course-material .materials ul li:first-child{
+	padding-top: 24px;
 }
 .course-material .materials ul li i{
 	margin-right: 10px;
