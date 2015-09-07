@@ -4782,9 +4782,9 @@ h2, h3, h4, h5, h6{
 	right: 500px;
 }
 .course-question-sidebar.hasScroll{
-	width: calc(25% - 15px);
-	width: -moz-calc(25% - 15px);
-	width: -webkit-calc(25% - 15px);
+	width: calc(25% + 15px);
+	width: -moz-calc(25% + 15px);
+	width: -webkit-calc(25% + 15px);
 	right: -15px;
 }
 .course-question-sidebar.hasScroll.in{
