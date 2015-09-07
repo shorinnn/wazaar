@@ -26,15 +26,17 @@
 	
     var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';	
     $(function(){
-		add_scroll_class_if_have_scrollbar();
+        add_scroll_class_if_have_scrollbar();
 
-        $('#myVideo').on('timeupdate', function(e){
-            localStorage.setItem('vid-progress-'+videoHash, 
-            $('#myVideo')[0].currentTime );
-        });
-        if( localStorage.getItem('vid-progress-{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}') != 'undefined' ){
-            $('#myVideo')[0].currentTime =  localStorage.getItem('vid-progress-'+videoHash);
-        };
+        if( $('#myVideo').length > 0 ){
+            $('#myVideo').on('timeupdate', function(e){
+                localStorage.setItem('vid-progress-'+videoHash, 
+                $('#myVideo')[0].currentTime );
+            });
+            if( localStorage.getItem('vid-progress-{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}') != 'undefined' ){
+                $('#myVideo')[0].currentTime =  localStorage.getItem('vid-progress-'+videoHash);
+            };
+        }
         
         var lessonId = {{ $lesson->id }};
         $('#myVideo').on('ended', function(e){
@@ -83,5 +85,52 @@
 		$("#myVideo").innerHeight(screenHeight - videoControlHeight - 102);
 	 } 
 
+
+// By Chris Coyier & tweaked by Mathias Bynens
+
+$(function() {
+    makeYTfluid();
+});
+
+function makeYTfluid(){
+    // Find all YouTube videos
+	var $allVideos = $("iframe"),
+
+	    // The element that is fluid width
+	    $fluidEl = $(".videoContainer");
+
+	// Figure out and save aspect ratio for each video
+	$allVideos.each(function() {
+            console.log('YT VID');
+		$(this)
+			.data('aspectRatio', this.height / this.width)
+
+			// and remove the hard coded width/height
+			.removeAttr('height')
+			.removeAttr('width');
+
+	});
+
+	// When the window is resized
+	// (You'll probably want to debounce this)
+	$(window).resize(function() {
+                setTimeout(function(){
+                    var newWidth = $fluidEl.width();
+
+                    // Resize all videos according to their own aspect ratio
+                    $allVideos.each(function() {
+
+                            var $el = $(this);
+                            $el
+                                    .width(newWidth)
+                                    .height(newWidth * $el.data('aspectRatio'));
+
+                    });
+                }, 500);
+		
+
+	// Kick off one resize to fix all videos on page load
+	}).resize();
+}
 </script>
 @stop

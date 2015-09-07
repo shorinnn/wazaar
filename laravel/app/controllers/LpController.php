@@ -68,7 +68,7 @@ class LpController extends \BaseController {
             $total = $this->delivered->getUsers();
             dd($total);
 //            $this->delivered->deleteUser( 3193   );
-            $users = $this->delivered->findUser('finalconftest@mailinator.com');
+            $users = $this->delivered->findUser('sorinAffiliateTest');
             $users = $users['data'];
             print_r($users);
              return;
