@@ -42,6 +42,7 @@ class User extends Ardent implements ConfideUserInterface
      */
     public function canPurchase($product){
         $student = Student::find($this->id);
+        if( $student->hasRole('Affiliate') ) return false;
         if( strtolower( get_class($product) ) == 'course' ){
             if( $this->id == $product->instructor->id ) return false;
             if( $this->id == $product->assigned_instructor_id ) return false;

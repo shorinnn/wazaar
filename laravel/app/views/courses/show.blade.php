@@ -254,7 +254,7 @@
                                      <button class="clearfix enroll-button blue-button extra-large-button join-class">
                                          {{ trans("courses/general.course-enroll") }}
                                      </button>
-                                @elseif(Auth::check() && $student->purchased($course) )
+                                @elseif(Auth::check() && ( Auth::user()->hasRole('Affiliate') || $student->purchased($course) ) )
                                     <span class="price clearfix ">{{trans('courses/general.free') }}</span>
                                      <a class="clearfix enroll-button blue-button extra-large-button"
                                         href="{{ action('ClassroomController@dashboard', $course->slug)}}">
