@@ -132,7 +132,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container margin-bottom-30">
 	<div class="row">
     	<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 no-padding gift-modal no-padding">
         	<h3>Gifts</h3>
@@ -289,6 +289,11 @@
 .checkout-modal .modal-body{
 	background: #f7f9fa;
 	padding: 24px 60px 60px;
+}
+.checkout-modal .close{
+	position: absolute;
+	top: 15px;
+	right: 15px;
 }
 .radio-style-2 input[type='radio']{
 	display: none;
