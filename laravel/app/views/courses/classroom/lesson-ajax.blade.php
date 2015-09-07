@@ -226,7 +226,7 @@
                 @endif
             </div>
             
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 course-question-sidebar">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 course-question-sidebar no-padding">
                 @if( count($lesson->attachments()) > 0)
                 
                     <div class="course-material">
