@@ -121,6 +121,7 @@ class UserRepository
         if( App::environment() == 'local' || App::environment() == 'testing' ) return;
         $this->delivered = new DeliveredHelper();
         // add the user to DELIVERED
+        $user = User::find( $user->id );
         $response = $this->delivered->addUser( $user->first_name, $user->last_name, $user->email );
         if( is_array($response) && $response['success'] == true ){
             $userData = $response['data'];
