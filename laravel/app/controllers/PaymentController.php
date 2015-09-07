@@ -87,7 +87,7 @@ class PaymentController extends BaseController
             compact('productPartial', 'student', 'renderForm', 'product', 'finalCost', 'amountToPay'));
     }
 
-    //Initial Payment where student has no CC details provided yet
+    //Stripe related payment methods
     public function postProcessStripe()
     {
         if (Input::has('token')) {
@@ -159,6 +159,14 @@ class PaymentController extends BaseController
 
         return Response::json(['success' => 0]);
     }
+
+    //Max Connect payment methods
+
+    public function postProcessMaxConnect()
+    {
+
+    }
+
 
     public function postRemovePaymentLog()
     {

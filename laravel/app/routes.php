@@ -336,7 +336,7 @@ Route::group( array('domain' => $affiliateSubdomain ), function(){
     Route::get('forgot-password', 'AffiliateController@forgotPassword');
     Route::post('forgot-password', 'AffiliateController@doForgotPassword');
     
-    Route::group(['prefix' => 'dashboard'], function (){
+    Route::group(['prefix' => 'analytics'], function (){
         Route::get('/','AffiliateDashboardController@index');
         Route::get('topcourses/{frequency}/{courseId?}', 'AffiliateDashboardController@topCoursesView');
         Route::get('sales/{frequency}/{courseId?}/{trackingCode?}', 'AffiliateDashboardController@salesView');
@@ -388,6 +388,15 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
 });
 
 ##Dashboard Group
+
+Route::group(['prefix' => 'analytics'], function(){
+    Route::get('/', 'InstructorDashboardController@index');
+    Route::get('/course/{slug?}', 'InstructorDashboardController@course');
+    Route::get('sales/get-count/{frequency?}/{courseId?}','InstructorDashboardController@salesCountView');
+    Route::get('sales/{frequency}/{courseId?}/{trackingCode?}', 'InstructorDashboardController@salesView');
+    Route::any('affiliatestable','InstructorDashboardController@topAffiliatesTableView');
+
+});
 
 Route::group(['prefix' => 'dashboard'], function (){
 
