@@ -132,9 +132,12 @@ class ClassroomController extends \BaseController {
                 $json['status'] = 'success';
                 $json['html'] =  View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
                         'instructor', 'student') )->render();
+                if( Auth::user()->hasRole('Affiliate') )
+                    return View::make('courses.classroom.lesson-ajax-affiliates')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
+                            'instructor', 'student') )->render();
                 return View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
                         'instructor', 'student') )->render();
-                 return json_encode($json);
+//                return json_encode($json);
 //                if( Input::has('ask') ) return View::make('courses.classroom.lesson_ask_ajax')->with( compact('lesson','student') );
 //                else return View::make('courses.classroom.lesson_comments_ajax')->with( compact('lesson','student') );
             }
