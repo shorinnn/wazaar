@@ -45,14 +45,16 @@
                                                 $currentLesson->module->slug,
                                                 $currentLesson->slug])
                            }}" class="resume-course large-button blue-button"><i class="wa-play"></i>{{ trans('affiliates.gifts.resume-course' )}}</a>
-                       @else
+                       @elseif($nextLesson !=null)
                         <a href="{{
                             action('ClassroomController@lesson', 
                                                 [ $nextLesson->module->course->slug,
                                                 $nextLesson->module->slug,
                                                 $nextLesson->slug])
                            }}" class="resume-course large-button blue-button"><i class="wa-play"></i>{{ trans('affiliates.gifts.begin-course' )}}</a>
+                       @else
                        @endif
+                       
                 </div>
             </div>
         </div>
