@@ -353,20 +353,23 @@
 <script>
 
     if(typeof($)=='function'){
+        makeYTfluid();
         skinVideoControls();
         showMoreContent();
-        $('#myVideo').on('timeupdate', function(e){
-            localStorage.setItem('vid-progress-'+videoHash, 
-            $('#myVideo')[0].currentTime );
-        });
-        if( localStorage.getItem('vid-progress-{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}') != 'undefined' ){
-            $('#myVideo')[0].currentTime =  localStorage.getItem('vid-progress-'+videoHash);
-        };
-        
-        
-        $('#myVideo').on('ended', function(e){
-            lessonComplete( lessonId );
-        });
+        if( $('myVideo').length > 0 ){
+            $('#myVideo').on('timeupdate', function(e){
+                localStorage.setItem('vid-progress-'+videoHash, 
+                $('#myVideo')[0].currentTime );
+            });
+            if( localStorage.getItem('vid-progress-{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}') != 'undefined' ){
+                $('#myVideo')[0].currentTime =  localStorage.getItem('vid-progress-'+videoHash);
+            };
+
+
+            $('#myVideo').on('ended', function(e){
+                lessonComplete( lessonId );
+            });
+        }
 		
 		/*var askQuestionHeight = $('.ask-question').height();
 		var tabContents = $('.questions-sidebar .tab-contents').height();
