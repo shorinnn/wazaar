@@ -161,18 +161,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
-                                <div class="discussion-sidebar-footer clearfix">
-                                    <div class="avatar">
-                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" alt="" class="img-responsive">
-                                    </div>
-                                    <form>
-                                        <input type="text" placeholder="Write you answer">
-                                    </form>
-                                </div>  
-                            </div>
-                        </div>
                     </div>
                     
                     @endif
