@@ -101,6 +101,7 @@ $wwwRoutes = function(){
         Route::get('members/create-vip', 'MembersController@createVip');
         Route::post('members/create-vip', 'MembersController@storeVip');
         Route::get('members/super-vip', 'MembersController@superVip');
+        Route::get('members/vip', 'MembersController@vip');
 
         Route::post('members/login-as', 'MembersController@loginAs');
         Route::resource('members', 'MembersController');
@@ -159,6 +160,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::get('courses/search-instructor/{email}', 'CoursesController@searchInstructor');
     Route::get('courses/search-instructor/', 'CoursesController@searchInstructor');
     Route::get('courses/{id}/delete', 'CoursesController@destroy');
+    Route::post('courses/{id}/set-field', 'CoursesController@setField');
 });
 
 $wwwRoutes = function(){

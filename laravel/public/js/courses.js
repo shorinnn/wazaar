@@ -306,8 +306,9 @@ function courseImageUploaded(e, data){
     $(target).append(result.option);
     insertSelectBorder();
 //    $(target).find('[type=radio]').last().click();
-    $(target).find('.select-border').last().click();
-    $(target).find('.select-border').last().click();
+//    $(target).find('.select-border').last().click();
+//    $(target).find('.select-border').last().click();
+    $('.image-thumb-box input:radio').last().click();
     $('.course-listing-image-preview').html( result.html );
 }
 

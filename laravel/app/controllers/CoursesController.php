@@ -4,7 +4,7 @@ class CoursesController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'dashboard',
-                'customPercentage', 'updateExternalVideo', 'removePromo'] ] );
+                'customPercentage', 'updateExternalVideo', 'removePromo', 'setField'] ] );
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroyxxx', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
 
             
@@ -240,6 +240,14 @@ class CoursesController extends \BaseController {
                         ->withError(trans('crud/errors.cannot_save_object',['object'=>'Course']).': '.format_errors($course->errors()->all()));
             }
         }
+        
+         public function setField($id){
+            $course = Course::find($id);
+            if(!admin() && $course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
+                return Redirect::action('CoursesController@index');
+            }
+            DB::table('courses')->where('id', $id)->update( [ Input::get('name') => Input::get('val') ] );
+         }
         
         public function submitForApproval($slug){
             $course = Course::where('slug',$slug)->first();
