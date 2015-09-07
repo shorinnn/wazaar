@@ -118,9 +118,10 @@ class UserRepository
     }
     
     private function _addToDelivered($user, $deliveredTags){
-        if( App::environment() != 'production' ) return;
+        if( App::environment() == 'local' || App::environment() == 'testing' ) return;
         $this->delivered = new DeliveredHelper();
         // add the user to DELIVERED
+        $user = User::find( $user->id );
         $response = $this->delivered->addUser( $user->first_name, $user->last_name, $user->email );
         if( is_array($response) && $response['success'] == true ){
             $userData = $response['data'];
@@ -133,6 +134,16 @@ class UserRepository
             }
             // add confirmed tag
             $res = $this->delivered->addTag('email-confirmed', 'integer', $user->confirmed, $userData->id);
+        }
+        else{
+            $users = $this->delivered->findUser( $user->email );
+            if( count($users) > 0){
+                $user = $users['data'][0];
+                // associate tags with the user
+                foreach($deliveredTags as $tag){
+                    $this->delivered->addTag('user-type-'.$tag, 'integer', 1, $user['id']);
+                }
+            }
         }
     }
     

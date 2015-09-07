@@ -28,13 +28,17 @@ class ClassroomController extends \BaseController {
 //            $student->announcements = $student->receivedMessages()->where('type','mass_message')->where('course_id', $course->id)->orderBy('id','desc')->get();
 //            $student->answers = $student->receivedMessages()->where('type','ask_teacher')->where('course_id', $course->id)->orderBy('id','desc')->get();
             
-            if( $course==null || ( 
-                    !$student->purchased( $course ) && 
+            if( $course==null ) return Redirect::to('/');
+            if( $course->free == 'no' && !$student->purchased( $course ) && 
                     !$student->purchasedLessonFromCourse( $course ) &&
                     $course->instructor_id != Auth::user()->id &&
-                    $course->assigned_instructor_id != Auth::user()->id                     
-                    ) 
-                    ){
+                    $course->assigned_instructor_id != Auth::user()->id  ){
+                return Redirect::to('/');
+            }
+            if( $course->free == 'yes' && !$student->purchased( $course ) && 
+                    !$student->purchasedLessonFromCourse( $course ) &&
+                    $course->instructor_id != Auth::user()->id &&
+                    $course->assigned_instructor_id != Auth::user()->id && !Auth::user()->hasRole('Affiliate')  ){
                 return Redirect::to('/');
             }
             $nextLesson = $video = $student->nextLesson($course);

@@ -202,6 +202,7 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
                 <div class="enroll-button-wrap">
                 @if($course->cost() > 0 && !Input::has('preview') )
+                <?php /*
                         {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
  
                         @if(Auth::guest() || $student->canPurchase($course) )
@@ -243,6 +244,8 @@
                             <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
                                 You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                         @endif
+                                */
+                                ?>
                 @elseif( !Input::has('preview') )
                 
                     {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
@@ -251,7 +254,7 @@
                                      <button class="clearfix enroll-button blue-button extra-large-button join-class">
                                          {{ trans("courses/general.course-enroll") }}
                                      </button>
-                                @elseif(Auth::check() && $student->purchased($course) )
+                                @elseif(Auth::check() && ( Auth::user()->hasRole('Affiliate') || $student->purchased($course) ) )
                                     <span class="price clearfix ">{{trans('courses/general.free') }}</span>
                                      <a class="clearfix enroll-button blue-button extra-large-button"
                                         href="{{ action('ClassroomController@dashboard', $course->slug)}}">
