@@ -5124,7 +5124,7 @@ h2, h3, h4, h5, h6{
 	margin: 0;
 	color: #798794;
 	font-size: 13px;
-	padding: 9px 12px 0 !important;
+	padding: 5px 12px 0 !important;
 	height: 38px;
 	resize: none;
 }
@@ -8259,9 +8259,6 @@ footer{
 		text-align: center;
 	}	
 	.enroll-button-section .enroll-button{
-		display: inline-block;
-	}	
-	.course-data .column-3 .share-lesson{
 		display: inline-block;
 	}	
 	.course-data .column-1 div{

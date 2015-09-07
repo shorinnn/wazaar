@@ -151,58 +151,10 @@
                             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
                                 <div class="row question no-margin">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <h3>What are the best resources for learning bleeding-edge web, UI and UX design?</h3>
+                                        <h3></h3>
                                         <p class="regular-paragraph">
-                                        I'm looking for any kind of resource, including those that are highly technical, those directed to 
-                                        experienced UI/UX designers, and just interesting philosophical works that inform awesome modern/current 
-                                        web UIs/UXs (like Quora's!).
+                                        You have no asked any questions yet. Begin the course and start or join discussions!
                                         </p>
-                                    </div>
-                                </div>
-                                <div class="row answer no-margin">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="avatar">
-                                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" alt="" class="img-responsive">
-                                        </div>
-                                        <div class="replies-box">
-                                            <div class="clearfix">
-                                                <span class="name">Mac Chinedu</span>
-                                                <div class="role teacher">Teacher</div>
-                                            </div>
-                                            <p class="reply">I'm looking for any kind of resource, including those that are highly technical, those directed to experienced 
-                                            UI/UX designers, and just interesting philosophical works that inform awesome modern/current web UIs/UXs (like Quora's!).</p>
-                                            <p class="reply">There is a difference between UI design and UX design. </p>
-                                        </div>                                
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row question-answer">
-                            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
-                                <div class="row question no-margin">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <h3>What are the best resources for learning bleeding-edge web, UI and UX design?</h3>
-                                        <p class="regular-paragraph">
-                                        I'm looking for any kind of resource, including those that are highly technical, those directed to 
-                                        experienced UI/UX designers, and just interesting philosophical works that inform awesome modern/current 
-                                        web UIs/UXs (like Quora's!).
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row answer no-margin">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="avatar">
-                                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" alt="" class="img-responsive">
-                                        </div>
-                                        <div class="replies-box">
-                                            <div class="clearfix">
-                                                <span class="name">Mac Chinedu</span>
-                                                <div class="role others">Co-founder @ trydesignlab.com</div>
-                                            </div>
-                                            <p class="reply">I'm looking for any kind of resource, including those that are highly technical, those directed to experienced 
-                                            UI/UX designers, and just interesting philosophical works that inform awesome modern/current web UIs/UXs (like Quora's!).</p>
-                                            <p class="reply">There is a difference between UI design and UX design. </p>
-                                        </div>                                
                                     </div>
                                 </div>
                             </div>

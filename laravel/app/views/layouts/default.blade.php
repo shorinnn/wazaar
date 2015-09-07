@@ -55,7 +55,7 @@
         <footer>
           <section class="footer-container">
             <div class="container">
-              <div class="row">
+              <div class="row no-margin">
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-center-mobile">
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/footer-logo.png" alt="Wazaar" />
                   <p>&copy; Wazaar {{ date('Y') }}</p>
