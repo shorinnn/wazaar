@@ -1455,9 +1455,7 @@ function toggleSideMenu(){
 }
 
 function toggleRightBar(e, json){
-    if($('.course-question-sidebar').length >= 1){
-        $('.course-question-sidebar').toggleClass('in');
-    }
+    
 
     $('.ask-question').removeClass('active');
     $('.questions-box').removeClass('active');
@@ -1477,6 +1475,10 @@ function toggleRightBar(e, json){
     if( !isset(json) && isset(e) && typeof( $(e.target).attr('data-property') )!='undefined'  && $('.right-slide-menu').hasClass('in') ) return false;
     $('.play-intro-button').hide();
     $('.right-slide-menu').toggleClass('in');
+    if($('.course-question-sidebar').length >= 1){
+        $('.course-question-sidebar').toggleClass('in');
+    }
+    
     if($('.right-slide-menu.in .ask-question-fields .clearfix input[type=text]').length >= 1){
         $('.right-slide-menu.in .ask-question-fields .clearfix input[type=text]').focus();
     }
