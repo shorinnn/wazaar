@@ -73,7 +73,13 @@
                                     </style>
                                     <span class="prev-price"> ¥ {{ number_format( $course->discount_original, Config::get('custom.currency_decimals') ) }}</span>
                                 @endif
-                                ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                
+                                @if($course->free=='yes' || $course->cost() == 0)
+                                    {{ trans('courses/general.free') }}
+                                @else
+                                    ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                @endif
+                                
                                 @if($course->isDiscounted())
                                     {{trans('courses/general.sale')}}
                                 @endif
