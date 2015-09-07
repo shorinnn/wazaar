@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                     <div class="avatar">
-                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" alt="" class="img-responsive">
+                            <img src="{{Auth::user()->commentPicture('Student') }}" alt="" class="img-responsive">
                     </div>
                 </div>
                 <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
