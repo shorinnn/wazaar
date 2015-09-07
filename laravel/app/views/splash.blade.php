@@ -50,7 +50,10 @@
                 @endif
             </div>
         	<div class="top-buttons">
-            	<a href="{{ action('UsersController@login') }}" class="login button large-button" style="margin-bottom:160px">ログイン</a>
+            	<a href="{{ action('UsersController@login') }}" class="login button large-button">ログイン</a>
+            </div>
+        	<div class="top-buttons">
+            	<a href="http://affiliates.wazaar.jp/login" class="login button large-button" style="margin-bottom:130px">アフィリエイター用ログイン</a>
             </div>
         </div>         	
     </div>

@@ -1545,6 +1545,7 @@ header .profile-name li:hover ul{
 .user-data-modal h1{
 	color: #303941;
 	margin: 35px 0;
+	font-size: 26px;
 	text-align: center;
 }
 .login-social-buttons{
@@ -2072,9 +2073,9 @@ header .profile-name li:hover ul{
 	box-shadow: 1px 0px 12px 2px #92cc2e;
 }
 .deactivate-button{
-	border-color: #92cc2e;
 	box-shadow: none;
-}/********** Form Error Message ************/
+}
+/********** Form Error Message ************/
 .parsley-errors-list,
 .alert.alert-error.alert-danger{
     border: none;
