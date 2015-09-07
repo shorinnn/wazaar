@@ -59,7 +59,11 @@
                                                 <span class='countdown' data-final-date-seconds='{{ timeUntil($course['sale_ends_on'], true) }}'>{{ timeUntil($course['sale_ends_on']) }}</span>
                                             </span>
                                     @else
-                                        <span class="discount-percent left">¥ {{ number_format( $course['price'], Config::get('custom.currency_decimals') ) }}</span>
+                                        @if($course['price'] == 0)
+                                            {{ trans('courses/general.free') }}
+                                        @else
+                                            <span class="discount-percent left">¥ {{ number_format( $course['price'], Config::get('custom.currency_decimals') ) }}</span>
+                                        @endif
                                     @endif
                                 </div>
                             </div>
@@ -85,7 +89,11 @@
                                         @if( $course['discounted'] > 0)
                                             - ¥ {{ number_format( $course['discounted'], Config::get('custom.currency_decimals') ) }}
                                         @else
-                                            ¥ {{ number_format( $course['price'], Config::get('custom.currency_decimals') ) }}
+                                            @if($course['price'] == 0)
+                                                {{ trans('courses/general.free') }}
+                                            @else
+                                                ¥ {{ number_format( $course['price'], Config::get('custom.currency_decimals') ) }}
+                                            @endif
                                         @endif
                                     </span>
                             </div>
@@ -178,9 +186,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                    <h1>{{trans('site/homepage.be-an-instructor')}}
-                    </h1>
-                    <a href="#" class="blue-button large-button">{{ trans('site/homepage.register') }}</a>
+                    <h1>{{trans('site/homepage.be-an-instructor')}}</h1>
+                    <a href="{{ action('InstructorsController@become') }}" class="blue-button large-button">{{ trans('site/homepage.register') }}</a>
                 </div>
             </div>
         </div>

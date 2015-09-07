@@ -302,11 +302,11 @@
     </div>
         <div class="row editor-settings-layout margin-bottom-30">
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-            <h4 class="text-right"> Course Display Name For
-            </h4>
+            <h4 class="text-right"> {{ trans('courses/create.course-display-name-for') }}</h4>
         </div>
         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-            {{ Form::select( 'details_name',[ 'person' => 'Person', 'corporation' => 'Corporation'], $course->details_name ) }}
+            {{ Form::select( 'details_name',[ 'person' => trans('courses/create.person'), 
+                                              'corporation' => trans('courses/create.corporation') ], $course->details_name ) }}
         </div>
         
     </div>

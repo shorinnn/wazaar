@@ -69,4 +69,7 @@ return array(
     'upload-files' => 'Upload Files',
     'select-file' => 'Select file',
     'no-uploaded-image' => 'No uploaded image',
+    'course-display-name-for' => 'Course Display Name For',
+    'person' => 'Person',
+    'corporation' => 'Corporation'
 );

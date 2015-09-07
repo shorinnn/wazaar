@@ -153,7 +153,7 @@
             <div class="right-slide-menu"></div>
         <div class="row full-height">
             
-            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 slide-to-left full-height scroll-pane">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 slide-to-left full-height scroll-pane classroom-main">
                 <div class="classroom-header row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <span class="left-menu slide-menu-toggler">
@@ -216,25 +216,17 @@
                         @endif
                     </div>
                 </div>
-                <div class="row classroom-content-row">
-                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    	<h3>Lesson content</h3>
-                        <p class="regular-paragraph">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                        </p>
-                    	<h3>Lesson content</h3>
-                        <p class="regular-paragraph">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                        </p>
+                @if( trim($lesson->notes) != '')
+                    <div class="row classroom-content-row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <h3>{{ trans('courses/dashboard.lesson-content') }}</h3>
+                            <p class="regular-paragraph">{{ $lesson->notes }}</p>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
             
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="overflow:hidden;">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 course-question-sidebar">
                 @if( count($lesson->attachments()) > 0)
                 
                     <div class="course-material">
@@ -246,16 +238,17 @@
                                 @foreach($lesson->blocks as $block)
                                     @if($block->type == 'file')
                                         <li>
-                                            <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}" target="_blank">
+                                            <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}" target="_blank" data-toggle="tooltip" title="{{ $block->name }}">
                                                 @if( strpos( $block->mime, 'image')!== false )
-                                                    <i class="fa fa-file-image-o"></i> 
+                                                    <i class="fa fa-file-image-o pull-left"></i> 
                                                 @elseif( strpos( $block->mime, 'pdf' ) !== false )
-                                                    <i class="fa fa-file-pdf-o"></i> 
+                                                    <i class="fa fa-file-pdf-o pull-left"></i> 
                                                 @else
-                                                    <i class='fa fa-file-text'></i>
+                                                    <i class='fa fa-file-text pull-left'></i>
                                                 @endif
-                                                {{ $block->name }}  
-                                                <span class="size">{{ $block->size() }}</span>
+                                                <span class="course-material-name pull-left">{{ $block->name }}</span>
+                                                <span class="size pull-right">{{ $block->size() }}</span>
+                                                <div class="clearfix"></div>
                                             </a>
                                         </li>
                                     @endif
@@ -268,7 +261,7 @@
                 
                 <div class="questions-sidebar">
                     <div class="header clearfix">
-                        <a href="#" class="questions-tab-header active">{{ $lesson->discussions()->count() }} Questions</a>
+                        <a href="#" class="questions-tab-header active">{{ $lesson->discussions()->count() }} {{ trans('courses/dashboard.questions') }}</a>
                         
                         <!--<a href="#" class="notes-tab-header">10 Notes</a>-->
                     </div>
@@ -294,7 +287,7 @@
                             <div class="img-container">
                                 <img src="{{Auth::user()->commentPicture('student')}}" alt="" class="img-responsive">
                             </div>
-                            <span onclick="showLessonQuestionForm()">Ask a question</span>
+                            <span onclick="showLessonQuestionForm()">{{ trans('courses/dashboard.ask-question') }}</span>
                             <div style="display:none" id="question-form">
                                 {{ View::make('courses.classroom.discussions.form')->with( compact('lesson') ) }}
                             </div>

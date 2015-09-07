@@ -73,7 +73,11 @@
                             </div>
                             <div class="price-tag-container clearfix">
                                 <div class="price-tag">
-                                    ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    @if($course->free=='yes' || $course->cost() == 0)
+                                        {{ trans('courses/general.free') }}
+                                    @else
+                                        ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -154,7 +158,11 @@
                             </div>
                             <div class="price-tag-container clearfix">
                                 <div class="price-tag">
-                                    ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    @if($course->free=='yes' || $course->cost() == 0)
+                                        {{ trans('courses/general.free') }}
+                                    @else
+                                        ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    @endif
                                 </div>
                             </div>
                         </div>

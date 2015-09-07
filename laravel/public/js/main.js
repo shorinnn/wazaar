@@ -1385,7 +1385,7 @@ function showMoreContent(){
 				$content.css('max-height', 'none');
 				$link.html(('<i class="fa fa-chevron-up"></i>') + $link.attr('data-less-text'));
 				TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
-				
+				$('[data-toggle="tooltip"]').tooltip();
 			} else if($link.hasClass('show-less')){
 				$link.removeClass('show-less');
 				$link.addClass('show-more');
@@ -1455,6 +1455,8 @@ function toggleSideMenu(){
 }
 
 function toggleRightBar(e, json){
+    
+
     $('.ask-question').removeClass('active');
     $('.questions-box').removeClass('active');
     
@@ -1473,6 +1475,13 @@ function toggleRightBar(e, json){
     if( !isset(json) && isset(e) && typeof( $(e.target).attr('data-property') )!='undefined'  && $('.right-slide-menu').hasClass('in') ) return false;
     $('.play-intro-button').hide();
     $('.right-slide-menu').toggleClass('in');
+    if($('.course-question-sidebar').length >= 1){
+        $('.course-question-sidebar').toggleClass('in');
+    }
+    
+    if($('.right-slide-menu.in .ask-question-fields .clearfix input[type=text]').length >= 1){
+        $('.right-slide-menu.in .ask-question-fields .clearfix input[type=text]').focus();
+    }
     $('.slide-to-left').toggleClass('in');
     $('body').toggleClass('discussion-opened');
     setTimeout( skinVideoControls, 501 );

@@ -4760,6 +4760,36 @@ h2, h3, h4, h5, h6{
 	color: #a7b5c2;
 	margin: 0;
 }
+/*classroom main*/
+.classroom-main{
+	position: relative;
+	z-index: 1;
+	overflow: inherit !important;
+}
+/* classroom sidebar*/
+.course-question-sidebar{
+	position: fixed;
+	top: 0px;
+	z-index: 2;
+	height: 100%;
+	width: 25%;
+	right: 0px;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+}
+.course-question-sidebar.in{
+	right: 500px;
+}
+.course-question-sidebar.hasScroll{
+	width: calc(25% + 15px);
+	width: -moz-calc(25% + 15px);
+	width: -webkit-calc(25% + 15px);
+	right: -15px;
+}
+.course-question-sidebar.hasScroll.in{
+	right: 485px;
+}
 /* Course Materials */
 .course-material{
 	max-height: 400px;
@@ -4787,9 +4817,13 @@ h2, h3, h4, h5, h6{
 	margin: 0;
 }
 .course-material .materials ul li{
-	margin-top: 24px;
+	/*margin-top: 24px;*/
+	padding: 12px 0px;
 	font-size: 13px;
 	color: #a7b7c4;
+}
+.course-material .materials ul li:first-child{
+	padding-top: 24px;
 }
 .course-material .materials ul li i{
 	margin-right: 10px;
@@ -4799,6 +4833,14 @@ h2, h3, h4, h5, h6{
 .course-material .materials ul li .size{
 	color: #798794;
 	margin-left: 7px;
+}
+.course-material .materials ul li .course-material-name{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: calc(100% - 100px);
+	display: block;
+	float: left;
 }
 .course-material .download-material{
 	background: #f7f9fa;
@@ -4962,7 +5004,7 @@ h2, h3, h4, h5, h6{
 }
 .discussion-sidebar-header .close-tab{
 	position: absolute;
-	top: 30px;
+	top: 22px;
 	right: 30px;
 	color: #a7b7c4;
 	font-size: 18px;
@@ -8062,7 +8104,8 @@ footer{
 @media (max-width: 1600px) {
 	.carousel-inner .container-fluid .row{
 		margin: 0 -15px 0 -15px;
-	}	.classroom-video.video-container .topControl{
+	}
+	.classroom-video.video-container .topControl{
 		width: 66%;
 	}
 }
@@ -8083,15 +8126,15 @@ footer{
 }
 @media (min-width: 991px){
 	.questions-sidebar{
-		position: fixed;
+		/*position: fixed;*/
 		height: 100%;
-		width: 24%;
+		/*width: 24%;*/
 		z-index: 9;
 	}	
 	.questions-sidebar .ask-question{
 		margin-top: 0;
-		position: absolute;
-		width: 100%;
+		position: fixed;
+		width: 25%;
 		bottom: 0;
 		background: #242d36;
 	}	
@@ -8373,9 +8416,26 @@ footer{
 	}	
 }
 @media (max-width:875px){
-.instructor-mycourses .course-wrapper .bottom-bar .status-box {
-    left: 58.5%;
-}	
+	.instructor-mycourses .course-wrapper .bottom-bar .status-box {
+	    left: 58.5%;
+	}	
+	.course-question-sidebar{
+		position: relative;
+		z-index: 1;
+		height: 100%;
+		width: 100%;
+		right: 0px;
+	}
+	.course-question-sidebar.in{
+		right: 0px;
+	}
+	.course-question-sidebar.hasScroll{
+		width: 100%;
+		right: 0px;
+	}
+	.course-question-sidebar.hasScroll.in{
+		right: 485px;
+	}	
 }
 @media (max-width:767px){
 header .top-menu .logged-out li a{

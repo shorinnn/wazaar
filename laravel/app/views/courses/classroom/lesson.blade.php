@@ -16,8 +16,18 @@
 
 @section('extra_js')
 <script>
+	function add_scroll_class_if_have_scrollbar(){
+		if($(document).height() > $(window).height()){
+			$('.course-question-sidebar').addClass('hasScroll');
+		} else {
+			$('.course-question-sidebar').removeClass('hasScroll');
+		}
+	}
+	
     var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';	
     $(function(){
+		add_scroll_class_if_have_scrollbar();
+
         $('#myVideo').on('timeupdate', function(e){
             localStorage.setItem('vid-progress-'+videoHash, 
             $('#myVideo')[0].currentTime );
@@ -41,6 +51,7 @@
 	var timeout = false;
 	var delta = 200;
 	$(window).resize(function() {
+		add_scroll_class_if_have_scrollbar();
 		rtime = new Date();
 		if (timeout === false) {
 			timeout = true;
