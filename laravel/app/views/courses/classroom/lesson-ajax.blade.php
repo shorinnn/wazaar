@@ -153,7 +153,7 @@
             <div class="right-slide-menu"></div>
         <div class="row full-height">
             
-            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 slide-to-left full-height scroll-pane">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 slide-to-left full-height scroll-pane classroom-main">
                 <div class="classroom-header row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <span class="left-menu slide-menu-toggler">
@@ -234,7 +234,7 @@
                 </div>
             </div>
             
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="overflow:hidden;">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 course-question-sidebar">
                 @if( count($lesson->attachments()) > 0)
                 
                     <div class="course-material">

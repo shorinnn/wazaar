@@ -1455,6 +1455,9 @@ function toggleSideMenu(){
 }
 
 function toggleRightBar(e, json){
+    if($('.course-question-sidebar').length >= 1){
+        $('.course-question-sidebar').toggleClass('in');
+    }
     $('.ask-question').removeClass('active');
     $('.questions-box').removeClass('active');
     
