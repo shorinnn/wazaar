@@ -68,8 +68,7 @@
     </div>
 </div>
 <script>
-$(document).ready(function(e) {
     $('#gift-ui-holder').parent().parent('.modal-body').css('padding', '0px');
     $('#gift-ui-holder').parents('.modal-dialog').addClass('gift-ui-modal');
-});
+
 </script>
