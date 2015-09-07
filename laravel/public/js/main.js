@@ -97,8 +97,8 @@ $(document).ready(function(){
 function makeBoxesExpandable(){
     $('body').delegate('textarea', 'keyup', function(){
 		var opts = {
-			animate: true
-			, cloneClass: 'faketextarea'
+			animate: false,
+			cloneClass: 'faketextarea'
 		};
 		$('textarea').autogrow(opts);
 	});
