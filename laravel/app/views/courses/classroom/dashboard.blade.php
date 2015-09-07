@@ -44,14 +44,14 @@
                                                 [ $currentLesson->module->course->slug,
                                                 $currentLesson->module->slug,
                                                 $currentLesson->slug])
-                           }}" class="resume-course large-button blue-button"><i class="wa-play"></i>Resume course</a>
+                           }}" class="resume-course large-button blue-button"><i class="wa-play"></i>{{ trans('affiliates.gifts.resume-course' )}}</a>
                        @else
                         <a href="{{
                             action('ClassroomController@lesson', 
                                                 [ $nextLesson->module->course->slug,
                                                 $nextLesson->module->slug,
                                                 $nextLesson->slug])
-                           }}" class="resume-course large-button blue-button"><i class="wa-play"></i>Start course</a>
+                           }}" class="resume-course large-button blue-button"><i class="wa-play"></i>{{ trans('affiliates.gifts.begin-course' )}}</a>
                        @endif
                 </div>
             </div>
@@ -96,8 +96,9 @@
                                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                         <div class="description">
                                         <h3>
-                                            Course Gift from <span class="name">
-                                                {{$gift->affiliate->fullName() }}</span>
+                                            {{ trans('affiliates.gifts.course-gift-from-name', ['name' => $gift->affiliate->fullName()] ) }}
+                                            
+                                            
                                         </h3>
                                         <p>{{ $gift->text }}</p>
                                     </div>
@@ -108,13 +109,15 @@
                             </div>
                             <div class="row files-wrap download-files-wrap no-margin">
                                 <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                        <a href="#collapseExample" class="toggle-button show-more" data-toggle="collapse" data-less-text="Hide files" data-more-text="Show files">
-                                        <i class="wa-chevron-down"></i>Show files
+                                        <a href="#collapseExample" class="toggle-button show-more" data-toggle="collapse"
+                                           data-less-text="{{ trans('affiliates.gifts.hide-files') }}" 
+                                           data-more-text="{{ trans('affiliates.gifts.show-files') }}">
+                                        <i class="wa-chevron-down"></i>{{ trans('affiliates.gifts.show-files') }}
                                     </a>
                                 </div>
                                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                    <span style='opacity:0' class="default-button large-button">Download all files in zip</span>
-                                    <span class="file-size">{{$gift->files->count()}} files </span>
+                                    <span style='opacity:0' class="default-button large-button">{{ trans('affiliates.gifts.download-all-files-in-zip') }}</span>
+                                    <span class="file-size">{{$gift->files->count()}} {{ trans('affiliates.gifts.files') }} </span>
                                 </div>    
                             </div>
                             <div class="row files-wrap toggle-container collapse no-margin" id="collapseExample">
