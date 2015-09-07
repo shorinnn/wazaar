@@ -89,7 +89,7 @@
                                             </div>
                                             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
                                               <h4>
-                                                  @if($course->publish_status=='approved')
+                                                  @if( !$course->publish_status=='approved' )
                                                       {{$course->name}}
                                                   @else
                                                       <a href="{{ action('CoursesController@show', $course->slug) }}">{{$course->name}}</a>
