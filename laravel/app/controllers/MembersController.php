@@ -200,6 +200,14 @@ class MembersController extends \BaseController {
             
         }
         
+        public function vip(){
+            $result = DB::select("SELECT `id` as `theID`, `first_name`, `last_name`, `email`,
+                (SELECT COUNT(id) FROM `users` WHERE `second_tier_affiliate_id` = theID) AS `ref_count` FROM `users` WHERE `is_vip` = 'yes' 
+                ORDER BY `ref_count` DESC");
+            return View::make('administration.members.vip.super-vip')->withVips($result);
+            
+        }
+        
         public function loginAs(){
             $user = User::find( Input::get('id') );
             Auth::login( $user );
