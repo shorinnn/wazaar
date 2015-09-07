@@ -47,9 +47,9 @@ return
             'youtube'   => 'Youtube',
             'bankCode'   => '銀行コード',
             'bankName'   => ' 銀行名',
-            'branchCode'   => '振込先支店コード ',
-            'branchName'   => '振込先支店名',
-            'accountType'   => '振込先口座種類',
+            'branchCode'   => '支店コード',
+            'branchName'   => '支店名',
+            'accountType'   => '普通口座',
             'accountNumber'   => '口座番号',
             'beneficiaryName'   => '振込先口座名義',
             'accountTypes' =>
