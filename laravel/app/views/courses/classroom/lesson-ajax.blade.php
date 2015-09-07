@@ -216,22 +216,14 @@
                         @endif
                     </div>
                 </div>
-                <div class="row classroom-content-row">
-                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    	<h3>Lesson content</h3>
-                        <p class="regular-paragraph">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                        </p>
-                    	<h3>Lesson content</h3>
-                        <p class="regular-paragraph">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                        </p>
+                @if( trim($lesson->notes) != '')
+                    <div class="row classroom-content-row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <h3>{{ trans('courses/dashboard.lesson-content') }}</h3>
+                            <p class="regular-paragraph">{{ $lesson->notes }}</p>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
             
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 course-question-sidebar">
@@ -269,7 +261,7 @@
                 
                 <div class="questions-sidebar">
                     <div class="header clearfix">
-                        <a href="#" class="questions-tab-header active">{{ $lesson->discussions()->count() }} Questions</a>
+                        <a href="#" class="questions-tab-header active">{{ $lesson->discussions()->count() }} {{ trans('courses/dashboard.questions') }}</a>
                         
                         <!--<a href="#" class="notes-tab-header">10 Notes</a>-->
                     </div>
@@ -295,7 +287,7 @@
                             <div class="img-container">
                                 <img src="{{Auth::user()->commentPicture('student')}}" alt="" class="img-responsive">
                             </div>
-                            <span onclick="showLessonQuestionForm()">Ask a question</span>
+                            <span onclick="showLessonQuestionForm()">{{ trans('courses/dashboard.ask-question') }}</span>
                             <div style="display:none" id="question-form">
                                 {{ View::make('courses.classroom.discussions.form')->with( compact('lesson') ) }}
                             </div>
