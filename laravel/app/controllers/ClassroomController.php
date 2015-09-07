@@ -85,14 +85,17 @@ class ClassroomController extends \BaseController {
             $video = $lesson->blocks()->where('type','video')->first();
             if( $video != null ) $video = Video::find( $video->content );
 //            if( !$student->purchased( $course ) && !$student->purchased( $lesson ) ){
-             if($student->id != $course->instructor_id && $student->id != $course->assigned_instructor_id ){
+            if($student->id != $course->instructor_id && $student->id != $course->assigned_instructor_id ){
                 $purchase = $student->purchases()->where('product_type','Lesson')->where('product_id', $lesson->id)->first();
-                if( $lesson==null || !$student->purchased($course) && $purchase==null && $lesson->free_preview == 'no' ){
-                    return Redirect::to('/');
-                }
-           
-                if( (!$student->purchased($course) && $purchase==null && $lesson->free_preview=='yes') || ( !$student->purchased($course) && $purchase!=null && $purchase->free_product=='yes') ){
-                    return View::make('courses.classroom.crash_lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
+                if( Auth::user()->hasRole('Affiliate') && $course->free=='yes' ){}
+                else{
+                    if( $lesson==null || !$student->purchased($course) && $purchase==null && $lesson->free_preview == 'no' ){
+                        return Redirect::to('/');
+                    }
+
+                    if( (!$student->purchased($course) && $purchase==null && $lesson->free_preview=='yes') || ( !$student->purchased($course) && $purchase!=null && $purchase->free_product=='yes') ){
+                        return View::make('courses.classroom.crash_lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
+                    }
                 }
             }
             
