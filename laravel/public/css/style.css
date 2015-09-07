@@ -4834,6 +4834,14 @@ h2, h3, h4, h5, h6{
 	color: #798794;
 	margin-left: 7px;
 }
+.course-material .materials ul li .course-material-name{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: calc(100% - 100px);
+	display: block;
+	float: left;
+}
 .course-material .download-material{
 	background: #f7f9fa;
 	border-radius: 3px;

@@ -246,16 +246,17 @@
                                 @foreach($lesson->blocks as $block)
                                     @if($block->type == 'file')
                                         <li>
-                                            <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}" target="_blank">
+                                            <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}" target="_blank" data-toggle="tooltip" title="{{ $block->size() }}">
                                                 @if( strpos( $block->mime, 'image')!== false )
-                                                    <i class="fa fa-file-image-o"></i> 
+                                                    <i class="fa fa-file-image-o pull-left"></i> 
                                                 @elseif( strpos( $block->mime, 'pdf' ) !== false )
-                                                    <i class="fa fa-file-pdf-o"></i> 
+                                                    <i class="fa fa-file-pdf-o pull-left"></i> 
                                                 @else
-                                                    <i class='fa fa-file-text'></i>
+                                                    <i class='fa fa-file-text pull-left'></i>
                                                 @endif
-                                                {{ $block->name }}  
-                                                <span class="size">{{ $block->size() }}</span>
+                                                <span class="course-material-name pull-left">{{ $block->name }}</span>
+                                                <span class="size pull-right">{{ $block->size() }}</span>
+                                                <div class="clearfix"></div>
                                             </a>
                                         </li>
                                     @endif
