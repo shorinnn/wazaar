@@ -7,14 +7,14 @@
             </div>
             <div class="row no-margin">
                 <div class="form-group no-margin search-wrap clearfix">
-                    <div class="filter-wrap col-xs-8 col-sm-10 col-md-10 col-lg-10">
+                    <div class="filter-wrap col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <input type="text" name="videoFilter" id="videoFilter" placeholder="Search file name ..." class="form-control">
-                        <button id="btnGoFilterVideo"><i class="wa-search"></i></button>
+                        <!--<button id="btnGoFilterVideo"><i class="wa-search"></i></button>-->
                     </div>
-                    <div class="toggle-menus block text-right inline-block col-xs-4 col-sm-2 col-md-2 col-lg-2">
+                    <!--<div class="toggle-menus block text-right inline-block col-xs-4 col-sm-2 col-md-2 col-lg-2">
                         <a href="#" class="menu menu-1"><i class="fa fa-th"></i></a>
                         <a href="#" class="menu menu-2"><i class="fa fa-bars"></i></a>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="modal-body no-padding clearfix">

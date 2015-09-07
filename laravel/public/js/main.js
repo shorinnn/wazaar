@@ -24,6 +24,13 @@ $(document).ready(function(){
 //          window.location = location.href;
 //      });
 
+	$("#affiliate-toolbar-tracking").on("focus", function(){
+	  $(".fa.fa-plus").hide();
+	});
+	$("#affiliate-toolbar-tracking").on("blur", function(){
+	  $(".fa.fa-plus").show();
+	});	
+
     makeBoxesExpandable();
     if( getCookie('hideAffiliateToolbar')=='true' ) toggleAffiliateToolbar(event);
     $('.countdown').each(function(){

@@ -4162,13 +4162,16 @@ h2, h3, h4, h5, h6{
 	color: #a7b7c4;
 	margin-left: 8px;
 }
+.gift-ui-modal .modal-header{
+	padding: 22px 23px 25px;
+}
 .gift-modal{
 	background: #f7f9fa;
 	border-radius: 4px;
 	position: relative;
 	overflow: hidden;
 	border: solid #e0e1e2;
-	border-width:0 0 1px 0;
+	border-width: 0;
 }
 .gift-modal .close-button{
 	position: absolute;
@@ -4195,6 +4198,8 @@ h2, h3, h4, h5, h6{
 	font-size: 12px;
 	float: right;
 	cursor: pointer;
+	background: none;
+	border: none;
 }
 .gift-modal .characters-left{
 	color: #a7b7c4;
@@ -4226,6 +4231,7 @@ h2, h3, h4, h5, h6{
 	border-radius: 3px;
 	padding: 0 13px;
 	color: #303941;
+	margin-top: 6px;
 }
 .gift-modal .wrap .copy{
 	color: #119bf8;
@@ -4254,17 +4260,23 @@ h2, h3, h4, h5, h6{
 .gift-modal .dropzone .select-file i{
 	margin-right: 7px;
 }
-.gift-modal .create-another-gift{
-	padding: 23px 0;
+#gift-ui-holder{
+	margin: 0;
+}
+#gift-ui-holder .create-another-gift{
+	padding: 23px 0 13px;
 	text-align: center;
 	background: #fff;
 }
-.gift-modal .create-another-gift a{
+#gift-ui-holder .create-another-gift button,
+#gift-ui-holder .create-another-gift a{
 	font-size: 12px;
 	font-weight: bold;
 	color: #119bf8;
+	background: none;
+	border: none;
 }
-.gift-modal .create-another-gift i.fa.fa-plus{
+#gift-ui-holder .create-another-gift i.fa.fa-plus{
 	margin-right: 5px;
 }
 .gift-modal .uploaded-files{
@@ -9142,7 +9154,6 @@ header .top-menu li{
 }
 .modal-content .filter-wrap input{
 	border: none;
-	width: 90%;
 	margin: 0;
 }
 .modal-content .filter-wrap button{

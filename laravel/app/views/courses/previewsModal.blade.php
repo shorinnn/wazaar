@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">{{ trans('crud/labels.or_use_existing') }}</h4>
+                <h4 class="modal-title text-left">{{ trans('crud/labels.or_use_existing') }}</h4>
             </div>
             <div class="modal-body clearfix">
 
