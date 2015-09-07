@@ -1,22 +1,23 @@
 <div class="wrap  gift-{{ $gift->id }}">
-    <h6> TITLE
+    <h6> {{trans('affiliates.gifts.title') }}
             {{ Form::open(array('action' => ['GiftsController@destroy', $gift->id], 'method' => 'delete', 
                         'class' => 'ajax-form inline-block pull-right', 'data-callback' => 'deleteItem', 'data-delete' => '.gift-'.$gift->id )) }}
                         
                         <button type='submit' name="delete-gift-{{$gift->id}}" class="delete-button" 
-                            data-message="{{ trans('crud/labels.you-sure-want-delete') }}"><i class="fa fa-trash"></i>Delete
+                            data-message="{{ trans('crud/labels.you-sure-want-delete') }}"><i class="fa fa-trash"></i>
+                            {{ trans('crud/labels.delete') }} 
                         </button>
             {{ Form::close() }}
     </h6>
     {{ Form::open( ['action' => ['GiftsController@update', $gift->id], 'method' => 'PUT', 'class' => 'ajax-form' ] ) }}
-    <input type="text" name='title' placeholder="Gift 1" value='{{$gift->title}}'>
-    <h6> MESSAGE 
+    <input type="text" name='title' placeholder="{{ trans( 'affiliates.gifts.gift-number', ['number' => 1] ) }}" value='{{$gift->title}}'>
+    <h6> {{trans('affiliates.gifts.message') }} 
         <!--<span class="characters-left">178 Characters left</span>-->
     </h6>
-    <input type="text" name='text' placeholder="What do you have to say?"  value='{{$gift->text}}'>
-    <button type='submit' class='blue-button'>Save</button>
+    <input type="text" name='text' placeholder="{{trans('affiliates.gifts.what-do-you-have-to-say') }}"  value='{{$gift->text}}'>
+    <button type='submit' class='blue-button'>{{trans('affiliates.gifts.save') }}</button>
     {{ Form::close() }}
-    <h6>Gift link</h6>
+    <h6>{{trans('affiliates.gifts.gift-link') }}</h6>
     <form class="relative">
         <?php
             $url  = action('CoursesController@show', $course->slug) .'?aid='.Auth::user()->affiliate_id.'&gid='.$gift->encryptedID();
@@ -28,8 +29,8 @@
         <div class="dropzone @if($gift->files->count() > 0) col-lg-3 @endif">
             <i class="fa fa-cloud-upload"></i>
             <p class="regular-paragraph dropzone-{{$gift->id}}">
-                <span class="semibold-text block">Drag &amp; Drop</span>
-                files to upload
+                <span class="semibold-text block">{{trans('affiliates.gifts.drag-and-drop') }} </span>
+                {{trans('affiliates.gifts.files-to-upload') }} 
             </p>
 
 
@@ -68,8 +69,7 @@
     </div>
 </div>
 <script>
-$(document).ready(function(e) {
     $('#gift-ui-holder').parent().parent('.modal-body').css('padding', '0px');
     $('#gift-ui-holder').parents('.modal-dialog').addClass('gift-ui-modal');
-});
+
 </script>

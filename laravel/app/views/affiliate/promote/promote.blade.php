@@ -9,7 +9,7 @@
     <center>
         {{ Form::open([ 'action' => 'GiftsController@store', 'class' => 'ajax-form', 'data-callback '=> 'addGift' ]) }}
         	<div class="create-another-gift clear">
-                <button type='submit' class=''> <i class='fa fa-plus'></i> {{ trans('courses/promote.add-gift') }}</button>
+                <button type='submit' class=''> <i class='fa fa-plus'></i> {{ trans('affiliates.gifts.add-gift') }}</button>
                 <input type='hidden' name='course_id' value='{{ $course->id }}' />
                 <input type='hidden' name='tcode' value='{{ $tcode }}' />
                 </div>

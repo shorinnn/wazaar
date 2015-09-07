@@ -17,7 +17,7 @@ var Analytics = {
     'topCourses' :  function ($frequency, $courseId, $elem){
 
 
-            $.get('/dashboard/topcourses/' + $frequency + '/' + $courseId, function ($html){
+            $.get('/analytics/topcourses/' + $frequency + '/' + $courseId, function ($html){
                 $('#wrapper-top-courses').html($html);
 
                 $('.top-courses-dropdown a').removeClass('active');
@@ -39,7 +39,7 @@ var Analytics = {
     'sales' :  function ($frequency, $courseId, $trackingCode, $elem){
 
         Analytics.activateLoader();
-        $.get('/dashboard/sales/' + $frequency + '/' + $courseId + '/' + $trackingCode, function ($html){
+        $.get('/analytics/sales/' + $frequency + '/' + $courseId + '/' + $trackingCode, function ($html){
             $('#wrapper-sales').html($html);
 
             $('.sales-dropdown a').removeClass('active');
@@ -68,14 +68,14 @@ var Analytics = {
 
     'trackingCodeTable' : function ($frequency, $courseId){
 
-        $.get('/dashboard/trackingcodetable/' + $frequency + '/' + $courseId, function ($html){
+        $.get('/analytics/trackingcodetable/' + $frequency + '/' + $courseId, function ($html){
             $('#wrapper-tracking-codes-table').html($html);
         });
     },
 
     'trackingSalesCodes' :  function ($frequency, $courseId, $elem){
 
-        $.get('/dashboard/trackingcodessales/' + $frequency + '/' + $courseId, function ($html){
+        $.get('/analytics/trackingcodessales/' + $frequency + '/' + $courseId, function ($html){
             $('#wrapper-tracking-codes').html($html);
 
             $('.tracking-codes-dropdown a').removeClass('active');
@@ -96,7 +96,7 @@ var Analytics = {
     },
     'courseConversions' :  function ($frequency, $courseId, $elem){
 
-        $.get('/dashboard/courseconversions/' + $frequency + '/' + $courseId, function ($html){
+        $.get('/analytics/courseconversions/' + $frequency + '/' + $courseId, function ($html){
             $('#wrapper-course-conversions').html($html);
 
             $('.course-conversions-dropdown a').removeClass('active');
@@ -117,7 +117,7 @@ var Analytics = {
     },
     'trackingCodeConversions' :  function ($frequency, $courseId, $elem){
 
-        $.get('/dashboard/trackingcodeconversions/' + $frequency + '/' + $courseId, function ($html){
+        $.get('/analytics/trackingcodeconversions/' + $frequency + '/' + $courseId, function ($html){
             $('#wrapper-tracking-code-conversions').html($html);
 
             $('.tracking-code-conversions-dropdown a').removeClass('active');
@@ -139,7 +139,7 @@ var Analytics = {
 
     'ltcRegistrations' :  function ($frequency, $elem){
 
-        $.get('/dashboard/ltcregistrations/' + $frequency , function ($html){
+        $.get('/analytics/ltcregistrations/' + $frequency , function ($html){
             $('#wrapper-ltc-registrations').html($html);
 
             $('.tracking-code-conversions-dropdown a').removeClass('active');
@@ -161,7 +161,7 @@ var Analytics = {
 
     'twoTierRegistrations' :  function ($frequency, $elem){
 
-        $.get('/dashboard/second-tier-registrations/' + $frequency , function ($html){
+        $.get('/analytics/second-tier-registrations/' + $frequency , function ($html){
             $('#wrapper-second-tier-registrations').html($html);
 
             $('.tracking-code-conversions-dropdown a').removeClass('active');
@@ -183,7 +183,7 @@ var Analytics = {
 
     'ltcEarnings' :  function ($frequency, $elem){
 
-        $.get('/dashboard/ltcearnings/' + $frequency , function ($html){
+        $.get('/analytics/ltcearnings/' + $frequency , function ($html){
             $('#wrapper-ltc-earnings').html($html);
 
             $('.ltc-earnings-dropdown a').removeClass('active');
@@ -205,7 +205,7 @@ var Analytics = {
 
     'trackingCodeStats' :  function ($frequency, $courseId, $code, $elem){
 
-        $.get('/dashboard/course/' + $courseId + '/trackingcode/' + $code + '/stats/' + $frequency, function ($html){
+        $.get('/analytics/course/' + $courseId + '/trackingcode/' + $code + '/stats/' + $frequency, function ($html){
             $('#wrapper-tracking-code-stats').html($html);
 
             $('.tracking-code-hits-dropdown a').removeClass('active');
