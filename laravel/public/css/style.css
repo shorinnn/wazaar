@@ -648,6 +648,7 @@ header .profile-name li:hover ul{
 }	
 .homepage-carousel{
 	background: #ebeced;
+	display: none;
 }
 .homepage-carousel h1{
 	color: #303941;
@@ -768,7 +769,8 @@ header .profile-name li:hover ul{
 }
 .homepage.explore-category{
 	background: #fff;
-	margin-bottom: 120px; 
+	margin-bottom: 120px;
+	display: none;
 }
 .homepage.explore-category h1{
 	color: #303941;
@@ -896,7 +898,8 @@ header .profile-name li:hover ul{
 	margin: 0;
 }
 .discover-header{
-	margin: 72px 0 34px;
+	margin: 72px 0 0;
+	display: none;
 }
 .discover-header h1{
 	color: #303941 !important;
@@ -930,6 +933,9 @@ header .profile-name li:hover ul{
 }
 .discover-header .navbar-toggle .icon-bar {
     background-color: #7e8e9e;
+}
+#discover-courses-area {
+    margin-top: 34px;
 }
 .discover-more-button{
 	margin: 50px 0 0;
@@ -1266,13 +1272,27 @@ header .profile-name li:hover ul{
 .small-box .course-box-content{
 	padding: 27px 20px 21px;
 }
-.small-box .course-box-content h2{
+/*.small-box .course-box-content h2{
   	font-size:15px;
   	color:#283947;
   	font-weight: 600;
 	margin: 0 0 20px;  
   	clear:both;
+	height: 53px;
 	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}*/
+.small-box .course-box-content h3{
+  	color:#283947;
+	display: -webkit-box;
+	max-width: 318px;
+	height: 44px;
+	clear:both;
+	/* Fallback for -webkit */
+	margin: 0 0 10px;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
@@ -2755,13 +2775,14 @@ h2, h3, h4, h5, h6{
 	padding-left: 23px;
 }
 .course-description-container .requirements ul,
+.course-description-container .course-description ul,
 .course-description-container .who-its-for ul,
 .course-description-container .what-you-will-learn ul{
 	padding: 0 0 0 23px;
 	margin: 0;
 }
 .course-description-container .who-its-for ul li,
-.course-description-container .course-description ol li,
+.course-description-container .course-description li,
 .course-description-container .requirements ul li,
 .course-description-container .what-you-will-learn ul li{
 	font-size: 13px;
@@ -3536,10 +3557,10 @@ h2, h3, h4, h5, h6{
 .instructor-course .profile-picture-holder,
 .student-course .profile-picture-holder{
 	width: auto;
-	height: 136px;
+	max-height: 136px;
 	border-radius: 4px;
 	position: relative;
-	top: 50px;
+	top: 46px;
 	background: #ebeced;
 }
 .instructor-course.top-section .back-to-courses,
@@ -8570,9 +8591,6 @@ footer{
 	.student-course.percentage-completed .progress{
 		max-width: 50%;
 	}	
-	.student-course .profile-picture-holder{
-		top: 16px;
-	}
 	.student-course .discussion-sidebar-footer{
 		padding: 24px 15px;
 	}	
@@ -8806,6 +8824,9 @@ header .top-menu .logged-out-header-search{
 .supervip-affiliate-link input{
 	margin: 0 0 26px;
 }
+.instructor-course .profile-picture-holder, .student-course .profile-picture-holder{
+	top: 25px;
+}
 }
 @media (max-width:752px){
 .navbar-nav{ 
@@ -8851,8 +8872,13 @@ header .top-menu li{
 @media (max-width:665px){
 	.student-course.percentage-completed .resume-course{
 		float: left;
-		margin-left: 14px;
-	}	.new-dashboard.dashboardTabs-header .add-new-course {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}	
+	.student-course.percentage-completed .progress{
+		max-width: 70%;
+	}	
+	.new-dashboard.dashboardTabs-header .add-new-course {
 		margin-top: 15px;
 		display: block;
 		clear: both;

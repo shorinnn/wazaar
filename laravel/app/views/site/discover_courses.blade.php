@@ -45,7 +45,7 @@
                         </span>
                     </div>
                     <div class="course-box-content clearfix">
-                        <h2>{{ $course->name }}</h2>
+                        <h3>{{ $course->name }}</h3>
                         <div class="short-description-container">
                             <p>{{ $course->short_description }}</p>
                         </div>
@@ -131,7 +131,7 @@
                         </span>
                     </div>
                     <div class="course-box-content clearfix">
-                        <h2>{{ $course->name }}</h2>
+                        <h3>{{ $course->name }}</h3>
                         <div class="short-description-container">
                             <p>{{ $course->short_description }}</p>
                         </div>

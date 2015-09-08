@@ -21,7 +21,7 @@
             </span>
             </div>
             <div class="course-box-content clearfix">
-                <h2>{{ $course->name }}</h2>
+                <h3>{{ $course->name }}</h3>
                 <div class="short-description-container">
                     <p>{{{ Str::limit( strip_tags( $course->short_description, Config::get('custom.short_desc_max_chars') ) ) }}}
                     </p>
