@@ -1,7 +1,6 @@
 <div class="container-fluid affiliate-top-header">
     <div class="row">
         @if( Auth::user()->accepted_affiliate_terms == 'yes' ) 
-            <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"> -->
             <div class="col-xs-12 col-sm-12 col-md-7 col-lg-6">
                 <div class="col-xs-12 col-sm-4 col-ms-3">
                     <select id='linkWithDD' onchange='linkWith()'>
@@ -14,25 +13,21 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 no-padding"> -->
+
             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-6">
-                <div class="row no-margin">
-                    <!-- <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8"> -->
-                    <div class="col-xs-7 col-sm-6 col-md-6 col-lg-6">
-                        <!--<a href="#" class="add-tracking-id"><i class="fa fa-plus"></i>Add Tracking ID</a>-->
-                        <i class="fa fa-plus"></i>
-                        <input class="add-tracking-id" type='text' id='affiliate-toolbar-tracking' placeholder="Add Tracking ID" style='width:90%; background-color:white' onkeyup='addAffiliateTracking() '/>
-                    </div>
-                    <!-- <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4"> -->
-                    <div class="col-xs-5 col-sm-6 col-md-6 col-lg-6">
-                        <div class="activate-dropdown">
-                            <button aria-expanded="false" data-toggle="dropdown" class="add-gift dropdown-toggle right" type="button" onclick="affiliateGiftUI('{{$course->slug}}')" id="add-gift-dropdown">
-                                <i class="fa fa-gift"></i>
-                                <span>Manage Gifts</span>
-                            </button>
-                        </div> 
-                    </div>
-                </div>        
+                <div class="col-xs-7 col-sm-6 col-md-6 col-lg-6">
+                    <i class="fa fa-plus"></i>
+                    <input class="add-tracking-id" type='text' id='affiliate-toolbar-tracking' placeholder="Add Tracking ID" style='width:90%; background-color:white' onkeyup='addAffiliateTracking() '/>
+                </div>
+                <div class="col-xs-5 col-sm-6 col-md-6 col-lg-6">
+                    <div class="activate-dropdown">
+                        <button aria-expanded="false" data-toggle="dropdown" class="add-gift dropdown-toggle right" type="button" onclick="affiliateGiftUI('{{$course->slug}}')" id="add-gift-dropdown">
+                            <i class="fa fa-gift"></i>
+                            <span>Manage Gifts</span>
+                        </button>
+                    </div> 
+                </div>
+                <div class="clearfix"></div>
             </div>
             <div class="clearfix"></div>
         @else
