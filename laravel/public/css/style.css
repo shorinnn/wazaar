@@ -2387,6 +2387,7 @@ h2, h3, h4, h5, h6{
 	display: table;
 	margin-top: 22px;
 	width: 100%;
+	padding-bottom: 20px;
 }
 .course-data .column-1 div{
 	padding-top: 15px;
@@ -2462,6 +2463,24 @@ h2, h3, h4, h5, h6{
 }
 .enroll-button-section{
 	padding-left: 35px;
+}
+.enroll-button-section .discount-box{
+	margin-top: 27px;
+}
+.enroll-button-section .discount-box .text-warning{
+	color: #F05339;
+}
+.enroll-button-section .discount-box .discounted-price,
+.enroll-button-section .discount-box .discounted-time-left{
+	height: 50px;
+	line-height: 50px;
+	display: inline-table;
+}
+.enroll-button-section .discount-box .discounted-price{
+	font-size: 30px;
+}
+.enroll-button-section .discount-box .discounted-time-left{
+	font-size: 14px;
 }
 .enroll-button-section .price{
 	font-size: 30px;
@@ -8914,6 +8933,32 @@ header .top-menu li{
 	}
 	.category-heading-container .date-dropdown a {
 		width: 100%;
+	}
+	.course-data .column-1{
+		padding-bottom: 0px;
+	}
+	.course-data .column-1 div{
+		border: 0px !important;
+		display: block;
+	}
+	.course-data .column-1 div span{
+		text-align: right;
+		float: left;
+		font-style: 12px !important;
+	}
+	.course-data .column-1 div em{
+		text-align: left;
+		float: right;
+		font-size: 20px !important;
+	}
+	.course-data .column-1 div span,
+	.course-data .column-1 div em{
+		width: 47%;
+		margin: 0px;
+		height: 30px;
+		line-height: 30px;
+		padding: 10px 0px;
+		display: inline-table;
 	}
 }
 @media (max-width:552px){
