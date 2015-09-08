@@ -3906,6 +3906,11 @@ h2, h3, h4, h5, h6{
 	background: #e8eced;
 	padding: 12px 40px;
 }
+
+.affiliate-top-header #linkWithDD,
+.affiliate-top-header #affiliate-toolbar-link{
+	margin-bottom:10px;
+}
 .affiliate-top-header p{
 	font-weight: 600;
 	color: #798794;
