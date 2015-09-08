@@ -328,7 +328,7 @@
     	<div class="container">
             <div class="row course-ajax-holder">
                     <form id="form-aws-credentials" action="">
-                        <input type="hidden" name="key" value="{{$uniqueKey}}-${filename}">
+                        <input type="hidden" name="key" value="{{$uniqueKey}}">
                         <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
                         <input type="hidden" name="acl" value="private">
                         <input type="hidden" name="success_action_status" value="201">
