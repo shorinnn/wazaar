@@ -203,5 +203,6 @@ return array(
         'all' => 'All',
         'beginner' => 'Beginner',
         'advanced' => 'Advanced',
-    ]
+    ],
+    'dash-you-have-no-questions-yet' => 'You have no asked any questions yet. Begin the course and start or join discussions!'
 );
