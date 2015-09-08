@@ -45,9 +45,11 @@
                         </span>
                     </div>
                     <div class="course-box-content clearfix">
-                        <h3>{{ $course->name }}</h3>
-                        <div class="short-description-container">
-                            <p>{{ $course->short_description }}</p>
+                    	<div class="title-and-descript">
+                            <h3>{{ $course->name }}</h3>
+                            <div class="short-description-container">
+                                <p>{{ $course->short_description }}</p>
+                            </div>
                         </div>
                         <div class="bottom-contents clearfix">
 <!--                            <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}"
@@ -131,9 +133,11 @@
                         </span>
                     </div>
                     <div class="course-box-content clearfix">
-                        <h3>{{ $course->name }}</h3>
-                        <div class="short-description-container">
-                            <p>{{ $course->short_description }}</p>
+                    	<div class="title-and-descript">
+                            <h3>{{ $course->name }}</h3>
+                            <div class="short-description-container">
+                                <p>{{ $course->short_description }}</p>
+                            </div>
                         </div>
                         <div class="bottom-contents clearfix">
 <!--                            <div class="difficulty-bar  {{ difficultyToCss($course->courseDifficulty->name) }}"

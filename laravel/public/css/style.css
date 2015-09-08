@@ -1129,8 +1129,8 @@ header .profile-name li:hover ul{
 	background-image: none !important;
 	background-color: #ffffff !important;
  	border-radius: 4px;
-	height: auto;
-  	max-height: 405px;
+	height: 393px;
+  	max-height: 393px;
 	max-width: 360px;
   	background-repeat:no-repeat;
   	position:relative;
@@ -1285,6 +1285,10 @@ header .profile-name li:hover ul{
 	overflow: hidden;
 	text-overflow: ellipsis;
 }*/
+.small-box .title-and-descript{
+    border-bottom: 1px solid #f0f1f2;
+    height: 132px;
+}
 .small-box .course-box-content h2,
 .small-box .course-box-content h3{
   	color:#283947;
@@ -1292,7 +1296,7 @@ header .profile-name li:hover ul{
 	line-height: 22px;
 	display: -webkit-box;
 	max-width: 318px;
-	height: 44px;
+	max-height: 44px;
 	clear:both;
 	/* Fallback for -webkit */
 	margin: 0 0 10px;
@@ -1302,17 +1306,16 @@ header .profile-name li:hover ul{
 	text-overflow: ellipsis;
 }
 .small-box .short-description-container {
-    border-bottom: 1px solid #f0f1f2;
+    max-height: 78px;
     overflow: hidden;
-    padding-bottom: 15px;
     width: 100%;
 }
 .small-box .course-box-content p {
     color: #667078;
     font-size: 13px;
-    height: 63px;
     line-height: 21px;
     margin: 0;
+    max-height: 63px;
     overflow: hidden;
     text-align: left;
 }

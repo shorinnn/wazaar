@@ -44,16 +44,14 @@
             </span>
                 </div>
                 <div class="course-box-content clearfix">
-                	<div class="ellipsis">
-                    	<div>
-                    		<h3>{{ $course->name }}</h3>
-                        </div>
-                    </div>
-                    <div class="short-description-container">
-                        
-                        <p>{{{ Str::limit( strip_tags( $course->short_description) , Config::get('custom.short_desc_max_chars')  ) }}}
+                	<div class="title-and-descript">
+                        <h3>{{ $course->name }}</h3>
+                        <div class="short-description-container">
                             
-                        </p>
+                            <p>{{{ Str::limit( strip_tags( $course->short_description) , Config::get('custom.short_desc_max_chars')  ) }}}
+                                
+                            </p>
+                        </div>
                     </div>
                     <div class="bottom-contents clearfix">
 <!--                        <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}"
