@@ -28,5 +28,5 @@ return [
         'student-dash-wishlist-course' => 60,
         'course-box' => 60,
     ],
-    'course-desc-lesson-chars' => 2
+    'course-desc-lesson-chars' => 60
 ];

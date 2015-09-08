@@ -16,6 +16,7 @@ return array(
 	'highly-recommend' => 'highly recommend',
 	'weeks-of-learning' => 'weeks of learning',
 	'catalogue' => 'Catalogue',
+	'my_name_is' => 'Hi, my name is',
     'email' => 'Email',
     'facebook' => 'Facebook',
     'google' => 'Google',

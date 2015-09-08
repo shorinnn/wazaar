@@ -374,27 +374,33 @@
     @endif
             <!-- Modal -->
     <div class="modal fade" id="instructor-bio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">
+                    <p class="regular-paragraph text-center">{{ trans('general.my_name_is') }}</p>
+                    <h3 class="modal-title text-center" id="myModalLabel">
                         @if($instructor->profile == null)
                             {{$instructor->last_name}} {{$instructor->first_name}} 
                         @else
                             {{$instructor->profile->last_name}} {{$instructor->profile->first_name}} 
                         @endif
-                    </h4>
+                    </h3>
+                    <div class="instructor-img text-center">
+                    	<img class="img-responsive"src="{{ $instructor->profile->photo }}" alt="" >
+                    </div>
                 </div>
                 <div class="modal-body">
-                    @if( $course->show_bio=='custom' )
-                        {{ $course->custom_bio }}
-                    @else
-                        {{ $instructor->profile->bio }}
-                    @endif
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                	<p class="regular-paragraph">
+                        @if( $course->show_bio=='custom' )
+                            {{ $course->custom_bio }}
+                        @else
+                            {{ $instructor->profile->bio }}
+                        @endif
+                    </p>
+                    <div class="close-button">
+                    	<button type="button" class="large-button blue-button" data-dismiss="modal">CONTINUE BROWSING</button>
+                    </div>
                 </div>
             </div>
         </div>

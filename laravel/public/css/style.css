@@ -1481,6 +1481,7 @@ header .profile-name li:hover ul{
 #loginModal{
 	background-color: rgba(24, 34, 43, 0.9);
 }
+#instructor-bio .close,
 #registerModal .close,
 #loginModal .close{
     font-size: 60px;
@@ -2284,6 +2285,49 @@ h2, h3, h4, h5, h6{
 .course-detail-top-section .instructor {
     height: 200px;
 }
+#instructor-bio{
+	background-color: rgba(24, 34, 43, 0.9);
+}
+#instructor-bio .modal-dialog{
+	margin: 100px auto;
+}
+#instructor-bio .modal-backdrop{
+	background-color: transparent;
+}
+#instructor-bio .modal-header{
+	padding: 24px 60px 0;
+}
+#instructor-bio .modal-header p{
+	color: #798794;
+	margin: 0;
+}
+#instructor-bio .modal-header h3{
+	color: #303941;
+	margin: 0;
+}
+#instructor-bio .instructor-img{
+	margin: 12px 0 -35px;
+	position: relative;
+	z-index: 1;
+}
+#instructor-bio .instructor-img img{
+	height: 70px;
+	width: 70px;
+	margin: 0 auto;
+	border-radius:50%;
+}
+#instructor-bio .modal-body{
+	padding: 60px;
+	background-color: #f7f9fa;
+}
+#instructor-bio .modal-body p{
+	color: #464d54;
+	margin: 0;
+}
+#instructor-bio .modal-body .close-button{
+	margin-top: 36px;
+	text-align: center;
+}
 .course-description p{
 	color: #dbcef2;
 }
@@ -2535,11 +2579,11 @@ h2, h3, h4, h5, h6{
 	margin: 29px 30px 22px;
 }
 .module-box p{
-	margin: 0 30px 30px;
+	margin: 0 23px 30px;
 	color: #6e747a;
 }
 .course-description h2{
-	margin: 0 30px 22px;
+	margin: 0 23px 22px;
 }
 .lesson-topics{
 	padding: 0;
@@ -2617,7 +2661,7 @@ h2, h3, h4, h5, h6{
 }
 .course-description .show-full-description,
 .hide-lesson-topics{
-	padding: 25px 0 25px 30px;
+	padding: 25px 23px;
 	display: block;
 	cursor:pointer;
 	background: #fff;
@@ -2786,12 +2830,13 @@ h2, h3, h4, h5, h6{
 	color:#2e343b;
 	margin: 0 0 33px;
 	padding-left: 23px;
+	padding-right: 23px;
 }
 .course-description-container .requirements ul,
 .course-description-container .course-description ul,
 .course-description-container .who-its-for ul,
 .course-description-container .what-you-will-learn ul{
-	padding: 0 0 0 23px;
+	padding: 0 23px;
 	margin: 0;
 }
 .course-description-container .who-its-for ul li,
