@@ -200,7 +200,7 @@
                         ?>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
-                <div class="enroll-button-wrap">
+                <div class="enroll-button-wrap clearfix">
                 @if($course->cost() > 0 && !Input::has('preview') )
                 <?php /*
                         {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
