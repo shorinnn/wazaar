@@ -2464,9 +2464,6 @@ h2, h3, h4, h5, h6{
 .enroll-button-section{
 	padding-left: 35px;
 }
-.enroll-button-section .discount-box{
-	margin: 24px 0px;
-}
 .enroll-button-section .discount-box .text-warning{
 	color: #F05339;
 }
@@ -2491,14 +2488,14 @@ h2, h3, h4, h5, h6{
 	font-size: 30px;
 	color: #0099ff;
 	display: block;
-	margin-top: 27px;
+	margin: 24px 0px;
 }
 .enroll-button-section .enroll-button{
 	clear: both;
 	display: block;
 	border: solid #0089e5;
 	border-width: 0 0 2px;
-	margin: 27px 0 0;
+	/*margin: 27px 0 0;*/
 	border-radius: 4px;
 	font-size: 14px;
 	color: #fff;
@@ -2509,8 +2506,8 @@ h2, h3, h4, h5, h6{
 	-webkit-box-shadow: 0px 1px 0px #e7e8e9;
     -moz-box-shadow: 0px 1px 0px #e7e8e9;
     box-shadow: 0px 1px 0px #e7e8e9;
-    padding-top: 8px;
-    padding-bottom: 9px;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 .course-description-container{
 	padding: 30px 0;
@@ -8475,7 +8472,10 @@ footer{
 	.course-data .column-3,
 	.course-data .column-1{
 		text-align: center;
-	}	
+	}
+	.enroll-button-wrap{
+		margin-bottom: 24px;
+	}
 	.enroll-button-section{
 		text-align: center;
 	}	
