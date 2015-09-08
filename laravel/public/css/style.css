@@ -2461,6 +2461,9 @@ h2, h3, h4, h5, h6{
 .add-to-wishlist-container span{
 	line-height: 40px;
 }
+.enroll-button-wrap{
+	margin-bottom: 24px;
+}
 .enroll-button-section{
 	padding-left: 35px;
 }
@@ -2849,7 +2852,8 @@ h2, h3, h4, h5, h6{
 	margin-right: 7px;
 }
 .course-detail-top-section .instructor .show-full-description{
-	margin: 25px 0 0 23px;
+	/*margin: 25px 0 0 23px;*/
+	margin: 12px 0 0 23px;
 	cursor: pointer;
 	display: block;
 }
@@ -8472,9 +8476,6 @@ footer{
 	.course-data .column-3,
 	.course-data .column-1{
 		text-align: center;
-	}
-	.enroll-button-wrap{
-		margin-bottom: 24px;
 	}
 	.enroll-button-section{
 		text-align: center;
