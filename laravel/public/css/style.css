@@ -1285,7 +1285,7 @@ header .profile-name li:hover ul{
 	overflow: hidden;
 	text-overflow: ellipsis;
 }*/
-.small-box .course-box-content h3,
+.small-box .course-box-content h2,
 .small-box .course-box-content h3{
   	color:#283947;
 	font-size: 15px;
