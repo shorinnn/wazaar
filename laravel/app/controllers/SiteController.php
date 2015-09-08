@@ -124,6 +124,12 @@ class SiteController extends \BaseController {
             Return View::make('TEMPORARYVIEWS.instructor_questions');
 	}
 
+// Temporary functions for Checkout modal
+	public function checkoutmodal()
+	{            
+            Return View::make('TEMPORARYVIEWS.checkout_modal');
+	}
+
 
 // Temporary functions for Affiliate Gift UX
 	public function affiliategift1()

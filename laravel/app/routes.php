@@ -57,6 +57,7 @@ $wwwRoutes = function(){
 	Route::get('instructordashboard', 'SiteController@instructordashboard');
 	Route::get('instructorcourse', 'SiteController@instructorcourse');
 	Route::get('instructorquestions', 'SiteController@instructorquestions');
+	Route::get('checkoutmodal', 'SiteController@checkoutmodal');
 
     // temporary tracking route
     Route::post('action-tracker', 'ActionController@track');
