@@ -2446,6 +2446,7 @@ h2, h3, h4, h5, h6{
 }
 .enroll-button-section .discount-box{
 	margin-top: 27px;
+	margin-bottom: -25px;
 }
 .enroll-button-section .discount-box .text-warning{
 	color: #F05339;

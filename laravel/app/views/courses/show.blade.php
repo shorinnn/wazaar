@@ -278,7 +278,7 @@
                     {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
                         @if($course->isDiscounted())
                             <div class="discount-box">
-                                <div class="original-price text-muted"><del><i class="fa fa-jpy"></i> {{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
+                                <div class="original-price text-muted text-left"><del><i class="fa fa-jpy"></i> {{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
                                 <div class="text-warning">
                                     <div class="discounted-price pull-left"><i class="fa fa-jpy"></i> {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
                                     <div class="discounted-time-left pull-right"><i class="fa fa-clock-o"></i> time here</div>
