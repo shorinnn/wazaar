@@ -3921,7 +3921,7 @@ h2, h3, h4, h5, h6{
 	background: #fff;
 	font-size: 13px;
 	color: #0099ff;
-	width: 70%;
+	/*width: 70%;*/
 	margin: 0;
 	display: inline-block;
 }
@@ -3929,7 +3929,7 @@ h2, h3, h4, h5, h6{
     height: 28px;
     margin: 0 13px 0 0;
     background: white;
-    width: 156px;
+    /*width: 156px;*/
 }
 .affiliate-top-header .add-gift,
 .affiliate-top-header .add-tracking-id{
@@ -8227,6 +8227,9 @@ footer{
 	}	
 }
 @media (max-width:991px){
+	.affiliate-top-header{
+		padding: 12px 0px;
+	}
 	header .top-menu .logged-out li a{
 		padding: 7px 8px;
 	}	
