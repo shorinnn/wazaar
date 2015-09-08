@@ -155,7 +155,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <h3></h3>
                                         <p class="regular-paragraph">
-                                        You have no asked any questions yet. Begin the course and start or join discussions!
+                                        {{ trans('courses/general.dash-you-have-no-questions-yet') }}
                                         </p>
                                     </div>
                                 </div>

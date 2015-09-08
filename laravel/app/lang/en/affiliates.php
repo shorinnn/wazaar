@@ -19,6 +19,8 @@ return [
             'begin-course' => 'Begin course',
             'resume-course' => 'Resume course',
             'add-gift' => 'Add Gift',
-        ]
+        ],
+    'link-without-gift' => 'Link without gift',
+    'link-with-gift' =>  'Link with gift',
 
 ];
