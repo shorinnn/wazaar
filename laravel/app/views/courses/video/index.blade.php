@@ -34,7 +34,7 @@
 
                                     <span>{{ trans('courses/curriculum.upload') }}</span>
                                     <form action="{{UploadHelper::AWSVideosInputURL()}}" enctype="multipart/form-data" method="POST" class="fileupload">
-                                        <input type="hidden" name="key" value="{{Str::random(16)}}">
+                                        <input type="hidden" name="key" value="{{$uniqueKey}}">
                                         <input type="hidden" name="AWSAccessKeyId" value="{{Config::get('aws::config.key')}}">
                                         <input type="hidden" name="acl" value="private">
                                         <input type="hidden" name="success_action_status" value="201">
