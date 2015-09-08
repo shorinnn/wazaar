@@ -62,7 +62,7 @@
                             @foreach($module->lessons as $lesson)
                                 <li class="lessons lesson-1 bordered clearfix">
                                     <span><i class="wa-play"></i></span>
-                                    <a href="#" class="clearfix lesson-name">{{ $lesson->name }}
+                                    <a class="clearfix lesson-name">{{ $lesson->name }}
 
                                     </a>
                                     <!--<em>Type of lesson</em>-->

@@ -5360,6 +5360,172 @@ h2, h3, h4, h5, h6{
 	left: -4px;
 }
 /************* New Classroom Pages End*************/
+/* Checkout Modal */
+.checkout-modal{
+	width: 460px;
+	margin: 0 auto;
+}
+.checkout-modal .modal-header{
+	background: #fff;
+	padding: 24px 60px;
+}
+.checkout-modal .profile-image{
+	height: 57px;
+	width: 100px;
+	background: #e3e5e6;
+	border-radius: 4px;
+	overflow: hidden;
+	margin-right: 19px;
+	float: left;
+}
+.checkout-modal .modal-header .description{
+	font-size: 13px;
+	color: #798794;
+	margin: 4px 0 0;
+}
+.checkout-modal .modal-header .price{
+	font-size: 26px;
+	color: #0099ff;
+	margin: 0 0 8px;
+	line-height: 26px;
+}
+.checkout-modal .modal-body{
+	background: #f7f9fa;
+	padding: 24px 60px 60px;
+}
+.checkout-modal .close{
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+.radio-style-2 input[type='radio']{
+	display: none;
+	margin: 0;
+	opacity: 0;
+}
+.radio-style-2 label{
+	border: solid 2px #cfd8df;
+	background: #fff;
+	height: 14px;
+	width: 14px;
+	margin: 0;
+	position: relative;
+	border-radius: 14px;
+}
+
+.radio-style-2 label::before {
+    background: #fff;
+    border-radius: 8px;
+    content: "";
+    height: 8px;
+    left: 1px;
+    position: absolute;
+    top: 1px;
+    width: 8px;
+    z-index: 1;
+}
+.radio-style-2 input[type="radio"]:checked ~ label{
+	background: #0099ff;
+	border-color: #0099ff;
+}
+.checkout-modal .new-card,
+.checkout-modal .cards-wrap{
+	padding: 24px;
+	border: solid transparent;
+	border-width: 1px;
+	border-radius: 0;
+}
+.checkout-modal .cards-wrap.active{
+	background: #fff;
+	border: solid #e3e5e6;
+	border-width: 1px;
+	border-radius: 4px;
+}
+.checkout-modal .cc-card-button{
+	float: left;
+	margin-right: 25px;
+}
+.checkout-modal .new-card h4,
+.checkout-modal .cards-wrap h4{
+	color: #303941;
+	margin: 0;
+	line-height: 22px;
+}
+.checkout-modal .new-card h4{
+	padding-bottom: 24px;
+}
+.checkout-modal .new-card p,
+.checkout-modal .cards-wrap p{
+	color: #798794;
+	margin: 0;
+}
+.checkout-modal .card-details{
+	float: left;
+}
+.checkout-modal .card-logo{
+	float: right;
+	display: block;
+	height: 26px;
+	width: 35px;
+	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/credit-card-icons.png');
+	background-repeat: no-repeat;
+}
+.checkout-modal .card-logo.mastercard{
+	background-position: 0 0;
+}
+
+.checkout-modal .card-logo.visa{
+	background-position: right 0;
+}
+.checkout-modal .new-card{
+    background: #fff;
+    border-color: #e3e5e6;
+    border-radius: 4px;
+}
+.checkout-modal .new-card .cc-card-button{
+	visibility: hidden;
+}
+.checkout-modal .new-card .add-new-card{
+	cursor: pointer;
+}
+.checkout-modal .pay-button{
+	margin-top: 24px;
+	display: block;
+	width: 100%;
+	text-transform: uppercase;
+}
+.checkout-modal .pay-button i{
+	margin-right: 10px;
+}
+.checkout-modal .new-cc-form{
+	padding-top: 12px;
+	border-top: solid 1px #e3e5e6;
+}
+.checkout-modal .new-cc-form label{
+	margin: 0 0 10px;
+	font-size: 11px;
+	font-weight: bold;
+	color: #8f9dab;
+	text-transform: uppercase;
+}
+.checkout-modal .new-cc-form input{
+	background: #fff;
+	margin-bottom: 23px;
+}
+.checkout-modal .ccv-code,
+.checkout-modal .expiry-date{
+	width: 134px;
+}
+.checkout-modal .ccv-code .ccv-tip{
+	color: #069bff;
+	margin: 0 10px;
+	cursor: pointer;
+}
+.checkout-modal .modal-footer{
+	margin: 0;
+	display: none;
+}
+
 /************* New Analytics Page*************/
 .analytics-page {
     background-color: #e8eced;
@@ -8844,13 +9010,60 @@ header .top-menu li{
 		top: 0;
 	}	
 }
+@media (max-width:460px){
+	.checkout-modal {
+		border-radius: 0;
+		box-shadow: none;
+		height: 100%;
+		position: relative;
+		width: 100%;
+	}	
+	.checkout-modal .modal-header{
+		padding: 24px;
+	}
+	.checkout-modal .modal-body{
+		padding: 0;
+	}
+	.checkout-modal .modal-header{
+		background: #18222b;
+	}
+	.checkout-modal .modal-header .description,
+	.checkout-modal .close,
+	.checkout-modal .modal-header .price{
+		color: #fff;
+	}
+	.checkout-modal .ccv-code, 
+	.checkout-modal .expiry-date {
+		width: 48%;
+	}
+	.checkout-modal .new-card{
+		padding-bottom: 48px;
+		border-bottom: 0;
+		border-radius: 0;
+	}
+	.checkout-modal .pay-button {
+		border: medium none;
+		border-radius: 0;
+		bottom: 0;
+		box-shadow: none;
+		margin-top: 0;
+		padding-bottom: 20px;
+		padding-top: 20px;
+		position: fixed;
+		z-index:5;
+	}
+	.checkout-modal .cards-wrap.active{
+		border-radius: 0;
+	}
+}
 @media (max-width:402px){
 	.user-data-modal .orr span{
 		width: 40%;
 	}	
 	.discussion-sidebar .replies-container .replies-box{
 		width: 80%;
-	}}
+	}
+}
 
 @media (max-width:380px){
 	.category-heading a{

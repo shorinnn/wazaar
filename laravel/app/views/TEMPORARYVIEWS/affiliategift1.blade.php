@@ -258,159 +258,6 @@
 .create-another-gift i.fa.fa-plus{
 	margin-right: 5px;
 }
-.checkout-modal{
-	width: 460px;
-	margin: 0 auto;
-}
-.checkout-modal .modal-header{
-	background: #fff;
-	padding: 24px 60px;
-}
-.checkout-modal .profile-image{
-	height: 57px;
-	width: 100px;
-	background: #e3e5e6;
-	border-radius: 4px;
-	overflow: hidden;
-	margin-right: 19px;
-	float: left;
-}
-.checkout-modal .modal-header .description{
-	font-size: 13px;
-	color: #798794;
-	margin: 4px 0 0;
-}
-.checkout-modal .modal-header .price{
-	font-size: 26px;
-	color: #0099ff;
-	margin: 0 0 8px;
-	line-height: 26px;
-}
-.checkout-modal .modal-body{
-	background: #f7f9fa;
-	padding: 24px 60px 60px;
-}
-.checkout-modal .close{
-	position: absolute;
-	top: 15px;
-	right: 15px;
-}
-.radio-style-2 input[type='radio']{
-	display: none;
-	margin: 0;
-	opacity: 0;
-}
-.radio-style-2 label{
-	border: solid 2px #cfd8df;
-	background: #fff;
-	height: 14px;
-	width: 14px;
-	margin: 0;
-	position: relative;
-	border-radius: 14px;
-}
-
-.radio-style-2 label::before {
-    background: #fff;
-    border-radius: 8px;
-    content: "";
-    height: 8px;
-    left: 1px;
-    position: absolute;
-    top: 1px;
-    width: 8px;
-    z-index: 1;
-}
-.radio-style-2 input[type="radio"]:checked ~ label{
-	background: #0099ff;
-	border-color: #0099ff;
-}
-.checkout-modal .cards-wrap{
-	padding: 24px;
-	border: solid transparent;
-	border-width: 1px;
-	border-bottom-color: #e3e5e6;
-	border-radius: 0;
-}
-.checkout-modal input[type="radio"]{
-}
-.checkout-modal .cards-wrap.active{
-	background: #fff;
-	border: solid #e3e5e6;
-	border-width: 1px;
-	border-radius: 4px;
-}
-.checkout-modal .cc-card-button{
-	float: left;
-	margin-right: 25px;
-}
-.checkout-modal .cards-wrap h4{
-	color: #303941;
-	margin: 0;
-	line-height: 22px;
-}
-.checkout-modal .cards-wrap p{
-	color: #798794;
-	margin: 0;
-}
-.checkout-modal .card-details{
-	float: left;
-}
-.checkout-modal .card-logo{
-	float: right;
-	display: block;
-	height: 26px;
-	width: 35px;
-	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/credit-card-icons.png');
-	background-repeat: no-repeat;
-}
-.checkout-modal .card-logo.mastercard{
-	background-position: 0 0;
-}
-
-.checkout-modal .card-logo.visa{
-	background-position: right 0;
-}
-.checkout-modal .new-card.active{
-    background: #fff;
-    border-color: #e3e5e6;
-    border-radius: 4px;
-}
-.checkout-modal .new-card .cc-card-button{
-	visibility: hidden;
-}
-.checkout-modal .new-card .add-new-card{
-	cursor: pointer;
-}
-.checkout-modal .pay-button{
-	margin-top: 24px;
-	display: block;
-	width: 100%;
-	text-transform: uppercase;
-}
-.checkout-modal .new-cc-form{
-	padding-top: 12px;
-	display: none;
-}
-.checkout-modal .new-cc-form label{
-	margin: 0 0 10px;
-	font-size: 11px;
-	font-weight: bold;
-	color: #8f9dab;
-	text-transform: uppercase;
-}
-.checkout-modal .new-cc-form input{
-	background: #fff;
-	margin-bottom: 23px;
-}
-.checkout-modal .ccv-code,
-.checkout-modal .expiry-date{
-	width: 134px;
-}
-.checkout-modal .modal-footer{
-	margin: 0;
-	display: none;
-}
 </style>
 
 <div class="modal-content checkout-modal">
@@ -425,12 +272,12 @@
             <section>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
                     <div class="">
-                        <div class="row">
+                        <div class="row no-margin">
                             <div>
                             	<form>
                             	<div class="cards-wrap clearfix">
                                 	<span class="cc-card-button radio-style-2">
-                                        <input type="radio" name="credit-card-id" id="card-1">
+                                        <input type="radio" checked="checked" name="credit-card-id" id="card-1">
                                         <label class="small-radio-2" for="card-1"></label>
                                     </span>
                                     <div class="card-details">
@@ -454,7 +301,7 @@
                                     
                                     </span>
                                 </div>
-                            	<div class="cards-wrap clearfix new-card">
+                            	<div class="clearfix new-card">
                                 	<span class="cc-card-button radio-style-2">
                                         <input type="radio" name="credit-card-id" id="card-2">
                                         <label class="small-radio-2" for="card-2"></label>
@@ -462,32 +309,31 @@
                                     <div class="card-details">
                                     	<h4 class="add-new-card">Add new credit card</h4>
                                     </div>
-                                    <span class="card-logo hide">
-                                    
-                                    </span>
+                                    <span class="card-logo hide"></span>
                                     <div class="clear new-cc-form">
-                                    	<div>
+                                    	<div class="clear">
                                         	<label>Credit Card number</label>
                                             <input type="text" placeholder="0000 0000 0000 0000">
                                         </div>
-                                        <div>
+                                        <div class="clear">
                                             <div class="left ccv-code">
-                                                <label>CCV Code <span>?</span></label>
+                                                <label>CCV Code <span class="ccv-tip" data-toggle="tooltip" data-placement="top" 
+                                                title="Tip on top">?</span></label>
                                                 <input type="text" placeholder="">
                                             </div>
                                             <div class="right expiry-date">
                                                 <label>Expiry date</label>
-                                                <input type="date" placeholder="">
+                                                <input type="date" placeholder="MM / YY">
                                             </div>
                                         </div>
-                                    	<div>
+                                    	<div class="clear">
                                         	<label>Name on the card</label>
                                             <input type="text" class="no-margin" placeholder="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="button text-center">
-                                	<button type="submit" class="blue-button large-button pay-button"><i class="fa fa-padlock"></i>Pay ¥7,200</button>
+                                	<button type="submit" class="blue-button large-button pay-button"><i class="fa fa-lock"></i>Pay ¥7,200</button>
                                 </div>
                                 </form>
                             </div>
@@ -527,17 +373,11 @@
 			$(".affiliate-gift-wrap .description").css({width: "100%"});
 		});
 		
-		$('.add-new-card').on('click', function(){
-			$('.new-cc-form').show();
-			$('.new-cc-form').css('border-top', 'solid 1px #e3e5e6')
-			$('.new-card').addClass('active');
-			$('.card-details').css('margin-bottom', '15px');
-		})
-		
+		// Switching the active class between selected radio button section on checkout modal	
 		$('.checkout-modal input[type="radio"]:checked').parent().parent().addClass("active");
 		$('.checkout-modal input[type="radio"]').click(function () {
-			$('.checkout-modal input[type="radio"]:not(:checked)').parent().parent('.cards-wrap').removeClass("active");
-			$('.checkout-modal input[type="radio"]:checked').parent().parent().addCla.ss("active");
+			$('.checkout-modal input[type="radio"]:not(:checked)').parent().parent().removeClass("active");
+			$('.checkout-modal input[type="radio"]:checked').parent().parent().addClass("active");
     	});  
 	});
 
