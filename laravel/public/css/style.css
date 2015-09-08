@@ -2457,10 +2457,10 @@ h2, h3, h4, h5, h6{
 	display: inline-table;
 }
 .enroll-button-section .discount-box .discounted-price{
-	font-style: 30px;
+	font-size: 30px;
 }
 .enroll-button-section .discount-box .discounted-time-left{
-	font-style: 14px;
+	font-size: 14px;
 }
 .enroll-button-section .price{
 	font-size: 30px;
