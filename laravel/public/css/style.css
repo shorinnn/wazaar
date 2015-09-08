@@ -2444,6 +2444,24 @@ h2, h3, h4, h5, h6{
 .enroll-button-section{
 	padding-left: 35px;
 }
+.enroll-button-section .discount-box{
+	margin-top: 27px;
+}
+.enroll-button-section .discount-box .text-warning{
+	color: #F05339;
+}
+.enroll-button-section .discount-box .discounted-price,
+.enroll-button-section .discount-box .discounted-time-left{
+	height: 50px;
+	line-height: 50px;
+	display: inline-table;
+}
+.enroll-button-section .discount-box .discounted-price{
+	font-style: 30px;
+}
+.enroll-button-section .discount-box .discounted-time-left{
+	font-style: 14px;
+}
 .enroll-button-section .price{
 	font-size: 30px;
 	color: #0099ff;

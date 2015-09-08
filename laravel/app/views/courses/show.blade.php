@@ -279,9 +279,9 @@
                         @if($course->isDiscounted())
                             <div class="discount-box">
                                 <div class="original-price text-muted"><del><i class="fa fa-jpy"></i> {{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
-                                <div class="text-danger">
-                                    <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
-                                    <div class="discount-time-left pull-right"><i class="fa fa-clock-o"></i> time here</div>
+                                <div class="text-warning">
+                                    <div class="discounted-price pull-left"><i class="fa fa-jpy"></i> {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
+                                    <div class="discounted-time-left pull-right"><i class="fa fa-clock-o"></i> time here</div>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
@@ -298,7 +298,7 @@
                                 @endif
                             </span>
                         @endif
-                        <button class="clearfix enroll-button blue-button extra-large-button">
+                        <button class="clearfix enroll-button blue-button extra-large-button btn-block">
                             {{ trans("courses/general.course-enroll") }}
                         </button>
                     <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
