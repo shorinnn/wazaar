@@ -406,6 +406,14 @@
 @section('extra_js')
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script>
+        function unauthenticatedEnrollAttempt(){
+            if( $('.login-to-purchase-alert').length == 0 ){
+                $('#registerModal').find('h1').after('<p class="alert alert-danger login-to-purchase-alert">{{ trans('courses/general.login_to_purchase') }}</p>');
+            }
+            $('[data-target="#registerModal"]').first().click();
+            
+        }
+        
         function playVideo(div){
             thevid=document.getElementById('videoContainer');
             thevid.style.display='block'; 
@@ -413,7 +421,14 @@
 //            $("iframe").attr("src", $("iframe").attr("data-src").replace("autoplay=0", "autoplay=1"));
              $("#embeded-video")[0].src += "&autoplay=1";
         }
-        $(function(){            
+        $(function(){       
+            @if( Auth::guest() )
+                $('#purchase-form').submit(function(e){
+                    e.preventDefault();
+                    unauthenticatedEnrollAttempt();
+                });
+            @endif
+            
             if( $('.instructor-bio-p').getLines() > 4){
                 $('.instructor-bio-btn').show();
             }

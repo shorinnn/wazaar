@@ -216,6 +216,13 @@
                                      data-fail-callback="registerValidator.failCallback"  onsubmit="return registerValidator.validate(event);" />
                                     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                                     <fieldset>
+                                        
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Last Name" type="text" name="last_name" id="last_name" value="" required="">
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="First Name" type="text" name="first_name" id="first_name" value="" required="">
+                                            </div>
                                     
                                     <div class="form-group email-field">
                                         <input class="form-control" placeholder="{{ trans('general.email-placeholder') }}" 
@@ -346,12 +353,12 @@
 
 				$('.showRegister').click(function(){
 					$('.modal').modal('hide');
-					$('[data-target="#registerModal"]').click();
+					$('[data-target="#registerModal"]').first().click();
 					return false;
 				});
 				$('.showLogin').click(function(){
 					$('.modal').modal('hide');
-					$('[data-target="#loginModal"]').click();
+					$('[data-target="#loginModal"]').first().click();
 					return false;
 				});
 
