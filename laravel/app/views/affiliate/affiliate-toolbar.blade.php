@@ -2,13 +2,13 @@
     <div class="row">
         @if( Auth::user()->accepted_affiliate_terms == 'yes' ) 
             <div class="col-xs-12 col-sm-12 col-md-7 col-lg-6">
-                <div class="col-xs-12 col-sm-4 col-ms-3">
+                <div class="col-xs-12 col-sm-4 col-md-3">
                     <select id='linkWithDD' onchange='linkWith()'>
                         <option value='0'>Link Without Gift</option>
                         <option value='1'>Link With Gift</option>
                     </select>
                 </div>
-                <div class="col-xs-12 col-sm-8 col-ms-9">
+                <div class="col-xs-12 col-sm-8 col-md-9">
                     <input type="text" readonly="" id='affiliate-toolbar-link' value='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}' />
                 </div>
                 <div class="clearfix"></div>
