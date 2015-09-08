@@ -5,7 +5,7 @@ return array(
     'purchase' =>'購入',
     'join_class' =>'受講する',
     'enroll_for' =>'月Enroll forせ',
-    'login_to_purchase' =>'ログインして購入',
+    'login_to_purchase' =>'ログインして続きを見る！',
     'purchase_successful' =>'購入が完了しました',
     'purchase_failed' =>'購入できませんでした',
     'course_created_image_error' =>'コースの作成が完了しましたが、プレビュー画像がアップロードされていません',
