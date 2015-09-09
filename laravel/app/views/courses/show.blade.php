@@ -391,7 +391,7 @@
 //                                {{//Form::close()}}
                                     ?>
                             <!--<a href="#">{{ trans("general.add-to-wishlist") }}</a>-->
-                            <a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>
+                            <!--<a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>-->
                         </div>
 
                             </div>
