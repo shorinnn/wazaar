@@ -8391,6 +8391,9 @@ footer{
 	width: 33%;
 }
 
+.ajax-content center{
+	min-height: 500px;
+}
 /*************** Media Query fixes **************************/
 @media (max-width: 1250px) and (min-width: 991px){
 .questions-sidebar .ask-question .img-container{

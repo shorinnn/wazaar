@@ -431,6 +431,7 @@ function loadRemote(e){
         if(failSafe > 50) return;
         failSave++;
     }
+
     $(e.target).attr('data-loading', 1);
     
      
@@ -449,13 +450,14 @@ function loadRemote(e){
             $(target).append('<div class="small-overlay"><center><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></center></div>');
         }
         
+        if( typeof(callback2)!= 'undefined'){
+            window[callback2](e);
+        }
+        
         $(target).load(url, function(){
             $(e.target).attr('data-loading', 0);
             if( typeof(callback)!= 'undefined'){
                 window[callback](e);
-            }
-            if( typeof(callback2)!= 'undefined'){
-                window[callback2](e);
             }
         });
     }
@@ -468,9 +470,6 @@ function loadRemote(e){
             else $(target).prepend(data);
             if( typeof(callback)!= 'undefined'){
                 window[callback](e);
-            }
-            if( typeof(callback2)!= 'undefined'){
-                window[callback2](e);
             }
         });
     }
@@ -486,9 +485,6 @@ function loadRemote(e){
             $(e.target).attr('data-loading', 0);
             if( typeof(callback)!= 'undefined'){
                 window[callback](e);
-            }
-            if( typeof(callback2)!= 'undefined'){
-                window[callback2](e);
             }
         });
     }
