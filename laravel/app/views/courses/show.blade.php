@@ -292,8 +292,8 @@
                                 <div class="original-price text-muted text-left"><del>¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
                                 <div class="text-warning">
                                     <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
-                                    <div class="discounted-time-left pull-right">
-                                        <i class="fa fa-clock-o"></i> <span id="{{$course->slug}}-countdown"></span>
+                                    <div class="discounted-time-left pull-right">                                        
+                                        <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on, true)}}">{{timeUntil($course->sale_ends_on)}}</span>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -478,7 +478,9 @@
  
             @endif
             @if($course->isDiscounted())
-                discountCountdown('#{{$course->slug}}-countdown', '{{$course->sale_ends_on->timestamp}}');
+                // setTimeout(function(){
+                //     discountCountdown('#{{$course->slug}}-countdown', '{{$course->sale_ends_on->timestamp}}');
+                // }, 1000)                
             @endif
         });    
     </script>
