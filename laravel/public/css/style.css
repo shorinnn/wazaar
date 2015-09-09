@@ -8504,6 +8504,9 @@ footer{
 	.logged-in-menu-holder{
 		float: left;
 	}
+	.lesson-topics li .lesson-name{
+		width: 62%;
+	}
 }
 @media (max-width:1002px){
 	.next_{ 
@@ -8974,6 +8977,9 @@ header .top-menu li{
 		float: left;
 		margin: 20px 0 10px;
 	}
+	.lesson-topics li .lesson-name{
+		width: 60%;
+	}
 }
 @media (max-width:620px){
 	.course-detail-top-section .centered-contents .watch-video-button{
@@ -9051,7 +9057,7 @@ header .top-menu li{
 		display: inline-table;
 	}
 	.lesson-topics li .lesson-name{
-		width: 58%;
+		width: 56%;
 	}
 }
 @media (max-width:552px){
@@ -9240,6 +9246,9 @@ header .top-menu li{
 	.checkout-modal .cards-wrap.active{
 		border-radius: 0;
 	}
+	.lesson-topics li .lesson-name{
+		width: 50%;
+	}
 }
 @media (max-width:402px){
 	.user-data-modal .orr span{
@@ -9280,7 +9289,7 @@ header .top-menu li{
 		font-size: 11px;
 	}	
 	.lesson-topics li .lesson-name{
-		width: 43%;
+		width: 39%;
 	}
 }
 @media (min-width:320px) and (max-width: 480px) {
@@ -9394,7 +9403,7 @@ header .top-menu li{
 		margin-left: 10px;
 	}
 	.lesson-topics li .lesson-name{
-		width: 32%;
+		width: 26%;
 	}
 }
 .no-float{
