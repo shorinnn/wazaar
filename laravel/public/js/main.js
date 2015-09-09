@@ -96,8 +96,9 @@ $(document).ready(function(){
 
 function discountCountdown(target, time_end){
     setInterval(function () {
-        var diffTime = moment.unix(time_end) - moment().format('X'); //better to handle this in Controller to avoid timezone problem
+        var diffTime = moment.unix(time_end).format('X') - moment().format('X');
         var duration = moment.duration(diffTime, 'seconds');
+        console.log(duration);
         if(duration.days() >= 1){
             $(target).text(moment(duration).format('D [days and] hh:mm:ss'));
         } else {
