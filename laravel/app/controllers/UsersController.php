@@ -140,7 +140,7 @@ class UsersController extends Controller
             }
             
             //if(Auth::user()->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
-            if( Auth::user()->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
+            if( Auth::user()->hasRole('Instructor') ) return Redirect::to( nonHttps( action('CoursesController@myCourses') ) );
             return Redirect::intended('/');
         } else {
             if ($this->users->isThrottled($input)) {

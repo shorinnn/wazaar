@@ -696,3 +696,8 @@ function strip_tags_and_attributes($text, $tags){
     $text = strip_tags($text, $tags);
     return preg_replace("/<([a-z][a-z0-9]*)[^>]*?(\/?)>/i",'<$1$2>', $text);
 }
+
+function nonHttps($url){
+    $url = str_replace('https://', 'http://', $url);
+    return $url;
+}

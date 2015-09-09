@@ -168,7 +168,7 @@
                 </div>
             </div>
             
-            <div id='discover-courses-area'>
+            <div id='discover-courses-area' class="ajax-content">
                 {{ View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted') ) }}
             </div>
         </div>
@@ -226,5 +226,6 @@
 
             });
         });
+        ajaxifyPagination( null, '#discover-courses-area' );
     </script>
 @stop
