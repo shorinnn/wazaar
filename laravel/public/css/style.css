@@ -2594,27 +2594,27 @@ h2, h3, h4, h5, h6{
 .lesson-topics li{
 	border-top: solid 1px #ebeced;
 	background-color: #f7f9fa;
-	padding-left: 27px;
+	padding-left: 75px;
+	position: relative;
 }
 .lesson-topics li .lesson-name{
 	float: left;
 	color: #41474d;
 	font-size: 14px;
-	padding: 0 20px 0 0 !important;
-	line-height: 56px;
-	height: 56px;
+	padding: 19px 20px 19px 0 !important;
+	/*line-height: 56px;
+	height: 56px;*/
 }
 .lesson-topics li span{
     background: #d7d8d9;
     border-radius: 26px;
-    float: left;
     height: 28px;
     line-height: 28px;
-    position: relative;
+    position: absolute;
     text-align: center;
     top: 14px;
-	margin-right: 22px;
     width: 28px;
+	left: 30px;
 }
 .lesson-topics li span i{
     font-size: 13px;

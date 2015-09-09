@@ -48,7 +48,7 @@
                                         
                                         </span>
                                     </div>
-                                    <div class="clearfix new-card">
+                                    <div class="clearfix new-card cards-wrap">
                                         <span class="cc-card-button radio-style-2">
                                             <input type="radio" name="credit-card-id" id="card-2">
                                             <label class="small-radio-2" for="card-2"></label>
