@@ -3,12 +3,13 @@
     <!--<img id="user-data-bckgrd-img" class="img-responsive" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/background-images/background-image.jpg">
     <span class="background-image-overlay"></span>-->
     <section class="container-fluid user-data-modal-wrapper dedicated-login-page">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-sm-offset-2 col-md-offset-3 col-lg-offset-4">
+        <div class="row no-margin">
+            <div class="login-page">
                 <a href="" class="modal-box-logo clearfix">
                     <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
                 </a>
                 <div class="user-data-modal clearfix">
+                	<div class="user-data-modal-header">
                     <h1 class="clearfix"> アフィリエイター用ログイン </h1>
                     
                     
