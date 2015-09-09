@@ -1766,3 +1766,12 @@ void function $getLines($){
         return lines;
     };
 }(jQuery);
+
+function ajaxifyPagination(e){
+    $('.pagination-container a').each(function(){
+        $(this).addClass( 'load-remote' );
+        $(this).attr( 'data-url', $(this).attr('href') );
+        $(this).attr( 'data-callback', 'ajaxifyPagination' );
+        $(this).attr( 'data-target', '.ajax-content' );
+    });
+}
