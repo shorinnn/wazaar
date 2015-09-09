@@ -59,12 +59,11 @@
                             <!--A short description of the module goes here...-->
                         </p>
                         <ul class="lesson-topics expandable-content clearfix">
-                            @foreach($module->lessons as $lesson)
+                            @foreach($module->lessons as $i=>$lesson)
                                 <li class="lessons lesson-1 bordered clearfix">
                                     <span><i class="wa-play"></i></span>
-                                    <a class="clearfix lesson-name">{{ Str::limit( $lesson->name, Config::get('custom.course-desc-lesson-chars') )  }}
-
-                                    </a>
+                                    <!--{{ Str::limit( $lesson->name, Config::get('custom.course-desc-lesson-chars') )  }}-->
+                                    <a class="clearfix lesson-name" data-toggle="tooltip" title="{{$lesson->name}}" @if($i == 0) data-placement="bottom" @endif>{{$lesson->name}}</a>
                                     <!--<em>Type of lesson</em>-->
                                     <div class="buttons">
                                         @if($lesson->blocks()->where('type','video')->first() != null

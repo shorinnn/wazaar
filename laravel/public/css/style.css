@@ -2624,6 +2624,10 @@ h2, h3, h4, h5, h6{
 	padding: 19px 20px 19px 0 !important;
 	/*line-height: 56px;
 	height: 56px;*/
+	width: 64%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .lesson-topics li span{
     background: #d7d8d9;
@@ -8500,6 +8504,9 @@ footer{
 	.logged-in-menu-holder{
 		float: left;
 	}
+	.lesson-topics li .lesson-name{
+		width: 62%;
+	}
 }
 @media (max-width:1002px){
 	.next_{ 
@@ -8970,6 +8977,9 @@ header .top-menu li{
 		float: left;
 		margin: 20px 0 10px;
 	}
+	.lesson-topics li .lesson-name{
+		width: 60%;
+	}
 }
 @media (max-width:620px){
 	.course-detail-top-section .centered-contents .watch-video-button{
@@ -9045,6 +9055,9 @@ header .top-menu li{
 		line-height: 30px;
 		padding: 10px 0px;
 		display: inline-table;
+	}
+	.lesson-topics li .lesson-name{
+		width: 56%;
 	}
 }
 @media (max-width:552px){
@@ -9184,6 +9197,9 @@ header .top-menu li{
 		padding-left: 24px;
 		padding-right: 24px;
 	}
+	.lesson-topics li .lesson-name{
+		width: 53%;
+	}
 }
 @media (max-width:460px){
 	.checkout-modal {
@@ -9236,6 +9252,9 @@ header .top-menu li{
 	#loginModal .modal-dialog{
 		width: 100%;
 	}
+	.lesson-topics li .lesson-name{
+		width: 50%;
+	}
 }
 @media (max-width:402px){
 	.user-data-modal .orr span{
@@ -9275,6 +9294,9 @@ header .top-menu li{
 	.homepage.explore-category .category-box span{
 		font-size: 11px;
 	}	
+	.lesson-topics li .lesson-name{
+		width: 39%;
+	}
 }
 @media (min-width:320px) and (max-width: 480px) {
 	.course-data .column-1 div{
@@ -9313,7 +9335,7 @@ header .top-menu li{
 	}	
 	.lesson-topics li .buttons{
 		margin-right: 10px;
-		float: left;
+		/*float: left;*/
 	}
 	.lesson-topics li .buttons a{
 		margin-left: 0;
@@ -9385,6 +9407,9 @@ header .top-menu li{
 		width: 33px;
 	}	.mycourse-card-footer .default-button + .default-button{
 		margin-left: 10px;
+	}
+	.lesson-topics li .lesson-name{
+		width: 26%;
 	}
 }
 .no-float{

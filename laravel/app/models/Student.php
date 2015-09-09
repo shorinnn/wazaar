@@ -266,6 +266,8 @@ class Student extends User{
     public function crash($product, $affiliate=null ){
         // cannot buy the same course/lesson twice |  cannot buy own course/lesson
         if( !$this->canPurchase($product) ) return false;
+        // cannot crash non free course
+        if(  $product->cost() > 0 ) return false;
         // if this is the first purchase, set the LTC affiliates
         if( $this->purchases->count()==0 ) $this->setLTCAffiliate();
         $purchase = new Purchase;

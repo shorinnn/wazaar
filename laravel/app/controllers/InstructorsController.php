@@ -24,6 +24,7 @@ class InstructorsController extends \BaseController {
         
         public function become()
 	{
+            if( Auth::user()->hasRole('Affiliate') ) return Redirect::action('SiteController@index');
             $users = new UserRepository();
             $users->become( 'Instructor', Auth::user(), Cookie::get('stpi') );
             return Redirect::action('CoursesController@myCourses');

@@ -89,6 +89,9 @@
                     </div>
                 </div>
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 margin-top-25">
+                            @if( Session::has('message') )
+                                <h1 class="alert alert-success">{{ Session::get('message') }}</h1>
+                            @endif
                     @if($gift != null)
                             <div class="affiliate-gift-wrap">
                                 <div class="row description-wrap no-margin">
