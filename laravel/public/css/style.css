@@ -1346,6 +1346,9 @@ header .profile-name li:hover ul{
 	position: relative;
 	display: block;
 }
+.small-box .price-tag-container .price-tag .discounted-price{
+    color: #ec4316;
+}
 .difficulty-bar{
 	float: left;
 	height: 16px;
