@@ -401,12 +401,14 @@
     </div>
 </section>
 <?php 
-    if( Input::has('preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
-    else{
-        echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { 
-            echo View::make('courses.description.bottom-cache')->withCourse($course);
-        }); 
-    }
+     echo View::make('courses.description.bottom-cache')->withCourse($course);  
+     // disabled until better caching
+//    if( Input::has('preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
+//    else{
+//        echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { 
+//            echo View::make('courses.description.bottom-cache')->withCourse($course);
+//        }); 
+//    }
     ?>
 @if( Auth::check() &&  !Auth::user()->hasRole('Instructor') &&  !Auth::user()->hasRole('Affiliate') )
     <section class="become-an-instructor-section container-fluid">

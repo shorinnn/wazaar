@@ -156,9 +156,12 @@
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 slide-to-left full-height scroll-pane classroom-main">
                 <div class="classroom-header row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        @if( !$crashLesson)
                         <span class="left-menu slide-menu-toggler">
                             <i class="wa-hamburger"></i>
                         </span>
+                        @endif
+                      
                         <a href="{{action('SiteController@index') }}" class="logo">
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive">
                         </a>
@@ -166,7 +169,7 @@
                             {{ $lesson->module->order }}.{{ $lesson->order }}. 
                             {{ $lesson->name }}</h4>
                         <div class="navigate-lessons-buttons">
-                            @if( $prevLesson != null )
+                            @if( $prevLesson != null && $crashLesson==false )
                                 <a href="{{ action('ClassroomController@lesson', 
                                             [ $prevLesson->module->course->slug,
                                             $prevLesson->module->slug,
@@ -177,7 +180,7 @@
                                     $prevLesson->module->slug,
                                     $prevLesson->slug] )}}#{{$prevLesson->slug}}" class="prev-button load-remote"  data-target='.classroom-view'><i class="wa-chevron-left"> {{ $prevLesson->name }}</i></a>
                             @endif
-                            @if( $nextLesson != null )
+                            @if( $nextLesson != null  && $crashLesson==false )
                                 <a href="{{ action('ClassroomController@lesson', 
                                             [ $nextLesson->module->course->slug,
                                             $nextLesson->module->slug,
@@ -226,7 +229,11 @@
                 @endif
             </div>
             
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 course-question-sidebar no-padding">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 course-question-sidebar no-padding"
+                 @if($crashLesson)
+                 style='opacity:0.8; pointer-events:none'
+                 @endif
+                 >
                 @if( count($lesson->attachments()) > 0)
                 
                     <div class="course-material">
@@ -299,7 +306,7 @@
             </div>
                 
         </div>
-        <div class="slide-menu scroll-pane">
+        <div class="slide-menu scroll-pane @if($crashLesson) hide @endif">
             <div class="header">
                 <div class="clearfix">
                     <a href="#" class="course"><i class="wa-chevron-left"></i>Course</a>

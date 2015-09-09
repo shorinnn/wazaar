@@ -1,3 +1,9 @@
+<?php
+    $date = new DateTime();
+    $date->setTimezone(new DateTimeZone('Asia/Tokyo'));
+    $now = strtotime( $date->format('Y-m-d H:i:s') ) ;
+    $show_on = strtotime( '2015-09-10 17:15:00' );
+?>
 <section class="course-description-container container-fluid clearfix">
     @if($course->bannerImage==='has banner bro')
         <img src='{{$course->bannerImage->url}}' />
@@ -79,25 +85,51 @@
 
                                         @if( $lesson->free_preview == 'yes' )
                                             <!--<a href="#" class="default-button preview-button large-button">Preview</a>-->
-
-                                            {{ Form::open( [ 'action' => ['CoursesController@crashLesson', $course->slug, $lesson->slug ], 'class' => 'inline-form' ] ) }}
-                                            <button type="submit" class='default-button preview-button large-button'
-                                            @if( Auth::check() && ( !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) ) )
-                                                    disabled="disabled" data-crash-disabled='1'
+                                                @if( Auth::check() && Student::find(Auth::user()->id)->purchased($lesson)  )
+                                                        <a href='{{ action( 'ClassroomController@lesson', 
+                                                        [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, 
+                                                    'lesson' => $lesson->slug ] )}}' class='default-button preview-button large-button' >Enter</a>
+                                                @else
+                                                <!-- to purchase -->
+                                                    @if($now > $show_on)
+                                                        {{ Form::open( [ 'action' => ['CoursesController@crashLesson', $course->slug, $lesson->slug ], 'class' => 'inline-form' ] ) }}
+                                                    @else
+                                                        {{ Form::open( [  'class' => 'inline-form' ] ) }}
                                                     @endif
-                                                    >{{ trans('courses/general.free_preview') }}</button>
-                                            {{ Form::close() }}
+                                                    <button type="submit" class='default-button preview-button large-button'
+                                                    @if( $now<$show_on || 
+                                                    (Auth::check() && ( !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) ) ) )
+                                                            disabled="disabled" data-crash-disabled='1'
+                                                            @endif
+                                                            >{{ trans('courses/general.free_preview') }}</button>
+                                                      {{ Form::close() }}
+                                                      <!-- / to purchase -->
+                                                @endif
                                         @else
                                             @if( $lesson->individual_sale == 'yes' )
                                                 <!--<a href="#" class="blue-button buy-button large-button">Buy</a>-->
-                                                {{ Form::open( [ 'action' => ['CoursesController@purchaseLesson', $course->slug, $lesson->slug ], 'class' => 'inline-form' ] ) }}
-                                                <button class="blue-button buy-button large-button"
-                                                @if( Auth::check() && ( !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) ) )
-                                                        disabled="disabled" data-crash-disabled='1'
+                                                    @if( Auth::check() && Student::find(Auth::user()->id)->purchased($lesson)  )
+                                                            <a href='{{ action( 'ClassroomController@lesson', 
+                                                            [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, 
+                                                        'lesson' => $lesson->slug ] )}}' class='default-button preview-button large-button' >Enter</a>
+                                                        @else
+                                                            <!-- can purchase -->
+                                                            @if($now > $show_on)
+                                                                {{ Form::open( [ 'action' => ['CoursesController@purchaseLesson', $course->slug, $lesson->slug ], 'class' => 'inline-form' ] ) }}
+                                                            @else
+                                                                {{ Form::open( [ 'class' => 'inline-form' ] ) }}
+                                                            @endif
+                                                            <button class="blue-button buy-button large-button"
+                                                             @if( $now<$show_on || 
+                                                                (Auth::check() && ( !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) ) ) )
+                                                                    disabled="disabled" data-crash-disabled='1'
+                                                                    @endif
+                                                                    >{{ trans('courses/general.purchase') }}</button>
+                                                            {{ Form::close() }}
+                                                            @endif
+                                                            <!-- / can purchase -->
                                                         @endif
-                                                        >{{ trans('courses/general.purchase') }}</button>
-                                                {{ Form::close() }}
-                                            @endif
+                                                      
                                         @endif
 
 

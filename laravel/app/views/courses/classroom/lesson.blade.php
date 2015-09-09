@@ -10,10 +10,10 @@
 
         @if( !Auth::user()->hasRole('Affiliate') )
             {{ View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                            'instructor', 'student') ) }}
+                            'instructor', 'student', 'crashLesson') ) }}
         @else
             {{ View::make('courses.classroom.lesson-ajax-affiliates')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                            'instructor', 'student') ) }}
+                            'instructor', 'student', 'crashLesson') ) }}
         @endif
     </div>
 

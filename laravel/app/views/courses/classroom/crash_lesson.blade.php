@@ -1,104 +1,141 @@
 @extends('layouts.default')
-
-@section('page_title')
-    {{ $lesson->name }} - {{ $lesson->module->name }} - {{ $course->name }} -
-@stop
-
+        
 @section('content')
-    
-        <div class="classrooms-wrapper clearfix">
-            <h1 class="classroom-course-title">Course: {{ $course->name }}</h1>
-            <h2 class="classroom-lesson-title">Lesson: {{ $lesson->name }}</h2>
-        	<section class="video-container">
-            	@if( $video != null)
-                <div class="text-center">
-                    @if( Agent::isMobile() )
-                        <video controls>
-                        	<source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Mobile Devices')
-                            ->first()->video_url }}" type="video/mp4">
-                        </video>
-                    @else
-                    <div class="videoContainer">
-                        <video id="myVideo" preload="auto" controls>
-                            <source src="{{ $video->video()->formats()->where('resolution', 'Custom Preset for Desktop Devices')
-                            ->first()->video_url }}" type="video/mp4">
-                        	<p>Your browser does not support the video tag.</p>
-                        </video> 
-                        <div class="control-container">                       
-                            <div class="topControl">
-                                <div class="progress">
-                                    <span class="bufferBar"></span>
-                                    <span class="timeBar"></span>
-                                </div>
-                            </div>
-                            <div class="control">
-                                
-                                <div class="btmControl clearfix">
-                                    <div class="btnPlay btn" title="Play/Pause video"></div>
-                                    <div class="sound sound2 btn" title="Mute/Unmute sound"></div>
-                                    <div class="volume-container">
-                                        <div class="volume" title="Set volume">
-                                            <span class="volumeBar">
-                                                <em></em>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="btnFS btn" title="Switch to full screen"></div>
-                                    <div class="time">
-                                        <span class="current"></span> / 
-                                        <span class="duration"></span> 
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="loading"></div>
-                    </div>
-                    <span class="centered-play-button"></span>
-                    @endif
-                </div>
-            	@endif
-            </section>
-            <section class="classroom-content container">
-            	<div class="row first-row">
-                	<div class="col-md-12">
-                      @foreach($lesson->blocks as $block)
-                          @if($block->type=='text' && trim($block->type)!='')
-                              <div class="well">{{ $block->content }}</div>
-                          @endif
-                      @endforeach
-                    </div>
-                </div>
-                <div class="row second-row">
-                    @if($lesson->blocks()->where('type','file')->count() > 0)
-                	<div class="col-md-12">
-                            <div class="files">
-                                @foreach($lesson->blocks as $block)
-                                    @if($block->type=='file')
-                                        <p>
-                                            <!--<a href='{{ $block->content }}' target='_blank'>-->
-                                            <a href="{{ action('ClassroomController@resource', PseudoCrypt::hash($block->id) ) }}">
-                                                <i class="fa fa-cloud-download"></i> {{ $block->name }}
-                                            </a></p>
-                                    @endif
-                                @endforeach
-                            </div>
-                        </div>
-                    @endif
-                </div>
-            </section>
-            
-            <!--<section class="container-fluid become-an-instructor">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-xs-12">
-                      <h1>BECOME</h1>
-                      <h2>AN INSTRUCTOR</h2>
-                      <a href="{{ action('InstructorsController@become') }}"><span>{{trans('site/homepage.get-started')}}</span></a>
-                    </div>
-                  </div>
-              </div>
-            </section>-->
-        </div>
+	<style>
+		html{
+			background: #18222b;
+		}
+	</style>
+    <div class="container-fluid classroom-view" style="overflow-x:hidden;">
+
+        @if( !Auth::user()->hasRole('Affiliate') )
+            {{ View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
+                            'instructor', 'student', 'crashLesson') ) }}
+        @else
+            {{ View::make('courses.classroom.lesson-ajax-affiliates')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
+                            'instructor', 'student', 'crashLesson') ) }}
+        @endif
+    </div>
+
 @stop
 
+@section('extra_js')
+<script>
+	function add_scroll_class_if_have_scrollbar(){
+		if($(document).height() > $(window).height()){
+			$('.course-question-sidebar').addClass('hasScroll');
+		} else {
+			$('.course-question-sidebar').removeClass('hasScroll');
+		}
+	}
+	
+    var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';	
+    $(function(){
+        add_scroll_class_if_have_scrollbar();
+
+        if( $('#myVideo').length > 0 ){
+            $('#myVideo').on('timeupdate', function(e){
+                localStorage.setItem('vid-progress-'+videoHash, 
+                $('#myVideo')[0].currentTime );
+            });
+            if( localStorage.getItem('vid-progress-{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}') != 'undefined' ){
+                $('#myVideo')[0].currentTime =  localStorage.getItem('vid-progress-'+videoHash);
+            };
+        }
+        
+        var lessonId = {{ $lesson->id }};
+        $('#myVideo').on('ended', function(e){
+            lessonComplete( lessonId );
+        });
+
+    });
+	
+	$(document).ready(function(){
+		resizeVideo();
+	});
+
+	var rtime;
+	var timeout = false;
+	var delta = 200;
+	$(window).resize(function() {
+		add_scroll_class_if_have_scrollbar();
+		rtime = new Date();
+		if (timeout === false) {
+			timeout = true;
+			setTimeout(resizeend, delta);
+		}
+	});
+
+	function resizeend() {
+		if (new Date() - rtime < delta) {
+			setTimeout(resizeend, delta);
+		} else {
+			timeout = false;
+			resizeVideo();
+		}               
+	}
+	
+	function resizeVideo(){
+		$("#myVideo").removeAttr('style');
+		var screenHeight = $(window).height();
+		var screenWidth = $(window).width();
+		var videoControlHeight = $(".control-container").height();
+			
+		screenHeight2 = screenHeight - videoControlHeight - 102;
+		if( screenWidth/screenHeight2 <= 1.778 ) return;
+		
+		var classroomHeaderHeight = $(".classroom-header").height(); 
+	
+	
+		$("#myVideo").innerHeight(screenHeight - videoControlHeight - 102);
+	 } 
+
+
+// By Chris Coyier & tweaked by Mathias Bynens
+
+$(function() {
+    makeYTfluid();
+});
+
+function makeYTfluid(){
+    // Find all YouTube videos
+	var $allVideos = $("iframe"),
+
+	    // The element that is fluid width
+	    $fluidEl = $(".videoContainer");
+
+	// Figure out and save aspect ratio for each video
+	$allVideos.each(function() {
+            console.log('YT VID');
+		$(this)
+			.data('aspectRatio', this.height / this.width)
+
+			// and remove the hard coded width/height
+			.removeAttr('height')
+			.removeAttr('width');
+
+	});
+
+	// When the window is resized
+	// (You'll probably want to debounce this)
+	$(window).resize(function() {
+                setTimeout(function(){
+                    var newWidth = $fluidEl.width();
+
+                    // Resize all videos according to their own aspect ratio
+                    $allVideos.each(function() {
+
+                            var $el = $(this);
+                            $el
+                                    .width(newWidth)
+                                    .height(newWidth * $el.data('aspectRatio'));
+
+                    });
+                }, 500);
+		
+
+	// Kick off one resize to fix all videos on page load
+	}).resize();
+}
+</script>
+@stop
