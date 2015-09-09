@@ -104,7 +104,7 @@ function discountCountdown(target, time_end){
         duration = moment.duration(duration.asSeconds() - interval, 'seconds');
         output = moment(duration).format('hh:mm:ss');
         if(duration.days() >= 1){
-            output = output = moment(duration).format('D days and hh:mm:ss');
+            output = output = moment(duration).format('D [days and] hh:mm:ss');
         }
         $(target).text(output);
     }, 1000);
