@@ -10,15 +10,15 @@
                     <!--            <div class="new-tag">NEW</div>
                     -->
                     <div class="img-container">
-<!--                        <img 
+                        <img 
                             @if( $course->previewImage != null ) 
                                 src="{{ cloudfrontUrl( $course->previewImage->url ) }}"
                             @else
                                 src="{{ url('splash/logo.png') }}"
                             @endif
                            
-                            class="img-responsive" alt="" style="max-height: 182px"  />-->
-                        <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">
+                            class="img-responsive" alt="" style="max-height: 182px"  />
+                        <!--<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">-->
                         <span class="video-play-button"><em></em></span>
                         <span class="likes"><i class="wa-like"></i>{{ $course->reviewsScore() }}</span>         
                         <span class="box-overlay">
