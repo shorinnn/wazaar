@@ -72,7 +72,7 @@
                                     <span class="discounted-price">
                                         ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
                                     </span>
-                                    {{trans('courses/general.sale')}}
+                                    <!--{{trans('courses/general.sale')}}-->
                                 @else
                                     @if($course->free=='yes' || $course->cost() == 0)
                                         {{ trans('courses/general.free') }}
