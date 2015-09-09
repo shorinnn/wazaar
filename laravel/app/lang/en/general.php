@@ -147,4 +147,15 @@ return array(
     'created-on'=>'Created on',
     'status' => 'Status',
     'activity-today' => 'Activity Today',
+    'ratings' => [
+        'overwhelmingly-positive' => 'Overhwelmingly Positive',
+        'very-positive' => 'Very Positive',
+        'positive' => 'Positive',
+        'mostly-positive' => 'Mostly Positive',
+        'mixed' => 'Mixed',
+        'mostly-negative' => 'Mostly Negative',
+        'negative' => 'Negative',
+        'yery-negative'=>'Very Negative',
+        'no-rating-yet' => 'No Rating Yet'
+    ]
 );

@@ -117,4 +117,15 @@ return array(
     'status' => 'ステータス',
     'activity-today' => '今日の重要指標',
     'register-instructor' => 'ワザールに新規登録する！',
+    'ratings' => [
+        'overwhelmingly-positive' => '圧倒的に素晴らしい！',
+        'very-positive' => 'とても素晴らしい',
+        'positive' => '素晴らしい',
+        'mostly-positive' => 'おおむね良い',
+        'mixed' => '賛否が分かれる',
+        'mostly-negative' => 'おおむね評価が低い',
+        'negative' => '低評価',
+        'very-negative' => 'とても低評価',
+        'no-rating-yet' => 'まだ評価がありません。'
+    ]
 );

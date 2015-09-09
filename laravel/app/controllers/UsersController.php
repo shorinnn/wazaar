@@ -141,7 +141,7 @@ class UsersController extends Controller
             
             //if(Auth::user()->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
             if( Auth::user()->hasRole('Instructor') ) return Redirect::to( nonHttps( action('CoursesController@myCourses') ) );
-            return Redirect::intended('/');
+            return Redirect::intended( nonHttps( action('SiteController@index') ) );
         } else {
             if ($this->users->isThrottled($input)) {
                 $err_msg = Lang::get('confide::confide.alerts.too_many_attempts');

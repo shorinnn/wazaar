@@ -21,7 +21,7 @@
             <span class="box-overlay">
 <!--                <p>{{trans('general.lesson')}}</p>
                 <p>{{trans('general.weeks-of-learning')}}</p>-->
-                <p>{{ $course->courseDifficulty->name }}</p>
+                <p>{{ trans('general.'.$course->courseDifficulty->name) }}</p>
                  <?php });?>
                 
                 <div class="footer clearfix">
