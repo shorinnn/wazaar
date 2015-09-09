@@ -319,6 +319,7 @@
         <script type="text/javascript" src="{{url('js/bootbox.js')}}"></script>
         <script type="text/javascript" src="{{url('js/jquery.countdown.min.js')}}"></script>
         <script type="text/javascript" src="{{url('js/jquery.maskedinput.min.js')}}"></script>
+        <script type="text/javascript" src="{{url('js/moment.js')}}"></script>
 
 
     @endif

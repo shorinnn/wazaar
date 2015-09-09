@@ -94,6 +94,22 @@ $(document).ready(function(){
 
 });
 
+function discountCountdown(target, time_end){
+    var now = moment().format('X');
+
+    var diffTime = time_end - now; //better to handle this in Controller to avoid timezone problem
+    var duration = moment.duration(diffTime, 'seconds');
+    var interval = 1;
+    setInterval(function () {
+        duration = moment.duration(duration.asSeconds() - interval, 'seconds');
+        output = duration.hours() + ':' + duration.minutes() + ':' + duration.seconds() + 's';
+        if(duration.days() >= 1){
+            output = duration.days()+' days, '+output;
+        }
+        $(target).text(output);
+    }, 1000);
+}
+
 function makeBoxesExpandable(){
     $('body').delegate('textarea', 'keyup', function(){
 		var opts = {
