@@ -223,18 +223,35 @@
                         @else
                             {{ Form::open([ 'disabled' => 'disabled', 'readonly'=>'readonly', 'id' => 'purchase-form']) }}
                         @endif
- 
-                        @if(Auth::guest() || $student->canPurchase($course) )
+                        @if($course->isDiscounted())
+                            <div class="price discount-box">
+                                <div class="original-price text-muted text-left"><del>¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
+                                <div class="text-warning">
+                                    <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
+                                    <div class="discounted-time-left pull-right">                                        
+                                        <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on, true)}}">{{timeUntil($course->sale_ends_on)}}</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <!-- <p>
+                                Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
+                                You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em>
+                            </p> -->
+                        @else
                             <span class="price clearfix">
-                                           ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
-                                         </span>
+                                ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                            </span>
+                        @endif
+
+                        @if(Auth::guest() || $student->canPurchase($course) )
                             {{--
                             <button class="clearfix enroll-button blue-button extra-large-button">
                                 {{ trans("courses/general.course-enroll") }}
                             </button>
                             --}}
 
-                            <button class="clearfix enroll-button blue-button extra-large-button tooltipable" type="button"
+                            <button class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block" type="button"
                                     @if($now < $show_on)
                                         data-toggle='tooltip' data-placement='left' title='Opens on 10/9'
                                     @else
@@ -245,16 +262,12 @@
                                     data-item-name="{{$course->name}}"
                                     data-price="{{$course->cost()}}">{{ trans("courses/general.course-enroll") }}</button>
                         @elseif(Auth::check() && $student->purchased($course) )
-                            <span class="price clearfix"> ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</span>
-                            <a class="clearfix enroll-button blue-button extra-large-button"
+                            <a class="clearfix enroll-button blue-button extra-large-button btn-block"
                                href="{{ action('ClassroomController@dashboard', $course->slug)}}">
                                 {{ trans("courses/general.enter-classroom") }}
                             </a>
                         @else
-                                <span class="price clearfix">
-                                   ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
-                                 </span>
-                            <button type='button' class="clearfix enroll-button blue-button extra-large-button tooltipable"
+                            <button type='button' class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block"
                                     data-toggle="tooltip" data-placement="left" 
                                     @if( Auth::user()->hasRole('Affiliate') )
                                         title="Log in to your student/instructor account to purchase."
@@ -269,10 +282,6 @@
                         <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
                         <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
                         {{Form::close()}}
-                        @if($course->isDiscounted())
-                            <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
-                                You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
-                        @endif
                         
                 @elseif( $course->cost() == 0 && !Input::has('preview') )
                 
@@ -305,11 +314,6 @@
                                 @endif
  
                      {{Form::close()}}
-                             
-                            @if($course->isDiscounted())
-                                <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
-                                    You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
-                            @endif
                             
                 @else
                     @if($course->cost() > 0)
