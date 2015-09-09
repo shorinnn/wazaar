@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('page_title') Wazaar</title>    
     
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
     @if( App::environment() == 'PPProduction' || Input::has('use-gulp') )
         <link rel="stylesheet" href="{{ url('css-assets/'. asset_path('all.min.css') ) }}" />
     @else
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
-        <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
+        <!--<link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
         <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{url('css/video-player.css')}}">
         <link rel="stylesheet" href="{{url('css/style.css')}}">
@@ -107,7 +107,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center-mobile padding-bottom-20">
                         	<h5>{{ trans('footer.get-in-touch') }}</h5>
                             <p><!--電話番号：-->03-6206-8396　</p>
-                            <a href="http://wazaar.co.jp/contact/">お問い合わせ</a>
+                            <a href="//wazaar.co.jp/contact/">お問い合わせ</a>
                             <p><!--{{trans('site/footer.mail')}}:info@wazaar.comメールアドレス：-->contact@minkare.jp</p>  
                             <div class="social-icons">
                             	<a href="#" class="inline-block"><i class="fa fa-facebook"></i></a>
@@ -283,8 +283,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-        <script src="http://www.localeplanet.com/api/translate.js" /></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+        <script src="//www.localeplanet.com/api/translate.js" /></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
         <script src="{{url("js-assets/" . asset_path('core.min.js') ) }}"></script>
         <script src="{{url("js/jquery.mousewheel.js")}}"></script>
@@ -296,8 +296,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-        <script src="http://www.localeplanet.com/api/translate.js" /></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+        <script src="//www.localeplanet.com/api/translate.js" /></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
         
         
@@ -373,7 +373,7 @@
 
 				$('#video-container').prepend('<div id="video-background" class="full-screen"></div>');
 				$('#video-background').videobackground({
-					videoSource: [['http://vjs.zencdn.net/v/oceans.mp4', 'video/mp4'],
+					videoSource: [['//vjs.zencdn.net/v/oceans.mp4', 'video/mp4'],
 						['', 'video/webm'], 
 						['', 'video/ogg']], 
 						controlPosition: '#bckgrd-video-overlay',
