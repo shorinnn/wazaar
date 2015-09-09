@@ -269,7 +269,7 @@
                         @else
                             <button type='button' class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block"
                                     data-toggle="tooltip" data-placement="left" 
-                                    @if( Auth::user()->hasRole('Affiliate') )
+                                    @if( Auth::check() && Auth::user()->hasRole('Affiliate') )
                                         title="Log in to your student/instructor account to purchase."
                                     @else
                                         title="Available for customers"
@@ -285,7 +285,7 @@
                         
                 @elseif( $course->cost() == 0 && !Input::has('preview') )
                 
-                    @if( Auth::user()->hasRole('Affiliate') ||  $now > $show_on )
+                    @if( Auth::check() && Auth::user()->hasRole('Affiliate') ||  $now > $show_on )
                         {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
                     @else
                         {{ Form::open( [ 'id' => 'purchase-form', 'method'=>'GET', 'readonly'=>'readonly', 'disabled'=>'disabled' ] ) }}
