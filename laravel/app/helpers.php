@@ -590,11 +590,13 @@ function externalVideoPreview($url, $big=false, $iframe=false){
 
 function timeUntil($futureDate, $returnSeconds = false){
     $future_date = new DateTime($futureDate);
+    
     $now = new DateTime();
     if($returnSeconds) return $future_date->getTimestamp() - $now->getTimestamp();
-    $interval = $future_date->diff($now);
-    if($interval->format("%d")>0){
-        $time = $interval->format("%d days %h:%i:%s");
+    $int = $interval = $future_date->diff($now);
+    if($int->format("%d")>0){
+//        $time = $interval->format("%d days %h:%i:%s");
+        $time = $interval->days.' days'.' '.$interval->format(" %h:%i:%s");
     }
     else{
         $time = $interval->format("%h:%i:%s");
