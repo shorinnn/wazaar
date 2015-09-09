@@ -59,6 +59,7 @@
     }
     .module-minimized .minimized-elem{
         display: block;
+		word-wrap: break-word;
     }
     .module-minimized:hover .minimized-elem{
         background-color:#e8eced;
