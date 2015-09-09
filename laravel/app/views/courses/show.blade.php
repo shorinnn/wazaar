@@ -450,7 +450,9 @@
                         @endif
                     </p>
                     <div class="close-button">
-                    	<button type="button" class="large-button blue-button" data-dismiss="modal">CONTINUE BROWSING</button>
+                        <button type="button" class="large-button blue-button" data-dismiss="modal">
+                                    {{ trans('general.continue-browsing') }}
+                        </button>
                     </div>
                 </div>
             </div>
