@@ -69,7 +69,7 @@ $wwwRoutes = function(){
     Route::get('links', 'UsersController@links');
     Route::get('register/account/instructor', 'UsersController@create');
     Route::post('users', 'UsersController@store');
-    Route::get('login', 'UsersController@login');
+    Route::get('login', [ 'uses'=>'UsersController@login', 'https' => true]);
     Route::get('fb-login/{userId?}', 'UsersController@fbLogin');
     Route::get('login-with-facebook', 'UsersController@loginWithFacebook');
     Route::get('link-facebook', 'UsersController@linkFacebook');
