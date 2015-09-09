@@ -22,7 +22,7 @@
                         <span class="video-play-button"><em></em></span>
                         <span class="likes"><i class="wa-like"></i>{{ $course->reviewsScore() }}</span>         
                         <span class="box-overlay">
-                             <p>{{ $course->courseDifficulty->name }}</p>
+                             <p>{{ trans('general.'.$course->courseDifficulty->name) }}</p>
                              <?php });?>
                             
                             <div class="footer clearfix">
