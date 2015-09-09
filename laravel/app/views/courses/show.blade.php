@@ -251,7 +251,7 @@
                             </button>
                             --}}
 
-                            <button class="clearfix enroll-button blue-button extra-large-button tooltipable" type="button"
+                            <button class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block" type="button"
                                     @if($now < $show_on)
                                         data-toggle='tooltip' data-placement='left' title='Opens on 10/9'
                                     @else
@@ -262,12 +262,12 @@
                                     data-item-name="{{$course->name}}"
                                     data-price="{{$course->cost()}}">{{ trans("courses/general.course-enroll") }}</button>
                         @elseif(Auth::check() && $student->purchased($course) )
-                            <a class="clearfix enroll-button blue-button extra-large-button"
+                            <a class="clearfix enroll-button blue-button extra-large-button btn-block"
                                href="{{ action('ClassroomController@dashboard', $course->slug)}}">
                                 {{ trans("courses/general.enter-classroom") }}
                             </a>
                         @else
-                            <button type='button' class="clearfix enroll-button blue-button extra-large-button tooltipable"
+                            <button type='button' class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block"
                                     data-toggle="tooltip" data-placement="left" 
                                     @if( Auth::user()->hasRole('Affiliate') )
                                         title="Log in to your student/instructor account to purchase."
