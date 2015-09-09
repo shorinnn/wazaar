@@ -1489,7 +1489,7 @@ header .profile-name li:hover ul{
 .register-page,
 #registerModal .modal-dialog,
 #loginModal .modal-dialog{
-	max-width: 460px;
+	width: 460px;
 	margin: 30px auto;
 }
 #instructor-bio .close,
@@ -9245,6 +9245,12 @@ header .top-menu li{
 	}
 	.checkout-modal .cards-wrap.active{
 		border-radius: 0;
+	}
+	.login-page, 
+	.register-page, 
+	#registerModal .modal-dialog, 
+	#loginModal .modal-dialog{
+		width: 100%;
 	}
 	.lesson-topics li .lesson-name{
 		width: 50%;
