@@ -235,8 +235,11 @@
                             --}}
 
                             <button class="clearfix enroll-button blue-button extra-large-button tooltipable" type="button"
-                                    data-toggle='tooltip' data-placement='left' title='Opens on 10/9'
-                                    onclick="{{--TEMP DISABLED Payment.showForm(this,event);--}}"
+                                    @if($now < $show_on)
+                                        data-toggle='tooltip' data-placement='left' title='Opens on 10/9'
+                                    @else
+                                        onclick="{{ Payment.showForm(this,event) }}"
+                                    @endif
                                     data-product-type="course"
                                     data-product-id="{{$course->id}}"
                                     data-item-name="{{$course->name}}"
