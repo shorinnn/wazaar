@@ -95,7 +95,7 @@ $(document).ready(function(){
 });
 
 function discountCountdown(target, time_end){
-
+    console.log(moment(time_end).format('MMMM DD, YYYY HH:mm:ss'));
     var diffTime = time_end - moment().format('X'); //better to handle this in Controller to avoid timezone problem
     var duration = moment.duration(diffTime, 'seconds');
     var interval = 1;
