@@ -1589,17 +1589,21 @@ header .profile-name li:hover ul{
 	background: #f7f9fa;
 	padding: 0;
 }
+.user-data-modal-header{
+	padding: 37px 60px 0;
+}
+.user-data-modal-body{
+	padding: 0 60px 60px;
+}
 .user-data-modal h1{
 	color: #303941;
-	margin: 37px 60px 34px;
+	margin: 0 0 34px;
 	font-size: 26px;
 	padding: 0;
-	max-width: 340px;
 	text-align: center;
 }
 .login-social-buttons{
-	max-width: 340px;
-	margin: 0 60px;
+	margin: 0;
 }
 .login-social-buttons a{
 	display: block;
@@ -1645,8 +1649,7 @@ header .profile-name li:hover ul{
 	background-color: #36508a;
 }
 .form-container{
-	max-width: 340px;
-	margin: 20px 60px 48px;
+	margin: 20px 0 0;
 }
 .password-field{
 	position: relative;
@@ -2596,14 +2599,45 @@ h2, h3, h4, h5, h6{
 }
 .module-box h2{
 	color: #303941;
-	margin: 29px 30px 22px;
+	margin: 29px 30px 24px;
 }
 .module-box p{
 	margin: 0 23px 30px;
 	color: #6e747a;
 }
+.course-description p{
+	font-size: 13px;
+	line-height: 20px;
+	margin-bottom: 18px;
+}
+.course-description b{
+	font-size: 13px;
+	line-height: 20px;
+	color: #303941;
+	display: inline-block;
+	margin: 0 23px 18px;
+}
+.course-description p b{
+	margin: 0;
+}
+.course-description p:first-of-type{
+	font-size: 14px;
+	line-height: 22px;
+	margin-bottom: 24px;
+}
 .course-description h2{
-	margin: 0 23px 22px;
+	margin: 0 23px 24px;
+	font-weight: bold;
+}
+.course-description ul {
+    color: #6e747a;
+    list-style: outside none disc;
+    margin: 0 23px 12px 40px;
+}
+.course-description li{
+	margin-bottom: 6px;
+	line-height: 20px;
+	font-size: 13px;
 }
 .lesson-topics{
 	padding: 0;
@@ -2857,14 +2891,12 @@ h2, h3, h4, h5, h6{
 	padding-right: 23px;
 }
 .course-description-container .requirements ul,
-.course-description-container .course-description ul,
 .course-description-container .who-its-for ul,
 .course-description-container .what-you-will-learn ul{
 	padding: 0 23px;
 	margin: 0;
 }
 .course-description-container .who-its-for ul li,
-.course-description-container .course-description li,
 .course-description-container .requirements ul li,
 .course-description-container .what-you-will-learn ul li{
 	font-size: 13px;
@@ -8915,8 +8947,8 @@ header .top-menu .logged-out-header-search{
 }
 #instructor-bio .close, 
 #registerModal .close, #loginModal .close{
-	right: 1%;
-	top: 1%;
+	right: 8%;
+	top: 8%;
 	font-size: 40px;
 }
 }
@@ -9187,16 +9219,6 @@ header .top-menu li{
 		right: 0;
 		top: 0;
 	}
-	.form-container,
-	.login-social-buttons,	
-	.user-data-modal h1{
-		margin-left: 24px;
-		margin-right: 24px;
-	}
-	.user-data-modal .intro-paragraph{
-		padding-left: 24px;
-		padding-right: 24px;
-	}
 	.lesson-topics li .lesson-name{
 		width: 53%;
 	}
@@ -9254,6 +9276,12 @@ header .top-menu li{
 	}
 	.lesson-topics li .lesson-name{
 		width: 50%;
+	}
+	.user-data-modal-header{
+		padding: 24px 24px 0;
+	}
+	.user-data-modal-body{
+		padding: 0 24px 48px;
 	}
 }
 @media (max-width:402px){

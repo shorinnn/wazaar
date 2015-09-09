@@ -136,44 +136,48 @@
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
                         </a>
                         <div class="user-data-modal clearfix">
-                            <h1 class="clearfix">{{ trans('site/login.login-to-account') }}</h1>
-                            <div class="login-social-buttons clearfix">
-                                <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.login-with-facebook') }}</a>
-                                <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
+                        	<div class="user-data-modal-header">
+                                <h1 class="clearfix">{{ trans('site/login.login-to-account') }}</h1>
+                                <div class="login-social-buttons clearfix">
+                                    <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.login-with-facebook') }}</a>
+                                    <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
+                                </div>
                             </div>
                             <div class="orr"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
-                            <p class="intro-paragraph text-center">{{ trans('general.enter-email-and-password') }}</p>
-                            <div class="form-container clearfix">
-                            <form id='login-form' role="form" method="POST" onsubmit="return loginValidator.validate(event);"
-                                  data-no-processing="1" class="ajax-formxxx" data-callback="loginValidator.callback" 
-                                  data-fail-callback="loginValidator.failCallback"
-                                  action="{{{ action('UsersController@login') }}}" accept-charset="UTF-8">
-                            <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
-                                <fieldset>
-                                    <div class="form-group email-field">
-                                        <input class="form-control"  placeholder="{{ trans('general.email-placeholder') }}" 
-                                            data-placement="right" data-trigger="manual"
-                                            onblur="loginValidator.emailValidate()" data-check-url="{{ action('UsersController@emailCheck') }}"
-                                            type="text" name="email" id="email" value="{{{ Input::old('email') }}}" />
-                                        
-                                    </div>
-                                    <div class="form-group password-field">
-                                        <input class="form-control" placeholder="{{ trans('general.password-placeholder') }}" 
-                                               data-placement="right"
-                                               onblur="loginValidator.passwordValidate()" type="password" name="password" id="password" />
-                                        <a href="{{{ action('UsersController@forgotPassword') }}}" 
-                                        class="left forgot">{{ trans('site/login.forgot') }}</a>
-                                    </div>
-                                    @if (Session::get('notice'))
-                                        <div class="alert">{{{ Session::get('notice') }}}</div>
-                                    @endif
-                                    <div class="form-group">
-                                        <button  type="submit" class="blue-button large-button">
-                                            {{ trans('site/login.sign-in') }}
-                                        </button>
-                                    </div>
-                                </fieldset>
-                            </form>
+                            <div class="user-data-modal-body">
+                                <p class="intro-paragraph text-center">{{ trans('general.enter-email-and-password') }}</p>
+                                <div class="form-container clearfix">
+                                <form id='login-form' role="form" method="POST" onsubmit="return loginValidator.validate(event);"
+                                      data-no-processing="1" class="ajax-formxxx" data-callback="loginValidator.callback" 
+                                      data-fail-callback="loginValidator.failCallback"
+                                      action="{{{ action('UsersController@login') }}}" accept-charset="UTF-8">
+                                <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+                                    <fieldset>
+                                        <div class="form-group email-field">
+                                            <input class="form-control"  placeholder="{{ trans('general.email-placeholder') }}" 
+                                                data-placement="right" data-trigger="manual"
+                                                onblur="loginValidator.emailValidate()" data-check-url="{{ action('UsersController@emailCheck') }}"
+                                                type="text" name="email" id="email" value="{{{ Input::old('email') }}}" />
+                                            
+                                        </div>
+                                        <div class="form-group password-field">
+                                            <input class="form-control" placeholder="{{ trans('general.password-placeholder') }}" 
+                                                   data-placement="right"
+                                                   onblur="loginValidator.passwordValidate()" type="password" name="password" id="password" />
+                                            <a href="{{{ action('UsersController@forgotPassword') }}}" 
+                                            class="left forgot">{{ trans('site/login.forgot') }}</a>
+                                        </div>
+                                        @if (Session::get('notice'))
+                                            <div class="alert">{{{ Session::get('notice') }}}</div>
+                                        @endif
+                                        <div class="form-group no-margin">
+                                            <button  type="submit" class="blue-button large-button">
+                                                {{ trans('site/login.sign-in') }}
+                                            </button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                </div>
                             </div>
                         </div>
                         <div class="user-data-modal-footer text-center">
@@ -202,56 +206,60 @@
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
                         </a>
                         <div class="user-data-modal clearfix">
-                            <h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
-                            <div class="login-social-buttons clearfix">
-                                <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.register-with-facebook') }}</a>
-                                <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
+                        	<div class="user-data-modal-header">
+                                <h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
+                                <div class="login-social-buttons clearfix">
+                                    <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.register-with-facebook') }}</a>
+                                    <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
+                                </div>
                             </div>
                             <div class="orr"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
-                            <p class="intro-paragraph text-center">{{ trans('general.enter-new-email-and-password') }}</p>
-                            <div class="form-container clearfix">
-                                <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8" id="register-form"
-                                     data-no-processing="1"  class="ajax-formxxx" data-callback="registerValidator.callback" 
-                                     
-                                     data-fail-callback="registerValidator.failCallback"  onsubmit="return registerValidator.validate(event);" />
-                                    <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
-                                    <fieldset>
+                            <div class="user-data-modal-body">
+                                <p class="intro-paragraph text-center">{{ trans('general.enter-new-email-and-password') }}</p>
+                                <div class="form-container clearfix">
+                                    <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8" id="register-form"
+                                         data-no-processing="1"  class="ajax-formxxx" data-callback="registerValidator.callback" 
+                                         
+                                         data-fail-callback="registerValidator.failCallback"  onsubmit="return registerValidator.validate(event);" />
+                                        <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+                                        <fieldset>
+                                            
+                                                <div class="form-group">
+                                                    <input class="form-control" placeholder="Last Name" type="text" name="last_name" id="last_name" value="" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control" placeholder="First Name" type="text" name="first_name" id="first_name" value="" required>
+                                                </div>
                                         
-                                            <div class="form-group">
-                                                <input class="form-control" placeholder="Last Name" type="text" name="last_name" id="last_name" value="" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <input class="form-control" placeholder="First Name" type="text" name="first_name" id="first_name" value="" required>
-                                            </div>
-                                    
-                                    <div class="form-group email-field">
-                                        <input class="form-control" placeholder="{{ trans('general.email-placeholder') }}" 
-                                           type="email" name="email" id="email" value="{{{ Input::old('email') }}}" 
-                                           data-placement="right"
-                                           onblur="registerValidator.emailValidate()" data-check-url="{{ action('UsersController@emailCheck') }}"/>
-                                    </div>
-                                    <p class="js-error-message"></p>
-                                    @if (Session::has('error'))
-                                        <div class="alert alert-error alert-danger">
-                                            <span>ERROR</span>
-                                            {{Session::get('error')}}
+                                        <div class="form-group email-field">
+                                            <input class="form-control" placeholder="{{ trans('general.email-placeholder') }}" 
+                                               type="email" name="email" id="email" value="{{{ Input::old('email') }}}" 
+                                               data-placement="right"
+                                               onblur="registerValidator.emailValidate()" data-check-url="{{ action('UsersController@emailCheck') }}"/>
                                         </div>
-                                    @endif
-                                    
-                                    <div class="form-group password-field">
-                                        <input class="form-control" placeholder="{{ trans('general.password-placeholder') }}" 
-                                               type="password" name="password" id="password"
-                                               onblur="registerValidator.passwordValidate()"  />
-                                        <a href="#" class="show-password">{{ trans('site/register.show-password') }}</a>
-                                    </div>
-                                    <div class="form-actions form-group">
-                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" class="hide" alt="">
-                                      <button type="submit" id="submit-button" class="large-button blue-button deactivate-button">
-                                        {{ trans('site/register.create-account') }}
-                                      </button>
-                                    </div>
-                                    </fieldset>
-                                </form>
+                                        <p class="js-error-message"></p>
+                                        @if (Session::has('error'))
+                                            <div class="alert alert-error alert-danger">
+                                                <span>ERROR</span>
+                                                {{Session::get('error')}}
+                                            </div>
+                                        @endif
+                                        
+                                        <div class="form-group password-field">
+                                            <input class="form-control" placeholder="{{ trans('general.password-placeholder') }}" 
+                                                   type="password" name="password" id="password"
+                                                   onblur="registerValidator.passwordValidate()"  />
+                                            <a href="#" class="show-password">{{ trans('site/register.show-password') }}</a>
+                                        </div>
+                                        <div class="form-actions form-group no-margin">
+                                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" class="hide" alt="">
+                                          <button type="submit" id="submit-button" class="large-button blue-button deactivate-button">
+                                            {{ trans('site/register.create-account') }}
+                                          </button>
+                                        </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div class="user-data-modal-footer text-center">
