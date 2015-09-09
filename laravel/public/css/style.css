@@ -603,6 +603,9 @@ header .profile-name li:hover ul{
 	padding-top: 70px;
 	background-position: left top; 
 }
+.homepage-header{
+	padding-bottom: 93px;
+}
 .homepage-header .extra-large-heading{
 	color: #fff;
 	text-transform: uppercase;
@@ -626,7 +629,8 @@ header .profile-name li:hover ul{
 	overflow: hidden;
 	max-width: 440px;
 	height: 60px;
-	margin: 72px auto 93px;
+	display: none;
+	margin: 72px auto 0;
 }
 .homepage-header .home-search-form input[type='search']{
 	width: 84%;
