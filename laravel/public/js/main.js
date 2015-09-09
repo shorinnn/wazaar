@@ -413,6 +413,7 @@ function loadRemote(e){
     url = $(e.target).attr('data-url');
     target = $(e.target).attr('data-target');
     var callback = $(e.target).attr('data-callback');
+    var callback2 = $(e.target).attr('data-callback-2');
     elem = $(e.target);
     loadMethod = $(e.target).attr('data-load-method');
     noPush = $(e.target).attr('data-no-push-state');
@@ -423,12 +424,14 @@ function loadRemote(e){
         url = elem.attr('data-url');
         target = elem.attr('data-target');
         callback = elem.attr('data-callback');  
+        callback2 = elem.attr('data-callback-2');  
         noPush = elem.attr('data-no-push-state');  
         loadMethod = $(e.target).attr('data-load-method');
         indicatorStyle = elem.attr('data-indicator-style')
         if(failSafe > 50) return;
         failSave++;
     }
+
     $(e.target).attr('data-loading', 1);
     
      
@@ -445,6 +448,10 @@ function loadRemote(e){
         else{
             $(target).children('*').css('opacity', 0.1);
             $(target).append('<div class="small-overlay"><center><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></center></div>');
+        }
+        
+        if( typeof(callback2)!= 'undefined'){
+            window[callback2](e);
         }
         
         $(target).load(url, function(){
@@ -1766,3 +1773,18 @@ void function $getLines($){
         return lines;
     };
 }(jQuery);
+
+function scrollToAjaxcontentcontainer(){
+    $(document).animate({scrollTop:$('.homepage-header').position().top});
+    console.log($('.homepage-header').position().top)
+}
+
+function ajaxifyPagination(e){
+    $('.pagination-container a').each(function(){
+        $(this).addClass( 'load-remote' );
+        $(this).attr( 'data-url', $(this).attr('href') );
+        $(this).attr( 'data-callback', 'ajaxifyPagination' );
+        $(this).attr( 'data-callback-2', 'scrollToElement' );
+        $(this).attr( 'data-target', '.ajax-content' );
+    });
+}
