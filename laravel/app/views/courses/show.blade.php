@@ -478,7 +478,9 @@
  
             @endif
             @if($course->isDiscounted())
-                discountCountdown('#{{$course->slug}}-countdown', '{{$course->sale_ends_on->timestamp}}');
+                setTimeout(function(){
+                    discountCountdown('#{{$course->slug}}-countdown', '{{$course->sale_ends_on->timestamp}}');
+                }, 1000)                
             @endif
         });    
     </script>
