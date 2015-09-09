@@ -276,7 +276,7 @@ class Student extends User{
 
         $purchase->student_id = $this->id;
         $purchase->purchase_price = $product->cost();
-        $purchase->ltc_affiliate_id = $this->ltcAffiliate->id;
+        $purchase->ltc_affiliate_id = $this->ltcAffiliate !=null ? $this->ltcAffiliate->id : 0 ;
         
         /******* Money fields **********/
         $purchase->original_price = $product->price;
