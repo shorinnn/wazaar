@@ -95,10 +95,15 @@ $(document).ready(function(){
 });
 
 function discountCountdown(target, time_end){
+    var eventTime = time_end
+    var currentTime = moment().format('X');
+
+    var diffTime = eventTime - currentTime; //better to handle this in Controller to avoid timezone problem
+    var duration = moment.duration(diffTime, 'seconds');
+    var interval = 1;
+
     setInterval(function () {
-        var diffTime = moment.unix(time_end).format('X') - moment().format('X');
-        var duration = moment.duration(diffTime, 'seconds');
-        console.log(duration);
+        duration = moment.duration(duration.asSeconds() - interval, 'seconds');
         if(duration.days() >= 1){
             $(target).text(moment(duration).format('D [days and] hh:mm:ss'));
         } else {
