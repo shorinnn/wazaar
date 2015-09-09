@@ -30,7 +30,7 @@
                     <div class="home-search-form">
                         <form action='{{ action('CoursesController@search') }}'>
                             <div>
-                                <input type="search" name="term" class="left" placeholder="What do you want to learn?">
+                                <input type="search" name="term" class="left" placeholder="{{trans('site/homepage.what-do-you-want-to-learn')}}">
                                 <button><i class="wa-search"></i></button>
                             </div>
                         </form>
