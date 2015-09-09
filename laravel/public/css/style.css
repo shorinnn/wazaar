@@ -9050,6 +9050,9 @@ header .top-menu li{
 		padding: 10px 0px;
 		display: inline-table;
 	}
+	.lesson-topics li .lesson-name{
+		width: 58%;
+	}
 }
 @media (max-width:552px){
 	.lesson-topics li .buttons{
@@ -9188,6 +9191,9 @@ header .top-menu li{
 		padding-left: 24px;
 		padding-right: 24px;
 	}
+	.lesson-topics li .lesson-name{
+		width: 53%;
+	}
 }
 @media (max-width:460px){
 	.checkout-modal {
@@ -9273,6 +9279,9 @@ header .top-menu li{
 	.homepage.explore-category .category-box span{
 		font-size: 11px;
 	}	
+	.lesson-topics li .lesson-name{
+		width: 43%;
+	}
 }
 @media (min-width:320px) and (max-width: 480px) {
 	.course-data .column-1 div{
@@ -9311,7 +9320,7 @@ header .top-menu li{
 	}	
 	.lesson-topics li .buttons{
 		margin-right: 10px;
-		float: left;
+		/*float: left;*/
 	}
 	.lesson-topics li .buttons a{
 		margin-left: 0;
@@ -9383,6 +9392,9 @@ header .top-menu li{
 		width: 33px;
 	}	.mycourse-card-footer .default-button + .default-button{
 		margin-left: 10px;
+	}
+	.lesson-topics li .lesson-name{
+		width: 32%;
 	}
 }
 .no-float{
