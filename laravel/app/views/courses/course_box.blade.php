@@ -69,7 +69,7 @@
                             <div class="price-tag">
                                 @if($course->isDiscounted())
                                     <style>
-                                        .small-box .price-tag-container .price-tag{
+                                        .small-box .price-tag-container .price-tag .discounted-price{
                                             color: #ec4316;
                                         }
                                     </style>
@@ -79,7 +79,13 @@
                                 @if($course->free=='yes' || $course->cost() == 0)
                                     {{ trans('courses/general.free') }}
                                 @else
-                                    ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    @if($course->isDiscounted())
+                                        <span class="discounted-price">
+                                            ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                        </span>
+                                    @else
+                                        ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    @endif                                    
                                 @endif
                                 
                                 @if($course->isDiscounted())

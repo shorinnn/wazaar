@@ -217,8 +217,6 @@ $wwwRoutes = function(){
     Route::get('courses/search-instructor/', 'CoursesController@searchInstructor');
     
     Route::get('courses/categories', 'CoursesController@categories');
-    Route::get('courses/categories', 'CoursesController@categories');
-    Route::get('courses/categories', 'CoursesController@categories');
     Route::get('courses/category/{slug}/{subcat}', 'CoursesController@subCategory');
     Route::get('courses/category/{slug}', 'CoursesController@category');
     Route::get('courses/category/', 'CoursesController@category');
