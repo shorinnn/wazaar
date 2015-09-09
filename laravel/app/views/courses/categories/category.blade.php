@@ -116,7 +116,7 @@
                     $(this).attr( 'data-target', '.ajax-content' );
                 });
             }
-            ajaxifyPagination(event);
+            ajaxifyPagination( null );
             
         </script>
     @stop

@@ -130,8 +130,8 @@
         <div class="modal-content">
           <div class="modal-body">
             <section class="container-fluid user-data-modal-wrapper">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row no-margin">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
                         <a href="" class="modal-box-logo clearfix">
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
                         </a>
@@ -196,8 +196,8 @@
         <div class="modal-content">
       	<div class="modal-body">
             <section class="container-fluid user-data-modal-wrapper">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row no-margin">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
                         <a href="" class="modal-box-logo clearfix">
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
                         </a>
@@ -216,6 +216,13 @@
                                      data-fail-callback="registerValidator.failCallback"  onsubmit="return registerValidator.validate(event);" />
                                     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                                     <fieldset>
+                                        
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Last Name" type="text" name="last_name" id="last_name" value="" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="First Name" type="text" name="first_name" id="first_name" value="" required>
+                                            </div>
                                     
                                     <div class="form-group email-field">
                                         <input class="form-control" placeholder="{{ trans('general.email-placeholder') }}" 
@@ -312,6 +319,7 @@
         <script type="text/javascript" src="{{url('js/bootbox.js')}}"></script>
         <script type="text/javascript" src="{{url('js/jquery.countdown.min.js')}}"></script>
         <script type="text/javascript" src="{{url('js/jquery.maskedinput.min.js')}}"></script>
+        <script type="text/javascript" src="{{url('js/moment.min.js')}}"></script>
 
 
     @endif
@@ -346,12 +354,12 @@
 
 				$('.showRegister').click(function(){
 					$('.modal').modal('hide');
-					$('[data-target="#registerModal"]').click();
+					$('[data-target="#registerModal"]').first().click();
 					return false;
 				});
 				$('.showLogin').click(function(){
 					$('.modal').modal('hide');
-					$('[data-target="#loginModal"]').click();
+					$('[data-target="#loginModal"]').first().click();
 					return false;
 				});
 

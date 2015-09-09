@@ -355,11 +355,14 @@ class Course extends Ardent{
     }
     
     public function cost(){
-        if(!$this->isDiscounted()) return $this->price;
+        $cost = 0;
+        if(!$this->isDiscounted()) $cost = $this->price;
         else{
-            if($this->sale_kind=='amount') return $this->price - $this->sale;
-            else return $this->price - ($this->price * ($this->sale/100));
+            if($this->sale_kind=='amount') $cost =  $this->price - $this->sale;
+            else $cost = $this->price - ($this->price * ($this->sale/100));
         }
+        if($cost < 0) $cost = 0;
+        return $cost;
     }
     
     public function isDiscounted(){

@@ -715,6 +715,7 @@ class CoursesController extends \BaseController {
             // unset the affiliate cookie
             Cookie::queue("aid", null, -1);
             $course = Course::where('slug', $slug)->first();
+            Session::flash( 'message', trans('courses/general.enroll-success-message-paid') );
             return View::make('courses.purchased')->with( compact('course') );
         }
                 
@@ -747,7 +748,7 @@ class CoursesController extends \BaseController {
             $student->crash( $course,  Cookie::get( "aid" ) );
             // unset the affiliate cookie
             Cookie::queue("aid", null, -1);
-            
+            Session::flash( 'message', trans('courses/general.enroll-success-message-free') );
             return Redirect::action( 'ClassroomController@dashboard', [ 'course' => $course->slug ]);
         }
         

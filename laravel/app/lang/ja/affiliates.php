@@ -19,6 +19,8 @@ return [
             'begin-course' => 'コースを開始する',
             'resume-course' => 'コースを再開する',
             'add-gift' => '特典を追加',
-        ]
+        ],
+    'link-without-gift' => '特典なしアフィリエイトリンク',
+    'link-with-gift' =>  '特典付きアフィリエイトリンク',
 
 ];

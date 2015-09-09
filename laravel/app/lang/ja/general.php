@@ -115,5 +115,6 @@ return array(
     'new-discussions'=>'新しい投稿',
     'created-on'=>'作成日',
     'status' => 'ステータス',
-    'activity-today' => '今日の重要指標'
+    'activity-today' => '今日の重要指標',
+    'register-instructor' => 'ワザールに新規登録する！',
 );

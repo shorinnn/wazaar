@@ -159,7 +159,7 @@
                         <span class="left-menu slide-menu-toggler">
                             <i class="wa-hamburger"></i>
                         </span>
-                        <a href="3" class="logo">
+                        <a href="{{action('SiteController@index') }}" class="logo">
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive">
                         </a>
                         <h4 class="lesson-title">

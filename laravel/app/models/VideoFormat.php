@@ -7,7 +7,8 @@ class VideoFormat extends \LaravelBook\Ardent\Ardent
 
     public function getDurationAttribute($value)
     {
-        return gmdate("i:s", $value);
+        if( $value < 3600 ) return gmdate("i:s", $value);
+        return gmdate("h:i:s", $value);
     }
 
     public function getVideoUrlAttribute($value)

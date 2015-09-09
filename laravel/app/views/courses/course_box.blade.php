@@ -44,16 +44,14 @@
             </span>
                 </div>
                 <div class="course-box-content clearfix">
-                	<div class="ellipsis">
-                    	<div>
-                    		<h3>{{ $course->name }}</h3>
-                        </div>
-                    </div>
-                    <div class="short-description-container">
-                        
-                        <p>{{{ Str::limit( strip_tags( $course->short_description) , Config::get('custom.short_desc_max_chars')  ) }}}
+                	<div class="title-and-descript">
+                        <h3>{{ $course->name }}</h3>
+                        <div class="short-description-container">
                             
-                        </p>
+                            <p>{{{ Str::limit( strip_tags( $course->short_description) , Config::get('custom.short_desc_max_chars')  ) }}}
+                                
+                            </p>
+                        </div>
                     </div>
                     <div class="bottom-contents clearfix">
 <!--                        <div class="difficulty-bar {{ difficultyToCss( $course->courseDifficulty->name ) }}"
@@ -70,22 +68,17 @@
                         <div class="price-tag-container clearfix">
                             <div class="price-tag">
                                 @if($course->isDiscounted())
-                                    <style>
-                                        .small-box .price-tag-container .price-tag{
-                                            color: #ec4316;
-                                        }
-                                    </style>
                                     <span class="prev-price"> ¥ {{ number_format( $course->discount_original, Config::get('custom.currency_decimals') ) }}</span>
-                                @endif
-                                
-                                @if($course->free=='yes' || $course->cost() == 0)
-                                    {{ trans('courses/general.free') }}
+                                    <span class="discounted-price">
+                                        ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    </span>
+                                    <!--{{trans('courses/general.sale')}}-->
                                 @else
-                                    ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
-                                @endif
-                                
-                                @if($course->isDiscounted())
-                                    {{trans('courses/general.sale')}}
+                                    @if($course->free=='yes' || $course->cost() == 0)
+                                        {{ trans('courses/general.free') }}
+                                    @else
+                                        ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    @endif
                                 @endif
                             </div>
                         </div>

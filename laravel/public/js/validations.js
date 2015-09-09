@@ -99,7 +99,7 @@ emailValidate:function(){
         callback: function(result, e){
             $('#login-form [type="submit"]').attr('disabled', 'disabled');
             $('#login-form [type="submit"]').html( _( 'Logging in - Please wait' ) );
-            window.location = window.location;
+            location.reload();
         },
         failCallback: function(result, e){
 //            console.log('fail called!');

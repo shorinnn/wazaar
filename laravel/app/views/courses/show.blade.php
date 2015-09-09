@@ -3,12 +3,26 @@
 @section('page_title')
     {{ $course->name }} -
 @stop
+
+<?php
+    $date = new DateTime();
+    $date->setTimezone(new DateTimeZone('Asia/Tokyo'));
+    $now = strtotime( $date->format('Y-m-d H:i:s') ) ;
+    $show_on = strtotime( '2015-09-10 17:15:00' );
+?>
  
 @section('content')
     <style>
         .inline-block{
             display:inline-block;
         }
+        
+        @if( $now < $show_on )
+            .paid-content button{
+                opacity: 0.3 !important;
+                pointer-events: none !important;
+            }
+        @endif
     </style>
     @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
 @section('affiliate-toolbar')
@@ -200,39 +214,67 @@
                         ?>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
-                <div class="enroll-button-wrap">
-                @if($course->cost() > 0 && !Input::has('preview') )
-                <?php /*
-                        {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
- 
-                        @if(Auth::guest() || $student->canPurchase($course) )
+                <div class="enroll-button-wrap clearfix paid-content">
+                @if( $course->cost() > 0 && !Input::has('preview') )
+                
+
+                        @if( $now > $show_on)
+                            {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                        @else
+                            {{ Form::open([ 'disabled' => 'disabled', 'readonly'=>'readonly', 'id' => 'purchase-form']) }}
+                        @endif
+                        @if($course->isDiscounted())
+                            <div class="price discount-box">
+                                <div class="original-price text-muted text-left"><del>¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
+                                <div class="text-warning">
+                                    <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
+                                    <div class="discounted-time-left pull-right">                                        
+                                        <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on, true)}}">{{timeUntil($course->sale_ends_on)}}</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <!-- <p>
+                                Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
+                                You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em>
+                            </p> -->
+                        @else
                             <span class="price clearfix">
-                                           ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
-                                         </span>
+                                ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                            </span>
+                        @endif
+
+                        @if(Auth::guest() || $student->canPurchase($course) )
                             {{--
                             <button class="clearfix enroll-button blue-button extra-large-button">
                                 {{ trans("courses/general.course-enroll") }}
                             </button>
                             --}}
 
-                            <button class="clearfix enroll-button blue-button extra-large-button" type="button"
-                                    onclick="Payment.showForm(this,event);"
+                            <button class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block" type="button"
+                                    @if($now < $show_on)
+                                        data-toggle='tooltip' data-placement='left' title='Opens on 10/9'
+                                    @else
+                                        onclick="{{ Payment.showForm(this,event) }}"
+                                    @endif
                                     data-product-type="course"
                                     data-product-id="{{$course->id}}"
                                     data-item-name="{{$course->name}}"
                                     data-price="{{$course->cost()}}">{{ trans("courses/general.course-enroll") }}</button>
                         @elseif(Auth::check() && $student->purchased($course) )
-                            <span class="price clearfix hide">
-                                         </span>
-                            <a class="clearfix enroll-button blue-button extra-large-button"
+                            <a class="clearfix enroll-button blue-button extra-large-button btn-block"
                                href="{{ action('ClassroomController@dashboard', $course->slug)}}">
                                 {{ trans("courses/general.enter-classroom") }}
                             </a>
                         @else
-                                <span class="price clearfix">
-                                   ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
-                                 </span>
-                            <button class="clearfix enroll-button blue-button extra-large-button" disabled="disabled" data-toggle="tooltip" data-placement="left" title="Available for customers">
+                            <button type='button' class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block"
+                                    data-toggle="tooltip" data-placement="left" 
+                                    @if( Auth::user()->hasRole('Affiliate') )
+                                        title="Log in to your student/instructor account to purchase."
+                                    @else
+                                        title="Available for customers"
+                                    @endif
+                                        >
                                 {{ trans("courses/general.course-enroll") }}
                             </button>
                         @endif
@@ -240,15 +282,14 @@
                         <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
                         <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
                         {{Form::close()}}
-                        @if($course->isDiscounted())
-                            <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
-                                You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
-                        @endif
-                                */
-                                ?>
-                @elseif( !Input::has('preview') )
+                        
+                @elseif( $course->cost() == 0 && !Input::has('preview') )
                 
-                    {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
+                    @if( Auth::user()->hasRole('Affiliate') ||  $now > $show_on )
+                        {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
+                    @else
+                        {{ Form::open( [ 'id' => 'purchase-form', 'method'=>'GET', 'readonly'=>'readonly', 'disabled'=>'disabled' ] ) }}
+                    @endif
                                 @if(Auth::guest() || $student->canPurchase($course) )
                                     <span class="price clearfix ">{{trans('courses/general.free') }}</span>
                                      <button class="clearfix enroll-button blue-button extra-large-button join-class">
@@ -261,27 +302,33 @@
                                          {{ trans("courses/general.enter-classroom") }}
                                      </a>
                                 @else
-                            <span class="price clearfix ">{{trans('courses/general.free') }}</span>
-                             <button class="clearfix enroll-button blue-button extra-large-button join-class" disabled="disabled">
-                                 {{ trans("courses/general.course-enroll") }}
-                                     </button>
+                                    <span class="price clearfix ">{{trans('courses/general.free') }}</span>
+                                    <button class="clearfix enroll-button blue-button extra-large-button join-class" disabled="disabled">
+                                    {{ trans("courses/general.course-enroll") }}
+                                    </button>
+                                    @if( Auth::user()->id == $course->instructor_id )
+                                        <a href="{{ action('ClassroomController@dashboard', $course->slug)}}">
+                                            [ {{ trans("courses/general.enter-classroom-as-student") }} ]
+                                         </a>
+                                    @endif
                                 @endif
  
                      {{Form::close()}}
-                             
-                            @if($course->isDiscounted())
-                                <p>Original <span> ¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }} </span> 
-                                    You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
-                            @endif
                             
                 @else
-                    {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                    @if($course->cost() > 0)
+                        {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                    @else
+                        {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
+                    @endif
                         @if($course->isDiscounted())
-                            <div class="discount-box">
-                                <div class="original-price text-muted"><del><i class="fa fa-jpy"></i> {{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
+                            <div class="price discount-box">
+                                <div class="original-price text-muted text-left"><del>¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
                                 <div class="text-warning">
-                                    <div class="discounted-price pull-left"><i class="fa fa-jpy"></i> {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
-                                    <div class="discounted-time-left pull-right"><i class="fa fa-clock-o"></i> time here</div>
+                                    <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
+                                    <div class="discounted-time-left pull-right">                                        
+                                        <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on, true)}}">{{timeUntil($course->sale_ends_on)}}</span>
+                                    </div>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
@@ -298,9 +345,11 @@
                                 @endif
                             </span>
                         @endif
-                        <button class="clearfix enroll-button blue-button extra-large-button btn-block">
-                            {{ trans("courses/general.course-enroll") }}
-                        </button>
+                        
+                            <button class="clearfix enroll-button blue-button extra-large-button btn-block">
+                                {{ trans("courses/general.course-enroll") }}
+                            </button>
+                        
                     <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
                     <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
                     {{Form::close()}}
@@ -363,7 +412,7 @@
         }); 
     }
     ?>
-@if(Auth::guest() || !Auth::user()->hasRole('Instructor'))
+@if(Auth::guest() || ( !Auth::user()->hasRole('Instructor') &&  !Auth::user()->hasRole('Affiliate') ) )
     <section class="become-an-instructor-section container-fluid">
         <span class="background-image-overlay"></span>
         <div class="container">
@@ -378,27 +427,33 @@
     @endif
             <!-- Modal -->
     <div class="modal fade" id="instructor-bio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">
+                    <p class="regular-paragraph text-center">{{ trans('general.my_name_is') }}</p>
+                    <h3 class="modal-title text-center" id="myModalLabel">
                         @if($instructor->profile == null)
                             {{$instructor->last_name}} {{$instructor->first_name}} 
                         @else
                             {{$instructor->profile->last_name}} {{$instructor->profile->first_name}} 
                         @endif
-                    </h4>
+                    </h3>
+                    <div class="instructor-img text-center">
+                    	<img class="img-responsive"src="{{ $instructor->profile->photo }}" alt="" >
+                    </div>
                 </div>
                 <div class="modal-body">
-                    @if( $course->show_bio=='custom' )
-                        {{ $course->custom_bio }}
-                    @else
-                        {{ $instructor->profile->bio }}
-                    @endif
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                	<p class="regular-paragraph">
+                        @if( $course->show_bio=='custom' )
+                            {{ $course->custom_bio }}
+                        @else
+                            {{ $instructor->profile->bio }}
+                        @endif
+                    </p>
+                    <div class="close-button">
+                    	<button type="button" class="large-button blue-button" data-dismiss="modal">CONTINUE BROWSING</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -410,6 +465,14 @@
 @section('extra_js')
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script>
+        function unauthenticatedEnrollAttempt(){
+            if( $('.login-to-purchase-alert').length == 0 ){
+                $('#registerModal').find('h1').after('<p class="alert alert-danger login-to-purchase-alert">{{ trans('courses/general.login_to_purchase') }}</p>');
+            }
+            $('[data-target="#registerModal"]').first().click();
+            
+        }
+        
         function playVideo(div){
             thevid=document.getElementById('videoContainer');
             thevid.style.display='block'; 
@@ -417,7 +480,14 @@
 //            $("iframe").attr("src", $("iframe").attr("data-src").replace("autoplay=0", "autoplay=1"));
              $("#embeded-video")[0].src += "&autoplay=1";
         }
-        $(function(){            
+        $(function(){       
+            @if( Auth::guest() )
+                $('#purchase-form').submit(function(e){
+                    e.preventDefault();
+                    unauthenticatedEnrollAttempt();
+                });
+            @endif
+            
             if( $('.instructor-bio-p').getLines() > 4){
                 $('.instructor-bio-btn').show();
             }
@@ -447,9 +517,11 @@
             $('.centered-play-button, .play-intro-button').hide();
  
             @endif
-        });
-
-
-
+            @if($course->isDiscounted())
+                // setTimeout(function(){
+                //     discountCountdown('#{{$course->slug}}-countdown', '{{$course->sale_ends_on->timestamp}}');
+                // }, 1000)                
+            @endif
+        });    
     </script>
 @stop

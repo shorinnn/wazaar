@@ -89,6 +89,9 @@
                     </div>
                 </div>
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 margin-top-25">
+                            @if( Session::has('message') )
+                                <h1 class="alert alert-success">{{ Session::get('message') }}</h1>
+                            @endif
                     @if($gift != null)
                             <div class="affiliate-gift-wrap">
                                 <div class="row description-wrap no-margin">
@@ -155,7 +158,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <h3></h3>
                                         <p class="regular-paragraph">
-                                        You have no asked any questions yet. Begin the course and start or join discussions!
+                                        {{ trans('courses/general.dash-you-have-no-questions-yet') }}
                                         </p>
                                     </div>
                                 </div>
