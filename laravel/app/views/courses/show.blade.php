@@ -333,6 +333,10 @@
                                     
                                     
                                 </span>
+                                    {{-- TEMPORARY ONLY, REMOVE WHEN PAYMENT IS LIVE --}}
+                                    @if (Auth::user()->username == 'student')
+                                        <a href="#" class="btn" data-product-id="{{$course->id}}" data-product-price="{{$course->price}}" data-product-type="course" data-product-name="{{$course->name}}" onclick="Payment.showForm(this,event)">Buy</a>
+                                    @endif
                                 <?php
                                  
 //                          {{//Form::open(['action' => ['WishlistController@store'] ])}}

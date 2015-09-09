@@ -8,11 +8,11 @@ var Payment = {
         $event.preventDefault();
         Payment.productId = $($element).attr('data-product-id');
         Payment.productType = $($element).attr('data-product-type');
-        Payment.productName = $($element).attr('data-item-name');
-        Payment.amount = $($element).attr('data-price');
+        Payment.productName = $($element).attr('data-product-name');
+        Payment.amount = $($element).attr('data-product-price');
 
-        $('#itemName').val(Payment.productName);
-        $('#itemPrice').val(Payment.amount);
+        $('.checkout-modal').find('#itemName').html(Payment.productName);
+        $('.checkout-modal').find('#itemPrice').html(Payment.amount);
         Payment.form.modal('show');
     },
     'doPay' : function($event){
