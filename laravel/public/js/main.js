@@ -105,7 +105,8 @@ function discountCountdown(target, time_end){
 
         console.log(time_end+' time ends');
         console.log(now+' now time');
-        console.log(duration+'time diff in secs');
+        console.log(diffTime+' time diff after deduction');
+        console.log(duration+' time diff in secs');
         if(duration.days() >= 1){
             $(target).text(moment(duration).format('D [days and] hh:mm:ss'));
         } else {
