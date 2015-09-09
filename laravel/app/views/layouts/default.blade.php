@@ -130,8 +130,8 @@
         <div class="modal-content">
           <div class="modal-body">
             <section class="container-fluid user-data-modal-wrapper">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row no-margin">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
                         <a href="" class="modal-box-logo clearfix">
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
                         </a>
@@ -196,8 +196,8 @@
         <div class="modal-content">
       	<div class="modal-body">
             <section class="container-fluid user-data-modal-wrapper">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row no-margin">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
                         <a href="" class="modal-box-logo clearfix">
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
                         </a>
@@ -218,10 +218,10 @@
                                     <fieldset>
                                         
                                             <div class="form-group">
-                                                <input class="form-control" placeholder="Last Name" type="text" name="last_name" id="last_name" value="" required="">
+                                                <input class="form-control" placeholder="Last Name" type="text" name="last_name" id="last_name" value="" required>
                                             </div>
                                             <div class="form-group">
-                                                <input class="form-control" placeholder="First Name" type="text" name="first_name" id="first_name" value="" required="">
+                                                <input class="form-control" placeholder="First Name" type="text" name="first_name" id="first_name" value="" required>
                                             </div>
                                     
                                     <div class="form-group email-field">

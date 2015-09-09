@@ -94,17 +94,6 @@ $(document).ready(function(){
 
 });
 
-function discountCountdown(target, time_end){
-    var currentTime = moment().format('X');
-    var diffTime = time_end - currentTime;
-    var duration = moment.duration(diffTime, 'seconds');
-    if(duration.days() >= 1){
-        $(target).text(moment(duration).format('D [days and] hh:mm:ss'));
-    } else {
-        $(target).text(moment(duration).format('hh:mm:ss'));
-    }
-}
-
 function makeBoxesExpandable(){
     $('body').delegate('textarea', 'keyup', function(){
 		var opts = {

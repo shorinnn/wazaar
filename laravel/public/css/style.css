@@ -1325,7 +1325,6 @@ header .profile-name li:hover ul{
 }
 .small-box .price-tag-container{
 	float: right;
-	padding-top: 1px;
 }
 .small-box .price-tag-container .price-tag-discount-percent{
 	float: left;
@@ -1336,15 +1335,17 @@ header .profile-name li:hover ul{
 .small-box .price-tag-container .price-tag{
   	color:#0099ff;
   	font-size:18px;
-	padding-top: 10px;
+	padding-top: 16px;
 }
-.small-box .price-tag-container .price-tag .prev-price{
-	text-decoration: line-through;
-	color: #a7b7c4;
-	font-size: 13px;
-	display: inline-block;
-	position: relative;
-	display: block;
+.small-box .price-tag-container .price-tag .prev-price {
+    color: #a7b7c4;
+    display: block;
+    font-size: 13px;
+    margin-bottom: -4px;
+    margin-top: -7px;
+    position: relative;
+    text-align: right;
+    text-decoration: line-through;
 }
 .small-box .price-tag-container .price-tag .discounted-price{
     color: #ec4316;
@@ -1393,7 +1394,7 @@ header .profile-name li:hover ul{
 /*************************/
 .small-box .next_{
 	float: left;
-	margin-top: 10px;
+	margin-top: 16px;
 }
 .small-box .students-attending{ 
   	color:#a7b7c4;
@@ -1484,16 +1485,24 @@ header .profile-name li:hover ul{
 #loginModal{
 	background-color: rgba(24, 34, 43, 0.9);
 }
+.login-page,
+.register-page,
+#registerModal .modal-dialog,
+#loginModal .modal-dialog{
+	max-width: 460px;
+	margin: 30px auto;
+}
 #instructor-bio .close,
 #registerModal .close,
 #loginModal .close{
     font-size: 60px;
     font-weight: 100;
-    position: relative;
+    position: absolute;
     right: 2%;
     top: 3%;
 	color: #7e8e9e;
 	opacity: 1;
+	z-index: 1;
 	text-shadow: none;
 }
 #registerModal .modal-content,
@@ -1511,6 +1520,7 @@ header .profile-name li:hover ul{
 	position: relative;
 	height: auto;
 	width: 100%;
+	padding: 0;
 }
 .dedicated-login-page{
 	position: absolute;
@@ -1530,21 +1540,27 @@ header .profile-name li:hover ul{
 	margin-bottom: 12px;
 	position: relative;
 }
+.user-data-modal-wrapper .form-group button{
+	margin-top: 0;
+	font-size: 13px;
+	font-weight: 600;
+}
 .modal-box-logo{
 	text-align: center;
 	display: block;
-	margin: 70px auto 18px;
+	margin: 70px auto 12px;
 }
 .modal-box-logo img{
 	display: inline-block;
 }
 .user-data-modal .orr{
 	width: 100%;
-	margin: 25px 0 22px;
+	margin: 20px 0;
 }
 .user-data-modal .intro-paragraph{
 	color: #303941;
 	margin: 0;
+	padding: 0 60px;
 }
 .user-data-modal .orr span{
 	background: #e3e5e6;
@@ -1571,22 +1587,24 @@ header .profile-name li:hover ul{
 .user-data-modal{
 	border-radius: 4px;
 	background: #f7f9fa;
-	padding: 0 20px;
+	padding: 0;
 }
 .user-data-modal h1{
 	color: #303941;
-	margin: 35px 0;
+	margin: 37px 60px 34px;
 	font-size: 26px;
+	padding: 0;
+	max-width: 340px;
 	text-align: center;
 }
 .login-social-buttons{
 	max-width: 340px;
-	margin: 0 auto;
+	margin: 0 60px;
 }
 .login-social-buttons a{
 	display: block;
 	font-size: 13px;
-	padding: 7px 10px 15px;
+	padding: 11px 10px;
 	text-align: center;
 	color: #fff;
 	font-weight: 600;
@@ -1596,6 +1614,7 @@ header .profile-name li:hover ul{
 }
 .login-social-buttons a span{
 	display: inline-block;
+	margin-top: -9px;
 }
 .login-social-buttons a span::before{
 	content: '';
@@ -1605,7 +1624,7 @@ header .profile-name li:hover ul{
 	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/fb-and-google-icons.png);
 	display: inline-block;
 	position: relative;
-	top: 8px;
+	top: 7px;
 	margin-right: 7px;
 }
 .login-social-buttons a:active,
@@ -1627,7 +1646,7 @@ header .profile-name li:hover ul{
 }
 .form-container{
 	max-width: 340px;
-	margin: 22px auto 60px;
+	margin: 20px 60px 48px;
 }
 .password-field{
 	position: relative;
@@ -1665,6 +1684,7 @@ header .profile-name li:hover ul{
 	background-position: 15px 14px;
 	background-image: url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/email-pass-icons.png);
 	background-repeat: no-repeat;
+	margin-bottom: 0;
 }
 .form-container input[name='password']{
 	padding-right: 140px;
@@ -1837,7 +1857,7 @@ header .profile-name li:hover ul{
    text-align: center;
 }
 .user-data-modal-footer{
-	padding: 20px 0;
+	padding: 15px 0;
 }
 .user-data-modal-footer span{
 	font-size: 13px;
@@ -2514,9 +2534,6 @@ h2, h3, h4, h5, h6{
 .add-to-wishlist-container .share-lesson,
 .add-to-wishlist-container span{
 	line-height: 40px;
-}
-.enroll-button-wrap{
-	margin-bottom: 24px;
 }
 .enroll-button-section{
 	padding-left: 35px;
@@ -8716,9 +8733,6 @@ header .top-menu .logged-out li a{
 .user-thumb{
 	max-width: 70px;
 }
-.module-box{
-	padding-right: 20px;
-}
 .course-details-player .topControl{
 	width: 74%;
 }
@@ -8888,6 +8902,15 @@ header .top-menu .logged-out-header-search{
 }
 .instructor-course .profile-picture-holder, .student-course .profile-picture-holder{
 	top: 25px;
+}
+.modal-box-logo{
+	margin: 20px auto 12px;
+}
+#instructor-bio .close, 
+#registerModal .close, #loginModal .close{
+	right: 1%;
+	top: 1%;
+	font-size: 40px;
 }
 }
 @media (max-width:752px){
@@ -9150,7 +9173,17 @@ header .top-menu li{
 		display: block;
 		right: 0;
 		top: 0;
-	}	
+	}
+	.form-container,
+	.login-social-buttons,	
+	.user-data-modal h1{
+		margin-left: 24px;
+		margin-right: 24px;
+	}
+	.user-data-modal .intro-paragraph{
+		padding-left: 24px;
+		padding-right: 24px;
+	}
 }
 @media (max-width:460px){
 	.checkout-modal {
