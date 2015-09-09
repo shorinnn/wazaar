@@ -3,6 +3,13 @@
 @section('page_title')
     {{ $course->name }} -
 @stop
+
+<?php
+    $date = new DateTime();
+    $date->setTimezone(new DateTimeZone('Asia/Tokyo'));
+    $now = strtotime( $date->format('Y-m-d H:i:s') ) ;
+    $show_on = strtotime( '2015-09-10 17:15:00' );
+?>
  
 @section('content')
     <style>
@@ -10,9 +17,12 @@
             display:inline-block;
         }
         
-        .paid-content button{
-            opacity: 0.3 !important;
-        }
+        @if( $now < $show_on )
+            .paid-content button{
+                opacity: 0.3 !important;
+                pointer-events: none !important;
+            }
+        @endif
     </style>
     @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
 @section('affiliate-toolbar')
@@ -205,10 +215,14 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
                 <div class="enroll-button-wrap clearfix paid-content">
-                @if($course->cost() > 0 && !Input::has('preview') )
+                @if( $course->cost() > 0 && !Input::has('preview') )
                 
-                        {{-- Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) --}}
-                        {{ Form::open([ 'disabled' => 'disabled', 'id' => 'purchase-form']) }}
+
+                        @if( $now > $show_on)
+                            {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                        @else
+                            {{ Form::open([ 'disabled' => 'disabled', 'readonly'=>'readonly', 'id' => 'purchase-form']) }}
+                        @endif
  
                         @if(Auth::guest() || $student->canPurchase($course) )
                             <span class="price clearfix">
@@ -257,9 +271,13 @@
                                 You saved <em> ¥{{ number_format($course->discount_saved, Config::get('custom.currency_decimals')) }}</em></p>
                         @endif
                         
-                @elseif( !Input::has('preview') )
+                @elseif( $course->cost() == 0 && !Input::has('preview') )
                 
-                    {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
+                    @if( Auth::user()->hasRole('Affiliate') ||  $now > $show_on )
+                        {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
+                    @else
+                        {{ Form::open( [ 'id' => 'purchase-form', 'method'=>'GET', 'readonly'=>'readonly', 'disabled'=>'disabled' ] ) }}
+                    @endif
                                 @if(Auth::guest() || $student->canPurchase($course) )
                                     <span class="price clearfix ">{{trans('courses/general.free') }}</span>
                                      <button class="clearfix enroll-button blue-button extra-large-button join-class">
@@ -272,10 +290,15 @@
                                          {{ trans("courses/general.enter-classroom") }}
                                      </a>
                                 @else
-                            <span class="price clearfix ">{{trans('courses/general.free') }}</span>
-                             <button class="clearfix enroll-button blue-button extra-large-button join-class" disabled="disabled">
-                                 {{ trans("courses/general.course-enroll") }}
-                                     </button>
+                                    <span class="price clearfix ">{{trans('courses/general.free') }}</span>
+                                    <button class="clearfix enroll-button blue-button extra-large-button join-class" disabled="disabled">
+                                    {{ trans("courses/general.course-enroll") }}
+                                    </button>
+                                    @if( Auth::user()->id == $course->instructor_id )
+                                        <a href="{{ action('ClassroomController@dashboard', $course->slug)}}">
+                                            [ {{ trans("courses/general.enter-classroom-as-student") }} ]
+                                         </a>
+                                    @endif
                                 @endif
  
                      {{Form::close()}}
@@ -286,7 +309,11 @@
                             @endif
                             
                 @else
-                    {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                    @if($course->cost() > 0)
+                        {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
+                    @else
+                        {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
+                    @endif
                         @if($course->isDiscounted())
                             <div class="price discount-box">
                                 <div class="original-price text-muted text-left"><del>¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
@@ -312,9 +339,11 @@
                                 @endif
                             </span>
                         @endif
-                        <button class="clearfix enroll-button blue-button extra-large-button btn-block">
-                            {{ trans("courses/general.course-enroll") }}
-                        </button>
+                        
+                            <button class="clearfix enroll-button blue-button extra-large-button btn-block">
+                                {{ trans("courses/general.course-enroll") }}
+                            </button>
+                        
                     <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
                     <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
                     {{Form::close()}}

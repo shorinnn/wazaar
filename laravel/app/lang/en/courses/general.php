@@ -188,6 +188,7 @@ return array(
     'upload-10-minutes-to-submit' => 'Upload 10 minutes of video content to submit',
     'course-enroll' => 'Enroll',
     'enter-classroom' => 'Enter Classroom',
+    'enter-classroom-as-student' => 'Enter Classroom As Student',
     'free' => 'Free',
     'instructed-by' => 'Instructed By',
     'profile-more' => 'more',
@@ -204,5 +205,7 @@ return array(
         'beginner' => 'Beginner',
         'advanced' => 'Advanced',
     ],
-    'dash-you-have-no-questions-yet' => 'You have no asked any questions yet. Begin the course and start or join discussions!'
+    'dash-you-have-no-questions-yet' => 'You have no asked any questions yet. Begin the course and start or join discussions!',
+    'enroll-success-message-free' => "Successful enroll",
+    'enroll-success-message-paid' => "Successful enroll",
 );
