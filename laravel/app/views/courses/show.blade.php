@@ -408,7 +408,7 @@
         }); 
     }
     ?>
-@if(Auth::guest() || ( !Auth::user()->hasRole('Instructor') &&  !Auth::user()->hasRole('Affiliate') ) )
+@if( Auth::check() &&  !Auth::user()->hasRole('Instructor') &&  !Auth::user()->hasRole('Affiliate') )
     <section class="become-an-instructor-section container-fluid">
         <span class="background-image-overlay"></span>
         <div class="container">
@@ -420,7 +420,7 @@
             </div>
         </div>
     </section>
-    @endif
+@endif
             <!-- Modal -->
     <div class="modal fade" id="instructor-bio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
