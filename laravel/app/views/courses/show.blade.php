@@ -408,7 +408,7 @@
         }); 
     }
     ?>
-@if(Auth::guest() || !Auth::user()->hasRole('Instructor'))
+@if(Auth::guest() || ( !Auth::user()->hasRole('Instructor') &&  !Auth::user()->hasRole('Affiliate') ) )
     <section class="become-an-instructor-section container-fluid">
         <span class="background-image-overlay"></span>
         <div class="container">

@@ -181,6 +181,7 @@
             </div>
         </div>
     </section>
+    @if(Auth::guest() || ( !Auth::user()->hasRole('Instructor') &&  !Auth::user()->hasRole('Affiliate') ) )
     <section class="become-an-instructor-section container-fluid">
         <span class="background-image-overlay"></span>
         <div class="container">
@@ -192,6 +193,7 @@
             </div>
         </div>
     </section>
+    @endif
 @stop
 
 @section('extra_js')
