@@ -7,8 +7,8 @@
 	<title>@yield('page_title') Wazaar</title>    
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
-    <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+    <!--<link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{url('css/style.css')}}">
     <link rel="stylesheet" href="{{url('css/video-player.css')}}">
     <link rel="stylesheet" href="{{url('css/dashboard.css')}}">
@@ -26,7 +26,7 @@
 		html{
 			height: 100%;
 			/*background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/background-images/background-image.jpg') no-repeat center center;*/
-			background: url('http://d1hgniicb7e6y2.cloudfront.net/assets/images/background-images/background-image.jpg') no-repeat center center;
+			background: url('//d1hgniicb7e6y2.cloudfront.net/assets/images/background-images/background-image.jpg') no-repeat center center;
 			background-size: cover;	
 		}
 		
@@ -100,9 +100,9 @@
         <script src="{{url("js/messages.js")}}"></script>
         <script src="{{url("js/slick.js")}}"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-        <script src="http://www.localeplanet.com/api/translate.js" /></script>
+        <script src="//www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
 		<script src="{{url("js/jquery.tinycarousel.js")}}"></script>
         
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
@@ -130,9 +130,9 @@
         <script src="{{url("js/messages.js")}}"></script>
         <script src="{{url("js/slick.js")}}"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-        <script src="http://www.localeplanet.com/api/translate.js" /></script>
+        <script src="//www.localeplanet.com/api/translate.js" /></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}" /></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
 		<script src="{{url("js/jquery.tinycarousel.js")}}"></script>
 
         <script src="{{url("js/jquery.videobackground.js")}}"></script>
