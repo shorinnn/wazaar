@@ -477,9 +477,11 @@
             $('.centered-play-button, .play-intro-button').hide();
  
             @endif
-            if($('#{{$course->slug}}-countdown').length >= 1){
-                discountCountdown('#{{$course->slug}}-countdown', '{{$course->sale_ends_on->timestamp}}');
-            }        
+            @if($course->isDiscounted())
+                setTimeout(function(){
+                    discountCountdown('#{{$course->slug}}-countdown', '{{$course->sale_ends_on->timestamp}}');
+                }, 1000)                
+            @endif
         });    
     </script>
 @stop

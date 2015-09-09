@@ -95,19 +95,14 @@ $(document).ready(function(){
 });
 
 function discountCountdown(target, time_end){
-    var now = moment().format('X');
-
-    var diffTime = time_end - now; //better to handle this in Controller to avoid timezone problem
+    var currentTime = moment().format('X');
+    var diffTime = time_end - currentTime;
     var duration = moment.duration(diffTime, 'seconds');
-    var interval = 1;
-    setInterval(function () {
-        duration = moment.duration(duration.asSeconds() - interval, 'seconds');
-        output = moment(duration).format('hh:mm:ss');
-        if(duration.days() >= 1){
-            output = moment(duration).format('D [days and] hh:mm:ss');
-        }
-        $(target).text(output);
-    }, 1000);
+    if(duration.days() >= 1){
+        $(target).text(moment(duration).format('D [days and] hh:mm:ss'));
+    } else {
+        $(target).text(moment(duration).format('hh:mm:ss'));
+    }
 }
 
 function makeBoxesExpandable(){
