@@ -25,7 +25,8 @@
 	<style>
 		html{
 			height: 100%;
-			background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/background-images/background-image.jpg') no-repeat center center;
+			/*background: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/background-images/background-image.jpg') no-repeat center center;*/
+			background: url('http://d1hgniicb7e6y2.cloudfront.net/assets/images/background-images/background-image.jpg') no-repeat center center;
 			background-size: cover;	
 		}
 		

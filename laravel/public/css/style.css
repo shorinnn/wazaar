@@ -594,7 +594,8 @@ header .profile-name li:hover ul{
 	font-weight: normal;
 }
 .homepage-header-wrapper{
-	background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/background-image.jpg');
+	/*background-image: url('https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/home-stock-images/background-image.jpg');*/
+	background-image: url('http://d1hgniicb7e6y2.cloudfront.net/assets/images/background-images/background-image.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
