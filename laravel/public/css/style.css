@@ -2624,6 +2624,10 @@ h2, h3, h4, h5, h6{
 	padding: 19px 20px 19px 0 !important;
 	/*line-height: 56px;
 	height: 56px;*/
+	width: 64%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .lesson-topics li span{
     background: #d7d8d9;
