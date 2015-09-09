@@ -292,7 +292,11 @@
                                 <div class="original-price text-muted text-left"><del>¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
                                 <div class="text-warning">
                                     <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
-                                    <div class="discounted-time-left pull-right"><i class="fa fa-clock-o"></i> time here</div>
+                                    <div class="discounted-time-left pull-right">
+                                        <i class="fa fa-clock-o"></i> time here
+                                        {{$course->sale_starts_on->timestamp}}<br />
+                                        {{$course->sale_ends_on->timestamp}}<br />
+                                    </div>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
