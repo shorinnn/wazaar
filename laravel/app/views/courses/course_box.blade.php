@@ -68,22 +68,17 @@
                         <div class="price-tag-container clearfix">
                             <div class="price-tag">
                                 @if($course->isDiscounted())
-                                    <style>
-                                        .small-box .price-tag-container .price-tag{
-                                            color: #ec4316;
-                                        }
-                                    </style>
                                     <span class="prev-price"> ¥ {{ number_format( $course->discount_original, Config::get('custom.currency_decimals') ) }}</span>
-                                @endif
-                                
-                                @if($course->free=='yes' || $course->cost() == 0)
-                                    {{ trans('courses/general.free') }}
-                                @else
-                                    ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
-                                @endif
-                                
-                                @if($course->isDiscounted())
+                                    <span class="discounted-price">
+                                        ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    </span>
                                     {{trans('courses/general.sale')}}
+                                @else
+                                    @if($course->free=='yes' || $course->cost() == 0)
+                                        {{ trans('courses/general.free') }}
+                                    @else
+                                        ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    @endif
                                 @endif
                             </div>
                         </div>
