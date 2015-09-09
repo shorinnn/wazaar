@@ -81,6 +81,7 @@ class PurchaseHelper{
         $site_percentage = self::_sitePercentage( $product, $processor_fee, $prodAffiliate );
         $amount = ( $product->cost() - $processor_fee ) * ( $site_percentage / 100);
         $percentage = min( Config::get('custom.earnings.ltc_percentage') );
+        if( $affiliate->is_super_vip == 'yes' || $affiliate->is_vip=='yes' ) $percentage = max( Config::get('custom.earnings.ltc_percentage') );
         // is this the second tier publisher LTC?
         if( $stLTC != false ){
             $percentage = max( Config::get('custom.earnings.ltc_percentage') );

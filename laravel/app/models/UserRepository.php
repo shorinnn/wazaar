@@ -30,6 +30,9 @@ class UserRepository
         $user->email    = array_get($input, 'email');
         if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ){
             $user->email = '#waa#-'.$user->email;
+            if( time() < strtotime('2015-09-17 00:00:00') ){
+                $user->has_ltc = 'yes';
+            }
         }
         $user->username = 'U'.uniqid();
 //        $user->first_name = Input::get('first_name');

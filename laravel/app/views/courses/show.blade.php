@@ -293,7 +293,7 @@
                                 <div class="text-warning">
                                     <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
                                     <div class="discounted-time-left pull-right">
-                                        <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on)}}"></span>
+                                        <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on, true)}}">{{timeUntil($course->sale_ends_on)}}</span>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
