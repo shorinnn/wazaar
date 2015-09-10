@@ -4,6 +4,12 @@ class ClassroomController extends \BaseController {
     
         public function __construct(){
             $this->beforeFilter( 'auth' );
+            if( Auth::user()->confirmed == 0 ){
+                Auth::user()->setCustom('intended-redirect', Request::url() );
+                Auth::user()->updateUniques();
+                $url = action( 'UsersController@registrationConfirmation', ['resend' => 1] );
+                return Redirect::to($url)->send();
+            }
         }
         
         public function dashboard($slug){

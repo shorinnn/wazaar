@@ -17,6 +17,11 @@ class ProfileController extends Controller
 
     public function index($type = '')
     {
+        if( Auth::user()->confirmed == 0 ){
+            Auth::user()->setCustom('intended-redirect', action('ProfileController@index') );
+            Auth::user()->updateUniques();
+            return Redirect::action( 'UsersController@registrationConfirmation', ['resend' => 1] );
+        }
         /*$isProfileNew = $this->userHelper->isProfileNew();
 
         if ($isProfileNew OR Input::get('step') == 2) {
