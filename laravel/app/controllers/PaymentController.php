@@ -185,6 +185,7 @@ class PaymentController extends BaseController
     //Max Connect Completed payment callback
     public function postCompleted()
     {
+        dd(Input::all());
         if (Input::has('Result')){
             if (Input::get('Result') == 'OK'){
                 $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
