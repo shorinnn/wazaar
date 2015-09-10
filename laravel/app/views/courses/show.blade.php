@@ -284,7 +284,11 @@
                                     @if($now < $show_on)
                                         data-toggle='tooltip' data-placement='left' title='Opens on 10/9'
                                     @else
-                                        onclick="Payment.processBeforeSubmit(this,event)"
+                                        @if(Auth::check())
+                                            onclick="Payment.processBeforeSubmit(this,event)"
+                                        @else
+                                            onclick="window.location='{{action('CoursesController@loginToPurchase', $course->slug)}}'"
+                                        @endif
                                     @endif
                                     data-gift-id="{{Input::get('gid')}}" 
                                     data-product-type="course"

@@ -636,10 +636,16 @@ class CoursesController extends \BaseController {
                 Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') )->render();
         } 
         
+        public function loginToPurchase($slug){
+            if(Auth::guest()){
+                Session::set('url.intended', action('CoursesController@show', $slug));
+                return Redirect::to('register')->withError( trans('courses/general.login_to_purchase') );
+            }
+        }
         public function purchase($slug){
             if(Auth::guest()){
                 Session::set('url.intended', action('CoursesController@show', $slug));
-                return Redirect::to('login')->withError( trans('courses/general.login_to_purchase') );
+                return Redirect::to('register')->withError( trans('courses/general.login_to_purchase') );
             }
             
             $course = Course::where('slug', $slug)->first();
