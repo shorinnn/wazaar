@@ -4,7 +4,7 @@
  <?php
  $course = courseApprovedVersion($course);
   echo Flatten::section('top-course-box-'.$course->id, Config::get('custom.cache-expiry.course-box'), function () use ($course) { ?>
-    <div class="col-xs-12 col-sm-6 col-md-4">
+    <div class="col-xs-12 col-sm-6 col-md-4 course-box-wrap">
         <a href="{{ action('CoursesController@show', $course->slug) }}">
             <div class="object small-box small-box-one">
                 <div class="img-container">
