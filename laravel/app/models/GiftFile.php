@@ -19,7 +19,7 @@ class GiftFile extends Ardent {
         // Create a signed URL from the command object that will last for
         // 10 minutes from the current time
         $url = $command->createPresignedUrl('+10 minutes');
-        return cloudfrontUrl($url);
+        return $url;//cloudfrontUrl($url);
 //        $signed = explode('.com/', $url);
 //        $signed = '//'.getenv('CLOUDFRONT_DOMAIN').'/'.$signed[1];
 //        return $signed;
