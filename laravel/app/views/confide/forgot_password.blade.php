@@ -71,7 +71,7 @@
    <section class="container-fluid user-data-modal-wrapper dedicated-login-page">
         <div class="row no-margin">
             <div class="login-page">
-                <a href="" class="modal-box-logo clearfix">
+                <a href="{{action('SiteController@index') }}" class="modal-box-logo clearfix">
                     <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
                 </a>
                 <div class="user-data-modal clearfix">
