@@ -16,10 +16,10 @@ class AdminDashboardController extends BaseController
     public function index()
     {
         $app = app();
-        $controller = $app->make('AffiliateDashboardController');
+        //$controller = $app->make('AffiliateDashboardController');
 
         $userCountView = $this->userCountView();
-        $salesTotalView =  $controller->callAction('salesView', $parameters = array());
+        $salesTotalView =  '';//$controller->callAction('salesView', $parameters = array());
         $salesCountView = $this->salesCountView();
 
         $topAffiliatesTable = $this->topAffiliatesTableView(0,'','',false);
