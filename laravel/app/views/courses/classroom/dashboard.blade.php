@@ -162,7 +162,7 @@
                                 }
                             </style>
                             <div class="resume-button-container">
-                                <h3>{{ trans('courses/general.continue-lesson') }}</h3>
+                                <!-- <h3>{{ trans('courses/general.continue-lesson') }}</h3> -->
 
                                     <a href="{{
                                         action('ClassroomController@lesson', 
