@@ -104,6 +104,11 @@ class UsersController extends Controller
             Cookie::queue('iai', null, -1);
             Cookie::queue('stpi', null, -1);
             Auth::login($user);
+            unset($user->url);
+            $user->setCustom('intended-redirect', Session::get('url.intended') );
+            $user->updateUniques();
+            
+            return Redirect::action('UsersController@registrationConfirmation' );
             if(Request::ajax()) return json_encode( [ 'status' => 'success', 'url' => $user->url ] );
             return Redirect::intended( $user->url );
         } else {
@@ -510,10 +515,28 @@ class UsersController extends Controller
     }
     
             
-    public function registrationConfirmation(){
+    public function registrationConfirmation($resend=false){
         if( Auth::guest() ){
             $dot = getenv('AWS_MACHINE_IDENTIFIER') == 'Wazaar.' ? 1 : 0;
             return Redirect::to("login?dot=$dot");
+        }
+        if($resend==1){
+            $u = User::find(Auth::user()->id);
+            $user = [
+                'email' => $u->email,
+                'confirmation_code' => $u->confirmation_code
+            ];
+            $subject = 'アカウント確認のご連絡';
+            Mail::send(
+                        'confide.emails.confirm',
+                        compact('user' , 'lastName' ),
+                        function ($message) use ($user, $subject) {
+                            $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
+                            $message
+                                ->to($user['email'], $user['email'])
+                                ->subject( $subject );
+                        }
+                    );
         }
         return View::make('confide.signup_success');
     }
@@ -522,6 +545,14 @@ class UsersController extends Controller
         if( Auth::guest() ){
             $dot = getenv('AWS_MACHINE_IDENTIFIER') == 'Wazaar.' ? 1 : 0;
             return Redirect::to("login?dot=$dot");
+        }
+        if( !Auth::user()->hasRole('Affiliate') && !Auth::user()->hasRole('Instructor')){
+            $intention =  Auth::user()->getCustom('intended-redirect') ;
+            if( $intention != null && trim($intention) !=''){
+                Auth::user()->setCustom('intended-redirect',null);
+                Auth::user()->updateUniques();
+                return Redirect::to($intention);
+            }
         }
         if( Auth::user()->hasRole('Affiliate') ) return Redirect::action('AffiliateController@acceptTerms');
         return View::make('confide.mail_verified');

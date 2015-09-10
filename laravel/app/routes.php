@@ -102,6 +102,7 @@ $wwwRoutes = function(){
     Route::post('reset-password', 'UsersController@doResetPassword');
     Route::get('logout', 'UsersController@logout');
     Route::get('emailcheck', 'UsersController@emailCheck');
+    Route::get('/registration-confirmation/{resend}', 'UsersController@registrationConfirmation');
     Route::get('/registration-confirmation', 'UsersController@registrationConfirmation');
     Route::get('/verification-confirmation', 'UsersController@verificationConfirmation');
 
@@ -455,6 +456,7 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::any('admin/category/{categoryId}/{freeCourse}','AdminDashboardController@topCoursesByCategory');
     Route::any('admin/affiliatestable','AdminDashboardController@topAffiliatesTableView');
     Route::any('admin/courses/{freeCourse}','AdminDashboardController@topCoursesTableView');
+    Route::get('admin/purchases/','AdminDashboardController@purchases');
 });
 
 

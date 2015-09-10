@@ -15,6 +15,7 @@ class AdminDashboardController extends BaseController
 
     public function index()
     {
+        
         $app = app();
         //$controller = $app->make('AffiliateDashboardController');
 
@@ -127,5 +128,17 @@ class AdminDashboardController extends BaseController
         }
 
         return View::make('administration.dashboard.partials.sales.count', compact('frequencyOverride', 'sales'))->render();
+    }
+    
+    public function purchases(){
+        
+        if(Input::has('filter') && Input::get('filter')!='all'){
+            $filter = Input::get('filter')=='free' ? 'yes' : 'no';
+            $purchases = Purchase::where('free_product', $filter)->orderBy('id','desc')->paginate(20);
+        }
+        else{
+            $purchases = Purchase::orderBy('id','desc')->paginate(50);
+        }
+        return View::make('administration.dashboard.purchases')->with( compact('purchases') );
     }
 }

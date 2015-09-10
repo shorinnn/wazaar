@@ -755,9 +755,17 @@ class CoursesController extends \BaseController {
             $course = Course::where('slug', $slug)->first();
             $student = Student::current(Auth::user());
 //            $student->crash( $course,  Cookie::get( "aid-".$course->id ) );
-            $student->crash( $course,  Cookie::get( "aid" ) );
+            $g = null;
+            if(Input::get('gid') !=''){
+                $gift = Gift::find( PseudoCrypt::unhash(Input::get('gid')) );
+                if($gift && $gift->affiliate_id == Input::get('aid')){
+                    $g = $gift->id;
+                }
+            }
+            $student->crash( $course,  Cookie::get( "aid" ), $g );
             // unset the affiliate cookie
             Cookie::queue("aid", null, -1);
+            Cookie::queue("gid", null, -1);
             Session::flash( 'message', trans('courses/general.enroll-success-message-free') );
             return Redirect::action( 'ClassroomController@dashboard', [ 'course' => $course->slug ]);
         }
