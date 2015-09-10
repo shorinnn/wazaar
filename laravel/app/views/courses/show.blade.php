@@ -260,7 +260,7 @@
                                 {{ trans("courses/general.course-enroll") }}
                             </button>
                             --}}
-                            @if (Input::has('test'))
+
                                 <button class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block" type="button"
                                     @if($now < $show_on)
                                         data-toggle='tooltip' data-placement='left' title='Opens on 10/9'
@@ -272,7 +272,7 @@
                                     data-product-name="{{$course->name}}"
                                     data-product-price="{{$course->cost()}}">{{ trans("courses/general.course-enroll") }}
                                 </button>
-                            @endif
+                           
 
 
                         @elseif(Auth::check() && $student->purchased($course) )
