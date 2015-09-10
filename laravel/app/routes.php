@@ -80,7 +80,7 @@ $wwwRoutes = function(){
     else{
         Route::get('register', 'UsersController@create' );
         Route::get('register/second-tier-publisher', 'UsersController@secondTierPublisherCreate' );
-        Route::get('register/account/instructor', 'UsersController@create' );
+        Route::get('register/account/{instructor}', 'UsersController@create' );
         Route::post('users', 'UsersController@store' );
 
         Route::get('login', 'UsersController@login' );
@@ -242,6 +242,7 @@ $wwwRoutes = function(){
     Route::post('courses/{slug}/crash/{lesson}', 'CoursesController@crashLesson');
     Route::post('courses/{slug}/crash/', 'CoursesController@crashCourse');
     Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
+    Route::get('courses/{slug}/login-to-purchase', 'CoursesController@loginToPurchase');
     Route::get('courses/{slug}/purchased', 'CoursesController@purchased');
 
     Route::get('courses/{slug}', 'CoursesController@show');

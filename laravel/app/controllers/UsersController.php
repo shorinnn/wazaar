@@ -22,6 +22,9 @@ class UsersController extends Controller
      */
     public function create($instructor_account = 0)
     {
+        
+        Cookie::queue("register_affiliate",  null, -1);
+        
         if( Auth::guest() ){
             Cookie::queue('st', null, -1);
             Cookie::forget('st');
@@ -32,9 +35,9 @@ class UsersController extends Controller
             $extraText = trans('general.register-instructor');
         }
         if( $instructor_account === 'affiliate' ){
-            Cookie::queue("register_affiliate", 1, 30);
             $extraText = trans('general.register-affiliate');
         }
+        
         return View::make(Config::get('confide::signup_form'))->with( compact('instructor_account', 'extraText') );
     }
     
@@ -63,7 +66,7 @@ class UsersController extends Controller
     public function store()
     {
         $roles['instructor'] = Input::get('register_instructor');//Cookie::get('register_instructor');
-        $roles['affiliate'] = Input::get('register_affiliate');//Cookie::get('register_affiliate');
+        //$roles['affiliate'] = Input::get('register_affiliate');//Cookie::get('register_affiliate');
         $st = Input::get('st'); // Cookie::get('st')
         $user = $this->users->signup( Input::all(), Cookie::get('ltc'), $roles, Cookie::get('stpi'), Cookie::get('iai'), $st );
         
@@ -140,7 +143,7 @@ class UsersController extends Controller
             }
             
             //if(Auth::user()->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
-            if( Auth::user()->hasRole('Instructor') ) return Redirect::to( nonHttps( action('CoursesController@myCourses') ) );
+            if( Auth::user()->hasRole('Instructor') ) return Redirect::intended( nonHttps( action('CoursesController@myCourses') ) );
             return Redirect::intended( nonHttps( action('SiteController@index') ) );
         } else {
             if ($this->users->isThrottled($input)) {
