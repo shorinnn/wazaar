@@ -27,15 +27,14 @@
                         <p class="lead">{{trans('site/homepage.learning_has_never_been_easier')}}</p>
                     </h1>
                     <a href="#" onclick='showHomepagePromoVideo(this)' class="blue-button large-button round-button how-it-works"><i class="wa-play"></i>{{trans('site/homepage.how_it_works')}}</a>
-                    <div class="home-search-form  invisible">
-                        <!--
+                    <div class="home-search-form">
+                        
                         <form action='{{ action('CoursesController@search') }}'>
                             <div>
                                 <input type="search" name="term" class="left" placeholder="{{trans('site/homepage.what-do-you-want-to-learn')}}">
                                 <button><i class="wa-search"></i></button>
                             </div>
                         </form>
-                        -->
                     </div>
                 </div>
             </div>

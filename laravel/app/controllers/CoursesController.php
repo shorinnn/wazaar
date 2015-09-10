@@ -477,9 +477,11 @@ class CoursesController extends \BaseController {
             }
 
             $courses = $courses->paginate(9);
-
+            $category = $subcategory->courseCategory;
+            
+            
             if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
-            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted') );
+            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses') );
                             
         }
         
