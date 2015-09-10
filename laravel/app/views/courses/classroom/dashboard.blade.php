@@ -34,33 +34,24 @@
     </div>
     <div class="container-fluid student-dashboard student-course percentage-completed">
     	<div class="container">
-        	<div class="row">
-            	<div class="hidden-xs hidden-sm col-md-3 col-lg-3">
-                </div>
-            	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-                	<p>{{ $student->courseProgress($course) }}% completed</p>
-                    <div class="progress">
+        	<div>
+            	<div class="col-xs-12 col-sm-12 col-md-9 col-md-offset-3 col-lg-9 col-lg-offset-3">
+                    <p>{{ $student->courseProgress($course) }}% completed</p>
+                    <div class="progress @if($currentLesson == null) full @endif">
                         <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{ $student->courseProgress($course) }}%;">
                             <span></span>
                         </div>
                     </div>
-                        @if($currentLesson != null)
-                        <a href="{{
-                            action('ClassroomController@lesson', 
-                                                [ $currentLesson->module->course->slug,
-                                                $currentLesson->module->slug,
-                                                $currentLesson->slug])
-                           }}" class="resume-course large-button blue-button"><i class="wa-play"></i>{{ trans('affiliates.gifts.resume-course' )}}</a>
-                       @elseif($nextLesson !=null)
-                        <a href="{{
-                            action('ClassroomController@lesson', 
-                                                [ $nextLesson->module->course->slug,
-                                                $nextLesson->module->slug,
-                                                $nextLesson->slug])
-                           }}" class="resume-course large-button blue-button"><i class="wa-play"></i>{{ trans('affiliates.gifts.begin-course' )}}</a>
-                       @else
-                       @endif
-                       
+                    @if($currentLesson != null)
+                        <div class="resume-course-button-container">
+                            <a href="{{
+                                action('ClassroomController@lesson', 
+                                                    [ $currentLesson->module->course->slug,
+                                                    $currentLesson->module->slug,
+                                                    $currentLesson->slug])
+                               }}" class="resume-course large-button blue-button"><i class="wa-play"></i>{{ trans('affiliates.gifts.resume-course' )}}</a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -155,23 +146,35 @@
                             </div>
                         </div>
                     @else
-						<style>
-                            .resume-button-container{
-                                padding: 24px;
-                                text-align: center;
-                                background: #fff;
-                                border: 1px solid #e0e1e2;
-                                border-radius: 4px;
-                                margin-bottom: 20px;
-                            }
-                            .resume-button-container h3{
-                                color: #303941;
-                                margin: 0 0 10px;
-                            }
-                        </style>
-                        <div class="resume-button-container">
-                        	<h3>{{ trans('courses/general.continue-lesson') }}</h3>
-                        </div>
+                        @if($nextLesson !=null && $currentLesson == null)
+                            <style>
+                                .resume-button-container{
+                                    padding: 24px;
+                                    text-align: center;
+                                    background: #fff;
+                                    border: 1px solid #e0e1e2;
+                                    border-radius: 4px;
+                                    margin-bottom: 20px;
+                                }
+                                .resume-button-container h3{
+                                    color: #303941;
+                                    margin: 0 0 10px;
+                                }
+                            </style>
+                            <div class="resume-button-container">
+                                <h3>{{ trans('courses/general.continue-lesson') }}</h3>
+
+                                    <a href="{{
+                                        action('ClassroomController@lesson', 
+                                                            [ $nextLesson->module->course->slug,
+                                                            $nextLesson->module->slug,
+                                                            $nextLesson->slug])
+                                       }}" class="resume-course large-button blue-button"><i class="wa-play"></i>{{ trans('affiliates.gifts.begin-course' )}}</a>
+                                
+                            </div>
+                            
+                        @endif
+						
                    
                         <div class="question-answer-wrap">
                         <div class="row question-answer">
