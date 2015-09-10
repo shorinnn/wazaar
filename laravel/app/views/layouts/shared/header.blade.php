@@ -127,6 +127,12 @@
                             @endif
                              *                              */?>
 
+                            @if( Auth::user()->hasRole('Affiliate'))
+                                <li>
+                                    <a class="courses-button" href="{{ action('AffiliateDashboardController@index') }}">{{trans('site/menus.analytics')}}</a>
+                                </li>
+                            @endif
+
                             @if( !Auth::user()->hasRole('Affiliate') && Auth::user()->hasRole('Student') &&  !Auth::user()->hasRole('Instructor') )
                                 <li>
                                     <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
