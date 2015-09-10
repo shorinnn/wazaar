@@ -179,25 +179,31 @@ class PaymentController extends BaseController
                 return Redirect::to(Input::get('URL'));
             }
         }
-        return Redirect::home();
+
     }
 
     //Max Connect Completed payment callback
     public function postCompleted()
     {
-        dd(Input::all());
-        if (Input::has('Result')){
-            if (Input::get('Result') == 'OK'){
-                $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
+        try{
+            if (Input::has('Result')){
+                if (Input::get('Result') == 'OK'){
+                    $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
 
-                if ($paymentLog){
-                    return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                    if ($paymentLog){
+                        return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                    }
+
                 }
-
             }
+
+            return Redirect::home();
+        }
+        catch(Exception $ex){
+            echo $ex->getMessage();
+            echo $ex->getLine();
         }
 
-        return Redirect::home();
     }
 
     //Max Connect Success payment callback
