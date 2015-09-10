@@ -1050,9 +1050,11 @@ class AnalyticsHelper
         //Sales for affiliates are taken from another column
         if ($this->userType == 'affiliate') {
             $sum = "IF(product_affiliate_id = '{$this->userId}', sum(`affiliate_earnings`),0) + IF(second_tier_affiliate_id = '{$this->userId}',sum(second_tier_affiliate_earnings),0)";
+            $criteria .= " AND (purchases.ltc_affiliate_id = '{$this->userId}' OR purchases.product_affiliate_id = '{$this->userId}' )";
         }
         elseif($this->userType == 'instructor'){
             $sum = "IF(instructor_id = '{$this->userId}', sum(`instructor_earnings`),0) + IF(second_tier_instructor_id = '{$this->userId}',sum(second_tier_instructor_earnings),0)";
+            $criteria .= " AND (purchases.instructor_id='{$this->userId}' OR purchases.second_tier_instructor_id = '{$this->userId}')";
         }
 
         //if (!$this->isAdmin AND !empty($this->userId)) {
@@ -1109,6 +1111,7 @@ class AnalyticsHelper
 
         if ($this->userType == 'affiliate') {
             $purchaseCriteria = " AND (product_affiliate_id = '{$this->userId}' OR second_tier_affiliate_id = '{$this->userId}')";
+            $criteria .= " AND tracking_code_hits.affiliate_id='{$this->userId}'";
         }
         elseif ($this->userType == 'instructor'){
             $purchaseCriteria = " AND (instructor_id = '{$this->userId}' OR second_tier_instructor_id = '{$this->userId}')";
