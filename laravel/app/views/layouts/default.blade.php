@@ -113,9 +113,9 @@
         
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 margin-bottom-20 text-center-mobile">
-                        <h5><a href="http://affiliates.wazaar.jp">アフィリエイター向け</a></h5>
-                        <a href="http://affiliates.wazaar.jp/register">新規登録</a>
-                        <a href="http://affiliates.wazaar.jp/login">ログイン</a>  
+                        <h5>アフィリエイター向け</h5>
+                        <a href="{{action('UsersController@create')}}">新規登録</a>
+                        <a href="{{ action('UsersController@login') }}">ログイン</a>  
                 </div>
               </div>
             </div>

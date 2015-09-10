@@ -69,6 +69,7 @@
     	<div class="container">
         	<div class="row">
             	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 margin-top-25">
+
                 	<div class="sidebar">
                             @foreach($course->modules as $module)
                                 <div class="course-topics-box">
@@ -154,7 +155,24 @@
                             </div>
                         </div>
                     @else
-                    
+						<style>
+                            .resume-button-container{
+                                padding: 24px;
+                                text-align: center;
+                                background: #fff;
+                                border: 1px solid #e0e1e2;
+                                border-radius: 4px;
+                                margin-bottom: 20px;
+                            }
+                            .resume-button-container h3{
+                                color: #303941;
+                                margin: 0 0 10px;
+                            }
+                        </style>
+                        <div class="resume-button-container">
+                        	<h3>{{ trans('courses/general.continue-lesson') }}</h3>
+                        </div>
+                   
                         <div class="question-answer-wrap">
                         <div class="row question-answer">
                             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
@@ -184,6 +202,5 @@
             $(".open-button-wrap").hide();
             $(".affiliate-gift-wrap .description").css({width: "100%"});
     });
-
 </script>
 @stop

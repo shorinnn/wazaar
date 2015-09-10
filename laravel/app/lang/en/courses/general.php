@@ -115,6 +115,7 @@ return array(
     'requirements' => 'Requirements', 
     'ask' => 'Ask',
     'teacher' => 'Teacher',
+    'continue-lesson' => 'Continue learning this lesson',
     'instructor-a-question' => 'Instructor a Question',
     'instructor' => 'Instructor',
     'my-courses' => 'My Courses',
