@@ -245,7 +245,7 @@ var Analytics = {
             $('#wrapper-second-tier-registrations').html($($tempSelector).html());
         }
 
-        //$('#wrapper-second-tier-registrations').html($html);
+        //$('#wrapper-second-tier-registrations').html('abcde');
 
         $('.tracking-code-conversions-dropdown a').removeClass('active');
 
