@@ -1,5 +1,6 @@
     @extends('layouts.default')
     @section('content')	
+    
 		<section class="container-fluid category-heading-container">
             <div class="container-fluid cat-row-{{$category->color_scheme}}">
             	<div class="row category-heading">

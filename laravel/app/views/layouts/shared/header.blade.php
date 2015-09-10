@@ -17,7 +17,7 @@
             @if(Auth::check())
         <div class="clearfix left">
             <div class="logged-out-header-search text-center">
-                <?php if('dont-show' == 'yes'):?>
+                <?php if('dont-show' == 'dont-show'):?>
                 <div class="clearfix inline-block">
                     <div class="activate-dropdown left relative">
                         <button aria-expanded="false" data-toggle="dropdown" 
@@ -28,10 +28,10 @@
                         
                         <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                             <ul>
-                                <?php echo Flatten::section('header-categories-catalog', 10, function ()  { 
-                                    $categories = CourseCategory::has('allCourses')->withCourses();
+                                <?php 
+                                echo Flatten::section('header-categories-catalog', 10, function ()  { 
+                                    $categories = CourseCategory::has('allCourses')->get();
                                     $categories->load( 'courseSubcategories' );?>
-                               
                                 
                                     @foreach( $categories as $category)
 
@@ -227,7 +227,7 @@
                 </li>
             </ul>
             <div class="logged-out-header-search text-center">
-                 <?php if('dont-show' == 'yes'):?>
+                 <?php if('dont-show' == 'dont-show'):?>
             	<div class="clearfix inline-block">
                     <div class="activate-dropdown left relative">
                         <button aria-expanded="false" data-toggle="dropdown" 
@@ -239,7 +239,7 @@
                             <ul>
                                 
                                <?php echo Flatten::section('header-categories-catalog', 10, function ()  { 
-                                    $categories = CourseCategory::has('allCourses')->withCourses();
+                                    $categories = CourseCategory::has('allCourses')->get();
                                     $categories->load( 'courseSubcategories' );?>
                                
                                 

@@ -6,7 +6,7 @@ class AffiliateController extends \BaseController {
         $this->users = $users;
         $this->beforeFilter( 'affiliate', ['except' => [ 'becomeAffiliate', 'doBecomeAffiliate', 'create', 'store', 'login', 
             'doLogin', 'forgotPassword', 'doForgotPassword' ] ] );
-        $this->beforeFilter('guest', ['only' => [ 'login', 'doLogin', 'forgotPassword', 'doForgotPassword' ]]);
+        $this->beforeFilter('guest', ['only' => [ 'doLogin', 'forgotPassword', 'doForgotPassword' ]]);
         $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy' ]]);
     }
     
@@ -117,6 +117,10 @@ class AffiliateController extends \BaseController {
     
     public function login()
     {        
+            if( Auth::check() ) {
+                Auth::logout();
+                Session::flush();
+            }
             return View::make( 'confide.affiliates.login' );
     }
 
