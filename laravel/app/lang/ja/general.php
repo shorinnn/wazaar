@@ -127,5 +127,7 @@ return array(
         'negative' => '低評価',
         'very-negative' => 'とても低評価',
         'no-rating-yet' => 'まだ評価がありません。'
-    ]
+    ],
+    'my_name_is' => '販売者名',
+    'continue-browsing' => '商品ページに戻る'
 );

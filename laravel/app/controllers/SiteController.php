@@ -26,7 +26,8 @@ class SiteController extends \BaseController {
                 }
                 
                 $topCourses = Cache::get('topCourses');
-                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
+//                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
+                $topCourses = $topCourses[ 0 ];
                 
                 // $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
                 $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->paginate(12);

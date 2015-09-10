@@ -229,7 +229,7 @@
                                 <div class="text-warning">
                                     <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
                                     <div class="discounted-time-left pull-right">                                        
-                                        <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on, true)}}">{{timeUntil($course->sale_ends_on)}}</span>
+                                        <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on, true)}}"></span>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -401,12 +401,14 @@
     </div>
 </section>
 <?php 
-    if( Input::has('preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
-    else{
-        echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { 
-            echo View::make('courses.description.bottom-cache')->withCourse($course);
-        }); 
-    }
+     echo View::make('courses.description.bottom-cache')->withCourse($course);  
+     // disabled until better caching
+//    if( Input::has('preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
+//    else{
+//        echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { 
+//            echo View::make('courses.description.bottom-cache')->withCourse($course);
+//        }); 
+//    }
     ?>
 @if( Auth::check() &&  !Auth::user()->hasRole('Instructor') &&  !Auth::user()->hasRole('Affiliate') )
     <section class="become-an-instructor-section container-fluid">
@@ -448,7 +450,9 @@
                         @endif
                     </p>
                     <div class="close-button">
-                    	<button type="button" class="large-button blue-button" data-dismiss="modal">CONTINUE BROWSING</button>
+                        <button type="button" class="large-button blue-button" data-dismiss="modal">
+                                    {{ trans('general.continue-browsing') }}
+                        </button>
                     </div>
                 </div>
             </div>

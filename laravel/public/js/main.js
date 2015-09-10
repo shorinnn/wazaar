@@ -39,7 +39,7 @@ $(document).ready(function(){
         time = time.toString(); 
         console.log(time);
         $(this).countdown(time, function(event) {
-               $(this).html( event.strftime('%D days %H:%M:%S') );
+               $(this).html( event.strftime('%D '+_('days')+' %H  '+_('hours')+' %M  '+_('minutes')+' %S '+_('seconds')) );
              } );
     });
     

@@ -72,6 +72,7 @@ return array(
     'used_on_listings_description' => 'Will be used for listings description and introduction.',
     'add_to_wishlist' => 'Add To Wishlist',
     'remove_from_wishlist' =>'REMOVE FROM WISHLIST',
+    'login_to_use' => 'Log in to use',
     'payment_type' => 'Payment Type',
     'one_time' => 'One Time',
 	'listing_image_thumbnail' => 'Listing image (thumbnail)',

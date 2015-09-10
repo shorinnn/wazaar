@@ -66,7 +66,7 @@ $wwwRoutes = function(){
     // Confide routes
     
     Route::get('links', 'UsersController@links');
-    if( App::environment()=='production' ){
+    if( App::environment()=='productionDISABLED' ){
         Route::group(['before' => 'forceHttps'], function(){
             Route::get('register', ['https', 'uses'=>'UsersController@create'] );
             Route::get('register/second-tier-publisher', ['https', 'uses'=>'UsersController@secondTierPublisherCreate'] );
@@ -320,7 +320,7 @@ Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 ## Route Group for Profile
 $wwwRoutes = function(){
 //Route::group( array('domain' => $domain ), function(){
-    if(App::environment() != 'production'){
+    if(App::environment() != 'productionDISABLED'){
         Route::group(['prefix' => 'profile'], function (){
             Route::get('settings', 'ProfileController@settings');
             Route::put('settings', 'ProfileController@updateSettings');
