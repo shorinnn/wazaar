@@ -8,7 +8,7 @@
     $date = new DateTime();
     $date->setTimezone(new DateTimeZone('Asia/Tokyo'));
     $now = strtotime( $date->format('Y-m-d H:i:s') ) ;
-    $show_on = strtotime( '2015-09-08 17:15:00' );
+    $show_on = strtotime( '2015-09-10 17:15:00' );
 ?>
  
 @section('content')
@@ -38,6 +38,12 @@
                          alt="" class="img-responsive" />-->
     @endif
     <div class="container">
+        @if( Session::has('error') )
+            <h4 class="alert alert-error alert-dismissable" style="background-color:#ef4c31; color:white; border:#e34126; margin-bottom: 0px">
+                {{ Session::get('error') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </h4>
+        @endif
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                 <div class="category-tags clearfix">
@@ -135,7 +141,7 @@
                     @endif
                     
                 @else
-                    <video style="width: 100%" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
+                    <video id="myVideo" style="width: 100%" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
                         <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                                     ->first()->video_url }}" type="video/mp4">
                         <p>Your browser does not support the video tag.</p>
@@ -223,7 +229,13 @@
                             <input type="hidden" name="URL" value="{{url('courses/' . $course->slug)}}"/>
                             <input type="hidden" name="CustomerPass" value="password" />
                             <input type="hidden" name="Amount" value="{{$course->cost()}}" />
-                            <input type="hidden" name="mail" value="{{Auth::user()->email}}" />
+                            <input type="hidden" name="mail" 
+                                   @if(Auth::check())
+                                    value="{{Auth::user()->email}}"
+                                   @else
+                                    value=""
+                                   @endif
+                                   />
                             <input type="hidden" name="itemId" value="{{$course->name}}:{{$course->cost()}}yen" />
                             <input type="hidden" name="TransactionId" value="" />
                         </form>
@@ -237,7 +249,12 @@
                             <div class="price discount-box">
                                 <div class="original-price text-muted text-left"><del>¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
                                 <div class="text-warning">
-                                    <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
+                                    <div class="discounted-price pull-left">
+                                        ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                        @if(Auth::check() && Auth::user()->hasRole('Affiliate') )
+                                            ( アフィリエイト収入:{{ $course->affiliate_percentage }}% )
+                                        @endif
+                                    </div>
                                     <div class="discounted-time-left pull-right">                                        
                                         <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on, true)}}"></span>
                                     </div>
@@ -251,6 +268,9 @@
                         @else
                             <span class="price clearfix">
                                 ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                @if(Auth::check() && Auth::user()->hasRole('Affiliate') )
+                                    ( アフィリエイト収入:{{ $course->affiliate_percentage }}% )
+                                @endif
                             </span>
                         @endif
 
@@ -260,12 +280,15 @@
                                 {{ trans("courses/general.course-enroll") }}
                             </button>
                             --}}
-                            @if (Input::has('test'))
                                 <button class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block" type="button"
                                     @if($now < $show_on)
                                         data-toggle='tooltip' data-placement='left' title='Opens on 10/9'
                                     @else
-                                        onclick="Payment.processBeforeSubmit(this,event)"
+                                        @if(Auth::check())
+                                            onclick="Payment.processBeforeSubmit(this,event)"
+                                        @else
+                                            onclick="window.location='{{action('CoursesController@loginToPurchase', $course->slug)}}'"
+                                        @endif
                                     @endif
                                     data-gift-id="{{Input::get('gid')}}" 
                                     data-product-type="course"
@@ -274,7 +297,7 @@
                                     data-product-price="{{$course->cost()}}">{{ trans("courses/general.course-enroll") }}
 
                                 </button>
-                            @endif
+                         
 
 
                         @elseif(Auth::check() && $student->purchased($course) )
@@ -308,7 +331,7 @@
                     @endif
                                 @if(Auth::guest() || $student->canPurchase($course) )
                                     <span class="price clearfix ">{{trans('courses/general.free') }}</span>
-                                     <button class="clearfix enroll-button blue-button extra-large-button join-class">
+                                     <button type='submit' class="clearfix enroll-button blue-button extra-large-button join-class">
                                          {{ trans("courses/general.course-enroll") }}
                                      </button>
                                 @elseif(Auth::check() && ( Auth::user()->hasRole('Affiliate') || $student->purchased($course) ) )
@@ -319,7 +342,7 @@
                                      </a>
                                 @else
                                     <span class="price clearfix ">{{trans('courses/general.free') }}</span>
-                                    <button class="clearfix enroll-button blue-button extra-large-button join-class" disabled="disabled">
+                                    <button  type='submit'class="clearfix enroll-button blue-button extra-large-button join-class" disabled="disabled">
                                     {{ trans("courses/general.course-enroll") }}
                                     </button>
                                     @if( Auth::user()->id == $course->instructor_id )
@@ -341,7 +364,11 @@
                             <div class="price discount-box">
                                 <div class="original-price text-muted text-left"><del>¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
                                 <div class="text-warning">
-                                    <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
+                                    <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    @if(Auth::check() && Auth::user()->hasRole('Affiliate') )
+                                        ( アフィリエイト収入:{{ $course->affiliate_percentage }}% )
+                                    @endif
+                                    </div>
                                     <div class="discounted-time-left pull-right">                                        
                                         <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on, true)}}">{{timeUntil($course->sale_ends_on)}}</span>
                                     </div>
@@ -356,6 +383,9 @@
                             <span class="price clearfix">
                                 @if($course->cost()>0)
                                     ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    @if(Auth::check() && Auth::user()->hasRole('Affiliate') )
+                                        ( アフィリエイト収入:{{ $course->affiliate_percentage }}% )
+                                    @endif
                                 @else
                                     {{trans('courses/general.free') }}
                                 @endif
@@ -500,8 +530,8 @@
         $(function(){       
             @if( Auth::guest() )
                 $('#purchase-form').submit(function(e){
-                    e.preventDefault();
-                    unauthenticatedEnrollAttempt();
+//                    e.preventDefault();
+//                    unauthenticatedEnrollAttempt();
                 });
             @endif
             

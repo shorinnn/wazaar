@@ -629,7 +629,6 @@ header .profile-name li:hover ul{
 	overflow: hidden;
 	max-width: 440px;
 	height: 60px;
-	display: none;
 	margin: 72px auto 0;
 }
 .homepage-header .home-search-form input[type='search']{
@@ -2662,10 +2661,10 @@ h2, h3, h4, h5, h6{
 	float: left;
 	color: #41474d;
 	font-size: 14px;
-	padding: 19px 20px 19px 0 !important;
+	padding: 19px 0 !important;
 	/*line-height: 56px;
 	height: 56px;*/
-	width: 64%;
+	width: 62%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -8547,7 +8546,7 @@ footer{
 		float: left;
 	}
 	.lesson-topics li .lesson-name{
-		width: 62%;
+		width: 60%;
 	}
 }
 @media (max-width:1002px){
@@ -9026,7 +9025,7 @@ header .top-menu li{
 		margin: 20px 0 10px;
 	}
 	.lesson-topics li .lesson-name{
-		width: 60%;
+		width: 58%;
 	}
 }
 @media (max-width:620px){
@@ -9105,7 +9104,7 @@ header .top-menu li{
 		display: inline-table;
 	}
 	.lesson-topics li .lesson-name{
-		width: 56%;
+		width: 54%;
 	}
 	.category-heading > div{
 		text-align: center;
@@ -9195,6 +9194,9 @@ header .top-menu li{
 	.course-material .materials{
 		padding: 0 15px;
 	}
+	.lesson-topics li .lesson-name{
+		width: 43%;
+	}
 }
 
 @media (max-width:475px){
@@ -9255,7 +9257,7 @@ header .top-menu li{
 		top: 0;
 	}
 	.lesson-topics li .lesson-name{
-		width: 53%;
+		width: 51%;
 	}
 }
 @media (max-width:460px){
@@ -9310,7 +9312,7 @@ header .top-menu li{
 		width: 100%;
 	}
 	.lesson-topics li .lesson-name{
-		width: 50%;
+		width: 39%;
 	}
 	.user-data-modal-header{
 		padding: 24px 24px 0;
@@ -9359,7 +9361,7 @@ header .top-menu li{
 		font-size: 11px;
 	}	
 	.lesson-topics li .lesson-name{
-		width: 39%;
+		width: 37%;
 	}
 	.category-heading-buttons{
 		width: 100%;
@@ -9370,6 +9372,9 @@ header .top-menu li{
 	}
 	.difficulty-levels .level-buttons{
 		width: 33.333%;
+	}
+	.lesson-topics li .lesson-name{
+		width: 26%;
 	}
 }
 @media (min-width:320px) and (max-width: 480px) {
@@ -9483,7 +9488,7 @@ header .top-menu li{
 		margin-left: 10px;
 	}
 	.lesson-topics li .lesson-name{
-		width: 26%;
+		width: 13%;
 	}
 }
 .no-float{

@@ -197,7 +197,7 @@
                 <div class="row video-row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         @if( $video != null)
-                            <video controls preload="auto" style="width: 100%">
+                            <video id='myVideo' controls preload="auto" style="width: 100%">
                                 @if( Agent::isMobile() &&  $video->formats()->where('resolution', 'Low Resolution')
                                             ->first() != null)
                                     <source src="{{ $video->formats()->where('resolution', 'Low Resolution')
@@ -309,7 +309,7 @@
         <div class="slide-menu scroll-pane @if($crashLesson) hide @endif">
             <div class="header">
                 <div class="clearfix">
-                    <a href="#" class="course"><i class="wa-chevron-left"></i>Course</a>
+                    <a href="{{action('ClassroomController@dashboard', $lesson->module->course->slug)}}" class="course"><i class="wa-chevron-left"></i>ダッシュボード</a>
                     <span class="toggler slide-menu-toggler"><i class="wa-hamburger-close"></i></span>
                 </div>
                 <h2 class="clear">{{$course->name}}</h2>

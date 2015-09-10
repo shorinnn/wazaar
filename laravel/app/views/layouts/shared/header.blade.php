@@ -17,7 +17,7 @@
             @if(Auth::check())
         <div class="clearfix left">
             <div class="logged-out-header-search text-center">
-                <?php if('dont-show' == 'yes'):?>
+                <?php if('dont-show' == 'dont-show'):?>
                 <div class="clearfix inline-block">
                     <div class="activate-dropdown left relative">
                         <button aria-expanded="false" data-toggle="dropdown" 
@@ -28,10 +28,10 @@
                         
                         <div id="catalogue-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
                             <ul>
-                                <?php echo Flatten::section('header-categories-catalog', 10, function ()  { 
-                                    $categories = CourseCategory::has('allCourses')->withCourses();
+                                <?php 
+                                echo Flatten::section('header-categories-catalog', 10, function ()  { 
+                                    $categories = CourseCategory::has('allCourses')->get();
                                     $categories->load( 'courseSubcategories' );?>
-                               
                                 
                                     @foreach( $categories as $category)
 
@@ -119,13 +119,33 @@
                         <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
                             <?php /*-- <li>
                                 <a class="profile-button" href="{{ action('ProfileController@index') }}">{{trans('site/menus.profile')}}</a>
-                            </li> */?>
-                            @if( !Auth::user()->hasRole('Affiliate') &&  !Auth::user()->hasRole('Instructor') )
+                            </li> 
+           @if( !Auth::user()->hasRole('Affiliate') &&  !Auth::user()->hasRole('Instructor') )
                             <li>
                                 <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
                             </li>
                             @endif
-<!--                            <li>
+                             *                              */?>
+
+                            @if( Auth::user()->hasRole('Affiliate'))
+                                <li>
+                                    <a class="courses-button" href="{{ action('AffiliateDashboardController@index') }}">{{trans('site/menus.analytics')}}</a>
+                                </li>
+                            @endif
+
+                            @if( !Auth::user()->hasRole('Affiliate') && Auth::user()->hasRole('Student') &&  !Auth::user()->hasRole('Instructor') )
+                                <li>
+                                    <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
+                                </li>
+                            @endif
+                            @if( !Auth::user()->hasRole('Affiliate') &&  Auth::user()->hasRole('Instructor') )
+                                <li>
+                                    <a class="courses-button" href="{{ action('CoursesController@myCourses')}}">{{trans('site/menus.courses')}}</a>
+                                </li>
+                            @endif
+                            
+                            <!--
+                            <li>
                                 <a class="settings-button" href="#">{{trans('site/menus.analytics')}}</a>
                             </li>-->
                             <li style="display:none">
@@ -207,7 +227,7 @@
                 </li>
             </ul>
             <div class="logged-out-header-search text-center">
-                 <?php if('dont-show' == 'yes'):?>
+                 <?php if('dont-show' == 'dont-show'):?>
             	<div class="clearfix inline-block">
                     <div class="activate-dropdown left relative">
                         <button aria-expanded="false" data-toggle="dropdown" 
@@ -219,7 +239,7 @@
                             <ul>
                                 
                                <?php echo Flatten::section('header-categories-catalog', 10, function ()  { 
-                                    $categories = CourseCategory::has('allCourses')->withCourses();
+                                    $categories = CourseCategory::has('allCourses')->get();
                                     $categories->load( 'courseSubcategories' );?>
                                
                                 

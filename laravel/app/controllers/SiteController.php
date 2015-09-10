@@ -15,7 +15,7 @@ class SiteController extends \BaseController {
                 $student = Student::find( Auth::user()->id );
                 $wishlisted = $student->wishlistItems()->lists( 'course_id' );
             }
-            if(Input::has('skip-the-splashie')){
+            // if(Input::has('skip-the-splashie')){
 //                $frontpageVideos  = FrontpageVideo::grid();
                 $categories = CourseCategory::limit(12);
                 $groups = CategoryGroup::orderBy('order','asc')->get();
@@ -30,7 +30,7 @@ class SiteController extends \BaseController {
                 $topCourses = $topCourses[ 0 ];
                 
                 // $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
-                $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->paginate(12);
+                $discoverCourses = Course::where('publish_status','approved')->orderBy('student_count','desc')->paginate(12);
                 
                 if(Auth::user()){
                     Return View::make('site.homepage_authenticated')
@@ -47,13 +47,13 @@ class SiteController extends \BaseController {
                         Return View::make('site.homepage_unauthenticated')
                             ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted') );
                 }
-            }
-            if( Auth::check() ){
-//                if( Auth::user()->is_second_tier_instructor == 'yes' ) return Redirect::action('UsersController@links');
-                if( Auth::user()->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
-                if( Auth::user()->hasRole('Affiliate') ) return Redirect::action('AffiliateDashboardController@index');
-            }
-            return View::make('splash');
+            // }
+//             if( Auth::check() ){
+// //                if( Auth::user()->is_second_tier_instructor == 'yes' ) return Redirect::action('UsersController@links');
+//                 if( Auth::user()->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
+//                 if( Auth::user()->hasRole('Affiliate') ) return Redirect::action('AffiliateDashboardController@index');
+//             }
+            // return View::make('splash');
 	}
 
         

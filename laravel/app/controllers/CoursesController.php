@@ -477,9 +477,11 @@ class CoursesController extends \BaseController {
             }
 
             $courses = $courses->paginate(9);
-
+            $category = $subcategory->courseCategory;
+            
+            
             if( Request::ajax() ) Return View::make('courses.categories.courses')->with(compact('category','courses', 'wishlisted'));
-            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted') );
+            Return View::make('courses.categories.category')->with(compact('category','difficultyLevel', 'wishlisted', 'courses') );
                             
         }
         
@@ -636,10 +638,16 @@ class CoursesController extends \BaseController {
                 Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') )->render();
         } 
         
+        public function loginToPurchase($slug){
+            if(Auth::guest()){
+                Session::set('url.intended', action('CoursesController@show', $slug));
+                return Redirect::to('register')->withError( trans('courses/general.login_to_purchase') );
+            }
+        }
         public function purchase($slug){
             if(Auth::guest()){
                 Session::set('url.intended', action('CoursesController@show', $slug));
-                return Redirect::to('login')->withError( trans('courses/general.login_to_purchase') );
+                return Redirect::to('register')->withError( trans('courses/general.login_to_purchase') );
             }
             
             $course = Course::where('slug', $slug)->first();
@@ -716,13 +724,15 @@ class CoursesController extends \BaseController {
             Cookie::queue("aid", null, -1);
             $course = Course::where('slug', $slug)->first();
             Session::flash( 'message', trans('courses/general.enroll-success-message-paid') );
+            return Redirect::action('ClassroomController@dashboard', $slug);
+                
             return View::make('courses.purchased')->with( compact('course') );
         }
                 
         public function crashLesson($slug, $lesson){
             if(Auth::guest()){
                 Session::set('url.intended', action('CoursesController@show', $slug));
-                return Redirect::to('login')->withError( trans('courses/general.login_to_purchase') );
+                return Redirect::to('register')->withError( trans('courses/general.login_to_purchase') );
             }
             
             $lesson = Lesson::where('slug', $lesson)->first();
@@ -739,7 +749,7 @@ class CoursesController extends \BaseController {
         public function crashCourse($slug){
             if(Auth::guest()){
                 Session::set('url.intended', action('CoursesController@show', $slug));
-                return Redirect::to('login')->withError( trans('courses/general.login_to_purchase') );
+                return Redirect::to('register')->withError( trans('courses/general.login_to_purchase') );
             }
             
             $course = Course::where('slug', $slug)->first();
