@@ -114,6 +114,8 @@ $wwwRoutes = function(){
         Route::post('withdrawals/bank-file/', 'WithdrawalsController@downloadBankFile');
         
         Route::resource('withdrawals', 'WithdrawalsController');
+        
+        Route::put('members/{id}/updatePassword', 'MembersController@updatePassword');
         Route::put('members/{id}/update-profile', 'MembersController@updateProfile');
         Route::post('members/refund', 'MembersController@refund');
         Route::get('members/create-vip', 'MembersController@createVip');

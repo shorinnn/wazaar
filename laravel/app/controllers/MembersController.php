@@ -213,6 +213,20 @@ class MembersController extends \BaseController {
             Auth::login( $user );
             return Redirect::action('SiteController@index');
         }
+        
+        public function updatePassword($id){
+            $user = User::find($id);
+            $user->password = Input::get('password');
+            $user->password_confirmation = Input::get('password_confirm');
+            if( $user->updateUniques() ){
+                if( !Request::ajax() ) return Redirect::back()->withSuccess('success');
+                else return json_encode( [ 'status' => 'success' ] );
+            }
+            else{
+                if( !Request::ajax() ) return Redirect::back()->withError('Cannot change password');
+                return Response::json(['success' => 0, 'errors'=> $user->errors()->all()]);
+            }
+        }
 
 
 }

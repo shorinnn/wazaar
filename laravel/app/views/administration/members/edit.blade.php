@@ -42,6 +42,26 @@
 	<div class="row">
     	<div class="col-md-12">
             <div class="table-responsive">
+                <div class='well'>
+                    {{ Form::open(['action' => ['MembersController@updatePassword', $user->id], 
+                            'method' => 'PUT', 'data-callback' => 'formSaved', 'class' => 'ajax-form']) }}
+                        <p class='alert alert-danger'>CHANGE PASSWORD</p>
+                            <table class="table personal-info">
+                                <tr>
+                                    <td class="title no-border">New Password</td>
+                                    <td class="no-border">{{ Form::password('password') }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="title no-border">Confirm New Password</td>
+                                    <td class="no-border">{{ Form::password('password_confirm') }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><button class='btn btn-danger' type='submit'>Change</button></td>
+                                </tr>
+                            </table>
+                    {{ Form::close() }}
+                </div>
+                
                 {{ Form::model($user, ['action' => ['MembersController@update', $user->id], 
                             'method' => 'PUT', 'data-callback' => 'formSaved',
                             'id' =>'edit-form', 'class' => 'ajax-form'])}}
