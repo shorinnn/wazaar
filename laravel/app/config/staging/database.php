@@ -56,7 +56,7 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'wazaar-staging-database.c2ql9x8crnhh.ap-northeast-1.rds.amazonaws.com',
 			'database'  => 'wazaar-staging-database',
-			'username'  => 'db_userx',
+			'username'  => 'db_user',
 			'password'  => 'thequickbrownfox',
 			'port'      => '3306',
 			'charset'   => 'utf8',
