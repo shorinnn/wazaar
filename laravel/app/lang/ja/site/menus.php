@@ -6,5 +6,5 @@ return array(
 	'settings' => '設定',
 	'logout' => 'ログアウト',
 	'messages' => 'メッセージ',
-	'analytics' => '分析論',
+	'analytics' => '販売に関する分析',
 );
