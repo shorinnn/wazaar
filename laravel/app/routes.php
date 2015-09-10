@@ -456,6 +456,7 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::any('admin/category/{categoryId}/{freeCourse}','AdminDashboardController@topCoursesByCategory');
     Route::any('admin/affiliatestable','AdminDashboardController@topAffiliatesTableView');
     Route::any('admin/courses/{freeCourse}','AdminDashboardController@topCoursesTableView');
+    Route::get('admin/purchases/','AdminDashboardController@purchases');
 });
 
 
