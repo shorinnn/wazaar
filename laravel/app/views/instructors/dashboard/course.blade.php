@@ -3,21 +3,8 @@
     <div class="wrapper">
         <div class="container affiliate-dashboard dashboard  analytics-page">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="header clearfix">
-                        <img alt="" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/thumbnails/top-profile-thumbnail.png">
-                        <p class="lead">Welcome Jerome</p>
-                        <ul>
-                            <li class="right-twenty-margin">
-                                <a href="#" class="active">Dashboard</a>
 
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <h2>Course: {{$course->name}}</h2>
+            <h2 class="margin-top-10">Course: {{$course->name}}</h2>
             <div class="row top-activities">
                 {{-- Total Sales in Yen --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">

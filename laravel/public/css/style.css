@@ -2661,7 +2661,7 @@ h2, h3, h4, h5, h6{
 	float: left;
 	color: #41474d;
 	font-size: 14px;
-	padding: 19px 20px 19px 0 !important;
+	padding: 19px 0 !important;
 	/*line-height: 56px;
 	height: 56px;*/
 	width: 62%;
@@ -9194,6 +9194,9 @@ header .top-menu li{
 	.course-material .materials{
 		padding: 0 15px;
 	}
+	.lesson-topics li .lesson-name{
+		width: 43%;
+	}
 }
 
 @media (max-width:475px){
@@ -9309,7 +9312,7 @@ header .top-menu li{
 		width: 100%;
 	}
 	.lesson-topics li .lesson-name{
-		width: 48%;
+		width: 39%;
 	}
 	.user-data-modal-header{
 		padding: 24px 24px 0;
@@ -9369,6 +9372,9 @@ header .top-menu li{
 	}
 	.difficulty-levels .level-buttons{
 		width: 33.333%;
+	}
+	.lesson-topics li .lesson-name{
+		width: 26%;
 	}
 }
 @media (min-width:320px) and (max-width: 480px) {
@@ -9482,7 +9488,7 @@ header .top-menu li{
 		margin-left: 10px;
 	}
 	.lesson-topics li .lesson-name{
-		width: 24%;
+		width: 13%;
 	}
 }
 .no-float{

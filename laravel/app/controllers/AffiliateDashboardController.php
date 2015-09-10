@@ -29,7 +29,7 @@ class AffiliateDashboardController extends BaseController
 
     public function secondTierRegistrationsView($frequency = '')
     {
-        if( Auth::user()->is_vip=='no' && Auth::user()->is_super_vip=='no') return '';
+        //if( Auth::user()->is_vip=='no' && Auth::user()->is_super_vip=='no') return '';
         
         $frequencyOverride = 'day';
         switch($frequency){
@@ -43,12 +43,13 @@ class AffiliateDashboardController extends BaseController
                 $frequencyOverride = 'month';
                 $affiliates = $this->analyticsHelper->secondAffiliatesLastFewMonths(Auth::id());break;
             default:
-                $affiliates = $this->analyticsHelper->secondAffiliatesLastFewDays(Auth::id());break;
+                $affiliates = $this->analyticsHelper->secondAffiliatesLastFewDays(Auth::id());
         }
-        
+
         if (is_array($affiliates)) {
             return View::make('analytics.partials.ltcRegistrations', compact('affiliates', 'frequencyOverride'))->render();
         }
+
     }
 
     public function ltcRegistrationsView($frequency = '')
@@ -322,14 +323,14 @@ class AffiliateDashboardController extends BaseController
 
     private function _affiliateDashboard()
     {
-        $topCoursesView = $this->topCoursesView();
-        $salesView = $this->salesView();
-        $trackingCodesSalesView = $this->trackingCodesSalesView();
-        $courseConversionView = $this->courseConversionView();
-        $trackingCodeConversionView = $this->trackingCodeConversionView();
-        $ltcRegistrationsView = $this->ltcRegistrationsView();
-        $secondTierRegistrationsView = $this->secondTierRegistrationsView();
-        $ltcEarningsView = $this->ltcEarningsView();
+        $topCoursesView = '';//$this->topCoursesView();
+        $salesView = '';//$this->salesView();
+        $trackingCodesSalesView = '';//$this->trackingCodesSalesView();
+        $courseConversionView = '';//$this->courseConversionView();
+        $trackingCodeConversionView = '';//$this->trackingCodeConversionView();
+        $ltcRegistrationsView = '';//$this->ltcRegistrationsView();
+        $secondTierRegistrationsView = '';//$this->secondTierRegistrationsView();
+        $ltcEarningsView = '';//$this->ltcEarningsView();
         return View::make('affiliate.dashboard.index', compact('secondTierRegistrationsView','ltcEarningsView', 'topCoursesView', 'salesView', 'trackingCodesSalesView', 'courseConversionView', 'trackingCodeConversionView','ltcRegistrationsView'));
     }
 
