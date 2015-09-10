@@ -164,8 +164,39 @@ class PaymentController extends BaseController
 
     public function postProcessMaxRequest()
     {
+        $request = Input::all();
+
+        $request['giftID'] = 0;
+        $request['balancedUsed'] = 0;
+        $request['balanceTransactionID'] = 0;
+
         $reference = Str::random();
-        $paymentLog = PaymentLog::create(['user_id' => Auth::id(),'reference' => $reference,'request' => json_encode(Input::all())]);
+        $giftId = Input::get('giftId');
+
+        $course = Course::find(Input::get('productId'));
+        $course = courseApprovedVersion( $course );
+
+        $student = Student::current(Auth::user());
+
+        $gift = Gift::find( PseudoCrypt::unhash($giftId) );
+
+        if($gift && $gift->affiliate_id == $giftId){
+            $request['giftID'] = $gift->id;
+        }
+
+        if( $student->student_balance > 0 ){
+            $transaction = $student->balanceDebit( $student->student_balance, $course);
+            if ( !$transaction ){
+                ;
+            }
+            $request['balanceUsed'] = $student->student_balance;
+            $request['balanceTransactionID'] = $transaction;
+        }
+
+
+
+
+        $paymentLog = PaymentLog::create(['user_id' => Auth::id(),'reference' => $reference,'request' => json_encode($request)]);
         return Response::json(['transactionId' => $reference]);
     }
 
@@ -497,11 +528,11 @@ class PaymentController extends BaseController
         $cookie_id   = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
         $paymentData = [
             'successData' => [
-                'balance_transaction_id' => 0,
+                'balance_transaction_id' => $paymentLog->request['balanceTransactionID'],
                 'processor_fee'          => 0,
                 'tax'                    => 0,
-                'giftID'                 => 0,
-                'balance_used'           => 0,
+                'giftID'                 => $paymentLog->request['giftID'],
+                'balance_used'           => $paymentLog->request['balancedUsed'],
                 'REF'                    => $paymentLog->reference,
                 'ORDERID'                => $transactionId
             ]

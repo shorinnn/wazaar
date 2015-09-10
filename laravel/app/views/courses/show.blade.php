@@ -267,10 +267,12 @@
                                     @else
                                         onclick="Payment.processBeforeSubmit(this,event)"
                                     @endif
+                                    data-gift-id="{{Input::get('gid')}}" 
                                     data-product-type="course"
                                     data-product-id="{{$course->id}}"
                                     data-product-name="{{$course->name}}"
                                     data-product-price="{{$course->cost()}}">{{ trans("courses/general.course-enroll") }}
+
                                 </button>
                             @endif
 
