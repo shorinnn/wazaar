@@ -526,8 +526,8 @@
         $(function(){       
             @if( Auth::guest() )
                 $('#purchase-form').submit(function(e){
-                    e.preventDefault();
-                    unauthenticatedEnrollAttempt();
+//                    e.preventDefault();
+//                    unauthenticatedEnrollAttempt();
                 });
             @endif
             
