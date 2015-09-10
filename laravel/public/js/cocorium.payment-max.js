@@ -14,9 +14,10 @@ var Payment = {
 
         $($elem).attr('disabled','disabled');
 
-        $.post("/payment/process-max-request",{productId: Payment.productId, productName: Payment.productName,amount: Payment.amount, productType: Payment.productType},function(){
+        $.post("/payment/process-max-request",{productId: Payment.productId, productName: Payment.productName,amount: Payment.amount, productType: Payment.productType},function($response){
+            $("input[name=TransactionId]").val($response.transactionId);
             $('#form-payment').submit();
-        });
+        },'json');
 
         //alert($paymentData);
         //$('#form-payment').submit();

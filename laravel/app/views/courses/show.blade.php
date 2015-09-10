@@ -220,13 +220,12 @@
                             <input type="hidden" name="SiteId" value="{{Config::get('maxcollect.sid')}}" />
                             <input type="hidden" name="SitePass" value="{{Config::get('maxcollect.spw')}}" />
                             <input type="hidden" name="CustomerId" value="{{Str::random()}}" />
-                            <input type="hidden" name="URL" value="{{url('baby/comeback')}}"/>
+                            <input type="hidden" name="URL" value="{{url('courses/' . $course->slug)}}"/>
                             <input type="hidden" name="CustomerPass" value="password" />
                             <input type="hidden" name="Amount" value="{{$course->cost()}}" />
                             <input type="hidden" name="mail" value="{{Auth::user()->email}}" />
-                            <input type="hidden" name="itemId" value="{{$course->name}}:1unit:{{$course->cost()}}yen" />
-
-
+                            <input type="hidden" name="itemId" value="{{$course->name}}:{{$course->cost()}}yen" />
+                            <input type="hidden" name="TransactionId" value="" />
                         </form>
 
                         @if( $now > $show_on)

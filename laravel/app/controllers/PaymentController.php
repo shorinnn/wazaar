@@ -164,9 +164,58 @@ class PaymentController extends BaseController
 
     public function postProcessMaxRequest()
     {
-
+        $reference = Str::random();
+        $paymentLog = PaymentLog::create(['user_id' => Auth::id(),'reference' => $reference,'request' => json_encode(Input::all())]);
+        return Response::json(['transactionId' => $reference]);
     }
 
+    //Max Connect Canceled payment callback
+    public function postCanceled()
+    {
+        if (Input::has('TransactionId') && Input::has('URL')){
+            $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
+
+            if ($paymentLog){
+                return Redirect::to(Input::get('URL'));
+            }
+        }
+        return Redirect::home();
+    }
+
+    //Max Connect Completed payment callback
+    public function postCompleted()
+    {
+        if (Input::has('Result')){
+            if (Input::get('Result') == 'OK'){
+                $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
+
+                if ($paymentLog){
+                    return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                }
+
+            }
+        }
+
+        return Redirect::home();
+    }
+
+    //Max Connect Success payment callback
+    public function postSuccess()
+    {
+        echo '<pre>';
+        print_r(Input::all());
+        echo '</pre>';
+        die;
+    }
+
+    //Max Connect Failed payment callback
+    public function postFailed()
+    {
+        echo '<pre>';
+        print_r(Input::all());
+        echo '</pre>';
+        die;
+    }
 
     public function postRemovePaymentLog()
     {
@@ -422,13 +471,48 @@ class PaymentController extends BaseController
 
     private function _getProductDetailsByTypeAndID($type, $id)
     {
+
         $obj = null;
-        if ($type == 'Course') {
+        if (strtolower($type) == 'course') {
             $obj = Course::find($id);
         } elseif ($type == 'Lesson') {
             $obj = Lesson::find($id);
         }
 
         return $obj;
+    }
+
+    private function _successfulPayment($paymentLog,$transactionId){
+        $student = Student::current(Auth::user());
+
+        $product = $this->_getProductDetailsByTypeAndID($paymentLog->request['productType'],$paymentLog->request['productId']);//   Session::get('productType'), Session::get('productID'));
+
+        $cookie_id   = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
+        $paymentData = [
+            'successData' => [
+                'balance_transaction_id' => Session::get('balanceTransactionID'),
+                'processor_fee'          => 0,
+                'tax'                    => Session::get('taxValue'),
+                'giftID'                 => Session::get('giftID'),
+                'balance_used'           => Session::get('balanceUsed'),
+                'REF'                    => $paymentLog->reference,
+                'ORDERID'                => $transactionId
+            ]
+        ];
+//                    $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $paymentData);
+        $purchase = $student->purchase($product, Cookie::get("aid"), $paymentData);
+        if (!$purchase) {
+            $redirectUrl = url('payment', ['errors' => [trans('payment.cannotPurchase')]]);
+        }
+        Session::forget('productType');
+        Session::forget('productID');
+        Session::forget('giftID');
+        $redirectUrl = url('courses/' . $product->slug . '/purchased?purchaseId=' . $purchase->id);
+        if (strtolower(get_class($product)) == 'lesson') {
+            // if lesson was purchased, use the course slug
+            $redirectUrl = url('courses/' . $product->module->course->slug . '/purchased?purchaseId=' . $purchase->id);
+        }
+
+        return Redirect::to($redirectUrl);
     }
 }
