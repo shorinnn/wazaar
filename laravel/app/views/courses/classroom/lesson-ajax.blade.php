@@ -309,7 +309,7 @@
         <div class="slide-menu scroll-pane @if($crashLesson) hide @endif">
             <div class="header">
                 <div class="clearfix">
-                    <a href="#" class="course"><i class="wa-chevron-left"></i>Course</a>
+                    <a href="{{action('ClassroomController@dashboard', $lesson->module->course->slug)}}" class="course"><i class="wa-chevron-left"></i>ダッシュボード</a>
                     <span class="toggler slide-menu-toggler"><i class="wa-hamburger-close"></i></span>
                 </div>
                 <h2 class="clear">{{$course->name}}</h2>
