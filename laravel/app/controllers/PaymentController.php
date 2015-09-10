@@ -497,11 +497,11 @@ class PaymentController extends BaseController
         $cookie_id   = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
         $paymentData = [
             'successData' => [
-                'balance_transaction_id' => Session::get('balanceTransactionID'),
+                'balance_transaction_id' => 0,
                 'processor_fee'          => 0,
-                'tax'                    => Session::get('taxValue'),
-                'giftID'                 => Session::get('giftID'),
-                'balance_used'           => Session::get('balanceUsed'),
+                'tax'                    => 0,
+                'giftID'                 => 0,
+                'balance_used'           => 0,
                 'REF'                    => $paymentLog->reference,
                 'ORDERID'                => $transactionId
             ]
