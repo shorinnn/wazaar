@@ -452,6 +452,13 @@ class Course extends Ardent{
         if(count($lessons)==0) $lessons = [0];
         return LessonDiscussion::whereIn('lesson_id', $lessons)->remember(10)->count();
     }
+    
+    public function isNewForStudentCount(){
+        $created = strtotime( $this->created_at );
+        $threeMonths = strtotime('-3 month');
+        if( $this->student_count <= 20 && $created > $threeMonths ) return true;
+        return false;
+    }
 
 
 }

@@ -68,8 +68,12 @@
                                     <a href="http://wazaar.dev/courses/cJio3">Learn more</a>
                                 </div>-->
                                 <div class="students-attending" data-toggle="tooltip" data-placement="top" title="Students enrolled">
-                                <i class="wa-user-n"></i>
-                                    {{ $course->student_count }}
+                                    @if( $course->isNewForStudentCount() )
+                                        NEW
+                                   @else
+                                        <i class="wa-user-n"></i>
+                                       {{ $course->student_count }}
+                                   @endif
                                 </div>
                             </div>
                             <div class="price-tag-container clearfix">
