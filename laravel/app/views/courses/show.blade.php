@@ -329,6 +329,8 @@
                     @else
                         {{ Form::open( [ 'id' => 'purchase-form', 'method'=>'GET', 'readonly'=>'readonly', 'disabled'=>'disabled' ] ) }}
                     @endif
+                        <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
+                        <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
                                 @if(Auth::guest() || $student->canPurchase($course) )
                                     <span class="price clearfix ">{{trans('courses/general.free') }}</span>
                                      <button type='submit' class="clearfix enroll-button blue-button extra-large-button join-class">

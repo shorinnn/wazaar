@@ -263,7 +263,7 @@ class Student extends User{
      * @param mixed Course/Lesson
      * @return boolean
      */
-    public function crash($product, $affiliate=null ){
+    public function crash($product, $affiliate=null, $gift=null ){
         // cannot buy the same course/lesson twice |  cannot buy own course/lesson
         if( !$this->canPurchase($product) ) return false;
         // cannot crash non free course
@@ -273,6 +273,7 @@ class Student extends User{
         $purchase = new Purchase;
         
         $purchase->free_product = 'yes';
+        $purchase->gift_id = $gift;
 
         $purchase->student_id = $this->id;
         $purchase->purchase_price = $product->cost();
