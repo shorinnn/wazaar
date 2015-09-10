@@ -162,7 +162,7 @@ class ProductAffiliate extends User{
         $profiles = Profile::where('owner_type', 'Affiliate')->get();
 
         if ($profiles){
-            return [''] + $profiles->lists('full_name','owner_id');
+            return  array_merge([''], $profiles->lists('full_name','owner_id'));
         }
 
         return [];
