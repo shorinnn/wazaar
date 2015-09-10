@@ -716,6 +716,8 @@ class CoursesController extends \BaseController {
             Cookie::queue("aid", null, -1);
             $course = Course::where('slug', $slug)->first();
             Session::flash( 'message', trans('courses/general.enroll-success-message-paid') );
+            return Redirect::action('ClassroomController@dashboard', $slug);
+                
             return View::make('courses.purchased')->with( compact('course') );
         }
                 
