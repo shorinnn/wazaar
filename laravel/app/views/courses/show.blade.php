@@ -327,7 +327,7 @@
                     @endif
                                 @if(Auth::guest() || $student->canPurchase($course) )
                                     <span class="price clearfix ">{{trans('courses/general.free') }}</span>
-                                     <button class="clearfix enroll-button blue-button extra-large-button join-class">
+                                     <button type='submit' class="clearfix enroll-button blue-button extra-large-button join-class">
                                          {{ trans("courses/general.course-enroll") }}
                                      </button>
                                 @elseif(Auth::check() && ( Auth::user()->hasRole('Affiliate') || $student->purchased($course) ) )
@@ -338,7 +338,7 @@
                                      </a>
                                 @else
                                     <span class="price clearfix ">{{trans('courses/general.free') }}</span>
-                                    <button class="clearfix enroll-button blue-button extra-large-button join-class" disabled="disabled">
+                                    <button  type='submit'class="clearfix enroll-button blue-button extra-large-button join-class" disabled="disabled">
                                     {{ trans("courses/general.course-enroll") }}
                                     </button>
                                     @if( Auth::user()->id == $course->instructor_id )
