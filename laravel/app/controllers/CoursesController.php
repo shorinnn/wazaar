@@ -724,7 +724,7 @@ class CoursesController extends \BaseController {
         public function crashLesson($slug, $lesson){
             if(Auth::guest()){
                 Session::set('url.intended', action('CoursesController@show', $slug));
-                return Redirect::to('login')->withError( trans('courses/general.login_to_purchase') );
+                return Redirect::to('register')->withError( trans('courses/general.login_to_purchase') );
             }
             
             $lesson = Lesson::where('slug', $lesson)->first();
@@ -741,7 +741,7 @@ class CoursesController extends \BaseController {
         public function crashCourse($slug){
             if(Auth::guest()){
                 Session::set('url.intended', action('CoursesController@show', $slug));
-                return Redirect::to('login')->withError( trans('courses/general.login_to_purchase') );
+                return Redirect::to('register')->withError( trans('courses/general.login_to_purchase') );
             }
             
             $course = Course::where('slug', $slug)->first();
