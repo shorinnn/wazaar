@@ -119,22 +119,23 @@
                         <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
                             <?php /*-- <li>
                                 <a class="profile-button" href="{{ action('ProfileController@index') }}">{{trans('site/menus.profile')}}</a>
-                            </li> */?>
+                            </li> 
+           @if( !Auth::user()->hasRole('Affiliate') &&  !Auth::user()->hasRole('Instructor') )
+                            <li>
+                                <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
+                            </li>
+                            @endif
+                             *                              */?>
 
-                            @if( !Auth::user()->hasRole('Affiliate') &&  !Auth::user()->hasRole('Instructor') )
-                            <li>
-                                <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
-                            </li>
-                            @endif
                             @if( !Auth::user()->hasRole('Affiliate') && Auth::user()->hasRole('Student') &&  !Auth::user()->hasRole('Instructor') )
-                            <li>
-                                <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
-                            </li>
+                                <li>
+                                    <a class="courses-button" href="{{ action('StudentController@mycourses') }}">{{trans('site/menus.courses')}}</a>
+                                </li>
                             @endif
-                            @if( !Auth::user()->hasRole('Affiliate') && Auth::user()->hasRole('Student') &&  Auth::user()->hasRole('Instructor') )
-                            <li>
-                                <a class="courses-button" href="{{ action('CoursesController@myCourses')}}">{{trans('site/menus.courses')}}</a>
-                            </li>
+                            @if( !Auth::user()->hasRole('Affiliate') &&  Auth::user()->hasRole('Instructor') )
+                                <li>
+                                    <a class="courses-button" href="{{ action('CoursesController@myCourses')}}">{{trans('site/menus.courses')}}</a>
+                                </li>
                             @endif
                             
                             <!--
