@@ -545,6 +545,7 @@ class PaymentController extends BaseController
         Session::forget('productType');
         Session::forget('productID');
         Session::forget('giftID');
+
         $redirectUrl = url('courses/' . $product->slug . '/purchased?purchaseId=' . $purchase->id);
         if (strtolower(get_class($product)) == 'lesson') {
             // if lesson was purchased, use the course slug
