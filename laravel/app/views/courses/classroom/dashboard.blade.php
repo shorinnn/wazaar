@@ -3,6 +3,12 @@
 	<div class="container-fluid student-dashboard student-course top-section">
     	<div class="container">
             <div class="row">
+                            @if( Session::has('message') )
+                                <h4 class="alert alert-success alert-dismissable" style="background-color:#88C95E; color:white; border:transparent; margin-bottom: 0px">
+                                    {{ Session::get('message') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </h4>
+                            @endif
                 <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
                     <div class="profile-picture-holder">
                         <img 
@@ -89,9 +95,7 @@
                     </div>
                 </div>
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 margin-top-25">
-                            @if( Session::has('message') )
-                                <h1 class="alert alert-success">{{ Session::get('message') }}</h1>
-                            @endif
+
                     @if($gift != null)
                             <div class="affiliate-gift-wrap">
                                 <div class="row description-wrap no-margin">

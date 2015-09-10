@@ -196,4 +196,5 @@ jpeg, png',
     'dash-you-have-no-questions-yet' => 'まだ本コースには質問がありません。すぐに受講をはじめて、こちらに質問を積極的に書き込んでいきましょう！',
     'enroll-success-message-free' => "商品のご登録ありがとうございました！",
     'enroll-success-message-paid' => "商品のご購入ありがとうございました！",
+    'payment-error' => 'お支払いが完了しませんでした。',
 );

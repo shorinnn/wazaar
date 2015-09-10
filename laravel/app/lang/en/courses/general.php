@@ -209,4 +209,5 @@ return array(
     'dash-you-have-no-questions-yet' => 'You have no asked any questions yet. Begin the course and start or join discussions!',
     'enroll-success-message-free' => "Successful enroll",
     'enroll-success-message-paid' => "Successful enroll",
+    'payment-error' => 'Payment Error',
 );

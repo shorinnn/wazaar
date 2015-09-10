@@ -8,7 +8,7 @@
     $date = new DateTime();
     $date->setTimezone(new DateTimeZone('Asia/Tokyo'));
     $now = strtotime( $date->format('Y-m-d H:i:s') ) ;
-    $show_on = strtotime( '2015-09-08 17:15:00' );
+    $show_on = strtotime( '2015-09-10 17:15:00' );
 ?>
  
 @section('content')
@@ -38,6 +38,12 @@
                          alt="" class="img-responsive" />-->
     @endif
     <div class="container">
+        @if( Session::has('error') )
+            <h4 class="alert alert-error alert-dismissable" style="background-color:#ef4c31; color:white; border:#e34126; margin-bottom: 0px">
+                {{ Session::get('error') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </h4>
+        @endif
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                 <div class="category-tags clearfix">
