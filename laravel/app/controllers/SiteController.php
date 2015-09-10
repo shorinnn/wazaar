@@ -30,7 +30,7 @@ class SiteController extends \BaseController {
                 $topCourses = $topCourses[ 0 ];
                 
                 // $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
-                $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->paginate(12);
+                $discoverCourses = Course::where('publish_status','approved')->orderBy('student_count','desc')->paginate(12);
                 
                 if(Auth::user()){
                     Return View::make('site.homepage_authenticated')
