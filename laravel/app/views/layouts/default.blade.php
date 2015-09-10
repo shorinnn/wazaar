@@ -56,66 +56,67 @@
           <section class="footer-container">
             <div class="container">
               <div class="row no-margin">
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-center-mobile">
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 text-center-mobile">
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/footer-logo.png" alt="Wazaar" />
                   <p>&copy; Wazaar {{ date('Y') }}</p>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                	<div class="row">
-                            <?php echo Flatten::section('footer-categories-link', 10, function ()  { ?>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                        <h5>{{ trans('general.courses') }}</h5>
-                                    <ul>
-                                        @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 = 0')->get() as $cat)
-                                            <li>
-                                                    <a href="{{ action('CoursesController@category', $cat->slug) }}">{{ $cat->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                        <h5>&nbsp;</h5>
-                                    <ul>
-                                        @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 != 0')->get() as $cat)
-                                            <li>
-                                                    <a href="{{ action('CoursesController@category', $cat->slug)  }}">{{ $cat->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>                    
-                                </div>
-                            <?php });?>
-                    </div>
-                  <!--{{trans('site/footer.all-rights-reserved')}}<br/>
-                  &copy; {{ date('Y') }}-->
-                </div>              
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                	<div class="row">
-                    	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        	<h5>{{ trans('footer.about') }}</h5>
+                <div class="col-xs-12 col-sm-9 col-md-4 col-lg-4 margin-bottom-20">
+					<?php echo Flatten::section('footer-categories-link', 10, function ()  { ?>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h5>{{ trans('general.courses') }}</h5>
                             <ul>
-<!--                            	<li>
-                                	<a href="#">{{ trans('footer.company') }}</a>
-                                </li>-->
-                            	<li>
-                                	<a href="{{ action('SiteController@about') }}">特定商取引法に関する表示 </a>
-                                </li>
-	                           	<li>
-                                	<a href="{{ action('SiteController@privacyPolicy') }}">{{ trans('general.privacy-policy') }}</a>
-                                </li>
-                            </ul>                        
+                                @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 = 0')->get() as $cat)
+                                    <li>
+                                            <a href="{{ action('CoursesController@category', $cat->slug) }}">{{ $cat->name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center-mobile padding-bottom-20">
-                        	<h5>{{ trans('footer.get-in-touch') }}</h5>
-                            <p><!--電話番号：-->03-6206-8396　</p>
-                            <a href="//wazaar.co.jp/contact/">お問い合わせ</a>
-                            <p><!--{{trans('site/footer.mail')}}:info@wazaar.comメールアドレス：-->contact@minkare.jp</p>  
-                            <div class="social-icons">
-                            	<a href="#" class="inline-block"><i class="fa fa-facebook"></i></a>
-                            	<a href="#" class="inline-block"><i class="fa fa-twitter"></i></a>
-                            	<a href="#" class="inline-block"><i class="fa fa-rss"></i></a>
-                            </div>                      
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h5>&nbsp;</h5>
+                            <ul>
+                                @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 != 0')->get() as $cat)
+                                    <li>
+                                            <a href="{{ action('CoursesController@category', $cat->slug)  }}">{{ $cat->name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>                    
                         </div>
-                    </div>
+                    <?php });?>
+                
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 margin-bottom-20">
+                    <h5>{{ trans('footer.about') }}</h5>
+                    <ul>
+ 						<!--<li>
+                            <a href="#">{{ trans('footer.company') }}</a>
+                        </li>-->
+                        <li>
+                            <a href="{{ action('SiteController@about') }}">特定商取引法に関する表示 </a>
+                        </li>
+                        <li>
+                            <a href="{{ action('SiteController@privacyPolicy') }}">{{ trans('general.privacy-policy') }}</a>
+                        </li>
+                    </ul>                        
+        
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 margin-bottom-20 text-center-mobile">
+                    <h5>{{ trans('footer.get-in-touch') }}</h5>
+                    <p><!--電話番号：-->03-6206-8396　</p>
+                    <a href="//wazaar.co.jp/contact/">お問い合わせ</a>
+                    <p><!--{{trans('site/footer.mail')}}:info@wazaar.comメールアドレス：-->contact@minkare.jp</p>  
+                    <div class="social-icons">
+                        <a href="#" class="inline-block"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="inline-block"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="inline-block"><i class="fa fa-rss"></i></a>
+                    </div>                      
+        
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 margin-bottom-20 text-center-mobile">
+                        <h5>&nbsp;</h5>
+                        <p>アフィリエイター向け</p>
+                        <a href="{{action('UsersController@create')}}">新規登録</a>
+                        <a href="{{ action('UsersController@login') }}">ログイン</a>  
                 </div>
               </div>
             </div>

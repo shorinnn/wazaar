@@ -1225,11 +1225,10 @@ header .profile-name li:hover ul{
 .small-box .img-container {
     position: relative;
     height: 177px;
-    overflow: hidden;
 }
 .small-box img{
 	width: 100%;
-	max-height: 203px;
+	max-height: 177px;
 }
 .small-box .video-play-button{
 	display: none;
