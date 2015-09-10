@@ -20,13 +20,13 @@ return [
             'client_secret' => 'B+IJ8cvhOyZgq0XzR+KZS0M+uNgcNm41oje+KcBThjhmcpBUQeYQv8s4z6xiMhDEB1a8yXohuoc79lBPVDLaagwyi5oer6R5h5WTVCUFHuMSVFFihUUqkMLJmpc8CgE1'],
     'cache-expiry' => [
         'course-desc-top-details' => 20,
-        'course-desc-bottom-details' => 60,
-        'student-dash-enrolled-image' => 60,
-        'student-dash-lesson-count' => 60,
-        'student-dash-first-lesson' => 60,
-        'student-dash-completed-course' => 60,
-        'student-dash-wishlist-course' => 60,
-        'course-box' => 60,
+        'course-desc-bottom-details' => 30,
+        'student-dash-enrolled-image' => 30,
+        'student-dash-lesson-count' => 30,
+        'student-dash-first-lesson' => 30,
+        'student-dash-completed-course' => 30,
+        'student-dash-wishlist-course' => 30,
+        'course-box' => 30,
     ],
     'course-desc-lesson-chars' => 25
 ];
