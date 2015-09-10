@@ -31,7 +31,9 @@
             </div>
             <div class="clearfix"></div>
         @else
-            <a style='padding:10px; color:blue; display:block; text-align:center' href='{{ action('AffiliateController@acceptTerms') }}'>Accept Affiliate Terms To Promote</a>
+        <a style='padding:10px; color:blue; display:block; text-align:center' href='{{ action('AffiliateController@acceptTerms') }}'>
+            {{ trans( 'affiliates.accept-affiliate-terms-to-promote' ) }}
+        </a>
         @endif
     </div>
 </div>

@@ -32,5 +32,9 @@ return array(
         'sign-up-now' => 'いますぐ登録',
         'get-credit' => '現金￥500 を受け取ろう',
         'my-courses' => 'マイコース一覧', 
-        'teach' => '動画教材の制作'
+        'teach' => '動画教材の制作',
+        'take_skill_to_new_level' => 'あなたの「好き」がお金になる。',
+        'learning_has_never_been_easier' => '技の動画フリーマーケット「ワザール」遂に始動。伝説が始まる！',
+        'how_it_works' => 'ワザールを知る！',   
+        'what-do-you-want-to-learn' => '今日習得したい「技」は何ですか？',
 );

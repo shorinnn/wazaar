@@ -17,8 +17,8 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    	<div class="clearfix right">
-                            <div class="sort-options"><label>Sort by:</label>
+                    	<div class="clearfix category-heading-buttons">
+                            <div class="sort-options clearfix"><label>Sort by:</label>
                                 {{ Form::select('sort', CourseHelper::getCourseSortOptions(), Input::get('sort'), ['class' => 'form-control'] ) }}
 <!--                            <div class="date-dropdown">
                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,7 +35,7 @@
                             </div>
     
     
-                            <div class="difficulty-levels">
+                            <div class="difficulty-levels clearfix">
                                 <div class="level-buttons-container">
                                     <a href="{{Request::url() . '?difficulty=0&sort=' . Input::get('sort').'&term='. Input::get('term') }}"  data-target=".ajax-content" 
                                        data-url="{{Request::url() . '?difficulty=0&sort=' . Input::get('sort'). '&term='. Input::get('term') }}"
@@ -108,14 +108,6 @@
                 });
             });
             
-            function ajaxifyPagination(e){
-                $('.pagination-container a').each(function(){
-                    $(this).addClass( 'load-remote' );
-                    $(this).attr( 'data-url', $(this).attr('href') );
-                    $(this).attr( 'data-callback', 'ajaxifyPagination' );
-                    $(this).attr( 'data-target', '.ajax-content' );
-                });
-            }
             ajaxifyPagination( null );
             
         </script>

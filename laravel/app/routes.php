@@ -64,12 +64,28 @@ $wwwRoutes = function(){
     Route::post('action-tracker', 'ActionController@track');
 
     // Confide routes
-    Route::get('register', 'UsersController@create');
-    Route::get('register/second-tier-publisher', 'UsersController@secondTierPublisherCreate');
+    
     Route::get('links', 'UsersController@links');
-    Route::get('register/account/instructor', 'UsersController@create');
-    Route::post('users', 'UsersController@store');
-    Route::get('login', [ 'uses'=>'UsersController@login', 'https' => true]);
+    if( App::environment()=='productionDISABLED' ){
+        Route::group(['before' => 'forceHttps'], function(){
+            Route::get('register', ['https', 'uses'=>'UsersController@create'] );
+            Route::get('register/second-tier-publisher', ['https', 'uses'=>'UsersController@secondTierPublisherCreate'] );
+            Route::get('register/account/instructor', ['https', 'uses'=> 'UsersController@create'] );
+            Route::post('users', ['https', 'uses'=>'UsersController@store'] );
+
+            Route::get('login', ['https', 'uses'=>'UsersController@login' ] );
+            Route::post('login', ['https', 'uses'=>'UsersController@doLogin' ] );
+        });
+    }
+    else{
+        Route::get('register', 'UsersController@create' );
+        Route::get('register/second-tier-publisher', 'UsersController@secondTierPublisherCreate' );
+        Route::get('register/account/instructor', 'UsersController@create' );
+        Route::post('users', 'UsersController@store' );
+
+        Route::get('login', 'UsersController@login' );
+        Route::post('login', 'UsersController@doLogin' );
+    }
     Route::get('fb-login/{userId?}', 'UsersController@fbLogin');
     Route::get('login-with-facebook', 'UsersController@loginWithFacebook');
     Route::get('link-facebook', 'UsersController@linkFacebook');
@@ -78,7 +94,7 @@ $wwwRoutes = function(){
     Route::get('login-with-google', 'UsersController@loginWithGoogle');
     Route::get('link-google', 'UsersController@linkGooglePlus');
     Route::post('link-google', 'UsersController@doLinkGooglePlus');
-    Route::post('login', 'UsersController@doLogin');
+    
     Route::get('account-confirmation/{code}', 'UsersController@confirm');
     Route::get('forgot-password', 'UsersController@forgotPassword');
     Route::post('forgot-password', 'UsersController@doForgotPassword');
@@ -304,22 +320,43 @@ Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 ## Route Group for Profile
 $wwwRoutes = function(){
 //Route::group( array('domain' => $domain ), function(){
-    Route::group(['prefix' => 'profile'], function (){
-        Route::get('settings', 'ProfileController@settings');
-        Route::put('settings', 'ProfileController@updateSettings');
-        Route::get('finance', 'ProfileController@finance');
+    if(App::environment() != 'productionDISABLED'){
+        Route::group(['prefix' => 'profile'], function (){
+            Route::get('settings', 'ProfileController@settings');
+            Route::put('settings', 'ProfileController@updateSettings');
+            Route::get('finance', 'ProfileController@finance');
 
-        ## Profile Page /profile
-        Route::get('/{type?}', 'ProfileController@index');
-        ## POST call to upload a profile picture
-        Route::post('upload-profile-picture', 'ProfileController@uploadProfilePicture');
-        ## POST call to process additional data for initial profile set-up
-        Route::post('store-new-profile', 'ProfileController@storeNewProfile');
-        ##
-        Route::post('{id}/update', 'ProfileController@update');
-    });
+            ## Profile Page /profile
+            Route::get('/{type?}', 'ProfileController@index');
+            ## POST call to upload a profile picture
+            Route::post('upload-profile-picture', 'ProfileController@uploadProfilePicture');
+            ## POST call to process additional data for initial profile set-up
+            Route::post('store-new-profile', 'ProfileController@storeNewProfile');
+            ##
+            Route::post('{id}/update', 'ProfileController@update');
+        });
 
-    Route::controller('profile','ProfileController');
+        Route::controller('profile','ProfileController');
+    }
+    else{
+        Route::group(['prefix' => 'profile', 'before' => 'forceHttps'], function (){
+            Route::get('index', ['https', 'uses'=>'ProfileController@index'] );
+            Route::get('settings', ['https', 'uses'=>'ProfileController@settings'] );
+            Route::put('settings', ['https', 'uses'=>'ProfileController@updateSettings']);
+            Route::get('finance', ['https', 'uses'=>'ProfileController@finance']);
+
+            ## Profile Page /profile
+            Route::get('/{type?}', ['https', 'uses'=>'ProfileController@index']);
+            ## POST call to upload a profile picture
+            Route::post('upload-profile-picture', ['https', 'uses'=>'ProfileController@uploadProfilePicture']);
+            ## POST call to process additional data for initial profile set-up
+            Route::post('store-new-profile', ['https', 'uses'=>'ProfileController@storeNewProfile']);
+            ##
+            Route::post('{id}/update', ['https', 'uses'=>'ProfileController@update']);
+        });
+        
+        Route::controller('profile','ProfileController');
+    }
 //});
 };
 Route::group(array('domain' => $domain), $wwwRoutes);

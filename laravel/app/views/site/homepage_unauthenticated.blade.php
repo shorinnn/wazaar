@@ -26,14 +26,16 @@
                         {{trans('site/homepage.take_skill_to_new_level')}}
                         <p class="lead">{{trans('site/homepage.learning_has_never_been_easier')}}</p>
                     </h1>
-                    <a href="#" class="blue-button large-button round-button how-it-works"><i class="wa-play"></i>{{trans('site/homepage.how_it_works')}}</a>
-                    <div class="home-search-form">
+                    <a href="#" onclick='showHomepagePromoVideo(this)' class="blue-button large-button round-button how-it-works"><i class="wa-play"></i>{{trans('site/homepage.how_it_works')}}</a>
+                    <div class="home-search-form  invisible">
+                        <!--
                         <form action='{{ action('CoursesController@search') }}'>
                             <div>
-                                <input type="search" name="term" class="left" placeholder="What do you want to learn?">
+                                <input type="search" name="term" class="left" placeholder="{{trans('site/homepage.what-do-you-want-to-learn')}}">
                                 <button><i class="wa-search"></i></button>
                             </div>
                         </form>
+                        -->
                     </div>
                 </div>
             </div>
@@ -50,8 +52,8 @@
                     <div class="popular-courses @if( $course['discounted'] > 0) discounted-course @endif">
                         <a href="{{ action('CoursesController@show', $course['slug'] ) }}">
                             <div class="img-container">
-                                <!--<img class="img-responsive" alt="" src="{{ $course['preview'] }}">-->
-                                <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">
+                                <img class="img-responsive" alt="" src="{{ $course['preview'] }}">
+                                <!--<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">-->
                                 <div class="course-hover-data">
                                     @if( $course['discounted'] > 0)
                                         <span class="discount-percent left">- ¥ {{ number_format( $course['discounted'], Config::get('custom.currency_decimals') ) }}</span>
@@ -168,23 +170,12 @@
                 </div>
             </div>
             
-            <div id='discover-courses-area'>
+            <div id='discover-courses-area' class="ajax-content">
                 {{ View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted') ) }}
             </div>
         </div>
     </section>
-    <section class="become-an-instructor-section container-fluid">
-        <span class="background-image-overlay"></span>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-
-                    <h1>{{trans('site/homepage.be-an-instructor')}}</h1>
-                    <a  href="{{ action('InstructorsController@become') }}" class="blue-button large-button">{{ trans('site/homepage.register') }}</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 @stop
 
 @section('extra_js')
@@ -226,5 +217,11 @@
 
             });
         });
+        ajaxifyPagination( null, '#discover-courses-area' );
+        
+        function showHomepagePromoVideo(elem){
+            $(elem).after('<iframe width="560" height="315" src="https://www.youtube.com/embed/KRFvov4XZik?rel=0&amp;showinfo=0&autoplay=1" frameborder="0" allowfullscreen></iframe>');
+            $(elem).remove();
+        }
     </script>
 @stop

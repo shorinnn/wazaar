@@ -240,7 +240,7 @@
                                 <div class="text-warning">
                                     <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
                                     <div class="discounted-time-left pull-right">                                        
-                                        <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on, true)}}">{{timeUntil($course->sale_ends_on)}}</span>
+                                        <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on, true)}}"></span>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -280,7 +280,7 @@
                         @else
                             <button type='button' class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block"
                                     data-toggle="tooltip" data-placement="left" 
-                                    @if( Auth::user()->hasRole('Affiliate') )
+                                    @if( Auth::check() && Auth::user()->hasRole('Affiliate') )
                                         title="Log in to your student/instructor account to purchase."
                                     @else
                                         title="Available for customers"
@@ -296,7 +296,7 @@
                         
                 @elseif( $course->cost() == 0 && !Input::has('preview') )
                 
-                    @if( Auth::user()->hasRole('Affiliate') ||  $now > $show_on )
+                    @if( Auth::check() && Auth::user()->hasRole('Affiliate') ||  $now > $show_on )
                         {{ Form::open(['action' => ["CoursesController@crashCourse", $course->slug], 'id' => 'purchase-form']) }}
                     @else
                         {{ Form::open( [ 'id' => 'purchase-form', 'method'=>'GET', 'readonly'=>'readonly', 'disabled'=>'disabled' ] ) }}
@@ -403,7 +403,7 @@
 //                                {{//Form::close()}}
                                     ?>
                             <!--<a href="#">{{ trans("general.add-to-wishlist") }}</a>-->
-                            <a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>
+                            <!--<a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>-->
                         </div>
 
                             </div>
@@ -413,14 +413,16 @@
     </div>
 </section>
 <?php 
-    if( Input::has('preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
-    else{
-        echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { 
-            echo View::make('courses.description.bottom-cache')->withCourse($course);
-        }); 
-    }
+     echo View::make('courses.description.bottom-cache')->withCourse($course);  
+     // disabled until better caching
+//    if( Input::has('preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
+//    else{
+//        echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { 
+//            echo View::make('courses.description.bottom-cache')->withCourse($course);
+//        }); 
+//    }
     ?>
-@if(Auth::guest() || ( !Auth::user()->hasRole('Instructor') &&  !Auth::user()->hasRole('Affiliate') ) )
+@if( Auth::check() &&  !Auth::user()->hasRole('Instructor') &&  !Auth::user()->hasRole('Affiliate') )
     <section class="become-an-instructor-section container-fluid">
         <span class="background-image-overlay"></span>
         <div class="container">
@@ -432,7 +434,7 @@
             </div>
         </div>
     </section>
-    @endif
+@endif
             <!-- Modal -->
     <div class="modal fade" id="instructor-bio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -460,7 +462,9 @@
                         @endif
                     </p>
                     <div class="close-button">
-                    	<button type="button" class="large-button blue-button" data-dismiss="modal">CONTINUE BROWSING</button>
+                        <button type="button" class="large-button blue-button" data-dismiss="modal">
+                                    {{ trans('general.continue-browsing') }}
+                        </button>
                     </div>
                 </div>
             </div>

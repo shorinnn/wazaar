@@ -26,15 +26,20 @@ class SiteController extends \BaseController {
                 }
                 
                 $topCourses = Cache::get('topCourses');
-                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
+//                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
+                $topCourses = $topCourses[ 0 ];
                 
-                $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
+                // $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
+                $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->paginate(12);
                 
                 if(Auth::user()){
                     Return View::make('site.homepage_authenticated')
                             ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses', 'wishlisted'));
                 }
                 else{
+
+                    if( Request::ajax() ) Return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted'));
+
                     if(Input::has('old-page'))
                         Return View::make('site.homepage_unauthenticated_DEPR')
                         ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'wishlisted') );

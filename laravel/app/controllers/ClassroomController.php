@@ -93,9 +93,7 @@ class ClassroomController extends \BaseController {
                         return Redirect::to('/');
                     }
 
-                    if( (!$student->purchased($course) && $purchase==null && $lesson->free_preview=='yes') || ( !$student->purchased($course) && $purchase!=null && $purchase->free_product=='yes') ){
-                        return View::make('courses.classroom.crash_lesson')->with( compact('course') )->with( compact('lesson') )->with( compact('video') );
-                    }
+                    
                 }
             }
             
@@ -131,15 +129,21 @@ class ClassroomController extends \BaseController {
             if($course->assigned_instructor_id > 0) $instructor = $course->assignedInstructor;
             $student->load('viewedLessons');
             
+            if( (!$student->purchased($course) && $purchase==null && $lesson->free_preview=='yes') || ( !$student->purchased($course) && $purchase!=null && $purchase->free_product=='yes') ){
+                $crashLesson = true;        
+                return View::make('courses.classroom.crash_lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
+                        'instructor', 'student', 'crashLesson') );
+            }
+            $crashLesson=false;
             if(Request::ajax()){
                 $json['status'] = 'success';
                 $json['html'] =  View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                        'instructor', 'student') )->render();
+                        'instructor', 'student', 'crashLesson') )->render();
                 if( Auth::user()->hasRole('Affiliate') )
                     return View::make('courses.classroom.lesson-ajax-affiliates')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                            'instructor', 'student') )->render();
+                            'instructor', 'student', 'crashLesson') )->render();
                 return View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                        'instructor', 'student') )->render();
+                        'instructor', 'student', 'crashLesson') )->render();
 //                return json_encode($json);
 //                if( Input::has('ask') ) return View::make('courses.classroom.lesson_ask_ajax')->with( compact('lesson','student') );
 //                else return View::make('courses.classroom.lesson_comments_ajax')->with( compact('lesson','student') );
@@ -150,7 +154,7 @@ class ClassroomController extends \BaseController {
                         'instructor', 'student') );
                 else
                     return View::make('courses.classroom.lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                        'instructor', 'student') );
+                        'instructor', 'student', 'crashLesson') );
             }
         }
         
