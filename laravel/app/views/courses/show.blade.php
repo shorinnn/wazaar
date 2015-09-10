@@ -141,7 +141,7 @@
                     @endif
                     
                 @else
-                    <video style="width: 100%" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
+                    <video id="myVideo" style="width: 100%" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
                         <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                                     ->first()->video_url }}" type="video/mp4">
                         <p>Your browser does not support the video tag.</p>
@@ -280,7 +280,6 @@
                                 {{ trans("courses/general.course-enroll") }}
                             </button>
                             --}}
-                            @if (Input::has('test'))
                                 <button class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block" type="button"
                                     @if($now < $show_on)
                                         data-toggle='tooltip' data-placement='left' title='Opens on 10/9'
@@ -294,7 +293,7 @@
                                     data-product-price="{{$course->cost()}}">{{ trans("courses/general.course-enroll") }}
 
                                 </button>
-                            @endif
+                         
 
 
                         @elseif(Auth::check() && $student->purchased($course) )
