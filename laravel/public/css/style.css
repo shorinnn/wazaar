@@ -629,7 +629,6 @@ header .profile-name li:hover ul{
 	overflow: hidden;
 	max-width: 440px;
 	height: 60px;
-	display: none;
 	margin: 72px auto 0;
 }
 .homepage-header .home-search-form input[type='search']{
