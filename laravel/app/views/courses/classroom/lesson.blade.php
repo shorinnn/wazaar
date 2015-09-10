@@ -20,6 +20,7 @@
 @stop
 
 @section('extra_js')
+<script src='{{url('js/Gibberish-AES.js')}}'></script>
 <script>
 	function add_scroll_class_if_have_scrollbar(){
 		if($(document).height() > $(window).height()){
@@ -31,6 +32,11 @@
 	
     var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';	
     $(function(){
+        
+        /** decrypt video url **/
+        decryptVideoSrc();
+        /** /decrypt video url **/
+        
         add_scroll_class_if_have_scrollbar();
 
         if( $('#myVideo').length > 0 ){
@@ -94,7 +100,7 @@
 // By Chris Coyier & tweaked by Mathias Bynens
 
 $(function() {
-    makeYTfluid();
+//    makeYTfluid();
 });
 
 function makeYTfluid(){

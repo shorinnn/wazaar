@@ -207,6 +207,7 @@
                                     <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                                             ->first()->video_url }}" type="video/mp4">
                                 @else
+                                    <source src="{{ $video->formats()->first()->video_url }}" type="video/mp4">
                                 @endif
                                 <p>Your browser does not support the video tag.</p>
                             </video>
@@ -360,7 +361,8 @@
 <script>
 
     if(typeof($)=='function'){
-        makeYTfluid();
+        decryptVideoSrc();
+//        makeYTfluid();
         skinVideoControls();
         showMoreContent();
         if( $('myVideo').length > 0 ){
