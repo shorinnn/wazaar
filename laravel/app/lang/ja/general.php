@@ -129,5 +129,6 @@ return array(
         'no-rating-yet' => 'まだ評価がありません。'
     ],
     'my_name_is' => '販売者名',
-    'continue-browsing' => '商品ページに戻る'
+    'continue-browsing' => '商品ページに戻る',
+    'new' => '新作',
 );

@@ -3743,11 +3743,14 @@ h2, h3, h4, h5, h6{
 	box-shadow: none;
 	background: #cfd1d3;
 }
+.student-course.percentage-completed .progress.full{
+	max-width: 81%;
+}
 .student-course.percentage-completed .progress-bar{
 	background: #0099ff;
 }
 .instructor-course .edit-course,
-.student-course.percentage-completed .resume-course{
+.student-course.percentage-completed .resume-course-button-container{
 	float: right;
 }
 .student-course.percentage-completed .resume-course i{
@@ -8548,6 +8551,12 @@ footer{
 	.lesson-topics li .lesson-name{
 		width: 60%;
 	}
+	.student-course.percentage-completed .progress{
+		max-width: 53%;
+	}
+	.student-course.percentage-completed .progress.full{
+		max-width: 80%;
+	}
 }
 @media (max-width:1002px){
 	.next_{ 
@@ -8564,6 +8573,9 @@ footer{
 		padding:0px;
 		text-align:center;
 	}	
+	.student-course.percentage-completed .progress.full{
+		max-width: 100%;
+	}
 }
 @media (max-width:991px){
 	.affiliate-top-header{
@@ -9009,14 +9021,20 @@ header .top-menu li{
 }
 }
 @media (max-width:665px){
-	.student-course.percentage-completed .resume-course{
+	/*.student-course.percentage-completed .resume-course{
 		float: left;
 		margin-top: 10px;
 		margin-bottom: 10px;
-	}	
+	}*/	
 	.student-course.percentage-completed .progress{
 		max-width: 70%;
-	}	
+	}
+	.student-course.percentage-completed .resume-course-button-container{
+		display: inline-table;
+		width: 100%;
+		float: none;
+		text-align: center;
+	}
 	.new-dashboard.dashboardTabs-header .add-new-course {
 		margin-top: 15px;
 		display: block;
@@ -9196,6 +9214,9 @@ header .top-menu li{
 	}
 	.lesson-topics li .lesson-name{
 		width: 43%;
+	}
+	.student-course.percentage-completed .progress{
+		max-width: 100%;
 	}
 }
 

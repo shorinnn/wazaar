@@ -158,5 +158,6 @@ return array(
         'yery-negative'=>'Very Negative',
         'no-rating-yet' => 'No Rating Yet'
     ],
-    'continue-browsing' => 'CONTINUE BROWSING'
+    'continue-browsing' => 'CONTINUE BROWSING',
+    'new' => 'New',
 );

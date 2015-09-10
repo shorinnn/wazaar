@@ -69,7 +69,7 @@
                                 </div>-->
                                 <div class="students-attending" data-toggle="tooltip" data-placement="top" title="Students enrolled">
                                     @if( $course->isNewForStudentCount() )
-                                        NEW
+                                        {{ trans('general.new') }}
                                    @else
                                         <i class="wa-user-n"></i>
                                        {{ $course->student_count }}
