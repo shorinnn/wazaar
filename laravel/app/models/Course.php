@@ -420,13 +420,13 @@ class Course extends Ardent{
     }
     
     public function rating(){
-        if( $this->total_reviews == 0 ) return trans('general.no-rating-yet');
+        if( $this->total_reviews == 0 ) return trans('general.ratings.no-rating-yet');
         
-        if( $this->reviews_positive_score == 100 ) return trans('general.highly-recommended');
-        elseif( $this->reviews_positive_score <= 90 ) return trans('general.very-positive');
-        elseif( $this->reviews_positive_score <= 80 ) return trans('general.positive');
-        elseif( $this->reviews_positive_score <= 60 ) return trans('general.mixed');
-        elseif( $this->reviews_positive_score <= 40 ) return trans('general.negative');
+        if( $this->reviews_positive_score >= 95 ) return trans('general.ratings.overwhelmingly-positive');
+        elseif( $this->reviews_positive_score >= 80 ) return trans('general.ratings.very-positive');
+        elseif( $this->reviews_positive_score >= 70 ) return trans('general.ratings.mostly-positive');
+        elseif( $this->reviews_positive_score >= 40 ) return trans('general.ratings.mixed');
+        elseif( $this->reviews_positive_score >= 20 ) return trans('general.ratings.very-negative');
         else return trans('general.negative');
     }
     

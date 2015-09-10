@@ -120,7 +120,8 @@
                             </ul>
                         </div>
                         <ul id="wrapper-ltc-registrations">
-                            {{$ltcRegistrationsView}}
+                            {{--$ltcRegistrationsView--}}
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                         </ul>
                     </div>
                 </div>
@@ -147,7 +148,8 @@
                         </div>
 
                         <div id="wrapper-sales">
-                            {{$salesView}}
+                            {{--$salesView--}}
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                         </div>
 
                     </div>
@@ -175,7 +177,8 @@
                             </ul>
                         </div>
                         <ul id="wrapper-second-tier-registrations">
-                            {{$secondTierRegistrationsView}}
+                            {{--$secondTierRegistrationsView--}}
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                         </ul>
                     </div>
                 </div>
@@ -203,7 +206,8 @@
                             </ul>
                         </div>
                         <ul id="wrapper-top-courses">
-                            {{$topCoursesView}}
+                            {{--$topCoursesView--}}
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                         </ul>
                     </div>
                 </div>
@@ -230,7 +234,8 @@
                             </ul>
                         </div>
                         <ul id="wrapper-ltc-earnings">
-                            {{$ltcEarningsView}}
+                            {{--$ltcEarningsView--}}
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                         </ul>
                     </div>
                 </div>
@@ -258,7 +263,8 @@
                             </ul>
                         </div>
                         <ul id="wrapper-tracking-codes">
-                            {{$trackingCodesSalesView}}
+                            {{--$trackingCodesSalesView--}}
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                         </ul>
 
 
@@ -285,7 +291,8 @@
                             </ul>
                         </div>
                         <ul id="wrapper-course-conversions">
-                           {{$courseConversionView}}
+                           {{--$courseConversionView--}}
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
 
                         </ul>
                     </div>
@@ -314,7 +321,8 @@
                             </ul>
                         </div>
                         <ul id="wrapper-tracking-code-conversions">
-                           {{$trackingCodeConversionView}}
+                           {{--$trackingCodeConversionView--}}
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                         </ul>
                     </div>
                 </div>
@@ -333,6 +341,50 @@
         </div>
 
     </div>
+
+    <div class="hidden">
+        <div class="daily-data-ltc-registrations"></div>
+        <div class="week-data-ltc-registrations"></div>
+        <div class="month-data-ltc-registrations"></div>
+        <div class="alltime-data-ltc-registrations"></div>
+
+        <div class="daily-data-sales"></div>
+        <div class="week-data-sales"></div>
+        <div class="month-data-sales"></div>
+        <div class="alltime-data-sales"></div>
+
+        <div class="daily-data-2-tier-signups"></div>
+        <div class="week-data-2-tier-signups"></div>
+        <div class="month-data-2-tier-signups"></div>
+        <div class="alltime-data-2-tier-signups"></div>
+
+        <div class="daily-data-top-courses"></div>
+        <div class="week-data-top-courses"></div>
+        <div class="month-data-top-courses"></div>
+        <div class="alltime-data-top-courses"></div>
+
+        <div class="daily-data-ltc--earnings"></div>
+        <div class="week-data-ltc--earnings"></div>
+        <div class="month-data-ltc--earnings"></div>
+        <div class="alltime-data-ltc--earnings"></div>
+
+        <div class="daily-data-top-tracking-codes"></div>
+        <div class="week-data-top-tracking-codes"></div>
+        <div class="month-data-top-tracking-codes"></div>
+        <div class="alltime-data-top-tracking-codes"></div>
+
+        <div class="daily-data-top-converting-courses"></div>
+        <div class="week-data-top-converting-courses"></div>
+        <div class="month-data-top-converting-courses"></div>
+        <div class="alltime-data-top-converting-courses"></div>
+
+        <div class="daily-data-top-converting-tracking-codes"></div>
+        <div class="week-data-top-converting-tracking-codes"></div>
+        <div class="month-data-top-converting-tracking-codes"></div>
+        <div class="alltime-data-top-converting-tracking-codes"></div>
+    </div>
+
+
 @stop
 
 @section('extra_js')
@@ -341,5 +393,9 @@
         function hideLetter(){
             $.get('{{action("AffiliateController@hideLetter")}}');
         }
+
+        $(function(){
+            Analytics.sales('daily','','', this);
+        });
     </script>
 @stop

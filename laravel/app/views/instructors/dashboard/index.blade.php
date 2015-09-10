@@ -56,16 +56,16 @@
                                 {{trans('analytics.salesCount')}} <span id="header-sales-count-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-count-dropdown">
                                 <li>
-                                    <a class="active" href="#" onclick="Analytics.SalesCount('daily', this); return false;">{{trans('analytics.today')}}</a>
+                                    <a class="active" href="#" onclick="Analytics.SalesCount('daily', '',this); return false;">{{trans('analytics.today')}}</a>
                                 </li>
                                 <li>
-                                    <a class="" href="#" onclick="Analytics.SalesCount('week', this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                    <a class="" href="#" onclick="Analytics.SalesCount('week', '',this); return false;">{{trans('analytics.thisWeek')}}</a>
                                 </li>
                                 <li>
-                                    <a class="" href="#" onclick="Analytics.SalesCount('month', this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                    <a class="" href="#" onclick="Analytics.SalesCount('month', '',this); return false;">{{trans('analytics.thisMonth')}}</a>
                                 </li>
                                 <li>
-                                    <a class="" href="#" onclick="Analytics.SalesCount('alltime', this); return false;">{{trans('analytics.alltime')}}</a>
+                                    <a class="" href="#" onclick="Analytics.SalesCount('alltime', '',this); return false;">{{trans('analytics.alltime')}}</a>
                                 </li>
                             </ul>
                         </div>

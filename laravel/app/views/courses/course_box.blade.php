@@ -4,7 +4,7 @@
  <?php
  $course = courseApprovedVersion($course);
   echo Flatten::section('top-course-box-'.$course->id, Config::get('custom.cache-expiry.course-box'), function () use ($course) { ?>
-    <div class="col-xs-12 col-sm-6 col-md-4">
+    <div class="col-xs-12 col-sm-6 col-md-4 course-box-wrap">
         <a href="{{ action('CoursesController@show', $course->slug) }}">
             <div class="object small-box small-box-one">
                 <div class="img-container">
@@ -21,17 +21,23 @@
             <span class="box-overlay">
 <!--                <p>{{trans('general.lesson')}}</p>
                 <p>{{trans('general.weeks-of-learning')}}</p>-->
-                <p>{{ $course->courseDifficulty->name }}</p>
+                <p>{{ trans('general.'.$course->courseDifficulty->name) }}</p>
                  <?php });?>
                 
                 <div class="footer clearfix">
                     <div class="heart-icon">
                          
                            @if( !in_array($course->id, $wishlisted) )
-                               <i class="fa fa-heart-o tooltipable wishlist-change-button" title="Add to wishlist" data-auth="{{ intval(Auth::check() )}}"
+                               <i class="fa fa-heart-o tooltipable wishlist-change-button" 
+                                  @if(Auth::check())
+                                      title="{{ trans('courses/general.add_to_wishlist')}}"
+                                  @else
+                                      title="{{ trans('courses/general.login_to_use')}}"
+                                  @endif
+                                  data-auth="{{ intval(Auth::check() )}}"
                                   data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0"></i>
                            @else
-                               <i class="fa fa-heart tooltipable wishlist-change-button" title="Remove from wishlist" data-auth="{{ intval(Auth::check() )}}"
+                               <i class="fa fa-heart tooltipable wishlist-change-button" title="{{ trans('courses/general.remove_from_wishlist')}}" data-auth="{{ intval(Auth::check() )}}"
                                   data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1"></i>
                            @endif
                            

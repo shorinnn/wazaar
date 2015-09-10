@@ -54,8 +54,8 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'wazaar-testing.cbh8takbo5qn.us-east-1.rds.amazonaws.com',
-			'database'  => 'wazaar_testing',
+			'host'      => 'wazaar-staging-database.c2ql9x8crnhh.ap-northeast-1.rds.amazonaws.com',
+			'database'  => 'wazaar-staging-database',
 			'username'  => 'db_user',
 			'password'  => 'thequickbrownfox',
 			'port'      => '3306',

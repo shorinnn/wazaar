@@ -3,16 +3,36 @@ var Payment = {
     'productId' : 0,
     'productType' : 'course',
     'productName' : '',
+    'giftID' : '',
     'amount' : 0,
+    'processBeforeSubmit' : function($elem, $event){
+        var $paymentData = $('#form-payment').serialize();
+
+        Payment.productId = $($elem).attr('data-product-id');
+        Payment.productType = $($elem).attr('data-product-type');
+        Payment.productName = $($elem).attr('data-product-name');
+        Payment.amount = $($elem).attr('data-product-price');
+        Payment.giftID = $($elem).attr('data-gift-id');
+
+        $($elem).attr('disabled','disabled');
+
+        $.post("/payment/process-max-request",{productId: Payment.productId, productName: Payment.productName,amount: Payment.amount, productType: Payment.productType, giftId : Payment.giftID},function($response){
+            $("input[name=TransactionId]").val($response.transactionId);
+            $('#form-payment').submit();
+        },'json');
+
+        //alert($paymentData);
+        //$('#form-payment').submit();
+    },
     'showForm' : function ($element, $event){
         $event.preventDefault();
         Payment.productId = $($element).attr('data-product-id');
         Payment.productType = $($element).attr('data-product-type');
-        Payment.productName = $($element).attr('data-item-name');
-        Payment.amount = $($element).attr('data-price');
+        Payment.productName = $($element).attr('data-product-name');
+        Payment.amount = $($element).attr('data-product-price');
 
-        $('#itemName').val(Payment.productName);
-        $('#itemPrice').val(Payment.amount);
+        $('.checkout-modal').find('#itemName').html(Payment.productName);
+        $('.checkout-modal').find('#itemPrice').html(Payment.amount);
         Payment.form.modal('show');
     },
     'doPay' : function($event){

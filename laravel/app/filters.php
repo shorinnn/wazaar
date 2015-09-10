@@ -170,3 +170,9 @@ Route::filter('nonInstructor', function(){
                 if(Auth::check() && Auth::user()->hasRole('Instructor')) return Redirect::action('SiteController@index');
         }
 });
+
+Route::filter('forceHttps', function($req){
+    if (! Request::secure()) {
+        return Redirect::secure(Request::getRequestUri());
+    }
+});

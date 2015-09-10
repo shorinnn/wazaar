@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('page_title') Wazaar</title>    
     
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
     @if( App::environment() == 'PPProduction' || Input::has('use-gulp') )
         <link rel="stylesheet" href="{{ url('css-assets/'. asset_path('all.min.css') ) }}" />
     @else
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
-        <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
+        <!--<link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>-->
         <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{url('css/video-player.css')}}">
         <link rel="stylesheet" href="{{url('css/style.css')}}">
@@ -56,66 +56,67 @@
           <section class="footer-container">
             <div class="container">
               <div class="row no-margin">
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-center-mobile">
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 text-center-mobile">
                   <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/footer-logo.png" alt="Wazaar" />
                   <p>&copy; Wazaar {{ date('Y') }}</p>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                	<div class="row">
-                            <?php echo Flatten::section('footer-categories-link', 10, function ()  { ?>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                        <h5>{{ trans('general.courses') }}</h5>
-                                    <ul>
-                                        @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 = 0')->get() as $cat)
-                                            <li>
-                                                    <a href="{{ action('CoursesController@category', $cat->slug) }}">{{ $cat->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                        <h5>&nbsp;</h5>
-                                    <ul>
-                                        @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 != 0')->get() as $cat)
-                                            <li>
-                                                    <a href="{{ action('CoursesController@category', $cat->slug)  }}">{{ $cat->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>                    
-                                </div>
-                            <?php });?>
-                    </div>
-                  <!--{{trans('site/footer.all-rights-reserved')}}<br/>
-                  &copy; {{ date('Y') }}-->
-                </div>              
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                	<div class="row">
-                    	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        	<h5>{{ trans('footer.about') }}</h5>
+                <div class="col-xs-12 col-sm-9 col-md-4 col-lg-4 margin-bottom-20">
+					<?php echo Flatten::section('footer-categories-link', 10, function ()  { ?>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h5>{{ trans('general.courses') }}</h5>
                             <ul>
-<!--                            	<li>
-                                	<a href="#">{{ trans('footer.company') }}</a>
-                                </li>-->
-                            	<li>
-                                	<a href="{{ action('SiteController@about') }}">特定商取引法に関する表示 </a>
-                                </li>
-	                           	<li>
-                                	<a href="{{ action('SiteController@privacyPolicy') }}">{{ trans('general.privacy-policy') }}</a>
-                                </li>
-                            </ul>                        
+                                @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 = 0')->get() as $cat)
+                                    <li>
+                                            <a href="{{ action('CoursesController@category', $cat->slug) }}">{{ $cat->name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center-mobile padding-bottom-20">
-                        	<h5>{{ trans('footer.get-in-touch') }}</h5>
-                            <p><!--電話番号：-->03-6206-8396　</p>
-                            <a href="http://wazaar.co.jp/contact/">お問い合わせ</a>
-                            <p><!--{{trans('site/footer.mail')}}:info@wazaar.comメールアドレス：-->contact@minkare.jp</p>  
-                            <div class="social-icons">
-                            	<a href="#" class="inline-block"><i class="fa fa-facebook"></i></a>
-                            	<a href="#" class="inline-block"><i class="fa fa-twitter"></i></a>
-                            	<a href="#" class="inline-block"><i class="fa fa-rss"></i></a>
-                            </div>                      
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <h5>&nbsp;</h5>
+                            <ul>
+                                @foreach( CourseCategory::has('allCourses')->whereRaw('id % 2 != 0')->get() as $cat)
+                                    <li>
+                                            <a href="{{ action('CoursesController@category', $cat->slug)  }}">{{ $cat->name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>                    
                         </div>
-                    </div>
+                    <?php });?>
+                
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 margin-bottom-20">
+                    <h5>{{ trans('footer.about') }}</h5>
+                    <ul>
+ 						<!--<li>
+                            <a href="#">{{ trans('footer.company') }}</a>
+                        </li>-->
+                        <li>
+                            <a href="{{ action('SiteController@about') }}">特定商取引法に関する表示 </a>
+                        </li>
+                        <li>
+                            <a href="{{ action('SiteController@privacyPolicy') }}">{{ trans('general.privacy-policy') }}</a>
+                        </li>
+                    </ul>                        
+        
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 margin-bottom-20 text-center-mobile">
+                    <h5>{{ trans('footer.get-in-touch') }}</h5>
+                    <p><!--電話番号：-->03-6206-8396　</p>
+                    <a href="//wazaar.co.jp/contact/">お問い合わせ</a>
+                    <p><!--{{trans('site/footer.mail')}}:info@wazaar.comメールアドレス：-->contact@minkare.jp</p>  
+                    <div class="social-icons">
+                        <a href="#" class="inline-block"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="inline-block"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="inline-block"><i class="fa fa-rss"></i></a>
+                    </div>                      
+        
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 margin-bottom-20 text-center-mobile">
+                        <h5>&nbsp;</h5>
+                        <p>アフィリエイター向け</p>
+                        <a href="{{action('UsersController@create')}}">新規登録</a>
+                        <a href="{{ action('UsersController@login') }}">ログイン</a>  
                 </div>
               </div>
             </div>
@@ -136,44 +137,48 @@
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
                         </a>
                         <div class="user-data-modal clearfix">
-                            <h1 class="clearfix">{{ trans('site/login.login-to-account') }}</h1>
-                            <div class="login-social-buttons clearfix">
-                                <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.login-with-facebook') }}</a>
-                                <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
+                        	<div class="user-data-modal-header">
+                                <h1 class="clearfix">{{ trans('site/login.login-to-account') }}</h1>
+                                <div class="login-social-buttons clearfix">
+                                    <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.login-with-facebook') }}</a>
+                                    <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
+                                </div>
                             </div>
                             <div class="orr"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
-                            <p class="intro-paragraph text-center">{{ trans('general.enter-email-and-password') }}</p>
-                            <div class="form-container clearfix">
-                            <form id='login-form' role="form" method="POST" onsubmit="return loginValidator.validate(event);"
-                                  data-no-processing="1" class="ajax-formxxx" data-callback="loginValidator.callback" 
-                                  data-fail-callback="loginValidator.failCallback"
-                                  action="{{{ action('UsersController@login') }}}" accept-charset="UTF-8">
-                            <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
-                                <fieldset>
-                                    <div class="form-group email-field">
-                                        <input class="form-control"  placeholder="{{ trans('general.email-placeholder') }}" 
-                                            data-placement="right" data-trigger="manual"
-                                            onblur="loginValidator.emailValidate()" data-check-url="{{ action('UsersController@emailCheck') }}"
-                                            type="text" name="email" id="email" value="{{{ Input::old('email') }}}" />
-                                        
-                                    </div>
-                                    <div class="form-group password-field">
-                                        <input class="form-control" placeholder="{{ trans('general.password-placeholder') }}" 
-                                               data-placement="right"
-                                               onblur="loginValidator.passwordValidate()" type="password" name="password" id="password" />
-                                        <a href="{{{ action('UsersController@forgotPassword') }}}" 
-                                        class="left forgot">{{ trans('site/login.forgot') }}</a>
-                                    </div>
-                                    @if (Session::get('notice'))
-                                        <div class="alert">{{{ Session::get('notice') }}}</div>
-                                    @endif
-                                    <div class="form-group">
-                                        <button  type="submit" class="blue-button large-button">
-                                            {{ trans('site/login.sign-in') }}
-                                        </button>
-                                    </div>
-                                </fieldset>
-                            </form>
+                            <div class="user-data-modal-body">
+                                <p class="intro-paragraph text-center">{{ trans('general.enter-email-and-password') }}</p>
+                                <div class="form-container clearfix">
+                                <form id='login-form' role="form" method="POST" onsubmit="return loginValidator.validate(event);"
+                                      data-no-processing="1" class="ajax-formxxx" data-callback="loginValidator.callback" 
+                                      data-fail-callback="loginValidator.failCallback"
+                                      action="{{{ action('UsersController@login') }}}" accept-charset="UTF-8">
+                                <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+                                    <fieldset>
+                                        <div class="form-group email-field">
+                                            <input class="form-control"  placeholder="{{ trans('general.email-placeholder') }}" 
+                                                data-placement="right" data-trigger="manual"
+                                                onblur="loginValidator.emailValidate()" data-check-url="{{ action('UsersController@emailCheck') }}"
+                                                type="text" name="email" id="email" value="{{{ Input::old('email') }}}" />
+                                            
+                                        </div>
+                                        <div class="form-group password-field">
+                                            <input class="form-control" placeholder="{{ trans('general.password-placeholder') }}" 
+                                                   data-placement="right"
+                                                   onblur="loginValidator.passwordValidate()" type="password" name="password" id="password" />
+                                            <a href="{{{ action('UsersController@forgotPassword') }}}" 
+                                            class="left forgot">{{ trans('site/login.forgot') }}</a>
+                                        </div>
+                                        @if (Session::get('notice'))
+                                            <div class="alert">{{{ Session::get('notice') }}}</div>
+                                        @endif
+                                        <div class="form-group no-margin">
+                                            <button  type="submit" class="blue-button large-button">
+                                                {{ trans('site/login.sign-in') }}
+                                            </button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                </div>
                             </div>
                         </div>
                         <div class="user-data-modal-footer text-center">
@@ -202,56 +207,60 @@
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" class="img-responsive" alt="">
                         </a>
                         <div class="user-data-modal clearfix">
-                            <h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
-                            <div class="login-social-buttons clearfix">
-                                <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.register-with-facebook') }}</a>
-                                <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
+                        	<div class="user-data-modal-header">
+                                <h1 class="clearfix">{{ trans('site/register.register-new-account') }}</h1>
+                                <div class="login-social-buttons clearfix">
+                                    <a href="{{ url('login-with-facebook') }}" class="login-facebook">{{ trans('general.register-with-facebook') }}</a>
+                                    <!--<a href="{{url('login-with-google') }}" class="login-google">{{ trans('general.google') }}</a>-->
+                                </div>
                             </div>
                             <div class="orr"><span class="left-line"></span>{{ trans('general.or') }}<span class="right-line"></span></div>
-                            <p class="intro-paragraph text-center">{{ trans('general.enter-new-email-and-password') }}</p>
-                            <div class="form-container clearfix">
-                                <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8" id="register-form"
-                                     data-no-processing="1"  class="ajax-formxxx" data-callback="registerValidator.callback" 
-                                     
-                                     data-fail-callback="registerValidator.failCallback"  onsubmit="return registerValidator.validate(event);" />
-                                    <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
-                                    <fieldset>
+                            <div class="user-data-modal-body">
+                                <p class="intro-paragraph text-center">{{ trans('general.enter-new-email-and-password') }}</p>
+                                <div class="form-container clearfix">
+                                    <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8" id="register-form"
+                                         data-no-processing="1"  class="ajax-formxxx" data-callback="registerValidator.callback" 
+                                         
+                                         data-fail-callback="registerValidator.failCallback"  onsubmit="return registerValidator.validate(event);" />
+                                        <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+                                        <fieldset>
+                                            
+                                                <div class="form-group">
+                                                    <input class="form-control" placeholder="Last Name" type="text" name="last_name" id="last_name" value="" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control" placeholder="First Name" type="text" name="first_name" id="first_name" value="" required>
+                                                </div>
                                         
-                                            <div class="form-group">
-                                                <input class="form-control" placeholder="Last Name" type="text" name="last_name" id="last_name" value="" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <input class="form-control" placeholder="First Name" type="text" name="first_name" id="first_name" value="" required>
-                                            </div>
-                                    
-                                    <div class="form-group email-field">
-                                        <input class="form-control" placeholder="{{ trans('general.email-placeholder') }}" 
-                                           type="email" name="email" id="email" value="{{{ Input::old('email') }}}" 
-                                           data-placement="right"
-                                           onblur="registerValidator.emailValidate()" data-check-url="{{ action('UsersController@emailCheck') }}"/>
-                                    </div>
-                                    <p class="js-error-message"></p>
-                                    @if (Session::has('error'))
-                                        <div class="alert alert-error alert-danger">
-                                            <span>ERROR</span>
-                                            {{Session::get('error')}}
+                                        <div class="form-group email-field">
+                                            <input class="form-control" placeholder="{{ trans('general.email-placeholder') }}" 
+                                               type="email" name="email" id="email" value="{{{ Input::old('email') }}}" 
+                                               data-placement="right"
+                                               onblur="registerValidator.emailValidate()" data-check-url="{{ action('UsersController@emailCheck') }}"/>
                                         </div>
-                                    @endif
-                                    
-                                    <div class="form-group password-field">
-                                        <input class="form-control" placeholder="{{ trans('general.password-placeholder') }}" 
-                                               type="password" name="password" id="password"
-                                               onblur="registerValidator.passwordValidate()"  />
-                                        <a href="#" class="show-password">{{ trans('site/register.show-password') }}</a>
-                                    </div>
-                                    <div class="form-actions form-group">
-                                        <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" class="hide" alt="">
-                                      <button type="submit" id="submit-button" class="large-button blue-button deactivate-button">
-                                        {{ trans('site/register.create-account') }}
-                                      </button>
-                                    </div>
-                                    </fieldset>
-                                </form>
+                                        <p class="js-error-message"></p>
+                                        @if (Session::has('error'))
+                                            <div class="alert alert-error alert-danger">
+                                                <span>ERROR</span>
+                                                {{Session::get('error')}}
+                                            </div>
+                                        @endif
+                                        
+                                        <div class="form-group password-field">
+                                            <input class="form-control" placeholder="{{ trans('general.password-placeholder') }}" 
+                                                   type="password" name="password" id="password"
+                                                   onblur="registerValidator.passwordValidate()"  />
+                                            <a href="#" class="show-password">{{ trans('site/register.show-password') }}</a>
+                                        </div>
+                                        <div class="form-actions form-group no-margin">
+                                            <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" class="hide" alt="">
+                                          <button type="submit" id="submit-button" class="large-button blue-button deactivate-button">
+                                            {{ trans('site/register.create-account') }}
+                                          </button>
+                                        </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div class="user-data-modal-footer text-center">
@@ -275,8 +284,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-        <script src="http://www.localeplanet.com/api/translate.js" /></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+        <script src="//www.localeplanet.com/api/translate.js" /></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
         <script src="{{url("js-assets/" . asset_path('core.min.js') ) }}"></script>
         <script src="{{url("js/jquery.mousewheel.js")}}"></script>
@@ -288,8 +297,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-        <script src="http://www.localeplanet.com/api/translate.js" /></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+        <script src="//www.localeplanet.com/api/translate.js" /></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
         
         
@@ -365,7 +374,7 @@
 
 				$('#video-container').prepend('<div id="video-background" class="full-screen"></div>');
 				$('#video-background').videobackground({
-					videoSource: [['http://vjs.zencdn.net/v/oceans.mp4', 'video/mp4'],
+					videoSource: [['//vjs.zencdn.net/v/oceans.mp4', 'video/mp4'],
 						['', 'video/webm'], 
 						['', 'video/ogg']], 
 						controlPosition: '#bckgrd-video-overlay',

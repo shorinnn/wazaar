@@ -8,7 +8,7 @@
     $date = new DateTime();
     $date->setTimezone(new DateTimeZone('Asia/Tokyo'));
     $now = strtotime( $date->format('Y-m-d H:i:s') ) ;
-    $show_on = strtotime( '2015-09-10 17:15:00' );
+    $show_on = strtotime( '2015-09-08 17:15:00' );
 ?>
  
 @section('content')
@@ -216,7 +216,23 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
                 <div class="enroll-button-wrap clearfix paid-content">
                 @if( $course->cost() > 0 && !Input::has('preview') )
-                
+                        <form id="form-payment" method="post" action="https://mc-credit.com.sg/service/credit/input.html">
+                            <input type="hidden" name="SiteId" value="{{Config::get('maxcollect.sid')}}" />
+                            <input type="hidden" name="SitePass" value="{{Config::get('maxcollect.spw')}}" />
+                            <input type="hidden" name="CustomerId" value="{{Str::random()}}" />
+                            <input type="hidden" name="URL" value="{{url('courses/' . $course->slug)}}"/>
+                            <input type="hidden" name="CustomerPass" value="password" />
+                            <input type="hidden" name="Amount" value="{{$course->cost()}}" />
+                            <input type="hidden" name="mail" 
+                                   @if(Auth::check())
+                                    value="{{Auth::user()->email}}"
+                                   @else
+                                    value=""
+                                   @endif
+                                   />
+                            <input type="hidden" name="itemId" value="{{$course->name}}:{{$course->cost()}}yen" />
+                            <input type="hidden" name="TransactionId" value="" />
+                        </form>
 
                         @if( $now > $show_on)
                             {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
@@ -229,7 +245,7 @@
                                 <div class="text-warning">
                                     <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</div>
                                     <div class="discounted-time-left pull-right">                                        
-                                        <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on, true)}}">{{timeUntil($course->sale_ends_on)}}</span>
+                                        <i class="fa fa-clock-o"></i> <span class="countdown" data-final-date-seconds="{{timeUntil($course->sale_ends_on, true)}}"></span>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -250,17 +266,23 @@
                                 {{ trans("courses/general.course-enroll") }}
                             </button>
                             --}}
-
-                            <button class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block" type="button"
+                            @if (Input::has('test'))
+                                <button class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block" type="button"
                                     @if($now < $show_on)
                                         data-toggle='tooltip' data-placement='left' title='Opens on 10/9'
                                     @else
-                                        onclick="{{ Payment.showForm(this,event) }}"
+                                        onclick="Payment.processBeforeSubmit(this,event)"
                                     @endif
+                                    data-gift-id="{{Input::get('gid')}}" 
                                     data-product-type="course"
                                     data-product-id="{{$course->id}}"
-                                    data-item-name="{{$course->name}}"
-                                    data-price="{{$course->cost()}}">{{ trans("courses/general.course-enroll") }}</button>
+                                    data-product-name="{{$course->name}}"
+                                    data-product-price="{{$course->cost()}}">{{ trans("courses/general.course-enroll") }}
+
+                                </button>
+                            @endif
+
+
                         @elseif(Auth::check() && $student->purchased($course) )
                             <a class="clearfix enroll-button blue-button extra-large-button btn-block"
                                href="{{ action('ClassroomController@dashboard', $course->slug)}}">
@@ -382,6 +404,7 @@
                                     
                                     
                                 </span>
+
                                 <?php
                                  
 //                          {{//Form::open(['action' => ['WishlistController@store'] ])}}
@@ -391,7 +414,7 @@
 //                                {{//Form::close()}}
                                     ?>
                             <!--<a href="#">{{ trans("general.add-to-wishlist") }}</a>-->
-                            <a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>
+                            <!--<a href="#" class="share-lesson no-margin"><i class="wa-Share"></i>{{ trans("general.share-this-lesson") }}</a>-->
                         </div>
 
                             </div>
@@ -401,14 +424,16 @@
     </div>
 </section>
 <?php 
-    if( Input::has('preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
-    else{
-        echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { 
-            echo View::make('courses.description.bottom-cache')->withCourse($course);
-        }); 
-    }
+     echo View::make('courses.description.bottom-cache')->withCourse($course);  
+     // disabled until better caching
+//    if( Input::has('preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
+//    else{
+//        echo Flatten::section('course-show-detailed-desc'.$course->id, Config::get('custom.cache-expiry.course-desc-bottom-details'), function () use( $course )  { 
+//            echo View::make('courses.description.bottom-cache')->withCourse($course);
+//        }); 
+//    }
     ?>
-@if(Auth::guest() || ( !Auth::user()->hasRole('Instructor') &&  !Auth::user()->hasRole('Affiliate') ) )
+@if( Auth::check() &&  !Auth::user()->hasRole('Instructor') &&  !Auth::user()->hasRole('Affiliate') )
     <section class="become-an-instructor-section container-fluid">
         <span class="background-image-overlay"></span>
         <div class="container">
@@ -420,7 +445,7 @@
             </div>
         </div>
     </section>
-    @endif
+@endif
             <!-- Modal -->
     <div class="modal fade" id="instructor-bio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -448,7 +473,9 @@
                         @endif
                     </p>
                     <div class="close-button">
-                    	<button type="button" class="large-button blue-button" data-dismiss="modal">CONTINUE BROWSING</button>
+                        <button type="button" class="large-button blue-button" data-dismiss="modal">
+                                    {{ trans('general.continue-browsing') }}
+                        </button>
                     </div>
                 </div>
             </div>

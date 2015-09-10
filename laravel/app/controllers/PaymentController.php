@@ -162,11 +162,98 @@ class PaymentController extends BaseController
 
     //Max Connect payment methods
 
-    public function postProcessMaxConnect()
+    public function postProcessMaxRequest()
     {
+        $request = Input::all();
+
+        $request['giftID'] = 0;
+        $request['balancedUsed'] = 0;
+        $request['balanceTransactionID'] = 0;
+
+        $reference = Str::random();
+        $giftId = Input::get('giftId');
+
+        $course = Course::find(Input::get('productId'));
+        $course = courseApprovedVersion( $course );
+
+        $student = Student::current(Auth::user());
+
+        $gift = Gift::find( PseudoCrypt::unhash($giftId) );
+
+        if($gift && $gift->affiliate_id == $giftId){
+            $request['giftID'] = $gift->id;
+        }
+
+        if( $student->student_balance > 0 ){
+            $transaction = $student->balanceDebit( $student->student_balance, $course);
+            if ( !$transaction ){
+                ;
+            }
+            $request['balanceUsed'] = $student->student_balance;
+            $request['balanceTransactionID'] = $transaction;
+        }
+
+
+
+
+        $paymentLog = PaymentLog::create(['user_id' => Auth::id(),'reference' => $reference,'request' => json_encode($request)]);
+        return Response::json(['transactionId' => $reference]);
+    }
+
+    //Max Connect Canceled payment callback
+    public function postCanceled()
+    {
+        if (Input::has('TransactionId') && Input::has('URL')){
+            $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
+
+            if ($paymentLog){
+                return Redirect::to(Input::get('URL'));
+            }
+        }
 
     }
 
+    //Max Connect Completed payment callback
+    public function postCompleted()
+    {
+        try{
+            if (Input::has('Result')){
+                if (Input::get('Result') == 'OK'){
+                    $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
+
+                    if ($paymentLog){
+                        return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                    }
+
+                }
+            }
+
+            return Redirect::home();
+        }
+        catch(Exception $ex){
+            echo $ex->getMessage();
+            echo $ex->getLine();
+        }
+
+    }
+
+    //Max Connect Success payment callback
+    public function postSuccess()
+    {
+        echo '<pre>';
+        print_r(Input::all());
+        echo '</pre>';
+        die;
+    }
+
+    //Max Connect Failed payment callback
+    public function postFailed()
+    {
+        echo '<pre>';
+        print_r(Input::all());
+        echo '</pre>';
+        die;
+    }
 
     public function postRemovePaymentLog()
     {
@@ -422,13 +509,48 @@ class PaymentController extends BaseController
 
     private function _getProductDetailsByTypeAndID($type, $id)
     {
+
         $obj = null;
-        if ($type == 'Course') {
+        if (strtolower($type) == 'course') {
             $obj = Course::find($id);
         } elseif ($type == 'Lesson') {
             $obj = Lesson::find($id);
         }
 
         return $obj;
+    }
+
+    private function _successfulPayment($paymentLog,$transactionId){
+        $student = Student::current(Auth::user());
+
+        $product = $this->_getProductDetailsByTypeAndID($paymentLog->request['productType'],$paymentLog->request['productId']);//   Session::get('productType'), Session::get('productID'));
+
+        $cookie_id   = get_class($product) == 'Course' ? $product->id : $product->module->course->id;
+        $paymentData = [
+            'successData' => [
+                'balance_transaction_id' => $paymentLog->request['balanceTransactionID'],
+                'processor_fee'          => 0,
+                'tax'                    => 0,
+                'giftID'                 => $paymentLog->request['giftID'],
+                'balance_used'           => $paymentLog->request['balancedUsed'],
+                'REF'                    => $paymentLog->reference,
+                'ORDERID'                => $transactionId
+            ]
+        ];
+//                    $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $paymentData);
+        $purchase = $student->purchase($product, Cookie::get("aid"), $paymentData);
+        if (!$purchase) {
+            $redirectUrl = url('payment', ['errors' => [trans('payment.cannotPurchase')]]);
+        }
+        Session::forget('productType');
+        Session::forget('productID');
+        Session::forget('giftID');
+        $redirectUrl = url('courses/' . $product->slug . '/purchased?purchaseId=' . $purchase->id);
+        if (strtolower(get_class($product)) == 'lesson') {
+            // if lesson was purchased, use the course slug
+            $redirectUrl = url('courses/' . $product->module->course->slug . '/purchased?purchaseId=' . $purchase->id);
+        }
+
+        return Redirect::to($redirectUrl);
     }
 }

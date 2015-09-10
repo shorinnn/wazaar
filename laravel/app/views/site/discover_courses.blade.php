@@ -3,26 +3,26 @@
      <?php 
      $course = courseApprovedVersion($course);
      echo Flatten::section('top-discover-course-'.$course->id, Config::get('custom.cache-expiry.course-box'), function () use ($course) { ?>
-        <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="col-xs-12 col-sm-6 col-md-4 course-box-wrap">
             <a href="{{ action('CoursesController@show', $course->slug) }}" class="small-box-link-wrapper">
                 <div class="object small-box small-box-one">
                     <!--<div class="level">Beginner</div>-->
                     <!--            <div class="new-tag">NEW</div>
                     -->
                     <div class="img-container">
-<!--                        <img 
+                        <img 
                             @if( $course->previewImage != null ) 
                                 src="{{ cloudfrontUrl( $course->previewImage->url ) }}"
                             @else
                                 src="{{ url('splash/logo.png') }}"
                             @endif
                            
-                            class="img-responsive" alt="" style="max-height: 182px"  />-->
-                        <img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">
+                            class="img-responsive" alt="" style="max-height: 182px"  />
+                        <!--<img class="img-responsive" alt="" src="https://wazaardev.s3.amazonaws.com/course_preview/54905d8c6ecae.jpg">-->
                         <span class="video-play-button"><em></em></span>
                         <span class="likes"><i class="wa-like"></i>{{ $course->reviewsScore() }}</span>         
                         <span class="box-overlay">
-                             <p>{{ $course->courseDifficulty->name }}</p>
+                             <p>{{ trans('general.'.$course->courseDifficulty->name) }}</p>
                              <?php });?>
                             
                             <div class="footer clearfix">

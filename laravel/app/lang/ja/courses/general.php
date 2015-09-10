@@ -42,6 +42,7 @@ return array(
     'who_is_this_for?' =>'こんな方におすすめ',
     'add_to_wishlist' =>'ウィッシュリストに追加',
     'remove_from_wishlist' =>'REMOVE FROM WISHLIST',
+    'login_to_use' => 'Log in to use',
     'reviews' => 'レビュー | レビュー',
 //    'module' => 'モジュール',
     'module' =>'セクション',
