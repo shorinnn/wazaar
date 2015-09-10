@@ -8545,9 +8545,6 @@ footer{
 	}
 }
 @media (max-width:1140px){
-	.logged-in-menu-holder{
-		float: left;
-	}
 	.lesson-topics li .lesson-name{
 		width: 60%;
 	}
@@ -8977,7 +8974,9 @@ header .top-menu .logged-out-header-search{
 	max-width: 360px;
 	margin: auto;
 }
-
+.homepage-header-wrapper{
+	margin-top: -90px;
+}
 }
 @media (max-width:752px){
 .navbar-nav{ 
@@ -9343,6 +9342,17 @@ header .top-menu li{
 	}
 
 }
+@media (max-width:451px){
+	.homepage-header-wrapper {
+		margin-top: -140px;
+	}
+}
+@media (max-width:420px){
+	.homepage-header-wrapper.logged-in{
+		margin-top: -160px;
+	}	
+}
+
 @media (max-width:402px){
 	.user-data-modal .orr span{
 		width: 40%;
@@ -9457,6 +9467,12 @@ header .top-menu li{
 	}	.new-dashboard .replies-box{
 		width: 73%;
 	}	
+	header{
+		padding: 0 15px !important;
+	}
+	header .main-logo {
+		margin: 10px 8px 30px 0;
+	}
 }
 @media (max-width:355px){
 	header .top-menu .logged-out-header-search form div input{
@@ -9486,6 +9502,10 @@ header .top-menu li{
 	.step2 .module-container .footer-buttons .default-button{
 		padding: 5px 10px;
 	}	
+	.homepage-header-wrapper.logged-in{
+		margin-top: -208px;
+	}	
+
 }
 @media (max-width:320px){
 	.column-3 .add-to-wishlist-container{

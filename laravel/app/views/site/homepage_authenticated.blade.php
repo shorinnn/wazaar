@@ -17,7 +17,7 @@
 
 
     </style>
-    <section class="homepage-header-wrapper">
+    <section class="homepage-header-wrapper logged-in">
         <span class="background-image-overlay"></span>
         <section class="container-fluid homepage-header">
             <div class="row">
