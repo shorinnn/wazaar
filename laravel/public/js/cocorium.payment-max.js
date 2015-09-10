@@ -4,6 +4,23 @@ var Payment = {
     'productType' : 'course',
     'productName' : '',
     'amount' : 0,
+    'processBeforeSubmit' : function($elem, $event){
+        var $paymentData = $('#form-payment').serialize();
+
+        Payment.productId = $($elem).attr('data-product-id');
+        Payment.productType = $($elem).attr('data-product-type');
+        Payment.productName = $($elem).attr('data-product-name');
+        Payment.amount = $($elem).attr('data-product-price');
+
+        $($elem).attr('disabled','disabled');
+
+        $.post("/payment/process-max-request",{productId: Payment.productId, productName: Payment.productName,amount: Payment.amount, productType: Payment.productType},function(){
+            $('#form-payment').submit();
+        });
+
+        //alert($paymentData);
+        //$('#form-payment').submit();
+    },
     'showForm' : function ($element, $event){
         $event.preventDefault();
         Payment.productId = $($element).attr('data-product-id');

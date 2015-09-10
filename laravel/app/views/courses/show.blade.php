@@ -8,7 +8,7 @@
     $date = new DateTime();
     $date->setTimezone(new DateTimeZone('Asia/Tokyo'));
     $now = strtotime( $date->format('Y-m-d H:i:s') ) ;
-    $show_on = strtotime( '2015-09-10 17:15:00' );
+    $show_on = strtotime( '2015-09-08 17:15:00' );
 ?>
  
 @section('content')
@@ -216,7 +216,18 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 enroll-button-section right">
                 <div class="enroll-button-wrap clearfix paid-content">
                 @if( $course->cost() > 0 && !Input::has('preview') )
-                
+                        <form id="form-payment" method="post" action="https://mc-credit.com.sg/service/credit/input.html">
+                            <input type="hidden" name="SiteId" value="{{Config::get('maxcollect.sid')}}" />
+                            <input type="hidden" name="SitePass" value="{{Config::get('maxcollect.spw')}}" />
+                            <input type="hidden" name="CustomerId" value="{{Str::random()}}" />
+                            <input type="hidden" name="URL" value="{{url('baby/comeback')}}"/>
+                            <input type="hidden" name="CustomerPass" value="password" />
+                            <input type="hidden" name="Amount" value="{{$course->cost()}}" />
+                            <input type="hidden" name="mail" value="{{Auth::user()->email}}" />
+                            <input type="hidden" name="itemId" value="{{$course->name}}:1unit:{{$course->cost()}}yen" />
+
+
+                        </form>
 
                         @if( $now > $show_on)
                             {{ Form::open(['action' => ["CoursesController@purchase", $course->slug], 'id' => 'purchase-form']) }}
@@ -255,12 +266,12 @@
                                     @if($now < $show_on)
                                         data-toggle='tooltip' data-placement='left' title='Opens on 10/9'
                                     @else
-                                        onclick="{{ Payment.showForm(this,event) }}"
+                                        onclick="Payment.processBeforeSubmit(this,event)"
                                     @endif
                                     data-product-type="course"
                                     data-product-id="{{$course->id}}"
-                                    data-item-name="{{$course->name}}"
-                                    data-price="{{$course->cost()}}">{{ trans("courses/general.course-enroll") }}</button>
+                                    data-product-name="{{$course->name}}"
+                                    data-product-price="{{$course->cost()}}">{{ trans("courses/general.course-enroll") }}</button>
                         @elseif(Auth::check() && $student->purchased($course) )
                             <a class="clearfix enroll-button blue-button extra-large-button btn-block"
                                href="{{ action('ClassroomController@dashboard', $course->slug)}}">
@@ -382,10 +393,7 @@
                                     
                                     
                                 </span>
-                                    {{-- TEMPORARY ONLY, REMOVE WHEN PAYMENT IS LIVE --}}
-                                    @if (Auth::user()->username == 'student')
-                                        <a href="#" class="btn" data-product-id="{{$course->id}}" data-product-price="{{$course->price}}" data-product-type="course" data-product-name="{{$course->name}}" onclick="Payment.showForm(this,event)">Buy</a>
-                                    @endif
+
                                 <?php
                                  
 //                          {{//Form::open(['action' => ['WishlistController@store'] ])}}

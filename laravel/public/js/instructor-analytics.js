@@ -63,6 +63,7 @@ var Analytics = {
     },
 
     'SalesCount' : function ($frequency, $courseId, $elem){
+
         Analytics.activateLoader();
         $.get('/analytics/sales/get-count/' + $frequency + '/' + $courseId, function ($html){
             $('.sales-count-dropdown a').removeClass('active');

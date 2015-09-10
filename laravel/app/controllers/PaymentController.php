@@ -162,7 +162,7 @@ class PaymentController extends BaseController
 
     //Max Connect payment methods
 
-    public function postProcessMaxConnect()
+    public function postProcessMaxRequest()
     {
 
     }
