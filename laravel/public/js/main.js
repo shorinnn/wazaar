@@ -1026,7 +1026,7 @@ function skinVideoControls(){
 
 	}
 	//remove default control when JS loaded
-	video[0].removeAttribute("controls");
+	// video[0].removeAttribute("controls");
 	$('.control').show();
 
 	//before everything get started
