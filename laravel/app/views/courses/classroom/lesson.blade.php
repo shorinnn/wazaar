@@ -82,7 +82,7 @@
 	}
 	
 	function resizeVideo(){
-		$("#myVideo").removeAttr('style');
+		/*$("#myVideo").removeAttr('style');
 		var screenHeight = $(window).height();
 		var screenWidth = $(window).width();
 		var videoControlHeight = $(".control-container").height();
@@ -93,7 +93,7 @@
 		var classroomHeaderHeight = $(".classroom-header").height(); 
 	
 	
-		$("#myVideo").innerHeight(screenHeight - videoControlHeight - 102);
+		$("#myVideo").innerHeight(screenHeight - videoControlHeight - 102);*/
 	 } 
 
 
