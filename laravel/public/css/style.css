@@ -4403,6 +4403,14 @@ h2, h3, h4, h5, h6{
 	cursor: pointer;
 	background: none;
 	border: none;
+	padding: 0 8px;
+}
+.gift-modal .uploaded-files:empty{
+	padding: 0;
+}
+.gift-modal li .delete-button {
+    position: relative;
+    top: 13px;
 }
 .gift-modal .characters-left{
 	color: #a7b7c4;
@@ -4418,7 +4426,7 @@ h2, h3, h4, h5, h6{
 	height: 44px;
 	color: #303941;
 	font-size: 13px;
-	padding: 0;
+	padding: 0 5px;
 	border-radius: 0;
 	border: solid #e0e1e2;
 	border-width: 0 0 1px;
@@ -4459,6 +4467,7 @@ h2, h3, h4, h5, h6{
 }
 .gift-modal .dropzone .select-file{
 	margin-bottom: 33px;
+    padding: 9px 18px;
 }
 .gift-modal .dropzone .select-file i{
 	margin-right: 7px;
@@ -9012,6 +9021,26 @@ header .top-menu .logged-out-header-search{
 .homepage-header-wrapper{
 	margin-top: -90px;
 }
+header .profile-name > li.open button, 
+header .profile-name > li button{
+	width: auto;
+	padding: 9px 5px 11px;
+}
+header .profile-name{
+	min-width: auto;
+}
+header .profile-name ul{
+	left: -117px;
+	min-width: 150px;
+}
+.category-heading-container .sort-options,
+.difficulty-levels{
+	margin-top: 0;
+}
+.category-heading-title{
+	margin-bottom: 15px;
+}
+
 }
 @media (max-width:752px){
 .navbar-nav{ 
@@ -9097,9 +9126,6 @@ header .top-menu li{
 	}
 	.main-content-container .main-content{
 		padding: 15px 20px 0;
-	}
-	header .top-profile-info{
-		float: none;
 	}
 	header .top-menu .logged-in-top-menu{
 		margin-right: 0;
@@ -9546,6 +9572,9 @@ header .top-menu li{
 		margin-top: -208px;
 	}	
 
+	.category-heading-container .sort-options select{
+		max-width: 77%;
+	}
 }
 @media (max-width:320px){
 	.column-3 .add-to-wishlist-container{
@@ -9718,6 +9747,7 @@ header .top-menu li{
     font-size: 12px;
     font-weight: normal !important;
     margin: 0px !important;
+	text-align: center;
 }
 .edit-course .progress, .progress{
     background-color:gray;

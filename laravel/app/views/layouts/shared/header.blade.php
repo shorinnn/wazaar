@@ -16,7 +16,7 @@
             @endif
             @if(Auth::check())
         <div class="clearfix left">
-            <div class="logged-out-header-search text-center">
+            <div class="logged-out-header-search text-center hidden-xs">
                 <?php if('dont-show' == 'dont-show'):?>
                 <div class="clearfix inline-block">
                     <div class="activate-dropdown left relative">
@@ -114,7 +114,7 @@
                     <li class="activate-dropdown">
                         <button aria-expanded="false" data-toggle="dropdown" 
                                 class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
-                            <span class="greeting">{{trans('site/menus.hi')}}, </span> {{ Auth::user()->fullName() }} <i class="wa-chevron-down"></i>
+                            <span class="greeting hidden-xs">{{trans('site/menus.hi')}}, </span> <span class="hidden-xs">{{ Auth::user()->fullName() }}</span> <i class="wa-chevron-down"></i>
                         </button>
                         <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
                             <?php /*-- <li>
@@ -193,18 +193,19 @@
                         </ul>
                     </li>
                 </ul>
+                
             </div>
             @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
             <ul class="logged-out" style="margin-right: 15px;">
                 <li>
-                    <a href="http://wazaar.jp/courses/category"> {{trans('general.browse-courses')}}</a> 
+                    <a href="http://wazaar.jp/courses/category"> <span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('general.browse')}}</span></a> 
                 </li>
             </ul>
             @endif
             @if(Auth::check() && Auth::user()->hasRole('Instructor'))
             <ul class="logged-out" style="margin-right: 15px;">
                 <li>
-                    <a href="http://wazaar.jp/courses/category"> {{trans('general.browse-courses')}}</a> 
+                    <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('general.browse')}}</span></a> 
                 </li>
             </ul>
             @endif
@@ -220,7 +221,7 @@
             @endif
             <ul class="logged-out visible-xs-block hidden-sm hidden-md hidden-lg">
                 <li>
-                    <a href="http://wazaar.jp/courses/category"> {{trans('general.browse-courses')}}</a> 
+                    <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('general.browse')}}</span></a> 
                 </li>
                 <li>
                     <a href="{{ action('UsersController@login') }}"> {{trans('general.login')}}</a> 
@@ -231,7 +232,7 @@
                     <!--<a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
                 </li>
             </ul>
-            <div class="logged-out-header-search text-center">
+            <div class="logged-out-header-search text-center hidden-xs">
                  <?php if('dont-show' == 'dont-show'):?>
             	<div class="clearfix inline-block">
                     <div class="activate-dropdown left relative">
@@ -280,7 +281,7 @@
             </div>
             <ul class="logged-out hidden-xs">
                 <li>
-                    <a href="http://wazaar.jp/courses/category"> {{trans('general.browse-courses')}}</a> 
+                    <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('general.browse')}}</span></a> 
                 </li>
                 <li>
                     <!--<a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a>-->

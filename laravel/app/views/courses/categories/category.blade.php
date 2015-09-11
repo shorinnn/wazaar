@@ -5,8 +5,6 @@
             <div class="container-fluid cat-row-{{$category->color_scheme}}">
             	<div class="row category-heading">
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <p class="category-heading-title">
-                    </p>
                         @if($category->name!='')
                             <p class="category-heading-title"> <a href="#">{{ $category->name }}</a> 
                                 @if(isset($subcategory))
