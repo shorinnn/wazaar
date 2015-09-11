@@ -36,7 +36,7 @@ return array(
     'password' =>'パスワード',
     'password_confirmation' =>'パスワードの確認',
     'preview-unavailable' =>'プレビューはできません',
-    'login' => 'ログイン',
+    'login' => '販売者＆購入者ログイン', #ログイン
     'register' => '登録',
     'load-more' => 'もっと見る',
     'about' => '月AboutせPlease provide more context',
