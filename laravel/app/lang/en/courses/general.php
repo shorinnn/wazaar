@@ -211,4 +211,6 @@ return array(
     'enroll-success-message-free' => "Successful enroll",
     'enroll-success-message-paid' => "Successful enroll",
     'payment-error' => 'Payment Error',
+    'resume' => 'Resume',
+    'back-to-where-you-left' => 'Go Back Where You Left It'
 );

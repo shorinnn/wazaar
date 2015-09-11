@@ -13,7 +13,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 lesson-description">
                     <div class="row">
                     	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        	<h2>Go back where you left it</h2>
+                        	<h2>{{ trans('courses/general.back-to-where-you-left') }}</h2>
                         </div>
                     </div>
                     @if( $lastLesson != null )
@@ -52,7 +52,7 @@
                                             [ $lastLesson->lesson->module->course->slug,
                                             $lastLesson->lesson->module->slug,
                                             $lastLesson->lesson->slug])
-                                           }}" class="blue-button large-button"><i class="wa-play"></i>Resume</a>
+                                           }}" class="blue-button large-button"><i class="wa-play"></i>{{ trans('courses/general.resume') }}</a>
                                     </div>
                                 </div>
 
