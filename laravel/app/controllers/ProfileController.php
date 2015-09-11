@@ -9,10 +9,10 @@ class ProfileController extends Controller
     protected $userHelper;
 
     public function __construct(UserRepository $users, UserHelper $userHelper, UploadHelper $uploadHelper){
+        $this->beforeFilter( 'verifiedLogin' );
         $this->users = $users;
         $this->userHelper = $userHelper;
         $this->uploadHelper = $uploadHelper;
-        $this->beforeFilter( 'auth' );
     }
 
     public function index($type = '')

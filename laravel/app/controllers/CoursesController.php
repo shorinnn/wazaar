@@ -650,6 +650,12 @@ class CoursesController extends \BaseController {
                 return Redirect::to('register')->withError( trans('courses/general.login_to_purchase') );
             }
         }
+        
+        public function confirmToPurchase($slug){
+            Session::set('url.intended', action('CoursesController@show', $slug));
+            return Redirect::action( 'UsersController@confirmPassword' );
+        }
+        
         public function purchase($slug){
             if(Auth::guest()){
                 Session::set('url.intended', action('CoursesController@show', $slug));

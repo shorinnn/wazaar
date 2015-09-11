@@ -101,7 +101,7 @@ class AffiliateController extends \BaseController {
             Cookie::queue('iai', null, -1);
             Cookie::queue('stai', null, -1);
             Cookie::queue('stpi', null, -1);
-            Auth::login($user);
+            Auth::login($user, true);
             if(Request::ajax()) return json_encode( [ 'status' => 'success', 'url' => $user->url ] );
             return Redirect::intended( $user->url );
         } else {

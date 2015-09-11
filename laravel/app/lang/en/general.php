@@ -160,4 +160,7 @@ return array(
     ],
     'continue-browsing' => 'CONTINUE BROWSING',
     'new' => 'New',
+    'confirm-password-to-continue' => 'Confirm password to continue',
+    'incorrect-password' => 'Incorrect password',
+    'confirm' => 'Confirm'
 );

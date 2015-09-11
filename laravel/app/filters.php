@@ -76,7 +76,11 @@ App::before(function($request)
 
 App::after(function($request, $response)
 {
-	//
+  if ( Auth::check()){
+      $ckname=Auth::getRecallerName(); //Get the name of the cookie, where remember me expiration time is stored
+      $ckval=Cookie::get($ckname); //Get the value of the cookie
+      return $response->withCookie(Cookie::make($ckname,$ckval, 60 * 24 * 30 )); //change the expiration time
+  }
 });
 
 /*
@@ -174,5 +178,12 @@ Route::filter('nonInstructor', function(){
 Route::filter('forceHttps', function($req){
     if (! Request::secure()) {
         return Redirect::secure(Request::getRequestUri());
+    }
+});
+
+Route::filter('verifiedLogin', function(){
+    if( !Session::has( 'verifiedLogin' ) ){
+        Session::set( 'url.intended', Request::url() );
+        return Redirect::action( 'UsersController@confirmPassword' );
     }
 });

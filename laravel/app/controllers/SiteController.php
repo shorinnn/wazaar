@@ -235,9 +235,9 @@ class SiteController extends \BaseController {
     }
 
     public function loginTest(){
-        $user = User::find(60);
-        $user = User::find(74);
-        Auth::login($user);
+//        $user = User::find(60);
+//        $user = User::find(74);
+//        Authzzz::login($user);
     }
     
     public function clearCache(){

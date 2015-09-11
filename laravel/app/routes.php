@@ -76,6 +76,9 @@ $wwwRoutes = function(){
 
             Route::get('login', ['https', 'uses'=>'UsersController@login' ] );
             Route::post('login', ['https', 'uses'=>'UsersController@doLogin' ] );
+            
+            Route::get('confirm-password', ['https', 'uses'=>'UsersController@confirmPassword' ] );
+            Route::post('confirm-password', ['https', 'uses'=>'UsersController@doConfirmPassword' ] );
         });
     }
     else{
@@ -86,6 +89,9 @@ $wwwRoutes = function(){
 
         Route::get('login', 'UsersController@login' );
         Route::post('login', 'UsersController@doLogin' );
+        
+        Route::get('confirm-password', 'UsersController@confirmPassword' );
+        Route::post('confirm-password', 'UsersController@doConfirmPassword' );
     }
     Route::get('fb-login/{userId?}', 'UsersController@fbLogin');
     Route::get('login-with-facebook', 'UsersController@loginWithFacebook');
@@ -247,6 +253,7 @@ $wwwRoutes = function(){
     Route::post('courses/{slug}/crash/', 'CoursesController@crashCourse');
     Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
     Route::get('courses/{slug}/login-to-purchase', 'CoursesController@loginToPurchase');
+    Route::get('courses/{slug}/confirm-to-purchase', 'CoursesController@confirmToPurchase');
     Route::get('courses/{slug}/purchased', 'CoursesController@purchased');
 
     Route::get('courses/{slug}', 'CoursesController@show');

@@ -103,10 +103,11 @@ class UsersController extends Controller
             Cookie::queue('st', null, -1);
             Cookie::queue('iai', null, -1);
             Cookie::queue('stpi', null, -1);
-            Auth::login($user);
+            Auth::login($user, true);
             unset($user->url);
             $user->setCustom('intended-redirect', Session::get('url.intended') );
             $user->updateUniques();
+            Session::set('verifiedLogin', 1);
             
             return Redirect::action('UsersController@registrationConfirmation' );
             if(Request::ajax()) return json_encode( [ 'status' => 'success', 'url' => $user->url ] );
@@ -143,6 +144,7 @@ class UsersController extends Controller
         $input = Input::all();
 
         if ($this->users->login($input)) {
+            Session::set('verifiedLogin', 1);
             if(Request::ajax()){
                 return json_encode( ['status' => 'success'] );
             }
@@ -212,14 +214,14 @@ class UsersController extends Controller
                         Cookie::queue('register_affiliate', null, -1);
                         $this->users->saveSocialPicture($user, "G$result[id]", "$result[picture]?sz=150");
                         //user created
-                        Auth::login($user);
+                        Auth::login($user, true);
                         return Redirect::intended('/');
                     }
                 }
             }
             else{
                 // login
-                Auth::login($user);
+                Auth::login($user, true);
                 return Redirect::intended('/');
             }
 
@@ -244,9 +246,10 @@ class UsersController extends Controller
 
         //dd($id);
         $user = User::find($id);
-//        Auth::login($user);
-        Auth::loginUsingId( $id );
+//        Auth::loginzzz($user);
+        Auth::loginUsingId( $id , true);
         Session::forget('f');
+        Session::set('verifiedLogin', 1);
         //if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
         if( $user->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
         else return Redirect::intended('/');
@@ -337,11 +340,12 @@ class UsersController extends Controller
                         //user created
                         Session::put('f', $user->id);
                         Cookie::make('f',$user->id,5);
+                        Session::set('verifiedLogin', 1);
                         return Redirect::action('UsersController@fbLogin',[Crypt::encrypt($user->id)]);
 //                        return Redirect::action('UsersController@fbLogin');
                         
 //                        $user = User::find( $user->id );
-//                        Auth::login($user);
+//                        Auth::loginzzz($user);
 //                        if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
 //                        else return Redirect::intended('/');
                     }
@@ -355,7 +359,7 @@ class UsersController extends Controller
                 return Redirect::action('UsersController@fbLogin',[Crypt::encrypt($user->id)]);
                 
 //                $user = User::find( $user->id );
-//                Auth::login($user);
+//                Auth::loginzzz($user);
 //                if($user->is_second_tier_instructor=='yes') return Redirect::action('UsersController@links');
 //                else return Redirect::intended('/');
             }
@@ -593,5 +597,27 @@ class UsersController extends Controller
         else $ref = Cache::get( 'sti-for-'.Auth::user()->id );
         
         return View::make('links')->with( compact('ref') );
+    }
+    
+    
+    public function confirmPassword(){
+        if( Auth::user()->facebook_login_id > 0 ){
+            Session::set('verifiedLogin', 1);
+            $url = Session::get('url.intended');
+            Session::forget('url.intended');
+            return Redirect::to($url);
+        }
+        return View::make('confide.confirm_password');
+    }
+    
+    public function doConfirmPassword(){
+        if( Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password') ] ) ){
+            Session::set('verifiedLogin', 1);
+            $url = Session::get('url.intended');
+            Session::forget('url.intended');
+            return Redirect::to($url);
+        }
+        Session::flash('error', trans('general.incorrect-password' ) );
+        return View::make('confide.confirm_password');
     }
 }

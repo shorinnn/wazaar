@@ -285,7 +285,11 @@
                                         data-toggle='tooltip' data-placement='left' title='Opens on 10/9'
                                     @else
                                         @if(Auth::check())
-                                            onclick="Payment.processBeforeSubmit(this,event)"
+                                            @if(Session::has('verifiedLogin') )
+                                                onclick="Payment.processBeforeSubmit(this,event)"
+                                            @else
+                                                onclick="window.location='{{action('CoursesController@confirmToPurchase', $course->slug)}}'"
+                                            @endif
                                         @else
                                             onclick="window.location='{{action('CoursesController@loginToPurchase', $course->slug)}}'"
                                         @endif
