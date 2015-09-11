@@ -52,6 +52,7 @@
                 <table class="table table-bordered table-striped">
                     <tbody>
                         @foreach($submissions as $course)
+                        
                         <tr id='row-{{$course->id}}'>
                             <td class="hidden-xs">
                                  {{ $course->name}}

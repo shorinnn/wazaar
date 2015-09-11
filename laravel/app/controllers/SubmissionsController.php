@@ -18,7 +18,6 @@ class SubmissionsController extends \BaseController {
 //            $page = Input::get('page');
            
             $submissions = Course::with('instructor')->where('publish_status','pending')->paginate( $pagination );
-            
             if( Request::ajax() ){
                 return View::make('administration.submissions.partials.table')->with( compact('submissions') );
             }
