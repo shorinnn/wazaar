@@ -306,15 +306,16 @@
                                 {{ trans("courses/general.enter-classroom") }}
                             </a>
                         @else
-                            <button type='button' class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block"
-                                    data-toggle="tooltip" data-placement="left" 
+                            <button type='button' 
+                                    data-toggle="tooltip" data-placement="top" 
                                     @if( Auth::check() && Auth::user()->hasRole('Affiliate') )
                                         title="Log in to your student/instructor account to purchase."
+                                        class="clearfix default-button extra-large-button tooltipable btn-block"
                                     @else
                                         title="Available for customers"
                                     @endif
                                         >
-                                {{ trans("courses/general.course-enroll") }}
+                                <span>{{ trans("courses/general.you-will-earn") }} {{ $course->affiliate_percentage }}%</span><h2>¥ 4,400</h2>
                             </button>
                         @endif
  

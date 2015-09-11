@@ -176,10 +176,15 @@
                                     </span>
                                 @endif
                             </li>
+                            @if(Auth::check() && Auth::user()->hasRole('Instructor'))
+                                <li>
+                                    <a href="http://instructors.wazaar.jp/analytics">{{trans('site/menus.analytics')}}</a>
+                                </li>
+                            @endif
                             <li>
                                 <a class="settings-button" href="{{ action('ProfileController@index')}}">{{trans('site/menus.profile')}}</a>
                             </li>
-<!--                            <li>
+<!--                        <li>
                                 <a class="settings-button" href="{{ action('ProfileController@settings')}}">{{trans('site/menus.settings')}}</a>
                             </li>-->
                             <li>
