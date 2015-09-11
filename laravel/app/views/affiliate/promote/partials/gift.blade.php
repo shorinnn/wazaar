@@ -53,7 +53,7 @@
             
         <!--<ul class='files file-{{$gift->id}} file-upload-{{$gift->id}} uploaded-files'>
                 @foreach($gift->files as $file)
-                    {{ View::make('affiliate/promote.partials.file')->with( compact('file') ) }}
+                    {{-- View::make('affiliate/promote.partials.file')->with( compact('file') ) --}}
                 @endforeach
         </ul>-->
                 <ul class='files file-{{$gift->id}} file-upload-{{$gift->id}} uploaded-files'>@foreach($gift->files as $file)
