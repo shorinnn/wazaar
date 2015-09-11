@@ -197,7 +197,7 @@
                 <div class="row video-row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         @if( $video != null)
-                            <video id='myVideo' controls preload="auto" style="width: 100%">
+                            <video id='myVideoxx' controls preload="auto" style="width: 100%; height: 100%">
                                 @if( Agent::isMobile() &&  $video->formats()->where('resolution', 'Low Resolution')
                                             ->first() != null)
                                     <source src="{{ $video->formats()->where('resolution', 'Low Resolution')
@@ -207,6 +207,7 @@
                                     <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                                             ->first()->video_url }}" type="video/mp4">
                                 @else
+                                    <source src="{{ $video->formats()->first()->video_url }}" type="video/mp4">
                                 @endif
                                 <p>Your browser does not support the video tag.</p>
                             </video>
@@ -360,7 +361,8 @@
 <script>
 
     if(typeof($)=='function'){
-        makeYTfluid();
+        //decryptVideoSrc();
+//        makeYTfluid();
         skinVideoControls();
         showMoreContent();
         if( $('myVideo').length > 0 ){

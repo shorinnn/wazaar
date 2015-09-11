@@ -24,6 +24,12 @@ $(document).ready(function(){
 //          window.location = location.href;
 //      });
 
+/*** DISABLE VIDEO RIGHT CLICK ****/
+$('body').delegate('video', 'contextmenu',function(event) {
+    return false;
+});
+/*** /DISABLE VIDEO RIGHT CLICK ****/
+
 	$("#affiliate-toolbar-tracking").on("focus", function(){
 	  $(".fa.fa-plus").hide();
 	});
@@ -1461,10 +1467,41 @@ function toggleSideMenu(){
 	});	
 }
 
-function toggleRightBar(e, json){
-    
+function whichTransitionEvent(class_name){
+    var t;
+    var el = document.getElementsByClassName(class_name);
+    var transitions = {
+      'transition':'transitionend',
+      'OTransition':'oTransitionEnd',
+      'MozTransition':'transitionend',
+      'WebkitTransition':'webkitTransitionEnd'
+    }
 
-    $('.ask-question').removeClass('active');
+    for(t in transitions){
+        if( el[0].style[t] !== undefined ){
+            return transitions[t];
+            break;
+        }
+    }
+}
+
+function toggleRightBar(e, json){
+    if(!showingQuestionForm){
+        var transitionEvent = whichTransitionEvent('course-question-sidebar');
+        var i = 0;
+        document.addEventListener(transitionEvent, function() {
+            if(i == 0){
+                $('.ask-question').removeClass('active');
+            }            
+            i++;
+        });
+        if(i != 0) {
+            i = 0;
+        }
+    } else {
+        $('.ask-question').removeClass('active');
+    }
+    
     $('.questions-box').removeClass('active');
     
     if( showingQuestionForm ){
@@ -1787,4 +1824,14 @@ function ajaxifyPagination(e){
         $(this).attr( 'data-callback-2', 'scrollToElement' );
         $(this).attr( 'data-target', '.ajax-content' );
     });
+}
+
+
+function decryptVideoSrc(){
+    if( $('source').length > 0){
+        src = $('source').attr('src');
+        src = GibberishAES.dec(src, 'wzrencvid');
+        $('source').attr('src', src);
+        $('video')[0].load();
+    }
 }

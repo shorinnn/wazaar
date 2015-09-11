@@ -101,7 +101,7 @@
 
             <div class="row">
                 <div class="top-affiliates-table table-wrapper">
-                    @include('administration.dashboard.partials.user.topAffiliates')
+                    {{-- @include('administration.dashboard.partials.user.topAffiliates') --}}
                 </div>
             </div>
 
