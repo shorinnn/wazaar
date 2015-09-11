@@ -1467,10 +1467,36 @@ function toggleSideMenu(){
 	});	
 }
 
+function whichTransitionEvent(class_name){
+    var t;
+    var el = document.getElementsByClassName(class_name);
+    console.log(el);
+    var transitions = {
+      'transition':'transitionend',
+      'OTransition':'oTransitionEnd',
+      'MozTransition':'transitionend',
+      'WebkitTransition':'webkitTransitionEnd'
+    }
+
+    for(t in transitions){
+        if( el[0].style[t] !== undefined ){
+            return transitions[t];
+        }
+    }
+}
+
 function toggleRightBar(e, json){
     
 
-    $('.ask-question').removeClass('active');
+    if($('.course-question-sidebar.in').length >= 1){
+        var transitionEvent = whichTransitionEvent('course-question-sidebar');
+        transitionEvent && window.addEventListener(transitionEvent, function() {
+            $('.ask-question').removeClass('active');
+        });
+    } else {
+        $('.ask-question').removeClass('active');
+    }
+    
     $('.questions-box').removeClass('active');
     
     if( showingQuestionForm ){
