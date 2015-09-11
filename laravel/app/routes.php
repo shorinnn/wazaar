@@ -22,6 +22,7 @@ if( !isset($_SERVER['HTTP_HOST'])){
 //Route::get('mandrill-test', 'SiteController@mandrillTest');
 Route::resource('lp', 'LpController');
 Route::get('loginTest', 'SiteController@loginTest');
+Route::get('show-me-the-env-boyeee', 'SiteController@env');
 Route::get('missing_sti_fix', 'SiteController@missing_sti_fix');
 Route::get('clear-cache/huehue', 'SiteController@clearCache');
 

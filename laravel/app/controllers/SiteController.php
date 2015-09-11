@@ -398,5 +398,9 @@ class SiteController extends \BaseController {
         }
     }
     
+    public function env(){
+        dd( App::environment() );
+    }
+    
 
 }
