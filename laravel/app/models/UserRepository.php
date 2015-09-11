@@ -290,6 +290,7 @@ class UserRepository
         else{
             // see if password failed, but visitor used social confirmation code
             if($user->social_confirmation == $input['password']){
+                unset($user->url);
                 Auth::login($user, true);
                 $user->confirmed = 1;
                 $user->facebook_login_id = $facebook_id;
@@ -365,6 +366,7 @@ class UserRepository
         else{
             // see if password failed, but visitor used social confirmation code
             if($user->social_confirmation == $input['password']){
+                unset($user->url);
                 Auth::login($user, true);
                 $user->confirmed = 1;
                 $user->google_plus_login_id = $google_id;
@@ -546,6 +548,7 @@ class UserRepository
             if( ! $user->updateUniques() ){
                 dd( $user->errors()->all() );
             }
+            unset($user->url);
             Auth::login($user, true);
             
             //email affiliates

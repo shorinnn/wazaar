@@ -103,8 +103,8 @@ class UsersController extends Controller
             Cookie::queue('st', null, -1);
             Cookie::queue('iai', null, -1);
             Cookie::queue('stpi', null, -1);
-            Auth::login($user, true);
             unset($user->url);
+            Auth::login($user, true);
             $user->setCustom('intended-redirect', Session::get('url.intended') );
             $user->updateUniques();
             Session::set('verifiedLogin', 1);
@@ -214,6 +214,7 @@ class UsersController extends Controller
                         Cookie::queue('register_affiliate', null, -1);
                         $this->users->saveSocialPicture($user, "G$result[id]", "$result[picture]?sz=150");
                         //user created
+                        unset($user->url);
                         Auth::login($user, true);
                         return Redirect::intended('/');
                     }
@@ -221,6 +222,7 @@ class UsersController extends Controller
             }
             else{
                 // login
+                unset($user->url);
                 Auth::login($user, true);
                 return Redirect::intended('/');
             }
