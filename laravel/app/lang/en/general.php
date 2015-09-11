@@ -118,7 +118,6 @@ return array(
     'cant-set-price-for-free-course' => 'Cannot set price for a free course',
     'browse-courses' => 'Browse Courses',
     'promote-courses' => 'Browse Courses',
-    'browse' => 'Browse',
     'click-go-to-begin' => 'Click GO to begin',
     'verify-go-button' => 'GO!',
     'opening-lesson' => 'Opening Lesson',

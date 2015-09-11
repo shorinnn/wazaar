@@ -198,14 +198,14 @@
             @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
             <ul class="logged-out" style="margin-right: 15px;">
                 <li>
-                    <a href="http://wazaar.jp/courses/category"> <span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('general.browse')}}</span></a> 
+                    <a href="http://wazaar.jp/courses/category"> <span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a> 
                 </li>
             </ul>
             @endif
             @if(Auth::check() && Auth::user()->hasRole('Instructor'))
             <ul class="logged-out" style="margin-right: 15px;">
                 <li>
-                    <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('general.browse')}}</span></a> 
+                    <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a> 
                 </li>
             </ul>
             @endif
@@ -221,7 +221,7 @@
             @endif
             <ul class="logged-out visible-xs-block hidden-sm hidden-md hidden-lg">
                 <li>
-                    <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('general.browse')}}</span></a> 
+                    <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a> 
                 </li>
                 <li>
                     <a href="{{ action('UsersController@login') }}"> {{trans('general.login')}}</a> 
@@ -281,7 +281,7 @@
             </div>
             <ul class="logged-out hidden-xs">
                 <li>
-                    <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('general.browse')}}</span></a> 
+                    <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a> 
                 </li>
                 <li>
                     <!--<a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a>-->
