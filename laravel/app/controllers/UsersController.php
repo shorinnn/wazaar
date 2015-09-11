@@ -521,29 +521,35 @@ class UsersController extends Controller
     }
     
             
-    public function registrationConfirmation($resend=false){
+    public function registrationConfirmation(){
         if( Auth::guest() ){
             $dot = getenv('AWS_MACHINE_IDENTIFIER') == 'Wazaar.' ? 1 : 0;
             return Redirect::to("login?dot=$dot");
         }
-        if($resend==1){
-            $u = User::find(Auth::user()->id);
-            $user = [
-                'email' => $u->email,
-                'confirmation_code' => $u->confirmation_code
-            ];
-            $subject = 'アカウント確認のご連絡';
-            Mail::send(
-                        'confide.emails.confirm',
-                        compact('user' , 'lastName' ),
-                        function ($message) use ($user, $subject) {
-                            $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
-                            $message
-                                ->to($user['email'], $user['email'])
-                                ->subject( $subject );
-                        }
-                    );
+        return View::make('confide.signup_success');
+    }
+    
+    public function registrationConfirmationResend(){
+        if( Auth::guest() ){
+            $dot = getenv('AWS_MACHINE_IDENTIFIER') == 'Wazaar.' ? 1 : 0;
+            return Redirect::to("login?dot=$dot");
         }
+        $u = User::find(Auth::user()->id);
+        $user = [
+            'email' => $u->email,
+            'confirmation_code' => $u->confirmation_code
+        ];
+        $subject = 'アカウント確認のご連絡';
+        Mail::send(
+                    'confide.emails.confirm',
+                    compact('user' , 'lastName' ),
+                    function ($message) use ($user, $subject) {
+                        $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
+                        $message
+                            ->to($user['email'], $user['email'])
+                            ->subject( $subject );
+                    }
+                );
         return View::make('confide.signup_success');
     }
 
