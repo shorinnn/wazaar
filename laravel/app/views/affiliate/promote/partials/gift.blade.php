@@ -50,7 +50,13 @@
             </form>
         </div>
         <div class='files-wrapper @if($gift->files->count() > 0) col-lg-9 @endif'>
-                            <ul class='files file-{{$gift->id}} file-upload-{{$gift->id}} uploaded-files'>@foreach($gift->files as $file)
+            
+        <!--<ul class='files file-{{$gift->id}} file-upload-{{$gift->id}} uploaded-files'>
+                @foreach($gift->files as $file)
+                    {{-- View::make('affiliate/promote.partials.file')->with( compact('file') ) --}}
+                @endforeach
+        </ul>-->
+                <ul class='files file-{{$gift->id}} file-upload-{{$gift->id}} uploaded-files'>@foreach($gift->files as $file)
                     {{ View::make('affiliate/promote.partials.file')->with( compact('file') ) }}
                 @endforeach</ul>
         <p class="label-progress-bar label-progress-bar-{{$gift->id}}"></p>

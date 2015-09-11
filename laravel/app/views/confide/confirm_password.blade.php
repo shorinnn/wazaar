@@ -24,7 +24,7 @@
                         <form  role="form" method="POST" action="{{{ action('UsersController@doConfirmPassword') }}}" accept-charset="UTF-8">
                         <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
                             <fieldset>
-                                <div class="form-group email-field">
+                                <div class="form-group email-field hidden">
                                     <input class="form-control" tabindex="1" placeholder="{{ trans('site/register.email-placeholder') }}" 
                                         data-placement="right"
                                         type="text" name="email" id="email" value="{{ Auth::user()->email }}">
@@ -40,7 +40,7 @@
                                 @endif
                                 <div class="form-group no-margin">
                                     <button tabindex="3" type="submit" class="blue-button large-button">
-                                        {{ trans('general.confirm') }}
+                                        {{ trans('general.confirm-password') }}
                                     </button>
                                 </div>
                             </fieldset>

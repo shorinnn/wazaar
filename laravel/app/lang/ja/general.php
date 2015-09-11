@@ -133,5 +133,5 @@ return array(
     'new' => '新作',
     'confirm-password-to-continue' => 'Confirm password to continue',
     'incorrect-password' => 'Incorrect password',
-    'confirm' => 'Confirm'
+    'confirm-password' => 'Confirm Password'
 );
