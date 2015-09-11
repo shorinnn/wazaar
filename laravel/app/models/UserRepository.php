@@ -571,10 +571,12 @@ class UserRepository
             $deliveredUser = $deliveredUser['data'];
             if( count($deliveredUser) > 0){
                 $dUser = $deliveredUser[0];
-                foreach( $dUser['tags'] as $tag ){
-                    if( $tag['tagName'] == 'email-confirmed' ){
-                        $res = $delivered->updateTag( $tag['id'], $dUser['id'], 'email-confirmed', 'integer', 1);
-                        $added = true;
+                if( isset($dUser['tags']) && count($dUser['tags']) > 0){
+                    foreach( $dUser['tags'] as $tag ){
+                        if( $tag['tagName'] == 'email-confirmed' ){
+                            $res = $delivered->updateTag( $tag['id'], $dUser['id'], 'email-confirmed', 'integer', 1);
+                            $added = true;
+                        }
                     }
                 }
                 if( !$added ){
