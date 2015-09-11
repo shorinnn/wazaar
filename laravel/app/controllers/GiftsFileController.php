@@ -3,7 +3,7 @@
 class GiftsFileController extends \BaseController {
         public function __construct(){
             $this->beforeFilter( 'affiliate' );
-            $this->beforeFilter('csrf', ['only' => [ 'update', 'destroy' ]]);
+            $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroy' ]]);
         }
 
         public function store(){
