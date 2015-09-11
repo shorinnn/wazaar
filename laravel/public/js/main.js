@@ -1470,7 +1470,6 @@ function toggleSideMenu(){
 function whichTransitionEvent(class_name){
     var t;
     var el = document.getElementsByClassName(class_name);
-    console.log(el);
     var transitions = {
       'transition':'transitionend',
       'OTransition':'oTransitionEnd',
@@ -1481,18 +1480,24 @@ function whichTransitionEvent(class_name){
     for(t in transitions){
         if( el[0].style[t] !== undefined ){
             return transitions[t];
+            break;
         }
     }
 }
 
 function toggleRightBar(e, json){
-    
-
-    if($('.course-question-sidebar.in').length >= 1){
+    if(!showingQuestionForm){
         var transitionEvent = whichTransitionEvent('course-question-sidebar');
-        transitionEvent && window.addEventListener(transitionEvent, function() {
-            $('.ask-question').removeClass('active');
+        var i = 0;
+        document.addEventListener(transitionEvent, function() {
+            if(i == 0){
+                $('.ask-question').removeClass('active');
+            }            
+            i++;
         });
+        if(i != 0) {
+            i = 0;
+        }
     } else {
         $('.ask-question').removeClass('active');
     }
