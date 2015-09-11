@@ -35,6 +35,9 @@
                 <table class="table table-bordered table-striped">
                     <tbody>
                         @foreach($submissions as $course)
+                        <?php
+                        try{
+                        ?>
                         <tr id='row-{{$course->id}}'>
                             <td class="hidden-xs">
                                  {{ $course->name}}
@@ -44,9 +47,13 @@
                                     <?php
                                        $old = @json_decode($course->pre_submit_data);
                                     ?>
-                                    {{ trans('courses/general.price') }}: {{$old->price}}¥ | 
-                                    {{ trans('courses/general.affiliate_percentage') }}: {{$old->affiliate_percentage}}% |
-                                    {{ trans('courses/general.discount') }}: {{$old->sale}}¥
+                                    @if($old != null)
+                                        {{ trans('courses/general.price') }}: {{$old->price}}¥ | 
+                                        {{ trans('courses/general.affiliate_percentage') }}: {{$old->affiliate_percentage}}% |
+                                        {{ trans('courses/general.discount') }}: {{$old->sale}}¥
+                                    @else
+                                        Old Data Not Available
+                                    @endif
                                  @endif
                             </td>
                             <td class="hidden-xs">
@@ -97,6 +104,12 @@
                                 {{ Form::close() }}
                             </td>
                         </tr>
+                        <?php
+                        }
+                        catch(Exception $e){
+                            dd($old);
+                        }
+                        ?>
                         @endforeach
                     </tbody>
                 </table>
