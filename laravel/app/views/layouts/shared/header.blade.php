@@ -114,7 +114,7 @@
                     <li class="activate-dropdown">
                         <button aria-expanded="false" data-toggle="dropdown" 
                                 class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">
-                            <span class="greeting hidden-xs">{{trans('site/menus.hi')}}, </span> {{ Auth::user()->fullName() }} <i class="wa-chevron-down"></i>
+                            <span class="greeting">{{trans('site/menus.hi')}}, </span> {{ Auth::user()->fullName() }} <i class="wa-chevron-down"></i>
                         </button>
                         <ul id="top-profile-dropdown" aria-labelledby="btnGroupDrop1" role="menu" class="dropdown-menu">
                             <?php /*-- <li>
@@ -193,7 +193,7 @@
                         </ul>
                     </li>
                 </ul>
-                <i class="wa-chevron-down visible-xs-inline-block"></i>
+                
             </div>
             @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
             <ul class="logged-out" style="margin-right: 15px;">

@@ -4403,6 +4403,9 @@ h2, h3, h4, h5, h6{
 	cursor: pointer;
 	background: none;
 	border: none;
+	padding: 6px 8px;
+	position: relative;
+	top: 7px;
 }
 .gift-modal .characters-left{
 	color: #a7b7c4;
@@ -4459,6 +4462,7 @@ h2, h3, h4, h5, h6{
 }
 .gift-modal .dropzone .select-file{
 	margin-bottom: 33px;
+    padding: 9px 18px;
 }
 .gift-modal .dropzone .select-file i{
 	margin-right: 7px;
