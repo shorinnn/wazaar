@@ -1402,13 +1402,29 @@ header .profile-name li:hover ul{
 	float: left;
 	margin-top: 16px;
 }
-.small-box .students-attending{ 
+.small-box .students-attending i{ 
   	color:#a7b7c4;
+}
+.small-box .students-attending{ 
+  	color:#798794;
   	font-size:13px;
   	display:inline-block;
   	background-image:url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/person-icon-button.png);
 	background-repeat:no-repeat;
   	background-position:14px center;
+}
+.small-box .new-for-student{
+    background: #0099ff none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 10px;
+    position: relative;
+    top: -2px;
 }
 .learn-more a{ 
   	background-color:rgba(0,0,0,0.9);
@@ -5699,6 +5715,8 @@ h2, h3, h4, h5, h6{
 /************* New Analytics Page*************/
 .analytics-page {
     background-color: #e8eced;
+    margin: 40px auto;
+    padding: 24px;
 }
 .analytics-page .table-wrapper{
 	border-radius: 4px;
