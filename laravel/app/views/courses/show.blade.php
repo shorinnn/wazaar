@@ -290,7 +290,7 @@
                                             onclick="window.location='{{action('CoursesController@loginToPurchase', $course->slug)}}'"
                                         @endif
                                     @endif
-                                    data-gift-id="{{Input::get('gid')}}" 
+                                    data-gift-id="{{ $gid }}" 
                                     data-product-type="course"
                                     data-product-id="{{$course->id}}"
                                     data-product-name="{{$course->name}}"
@@ -319,8 +319,8 @@
                             </button>
                         @endif
  
-                        <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
-                        <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
+                        <input type='hidden' name='gid' value='{{ $gid }}' />
+                        <input type='hidden' name='aid' value='{{ Input::get('aid') }}' />
                         {{Form::close()}}
                         
                 @elseif( $course->cost() == 0 && !Input::has('preview') )
@@ -330,8 +330,8 @@
                     @else
                         {{ Form::open( [ 'id' => 'purchase-form', 'method'=>'GET', 'readonly'=>'readonly', 'disabled'=>'disabled' ] ) }}
                     @endif
-                        <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
-                        <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
+                        <input type='hidden' name='gid' value='{{ $gid }}' />
+                        <input type='hidden' name='aid' value='{{ Input::get('aid') }}' />
                                 @if(Auth::guest() || $student->canPurchase($course) )
                                     <span class="price clearfix ">{{trans('courses/general.free') }}</span>
                                      <button type='submit' class="clearfix enroll-button blue-button extra-large-button join-class">
@@ -399,8 +399,8 @@
                                 {{ trans("courses/general.course-enroll") }}
                             </button>
                         
-                    <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
-                    <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
+                    <input type='hidden' name='gid' value='{{ $gid }}' />
+                    <input type='hidden' name='aid' value='{{ Input::get('aid') }}' />
                     {{Form::close()}}
                 @endif
                
