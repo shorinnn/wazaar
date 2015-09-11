@@ -11,6 +11,8 @@ return [
     'what-would-you-like-to-ask' => '分からなかった事を質問してみましょう？',
     'describe-more-details-on-your-subject' => '質問内容をより具体的に書き出してみましょう（5W1H)',
     'cancel' =>  'キャンセル',
-    'submit-question' => '質問する！'
+    'submit-question' => '質問する！',
+    'back-to-courses' => '学習中の教材に戻る',
+    'completed' => '達成度'
     
 ];
