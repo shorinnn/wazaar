@@ -569,6 +569,7 @@ class UserRepository
             $delivered = new DeliveredHelper();
             $deliveredUser = $delivered->findUser( $user->email );
             $deliveredUser = $deliveredUser['data'];
+            $added = false;
             if( count($deliveredUser) > 0){
                 $dUser = $deliveredUser[0];
                 if( isset($dUser['tags']) && count($dUser['tags']) > 0){
