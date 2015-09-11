@@ -97,9 +97,15 @@
                     </div>
                 <!--</div>-->
                 @endif
-                
+            <div class="row">
+            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                	<div class="promote-course-button text-center">
+                    	<a href="http://wazaar.jp/courses/category" class="blue-button large-button">{{trans('general.browse-courses')}}</a>
+                    </div>
+                </div>
+            </div>    
             <div class="row top-activities">
-                <div class="col-md-4 col-sm-6 sol-xs-12">
+                <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="with-progress-bar">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">

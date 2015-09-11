@@ -4573,6 +4573,9 @@ h2, h3, h4, h5, h6{
 	margin: 0;
 	width: 90%;
 }
+.promote-course-button{
+    margin-bottom: 35px;
+}
 .vip-affiliate-link,
 .supervip-affiliate-link{
 	border-radius: 4px;
@@ -9191,6 +9194,7 @@ header .top-menu li{
 		float: none;
 		clear: both;
 		display: inline-block;
+		padding: 10px 0;
 	}
 	.category-heading-container,
 	.category-heading,
@@ -9412,8 +9416,28 @@ header .top-menu li{
 	.homepage-header-wrapper.logged-in{
 		margin-top: -160px;
 	}	
+	.category-heading-buttons{
+		width: 100%;
+	}
+	.difficulty-levels .level-buttons-container,
+	.difficulty-levels{
+		width: 100%;
+	}
+	.difficulty-levels .level-buttons{
+		width: 33.333%;
+	}
+	.lesson-topics li .lesson-name{
+		width: 26%;
+	}
+	.category-heading-container .sort-options select{
+		max-width: 83%;
+	}
 }
-
+@media (max-width:406px){
+	.category-heading-container .sort-options select{
+		max-width: 82%;
+	}	
+}
 @media (max-width:402px){
 	.user-data-modal .orr span{
 		width: 40%;
@@ -9423,7 +9447,7 @@ header .top-menu li{
 	}
 }
 
-@media (max-width:380px){
+@media (max-width:385px){
 	.category-heading a{
 		float: left;
 	}	
@@ -9454,19 +9478,6 @@ header .top-menu li{
 	}	
 	.lesson-topics li .lesson-name{
 		width: 37%;
-	}
-	.category-heading-buttons{
-		width: 100%;
-	}
-	.difficulty-levels .level-buttons-container,
-	.difficulty-levels{
-		width: 100%;
-	}
-	.difficulty-levels .level-buttons{
-		width: 33.333%;
-	}
-	.lesson-topics li .lesson-name{
-		width: 26%;
 	}
 	.category-heading-container .sort-options select{
 		max-width: 80%;
