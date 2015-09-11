@@ -109,7 +109,7 @@ $wwwRoutes = function(){
     Route::post('reset-password', 'UsersController@doResetPassword');
     Route::get('logout', 'UsersController@logout');
     Route::get('emailcheck', 'UsersController@emailCheck');
-    Route::get('/registration-confirmation/{resend}', 'UsersController@registrationConfirmation');
+    Route::get('/registration-confirmation-resend', 'UsersController@registrationConfirmationResend');
     Route::get('/registration-confirmation', 'UsersController@registrationConfirmation');
     Route::get('/verification-confirmation', 'UsersController@verificationConfirmation');
 

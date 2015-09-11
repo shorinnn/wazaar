@@ -7,7 +7,7 @@ class ClassroomController extends \BaseController {
             if( Auth::user()->confirmed == 0 ){
                 Auth::user()->setCustom('intended-redirect', Request::url() );
                 Auth::user()->updateUniques();
-                $url = action( 'UsersController@registrationConfirmation', ['resend' => 1] );
+                $url = action( 'UsersController@registrationConfirmationResend' );
                 return Redirect::to($url)->send();
             }
         }
