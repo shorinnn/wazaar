@@ -10,7 +10,7 @@ class LessonDiscussion extends Ardent {
         ];
         public static $relationsData = [
             'lesson' => array(self::BELONGS_TO, 'Lesson'),
-            'student' => array(self::BELONGS_TO, 'Student'),
+            'student' => array(self::BELONGS_TO, 'User'),
             'replies' =>[self::HAS_MANY, 'LessonDiscussionReply']
             
         ];

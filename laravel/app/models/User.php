@@ -199,6 +199,18 @@ class User extends Ardent implements ConfideUserInterface
 //        }
     }
     
+    public function commentTitle($user_type){
+        $user_type == strtolower($user_type);
+        $user_type = strtolower($user_type);
+        if($user_type=='student') $user_type='Student';
+        else if($user_type=='instructor') $user_type='Instructor';
+        else  $user_type='Affiliate';
+        $profile = $this->_profile( $user_type );
+        if( $profile != null){
+            return $profile->title;
+        }
+    }
+    
     public function isAffiliate(){
         if($this->hasRole('Affiliate')) return true;
         return false;
