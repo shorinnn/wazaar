@@ -213,5 +213,6 @@ return array(
     'enroll-success-message-paid' => "Successful enroll",
     'payment-error' => 'Payment Error',
     'resume' => 'Resume',
-    'back-to-where-you-left' => 'Go Back Where You Left It'
+    'back-to-where-you-left' => 'Go Back Where You Left It',
+    'log-in-student-to-purchase' => 'Log in to your student/instructor account to purchase.'
 );

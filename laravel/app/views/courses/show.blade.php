@@ -312,7 +312,7 @@
                             <button type='button' 
                                     data-toggle="tooltip" data-placement="top" 
                                     @if( Auth::check() && Auth::user()->hasRole('Affiliate') )
-                                        title="Log in to your student/instructor account to purchase."
+                                        title="{{ trans('courses/general.log-in-student-to-purchase') }}"
                                         class="clearfix default-button extra-large-button tooltipable btn-block"
                                     @else
                                         title="Available for customers"
