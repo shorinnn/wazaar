@@ -165,6 +165,7 @@
                         <h4 class="lesson-title">
                             {{ $lesson->module->order }}.{{ $lesson->order }}. 
                             {{ $lesson->name }}</h4>
+
                         <div class="navigate-lessons-buttons">
                             @if( $prevLesson != null )
                                 <a href="{{ action('ClassroomController@lesson', 
@@ -191,6 +192,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="row video-row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         @if( $video != null)
@@ -216,6 +218,7 @@
                         @endif
                     </div>
                 </div>
+                
                 @if( trim($lesson->notes) != '')
                     <div class="row classroom-content-row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -275,6 +278,7 @@
                                 </div>
                             </form>
                         </div>
+                        
                         <div class='question-holder scroll-pane'>
                             @foreach($lesson->discussions()->where( 'student_id', Auth::user()->id )->get() as $discussion)
                                 {{ View::make('courses.classroom.discussions.question')->with( compact('discussion') ) }}
@@ -321,7 +325,7 @@
                 <div class="course-topics-box">
                     <div class="topic-header clearfix">
                         <h3 class="left"><em>{{$index+1}}. </em> {{$module->name}}</h3>
-                        <span class="right">{{$module->completedLessons()}} / {{ $module->lessons->count() }}</span>
+                        <span class="right">{{$module->completedLessons(Auth::user()->id)}} / {{ $module->lessons->count() }}</span>
                     </div>
                     <div class="topics">
                         <ul>

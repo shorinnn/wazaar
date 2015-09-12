@@ -7,7 +7,6 @@
 		}
 	</style>
     <div class="container-fluid classroom-view" style="overflow-x:hidden;">
-
         @if( !Auth::user()->hasRole('Affiliate') )
             {{ View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
                             'instructor', 'student', 'crashLesson') ) }}

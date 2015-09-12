@@ -1,3 +1,4 @@
+{{dd (23232) }}
 <script>
     var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';
     var lessonId = {{ $lesson->id }};
@@ -328,7 +329,7 @@
                 <div class="course-topics-box">
                     <div class="topic-header clearfix">
                         <h3 class="left"><em>{{$index+1}}. </em> {{$module->name}}</h3>
-                        <span class="right">{{$module->completedLessons()}} / {{ $module->lessons->count() }}</span>
+                        <span class="right">{{$module->completedLessons(Auth::user()->id)}} / {{ $module->lessons->count() }}</span>
                     </div>
                     <div class="topics">
                         <ul>
