@@ -85,7 +85,9 @@ jQuery(document).ready(function($){
 	insertSelectBorder();
 	askTeacherQuestion();
 	searchFormFocusStyle();
-	showMoreContent();
+	setTimeout(function(){
+        showMoreContent();
+    }, 1000);
 	toggleSideMenu();
 	//stickyFooter();
 	rescaleBckgrdOverlay();
