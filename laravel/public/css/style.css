@@ -1136,8 +1136,10 @@ header .profile-name li:hover ul{
 	background-image: none !important;
 	background-color: #ffffff !important;
  	border-radius: 4px;
-	height: 393px;
-  	max-height: 393px;
+	/*height: 393px;
+  	max-height: 393px;*/
+  	height: 374px;
+  	max-height: 374px;
 	max-width: 360px;
   	background-repeat:no-repeat;
   	position:relative;
@@ -1293,7 +1295,8 @@ header .profile-name li:hover ul{
 }*/
 .small-box .title-and-descript{
     border-bottom: 1px solid #f0f1f2;
-    height: 132px;
+    /*height: 132px;*/
+    height: 113px;
 }
 .small-box .course-box-content h2,
 .small-box .course-box-content h3{
