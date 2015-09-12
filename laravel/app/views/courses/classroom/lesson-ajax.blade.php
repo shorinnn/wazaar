@@ -1,4 +1,3 @@
-{{dd (23232) }}
 <script>
     var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';
     var lessonId = {{ $lesson->id }};
