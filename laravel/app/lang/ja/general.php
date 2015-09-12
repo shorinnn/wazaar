@@ -131,7 +131,7 @@ return array(
     'my_name_is' => '販売者名',
     'continue-browsing' => '商品ページに戻る',
     'new' => '新作',
-    'confirm-password-to-continue' => 'Confirm password to continue',
+    'confirm-password-to-continue' => '再度パスワードをご入力ください。',
     'incorrect-password' => 'Incorrect password',
-    'confirm-password' => 'Confirm Password'
+    'confirm-password' => 'パスワードを入力する'
 );
