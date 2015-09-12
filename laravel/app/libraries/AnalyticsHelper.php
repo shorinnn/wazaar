@@ -30,6 +30,7 @@ class AnalyticsHelper
 
     private function weeklyLtcEarnings($affiliateId, $dateFilterStart, $dateFilterEnd)
     {
+        $dateFilterStart = date('Y-m-d',strtotime($dateFilterStart . " +1 day"));
         $filterQuery = " AND DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         return $this->_affiliateEarnings($affiliateId, $filterQuery);
@@ -62,6 +63,7 @@ class AnalyticsHelper
 
     private function weeklyLtcRegistration($affiliateId, $dateFilterStart, $dateFilterEnd)
     {
+        $dateFilterStart = date('Y-m-d',strtotime($dateFilterStart . " +1 day"));
         $filterQuery = " AND DATE(users.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         return $this->_affiliates($affiliateId, $filterQuery);
@@ -118,6 +120,7 @@ class AnalyticsHelper
 
     private function weeklySecondAffiliateRegistration($affiliateId, $dateFilterStart, $dateFilterEnd)
     {
+        $dateFilterStart = date('Y-m-d',strtotime($dateFilterStart . " +1 day"));
         $filterQuery = " AND DATE(users.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         return $this->_secondAffiliates($affiliateId, $filterQuery);
@@ -140,6 +143,8 @@ class AnalyticsHelper
     private function _secondAffiliates($affiliateId, $filter = '')
     {
         $sql    = "SELECT count(id) as affiliates_count FROM users WHERE second_tier_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
+
+        //echo $sql;
         //$result = Cache::remember('second_affiliates', self::CACHE, function() use($sql)
         //{
         //    return DB::select($sql);
@@ -574,6 +579,7 @@ class AnalyticsHelper
         if (empty($dateFilterEnd)) {
             $dateFilterEnd = date('Y-m-d');
         }
+        //$dateFilterStart = date('Y-m-d',strtotime($dateFilterStart . " +1 day"));
 
         $filterQuery = "DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
@@ -672,6 +678,7 @@ class AnalyticsHelper
         $dateFilterStart = $this->_frequencyEquivalence('week');
         $dateFilterEnd   = date('Y-m-d');
 
+        //$dateFilterStart = date('Y-m-d',strtotime($dateFilterStart . " +1 day"));
         $filterQuery = "DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)) {
@@ -731,6 +738,7 @@ class AnalyticsHelper
         $dateFilterStart = $this->_frequencyEquivalence('week');
         $dateFilterEnd   = date('Y-m-d');
 
+        //$dateFilterStart = date('Y-m-d',strtotime($dateFilterStart . " +1 day"));
         $filterQuery = "DATE(tracking_code_hits.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)) {
@@ -798,6 +806,7 @@ class AnalyticsHelper
         $dateFilterStart = $this->_frequencyEquivalence('week');
         $dateFilterEnd   = date('Y-m-d');
 
+        //$dateFilterStart = date('Y-m-d',strtotime($dateFilterStart . " +1 day"));
         $filterQuery = " AND DATE(created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         $sql = $this->_codeStatisticsRawQuery($courseId, $trackingCode, $filterQuery);
@@ -863,6 +872,8 @@ class AnalyticsHelper
     {
         $dateFilterStart = $this->_frequencyEquivalence('week');
         $dateFilterEnd   = date('Y-m-d');
+
+
         $filterQuery     = "DATE(cp.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         if (!empty($courseId)) {
