@@ -203,7 +203,7 @@ h4.date-range-header{
 
 #wrapper-sales ul li > span, #sales-today ul li > span, .with-progress-bar ul li > span{
 	display: inline-block;
-	width: 80px;
+	width: 50px;
 	float: left;
 }
 

@@ -248,7 +248,7 @@
 
                 {{-- // LTC Earnings --}}
                 
-                <div class="col-md-4 col-sm-6 sol-xs-12">
+                <div class="col-md-4 col-sm-6 sol-xs-12 hidden">
                     <div>
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
@@ -306,7 +306,7 @@
 
                 
 
-                <div class="col-md-4 col-sm-6 sol-xs-12">
+                <div class="col-md-4 col-sm-6 sol-xs-12 hidden">
                     <div>
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
