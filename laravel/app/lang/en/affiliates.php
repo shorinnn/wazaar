@@ -25,5 +25,6 @@ return [
     'link-without-gift' => 'Link without gift',
     'link-with-gift' =>  'Link with gift',
     'accept-affiliate-terms-to-promote' => 'Accept Affiliate Terms To Promote',
-
+    'add-tracking-id' => 'Add tracking ID',
+    'manage-gifts' => 'Manage gifts',
 ];

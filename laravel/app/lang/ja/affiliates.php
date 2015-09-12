@@ -25,5 +25,7 @@ return [
     'link-without-gift' => '特典なしアフィリエイトリンク',
     'link-with-gift' =>  '特典付きアフィリエイトリンク',
     'accept-affiliate-terms-to-promote' => 'アフィリエイター利用規約を確認する',
+    'add-tracking-id' => 'トラックングIDを追加する',
+    'manage-gifts' => '特典を追加する',
 
 ];

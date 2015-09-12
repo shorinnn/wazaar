@@ -17,13 +17,13 @@
             <div class="col-xs-12 col-sm-12 col-md-5 col-lg-6">
                 <div class="col-xs-7 col-sm-6 col-md-6 col-lg-6">
                     <i class="fa fa-plus"></i>
-                    <input class="add-tracking-id" type='text' id='affiliate-toolbar-tracking' placeholder="Add Tracking ID" style='width:90%; background-color:white' onkeyup='addAffiliateTracking() '/>
+                    <input class="add-tracking-id" type='text' id='affiliate-toolbar-tracking' placeholder="{{trans('affiliates.add-tracking-id')}}" style='width:90%; background-color:white' onkeyup='addAffiliateTracking() '/>
                 </div>
                 <div class="col-xs-5 col-sm-6 col-md-6 col-lg-6">
                     <div class="activate-dropdown">
                         <button aria-expanded="false" data-toggle="dropdown" class="add-gift dropdown-toggle right" type="button" onclick="affiliateGiftUI('{{$course->slug}}')" id="add-gift-dropdown">
                             <i class="fa fa-gift"></i>
-                            <span>Manage Gifts</span>
+                            <span>{{ trans('affiliates.manage-gifts') }}</span>
                         </button>
                     </div> 
                 </div>

@@ -157,7 +157,7 @@
                                             <h3>
                                                 {{ trans('affiliates.gifts.included-course-gift-from-name', ['name' => $gift->affiliate->fullName()] ) }}
                                             </h3>
-                                            <p>{{ trans('affiliates.gifts.when-you-purchase-additional-downloads', ['count' => $gift->files->count() ] ) }}</p>
+                                            <p>{{ $gift->text }}</p>
                                         </div>
                                     </div>
                                 </div>
