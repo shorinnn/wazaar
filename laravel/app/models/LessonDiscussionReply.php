@@ -10,13 +10,14 @@ class LessonDiscussionReply extends Ardent {
         ];
         public static $relationsData = [
             'discussion' => array(self::BELONGS_TO, 'LessonDiscussion', 'foreignKey' => 'lesson_discussion_id'),
-            'student' => array(self::BELONGS_TO, 'Student'),
+            'student' => array(self::BELONGS_TO, 'User'),
         ];
         
         public function beforeSave(){
             $student = Student::find($this->student_id);
             $lesson = Lesson::find($this->discussion->lesson_id);
-            if( !$student->purchased($lesson->module->course) && !$student->purchased( $lesson ) ){
+            if( !$student->purchased($lesson->module->course) && !$student->purchased( $lesson ) 
+                     && $student->id != $lesson->module->course->instructor_id && $student->id != $lesson->module->course->assigned_instructor_id ){
                 $this->errors()->add(0, 'Lesson Not Purchased' );
                 return false;
             }
