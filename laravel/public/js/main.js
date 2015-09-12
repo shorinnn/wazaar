@@ -10,7 +10,7 @@ function isset(variable){
 }
 var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 
-$(document).ready(function(){
+jQuery(document).ready(function($){
     
 //    var canPopState = false;
 //    setTimeout(function(){
@@ -24,11 +24,11 @@ $(document).ready(function(){
 //          window.location = location.href;
 //      });
 
-/*** DISABLE VIDEO RIGHT CLICK ****/
-$('body').delegate('video', 'contextmenu',function(event) {
-    return false;
-});
-/*** /DISABLE VIDEO RIGHT CLICK ****/
+    /*** DISABLE VIDEO RIGHT CLICK ****/
+    $('body').delegate('video', 'contextmenu',function(event) {
+        return false;
+    });
+    /*** /DISABLE VIDEO RIGHT CLICK ****/
 
 	$("#affiliate-toolbar-tracking").on("focus", function(){
 	  $(".fa.fa-plus").hide();
@@ -91,6 +91,7 @@ $('body').delegate('video', 'contextmenu',function(event) {
 	rescaleBckgrdOverlay();
 	$(window).resize(function() {
 	  rescaleBckgrdOverlay();
+      showMoreContent();
    	  skinVideoControls();
 	});
 	
@@ -1366,6 +1367,18 @@ function showMoreContent(){
 		var actualHide = $content[0].scrollHeight - 1; // -1 is needed in this case or you get a 1-line offset.
 		
         if($content.hasClass('lesson-topics')){
+            $content.children('li').each(function(){
+                if($(this).children('div.buttons').length >= 1){
+                   var buttonWidth = $(this).children('div.buttons').width();
+                   if(buttonWidth >= 1){
+                    deductWidth = Number(buttonWidth) + 40;
+                    var width = Number($(this).width()) - deductWidth;
+                    $(this).children('a.lesson-name').css('width', width);
+                   } else {
+                    $(this).children('a.lesson-name').css('width', 'inherit');
+                   }
+                }
+            })
             visibleHeight = Number(visibleHeight) + 3;
         }
 		$content.css('height', visibleHeight).css('display', 'block');
