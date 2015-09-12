@@ -1225,7 +1225,7 @@ header .profile-name li:hover ul{
 }
 .small-box .img-container {
     position: relative;
-    height: 182px;
+    height: 177px;
 }
 .small-box img{
 	width: 100%;
@@ -1280,7 +1280,7 @@ header .profile-name li:hover ul{
     margin-right: 5px;
 }
 .small-box .course-box-content{
-	padding: 27px 20px 21px;
+	padding: 20px 20px 21px;
 }
 /*.small-box .course-box-content h2{
   	font-size:15px;
