@@ -219,7 +219,22 @@
                 }
             </style>
             @endif
-            <ul class="logged-out visible-xs-block hidden-sm hidden-md hidden-lg">
+            <ul class="logged-out">
+                <li>
+                    <a href="{{url('/')}}/courses/category">{{trans('site/menus.homepage.browse')}}</a> 
+                </li>
+                <li>
+                    <a href="{{ action('UsersController@login') }}"> {{trans('site/menus.homepage.login')}}</a> 
+                    <!--<a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a>--> 
+                </li>
+                <li class="register-button">
+                    <a href="{{ action('UsersController@create') }}"> {{ trans('site/menus.homepage.register') }}</a>
+                    <!--<a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
+                </li>
+            </ul>
+            
+            <!-- please check if the code below are still usable if not lets remove -->
+            <ul class="logged-out visible-xs-block hidden-sm hidden-md hidden-lg hide">
                 <li>
                     <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a> 
                 </li>
@@ -279,17 +294,17 @@
                 </div>
                 <?php endif;?>
             </div>
-            <ul class="logged-out hidden-xs">
+            <ul class="logged-out hidden-xs hide">
                 <li>
-                    <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a> 
+                    <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}a</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}s</span></a> 
                 </li>
                 <li>
                     <!--<a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a>-->
-                    <a href="{{ action('UsersController@login') }}"> {{trans('general.login')}}</a> 
+                    <a href="{{ action('UsersController@login') }}"> {{trans('general.login')}}c</a> 
                 </li>
                 <li class="register-button">
                     <!--<a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
-                    <a href="{{ action('UsersController@create') }}"> {{ trans('general.register') }}</a>
+                    <a href="{{ action('UsersController@create') }}"> {{ trans('general.register') }}d</a>
                 </li>
             </ul>
         @endif
