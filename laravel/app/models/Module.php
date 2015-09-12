@@ -36,9 +36,9 @@ class Module extends Ardent{
          }
      }
      
-     public function completedLessons(){
+     public function completedLessons($user_id){
          $lessons = $this->lessons()->lists('id');
-         return ViewedLesson::whereIn('lesson_id', $lessons)->where('state','completed')->count();
+         return ViewedLesson::whereIn('lesson_id', $lessons)->where('student_id', $user_id)->where('state','completed')->count();
      }
      
      public function firstLesson(){

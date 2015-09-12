@@ -19,9 +19,13 @@ return [
             'begin-course' => 'コースを開始する',
             'resume-course' => 'コースを再開する',
             'add-gift' => '特典を追加',
+            'included-course-gift-from-name' => '<span class="name">:name</span>さんからの特典です。',
+            'when-you-purchase-additional-downloads' => 'この商品を購入すれば、:countつの商品を手に入れることができます。',
         ],
     'link-without-gift' => '特典なしアフィリエイトリンク',
     'link-with-gift' =>  '特典付きアフィリエイトリンク',
     'accept-affiliate-terms-to-promote' => 'アフィリエイター利用規約を確認する',
+    'add-tracking-id' => 'トラックングIDを追加する',
+    'manage-gifts' => '特典を追加する',
 
 ];

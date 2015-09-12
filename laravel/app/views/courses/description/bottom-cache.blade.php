@@ -144,6 +144,25 @@
                                   data-more-text='{{ trans('courses/general.show-more-lessons') }}'>{{ trans('courses/general.show-more-lessons') }}</span>
                     </div>
                 @endforeach
+                
+                @if( $gift != null )
+                
+                    <div class="affiliate-gift-wrap">
+                                    <div class="row description-wrap no-margin">
+                                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 text-center">
+                                            <img class="img-responsive gift-coupon inline-block" src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/gift-coupon.png" alt="">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                        <div class="description">
+                                            <h3>
+                                                {{ trans('affiliates.gifts.included-course-gift-from-name', ['name' => $gift->affiliate->fullName()] ) }}
+                                            </h3>
+                                            <p>{{ $gift->text }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                @endif
 
                 @if( $course->assignedInstructor != null && $course->assignedInstructor->profile !=null  )
                     <div class="reviews instructed-by clearfix module-box">

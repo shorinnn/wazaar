@@ -637,11 +637,12 @@ class CoursesController extends \BaseController {
             $video = $course->descriptionVideo;
             if( Input::has('gid') ) $gid = Input::get('gid');
             else $gid = Cookie::get('gid-'.$course->id);
-
+            $gift = Gift::find( PseudoCrypt::unhash( $gid ) );
+            
             if( serveMobile() ) 
-                Return View::make('MOBILE_VERSION.courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted', 'gid' ) );
+                Return View::make('MOBILE_VERSION.courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted', 'gid', 'gift' ) );
             else    
-                Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted', 'gid' ) )->render();
+                Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted', 'gid', 'gift' ) )->render();
         } 
         
         public function loginToPurchase($slug){

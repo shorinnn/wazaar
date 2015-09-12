@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-	<div class="container-fluid new-dashboard top-section">
+	<div class="container-fluid new-dashboard top-section" style="min-height: 200px;">
     	<div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
@@ -13,7 +13,9 @@
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 lesson-description">
                     <div class="row">
                     	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @if( $lastLesson != null )
                         	<h2>{{ trans('courses/general.back-to-where-you-left') }}</h2>
+                            @endif
                         </div>
                     </div>
                     @if( $lastLesson != null )
@@ -127,11 +129,25 @@
                 </div>
             	<div class="hidden-xs hidden-sm col-md-3 col-lg-3">
                 	<div class="sidebar">
-                        <div class="profile-picture-holder">
+                        <div class="profile-picture-holder"
+                              style='background:url(
+                            @if( isset($profile->photo) && trim($profile->photo) !='' )
+                                {{ $profile->photo }}
+                            @else
+                                http://s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg
+                            @endif
+                            ) no-repeat center center; background-color:white; background-size:100%'
+                             >
+                            
+<!--                            @if( isset($profile->photo) && trim($profile->photo) !='' )
+                                <img src="{{@$profile->photo}}" alt="" id="img-profile-picture" class="img-responsive"/>
+                            @else
+                                <img src="http://s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg" alt="" id="img-profile-picture" class="img-responsive"/>
                             <img src="{{ Auth::user()->commentPicture('student') }}" class="img-responsive">
+                            @endif-->
                         </div>
                         <div href="#" class="name">
-                            <h2>{{ Auth::user()->commentName('student') }}</h2>
+                            <h4>{{ Auth::user()->commentName('student') }}</h4>
                             <a href="{{action('ProfileController@index')}}" class="edit-profile"><i class="fa fa-cog"></i>{{ trans('general.edit-profile') }}</a>
                         </div>
                     </div>

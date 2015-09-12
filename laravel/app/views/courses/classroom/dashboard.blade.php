@@ -66,7 +66,7 @@
                                 <div class="course-topics-box">
                                     <div class="topic-header clearfix">
                                         <h3 class="left"><em>{{ $module->order }}. </em> {{ $module->name }}</h3>
-                                        <span class="right"> {{$module->completedLessons()}} / {{ $module->lessons->count() }} </span>               
+                                        <span class="right"> {{$module->completedLessons(Auth::user()->id)}} / {{ $module->lessons->count() }} </span>               
                                     </div>
                                     <div class="topics">
                                         <ul>
@@ -145,7 +145,7 @@
                                 </div>    
                             </div>
                         </div>
-                    @else
+                    @endif
                         @if($nextLesson !=null && $currentLesson == null)
                             <style>
                                 .resume-button-container{
@@ -172,9 +172,7 @@
                                        }}" class="resume-course large-button blue-button"><i class="wa-play"></i>{{ trans('affiliates.gifts.begin-course' )}}</a>
                                 
                             </div>
-                            
-                        @endif
-						
+                            	
                    
                         <div class="question-answer-wrap">
                         <div class="row question-answer">

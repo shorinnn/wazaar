@@ -252,7 +252,6 @@
                                     <div class="discounted-price pull-left">
                                         ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
                                         @if(Auth::check() && Auth::user()->hasRole('Affiliate') )
-                                            ( アフィリエイト収入:{{ $course->affiliate_percentage }}% )
                                         @endif
                                     </div>
                                     <div class="discounted-time-left pull-right">                                        
@@ -269,7 +268,7 @@
                             <span class="price clearfix">
                                 ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
                                 @if(Auth::check() && Auth::user()->hasRole('Affiliate') )
-                                    ( アフィリエイト収入:{{ $course->affiliate_percentage }}% )
+                                        
                                 @endif
                             </span>
                         @endif
@@ -313,13 +312,19 @@
                             <button type='button' 
                                     data-toggle="tooltip" data-placement="top" 
                                     @if( Auth::check() && Auth::user()->hasRole('Affiliate') )
-                                        title="Log in to your student/instructor account to purchase."
+                                        title="{{ trans('courses/general.log-in-student-to-purchase') }}"
                                         class="clearfix default-button extra-large-button tooltipable btn-block"
                                     @else
                                         title="Available for customers"
                                     @endif
                                         >
-                                <span>{{ trans("courses/general.you-will-earn") }} {{ $course->affiliate_percentage }}%</span><h2>¥ 4,400</h2>
+                                <span>
+                                    @if( Auth::check() && Auth::user()->hasRole('Affiliate') )
+                                        {{ trans("courses/general.you-will-earn") }} {{ $course->affiliate_percentage }}%</span>
+                                        <h2>¥ 
+                                            {{ $course->cost() * ($course->affiliate_percentage/100) }}
+                                        </h2>
+                                    @endif
                             </button>
                         @endif
  
@@ -455,7 +460,7 @@
     </div>
 </section>
 <?php 
-     echo View::make('courses.description.bottom-cache')->withCourse($course);  
+     echo View::make('courses.description.bottom-cache')->withCourse($course)->withGift($gift);  
      // disabled until better caching
 //    if( Input::has('preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
 //    else{
@@ -464,6 +469,7 @@
 //        }); 
 //    }
     ?>
+
 @if( Auth::check() &&  !Auth::user()->hasRole('Instructor') &&  !Auth::user()->hasRole('Affiliate') )
     <section class="become-an-instructor-section container-fluid">
         <span class="background-image-overlay"></span>
