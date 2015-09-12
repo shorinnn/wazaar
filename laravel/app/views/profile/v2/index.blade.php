@@ -339,7 +339,7 @@
                     <div class="sidebar">
                         <div class="profile-picture-holder"
                              style='background:url(
-                             @if( isset($profile->photo) && trim($profile->photo) !='' )
+                            @if( isset($profile->photo) && trim($profile->photo) !='' )
                                 {{ $profile->photo }}
                             @else
                                 http://s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg
