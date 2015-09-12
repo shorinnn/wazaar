@@ -147,7 +147,7 @@
                             @endif-->
                         </div>
                         <div href="#" class="name">
-                            <h2>{{ Auth::user()->commentName('student') }}</h2>
+                            <h4>{{ Auth::user()->commentName('student') }}</h4>
                             <a href="{{action('ProfileController@index')}}" class="edit-profile"><i class="fa fa-cog"></i>{{ trans('general.edit-profile') }}</a>
                         </div>
                     </div>

@@ -34,6 +34,7 @@
                                             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-7">
                                               <h4><a href="{{ action('ClassroomController@dashboard', $course->slug) }}">{{ $course->name }}</a></h4>
                                               @if( $lastLesson != null )
+                                              <?php $theLesson = $lastLesson;?>
                                                 <p class="regular-paragraph">{{$lastLesson->lessonPosition() }} / 
                                                     <?php echo Flatten::section('student-courses-lesson-count-'.$course->id, Config::get('custom.cache-expiry.student-dash-lesson-count'), function () use( $course )  { ?>
                                                     {{ $course->lessonCount() }} 
@@ -52,6 +53,7 @@
                                                         Config::get('custom.cache-expiry.student-dash-first-lesson'), function () use($course, $firstLesson)  { ?>
                                                   <p class="regular-paragraph">0 / {{ $course->lessonCount() }} lessons completed</p>
                                                         @if($firstLesson != null)
+                                                        <?php $theLesson = $firstLesson;?>
                                                         <p class="regular-paragraph">Current lesson: 
                                                             <a href="{{
                                                                action('ClassroomController@lesson', 
@@ -71,12 +73,25 @@
                                                   <span class="progress-value">{{ $student->courseProgress( $course ) }}%</span>
                                                   <!--<img src="../images/radial-progress.png">-->
                                                   <div class='pull-right'>
-                                                      <div id='progress-circle-{{$course->id}}' 
-                                                           data-text='<i class="fa">&#xf04b;</i>'
-                                                           class='progress-circle' data-color='#0099ff' data-trail-color='#E0E1E2' data-stroke='3' 
-                                                           style='height:40px; width:40px'
-                                                           data-progress='{{ $student->courseProgress( $course ) }}'>
-                                                      </div>
+                                                          <a 
+                                                            @if( isset($theLesson) )
+                                                                href="{{
+                                                               action('ClassroomController@lesson', 
+                                                [ $theLesson->module->course->slug,
+                                                $theLesson->module->slug,
+                                                $theLesson->slug])
+                                                               }}"
+                                                            @else
+                                                                href="{{ action('ClassroomController@dashboard', $course->slug) }}"
+                                                            @endif
+                                                                >
+                                                              <div id='progress-circle-{{$course->id}}' 
+                                                                   data-text='<i class="fa">&#xf04b;</i>'
+                                                                   class='progress-circle' data-color='#0099ff' data-trail-color='#E0E1E2' data-stroke='3' 
+                                                                   style='height:40px; width:40px'
+                                                                   data-progress='{{ $student->courseProgress( $course ) }}'>
+                                                              </div>
+                                                          </a>
                                                   </div>
                                                   
                                               </div>
