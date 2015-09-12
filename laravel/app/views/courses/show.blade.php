@@ -460,7 +460,7 @@
     </div>
 </section>
 <?php 
-     echo View::make('courses.description.bottom-cache')->withCourse($course);  
+     echo View::make('courses.description.bottom-cache')->withCourse($course)->withGift($gift);  
      // disabled until better caching
 //    if( Input::has('preview')) echo View::make('courses.description.bottom-cache')->withCourse($course);
 //    else{
@@ -469,6 +469,7 @@
 //        }); 
 //    }
     ?>
+
 @if( Auth::check() &&  !Auth::user()->hasRole('Instructor') &&  !Auth::user()->hasRole('Affiliate') )
     <section class="become-an-instructor-section container-fluid">
         <span class="background-image-overlay"></span>
