@@ -655,6 +655,7 @@ class AnalyticsHelper
 
         $query = $this->_salesRawQuery($filterQuery);
 
+        //echo $query . '<br/>';
 
         return $this->_transformCoursePurchases($query);
     }
@@ -1076,7 +1077,7 @@ class AnalyticsHelper
         $sql = "SELECT courses.id, courses.`name`, {$sum} as 'total_purchase'
                 FROM purchases
                 JOIN courses ON courses.id = purchases.product_id WHERE purchases.id <> 0
-                AND courses.free = 'no' 
+                AND courses.free = 'no'
                 {$criteria}
                 GROUP BY courses.id, courses.name
                 ORDER BY total_purchase DESC
@@ -1097,19 +1098,21 @@ class AnalyticsHelper
         if ($this->userType == 'affiliate') {
             $sum = "IF(product_affiliate_id = '{$this->userId}', sum(`affiliate_earnings`),0) + IF(second_tier_affiliate_id = '{$this->userId}',sum(second_tier_affiliate_earnings),0)";
             $countCriteria = "AND  product_affiliate_id = '{$this->userId}' OR second_tier_affiliate_id = '{$this->userId}'";
+            $countCriteria = "(SELECT COUNT(purchases.id) FROM purchases WHERE id <> 0 {$countCriteria} {$criteria}) ";
         }
         elseif($this->userType == 'instructor'){
-            $sum = "IF(instructor_id = '{$this->userId}', sum(`instructor_earnings`),0) + IF(second_tier_instructor_id = '{$this->userId}',sum(second_tier_instructor_earnings),0)";
-            $countCriteria = "AND  instructor_id = '{$this->userId}' OR second_tier_instructor_id = '{$this->userId}'";
+            $sum = "sum(`instructor_earnings`)";
+            $countCriteria = "COUNT(purchases.id)";
+            $criteria .= " AND (purchases.instructor_id = '{$this->userId}')";
         }
 
-        $sql = "SELECT created_at, {$sum} as 'total_purchase', (SELECT COUNT(purchases.id) FROM purchases WHERE id <> 0 {$countCriteria} {$criteria}) as 'total_count'
+        $sql = "SELECT created_at, {$sum} as 'total_purchase', {$countCriteria} as 'total_count'
                 FROM purchases WHERE id <> 0
                 {$criteria}
                 GROUP BY DATE(created_at)
                 ORDER BY created_at DESC
                 ";
-
+        //echo $sql . "<br/>";
         return $sql;
     }
 
