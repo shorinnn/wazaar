@@ -1076,6 +1076,7 @@ class AnalyticsHelper
         $sql = "SELECT courses.id, courses.`name`, {$sum} as 'total_purchase'
                 FROM purchases
                 JOIN courses ON courses.id = purchases.product_id WHERE purchases.id <> 0
+                AND courses.free = 'no' 
                 {$criteria}
                 GROUP BY courses.id, courses.name
                 ORDER BY total_purchase DESC
