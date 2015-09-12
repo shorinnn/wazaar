@@ -132,6 +132,6 @@ return array(
     'continue-browsing' => '商品ページに戻る',
     'new' => '新作',
     'confirm-password-to-continue' => '再度パスワードをご入力ください。',
-    'incorrect-password' => 'Incorrect password',
+    'incorrect-password' => '間違ったパスワードが入力されています。',
     'confirm-password' => 'パスワードを入力する'
 );

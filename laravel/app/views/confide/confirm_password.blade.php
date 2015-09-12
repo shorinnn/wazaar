@@ -11,6 +11,7 @@
                 <div class="user-data-modal clearfix">
                 	<div class="user-data-modal-header">
                     	<h1 class="clearfix">{{ trans('general.confirm-password-to-continue') }}</h1>
+                        <p class="regular-paragraph text-center light-gray-text"><em>{{Auth::User()->email}}</em></p>
                     </div>
                     <div class="user-data-modal-body">
                         <div class="form-container clearfix">
