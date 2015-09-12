@@ -361,7 +361,7 @@
 <script>
 
     if(typeof($)=='function'){
-        decryptVideoSrc();
+        //decryptVideoSrc();
 //        makeYTfluid();
         skinVideoControls();
         showMoreContent();

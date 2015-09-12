@@ -7,4 +7,9 @@ return array(
 	'logout' => 'ログアウト',
 	'messages' => 'メッセージ',
 	'analytics' => '販売に関する分析',
+	'homepage'=> array(
+			'browse' => '商品を検索する',
+			'login' => 'ログイン',
+			'register' => '登録',
+		)
 );

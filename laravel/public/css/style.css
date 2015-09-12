@@ -1136,8 +1136,10 @@ header .profile-name li:hover ul{
 	background-image: none !important;
 	background-color: #ffffff !important;
  	border-radius: 4px;
-	height: 393px;
-  	max-height: 393px;
+	/*height: 393px;
+  	max-height: 393px;*/
+  	height: 374px;
+  	max-height: 374px;
 	max-width: 360px;
   	background-repeat:no-repeat;
   	position:relative;
@@ -1223,7 +1225,7 @@ header .profile-name li:hover ul{
 }
 .small-box .img-container {
     position: relative;
-    height: 177px;
+    height: 182px;
 }
 .small-box img{
 	width: 100%;
@@ -1293,7 +1295,8 @@ header .profile-name li:hover ul{
 }*/
 .small-box .title-and-descript{
     border-bottom: 1px solid #f0f1f2;
-    height: 132px;
+    /*height: 132px;*/
+    height: 113px;
 }
 .small-box .course-box-content h2,
 .small-box .course-box-content h3{
@@ -1402,13 +1405,29 @@ header .profile-name li:hover ul{
 	float: left;
 	margin-top: 16px;
 }
-.small-box .students-attending{ 
+.small-box .students-attending i{ 
   	color:#a7b7c4;
+}
+.small-box .students-attending{ 
+  	color:#798794;
   	font-size:13px;
   	display:inline-block;
   	background-image:url(https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/person-icon-button.png);
 	background-repeat:no-repeat;
   	background-position:14px center;
+}
+.small-box .new-for-student{
+    background: #0099ff none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 10px;
+    position: relative;
+    top: -2px;
 }
 .learn-more a{ 
   	background-color:rgba(0,0,0,0.9);
@@ -2591,6 +2610,22 @@ h2, h3, h4, h5, h6{
     box-shadow: 0px 1px 0px #e7e8e9;
     padding-top: 7px;
     padding-bottom: 7px;
+}
+.enroll-button-section .default-button{
+	padding: 0 12px;
+	height: 38px;
+	display: block;
+	clear: both;
+	line-height: 38px;
+	text-transform: uppercase;
+}
+.enroll-button-section .default-button span{
+	float: left;
+}
+.enroll-button-section .default-button h2{
+	float: right;
+	margin: 0;
+	line-height: 38px;
 }
 .course-description-container{
 	padding: 30px 0;
@@ -4371,6 +4406,14 @@ h2, h3, h4, h5, h6{
 	cursor: pointer;
 	background: none;
 	border: none;
+	padding: 0 8px;
+}
+.gift-modal .uploaded-files:empty{
+	padding: 0;
+}
+.gift-modal li .delete-button {
+    position: relative;
+    top: 13px;
 }
 .gift-modal .characters-left{
 	color: #a7b7c4;
@@ -4386,7 +4429,7 @@ h2, h3, h4, h5, h6{
 	height: 44px;
 	color: #303941;
 	font-size: 13px;
-	padding: 0;
+	padding: 0 5px;
 	border-radius: 0;
 	border: solid #e0e1e2;
 	border-width: 0 0 1px;
@@ -4427,6 +4470,7 @@ h2, h3, h4, h5, h6{
 }
 .gift-modal .dropzone .select-file{
 	margin-bottom: 33px;
+    padding: 9px 18px;
 }
 .gift-modal .dropzone .select-file i{
 	margin-right: 7px;
@@ -4531,6 +4575,9 @@ h2, h3, h4, h5, h6{
 	color: #0099ff;
 	margin: 0;
 	width: 90%;
+}
+.promote-course-button{
+    margin-bottom: 35px;
 }
 .vip-affiliate-link,
 .supervip-affiliate-link{
@@ -5699,6 +5746,8 @@ h2, h3, h4, h5, h6{
 /************* New Analytics Page*************/
 .analytics-page {
     background-color: #e8eced;
+    margin: 40px auto;
+    padding: 24px;
 }
 .analytics-page .table-wrapper{
 	border-radius: 4px;
@@ -5766,6 +5815,7 @@ h2, h3, h4, h5, h6{
 .analytics-page .table tbody th{
 	margin-left: 12px;
 }
+.analytics-page .table th.link,
 .analytics-page .table td.link{
 	color: #0099ff;
 }
@@ -8977,6 +9027,26 @@ header .top-menu .logged-out-header-search{
 .homepage-header-wrapper{
 	margin-top: -90px;
 }
+header .profile-name > li.open button, 
+header .profile-name > li button{
+	width: auto;
+	padding: 9px 5px 11px;
+}
+header .profile-name{
+	min-width: auto;
+}
+header .profile-name ul{
+	left: -117px;
+	min-width: 150px;
+}
+.category-heading-container .sort-options,
+.difficulty-levels{
+	margin-top: 0;
+}
+.category-heading-title{
+	margin-bottom: 15px;
+}
+
 }
 @media (max-width:752px){
 .navbar-nav{ 
@@ -9063,9 +9133,6 @@ header .top-menu li{
 	.main-content-container .main-content{
 		padding: 15px 20px 0;
 	}
-	header .top-profile-info{
-		float: none;
-	}
 	header .top-menu .logged-in-top-menu{
 		margin-right: 0;
 		margin-top: 0;
@@ -9130,6 +9197,7 @@ header .top-menu li{
 		float: none;
 		clear: both;
 		display: inline-block;
+		padding: 10px 0;
 	}
 	.category-heading-container,
 	.category-heading,
@@ -9351,8 +9419,28 @@ header .top-menu li{
 	.homepage-header-wrapper.logged-in{
 		margin-top: -160px;
 	}	
+	.category-heading-buttons{
+		width: 100%;
+	}
+	.difficulty-levels .level-buttons-container,
+	.difficulty-levels{
+		width: 100%;
+	}
+	.difficulty-levels .level-buttons{
+		width: 33.333%;
+	}
+	.lesson-topics li .lesson-name{
+		width: 26%;
+	}
+	.category-heading-container .sort-options select{
+		max-width: 83%;
+	}
 }
-
+@media (max-width:406px){
+	.category-heading-container .sort-options select{
+		max-width: 82%;
+	}	
+}
 @media (max-width:402px){
 	.user-data-modal .orr span{
 		width: 40%;
@@ -9362,7 +9450,7 @@ header .top-menu li{
 	}
 }
 
-@media (max-width:380px){
+@media (max-width:385px){
 	.category-heading a{
 		float: left;
 	}	
@@ -9394,18 +9482,8 @@ header .top-menu li{
 	.lesson-topics li .lesson-name{
 		width: 37%;
 	}
-	.category-heading-buttons{
-		width: 100%;
-	}
-	.difficulty-levels .level-buttons-container,
-	.difficulty-levels{
-		width: 100%;
-	}
-	.difficulty-levels .level-buttons{
-		width: 33.333%;
-	}
-	.lesson-topics li .lesson-name{
-		width: 26%;
+	.category-heading-container .sort-options select{
+		max-width: 80%;
 	}
 }
 @media (min-width:320px) and (max-width: 480px) {
@@ -9477,10 +9555,12 @@ header .top-menu li{
 @media (max-width:355px){
 	header .top-menu .logged-out-header-search form div input{
 		width: 130px;
-	}	header .top-menu .logged-in-top-menu li a{
+	}	
+	header .top-menu .logged-in-top-menu li a{
 		font-size: 10px;
 		padding: 10px 6px;
-	}	.student-course .avatar{
+	}	
+	.student-course .avatar{
 		float: none;
 		margin: 0 auto 10px;
 	}	
@@ -9506,6 +9586,9 @@ header .top-menu li{
 		margin-top: -208px;
 	}	
 
+	.category-heading-container .sort-options select{
+		max-width: 77%;
+	}
 }
 @media (max-width:320px){
 	.column-3 .add-to-wishlist-container{
@@ -9678,6 +9761,7 @@ header .top-menu li{
     font-size: 12px;
     font-weight: normal !important;
     margin: 0px !important;
+	text-align: center;
 }
 .edit-course .progress, .progress{
     background-color:gray;

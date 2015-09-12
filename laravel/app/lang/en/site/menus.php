@@ -7,4 +7,9 @@ return array(
 	'messages' => 'Messages',
 	'analytics' => 'Analytics',
 	'hi' => 'Hi',
+	'homepage'=> array(
+			'browse' => 'Browse',
+			'login' => 'Login',
+			'register' => 'Register',
+		)
 );

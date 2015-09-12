@@ -197,4 +197,6 @@ jpeg, png',
     'enroll-success-message-free' => "商品のご登録ありがとうございました！",
     'enroll-success-message-paid' => "商品のご購入ありがとうございました！",
     'payment-error' => 'お支払いが完了しませんでした。',
+    'resume' => '再開する',
+    'back-to-where-you-left' => '元に戻る'
 );

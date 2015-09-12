@@ -36,7 +36,7 @@ return array(
     'password' =>'パスワード',
     'password_confirmation' =>'パスワードの確認',
     'preview-unavailable' =>'プレビューはできません',
-    'login' => 'ログイン',
+    'login' => '販売者＆購入者ログイン', #ログイン
     'register' => '登録',
     'load-more' => 'もっと見る',
     'about' => '月AboutせPlease provide more context',
@@ -131,4 +131,7 @@ return array(
     'my_name_is' => '販売者名',
     'continue-browsing' => '商品ページに戻る',
     'new' => '新作',
+    'confirm-password-to-continue' => '再度パスワードをご入力ください。',
+    'incorrect-password' => '間違ったパスワードが入力されています。',
+    'confirm-password' => 'パスワードを入力する'
 );

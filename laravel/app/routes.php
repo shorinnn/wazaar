@@ -22,6 +22,7 @@ if( !isset($_SERVER['HTTP_HOST'])){
 //Route::get('mandrill-test', 'SiteController@mandrillTest');
 Route::resource('lp', 'LpController');
 Route::get('loginTest', 'SiteController@loginTest');
+Route::get('show-me-the-env-boyeee', 'SiteController@env');
 Route::get('missing_sti_fix', 'SiteController@missing_sti_fix');
 Route::get('clear-cache/huehue', 'SiteController@clearCache');
 
@@ -75,6 +76,9 @@ $wwwRoutes = function(){
 
             Route::get('login', ['https', 'uses'=>'UsersController@login' ] );
             Route::post('login', ['https', 'uses'=>'UsersController@doLogin' ] );
+            
+            Route::get('confirm-password', ['https', 'uses'=>'UsersController@confirmPassword' ] );
+            Route::post('confirm-password', ['https', 'uses'=>'UsersController@doConfirmPassword' ] );
         });
     }
     else{
@@ -85,6 +89,9 @@ $wwwRoutes = function(){
 
         Route::get('login', 'UsersController@login' );
         Route::post('login', 'UsersController@doLogin' );
+        
+        Route::get('confirm-password', 'UsersController@confirmPassword' );
+        Route::post('confirm-password', 'UsersController@doConfirmPassword' );
     }
     Route::get('fb-login/{userId?}', 'UsersController@fbLogin');
     Route::get('login-with-facebook', 'UsersController@loginWithFacebook');
@@ -102,7 +109,7 @@ $wwwRoutes = function(){
     Route::post('reset-password', 'UsersController@doResetPassword');
     Route::get('logout', 'UsersController@logout');
     Route::get('emailcheck', 'UsersController@emailCheck');
-    Route::get('/registration-confirmation/{resend}', 'UsersController@registrationConfirmation');
+    Route::get('/registration-confirmation-resend', 'UsersController@registrationConfirmationResend');
     Route::get('/registration-confirmation', 'UsersController@registrationConfirmation');
     Route::get('/verification-confirmation', 'UsersController@verificationConfirmation');
 
@@ -246,6 +253,7 @@ $wwwRoutes = function(){
     Route::post('courses/{slug}/crash/', 'CoursesController@crashCourse');
     Route::post('courses/{slug}/purchase', 'CoursesController@purchase');
     Route::get('courses/{slug}/login-to-purchase', 'CoursesController@loginToPurchase');
+    Route::get('courses/{slug}/confirm-to-purchase', 'CoursesController@confirmToPurchase');
     Route::get('courses/{slug}/purchased', 'CoursesController@purchased');
 
     Route::get('courses/{slug}', 'CoursesController@show');

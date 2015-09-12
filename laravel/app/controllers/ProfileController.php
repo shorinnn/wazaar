@@ -9,10 +9,10 @@ class ProfileController extends Controller
     protected $userHelper;
 
     public function __construct(UserRepository $users, UserHelper $userHelper, UploadHelper $uploadHelper){
+        $this->beforeFilter( 'verifiedLogin' );
         $this->users = $users;
         $this->userHelper = $userHelper;
         $this->uploadHelper = $uploadHelper;
-        $this->beforeFilter( 'auth' );
     }
 
     public function index($type = '')
@@ -20,7 +20,7 @@ class ProfileController extends Controller
         if( Auth::user()->confirmed == 0 ){
             Auth::user()->setCustom('intended-redirect', action('ProfileController@index') );
             Auth::user()->updateUniques();
-            return Redirect::action( 'UsersController@registrationConfirmation', ['resend' => 1] );
+            return Redirect::action( 'UsersController@registrationConfirmationResend' );
         }
         /*$isProfileNew = $this->userHelper->isProfileNew();
 

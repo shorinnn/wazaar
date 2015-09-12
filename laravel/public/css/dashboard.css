@@ -5,10 +5,6 @@
 	margin-right: 20px;
 }
 
-.wrapper{
-	background: #f8f8f8;
-}
-
 /****************** Affiliate Dashboard *****************/
 .dashboard .header{
 	background: #fff;
@@ -113,7 +109,7 @@ h4.date-range-header{
 }
 
 .top-activities > div > div{
-	height: 480px;
+	height: 415px;
 	border: solid 1px #ececec;
 	border-radius: 4px;
 	margin-bottom: 30px;
@@ -137,11 +133,12 @@ h4.date-range-header{
 	border-radius: 0;
 	background-color: #0099ff;
 }
-
-
 .top-activities > div ul{
 	padding: 0 20px;
 	margin: 0;
+}
+#wrapper-sales {
+    padding: 0;
 }
 
 .top-activities > div ul a,
@@ -194,38 +191,37 @@ h4.date-range-header{
 	color: #333;
 }
 
-#sales-today ul, .with-progress-bar ul{
-	padding: 0 20px 0 9px !important;
+#wrapper-sales ul, #sales-today ul, .with-progress-bar ul{
 	margin: 0 !important;
 }
 
-#sales-today ul li, .with-progress-bar ul li{
+#wrapper-sales ul li, #sales-today ul li, .with-progress-bar ul li{
 	color: #849598;
 	margin: 18px 0 0;
 	font-size: 12px;
 }
 
-#sales-today ul li > span, .with-progress-bar ul li > span{
+#wrapper-sales ul li > span, #sales-today ul li > span, .with-progress-bar ul li > span{
 	display: inline-block;
 	width: 80px;
 	float: left;
 }
 
-#sales-today ul li > div, .with-progress-bar  ul li > div{
+#wrapper-sales ul li > div, #sales-today ul li > div, .with-progress-bar  ul li > div{
 	width: 130px;
 	float: left;
 	padding-top: 4px;
 	padding-left: 8px;
 }
 
-#sales-today ul li > div span, .with-progress-bar  ul li > div span{
+#wrapper-sales ul li > div span, #sales-today ul li > div span, .with-progress-bar  ul li > div span{
 	display: block;
 	height: 8px;
 	border-radius: 4px;
 	background: #96cf2d;
 }
 
-#sales-today ul li > div div.progress, .with-progress-bar ul li > div div.progress{
+#wrapper-sales ul li > div div.progress, #sales-today ul li > div div.progress, .with-progress-bar ul li > div div.progress{
     display: block;
     height: 8px;
     border-radius: 4px;
@@ -234,7 +230,7 @@ h4.date-range-header{
 	margin-top: 0;
 }
 
-#sales-today ul li > em, .with-progress-bar ul li > em{
+#wrapper-sales ul li > em, #sales-today ul li > em, .with-progress-bar ul li > em{
 	font-style: normal;
 	width: auto;
 	float: right;
@@ -242,23 +238,23 @@ h4.date-range-header{
 	display: inline-block;
 }
 
-#sales-today ul li#monday > div span, .with-progress-bar ul li#monday > div span{
+#wrapper-sales ul li#monday > div span, #sales-today ul li#monday > div span, .with-progress-bar ul li#monday > div span{
 	width: 60%;
 }
 
-#sales-today ul li#tuesday > div span, .with-progress-bar ul li#tuesday > div span{
+#wrapper-sales ul li#tuesday > div span, #sales-today ul li#tuesday > div span, .with-progress-bar ul li#tuesday > div span{
 	width: 40%;
 }
 
-#sales-today ul li#wednesday > div span, .with-progress-bar ul li#wednesday > div span{
+#wrapper-sales ul li#wednesday > div span, #sales-today ul li#wednesday > div span, .with-progress-bar ul li#wednesday > div span{
 	width: 40%;
 }
 
-#sales-today ul li#thursday > div span, .with-progress-bar ul li#thursday > div span{
+#wrapper-sales ul li#thursday > div span, #sales-today ul li#thursday > div span, .with-progress-bar ul li#thursday > div span{
 	width: 60%;
 }
 
-#sales-today ul li#friday > div span, .with-progress-bar ul li#friday > div span{
+#wrapper-sales ul li#friday > div span, #sales-today ul li#friday > div span, .with-progress-bar ul li#friday > div span{
 	width: 90%;
 }
 

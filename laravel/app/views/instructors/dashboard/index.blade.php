@@ -1,11 +1,11 @@
 @extends('layouts.default')
 @section('content')
-    <div class="wrapper">
+    <div class="wrapper clearfix">
         <div class="container affiliate-dashboard dashboard  analytics-page">
 
 
 
-            <div class="row top-activities margin-top-10">
+            <div class="row top-activities">
                 {{-- Total Sales in Yen --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div>

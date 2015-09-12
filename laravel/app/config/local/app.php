@@ -20,8 +20,8 @@ return array(
         'locale' => 'en',
         'providers' => append_config(
 		[
-			'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-			'Barryvdh\Debugbar\ServiceProvider',
+//			'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+//			'Barryvdh\Debugbar\ServiceProvider',
                         'Way\Generators\GeneratorsServiceProvider',
                         'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
 		]

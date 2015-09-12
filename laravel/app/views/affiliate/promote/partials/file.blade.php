@@ -3,7 +3,7 @@
         <div class='col-lg-9'>-->
             
             <input type='text' class='form-control ajax-updatable' data-url='{{action('GiftsFileController@update', [$file->id] )}}'
-                  data-name='name'  placeholder='{{ trans('courses/promote.new-gift') }}' value='{{ $file->name }}' style='width:39%' />
+                  data-name='name'  placeholder='{{ trans('courses/promote.new-gift') }}' value='{{ $file->name }}' style='width:50%' />
             <span class="file-size">{{ $file->size }}</span>
             <a href='{{ $file->presignedUrl() }}' target='_blank' title='{{ trans('courses/student_dash.download') }}'>
                 <i class='fa fa-download'></i>

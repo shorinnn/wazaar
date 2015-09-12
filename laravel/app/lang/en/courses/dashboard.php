@@ -11,6 +11,8 @@ return [
     'what-would-you-like-to-ask' => 'What would you like to ask ?',
     'describe-more-details-on-your-subject' => 'Describe more details on your subject',
     'cancel' =>  'Cancel',
-    'submit-question' => 'Submit question'
+    'submit-question' => 'Submit question',
+    'back-to-courses' => 'Back to Courses',
+    'completed' => 'Completed'
     
 ];

@@ -593,6 +593,10 @@ class CoursesController extends \BaseController {
             if( $course==null)   {
                 return View::make('site.error_encountered');
             }
+            // store gift cookie if  any
+            if( Input::has('gid') ){
+                Cookie::queue('gid-'.$course->id, Input::get('gid'), 60*24*30);
+            }
             
             $wishlisted = [];
             if( Auth::check() ){
@@ -631,11 +635,13 @@ class CoursesController extends \BaseController {
             }
             
             $video = $course->descriptionVideo;
+            if( Input::has('gid') ) $gid = Input::get('gid');
+            else $gid = Cookie::get('gid-'.$course->id);
 
             if( serveMobile() ) 
-                Return View::make('MOBILE_VERSION.courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') );
+                Return View::make('MOBILE_VERSION.courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted', 'gid' ) );
             else    
-                Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted') )->render();
+                Return View::make('courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted', 'gid' ) )->render();
         } 
         
         public function loginToPurchase($slug){
@@ -644,6 +650,12 @@ class CoursesController extends \BaseController {
                 return Redirect::to('register')->withError( trans('courses/general.login_to_purchase') );
             }
         }
+        
+        public function confirmToPurchase($slug){
+            Session::set('url.intended', action('CoursesController@show', $slug));
+            return Redirect::action( 'UsersController@confirmPassword' );
+        }
+        
         public function purchase($slug){
             if(Auth::guest()){
                 Session::set('url.intended', action('CoursesController@show', $slug));
@@ -658,7 +670,7 @@ class CoursesController extends \BaseController {
             // gift
             if(Input::get('gid') !=''){
                 $gift = Gift::find( PseudoCrypt::unhash(Input::get('gid')) );
-                if($gift && $gift->affiliate_id == Input::get('aid')){
+                if($gift && $gift->affiliate_id == Cookie::get('aid')){
                     $purchaseData['giftID'] = $gift->id;
                 }
             }
@@ -721,8 +733,10 @@ class CoursesController extends \BaseController {
         
         public function purchased($slug){
             // unset the affiliate cookie
-            Cookie::queue("aid", null, -1);
             $course = Course::where('slug', $slug)->first();
+            Cookie::queue("aid", null, -1);
+            Cookie::queue("gid-".$course->id, null, -1);
+            
             Session::flash( 'message', trans('courses/general.enroll-success-message-paid') );
             return Redirect::action('ClassroomController@dashboard', $slug);
                 
@@ -758,7 +772,7 @@ class CoursesController extends \BaseController {
             $g = null;
             if(Input::get('gid') !=''){
                 $gift = Gift::find( PseudoCrypt::unhash(Input::get('gid')) );
-                if($gift && $gift->affiliate_id == Input::get('aid')){
+                if($gift && $gift->affiliate_id == Cookie::get('aid')){
                     $g = $gift->id;
                 }
             }
@@ -766,6 +780,7 @@ class CoursesController extends \BaseController {
             // unset the affiliate cookie
             Cookie::queue("aid", null, -1);
             Cookie::queue("gid", null, -1);
+            Cookie::queue("gid-".$course->id, null, -1);
             Session::flash( 'message', trans('courses/general.enroll-success-message-free') );
             return Redirect::action( 'ClassroomController@dashboard', [ 'course' => $course->slug ]);
         }

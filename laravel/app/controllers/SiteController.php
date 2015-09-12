@@ -30,7 +30,7 @@ class SiteController extends \BaseController {
                 $topCourses = $topCourses[ 0 ];
                 
                 // $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
-                $discoverCourses = Course::where('publish_status','approved')->orderBy('student_count','desc')->paginate(12);
+                $discoverCourses = Course::where('publish_status','approved')->orderBy('free','desc')->paginate(12);
                 
                 if(Auth::user()){
                     Return View::make('site.homepage_authenticated')
@@ -235,9 +235,9 @@ class SiteController extends \BaseController {
     }
 
     public function loginTest(){
-        $user = User::find(60);
-        $user = User::find(74);
-        Auth::login($user);
+//        $user = User::find(60);
+//        $user = User::find(74);
+//        Authzzz::login($user);
     }
     
     public function clearCache(){
@@ -396,6 +396,10 @@ class SiteController extends \BaseController {
                 $u->updateUniques();
             }
         }
+    }
+    
+    public function env(){
+        dd( App::environment() );
     }
     
 

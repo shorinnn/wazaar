@@ -7,6 +7,7 @@ return array(
     'new' => 'NEW',
 	'upload_image' => 'Upload Image',
 	'upload_video' => 'Upload Video',
+	'you-will-earn' => 'You"ll earn',
     'students' => 'students',
     'analytics' => 'Analytics',
     'dashboard' => 'Dashboard',
@@ -211,4 +212,6 @@ return array(
     'enroll-success-message-free' => "Successful enroll",
     'enroll-success-message-paid' => "Successful enroll",
     'payment-error' => 'Payment Error',
+    'resume' => 'Resume',
+    'back-to-where-you-left' => 'Go Back Where You Left It'
 );

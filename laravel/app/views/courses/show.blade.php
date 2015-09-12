@@ -285,12 +285,16 @@
                                         data-toggle='tooltip' data-placement='left' title='Opens on 10/9'
                                     @else
                                         @if(Auth::check())
-                                            onclick="Payment.processBeforeSubmit(this,event)"
+                                            @if(Session::has('verifiedLogin') )
+                                                onclick="Payment.processBeforeSubmit(this,event)"
+                                            @else
+                                                onclick="window.location='{{action('CoursesController@confirmToPurchase', $course->slug)}}'"
+                                            @endif
                                         @else
                                             onclick="window.location='{{action('CoursesController@loginToPurchase', $course->slug)}}'"
                                         @endif
                                     @endif
-                                    data-gift-id="{{Input::get('gid')}}" 
+                                    data-gift-id="{{ $gid }}" 
                                     data-product-type="course"
                                     data-product-id="{{$course->id}}"
                                     data-product-name="{{$course->name}}"
@@ -306,20 +310,21 @@
                                 {{ trans("courses/general.enter-classroom") }}
                             </a>
                         @else
-                            <button type='button' class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block"
-                                    data-toggle="tooltip" data-placement="left" 
+                            <button type='button' 
+                                    data-toggle="tooltip" data-placement="top" 
                                     @if( Auth::check() && Auth::user()->hasRole('Affiliate') )
                                         title="Log in to your student/instructor account to purchase."
+                                        class="clearfix default-button extra-large-button tooltipable btn-block"
                                     @else
                                         title="Available for customers"
                                     @endif
                                         >
-                                {{ trans("courses/general.course-enroll") }}
+                                <span>{{ trans("courses/general.you-will-earn") }} {{ $course->affiliate_percentage }}%</span><h2>¥ 4,400</h2>
                             </button>
                         @endif
  
-                        <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
-                        <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
+                        <input type='hidden' name='gid' value='{{ $gid }}' />
+                        <input type='hidden' name='aid' value='{{ Input::get('aid') }}' />
                         {{Form::close()}}
                         
                 @elseif( $course->cost() == 0 && !Input::has('preview') )
@@ -329,8 +334,8 @@
                     @else
                         {{ Form::open( [ 'id' => 'purchase-form', 'method'=>'GET', 'readonly'=>'readonly', 'disabled'=>'disabled' ] ) }}
                     @endif
-                        <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
-                        <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
+                        <input type='hidden' name='gid' value='{{ $gid }}' />
+                        <input type='hidden' name='aid' value='{{ Input::get('aid') }}' />
                                 @if(Auth::guest() || $student->canPurchase($course) )
                                     <span class="price clearfix ">{{trans('courses/general.free') }}</span>
                                      <button type='submit' class="clearfix enroll-button blue-button extra-large-button join-class">
@@ -398,8 +403,8 @@
                                 {{ trans("courses/general.course-enroll") }}
                             </button>
                         
-                    <input type='hidden' name='gid' value='{{Input::get('gid')}}' />
-                    <input type='hidden' name='aid' value='{{Input::get('aid')}}' />
+                    <input type='hidden' name='gid' value='{{ $gid }}' />
+                    <input type='hidden' name='aid' value='{{ Input::get('aid') }}' />
                     {{Form::close()}}
                 @endif
                

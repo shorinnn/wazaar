@@ -117,6 +117,7 @@ return array(
     'register-2-tier' => 'Register 2 tier publisher account',
     'cant-set-price-for-free-course' => 'Cannot set price for a free course',
     'browse-courses' => 'Browse Courses',
+    'promote-courses' => 'Browse Courses',
     'click-go-to-begin' => 'Click GO to begin',
     'verify-go-button' => 'GO!',
     'opening-lesson' => 'Opening Lesson',
@@ -160,4 +161,7 @@ return array(
     ],
     'continue-browsing' => 'CONTINUE BROWSING',
     'new' => 'New',
+    'confirm-password-to-continue' => 'Confirm password to continue',
+    'incorrect-password' => 'Incorrect password',
+    'confirm-password' => 'Confirm Password'
 );

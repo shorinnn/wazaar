@@ -290,7 +290,8 @@ class UserRepository
         else{
             // see if password failed, but visitor used social confirmation code
             if($user->social_confirmation == $input['password']){
-                Auth::login($user);
+                unset($user->url);
+                Auth::login($user, true);
                 $user->confirmed = 1;
                 $user->facebook_login_id = $facebook_id;
                 $user->facebook_profile_id = $facebook_profile;
@@ -365,7 +366,8 @@ class UserRepository
         else{
             // see if password failed, but visitor used social confirmation code
             if($user->social_confirmation == $input['password']){
-                Auth::login($user);
+                unset($user->url);
+                Auth::login($user, true);
                 $user->confirmed = 1;
                 $user->google_plus_login_id = $google_id;
                 $user->google_plus_profile_id = $google_profile;
@@ -409,6 +411,7 @@ class UserRepository
         if (! isset($input['password'])) {
             $input['password'] = null;
         }
+        $input['remember'] = true;
         return Confide::logAttempt($input, Config::get('confide::signup_confirm'));
     }
 
@@ -545,7 +548,8 @@ class UserRepository
             if( ! $user->updateUniques() ){
                 dd( $user->errors()->all() );
             }
-            Auth::login($user);
+            unset($user->url);
+            Auth::login($user, true);
             
             //email affiliates
             if( $user->hasRole('Affiliate')){
@@ -565,12 +569,15 @@ class UserRepository
             $delivered = new DeliveredHelper();
             $deliveredUser = $delivered->findUser( $user->email );
             $deliveredUser = $deliveredUser['data'];
+            $added = false;
             if( count($deliveredUser) > 0){
                 $dUser = $deliveredUser[0];
-                foreach( $dUser['tags'] as $tag ){
-                    if( $tag['tagName'] == 'email-confirmed' ){
-                        $res = $delivered->updateTag( $tag['id'], $dUser['id'], 'email-confirmed', 'integer', 1);
-                        $added = true;
+                if( isset($dUser['tags']) && count($dUser['tags']) > 0){
+                    foreach( $dUser['tags'] as $tag ){
+                        if( $tag['tagName'] == 'email-confirmed' ){
+                            $res = $delivered->updateTag( $tag['id'], $dUser['id'], 'email-confirmed', 'integer', 1);
+                            $added = true;
+                        }
                     }
                 }
                 if( !$added ){

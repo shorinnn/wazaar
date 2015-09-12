@@ -34,7 +34,7 @@
     $(function(){
         
         /** decrypt video url **/
-        decryptVideoSrc();
+        //decryptVideoSrc();
         /** /decrypt video url **/
         
         add_scroll_class_if_have_scrollbar();

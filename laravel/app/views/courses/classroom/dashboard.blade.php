@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9">
-                	<a href="{{ action( 'StudentController@mycourses' ) }}" class="back-to-courses"><i class="wa-chevron-left"></i>Back to courses</a>
+                	<a href="{{ action( 'StudentController@mycourses' ) }}" class="back-to-courses"><i class="wa-chevron-left"></i>{{ trans('courses/dashboard.back-to-courses') }}</a>
                 	<h1>{{ $course->name }}</h1>
                     <p>
                         @if($currentLesson != null)
@@ -36,7 +36,7 @@
     	<div class="container">
         	<div>
             	<div class="col-xs-12 col-sm-12 col-md-9 col-md-offset-3 col-lg-9 col-lg-offset-3">
-                    <p>{{ $student->courseProgress($course) }}% completed</p>
+                    <p>{{ $student->courseProgress($course) }}% {{ trans('courses/dashboard.completed') }}</p>
                     <div class="progress @if($currentLesson == null) full @endif">
                         <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{ $student->courseProgress($course) }}%;">
                             <span></span>
