@@ -1393,25 +1393,25 @@ function showMoreContent(){
 		
 		$link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
 		
-		$link.on("click", function() {
-			if ($link.hasClass('show-more')){
-				$link.removeClass('show-more');
-				$link.addClass('show-less');
-				$link.siblings('.fadeout-text').hide();
-				$content.css('max-height', 'none');
-				$link.html(('<i class="fa fa-chevron-up"></i>') + $link.attr('data-less-text'));
-				TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
-				$('[data-toggle="tooltip"]').tooltip();
-			} else if($link.hasClass('show-less')){
-				$link.removeClass('show-less');
-				$link.addClass('show-more');
-				$link.siblings('.fadeout-text').show();
-				$link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
-				TweenMax.fromTo($content, 0, {height: actualHide}, {height: visibleHeight});
-			}
-		
-			return false;
-		});
+        $link.click(function(){
+            if ($link.hasClass('show-more')){
+                $link.removeClass('show-more');
+                $link.addClass('show-less');
+                $link.siblings('.fadeout-text').hide();
+                $content.css('max-height', 'none');
+                $link.html(('<i class="fa fa-chevron-up"></i>') + $link.attr('data-less-text'));
+                TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
+                $('[data-toggle="tooltip"]').tooltip();
+            } else if($link.hasClass('show-less')){
+                $link.removeClass('show-less');
+                $link.addClass('show-more');
+                $link.siblings('.fadeout-text').show();
+                $link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
+                TweenMax.fromTo($content, 0, {height: actualHide}, {height: visibleHeight});
+            }
+        
+            return false;
+        })
 	});
 }
 
