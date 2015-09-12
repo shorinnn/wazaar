@@ -13,6 +13,8 @@ var Analytics = {
         $('#wrapper-tracking-code-stats').html($ajaxLoader);
         $('#wrapper-user-stats').html($ajaxLoader);
         $('#wrapper-sales-count').html($ajaxLoader);
+        $('#wrapper-second-tier-registrations').html($ajaxLoader);
+        $('#wrapper-ltc-earnings').html($ajaxLoader);
     },
     'topCourses' :  function ($frequency, $courseId, $elem){
 
