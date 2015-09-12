@@ -15,22 +15,31 @@ class SiteController extends \BaseController {
                 $student = Student::find( Auth::user()->id );
                 $wishlisted = $student->wishlistItems()->lists( 'course_id' );
             }
-            // if(Input::has('skip-the-splashie')){
-//                $frontpageVideos  = FrontpageVideo::grid();
-                $categories = CourseCategory::limit(12);
-                $groups = CategoryGroup::orderBy('order','asc')->get();
-                
-                if ( !Cache::has('topCourses') ){
-                    $top = HomepageHelper::generateVariations(8);
-                    Cache::add('topCourses', $top, 30);
-                }
-                
-                $topCourses = Cache::get('topCourses');
-//                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
-                $topCourses = $topCourses[ 0 ];
+            // TEMPORARILY DISABLE THESE VARS BECAUSE THEY'RE NOT USED IN THE VIEW
+            $categories = $groups = $topCourses = null;
+//                $categories = CourseCategory::limit(12);
+//                $groups = CategoryGroup::orderBy('order','asc')->get();
+//                
+//                if ( !Cache::has('topCourses') ){
+//                    $top = HomepageHelper::generateVariations(8);
+//                    Cache::add('topCourses', $top, 30);
+//                }
+//                
+//                $topCourses = Cache::get('topCourses');
+////                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
+//                $topCourses = $topCourses[ 0 ];
                 
                 // $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
-                $discoverCourses = Course::where('publish_status','approved')->orderBy('free','desc')->paginate(12);
+                $discoverCourses = Course::orderBy('free','desc')->orderBy('student_count','desc')
+                        ->where(function($query){
+                            $query->where('publish_status', 'approved')
+                            ->orWhere(function($query2){
+                                $query2->where('privacy_status','public')
+                                        ->where('publish_status', 'pending')
+                                        ->where('approved_data', '!=', "");
+                            });
+                        })
+                        ->paginate(12);
                 
                 if(Auth::user()){
                     Return View::make('site.homepage_authenticated')
@@ -47,13 +56,6 @@ class SiteController extends \BaseController {
                         Return View::make('site.homepage_unauthenticated')
                             ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted') );
                 }
-            // }
-//             if( Auth::check() ){
-// //                if( Auth::user()->is_second_tier_instructor == 'yes' ) return Redirect::action('UsersController@links');
-//                 if( Auth::user()->hasRole('Instructor') ) return Redirect::action('CoursesController@myCourses');
-//                 if( Auth::user()->hasRole('Affiliate') ) return Redirect::action('AffiliateDashboardController@index');
-//             }
-            // return View::make('splash');
 	}
 
         

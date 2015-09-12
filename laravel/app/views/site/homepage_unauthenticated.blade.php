@@ -40,6 +40,7 @@
             </div>
         </section>
     </section>
+    {{-- TEMPORARILY DISABLED
     <div class="homepage-carousel clearfix">
         <h1>{{trans('site/homepage.what_is_hot')}}
             <p class="lead">{{trans('site/homepage.our_most_popular_courses')}}</p>
@@ -96,6 +97,8 @@
             </div>
         </div>
     </div>
+    --}}
+    {{-- TEMPORARILY DISABLED
     <section class="container-fluid">
         <section class="container homepage explore-category">
             <div class="row">
@@ -126,8 +129,10 @@
             </div>
         </section>
     </section>
+    --}}
     <section class="container-fluid discover-section">
         <div class="container">
+            {{-- TEMPORARILY DISABLED
             <div class="row discover-header">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
                 	<div class="navbar-header">
@@ -168,6 +173,7 @@
                     </div>
                 </div>
             </div>
+            --}}
             
             <div id='discover-courses-area' class="ajax-content">
                 {{ View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted') ) }}
