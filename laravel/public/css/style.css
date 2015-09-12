@@ -9215,9 +9215,9 @@ header .top-menu li{
 
 }
 @media (max-width:552px){
-	.lesson-topics li .buttons{
+	/*.lesson-topics li .buttons{
 		margin-top: 14px;
-	}	
+	}*/	
 	.lesson-topics li .buttons .blue-button{
 		padding: 5px 10px !important;
 		font-size: 11px;
