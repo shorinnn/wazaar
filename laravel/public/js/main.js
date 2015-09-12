@@ -1365,7 +1365,10 @@ function showMoreContent(){
 		var visibleHeight = $content[0].clientHeight;
 		var actualHide = $content[0].scrollHeight - 1; // -1 is needed in this case or you get a 1-line offset.
 		
-		$content.css('height', visibleHeight);
+        if($content.hasClass('lesson-topics')){
+            visibleHeight = Number(visibleHeight) + 3;
+        }
+		$content.css('height', visibleHeight).css('display', 'block');
 		console.log("Actual height is" + actualHide);
 		console.log("Visible height is" + visibleHeight);
 	
