@@ -10,9 +10,9 @@
                 <thead>
                 <tr>
                     <th width="50%">{{trans('profile.form.name')}}</th>
-                    <th width="20%">{{trans('analytics.enrolled')}}</th>
-                    <th width="20%">{{trans('analytics.sales')}}</th>
-                    <th width="10%">{{trans('courses/general.price')}}</th>
+                    <th width="20%" style="text-align: center">{{trans('analytics.enrolled')}}</th>
+                    <th width="20%" style="text-align: center">{{trans('analytics.sales')}}</th>
+                    <th width="10%" style="text-align: center">{{trans('courses/general.price')}}</th>
                 </tr>
                 </thead>
 
@@ -24,11 +24,11 @@
                             @if ($course->free == 'no')
                                 <a href="{{url('analytics/course/' . $course->slug)}}">{{$course->name}}</a>
                             @else
-                                {{$course->name}}
+                                <span style="color:#000">{{$course->name}}</span>
                             @endif
                         </th>
-                        <td>{{$course->sales->count()}}</td>
-                        <td>
+                        <td align="center">{{$course->sales->count()}}</td>
+                        <td align="center">
                             @if ($course->free == 'no')
                                 ¥ {{number_format($course->sales->sum('instructor_earnings'))}}
                             @else
@@ -36,7 +36,7 @@
                             @endif
 
                         </td>
-                        <td>
+                        <td align="center">
                             @if ($course->free == 'no')
                                 ¥ {{number_format($course->price)}}
                             @else
