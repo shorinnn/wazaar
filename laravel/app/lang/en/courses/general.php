@@ -214,5 +214,6 @@ return array(
     'payment-error' => 'Payment Error',
     'resume' => 'Resume',
     'back-to-where-you-left' => 'Go Back Where You Left It',
-    'log-in-student-to-purchase' => 'Log in to your student/instructor account to purchase.'
+    'log-in-student-to-purchase' => 'Log in to your student/instructor account to purchase.',
+    'instructor-go-to-dashboard' => 'Go to dashboard',
 );

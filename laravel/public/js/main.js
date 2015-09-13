@@ -10,7 +10,7 @@ function isset(variable){
 }
 var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 
-$(document).ready(function(){
+jQuery(document).ready(function($){
     
 //    var canPopState = false;
 //    setTimeout(function(){
@@ -24,11 +24,11 @@ $(document).ready(function(){
 //          window.location = location.href;
 //      });
 
-/*** DISABLE VIDEO RIGHT CLICK ****/
-$('body').delegate('video', 'contextmenu',function(event) {
-    return false;
-});
-/*** /DISABLE VIDEO RIGHT CLICK ****/
+    /*** DISABLE VIDEO RIGHT CLICK ****/
+    $('body').delegate('video', 'contextmenu',function(event) {
+        return false;
+    });
+    /*** /DISABLE VIDEO RIGHT CLICK ****/
 
 	$("#affiliate-toolbar-tracking").on("focus", function(){
 	  $(".fa.fa-plus").hide();
@@ -85,12 +85,15 @@ $('body').delegate('video', 'contextmenu',function(event) {
 	insertSelectBorder();
 	askTeacherQuestion();
 	searchFormFocusStyle();
-	showMoreContent();
+	setTimeout(function(){
+        showMoreContent();
+    }, 1000);
 	toggleSideMenu();
 	//stickyFooter();
 	rescaleBckgrdOverlay();
 	$(window).resize(function() {
 	  rescaleBckgrdOverlay();
+      showMoreContent();
    	  skinVideoControls();
 	});
 	
@@ -1365,7 +1368,22 @@ function showMoreContent(){
 		var visibleHeight = $content[0].clientHeight;
 		var actualHide = $content[0].scrollHeight - 1; // -1 is needed in this case or you get a 1-line offset.
 		
-		$content.css('height', visibleHeight);
+        if($content.hasClass('lesson-topics')){
+            $content.children('li').each(function(){
+                if($(this).children('div.buttons').length >= 1){
+                   var buttonWidth = $(this).children('div.buttons').width();
+                   if(buttonWidth >= 1){
+                    deductWidth = Number(buttonWidth) + 40;
+                    var width = Number($(this).width()) - deductWidth;
+                    $(this).children('a.lesson-name').css('width', width);
+                   } else {
+                    $(this).children('a.lesson-name').css('width', 'inherit');
+                   }
+                }
+            })
+            visibleHeight = Number(visibleHeight) + 3;
+        }
+		$content.css('height', visibleHeight).css('display', 'block');
 		console.log("Actual height is" + actualHide);
 		console.log("Visible height is" + visibleHeight);
 	
@@ -1390,25 +1408,25 @@ function showMoreContent(){
 		
 		$link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
 		
-		$link.on("click", function() {
-			if ($link.hasClass('show-more')){
-				$link.removeClass('show-more');
-				$link.addClass('show-less');
-				$link.siblings('.fadeout-text').hide();
-				$content.css('max-height', 'none');
-				$link.html(('<i class="fa fa-chevron-up"></i>') + $link.attr('data-less-text'));
-				TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
-				$('[data-toggle="tooltip"]').tooltip();
-			} else if($link.hasClass('show-less')){
-				$link.removeClass('show-less');
-				$link.addClass('show-more');
-				$link.siblings('.fadeout-text').show();
-				$link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
-				TweenMax.fromTo($content, 0, {height: actualHide}, {height: visibleHeight});
-			}
-		
-			return false;
-		});
+        $link.click(function(){
+            if ($link.hasClass('show-more')){
+                $link.removeClass('show-more');
+                $link.addClass('show-less');
+                $link.siblings('.fadeout-text').hide();
+                $content.css('max-height', 'none');
+                $link.html(('<i class="fa fa-chevron-up"></i>') + $link.attr('data-less-text'));
+                TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
+                $('[data-toggle="tooltip"]').tooltip();
+            } else if($link.hasClass('show-less')){
+                $link.removeClass('show-less');
+                $link.addClass('show-more');
+                $link.siblings('.fadeout-text').show();
+                $link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
+                TweenMax.fromTo($content, 0, {height: actualHide}, {height: visibleHeight});
+            }
+        
+            return false;
+        })
 	});
 }
 

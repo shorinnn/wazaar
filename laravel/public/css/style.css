@@ -2699,7 +2699,7 @@ h2, h3, h4, h5, h6{
 	padding: 19px 0 !important;
 	/*line-height: 56px;
 	height: 56px;*/
-	width: 62%;
+	width: 57%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -8596,7 +8596,7 @@ footer{
 }
 @media (max-width:1140px){
 	.lesson-topics li .lesson-name{
-		width: 60%;
+		width: 54%;
 	}
 	.student-course.percentage-completed .progress{
 		max-width: 53%;
@@ -8832,6 +8832,9 @@ footer{
 	.course-question-sidebar.hasScroll.in{
 		right: 485px;
 	}	
+	.lesson-topics li .lesson-name{
+		width: 60%;
+	}
 }
 @media (max-width:767px){
 header .top-menu .logged-out li a{
@@ -9188,7 +9191,7 @@ header .top-menu li{
 		display: inline-table;
 	}
 	.lesson-topics li .lesson-name{
-		width: 54%;
+		width: 50%;
 	}
 	.category-heading > div{
 		text-align: center;
@@ -9212,9 +9215,9 @@ header .top-menu li{
 
 }
 @media (max-width:552px){
-	.lesson-topics li .buttons{
+	/*.lesson-topics li .buttons{
 		margin-top: 14px;
-	}	
+	}*/	
 	.lesson-topics li .buttons .blue-button{
 		padding: 5px 10px !important;
 		font-size: 11px;
@@ -9280,7 +9283,7 @@ header .top-menu li{
 		padding: 0 15px;
 	}
 	.lesson-topics li .lesson-name{
-		width: 43%;
+		width: 33%;
 	}
 	.student-course.percentage-completed .progress{
 		max-width: 100%;
@@ -9344,9 +9347,6 @@ header .top-menu li{
 		right: 0;
 		top: 0;
 	}
-	.lesson-topics li .lesson-name{
-		width: 51%;
-	}
 }
 @media (max-width:460px){
 	.checkout-modal {
@@ -9400,7 +9400,7 @@ header .top-menu li{
 		width: 100%;
 	}
 	.lesson-topics li .lesson-name{
-		width: 39%;
+		width: 28%;
 	}
 	.user-data-modal-header{
 		padding: 24px 24px 0;
@@ -9430,7 +9430,7 @@ header .top-menu li{
 		width: 33.333%;
 	}
 	.lesson-topics li .lesson-name{
-		width: 26%;
+		width: 18%;
 	}
 	.category-heading-container .sort-options select{
 		max-width: 83%;
@@ -9480,7 +9480,7 @@ header .top-menu li{
 		font-size: 11px;
 	}	
 	.lesson-topics li .lesson-name{
-		width: 37%;
+		width: 13%;
 	}
 	.category-heading-container .sort-options select{
 		max-width: 80%;
@@ -9610,9 +9610,6 @@ header .top-menu li{
 		width: 33px;
 	}	.mycourse-card-footer .default-button + .default-button{
 		margin-left: 10px;
-	}
-	.lesson-topics li .lesson-name{
-		width: 13%;
 	}
 }
 .no-float{

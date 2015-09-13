@@ -135,7 +135,8 @@ class ClassroomController extends \BaseController {
             if($course->assigned_instructor_id > 0) $instructor = $course->assignedInstructor;
             $student->load('viewedLessons');
             
-            if( (!$student->purchased($course) && $purchase==null && $lesson->free_preview=='yes') || ( !$student->purchased($course) && $purchase!=null && $purchase->free_product=='yes') ){
+            if( (isset($purchase) && !$student->purchased($course) && $purchase==null && $lesson->free_preview=='yes') 
+                        || ( isset($purchase) && !$student->purchased($course) && $purchase!=null && $purchase->free_product=='yes') ){
                 $crashLesson = true;        
                 return View::make('courses.classroom.crash_lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
                         'instructor', 'student', 'crashLesson') );

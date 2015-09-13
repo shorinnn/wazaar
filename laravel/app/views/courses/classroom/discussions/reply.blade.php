@@ -1,17 +1,18 @@
 <div class="replies-container clearfix">
     <div class="avatar">
         @if( $course->instructor_id == $reply->student_id || $course->assigned_instructor_id == $reply->student_id )
-            <img src="{{ $reply->student->commentPicture('instructor') }}" alt="" class="img-responsive">
+            <img src="{{ $reply->student->commentPicture('Instructor') }}" alt="" class="img-responsive">
         @else
-            <img src="{{ $reply->student->commentPicture('student') }}" alt="" class="img-responsive">
+            <img src="{{ $reply->student->commentPicture('Student') }}" alt="" class="img-responsive">
         @endif
     </div>
     <div class="replies-box">
         <div class="clearfix">
-            <span class="name">{{ $reply->student->fullName() }}</span>
             @if( $course->instructor_id == $reply->student_id || $course->assigned_instructor_id == $reply->student_id )
+            <span class="name">{{ $reply->student->commentName('Instructor') }}</span>
                 <div class="role teacher">Teacher</div>
             @else
+            <span class="name">{{ $reply->student->fullName() }}</span>
             <div class="role others">
                 @if($reply->student->profile !=null)
                     {{ $reply->student->profile->title }}

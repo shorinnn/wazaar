@@ -200,5 +200,6 @@ jpeg, png',
     'resume' => '再開する',
     'back-to-where-you-left' => '元に戻る',
     'you-will-earn' => 'アフィリエイト収入:',
-    'log-in-student-to-purchase' => '商品を購入するためには、購入者アカウントにログインする必要があります。'
+    'log-in-student-to-purchase' => '商品を購入するためには、購入者アカウントにログインする必要があります。',
+    'instructor-go-to-dashboard' => '学習を開始する！',
 );

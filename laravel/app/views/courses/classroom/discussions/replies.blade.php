@@ -8,14 +8,25 @@
                     <div class="questioner">
                     	<div class="questioner-info">
                             <div class="avatar">
-                                <img src="{{ $discussion->student->commentPicture('student') }}" alt="" class="img-responsive">
-                            </div>
-                            <span class="name block">{{ $discussion->student->fullName() }}</span>
-                            <span class="role clearfix">
-                                 @if($discussion->student->profile !=null)
-                                    {{ $discussion->student->profile->title }}
+                                @if( $discussion->lesson->module->course->instructor_id == $discussion->student_id 
+                                    || $discussion->lesson->module->course->assigned_instructor_id == $discussion->student_id )
+                                    <img src="{{ $discussion->student->commentPicture('Instructor') }}" alt="" class="img-responsive">
+                                @else
+                                    <img src="{{ $discussion->student->commentPicture('Student') }}" alt="" class="img-responsive">
                                 @endif
-                            </span>
+                            </div>
+                            @if( $discussion->lesson->module->course->instructor_id == $discussion->student_id 
+                                    || $discussion->lesson->module->course->assigned_instructor_id == $discussion->student_id )
+                                <span class="name block">{{ $discussion->student->commentName('Instructor')  }}</span>
+                                <span class="role clearfix">{{ $discussion->student->commentTitle('Instructor') }}</span>
+                            @else
+                                <span class="name block">{{ $discussion->student->fullName() }}</span>
+                               <span class="role clearfix">
+                                    @if($discussion->student->profile !=null)
+                                       {{ $discussion->student->profile->title }}
+                                   @endif
+                               </span>
+                            @endif
                             <div class="question clear">
                                 <p class="regular-paragraph">{{ $discussion->content }}</p>
                             </div>
