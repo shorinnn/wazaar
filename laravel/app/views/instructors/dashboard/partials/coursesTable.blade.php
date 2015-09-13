@@ -2,21 +2,17 @@
     <div class="top-affiliates-table table-wrapper">
         <div class="table-header clearfix">
             <h1 class="left">Courses</h1>
-            <form class="right">
-                <div class="search-affiliates">
-                    <input type="search" placeholder="Search affiliates ...">
-                    <button><i class="wa-search"></i></button>
-                </div>
-            </form>
+
         </div>
 
         <div class="table-responsive">
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
+                    <th width="50%">{{trans('profile.form.name')}}</th>
+                    <th width="20%">{{trans('analytics.enrolled')}}</th>
+                    <th width="20%">{{trans('analytics.sales')}}</th>
+                    <th width="10%">{{trans('courses/general.price')}}</th>
                 </tr>
                 </thead>
 
@@ -24,9 +20,29 @@
 
                 @foreach($courses as $course)
                     <tr>
-                        <th class="link" scope="row"><a href="{{url('analytics/course/' . $course->slug)}}">{{$course->name}}</a></th>
-                        <td>{{$course->short_description}}</td>
-                        <td>¥ {{number_format($course->price)}}</td>
+                        <th class="link" scope="row">
+                            @if ($course->free == 'no')
+                                <a href="{{url('analytics/course/' . $course->slug)}}">{{$course->name}}</a>
+                            @else
+                                {{$course->name}}
+                            @endif
+                        </th>
+                        <td>{{$course->sales->count()}}</td>
+                        <td>
+                            @if ($course->free == 'no')
+                                ¥ {{number_format($course->sales->sum('instructor_earnings'))}}
+                            @else
+                               N/A
+                            @endif
+
+                        </td>
+                        <td>
+                            @if ($course->free == 'no')
+                                ¥ {{number_format($course->price)}}
+                            @else
+                                {{trans('courses/create.free')}}
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
 

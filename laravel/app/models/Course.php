@@ -50,6 +50,11 @@ class Course extends Ardent{
         'affiliateCustomPercentages' => [self::HAS_MANY, 'CourseAffiliateCustomPercentage'],
         'descriptionVideo' => [self::BELONGS_TO, 'Video', 'foreignKey' => 'description_video_id'],
     );
+
+    public function getStudentsCountAttribute()
+    {
+        return $this->attributes['id'];
+    }
     
     public function modules($publicOnly=true){
         if( $publicOnly ) return $this->allModules()->where('public', 'yes');

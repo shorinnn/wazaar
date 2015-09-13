@@ -79,7 +79,9 @@ return
     '6YearsAgo' => '6 Years Ago',
     '7YearsAgo' => '7 Years Ago',
 
-    '2TierSignups' => '2 Tier Signups'
+    '2TierSignups' => '2 Tier Signups',
+
+    'enrolled' => 'Students Enrolled'
 
 
 ];

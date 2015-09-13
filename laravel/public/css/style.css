@@ -5745,7 +5745,7 @@ h2, h3, h4, h5, h6{
 
 /************* New Analytics Page*************/
 .analytics-page {
-    background-color: #e8eced;
+    /*background-color: #e8eced;*/
     margin: 40px auto;
     padding: 24px;
 }

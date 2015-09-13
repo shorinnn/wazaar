@@ -24,7 +24,7 @@ class Student extends User{
     public function getTransactionsAttribute(){
         return $this->allTransactions()->where('transaction_type', 'LIKE', "%student%");
     }
-    
+
     public function receivedMessages(){
 
         $mass = [0];
