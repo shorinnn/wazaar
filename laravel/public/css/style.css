@@ -9535,14 +9535,15 @@ header .top-menu li{
 	.lesson-topics li .lesson-name{
 		width: 18%;
 	}
-	.category-heading-container .sort-options select{
-		max-width: 83%;
+	.category-heading-container .sort-options label{
+		width: 17%;
+		text-align: left;
+		margin-right: 0;
 	}
-}
-@media (max-width:406px){
 	.category-heading-container .sort-options select{
-		max-width: 82%;
-	}	
+		width: 83%;
+		max-width: none;
+	}
 }
 @media (max-width:402px){
 	.user-data-modal .orr span{
@@ -9600,9 +9601,6 @@ header .top-menu li{
 	}	
 	.lesson-topics li .lesson-name{
 		width: 13%;
-	}
-	.category-heading-container .sort-options select{
-		max-width: 80%;
 	}
 }
 @media (min-width:320px) and (max-width: 480px) {
@@ -9704,10 +9702,6 @@ header .top-menu li{
 	.homepage-header-wrapper.logged-in{
 		margin-top: -208px;
 	}	
-
-	.category-heading-container .sort-options select{
-		max-width: 77%;
-	}
 }
 @media (max-width:320px){
 	.column-3 .add-to-wishlist-container{

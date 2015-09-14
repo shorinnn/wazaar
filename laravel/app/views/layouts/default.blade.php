@@ -305,6 +305,7 @@
         <script src="{{url("js/lang/parsley/".Config::get('app.locale').".js")}}" /></script>
         <script src="{{url("js/parsley.min.js")}}"></script>
         <script src="{{url("js/forms.js")}}"></script>
+        <script src="{{url("js/responsive-paginate.js")}}"></script>
         <script src="{{url("js/validations.js")}}"></script>
         <script src="{{url("js/courses.js")}}"></script>
         <script src="{{url("js/cocoriumTracker.js")}}"></script>
@@ -407,6 +408,8 @@
 					show: false	
 				}); 
 				
+				$(".pagination-container").rPage();
+
 				$('body').on('click','textarea',function(){
 					var opts = {
 						animate: true
