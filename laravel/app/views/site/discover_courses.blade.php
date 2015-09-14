@@ -7,7 +7,7 @@
         </div>
     </div>
 </div>
-<div class="row">    
+<div class="row clear">    
     @foreach( $discoverCourses as $course )
      <?php 
      $course = courseApprovedVersion($course);
