@@ -10,7 +10,7 @@ function isset(variable){
 }
 var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 
-jQuery(document).ready(function($){
+$(document).ready(function(){
     
 //    var canPopState = false;
 //    setTimeout(function(){
@@ -23,12 +23,6 @@ jQuery(document).ready(function($){
 //          if( !canPopState )return false;
 //          window.location = location.href;
 //      });
-
-    /*** DISABLE VIDEO RIGHT CLICK ****/
-    $('body').delegate('video', 'contextmenu',function(event) {
-        return false;
-    });
-    /*** /DISABLE VIDEO RIGHT CLICK ****/
 
 	$("#affiliate-toolbar-tracking").on("focus", function(){
 	  $(".fa.fa-plus").hide();
@@ -48,7 +42,7 @@ jQuery(document).ready(function($){
                $(this).html( event.strftime('%D '+_('days')+' %H  '+_('hours')+' %M  '+_('minutes')+' %S '+_('seconds')) );
              } );
     });
-    
+	
     $('.tooltipable').tooltip();
     enableClipboard();
 
@@ -85,15 +79,12 @@ jQuery(document).ready(function($){
 	insertSelectBorder();
 	askTeacherQuestion();
 	searchFormFocusStyle();
-	setTimeout(function(){
-        showMoreContent();
-    }, 1000);
+	showMoreContent();
 	toggleSideMenu();
 	//stickyFooter();
 	rescaleBckgrdOverlay();
 	$(window).resize(function() {
 	  rescaleBckgrdOverlay();
-      showMoreContent();
    	  skinVideoControls();
 	});
 	
@@ -1368,22 +1359,7 @@ function showMoreContent(){
 		var visibleHeight = $content[0].clientHeight;
 		var actualHide = $content[0].scrollHeight - 1; // -1 is needed in this case or you get a 1-line offset.
 		
-        if($content.hasClass('lesson-topics')){
-            $content.children('li').each(function(){
-                if($(this).children('div.buttons').length >= 1){
-                   var buttonWidth = $(this).children('div.buttons').width();
-                   if(buttonWidth >= 1){
-                    deductWidth = Number(buttonWidth) + 40;
-                    var width = Number($(this).width()) - deductWidth;
-                    $(this).children('a.lesson-name').css('width', width);
-                   } else {
-                    $(this).children('a.lesson-name').css('width', 'inherit');
-                   }
-                }
-            })
-            visibleHeight = Number(visibleHeight) + 3;
-        }
-		$content.css('height', visibleHeight).css('display', 'block');
+		$content.css('height', visibleHeight);
 		console.log("Actual height is" + actualHide);
 		console.log("Visible height is" + visibleHeight);
 	
@@ -1408,25 +1384,25 @@ function showMoreContent(){
 		
 		$link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
 		
-        $link.click(function(){
-            if ($link.hasClass('show-more')){
-                $link.removeClass('show-more');
-                $link.addClass('show-less');
-                $link.siblings('.fadeout-text').hide();
-                $content.css('max-height', 'none');
-                $link.html(('<i class="fa fa-chevron-up"></i>') + $link.attr('data-less-text'));
-                TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
-                $('[data-toggle="tooltip"]').tooltip();
-            } else if($link.hasClass('show-less')){
-                $link.removeClass('show-less');
-                $link.addClass('show-more');
-                $link.siblings('.fadeout-text').show();
-                $link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
-                TweenMax.fromTo($content, 0, {height: actualHide}, {height: visibleHeight});
-            }
-        
-            return false;
-        })
+		$link.on("click", function() {
+			if ($link.hasClass('show-more')){
+				$link.removeClass('show-more');
+				$link.addClass('show-less');
+				$link.siblings('.fadeout-text').hide();
+				$content.css('max-height', 'none');
+				$link.html(('<i class="fa fa-chevron-up"></i>') + $link.attr('data-less-text'));
+				TweenMax.fromTo($content, 0, {height: visibleHeight}, {height: actualHide});
+				$('[data-toggle="tooltip"]').tooltip();
+			} else if($link.hasClass('show-less')){
+				$link.removeClass('show-less');
+				$link.addClass('show-more');
+				$link.siblings('.fadeout-text').show();
+				$link.html(('<i class="fa fa-chevron-down"></i>') + $link.attr('data-more-text'));
+				TweenMax.fromTo($content, 0, {height: actualHide}, {height: visibleHeight});
+			}
+		
+			return false;
+		});
 	});
 }
 
@@ -1485,41 +1461,10 @@ function toggleSideMenu(){
 	});	
 }
 
-function whichTransitionEvent(class_name){
-    var t;
-    var el = document.getElementsByClassName(class_name);
-    var transitions = {
-      'transition':'transitionend',
-      'OTransition':'oTransitionEnd',
-      'MozTransition':'transitionend',
-      'WebkitTransition':'webkitTransitionEnd'
-    }
-
-    for(t in transitions){
-        if( el[0].style[t] !== undefined ){
-            return transitions[t];
-            break;
-        }
-    }
-}
-
 function toggleRightBar(e, json){
-    if(!showingQuestionForm){
-        var transitionEvent = whichTransitionEvent('course-question-sidebar');
-        var i = 0;
-        document.addEventListener(transitionEvent, function() {
-            if(i == 0){
-                $('.ask-question').removeClass('active');
-            }            
-            i++;
-        });
-        if(i != 0) {
-            i = 0;
-        }
-    } else {
-        $('.ask-question').removeClass('active');
-    }
     
+
+    $('.ask-question').removeClass('active');
     $('.questions-box').removeClass('active');
     
     if( showingQuestionForm ){
@@ -1842,14 +1787,4 @@ function ajaxifyPagination(e){
         $(this).attr( 'data-callback-2', 'scrollToElement' );
         $(this).attr( 'data-target', '.ajax-content' );
     });
-}
-
-
-function decryptVideoSrc(){
-    if( $('source').length > 0){
-        src = $('source').attr('src');
-        src = GibberishAES.dec(src, 'wzrencvid');
-        $('source').attr('src', src);
-        $('video')[0].load();
-    }
 }
