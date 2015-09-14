@@ -3,7 +3,7 @@
 <div class="no-padding full-height">
     <div class="discussion-sidebar">
         <div class="discussion-sidebar-header">
-            <h2>{{ trans('courses/dashboard.ask-question') }}n</h2>
+            <h2>{{ trans('courses/dashboard.ask-question') }}</h2>
             <span class="close-tab" onclick="toggleRightBar()"><i class="fa fa-times"></i></span>
         </div>
         <div class="ask-question-fields margin-top-40 clearfix">

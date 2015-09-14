@@ -22,7 +22,7 @@
                         </a>-->
                     </div>
                 @else
-                    Be first to respond
+                    {{ trans('courses/dashboard.be-first-to-respond') }}
                 @endif
             </span>
         </a>

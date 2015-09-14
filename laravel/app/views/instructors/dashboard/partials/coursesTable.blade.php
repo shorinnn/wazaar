@@ -9,10 +9,10 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th width="50%">{{trans('profile.form.name')}}</th>
-                    <th width="20%" style="text-align: center">{{trans('analytics.enrolled')}}</th>
-                    <th width="20%" style="text-align: center">{{trans('analytics.sales')}}</th>
-                    <th width="10%" style="text-align: center">{{trans('courses/general.price')}}</th>
+                    <th width="50%">{{trans('instructors/analytics.name')}}</th>
+                    <th width="20%" style="text-align: center">{{trans('instructors/analytics.students-enrolled')}}</th>
+                    <th width="20%" style="text-align: center">{{trans('instructors/analytics.sales-revenue')}}</th>
+                    <th width="10%" style="text-align: center">{{trans('instructors/analytics.price')}}</th>
                 </tr>
                 </thead>
 
