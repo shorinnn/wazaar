@@ -1360,7 +1360,7 @@ function showMoreContent(){
 		var visibleHeight = $content.height();
 		var actualHide = $content[0].scrollHeight - 1; // -1 is needed in this case or you get a 1-line offset.
 		
-		$content.css('height', visibleHeight);
+		$content.css('height', visibleHeight+'px');
 		console.log("Actual height is" + actualHide);
 		console.log("Visible height is" + visibleHeight);
 	
