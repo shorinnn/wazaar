@@ -1349,7 +1349,7 @@ function searchFormFocusStyle(){
 }
 
 function showMoreContent(){
-	$(".expandable-button").each(function() {
+    	$(".expandable-button").each(function() {
 		var $link = $(this);
 		var $content = $link.parent().children('.expandable-content');
 	
