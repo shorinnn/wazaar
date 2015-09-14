@@ -207,6 +207,8 @@ return array(
         'all' => 'All',
         'beginner' => 'Beginner',
         'advanced' => 'Advanced',
+        'free' => 'Free',
+        'paid' => 'Paid',
     ],
     'dash-you-have-no-questions-yet' => 'You have no asked any questions yet. Begin the course and start or join discussions!',
     'enroll-success-message-free' => "Successful enroll",
