@@ -207,6 +207,7 @@ return array(
         'all' => 'All',
         'beginner' => 'Beginner',
         'advanced' => 'Advanced',
+        'all-paid-or-free' => 'All',
         'free' => 'Free',
         'paid' => 'Paid',
     ],
