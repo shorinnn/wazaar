@@ -22,5 +22,9 @@ return array(
     'pm-for' => 'PM for',
     'view-in-inbox' => 'View in inbox',
     'lesson' => 'Lesson',
-    'mark-as-resolved' => 'Mark As Resolved',
+    'mark-as-resolved' => 'Mark As Resolved',    
+    'classroom' => [
+        'post' => '投稿する',
+        'write-your-answer' => '回答する'
+    ]
 );
