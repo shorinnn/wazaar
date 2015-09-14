@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="pull-right clearfix" style="margin-top:16px;">
         <div class="btn-group pagination-container">
-            <a href="/" class="btn btn-default @if($filter == '') active @endif">{{ trans('courses/general.filter.all') }}</a>
+            <a href="/" class="btn btn-default @if($filter == '') active @endif">{{ trans('courses/general.filter.all-paid-or-free') }}</a>
             <a href="/?filter=paid" class="btn btn-default @if($filter == 'paid') active @endif">{{ trans('courses/general.filter.paid') }}</a>
             <a href="/?filter=free" class="btn btn-default @if($filter == 'free') active @endif">{{ trans('courses/general.filter.free') }}</a>
         </div>
