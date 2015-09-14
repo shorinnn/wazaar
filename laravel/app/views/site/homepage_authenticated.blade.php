@@ -182,8 +182,8 @@
                 </div>
             </div>
             --}}
-            <div id='discover-courses-area'>
-                {{ View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted') ) }}
+            <div id='discover-courses-area' class="ajax-content" style="margin-top:0px;">
+                {{ View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter') ) }}
             </div>
         </div>
     </section>
@@ -241,6 +241,7 @@
 
             });
         });
+        ajaxifyPagination( null, '#discover-courses-area' );
         
         function showHomepagePromoVideo(elem){
             $(elem).after('<iframe width="560" height="315" src="https://www.youtube.com/embed/KRFvov4XZik?rel=0&amp;showinfo=0&autoplay=1" frameborder="0" allowfullscreen></iframe>');
