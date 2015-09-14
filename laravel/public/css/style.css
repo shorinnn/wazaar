@@ -4486,7 +4486,7 @@ h2, h3, h4, h5, h6{
 }
 .gift-modal .dropzone .select-file{
 	margin-bottom: 33px;
-    padding: 9px 18px;
+    padding: 9px 10px;
 }
 .gift-modal .dropzone .select-file i{
 	margin-right: 7px;
@@ -9162,7 +9162,7 @@ header .profile-name ul{
 }
 }
 @media (max-width:722px){
-header .top-menu li{ 
+header .top-menu .logged-out li{ 
 	margin:0px 5px; 
 }
 .course-detail-top-section .centered-contents .video-player{
@@ -9211,6 +9211,9 @@ header .top-menu li{
 	}
 	.lesson-topics li .lesson-name{
 		width: 58%;
+	}
+	.pagination-container ul li + li {
+		margin-left: 2px !important;
 	}
 }
 @media (max-width:620px){
@@ -9307,7 +9310,6 @@ header .top-menu li{
 		padding-left: 0;
 		padding-right: 0;
 	}
-
 }
 @media (max-width:552px){
 	/*.lesson-topics li .buttons{
@@ -9601,6 +9603,16 @@ header .top-menu li{
 	}	
 	.lesson-topics li .lesson-name{
 		width: 13%;
+	}
+	header .top-menu .logged-out{
+		float: right;
+	}
+	header .top-menu li{
+		margin: 0;
+	}
+	header .top-menu .logged-out li a{
+		padding: 7px 8px !important;
+		font-size: 12px;
 	}
 }
 @media (min-width:320px) and (max-width: 480px) {
