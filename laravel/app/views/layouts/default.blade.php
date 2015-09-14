@@ -408,7 +408,7 @@
 					show: false	
 				}); 
 				
-				$(".pagination-container").rPage();
+				$(".pagination-container ul").rPage();
 
 				$('body').on('click','textarea',function(){
 					var opts = {

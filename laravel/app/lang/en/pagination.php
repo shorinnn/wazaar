@@ -13,8 +13,8 @@ return array(
 	|
 	*/
 
-	'previous' => '<i class="wa-chevron-left"></i> Previous',
+	'previous' => '<i class="wa-chevron-left"></i> <span class="hidden-xs">Previous</span>',
 
-	'next'     => 'Next <i class="wa-chevron-right"></i>',
+	'next'     => '<span class="hidden-xs">Next</span> <i class="wa-chevron-right"></i>',
 
 );

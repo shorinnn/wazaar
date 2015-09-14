@@ -8,7 +8,7 @@ $presenter = new Illuminate\Pagination\BootstrapPresenter($paginator);
             <?php else: ?>
                 <div class="pagination-container clear">
             <?php endif;?>
-            <ul>
+            <ul class="pagination">
             <?php echo with(new MaxPresenter($paginator))->render(); ?>
             </u>
 		</div>
