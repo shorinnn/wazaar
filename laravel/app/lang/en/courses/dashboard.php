@@ -13,6 +13,8 @@ return [
     'cancel' =>  'Cancel',
     'submit-question' => 'Submit question',
     'back-to-courses' => 'Back to Courses',
-    'completed' => 'Completed'
+    'completed' => 'Completed',
+    'search-discussion' => 'Search discussion',
+    'be-first-to-respond' => 'Be first to respond'
     
 ];

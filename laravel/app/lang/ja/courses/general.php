@@ -202,4 +202,8 @@ jpeg, png',
     'you-will-earn' => 'アフィリエイト収入:',
     'log-in-student-to-purchase' => '商品を購入するためには、購入者アカウントにログインする必要があります。',
     'instructor-go-to-dashboard' => '質問掲示板へ',
+    'minutes' => '分',
+    'hours' => '時間',
+    'views' => '視聴者数',
+    'purchases' => '購入者数',
 );

@@ -12,7 +12,7 @@ return array(
     'affiliate_agency' =>'アフィリエイトエージェンシー',
     'student' =>'生徒|生徒',
     'students' => '受講数',
-    'student_count' => '生徒数',
+    'student_count' => '視聴者数 ', #'生徒数',
     'published' =>'月PublishedせPlease provide more context',
     'updated' =>'月UpdatedせPlease provide more context. Is this a message or a title?',
     'select' =>'選択',
