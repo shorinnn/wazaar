@@ -177,7 +177,9 @@
 	margin-left: 12px;
 }
 
-.pagination-container ul li span,
+.pagination-container ul li span{
+	float: none;
+}
 .pagination-container ul li a{
 	height: auto;
 	padding: 8px 11px;
