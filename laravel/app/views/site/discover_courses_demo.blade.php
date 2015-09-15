@@ -11,6 +11,7 @@
      $course = courseApprovedVersion($course);
      $course->count = $i;
      echo Flatten::section('top-discover-course-'.$course->id, Config::get('custom.cache-expiry.course-box'), function () use ($course) { ?>
+        {{$course->count}}
         <div class="col-xs-12 col-sm-6 col-md-4 course-box-wrap">
             <a href="{{ action('CoursesController@show', $course->slug) }}" class="small-box-link-wrapper">
                 <div class="object small-box small-box-one">
