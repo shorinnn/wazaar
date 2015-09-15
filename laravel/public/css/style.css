@@ -6672,7 +6672,7 @@ a.load-remote > *{
     position: relative;
 }
 .textarea-wrap::after {
-    bottom: 6px;
+    bottom: 7px;
 }
 .textarea-wrap::before {
     top: 0;
@@ -6682,7 +6682,7 @@ a.load-remote > *{
     left: 0;
     width: 100%;
     content: '';
-    height: 16px;
+    height: 19px;
     background-color: red;
 }
 .step2 .lesson-container .switch-label{
