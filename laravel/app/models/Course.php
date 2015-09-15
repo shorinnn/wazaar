@@ -127,7 +127,7 @@ class Course extends Ardent{
             $vids += $lessons;
         }
         if( $vids < 3600 ) return gmdate("i ".trans('courses/general.minutes'), $vids);
-        return gmdate("h ".trans('courses/general.hours')." i ".trans('courses/general.minutes'), $vids);
+        return gmdate("g \\".trans('courses/general.hours')." i \\".trans('courses/general.minutes'), $vids);
         
         $minutes = round( $vids / 60 );
         if( $minutes < 120 )
