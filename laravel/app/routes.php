@@ -30,6 +30,7 @@ $wwwRoutes = function(){
 //Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
+    Route::get('demo-homepage', 'SiteController@indexDemo');
     Route::get('discover-courses/{group}', 'SiteController@discoverCourses');
     Route::get('privacy-policy', 'SiteController@privacyPolicy');
     Route::get('about-the-company', 'SiteController@about');

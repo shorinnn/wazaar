@@ -175,7 +175,7 @@
             </div>
             --}}
             <div id='discover-courses-area' class="ajax-content">
-                {{ View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter') ) }} 
+                {{ View::make('site.discover_courses_demo')->with( compact('discoverCourses', 'wishlisted', 'filter') ) }} 
             </div>
         </div>
     </section>
