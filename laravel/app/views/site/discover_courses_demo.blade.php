@@ -209,7 +209,7 @@
         <div class="clearfix"></div>
     </div>
     <div>
-    @foreach( $discoverCourses as $i => $course )
+    @foreach( $discoverCourses as $i => $course ) 
      <?php 
      $course = courseApprovedVersion($course);
      $course->count = $i;

@@ -139,7 +139,7 @@ class SiteController extends \BaseController {
                                     ->get();
         
         return View::make('site.homepage_unauthenticated_demo')
-            ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter') );
+            ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter') ); 
     }
 
         
