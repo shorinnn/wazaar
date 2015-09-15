@@ -35,10 +35,8 @@
                         tools are enabling customers to take a more active role in developing and branding the products 
                         they consume. <button class="edit-icon"><i class="fa fa-pencil"></i></button>
                     </p>-->
-                    <div class="textarea-wrap">
-                        <textarea name="description" placeholder="{{trans('courses/create.enter-description')}}" class="type-in-elements"
-                                  data-elements='.minimized-desc-{{$module->id}}' >{{ $module->description }}</textarea>
-                    </div>
+                    <textarea name="description" placeholder="{{trans('courses/create.enter-description')}}" class="type-in-elements"
+                              data-elements='.minimized-desc-{{$module->id}}' >{{ $module->description }}</textarea>
                     <div class="minimized-description minimized-elem minimized-desc-{{$module->id}}">{{ $module->description }}</div>
                 </div>
             </div>
