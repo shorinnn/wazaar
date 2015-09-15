@@ -79,11 +79,13 @@
         cursor: pointer;
     }
     .module-minimized .module-zone{
-        height: 130px;
+        height: auto;
         overflow: hidden;
         border-bottom: 0px solid #E8ECED;
     }
-    
+    .module-minimized .footer-buttons {
+		display: none;
+	}
     .module-minimized .module-zone input, .module-minimized .module-zone textarea,  .module-minimized .module-zone button{
         display:none !important;
     }
