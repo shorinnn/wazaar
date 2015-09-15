@@ -9,53 +9,94 @@ class SiteController extends \BaseController {
 
 	public function index()
 	{
+        $data = Request::all();
+
+        $filter = (isset($data['filter']) && $data['filter'] != '')? $data['filter']: '';
+
+        $wishlisted = [];
+        if( Auth::check() ){
+            $student = Student::find( Auth::user()->id );
+            $wishlisted = $student->wishlistItems()->lists( 'course_id' );
+        }
+        // TEMPORARILY DISABLE THESE VARS BECAUSE THEY'RE NOT USED IN THE VIEW
+        $categories = $groups = $topCourses = null;
+    //                $categories = CourseCategory::limit(12);
+    //                $groups = CategoryGroup::orderBy('order','asc')->get();
+    //                
+    //                if ( !Cache::has('topCourses') ){
+    //                    $top = HomepageHelper::generateVariations(8);
+    //                    Cache::add('topCourses', $top, 30);
+    //                }
+    //                
+    //                $topCourses = Cache::get('topCourses');
+    ////                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
+    //                $topCourses = $topCourses[ 0 ];
             
-            $wishlisted = [];
-            if( Auth::check() ){
-                $student = Student::find( Auth::user()->id );
-                $wishlisted = $student->wishlistItems()->lists( 'course_id' );
-            }
-            // TEMPORARILY DISABLE THESE VARS BECAUSE THEY'RE NOT USED IN THE VIEW
-            $categories = $groups = $topCourses = null;
-//                $categories = CourseCategory::limit(12);
-//                $groups = CategoryGroup::orderBy('order','asc')->get();
-//                
-//                if ( !Cache::has('topCourses') ){
-//                    $top = HomepageHelper::generateVariations(8);
-//                    Cache::add('topCourses', $top, 30);
-//                }
-//                
-//                $topCourses = Cache::get('topCourses');
-////                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
-//                $topCourses = $topCourses[ 0 ];
-                
-                // $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
-                $discoverCourses = Course::orderBy('free','desc')->orderBy('student_count','desc')
-                        ->where(function($query){
-                            $query->where('publish_status', 'approved')
-                            ->orWhere(function($query2){
-                                $query2->where('privacy_status','public')
-                                        ->where('publish_status', 'pending')
-                                        ->where('approved_data', '!=', "");
-                            });
-                        })
-                        ->paginate(12);
-                
-                if(Auth::user()){
-                    Return View::make('site.homepage_authenticated')
-                            ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses', 'wishlisted'));
-                }
-                else{
+        // $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
+        $paginate = 12;
 
-                    if( Request::ajax() ) Return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted'));
+        switch($filter){
+            case 'free':
+                $discoverCourses = Course::where(function($query){
+                                                $query->where('publish_status', 'approved')
+                                                        ->orWhere(function($query2){
+                                                            $query2->where('privacy_status','public')
+                                                                    ->where('publish_status', 'pending')
+                                                                    ->where('approved_data', '!=', "");
+                                                                });
+                                                })
+                                            ->orderBy('free','desc')
+                                            ->orderBy('student_count','desc')
+                                            ->where('free', 'yes')
+                                            ->paginate($paginate);
+            break;
 
-                    if(Input::has('old-page'))
-                        Return View::make('site.homepage_unauthenticated_DEPR')
-                        ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'wishlisted') );
-                    else
-                        Return View::make('site.homepage_unauthenticated')
-                            ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted') );
-                }
+            case 'paid':
+                $discoverCourses = Course::where(function($query){
+                                                $query->where('publish_status', 'approved')
+                                                        ->orWhere(function($query2){
+                                                            $query2->where('privacy_status','public')
+                                                                    ->where('publish_status', 'pending')
+                                                                    ->where('approved_data', '!=', "");
+                                                                });
+                                                })
+                                            ->orderBy('free','desc')
+                                            ->orderBy('student_count','desc')
+                                            ->where('free', 'no')
+                                            ->paginate($paginate);
+            break;
+
+            default:
+                $discoverCourses = Course::where(function($query){
+                                                $query->where('publish_status', 'approved')
+                                                        ->orWhere(function($query2){
+                                                            $query2->where('privacy_status','public')
+                                                                    ->where('publish_status', 'pending')
+                                                                    ->where('approved_data', '!=', "");
+                                                                });
+                                                })
+                                            ->orderBy('free','desc')
+                                            ->orderBy('student_count','desc')
+                                            ->paginate($paginate);
+            break;
+        }
+        
+        if(Auth::user()){
+            if( Request::ajax() ) return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter'));
+            return View::make('site.homepage_authenticated')
+                    ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter'));
+        }
+        else{
+
+            if( Request::ajax() ) return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter'));
+
+            if(Input::has('old-page'))
+                return View::make('site.homepage_unauthenticated_DEPR')
+                ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'wishlisted') );
+            else
+                return View::make('site.homepage_unauthenticated')
+                    ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter') );
+        }
 	}
 
         

@@ -22,5 +22,9 @@ return array(
     'view-in-inbox' => '受信箱を見る',
     'lesson' => 'レッスン',
     'mark-as-resolved' => '解決済みにチェック',
+    'classroom' => [
+        'post' => '投稿する',
+        'write-your-answer' => '回答する'
+    ]
     
 );

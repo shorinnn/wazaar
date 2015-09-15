@@ -11,7 +11,7 @@
                     <div>
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default" type="button">
-                                {{trans('analytics.sales')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
+                                {{trans('instructors/analytics.sales-revenue')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
                                     <a class="with-today" href="#" onclick="Analytics.Sales('daily','','',this); return false;">{{trans('analytics.today')}}</a>
@@ -40,7 +40,7 @@
                     <div id="sales-today">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                {{trans('analytics.salesCount')}} <span id="header-sales-count-frequency">{{trans('analytics.today')}}</span></button>
+                                {{trans('instructors/analytics.unit-sales')}} <span id="header-sales-count-frequency">{{trans('analytics.today')}}</span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-count-dropdown">
                                 <li>
                                     <a class="active" href="#" onclick="Analytics.SalesCount('daily', '',this); return false;">{{trans('analytics.today')}}</a>

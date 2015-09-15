@@ -207,6 +207,9 @@ return array(
         'all' => 'All',
         'beginner' => 'Beginner',
         'advanced' => 'Advanced',
+        'all-paid-or-free' => 'All',
+        'free' => 'Free',
+        'paid' => 'Paid',
     ],
     'dash-you-have-no-questions-yet' => 'You have no asked any questions yet. Begin the course and start or join discussions!',
     'enroll-success-message-free' => "Successful enroll",
@@ -216,4 +219,8 @@ return array(
     'back-to-where-you-left' => 'Go Back Where You Left It',
     'log-in-student-to-purchase' => 'Log in to your student/instructor account to purchase.',
     'instructor-go-to-dashboard' => 'Go to dashboard',
+    'minutes' => 'm',
+    'hours' => 'h',
+    'views' => 'Views',
+    'purchases' => 'Purchases',
 );

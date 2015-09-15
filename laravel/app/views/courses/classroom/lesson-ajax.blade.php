@@ -277,7 +277,7 @@
                         <div class="rows search-discussion-form">
                             <form>
                                 <div>
-                                    <input id='question-search-box' type="search" onkeyup="searchDiscussions()" placeholder="Search discussion ...">
+                                    <input id='question-search-box' type="search" onkeyup="searchDiscussions()" placeholder="{{ trans('courses/dashboard.search-discussion') }} ...">
                                     <button><i class="wa-search"></i></button>
                                 </div>
                             </form>

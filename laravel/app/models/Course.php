@@ -128,9 +128,10 @@ class Course extends Ardent{
         }
         
         $minutes = round( $vids / 60 );
-        if( $minutes < 120 ) return "$minutes m";
+        if( $minutes < 120 )
+            return $minutes.' '.trans('courses/general.minutes');
         else{
-            return round( $minutes/ 60 ).' h';
+            return round( $minutes/ 60 ).' '.trans('courses/general.hours');
         }
     }
     
