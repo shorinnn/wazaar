@@ -6683,7 +6683,7 @@ a.load-remote > *{
     width: 100%;
     content: '';
     height: 19px;
-    background-color: red;
+    background-color: white;
 }
 .step2 .lesson-container .switch-label{
 	background: #a7b7c4;
