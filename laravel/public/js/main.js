@@ -80,11 +80,13 @@ $(document).ready(function(){
 	askTeacherQuestion();
 	searchFormFocusStyle();
 	showMoreContent();
+    dynamicLessonNameWidth()
 	toggleSideMenu();
 	//stickyFooter();
 	rescaleBckgrdOverlay();
 	$(window).resize(function() {
 	  rescaleBckgrdOverlay();
+      dynamicLessonNameWidth();
    	  skinVideoControls();
 	});
 	
@@ -1348,6 +1350,27 @@ function searchFormFocusStyle(){
 
 }
 
+function dynamicLessonNameWidth(){
+    $(".expandable-button").each(function() {
+        var $link = $(this);
+        var $content = $link.parent().children('.expandable-content');
+    
+        if($content.hasClass('lesson-topics')){
+            $content.children('li').each(function(){
+                if($(this).children('div.buttons').length >= 1){
+                    var buttonWidth = $(this).children('div.buttons').width();
+                    if(buttonWidth >= 1){
+                        deductWidth = Number(buttonWidth) + 40;
+                        var width = Number($(this).width()) - deductWidth;
+                        $(this).children('a.lesson-name').css('width', width);
+                    } else {
+                        $(this).children('a.lesson-name').css('width', 'inherit');
+                    }
+                }
+            })
+        }
+    });
+}
 function showMoreContent(){
     	$(".expandable-button").each(function() {
 		var $link = $(this);
@@ -1359,6 +1382,7 @@ function showMoreContent(){
 //		var visibleHeight = $content[0].clientHeight;
 		var visibleHeight = $content.height();
 		var actualHide = $content[0].scrollHeight - 1; // -1 is needed in this case or you get a 1-line offset.
+
 		$content.height(visibleHeight);
 //		$content.css( {
 //                    'border' : '1px solid red',
