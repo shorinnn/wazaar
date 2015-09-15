@@ -1351,7 +1351,6 @@ function searchFormFocusStyle(){
 }
 
 function dynamicLessonNameWidth(){
-    console.log($(window).width());
     $(".expandable-button").each(function() {
         var $link = $(this);
         var $content = $link.parent().children('.expandable-content');

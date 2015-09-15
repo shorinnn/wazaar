@@ -126,8 +126,8 @@ class Course extends Ardent{
             $lessons = DB::table('lessons')->whereIn('id', $lessons)->sum('video_duration');
             $vids += $lessons;
         }
-        if( $vids < 3600 ) return gmdate("i \m", $vids);
-        return gmdate("h \h i \m", $vids);
+        if( $vids < 3600 ) return gmdate("i ".trans('courses/general.minutes'), $vids);
+        return gmdate("h ".trans('courses/general.hours')." i ".trans('courses/general.minutes'), $vids);
         
         $minutes = round( $vids / 60 );
         if( $minutes < 120 )

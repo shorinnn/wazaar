@@ -90,12 +90,12 @@ class SiteController extends \BaseController {
 
             if( Request::ajax() ) return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter'));
 
-            if(Input::has('old-page'))
-                return View::make('site.homepage_unauthenticated_DEPR')
-                ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'wishlisted') );
-            else
-                return View::make('site.homepage_unauthenticated')
-                    ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter') );
+            // if(Input::has('old-page'))
+            //     return View::make('site.homepage_unauthenticated_DEPR')
+            //     ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'wishlisted') );
+            // else
+            return View::make('site.homepage_unauthenticated')
+                ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter') );
         }
 	}
 
