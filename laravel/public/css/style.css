@@ -6667,12 +6667,13 @@ a.load-remote > *{
 	border-width: 0 0 1px;
 	margin-bottom: 5px;
 	padding: 0 12px !important;
+	vertical-align: top;
 }
 .textarea-wrap {
     position: relative;
 }
 .textarea-wrap::after {
-    bottom: 7px;
+    bottom: 6px;
 }
 .textarea-wrap::before {
     top: 0;
@@ -6682,7 +6683,7 @@ a.load-remote > *{
     left: 0;
     width: 100%;
     content: '';
-    height: 19px;
+    height: 17px;
     background-color: white;
 }
 .step2 .lesson-container .switch-label{
