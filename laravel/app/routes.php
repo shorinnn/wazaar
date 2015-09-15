@@ -245,8 +245,8 @@ $wwwRoutes = function(){
     
     Route::get('courses/categories', 'CoursesController@categories');
     Route::get('courses/category/{slug}/{subcat}', 'CoursesController@subCategory');
-    Route::get('courses/category/{slug}', 'CoursesController@category');
-    Route::get('courses/category/', 'CoursesController@category');
+    Route::get('courses/category/{slug?}', 'CoursesController@category');
+//    Route::get('courses/category/', 'CoursesController@category');
     Route::get('courses/search/', 'CoursesController@search');
     Route::post('courses/{slug}/purchase/{lesson}', 'CoursesController@purchaseLesson');
     Route::post('courses/{slug}/crash/{lesson}', 'CoursesController@crashLesson');
