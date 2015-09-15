@@ -136,7 +136,7 @@ class SiteController extends \BaseController {
                                         })
                                     ->orderBy('free','desc')
                                     ->orderBy('student_count','desc')
-                                    ->get();
+                                    ->limit(12)->get();
         
         return View::make('site.homepage_unauthenticated_demo')
             ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter') ); 
