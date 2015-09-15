@@ -9152,7 +9152,17 @@ header .profile-name ul{
 	width: auto;
 }
 .lesson-topics li{
-	padding-right: 30px;
+	padding-left: 30px;
+}
+.lesson-topics li .buttons .preview-button{
+	padding: 10px 15px;
+}
+.lesson-topics li .buttons .preview-button i.fa-eye{
+	font-size: 18px;
+}
+.course-data .column-1 div{
+	padding: 15px 20px 12px !important;
+	display: table-cell;
 }
 }
 @media (max-width:752px){
@@ -9184,9 +9194,6 @@ header .top-menu .logged-out li{
 .course-detail-top-section .centered-contents .banner-content-wrapper{
 	position: relative;
 	padding: 0;
-}
-.course-data .column-1 div{
-	padding: 15px 20px 12px !important;
 }
 .modal-content .filter-wrap input{
 	width: 80% !important;
@@ -9274,6 +9281,7 @@ header .top-menu .logged-out li{
 		border: 0px !important;
     	padding: 0 20px !important;
 		margin-bottom: 10px;
+		display: inline-block;
 	}
 	.course-data .column-1 div span{
 		text-align: left;
