@@ -9518,6 +9518,7 @@ header .top-menu .logged-out li{
 	}
 	.course-data .column-1 div{
 		width: 32%;
+		padding: 0 0 0 20px !important;
 	}
 }
 @media (max-width:420px){
@@ -9715,6 +9716,9 @@ header .top-menu .logged-out li{
 	.homepage-header-wrapper.logged-in{
 		margin-top: -208px;
 	}	
+	.course-data .column-1 div{
+		padding: 0 0 0 7px !important;
+	}
 }
 @media (max-width:320px){
 	.column-3 .add-to-wishlist-container{
