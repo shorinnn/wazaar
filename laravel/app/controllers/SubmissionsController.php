@@ -41,6 +41,7 @@ class SubmissionsController extends \BaseController {
             $course->publish_status = Input::get('value');
             $course->reject_reason = Input::get('reject_reason');    
             if(Input::get('value')=='approved'){
+               $course->pre_submit_data = $course->approved_data = '';
                $course->pre_submit_data = json_encode($course);
                $course->approved_data = json_encode($course);
                $course->reject_reason = '';    
