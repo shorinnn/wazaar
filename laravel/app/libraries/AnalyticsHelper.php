@@ -345,7 +345,57 @@ class AnalyticsHelper
         return $this->_transformCoursePurchases($query);
     }
 
-    public function salesLastFewWeeks($numOfWeeks, $courseId = 0, $trackingCode = '')
+    public function secondTierInstructorSalesLastFewDays($numOfDays, $courseId = 0, $trackingCode = '')
+    {
+        $sales = [];
+
+        for ($i = 0; $i <= $numOfDays; $i ++) {
+            $day   =  trans('analytics.' . date('l', strtotime("-$i day"))) ;
+            $date  = date('Y-m-d', strtotime("-$i day"));
+            $label = $day;
+            if ($i === 0) {
+                $label = trans('analytics.today');
+            }
+            $sales[] = [
+                'label' => $label,
+                'date'  => $date,
+                'day'   => $this->dailySecondTierInstructorSales($courseId, $date, $trackingCode)
+            ];
+        }
+        $salesTotal = 0;
+        $salesCount = 0;
+
+        $maxSale  = $this->_getMaxSalesValue($sales, 'day');
+        $maxCount = $this->_getMaxSalesCount($sales, 'day');
+
+        $i = 0;
+
+        foreach ($sales as $sale) {
+            $salesTotal += $sale['day']['sales_total'];
+            $salesCount += $sale['day']['sales_count'];
+            // avoid division by zero
+            if ($maxSale == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['day']['sales_total'] / $maxSale) * 100;
+            }
+            $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+
+            // avoid division by zero
+            if ($maxCount == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['day']['sales_count'] / $maxCount) * 100;
+            }
+            $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
+
+            $i ++;
+        }
+
+        return compact('sales', 'salesTotal', 'salesCount');
+    }
+
+    public function secondTierInstructorSalesLastFewWeeks($numOfWeeks, $courseId = 0, $trackingCode = '')
     {
         $sales = [];
 
@@ -360,7 +410,7 @@ class AnalyticsHelper
                 'label' => $label,
                 'start' => $start,
                 'end'   => $end,
-                'week'  => $this->weeklySales($courseId, $start, $end, $trackingCode)
+                'week'  => $this->weeklySecondTierInstructorSales($courseId, $start, $end, $trackingCode)
             ];
         }
 
@@ -386,6 +436,105 @@ class AnalyticsHelper
                 $percentage = 0;
             } else {
                 $percentage = ($sale['week']['sales_count'] / $maxCount) * 100;
+            }
+            $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
+
+            $i ++;
+        }
+
+        return compact('sales', 'salesTotal', 'salesCount');
+    }
+
+    public function secondTierInstructorSalesLastFewMonths($numOfMonths, $courseId = 0, $trackingCode = '')
+    {
+        $sales = [];
+
+        for ($i = 0; $i <= $numOfMonths; $i ++) {
+            $month = date('m', strtotime("-$i month"));
+            $year  = date('Y', strtotime("-$i month"));
+            $label =  trans('analytics.' .  $i . (($i > 1) ? 'Months' : 'Month') . 'Ago');
+            if ($i === 0) {
+                $label = trans('analytics.thisMonth');
+            }
+            $sales[] = [
+                'label'      => $label,
+                'month_date' => $month,
+                'year'       => $year,
+                'month'      => $this->monthlySecondTierInstructorSales($courseId, $month, $year, $trackingCode)
+            ];
+        }
+        $salesTotal = 0;
+        $salesCount = 0;
+
+        $maxSale  = $this->_getMaxSalesValue($sales, 'month');
+        $maxCount = $this->_getMaxSalesCount($sales, 'month');
+
+        $i = 0;
+
+        foreach ($sales as $sale) {
+            $salesTotal += $sale['month']['sales_total'];
+            $salesCount += $sale['month']['sales_count'];
+            // avoid division by zero
+            if ($maxSale == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['month']['sales_total'] / $maxSale) * 100;
+            }
+            $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+
+            // avoid division by zero
+            if ($maxCount == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['month']['sales_count'] / $maxCount) * 100;
+            }
+            $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
+
+            $i ++;
+        }
+
+        return compact('sales', 'salesTotal', 'salesCount');
+    }
+
+    public function secondTierInstructorSalesLastFewYears($numOfYears, $courseId = 0, $trackingCode = '')
+    {
+        $sales = [];
+
+        for ($i = 0; $i <= $numOfYears; $i ++) {
+            $year  = date('Y', strtotime("-$i year"));
+            $label = trans('analytics.' .  $i . (($i > 1) ? 'Years' : 'Year') . 'Ago');
+            if ($i === 0) {
+                $label =  trans('analytics.thisYear');// 'This year';
+            }
+            $sales[] = [
+                'label'     => $label,
+                'year_date' => $year,
+                'year'      => $this->allTimeSecondTierInstructorSales($courseId, $year, $trackingCode)
+            ];
+        }
+        $salesTotal = 0;
+        $salesCount = 0;
+
+        $maxSale  = $this->_getMaxSalesValue($sales, 'year');
+        $maxCount = $this->_getMaxSalesCount($sales, 'year');
+
+        $i = 0;
+        foreach ($sales as $sale) {
+            $salesTotal += $sale['year']['sales_total'];
+            $salesCount += $sale['year']['sales_count'];
+            // avoid division by zero
+            if ($maxSale == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['year']['sales_total'] / $maxSale) * 100;
+            }
+            $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+
+            // avoid division by zero
+            if ($maxCount == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['year']['sales_count'] / $maxCount) * 100;
             }
             $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
 
@@ -436,6 +585,56 @@ class AnalyticsHelper
                 $percentage = 0;
             } else {
                 $percentage = ($sale['day']['sales_count'] / $maxCount) * 100;
+            }
+            $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
+
+            $i ++;
+        }
+
+        return compact('sales', 'salesTotal', 'salesCount');
+    }
+
+    public function salesLastFewWeeks($numOfWeeks, $courseId = 0, $trackingCode = '')
+    {
+        $sales = [];
+
+        for ($i = 0; $i <= $numOfWeeks; $i ++) {
+            $start = date('Y-m-d', strtotime('-' . ($i + 1) . ' week'));
+            $end   = date('Y-m-d', strtotime("-$i week"));
+            $label = trans('analytics.' .  $i . (($i > 1) ? 'Weeks' : 'Week') . 'Ago');// $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
+            if ($i === 0) {
+                $label = trans('analytics.thisWeek');// 'This week';
+            }
+            $sales[] = [
+                'label' => $label,
+                'start' => $start,
+                'end'   => $end,
+                'week'  => $this->weeklySales($courseId, $start, $end, $trackingCode)
+            ];
+        }
+
+        $salesTotal = 0;
+        $salesCount = 0;
+        $maxSale    = $this->_getMaxSalesValue($sales, 'week');
+        $maxCount   = $this->_getMaxSalesCount($sales, 'week');
+
+        $i = 0;
+        foreach ($sales as $sale) {
+            $salesTotal += $sale['week']['sales_total'];
+            $salesCount += $sale['week']['sales_count'];
+            // avoid division by zero
+            if ($maxSale == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['week']['sales_total'] / $maxSale) * 100;
+            }
+            $sales[$i]['percentage'] = ($percentage > 0) ? $percentage : 1;
+
+            // avoid division by zero
+            if ($maxCount == 0) {
+                $percentage = 0;
+            } else {
+                $percentage = ($sale['week']['sales_count'] / $maxCount) * 100;
             }
             $sales[$i]['percentage_count'] = ($percentage > 0) ? $percentage : 1;
 
@@ -570,6 +769,97 @@ class AnalyticsHelper
         return $max;
     }
 
+
+    public function weeklySecondTierInstructorSales($courseId, $dateFilterStart = '', $dateFilterEnd = '', $trackingCode = '')
+    {
+        if (empty($dateFilterStart)) {
+            $dateFilterStart = $this->_frequencyEquivalence('week');
+        }
+
+        if (empty($dateFilterEnd)) {
+            $dateFilterEnd = date('Y-m-d');
+        }
+        //$dateFilterStart = date('Y-m-d',strtotime($dateFilterStart . " +1 day"));
+
+        $filterQuery = "DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
+
+        if (!empty($courseId)) {
+            $filterQuery .= " AND purchases.product_id = '{$courseId}'";
+        }
+
+        if (!empty($trackingCode)) {
+            $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
+        }
+
+        $query = $this->_twoTierSalesRawQuery($filterQuery);
+
+        return $this->_transformCoursePurchases($query);
+    }
+
+    public function monthlySecondTierInstructorSales($courseId, $month = '', $year = '', $trackingCode = '')
+    {
+        if (empty($month)) {
+            $month = date('m');
+        }
+
+        if (empty($year)) {
+            $year = date('Y');
+        }
+        $filterQuery = "YEAR(purchases.created_at) = '{$year}' AND MONTH(purchases.created_at) = '{$month}'";
+
+        if (!empty($courseId)) {
+            $filterQuery .= " AND purchases.product_id = '{$courseId}'";
+        }
+
+        if (!empty($trackingCode)) {
+            $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
+        }
+
+        $query = $this->_twoTierSalesRawQuery($filterQuery);
+
+        return $this->_transformCoursePurchases($query);
+    }
+
+    public function allTimeSecondTierInstructorSales($courseId, $year = '', $trackingCode = '')
+    {
+        if (empty($year)) {
+            $year = date('Y');
+        }
+        $filterQuery = "YEAR(purchases.created_at) = '{$year}'";
+        if (!empty($courseId)) {
+            $filterQuery .= " AND purchases.product_id = '{$courseId}'";
+        }
+
+        if (!empty($trackingCode)) {
+            $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
+        }
+
+        $query = $this->_twoTierSalesRawQuery($filterQuery);
+
+        return $this->_transformCoursePurchases($query);
+    }
+
+    public function dailySecondTierInstructorSales($courseId, $date = '', $trackingCode = '')
+    {
+        if (empty($date)) {
+            $date = date('Y-m-d');
+        }
+        $filterQuery = "DATE(purchases.created_at) = '{$date}'";
+        if (!empty($courseId)) {
+            $filterQuery .= " AND purchases.product_id = '{$courseId}'";
+        }
+
+        if (!empty($trackingCode)) {
+            $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
+        }
+
+        $query = $this->_twoTierSalesRawQuery($filterQuery);
+
+
+
+        return $this->_transformCoursePurchases($query);
+    }
+
     public function weeklySales($courseId, $dateFilterStart = '', $dateFilterEnd = '', $trackingCode = '')
     {
         if (empty($dateFilterStart)) {
@@ -659,6 +949,8 @@ class AnalyticsHelper
 
         return $this->_transformCoursePurchases($query);
     }
+
+
 
     public function dailyTopCourses($courseId)
     {
@@ -1112,7 +1404,18 @@ class AnalyticsHelper
                 GROUP BY DATE(created_at)
                 ORDER BY created_at DESC
                 ";
-        //echo $sql . "<br/>";
+
+        return $sql;
+    }
+
+    private function _twoTierSalesRawQuery($criteria = ''){
+        $sql = "SELECT created_at, sum(`second_tier_instructor_earnings`) as 'total_purchase', COUNT(purchases.id) as 'total_count'
+                FROM purchases WHERE second_tier_instructor_id = '{$this->userId}' AND
+                {$criteria}
+                GROUP BY DATE(created_at)
+                ORDER BY created_at DESC
+                ";
+
         return $sql;
     }
 

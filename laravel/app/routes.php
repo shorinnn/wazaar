@@ -443,6 +443,7 @@ Route::group(['prefix' => 'analytics'], function(){
     Route::get('/course/{slug?}', 'InstructorDashboardController@course');
     Route::get('sales/get-count/{frequency?}/{courseId?}','InstructorDashboardController@salesCountView');
     Route::get('sales/{frequency}/{courseId?}/{trackingCode?}', 'InstructorDashboardController@salesView');
+    Route::get('two-tier-sales/{frequency}/{courseId?}/{trackingCode?}', 'InstructorDashboardController@secondTierSalesView');
     Route::any('affiliatestable','InstructorDashboardController@topAffiliatesTableView');
 
 });

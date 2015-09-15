@@ -191,37 +191,37 @@ h4.date-range-header{
 	color: #333;
 }
 
-#wrapper-sales ul, #sales-today ul, .with-progress-bar ul{
+#wrapper-sales ul, #sales-today ul, .with-progress-bar ul, .analytics-box-wrapper ul{
 	margin: 0 !important;
 }
 
-#wrapper-sales ul li, #sales-today ul li, .with-progress-bar ul li{
+#wrapper-sales ul li, #sales-today ul li, .with-progress-bar ul li, .analytics-box-wrapper  ul li{
 	color: #849598;
 	margin: 18px 0 0;
 	font-size: 12px;
 }
 
-#wrapper-sales ul li > span, #sales-today ul li > span, .with-progress-bar ul li > span{
+#wrapper-sales ul li > span, #sales-today ul li > span, .with-progress-bar ul li > span, .analytics-box-wrapper  ul li > span{
 	display: inline-block;
 	width: 80px;
 	float: left;
 }
 
-#wrapper-sales ul li > div, #sales-today ul li > div, .with-progress-bar  ul li > div{
+#wrapper-sales ul li > div, #sales-today ul li > div, .with-progress-bar  ul li > div, .analytics-box-wrapper ul li > div{
 	width: 120px;
 	float: left;
 	padding-top: 4px;
 	padding-left: 8px;
 }
 
-#wrapper-sales ul li > div span, #sales-today ul li > div span, .with-progress-bar  ul li > div span{
+#wrapper-sales ul li > div span, #sales-today ul li > div span, .with-progress-bar  ul li > div span, .analytics-box-wrapper  ul li > div span{
 	display: block;
 	height: 8px;
 	border-radius: 4px;
 	background: #96cf2d;
 }
 
-#wrapper-sales ul li > div div.progress, #sales-today ul li > div div.progress, .with-progress-bar ul li > div div.progress{
+#wrapper-sales ul li > div div.progress, #sales-today ul li > div div.progress, .with-progress-bar ul li > div div.progress, .analytics-box-wrapper ul li > div div.progress{
     display: block;
     height: 8px;
     border-radius: 4px;
@@ -230,7 +230,7 @@ h4.date-range-header{
 	margin-top: 0;
 }
 
-#wrapper-sales ul li > em, #sales-today ul li > em, .with-progress-bar ul li > em{
+#wrapper-sales ul li > em, #sales-today ul li > em, .with-progress-bar ul li > em, .analytics-box-wrapper ul li > em, .analytics-box-wrapper ul li > em{
 	font-style: normal;
 	width: auto;
 	float: right;
