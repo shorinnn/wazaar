@@ -10072,3 +10072,21 @@ header .top-menu .logged-out li{
 .modal-content{
 	overflow: hidden;
 }
+
+/*new homepage layout by art */
+.course-group-header{
+	padding-top: 29px;
+}
+.course-group-header a{
+	font-style: 12px;
+	color: #0099FF;
+	height: 26px;
+	line-height: 26px;
+}
+.course-group-header a.back_all_courses{
+	padding-right: 10px;
+}
+.course-group-header h2{
+	display: inline;
+}
+/*end new homepage layout by art */

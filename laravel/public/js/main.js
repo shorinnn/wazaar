@@ -84,6 +84,7 @@ $(document).ready(function(){
 	toggleSideMenu();
 	//stickyFooter();
 	rescaleBckgrdOverlay();
+    newHomepageToggleData();
 	$(window).resize(function() {
 	  rescaleBckgrdOverlay();
       dynamicLessonNameWidth();
@@ -95,6 +96,45 @@ $(document).ready(function(){
 	});
 
 });
+
+function newHomepageToggleData(){
+    if($('.homepage-course-groups').length >= 1){
+        $('.show_all_courses').click(function(){
+            var target = $(this).data('group');
+
+            $('.homepage-course-groups').each(function(){
+                if(!$(this).hasClass(target)){
+                    $(this).hide();
+                } else {
+                    $(this).find('.back_all_courses').hide().removeClass('hide').show()
+                    $(this).find('.show_all_courses').hide()
+                    $(this).find('.hidden_courses').hide().removeClass('hide').slideDown()
+                }
+            })
+
+            $('html, body').animate({
+                scrollTop: $('.ajax-content').offset().top
+            }, 4);
+            return false;
+        })
+        
+        $('.back_all_courses').click(function(){
+            var target = $(this).data('group');
+
+            $('.homepage-course-groups').each(function(){
+                $(this).find('.back_all_courses').hide()
+                $(this).find('.show_all_courses').show()
+                $(this).find('.hidden_courses').slideUp()
+                $(this).show();
+            })
+
+            $('html, body').animate({
+                scrollTop: $('.ajax-content').offset().top
+            }, 4);
+            return false;
+        })
+    }
+}
 
 function makeBoxesExpandable(){
     $('body').delegate('textarea', 'keyup', function(){
