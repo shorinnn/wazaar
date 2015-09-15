@@ -67,7 +67,7 @@
                         <ul class="lesson-topics expandable-content clearfix">
                             @foreach($module->lessons as $i=>$lesson)
                                 <li class="lessons lesson-1 bordered clearfix">
-                                    <span><i class="wa-play"></i></span>
+                                    <span class="hidden-xs"><i class="wa-play"></i></span>
                                     <!--{{ Str::limit( $lesson->name, Config::get('custom.course-desc-lesson-chars') )  }}-->
                                     <a class="clearfix lesson-name" data-toggle="tooltip" title="{{$lesson->name}}" @if($i == 0) data-placement="bottom" @endif>{{$lesson->name}}</a>
                                     <!--<em>Type of lesson</em>-->
@@ -101,7 +101,7 @@
                                                     (Auth::check() && ( !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) ) ) )
                                                             disabled="disabled" data-crash-disabled='1'
                                                             @endif
-                                                            >{{ trans('courses/general.free_preview') }}</button>
+                                                            ><span class="hidden-xs">{{ trans('courses/general.free_preview') }}</span><i class="fa fa-eye hidden-sm hidden-md hidden-lg"></i></button>
                                                       {{ Form::close() }}
                                                       <!-- / to purchase -->
                                                 @endif
