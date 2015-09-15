@@ -2747,6 +2747,10 @@ h2, h3, h4, h5, h6{
 .lesson-topics li .buttons a{
 	margin-left: 7px;
 }
+.lesson-topics li .buttons .preview-button small{
+	font-size: 12px;
+	font-weight: bold;
+}
 .lesson-topics li .buttons .reading-button{
 	border-color: transparent;
 	background-color: transparent;
@@ -6662,6 +6666,24 @@ a.load-remote > *{
 	border: solid #e0e1e2;
 	border-width: 0 0 1px;
 	margin-bottom: 5px;
+	padding: 0 12px !important;
+}
+.textarea-wrap {
+    position: relative;
+}
+.textarea-wrap::after {
+    bottom: 6px;
+}
+.textarea-wrap::before {
+    top: 0;
+}
+.textarea-wrap::before, .textarea-wrap::after {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    content: '';
+    height: 16px;
+    background-color: red;
 }
 .step2 .lesson-container .switch-label{
 	background: #a7b7c4;

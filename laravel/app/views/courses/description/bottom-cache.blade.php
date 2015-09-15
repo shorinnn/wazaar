@@ -101,7 +101,7 @@
                                                     (Auth::check() && ( !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) ) ) )
                                                             disabled="disabled" data-crash-disabled='1'
                                                             @endif
-                                                            ><i class="hidden-xs">{{ trans('courses/general.free_preview') }}</i><i class="fa fa-eye hidden-sm hidden-md hidden-lg"></i></button>
+                                                            ><small class="hidden-xs">{{ trans('courses/general.free_preview') }}</small><i class="fa fa-eye hidden-sm hidden-md hidden-lg"></i></button>
                                                       {{ Form::close() }}
                                                       <!-- / to purchase -->
                                                 @endif
