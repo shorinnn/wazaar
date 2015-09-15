@@ -8770,7 +8770,7 @@ footer{
 		border: none;
 	}	
 	.course-details-player{
-		margin: 30px 0;
+		margin: 30px 0 10px;
 	}	
 	.discover-header h1,
 	.discover-header .categories-menu,
@@ -9179,10 +9179,6 @@ header .top-menu .logged-out li{
 .course-data .column-1 div{
 	padding: 15px 20px 12px !important;
 }
-.course-data .column-2 div em, 
-.course-data .column-1 div em{
-	font-size: 14px;
-}
 .modal-content .filter-wrap input{
 	width: 80% !important;
 }
@@ -9267,27 +9263,30 @@ header .top-menu .logged-out li{
 	}
 	.course-data .column-1 div{
 		border: 0px !important;
-		display: block;
+    	padding: 0 20px !important;
+		margin-bottom: 10px;
 	}
 	.course-data .column-1 div span{
-		text-align: right;
-		float: left;
-		font-style: 12px !important;
+		text-align: left;
+		display: block !important;
 	}
 	.course-data .column-1 div em{
 		text-align: left;
-		float: right;
-		font-size: 20px !important;
+		font-size: 15px !important;
 	}
 	.course-data .column-1 div span,
 	.course-data .column-1 div em{
-		width: 47%;
+		width: auto;
 		margin: 0px;
-		height: 30px;
-		line-height: 30px;
-		padding: 10px 0px;
+		padding: 0px;
 		display: inline-table;
 	}
+	.course-data .column-3{
+		text-align: center;
+	}
+	.course-data .column-1 {
+		text-align: left;
+	}	
 	.lesson-topics li .lesson-name{
 		width: 50%;
 	}
@@ -9319,16 +9318,6 @@ header .top-menu .logged-out li{
 		padding: 5px 10px !important;
 		font-size: 11px;
 	}	
-	.course-data .column-1 div{
-		padding: 15px 15px 12px !important;
-	}	
-	.course-data .column-1 div span{
-		font-size: 10px;
-	}	
-	.course-data .column-2 div em, 
-	.course-data .column-1 div em{
-		font-size: 12px;
-	}	
 	.column-3 .add-to-wishlist-container i{
 		font-size: 16px;
 	}	
@@ -9343,9 +9332,11 @@ header .top-menu .logged-out li{
 		border: none;
 		float: none;
 		width: 100%;
-	}	.instructor-dashboard .teaching-lesson .image-wrap{
+	}	
+	.instructor-dashboard .teaching-lesson .image-wrap{
 		margin-bottom: 20px;
-	}	.new-dashboard.dashboardTabs .settings{
+	}	
+	.new-dashboard.dashboardTabs .settings{
 		margin: 10px 0;
 		float: none;
 	}
@@ -9519,6 +9510,9 @@ header .top-menu .logged-out li{
 	.homepage-header-wrapper {
 		margin-top: -140px;
 	}
+	.course-data .column-1 div{
+		width: 32%;
+	}
 }
 @media (max-width:420px){
 	.homepage-header-wrapper.logged-in{
@@ -9616,20 +9610,12 @@ header .top-menu .logged-out li{
 	}
 }
 @media (min-width:320px) and (max-width: 480px) {
-	.course-data .column-1 div{
-		padding: 0 9px !important;
-		margin: 25px 0 0;
-		border: none !important;
-	}	
 	.column-3 .add-to-wishlist-container{
 		padding: 0;
 		margin-top: 30px;
 	}		
 	.column-3 .add-to-wishlist-container .share-lesson{
 		margin-left: 25px !important;
-	}	
-	.course-data .column-1 .difficulty-level{
-		margin-top: 15px;
 	}	
 	.course-editor .video-list-thumbs .glyphicon-play-circle{
 		font-size: 35px;
