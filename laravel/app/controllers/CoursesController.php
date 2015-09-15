@@ -594,6 +594,11 @@ class CoursesController extends \BaseController {
             if( $course==null)   {
                 return View::make('site.error_encountered');
             }
+            if($course->publish_status != 'approved' && ($course->publish_status!='pending') && trim($course->approved_data)!=''){
+                if( Auth::guest() || ( !admin() && $course->instructor_id != Auth::user()->id ) ){
+                    return View::make('site.error_encountered');
+                }
+            }
             // store gift cookie if  any
             if( Input::has('gid') ){
                 Cookie::queue('gid-'.$course->id, Input::get('gid'), 60*24*30);
