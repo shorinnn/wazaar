@@ -9654,6 +9654,10 @@ header .top-menu .logged-out li{
 		margin-right: 10px;
 		/*float: left;*/
 	}
+	.lesson-topics li .buttons .buy-button,
+	.lesson-topics li .buttons .preview-button{
+		margin-left: 10px;
+	}
 	.lesson-topics li .buttons a{
 		margin-left: 0;
 	}

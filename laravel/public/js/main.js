@@ -1351,6 +1351,7 @@ function searchFormFocusStyle(){
 }
 
 function dynamicLessonNameWidth(){
+    console.log($(window).width());
     $(".expandable-button").each(function() {
         var $link = $(this);
         var $content = $link.parent().children('.expandable-content');
@@ -1360,7 +1361,11 @@ function dynamicLessonNameWidth(){
                 if($(this).children('div.buttons').length >= 1){
                     var buttonWidth = $(this).children('div.buttons').width();
                     if(buttonWidth >= 1){
-                        deductWidth = Number(buttonWidth) + 40;
+                        if($(window).width() < 460){
+                            deductWidth = Number(buttonWidth) + 15;
+                        } else {
+                            deductWidth = Number(buttonWidth) + 40;
+                        }
                         var width = Number($(this).width()) - deductWidth;
                         $(this).children('a.lesson-name').css('width', width);
                     } else {
