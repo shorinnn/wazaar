@@ -190,6 +190,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::get('courses/search-instructor/', 'CoursesController@searchInstructor');
     Route::get('courses/{id}/delete', 'CoursesController@destroy');
     Route::post('courses/{id}/set-field', 'CoursesController@setField');
+    Route::post('courses/{id}/disapprove', 'CoursesController@disapprove');
 });
 
 $wwwRoutes = function(){
