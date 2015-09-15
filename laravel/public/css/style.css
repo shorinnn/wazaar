@@ -9144,7 +9144,13 @@ header .profile-name ul{
 .category-heading-title{
 	margin-bottom: 15px;
 }
-
+.home-page-filter{
+	float: none !important;
+	text-align: center;
+}
+.home-page-filter .pagination-container{
+	width: auto;
+}
 }
 @media (max-width:752px){
 .navbar-nav{ 
@@ -9521,10 +9527,15 @@ header .top-menu .logged-out li{
 	.category-heading-buttons{
 		width: 100%;
 	}
+	.home-page-filter .pagination-container{
+		margin: 10px 0 0;
+	}
+	.home-page-filter .pagination-container,
 	.difficulty-levels .level-buttons-container,
 	.difficulty-levels{
 		width: 100%;
 	}
+	.home-page-filter .pagination-container a,
 	.difficulty-levels .level-buttons{
 		width: 33.333%;
 	}
