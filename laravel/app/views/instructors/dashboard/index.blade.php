@@ -65,6 +65,36 @@
                 </div>
                 {{-- // Number of Sales (Count) --}}
 
+                @if (Auth::user()->is_second_tier_instructor == 'yes')
+
+                    {{-- Total Second Tier Sales in Yen --}}
+                    <div class="col-md-4 col-sm-6 sol-xs-12">
+                        <div>
+                            <div class="dropdown-wrapper">
+                                <button class="btn btn-default" type="button">
+                                    {{trans('analytics.twoTierSales')}} <span id="header-two-tier-sales-frequency">{{trans('analytics.today')}}</span></button>
+                                <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu sales-dropdown">
+                                    <li>
+                                        <a class="with-today" href="#" onclick="Analytics.TwoTierSales('daily','','',this); return false;">{{trans('analytics.today')}}</a>
+                                    </li>
+                                    <li>
+                                        <a class="with-weekly" href="#" onclick="Analytics.TwoTierSales('week','','',this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                    </li>
+                                    <li>
+                                        <a class="with-monthly" href="#" onclick="Analytics.TwoTierSales('month','','',this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                    </li>
+                                    <li>
+                                        <a class="with-alltime" href="#" onclick="Analytics.TwoTierSales('alltime','','',this); return false;">{{trans('analytics.allTime')}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <ul id="wrapper-two-tier-sales" class="analytics-box-wrapper">
+                                {{$secondTierSalesView}}
+                            </ul>
+                        </div>
+                    </div>
+                    {{-- // Total Second Tier Sales in Yen --}}
+                @endif
 
 
 

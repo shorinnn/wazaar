@@ -14,6 +14,7 @@ return
     'stats' => 'Stats',
     'topCourses' => 'Top Courses',
     'topConvertingCourses' => 'Top Converting Courses',
+    'twoTierSales' => '2nd Tier Sales',
 
     'noCourseConversion' => 'No course conversion found',
     'noTopCourse' => 'No top course found',

@@ -315,7 +315,7 @@
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
         <!-- <script src="{{url("js/jquery.custom-scrollbar.js")}}"></script> -->
         <script src="{{url("js/autogrow.min.js")}}"></script>
-        <script src="{{url("js/main.js")}}?v=20150914"></script>
+        <script src="{{url("js/main.js")}}"></script>
         <script src="{{url("js/messages.js")}}"></script>
         <script src="{{url("js/slick.js")}}"></script>
         <script src="{{url("js/lang/".Config::get('app.locale').".js")}}"></script>

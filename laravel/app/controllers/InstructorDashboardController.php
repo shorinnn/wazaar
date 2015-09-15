@@ -14,9 +14,10 @@ class InstructorDashboardController extends BaseController
     {
         $salesView      = $this->salesView();
         $salesCountView = $this->salesCountView();
+        $secondTierSalesView = $this->secondTierSalesView();
         $courses        = Course::where('instructor_id', Auth::id())->get();
 
-        return View::make('instructors.dashboard.index', compact('salesView', 'salesCountView', 'courses'));
+        return View::make('instructors.dashboard.index', compact('salesView', 'salesCountView', 'secondTierSalesView', 'courses'));
     }
 
     public function course($courseSlug = '')
@@ -62,6 +63,8 @@ class InstructorDashboardController extends BaseController
 
     }
 
+
+
     public function salesView($frequency = '', $courseId = '', $trackingCode = '')
     {
         $sales = null;
@@ -77,6 +80,43 @@ class InstructorDashboardController extends BaseController
                 break;
             default:
                 $sales = $this->analyticsHelper->salesLastFewDays(7, $courseId, $trackingCode);
+                break;
+        }
+
+
+        if (is_array($sales)) {
+            if ($frequency == 'week') {
+                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency'))->render();
+            } elseif ($frequency == 'month') {
+                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency'))->render();
+            } elseif ($frequency == 'alltime') {
+                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency'))->render();
+            } else {
+                return View::make('analytics.partials.sales', compact('sales', 'frequency'))->render();
+            }
+        }
+    }
+
+    public function secondTierSalesView($frequency = '', $courseId = '', $trackingCode = '')
+    {
+        if (Auth::user()->is_second_tier_instructor == 'no'){
+            return '';
+        }
+
+
+        $sales = null;
+        switch ($frequency) {
+            case 'alltime' :
+                $sales = $this->analyticsHelper->secondTierInstructorSalesLastFewYears(5, $courseId, $trackingCode);
+                break;
+            case 'week' :
+                $sales = $this->analyticsHelper->secondTierInstructorSalesLastFewWeeks(7, $courseId, $trackingCode);
+                break;
+            case 'month' :
+                $sales = $this->analyticsHelper->secondTierInstructorSalesLastFewMonths(7, $courseId, $trackingCode);
+                break;
+            default:
+                $sales = $this->analyticsHelper->secondTierInstructorSalesLastFewDays(7, $courseId, $trackingCode);
                 break;
         }
 
