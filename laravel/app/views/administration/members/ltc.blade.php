@@ -2,6 +2,7 @@
 @section('content')	
     
 
+<h1>Data updated every 24 hours</h1>
 
  <table class="table table-bordered table-striped">
      <thead>
