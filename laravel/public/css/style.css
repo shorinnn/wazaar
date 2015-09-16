@@ -10137,9 +10137,6 @@ header .top-menu .logged-out li{
 	/*padding-top: 29px;*/
 	margin-bottom: 24px;
 }
-.course-group-header h2{
-	margin: 0px;
-}
 .course-group-header a{
 	font-size: 14px;
 	color: #0099FF;
@@ -10150,9 +10147,11 @@ header .top-menu .logged-out li{
 	padding-right: 10px;
 }
 .course-group-header h2{
+	margin: 0px;
 	display: inline;
 }
 .categories-list-container{
+	font-size: 15px;
 	display: inline;
 	color: #909DAB;
 }
