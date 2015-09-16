@@ -6987,6 +6987,9 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	background: #e8eced;
 	padding-bottom: 5%;
 }
+.edit-course p{
+	word-wrap: break-word;
+}
 .create-course-start-page-container{
 	padding-top: 70px;
 }

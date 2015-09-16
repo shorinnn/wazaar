@@ -96,7 +96,7 @@
                                                     @else
                                                         {{ Form::open( [  'class' => 'inline-form' ] ) }}
                                                     @endif
-                                                    <button type="submit" class='default-button preview-button large-button'
+                                                    <button type="submit" class='blue-button preview-button large-button'
                                                     @if( $now<$show_on || 
                                                     (Auth::check() && ( !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) ) ) )
                                                             disabled="disabled" data-crash-disabled='1'
