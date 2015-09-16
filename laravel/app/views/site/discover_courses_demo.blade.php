@@ -442,6 +442,6 @@
     </div>
 </div>
 
-<div class="row text-center" style="padding-top:29px;">
-    <a href="#" class="clearfix blue-button extra-large-button">Browse All Categories</a>
+<div class="row text-center">
+    <a href="#" class="clearfix blue-button btn-lg">Browse All Categories</a>
 </div>

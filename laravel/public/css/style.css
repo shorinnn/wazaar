@@ -4853,15 +4853,15 @@ h2, h3, h4, h5, h6{
 .discussion-opened .classroom-video.video-container .topControl{
 	width: 60%;
 }
-.classroom-view .classroom-video .videoContainer{
+.classroom-view .videoContainer{
     position: relative;
     padding-bottom: 56.25%;
 	height: 0; 
 	overflow: hidden;
 } 
-.classroom-view .classroom-video .videoContainer iframe,
-.classroom-view .classroom-video .videoContainer object,
-.classroom-view .classroom-video .videoContainer embed {
+.classroom-view .videoContainer iframe,
+.classroom-view .videoContainer object,
+.classroom-view .videoContainer embed {
     position: absolute;
     top: 0;
     left: 0;
@@ -8913,6 +8913,13 @@ footer{
 	.classroom-view .classroom-header{
 		width: 100% !important;
 	}
+	.course-question-sidebar{
+		position: relative;
+		z-index: 1;
+		height: 100%;
+		width: 100% !important;
+		right: 0px !important;
+	}
 }
 @media (max-width:900px){
 	.course-detail-top-section .centered-contents{
@@ -8923,13 +8930,6 @@ footer{
 	.instructor-mycourses .course-wrapper .bottom-bar .status-box {
 	    left: 58.5%;
 	}	
-	.course-question-sidebar{
-		position: relative;
-		z-index: 1;
-		height: 100%;
-		width: 100%;
-		right: 0px;
-	}
 	.course-question-sidebar.in{
 		right: 0px;
 	}
@@ -10137,9 +10137,6 @@ header .top-menu .logged-out li{
 	/*padding-top: 29px;*/
 	margin-bottom: 24px;
 }
-.course-group-header h2{
-	margin: 0px;
-}
 .course-group-header a{
 	font-size: 14px;
 	color: #0099FF;
@@ -10150,9 +10147,11 @@ header .top-menu .logged-out li{
 	padding-right: 10px;
 }
 .course-group-header h2{
+	margin: 0px;
 	display: inline;
 }
 .categories-list-container{
+	font-size: 15px;
 	display: inline;
 	color: #909DAB;
 }
