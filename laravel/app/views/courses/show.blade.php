@@ -235,6 +235,7 @@
                             <input type="hidden" name="URL" value="{{url('courses/' . $course->slug)}}"/>
                             <input type="hidden" name="CustomerPass" value="password" />
                             <input type="hidden" name="Amount" value="{{$course->cost()}}" />
+                            <input type="hidden" name="language" value="ja"/>
                             <input type="hidden" name="mail" 
                                    @if(Auth::check())
                                     value="{{Auth::user()->email}}"
