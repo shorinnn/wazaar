@@ -4853,15 +4853,15 @@ h2, h3, h4, h5, h6{
 .discussion-opened .classroom-video.video-container .topControl{
 	width: 60%;
 }
-.classroom-view .classroom-video .videoContainer{
+.classroom-view .videoContainer{
     position: relative;
     padding-bottom: 56.25%;
 	height: 0; 
 	overflow: hidden;
 } 
-.classroom-view .classroom-video .videoContainer iframe,
-.classroom-view .classroom-video .videoContainer object,
-.classroom-view .classroom-video .videoContainer embed {
+.classroom-view .videoContainer iframe,
+.classroom-view .videoContainer object,
+.classroom-view .videoContainer embed {
     position: absolute;
     top: 0;
     left: 0;
