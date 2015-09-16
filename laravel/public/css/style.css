@@ -10129,8 +10129,16 @@ header .top-menu .logged-out li{
 }
 
 /*new homepage layout by art */
+.homepage-course-groups .small-box-link-wrapper .small-box{
+	margin-top: 0px;
+	margin-bottom: 48px;
+}
 .course-group-header{
-	padding-top: 29px;
+	/*padding-top: 29px;*/
+	margin-bottom: 24px;
+}
+.course-group-header h2{
+	margin: 0px;
 }
 .course-group-header a{
 	font-size: 14px;

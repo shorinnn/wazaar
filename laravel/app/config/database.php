@@ -117,7 +117,7 @@ return array(
 
 	'redis' => array(
 
-		'cluster' => true,
+		'cluster' => false,
 
 		'default' => array(
 			'host'     => 'wazaar-001.rnpekq.0001.apne1.cache.amazonaws.com',

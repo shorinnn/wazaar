@@ -3,13 +3,13 @@
         <a href="#" class="back_all_courses hide" data-group="group_1"><i class="fa fa-chevron-left"></i> Back</a>
         <h2>Make more money</h2>
         <div class="hidden-xs categories-list-container">
-            <span>|</span> <a href="#">Category 1</a>, <a href="#">Category 1</a>, <a href="#">Category 1</a>
+            <span>|</span> Category 1, Category 1, Category 1
         </div>
         <a href="#" class="show_all_courses pull-right" data-group="group_1"><i class="fa fa-plus"></i> show all</a>
         <div class="clearfix"></div>
         <div class="visible-xs col-md-12 row categories-list-parent-container">
             <div class=" categories-list-container">
-                <a href="#">Category 1</a>, <a href="#">Category 1</a>, <a href="#">Category 1</a>
+                Category 1, Category 1, Category 1
             </div>
             <div class="clearfix"></div>
         </div>
@@ -113,18 +113,17 @@
     <div class="col-md-12 course-group-header">
         <a href="#" class="back_all_courses hide" data-group="group_2"><i class="fa fa-chevron-left"></i> Back</a>
         <h2>Lifestyle and Beauty</h2>
-                <div class="hihidden-sm categories-list-container">
-            <span>|</span> <a href="#">Category 1</a>, <a href="#">Category 1</a>, <a href="#">Category 1</a>
+         <div class="hidden-xs categories-list-container">
+            <span>|</span> Category 1, Category 1, Category 1
         </div>
-        <a href="#" class="show_all_courses pull-right" data-group="group_1"><i class="fa fa-plus"></i> show all</a>
+        <a href="#" class="show_all_courses pull-right" data-group="group_2"><i class="fa fa-plus"></i> show all</a>
         <div class="clearfix"></div>
         <div class="visible-xs col-md-12 row categories-list-parent-container">
             <div class=" categories-list-container">
-                <a href="#">Category 1</a>, <a href="#">Category 1</a>, <a href="#">Category 1</a>
+                Category 1, Category 1, Category 1
             </div>
             <div class="clearfix"></div>
         </div>
-
         <div class="clearfix"></div>
     </div>
     <div>
@@ -226,13 +225,13 @@
         <a href="#" class="back_all_courses hide" data-group="group_3"><i class="fa fa-chevron-left"></i> Back</a>
         <h2>Health and Fitness</h2>
         <div class="hidden-xs categories-list-container">
-            <span>|</span> <a href="#">Category 1</a>, <a href="#">Category 1</a>, <a href="#">Category 1</a>
+            <span>|</span> Category 1, Category 1, Category 1
         </div>
-        <a href="#" class="show_all_courses pull-right" data-group="group_1"><i class="fa fa-plus"></i> show all</a>
+        <a href="#" class="show_all_courses pull-right" data-group="group_3"><i class="fa fa-plus"></i> show all</a>
         <div class="clearfix"></div>
         <div class="visible-xs col-md-12 row categories-list-parent-container">
             <div class=" categories-list-container">
-                <a href="#">Category 1</a>, <a href="#">Category 1</a>, <a href="#">Category 1</a>
+                Category 1, Category 1, Category 1
             </div>
             <div class="clearfix"></div>
         </div>
@@ -337,13 +336,13 @@
         <a href="#" class="back_all_courses hide" data-group="group_4"><i class="fa fa-chevron-left"></i> Back</a>
         <h2>Free</h2>
         <div class="hidden-xs categories-list-container">
-            <span>|</span> <a href="#">Category 1</a>, <a href="#">Category 1</a>, <a href="#">Category 1</a>
+            <span>|</span> Category 1, Category 1, Category 1
         </div>
-        <a href="#" class="show_all_courses pull-right" data-group="group_1"><i class="fa fa-plus"></i> show all</a>
+        <a href="#" class="show_all_courses pull-right" data-group="group_4"><i class="fa fa-plus"></i> show all</a>
         <div class="clearfix"></div>
         <div class="visible-xs col-md-12 row categories-list-parent-container">
             <div class=" categories-list-container">
-                <a href="#">Category 1</a>, <a href="#">Category 1</a>, <a href="#">Category 1</a>
+                Category 1, Category 1, Category 1
             </div>
             <div class="clearfix"></div>
         </div>
