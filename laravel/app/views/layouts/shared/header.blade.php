@@ -182,7 +182,7 @@
                             </li>
                             @if(Auth::check() && Auth::user()->hasRole('Instructor'))
                                 <li>
-                                    <a href="{{ action('SiteController@analytics') }}">{{trans('site/menus.analytics')}}</a>
+                                    <a a href="{{action('InstructorDashboardController@index')}}">{{trans('site/menus.analytics')}}</a>
                                 </li>
                             @endif
                             <li>
