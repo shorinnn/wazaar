@@ -2096,5 +2096,21 @@ class AnalyticsHelper
         return $colorCombo[$index];
     }
 
+    public static function getQueryStringParams($frequency, $data)
+    {
+        if ($frequency == 'week'){
+            return 'start=' . $data['start'] .'&end=' . $data['end'];
+        }
+        elseif($frequency == 'month'){
+            return 'month=' . $data['month_date'] . '&year=' . $data['year'];
+        }
+        elseif($frequency == 'alltime'){
+            return 'year=' . $data['year_date'];
+        }
+        else{
+            return 'date=' . $data['date'];
+        }
+    }
+
 
 }
