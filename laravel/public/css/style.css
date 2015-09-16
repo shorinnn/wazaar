@@ -8913,6 +8913,13 @@ footer{
 	.classroom-view .classroom-header{
 		width: 100% !important;
 	}
+	.course-question-sidebar{
+		position: relative;
+		z-index: 1;
+		height: 100%;
+		width: 100% !important;
+		right: 0px !important;
+	}
 }
 @media (max-width:900px){
 	.course-detail-top-section .centered-contents{
@@ -8923,13 +8930,6 @@ footer{
 	.instructor-mycourses .course-wrapper .bottom-bar .status-box {
 	    left: 58.5%;
 	}	
-	.course-question-sidebar{
-		position: relative;
-		z-index: 1;
-		height: 100%;
-		width: 100%;
-		right: 0px;
-	}
 	.course-question-sidebar.in{
 		right: 0px;
 	}
