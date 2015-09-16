@@ -418,6 +418,14 @@
 						, cloneClass: 'faketextarea'
 					};*/
 					$("textarea").autoGrow();
+					
+					var textareaHeight = $('textarea').css('height');
+					var textareaMaxHeight = $('textarea').css('max-height');
+					if(textareaHeight >= textareaMaxHeight){
+					  $('textarea').css({
+						overflow: 'auto'
+					  });
+					}
 				});					
 			});
 		</script>

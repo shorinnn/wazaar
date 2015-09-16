@@ -3219,6 +3219,7 @@ h2, h3, h4, h5, h6{
 .new-dashboard.top-section .blue-button{
 	position: relative;
 	z-index: 6;
+	padding: 10px 12px;
 }
 .new-dashboard.top-section .radial-progress .progress-radial{
 	margin-bottom: 23px;
