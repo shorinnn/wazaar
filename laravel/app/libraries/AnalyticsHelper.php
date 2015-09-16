@@ -6,7 +6,7 @@ class AnalyticsHelper
     protected $userId;
     protected $isAdmin;
     protected $userType;
-
+    protected $user;
     const CACHE = 15;
 
     public function __construct($isAdmin, $userId = 0, $userType = '')
@@ -14,6 +14,8 @@ class AnalyticsHelper
         $this->isAdmin  = $isAdmin;
         $this->userId   = $userId;
         $this->userType = $userType;
+
+        $this->user = User::find($userId);
     }
 
 
@@ -1353,12 +1355,14 @@ class AnalyticsHelper
         $sum = "SUM(purchases.purchase_price)";
         //Sales for affiliates are taken from another column
         if ($this->userType == 'affiliate') {
-            $sum = "IF(product_affiliate_id = '{$this->userId}', sum(`affiliate_earnings`),0) + IF(second_tier_affiliate_id = '{$this->userId}',sum(second_tier_affiliate_earnings),0)";
-            $criteria .= " AND (purchases.ltc_affiliate_id = '{$this->userId}' OR purchases.product_affiliate_id = '{$this->userId}' )";
+            //$sum = "IF(product_affiliate_id = '{$this->userId}', sum(`affiliate_earnings`),0) + IF(second_tier_affiliate_id = '{$this->userId}',sum(second_tier_affiliate_earnings),0)";
+            $sum = "sum(`affiliate_earnings`)";
+            $criteria .= " AND purchases.product_affiliate_id = '{$this->userId}'";
         }
         elseif($this->userType == 'instructor'){
-            $sum = "IF(instructor_id = '{$this->userId}', sum(`instructor_earnings`),0) + IF(second_tier_instructor_id = '{$this->userId}',sum(second_tier_instructor_earnings),0)";
-            $criteria .= " AND (purchases.instructor_id='{$this->userId}' OR purchases.second_tier_instructor_id = '{$this->userId}')";
+            //$sum = "IF(instructor_id = '{$this->userId}', sum(`instructor_earnings`),0) + IF(second_tier_instructor_id = '{$this->userId}',sum(second_tier_instructor_earnings),0)";
+            $sum = "sum(`instructor_earnings`)";
+            $criteria .= " AND purchases.instructor_id='{$this->userId}'";
         }
 
         //if (!$this->isAdmin AND !empty($this->userId)) {
@@ -1388,9 +1392,12 @@ class AnalyticsHelper
         $countCriteria = '';
         //Sales for affiliates are taken from another column
         if ($this->userType == 'affiliate') {
-            $sum = "IF(product_affiliate_id = '{$this->userId}', sum(`affiliate_earnings`),0) + IF(second_tier_affiliate_id = '{$this->userId}',sum(second_tier_affiliate_earnings),0)";
-            $countCriteria = "AND  product_affiliate_id = '{$this->userId}' OR second_tier_affiliate_id = '{$this->userId}'";
+
+            //$sum = "IF(product_affiliate_id = '{$this->userId}', sum(`affiliate_earnings`),0) + IF(second_tier_affiliate_id = '{$this->userId}',sum(second_tier_affiliate_earnings),0)";
+            $sum = "sum(`affiliate_earnings`)";
+            $countCriteria = "AND  product_affiliate_id = '{$this->userId}'";
             $countCriteria = "(SELECT COUNT(purchases.id) FROM purchases WHERE id <> 0 {$countCriteria} {$criteria}) ";
+            $criteria .= " AND (purchases.product_affiliate_id = '{$this->userId}')";
         }
         elseif($this->userType == 'instructor'){
             $sum = "sum(`instructor_earnings`)";
@@ -1404,7 +1411,7 @@ class AnalyticsHelper
                 GROUP BY DATE(created_at)
                 ORDER BY created_at DESC
                 ";
-
+        //echo $sql;die;
         return $sql;
     }
 

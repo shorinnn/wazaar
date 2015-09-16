@@ -111,17 +111,18 @@ class AffiliateDashboardController extends BaseController
 
 
         if (is_array($sales)) {
+            $urlIdentifier = 'sales';
             if ($frequency == 'week'){
-                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency'))->render();
+                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency','urlIdentifier'))->render();
             }
             elseif($frequency == 'month'){
-                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency'))->render();
+                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency','urlIdentifier'))->render();
             }
             elseif($frequency == 'alltime'){
-                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency'))->render();
+                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency','urlIdentifier'))->render();
             }
             else {
-                return View::make('analytics.partials.sales', compact('sales', 'frequency'))->render();
+                return View::make('analytics.partials.sales', compact('sales', 'frequency','urlIdentifier'))->render();
             }
         }
     }
@@ -334,5 +335,47 @@ class AffiliateDashboardController extends BaseController
         return View::make('affiliate.dashboard.index', compact('secondTierRegistrationsView','ltcEarningsView', 'topCoursesView', 'salesView', 'trackingCodesSalesView', 'courseConversionView', 'trackingCodeConversionView','ltcRegistrationsView'));
     }
 
+
+    public function detailedSales($frequency)
+    {
+        $purchases = null;
+
+        switch($frequency){
+            case 'daily' :
+                if (!Input::has('date')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F d, Y',strtotime(Input::get('date')));
+                $purchases = Purchase::whereRaw("DATE(created_at) = '". Input::get('date') ."'")->where('product_affiliate_id',Auth::id())->paginate(10);
+                break;
+            case 'week' :
+                if (!Input::has('start') && !Input::has('end')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F d, Y',strtotime(Input::get('start'))) . ' - '  . date('F d, Y',strtotime(Input::get('end')));
+                $purchases = Purchase::whereRaw("DATE(created_at) BETWEEN '". Input::get('start') ."' AND '". Input::get('end') ."'")->where('product_affiliate_id',Auth::id())->paginate(10);
+                break;
+            case 'month':
+                if (!Input::has('month') && !Input::has('year')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F',strtotime(Input::get('month'))) . Input::get('year');
+                $purchases = Purchase::whereRaw("MONTH(created_at) =  '". Input::get('month') ."' AND YEAR(created_at) = '". Input::get('year') ."'")->where('product_affiliate_id',Auth::id())->paginate(10);
+                break;
+            case 'alltime':
+                if (!Input::has('year')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = Input::get('year');
+                $purchases = Purchase::whereRaw("YEAR(created_at) = '". Input::get('year') ."'")->where('product_affiliate_id',Auth::id())->paginate(10);
+                break;
+        }
+
+        if ($purchases){
+            return View::make('analytics.salesList',compact('purchases','salesLabel'));
+        }
+
+        return Redirect::to('analytics');
+    }
 
 }

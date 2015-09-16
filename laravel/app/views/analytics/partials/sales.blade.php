@@ -2,7 +2,13 @@
 <ul>
     @foreach($sales['sales'] as $sale)
         <li id="monday" class="clearfix">
-            <span>{{$sale['label']}}</span>
+            <span>
+                @if (isset($urlIdentifier))
+                    <a href="{{url('analytics/affiliate/'. $urlIdentifier .'/' . $frequency . '?' . AnalyticsHelper::getQueryStringParams($frequency,$sale))}}">{{$sale['label']}}</a>
+                @else
+                    {{$sale['label']}}
+                @endif
+            </span>
             <div>
                 <div class="progress" style="width: {{$sale['percentage']}}%"></div>
             </div>

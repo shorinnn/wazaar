@@ -10133,7 +10133,7 @@ header .top-menu .logged-out li{
 	padding-top: 29px;
 }
 .course-group-header a{
-	font-style: 12px;
+	font-size: 14px;
 	color: #0099FF;
 	height: 26px;
 	line-height: 26px;
@@ -10143,5 +10143,24 @@ header .top-menu .logged-out li{
 }
 .course-group-header h2{
 	display: inline;
+}
+.categories-list-container{
+	display: inline;
+	color: #909DAB;
+}
+.categories-list-container span {
+	padding: 0px 15px;
+}
+.categories-list-container a{
+	color: #909DAB;
+	font-size: 14px;
+}
+.categories-list-container a.show_all_courses{
+	color: #09F;
+}
+.categories-list-parent-container{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 /*end new homepage layout by art */
