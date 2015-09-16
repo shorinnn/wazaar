@@ -178,7 +178,7 @@
                             </li>
                             @if(Auth::check() && Auth::user()->hasRole('Instructor'))
                                 <li>
-                                    <a href="http://instructors.wazaar.jp/analytics">{{trans('site/menus.analytics')}}</a>
+                                    <a href="{{ action('SiteController@analytics') }}">{{trans('site/menus.analytics')}}</a>
                                 </li>
                             @endif
                             <li>
