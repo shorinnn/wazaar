@@ -67,7 +67,7 @@
                         <ul class="lesson-topics expandable-content clearfix">
                             @foreach($module->lessons as $i=>$lesson)
                                 <li class="lessons lesson-1 bordered clearfix">
-                                    <span><i class="wa-play"></i></span>
+                                    <span class="hidden-xs"><i class="wa-play"></i></span>
                                     <!--{{ Str::limit( $lesson->name, Config::get('custom.course-desc-lesson-chars') )  }}-->
                                     <a class="clearfix lesson-name" data-toggle="tooltip" title="{{$lesson->name}}" @if($i == 0) data-placement="bottom" @endif>{{$lesson->name}}</a>
                                     <!--<em>Type of lesson</em>-->
@@ -88,7 +88,7 @@
                                                 @if( Auth::check() && Student::find(Auth::user()->id)->purchased($lesson)  )
                                                         <a href='{{ action( 'ClassroomController@lesson', 
                                                         [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, 
-                                                    'lesson' => $lesson->slug ] )}}' class='default-button preview-button large-button' >Enter</a>
+                                                    'lesson' => $lesson->slug ] )}}' class='blue-button preview-button large-button' >Enter</a>
                                                 @else
                                                 <!-- to purchase -->
                                                     @if($now > $show_on)
@@ -96,12 +96,12 @@
                                                     @else
                                                         {{ Form::open( [  'class' => 'inline-form' ] ) }}
                                                     @endif
-                                                    <button type="submit" class='default-button preview-button large-button'
+                                                    <button type="submit" class='blue-button preview-button large-button'
                                                     @if( $now<$show_on || 
                                                     (Auth::check() && ( !Auth::user()->canPurchase($course) || !Auth::user()->canPurchase($lesson) ) ) )
                                                             disabled="disabled" data-crash-disabled='1'
                                                             @endif
-                                                            >{{ trans('courses/general.free_preview') }}</button>
+                                                            ><small class="hidden-xs">{{ trans('courses/general.free_preview') }}</small><i class="fa fa-eye hidden-sm hidden-md hidden-lg"></i></button>
                                                       {{ Form::close() }}
                                                       <!-- / to purchase -->
                                                 @endif
@@ -111,7 +111,7 @@
                                                     @if( Auth::check() && Student::find(Auth::user()->id)->purchased($lesson)  )
                                                             <a href='{{ action( 'ClassroomController@lesson', 
                                                             [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, 
-                                                        'lesson' => $lesson->slug ] )}}' class='default-button preview-button large-button' >Enter</a>
+                                                        'lesson' => $lesson->slug ] )}}' class='blue-button preview-button large-button' >Enter</a>
                                                         @else
                                                             <!-- can purchase -->
                                                             @if($now > $show_on)

@@ -2747,6 +2747,10 @@ h2, h3, h4, h5, h6{
 .lesson-topics li .buttons a{
 	margin-left: 7px;
 }
+.lesson-topics li .buttons .preview-button small{
+	font-size: 12px;
+	font-weight: bold;
+}
 .lesson-topics li .buttons .reading-button{
 	border-color: transparent;
 	background-color: transparent;
@@ -6659,9 +6663,14 @@ a.load-remote > *{
 	color: #cfd8df;
 }
 .step2 .lesson-container .lesson-data textarea{
+	margin-bottom: 12px;
+	padding: 0 12px !important;
+	vertical-align: top;
+}
+.textarea-wrap {
+    position: relative;
 	border: solid #e0e1e2;
 	border-width: 0 0 1px;
-	margin-bottom: 5px;
 }
 .step2 .lesson-container .switch-label{
 	background: #a7b7c4;
@@ -6748,7 +6757,7 @@ a.load-remote > *{
 	font-size: 24px;
 }
 .step2 .lesson-container .file-upload-row .upload-button{
-	max-width: 118px;
+	max-width: 125px;
 	display: inline-block !important;
 }
 .step2 .lesson-container .file-upload-row p{
@@ -6977,6 +6986,9 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 .edit-course{
 	background: #e8eced;
 	padding-bottom: 5%;
+}
+.edit-course p{
+	word-wrap: break-word;
 }
 .create-course-start-page-container{
 	padding-top: 70px;
@@ -8770,7 +8782,7 @@ footer{
 		border: none;
 	}	
 	.course-details-player{
-		margin: 30px 0;
+		margin: 30px 0 10px;
 	}	
 	.discover-header h1,
 	.discover-header .categories-menu,
@@ -9144,7 +9156,26 @@ header .profile-name ul{
 .category-heading-title{
 	margin-bottom: 15px;
 }
-
+.home-page-filter{
+	float: none !important;
+	text-align: center;
+}
+.home-page-filter .pagination-container{
+	width: auto;
+}
+.lesson-topics li{
+	padding-left: 30px;
+}
+.lesson-topics li .buttons .preview-button{
+	padding: 10px 15px;
+}
+.lesson-topics li .buttons .preview-button i.fa-eye{
+	font-size: 18px;
+}
+.course-data .column-1 div{
+	padding: 15px 20px 12px !important;
+	display: table-cell;
+}
 }
 @media (max-width:752px){
 .navbar-nav{ 
@@ -9175,13 +9206,6 @@ header .top-menu .logged-out li{
 .course-detail-top-section .centered-contents .banner-content-wrapper{
 	position: relative;
 	padding: 0;
-}
-.course-data .column-1 div{
-	padding: 15px 20px 12px !important;
-}
-.course-data .column-2 div em, 
-.course-data .column-1 div em{
-	font-size: 14px;
 }
 .modal-content .filter-wrap input{
 	width: 80% !important;
@@ -9267,27 +9291,31 @@ header .top-menu .logged-out li{
 	}
 	.course-data .column-1 div{
 		border: 0px !important;
-		display: block;
+    	padding: 0 20px !important;
+		margin-bottom: 10px;
+		display: inline-block;
 	}
 	.course-data .column-1 div span{
-		text-align: right;
-		float: left;
-		font-style: 12px !important;
+		text-align: left;
+		display: block !important;
 	}
 	.course-data .column-1 div em{
 		text-align: left;
-		float: right;
-		font-size: 20px !important;
+		font-size: 15px !important;
 	}
 	.course-data .column-1 div span,
 	.course-data .column-1 div em{
-		width: 47%;
+		width: auto;
 		margin: 0px;
-		height: 30px;
-		line-height: 30px;
-		padding: 10px 0px;
+		padding: 0px;
 		display: inline-table;
 	}
+	.course-data .column-3{
+		text-align: center;
+	}
+	.course-data .column-1 {
+		text-align: left;
+	}	
 	.lesson-topics li .lesson-name{
 		width: 50%;
 	}
@@ -9319,16 +9347,6 @@ header .top-menu .logged-out li{
 		padding: 5px 10px !important;
 		font-size: 11px;
 	}	
-	.course-data .column-1 div{
-		padding: 15px 15px 12px !important;
-	}	
-	.course-data .column-1 div span{
-		font-size: 10px;
-	}	
-	.course-data .column-2 div em, 
-	.course-data .column-1 div em{
-		font-size: 12px;
-	}	
 	.column-3 .add-to-wishlist-container i{
 		font-size: 16px;
 	}	
@@ -9343,9 +9361,11 @@ header .top-menu .logged-out li{
 		border: none;
 		float: none;
 		width: 100%;
-	}	.instructor-dashboard .teaching-lesson .image-wrap{
+	}	
+	.instructor-dashboard .teaching-lesson .image-wrap{
 		margin-bottom: 20px;
-	}	.new-dashboard.dashboardTabs .settings{
+	}	
+	.new-dashboard.dashboardTabs .settings{
 		margin: 10px 0;
 		float: none;
 	}
@@ -9519,6 +9539,10 @@ header .top-menu .logged-out li{
 	.homepage-header-wrapper {
 		margin-top: -140px;
 	}
+	.course-data .column-1 div{
+		width: 32%;
+		padding: 0 0 0 20px !important;
+	}
 }
 @media (max-width:420px){
 	.homepage-header-wrapper.logged-in{
@@ -9527,10 +9551,15 @@ header .top-menu .logged-out li{
 	.category-heading-buttons{
 		width: 100%;
 	}
+	.home-page-filter .pagination-container{
+		margin: 10px 0 0;
+	}
+	.home-page-filter .pagination-container,
 	.difficulty-levels .level-buttons-container,
 	.difficulty-levels{
 		width: 100%;
 	}
+	.home-page-filter .pagination-container a,
 	.difficulty-levels .level-buttons{
 		width: 33.333%;
 	}
@@ -9616,20 +9645,12 @@ header .top-menu .logged-out li{
 	}
 }
 @media (min-width:320px) and (max-width: 480px) {
-	.course-data .column-1 div{
-		padding: 0 9px !important;
-		margin: 25px 0 0;
-		border: none !important;
-	}	
 	.column-3 .add-to-wishlist-container{
 		padding: 0;
 		margin-top: 30px;
 	}		
 	.column-3 .add-to-wishlist-container .share-lesson{
 		margin-left: 25px !important;
-	}	
-	.course-data .column-1 .difficulty-level{
-		margin-top: 15px;
 	}	
 	.course-editor .video-list-thumbs .glyphicon-play-circle{
 		font-size: 35px;
@@ -9653,6 +9674,10 @@ header .top-menu .logged-out li{
 	.lesson-topics li .buttons{
 		margin-right: 10px;
 		/*float: left;*/
+	}
+	.lesson-topics li .buttons .buy-button,
+	.lesson-topics li .buttons .preview-button{
+		margin-left: 10px;
 	}
 	.lesson-topics li .buttons a{
 		margin-left: 0;
@@ -9714,6 +9739,9 @@ header .top-menu .logged-out li{
 	.homepage-header-wrapper.logged-in{
 		margin-top: -208px;
 	}	
+	.course-data .column-1 div{
+		padding: 0 0 0 7px !important;
+	}
 }
 @media (max-width:320px){
 	.column-3 .add-to-wishlist-container{
@@ -10071,3 +10099,21 @@ header .top-menu .logged-out li{
 .modal-content{
 	overflow: hidden;
 }
+
+/*new homepage layout by art */
+.course-group-header{
+	padding-top: 29px;
+}
+.course-group-header a{
+	font-style: 12px;
+	color: #0099FF;
+	height: 26px;
+	line-height: 26px;
+}
+.course-group-header a.back_all_courses{
+	padding-right: 10px;
+}
+.course-group-header h2{
+	display: inline;
+}
+/*end new homepage layout by art */

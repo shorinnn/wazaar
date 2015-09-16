@@ -315,6 +315,7 @@
         <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
         <!-- <script src="{{url("js/jquery.custom-scrollbar.js")}}"></script> -->
         <script src="{{url("js/autogrow.min.js")}}"></script>
+        <script src="{{url("js/jquery.autogrowtextarea.js")}}"></script>
         <script src="{{url("js/main.js")}}"></script>
         <script src="{{url("js/messages.js")}}"></script>
         <script src="{{url("js/slick.js")}}"></script>
@@ -410,15 +411,17 @@
 				
 				$(".pagination-container").rPage();
 
-				$('body').on('click','textarea',function(){
+				/*$('body').on('click','textarea',function(){
 					var opts = {
 						animate: true
 						, cloneClass: 'faketextarea'
 					};
 					$('textarea').autogrow(opts);
 					});
-				})		
-							
+				})*/
+					
+				$("textarea").autoGrow();
+			});
 		</script>
     	
             <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/delaunay.js"></script>

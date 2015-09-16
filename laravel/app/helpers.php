@@ -576,7 +576,7 @@ function externalVideoPreview($url, $big=false, $iframe=false){
     $width = '100%';
     //$height = '100%';
     if( $id = parse_yturl($url) ){
-        if($iframe) $preview = '<iframe id="embeded-video" width="'.$width.'" height="'.$height.'" src="https://www.youtube.com/embed/'.$id.'?showinfo=0" frameborder="0" allowfullscreen></iframe>';
+        if($iframe) $preview = '<iframe id="embeded-video" width="'.$width.'" height="'.$height.'" src="https://www.youtube.com/embed/'.$id.'?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe>';
         else $preview = '<img data-video-url="https://www.youtube.com/embed/'.$id.'" data-yt=1  onclick="showVideoPreview(this)" src="http://img.youtube.com/vi/'.$id.'/0.jpg" width="100%"/>';
     }
     if( $id = get_vimeoid($url)){
@@ -585,7 +585,7 @@ function externalVideoPreview($url, $big=false, $iframe=false){
         $response = $vimeo->request('/videos/'.$id, array('per_page' => 2), 'GET');
         
         $link = $response['body']['pictures']['sizes'][1]['link'];
-        if($iframe) $preview = '<iframe  id="embeded-video" src="https://player.vimeo.com/video/'.$id.'?color=ffffff&title=0&portrait=0&badge=0" width="'.$width.'" height="'.$height.'"     frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+        if($iframe) $preview = '<iframe  id="embeded-video" src="https://player.vimeo.com/video/'.$id.'?color=ffffff&title=0&portrait=0&badge=0&rel=0" width="'.$width.'" height="'.$height.'"     frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
         else $preview = '<img data-video-url="https://player.vimeo.com/video/'.$id.'" data-v=1  onclick="showVideoPreview(this)" src="'.$link.'" width="100%" />';
     }
     return $preview;

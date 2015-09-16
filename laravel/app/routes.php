@@ -30,6 +30,7 @@ $wwwRoutes = function(){
 //Route::group( array('domain' =>  $domain), function(){
     // Site routes
     Route::get('/', 'SiteController@index');
+    Route::get('demo-homepage', 'SiteController@indexDemo');
     Route::get('discover-courses/{group}', 'SiteController@discoverCourses');
     Route::get('privacy-policy', 'SiteController@privacyPolicy');
     Route::get('about-the-company', 'SiteController@about');
@@ -189,6 +190,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::get('courses/search-instructor/', 'CoursesController@searchInstructor');
     Route::get('courses/{id}/delete', 'CoursesController@destroy');
     Route::post('courses/{id}/set-field', 'CoursesController@setField');
+    Route::post('courses/{id}/disapprove', 'CoursesController@disapprove');
 });
 
 $wwwRoutes = function(){
@@ -245,8 +247,8 @@ $wwwRoutes = function(){
     
     Route::get('courses/categories', 'CoursesController@categories');
     Route::get('courses/category/{slug}/{subcat}', 'CoursesController@subCategory');
-    Route::get('courses/category/{slug}', 'CoursesController@category');
-    Route::get('courses/category/', 'CoursesController@category');
+    Route::get('courses/category/{slug?}', 'CoursesController@category');
+//    Route::get('courses/category/', 'CoursesController@category');
     Route::get('courses/search/', 'CoursesController@search');
     Route::post('courses/{slug}/purchase/{lesson}', 'CoursesController@purchaseLesson');
     Route::post('courses/{slug}/crash/{lesson}', 'CoursesController@crashLesson');

@@ -1,5 +1,5 @@
-<div class="col-md-12">
-    <div class="pull-right clearfix" style="margin-top:16px;">
+<div class="col-md-12 clearfix no-padding">
+    <div class="pull-right clearfix home-page-filter" style="margin-top:16px;">
         <div class="btn-group pagination-container">
             <a href="/" class="btn btn-default @if($filter == '') active @endif">{{ trans('courses/general.filter.all-paid-or-free') }}</a>
             <a href="/?filter=paid" class="btn btn-default @if($filter == 'paid') active @endif">{{ trans('courses/general.filter.paid') }}</a>
@@ -7,7 +7,7 @@
         </div>
     </div>
 </div>
-<div class="row">    
+<div class="row clear">
     @foreach( $discoverCourses as $course )
      <?php 
      $course = courseApprovedVersion($course);
@@ -109,7 +109,6 @@
                 </div>
             </a>
         </div>
-    
     <?php }); ?>
     @endforeach
 </div>

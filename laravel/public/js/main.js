@@ -31,7 +31,7 @@ $(document).ready(function(){
 	  $(".fa.fa-plus").show();
 	});	
 
-    makeBoxesExpandable();
+    //makeBoxesExpandable();
     if( getCookie('hideAffiliateToolbar')=='true' ) toggleAffiliateToolbar(event);
     $('.countdown').each(function(){
         seconds = $(this).attr('data-final-date-seconds')
@@ -80,11 +80,14 @@ $(document).ready(function(){
 	askTeacherQuestion();
 	searchFormFocusStyle();
 	showMoreContent();
+    dynamicLessonNameWidth()
 	toggleSideMenu();
 	//stickyFooter();
 	rescaleBckgrdOverlay();
+    newHomepageToggleData();
 	$(window).resize(function() {
 	  rescaleBckgrdOverlay();
+      dynamicLessonNameWidth();
    	  skinVideoControls();
 	});
 	
@@ -94,7 +97,46 @@ $(document).ready(function(){
 
 });
 
-function makeBoxesExpandable(){
+function newHomepageToggleData(){
+    if($('.homepage-course-groups').length >= 1){
+        $('.show_all_courses').click(function(){
+            var target = $(this).data('group');
+
+            $('.homepage-course-groups').each(function(){
+                if(!$(this).hasClass(target)){
+                    $(this).hide();
+                } else {
+                    $(this).find('.back_all_courses').hide().removeClass('hide').show()
+                    $(this).find('.show_all_courses').hide()
+                    $(this).find('.hidden_courses').hide().removeClass('hide').slideDown()
+                }
+            })
+
+            $('html, body').animate({
+                scrollTop: $('.ajax-content').offset().top
+            }, 4);
+            return false;
+        })
+        
+        $('.back_all_courses').click(function(){
+            var target = $(this).data('group');
+
+            $('.homepage-course-groups').each(function(){
+                $(this).find('.back_all_courses').hide()
+                $(this).find('.show_all_courses').show()
+                $(this).find('.hidden_courses').slideUp()
+                $(this).show();
+            })
+
+            $('html, body').animate({
+                scrollTop: $('.ajax-content').offset().top
+            }, 4);
+            return false;
+        })
+    }
+}
+
+/*function makeBoxesExpandable(){
     $('body').delegate('textarea', 'keyup', function(){
 		var opts = {
 			animate: false,
@@ -103,12 +145,12 @@ function makeBoxesExpandable(){
 		$('textarea').autogrow(opts);
 	});
 	
-		/*$(".scroll-pane").customScrollbar({
+		$(".scroll-pane").customScrollbar({
 			skin: "wazaar-skin", 
 			hScroll: false,
 			updateOnWindowResize: true
-		});*/
-}
+		});
+}*/
 
 function videoGridBoxIn(){
 	TweenMax.to($(this), 0.3, {zIndex: 9, scale: '1.2'});
@@ -1348,6 +1390,31 @@ function searchFormFocusStyle(){
 
 }
 
+function dynamicLessonNameWidth(){
+    $(".expandable-button").each(function() {
+        var $link = $(this);
+        var $content = $link.parent().children('.expandable-content');
+    
+        if($content.hasClass('lesson-topics')){
+            $content.children('li').each(function(){
+                if($(this).children('div.buttons').length >= 1){
+                    var buttonWidth = $(this).children('div.buttons').width();
+                    if(buttonWidth >= 1){
+                        if($(window).width() < 460){
+                            deductWidth = Number(buttonWidth) + 15;
+                        } else {
+                            deductWidth = Number(buttonWidth) + 40;
+                        }
+                        var width = Number($(this).width()) - deductWidth;
+                        $(this).children('a.lesson-name').css('width', width);
+                    } else {
+                        $(this).children('a.lesson-name').css('width', 'inherit');
+                    }
+                }
+            })
+        }
+    });
+}
 function showMoreContent(){
     	$(".expandable-button").each(function() {
 		var $link = $(this);
@@ -1359,6 +1426,7 @@ function showMoreContent(){
 //		var visibleHeight = $content[0].clientHeight;
 		var visibleHeight = $content.height();
 		var actualHide = $content[0].scrollHeight - 1; // -1 is needed in this case or you get a 1-line offset.
+
 		$content.height(visibleHeight);
 //		$content.css( {
 //                    'border' : '1px solid red',

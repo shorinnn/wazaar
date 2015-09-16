@@ -24,11 +24,17 @@
             }
         @endif
     </style>
-    @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
-@section('affiliate-toolbar')
-    {{ View::make('affiliate.affiliate-toolbar')->with( compact('course') ) }}
- 
-@stop
+@if(Auth::check() && Auth::user()->hasRole('Affiliate'))
+    @section('affiliate-toolbar')
+        {{ View::make('affiliate.affiliate-toolbar')->with( compact('course') ) }}
+    @stop
+@endif
+@if(Auth::check() && Auth::user()->hasRole('Admin'))
+    @section('affiliate-toolbar')
+    <div class='alert alert-info text-center' style='margin:0'>
+        <a class='btn btn-success' href='{{ action( 'CoursesController@edit', $course->slug ) }}'>Admin Edit</a>
+    </div>
+    @stop
 @endif
 <section class="container-fluid course-detail-top-section clearfix unauthenticated-homepage cat-box-{{$course->courseCategory->color_scheme}}">
     @if($course->bannerImage != null)

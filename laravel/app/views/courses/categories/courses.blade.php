@@ -1,5 +1,5 @@
 <div class="container">
-	<div class='row cat-row-$category->color_scheme'>
+	<div class='row clear cat-row-$category->color_scheme'>
     @foreach($courses as $course)
         {{ View::make('courses.course_box')->with( compact('course', 'wishlisted') ) }}
     @endforeach

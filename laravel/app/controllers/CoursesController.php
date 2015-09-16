@@ -5,6 +5,7 @@ class CoursesController extends \BaseController {
         public function __construct(){
             $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'dashboard',
                 'customPercentage', 'updateExternalVideo', 'removePromo', 'setField'] ] );
+            $this->beforeFilter('admin', ['only' => 'disapprove' ] );
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroyxxx', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
 
             
@@ -593,6 +594,11 @@ class CoursesController extends \BaseController {
             if( $course==null)   {
                 return View::make('site.error_encountered');
             }
+            if($course->publish_status != 'approved' && ($course->publish_status!='pending') && trim($course->approved_data)!=''){
+                if( Auth::guest() || ( !admin() && $course->instructor_id != Auth::user()->id ) ){
+                    return View::make('site.error_encountered');
+                }
+            }
             // store gift cookie if  any
             if( Input::has('gid') ){
                 Cookie::queue('gid-'.$course->id, Input::get('gid'), 60*24*30);
@@ -1015,5 +1021,14 @@ class CoursesController extends \BaseController {
                 $response = ['status' => 'error', 'errors' => format_errors( $course->errors()->all() ) ];
             }
             return json_encode($response);
+        }
+        
+        public function disapprove($id){
+            $course = Course::find($id);
+            $course->publish_status = 'unsubmitted';
+            if( $course->updateUniques() )
+                return Redirect::back()->withSuccess( 'Course Disapproved' );
+            else
+                return Redirect::back()->withError( 'Could not disapprove Course ' );
         }
 }

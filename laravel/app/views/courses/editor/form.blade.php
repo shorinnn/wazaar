@@ -79,11 +79,13 @@
         cursor: pointer;
     }
     .module-minimized .module-zone{
-        height: 130px;
+        height: auto;
         overflow: hidden;
         border-bottom: 0px solid #E8ECED;
     }
-    
+    .module-minimized .footer-buttons {
+		display: none;
+	}
     .module-minimized .module-zone input, .module-minimized .module-zone textarea,  .module-minimized .module-zone button{
         display:none !important;
     }
@@ -287,10 +289,18 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-right margin-bottom-15">
                 <!--<a href="#" class=" submit-for-approval blue-button large-button right">{{ trans('courses/general.submit') }}</a>
                 <a href="/courses/{{$course->slug}}?preview=1"></a>-->
-				<a href="#" class=" submit-for-approval blue-button large-button disabled-button">{{ trans('courses/general.submit') }}</a>                
+                <a href="#" class=" submit-for-approval blue-button large-button disabled-button">{{ trans('courses/general.submit') }}</a>                
                 <a href='#' data-href="{{url('courses/' . $course->slug . '?preview=1')}}" class="default-button large-button preview-course-btn">
                 	{{ trans('courses/general.preview_course') }}
             	</a>
+                                
+                @if(Auth::user()->hasRole('Admin') )
+                {{ Form::open(['action' => ['CoursesController@disapprove', $course->id ] ] ) }}
+                    <button class='default-button large-button'>
+                        Disapprove course
+                    </button>
+                {{ Form::close() }}
+                @endif
             </div>
         </div>
         <div class="row header-tabs-container">

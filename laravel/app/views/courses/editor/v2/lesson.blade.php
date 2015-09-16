@@ -130,15 +130,19 @@
                 <h6>{{ trans('courses/general.lesson-description') }}
                     <span class="lead"><span class="characters-desc-{{$lesson->id}}">360</span> Characters left</span>
                 </h6>
+                <div class="textarea-wrap">
                 <textarea class='characters-left type-in-elements' data-target='.characters-desc-{{$lesson->id}}' maxlength="360"
                 data-elements='.lesson-{{$lesson->id}}-copy-desc' name="description" placeholder="{{trans('courses/create.enter-short-lesson-description')}}">{{ $lesson->description }}</textarea>
+                </div>
             </div>
             <div>
                 <h6>{{ trans('courses/create.additional-lesson-notes') }}
                     <span class="lead"><span class="characters-notes-{{$lesson->id}}">360</span> Characters left</span>
                 </h6>
+                <div class="textarea-wrap">
                 <textarea class='characters-left' data-target='.characters-notes-{{$lesson->id}}' maxlength="360" name="notes" 
                           placeholder="{{trans('courses/create.add-notes')}}">{{ $lesson->notes }}</textarea>
+                </div>
             </div>
              @if( $lesson->module->course->free == 'no' )
                 <div class="row">

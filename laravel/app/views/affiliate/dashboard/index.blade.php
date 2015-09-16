@@ -100,7 +100,7 @@
             <div class="row">
             	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 	<div class="promote-course-button text-center">
-                    	<a href="http://wazaar.jp/courses/category" class="blue-button large-button">{{trans('general.browse-courses')}}</a>
+                    	<a href="{{ action('CoursesController@category') }}" class="blue-button large-button">{{trans('general.browse-courses')}}</a>
                     </div>
                 </div>
             </div>    
