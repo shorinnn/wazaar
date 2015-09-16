@@ -44,9 +44,9 @@ class AffiliateDashboardController extends BaseController
             default:
                 $affiliates = $this->analyticsHelper->secondAffiliatesLastFewDays(Auth::id());
         }
-
+        $urlIdentifier = 'second-tier-ltc-registrations';
         if (is_array($affiliates)) {
-            return View::make('analytics.partials.ltcRegistrations', compact('affiliates', 'frequencyOverride'))->render();
+            return View::make('analytics.partials.ltcRegistrations', compact('affiliates', 'frequencyOverride','frequency','urlIdentifier'))->render();
         }
 
     }
@@ -69,7 +69,8 @@ class AffiliateDashboardController extends BaseController
         }
 
         if (is_array($affiliates)) {
-            return View::make('analytics.partials.ltcRegistrations', compact('affiliates', 'frequencyOverride'))->render();
+            $urlIdentifier = 'ltc-registrations';
+            return View::make('analytics.partials.ltcRegistrations', compact('affiliates', 'frequencyOverride','frequency','urlIdentifier'))->render();
         }
     }
 
