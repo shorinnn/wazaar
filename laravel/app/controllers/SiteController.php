@@ -488,5 +488,23 @@ class SiteController extends \BaseController {
         dd( App::environment() );
     }
     
+    public function viewsAnalytics()
+    {
+        $viewed_lessons = DB::table('viewed_lessons')->where('state', 'completed')->orderBy('created_at', 'asc')->get();
+        $total_viewed_lessons = count($viewed_lessons);
 
+        $viewed_data = array();
+        // dd($data_array);
+        foreach($viewed_lessons as $viewed_lesson){
+            if(!array_key_exists($viewed_lesson->student_id, $viewed_data)){
+                $viewed_data[$viewed_lesson->student_id] = array();
+            }
+            if(!in_array($viewed_lesson->course_id, $viewed_data[$viewed_lesson->student_id])){
+                $viewed_data[$viewed_lesson->student_id][] = $viewed_lesson->course_id;
+            }
+
+        }
+
+        dd($viewed_data);
+    }
 }
