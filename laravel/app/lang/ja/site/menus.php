@@ -9,8 +9,8 @@ return array(
 	'analytics' => '販売に関する分析',
 	'homepage'=> array(
 			'browse' => '商品を検索する',
-			'login' => 'ログイン',
-			//'login' => '購入者＆販売者ログイン',
+			//'login' => 'ログイン',
+			'login' => '購入者＆販売者ログイン',
 			'register' => '登録',
 		)
 );

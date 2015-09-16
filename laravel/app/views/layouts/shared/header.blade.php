@@ -1,5 +1,9 @@
 <div class="row">
-    <div class="top-menu clearfix col-md-12">
+	 @if(Auth::check())
+    	<div class="top-menu clearfix col-md-12">
+     @else
+     	<div class="top-menu unauthenticated-home-header clearfix col-md-12">
+     @endif
             <a href="{{ action('SiteController@index') }}" class="main-logo">
                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
                class="img-responsive" alt=""></a>
@@ -196,14 +200,14 @@
                 
             </div>
             @if(Auth::check() && Auth::user()->hasRole('Affiliate'))
-            <ul class="logged-out" style="margin-right: 15px;">
+            <ul class="logged-out clearfix" style="margin-right: 15px;">
                 <li>
                     <a href="http://wazaar.jp/courses/category"> <span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a> 
                 </li>
             </ul>
             @endif
             @if(Auth::check() && Auth::user()->hasRole('Instructor'))
-            <ul class="logged-out" style="margin-right: 15px;">
+            <ul class="logged-out clearfix" style="margin-right: 15px;">
                 <li>
                     <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a> 
                 </li>
@@ -219,7 +223,7 @@
                 }
             </style>
             @endif
-            <ul class="logged-out">
+            <ul class="logged-out clearfix">
                 <li>
                     <a href="{{url('/')}}/courses/category">{{trans('site/menus.homepage.browse')}}</a> 
                 </li>
@@ -234,7 +238,7 @@
             </ul>
             
             <!-- please check if the code below are still usable if not lets remove -->
-            <ul class="logged-out visible-xs-block hidden-sm hidden-md hidden-lg hide">
+            <ul class="logged-out clearfix visible-xs-block hidden-sm hidden-md hidden-lg hide">
                 <li>
                     <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}</span></a> 
                 </li>
@@ -294,7 +298,7 @@
                 </div>
                 <?php endif;?>
             </div>
-            <ul class="logged-out hidden-xs hide">
+            <ul class="logged-out hidden-xs hide clearfix">
                 <li>
                     <a href="http://wazaar.jp/courses/category"><span class="hidden-xs">{{trans('general.browse-courses')}}a</span><span class="visible-xs-inline hidden-sm hidden-md hidden-lg">{{trans('administration.browse')}}s</span></a> 
                 </li>

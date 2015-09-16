@@ -5397,7 +5397,7 @@ h2, h3, h4, h5, h6{
 	max-height: 490px;
 	resize: none;
 	margin: 0 0 20px;
-	overflow: auto !important;
+	/*overflow: auto !important;*/
 }
 .ask-question-fields-footer{
 	background: #fff;
@@ -9026,7 +9026,7 @@ header .top-menu .logged-out-header-search .catalogue-button em{
 	
 }
 header .main-logo{
-	margin: 10px 20px 30px 0;
+	margin: 10px 20px 0px 0;
 }
 header .top-menu .logged-out-header-search{
 	margin: 25px 0;
@@ -9134,9 +9134,6 @@ header .top-menu .logged-out-header-search{
 	max-width: 360px;
 	margin: auto;
 }
-.homepage-header-wrapper{
-	margin-top: -90px;
-}
 header .profile-name > li.open button, 
 header .profile-name > li button{
 	width: auto;
@@ -9175,6 +9172,9 @@ header .profile-name ul{
 .course-data .column-1 div{
 	padding: 15px 20px 12px !important;
 	display: table-cell;
+}
+.homepage-header-wrapper{
+	margin-top: -90px;
 }
 }
 @media (max-width:752px){
@@ -9369,6 +9369,29 @@ header .top-menu .logged-out li{
 		margin: 10px 0;
 		float: none;
 	}
+	header{
+		padding: 0 40px 18px !important;
+	}
+	.unauthenticated-home-header .main-logo {
+		margin: 10px 0 12px;
+		float: none;
+		text-align: center;
+	}
+	.unauthenticated-home-header .main-logo img{
+		display: inline-block;
+	}
+	.homepage-header-wrapper{
+		margin-top: -140px;
+	}
+	.unauthenticated-home-header.top-menu .logged-out {
+		text-align: center;
+		width: 100%;
+	}
+	.unauthenticated-home-header.top-menu .logged-out li {
+		display: inline-block;
+		float: none;
+		margin: 0;
+	}
 }
 
 @media (max-width:520px){
@@ -9446,9 +9469,11 @@ header .top-menu .logged-out li{
 	}	
 	.student-teacher-dashboard-container .dashboard-content header .data .current-lesson{
 		text-align: right;
-	}	.classroom-view .right-slide-menu{
+	}	
+	.classroom-view .right-slide-menu{
 		width: 100% !important;
-	}	.instructor-course .question-answer .date{
+	}	
+	.instructor-course .question-answer .date{
 		float: left;
 	}
 }
@@ -9633,15 +9658,15 @@ header .top-menu .logged-out li{
 	.lesson-topics li .lesson-name{
 		width: 13%;
 	}
-	header .top-menu .logged-out{
-		float: right;
-	}
-	header .top-menu li{
+	.unauthenticated-home-header.top-menu .logged-out li{
 		margin: 0;
 	}
 	header .top-menu .logged-out li a{
 		padding: 7px 8px !important;
 		font-size: 12px;
+	}
+	.homepage-header .extra-large-heading {
+		margin-top: 55px;
 	}
 }
 @media (min-width:320px) and (max-width: 480px) {
@@ -9656,7 +9681,8 @@ header .top-menu .logged-out li{
 		font-size: 35px;
 		right: 36%;
 		top: 27%;
-	}	.course-editor .video-list-thumbs h2{
+	}	
+	.course-editor .video-list-thumbs h2{
 		bottom: 0;
 		font-size: 12px;
 		height: 22px;
@@ -9667,9 +9693,6 @@ header .top-menu .logged-out li{
 	}
 	header .top-menu .logged-out-header-search form div input{
 		width: auto;
-	}	
-	header .top-menu .logged-out{
-		float: left;
 	}	
 	.lesson-topics li .buttons{
 		margin-right: 10px;
@@ -9700,13 +9723,10 @@ header .top-menu .logged-out li{
 		width: 73%;
 	}	
 	header{
-		padding: 0 15px !important;
-	}
-	header .main-logo {
-		margin: 10px 8px 30px 0;
+		padding: 0 15px 18px !important;
 	}
 }
-@media (max-width:355px){
+@media (max-width:356px){
 	header .top-menu .logged-out-header-search form div input{
 		width: 130px;
 	}	
@@ -9742,6 +9762,12 @@ header .top-menu .logged-out li{
 	.course-data .column-1 div{
 		padding: 0 0 0 7px !important;
 	}
+	.homepage-header-wrapper{
+		margin-top: -170px;
+	}
+	.unauthenticated-home-header.top-menu .logged-out li a{
+		padding: 7px 8px 7px 0 !important;
+	}
 }
 @media (max-width:320px){
 	.column-3 .add-to-wishlist-container{
@@ -9761,7 +9787,8 @@ header .top-menu .logged-out li{
 	.members-area .table-wrapper tr td a {
 		height: 33px;
 		width: 33px;
-	}	.mycourse-card-footer .default-button + .default-button{
+	}	
+	.mycourse-card-footer .default-button + .default-button{
 		margin-left: 10px;
 	}
 }
