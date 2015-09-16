@@ -8,21 +8,23 @@ class PurchaseHelper{
         if( $affiliate == 'sp' ){ //self promotion
             return $amount * (Config::get('custom.earnings.self_promotion_instructor_percentage') / 100);
         }
-        if( $affiliate == null || $course->affiliate_percentage==0 ){// no affiliate share, instructor gets full 68%
+        if( $affiliate == null || $course->affiliate_percentage==0 ){// no affiliate share, instructor gets full 70%
             
-            return $amount * (Config::get('custom.earnings.instructor_percentage') / 100);
+            return $amount * ( Config::get('custom.earnings.instructor_percentage') / 100 + Config::get('custom.earnings.second_tier_percentage') / 100 )  ;
         }
         else{// affiliate fee, instructor gets 68% - affiliate cut - second tier affiliate cut
             $prodAffiliate = ProductAffiliate::where('affiliate_id', $affiliate)->first();
             
             if($prodAffiliate->secondTierAffiliate == null) {
-                return $amount * (Config::get('custom.earnings.instructor_percentage') / 100) - self::affiliateEarnings($product, $processor_fee, $affiliate);
+                return 
+                $amount * (Config::get('custom.earnings.instructor_percentage') / 100 + Config::get('custom.earnings.second_tier_percentage') / 100 ) 
+                        - self::affiliateEarnings($product, $processor_fee, $affiliate);
             }
             else{
               
                 return $amount * (Config::get('custom.earnings.instructor_percentage') / 100) 
-                    - self::affiliateEarnings($product, $processor_fee, $affiliate)
-                    - self::secondTierAffiliateEarnings($product, $processor_fee, $affiliate);
+                    - self::affiliateEarnings($product, $processor_fee, $affiliate);
+                   // - self::secondTierAffiliateEarnings($product, $processor_fee, $affiliate);
             }
         }
     }
@@ -101,7 +103,7 @@ class PurchaseHelper{
     private static function _sitePercentage($product, $processor_fee, $affiliate){
         if( $affiliate=='sp' ) return Config::get('custom.earnings.self_promotion_site_percentage');
         $site_percentage = Config::get('custom.earnings.site_percentage');
-        if( self::secondTierAffiliateEarnings($product, $processor_fee, $affiliate) == 0) $site_percentage += Config::get('custom.earnings.second_tier_percentage');
+//        if( self::secondTierAffiliateEarnings($product, $processor_fee, $affiliate) == 0) $site_percentage += Config::get('custom.earnings.second_tier_percentage');
         return $site_percentage;
     }
 }

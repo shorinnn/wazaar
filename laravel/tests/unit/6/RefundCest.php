@@ -92,7 +92,7 @@ class RefundCest{
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->balance_transaction_id, $balance );
-        $I->assertEquals( $purchase->instructor_earnings, 56 );
+        $I->assertEquals( $purchase->instructor_earnings, 58 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
         $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  );
@@ -100,7 +100,7 @@ class RefundCest{
         $st = ($purchase->purchase_price - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );   
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 56,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => $affiliate->second_tier_affiliate_id, 'transaction_type' => 'affiliate_credit', 'amount' => 2,
             'product_id' => $course->id, 'status' => 'complete', 'is_second_tier' => 'yes', 'is_ltc' => 'no'] );
@@ -126,7 +126,7 @@ class RefundCest{
         $purchase = Purchase::orderBy('id','desc')->first();
         $I->assertNotEquals(false, $purchase->refund() );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 56,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'failed'] );
         $I->seeRecord('transactions', ['user_id' => $affiliate->ltc_affiliate_id, 'transaction_type' => 'affiliate_credit', 'amount' => 2,
             'product_id' => $course->id, 'status' => 'failed', 'is_second_tier' => 'yes', 'is_ltc' => 'no'] );
@@ -137,7 +137,7 @@ class RefundCest{
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'failed', 'gc_fee' => 5] );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit_reverse', 'amount' => 56,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit_reverse', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => $affiliate->ltc_affiliate_id, 'transaction_type' => 'affiliate_credit_reverse', 'amount' => 2,
             'product_id' => $course->id, 'status' => 'complete', 'is_second_tier' => 'yes', 'is_ltc' => 'no'] );
@@ -229,7 +229,7 @@ class RefundCest{
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->balance_transaction_id, $balance );
-        $I->assertEquals( $purchase->instructor_earnings, 56 );
+        $I->assertEquals( $purchase->instructor_earnings, 58 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 30 * .02 );
@@ -238,7 +238,7 @@ class RefundCest{
         $st = ($purchase->purchase_price - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );        
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 56,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => 14, 'transaction_type' => 'second_tier_instructor_credit',
             'amount' => $purchase->second_tier_instructor_earnings, 'product_id' => $course->id, 'status' => 'complete'] );
@@ -266,7 +266,7 @@ class RefundCest{
         $purchase = Purchase::orderBy('id','desc')->first();
         $I->assertNotEquals(false, $purchase->refund() );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 56,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'failed'] );
         $I->seeRecord('transactions', ['user_id' => 14, 'transaction_type' => 'second_tier_instructor_credit', 
             'amount' => $purchase->second_tier_instructor_earnings, 'product_id' => $course->id, 'status' => 'failed'] );
@@ -279,7 +279,7 @@ class RefundCest{
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'failed', 'gc_fee' => 5] );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit_reverse', 'amount' => 56,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit_reverse', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => 14, 'transaction_type' => 'second_tier_instructor_credit_reverse',
             'amount' => $purchase->second_tier_instructor_earnings, 'product_id' => $course->id, 'status' => 'complete'] );
@@ -305,6 +305,11 @@ class RefundCest{
         $I->assertEquals( 0, $affiliate->affiliate_balance);
         $I->assertEquals( 0, $ltc->affiliate_balance);
         $I->assertEquals( 0, $stInstructor->instructor_balance);
+        
+        $sale = $purchase;
+        $total = $sale->processor_fee + $sale->instructor_earnings + $sale->second_tier_instructor_earnings + $sale->affiliate_earnings + $sale->second_tier_affiliate_earnings
+                        + $sale->ltc_affiliate_earnings + $sale->instructor_agency_earnings + $sale->site_earnings; 
+        $I->assertEquals($purchase->purchase_price, $total);
     }
     
     
@@ -367,16 +372,16 @@ class RefundCest{
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->balance_used, 0 );
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
-        $I->assertEquals( $purchase->instructor_earnings, 68 );
+        $I->assertEquals( $purchase->instructor_earnings, 70);
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 32 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
         $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 32 - ( 32 * (3 / 100) )  );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  );
         
         $st = 0;     
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 68,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->ltc_affiliate_earnings,
             'product_id' => $course->id, 'status' => 'complete', 'is_ltc' => 'yes'] );
@@ -398,14 +403,14 @@ class RefundCest{
         $purchase = Purchase::orderBy('id','desc')->first();
         $I->assertNotEquals(false, $purchase->refund() );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 68,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'failed'] );
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'affiliate_credit', 'amount' => $purchase->ltc_affiliate_earnings,
             'product_id' => $course->id, 'status' => 'failed', 'is_ltc' => 'yes'] );
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'failed', 'gc_fee' => 5] );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit_reverse', 'amount' => 68,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit_reverse', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'affiliate_credit_reverse', 'amount' => $purchase->ltc_affiliate_earnings,
             'product_id' => $course->id, 'status' => 'complete', 'is_ltc' => 'yes'] );
@@ -493,7 +498,7 @@ class RefundCest{
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->balance_transaction_id, $balance );
-        $I->assertEquals( $purchase->instructor_earnings, 56 );
+        $I->assertEquals( $purchase->instructor_earnings, 58 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 30 * .02 );
@@ -502,7 +507,7 @@ class RefundCest{
         $st = ($purchase->purchase_price - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );        
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 56,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => 14, 'transaction_type' => 'second_tier_instructor_credit', 
             'amount' => $purchase->second_tier_instructor_earnings, 'product_id' => $course->id, 'status' => 'complete'] );
@@ -534,7 +539,7 @@ class RefundCest{
         $purchase = Purchase::orderBy('id','desc')->first();
         $I->assertNotEquals(false, $purchase->refund() );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 56,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'failed'] );
         $I->seeRecord('transactions', ['user_id' => $stInstructor->id, 'transaction_type' => 'second_tier_instructor_credit', 
             'amount' => $purchase->second_tier_instructor_earnings, 'product_id' => $course->id, 'status' => 'failed'] );
@@ -548,7 +553,7 @@ class RefundCest{
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'failed', 'gc_fee' => 5] );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit_reverse', 'amount' => 56,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit_reverse', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => $stInstructor->id, 'transaction_type' => 'second_tier_instructor_credit_reverse', 
             'amount' => $purchase->second_tier_instructor_earnings, 'product_id' => $course->id, 'status' => 'complete'] );
@@ -575,6 +580,11 @@ class RefundCest{
         $I->assertEquals( 0, $affiliate->affiliate_balance);
         $I->assertEquals( 0, $ltc->affiliate_balance);
         $I->assertEquals( 0, $stInstructor->instructor_balance);
+        
+        $sale = $purchase;
+        $total = $sale->processor_fee + $sale->instructor_earnings + $sale->second_tier_instructor_earnings + $sale->affiliate_earnings + $sale->second_tier_affiliate_earnings
+                        + $sale->ltc_affiliate_earnings + $sale->instructor_agency_earnings + $sale->site_earnings; 
+        $I->assertEquals($purchase->purchase_price, $total);
         
     }
     

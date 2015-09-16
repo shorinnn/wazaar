@@ -20,4 +20,5 @@ Artisan::add(new DynamoGCCommand);
 Artisan::add(new SetupCashoutCommand);
 Artisan::add(new ConsolidateCoursesCommand);
 Artisan::add(new ImportToDeliveredCommand);
+Artisan::add(new TaskerCommand);
 
