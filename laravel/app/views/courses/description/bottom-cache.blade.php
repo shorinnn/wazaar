@@ -88,7 +88,7 @@
                                                 @if( Auth::check() && Student::find(Auth::user()->id)->purchased($lesson)  )
                                                         <a href='{{ action( 'ClassroomController@lesson', 
                                                         [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, 
-                                                    'lesson' => $lesson->slug ] )}}' class='default-button preview-button large-button' >Enter</a>
+                                                    'lesson' => $lesson->slug ] )}}' class='blue-button preview-button large-button' >Enter</a>
                                                 @else
                                                 <!-- to purchase -->
                                                     @if($now > $show_on)
@@ -111,7 +111,7 @@
                                                     @if( Auth::check() && Student::find(Auth::user()->id)->purchased($lesson)  )
                                                             <a href='{{ action( 'ClassroomController@lesson', 
                                                             [ 'course' => $lesson->module->course->slug, 'module' => $lesson->module->slug, 
-                                                        'lesson' => $lesson->slug ] )}}' class='default-button preview-button large-button' >Enter</a>
+                                                        'lesson' => $lesson->slug ] )}}' class='blue-button preview-button large-button' >Enter</a>
                                                         @else
                                                             <!-- can purchase -->
                                                             @if($now > $show_on)
