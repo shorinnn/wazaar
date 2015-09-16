@@ -31,7 +31,7 @@ $(document).ready(function(){
 	  $(".fa.fa-plus").show();
 	});	
 
-    makeBoxesExpandable();
+    //makeBoxesExpandable();
     if( getCookie('hideAffiliateToolbar')=='true' ) toggleAffiliateToolbar(event);
     $('.countdown').each(function(){
         seconds = $(this).attr('data-final-date-seconds')
@@ -136,7 +136,7 @@ function newHomepageToggleData(){
     }
 }
 
-function makeBoxesExpandable(){
+/*function makeBoxesExpandable(){
     $('body').delegate('textarea', 'keyup', function(){
 		var opts = {
 			animate: false,
@@ -145,12 +145,12 @@ function makeBoxesExpandable(){
 		$('textarea').autogrow(opts);
 	});
 	
-		/*$(".scroll-pane").customScrollbar({
+		$(".scroll-pane").customScrollbar({
 			skin: "wazaar-skin", 
 			hScroll: false,
 			updateOnWindowResize: true
-		});*/
-}
+		});
+}*/
 
 function videoGridBoxIn(){
 	TweenMax.to($(this), 0.3, {zIndex: 9, scale: '1.2'});
