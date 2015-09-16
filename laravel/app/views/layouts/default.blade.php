@@ -341,10 +341,11 @@
 
     @yield('extra_js')
 		<script type="text/javascript">
-                window.reloadConfirm = false;
+			 window.reloadConfirm = false;
 
-                         window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
-                         _.setTranslation( js_translation_map_{{ Config::get('app.locale') }} );
+			 window.ParsleyValidator.setLocale("{{ Config::get('app.locale') }}");
+			 _.setTranslation( js_translation_map_{{ Config::get('app.locale') }} );
+			   
 			$(document).ready(function() {
                 //$('video,audio').mediaelementplayer();
 				$('.popular-courses-carousel').show();
@@ -411,16 +412,21 @@
 				
 				$(".pagination-container").rPage();
 
-				/*$('body').on('click','textarea',function(){
-					var opts = {
+				$('body').on('click','textarea',function(){
+					/*var opts = {
 						animate: true
 						, cloneClass: 'faketextarea'
-					};
-					$('textarea').autogrow(opts);
-					});
-				})*/
+					};*/
+					$("textarea").autoGrow();
 					
-				$("textarea").autoGrow();
+					var textareaHeight = $('textarea').css('height');
+					var textareaMaxHeight = $('textarea').css('max-height');
+					if(textareaHeight >= textareaMaxHeight){
+					  $('textarea').css({
+						overflow: 'auto'
+					  });
+					}
+				});					
 			});
 		</script>
     	
