@@ -2,7 +2,13 @@
 <ul>
     @foreach($affiliates['affiliates'] as $aff)
         <li class="clearfix">
-            <span><a href="{{url('analytics/'. $urlIdentifier .'/' . $frequency . '?' . AnalyticsHelper::getQueryStringParams($frequency,$aff))}}">{{$aff['label']}}</a></span>
+                <span>
+                    @if (isset($urlIdentifier))
+                        <a href="{{url('analytics/'. $urlIdentifier .'/' . $frequency . '?' . AnalyticsHelper::getQueryStringParams($frequency,$aff))}}">{{$aff['label']}}</a>
+                    @else
+                        {{$aff['label']}}
+                    @endif
+                </span>
             <div>
                 <div class="progress" style="width: {{$aff['percentage']}}%"></div>
             </div>

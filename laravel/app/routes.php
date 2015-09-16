@@ -406,6 +406,8 @@ Route::group( array('domain' => $affiliateSubdomain ), function(){
         Route::get('ltcregistrations/{frequency}','AffiliateDashboardController@ltcRegistrationsView');
         Route::get('second-tier-registrations/{frequency}','AffiliateDashboardController@secondTierRegistrationsView');
         Route::get('ltcearnings/{frequency}','AffiliateDashboardController@ltcEarningsView');
+
+        Route::get('affiliate/sales/{frequency}','AffiliateDashboardController@detailedSales');
     });
 });
 
