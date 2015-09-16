@@ -38,7 +38,7 @@ class TaskerCommand extends Command {
        protected function getOptions()
        {
            return array(
-               array('run', null, InputOption::VALUE_REQUIRED, 'What to run: fix_70_30')
+               array('run', null, InputOption::VALUE_REQUIRED, 'What to run: fix_70_30, precalculate_ltc_stats')
            );
        }
 
@@ -54,7 +54,36 @@ class TaskerCommand extends Command {
             $this->$run();
 	}
         
+        public  function precalculate_ltc_stats(){
+            $this->info( '***************************************************' );
+            $this->info( '*********** PRECALCULATING LTC STATS ************' );
+            DB::table('users')->update( ['ltc_count' => -1] );
+            $count = 1;
+            $updated = 0;
+            $maxLoops = 50;
+            $i = 0;
+            while($count != 0){
+                $result = DB::select("SELECT `id` as `theID`,
+                (SELECT COUNT(id) FROM `users` WHERE `ltc_affiliate_id` = theID) AS `ref_count` FROM `users` WHERE `has_ltc` = 'yes'
+                AND ltc_count = -1 LIMIT 500");
+                $count = count($result);
+                foreach($result as $user){
+                    DB::table('users')->where('id', $user->theID)->update([ 'ltc_count' => $user->ref_count] );
+                }
+                $updated += $count;
+                $this->comment("$updated rows updated. Sleep 1 second");
+                ++$i;
+                sleep(1);
+                $this->comment('Resuming...');
+                if($i > $maxLoops) dd('MAX LOOPS REACHED');
+            }
+            $this->info("DONE. $updated rows updated");
+            
+            
+        }
+        
         public  function fix_70_30(){
+            DB::table('purchases')->where('instructor_earnings','<',0)->update( ['instructor_earnings' => 0 ] );
             $this->info( '***************************************************' );
             $this->info( '*********** FIX 70% 30% EARNINGS ISSUE ************' );
             $this->info( 'Fetching sales with no Second Tier Affiliates' );
