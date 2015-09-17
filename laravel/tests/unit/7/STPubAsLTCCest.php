@@ -104,6 +104,7 @@ class STPubAsLTCCest{
         
         $secondTierPub = User::find(2);
         $secondTierPub->is_second_tier_instructor = 'yes';
+        $secondTierPub->sti_approved = 'yes';
         $secondTierPub->updateUniques();
         DB::table('purchases')->delete();
         

@@ -704,3 +704,7 @@ function nonHttps($url){
     $url = str_replace('https://', 'http://', $url);
     return $url;
 }
+
+function percentage($val, $total){
+    return $val * 100 / $total;
+}

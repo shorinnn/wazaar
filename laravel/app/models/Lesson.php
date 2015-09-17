@@ -128,4 +128,10 @@ class Lesson extends Ardent {
         if( count($modules)==0 ) $modules = [0];
         return $this->module->lessons()->where('order','<',$this->order)->count() + Lesson::whereIn('module_id', $modules)->count() + 1;
     }
+    
+    public function totalLessons(){
+        $modules = $this->module->course->modules()->lists('id');
+        if( count($modules)==0 ) $modules = [0];
+        return Lesson::whereIn('module_id', $modules)->count();
+    }
 }

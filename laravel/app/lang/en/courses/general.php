@@ -223,4 +223,13 @@ return array(
     'hours' => 'h',
     'views' => 'Views',
     'purchases' => 'Purchases',
+    'reviews-modal' => [
+        'would-you-recommend' => 'Would you recommend this course to someone else?',
+        'yes' => 'Yes',
+        'no' => 'No',
+        'what-do-you-like-about-it' => 'What do you like about it?',
+        'later' => 'LATER',
+        'submit-review' => 'SUBMIT REVIEW',
+        'what-is-bad-about-it' => 'What is bad about it?',
+    ]
 );

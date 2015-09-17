@@ -13,8 +13,10 @@ class TestimonialsController extends \BaseController {
             if( $course==null || !$student->purchased( $course ) ){
                 return Redirect::to('/');
             }
-            Testimonial::create( [ 'student_id' => Auth::user()->id, 'course_id' => Input::get('id'), 'content' => Input::get('content') ] );
-            return Redirect::action('ClassroomController@testimonial', $course->slug);
+            Testimonial::create( [ 'student_id' => Auth::user()->id, 'course_id' => Input::get('id'), 
+                'rating' => Input::get('rating'), 'content' => Input::get('content') ] );
+            if( Request::ajax() ) return json_encode( ['status' => 'success'] );
+            return Redirect::action('ClassroomController@dashboard', $course->slug);
         }
         
         public function update($id){
