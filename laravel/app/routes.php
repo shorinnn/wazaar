@@ -473,6 +473,7 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::any('admin/affiliatestable','AdminDashboardController@topAffiliatesTableView');
     Route::any('admin/courses/{freeCourse}','AdminDashboardController@topCoursesTableView');
     Route::get('admin/purchases/','AdminDashboardController@purchases');
+    Route::get('admin/ltc-purchases/','AdminDashboardController@ltcPurchases');
 });
 
 

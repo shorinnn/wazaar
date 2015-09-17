@@ -132,16 +132,17 @@ class ClassroomController extends \BaseController {
             $instructor = $course->instructor;
             if($course->assigned_instructor_id > 0) $instructor = $course->assignedInstructor;
             $student->load('viewedLessons');
+            $crashLesson=false;
+            $reviewModal = $student->canAskForReview($course, $lesson);
             
             if( (isset($purchase) && !$student->purchased($course) && $purchase==null && $lesson->free_preview=='yes') 
                         || ( isset($purchase) && !$student->purchased($course) && $purchase!=null && $purchase->free_product=='yes') ){
-                $crashLesson = true;        
+                $crashLesson = true;      
+                
                 return View::make('courses.classroom.crash_lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                        'instructor', 'student', 'crashLesson') );
+                        'instructor', 'student', 'crashLesson', 'reviewModal') );
             }
-            $crashLesson=false;
             
-            $reviewModal = $student->canAskForReview($course, $lesson);
             
             if(Request::ajax()){
                 $json['status'] = 'success';

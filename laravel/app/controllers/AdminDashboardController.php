@@ -141,4 +141,9 @@ class AdminDashboardController extends BaseController
         }
         return View::make('administration.dashboard.purchases')->with( compact('purchases') );
     }
+    
+    public function ltcPurchases(){
+        $purchases = Purchase::where('ltc_affiliate_id','>',0)->where('purchase_price','>', 0)->paginate(20);
+        return View::make('administration.dashboard.ltc-purchases')->with( compact('purchases') );
+    }
 }
