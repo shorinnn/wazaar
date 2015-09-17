@@ -32,9 +32,13 @@
                         </td>
                         <td>
                             @if($purchase->ltc_affiliate_earnings > 0 )
-                                #{{ $purchase->ltc_affiliate->id }}
-                                {{  $purchase->ltc_affiliate->fullName() }} |
-                                &yen;{{$purchase->ltc_affiliate_earnings}}
+                                @if($purchase->ltc_affiliate==null)
+                                    USER #{{ $purchase->ltc_affiliate_id }} MISSING!
+                                @else
+                                    #{{ $purchase->ltc_affiliate->id }}
+                                    {{  $purchase->ltc_affiliate->fullName() }} |
+                                    &yen;{{$purchase->ltc_affiliate_earnings}}
+                                @endif
                             @endif
                         </td>
                         <td>
