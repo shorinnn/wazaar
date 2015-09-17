@@ -106,7 +106,7 @@
             </div>    
             <div class="row top-activities">
                 <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="with-progress-bar">
+                    <div class="with-progress-bar stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
                                 {{trans('analytics.ltcRegistrations')}} <span id="header-ltc-registrations-frequency">{{trans('analytics.today')}}</span> </button>
@@ -133,7 +133,7 @@
                 </div>
                 
                 <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div id="sales-today">
+                    <div id="sales-today" class="stat-block">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
                                 {{trans('analytics.sales')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
@@ -163,7 +163,7 @@
                 
                 {{-- 2 Tier Signups --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div class="with-progress-bar">
+                    <div class="with-progress-bar stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
                                 {{trans('analytics.2TierSignups')}} <span id="header-second-tier-registrations-frequency">{{trans('analytics.today')}}</span> </button>
@@ -192,7 +192,7 @@
                 {{-- // 2 Tier Signups --}}
                 
                 <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div>
+                    <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default" type="button">
                                 {{trans('analytics.topCourses')}} <span id="header-top-courses-frequency">{{trans('analytics.today')}}</span></button>
@@ -220,7 +220,7 @@
                 
                 {{-- LTC Earnings --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div class="with-progress-bar">
+                    <div class="with-progress-bar stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
                                 {{trans('analytics.ltcEarnings')}} <span id="header-ltc-earnings-frequency">{{trans('analytics.today')}}</span> </button>
@@ -249,7 +249,7 @@
                 {{-- // LTC Earnings --}}
                 
                 <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div>
+                    <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
                                 {{trans('analytics.topTrackingCodes')}} <span id="header-tracking-codes-frequency">{{trans('analytics.today')}}</span></button>
@@ -277,7 +277,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div>
+                    <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
                                 {{trans('analytics.topConvertingCourses')}} <span id="header-course-conversions-frequency">{{trans('analytics.today')}}</span></button>
@@ -307,7 +307,7 @@
                 
 
                 <div class="col-md-4 col-sm-6 sol-xs-12 hidden">
-                    <div>
+                    <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
                                 {{trans('analytics.trackingCodeConverting')}} <span id="header-tracking-code-conversions-frequency">{{trans('analytics.today')}}</span> </button>

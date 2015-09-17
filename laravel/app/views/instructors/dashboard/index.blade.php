@@ -7,8 +7,8 @@
 
             <div class="row top-activities">
                 {{-- Total Sales in Yen --}}
-                <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default" type="button">
                                 {{trans('instructors/analytics.sales-revenue')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
@@ -36,8 +36,8 @@
 
 
                 {{-- Number of Sales (Count) --}}
-                <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div id="sales-today">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div id="sales-today" class="stat-block">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
                                 {{trans('instructors/analytics.unit-sales')}} <span id="header-sales-count-frequency">{{trans('analytics.today')}}</span></button>
@@ -68,8 +68,8 @@
                 @if (Auth::user()->is_second_tier_instructor == 'yes')
 
                     {{-- Total Second Tier Sales in Yen --}}
-                    <div class="col-md-4 col-sm-6 sol-xs-12">
-                        <div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="stat-block">
                             <div class="dropdown-wrapper">
                                 <button class="btn btn-default" type="button">
                                     {{trans('analytics.twoTierSales')}} <span id="header-two-tier-sales-frequency">{{trans('analytics.today')}}</span></button>
