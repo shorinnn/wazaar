@@ -8,7 +8,7 @@
             <div class="row top-activities">
                 {{-- Total Sales in Yen --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div>
+                    <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default" type="button">
                                 {{trans('analytics.sales')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
@@ -37,7 +37,7 @@
 
                 {{-- Number of Sales (Count) --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div id="sales-today">
+                    <div id="sales-today" class="stat-block">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
                                 {{trans('analytics.salesCount')}} <span id="header-sales-count-frequency">{{trans('analytics.today')}}</span></button>
@@ -67,7 +67,7 @@
 
                 {{-- Top Tracking Codes --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12 hidden">
-                    <div>
+                    <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
                                 {{trans('analytics.topTrackingCodes')}} <span id="header-tracking-codes-frequency">{{trans('analytics.today')}}</span></button>

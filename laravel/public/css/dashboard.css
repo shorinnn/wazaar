@@ -100,7 +100,7 @@ h4.date-range-header{
 	text-decoration: none;
 }
 
-.top-activities center {
+.affiliate-dashboard center {
     left: 0;
     position: absolute;
     text-align: center;
@@ -108,14 +108,16 @@ h4.date-range-header{
     width: 100%;
 }
 
-.top-activities > div > div{
+.top-activities .stat-block{
 	height: 415px;
+	width: 314px;
 	border: solid 1px #ececec;
 	border-radius: 4px;
 	margin-bottom: 30px;
 	background: #fff;
 	overflow: hidden;
 	padding: 0;
+	margin: 0 auto 30px;
 	position: relative;
 }
 
@@ -133,7 +135,8 @@ h4.date-range-header{
 	border-radius: 0;
 	background-color: #0099ff;
 }
-.top-activities > div ul{
+.top-activities #wrapper-sales-count ul,
+.top-activities .daily-stat-wrap{
 	padding: 0 20px;
 	margin: 0;
 }
@@ -141,20 +144,23 @@ h4.date-range-header{
     padding: 0;
 }
 
-.top-activities > div ul a,
-.top-activities > div ul li{
+.top-activities #wrapper-sales-count ul a,
+.top-activities #wrapper-sales-count ul li,
+.top-activities .daily-stat-wrap a,
+.top-activities .daily-stat-wrap li{
 	font-size: 12px;
 	color: #32cfd7;
-	margin-top: 9px;
 }
 
-.top-activities > div ul li span{
+.top-activities #wrapper-sales-count ul li span,
+.top-activities .daily-stat-wrap li span{
 	display:inline-block;
 	color: #97a4a7;
 	margin-right: 1px;
 }
 
-.top-activities > div ul li em{
+.top-activities #wrapper-sales-count ul li em,
+.top-activities .daily-stat-wrap li em{
 	font-style: normal;
 	color: #97a4a7;
 	float: right;
@@ -191,37 +197,37 @@ h4.date-range-header{
 	color: #333;
 }
 
-#wrapper-sales ul, #sales-today ul, .with-progress-bar ul, .analytics-box-wrapper ul{
+.affiliate-dashboard ul{
 	margin: 0 !important;
 }
 
-#wrapper-sales ul li, #sales-today ul li, .with-progress-bar ul li, .analytics-box-wrapper  ul li{
+.affiliate-dashboard  ul li{
 	color: #849598;
 	margin: 18px 0 0;
 	font-size: 12px;
 }
 
-#wrapper-sales ul li > span, #sales-today ul li > span, .with-progress-bar ul li > span, .analytics-box-wrapper  ul li > span{
+.affiliate-dashboard  ul li > span{
 	display: inline-block;
 	width: 80px;
 	float: left;
 }
 
-#wrapper-sales ul li > div, #sales-today ul li > div, .with-progress-bar  ul li > div, .analytics-box-wrapper ul li > div{
+.affiliate-dashboard ul li > div{
 	width: 120px;
 	float: left;
 	padding-top: 4px;
 	padding-left: 8px;
 }
 
-#wrapper-sales ul li > div span, #sales-today ul li > div span, .with-progress-bar  ul li > div span, .analytics-box-wrapper  ul li > div span{
+.affiliate-dashboard  ul li > div span{
 	display: block;
 	height: 8px;
 	border-radius: 4px;
 	background: #96cf2d;
 }
 
-#wrapper-sales ul li > div div.progress, #sales-today ul li > div div.progress, .with-progress-bar ul li > div div.progress, .analytics-box-wrapper ul li > div div.progress{
+.affiliate-dashboard ul li > div div.progress{
     display: block;
     height: 8px;
     border-radius: 4px;
@@ -230,7 +236,7 @@ h4.date-range-header{
 	margin-top: 0;
 }
 
-#wrapper-sales ul li > em, #sales-today ul li > em, .with-progress-bar ul li > em, .analytics-box-wrapper ul li > em, .analytics-box-wrapper ul li > em{
+.affiliate-dashboard ul li > em{
 	font-style: normal;
 	width: auto;
 	float: right;
@@ -238,23 +244,23 @@ h4.date-range-header{
 	display: inline-block;
 }
 
-#wrapper-sales ul li#monday > div span, #sales-today ul li#monday > div span, .with-progress-bar ul li#monday > div span{
+.affiliate-dashboard ul li#monday > div span{
 	width: 60%;
 }
 
-#wrapper-sales ul li#tuesday > div span, #sales-today ul li#tuesday > div span, .with-progress-bar ul li#tuesday > div span{
+.affiliate-dashboard ul li#tuesday > div span{
 	width: 40%;
 }
 
-#wrapper-sales ul li#wednesday > div span, #sales-today ul li#wednesday > div span, .with-progress-bar ul li#wednesday > div span{
+.affiliate-dashboard ul li#wednesday > div span{
 	width: 40%;
 }
 
-#wrapper-sales ul li#thursday > div span, #sales-today ul li#thursday > div span, .with-progress-bar ul li#thursday > div span{
+.affiliate-dashboard ul li#thursday > div span{
 	width: 60%;
 }
 
-#wrapper-sales ul li#friday > div span, #sales-today ul li#friday > div span, .with-progress-bar ul li#friday > div span{
+.affiliate-dashboard ul li#friday > div span{
 	width: 90%;
 }
 

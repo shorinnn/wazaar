@@ -34,5 +34,7 @@ var js_translation_map_ja = {
     'days' : '日',
     'hours' : '時間',
     'minutes' : '分',
-    'seconds' : '秒'
+    'seconds' : '秒',
+    'Remove from wishlist' : 'お気に入りにから削除する。',
+    'Add to wishlist' : 'ウィッシュリストに追加'
 };

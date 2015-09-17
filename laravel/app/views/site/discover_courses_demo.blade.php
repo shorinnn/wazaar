@@ -42,10 +42,10 @@
                             <div class="footer clearfix">
                                 <div class="heart-icon">
                                     @if( !in_array($course->id, $wishlisted) )
-                                        <i class="fa fa-heart-o tooltipable wishlist-change-button" title="Add to wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                        <i class="fa fa-heart-o tooltipable wishlist-change-button" title="{{ trans('courses/general.add_to_wishlist') }}" data-auth="{{ intval(Auth::check() )}}"
                                            data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0"></i>
                                     @else
-                                        <i class="fa fa-heart tooltipable wishlist-change-button" title="Remove from wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                        <i class="fa fa-heart tooltipable wishlist-change-button" title="{{ trans('courses/general.remove_from_wishlist') }}" data-auth="{{ intval(Auth::check() )}}"
                                            data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1"></i>
                                     @endif
                                 </div>
@@ -153,10 +153,10 @@
                             <div class="footer clearfix">
                                 <div class="heart-icon">
                                     @if( !in_array($course->id, $wishlisted) )
-                                        <i class="fa fa-heart-o tooltipable wishlist-change-button" title="Add to wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                        <i class="fa fa-heart-o tooltipable wishlist-change-button" title="{{ trans('courses/general.add_to_wishlist') }}" data-auth="{{ intval(Auth::check() )}}"
                                            data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0"></i>
                                     @else
-                                        <i class="fa fa-heart tooltipable wishlist-change-button" title="Remove from wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                        <i class="fa fa-heart tooltipable wishlist-change-button" title="{{ trans('courses/general.remove_from_wishlist') }}" data-auth="{{ intval(Auth::check() )}}"
                                            data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1"></i>
                                     @endif
                                 </div>
@@ -264,10 +264,10 @@
                             <div class="footer clearfix">
                                 <div class="heart-icon">
                                     @if( !in_array($course->id, $wishlisted) )
-                                        <i class="fa fa-heart-o tooltipable wishlist-change-button" title="Add to wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                        <i class="fa fa-heart-o tooltipable wishlist-change-button" title="{{ trans('courses/general.add_to_wishlist') }}" data-auth="{{ intval(Auth::check() )}}"
                                            data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0"></i>
                                     @else
-                                        <i class="fa fa-heart tooltipable wishlist-change-button" title="Remove from wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                        <i class="fa fa-heart tooltipable wishlist-change-button" title="{{ trans('courses/general.remove_from_wishlist') }}" data-auth="{{ intval(Auth::check() )}}"
                                            data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1"></i>
                                     @endif
                                 </div>
@@ -375,10 +375,10 @@
                             <div class="footer clearfix">
                                 <div class="heart-icon">
                                     @if( !in_array($course->id, $wishlisted) )
-                                        <i class="fa fa-heart-o tooltipable wishlist-change-button" title="Add to wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                        <i class="fa fa-heart-o tooltipable wishlist-change-button" title="{{ trans('courses/general.add_to_wishlist') }}" data-auth="{{ intval(Auth::check() )}}"
                                            data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0"></i>
                                     @else
-                                        <i class="fa fa-heart tooltipable wishlist-change-button" title="Remove from wishlist" data-auth="{{ intval(Auth::check() )}}"
+                                        <i class="fa fa-heart tooltipable wishlist-change-button" title="{{ trans('courses/general.remove_from_wishlist') }}" data-auth="{{ intval(Auth::check() )}}"
                                            data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1"></i>
                                     @endif
                                 </div>
