@@ -110,36 +110,56 @@ class SiteController extends \BaseController {
             $student = Student::find( Auth::user()->id );
             $wishlisted = $student->wishlistItems()->lists( 'course_id' );
         }
-        // TEMPORARILY DISABLE THESE VARS BECAUSE THEY'RE NOT USED IN THE VIEW
-        $categories = $groups = $topCourses = null;
-    //                $categories = CourseCategory::limit(12);
-    //                $groups = CategoryGroup::orderBy('order','asc')->get();
-    //                
-    //                if ( !Cache::has('topCourses') ){
-    //                    $top = HomepageHelper::generateVariations(8);
-    //                    Cache::add('topCourses', $top, 30);
-    //                }
-    //                
-    //                $topCourses = Cache::get('topCourses');
-    ////                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
-    //                $topCourses = $topCourses[ 0 ];
-            
-        // $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
 
-        $discoverCourses = Course::where(function($query){
-                                        $query->where('publish_status', 'approved')
-                                                ->orWhere(function($query2){
-                                                    $query2->where('privacy_status','public')
-                                                            ->where('publish_status', 'pending')
-                                                            ->where('approved_data', '!=', "");
-                                                        });
-                                        })
-                                    ->orderBy('free','desc')
-                                    ->orderBy('student_count','desc')
-                                    ->limit(12)->get();
+        $category_groups = DB::table('category_groups')->orderBy('id', 'asc')->get();
+        $free_group = new StdClass();
+        $free_group->id = '';
+        $free_group->name = 'Free';
+        $category_groups[] = $free_group;
+        // dd($category_groups);
+
+        foreach($category_groups as $category_group){
+            if(!empty($category_group->id)){
+                $categories_id_array = array();
+                $categories_name_array = array();
+                $categories = DB::table('category_group_items')->select('course_category_id')->where('category_group_id', $category_group->id)->get();
+                foreach($categories as $category){
+                    $categories_id_array[] = $category->course_category_id;
+                    $courseCategory = CourseCategory::select('name')->where('id', $category->course_category_id)->first();
+                    $categories_name_array[] = $courseCategory->name;
+                }
+                $discoverCourses = Course::where(function($query){
+                                                $query->where('publish_status', 'approved')
+                                                        ->orWhere(function($query2){
+                                                            $query2->where('privacy_status','public')
+                                                                    ->where('publish_status', 'pending')
+                                                                    ->where('approved_data', '!=', "");
+                                                                });
+                                                })
+                                            ->whereIn('course_category_id', $categories_id_array)
+                                            ->where('free', 'no')
+                                            ->get();
+
+                $category_group->discover_courses = $discoverCourses;
+                $category_group->course_categories_names = $categories_name_array;
+            } else {
+                $category_group->course_categories_names = array();
+                $discoverCourses = Course::where(function($query){
+                                                $query->where('publish_status', 'approved')
+                                                        ->orWhere(function($query2){
+                                                            $query2->where('privacy_status','public')
+                                                                    ->where('publish_status', 'pending')
+                                                                    ->where('approved_data', '!=', "");
+                                                                });
+                                                })
+                                            ->where('free', 'yes')
+                                            ->get();
+                $category_group->discover_courses = $discoverCourses;
+            }
+        }
         
         return View::make('site.homepage_unauthenticated_demo')
-            ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter') ); 
+            ->with( compact('category_groups', 'wishlisted') ); 
     }
 
         
