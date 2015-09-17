@@ -36,7 +36,7 @@
                                             </div>
                                             <div class="review-buttons-wrap clearfix">
                                                 <a class="later white-button button left" onclick="cancelReviewsModal()">{{ trans('courses/general.reviews-modal.later') }}</a>
-                                                <button class="blue-button large-button button right no-margin">{{ trans('courses/general.reviews-modal.submit-review') }}</button>
+                                                <button type='submit' class="blue-button large-button button right no-margin">{{ trans('courses/general.reviews-modal.submit-review') }}</button>
                                             </div>
                                         {{ Form::close() }}
                                     </div>
@@ -51,7 +51,7 @@
                                             </div>
                                             <div class="review-buttons-wrap clearfix">
                                             	<a class="later white-button button left" onclick="cancelReviewsModal()">{{ trans('courses/general.reviews-modal.later') }}</a>
-                                                <button class="blue-button large-button button right no-margin">{{ trans('courses/general.reviews-modal.submit-review') }}</button>
+                                                <button type='submit' class="blue-button large-button button right no-margin">{{ trans('courses/general.reviews-modal.submit-review') }}</button>
                                             </div>
                                         {{ Form::close() }}
                                     </div>
