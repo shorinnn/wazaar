@@ -530,10 +530,12 @@ class UsersController extends Controller
     }
     
     public function registrationConfirmationResend(){
-        if( Auth::guest() ){
-            $dot = getenv('AWS_MACHINE_IDENTIFIER') == 'Wazaar.' ? 1 : 0;
-            return Redirect::to("login?dot=$dot");
-        }
+        if(Auth::user()->confirmed==1) return Redirect::action('SiteController@index');
+        return View::make('confide.signup_success_resend');
+    }
+    
+    public function doRegistrationConfirmationResend(){
+        if(Auth::user()->confirmed==1) return Redirect::action('SiteController@index');
         $u = User::find(Auth::user()->id);
         $user = [
             'email' => $u->email,
@@ -550,7 +552,8 @@ class UsersController extends Controller
                             ->subject( $subject );
                     }
                 );
-        return View::make('confide.signup_success');
+        Session::flash('success', trans('general.confirmation-link-emailed') );
+        return View::make('confide.signup_success_resend');
     }
 
     public function verificationConfirmation(){

@@ -133,5 +133,7 @@ return array(
     'new' => '新作',
     'confirm-password-to-continue' => '再度パスワードをご入力ください。',
     'incorrect-password' => '間違ったパスワードが入力されています。',
-    'confirm-password' => 'パスワードを入力する'
+    'confirm-password' => 'パスワードを入力する',
+    'confirmation-link-emailed' => 'ご登録のメルアド再確認用',
+    'resend-link' => 'メールを再送する',
 );

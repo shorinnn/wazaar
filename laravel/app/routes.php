@@ -112,6 +112,7 @@ $wwwRoutes = function(){
     Route::get('logout', 'UsersController@logout');
     Route::get('emailcheck', 'UsersController@emailCheck');
     Route::get('/registration-confirmation-resend', 'UsersController@registrationConfirmationResend');
+    Route::post('/registration-confirmation-resend', 'UsersController@doRegistrationConfirmationResend');
     Route::get('/registration-confirmation', 'UsersController@registrationConfirmation');
     Route::get('/verification-confirmation', 'UsersController@verificationConfirmation');
 

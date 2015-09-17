@@ -163,5 +163,7 @@ return array(
     'new' => 'New',
     'confirm-password-to-continue' => 'Confirm password to continue',
     'incorrect-password' => 'Incorrect password',
-    'confirm-password' => 'Confirm Password'
+    'confirm-password' => 'Confirm Password',
+    'confirmation-link-emailed' => 'Confirmation link emailed',
+    'resend-link' => 'Resend Link',
 );
