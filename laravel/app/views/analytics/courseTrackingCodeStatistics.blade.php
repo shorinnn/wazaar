@@ -33,8 +33,8 @@
 
             <div class="row top-activities">
 
-                <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
                                 {{trans('analytics.topTrackingCodes')}} <span id="header-tracking-codes-frequency">{{trans('analytics.today')}}</span></button>
@@ -60,8 +60,8 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 col-sm-6 sol-xs-12">
-                    <div id="sales-today">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div id="sales-today" class="stat-block">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
                                 {{trans('analytics.sales')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>

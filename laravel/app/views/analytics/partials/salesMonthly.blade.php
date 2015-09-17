@@ -1,9 +1,7 @@
-<h2>¥{{number_format($sales['salesTotal'])}}
-
-</h2>
+<h2>¥{{number_format($sales['salesTotal'])}}</h2>
 
 
-<ul>
+<ul class="daily-stat-wrap">
     @foreach($sales['sales'] as $sale)
         <li id="monday" class="clearfix">
             <span>

@@ -1,5 +1,5 @@
 <h2>{{number_format($affiliates['affTotal'])}}</h2>
-<ul>
+<ul class="daily-stat-wrap">
     @foreach($affiliates['affiliates'] as $aff)
         <li class="clearfix">
                 <span>

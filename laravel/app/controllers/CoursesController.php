@@ -1,5 +1,5 @@
 <?php
-
+use Jenssegers\Agent\Agent;
 class CoursesController extends \BaseController {
     
         public function __construct(){
@@ -7,6 +7,7 @@ class CoursesController extends \BaseController {
                 'customPercentage', 'updateExternalVideo', 'removePromo', 'setField'] ] );
             $this->beforeFilter('admin', ['only' => 'disapprove' ] );
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroyxxx', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
+            $this->beforeFilter( 'logCourseView', [ 'only' => ['show'] ] );
 
             
         }
@@ -638,13 +639,32 @@ class CoursesController extends \BaseController {
                 if(Auth::check()) {
                     $student->saveReferral(Input::get('aid'), $course->id);
                 }
+
+                //Store affiliate hit
+                $agent = new Agent();
+                AffiliateHit::create([
+                    'affiliate_id' => Input::get('aid'),
+                    'session_id' => Session::getId(),
+                    'course_id' => $course->id,
+                    'user_id' => Auth::id(),
+                    'referrer' => Request::server('HTTP_REFERER'),
+                    'ip_address' => Request::getClientIp(),
+                    'user_agent' => Request::header('User-Agent'),
+                    'device' => $agent->device(),
+                    'operating_system' => $agent->platform(),
+                    'browser' => $agent->browser(),
+                    'created_at' => Carbon\Carbon::now()
+                ]);
             }
             
             $video = $course->descriptionVideo;
             if( Input::has('gid') ) $gid = Input::get('gid');
             else $gid = Cookie::get('gid-'.$course->id);
             $gift = Gift::find( PseudoCrypt::unhash( $gid ) );
-            
+
+
+
+
             if( serveMobile() ) 
                 Return View::make('MOBILE_VERSION.courses.show')->with(compact('course', 'student', 'video', 'instructor', 'wishlisted', 'gid', 'gift' ) );
             else    
