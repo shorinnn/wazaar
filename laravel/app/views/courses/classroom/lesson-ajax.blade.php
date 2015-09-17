@@ -149,7 +149,6 @@
 				padding-top: 50px;
 			}
         </style>
-        
             <div class="right-slide-menu"></div>
         <div class="row full-height">
             
@@ -274,7 +273,7 @@
                         <!--<a href="#" class="notes-tab-header">10 Notes</a>-->
                     </div>
                     <div class="tab-contents clear">
-                    	@if($discussions->count() <= 0)
+                    	@if( $lesson->discussions()->count() <= 0)
                         	<style>
 								@media (max-width:991px){
 									.search-discussion-form{
@@ -308,7 +307,7 @@
                             </form>
                         </div>
                         <div class='question-holder scroll-pane'>
-                        	@if($discussions->count() <= 0)
+                        	@if($lesson->discussions()->count() <= 0)
                             	<h2 class="ask-a-question-heading visible-sm-block visible-xs-block hidden-md hidden-lg">Ask a Question!</h2>
                             @endif
                             @foreach($lesson->discussions()->where( 'student_id', Auth::user()->id )->get() as $discussion)

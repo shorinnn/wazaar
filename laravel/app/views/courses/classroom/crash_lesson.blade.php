@@ -1,5 +1,4 @@
 @extends('layouts.default')
-        
 @section('content')
 	<style>
 		html{
@@ -7,13 +6,12 @@
 		}
 	</style>
     <div class="container-fluid classroom-view" style="overflow-x:hidden;">
-
-        @if( !Auth::user()->hasRole('Affiliate') )
+        @if( !Auth::user()->hasRole('Affiliate') )        
             {{ View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                            'instructor', 'student', 'crashLesson') ) }}
+                            'instructor', 'student', 'crashLesson', 'reviewModal') ) }}
         @else
             {{ View::make('courses.classroom.lesson-ajax-affiliates')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                            'instructor', 'student', 'crashLesson') ) }}
+                            'instructor', 'student', 'crashLesson', 'reviewModal') ) }}
         @endif
     </div>
 
