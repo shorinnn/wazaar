@@ -647,7 +647,7 @@ class CoursesController extends \BaseController {
                     'course_id' => $course->id,
                     'user_id' => Auth::id(),
                     'referrer' => Request::server('HTTP_REFERER'),
-                    'ip_address' => Request::ip(),
+                    'ip_address' => Request::getClientIp(),
                     'user_agent' => Request::header('User-Agent'),
                     'device' => $agent->device(),
                     'operating_system' => $agent->platform(),
