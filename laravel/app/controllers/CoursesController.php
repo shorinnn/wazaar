@@ -7,6 +7,7 @@ class CoursesController extends \BaseController {
                 'customPercentage', 'updateExternalVideo', 'removePromo', 'setField'] ] );
             $this->beforeFilter('admin', ['only' => 'disapprove' ] );
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroyxxx', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);
+            $this->beforeFilter( 'logCourseView', [ 'only' => ['show'] ] );
 
             
         }
