@@ -9,10 +9,10 @@
     <div class="container-fluid classroom-view" style="overflow-x:hidden;">
         @if( !Auth::user()->hasRole('Affiliate') )
             {{ View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                            'instructor', 'student', 'crashLesson') ) }}
+                            'instructor', 'student', 'crashLesson', 'reviewModal') ) }}
         @else
             {{ View::make('courses.classroom.lesson-ajax-affiliates')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                            'instructor', 'student', 'crashLesson') ) }}
+                            'instructor', 'student', 'crashLesson', 'reviewModal') ) }}
         @endif
     </div>
 
@@ -21,6 +21,20 @@
 @section('extra_js')
 <script src='{{url('js/Gibberish-AES.js')}}'></script>
 <script>
+        
+        function showReviewsModal(){
+            $('.review-modal').modal('show');
+        }
+        
+        function cancelReviewsModal(){
+            $('.review-modal').modal('hide');
+        }
+        
+        function courseReviewPosted(e,json){
+            $('.review-modal').modal('hide');
+            $.bootstrapGrowl( _('Thank you for your review.'),{align:'center', type:'success'} );
+        }
+        
 	function add_scroll_class_if_have_scrollbar(){
 		if($(document).height() > $(window).height()){
 			$('.course-question-sidebar').addClass('hasScroll');
@@ -32,6 +46,25 @@
     var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';	
     $(function(){
         
+        //Hide and show the positive and negative review textareas and labels
+		$('body').delegate('.yes-button','click',  function(){
+			$('.positive-review-wrap').removeClass('hide');
+			$('.negative-review-wrap').addClass('hide');
+			$(this).addClass('active');
+			$('.no-button').removeClass('active');
+			$('.long-later-button').hide();
+		});
+		$('body').delegate('.no-button','click',  function(){
+			$('.positive-review-wrap').addClass('hide');
+			$('.negative-review-wrap').removeClass('hide');
+			$(this).addClass('active');
+			$('.yes-button').removeClass('active');
+			$('.long-later-button').hide();
+		});
+                
+        @if( $video == null && $reviewModal)
+            showReviewsModal();
+        @endif
         /** decrypt video url **/
         //decryptVideoSrc();
         /** /decrypt video url **/

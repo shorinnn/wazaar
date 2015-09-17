@@ -357,10 +357,15 @@
         
        
             
-            
+@if($reviewModal)
+    {{ View::make('courses.classroom.reviews-modal')->withCourse($course) }}
+@endif
 <script>
 
     if(typeof($)=='function'){
+        @if( $video == null && $reviewModal)
+            showReviewsModal();
+        @endif
         //decryptVideoSrc();
 //        makeYTfluid();
         skinVideoControls();
@@ -413,6 +418,9 @@
     function lessonComplete(lesson){
         localStorage.setItem( 'vid-progress-'+videoHash, 0 );
         $.get( COCORIUM_APP_PATH+'classroom/complete-lesson/'+lesson );
+        @if( $reviewModal )
+            showReviewsModal();
+        @endif
     }
     
     window.onpopstate =  function(e){
@@ -425,5 +433,8 @@
 //        console.log( window.location );
 //        console.log('hash chanaged');
     }
+
+    
+    
 </script>
            

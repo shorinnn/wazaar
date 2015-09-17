@@ -209,4 +209,14 @@ jpeg, png',
     'hours' => '時間',
     'views' => '視聴者数',
     'purchases' => '購入者数',
+    'reviews-modal' => [
+        'would-you-recommend' => 'このコースが「役に立った」場合は「いいね！」
+「役に立たなかった」場合は「イマイチ」を押してください。',
+        'yes' => 'いいね！',
+        'no' => 'イマイチ',
+        'what-do-you-like-about-it' => 'コメント',
+        'later' => '後で',
+        'submit-review' => '投稿する',
+        'what-is-bad-about-it' => 'この商品のどこが「イマイチ」ですか？',
+    ]
 );

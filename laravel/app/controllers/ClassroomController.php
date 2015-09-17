@@ -98,8 +98,6 @@ class ClassroomController extends \BaseController {
                     if( $lesson==null || !$student->purchased($course) && $purchase==null && $lesson->free_preview == 'no' ){
                         return Redirect::to('/');
                     }
-
-                    
                 }
             }
             
@@ -142,15 +140,19 @@ class ClassroomController extends \BaseController {
                         'instructor', 'student', 'crashLesson') );
             }
             $crashLesson=false;
+            
+            $reviewModal = $student->canAskForReview($course, $lesson);
+            
             if(Request::ajax()){
                 $json['status'] = 'success';
                 $json['html'] =  View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                        'instructor', 'student', 'crashLesson') )->render();
+                        'instructor', 'student', 'crashLesson', 'reviewModal') )->render();
                 if( Auth::user()->hasRole('Affiliate') )
                     return View::make('courses.classroom.lesson-ajax-affiliates')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                            'instructor', 'student', 'crashLesson') )->render();
+                            'instructor', 'student', 'crashLesson', 'reviewModal') )->render();
+                
                 return View::make('courses.classroom.lesson-ajax')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                        'instructor', 'student', 'crashLesson') )->render();
+                        'instructor', 'student', 'crashLesson', 'reviewModal') )->render();
 //                return json_encode($json);
 //                if( Input::has('ask') ) return View::make('courses.classroom.lesson_ask_ajax')->with( compact('lesson','student') );
 //                else return View::make('courses.classroom.lesson_comments_ajax')->with( compact('lesson','student') );
@@ -158,10 +160,10 @@ class ClassroomController extends \BaseController {
             else{ 
                 if( Input::has('old') )
                     return View::make('courses.classroom.lesson-old')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                        'instructor', 'student') );
+                        'instructor', 'student', 'reviewModal') );
                 else
                     return View::make('courses.classroom.lesson')->with( compact('course', 'lesson', 'video', 'nextLesson', 'prevLesson', 'currentLesson',
-                        'instructor', 'student', 'crashLesson') );
+                        'instructor', 'student', 'crashLesson', 'reviewModal') );
             }
         }
         
