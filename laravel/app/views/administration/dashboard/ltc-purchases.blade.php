@@ -43,7 +43,7 @@
                         </td>
                         <td>
                             @if($purchase->affiliate_earnings > 0)
-                                @if($purchase->ltc_affiliate==null)
+                                @if($purchase->productAffiliate==null)
                                     USER #{{ $purchase->affiliate_id }} MISSING!
                                 @else
                                     #{{ $purchase->productAffiliate->id }}
