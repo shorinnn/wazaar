@@ -30,9 +30,12 @@
                             | 
                             &yen;{{ $purchase->instructor_earnings}}
                         </td>
-                        <td>#{{ $purchase->ltc_affiliate->id }}
-                            {{  $purchase->ltc_affiliate->fullName() }} |
-                            &yen;{{$purchase->ltc_affiliate_earnings}}
+                        <td>
+                            @if($purchase->ltc_affiliate_earnings > 0 )
+                                #{{ $purchase->ltc_affiliate->id }}
+                                {{  $purchase->ltc_affiliate->fullName() }} |
+                                &yen;{{$purchase->ltc_affiliate_earnings}}
+                            @endif
                         </td>
                         <td>
                             @if($purchase->affiliate_earnings > 0)
