@@ -30,7 +30,11 @@ class UserRepository
         $user->email    = array_get($input, 'email');
         if( isset( $roles['affiliate'] ) && $roles['affiliate'] == 1 ){
             $user->email = '#waa#-'.$user->email;
-            if( time() < strtotime('2015-09-17 00:00:00') ){
+            $date = new DateTime();
+            $date->setTimezone(new DateTimeZone('Asia/Tokyo'));
+            $now = strtotime( $date->format('Y-m-d H:i:s') ) ;
+            $cutoff = strtotime( '2015-09-17 23:59:59' );
+            if( $now < $cutoff ){
                 $user->has_ltc = 'yes';
             }
         }
@@ -160,9 +164,20 @@ class UserRepository
         if( $ltc != null ){
             $ltc_affiliate = LTCAffiliate::where('affiliate_id', $ltc)->first();
             if($ltc_affiliate !=null ){
-                if( $user->hasRole('Affiliate') ) $user->second_tier_affiliate_id = $ltc_affiliate->id;
-                else $user->ltc_affiliate_id = $ltc_affiliate->id;
-                $user->save();
+                if( $user->hasRole('Affiliate') ){
+                    $user->second_tier_affiliate_id = $ltc_affiliate->id;
+                    $user->save();
+                }
+                else{
+                    $date = new DateTime();
+                    $date->setTimezone(new DateTimeZone('Asia/Tokyo'));
+                    $now = strtotime( $date->format('Y-m-d H:i:s') ) ;
+                    $cutoff = strtotime( '2015-09-17 23:59:59' );
+                    if( $now < $cutoff ){
+                        $user->ltc_affiliate_id = $ltc_affiliate->id;
+                        $user->save();
+                    }
+                }
             }            
         }
         else{
