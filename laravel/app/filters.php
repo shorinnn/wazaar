@@ -187,3 +187,43 @@ Route::filter('verifiedLogin', function(){
         return Redirect::action( 'UsersController@confirmPassword' );
     }
 });
+
+Route::filter('logCourseView', function($request){
+    $viewed_course_data = array();
+
+    if(Auth::guest()){
+        $viewed_course_data['user_id'] = $_SERVER['REMOTE_ADDR'];
+    } else {
+        $user = Auth::user();
+        $viewed_course_data['user_id'] = $user->id;
+    }
+
+    $user_logged = CourseLog::where('user_id', $viewed_course_data['user_id'])->first();
+    $course = Course::where('slug', $request->getParameter('slug'))->first();
+    $current_viewer = (Session::has('current_viewer'))? Session::get('current_viewer') : array( $viewed_course_data['user_id'] => array() ) ;
+
+    $courses_viewed_today = (array_key_exists($viewed_course_data['user_id'], $current_viewer) && count($current_viewer[$viewed_course_data['user_id']]) >= 1)? $current_viewer[$viewed_course_data['user_id']] : array() ;
+    
+    if(!in_array($course->id, $courses_viewed_today)){
+        $courses_viewed_today[] = $course->id;
+    }
+    
+    $current_viewer[$viewed_course_data['user_id']] = $courses_viewed_today;
+
+    Session::set('current_viewer', $current_viewer);
+
+    if($user_logged){ //user has already been logged viewing courses
+        $courses_viewed = json_decode($user_logged->courses_viewed);
+        foreach($courses_viewed_today as $courses_viewed_tday){
+            if(!in_array($courses_viewed_tday, $courses_viewed)){
+                $courses_viewed[] = $courses_viewed_tday;
+            }
+        }
+        $user_logged->courses_viewed = json_encode($courses_viewed);
+        $user_logged->save();
+    } else { // new user to be logged viewing courses
+        $viewed_course_data['courses_viewed'] = json_encode($courses_viewed_today);
+        CourseLog::create($viewed_course_data);
+    }
+
+});
