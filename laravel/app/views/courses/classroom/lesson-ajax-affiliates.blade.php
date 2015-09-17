@@ -331,7 +331,7 @@
                         <ul>
                             <?php $thisLesson = $lesson; ?>
                             @foreach($module->lessons as $lesson)
-                                @if( $student->purchased($course) || $student->purchased( $lesson ) )
+                                @if( $student->purchased($course) || $student->purchased( $lesson ) || $student->id == $course->instructor_id )
                                     <li class="@if( $student->isLessonCompleted($lesson) ) 
                                             completed 
                                         @elseif( $lesson->id == $thisLesson->id ) )
