@@ -9769,6 +9769,9 @@ header .top-menu .logged-out li{
 	.unauthenticated-home-header.top-menu .logged-out li a{
 		padding: 7px 8px 7px 0 !important;
 	}
+	.top-activities .stat-block{
+		width: 100% !important;
+	}
 }
 @media (max-width:320px){
 	.column-3 .add-to-wishlist-container{
