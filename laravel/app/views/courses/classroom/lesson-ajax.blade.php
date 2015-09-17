@@ -274,6 +274,31 @@
                         <!--<a href="#" class="notes-tab-header">10 Notes</a>-->
                     </div>
                     <div class="tab-contents clear">
+                    	@if($discussions->count() <= 0)
+                        	<style>
+								@media (max-width:991px){
+									.search-discussion-form{
+										display: none;
+									}
+									.questions-sidebar .ask-question{
+										margin-top: 10px;
+										border-top: none;
+									}
+									.questions-sidebar .ask-question span{
+										display: block;
+									    left: 60px;
+    									max-width: 93%;
+										width: auto;
+									}
+									.ask-a-question-heading {
+										color: #fff;
+										margin-bottom: 30px;
+										padding: 0 30px;
+										text-align: center;
+									}
+								}
+							</style>
+                       	@endif
                         <div class="rows search-discussion-form">
                             <form>
                                 <div>
@@ -283,6 +308,9 @@
                             </form>
                         </div>
                         <div class='question-holder scroll-pane'>
+                        	@if($discussions->count() <= 0)
+                            	<h2 class="ask-a-question-heading visible-sm-block visible-xs-block hidden-md hidden-lg">Ask a Question!</h2>
+                            @endif
                             @foreach($lesson->discussions()->where( 'student_id', Auth::user()->id )->get() as $discussion)
                                 {{ View::make('courses.classroom.discussions.question')->with( compact('discussion') ) }}
                             @endforeach
