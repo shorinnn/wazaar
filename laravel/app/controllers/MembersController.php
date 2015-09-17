@@ -208,6 +208,13 @@ class MembersController extends \BaseController {
             
         }
         
+        public function ltc(){
+            $result = User::where('has_ltc','yes')->orderBy('ltc_count','desc')->paginate(50); 
+                    
+            return View::make('administration.members.ltc')->withVips($result);
+            
+        }
+        
         public function loginAs(){
             $user = User::find( Input::get('id') );
             Auth::login( $user );

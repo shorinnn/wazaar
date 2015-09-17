@@ -16,16 +16,16 @@ class InstructorCest{
         Instructor::boot();
     }
     
-    public function get14Courses(UnitTester $I){
-        $instructor = Instructor::where('username','instructor')->first();
-        $I->assertEquals(14, $instructor->courses->count());
-    }
-    
-    public function getFirstCourseTitle(UnitTester $I){
-        $instructor = Instructor::where('username','instructor')->first();
-        $I->assertEquals('App Development', $instructor->courses->first()->name);
-    }
-    
+//    public function get14Courses(UnitTester $I){
+//        $instructor = Instructor::where('username','instructor')->first();
+//        $I->assertEquals(14, $instructor->courses->count());
+//    }
+//    
+//    public function getFirstCourseTitle(UnitTester $I){
+//        $instructor = Instructor::where('username','instructor')->first();
+//        $I->assertEquals('App Development', $instructor->courses->first()->name);
+//    }
+//    
     public function getFirstCourseSaleCount(UnitTester $I){
         $instructor = Instructor::where('username','instructor')->first();
         $sales = Purchase::where('product_id', 6)->where( 'product_type','Course' )->count();

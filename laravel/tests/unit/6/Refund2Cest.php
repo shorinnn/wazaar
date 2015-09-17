@@ -86,7 +86,7 @@ class Refund2Cest{
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->balance_used, 0 );
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
-        $I->assertEquals( $purchase->instructor_earnings, 56 );
+        $I->assertEquals( $purchase->instructor_earnings, 58 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * 0.03 );
         $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) ) );
@@ -94,7 +94,7 @@ class Refund2Cest{
         $st = ($purchase->purchase_price - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );        
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 56,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => $affiliate->second_tier_affiliate_id, 'transaction_type' => 'affiliate_credit', 'amount' => 2,
             'product_id' => $course->id, 'status' => 'complete', 'is_second_tier' => 'yes', 'is_ltc' => 'no'] );
@@ -120,7 +120,7 @@ class Refund2Cest{
         $purchase = Purchase::orderBy('id','desc')->first();
         $I->assertNotEquals(false, $purchase->refund() );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 56,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'failed'] );
         $I->seeRecord('transactions', ['user_id' => $affiliate->second_tier_affiliate_id, 'transaction_type' => 'affiliate_credit', 'amount' => 2,
             'product_id' => $course->id, 'status' => 'failed', 'is_second_tier' => 'yes', 'is_ltc' => 'no'] );
@@ -131,7 +131,7 @@ class Refund2Cest{
         $I->seeRecord('transactions', ['user_id' => 2, 'transaction_type' => 'site_credit', 'amount' => $purchase->site_earnings,
             'product_id' => $course->id, 'status' => 'failed', 'gc_fee' => 5] );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit_reverse', 'amount' => 56,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit_reverse', 'amount' => 58,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => $affiliate->second_tier_affiliate_id, 'transaction_type' => 'affiliate_credit_reverse', 'amount' => 2,
             'product_id' => $course->id, 'status' => 'complete', 'is_second_tier' => 'yes', 'is_ltc' => 'no'] );
@@ -153,6 +153,16 @@ class Refund2Cest{
         $I->assertEquals( 0, $instructor->instructor_balance);
         $I->assertEquals( 0, $affiliate->affiliate_balance);
         $I->assertEquals( 0, $ltc->affiliate_balance);
+        
+        $sale = $purchase;
+        $total = $sale->processor_fee + $sale->instructor_earnings + $sale->second_tier_instructor_earnings + $sale->affiliate_earnings + $sale->second_tier_affiliate_earnings
+                        + $sale->ltc_affiliate_earnings + $sale->instructor_agency_earnings + $sale->site_earnings; 
+        $I->assertEquals($purchase->purchase_price, $total);
+        
+        $sale = $purchase;
+        $total = $sale->processor_fee + $sale->instructor_earnings + $sale->second_tier_instructor_earnings + $sale->affiliate_earnings + $sale->second_tier_affiliate_earnings
+                        + $sale->ltc_affiliate_earnings + $sale->instructor_agency_earnings + $sale->site_earnings; 
+        $I->assertEquals($purchase->purchase_price, $total);
     }
     
        

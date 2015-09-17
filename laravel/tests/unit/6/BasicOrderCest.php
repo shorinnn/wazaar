@@ -81,17 +81,19 @@ class BasicOrderCest{
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
-        $I->assertEquals( $purchase->instructor_earnings, 68 );     
+        $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 0 );
-        // no second tier aff, wazaar cut goes up to 32%
-        $I->assertEquals( $purchase->site_earnings, 32 );
+        // no second tier aff, wazaar cut goes up to 30%
+        $I->assertEquals( $purchase->site_earnings, 30 );
     }   
     
     public function basicPurchaseNoLTC(UnitTester $I){
         $student = Student::where('username','student')->first();
+        $student->ltc_affiliate_id = 0;
+        $student->updateUniques();
         DB::table('purchases')->delete();
         
         $course = Course::first();
@@ -111,7 +113,7 @@ class BasicOrderCest{
         $data['successData']['balance_used'] = '0';
         $data['successData']['balance_transaction_id'] = '0';
         
-        $I->assertEquals( 5, $student->ltc_affiliate_id );
+        $I->assertEquals( 0, $student->ltc_affiliate_id );
         $I->assertLessThan( 1, $course->instructor->second_tier_instructor_id );
         $I->assertNotEquals( false, $student->purchase($course, null, $data) );
         
@@ -129,20 +131,20 @@ class BasicOrderCest{
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
-        $I->assertEquals( $purchase->instructor_earnings, 68 );     
+        $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 0 );
-        // no second tier aff, wazaar cut goes up to 32%
-        $I->assertEquals( $purchase->site_earnings, 32 );
+        // no second tier aff, wazaar cut goes up to 30%
+        $I->assertEquals( $purchase->site_earnings, 30 );
     }   
     
     public function basicPurchaseLTC(UnitTester $I){
         $student = Student::where('username','student')->first();
         $student->updateUniques();
         DB::table('purchases')->delete();
-        User::find(5)->update( ['is_vip' => 'yes', 'has_ltc' => 'no' ] );
+        User::find(5)->update( ['is_vip' => 'no', 'has_ltc' => 'yes' ] );
         
         $course = Course::first();
         $course->price = 1050;
@@ -178,19 +180,20 @@ class BasicOrderCest{
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
-        $I->assertEquals( $purchase->instructor_earnings, 68 );     
+        $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 32 * 0.03 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * 0.03 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 0 );
-        // no second tier aff, wazaar cut goes up to 32%
-        $I->assertEquals( $purchase->site_earnings, 32 - 32 * 0.03);
+        // no second tier aff, wazaar cut goes up to 30%
+        $I->assertEquals( $purchase->site_earnings, 30 - 30 * 0.03);
     }   
     
     public function basicPurchaseLTCVIP(UnitTester $I){
         $student = Student::where('username','student')->first();
         $student->updateUniques();
         DB::table('purchases')->delete();
+        User::find(5)->update( ['is_vip' => 'yes', 'has_ltc' => 'yes' ] );
         
         $course = Course::first();
         $course->price = 1050;
@@ -226,13 +229,13 @@ class BasicOrderCest{
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
-        $I->assertEquals( $purchase->instructor_earnings, 68 );     
+        $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 32 * 0.08 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * 0.08 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 0 );
-        // no second tier aff, wazaar cut goes up to 32%
-        $I->assertEquals( $purchase->site_earnings, 32 - 32 * 0.08);
+        // no second tier aff, wazaar cut goes up to 30%
+        $I->assertEquals( $purchase->site_earnings, 30 - 30 * 0.08);
     }   
     
     public function basicPurchaseLTCSUPERVIP(UnitTester $I){
@@ -246,7 +249,7 @@ class BasicOrderCest{
         $course->updateUniques();
         DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
         $course = Course::first();
-        User::find(5)->update( ['is_super_vip' => 'yes'] );
+        User::find(5)->update( ['is_super_vip' => 'yes', 'has_ltc' => 'yes'] );
         $I->assertEquals(105, $course->price);
         $data = [];
         $data['successData']['REF'] = '123';
@@ -274,13 +277,13 @@ class BasicOrderCest{
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
-        $I->assertEquals( $purchase->instructor_earnings, 68 );     
+        $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 32 * 0.08 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * 0.08 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 0 );
-        // no second tier aff, wazaar cut goes up to 32%
-        $I->assertEquals( $purchase->site_earnings, 32 - 32 * 0.08);
+        // no second tier aff, wazaar cut goes up to 30%
+        $I->assertEquals( $purchase->site_earnings, 30 - 30 * 0.08);
     }   
     
     public function basicPurchaseProductAffiliate(UnitTester $I){
@@ -327,12 +330,12 @@ class BasicOrderCest{
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
-        $I->assertEquals( $purchase->instructor_earnings, 58 );     
+        $I->assertEquals( $purchase->instructor_earnings, 60 );     
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 0 );
-        // no second tier aff, wazaar cut goes up to 32%
-        $I->assertEquals( $purchase->site_earnings, 32 );
+        // no second tier aff, wazaar cut goes up to 30%
+        $I->assertEquals( $purchase->site_earnings, 30 );
     }   
     
     public function basicPurchaseProductAffiliateAndSecondTier(UnitTester $I){
@@ -379,7 +382,7 @@ class BasicOrderCest{
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
-        $I->assertEquals( $purchase->instructor_earnings, 58 - 2);     
+        $I->assertEquals( $purchase->instructor_earnings, 58);     
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 100 * 0.02  );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 0 );
@@ -434,13 +437,13 @@ class BasicOrderCest{
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
-        $I->assertEquals( $purchase->instructor_earnings, 68 );     
+        $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->second_tier_instructor_earnings, 32 * 0.02 );
-        // no second tier aff, wazaar cut goes up to 32%
-        $I->assertEquals( $purchase->site_earnings, 32 - $purchase->second_tier_instructor_earnings );
+        $I->assertEquals( $purchase->second_tier_instructor_earnings, 30 * 0.02 );
+        // no second tier aff, wazaar cut goes up to 30%
+        $I->assertEquals( $purchase->site_earnings, 30 - $purchase->second_tier_instructor_earnings );
     }  
     
     public function purchaseWithEverything(UnitTester $I){
@@ -493,10 +496,72 @@ class BasicOrderCest{
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
-        $I->assertEquals( $purchase->instructor_earnings, 58 - 2 );     
+        $I->assertEquals( $purchase->instructor_earnings, 58 );     
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * 0.03 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 2 );
+        $I->assertEquals( $purchase->second_tier_instructor_earnings, 30 * 0.02 );
+        $I->assertEquals( $purchase->site_earnings, 30 - $purchase->second_tier_instructor_earnings -  $purchase->ltc_affiliate_earnings );
+        $sale = $purchase;
+        $total = $sale->processor_fee + $sale->instructor_earnings + $sale->second_tier_instructor_earnings + $sale->affiliate_earnings + $sale->second_tier_affiliate_earnings
+                        + $sale->ltc_affiliate_earnings + $sale->instructor_agency_earnings + $sale->site_earnings; 
+        $I->assertEquals($purchase->purchase_price, $total);
+    }   
+    
+    public function purchaseWithEverythingInstructorZeroPercent(UnitTester $I){
+        $student = Student::where('username','student')->first();
+        $student->ltc_affiliate_id = 2;
+        $student->updateUniques();
+        DB::table('purchases')->delete();
+        
+        $course = Course::first();
+        $course->price = 1050;
+        $course->affiliate_percentage = 68;
+        $course->updateUniques();
+        DB::table('courses')->where('id', $course->id)->update(['price' => '105']);
+        $aff = User::find(5);
+        $aff->second_tier_affiliate_id = 2;
+        $aff->updateUniques();
+        
+        $sti = User::find(2);
+        $sti->sti_approved = 'yes';
+        $sti->updateUniques();
+        
+        $course->instructor->second_tier_instructor_id = 2;
+        $course->instructor->updateUniques();
+        $course = Course::first();
+        
+        $I->assertEquals(105, $course->price);
+        $data = [];
+        $data['successData']['REF'] = '123';
+        $data['successData']['processor_fee'] = '5';
+        $data['successData']['tax'] = '10';
+        $data['successData']['giftID'] = null;
+        $data['successData']['ORDERID'] = 1;
+        $data['successData']['balance_used'] = '0';
+        $data['successData']['balance_transaction_id'] = '0';
+        
+        $I->assertEquals( 2, $student->ltc_affiliate_id );
+        $I->assertEquals( 2, $course->instructor->second_tier_instructor_id );
+        $I->assertNotEquals( false, $student->purchase($course, 5, $data) );
+        
+        $purchase = Purchase::orderBy('id','desc')->first();
+        
+        $I->assertEquals( 5, $purchase->product_affiliate_id);
+        $I->assertEquals( 2, $purchase->ltc_affiliate_id);
+        $I->assertEquals( 2, $purchase->second_tier_affiliate_id);
+        $I->assertEquals( 2, $purchase->second_tier_instructor_id);
+                
+        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->original_price, 105 );
+        $I->assertEquals( $purchase->discount_value, 0 );
+        $I->assertEquals( $purchase->discount, null );
+        $I->assertEquals( $purchase->processor_fee, 5 );
+        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->affiliate_earnings, 68 );
+        $I->assertEquals( $purchase->second_tier_affiliate_earnings, 2 );
+        $I->assertEquals( $purchase->instructor_earnings, 0 );     
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * 0.03 );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 30 * 0.02 );
         $I->assertEquals( $purchase->site_earnings, 30 - $purchase->second_tier_instructor_earnings -  $purchase->ltc_affiliate_earnings );
     }   
@@ -759,13 +824,13 @@ class BasicOrderCest{
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
-        $I->assertEquals( $purchase->instructor_earnings, 68 );     
+        $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 32 * 0.03 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * 0.03 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 0 );
-        // no second tier aff, wazaar cut goes up to 32%
-        $I->assertEquals( $purchase->site_earnings, 32 - 32 * 0.03 );
+        // no second tier aff, wazaar cut goes up to 30%
+        $I->assertEquals( $purchase->site_earnings, 30 - 30 * 0.03 );
         
         $student = Student::where('username','student')->first();
         $I->assertEquals( 2, $student->ltc_affiliate_id);

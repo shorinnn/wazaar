@@ -20,7 +20,8 @@ class STPubAsLTCCest{
         ProductAffiliate::boot();
         LTCAffiliate::boot();
         Purchase::boot();
-         $course = Course::where('instructor_id', 11)->first();
+        DB::table('courses')->where('id', 1)->update(['instructor_id' => 11] );
+        $course = Course::where('instructor_id', 11)->first();
         $course->sale = 0;
         $course->sale_ends_on = $course->sale_starts_on = '';
         $course->updateUniques();
@@ -77,21 +78,21 @@ class STPubAsLTCCest{
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
-        $I->assertEquals( $purchase->instructor_earnings, 68 );     
+        $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 32 * 0.08 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * 0.08 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 0 );
-        // no second tier aff, wazaar cut goes up to 32%
-        $I->assertEquals( $purchase->site_earnings, 32 - 32 * 0.08);
+        // no second tier aff, wazaar cut goes up to 30%
+        $I->assertEquals( $purchase->site_earnings, 30 - 30 * 0.08);
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 68,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => $student->LTCInstructor(), 'transaction_type' => 'second_tier_instructor_credit', 
             'amount' => $purchase->ltc_affiliate_earnings, 'product_id' => $course->id, 'status' => 'complete', 'is_ltc' => 'yes'] );
     }  
     
-    /**
+    /**TODO HERE
      * Instructor is Buyer and his ST Pub gets NO LTC commision because Instructor registered after 2015-08-12 23:59:59
      */
     public function noLTCBecausePastDate(UnitTester $I){
@@ -142,15 +143,15 @@ class STPubAsLTCCest{
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
-        $I->assertEquals( $purchase->instructor_earnings, 68 );     
+        $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings,0 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 0 );
-        // no second tier aff, wazaar cut goes up to 32%
-        $I->assertEquals( $purchase->site_earnings, 32 );
+        // no second tier aff, wazaar cut goes up to 30%
+        $I->assertEquals( $purchase->site_earnings, 30 );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 68,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->dontSeeRecord('transactions', ['user_id' => $student->LTCInstructor(), 'transaction_type' => 'second_tier_instructor_credit',
             'product_id' => $course->id, 'status' => 'complete', 'is_ltc' => 'yes'] );
@@ -214,15 +215,15 @@ class STPubAsLTCCest{
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->processor_fee, 5 );
         $I->assertEquals( $purchase->tax, 10 );
-        $I->assertEquals( $purchase->instructor_earnings, 68 );     
+        $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 32 * 0.08 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * 0.08 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 0 );
-        // no second tier aff, wazaar cut goes up to 32%
-        $I->assertEquals( $purchase->site_earnings, 32 - 32 * 0.08);
+        // no second tier aff, wazaar cut goes up to 30%
+        $I->assertEquals( $purchase->site_earnings, 30 - 30 * 0.08);
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 68,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => $student->LTCInstructor(), 'transaction_type' => 'second_tier_instructor_credit', 
             'amount' => $purchase->ltc_affiliate_earnings, 'product_id' => $course->id, 'status' => 'complete', 'is_ltc' => 'yes'] );
@@ -230,23 +231,23 @@ class STPubAsLTCCest{
         $student = Student::where('username','instructor')->first();
         $I->assertEquals(0, $student->student_balance);
         $secondTierPub = User::find(2);
-        $I->assertEquals( 32 * 0.08, $secondTierPub->instructor_balance );
+        $I->assertEquals( 30 * 0.08, $secondTierPub->instructor_balance );
         $instructor = User::find(11);
-        $I->assertEquals( 68, $instructor->instructor_balance );
+        $I->assertEquals( 70, $instructor->instructor_balance );
         
         $I->assertNotEquals(false, $purchase->refund() );
         
-        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 68,
+        $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'failed'] );
         $I->seeRecord('transactions', ['user_id' => $student->LTCInstructor(), 'transaction_type' => 'second_tier_instructor_credit', 
             'amount' => $purchase->ltc_affiliate_earnings, 'product_id' => $course->id, 'status' => 'failed', 'is_ltc' => 'yes'] );
         
-        $I->dontSeeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 68,
+        $I->dontSeeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->dontSeeRecord('transactions', ['user_id' => $student->LTCInstructor(), 'transaction_type' => 'second_tier_instructor_credit', 
             'amount' => $purchase->ltc_affiliate_earnings, 'product_id' => $course->id, 'status' => 'complete', 'is_ltc' => 'yes'] );
         
-        $I->dontSeeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit_reversed', 'amount' => 68,
+        $I->dontSeeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit_reversed', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->dontSeeRecord('transactions', ['user_id' => $student->LTCInstructor(), 'transaction_type' => 'second_tier_instructor_credit_reversed', 
             'amount' => $purchase->ltc_affiliate_earnings, 'product_id' => $course->id, 'status' => 'complete', 'is_ltc' => 'yes'] );

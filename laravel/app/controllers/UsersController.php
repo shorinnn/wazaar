@@ -619,7 +619,10 @@ class UsersController extends Controller
     }
     
     public function doConfirmPassword(){
-        if( Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password') ] ) ){
+        $email = Input::get('email');
+        if( Auth::user()->hasRole('Affiliate') ) $email = '#waa#-'.$email;
+        
+        if( Auth::attempt(['email' => $email, 'password' => Input::get('password') ] ) ){
             Session::set('verifiedLogin', 1);
             $url = Session::get('url.intended');
             Session::forget('url.intended');

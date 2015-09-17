@@ -31,6 +31,7 @@ $wwwRoutes = function(){
     // Site routes
     Route::get('/', 'SiteController@index');
     Route::get('demo-homepage', 'SiteController@indexDemo');
+    Route::get('views-analytics', 'SiteController@viewsAnalytics');
     Route::get('discover-courses/{group}', 'SiteController@discoverCourses');
     Route::get('privacy-policy', 'SiteController@privacyPolicy');
     Route::get('about-the-company', 'SiteController@about');
@@ -131,6 +132,7 @@ $wwwRoutes = function(){
         Route::post('members/create-vip', 'MembersController@storeVip');
         Route::get('members/super-vip', 'MembersController@superVip');
         Route::get('members/vip', 'MembersController@vip');
+        Route::get('members/ltc', 'MembersController@ltc');
 
         Route::post('members/login-as', 'MembersController@loginAs');
         Route::resource('members', 'MembersController');
