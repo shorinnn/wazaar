@@ -644,6 +644,7 @@ class CoursesController extends \BaseController {
                 $agent = new Agent();
                 AffiliateHit::create([
                     'affiliate_id' => Input::get('aid'),
+                    'session_id' => Session::getId(),
                     'course_id' => $course->id,
                     'user_id' => Auth::id(),
                     'referrer' => Request::server('HTTP_REFERER'),

@@ -14,6 +14,7 @@ class CreateAffiliateHitsTable extends Migration {
 	{
 		Schema::create('affiliate_hits', function (Blueprint $table){
 		    $table->bigIncrements('id');
+            $table->string('session_id');
             $table->string('affiliate_id');
             $table->bigInteger('course_id')->nullable();
             $table->bigInteger('user_id')->nullable();
