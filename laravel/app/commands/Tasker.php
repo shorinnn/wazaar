@@ -252,12 +252,6 @@ class TaskerCommand extends Command {
                 }
                 
                 $sale->instructor_earnings = round($instructor_earnings, 3) - round($sale->second_tier_affiliate_earnings, 3);
-//                if( $sale->second_tier_affiliate_earnings > 0 ){
-//
-//                    $sta = round( floatval($sale->second_tier_affiliate_earnings), 2) ;
-//                    dd( round($instructor_earnings, 2) - $sta );
-//                    dd( $instructor_earnings.'vs'.$sale->second_tier_affiliate_earnings );
-//                }
                 $sale->site_earnings = $site_earnings;
                 
                 $percentage = $sale->instructor_earnings * 100 / $sale->purchase_price;
@@ -273,54 +267,54 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
                     $this->error("Earnings mismatch. Earned: $sale->purchase_price - Adjusted: $total");
                 }
                 
-                // update purchase object
-//                if( $sale->updateUniques() ){
-//                    // update transactions
-//                    $instructor_earnings_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'instructor_credit')->first();
-//                    $instructor_earnings_transaction->amount = $sale->instructor_earnings;
-//                    if( !$instructor_earnings_transaction->updateUniques() ){
-//                            dd("FAILED UPDATING INSTRUCTOR  $instructor_earnings_transaction->id");
-//                    }
-//                    
-//                    if( $sale->second_tier_instructor_earnings > 0 ){
-//                        $sti_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'second_tier_instructor_credit')->first();
-//                        $sti_transaction->amount = $sale->second_tier_instructor_earnings;
-//                        if ( !$sti_transaction->updateUniques() ){
-//                            dd("FAILED UPDATING STI_TRANSACTION $sti_transaction->id");
-//                        }
-//                    }
-//                    
-//                    if( $sale->affiliate_earnings ){
-//                        $aff_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'affiliate_credit')->where('is_ltc','no')
-//                                ->where('is_second_tier','no')->first();
-//                        $aff_transaction->amount = $sale->affiliate_earnings;
-//                        if( !$aff_transaction->save() ){
-//                            dd("FAILED UPDATING AFF_TRANSACTION $aff_transaction->id");
-//                        }
-//                    }
-//                    
-//                    if( $sale->ltc_affiliate_earnings > 0){
-//                        $ltc_aff_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'affiliate_credit')->where('is_ltc','yes')
-//                                ->where('is_second_tier','no')->first();
-//                        $ltc_aff_transaction->amount = $sale->ltc_affiliate_earnings;
-//                        if( !$ltc_aff_transaction->save() ){
-//                            dd("FAILED UPDATING LTC_TRANSACTION $ltc_aff_transaction->id");
-//                        }
-//                    }
-//                    
-//                    $site_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'site_credit')->first();
-//                    $site_transaction->amount = $sale->site_earnings;
-//                    if( !$site_transaction->updateUniques() ){
-//                            dd("FAILED UPDATING SITE_TRANSACTION $site_transaction->id");
-//                    }
-//                    $insert = DB::table('misc_tasks')->insert( [ 'key' => 'fix-ltc-stpub', 'val' => $sale->id] );
-//                    if( !$insert ){
-//                        dd("COULDNT SAVE CONFIRMATION");
-//                    }
-//                }
-//                else{
-//                    dd("FAILED UPDATING SALE $sale->id");
-//                }
+                 update purchase object
+                if( $sale->updateUniques() ){
+                    // update transactions
+                    $instructor_earnings_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'instructor_credit')->first();
+                    $instructor_earnings_transaction->amount = $sale->instructor_earnings;
+                    if( !$instructor_earnings_transaction->updateUniques() ){
+                            dd("FAILED UPDATING INSTRUCTOR  $instructor_earnings_transaction->id");
+                    }
+                    
+                    if( $sale->second_tier_instructor_earnings > 0 ){
+                        $sti_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'second_tier_instructor_credit')->first();
+                        $sti_transaction->amount = $sale->second_tier_instructor_earnings;
+                        if ( !$sti_transaction->updateUniques() ){
+                            dd("FAILED UPDATING STI_TRANSACTION $sti_transaction->id");
+                        }
+                    }
+                    
+                    if( $sale->affiliate_earnings ){
+                        $aff_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'affiliate_credit')->where('is_ltc','no')
+                                ->where('is_second_tier','no')->first();
+                        $aff_transaction->amount = $sale->affiliate_earnings;
+                        if( !$aff_transaction->save() ){
+                            dd("FAILED UPDATING AFF_TRANSACTION $aff_transaction->id");
+                        }
+                    }
+                    
+                    if( $sale->ltc_affiliate_earnings > 0){
+                        $ltc_aff_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'affiliate_credit')->where('is_ltc','yes')
+                                ->where('is_second_tier','no')->first();
+                        $ltc_aff_transaction->amount = $sale->ltc_affiliate_earnings;
+                        if( !$ltc_aff_transaction->save() ){
+                            dd("FAILED UPDATING LTC_TRANSACTION $ltc_aff_transaction->id");
+                        }
+                    }
+                    
+                    $site_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'site_credit')->first();
+                    $site_transaction->amount = $sale->site_earnings;
+                    if( !$site_transaction->updateUniques() ){
+                            dd("FAILED UPDATING SITE_TRANSACTION $site_transaction->id");
+                    }
+                    $insert = DB::table('misc_tasks')->insert( [ 'key' => 'fix-ltc-stpub', 'val' => $sale->id] );
+                    if( !$insert ){
+                        dd("COULDNT SAVE CONFIRMATION");
+                    }
+                }
+                else{
+                    dd("FAILED UPDATING SALE $sale->id");
+                }
             }
         }
 
