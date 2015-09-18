@@ -267,7 +267,7 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
                     $this->error("Earnings mismatch. Earned: $sale->purchase_price - Adjusted: $total");
                 }
                 
-                 update purchase object
+                // update purchase object
                 if( $sale->updateUniques() ){
                     // update transactions
                     $instructor_earnings_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'instructor_credit')->first();
