@@ -25,6 +25,7 @@ class DiscussionsController extends \BaseController {
             $discussion = new LessonDiscussion(Input::all());
             $discussion->student_id = Auth::user()->id;
             $course = $discussion->lesson->module->course;
+            $discussion->course_id = $course->id;
             if( $discussion->save() ){
                 if( Request::ajax() ){
                     $response['status'] = 'success';

@@ -3,7 +3,7 @@ use Jenssegers\Agent\Agent;
 class CoursesController extends \BaseController {
     
         public function __construct(){
-            $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'dashboard',
+            $this->beforeFilter( 'instructor', [ 'only' => ['create', 'store', 'myCourses', 'destroy', 'edit', 'update', 'curriculum', 'viewDiscussions',
                 'customPercentage', 'updateExternalVideo', 'removePromo', 'setField'] ] );
             $this->beforeFilter('admin', ['only' => 'disapprove' ] );
             $this->beforeFilter('csrf', ['only' => [ 'store', 'update', 'destroyxxx', 'purchase', 'purchaseLesson', 'submitForApproval' ]]);

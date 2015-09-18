@@ -12,6 +12,8 @@ class DiscussionRepliesController extends \BaseController {
             $reply->student_id = Auth::user()->id;
             $course = $lesson->module->course;
             if( $reply->save() ){
+                // update the discussion timestamp
+                DB::table('lesson_discussions')->where('id', $discussion->id)->update( [ 'updated_at' => date('Y-m-d H:i:s') ] );
                   if( Request::ajax() ){
                     $response['status'] = 'success';
                     $response['html'] = View::make('courses.classroom.discussions.reply')->with( compact('reply', 'course') )->render();
