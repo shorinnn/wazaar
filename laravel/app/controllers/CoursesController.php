@@ -846,17 +846,19 @@ class CoursesController extends \BaseController {
             }
             $instructor = Instructor::find( Auth::user()->id );
             
-            if( Input::get('paginate')=='announcements' ) Paginator::setCurrentPage( Input::get('page') );
-            else Paginator::setCurrentPage(1);
-            $announcements = $instructor->sentMessages()->where('course_id', $course->id)
-                    ->where("type",'mass_message')->orderBy('id','desc')->paginate( 2 );
-            if( Input::get('paginate')=='discussions' ) Paginator::setCurrentPage( Input::get('page') );
-            else Paginator::setCurrentPage(1);
-            $course->comments = $course->dashboardComments()->where( 'instructor_read', 'no' )->orderBy( 'id','desc' )->paginate(2);
+//            if( Input::get('paginate')=='announcements' ) Paginator::setCurrentPage( Input::get('page') );
+//            else Paginator::setCurrentPage(1);
+//            $announcements = $instructor->sentMessages()->where('course_id', $course->id)
+//                    ->where("type",'mass_message')->orderBy('id','desc')->paginate( 2 );
+//            if( Input::get('paginate')=='discussions' ) Paginator::setCurrentPage( Input::get('page') );
+//            else Paginator::setCurrentPage(1);
+//            $course->comments = $course->dashboardComments()->where( 'instructor_read', 'no' )->orderBy( 'id','desc' )->paginate(2);
+//            
+//            if( Input::get('paginate')=='questions' ) Paginator::setCurrentPage( Input::get('page') );
+//            else Paginator::setCurrentPage(1);
+//            $course->questions = $course->questions()->paginate(2);
             
-            if( Input::get('paginate')=='questions' ) Paginator::setCurrentPage( Input::get('page') );
-            else Paginator::setCurrentPage(1);
-            $course->questions = $course->questions()->paginate(2);
+            $discussions = $instructor->discussions(20);
             
             if(Request::ajax()){
                 if(Input::get('paginate') == 'announcements'){
@@ -869,19 +871,21 @@ class CoursesController extends \BaseController {
                     return View::make('courses/instructor/dashboard/questions')->with(compact('course'));
                 }
             }
-            return View::make('courses/instructor/dashboard')->with(compact('course'))->with( compact('announcements') );
+            return View::make('courses/instructor/dashboard')->with(compact('course', 'discussions') );
         }
         
         public function viewDiscussion($id){
-            $comment = Conversation::find($id);
-            $course = $comment->course;
+//            $comment = Conversation::find($id);
+            $discussion = LessonDiscussion::find($id);
+            $course = $discussion->lesson->module->course;
             if( $course==null || $course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 return Redirect::to('/');
             }
-            $page = $comment->page();
-            
-            $comment->markRead();
-            return Redirect::to( action('ClassroomController@dashboard', $course->slug)."?page=$page#conversations" );
+            return View::make('courses/instructor/dashboard/discussion')->withDiscussion($discussion)->withCourse($course);
+//            $page = $comment->page();
+//            
+//            $comment->markRead();
+//            return Redirect::to( action('ClassroomController@dashboard', $course->slug)."?page=$page#conversations" );
         }
         
         public function markResolved(){

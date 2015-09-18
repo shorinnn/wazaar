@@ -697,7 +697,7 @@ class Student extends User{
      }
      
      public function canAskForReview($course, $lesson){
-         if( App::environment()=='production' ) return false; 
+         
          if( !$this->purchased($course) ) return false;
          if( $this->testimonials()->where('course_id', $course->id)->count()==0 ){
              // if last lesson, show modal

@@ -242,7 +242,7 @@ $wwwRoutes = function(){
     Route::get("classroom/complete-lesson/{id}", 'ClassroomController@completeLesson');
     // Courses Controller
     Route::get('courses/mycourses', 'UsersController@login');
-    Route::get('courses/view-discussion/{id}', 'CoursesController@viewDiscussion');
+//    Route::get('courses/view-discussion/{id}', 'CoursesController@viewDiscussion');
     Route::put('courses/{slug}/submit-for-approval', 'CoursesController@submitForApproval');
     
     Route::get('courses/search-instructor/{email}', 'CoursesController@searchInstructor');
@@ -275,6 +275,7 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::get('courses/mycourses', 'CoursesController@myCourses');
     Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
     Route::get('courses/{slug}/dashboard', 'CoursesController@dashboard');
+    Route::get('courses/view-discussion/{id}', 'CoursesController@viewDiscussion');
     
     
     Route::post('courses/mark-resolved', 'CoursesController@markResolved');

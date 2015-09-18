@@ -455,8 +455,11 @@ function linkToRemoteConfirm(e){
  * @method loadRemote
  */
 function loadRemote(e){
+//    console.log(e.target);
+//    var nofollow = $(e.target).attr('data-nofollow');
     
-    e.preventDefault();
+//    if(  !isset( $(e.target).attr('data-no-prevent-default')) )
+        e.preventDefault();
     var nofollow = $(e.target).attr('data-nofollow');
     if( typeof(nofollow)!='undefined'&& nofollow==1 ) return false;
     var loading = $(e.target).attr('data-loading');
@@ -478,7 +481,7 @@ function loadRemote(e){
         callback2 = elem.attr('data-callback-2');  
         noPush = elem.attr('data-no-push-state');  
         loadMethod = $(e.target).attr('data-load-method');
-        indicatorStyle = elem.attr('data-indicator-style')
+        indicatorStyle = elem.attr('data-indicator-style');
         if(failSafe > 50) return;
         failSave++;
     }

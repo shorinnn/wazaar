@@ -290,7 +290,7 @@
                 <!--<a href="#" class=" submit-for-approval blue-button large-button right">{{ trans('courses/general.submit') }}</a>
                 <a href="/courses/{{$course->slug}}?preview=1"></a>-->
                 <a href="#" class=" submit-for-approval blue-button large-button disabled-button">{{ trans('courses/general.submit') }}</a>                
-                <a href='#' data-href="{{url('courses/' . $course->slug . '?preview=1')}}" class="default-button large-button preview-course-btn">
+                <a href='#' data-href="{{action('CoursesController@show', $course->slug ) }}?preview=1" class="default-button large-button preview-course-btn">
                 	{{ trans('courses/general.preview_course') }}
             	</a>
                                 

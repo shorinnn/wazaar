@@ -166,4 +166,6 @@ return array(
     'confirm-password' => 'Confirm Password',
     'confirmation-link-emailed' => 'Confirmation link emailed',
     'resend-link' => 'Resend Link',
+    'today' => 'Today',
+    'yesterday' => 'Yesterday',
 );

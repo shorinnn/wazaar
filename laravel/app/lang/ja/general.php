@@ -136,4 +136,6 @@ return array(
     'confirm-password' => 'パスワードを入力する',
     'confirmation-link-emailed' => 'ご登録のメルアド再確認用',
     'resend-link' => 'メールを再送する',
+    'today' => 'Today',
+    'yesterday' => 'Yesterday',
 );

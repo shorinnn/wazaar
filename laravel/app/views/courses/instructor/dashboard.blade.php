@@ -1,57 +1,55 @@
 @extends('layouts.default')
-@section('page_title')
-    {{ $course->name }} - {{ trans('courses/dashboard.dashboard') }} -
-@stop
-@section('content')	
-    <div class="container course-editor">
-    	<div class="row">
-        	<div class="col-md-12">
-            	<h1 class='icon'>{{$course->name}}</h1>   
-            </div>
-        </div>
-       
-        <div class="row">
-        	<div class="col-md-12">
-            	<div class="plan-your-curriculum">
-                    <h4>{{ trans('courses/dashboard.announcements-tab') }}</h4>
-                    <div style="border:1px solid silver; margin:10px;"  class="tab-pane active" id="announcements">   
-                        {{ View::make('courses/instructor/dashboard/announcements')->with(compact('course'))->with( compact('announcements') ) }}
+@section('content')
+    <div class="container-fluid new-dashboard student-messages">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 message-preview-wrap">
+                	<div class="row message-header">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <h3>Messages</h3>
+                        </div>
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                            <form>
+                                <div>
+                                    <input type="search" placeholder="Search conversations ..." />
+                                    <button><i class="wa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
+                    @foreach($discussions as $discussion)
+                    <a href="#"
+                       zdata-no-prevent-default='1'
+                       data-url="{{ action('CoursesController@viewDiscussion', $discussion->id)}}" data-no-push-state="1"
+                       class="load-remote" data-target=".full-messages" data-loading-container=".full-messages"> 
+                        <div class="row message-preview">
+                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <div class="avatar">
+                                    @if( $discussion->lesson->module->course->instructor_id == $discussion->student_id 
+                                    || $discussion->lesson->module->course->assigned_instructor_id == $discussion->student_id )
+                                        <img src="{{ $discussion->student->commentPicture('Instructor') }}" alt="" class="img-responsive">
+                                    @else
+                                        <img src="{{ $discussion->student->commentPicture('Student') }}" alt="" class="img-responsive">
+                                    @endif
+                                    
+                                </div>
+                            </div>
+                            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                    <div class="message">
+                                    <h4>{{ $discussion->student->fullName() }}</h4>
+                                    <p class="regular-paragraph" style="font-weight: bold">{{ Str::limit( $discussion->title, 20) }}</p>
+                                    <p class="regular-paragraph">{{ Str::limit( $discussion->content, 100) }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    @endforeach
+                    {{ $discussions->links() }}
+                </div>
+            	<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 full-messages">
 
-                    <h4>{{ trans('courses/dashboard.questions-tab') }}</h4>
-                    <div style="border:1px solid silver; margin:10px;"  class="tab-pane" id="questions">
-                        {{ View::make('courses/instructor/dashboard/questions')->with(compact('course')) }}
-                    </div>
-
-                    <h4>{{ trans('courses/dashboard.discussions-tab') }}</h4>
-                    <div style="border:1px solid silver; margin:10px;" class="tab-pane" id="discussions">
-                        {{ View::make('courses/instructor/dashboard/discussions')->with(compact('course')) }}
-                    </div>
                 </div>
             </div>
-        </div>
-        
-    <div class="modal fade" id="reply-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">{{ trans('conversations/general.Reply') }}</h4>
-            </div>
-            <div class="modal-body clearfix">
-
-                <form method="post" action="{{ action( 'CoursesController@reply' ) }}" class="ajax-form"
-                      id='reply-form' data-callback='instructorReplied'>
-                    <textarea class='form-control' name="reply" id="reply-form-reply"></textarea>
-                    <input type="hidden" name="id" id="reply-form-id" />
-                    <input type="hidden" name="type" id="reply-form-type" />
-                    <button type='submit' class="btn btn-primary">{{ trans('conversations/general.Reply') }}</button>
-                </form>
-
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-        
-</div>
+        </div>    
+    </div>
 @stop

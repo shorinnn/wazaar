@@ -192,6 +192,16 @@ class Instructor extends User{
             else return $this->first_name.' '.$this->last_name;
         }
     }
+    
+    public function discussions($paginate=2){
+        $courses = $this->courses()->lists('id');
+        if( count($courses)==0 ) return null;
+        $modules = Module::whereIn('course_id', $courses)->lists('id');
+        if( count($modules)==0 ) return null;
+        $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
+        if( count($lessons)==0 ) return null;
+        return LessonDiscussion::whereIn('lesson_id', $lessons)->orderBy('updated_at','desc')->paginate($paginate);
+    }
 
 
 }
