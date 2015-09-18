@@ -274,8 +274,9 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::post('courses/{id}/remove-promo', 'CoursesController@removePromo');
     Route::get('courses/mycourses', 'CoursesController@myCourses');
     Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
-    Route::get('courses/{slug}/dashboard', 'CoursesController@dashboard');
+    Route::get('courses/{slug}/view-discussions', 'CoursesController@viewDiscussions');
     Route::get('courses/view-discussion/{id}', 'CoursesController@viewDiscussion');
+    Route::post('courses/storeDiscussionReply', 'CoursesController@storeDiscussionReply');
     
     
     Route::post('courses/mark-resolved', 'CoursesController@markResolved');

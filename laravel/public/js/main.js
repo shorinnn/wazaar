@@ -455,11 +455,11 @@ function linkToRemoteConfirm(e){
  * @method loadRemote
  */
 function loadRemote(e){
-//    console.log(e.target);
-//    var nofollow = $(e.target).attr('data-nofollow');
-    
-//    if(  !isset( $(e.target).attr('data-no-prevent-default')) )
-        e.preventDefault();
+    var noPreventDefault = $(e.target).attr('data-no-prevent-default');
+    console.log(noPreventDefault);
+    if( isset(noPreventDefault) && noPreventDefault == 1 ){}
+    else e.preventDefault();
+        
     var nofollow = $(e.target).attr('data-nofollow');
     if( typeof(nofollow)!='undefined'&& nofollow==1 ) return false;
     var loading = $(e.target).attr('data-loading');

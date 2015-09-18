@@ -839,7 +839,7 @@ class CoursesController extends \BaseController {
             return View::make('courses/instructor/curriculum')->with(compact('course'));
         }
         
-        public function dashboard($slug){
+        public function viewDiscussions($slug){
             $course = Course::where('slug',$slug)->first();
             if( $course==null || $course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
                 return Redirect::to('/');
@@ -858,7 +858,7 @@ class CoursesController extends \BaseController {
 //            else Paginator::setCurrentPage(1);
 //            $course->questions = $course->questions()->paginate(2);
             
-            $discussions = $instructor->discussions(20);
+            $discussions = $course->discussions(20);
             
             if(Request::ajax()){
                 if(Input::get('paginate') == 'announcements'){
@@ -872,6 +872,48 @@ class CoursesController extends \BaseController {
                 }
             }
             return View::make('courses/instructor/dashboard')->with(compact('course', 'discussions') );
+        }
+        
+        public function storeDiscussionReply(){
+            $discussion = LessonDiscussion::find( Input::get('lesson_discussion_id') );
+            $course = $discussion->lesson->module->course;
+            if( $course==null || $course->instructor->id != Auth::user()->id && $course->assigned_instructor_id != Auth::user()->id ){
+                return Redirect::to('/');
+            }
+            
+           
+            $lesson = Lesson::find( $discussion->lesson_id );          
+            $reply = new LessonDiscussionReply( Input::all() );
+            $reply->student_id = Auth::user()->id;
+            if( $reply->save() ){
+                // email the original poster
+                $user = $discussion->student;
+                Mail::send(
+                        'emails.discussion-reply-from-instructor',
+                        compact('user' ),
+                        function ($message) use ($user) {
+                            $message->getHeaders()->addTextHeader('X-MC-Important', 'True');
+                            $message
+                                ->to($user->email, $user->fullName())
+                                ->subject( 'Reply from instructor' );
+                        }
+                    );
+                
+                
+                  if( Request::ajax() ){
+                    $response['status'] = 'success';
+                    $timeDif = new stdClass();
+                    $timeDif->timeDif = time();
+                    $noTimeLine = true;
+                    $response['html'] =  View::make('courses.instructor.dashboard.reply')
+                            ->with( compact( 'course', 'discussion', 'timeDif', 'reply', 'noTimeLine' ) )->render();
+                    return json_encode($response);
+                }
+		return Redirect::back();
+            }
+            else{
+                return Redirect::back()->withErrors( format_errors( $reply->errors()->all() ) );
+            }
         }
         
         public function viewDiscussion($id){

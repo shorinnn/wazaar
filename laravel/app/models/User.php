@@ -175,7 +175,6 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     public function commentPicture($user_type){
-        $user_type == strtolower($user_type);
         $user_type = strtolower($user_type);
         if($user_type=='student') $user_type='Student';
         else if($user_type=='instructor') $user_type='Instructor';
@@ -221,12 +220,15 @@ class User extends Ardent implements ConfideUserInterface
     }
     
     public function _profile( $type='Student' ){
-        if( !$this->hasRole( $type ) || $this->profiles == null ) return null;
-        foreach( $this->profiles as $profile ){
-            if( $profile->owner_type == $type ){
-                return $profile;
+        if( !$this->hasRole( $type ) ) return null;
+        if($this->profiles != null ){
+            foreach( $this->profiles as $profile ){
+                if( $profile->owner_type == $type ){
+                    return $profile;
+                }
             }
         }
+        if($this->profile !=null) return $this->profile;
         return null;
     }
     

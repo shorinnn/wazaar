@@ -467,6 +467,15 @@ class Course extends Ardent{
         if( $this->student_count <= 20 && $created > $threeMonths ) return true;
         return false;
     }
+    
+        
+    public function discussions( $paginate=2){
+        $modules = $this->modules->lists('id');
+        if( count($modules)==0 ) return null;
+        $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
+        if( count($lessons)==0 ) return null;
+        return LessonDiscussion::whereIn('lesson_id', $lessons)->orderBy('updated_at','desc')->paginate($paginate);
+    }
 
 
 }
