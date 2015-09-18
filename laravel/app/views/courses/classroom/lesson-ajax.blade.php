@@ -297,30 +297,6 @@
 										text-align: center;
 									}
 								}
-								@media (max-width:700px){
-									.classroom-view .classroom-header .lesson-title{
-										display: block;
-										text-align: center;
-										margin: 30px 0 10px;
-									}
-									.classroom-view .classroom-header .navigate-lessons-buttons{
-										float: none;
-										display: block;
-										text-align: center;
-									}
-									.course-question-sidebar{
-										z-index: 0;
-									}
-									.classroom-view .classroom-header{
-										margin-bottom: 0;
-									}
-									.questions-sidebar .ask-question span{
-										max-width: 85%;
-									}
-									.questions-sidebar{
-										min-height: 260px;
-									}
-								}
 							</style>
                        	@endif
                         <div class="rows search-discussion-form">

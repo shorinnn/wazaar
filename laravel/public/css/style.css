@@ -8920,6 +8920,11 @@ footer{
 		width: 100% !important;
 		right: 0px !important;
 	}
+	.questions-sidebar{
+		min-height: auto;
+		padding-bottom: 30px;
+	}
+
 }
 @media (max-width:900px){
 	.course-detail-top-section .centered-contents{
@@ -9212,6 +9217,42 @@ header .top-menu .logged-out li{
 	width: 80% !important;
 }
 }
+
+@media (max-width:700px){
+	.classroom-view .classroom-header .lesson-title{
+		display: block;
+		text-align: center;
+		margin: 30px 0 10px;
+	}
+	.classroom-view .classroom-header .navigate-lessons-buttons{
+		float: none;
+		display: block;
+		text-align: center;
+	}
+	.course-question-sidebar{
+		z-index: 0;
+	}
+	.classroom-view .classroom-header{
+		margin-bottom: 0;
+	}
+	.questions-sidebar .ask-question span{
+		max-width: 85%;
+	}
+	.video-row {
+		margin-top: 232px;
+	}
+	.classroom-view .classroom-header .lesson-title,
+	.classroom-view .classroom-header .navigate-lessons-buttons a.prev-button.
+	.classroom-view .classroom-header .navigate-lessons-buttons a.next-button{
+		display: block;
+		margin: 0 auto 10px;
+		max-width: 500px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
 @media (max-width:665px){
 	/*.student-course.percentage-completed .resume-course{
 		float: left;
@@ -9392,6 +9433,11 @@ header .top-menu .logged-out li{
 		display: inline-block;
 		float: none;
 		margin: 0;
+	}
+	.classroom-view .classroom-header .lesson-title,
+	.classroom-view .classroom-header .navigate-lessons-buttons a.prev-button.
+	.classroom-view .classroom-header .navigate-lessons-buttons a.next-button{
+		max-width: 314px;
 	}
 }
 
