@@ -271,9 +271,11 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
                 if( $sale->updateUniques() ){
                     // update transactions
                     $instructor_earnings_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'instructor_credit')->first();
-                    $instructor_earnings_transaction->amount = $sale->instructor_earnings;
-                    if( !$instructor_earnings_transaction->updateUniques() ){
-                            dd("FAILED UPDATING INSTRUCTOR  $instructor_earnings_transaction->id");
+                    if($instructor_earnings_transaction !=null) {
+                        $instructor_earnings_transaction->amount = $sale->instructor_earnings;
+                        if( !$instructor_earnings_transaction->updateUniques() ){
+                                dd("FAILED UPDATING INSTRUCTOR  $instructor_earnings_transaction->id");
+                        }
                     }
                     
                     if( $sale->second_tier_instructor_earnings > 0 ){
