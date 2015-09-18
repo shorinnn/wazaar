@@ -8924,7 +8924,12 @@ footer{
 		min-height: auto;
 		padding-bottom: 30px;
 	}
-
+	.classroom-view .classroom-header{
+		position: relative !important;
+	}
+	.classroom-view .classroom-header{
+		margin-bottom: 0;
+	}
 }
 @media (max-width:900px){
 	.course-detail-top-section .centered-contents{
@@ -9232,14 +9237,8 @@ header .top-menu .logged-out li{
 	.course-question-sidebar{
 		z-index: 0;
 	}
-	.classroom-view .classroom-header{
-		margin-bottom: 0;
-	}
 	.questions-sidebar .ask-question span{
-		max-width: 85%;
-	}
-	.video-row {
-		margin-top: 232px;
+		max-width: 85% !important;
 	}
 	.classroom-view .classroom-header .lesson-title,
 	.classroom-view .classroom-header .navigate-lessons-buttons a.prev-button.
