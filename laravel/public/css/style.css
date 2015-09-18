@@ -4879,10 +4879,11 @@ h2, h3, h4, h5, h6{
 	color: #fff;
 	display: inline-block;
 	margin-top: 5px;
+	float: left;
 	border-right: solid 1px #303941;
 }
 .classroom-view .classroom-header .logo{
-	margin: 0 29px;
+	margin: 0 29px 30px;
 	position: relative;
 	top: 7px;
 	display: inline-block;
@@ -8932,6 +8933,13 @@ footer{
 	.video-row {
 		margin-top: 0 !important;
 	}
+	.questions-sidebar .ask-question span{
+		display: block;
+		left: 60px;
+    	max-width: 93%;
+		width: auto;
+	}
+
 }
 @media (max-width:900px){
 	.course-detail-top-section .centered-contents{

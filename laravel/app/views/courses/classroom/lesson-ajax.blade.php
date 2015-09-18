@@ -283,12 +283,6 @@
 										margin-top: 10px;
 										border-top: none;
 									}
-									.questions-sidebar .ask-question span{
-										display: block;
-									    left: 60px;
-    									max-width: 93%;
-										width: auto;
-									}
 									.ask-a-question-heading {
 										color: #697480;
 										margin-bottom: 30px;
