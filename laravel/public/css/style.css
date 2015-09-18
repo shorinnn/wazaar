@@ -5212,14 +5212,15 @@ h2, h3, h4, h5, h6{
 	overflow: hidden;
 }
 .questions-sidebar .ask-question span{
-	display: inline-block;
+	display: block;
 	border-radius: 4px;
 	background: #303941;
 	padding: 12px 15px;
 	font-size: 13px;
 	color: #798794;
 	position: relative;
-	width: 75%;
+	width: 84%;
+	left: 60px;
 }
 .questions-sidebar .ask-question span::before{
 	width: 0; 
@@ -8912,6 +8913,10 @@ footer{
 	}	
 	.classroom-view .classroom-header{
 		width: 100% !important;
+		margin-bottom: 15px;
+		margin-left: 0;
+		margin-right: 0;
+		position: relative !important;
 	}
 	.course-question-sidebar{
 		position: relative;
@@ -8924,11 +8929,8 @@ footer{
 		min-height: auto;
 		padding-bottom: 30px;
 	}
-	.classroom-view .classroom-header{
-		position: relative !important;
-	}
-	.classroom-view .classroom-header{
-		margin-bottom: 0;
+	.video-row {
+		margin-top: 0 !important;
 	}
 }
 @media (max-width:900px){
@@ -9241,14 +9243,11 @@ header .top-menu .logged-out li{
 		max-width: 85% !important;
 	}
 	.classroom-view .classroom-header .lesson-title,
-	.classroom-view .classroom-header .navigate-lessons-buttons a.prev-button.
+	.classroom-view .classroom-header .navigate-lessons-buttons a.prev-button,
 	.classroom-view .classroom-header .navigate-lessons-buttons a.next-button{
 		display: block;
 		margin: 0 auto 10px;
 		max-width: 500px;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
 	}
 }
 
@@ -9432,11 +9431,6 @@ header .top-menu .logged-out li{
 		display: inline-block;
 		float: none;
 		margin: 0;
-	}
-	.classroom-view .classroom-header .lesson-title,
-	.classroom-view .classroom-header .navigate-lessons-buttons a.prev-button.
-	.classroom-view .classroom-header .navigate-lessons-buttons a.next-button{
-		max-width: 314px;
 	}
 }
 

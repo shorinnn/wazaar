@@ -124,7 +124,7 @@
 			.classroom-view .classroom-header {
 			  position: fixed;
 			  z-index: 6;
-			  width: 76%;
+			  width: 75%;
 			  padding-bottom: 10px;
 			  background-color: #18222b;
 			}			
