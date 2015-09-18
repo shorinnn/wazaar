@@ -38,7 +38,7 @@ class TaskerCommand extends Command {
        protected function getOptions()
        {
            return array(
-               array('run', null, InputOption::VALUE_REQUIRED, 'What to run: fix_70_30, precalculate_ltc_stats')
+               array('run', null, InputOption::VALUE_REQUIRED, 'What to run: fix_70_30, precalculate_ltc_stats, yozawa_fix')
            );
        }
 
@@ -193,6 +193,20 @@ class TaskerCommand extends Command {
         }
         
 
-	
+        public function yozawa_fix(){
+            $st = User::where('email','yozawa@exraise-venture.asia')->first();
+            $ltc = User::where('email','#waa#-yozawa@exraise-venture.asia')->first();
+            
+            $ltc_users = User::where('ltc_affiliate_id', $ltc->id)->count();
+            $this->info("Yozawa LTC referrals: $ltc_users");
+            
+            $current_st_fk = User::where('second_tier_instructor_id',$st->id)->count();
+            $this->info("Initial Instructors with Yozawa ST: $current_st_fk");
+            
+            DB::table('users')->where('ltc_affiliate_id', $ltc->id)->update( [ 'second_tier_instructor_id' => $st->id] );
+            
+            $current_st_fk = User::where('second_tier_instructor_id',$st->id)->count();
+            $this->info("Instructors with Yozawa ST AFTER FIX: $current_st_fk");
+        }
 
 }
