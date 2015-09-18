@@ -4879,11 +4879,10 @@ h2, h3, h4, h5, h6{
 	color: #fff;
 	display: inline-block;
 	margin-top: 5px;
-	float: left;
 	border-right: solid 1px #303941;
 }
 .classroom-view .classroom-header .logo{
-	margin: 0 29px 30px;
+	margin: 0 29px;
 	position: relative;
 	top: 7px;
 	display: inline-block;
@@ -4891,7 +4890,7 @@ h2, h3, h4, h5, h6{
 }
 .classroom-view .classroom-header .lesson-title{
 	color: #798794;
-	margin: 0;
+	margin-top: 15px !important;
 	position: relative;
 	top: -5px;
 	display: inline-block;
