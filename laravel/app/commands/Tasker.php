@@ -246,7 +246,7 @@ class TaskerCommand extends Command {
                 if( $sale->ltc_affiliate_earnings > 0 ){
                     $affiliate = User::find( $sale->ltc_affiliate_id );
                     $percentage = min( Config::get('custom.earnings.ltc_percentage') );
-                    if( $affiliate->is_super_vip == 'yes' || $affiliate->is_vip=='yes' ) $percentage = max( Config::get('custom.earnings.ltc_percentage') );
+                    if($affiliate!=null &&(  $affiliate->is_super_vip == 'yes' || $affiliate->is_vip=='yes' ) ) $percentage = max( Config::get('custom.earnings.ltc_percentage') );
                     $sale->ltc_affiliate_earnings = $sale->purchase_price *( $percentage / 100 );
                     $site_earnings -= $sale->ltc_affiliate_earnings;
                 }
