@@ -305,9 +305,11 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
                     }
                     
                     $site_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'site_credit')->first();
-                    $site_transaction->amount = $sale->site_earnings;
-                    if( !$site_transaction->updateUniques() ){
-                            dd("FAILED UPDATING SITE_TRANSACTION $site_transaction->id");
+                    if($site_transaction != null){
+                        $site_transaction->amount = $sale->site_earnings;
+                        if( !$site_transaction->updateUniques() ){
+                                dd("FAILED UPDATING SITE_TRANSACTION $site_transaction->id");
+                        }
                     }
                     $insert = DB::table('misc_tasks')->insert( [ 'key' => 'fix-ltc-stpub', 'val' => $sale->id] );
                     if( !$insert ){
