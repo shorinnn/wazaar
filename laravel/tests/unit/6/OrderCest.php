@@ -87,10 +87,10 @@ class OrderCest{
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
         
-        $I->assertEquals( $purchase->second_tier_instructor_earnings, 30 * (2 / 100) );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) ) - ( 30 * (2 / 100) ) );
+        $I->assertEquals( $purchase->second_tier_instructor_earnings, 100 * (2 / 100) );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) ) - ( 100 * (2 / 100) ) );
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'complete'] );
         $I->seeRecord('transactions', ['user_id' => $st->id, 'transaction_type' => 'second_tier_instructor_credit', 
@@ -194,9 +194,9 @@ class OrderCest{
         $I->assertEquals( $purchase->instructor_earnings, 98.95 * 0.70 );
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $nonInstructorMoney = 98.95 * .30;
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, $nonInstructorMoney * .03 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 98.95 * .03 );
 //        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, $nonInstructorMoney - ( $nonInstructorMoney * .03 ) );
+        $I->assertEquals( $purchase->site_earnings, $nonInstructorMoney - ( 98.95 * .03 ) );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => $purchase->instructor_earnings,
             'product_id' => $course->id, 'status' => 'complete'] );
@@ -249,9 +249,9 @@ class OrderCest{
         $I->assertEquals( $purchase->instructor_earnings, 100 * 0.70 );
         
         $nonInstructorMoney = 100 * .30;
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, $nonInstructorMoney * .03 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * .03 );
         
-        $I->assertEquals( $purchase->site_earnings, $nonInstructorMoney - ( $nonInstructorMoney * .03 ) );
+        $I->assertEquals( $purchase->site_earnings, $nonInstructorMoney - ( 100 * .03 ) );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => $purchase->instructor_earnings,
             'product_id' => $course->id, 'status' => 'complete'] );
@@ -306,10 +306,10 @@ class OrderCest{
         $I->assertEquals( $purchase->instructor_earnings, 100 * 0.70 );
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $nonInstructorMoney = 100 * .30;
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, $nonInstructorMoney * .03 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * .03 );
 //        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->second_tier_instructor_earnings, $nonInstructorMoney * .02 );
-        $I->assertEquals( $purchase->site_earnings, $nonInstructorMoney - ( $nonInstructorMoney * .03 ) - ( $nonInstructorMoney * .02 ) );
+        $I->assertEquals( $purchase->second_tier_instructor_earnings, 100 * .02 );
+        $I->assertEquals( $purchase->site_earnings, $nonInstructorMoney - ( 100 * .03 ) - ( 100 * .02 ) );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => $purchase->instructor_earnings,
             'product_id' => $course->id, 'status' => 'complete'] );
@@ -362,9 +362,9 @@ class OrderCest{
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
         $I->assertEquals( $purchase->instructor_earnings, 58);
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
 //        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) )  );
         
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
         
@@ -495,9 +495,9 @@ class OrderCest{
         $I->assertEquals( $purchase->affiliate_earnings, 20 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
         $I->assertEquals( $purchase->instructor_earnings, 48  );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
 //        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) )  );
         
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 48,
@@ -556,9 +556,9 @@ class OrderCest{
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
         $I->assertEquals( $purchase->instructor_earnings, 60 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
 //        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) )  );
              
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         
@@ -618,9 +618,9 @@ class OrderCest{
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
         $I->assertEquals( $purchase->instructor_earnings, 50 );
         $I->assertEquals( $purchase->affiliate_earnings, 20 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
 //        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) )  );
              
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         
@@ -667,9 +667,9 @@ class OrderCest{
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
         $I->assertEquals( $purchase->instructor_earnings, 70 );
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
 //        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) )  );
         
         $I->seeRecord('transactions', ['user_id' => $lesson->module->course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $lesson->id, 'status' => 'complete'] );
@@ -720,10 +720,10 @@ class OrderCest{
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
         $I->assertEquals( $purchase->instructor_earnings, 70 );
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
 //        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->second_tier_instructor_earnings, 30 * (2 / 100) );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  - ( 30 * (2 / 100) )  );
+        $I->assertEquals( $purchase->second_tier_instructor_earnings, 100 * (2 / 100) );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) )  - ( 100 * (2 / 100) )  );
         
         $I->seeRecord('transactions', ['user_id' => $lesson->module->course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $lesson->id, 'status' => 'complete'] );
@@ -777,9 +777,9 @@ class OrderCest{
         $I->assertEquals( $purchase->instructor_earnings, 60 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
 //        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) ) );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) ) );
         
         $I->seeRecord('transactions', ['user_id' => $lesson->module->course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 60,
             'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123'] );
@@ -835,9 +835,9 @@ class OrderCest{
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
         $I->assertEquals( $purchase->instructor_earnings, 50 );
         $I->assertEquals( $purchase->affiliate_earnings, 20 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
 //        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) )  );
         
         $I->seeRecord('transactions', ['user_id' => $lesson->module->course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 50,
             'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123'] );
@@ -887,9 +887,9 @@ class OrderCest{
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 2 );
         $I->assertEquals( $purchase->instructor_earnings, 58 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
 //        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) )  );
         $st = ProductAffiliate::find(5)->ltc_affiliate_id;
         $I->seeRecord('transactions', ['user_id' => $lesson->module->course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
             'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123'] );
@@ -952,9 +952,9 @@ class OrderCest{
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 2 );
         $I->assertEquals( $purchase->instructor_earnings, 48 );
         $I->assertEquals( $purchase->affiliate_earnings, 20 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
 //        $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) )  );
         $st = ProductAffiliate::find(5)->second_tier_affiliate_id;
         $I->seeRecord('transactions', ['user_id' => $lesson->module->course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 48,
             'product_id' => $lesson->id, 'status' => 'complete', 'reference' => '123'] );

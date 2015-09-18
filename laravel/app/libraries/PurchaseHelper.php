@@ -63,10 +63,11 @@ class PurchaseHelper{
         $course = (get_class($product)=='Course') ? $product : $product->module->course;
         $site_percentage = self::_sitePercentage($product, $processor_fee, $prodAffiliate);
         $amount = ( $product->cost() - $processor_fee ) * ( $site_percentage / 100);
+        $productCost = ( $product->cost() - $processor_fee );
         
 //        $ltcAmount = $amount  * (Config::get('custom.earnings.ltc_percentage') / 100);
         $ltcAmount = self::ltcAffiliateEarnings($product, $ltcAffiliateId, $processor_fee, $prodAffiliate, $buyer);
-        $secondTierInstructor = ($course->instructor->secondTierInstructor==null) ? 0 : $amount * (Config::get('custom.earnings.second_tier_instructor_percentage') / 100);
+        $secondTierInstructor = ($course->instructor->secondTierInstructor==null) ? 0 : $productCost * (Config::get('custom.earnings.second_tier_instructor_percentage') / 100);
         return $amount - $ltcAmount - $secondTierInstructor;// - $processor_fee;
     }
     
@@ -81,7 +82,8 @@ class PurchaseHelper{
         // valid LTC affilaite, sreturn ltc value
         $course = ( get_class($product)=='Course' ) ? $product : $product->module->course;
         $site_percentage = self::_sitePercentage( $product, $processor_fee, $prodAffiliate );
-        $amount = ( $product->cost() - $processor_fee ) * ( $site_percentage / 100);
+        //$amount = ( $product->cost() - $processor_fee ) * ( $site_percentage / 100);
+        $amount = $product->cost() - $processor_fee;
         $percentage = min( Config::get('custom.earnings.ltc_percentage') );
         if( $affiliate->is_super_vip == 'yes' || $affiliate->is_vip=='yes' ) $percentage = max( Config::get('custom.earnings.ltc_percentage') );
         // is this the second tier publisher LTC?
@@ -95,7 +97,8 @@ class PurchaseHelper{
         $site_percentage = self::_sitePercentage($product, $processor_fee, $prodAffiliate);
         
         $course = ( get_class($product)=='Course' ) ? $product : $product->module->course;
-        $amount = ( $product->cost() - $processor_fee ) * ( $site_percentage / 100);
+        //$amount = ( $product->cost() - $processor_fee ) * ( $site_percentage / 100);
+        $amount = $product->cost() - $processor_fee;
         $amount =  ($course->instructor->secondTierInstructor==null || $course->instructor->secondTierInstructor->sti_approved == 'no') ? 0 : $amount * (Config::get('custom.earnings.second_tier_instructor_percentage') / 100);
         return $amount;
     }

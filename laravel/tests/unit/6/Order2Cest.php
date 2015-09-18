@@ -86,9 +86,9 @@ class Order2Cest{
         $I->assertEquals( $purchase->instructor_earnings, 70 ); 
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
         $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) )  );
         
         $I->assertEquals( 5, $purchase->ltc_affiliate_id );
         

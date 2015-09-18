@@ -88,8 +88,8 @@ class Refund2Cest{
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
         $I->assertEquals( $purchase->instructor_earnings, 58 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * 0.03 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) ) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * 0.03 );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) ) );
         
         $st = ($purchase->purchase_price - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );        
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );

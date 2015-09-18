@@ -94,8 +94,8 @@ class RefundCest{
         $I->assertEquals( $purchase->balance_transaction_id, $balance );
         $I->assertEquals( $purchase->instructor_earnings, 58 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) )  );
         
         $st = ($purchase->purchase_price - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );   
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
@@ -231,9 +231,9 @@ class RefundCest{
         $I->assertEquals( $purchase->balance_transaction_id, $balance );
         $I->assertEquals( $purchase->instructor_earnings, 58 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
-        $I->assertEquals( $purchase->second_tier_instructor_earnings, 30 * .02 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) ) - (30 * .02)  );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
+        $I->assertEquals( $purchase->second_tier_instructor_earnings, 100 * .02 );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) ) - (100 * .02)  );
         
         $st = ($purchase->purchase_price - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );        
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
@@ -313,7 +313,7 @@ class RefundCest{
     }
     
     
-    public function purchaseThenRefundNoAffiliate(UnitTester $I){
+    public function purchaseThenRefundNoAffiliate(UnitTester $I){   
         
         $student = Student::where('username','sorin')->first();
         $student->student_balance = 0;
@@ -374,9 +374,9 @@ class RefundCest{
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
         $I->assertEquals( $purchase->instructor_earnings, 70);
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
         $I->assertEquals( $purchase->instructor_agency_earnings, 0 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) )  );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) )  );
         
         $st = 0;     
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
@@ -500,9 +500,9 @@ class RefundCest{
         $I->assertEquals( $purchase->balance_transaction_id, $balance );
         $I->assertEquals( $purchase->instructor_earnings, 58 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * (3 / 100) );
-        $I->assertEquals( $purchase->second_tier_instructor_earnings, 30 * .02 );
-        $I->assertEquals( $purchase->site_earnings, 30 - ( 30 * (3 / 100) ) - (30 * .02)  );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
+        $I->assertEquals( $purchase->second_tier_instructor_earnings, 100 * .02 );
+        $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) ) - (100 * .02)  );
         
         $st = ($purchase->purchase_price - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );        
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
