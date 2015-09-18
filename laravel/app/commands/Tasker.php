@@ -317,7 +317,9 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
                     }
                 }
                 else{
-                    dd("FAILED UPDATING SALE $sale->id");
+                    $str = $sale->errors()->all();
+                    $str = print_r($str, true);
+                    dd("FAILED UPDATING SALE $sale->id - ".$str);
                 }
             }
         }
