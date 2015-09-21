@@ -999,23 +999,29 @@ header .profile-name li:hover ul{
 	width: 0;
 	display: none;	
 }
-.difficulty-levels{
+.segmented-controls{
 	float: left;
 	margin-top: 16px;
 	padding-top: 6px;
 	padding-bottom: 5px;
 }
-.difficulty-levels .level-buttons-container{
+.segmented-controls .buttons-container{
 	height: 32px;
 	border-radius: 2px;
 	border: solid 1px #e3e5e6;
 	float: left;
 	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	background: #fff;
 }
-.difficulty-levels .toggle-menus{
+.segmented-controls.analytics-filter{
+	margin: 15px;
+}
+.segmented-controls .toggle-menus{
 	display: none;
 }
-.difficulty-levels .level-buttons{
+.segmented-controls .segmented-buttons{
 	border: none;
 	float: left;
 	padding: 0 10px;
@@ -1030,15 +1036,13 @@ header .profile-name li:hover ul{
 .toggle-menus .menu:hover,
 .toggle-menus .menu:focus,
 .toggle-menus .menu:active,
-.difficulty-levels .level-buttons:hover,
-.difficulty-levels .level-buttons:focus,
-.difficulty-levels .level-buttons.active{
+.segmented-controls .segmented-buttons:hover,
+.segmented-controls .segmented-buttons:focus,
+.segmented-controls .segmented-buttons.btn-primary,
+.segmented-controls .segmented-buttons.active{
 	background: #e3e5e6;
 }
-.difficulty-levels .advanced{
-	border-left: solid 1px #e3e5e6;
-}
-.difficulty-levels .intermediate{
+.segmented-controls .segmented-buttons + .segmented-buttons{
 	border-left: solid 1px #e3e5e6;
 }
 .category-heading-buttons{
@@ -2699,8 +2703,6 @@ h2, h3, h4, h5, h6{
 .lesson-topics{
 	padding: 0;
 	margin: 0;
-	max-height: 115px;
-	border-bottom: solid 1px #ebeced;
 }
 .lesson-topics li{
 	border-top: solid 1px #ebeced;
@@ -8612,6 +8614,9 @@ footer{
 	.step2 .side-overview{
 		margin-left: 0;
 	}
+	.top-activities .stat-block{
+		width: 100% !important;
+	}
 }
 @media (max-width: 1500px) and (min-width: 1400px){
 .discussion-opened .classroom-video.video-container .topControl{
@@ -9008,7 +9013,7 @@ header .top-menu .logged-out-header-search .catalogue-button em{
 .small-box{
 	width: 100%;
 }
-.difficulty-levels {
+.segmented-controls {
     float: left;
 }
 .members-area .table-wrapper tr td.delete button,
@@ -9167,18 +9172,11 @@ header .profile-name ul{
 	min-width: 150px;
 }
 .category-heading-container .sort-options,
-.difficulty-levels{
+.segmented-controls{
 	margin-top: 0;
 }
 .category-heading-title{
 	margin-bottom: 15px;
-}
-.home-page-filter{
-	float: none !important;
-	text-align: center;
-}
-.home-page-filter .pagination-container{
-	width: auto;
 }
 .lesson-topics li{
 	padding-left: 30px;
@@ -9195,6 +9193,16 @@ header .profile-name ul{
 }
 .homepage-header-wrapper{
 	margin-top: -90px;
+}
+#discover-courses-area > div {
+    text-align: center;
+}
+#discover-courses-area .home-page-filter {
+    display: inline-block;
+    float: none !important;
+}
+.top-activities .stat-block{
+	width: 314px !important;
 }
 }
 @media (max-width:752px){
@@ -9475,6 +9483,21 @@ header .top-menu .logged-out li{
 	.student-course.percentage-completed .progress{
 		max-width: 100%;
 	}
+	.segmented-controls.analytics-filter{
+		margin: 5px auto;
+		width: 98%;
+		float: none;
+	}
+	.analytics-filter .buttons-container{
+		width: 100%;
+	}
+	.analytics-filter .segmented-buttons{
+		width: 25% !important;
+		white-space: nowrap;
+		overflow: hidden;
+		font-size: 12px;
+		text-overflow: ellipsis;
+	}
 }
 
 @media (max-width:475px){
@@ -9623,16 +9646,11 @@ header .top-menu .logged-out li{
 	.category-heading-buttons{
 		width: 100%;
 	}
-	.home-page-filter .pagination-container{
-		margin: 10px 0 0;
-	}
-	.home-page-filter .pagination-container,
-	.difficulty-levels .level-buttons-container,
-	.difficulty-levels{
+	.segmented-controls .buttons-container,
+	.segmented-controls{
 		width: 100%;
 	}
-	.home-page-filter .pagination-container a,
-	.difficulty-levels .level-buttons{
+	.segmented-controls .segmented-buttons{
 		width: 33.333%;
 	}
 	.lesson-topics li .lesson-name{
