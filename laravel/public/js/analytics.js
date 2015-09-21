@@ -49,6 +49,7 @@ var Analytics = {
     },
     'sales' :  function ($frequency, $courseId, $trackingCode, $elem){
 
+
         Analytics.activateLoader();
 
         var $tempSelector = '.' + $frequency +  '-data-sales';
@@ -88,6 +89,9 @@ var Analytics = {
         if ($('#wrapper-tracking-codes-table').length == 1) {
             Analytics.trackingCodeTable($frequency, $courseId);
         }
+
+        $('.button-filter').removeClass('btn-primary');
+        $('.button-filter-' + $frequency).addClass('btn-primary');
     },
 
     'trackingCodeTable' : function ($frequency, $courseId){

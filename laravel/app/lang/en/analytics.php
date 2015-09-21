@@ -25,10 +25,17 @@ return
     'conversion' => 'Conversion',
     'viewAll' => 'View All',
     'noTrackingCode' => 'No tracking codes found',
+
     'month' => 'Month',
     'week' => 'Week',
     'alltime' => 'All Time',
     'today' => 'Today',
+
+    'filters' => 'Filters',
+    'daily' => 'Daily',
+    'weekly' => 'Weekly',
+    'monthly' => 'Monthly',
+    'allTime' => 'All Time',
 
     'newUsers'   => 'New Users',
 

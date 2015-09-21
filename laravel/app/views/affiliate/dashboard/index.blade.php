@@ -3,6 +3,7 @@
     <div class="wrapper">
         <div class="container affiliate-dashboard dashboard">
 
+
                     @if(Auth::user()->is_super_vip == 'yes')
                         <div class="row">
                             <div class="col-md-12">
@@ -103,7 +104,23 @@
                     	<a href="{{ action('CoursesController@category') }}" class="blue-button large-button">{{trans('general.browse-courses')}}</a>
                     </div>
                 </div>
-            </div>    
+            </div>
+
+            {{-- Button Filters --}}
+            <div class="row-fluid">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{trans('analytics.filters')}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a class="btn btn-default button-filter button-filter-daily" href="#" onclick="Analytics.sales('daily','','', this); return false;">{{trans('analytics.daily')}}</a>
+                        <a class="btn btn-default button-filter button-filter-week" href="#" onclick="Analytics.sales('week','','', this); return false;">{{trans('analytics.weekly')}}</a>
+                        <a class="btn btn-default button-filter button-filter-month" href="#" onclick="Analytics.sales('month','','', this); return false;">{{trans('analytics.monthly')}}</a>
+                        <a class="btn btn-default button-filter button-filter-alltime" href="#" onclick="Analytics.sales('alltime','','', this); return false;">{{trans('analytics.allTime')}}</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="row top-activities">
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="with-progress-bar stat-block">
@@ -190,7 +207,8 @@
                 </div>
 
                 {{-- // 2 Tier Signups --}}
-                
+
+                {{-- Top Courses --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div class="stat-block">
                         <div class="dropdown-wrapper">
@@ -247,8 +265,9 @@
                 </div>
 
                 {{-- // LTC Earnings --}}
-                
-                <div class="col-md-4 col-sm-6 sol-xs-12">
+
+                {{-- TOP Tracking Codes --}}
+                <div class="col-md-4 col-sm-6 sol-xs-12 hidden">
                     <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
@@ -276,7 +295,10 @@
 
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 sol-xs-12">
+
+                {{-- Top Conveting Courses --}}
+
+                <div class="col-md-4 col-sm-6 sol-xs-12 hidden">
                     <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
