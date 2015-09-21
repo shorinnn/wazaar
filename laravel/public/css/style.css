@@ -1104,7 +1104,8 @@ header .profile-name li:hover ul{
 	float: left;
 	height: 32px;
 	width: 73px;
-	margin-top: 22px;
+	margin-top: 0;
+	margin-left: 24px;
 	overflow: hidden;
 }
 .toggle-menus .menu{
@@ -9664,6 +9665,10 @@ header .top-menu .logged-out li{
 	.category-heading-container .sort-options select{
 		width: 83%;
 		max-width: none;
+	}
+	.toggle-menus{
+		margin-left: 0;
+		margin-top: 10px;
 	}
 }
 @media (max-width:402px){

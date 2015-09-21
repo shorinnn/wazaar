@@ -79,6 +79,12 @@ return
     '6YearsAgo' => '6 年前',
     '7YearsAgo' => '7 年前',
 
+    'filters' => '検索条件',
+    'daily' => '日別',
+    'weekly' => '週別',
+    'monthly' => '月別',
+    'allTime' => '全期間',
+
     '2TierSignups' => 'アフィリエイト２ティア登録者数',
 
     'product_name' => '商品名',
