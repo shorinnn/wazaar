@@ -395,6 +395,7 @@ Route::group( array('domain' => $affiliateSubdomain ), function(){
     Route::group(['prefix' => 'analytics'], function (){
         Route::get('/','AffiliateDashboardController@index');
         Route::get('topcourses/{frequency}/{courseId?}', 'AffiliateDashboardController@topCoursesView');
+        Route::get('top-free-courses/{frequency}/{courseId?}', 'AffiliateDashboardController@topFreeCoursesView');
         Route::get('sales/{frequency}/{courseId?}/{trackingCode?}', 'AffiliateDashboardController@salesView');
         Route::get('trackingcodessales/{frequency}/{courseId?}','AffiliateDashboardController@trackingCodesSalesView');
         Route::get('courseconversions/{frequency}/{courseId?}','AffiliateDashboardController@courseConversionView');

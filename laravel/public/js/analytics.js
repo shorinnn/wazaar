@@ -5,6 +5,7 @@ var Analytics = {
     'activateLoader' : function (){
         $('#wrapper-sales').html($ajaxLoader);
         $('#wrapper-top-courses').html($ajaxLoader);
+        $('#wrapper-top-free-courses').html($ajaxLoader);
         $('#wrapper-tracking-codes-table').html($ajaxLoader);
         $('#wrapper-tracking-codes').html($ajaxLoader);
         $('#wrapper-course-conversions').html($ajaxLoader);
@@ -46,6 +47,37 @@ var Analytics = {
         }
         else if($frequency == 'alltime'){
             $('#header-top-courses-frequency').html(_("All Time"));
+        }
+    },
+    'topFreeCourses' :  function ($frequency, $courseId, $elem){
+
+        var $tempSelector = '.' + $frequency +  '-data-top-free-courses';
+
+        if ($($tempSelector).html() == ''){
+            $.get('/analytics/top-free-courses/' + $frequency + '/' + $courseId, function ($html){
+                $('#wrapper-top-free-courses').html($html);
+                $($tempSelector).html($html);
+            });
+        }
+        else{
+            $('#wrapper-top-free-courses').html($($tempSelector).html());
+        }
+
+
+        $('.top-courses-dropdown a').removeClass('active');
+        $($elem).addClass('active');
+
+        if ($frequency == 'daily'){
+            $('#header-top-free-courses-frequency').html(_("Today"));
+        }
+        else if($frequency == 'week'){
+            $('#header-top-free-courses-frequency').html(_("This Week"));
+        }
+        else if($frequency == 'month'){
+            $('#header-top-free-courses-frequency').html(_("This Month"));
+        }
+        else if($frequency == 'alltime'){
+            $('#header-top-free-courses-frequency').html(_("All Time"));
         }
     },
     'sales' :  function ($frequency, $courseId, $trackingCode, $elem){

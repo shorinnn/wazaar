@@ -265,6 +265,34 @@
                         </ul>
                     </div>
                 </div>
+
+                {{-- Top Free Courses --}}
+                <div class="col-md-4 col-sm-6 sol-xs-12">
+                    <div class="stat-block">
+                        <div class="dropdown-wrapper">
+                            <button class="btn btn-default" type="button">
+                                {{trans('analytics.topFreeCourses')}} <span id="header-top-free-courses-frequency">{{trans('analytics.today')}}</span></button>
+                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu top-courses-dropdown">
+                                <li>
+                                    <a class="active with-today" href="#" onclick="Analytics.topFreeCourses('daily','', this); return false;">{{trans('analytics.today')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-weekly" href="#" onclick="Analytics.topFreeCourses('week','', this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-monthly" href="#" onclick="Analytics.topFreeCourses('month','', this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-alltime" href="#" onclick="Analytics.topFreeCourses('alltime','', this); return false;">{{trans('analytics.allTime')}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul id="wrapper-top-free-courses">
+                            {{--$topCoursesView--}}
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                        </ul>
+                    </div>
+                </div>
                 
                 {{-- LTC Earnings --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
@@ -420,6 +448,11 @@
         <div class="week-data-top-courses"></div>
         <div class="month-data-top-courses"></div>
         <div class="alltime-data-top-courses"></div>
+
+        <div class="daily-data-top-free-courses"></div>
+        <div class="week-data-top-free-courses"></div>
+        <div class="month-data-top-free-courses"></div>
+        <div class="alltime-data-top-free-courses"></div>
 
         <div class="daily-data-ltc--earnings"></div>
         <div class="week-data-ltc--earnings"></div>

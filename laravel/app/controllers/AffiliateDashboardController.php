@@ -19,11 +19,19 @@ class AffiliateDashboardController extends BaseController
         return $this->_affiliateDashboard();
     }
 
-    public function topCoursesView($frequency = '', $courseId = '')
+    public function topCoursesView($frequency = '', $courseId = '', $free = 'no')
     {
-        $topCourses = $this->analyticsHelper->topCourses($frequency, $courseId);
+        $topCourses = $this->analyticsHelper->topCourses($frequency, $courseId, $free);
         if (is_array($topCourses)) {
             return View::make('analytics.partials.topCourses', compact('topCourses','frequency'))->render();
+        }
+    }
+
+    public function topFreeCoursesView($frequency = '', $courseId = '', $free = 'yes')
+    {
+        $topCourses = $this->analyticsHelper->topCourses($frequency, $courseId, $free);
+        if (is_array($topCourses)) {
+            return View::make('analytics.partials.topFreeCourses', compact('topCourses','frequency'))->render();
         }
     }
 
@@ -113,17 +121,18 @@ class AffiliateDashboardController extends BaseController
 
         if (is_array($sales)) {
             $urlIdentifier = 'sales';
+            $group = 'affiliate';
             if ($frequency == 'week'){
-                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency','urlIdentifier'))->render();
+                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency','urlIdentifier','group'))->render();
             }
             elseif($frequency == 'month'){
-                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency','urlIdentifier'))->render();
+                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency','urlIdentifier','group'))->render();
             }
             elseif($frequency == 'alltime'){
-                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency','urlIdentifier'))->render();
+                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency','urlIdentifier','group'))->render();
             }
             else {
-                return View::make('analytics.partials.sales', compact('sales', 'frequency','urlIdentifier'))->render();
+                return View::make('analytics.partials.sales', compact('sales', 'frequency','urlIdentifier','group'))->render();
             }
         }
     }

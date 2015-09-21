@@ -189,23 +189,23 @@ class AnalyticsHelper
         return $output;
     }
 
-    public function topCourses($frequency = '', $courseId = '')
+    public function topCourses($frequency = '', $courseId = '', $free = 'no')
     {
         switch ($frequency) {
             case 'daily' :
-                return $this->dailyTopCourses($courseId);
+                return $this->dailyTopCourses($courseId,$free);
                 break;
             case 'week':
-                return $this->weeklyTopCourses($courseId);
+                return $this->weeklyTopCourses($courseId,$free);
                 break;
             case 'month':
-                return $this->monthlyTopCourses($courseId);
+                return $this->monthlyTopCourses($courseId,$free);
                 break;
             case 'alltime' :
-                return $this->allTimeTopCourses($courseId);
+                return $this->allTimeTopCourses($courseId,$free);
                 break;
             default:
-                return $this->dailyTopCourses($courseId);
+                return $this->dailyTopCourses($courseId,$free);
         }
     }
 
@@ -958,7 +958,7 @@ class AnalyticsHelper
 
 
 
-    public function dailyTopCourses($courseId)
+    public function dailyTopCourses($courseId, $free)
     {
         $dateFilter  = $this->_frequencyEquivalence();
         $filterQuery = "DATE(purchases.created_at) = '{$dateFilter}'";
@@ -967,12 +967,12 @@ class AnalyticsHelper
             $filterQuery .= " AND product_id = '{$courseId}'";
         }
 
-        $query = $this->_purchaseRawQuery($filterQuery);
+        $query = $this->_purchaseRawQuery($filterQuery,'Course',$free);
 
         return $this->_transformCoursePurchases($query);
     }
 
-    public function weeklyTopCourses($courseId)
+    public function weeklyTopCourses($courseId, $free)
     {
         $dateFilterStart = $this->_frequencyEquivalence('week');
         $dateFilterEnd   = date('Y-m-d');
@@ -984,12 +984,12 @@ class AnalyticsHelper
             $filterQuery .= " AND product_id = '{$courseId}'";
         }
 
-        $query = $this->_purchaseRawQuery($filterQuery);
+        $query = $this->_purchaseRawQuery($filterQuery,'Course',$free);
 
         return $this->_transformCoursePurchases($query);
     }
 
-    public function monthlyTopCourses($courseId)
+    public function monthlyTopCourses($courseId, $free)
     {
         $dateFilterStart = $this->_frequencyEquivalence('month');
         $dateFilterEnd   = date('Y-m-d');
@@ -1000,12 +1000,12 @@ class AnalyticsHelper
             $filterQuery .= " AND product_id = '{$courseId}'";
         }
 
-        $query = $this->_purchaseRawQuery($filterQuery);
+        $query = $this->_purchaseRawQuery($filterQuery,'Course',$free);
 
         return $this->_transformCoursePurchases($query);
     }
 
-    public function allTimeTopCourses($courseId)
+    public function allTimeTopCourses($courseId, $free)
     {
         $filterQuery = "";
 
@@ -1013,7 +1013,7 @@ class AnalyticsHelper
             $filterQuery = " AND product_id = '{$courseId}'";
         }
 
-        $query = $this->_purchaseRawQuery($filterQuery);
+        $query = $this->_purchaseRawQuery($filterQuery,'Course',$free);
 
         return $this->_transformCoursePurchases($query);
     }
@@ -1345,7 +1345,7 @@ class AnalyticsHelper
         return $output;
     }
 
-    private function _purchaseRawQuery($criteria = '', $type = 'Course')
+    private function _purchaseRawQuery($criteria = '', $type = 'Course', $free = 'no')
     {
 
 
@@ -1377,11 +1377,12 @@ class AnalyticsHelper
         $sql = "SELECT courses.id, courses.`name`, {$sum} as 'total_purchase'
                 FROM purchases
                 JOIN courses ON courses.id = purchases.product_id WHERE purchases.id <> 0
-                AND courses.free = 'no'
+                AND courses.`free` = '{$free}'
                 {$criteria}
                 GROUP BY courses.id, courses.name
                 ORDER BY total_purchase DESC
                 ";
+
 
         return $sql;
     }
