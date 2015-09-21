@@ -19,11 +19,11 @@
                 @endif
                 <div class="course-description no-margin-top module-box padding-top-30 padding-bottom-20">
                     <h2>{{ trans('courses/general.about-this-course') }}</h2>
-                    <p class="intro-paragraph expandable-content short-text">
+                    <p class="intro-paragraph short-text">
                         {{ strip_tags_and_attributes($course->description, "<p><b><ol><ul><li><u><br>")}}
                     </p>
-                    <div class="fadeout-text"></div>
-                    <span class="show-full-description"> {{ trans("courses/general.show-full-description") }}</span>
+                    <!--<div class="fadeout-text"></div>-->
+                    <!--<span class="show-full-description"> {{ trans("courses/general.show-full-description") }}</span>-->
                 </div>
                 <div class="what-you-will-learn no-margin-top module-box padding-top-30 padding-bottom-20">
                     <h2>{{ trans('courses/general.what-you-will-learn') }}</h2>
@@ -64,7 +64,7 @@
                         <p class="regular-paragraph">
                             <!--A short description of the module goes here...-->
                         </p>
-                        <ul class="lesson-topics expandable-content clearfix">
+                        <ul class="clearfix">
                             @foreach($module->lessons as $i=>$lesson)
                                 <li class="lessons lesson-1 bordered clearfix">
                                     <span class="hidden-xs"><i class="wa-play"></i></span>

@@ -1,36 +1,36 @@
 @extends('layouts.default')
 @section('content')
-    <div class="wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Sales ({{$salesLabel}})</h2>
+<div class="container">
+    <div class="table-responsive analytics-page">
+        <div class="top-affiliates-table table-wrapper">
+            <div class="table-header clearfix">
+                <h1 class="left">Sales ({{$salesLabel}})</h1>
+			</div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <th>Product Name</th>
+                        <th>Original Price</th>
+                        <th>Selling Price</th>
+                        <th>Affiliate Commission</th>
+                        <th>Date/Time</th>
+                    </thead>
 
-                    <table class="table table-striped">
-                        <thead>
-                            <th>Product Name</th>
-                            <th>Original Price</th>
-                            <th>Selling Price</th>
-                            <th>Affiliate Commission</th>
-                            <th>Date/Time</th>
-                        </thead>
-
-                        <tbody>
-                            @foreach($purchases as $purchase)
-                            <tr>
-                                <td>{{$purchase->product->name}}</td>
-                                <td>¥{{$purchase->original_price}}</td>
-                                <td>¥{{$purchase->purchase_price}}</td>
-                                <td>¥{{$purchase->affiliate_earnings}}</td>
-                                <td>{{$purchase->created_at}}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
+                    <tbody>
+                        @foreach($purchases as $purchase)
+                        <tr>
+                            <td>{{$purchase->product->name}}</td>
+                            <td>¥{{$purchase->original_price}}</td>
+                            <td>¥{{$purchase->purchase_price}}</td>
+                            <td>¥{{$purchase->affiliate_earnings}}</td>
+                            <td class="last-column">{{$purchase->created_at}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+			</div>
                     {{$purchases->appends(Input::all())->links()}}
-                </div>
-            </div>
         </div>
     </div>
+</div>
 @stop

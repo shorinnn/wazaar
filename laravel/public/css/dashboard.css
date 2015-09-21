@@ -132,6 +132,7 @@ h4.date-range-header{
 	font-size: 14px;
 	color: #fff;
 	border: none;
+	cursor: default;
 	border-radius: 0;
 	background-color: #0099ff;
 }
