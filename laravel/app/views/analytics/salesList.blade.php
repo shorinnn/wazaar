@@ -9,11 +9,11 @@
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
-                        <th>Product Name</th>
-                        <th>Original Price</th>
-                        <th>Selling Price</th>
-                        <th>Affiliate Commission</th>
-                        <th>Date/Time</th>
+                        <th>{{ trans('analytics.product_name') }}</th>
+                        <th>{{ trans('analytics.original_price') }}</th>
+                        <th>{{ trans('analytics.selling_price') }}</th>
+                        <th>{{ trans('analytics.affiliate_commission') }}</th>
+                        <th>{{ trans('analytics.date_time') }}</th>
                     </thead>
 
                     <tbody>
