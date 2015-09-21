@@ -3,7 +3,20 @@
     <div class="wrapper clearfix">
         <div class="container affiliate-dashboard dashboard  analytics-page">
 
-
+            {{-- Button Filters --}}
+            <div class="row-fluid">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{trans('analytics.filters')}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a class="btn btn-primary button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('daily', '',this); return false;">{{trans('analytics.daily')}}</a>
+                        <a class="btn btn-default button-filter button-filter-week" href="#" onclick="Analytics.SalesCount('week', '',this); return false;">{{trans('analytics.weekly')}}</a>
+                        <a class="btn btn-default button-filter button-filter-month" href="#" onclick="Analytics.SalesCount('month', '',this); return false;">{{trans('analytics.monthly')}}</a>
+                        <a class="btn btn-default button-filter button-filter-alltime" href="#" onclick="Analytics.SalesCount('alltime', '',this); return false;">{{trans('analytics.allTime')}}</a>
+                    </div>
+                </div>
+            </div>
 
             <div class="row top-activities">
                 {{-- Total Sales in Yen --}}

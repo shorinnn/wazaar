@@ -111,6 +111,9 @@ var Analytics = {
 
             $('#wrapper-sales-count').html($html);
         });
+
+        $('.button-filter').removeClass('btn-primary');
+        $('.button-filter-' + $frequency).addClass('btn-primary');
     },
 
     'trackingCodeTable' : function ($frequency, $courseId){
