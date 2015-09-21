@@ -85,14 +85,17 @@ class InstructorDashboardController extends BaseController
 
 
         if (is_array($sales)) {
+            $urlIdentifier = 'sales';
+            $group = 'instructor';
             if ($frequency == 'week') {
-                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency'))->render();
+                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency','group','urlIdentifier'))->render();
             } elseif ($frequency == 'month') {
-                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency'))->render();
+                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency','group','urlIdentifier'))->render();
             } elseif ($frequency == 'alltime') {
-                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency'))->render();
+                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency','group','urlIdentifier'))->render();
             } else {
-                return View::make('analytics.partials.sales', compact('sales', 'frequency'))->render();
+                $frequency = 'daily';
+                return View::make('analytics.partials.sales', compact('sales', 'frequency','group','urlIdentifier'))->render();
             }
         }
     }
@@ -107,29 +110,32 @@ class InstructorDashboardController extends BaseController
         $sales = null;
         switch ($frequency) {
             case 'alltime' :
-                $sales = $this->analyticsHelper->secondTierInstructorSalesLastFewYears(5, $courseId, $trackingCode);
+                $sales = $this->analyticsHelper->secondTierSalesLastFewYears(5, $courseId, $trackingCode);
                 break;
             case 'week' :
-                $sales = $this->analyticsHelper->secondTierInstructorSalesLastFewWeeks(7, $courseId, $trackingCode);
+                $sales = $this->analyticsHelper->secondTierSalesLastFewWeeks(7, $courseId, $trackingCode);
                 break;
             case 'month' :
-                $sales = $this->analyticsHelper->secondTierInstructorSalesLastFewMonths(7, $courseId, $trackingCode);
+                $sales = $this->analyticsHelper->secondTierSalesLastFewMonths(7, $courseId, $trackingCode);
                 break;
             default:
-                $sales = $this->analyticsHelper->secondTierInstructorSalesLastFewDays(7, $courseId, $trackingCode);
+                $sales = $this->analyticsHelper->secondTierSalesLastFewDays(7, $courseId, $trackingCode);
                 break;
         }
 
 
         if (is_array($sales)) {
+            $urlIdentifier = 'second-tier-sales';
+            $group = 'instructor';
             if ($frequency == 'week') {
-                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency'))->render();
+                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency','urlIdentifier','group'))->render();
             } elseif ($frequency == 'month') {
-                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency'))->render();
+                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency','urlIdentifier','group'))->render();
             } elseif ($frequency == 'alltime') {
-                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency'))->render();
+                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency','urlIdentifier','group'))->render();
             } else {
-                return View::make('analytics.partials.sales', compact('sales', 'frequency'))->render();
+                $frequency = 'daily';
+                return View::make('analytics.partials.sales', compact('sales', 'frequency','urlIdentifier','group'))->render();
             }
         }
     }
@@ -172,5 +178,89 @@ class InstructorDashboardController extends BaseController
         } else {
             return $view;
         }
+    }
+
+    public function detailedSecondTierSales($frequency)
+    {
+        $purchases = null;
+
+        switch($frequency){
+            case 'daily' :
+                if (!Input::has('date')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F d, Y',strtotime(Input::get('date')));
+                $purchases = Purchase::whereRaw("DATE(created_at) = '". Input::get('date') ."'")->where('second_tier_instructor_id',Auth::id())->paginate(10);
+                break;
+            case 'week' :
+                if (!Input::has('start') && !Input::has('end')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F d, Y',strtotime(Input::get('start'))) . ' - '  . date('F d, Y',strtotime(Input::get('end')));
+                $purchases = Purchase::whereRaw("DATE(created_at) BETWEEN '". Input::get('start') ."' AND '". Input::get('end') ."'")->where('second_tier_instructor_id',Auth::id())->paginate(10);
+                break;
+            case 'month':
+                if (!Input::has('month') && !Input::has('year')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F',strtotime(Input::get('month'))) . Input::get('year');
+                $purchases = Purchase::whereRaw("MONTH(created_at) =  '". Input::get('month') ."' AND YEAR(created_at) = '". Input::get('year') ."'")->where('second_tier_instructor_id',Auth::id())->paginate(10);
+                break;
+            case 'alltime':
+                if (!Input::has('year')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = Input::get('year');
+                $purchases = Purchase::whereRaw("YEAR(created_at) = '". Input::get('year') ."'")->where('second_tier_instructor_id',Auth::id())->paginate(10);
+                break;
+        }
+
+        if ($purchases){
+            return View::make('instructors.dashboard.secondTierSalesList',compact('purchases','salesLabel'));
+        }
+
+        return Redirect::to('analytics');
+    }
+
+    public function detailedSales($frequency)
+    {
+        $purchases = null;
+
+        switch($frequency){
+            case 'daily' :
+                if (!Input::has('date')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F d, Y',strtotime(Input::get('date')));
+                $purchases = Purchase::whereRaw("DATE(created_at) = '". Input::get('date') ."'")->where('instructor_id',Auth::id())->paginate(10);
+                break;
+            case 'week' :
+                if (!Input::has('start') && !Input::has('end')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F d, Y',strtotime(Input::get('start'))) . ' - '  . date('F d, Y',strtotime(Input::get('end')));
+                $purchases = Purchase::whereRaw("DATE(created_at) BETWEEN '". Input::get('start') ."' AND '". Input::get('end') ."'")->where('instructor_id',Auth::id())->paginate(10);
+                break;
+            case 'month':
+                if (!Input::has('month') && !Input::has('year')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F',strtotime(Input::get('month'))) . Input::get('year');
+                $purchases = Purchase::whereRaw("MONTH(created_at) =  '". Input::get('month') ."' AND YEAR(created_at) = '". Input::get('year') ."'")->where('instructor_id',Auth::id())->paginate(10);
+                break;
+            case 'alltime':
+                if (!Input::has('year')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = Input::get('year');
+                $purchases = Purchase::whereRaw("YEAR(created_at) = '". Input::get('year') ."'")->where('instructor_id',Auth::id())->paginate(10);
+                break;
+        }
+
+        if ($purchases){
+            return View::make('instructors.dashboard.salesList',compact('purchases','salesLabel'));
+        }
+
+        return Redirect::to('analytics');
     }
 }

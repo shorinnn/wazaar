@@ -38,7 +38,8 @@ class TaskerCommand extends Command {
        protected function getOptions()
        {
            return array(
-               array('run', null, InputOption::VALUE_REQUIRED, 'What to run: fix_70_30, precalculate_ltc_stats, yozawa_fix, fix_ltc_stpub')
+               array('run', null, InputOption::VALUE_REQUIRED, 'What to run: fix_70_30, precalculate_ltc_stats, yozawa_fix, fix_ltc_stpub, 
+                   missing_delivered_fix, fix_botched_900')
            );
        }
 
@@ -322,6 +323,129 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
                     dd("FAILED UPDATING SALE $sale->id - ".$str);
                 }
             }
+        }
+        
+        public function missing_delivered_fix(){
+            $this->info( "************ IMPORTING EMAILS TO DELIVERED *****************" );
+            $start = time();
+
+            $delivered = new DeliveredHelper();
+            $users = User::whereNull( 'delivered_user_id' )->get();
+            $total = $users->count();
+            $this->info( $total . " emails with no Delivered ID. " );
+            $counter = 0;
+            $addedFromAff = $addedFromStudent = $addedFromDB = $addedToDelivered = $failedDelivered = 0;
+            $failedUpdates = $notOnDelivered = [];
+            foreach( $users as $user ){
+                // see if this email already exists as another account
+                $affiliate =  User::where('email', '#waa#-'.$user->email)->whereNotNull('delivered_user_id' )->first();
+                $studentEmail = str_replace('#waa#-', '', $user->email);
+                $student = User::where('email', $studentEmail)->whereNotNull('delivered_user_id')->first();
+                
+                if( $affiliate != null ){// get delivered ID from affiliate account
+                    $user->delivered_user_id = $affiliate->delivered_user_id;
+                    if( !$user->updateUniques() ){
+                        $failedUpdates[] = $user->id;
+                    } 
+                    
+                    if( $user->hasRole('Student') ) $delivered->addTag('user-type-student', 'integer', 1, $user->delivered_user_id );
+                    if( $user->hasRole('Instructor') ) $delivered->addTag('user-type-instructor', 'integer', 1, $user->delivered_user_id );
+                    if( $user->hasRole('Affiliate') ) $delivered->addTag('user-type-affiliate', 'integer', 1, $user->delivered_user_id );
+                    $delivered->addTag('email-confirmed', 'integer', $user->confirmed, $user->delivered_user_id );
+                    
+                    $addedFromAff++;
+                    $addedFromDB++;
+                    
+                    
+                }
+                elseif( $student != null ){// get delivered ID from student account
+                    $user->delivered_user_id = $student->delivered_user_id;
+                    if( !$user->updateUniques() ){
+                        $failedUpdates[] = $user->id;
+                    } 
+                    
+                    if( $user->hasRole('Student') ) $delivered->addTag('user-type-student', 'integer', 1, $user->delivered_user_id );
+                    if( $user->hasRole('Instructor') ) $delivered->addTag('user-type-instructor', 'integer', 1, $user->delivered_user_id );
+                    if( $user->hasRole('Affiliate') ) $delivered->addTag('user-type-affiliate', 'integer', 1, $user->delivered_user_id );
+                    $delivered->addTag('email-confirmed', 'integer', $user->confirmed, $user->delivered_user_id );
+                    
+                    $addedFromStudent++;
+                    $addedFromDB++;
+                }
+                else{// add the guy to delivered
+                    $email = str_replace('#waa#-', '', $user->email);
+                    $first_name = trim($user->first_name) == ''? $user->email : $user->first_name;
+                    $last_name = trim($user->last_name) == ''? $user->email : $user->last_name;
+                    $response = $delivered->addUser($first_name, $last_name, $email);
+                    if( is_array($response) && $response['success'] == true ){
+                        $addedToDelivered++;
+                        $userData = $response['data'];
+                        if( is_array($userData) ) $userData = json_decode(json_encode($userData), FALSE);
+                        $user->delivered_user_id = $userData->id;
+                        
+                        if( ! $user->updateUniques() ) $failedUpdates[] = $user->id; 
+                        // associate tags with the user
+                        if( $user->hasRole('Student') ) $delivered->addTag('user-type-student', 'integer', 1, $userData->id);
+                        if( $user->hasRole('Instructor') ) $delivered->addTag('user-type-instructor', 'integer', 1, $userData->id);
+                        if( $user->hasRole('Affiliate') ) $delivered->addTag('user-type-affiliate', 'integer', 1, $userData->id);
+                        $delivered->addTag('email-confirmed', 'integer', $user->confirmed, $userData->id);
+                    }
+                    else{
+                        $failedDelivered++;
+                        $notOnDelivered[] = $user->id;
+                    }
+                }
+                
+                ++$counter;
+                if( $counter % 300 == 0){
+                    $this->comment(date("Y-m-d H:i:s")." - $counter / $total users processed. Sleep 1 second");
+                    sleep(1);
+                }
+            }
+            $time = gmdate("H:i:s", time() - $start);
+            $this->info( "Done. Time elapsed: $time");
+            $this->info("IDs fetched from existing students: $addedFromStudent");
+            $this->info("IDs fetched from existing affiliates: $addedFromAff");
+            $this->info("Total IDs fetched from existing Users: $addedFromDB");
+            $this->info("Total IDs added to Delivered: $addedToDelivered");
+            $this->error("$failedDelivered users not added to Delivered");
+            $notOnDelivered = implode(', ', $notOnDelivered);
+            $this->error( $notOnDelivered ); 
+            $this->error( "Failed local updates:"); 
+            $failedUpdates = implode(', ', $failedUpdates);
+            $this->error( $failedUpdates ); 
+            return true;
+        }
+        
+        public function fix_botched_900(){
+            $this->info( "************ FIX BOTCHED 900 *****************" );
+            $start = time();
+
+            $delivered = new DeliveredHelper();
+            $users = User::orderBy('updated_at','desc')->skip(9000)->limit(2000)->get();
+            $total = $users->count();
+            $this->info( $total . " botched emails. " );
+            $counter = 0;
+            
+            $fixed = 0;
+            foreach( $users as $user ){
+                
+                if( $user->hasRole('Student') ) $delivered->addTag('user-type-student', 'integer', 1, $user->delivered_user_id );
+                if( $user->hasRole('Instructor') ) $delivered->addTag('user-type-instructor', 'integer', 1, $user->delivered_user_id );
+                if( $user->hasRole('Affiliate') ) $delivered->addTag('user-type-affiliate', 'integer', 1, $user->delivered_user_id );
+                $delivered->addTag('email-confirmed', 'integer', $user->confirmed, $user->delivered_user_id );
+                
+                ++$fixed;
+                ++$counter;
+                if( $counter % 300 == 0){
+                    $this->comment(date("Y-m-d H:i:s")." - $counter / $total users processed. Sleep 1 second");
+                    sleep(1);
+                }
+            }
+            $time = gmdate("H:i:s", time() - $start);
+            $this->info( "Done. Time elapsed: $time");
+            $this->info("Fixed users: $fixed");
+            return true;
         }
 
 }

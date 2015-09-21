@@ -4,13 +4,13 @@
             <a href="#">
                 <span>{{$key+1}}.</span>
                 <a href="{{url('analytics/course/'. $course['id'] .'/stats')}}">{{$course['name']}}</a>
-                <em>¥{{number_format($course['total_purchase'])}}</em>
+                <em>{{number_format($course['total_count'])}}</em>
             </a>
         </li>
     @endforeach
 @else
    <div class="clearfix no-data-found">
-       <center class="gray">{{trans('analytics.noTopCourse')}} 
+       <center class="gray">{{trans('analytics.noTopFreeCourse')}}
            {{ strtolower( AnalyticsHelper::frequencyReadable($frequency) ) }}</center>
    </div>
 @endif

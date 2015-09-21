@@ -1,9 +1,9 @@
 <div class="col-md-12 clearfix no-padding">
-    <div class="pull-right clearfix home-page-filter" style="margin-top:16px;">
-        <div class="btn-group pagination-container">
-            <a href="/" class="btn btn-default @if($filter == '') active @endif">{{ trans('courses/general.filter.all-paid-or-free') }}</a>
-            <a href="/?filter=paid" class="btn btn-default @if($filter == 'paid') active @endif">{{ trans('courses/general.filter.paid') }}</a>
-            <a href="/?filter=free" class="btn btn-default @if($filter == 'free') active @endif">{{ trans('courses/general.filter.free') }}</a>
+    <div class="pull-right clearfix home-page-filter segmented-controls" style="margin-top:16px;">
+        <div class="btn-group pagination-container buttons-container">
+            <a href="/" class="segmented-buttons @if($filter == '') active @endif">{{ trans('courses/general.filter.all-paid-or-free') }}</a>
+            <a href="/?filter=paid" class="segmented-buttons @if($filter == 'paid') active @endif">{{ trans('courses/general.filter.paid') }}</a>
+            <a href="/?filter=free" class="segmented-buttons @if($filter == 'free') active @endif">{{ trans('courses/general.filter.free') }}</a>
         </div>
     </div>
 </div>

@@ -79,5 +79,23 @@ return
     '6YearsAgo' => '6 年前',
     '7YearsAgo' => '7 年前',
 
-    '2TierSignups' => 'アフィリエイト２ティア登録者数'
+    'filters' => '検索条件',
+    'daily' => '日別',
+    'weekly' => '週別',
+    'monthly' => '月別',
+    'allTime' => '全期間',
+
+    '2TierSignups' => 'アフィリエイト２ティア登録者数',
+
+    'product_name' => '商品名',
+    'original_price' => '商品価格',
+    'selling_price' => '販売価格',
+	'affiliate_commission' => 'アフィリエイターへの報酬額',
+	'affiliate_two_tier_fee' => 'アフィリ２ティアへの報酬額',
+	'wazaar_system_fee' => 'システムの利用料金',
+	'publisher_sales_revenue' => '販売収益',
+    'date_time' => 'Date/Time',
+    'second_tier_commission' => 'Second Tier Commission',
+    'ltc_commission' => 'Ltc Commission'
+
 ];

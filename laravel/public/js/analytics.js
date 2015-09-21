@@ -5,6 +5,7 @@ var Analytics = {
     'activateLoader' : function (){
         $('#wrapper-sales').html($ajaxLoader);
         $('#wrapper-top-courses').html($ajaxLoader);
+        $('#wrapper-top-free-courses').html($ajaxLoader);
         $('#wrapper-tracking-codes-table').html($ajaxLoader);
         $('#wrapper-tracking-codes').html($ajaxLoader);
         $('#wrapper-course-conversions').html($ajaxLoader);
@@ -15,6 +16,7 @@ var Analytics = {
         $('#wrapper-sales-count').html($ajaxLoader);
         $('#wrapper-second-tier-registrations').html($ajaxLoader);
         $('#wrapper-ltc-earnings').html($ajaxLoader);
+        $('#wrapper-second-tier-earnings').html($ajaxLoader);
     },
     'topCourses' :  function ($frequency, $courseId, $elem){
 
@@ -45,6 +47,37 @@ var Analytics = {
         }
         else if($frequency == 'alltime'){
             $('#header-top-courses-frequency').html(_("All Time"));
+        }
+    },
+    'topFreeCourses' :  function ($frequency, $courseId, $elem){
+
+        var $tempSelector = '.' + $frequency +  '-data-top-free-courses';
+
+        if ($($tempSelector).html() == ''){
+            $.get('/analytics/top-free-courses/' + $frequency + '/' + $courseId, function ($html){
+                $('#wrapper-top-free-courses').html($html);
+                $($tempSelector).html($html);
+            });
+        }
+        else{
+            $('#wrapper-top-free-courses').html($($tempSelector).html());
+        }
+
+
+        $('.top-courses-dropdown a').removeClass('active');
+        $($elem).addClass('active');
+
+        if ($frequency == 'daily'){
+            $('#header-top-free-courses-frequency').html(_("Today"));
+        }
+        else if($frequency == 'week'){
+            $('#header-top-free-courses-frequency').html(_("This Week"));
+        }
+        else if($frequency == 'month'){
+            $('#header-top-free-courses-frequency').html(_("This Month"));
+        }
+        else if($frequency == 'alltime'){
+            $('#header-top-free-courses-frequency').html(_("All Time"));
         }
     },
     'sales' :  function ($frequency, $courseId, $trackingCode, $elem){
@@ -91,6 +124,7 @@ var Analytics = {
         }
 
         $('.button-filter').removeClass('btn-primary');
+        $('.button-filter').removeClass('active');
         $('.button-filter-' + $frequency).addClass('btn-primary');
     },
 
@@ -267,6 +301,42 @@ var Analytics = {
         }
         else if($frequency == 'alltime'){
             $('#header-second-tier-registrations-frequency').html(_("All Time"));
+        }
+    },
+
+    'secondTierEarnings' :  function ($frequency, $elem){
+
+        //$.get('/analytics/second-tier-registrations/' + $frequency , function ($html){
+        //});
+
+        var $tempSelector = '.' + $frequency +  '-data-2-tier-earnings';
+
+        if ($($tempSelector).html() == ''){
+            $.get('/analytics/second-tier-earnings/' + $frequency, function ($html){
+                $('#wrapper-second-tier-earnings').html($html);
+                $($tempSelector).html($html);
+            });
+        }
+        else{
+            $('#wrapper-second-tier-earnings').html($($tempSelector).html());
+        }
+
+        //$('#wrapper-second-tier-registrations').html('abcde');
+
+        //$('.tracking-code-conversions-dropdown a').removeClass('active');
+
+        $($elem).addClass('active');
+        if ($frequency == 'daily'){
+            $('#header-second-tier-earnings-frequency').html(_("Today"));
+        }
+        else if($frequency == 'week'){
+            $('#header-second-tier-earnings-frequency').html(_("This Week"));
+        }
+        else if($frequency == 'month'){
+            $('#header-second-tier-earnings-frequency').html(_("This Month"));
+        }
+        else if($frequency == 'alltime'){
+            $('#header-second-tier-earnings-frequency').html(_("All Time"));
         }
     },
 

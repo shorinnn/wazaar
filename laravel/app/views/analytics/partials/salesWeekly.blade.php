@@ -8,7 +8,7 @@
         <li id="monday" class="clearfix">
             <span>
                 @if (isset($urlIdentifier))
-                    <a href="{{url('analytics/affiliate/'. $urlIdentifier .'/' . $frequency . '?' . AnalyticsHelper::getQueryStringParams($frequency,$sale))}}">{{$sale['label']}}</a>
+                    <a href="{{url('analytics/' . $group . '/'. $urlIdentifier .'/' . $frequency . '?' . AnalyticsHelper::getQueryStringParams($frequency,$sale))}}">{{$sale['label']}}</a>
                 @else
                     {{$sale['label']}}
                 @endif

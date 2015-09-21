@@ -3,8 +3,8 @@
     @foreach($affiliates['affiliates'] as $aff)
         <li class="clearfix">
                 <span>
-                    @if (isset($urlIdentifier))
-                        <a href="{{url('analytics/'. $urlIdentifier .'/' . $frequency . '?' . AnalyticsHelper::getQueryStringParams($frequency,$aff))}}">{{$aff['label']}}</a>
+                    @if (isset($urlIdentifier) && !empty($urlIdentifier))
+                        <a href="{{url('affiliate/analytics/'. $urlIdentifier .'/' . $frequency . '?' . AnalyticsHelper::getQueryStringParams($frequency,$aff))}}">{{$aff['label']}}</a>
                     @else
                         {{$aff['label']}}
                     @endif

@@ -19,11 +19,19 @@ class AffiliateDashboardController extends BaseController
         return $this->_affiliateDashboard();
     }
 
-    public function topCoursesView($frequency = '', $courseId = '')
+    public function topCoursesView($frequency = '', $courseId = '', $free = 'no')
     {
-        $topCourses = $this->analyticsHelper->topCourses($frequency, $courseId);
+        $topCourses = $this->analyticsHelper->topCourses($frequency, $courseId, $free);
         if (is_array($topCourses)) {
             return View::make('analytics.partials.topCourses', compact('topCourses','frequency'))->render();
+        }
+    }
+
+    public function topFreeCoursesView($frequency = '', $courseId = '', $free = 'yes')
+    {
+        $topCourses = $this->analyticsHelper->topCourses($frequency, $courseId, $free);
+        if (is_array($topCourses)) {
+            return View::make('analytics.partials.topFreeCourses', compact('topCourses','frequency'))->render();
         }
     }
 
@@ -44,7 +52,7 @@ class AffiliateDashboardController extends BaseController
             default:
                 $affiliates = $this->analyticsHelper->secondAffiliatesLastFewDays(Auth::id());
         }
-        $urlIdentifier = 'second-tier-ltc-registrations';
+        $urlIdentifier = '';// 'second-tier-ltc-registrations';
         if (is_array($affiliates)) {
             return View::make('analytics.partials.ltcRegistrations', compact('affiliates', 'frequencyOverride','frequency','urlIdentifier'))->render();
         }
@@ -69,7 +77,7 @@ class AffiliateDashboardController extends BaseController
         }
 
         if (is_array($affiliates)) {
-            $urlIdentifier = 'ltc-registrations';
+            $urlIdentifier = '';// 'ltc-registrations';
             return View::make('analytics.partials.ltcRegistrations', compact('affiliates', 'frequencyOverride','frequency','urlIdentifier'))->render();
         }
     }
@@ -92,7 +100,8 @@ class AffiliateDashboardController extends BaseController
         }
 
         if (is_array($affiliates)) {
-            return View::make('analytics.partials.ltcEarnings', compact('affiliates', 'frequencyOverride'))->render();
+            $urlIdentifier = 'ltc-earnings';
+            return View::make('analytics.partials.ltcEarnings', compact('affiliates', 'frequencyOverride','urlIdentifier','frequency'))->render();
         }
     }
     public function salesView($frequency = '', $courseId = '', $trackingCode = '')
@@ -112,17 +121,18 @@ class AffiliateDashboardController extends BaseController
 
         if (is_array($sales)) {
             $urlIdentifier = 'sales';
+            $group = 'affiliate';
             if ($frequency == 'week'){
-                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency','urlIdentifier'))->render();
+                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency','urlIdentifier','group'))->render();
             }
             elseif($frequency == 'month'){
-                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency','urlIdentifier'))->render();
+                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency','urlIdentifier','group'))->render();
             }
             elseif($frequency == 'alltime'){
-                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency','urlIdentifier'))->render();
+                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency','urlIdentifier','group'))->render();
             }
             else {
-                return View::make('analytics.partials.sales', compact('sales', 'frequency','urlIdentifier'))->render();
+                return View::make('analytics.partials.sales', compact('sales', 'frequency','urlIdentifier','group'))->render();
             }
         }
     }
@@ -322,6 +332,45 @@ class AffiliateDashboardController extends BaseController
         }
     }
 
+    public function secondTierEarningsView($frequency = '', $courseId = '', $trackingCode = '')
+    {
+        if (Auth::user()->is_second_tier_instructor == 'no'){
+            //return '';
+        }
+
+
+        $sales = null;
+        switch ($frequency) {
+            case 'alltime' :
+                $sales = $this->analyticsHelper->secondTierSalesLastFewYears(5, $courseId, $trackingCode);
+                break;
+            case 'week' :
+                $sales = $this->analyticsHelper->secondTierSalesLastFewWeeks(7, $courseId, $trackingCode);
+                break;
+            case 'month' :
+                $sales = $this->analyticsHelper->secondTierSalesLastFewMonths(7, $courseId, $trackingCode);
+                break;
+            default:
+                $sales = $this->analyticsHelper->secondTierSalesLastFewDays(7, $courseId, $trackingCode);
+                break;
+        }
+
+
+        if (is_array($sales)) {
+            $urlIdentifier = 'second-tier-sales';
+            $group = 'affiliate';
+            if ($frequency == 'week') {
+                return View::make('analytics.partials.salesWeekly', compact('sales', 'frequency','urlIdentifier','group'))->render();
+            } elseif ($frequency == 'month') {
+                return View::make('analytics.partials.salesMonthly', compact('sales', 'frequency','urlIdentifier','group'))->render();
+            } elseif ($frequency == 'alltime') {
+                return View::make('analytics.partials.salesYearly', compact('sales', 'frequency','urlIdentifier','group'))->render();
+            } else {
+                return View::make('analytics.partials.sales', compact('sales', 'frequency','urlIdentifier','group'))->render();
+            }
+        }
+    }
+
     private function _affiliateDashboard()
     {
         $topCoursesView = '';//$this->topCoursesView();
@@ -373,6 +422,89 @@ class AffiliateDashboardController extends BaseController
 
         if ($purchases){
             return View::make('analytics.salesList',compact('purchases','salesLabel'));
+        }
+
+        return Redirect::to('analytics');
+    }
+
+    public function detailedLtcSales($frequency)
+    {
+        $purchases = null;
+
+        switch($frequency){
+            case 'daily' :
+                if (!Input::has('date')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F d, Y',strtotime(Input::get('date')));
+                $purchases = Purchase::whereRaw("DATE(created_at) = '". Input::get('date') ."'")->where('ltc_affiliate_id',Auth::id())->paginate(10);
+                break;
+            case 'week' :
+                if (!Input::has('start') && !Input::has('end')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F d, Y',strtotime(Input::get('start'))) . ' - '  . date('F d, Y',strtotime(Input::get('end')));
+                $purchases = Purchase::whereRaw("DATE(created_at) BETWEEN '". Input::get('start') ."' AND '". Input::get('end') ."'")->where('ltc_affiliate_id',Auth::id())->paginate(10);
+                break;
+            case 'month':
+                if (!Input::has('month') && !Input::has('year')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F',strtotime(Input::get('month'))) . Input::get('year');
+                $purchases = Purchase::whereRaw("MONTH(created_at) =  '". Input::get('month') ."' AND YEAR(created_at) = '". Input::get('year') ."'")->where('ltc_affiliate_id',Auth::id())->paginate(10);
+                break;
+            case 'alltime':
+                if (!Input::has('year')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = Input::get('year');
+                $purchases = Purchase::whereRaw("YEAR(created_at) = '". Input::get('year') ."'")->where('ltc_affiliate_id',Auth::id())->paginate(10);
+                break;
+        }
+
+        if ($purchases){
+            return View::make('analytics.ltcSalesList',compact('purchases','salesLabel'));
+        }
+
+        return Redirect::to('analytics');
+    }
+    public function detailedSecondTierSales($frequency)
+    {
+        $purchases = null;
+
+        switch($frequency){
+            case 'daily' :
+                if (!Input::has('date')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F d, Y',strtotime(Input::get('date')));
+                $purchases = Purchase::whereRaw("DATE(created_at) = '". Input::get('date') ."'")->where('second_tier_affiliate_id',Auth::id())->paginate(10);
+                break;
+            case 'week' :
+                if (!Input::has('start') && !Input::has('end')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F d, Y',strtotime(Input::get('start'))) . ' - '  . date('F d, Y',strtotime(Input::get('end')));
+                $purchases = Purchase::whereRaw("DATE(created_at) BETWEEN '". Input::get('start') ."' AND '". Input::get('end') ."'")->where('second_tier_affiliate_id',Auth::id())->paginate(10);
+                break;
+            case 'month':
+                if (!Input::has('month') && !Input::has('year')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = date('F',strtotime(Input::get('month'))) . Input::get('year');
+                $purchases = Purchase::whereRaw("MONTH(created_at) =  '". Input::get('month') ."' AND YEAR(created_at) = '". Input::get('year') ."'")->where('second_tier_affiliate_id',Auth::id())->paginate(10);
+                break;
+            case 'alltime':
+                if (!Input::has('year')){
+                    return Redirect::to('analytics');
+                }
+                $salesLabel = Input::get('year');
+                $purchases = Purchase::whereRaw("YEAR(created_at) = '". Input::get('year') ."'")->where('second_tier_affiliate_id',Auth::id())->paginate(10);
+                break;
+        }
+
+        if ($purchases){
+            return View::make('analytics.secondTierSalesList',compact('purchases','salesLabel'));
         }
 
         return Redirect::to('analytics');

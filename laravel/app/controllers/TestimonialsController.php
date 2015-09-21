@@ -36,8 +36,8 @@ class TestimonialsController extends \BaseController {
         
         public function more(){
             $html = '';
-            foreach( Testimonial::where('course_id', Input::get('course') )->orderBy('id', 'desc')
-                    ->skip( Input::get('skip') )->limit(2)->get() as $testimonial ){
+            foreach( Testimonial::where('course_id', Input::get('course') )->where('content','!=',"")->orderBy('id', 'desc')
+                    ->skip( Input::get('skip') )->limit(5)->get() as $testimonial ){
                 $html.=  View::make('courses.testimonials.testimonial')->with( compact('testimonial') )->render();
             }
             return $html;
