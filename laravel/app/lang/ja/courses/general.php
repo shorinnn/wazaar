@@ -43,7 +43,7 @@ return array(
     'add_to_wishlist' =>'ウィッシュリストに追加',
     'remove_from_wishlist' =>'お気に入りにから削除する。',
     'login_to_use' => 'Log in to use',
-    'reviews' => 'レビュー | レビュー',
+    'reviews' => 'つのレビュー',
 //    'module' => 'モジュール',
     'module' =>'セクション',
     'lesson' => 'レッスン',

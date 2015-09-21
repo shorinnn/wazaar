@@ -201,9 +201,9 @@
                         </div>
 
                         <!--<span class="read-all-reviews">Read all reviews</span>-->
-                        <a href='1' id="load-more-ajax-button" class="load-more-comments load-more-ajax read-all-reviews"
+                        <a href='#' id="load-more-ajax-button" class="load-more-comments load-more-ajax read-all-reviews"
                            data-url='{{ action('TestimonialsController@more') }}'
-                           data-target='.bottom-testimonials' data-skip='2' data-id='{{ $course->id }}' data-post-field="course">
+                           data-target='.bottom-testimonials' data-skip='5' data-id='{{ $course->id }}' data-post-field="course">
                             {{ trans('general.read-all-reviews') }}
                         </a>
                     </div>
