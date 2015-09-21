@@ -9,11 +9,11 @@
             <div class="table-responsive">
                 <table class="table">
                     <thead>
-                        <th>Product Name</th>
-                        <th>Original Price</th>
-                        <th>Selling Price</th>
-                        <th>LTC Commission</th>
-                        <th>Date/Time</th>
+                        <th>{{ trans('analytics.product_name') }}</th>
+                        <th>{{ trans('analytics.original_price') }}</th>
+                        <th>{{ trans('analytics.selling_price') }}</th>
+                        <th>{{ trans('analytics.ltc_commission') }}</th>
+                        <th>{{ trans('analytics.date_time') }}</th>
                     </thead>
     
                     <tbody>

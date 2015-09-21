@@ -91,7 +91,17 @@ return
 
     '2TierSignups' => '2 Tier Signups',
 
-    'enrolled' => 'Students Enrolled'
+    'enrolled' => 'Students Enrolled',
 
+    'product_name' => 'Product Name',
+    'original_price' => 'Original Price',
+    'selling_price' => 'Selling Price',
+	'affiliate_commission' => 'Affiliate Commission',
+	'affiliate_two_tier_fee' => 'Affiliate 2 Tier Fee',
+	'wazaar_system_fee' => 'Wazaar System Fee',
+	'publisher_sales_revenue' => 'Publisher Sales Revenue',
+    'date_time' => 'Date/Time',
+    'second_tier_commission' => 'Second Tier Commission',
+    'ltc_commission' => 'Ltc Commission'
 
 ];
