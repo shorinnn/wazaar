@@ -346,14 +346,28 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
                     if( !$user->updateUniques() ){
                         $failedUpdates[] = $user->id;
                     } 
+                    
+                    if( $user->hasRole('Student') ) $delivered->addTag('user-type-student', 'integer', 1, $user->delivered_user_id );
+                    if( $user->hasRole('Instructor') ) $delivered->addTag('user-type-instructor', 'integer', 1, $user->delivered_user_id );
+                    if( $user->hasRole('Affiliate') ) $delivered->addTag('user-type-affiliate', 'integer', 1, $user->delivered_user_id );
+                    $delivered->addTag('email-confirmed', 'integer', $user->confirmed, $user->delivered_user_id );
+                    
                     $addedFromAff++;
                     $addedFromDB++;
+                    
+                    
                 }
                 elseif( $student != null ){// get delivered ID from student account
                     $user->delivered_user_id = $student->delivered_user_id;
                     if( !$user->updateUniques() ){
                         $failedUpdates[] = $user->id;
                     } 
+                    
+                    if( $user->hasRole('Student') ) $delivered->addTag('user-type-student', 'integer', 1, $user->delivered_user_id );
+                    if( $user->hasRole('Instructor') ) $delivered->addTag('user-type-instructor', 'integer', 1, $user->delivered_user_id );
+                    if( $user->hasRole('Affiliate') ) $delivered->addTag('user-type-affiliate', 'integer', 1, $user->delivered_user_id );
+                    $delivered->addTag('email-confirmed', 'integer', $user->confirmed, $user->delivered_user_id );
+                    
                     $addedFromStudent++;
                     $addedFromDB++;
                 }
