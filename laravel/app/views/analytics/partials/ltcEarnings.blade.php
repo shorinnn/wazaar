@@ -2,7 +2,13 @@
 <ul class="daily-stat-wrap">
     @foreach($affiliates['affiliates'] as $aff)
         <li class="clearfix">
-            <span>{{$aff['label']}}</span>
+            <span>
+                    @if (isset($urlIdentifier) && !empty($urlIdentifier))
+                    <a href="{{url('analytics/affiliate/'. $urlIdentifier .'/' . $frequency . '?' . AnalyticsHelper::getQueryStringParams($frequency,$aff))}}">{{$aff['label']}}</a>
+                @else
+                    {{$aff['label']}}
+                @endif
+            </span>
             <div>
                 <div class="progress" style="width: {{$aff['percentage']}}%"></div>
             </div>
