@@ -124,6 +124,7 @@ var Analytics = {
         }
 
         $('.button-filter').removeClass('btn-primary');
+        $('.button-filter').removeClass('active');
         $('.button-filter-' + $frequency).addClass('btn-primary');
     },
 
