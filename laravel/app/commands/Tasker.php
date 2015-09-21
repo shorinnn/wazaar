@@ -38,7 +38,8 @@ class TaskerCommand extends Command {
        protected function getOptions()
        {
            return array(
-               array('run', null, InputOption::VALUE_REQUIRED, 'What to run: fix_70_30, precalculate_ltc_stats, yozawa_fix, fix_ltc_stpub, missing_delivered_fix')
+               array('run', null, InputOption::VALUE_REQUIRED, 'What to run: fix_70_30, precalculate_ltc_stats, yozawa_fix, fix_ltc_stpub, 
+                   missing_delivered_fix, fix_botched_900')
            );
        }
 
@@ -346,14 +347,28 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
                     if( !$user->updateUniques() ){
                         $failedUpdates[] = $user->id;
                     } 
+                    
+                    if( $user->hasRole('Student') ) $delivered->addTag('user-type-student', 'integer', 1, $user->delivered_user_id );
+                    if( $user->hasRole('Instructor') ) $delivered->addTag('user-type-instructor', 'integer', 1, $user->delivered_user_id );
+                    if( $user->hasRole('Affiliate') ) $delivered->addTag('user-type-affiliate', 'integer', 1, $user->delivered_user_id );
+                    $delivered->addTag('email-confirmed', 'integer', $user->confirmed, $user->delivered_user_id );
+                    
                     $addedFromAff++;
                     $addedFromDB++;
+                    
+                    
                 }
                 elseif( $student != null ){// get delivered ID from student account
                     $user->delivered_user_id = $student->delivered_user_id;
                     if( !$user->updateUniques() ){
                         $failedUpdates[] = $user->id;
                     } 
+                    
+                    if( $user->hasRole('Student') ) $delivered->addTag('user-type-student', 'integer', 1, $user->delivered_user_id );
+                    if( $user->hasRole('Instructor') ) $delivered->addTag('user-type-instructor', 'integer', 1, $user->delivered_user_id );
+                    if( $user->hasRole('Affiliate') ) $delivered->addTag('user-type-affiliate', 'integer', 1, $user->delivered_user_id );
+                    $delivered->addTag('email-confirmed', 'integer', $user->confirmed, $user->delivered_user_id );
+                    
                     $addedFromStudent++;
                     $addedFromDB++;
                 }
@@ -399,6 +414,37 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
             $this->error( "Failed local updates:"); 
             $failedUpdates = implode(', ', $failedUpdates);
             $this->error( $failedUpdates ); 
+            return true;
+        }
+        
+        public function fix_botched_900(){
+            $this->info( "************ FIX BOTCHED 900 *****************" );
+            $start = time();
+
+            $delivered = new DeliveredHelper();
+            $users = User::orderBy('updated_at','desc')->skip(9000)->limit(2000)->get();
+            $total = $users->count();
+            $this->info( $total . " botched emails. " );
+            $counter = 0;
+            
+            $fixed = 0;
+            foreach( $users as $user ){
+                
+                if( $user->hasRole('Student') ) $delivered->addTag('user-type-student', 'integer', 1, $user->delivered_user_id );
+                if( $user->hasRole('Instructor') ) $delivered->addTag('user-type-instructor', 'integer', 1, $user->delivered_user_id );
+                if( $user->hasRole('Affiliate') ) $delivered->addTag('user-type-affiliate', 'integer', 1, $user->delivered_user_id );
+                $delivered->addTag('email-confirmed', 'integer', $user->confirmed, $user->delivered_user_id );
+                
+                ++$fixed;
+                ++$counter;
+                if( $counter % 300 == 0){
+                    $this->comment(date("Y-m-d H:i:s")." - $counter / $total users processed. Sleep 1 second");
+                    sleep(1);
+                }
+            }
+            $time = gmdate("H:i:s", time() - $start);
+            $this->info( "Done. Time elapsed: $time");
+            $this->info("Fixed users: $fixed");
             return true;
         }
 
