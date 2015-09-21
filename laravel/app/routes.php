@@ -410,9 +410,12 @@ Route::group( array('domain' => $affiliateSubdomain ), function(){
         Route::get('trackingcodes/all', 'AffiliateDashboardController@trackingCodesAll');
         Route::get('ltcregistrations/{frequency}','AffiliateDashboardController@ltcRegistrationsView');
         Route::get('second-tier-registrations/{frequency}','AffiliateDashboardController@secondTierRegistrationsView');
+        Route::get('second-tier-earnings/{frequency}','AffiliateDashboardController@secondTierEarningsView');
         Route::get('ltcearnings/{frequency}','AffiliateDashboardController@ltcEarningsView');
 
         Route::get('affiliate/sales/{frequency}','AffiliateDashboardController@detailedSales');
+        Route::get('affiliate/ltc-earnings/{frequency}','AffiliateDashboardController@detailedLtcSales');
+        Route::get('affiliate/second-tier-sales/{frequency}','AffiliateDashboardController@detailedSecondTierSales');
     });
 });
 
@@ -441,6 +444,9 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
         Route::get('sales/get-count/{frequency?}/{courseId?}','InstructorDashboardController@salesCountView');
         Route::get('sales/{frequency}/{courseId?}/{trackingCode?}', 'InstructorDashboardController@salesView');
         Route::any('affiliatestable','InstructorDashboardController@topAffiliatesTableView');
+
+        Route::get('instructor/sales/{frequency}','InstructorDashboardController@detailedSales');
+        Route::get('instructor/second-tier-sales/{frequency}','InstructorDashboardController@detailedSecondTierSales');
 
     });
 });

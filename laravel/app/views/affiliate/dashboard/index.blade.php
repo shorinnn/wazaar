@@ -208,6 +208,36 @@
 
                 {{-- // 2 Tier Signups --}}
 
+                {{-- Second Tier Earnings --}}
+                <div class="col-md-4 col-sm-6 sol-xs-12">
+                    <div class="with-progress-bar stat-block">
+                        <div class="dropdown-wrapper">
+                            <button class="btn btn-default">
+                                {{trans('analytics.twoTierSales')}} <span id="header-second-tier-earnings-frequency">{{trans('analytics.today')}}</span> </button>
+                            <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu second-tier-earnings-dropdown">
+                                <li>
+                                    <a class="active with-today" href="#" onclick="Analytics.secondTierEarnings('daily',this); return false;">{{trans('analytics.today')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-weekly" href="#" onclick="Analytics.secondTierEarnings('week', this); return false;">{{trans('analytics.thisWeek')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-monthly" href="#" onclick="Analytics.secondTierEarnings('month', this); return false;">{{trans('analytics.thisMonth')}}</a>
+                                </li>
+                                <li>
+                                    <a class="with-alltime" href="#" onclick="Analytics.secondTierEarnings('alltime', this); return false;">{{trans('analytics.allTime')}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul id="wrapper-second-tier-earnings">
+                            {{--$ltcEarningsView--}}
+                            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                        </ul>
+                    </div>
+                </div>
+
+                {{-- // Second Tier Earnings --}}
+
                 {{-- Top Courses --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div class="stat-block">
@@ -410,6 +440,11 @@
         <div class="week-data-top-converting-tracking-codes"></div>
         <div class="month-data-top-converting-tracking-codes"></div>
         <div class="alltime-data-top-converting-tracking-codes"></div>
+
+        <div class="daily-data-2-tier-earnings"></div>
+        <div class="week-data-2-tier-earnings"></div>
+        <div class="month-data-2-tier-earnings"></div>
+        <div class="alltime-data-2-tier-earnings"></div>
     </div>
 
 

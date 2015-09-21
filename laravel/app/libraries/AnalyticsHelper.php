@@ -88,7 +88,7 @@ class AnalyticsHelper
     private function _affiliates($affiliateId, $filter = '')
     {
         $sql    = "SELECT count(id) as affiliates_count FROM users WHERE ltc_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
-
+        //echo $sql . '<br/>';
         //$result = Cache::remember('affiliates', self::CACHE, function() use($sql)
         //{
         //    return DB::select($sql);
@@ -170,6 +170,7 @@ class AnalyticsHelper
     private function _affiliateEarnings($affiliateId, $filter = '')
     {
         $sql    = "SELECT sum(ltc_affiliate_earnings) as affiliates_earning FROM purchases WHERE ltc_affiliate_id = '{$affiliateId}' AND id <> 0 {$filter}";
+
         $result = DB::select($sql);
         //$result = Cache::remember('affiliate_earnings', self::CACHE, function() use($sql)
         //{
@@ -347,7 +348,7 @@ class AnalyticsHelper
         return $this->_transformCoursePurchases($query);
     }
 
-    public function secondTierInstructorSalesLastFewDays($numOfDays, $courseId = 0, $trackingCode = '')
+    public function secondTierSalesLastFewDays($numOfDays, $courseId = 0, $trackingCode = '')
     {
         $sales = [];
 
@@ -361,7 +362,7 @@ class AnalyticsHelper
             $sales[] = [
                 'label' => $label,
                 'date'  => $date,
-                'day'   => $this->dailySecondTierInstructorSales($courseId, $date, $trackingCode)
+                'day'   => $this->dailySecondTierSales($courseId, $date, $trackingCode)
             ];
         }
         $salesTotal = 0;
@@ -397,13 +398,15 @@ class AnalyticsHelper
         return compact('sales', 'salesTotal', 'salesCount');
     }
 
-    public function secondTierInstructorSalesLastFewWeeks($numOfWeeks, $courseId = 0, $trackingCode = '')
+    public function secondTierSalesLastFewWeeks($numOfWeeks, $courseId = 0, $trackingCode = '')
     {
         $sales = [];
 
         for ($i = 0; $i <= $numOfWeeks; $i ++) {
             $start = date('Y-m-d', strtotime('-' . ($i + 1) . ' week'));
+            $start = date('Y-m-d', strtotime($start . ' +1 day'));
             $end   = date('Y-m-d', strtotime("-$i week"));
+            //$end   = date('Y-m-d', strtotime("-1 day"));
             $label = trans('analytics.' .  $i . (($i > 1) ? 'Weeks' : 'Week') . 'Ago');// $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
             if ($i === 0) {
                 $label = trans('analytics.thisWeek');// 'This week';
@@ -412,7 +415,7 @@ class AnalyticsHelper
                 'label' => $label,
                 'start' => $start,
                 'end'   => $end,
-                'week'  => $this->weeklySecondTierInstructorSales($courseId, $start, $end, $trackingCode)
+                'week'  => $this->weeklySecondTierSales($courseId, $start, $end, $trackingCode)
             ];
         }
 
@@ -447,7 +450,7 @@ class AnalyticsHelper
         return compact('sales', 'salesTotal', 'salesCount');
     }
 
-    public function secondTierInstructorSalesLastFewMonths($numOfMonths, $courseId = 0, $trackingCode = '')
+    public function secondTierSalesLastFewMonths($numOfMonths, $courseId = 0, $trackingCode = '')
     {
         $sales = [];
 
@@ -462,7 +465,7 @@ class AnalyticsHelper
                 'label'      => $label,
                 'month_date' => $month,
                 'year'       => $year,
-                'month'      => $this->monthlySecondTierInstructorSales($courseId, $month, $year, $trackingCode)
+                'month'      => $this->monthlySecondTierSales($courseId, $month, $year, $trackingCode)
             ];
         }
         $salesTotal = 0;
@@ -498,7 +501,7 @@ class AnalyticsHelper
         return compact('sales', 'salesTotal', 'salesCount');
     }
 
-    public function secondTierInstructorSalesLastFewYears($numOfYears, $courseId = 0, $trackingCode = '')
+    public function secondTierSalesLastFewYears($numOfYears, $courseId = 0, $trackingCode = '')
     {
         $sales = [];
 
@@ -511,7 +514,7 @@ class AnalyticsHelper
             $sales[] = [
                 'label'     => $label,
                 'year_date' => $year,
-                'year'      => $this->allTimeSecondTierInstructorSales($courseId, $year, $trackingCode)
+                'year'      => $this->allTimeSecondTierSales($courseId, $year, $trackingCode)
             ];
         }
         $salesTotal = 0;
@@ -602,6 +605,7 @@ class AnalyticsHelper
 
         for ($i = 0; $i <= $numOfWeeks; $i ++) {
             $start = date('Y-m-d', strtotime('-' . ($i + 1) . ' week'));
+            $start = date('Y-m-d', strtotime($start . ' +1 day'));
             $end   = date('Y-m-d', strtotime("-$i week"));
             $label = trans('analytics.' .  $i . (($i > 1) ? 'Weeks' : 'Week') . 'Ago');// $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
             if ($i === 0) {
@@ -772,7 +776,7 @@ class AnalyticsHelper
     }
 
 
-    public function weeklySecondTierInstructorSales($courseId, $dateFilterStart = '', $dateFilterEnd = '', $trackingCode = '')
+    public function weeklySecondTierSales($courseId, $dateFilterStart = '', $dateFilterEnd = '', $trackingCode = '')
     {
         if (empty($dateFilterStart)) {
             $dateFilterStart = $this->_frequencyEquivalence('week');
@@ -793,12 +797,12 @@ class AnalyticsHelper
             $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
         }
 
-        $query = $this->_twoTierSalesRawQuery($filterQuery);
+        $query = $this->_secondTierSalesRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
 
-    public function monthlySecondTierInstructorSales($courseId, $month = '', $year = '', $trackingCode = '')
+    public function monthlySecondTierSales($courseId, $month = '', $year = '', $trackingCode = '')
     {
         if (empty($month)) {
             $month = date('m');
@@ -817,12 +821,12 @@ class AnalyticsHelper
             $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
         }
 
-        $query = $this->_twoTierSalesRawQuery($filterQuery);
+        $query = $this->_secondTierSalesRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
 
-    public function allTimeSecondTierInstructorSales($courseId, $year = '', $trackingCode = '')
+    public function allTimeSecondTierSales($courseId, $year = '', $trackingCode = '')
     {
         if (empty($year)) {
             $year = date('Y');
@@ -836,12 +840,12 @@ class AnalyticsHelper
             $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
         }
 
-        $query = $this->_twoTierSalesRawQuery($filterQuery);
+        $query = $this->_secondTierSalesRawQuery($filterQuery);
 
         return $this->_transformCoursePurchases($query);
     }
 
-    public function dailySecondTierInstructorSales($courseId, $date = '', $trackingCode = '')
+    public function dailySecondTierSales($courseId, $date = '', $trackingCode = '')
     {
         if (empty($date)) {
             $date = date('Y-m-d');
@@ -855,7 +859,7 @@ class AnalyticsHelper
             $filterQuery .= " AND purchases.tracking_code = '{$trackingCode}'";
         }
 
-        $query = $this->_twoTierSalesRawQuery($filterQuery);
+        $query = $this->_secondTierSalesRawQuery($filterQuery);
 
 
 
@@ -1415,14 +1419,24 @@ class AnalyticsHelper
         return $sql;
     }
 
-    private function _twoTierSalesRawQuery($criteria = ''){
-        $sql = "SELECT created_at, sum(`second_tier_instructor_earnings`) as 'total_purchase', COUNT(purchases.id) as 'total_count'
-                FROM purchases WHERE second_tier_instructor_id = '{$this->userId}' AND
+    private function _secondTierSalesRawQuery($criteria = ''){
+
+        if ($this->userType == 'instructor') {
+            $sum = "sum(`second_tier_instructor_earnings`)";
+            $whereColumn = "second_tier_instructor_id";
+        }
+        elseif ($this->userType == 'affiliate'){
+            $sum = "sum(`second_tier_affiliate_earnings`)";
+            $whereColumn = "second_tier_affiliate_id";
+        }
+
+        $sql = "SELECT created_at, {$sum} as 'total_purchase', COUNT(purchases.id) as 'total_count'
+                FROM purchases WHERE {$whereColumn} = '{$this->userId}' AND
                 {$criteria}
                 GROUP BY DATE(created_at)
                 ORDER BY created_at DESC
                 ";
-
+        //echo $sql . '<br/>';
         return $sql;
     }
 
@@ -1638,6 +1652,7 @@ class AnalyticsHelper
 
         for ($i = 0; $i <= $numOfWeeks; $i ++) {
             $start = date('Y-m-d', strtotime('-' . ($i + 1) . ' week'));
+            $start = date('Y-m-d', strtotime($start . ' +1 day'));
             $end   = date('Y-m-d', strtotime("-$i week"));
             $label = trans('analytics.' .  $i . (($i > 1) ? 'Weeks' : 'Week') . 'Ago'); //$i . (($i > 1) ? ' weeks' : ' week') . ' ago';
             if ($i === 0) {
@@ -1799,6 +1814,7 @@ class AnalyticsHelper
 
         for ($i = 0; $i <= $numOfWeeks; $i ++) {
             $start = date('Y-m-d', strtotime('-' . ($i + 1) . ' week'));
+            $start = date('Y-m-d', strtotime($start . ' +1 day'));
             $end   = date('Y-m-d', strtotime("-$i week"));
             $label = trans('analytics.' .  $i . (($i > 1) ? 'Weeks' : 'Week') . 'Ago'); // $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
             if ($i === 0) {
@@ -1947,6 +1963,7 @@ class AnalyticsHelper
 
         for ($i = 0; $i <= $numOfWeeks; $i ++) {
             $start = date('Y-m-d', strtotime('-' . ($i + 1) . ' week'));
+            $start = date('Y-m-d', strtotime($start . ' +1 day'));
             $end   = date('Y-m-d', strtotime("-$i week"));
             $label = trans('analytics.' .  $i . (($i > 1) ? 'Weeks' : 'Week') . 'Ago'); // $i . (($i > 1) ? ' weeks' : ' week') . ' ago';
             if ($i === 0) {
