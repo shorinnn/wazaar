@@ -23,7 +23,7 @@
                         {{ strip_tags_and_attributes($course->description, "<p><b><ol><ul><li><u><br>")}}
                     </p>
                     <div class="fadeout-text"></div>
-                    <span class="show-full-description expandable-button show-more" data-less-text='Show less description' data-more-text='Show full description'> {{ trans("courses/general.show-full-description") }}</span>
+                    <span class="show-full-description"> {{ trans("courses/general.show-full-description") }}</span>
                 </div>
                 <div class="what-you-will-learn no-margin-top module-box padding-top-30 padding-bottom-20">
                     <h2>{{ trans('courses/general.what-you-will-learn') }}</h2>
@@ -139,9 +139,7 @@
 
                             @endforeach
                         </ul>
-                            <span class="hide-lesson-topics expandable-button show-more"
-                                  data-less-text='{{ trans('courses/general.show-less-lessons') }}'
-                                  data-more-text='{{ trans('courses/general.show-more-lessons') }}'>{{ trans('courses/general.show-more-lessons') }}</span>
+                            <!--<span class="hide-lesson-topics">{{ trans('courses/general.show-more-lessons') }}</span>-->
                     </div>
                 @endforeach
                 
@@ -185,8 +183,7 @@
                                     {{ $course->assignedInstructor->profile->bio }}
                                 </p>
                                 <div class="fadeout-text"></div>
-                                <span class="view-more-reviews expandable-button show-more" data-less-text='{{ trans('courses/general.profile-less') }}' 
-                                      data-more-text='{{ trans('courses/general.profile-more') }}'>{{ trans("courses/general.profile-more") }}</span>
+                                <span class="view-more-reviews">{{ trans("courses/general.profile-more") }}</span>
                             </div>
                         </div>
                     </div>
