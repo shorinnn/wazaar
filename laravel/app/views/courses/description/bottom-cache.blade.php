@@ -64,7 +64,7 @@
                         <p class="regular-paragraph">
                             <!--A short description of the module goes here...-->
                         </p>
-                        <ul class="clearfix">
+                        <ul class="lesson-topics expandable-content clearfix">
                             @foreach($module->lessons as $i=>$lesson)
                                 <li class="lessons lesson-1 bordered clearfix">
                                     <span class="hidden-xs"><i class="wa-play"></i></span>

@@ -2703,7 +2703,6 @@ h2, h3, h4, h5, h6{
 .lesson-topics{
 	padding: 0;
 	margin: 0;
-	max-height: 115px;
 }
 .lesson-topics li{
 	border-top: solid 1px #ebeced;
