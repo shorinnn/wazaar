@@ -122,7 +122,7 @@ class AnalyticsHelper
 
     private function weeklySecondAffiliateRegistration($affiliateId, $dateFilterStart, $dateFilterEnd)
     {
-        $dateFilterStart = date('Y-m-d',strtotime($dateFilterStart . " +1 day"));
+//        $dateFilterStart = date('Y-m-d',strtotime($dateFilterStart . " +1 day")); COMMENTING THIS BECAUSE RETURNS BAD NUMBERS!
         $filterQuery = " AND DATE(users.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         return $this->_secondAffiliates($affiliateId, $filterQuery);
