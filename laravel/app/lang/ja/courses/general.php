@@ -1,6 +1,10 @@
 <?php
 
 return array(
+    'recommends' => 'オススメする',
+    'does_not_recommend' => 'オススメしない',
+    'found_helpful' => 'このレビューは役に立った',
+    'helpful' => '役に立った',
     'sale' =>'月SALEせ',
     'purchase' =>'購入',
     'join_class' =>'受講する',
@@ -43,7 +47,7 @@ return array(
     'add_to_wishlist' =>'ウィッシュリストに追加',
     'remove_from_wishlist' =>'お気に入りにから削除する。',
     'login_to_use' => 'Log in to use',
-    'reviews' => 'レビュー | レビュー',
+    'reviews' => 'つのレビュー',
 //    'module' => 'モジュール',
     'module' =>'セクション',
     'lesson' => 'レッスン',

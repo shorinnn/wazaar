@@ -586,9 +586,10 @@ function loadMoreComments(e){
         if($.trim(data)==''){
             $(e.target).removeClass('load-more-ajax');
             $(e.target).html( _('Nothing more to load') );
+            $(e.target).hide();
         }
         $(target).append(data).fadeIn('slow');
-        skip = 1 * skip + 1 * 2;
+        skip = 1 * skip + 1 * 5;
         $(e.target).attr('data-skip', skip);
         
     });

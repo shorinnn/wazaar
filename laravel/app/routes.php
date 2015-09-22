@@ -162,6 +162,12 @@ $wwwRoutes = function(){
         Route::resource('course-difficulties', 'CourseDifficultiesController');
         Route::put('category-groups/{id}/group', 'CategoryGroupsController@group');
         Route::resource('category-groups', 'CategoryGroupsController');
+        Route::get('hot-picks', 'PicksController@hotPicks');
+        Route::get('wazaar-picks', 'PicksController@wazaarPicks');
+        Route::get('load-picks/{type}', 'PicksController@loadPicks');
+        Route::post('order-picks/{type}', 'PicksController@orderPicks');
+        Route::get('load-courses/{type}', 'PicksController@loadCourses');        
+        Route::post('add-to-picks/{type}', 'PicksController@addPicks');
     });
 //});
 };
