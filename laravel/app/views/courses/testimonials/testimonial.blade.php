@@ -38,10 +38,11 @@
               {{ $testimonial->student->last_name }}
               {{ $testimonial->student->first_name }}
               </span>
-              <em class="recommendation recommends">
+<!--             HIDE THIS FROM PRODUCTION
+<em class="recommendation recommends">
               	<em class="recommended">{{ trans("courses/general.recommends") }}</em>
               	<em class="unrecommended">{{ trans("courses/general.does_not_recommend") }}</em>
-              </em>
+              </em>-->
           </div>
           <div class="user-review col-xs-12 col-sm-10 col-md-10 col-lg-10">
               <p class="regular-paragraph expandable-content">
@@ -50,6 +51,7 @@
               <div class="fadeout-text"></div>
               <span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }} 
               </span>
+              <!--HIDE THIS FROM PRODUCTION
               <form>
                   <div class="helpful-button-wrap clearfix">
                   	  <input type="checkbox" id="helpful-button" class="hide" name="helpful-button">
@@ -62,6 +64,7 @@
                   </div>
                   
               </form>
+              -->
           </div>
       </div>
   </div>
