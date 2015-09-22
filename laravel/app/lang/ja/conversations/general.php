@@ -25,6 +25,8 @@ return array(
     'classroom' => [
         'post' => '投稿する',
         'write-your-answer' => '回答する'
-    ]
+    ],
+    'teacher' => '講師',
+    'ask-a-question' => '質問する',
     
 );

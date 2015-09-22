@@ -303,7 +303,9 @@
                         </div>
                         <div class='question-holder scroll-pane'>
                         	@if($lesson->discussions()->count() <= 0)
-                            	<h2 class="ask-a-question-heading visible-sm-block visible-xs-block hidden-md hidden-lg">Ask a Question!</h2>
+                            	<h2 class="ask-a-question-heading visible-sm-block visible-xs-block hidden-md hidden-lg">
+                                    {{ trans('conversations/general.ask-a-question') }}
+                                </h2>
                             @endif
                             @foreach($lesson->discussions()->where( 'student_id', Auth::user()->id )->get() as $discussion)
                                 {{ View::make('courses.classroom.discussions.question')->with( compact('discussion') ) }}
