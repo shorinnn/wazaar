@@ -7,7 +7,7 @@
                 <h1 class="left">Sales ({{$salesLabel}})</h1>
 			</div>
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table">
                     <thead>
                         <th>{{ trans('analytics.product_name') }}</th>
                         <th>{{ trans('analytics.original_price') }}</th>

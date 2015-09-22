@@ -4,7 +4,7 @@
     <div class="table-responsive analytics-page">
         <div class="top-affiliates-table table-wrapper">
             <div class="table-header clearfix">
-                <h1 class="left">LTC Sales ({{$salesLabel}})</h1>
+                <h1 class="left">{{ trans('analytics.ltc_sales') }} ({{$salesLabel}})</h1>
             </div>
             <div class="table-responsive">
                 <table class="table">

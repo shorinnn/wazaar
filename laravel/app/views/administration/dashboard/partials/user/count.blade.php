@@ -1,5 +1,5 @@
 <h2>{{number_format($userStats['usersTotal'])}}</h2>
-<ul>
+<ul class="daily-stat-wrap">
     @foreach($userStats['users'] as $user)
         <li class="clearfix">
             <span>{{$user['label']}}</span>
