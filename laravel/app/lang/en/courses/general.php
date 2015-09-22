@@ -235,5 +235,6 @@ return array(
         'later' => 'LATER',
         'submit-review' => 'SUBMIT REVIEW',
         'what-is-bad-about-it' => 'What is bad about it?',
-    ]
+    ],
+    'non-buyer-previewers' => 'Non-buyer previewers',
 );

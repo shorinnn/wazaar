@@ -154,7 +154,8 @@
                                           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
                                                   <!--<p><i class="fa fa-comment-o"></i>questions <span class="count">24</span></p>-->
                                                   <!--<p><i class="fa fa-comment-o"></i>questions <span class="count">24</span></p>-->
-                                                 <p><i class="fa fa-smile-o"></i>{{ trans('courses/general.views') }} <span class="count new">{{ $course->student_count }}</span></p>
+                                                 <p><i class="fa fa-smile-o"></i>{{ trans('courses/general.non-buyer-previewers') }} 
+                                                     <span class="count new">{{ $course->nonBuyerPreviews() }}</span></p>
 
                                           </div>
                                           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
