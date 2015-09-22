@@ -36,5 +36,6 @@ var js_translation_map_ja = {
     'minutes' : '分',
     'seconds' : '秒',
     'Remove from wishlist' : 'お気に入りにから削除する。',
-    'Add to wishlist' : 'ウィッシュリストに追加'
+    'Add to wishlist' : 'ウィッシュリストに追加',
+    'Thank you for your review.' : 'レビューの記載は販売者の売上促進につながります！本当にありがとうございました！'
 };

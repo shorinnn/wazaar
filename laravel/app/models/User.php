@@ -69,6 +69,10 @@ class User extends Ardent implements ConfideUserInterface
         // delete profiles
         DB::table('user_profiles')->where('owner_id', $this->id)->delete();
         DB::table('assigned_roles')->where('user_id', $this->id)->delete();
+        
+        // remove from delivered
+        $delivered = new DeliveredHelper();
+        $delivered->deleteUser( $this->delivered_user_id );
     }
     
 

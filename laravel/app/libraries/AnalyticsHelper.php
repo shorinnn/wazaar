@@ -32,7 +32,7 @@ class AnalyticsHelper
 
     private function weeklyLtcEarnings($affiliateId, $dateFilterStart, $dateFilterEnd)
     {
-        $dateFilterStart = date('Y-m-d',strtotime($dateFilterStart . " +1 day"));
+        //$dateFilterStart = date('Y-m-d',strtotime($dateFilterStart . " +1 day"));
         $filterQuery = " AND DATE(purchases.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
 
         return $this->_affiliateEarnings($affiliateId, $filterQuery);
@@ -65,9 +65,9 @@ class AnalyticsHelper
 
     private function weeklyLtcRegistration($affiliateId, $dateFilterStart, $dateFilterEnd)
     {
-        $dateFilterStart = date('Y-m-d',strtotime($dateFilterStart . " +1 day"));
+        $dateFilterStart = $dateFilterStart;
         $filterQuery = " AND DATE(users.created_at) BETWEEN '{$dateFilterStart}' AND '{$dateFilterEnd}'";
-
+        //echo $filterQuery . '<br/>';
         return $this->_affiliates($affiliateId, $filterQuery);
     }
 
@@ -1374,7 +1374,7 @@ class AnalyticsHelper
         //    $criteria .= " AND (purchases.product_affiliate_id = '{$this->userId}' )";
         //}
 
-        $sql = "SELECT courses.id, courses.`name`, {$sum} as 'total_purchase'
+        $sql = "SELECT courses.id, courses.`name`, {$sum} as 'total_purchase', count(courses.id) as 'total_count'
                 FROM purchases
                 JOIN courses ON courses.id = purchases.product_id WHERE purchases.id <> 0
                 AND courses.`free` = '{$free}'

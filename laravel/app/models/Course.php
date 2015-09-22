@@ -165,6 +165,16 @@ class Course extends Ardent{
         return $amount;
     }
     
+    public function lessonSalesCount(){
+        $sales = 0;
+        foreach($this->modules as $module){
+            foreach($module->lessons as $lesson){
+                $sales += $lesson->sales()->count();
+            }
+        }
+        return $sales;
+    }
+    
     public function videoBlocks(){
         $lesson_ids = [];
         $module_ids = $this->modules->lists('id');
@@ -464,7 +474,7 @@ class Course extends Ardent{
     public function isNewForStudentCount(){
         $created = strtotime( $this->created_at );
         $threeMonths = strtotime('-3 month');
-        if( $this->student_count <= 20 && $created > $threeMonths ) return true;
+        if( $this->student_count <= 3 && $created > $threeMonths ) return true;
         return false;
     }
     
