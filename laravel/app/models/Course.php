@@ -165,6 +165,16 @@ class Course extends Ardent{
         return $amount;
     }
     
+    public function lessonSalesCount(){
+        $sales = 0;
+        foreach($this->modules as $module){
+            foreach($module->lessons as $lesson){
+                $sales += $lesson->sales()->count();
+            }
+        }
+        return $sales;
+    }
+    
     public function videoBlocks(){
         $lesson_ids = [];
         $module_ids = $this->modules->lists('id');
