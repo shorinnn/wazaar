@@ -4,12 +4,24 @@ class PicksController extends \BaseController {
 
 	public function hotPicks()
 	{
-		return View::make('administration.picks.hot_picks');
+		$course_lists = Course::select('id', 'name')->where('publish_status', '=', 'approved')->get();
+		$courses = array();
+		foreach($course_lists as $i => $course_list){
+			$courses[$course_list->id] = $course_list->name;
+		}
+		
+		return View::make('administration.picks.hot_picks', compact('courses'));
 	}
 
 	public function wazaarPicks()
 	{
-		return View::make('administration.picks.wazaar_picks');
+		$course_lists = Course::select('id', 'name')->where('publish_status', '=', 'approved')->get();
+		$courses = array();
+		foreach($course_lists as $course_list){
+			$courses[$course_list->id] = $course_list->name;
+		}
+
+		return View::make('administration.picks.wazaar_picks', compact('courses'));
 	}
 
 	public function loadPicks($type)
@@ -19,7 +31,7 @@ class PicksController extends \BaseController {
 			case 'hot-picks':
 				$courses = DB::table('hot_pick_courses')
 						->join('courses', 'hot_pick_courses.course_id', '=', 'courses.id')
-						->select('courses.name', 'hot_pick_courses.order')
+						->select('courses.name', 'hot_pick_courses.id', 'hot_pick_courses.order')
 						->orderBy('hot_pick_courses.order', 'asc')
 						->get();
 			break;
@@ -27,28 +39,12 @@ class PicksController extends \BaseController {
 			case 'wazaar-picks':
 				$courses = DB::table('wazaar_pick_courses')
 						->join('courses', 'wazaar_pick_courses.course_id', '=', 'courses.id')
-						->select('courses.name', 'wazaar_pick_courses.order')
+						->select('courses.name', 'wazaar_pick_courses.id', 'wazaar_pick_courses.order')
 						->orderBy('wazaar_pick_courses.order', 'asc')
 						->get();
 			break;
 		}
 		return View::make('administration.picks.listings',  compact('courses', 'type'));
-	}
-
-	public function orderPicks($type)
-	{
-
-		switch($type){
-			case 'hot-picks':
-				$courses = DB::table('hot_pick_courses')->orderBy('order', 'asc')->get();
-			break;
-
-			case 'wazaar-picks':
-				$courses = DB::table('wazaar_pick_courses')->orderBy('order', 'asc')->get();
-			break;
-		}
-
-		return View::make('administration.picks.listings',  compact('courses'));
 	}
 
 	public function loadCourses($type)
@@ -63,6 +59,7 @@ class PicksController extends \BaseController {
 							->join('hot_pick_courses', 'courses.id', '!=', 'hot_pick_courses.course_id')
 							->select('courses.id', 'courses.name')
 							->where('courses.name', 'like', '%'.$data['q'].'%')
+							->where('courses.publish_status', '=', 'approved')
 							->orderBy('hot_pick_courses.order', 'asc')
 							->get();
 				} else {
@@ -70,6 +67,7 @@ class PicksController extends \BaseController {
 							->leftJoin('hot_pick_courses', 'courses.id', '!=', 'hot_pick_courses.course_id')
 							->select('courses.id', 'courses.name')
 							->where('courses.name', 'like', '%'.$data['q'].'%')
+							->where('courses.publish_status', '=', 'approved')
 							->orderBy('hot_pick_courses.order', 'asc')
 							->get();
 				}
@@ -82,6 +80,7 @@ class PicksController extends \BaseController {
 							->join('wazaar_pick_courses', 'courses.id', '!=', 'wazaar_pick_courses.course_id')
 							->select('courses.id', 'courses.name')
 							->where('courses.name', 'like', '%'.$data['q'].'%')
+							->where('courses.publish_status', '=', 'approved')
 							->orderBy('wazaar_pick_courses.order', 'asc')
 							->get();
 				} else {
@@ -89,6 +88,7 @@ class PicksController extends \BaseController {
 							->leftJoin('wazaar_pick_courses', 'courses.id', '!=', 'wazaar_pick_courses.course_id')
 							->select('courses.id', 'courses.name')
 							->where('courses.name', 'like', '%'.$data['q'].'%')
+							->where('courses.publish_status', '=', 'approved')
 							->orderBy('wazaar_pick_courses.order', 'asc')
 							->get();
 				}
@@ -133,6 +133,47 @@ class PicksController extends \BaseController {
 
 					WazaarPicks::create($new_data);
 				}
+			break;
+		}
+
+		return 'true';
+	}
+
+	public function deletePicks($type)
+	{
+		$data = Request::all();
+
+		switch($type){
+			case 'hot-picks':
+				foreach($data['cids'] as $id){
+					HotPicks::where('id', $id)->delete();
+				}
+				HotPicks::reorderAll();
+			break;
+
+			case 'wazaar-picks':
+				foreach($data['cids'] as $id){
+					WazaarPicks::where('id', $id)->delete();
+				}
+				WazaarPicks::reorderAll();
+			break;
+		}
+
+		return 'true';
+	}
+
+	public function orderPicks($type)
+	{
+
+		$data = Request::all();
+
+		switch($type){
+			case 'hot-picks':
+				HotPicks::updateOrder($data['order']);
+			break;
+
+			case 'wazaar-picks':
+				WazaarPicks::updateOrder($data['order']);
 			break;
 		}
 
