@@ -183,7 +183,7 @@
                                     {{ $course->assignedInstructor->profile->bio }}
                                 </p>
                                 <div class="fadeout-text"></div>
-                                <span class="view-more-reviews">{{ trans("courses/general.profile-more") }}</span>
+                                <span class="view-more-reviews expandable-button show-more" data-more-text="More" data-less-text="Less">{{ trans("courses/general.profile-more") }}</span>
                             </div>
                         </div>
                     </div>
