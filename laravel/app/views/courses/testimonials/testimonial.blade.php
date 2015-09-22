@@ -49,9 +49,10 @@
                 {{{ $testimonial->content }}}
               </p>
               <div class="fadeout-text"></div>
+             
+              <!--HIDE THIS FROM PRODUCTION
               <span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }} 
               </span>
-              <!--HIDE THIS FROM PRODUCTION
               <form>
                   <div class="helpful-button-wrap clearfix">
                   	  <input type="checkbox" id="helpful-button" class="hide" name="helpful-button">
