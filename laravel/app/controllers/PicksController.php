@@ -4,12 +4,24 @@ class PicksController extends \BaseController {
 
 	public function hotPicks()
 	{
-		return View::make('administration.picks.hot_picks');
+		$course_lists = Course::select('id', 'name')->where('publish_status', '=', 'approved')->get();
+		$courses = array();
+		foreach($course_lists as $i => $course_list){
+			$courses[$course_list->id] = $course_list->name;
+		}
+		
+		return View::make('administration.picks.hot_picks', compact('courses'));
 	}
 
 	public function wazaarPicks()
 	{
-		return View::make('administration.picks.wazaar_picks');
+		$course_lists = Course::select('id', 'name')->where('publish_status', '=', 'approved')->get();
+		$courses = array();
+		foreach($course_lists as $course_list){
+			$courses[$course_list->id] = $course_list->name;
+		}
+
+		return View::make('administration.picks.wazaar_picks', compact('courses'));
 	}
 
 	public function loadPicks($type)
@@ -47,6 +59,7 @@ class PicksController extends \BaseController {
 							->join('hot_pick_courses', 'courses.id', '!=', 'hot_pick_courses.course_id')
 							->select('courses.id', 'courses.name')
 							->where('courses.name', 'like', '%'.$data['q'].'%')
+							->where('courses.publish_status', '=', 'approved')
 							->orderBy('hot_pick_courses.order', 'asc')
 							->get();
 				} else {
@@ -54,6 +67,7 @@ class PicksController extends \BaseController {
 							->leftJoin('hot_pick_courses', 'courses.id', '!=', 'hot_pick_courses.course_id')
 							->select('courses.id', 'courses.name')
 							->where('courses.name', 'like', '%'.$data['q'].'%')
+							->where('courses.publish_status', '=', 'approved')
 							->orderBy('hot_pick_courses.order', 'asc')
 							->get();
 				}
@@ -66,6 +80,7 @@ class PicksController extends \BaseController {
 							->join('wazaar_pick_courses', 'courses.id', '!=', 'wazaar_pick_courses.course_id')
 							->select('courses.id', 'courses.name')
 							->where('courses.name', 'like', '%'.$data['q'].'%')
+							->where('courses.publish_status', '=', 'approved')
 							->orderBy('wazaar_pick_courses.order', 'asc')
 							->get();
 				} else {
@@ -73,6 +88,7 @@ class PicksController extends \BaseController {
 							->leftJoin('wazaar_pick_courses', 'courses.id', '!=', 'wazaar_pick_courses.course_id')
 							->select('courses.id', 'courses.name')
 							->where('courses.name', 'like', '%'.$data['q'].'%')
+							->where('courses.publish_status', '=', 'approved')
 							->orderBy('wazaar_pick_courses.order', 'asc')
 							->get();
 				}

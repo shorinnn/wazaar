@@ -24,6 +24,7 @@
         display: block !important;
     }
 </style>
+
 <div class="container course-categories">
 	<div class="row">
     	<div class="col-md-12">
@@ -39,7 +40,7 @@
                     <span class="input-group-btn">
                         <button class="btn btn-primary" onclick="add_courses_to_list();">Add</button>
                     </span>
-                    <select id="search-course" class="form-control pretty-select" multiple="multiple" size="1" style="width:100%;"></select>
+                    {{Form::select('search-course', $courses, null, ['id'=>'search-course', 'class'=>'form-control pretty-select', 'multiple'=> 'multiple'])}}
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -121,28 +122,7 @@
     jQuery(document).ready(function($){
         load_picked_courses();
         $('.pretty-select').select2({
-            placeholder: "Search a Course",
-            ajax: {
-                url: "/administration/load-courses/hot-picks",
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        q: params.term, // search term
-                        page: params.page
-                    };
-                },
-                processResults: function (data, page) {
-                    // parse the results into the format expected by Select2.
-                    // since we are using custom formatting functions we do not need to
-                    // alter the remote JSON data
-                    return {
-                        results: data.items
-                    };
-                },
-            },
-            escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
-            minimumInputLength: 1
+            placeholder: "Search a Course"            
         });
     });
 </script>

@@ -5,6 +5,9 @@
     .search-course-container{
         padding-bottom: 10px;
     }
+    .select2-search__field{
+        width: 95% !important;
+    }
     .order-list-input{
         width: 75% !important;
         display: block !important;
@@ -32,12 +35,12 @@
 <div class="container">
 	<div class="row">
     	<div class="col-md-12">
-            <div class="row col-md-12 search-course-container">
+            <div class="search-course-container">
                 <div class="input-group">
                     <span class="input-group-btn">
                         <button class="btn btn-primary" onclick="add_courses_to_list();">Add</button>
                     </span>
-                    <select id="search-course" class="form-control pretty-select" multiple="multiple" size="1"></select>
+                    {{Form::select('search-course', $courses, null, ['id'=>'search-course', 'class'=>'form-control pretty-select', 'multiple'=> 'multiple'])}}
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -119,28 +122,7 @@
     jQuery(document).ready(function($){
         load_picked_courses();
         $('.pretty-select').select2({
-            placeholder: "Search a Course",
-            ajax: {
-                url: "/administration/load-courses/wazaar-picks",
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        q: params.term, // search term
-                        page: params.page
-                    };
-                },
-                processResults: function (data, page) {
-                    // parse the results into the format expected by Select2.
-                    // since we are using custom formatting functions we do not need to
-                    // alter the remote JSON data
-                    return {
-                        results: data.items
-                    };
-                },
-            },
-            escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
-            minimumInputLength: 1
+            placeholder: "Search a Course"            
         });
     });
 </script>
