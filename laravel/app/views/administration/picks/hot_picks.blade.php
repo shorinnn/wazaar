@@ -5,17 +5,25 @@
     .search-course-container{
         padding-bottom: 10px;
     }
+    .select2-search__field{
+        width: 95% !important;
+    }
     .order-list-input{
-        width: 50% !important;
+        width: 75% !important;
         display: block !important;
         margin: 0px auto;
         text-align: center;
     }
     .save-order{
-        color: #000;
+        color: #fff;
+    }
+    .course_checkbox{
+        float: none !important;
+        margin: 0px auto !important;
+        opacity: 1 !important;
+        display: block !important;
     }
 </style>
-
 <div class="container course-categories">
 	<div class="row">
     	<div class="col-md-12">
@@ -26,12 +34,12 @@
 <div class="container">
 	<div class="row">
     	<div class="col-md-12">
-            <div class="row col-md-12 search-course-container">
+            <div class="search-course-container">
                 <div class="input-group">
                     <span class="input-group-btn">
                         <button class="btn btn-primary" onclick="add_courses_to_list();">Add</button>
                     </span>
-                    <select id="search-course" class="form-control pretty-select" multiple="multiple" size="1"></select>
+                    <select id="search-course" class="form-control pretty-select" multiple="multiple" size="1" style="width:100%;"></select>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -73,6 +81,41 @@
                 $('.hot-picks-listings-container').html(result);
             }
         });
+    }
+
+    function deleteCourses()
+    {
+        if($('tbody .course_checkbox:checked').length >= 1){
+            $('#picks-list-form')
+            .append('<input type="hidden" class="delete_method" name="_method" value="DELETE" />')
+
+            var $formData = $('#picks-list-form').serialize();
+            $('.alax-loader').show();
+            $.post('/administration/delete-picks/hot-picks', $formData, function (response){
+                load_picked_courses();
+            });
+
+        } else {
+            alert('Please select a course to delete');
+        }
+    }
+
+    function saveOrder()
+    {
+        var $formData = $('#picks-list-form').serialize();
+        $('.alax-loader').show();
+        $.post($('#picks-list-form').attr('action'), $formData, function (response){
+            load_picked_courses();
+        });
+    }
+
+    function toggleCheckboxes(el)
+    {
+        if($(el).is(':checked')){
+            $('tbody .course_checkbox').prop('checked', true)
+        } else {
+            $('tbody .course_checkbox').prop('checked', false)
+        }
     }
 
     jQuery(document).ready(function($){

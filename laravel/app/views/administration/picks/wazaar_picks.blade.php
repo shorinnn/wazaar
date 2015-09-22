@@ -6,13 +6,19 @@
         padding-bottom: 10px;
     }
     .order-list-input{
-        width: 50% !important;
+        width: 75% !important;
         display: block !important;
         margin: 0px auto;
         text-align: center;
     }
     .save-order{
-        color: #000;
+        color: #fff;
+    }
+    .course_checkbox{
+        float: none !important;
+        margin: 0px auto !important;
+        opacity: 1 !important;
+        display: block !important;
     }
 </style>
 
@@ -73,6 +79,41 @@
                 $('.wazaar-picks-listings-container').html(result);
             }
         });
+    }
+
+    function deleteCourses()
+    {
+        if($('tbody .course_checkbox:checked').length >= 1){
+            $('#picks-list-form')
+            .append('<input type="hidden" class="delete_method" name="_method" value="DELETE" />')
+
+            var $formData = $('#picks-list-form').serialize();
+            $('.alax-loader').show();
+            $.post('/administration/delete-picks/wazaar-picks', $formData, function (response){
+                load_picked_courses();
+            });
+
+        } else {
+            alert('Please select a course to delete');
+        }
+    }
+
+    function saveOrder()
+    {
+        var $formData = $('#picks-list-form').serialize();
+        $('.alax-loader').show();
+        $.post($('#picks-list-form').attr('action'), $formData, function (response){
+            load_picked_courses();
+        });
+    }
+
+    function toggleCheckboxes(el)
+    {
+        if($(el).is(':checked')){
+            $('tbody .course_checkbox').prop('checked', true)
+        } else {
+            $('tbody .course_checkbox').prop('checked', false)
+        }
     }
 
     jQuery(document).ready(function($){

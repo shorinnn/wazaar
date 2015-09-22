@@ -165,9 +165,10 @@ $wwwRoutes = function(){
         Route::get('hot-picks', 'PicksController@hotPicks');
         Route::get('wazaar-picks', 'PicksController@wazaarPicks');
         Route::get('load-picks/{type}', 'PicksController@loadPicks');
-        Route::post('order-picks/{type}', 'PicksController@orderPicks');
         Route::get('load-courses/{type}', 'PicksController@loadCourses');        
         Route::post('add-to-picks/{type}', 'PicksController@addPicks');
+        Route::delete('delete-picks/{type}', 'PicksController@deletePicks');
+        Route::post('order-picks/{type}', 'PicksController@orderPicks');
     });
 //});
 };
