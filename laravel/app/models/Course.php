@@ -464,7 +464,7 @@ class Course extends Ardent{
     public function isNewForStudentCount(){
         $created = strtotime( $this->created_at );
         $threeMonths = strtotime('-3 month');
-        if( $this->student_count <= 20 && $created > $threeMonths ) return true;
+        if( $this->student_count <= 3 && $created > $threeMonths ) return true;
         return false;
     }
     

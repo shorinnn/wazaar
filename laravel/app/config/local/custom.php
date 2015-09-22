@@ -6,7 +6,7 @@ return [
                                 'desc_width' => '1024', 'desc_height' => '576', 'desc_hi_res_width' => '2048', 'desc_hi_res_height' => '1152',
                                 'allowed_types' => ['.jpg', '.png', '.gif', '.bmp'] ],
     'course_banner_image'  => [ 'width' => '656', 'height' => '266', 'allowed_types' => ['.jpg', '.png', '.gif', '.bmp'] ],
-    'course_is_new'        => [ 'maximum_students' => 20, 'maximum_months' => 6 ],
+    'course_is_new'        => [ 'maximum_students' => 3, 'maximum_months' => 6 ],
     'tracker_url'          => 'http://wazaar.dev/action_tracker',
     'maximum_lesson_files' => 10,
     'course_attachments' => ['.jpg', '.png', '.gif', '.bmp', '.txt', '.pdf', '.zip', '.doc', '.docx'],
