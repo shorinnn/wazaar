@@ -6,7 +6,7 @@
                     @if (isset($urlIdentifier) && !empty($urlIdentifier))
                         <a href="{{url('affiliate/analytics/'. $urlIdentifier .'/' . $frequency . '?' . AnalyticsHelper::getQueryStringParams($frequency,$aff))}}">{{$aff['label']}}</a>
                     @else
-                        {{$aff['label']}}
+                       {{$aff['label']}}
                     @endif
                 </span>
             <div>

@@ -395,28 +395,40 @@ class AffiliateDashboardController extends BaseController
                     return Redirect::to('analytics');
                 }
                 $salesLabel = date('F d, Y',strtotime(Input::get('date')));
-                $purchases = Purchase::whereRaw("DATE(created_at) = '". Input::get('date') ."'")->where('product_affiliate_id',Auth::id())->paginate(10);
+                $purchases = Purchase::whereRaw("DATE(created_at) = '". Input::get('date') ."'")
+                    ->where('product_affiliate_id',Auth::id())
+                    ->where('free_product','no')
+                    ->paginate(10);
                 break;
             case 'week' :
                 if (!Input::has('start') && !Input::has('end')){
                     return Redirect::to('analytics');
                 }
                 $salesLabel = date('F d, Y',strtotime(Input::get('start'))) . ' - '  . date('F d, Y',strtotime(Input::get('end')));
-                $purchases = Purchase::whereRaw("DATE(created_at) BETWEEN '". Input::get('start') ."' AND '". Input::get('end') ."'")->where('product_affiliate_id',Auth::id())->paginate(10);
+                $purchases = Purchase::whereRaw("DATE(created_at) BETWEEN '". Input::get('start') ."' AND '". Input::get('end') ."'")
+                    ->where('product_affiliate_id',Auth::id())
+                    ->where('free_product','no')
+                    ->paginate(10);
                 break;
             case 'month':
                 if (!Input::has('month') && !Input::has('year')){
                     return Redirect::to('analytics');
                 }
                 $salesLabel = date('F',strtotime(Input::get('month'))) . Input::get('year');
-                $purchases = Purchase::whereRaw("MONTH(created_at) =  '". Input::get('month') ."' AND YEAR(created_at) = '". Input::get('year') ."'")->where('product_affiliate_id',Auth::id())->paginate(10);
+                $purchases = Purchase::whereRaw("MONTH(created_at) =  '". Input::get('month') ."' AND YEAR(created_at) = '". Input::get('year') ."'")
+                    ->where('product_affiliate_id',Auth::id())
+                    ->where('free_product','no')
+                    ->paginate(10);
                 break;
             case 'alltime':
                 if (!Input::has('year')){
                     return Redirect::to('analytics');
                 }
                 $salesLabel = Input::get('year');
-                $purchases = Purchase::whereRaw("YEAR(created_at) = '". Input::get('year') ."'")->where('product_affiliate_id',Auth::id())->paginate(10);
+                $purchases = Purchase::whereRaw("YEAR(created_at) = '". Input::get('year') ."'")
+                    ->where('product_affiliate_id',Auth::id())
+                    ->where('free_product','no')
+                    ->paginate(10);
                 break;
         }
 
@@ -437,28 +449,40 @@ class AffiliateDashboardController extends BaseController
                     return Redirect::to('analytics');
                 }
                 $salesLabel = date('F d, Y',strtotime(Input::get('date')));
-                $purchases = Purchase::whereRaw("DATE(created_at) = '". Input::get('date') ."'")->where('ltc_affiliate_id',Auth::id())->paginate(10);
+                $purchases = Purchase::whereRaw("DATE(created_at) = '". Input::get('date') ."'")
+                    ->where('ltc_affiliate_id',Auth::id())
+                    ->where('free_product','no')
+                    ->paginate(10);
                 break;
             case 'week' :
                 if (!Input::has('start') && !Input::has('end')){
                     return Redirect::to('analytics');
                 }
                 $salesLabel = date('F d, Y',strtotime(Input::get('start'))) . ' - '  . date('F d, Y',strtotime(Input::get('end')));
-                $purchases = Purchase::whereRaw("DATE(created_at) BETWEEN '". Input::get('start') ."' AND '". Input::get('end') ."'")->where('ltc_affiliate_id',Auth::id())->paginate(10);
+                $purchases = Purchase::whereRaw("DATE(created_at) BETWEEN '". Input::get('start') ."' AND '". Input::get('end') ."'")
+                    ->where('ltc_affiliate_id',Auth::id())
+                    ->where('free_product','no')
+                    ->paginate(10);
                 break;
             case 'month':
                 if (!Input::has('month') && !Input::has('year')){
                     return Redirect::to('analytics');
                 }
                 $salesLabel = date('F',strtotime(Input::get('month'))) . Input::get('year');
-                $purchases = Purchase::whereRaw("MONTH(created_at) =  '". Input::get('month') ."' AND YEAR(created_at) = '". Input::get('year') ."'")->where('ltc_affiliate_id',Auth::id())->paginate(10);
+                $purchases = Purchase::whereRaw("MONTH(created_at) =  '". Input::get('month') ."' AND YEAR(created_at) = '". Input::get('year') ."'")
+                    ->where('ltc_affiliate_id',Auth::id())
+                    ->where('free_product','no')
+                    ->paginate(10);
                 break;
             case 'alltime':
                 if (!Input::has('year')){
                     return Redirect::to('analytics');
                 }
                 $salesLabel = Input::get('year');
-                $purchases = Purchase::whereRaw("YEAR(created_at) = '". Input::get('year') ."'")->where('ltc_affiliate_id',Auth::id())->paginate(10);
+                $purchases = Purchase::whereRaw("YEAR(created_at) = '". Input::get('year') ."'")
+                    ->where('ltc_affiliate_id',Auth::id())
+                    ->where('free_product','no')
+                    ->paginate(10);
                 break;
         }
 
@@ -478,28 +502,40 @@ class AffiliateDashboardController extends BaseController
                     return Redirect::to('analytics');
                 }
                 $salesLabel = date('F d, Y',strtotime(Input::get('date')));
-                $purchases = Purchase::whereRaw("DATE(created_at) = '". Input::get('date') ."'")->where('second_tier_affiliate_id',Auth::id())->paginate(10);
+                $purchases = Purchase::whereRaw("DATE(created_at) = '". Input::get('date') ."'")
+                    ->where('second_tier_affiliate_id',Auth::id())
+                    ->where('free_product','no')
+                    ->paginate(10);
                 break;
             case 'week' :
                 if (!Input::has('start') && !Input::has('end')){
                     return Redirect::to('analytics');
                 }
                 $salesLabel = date('F d, Y',strtotime(Input::get('start'))) . ' - '  . date('F d, Y',strtotime(Input::get('end')));
-                $purchases = Purchase::whereRaw("DATE(created_at) BETWEEN '". Input::get('start') ."' AND '". Input::get('end') ."'")->where('second_tier_affiliate_id',Auth::id())->paginate(10);
+                $purchases = Purchase::whereRaw("DATE(created_at) BETWEEN '". Input::get('start') ."' AND '". Input::get('end') ."'")
+                    ->where('second_tier_affiliate_id',Auth::id())
+                    ->where('free_product','no')
+                    ->paginate(10);
                 break;
             case 'month':
                 if (!Input::has('month') && !Input::has('year')){
                     return Redirect::to('analytics');
                 }
                 $salesLabel = date('F',strtotime(Input::get('month'))) . Input::get('year');
-                $purchases = Purchase::whereRaw("MONTH(created_at) =  '". Input::get('month') ."' AND YEAR(created_at) = '". Input::get('year') ."'")->where('second_tier_affiliate_id',Auth::id())->paginate(10);
+                $purchases = Purchase::whereRaw("MONTH(created_at) =  '". Input::get('month') ."' AND YEAR(created_at) = '". Input::get('year') ."'")
+                    ->where('second_tier_affiliate_id',Auth::id())
+                    ->where('free_product','no')
+                    ->paginate(10);
                 break;
             case 'alltime':
                 if (!Input::has('year')){
                     return Redirect::to('analytics');
                 }
                 $salesLabel = Input::get('year');
-                $purchases = Purchase::whereRaw("YEAR(created_at) = '". Input::get('year') ."'")->where('second_tier_affiliate_id',Auth::id())->paginate(10);
+                $purchases = Purchase::whereRaw("YEAR(created_at) = '". Input::get('year') ."'")
+                    ->where('second_tier_affiliate_id',Auth::id())
+                    ->where('free_product','no')
+                    ->paginate(10);
                 break;
         }
 
