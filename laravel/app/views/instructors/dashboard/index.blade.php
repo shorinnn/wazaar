@@ -5,15 +5,17 @@
 
             {{-- Button Filters --}}
             <div class="row-fluid">
-                <div class="panel panel-default">
+                <div class="panel panel-default clearfix">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{trans('analytics.filters')}}</h3>
                     </div>
-                    <div class="panel-body">
-                        <a class="btn btn-primary button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('daily', '',this); return false;">{{trans('analytics.daily')}}</a>
-                        <a class="btn btn-default button-filter button-filter-week" href="#" onclick="Analytics.SalesCount('week', '',this); return false;">{{trans('analytics.weekly')}}</a>
-                        <a class="btn btn-default button-filter button-filter-month" href="#" onclick="Analytics.SalesCount('month', '',this); return false;">{{trans('analytics.monthly')}}</a>
-                        <a class="btn btn-default button-filter button-filter-alltime" href="#" onclick="Analytics.SalesCount('alltime', '',this); return false;">{{trans('analytics.allTime')}}</a>
+                    <div class="segmented-controls analytics-filter clearfix">
+                        <div class="panel-body buttons-container clearfix">
+                            <a class="segmented-buttons button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('daily', '',this); return false;">{{trans('analytics.daily')}}</a>
+                            <a class="segmented-buttons button-filter button-filter-week" href="#" onclick="Analytics.SalesCount('week', '',this); return false;">{{trans('analytics.weekly')}}</a>
+                            <a class="segmented-buttons button-filter button-filter-month" href="#" onclick="Analytics.SalesCount('month', '',this); return false;">{{trans('analytics.monthly')}}</a>
+                            <a class="segmented-buttons button-filter button-filter-alltime" href="#" onclick="Analytics.SalesCount('alltime', '',this); return false;">{{trans('analytics.allTime')}}</a>
+                        </div>
                     </div>
                 </div>
             </div>

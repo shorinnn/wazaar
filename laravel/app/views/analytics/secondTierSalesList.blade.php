@@ -4,7 +4,7 @@
     <div class="table-responsive analytics-page">
         <div class="top-affiliates-table table-wrapper">
             <div class="table-header clearfix">
-            	<h1 class="left">Second Tier Sales ({{$salesLabel}})</h1>
+            	<h1 class="left">{{ trans('analytics.twoTierSales') }} ({{$salesLabel}})</h1>
 			</div>
             <div class="table-responsive">
                 <table class="table">
