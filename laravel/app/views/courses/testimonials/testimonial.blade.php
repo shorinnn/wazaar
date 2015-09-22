@@ -45,7 +45,7 @@
           </div>
           <div class="user-review col-xs-12 col-sm-10 col-md-10 col-lg-10">
               <p class="regular-paragraph expandable-content">
-                {{{ $testimonial->content }}}株式会社GLOBAL POWER EXPERT代表取締役社長 / 通販エキスパートコーチ 経歴： 株式会社アクディア　代表取締役社長 / 株式会社ピーズ　代表取締役社長 / グローバルメディカル研究所株式会社　代表取締役社長 / RIZAP株式会社　取締役 / 株式会社GLOBAL POWER EXPERT 代表取締役社長 / 1974年千葉県生まれ。中学でアメリカンフットボールと出逢い、以降高校・大学・社会人実業団トップのXリーグに至るまで17年間プレイ。その間2チームにて主将を経験。組織プレイスポーツのトップリーダーとして
+                {{{ $testimonial->content }}}
               </p>
               <div class="fadeout-text"></div>
               <span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }} 

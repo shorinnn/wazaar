@@ -9029,6 +9029,15 @@ footer{
 		width: 60%;
 	}
 }
+@media (min-width:767px){
+	.user-thumb{
+		padding: 0;
+		text-align: center;
+	}
+	.user-thumb .img-wrap{
+		padding: 0 15px;
+	}
+}
 @media (max-width:767px){
 header .top-menu .logged-out li a{
   padding: 7px 10px;
