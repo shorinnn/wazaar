@@ -267,7 +267,7 @@
                         </ul>
                     </div>
                 </div>
-<!--
+
                 {{-- Top Free Courses --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div class="stat-block">
@@ -295,7 +295,7 @@
                         </ul>
                     </div>
                 </div>
-                -->
+
                 {{-- LTC Earnings --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div class="with-progress-bar stat-block">
