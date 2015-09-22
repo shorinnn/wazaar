@@ -386,7 +386,13 @@
 
     if(typeof($)=='function'){
         @if( $video == null && $reviewModal)
-            showReviewsModal();
+            @if($lesson->external_video_url != '')
+                setTimeout(function(){
+                    showReviewsModal()
+                }, {{ $lesson->video_duration * 1000 }} );
+            @else
+                showReviewsModal();
+            @endif
         @endif
         //decryptVideoSrc();
 //        makeYTfluid();

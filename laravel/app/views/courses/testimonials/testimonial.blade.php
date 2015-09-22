@@ -23,8 +23,9 @@
     </h4>
 @endif-->
   <div class="reviews clearfix">
-  	<div class="row">
-          <div class="user-thumb col-xs-3 col-sm-2 col-md-2 col-lg-2">
+  	<div class="row no-margin">
+          <div class="user-thumb col-xs-12 col-sm-2 col-md-2 col-lg-2">
+          	  <div class="img-wrap">
                 @if( $testimonial->student->profile != null && trim($testimonial->student->profile->photo)!='')
                     <img src='{{ $testimonial->student->profile->photo }}' class="img-responsive" />
                 @elseif( trim($testimonial->student->photo) != '')
@@ -32,17 +33,35 @@
                 @else
                     <img src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" class="img-responsive" />
                 @endif
+              </div>
               <span>
               {{ $testimonial->student->last_name }}
               {{ $testimonial->student->first_name }}
               </span>
+              <em class="recommendation recommends">
+              	<em class="recommended">{{ trans("courses/general.recommends") }}</em>
+              	<em class="unrecommended">{{ trans("courses/general.does_not_recommend") }}</em>
+              </em>
           </div>
-          <div class="user-review col-xs-9 col-sm-10 col-md-10 col-lg-10">
+          <div class="user-review col-xs-12 col-sm-10 col-md-10 col-lg-10">
               <p class="regular-paragraph expandable-content">
-                {{{ $testimonial->content }}}          
+                {{{ $testimonial->content }}}
               </p>
               <div class="fadeout-text"></div>
-              <!--<span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }}</span>-->
+              <span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }} 
+              </span>
+              <form>
+                  <div class="helpful-button-wrap clearfix">
+                  	  <input type="checkbox" id="helpful-button" class="hide" name="helpful-button">
+                      <label for="helpful-button" class="">
+                      	  <i class="wa-like"></i>
+                          <span class="unclicked">{{ trans("courses/general.helpful") }}</span>
+                          <span class="clicked">{{ trans("courses/general.found_helpful") }}</span>                          
+                      </label>                      
+                      <span class="number-of-likes">4</span>
+                  </div>
+                  
+              </form>
           </div>
       </div>
   </div>

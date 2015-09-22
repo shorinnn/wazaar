@@ -2459,6 +2459,7 @@ h2, h3, h4, h5, h6{
 .category-tags{
 	margin-top: 35px;
 }
+
 .category-tags ul{
 	padding: 0;
 	margin: 0;
@@ -2807,16 +2808,17 @@ h2, h3, h4, h5, h6{
 .lesson-reviews h2{
 	color: #2e343b;
 	margin: 0;
-	padding: 32px 10px 32px 30px;
+	padding: 32px 24px 32px 39px;
 	border-bottom: solid 1px #ebeced;
 }
 .reviews{
 	border-bottom: solid 1px #ebeced;
-	padding: 35px 37px;
+	padding: 24px;
 }
 .user-thumb{
 	float: left;
 }
+.img-wrap img,
 .user-thumb img{
 	display: block;
 	border: none;
@@ -2831,14 +2833,70 @@ h2, h3, h4, h5, h6{
 	margin-top: 12px;
 	text-align: center;
 }
+.user-thumb .recommendation em{
+	font-size: 11px;
+	font-weight: bold;
+	font-style: normal;
+	line-height: 18px;
+	text-transform: uppercase;
+}
+.user-thumb .recommendation.recommends{
+	color: #5baf17;
+}
+.user-thumb .recommendation.recommends .unrecommended{
+	display: none;
+}
+.user-thumb .recommendation.not-recommend{
+	color: #ef4c31;
+}
+.user-thumb .recommendation.not-recommend .recommended{
+	display: none;
+}
 .user-review{
 	float: left;
 	position: relative;
+	padding: 0 0 0 24px;
+}
+.user-review .helpful-button-wrap{
+	float: right;
+}
+.user-review .helpful-button-wrap label i{
+	margin-right: 5px;
+}
+.user-review .helpful-button-wrap label{
+	font-size: 12px;
+	font-weight: bold;
+	color: #7e8e9e;
+	margin: 14px 0 0;
+	cursor: pointer;
+	display: inline-block;
+}
+.user-review .helpful-button-wrap label .clicked{
+	display: none;
+}
+.user-review .helpful-button-wrap input[type='checkbox']:checked + label{
+	color: #0099ff;
+}
+.user-review .helpful-button-wrap input[type='checkbox']:checked + label .unclicked{
+	display: none;
+}
+.user-review .helpful-button-wrap input[type='checkbox']:checked + label .clicked{
+	display: inline-block;
+}
+.user-review .helpful-button-wrap .number-of-likes{
+	border-left: solid 1px #7e8e9e;
+	margin-left: 10px;
+	padding-left: 10px;
+	font-size: 13px;
+	color: #7e8e9e;
+	display: inline-block;
 }
 .user-review p{
 	clear: both;
 	color: #6e747a;
 	max-height: 90px;
+	margin: 0;
+	line-height: 18px;
 }
 .instructed-by p{
 	font-size: 13px;	
@@ -2895,7 +2953,9 @@ h2, h3, h4, h5, h6{
 	font-weight: bold;
 	color: #7e8e9e;
 	display: block;
-	padding-top: 4px;
+	margin-top: 14px;
+	float: left;
+	line-height: 18px
 }
 .read-all-reviews{
     background: #f7f9fa;
@@ -8969,12 +9029,29 @@ footer{
 		width: 60%;
 	}
 }
+@media (min-width:767px){
+	.user-thumb{
+		padding: 0;
+		text-align: center;
+	}
+	.user-thumb .img-wrap{
+		padding: 0 15px;
+	}
+}
 @media (max-width:767px){
 header .top-menu .logged-out li a{
   padding: 7px 10px;
 }
-.user-thumb{
+.img-wrap{
 	max-width: 70px;
+	float: left;
+	margin: 0 18px 16px 0;
+}
+.user-thumb span{
+	text-align: left;
+}
+.reviews {
+    padding: 24px 15px 24px 0;
 }
 .course-details-player .topControl{
 	width: 74%;

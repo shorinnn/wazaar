@@ -164,8 +164,9 @@
 
                 @if( $course->assignedInstructor != null && $course->assignedInstructor->profile !=null  )
                     <div class="reviews instructed-by clearfix module-box">
-                        <div class="row">
-                            <div class="user-thumb col-xs-3 col-sm-2 col-md-2 col-lg-2">
+                        <div class="row no-margin">
+                            <div class="user-thumb col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                            	<div class="img-wrap">
                                 @if($course->assignedInstructor->profile == null || $course->assignedInstructor->profile->photo == '')
                                     <img src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}"
                                          class="img-responsive" />
@@ -173,8 +174,9 @@
                                     <img src="{{cloudfrontUrl( $course->assignedInstructor->profile->photo )}}"
                                          class="img-responsive" />
                                 @endif
+                                </div>
                             </div>
-                            <div class="user-review col-xs-9 col-sm-10 col-md-10 col-lg-10">
+                            <div class="user-review col-xs-12 col-sm-10 col-md-10 col-lg-10">
                                 <div class="clearfix margin-bottom-20">
                                     <h4>{{trans('courses/general.instructed-by') }}<em class="name"> {{ $course->assignedInstructor->fullName() }}</em></h4>
                                     <span class="role">{{ $course->assignedInstructor->profile->title }}</span>
@@ -183,7 +185,7 @@
                                     {{ $course->assignedInstructor->profile->bio }}
                                 </p>
                                 <div class="fadeout-text"></div>
-                                <span class="view-more-reviews">{{ trans("courses/general.profile-more") }}</span>
+                                <span class="view-more-reviews expandable-button show-more" data-more-text="More" data-less-text="Less">{{ trans("courses/general.profile-more") }}</span>
                             </div>
                         </div>
                     </div>

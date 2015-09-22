@@ -1,6 +1,10 @@
 <?php
 
 return array(
+    'recommends' => 'オススメする',
+    'does_not_recommend' => 'オススメしない',
+    'found_helpful' => 'このレビューは役に立った',
+    'helpful' => '役に立った',
     'sale' =>'月SALEせ',
     'purchase' =>'購入',
     'join_class' =>'受講する',

@@ -1,6 +1,10 @@
 <?php
 
 return array(
+    'recommends' => 'Recommends',
+    'does_not_recommend' => 'Does not Recommend',
+    'found_helpful' => 'You found this helpful',
+    'helpful' => 'Helpful',
     'steps' => 'steps',
     'sale' => 'SALE',
     'more' => 'More',
