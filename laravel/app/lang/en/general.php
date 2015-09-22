@@ -168,4 +168,5 @@ return array(
     'resend-link' => 'Resend Link',
     'today' => 'Today',
     'yesterday' => 'Yesterday',
+    'na' => 'N/A',
 );
