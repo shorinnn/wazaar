@@ -631,7 +631,7 @@ class CoursesController extends \BaseController {
             }
             $student = null;
             if(Auth::check()) $student = Student::find(Auth::user()->id);
-            $course->allTestimonials = $course->testimonials()->where('content','!=',"")->orderBy('id', 'desc')->limit(5)->get();
+            $course->allTestimonials = $course->testimonials()->where('content','!=',"")->orderBy('id', 'desc')->limit(3)->get();
             if(Input::has('aid')){
 //                Cookie::queue("aid-$course->id", Input::get('aid'), 60*24*30);
                 Cookie::queue("aid", Input::get('aid'), 60*24*30);

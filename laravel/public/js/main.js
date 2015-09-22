@@ -581,9 +581,13 @@ function loadMoreComments(e){
     json_data[post_field] = id;
     $.post(url, json_data, function(data) {
         $(e.target).attr('href','#');
-		clearInterval(animationInterval);
+        clearInterval(animationInterval);
         $(e.target).html( _('LOAD MORE') );
-        if($.trim(data)==''){
+        data = JSON.parse(data);
+        rows = data.nextRows;
+        data = data.html;
+        console.log('ROWS '+rows);
+        if( $.trim(data)=='' || rows==0 ){
             $(e.target).removeClass('load-more-ajax');
             $(e.target).html( _('Nothing more to load') );
             $(e.target).hide();
@@ -908,11 +912,13 @@ function ratedTestimonial(result, e){
     id = $(e.target).attr('data-testimonial-id');
     rate = $(e.target).attr('data-thumb');
     already_rated = typeof( $(e.target).attr('data-rated') ) == 'undefined' ? false : $(e.target).attr('data-rated');
- 
+    
     if( !already_rated ){
         thumbs++;
         if( rate=='up') ++thumbs_up;
         else ++thumbs_down;
+        
+        $('.number-of-likes-'+id).html(thumbs_up);
     }
     else{
         if( rate=='up'){
@@ -929,6 +935,7 @@ function ratedTestimonial(result, e){
         }
     }
     if(thumbs==1){
+        
         $('.testimonial-'+id+'-placeholder').hide();
         $('.testimonial-'+id).removeClass('hidden');
         if( rate=='up' ){

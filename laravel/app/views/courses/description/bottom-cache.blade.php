@@ -193,7 +193,7 @@
 
                 @if($course->allTestimonials->count() > 0)
                     <div class="lesson-reviews">
-                        <h2>{{ $course->testimonials()->count() }} {{ trans("courses/general.reviews") }}</h2>
+                        <h2>{{ $course->testimonials()->where('content','!=','')->count() }} {{ trans("courses/general.reviews") }}</h2>
                         <div class='bottom-testimonials'>
                             @foreach($course->allTestimonials as $testimonial)
                                 <!--<div>-->
@@ -205,8 +205,8 @@
                         <!--<span class="read-all-reviews">Read all reviews</span>-->
                         <a href='#' id="load-more-ajax-button" class="load-more-comments load-more-ajax read-all-reviews"
                            data-url='{{ action('TestimonialsController@more') }}'
-                           data-target='.bottom-testimonials' data-skip='5' data-id='{{ $course->id }}' data-post-field="course">
-                            {{ trans('general.read-all-reviews') }}
+                           data-target='.bottom-testimonials' data-skip='3' data-id='{{ $course->id }}' data-post-field="course">
+                            {{ trans( 'general.read-more' ) }}
                         </a>
                     </div>
                 @endif
