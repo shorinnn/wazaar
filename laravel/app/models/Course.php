@@ -489,9 +489,10 @@ class Course extends Ardent{
     
     public function nonBuyerPreviews(){
         $modules = $this->modules->lists('id');
-        if( count($modules)==0 ) return 0;
+        if( count($modules)==0 ) return '-';
         $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
-        if( count($lessons)==0 ) return 0;
+        if( count($lessons)==0 ) return '-';
+        if( Lesson::whereIn('module_id', $modules)->where('free_preview','yes')->count()==0 ) return '-';
         $buyers = Purchase::where('product_id',$this->id)->where('product_type','Course')->lists( 'student_id' );
         if( count($buyers) ) $buyers[] = 0;
         $lessonBuyers = Purchase::whereIn( 'product_id', $lessons )->where('product_type','Lesson')->where( 'free_product','no' )->lists( 'student_id' );
