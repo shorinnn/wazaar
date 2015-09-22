@@ -4,8 +4,9 @@ function cloudfrontUrl($url = ''){
     if(trim($url)=='' || $url == false) return $url;
     if( !App::environment( 'production' ) ) return $url;
     $url = explode('.com/', $url);
-    $url = str_replace('wazaardev/', '', $url);
-    return '//'.getenv('CLOUDFRONT_DOMAIN').'/'.$url[1];
+    $url = str_replace('wazaardev/', '', $url[1]);
+    $url = str_replace('wazaar/', '', $url);
+    return '//'.getenv('CLOUDFRONT_DOMAIN').'/'.$url;
 }
 
 function singplural($count, $word){
