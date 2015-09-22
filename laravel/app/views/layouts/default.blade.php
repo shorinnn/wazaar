@@ -446,6 +446,6 @@
                     ga('send', 'pageview');
                 </script>
             @endif
-            <!-- {{ date('H:i:s') }} -->
+            <!-- tz.. {{ date('H:i:s') }} -->
 	</body>
 </html>
