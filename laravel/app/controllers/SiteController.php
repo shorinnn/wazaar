@@ -111,6 +111,53 @@ class SiteController extends \BaseController {
             $wishlisted = $student->wishlistItems()->lists( 'course_id' );
         }
 
+        $hot_picks_course_ids = HotPicks::orderBy('order', 'asc')->get();
+        $wazaar_picks_course_ids = WazaarPicks::orderBy('order', 'asc')->get();
+
+        $hot_picks_courses = array();
+        if(count($hot_picks_course_ids) >= 1){
+            foreach($hot_picks_course_ids as $hot_picks_course_id){
+                $course = Course::where('id', '=', $hot_picks_course_id->course_id)->first();
+                $hot_picks_courses[] = $course;
+            }
+        }
+
+        $wazaar_picks_courses = array();
+        if(count($wazaar_picks_course_ids) >= 1){
+            foreach($wazaar_picks_course_ids as $wazaar_picks_course_id){
+                $course = Course::where('id', '=', $wazaar_picks_course_id->course_id)->first();
+                $wazaar_picks_courses[] = $course;
+            }
+        }
+
+        $top_paid_courses = array();
+        $top_paid_course_ids = DB::select("select a.product_id from purchases as a where a.product_type='Course' and a.purchase_price >= 1 ORDER BY (select SUM(b.purchase_price) from purchases as b where b.product_id = a.product_id) DESC");
+
+        if(count($top_paid_course_ids) >= 1){
+            foreach($top_paid_course_ids as $top_paid_course_id){
+                $course = Course::where('id', '=', $top_paid_course_id->product_id)->first();
+                $top_paid_courses[] = $course;
+            }
+        }
+
+        $top_free_courses = Course::where('free', '=', 'yes')->where('publish_status', '=', 'approved')->where('student_count', '>=', '1')->orderBy('student_count', 'desc')->get();
+
+        return View::make('site.homepage_unauthenticated_demo')
+            ->with( compact('hot_picks_courses', 'wazaar_picks_courses', 'top_paid_courses', 'top_free_courses', 'category_groups', 'wishlisted') ); 
+    }
+
+    public function oldIndexDemo()
+    {
+        $data = Request::all();
+
+        $filter = (isset($data['filter']) && $data['filter'] != '')? $data['filter']: '';
+
+        $wishlisted = [];
+        if( Auth::check() ){
+            $student = Student::find( Auth::user()->id );
+            $wishlisted = $student->wishlistItems()->lists( 'course_id' );
+        }
+
         $category_groups = DB::table('category_groups')->orderBy('id', 'asc')->get();
         $free_group = new StdClass();
         $free_group->id = '';
