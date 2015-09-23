@@ -59,7 +59,7 @@
               
               <!--<span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }}--> 
               <!--</span>-->
-              @if( App::environment() != 'production' )
+              
                     @if(Auth::check())
                           <form method='post' class=' ajax-form @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'positive' )
                                 helful-review-form
@@ -100,7 +100,7 @@
                         </form>
                     @endif
                     
-              @endif
+                    
               
           </div>
       </div>

@@ -1304,11 +1304,26 @@ header .profile-name li:hover ul{
     height: 113px;
 }
 .small-box .course-box-content h2,
-.small-box .course-box-content h3,
-.course-box-content h3{
+.small-box .course-box-content h3{
   	color:#283947;
 	font-size: 15px;
 	line-height: 22px;
+	display: -webkit-box;
+	max-width: 318px;
+	max-height: 44px;
+	clear:both;
+	/* Fallback for -webkit */
+	margin: 0 0 10px;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.course-box-content h3{
+  	color:#283947;
+	font-size: 15px;
+	line-height: 18px;
 	display: -webkit-box;
 	max-width: 318px;
 	max-height: 44px;
@@ -3104,7 +3119,7 @@ h2, h3, h4, h5, h6{
 }
 .recommended-courses-block{
 	margin: 0;
-	padding: 12px 9px;
+	padding: 12px 0px;
 	border-top: solid 1px #e8e8e8;
 }
 .recommended-course-title{
