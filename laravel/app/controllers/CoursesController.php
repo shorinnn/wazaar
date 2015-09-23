@@ -308,6 +308,7 @@ class CoursesController extends \BaseController {
         
         public function category($slug=''){
             $difficultyLevel = Input::get('difficulty') ?: null;
+            $filter = Input::get('filter') ?: null;
             $sort = null;
             $wishlisted = [];
             if( Auth::check() ){
@@ -352,6 +353,14 @@ class CoursesController extends \BaseController {
 
                 if (!empty($difficultyLevel)){
                     $courses = $courses->where('course_difficulty_id', $difficultyLevel);
+                }
+
+                if (!empty($filter)){
+                    if($filter == 'free'){
+                        $courses = $courses->where('free', 'yes');
+                    } else if($filter == 'paid') {
+                        $courses = $courses->where('free', 'no');
+                    }
                 }
 
                 if ($sort == 'date'){
