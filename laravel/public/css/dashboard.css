@@ -270,17 +270,22 @@ h4.date-range-header{
 }
 .affiliate-dashboard .top-courses-content{
 	padding: 0 20px;
-	max-height: 335px;
+	max-height: 350px;
 	overflow: auto;
 }
 .affiliate-dashboard .top-courses-content li span{
     display: inline-block;
     float: left;
-    width: 10%;
+    width: auto;
+}
+.affiliate-dashboard .top-courses-content li em{
+    width: 15%;
+	overflow: auto;
 }
 .affiliate-dashboard .top-courses-content li div{
     float: left;
-    width: 81%;
+    width: 80%;
+	padding: 0 0 0 8px;
 }
 #customize a{
 	display: block;
