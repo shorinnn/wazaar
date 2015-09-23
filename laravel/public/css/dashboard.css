@@ -121,6 +121,7 @@ h4.date-range-header{
 }
 
 .top-activities .no-data-found{
+	padding: 20px;
 }
 
 .top-activities > div button{
@@ -139,8 +140,8 @@ h4.date-range-header{
 .top-activities > div button:focus{
 	outline: none;
 }
-.top-activities #wrapper-sales-count ul,
-.top-activities .daily-stat-wrap{
+#wrapper-sales-count ul,
+.daily-stat-wrap{
 	padding: 0 20px;
 	margin: 0;
 }
@@ -150,14 +151,14 @@ h4.date-range-header{
 
 .top-activities #wrapper-sales-count ul a,
 .top-activities #wrapper-sales-count ul li,
-.top-activities .daily-stat-wrap a,
-.top-activities .daily-stat-wrap li{
+.daily-stat-wrap a,
+.daily-stat-wrap li{
 	font-size: 12px;
 	color: #32cfd7;
 }
 
-.top-activities #wrapper-sales-count ul li span,
-.top-activities .daily-stat-wrap li span{
+#wrapper-sales-count ul li span,
+.daily-stat-wrap li span{
 	display:inline-block;
 	color: #97a4a7;
 	margin-right: 1px;
@@ -200,37 +201,37 @@ h4.date-range-header{
 	font-size: 12px;
 	color: #333;
 }
-
+.daily-stat-wrap ul,
 .affiliate-dashboard ul{
 	margin: 0 !important;
 }
-
+.daily-stat-wrap ul li,
 .affiliate-dashboard  ul li{
 	color: #849598;
 	margin: 18px 0 0;
 	font-size: 12px;
 }
-
+.daily-stat-wrap ul li > span,
 .affiliate-dashboard  ul li > span{
 	display: inline-block;
 	width: 80px;
 	float: left;
 }
-
+.daily-stat-wrap ul li > div,
 .affiliate-dashboard ul li > div{
 	width: 120px;
 	float: left;
 	padding-top: 4px;
 	padding-left: 8px;
 }
-
+.daily-stat-wrap ul li > div span,
 .affiliate-dashboard  ul li > div span{
 	display: block;
 	height: 8px;
 	border-radius: 4px;
 	background: #96cf2d;
 }
-
+.daily-stat-wrap ul li > div div.progress,
 .affiliate-dashboard ul li > div div.progress{
     display: block;
     height: 8px;
@@ -239,7 +240,7 @@ h4.date-range-header{
     margin-bottom: 0 !important;
 	margin-top: 0;
 }
-
+.daily-stat-wrap ul li > em,
 .affiliate-dashboard ul li > em{
 	font-style: normal;
 	width: auto;
