@@ -236,7 +236,9 @@
                                         class="img-responsive">
                             </div>
                             <div class="col-xs-8 col-sm-10 col-md-8 col-lg-8">
-                                    <h3 class="recommended-course-title">{{$rec->name }}</h3>
+                                <div class="course-box-content">
+                                <h3 class="recommended-course-title">{{$rec->name }}</h3>
+                                </div>
                                 <h3 class="instructor-name">
                                     
                                 @if($rec->instructor->profile == null)

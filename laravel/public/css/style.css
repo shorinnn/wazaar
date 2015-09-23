@@ -1304,7 +1304,8 @@ header .profile-name li:hover ul{
     height: 113px;
 }
 .small-box .course-box-content h2,
-.small-box .course-box-content h3{
+.small-box .course-box-content h3,
+.course-box-content h3{
   	color:#283947;
 	font-size: 15px;
 	line-height: 22px;
