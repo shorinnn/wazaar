@@ -55,32 +55,12 @@ class SecondTierPublishersController extends \BaseController {
 	}
         
         public function stats(){
-            return "Page temporarily disabled";
-            $this->delivered = new DeliveredHelper();
-            $total = $this->delivered->getUsers();
-            $users = $total['data'];
-            $total = 0;
-            foreach($users as $user){
-                foreach($user['tags']  as $tag){
-                    if( $tag['tagName'] == 'second-tier-publisher-id' ){
-                        $total++;
-                    }
-                }
-            }
-            $str = "<h1>Total LP Signups: $total</h1><br /><br />";
+            $str = '';
             $stpi = User::where('is_second_tier_instructor','yes')->get();
             foreach($stpi as $s){
-                $emails = [];
-                $count = 0;
-                foreach($users as $user){
-                    foreach($user['tags']  as $tag){
-                        if( $tag['tagName'] == 'second-tier-publisher-id' && ($tag['tagIntegerValue']==$s->id ||  $tag['tagStringValue']==$s->id ) ){
-                           $count ++;
-                           $emails[] = $user['email'];
-                        }
-                    }
-                }
-                $emails = implode(' | ', $emails);
+                $referred = User::where('second_tier_instructor_id', $s->id)->lists('email');
+                $count = count($referred);
+                $emails = implode(' | ', $referred);
                 $str .= "<b>STPI $s->id - $s->last_name $s->first_name ( $s->email ) - Referred: $count</b><br />
                     <div style='display:block; max-height:100px; overflow-y:scroll; border:1px solid black; padding:10px'>$emails</div>
                         <hr />";

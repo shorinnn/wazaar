@@ -239,7 +239,7 @@
 
                 var $startDate = $('#startDate').val();
                 var $endDate = $('#endDate').val();
-                $.post('/dashboard/course/'+ courseId +'/stats/compare', {'courseIds' : $courses.join(','),'startDate': $startDate, 'endDate': $endDate }, function (responseData){
+                $.post('/analytics/course/'+ courseId +'/stats/compare', {'courseIds' : $courses.join(','),'startDate': $startDate, 'endDate': $endDate }, function (responseData){
                     myLineChart.destroy();
                     data.labels = responseData.label;
                     data.datasets = responseData.dataSets;

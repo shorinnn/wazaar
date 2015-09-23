@@ -27,6 +27,7 @@ return
     'conversion' => 'Conversion',
     'viewAll' => 'View All',
     'noTrackingCode' => 'No tracking codes found',
+    'noCourses' => 'You have no courses',
 
     'month' => 'Month',
     'week' => 'Week',

@@ -567,7 +567,7 @@ function filenameFromS3Key($url){
     return $url[1];
 }
 
-function externalVideoPreview($url, $big=false, $iframe=false){
+function externalVideoPreview($url, $big=false, $iframe=false, $justId = false){
     $preview = '';
 //    $width = $big ? 1280 : 560;
     $width = $big ? 853 : 658;
@@ -577,6 +577,7 @@ function externalVideoPreview($url, $big=false, $iframe=false){
     $width = '100%';
     //$height = '100%';
     if( $id = parse_yturl($url) ){
+        if( $justId ) return $id;
         if($iframe) $preview = '<iframe id="embeded-video" width="'.$width.'" height="'.$height.'" src="https://www.youtube.com/embed/'.$id.'?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe>';
         else $preview = '<img data-video-url="https://www.youtube.com/embed/'.$id.'" data-yt=1  onclick="showVideoPreview(this)" src="http://img.youtube.com/vi/'.$id.'/0.jpg" width="100%"/>';
     }
@@ -708,4 +709,9 @@ function nonHttps($url){
 
 function percentage($val, $total){
     return $val * 100 / $total;
+}
+
+function externalVideoType($url){
+    if( $id = parse_yturl($url) ) return 'yt';
+    return 'vimeo';
 }

@@ -215,6 +215,7 @@
 
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                @if(App::environment() != 'production')
                 <div class="recommended-courses-container">
 					<h3 class="recommended-courses-maintitle">{{trans('courses/general.people_who_viewed_this_course') }}</h3>
                     <div class="recommended-courses-block row">
@@ -238,6 +239,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>
