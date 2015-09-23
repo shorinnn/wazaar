@@ -1,11 +1,11 @@
 @if (count($topCourses['data']) > 0)
     @foreach($topCourses['data'] as $key => $course)
 
-        <li>
+        <li class="clearfix">
 
 
                     <span>{{$key+1}}.</span>
-                    <a href="{{url('analytics/course/'. $course['id'] .'/stats')}}">{{$course['name']}}</a>
+                    <div><a href="{{url('analytics/course/'. $course['id'] .'/stats')}}">{{$course['name']}}</a></div>
 
                     <em>{{number_format($course['total_count'])}}</em>
 
