@@ -21,9 +21,7 @@
 @section('extra_js')
 <script src='{{url('js/Gibberish-AES.js')}}'></script>
 <script>
-        $('body').delegate('video', "contextmenu",function(){
-            return false;
-        });
+        
         function showReviewsModal(){
             $('.review-modal').modal('show');
         }
