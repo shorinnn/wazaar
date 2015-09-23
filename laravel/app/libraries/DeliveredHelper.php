@@ -89,6 +89,26 @@ class DeliveredHelper
     }
 
     /**
+     * @param array $tagNames
+     * @return mixed|null
+     */
+    public function getUsersByTagNames($tagNames = [])
+    {
+        $call = $this->_call('users/find-by-tag-names',compact('tagNames'));
+        return $call;
+    }
+
+    /**
+     * @param array $tags
+     * @return mixed|null
+     */
+    public function getUsersByTags($tags = [])
+    {
+        $call = $this->_call('users/find-by-tags',compact('tags'));
+        return $call;
+    }
+
+    /**
      * Add a user under a client
      * @param $firstName
      * @param $lastName
@@ -237,7 +257,7 @@ class DeliveredHelper
             case 'put'  : $request = $curl->put($url, $params);break;
             case 'delete' : $request = $curl->delete($url);break;
         }
-        
+
         if ($request){ 
             return json_decode($request->body,true);
         }
