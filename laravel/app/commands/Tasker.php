@@ -452,7 +452,8 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
             
             $this->info( '***************************************************' );
             $this->info( '*********** RECALCULATE SALE MONEY ************' );
-            $sales = [ 6920, 6921 ];
+            $sales = [ 6603 ,6920, 6921 ];
+            $sales = [ 5075 ];
             $sales = Purchase::whereIn('id', $sales)->get();
             $newPurchasePrice = 9800;
             $this->info( $sales->count().' sales found');
@@ -475,6 +476,11 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
 //                    $s = $sale->affiliate_earnings;
                     $sale->affiliate_earnings = $sale->purchase_price * ($course->affiliate_percentage / 100);
                     $instructor_earnings -= $sale->affiliate_earnings;
+                }
+                
+                if( $sale->second_tier_affiliate_earnings > 0 ){
+                    $sale->second_tier_affiliate_earnings = $sale->purchase_price * ( Config::get('custom.earnings.second_tier_percentage') / 100);
+                    $instructor_earnings -= $sale->second_tier_affiliate_earnings;
                 }
                 
         
@@ -505,17 +511,29 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
                 // update purchase object
                 if( $sale->updateUniques() ){
                     // update transactions
-                    $instructor_earnings_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'instructor_credit')->first();
-                    $instructor_earnings_transaction->amount = $sale->instructor_earnings;
-                    if( !$instructor_earnings_transaction->updateUniques() ){
-                            dd("FAILED UPDATING INSTRUCTOR  $instructor_earnings_transaction->id");
+                    if($instructor_earnings > 0){
+                        $instructor_earnings_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'instructor_credit')->first();
+                        $instructor_earnings_transaction->amount = $sale->instructor_earnings;
+                        if( !$instructor_earnings_transaction->updateUniques() ){
+                                dd("FAILED UPDATING INSTRUCTOR  $instructor_earnings_transaction->id");
+                        }
                     }
                     
                     if( $sale->second_tier_instructor_earnings > 0 ){
-                        $sti_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'second_tier_instructor_credit')->first();
-                        $sti_transaction->amount = $sale->second_tier_instructor_earnings;
-                        if ( !$sti_transaction->updateUniques() ){
-                            dd("FAILED UPDATING STI_TRANSACTION $sti_transaction->id");
+                        $stia_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'affiliate_credit')
+                                ->where('is_second_tier', 'yes')->first();
+                        $stia_transaction->amount = $sale->second_tier_affiliate_earnings;
+                        if ( !$stia_transaction->updateUniques() ){
+                            dd("FAILED UPDATING STIA_TRANSACTION $stia_transaction->id");
+                        }
+                    }
+                    
+                    if( $sale->affiliate_earnings ){
+                        $aff_transaction = Transaction::where('purchase_id', $sale->id)->where('transaction_type', 'affiliate_credit')->where('is_ltc','no')
+                                ->where('is_second_tier','no')->first();
+                        $aff_transaction->amount = $sale->affiliate_earnings;
+                        if( !$aff_transaction->save() ){
+                            dd("FAILED UPDATING AFF_TRANSACTION $aff_transaction->id");
                         }
                     }
                     
