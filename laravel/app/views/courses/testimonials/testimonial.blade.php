@@ -52,13 +52,7 @@
           </div>
           <div class="user-review col-xs-12 col-sm-10 col-md-10 col-lg-10">
               <p class="regular-paragraph expandable-content">
-                {{{ $testimonial->content }}}dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
-                dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
-                dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
-                dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
-                dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
-                dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
-                dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasddasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
+                {{{ $testimonial->content }}}
               </p>
               <div class="fadeout-text"></div>
              
@@ -66,10 +60,6 @@
               <!--<span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }}--> 
               <!--</span>-->
               @if( App::environment() != 'production' )
-              <!-- Max, make this form look like your form
-                  but dont change the existing stuff: classes, id, attributes, otherwise you brake the rating functionality
-                  however you are free to add new classes
-              -->
                     @if(Auth::check())
                           <form method='post' class=' ajax-form' action='{{action('TestimonialsController@rate')}}'
                               data-callback='ratedTestimonial' data-thumb='up' data-total='{{$testimonial->thumbs()}}' 
@@ -95,20 +85,6 @@
                         </form>
                     @endif
                     
-                    <!-- Max, remove this form after you skin the one above -->
-                    <!--<form>
-                        <div class="helpful-button-wrap clearfix">
-                                <input type="checkbox" id="helpful-button" class="hide" name="helpful-button">
-                            <label for="helpful-button" class="">
-                                <i class="wa-like"></i>
-                                <span class="unclicked">{{ trans("courses/general.helpful") }}</span>
-                                <span class="clicked">{{ trans("courses/general.found_helpful") }}</span>                          
-                            </label>                      
-                            <span class="number-of-likes">{{ $testimonial->thumbs_up }}</span>
-                        </div>
-
-                    </form>-->
-              
               @endif
               
           </div>

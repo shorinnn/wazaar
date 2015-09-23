@@ -2877,12 +2877,6 @@ h2, h3, h4, h5, h6{
 .user-review .helpful-button-wrap .helpful-button[disabled]{
 	color: #0099ff;
 }
-.user-review .helpful-button-wrap input[type='checkbox']:checked + label .unclicked{
-	display: none;
-}
-.user-review .helpful-button-wrap input[type='checkbox']:checked + label .clicked{
-	display: inline-block;
-}
 .user-review .helpful-button-wrap .number-of-likes{
 	border-left: solid 1px #7e8e9e;
 	margin-left: 10px;
