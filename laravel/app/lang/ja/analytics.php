@@ -100,7 +100,7 @@ return
 	'publisher_two_tier_commission' => '販売者２ティア収入',
     'date_time' => '日時',
     'second_tier_commission' => 'Second Tier Commission',
-    'ltc_commission' => 'Ltc Commission'
+    'ltc_commission' => 'Ltc Commission',
 	'life_time_commission' => 'ライフタイムコミッション収入',
 	'affiliate_fee' => 'アフィリエイターへの報酬額',
 	'second_tier_sales_fee' => 'アフィリ２ティアへの報酬額',

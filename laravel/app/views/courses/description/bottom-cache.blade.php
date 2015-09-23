@@ -217,7 +217,7 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 @if(App::environment() != 'production')
                 <div class="recommended-courses-container">
-					<h3 class="recommended-courses-maintitle">{{trans('courses/general.people_who_viewed_this_course') }}</h3>
+                    <h3 class="recommended-courses-maintitle">{{trans('courses/general.people_who_viewed_this_course') }}</h3>
                     <div class="recommended-courses-block row">
                     	<div class="col-xs-4 col-sm-2 col-md-4 col-lg-4 instructor-img">
                         	<img src="//d1hgniicb7e6y2.cloudfront.net/course_preview/55f64bb382808.jpg" class="img-responsive">
