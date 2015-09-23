@@ -236,11 +236,11 @@
                                         class="img-responsive">
                             </div>
                             <div class="col-xs-8 col-sm-10 col-md-8 col-lg-8">
-                                    <h3 class="recommended-course-title">{{$course->name}}</h3>
+                                    <h3 class="recommended-course-title">{{$rec->name }}</h3>
                                 <h3 class="instructor-name">
                                     
                                 @if($rec->instructor->profile == null)
-                                    {{$rec->$instructor->last_name}} {{$rec->instructor->first_name}} 
+                                    {{ $rec->$instructor->last_name }} {{ $rec->instructor->first_name }} 
                                 @else
                                     {{$rec->instructor->profile->last_name}} {{$rec->instructor->profile->first_name}} 
                                 @endif
