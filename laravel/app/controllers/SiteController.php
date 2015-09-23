@@ -130,15 +130,31 @@ class SiteController extends \BaseController {
             }
         }
 
-        $top_paid_courses = array();
-        $top_paid_course_ids = DB::select("select a.product_id from purchases as a where a.product_type='Course' and a.purchase_price >= 1 ORDER BY (select SUM(b.purchase_price) from purchases as b where b.product_id = a.product_id) DESC");
 
+        $course_purchases = Purchase::where('product_type', '=', 'Course')->where('purchase_price', '>', '0')->get();
+        $top_paid_course_tally = array();
+        foreach ($course_purchases as $course_purchase) {
+            if(array_key_exists($course_purchase->product_id, $top_paid_course_tally)){
+                $tally_courses[$course_purchase->product_id] = $tally_courses[$course_purchase->product_id] + $course_purchase->purchase_price;
+            } else {
+                $tally_courses[$course_purchase->product_id] = $course_purchase->purchase_price;
+            }
+        }
+        arsort($tally_courses);
+        foreach($tally_courses as $course_id => $total_purchases){
+            $top_paid_course_ids[] = $course_id;
+        }
+        // $top_paid_course_ids = DB::select("select a.product_id from purchases as a where a.product_type='Course' and a.purchase_price >= 1 ORDER BY (select SUM(b.purchase_price) from purchases as b where b.product_id = a.product_id) DESC");
+        
+        $top_paid_courses = array();
+        
         if(count($top_paid_course_ids) >= 1){
             foreach($top_paid_course_ids as $top_paid_course_id){
-                $course = Course::where('id', '=', $top_paid_course_id->product_id)->first();
+                $course = Course::where('id', '=', $top_paid_course_id)->first();
                 $top_paid_courses[] = $course;
             }
         }
+        // dd($top_paid_courses);
 
         $top_free_courses = Course::where('free', '=', 'yes')->where('publish_status', '=', 'approved')->where('student_count', '>=', '1')->orderBy('student_count', 'desc')->get();
 
