@@ -270,6 +270,8 @@ $wwwRoutes = function(){
 
     Route::get('courses/{slug}', 'CoursesController@show');
 
+    Route::get('make-recommended', 'SiteController@makeRecommended');
+
 //});
 };
 Route::group(array('domain' => $domain), $wwwRoutes);
