@@ -20,6 +20,8 @@ return array(
     'no_negative_discounts' =>'割引に負の値は入力できません',
     'edit_details' =>'詳細を編集',
     'edit' =>'編集',
+	'people_who_viewed_this_course' => 'このコースを見た人はこのコースも見ています！',
+	'we_recommend_for_you' => 'ワザールはこの商品を推薦します！',
     'manage_lessons' =>'レッスンの管理',
     'max_upload_error' =>'このレッスンでアップロードできるファイル容量の上限に達しました',
     'all_my_courses' =>'マイコース一覧に戻る',

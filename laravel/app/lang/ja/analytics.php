@@ -96,7 +96,7 @@ return
 	'affiliate_two_tier_fee' => 'アフィリ２ティアへの報酬額',
 	'wazaar_system_fee' => 'システムの利用料金',
 	'publisher_sales_revenue' => '販売収益',
-    'date_time' => 'Date/Time',
+    'date_time' => '日時',
     'second_tier_commission' => 'Second Tier Commission',
     'ltc_commission' => 'Ltc Commission'
 
