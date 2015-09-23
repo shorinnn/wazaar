@@ -10354,3 +10354,16 @@ header .top-menu .logged-out li{
 	white-space: nowrap;
 }
 /*end new homepage layout by art */
+
+/*course category page course filter new buttons */
+.course-filters .btn.btn-default{
+	border-color: #E3E5E6;
+	color: #667078;
+	font-size: 13px;
+	z-index: 0;
+}
+.course-filters .btn.btn-default:active,
+.course-filters .btn.btn-default.active{
+	box-shadow: none;
+}
+/*end course category page course filter new buttons */

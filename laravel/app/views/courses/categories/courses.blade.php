@@ -9,5 +9,5 @@
     </div>
     @endif
 <div class="container no-padding">
-{{ $courses->appends(Input::only('sort','difficulty'))->links() }}
+{{ $courses->appends(Input::only('sort','difficulty','filter'))->links() }}
 </div>
