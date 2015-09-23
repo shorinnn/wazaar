@@ -453,16 +453,16 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
             $this->info( '***************************************************' );
             $this->info( '*********** RECALCULATE SALE MONEY ************' );
 //            $sales = [ 6603 ,6920, 6921 ];
-            $sales = [ 5075 ];
+            $sales = [ 6603 ];
             $sales = Purchase::whereIn('id', $sales)->get();
-            $newPurchasePrice = 9800;
+            $newPurchasePrice = 19800;
             $this->info( $sales->count().' sales found');
             foreach($sales as $sale){
                 $sale->purchase_price = $newPurchasePrice;
                 $sale->instructor_earnings = $instructor_earnings = $sale->purchase_price * 0.7;
                 $sale->site_earnings = $site_earnings = $sale->purchase_price * 0.3;
-                $sale->discount_value = 10000;
-                $sale->discount = 'Yen 10000.00';
+                $sale->discount_value = 0;
+                $sale->discount = null;
                 
                 $course = Course::find( $sale->product_id);
                 if( $sale->second_tier_instructor_earnings > 0 ){
