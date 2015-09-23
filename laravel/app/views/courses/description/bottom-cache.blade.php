@@ -203,11 +203,13 @@
                         </div>
 
                         <!--<span class="read-all-reviews">Read all reviews</span>-->
-                        <a href='#' id="load-more-ajax-button" class="load-more-comments load-more-ajax read-all-reviews"
-                           data-url='{{ action('TestimonialsController@more') }}'
-                           data-target='.bottom-testimonials' data-skip='3' data-id='{{ $course->id }}' data-post-field="course">
-                            {{ trans( 'general.read-more' ) }}
-                        </a>
+                        @if( $course->testimonials()->where('content','!=','')->count() > $course->allTestimonials->count() )
+                            <a href='#' id="load-more-ajax-button" class="load-more-comments load-more-ajax read-all-reviews"
+                               data-url='{{ action('TestimonialsController@more') }}'
+                               data-target='.bottom-testimonials' data-skip='3' data-id='{{ $course->id }}' data-post-field="course">
+                                {{ trans( 'general.read-more' ) }}
+                            </a>
+                        @endif
                     </div>
                 @endif
 

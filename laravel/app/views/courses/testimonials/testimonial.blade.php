@@ -61,9 +61,18 @@
               <!--</span>-->
               @if( App::environment() != 'production' )
                     @if(Auth::check())
-                          <form method='post' class=' ajax-form' action='{{action('TestimonialsController@rate')}}'
-                              data-callback='ratedTestimonial' data-thumb='up' data-total='{{$testimonial->thumbs()}}' 
-                            data-up="{{$testimonial->thumbs_up}}" data-down="{{$testimonial->thumbs_down}}" data-testimonial-id='{{$testimonial->id}}'
+                          <form method='post' class=' ajax-form @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'positive' )
+                                helful-review-form
+                                @endif' action='{{action('TestimonialsController@rate')}}'
+                              data-callback='ratedTestimonial' 
+                              @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'positive' )
+                                  data-thumb='down' 
+                              @else
+                                  data-thumb='up' 
+                              @endif
+                              data-total='{{$testimonial->thumbs()}}' 
+                              data-up="{{$testimonial->thumbs_up}}" 
+                              data-down="{{$testimonial->thumbs_down}}" data-testimonial-id='{{$testimonial->id}}'
                                     @if( $testimonial->ratedBy( Auth::user() ) )
                                         data-rated='{{$testimonial->current_user_rating->rating}}'
                                     @endif
@@ -77,7 +86,13 @@
                                         {{ trans("courses/general.helpful") }}
                                     @endif
                                 </button>
-                                <input type="hidden" name="rating" value="positive" />
+                                <input type="hidden" name="rating" 
+                                    @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'positive' )
+                                        value="negative" 
+                                    @else
+                                        value="positive"
+                                    @endif
+                                />
                                 <input type="hidden" name="testimonial_id" value="{{$testimonial->id}}" />
                                 <input type='hidden' name='_token' value='{{ csrf_token() }}' />
                                 <span class="number-of-likes number-of-likes-{{$testimonial->id}}">{{ $testimonial->thumbs_up }}</span>
