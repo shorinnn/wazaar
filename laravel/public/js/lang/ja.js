@@ -37,5 +37,7 @@ var js_translation_map_ja = {
     'seconds' : '秒',
     'Remove from wishlist' : 'お気に入りにから削除する。',
     'Add to wishlist' : 'ウィッシュリストに追加',
-    'Thank you for your review.' : 'レビューの記載は販売者の売上促進につながります！本当にありがとうございました！'
+    'Thank you for your review.' : 'レビューの記載は販売者の売上促進につながります！本当にありがとうございました！',
+    'You found this helpful' : 'このレビューは役に立った',
+    'Helpful' : '役に立った'
 };

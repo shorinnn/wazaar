@@ -918,19 +918,21 @@ function ratedTestimonial(result, e){
         if( rate=='up') ++thumbs_up;
         else ++thumbs_down;
         
-        $('.number-of-likes-'+id).html(thumbs_up);
+        
     }
     else{
         if( rate=='up'){
              if( already_rated=='negative' ){
-                 --thumbs_down;
+//                 --thumbs_down;
                  ++thumbs_up;
+                 ++thumbs;
              }
         }
         else{
             if( already_rated=='positive' ){
-                ++thumbs_down;
+//                ++thumbs_down;
                 --thumbs_up;
+                --thumbs;
             }
         }
     }
@@ -958,8 +960,26 @@ function ratedTestimonial(result, e){
     $('.testimonial-'+id).find('.thumbs-down-label').html(thumbs_down);
     $('.testimonial-'+id).find('.thumbs-total-label').html(thumbs);
 
-    $('[data-testimonial-id="'+id+'"]').prop('disabled', true);
-    $('[data-testimonial-id="'+id+'"]').prop('disabled', 'disabled');
+    $(e.target).attr('data-total', thumbs);
+    $(e.target).attr('data-up', thumbs_up);
+    $(e.target).attr('data-down', thumbs_down);
+    $('.number-of-likes-'+id).html(thumbs_up);
+    if(rate=='up'){
+        $(e.target).attr('data-thumb','down');
+        $(e.target).attr('data-rated','positive');
+//        $('[data-testimonial-id="'+id+'"]').prop('disabled', true);
+//        $('[data-testimonial-id="'+id+'"]').prop('disabled', 'disabled');
+        $('[data-testimonial-id="'+id+'"]').find('[type=submit]').html( '<i class="fa fa-thumbs-o-up"></i>'+_('You found this helpful') );
+        $('[data-testimonial-id="'+id+'"]').addClass('helful-review-form');
+        $('[data-testimonial-id="'+id+'"]').find('[name=rating]').val('negative');
+    }
+    else{
+        $(e.target).attr('data-thumb','up');
+        $(e.target).attr('data-rated','negative');
+        $('[data-testimonial-id="'+id+'"]').find('[type=submit]').html( '<i class="fa fa-thumbs-o-up"></i>'+_('Helpful') );
+        $('[data-testimonial-id="'+id+'"]').removeClass('helful-review-form');
+        $('[data-testimonial-id="'+id+'"]').find('[name=rating]').val('positive');
+    }
 }
 
 function fullScreen(){
