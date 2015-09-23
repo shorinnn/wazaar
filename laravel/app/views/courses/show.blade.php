@@ -147,7 +147,7 @@
                     @endif
                     
                 @else
-                    <video id="myVideo" style="width: 100%" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
+                    <video oncontextmenu="return false" id="myVideo" style="width: 100%" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
                         <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                                     ->first()->video_url }}" type="video/mp4">
                         <p>Your browser does not support the video tag.</p>
@@ -155,7 +155,7 @@
                     {{--
                     <div class="video-player video-container description-page video-container-toggler" style="display:none; background:none; text-align: right">
                         @if( Agent::isMobile() )
-                            <video id='myVideo' preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
+                            <video oncontextmenu="return false" id='myVideo' preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
                                 <source src="{{ $video->formats()->where('resolution', 'Low Resolution')
                                             ->first()->video_url }}" type="video/mp4">
                             </video>
@@ -163,7 +163,7 @@
 
 
                             <div class="videoContainer">
-                                <video id="myVideo" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
+                                <video oncontextmenu="return false" id="myVideo" preload="auto" controls poster="{{ cloudfrontUrl( $course->previewImage->format() ) }}">
                                 <source src="{{ $video->formats()->where('resolution', 'Custom Preset for Desktop Devices')
                                                     ->first()->video_url }}" type="video/mp4">
                                 <p>Your browser does not support the video tag.</p>
