@@ -3093,7 +3093,6 @@ h2, h3, h4, h5, h6{
 }
 .recommended-courses-container h3{
 	font-size: 15px;
-	line-height: 18px;
 	margin: 0;
 	text-transform: uppercase;
 	font-weight: 600;
@@ -3115,7 +3114,8 @@ h2, h3, h4, h5, h6{
 }
 .recommended-courses-container .instructor-name{
 	color: #93a0ad;
-	font-weight: normal;
+	font-size: 12px;
+	line-height: 18px;
 }
 .recommended-course-price{
 	color: #0099ff;

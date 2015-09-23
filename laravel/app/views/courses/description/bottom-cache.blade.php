@@ -219,7 +219,7 @@
 					<h3 class="recommended-courses-maintitle">{{trans('courses/general.we_recommend_for_you') }}</h3>
                     <div class="recommended-courses-block row">
                     	<div class="col-xs-4 col-sm-2 col-md-4 col-lg-4 instructor-img">
-                        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" class="img-responsive">
+                        	<img src="//d1hgniicb7e6y2.cloudfront.net/course_preview/55f64bb382808.jpg" class="img-responsive">
                         </div>
                         <div class="col-xs-8 col-sm-10 col-md-8 col-lg-8">
                         	<h3 class="recommended-course-title">Some title here</h3>
@@ -229,7 +229,7 @@
                     </div>
                     <div class="recommended-courses-block row">
                     	<div class="col-xs-4 col-sm-2 col-md-4 col-lg-4 instructor-img">
-                        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" class="img-responsive">
+                        	<img src="//d1hgniicb7e6y2.cloudfront.net/course_preview/55f64bb382808.jpg" class="img-responsive">
                         </div>
                         <div class="col-xs-8 col-sm-10 col-md-8 col-lg-8">
                         	<h3 class="recommended-course-title">Some title here</h3>
