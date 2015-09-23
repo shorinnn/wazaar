@@ -261,7 +261,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <ul id="wrapper-top-courses">
+                        <ul id="wrapper-top-courses" class="top-courses-content">
                             {{--$topCoursesView--}}
                             <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                         </ul>
@@ -289,7 +289,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <ul id="wrapper-top-free-courses">
+                        <ul id="wrapper-top-free-courses" class="top-courses-content">
                             {{--$topCoursesView--}}
                             <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
                         </ul>

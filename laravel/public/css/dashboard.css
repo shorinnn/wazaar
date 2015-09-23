@@ -268,7 +268,20 @@ h4.date-range-header{
 .affiliate-dashboard ul li#friday > div span{
 	width: 90%;
 }
-
+.affiliate-dashboard .top-courses-content{
+	padding: 0 20px;
+	max-height: 335px;
+	overflow: auto;
+}
+.affiliate-dashboard .top-courses-content li span{
+    display: inline-block;
+    float: left;
+    width: 10%;
+}
+.affiliate-dashboard .top-courses-content li div{
+    float: left;
+    width: 81%;
+}
 #customize a{
 	display: block;
 	height: 100%;
