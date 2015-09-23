@@ -452,7 +452,8 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
             
             $this->info( '***************************************************' );
             $this->info( '*********** RECALCULATE SALE MONEY ************' );
-            $sales = [ 6603 ,6920, 6921 ];
+//            $sales = [ 6603 ,6920, 6921 ];
+            $sales = [ 5075 ];
             $sales = Purchase::whereIn('id', $sales)->get();
             $newPurchasePrice = 9800;
             $this->info( $sales->count().' sales found');
