@@ -196,7 +196,7 @@
                 <div class="row video-row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         @if( $video != null)
-                            <video id='myVideoxx' controls preload="auto" style="width: 100%; height: 100%">
+                            <video id='myVideo' controls preload="auto" style="width: 100%; height: 100%">
                                 @if( Agent::isMobile() &&  $video->formats()->where('resolution', 'Low Resolution')
                                             ->first() != null)
                                     <source src="{{ $video->formats()->where('resolution', 'Low Resolution')
@@ -215,6 +215,26 @@
                                 <div class="videoContainer">
                                     {{ externalVideoPreview($lesson->external_video_url, true, true) }}
                                 </div>
+<!--                                <div id="ytplayer"></div>
+                                <script>
+                                    // Load the IFrame Player API code asynchronously.
+                                    var tag = document.createElement('script');
+                                    tag.src = "https://www.youtube.com/player_api";
+                                    var firstScriptTag = document.getElementsByTagName('script')[0];
+                                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                                    // Replace the 'ytplayer' element with an <iframe> and
+                                    // YouTube player after the API code downloads.
+                                    var player;
+                                    function onYouTubePlayerAPIReady() {
+                                      player = new YT.Player('ytplayer', {
+                                        playerVars: {'rel': 0, 'showinfo': 0,  'modestbranding':1 },
+                                        height: '480',
+                                        width: '100%',
+                                        videoId: '{{ externalVideoPreview($lesson->external_video_url, true, true, true) }}'
+                                      });
+                                    }
+                              </script>-->
                             @endif
                         @endif
                     </div>

@@ -17,15 +17,23 @@
                 <th>{{trans('analytics.conversion')}}</th>
                 </thead>
                 <tbody>
-                @foreach($trackingCodes['data'] as $code)
+                @if (count($trackingCodes['data']) > 0)
+                    @foreach($trackingCodes['data'] as $code)
+                        <tr>
+                            <td>{{$code['tracking_code']}}</td>
+                            <td>{{$code['purchases_total']}}</td>
+                            <td>{{$code['hits']}}</td>
+                            <td>{{$code['purchases']}}</td>
+                            <td class="last-column">{{number_format($code['purchases']/$code['hits']*100)}}%</td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr>
-                        <td>{{$code['tracking_code']}}</td>
-                        <td>{{$code['purchases_total']}}</td>
-                        <td>{{$code['hits']}}</td>
-                        <td>{{$code['purchases']}}</td>
-                        <td class="last-column">{{number_format($code['purchases']/$code['hits']*100)}}%</td>
+                        <td colspan="5">
+                            {{trans('analytics.noTrackingCode')}}
+                        </td>
                     </tr>
-                @endforeach
+                @endif
                 </tbody>
             </table>
 

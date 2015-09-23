@@ -521,7 +521,9 @@ Route::post('courses/{id}/video/set-description','CoursesController@setVideoDesc
 
 Route::get('test', function(){
 
+    $dh = new DeliveredHelper();
 
+    dd($dh->getUsersByTags(['WAZAAR' => 'OSAM','XTAC' => 'PROMO2015']));
 
 });
 

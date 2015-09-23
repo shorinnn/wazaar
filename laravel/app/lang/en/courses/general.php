@@ -16,6 +16,7 @@ return array(
     'analytics' => 'Analytics',
     'dashboard' => 'Dashboard',
     'by' => 'by',
+	'we_recommend_for_you' => 'We recommend for you',
     'purchase' => 'Purchase',
     'join_class' => 'Join Class',
     'enroll_for' => 'Enroll for',

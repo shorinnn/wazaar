@@ -10,6 +10,7 @@
                 <br />
                 <table class='table table-striped table-bordered'>
                     <tr>
+                        <td>Transaction ID</td>
                         <td>Product</td>
                         <td>Cost</td>
                         <td>Instructor</td>
@@ -18,6 +19,7 @@
                     </tr>
                     @foreach($purchases as $purchase)
                     <tr>
+                        <td>{{ $purchase->id }}</td>
                         <td>{{ $purchase->product->name.' ('.$purchase->product_type.')' }}</td>
                         <td>{{ $purchase->purchase_price }}</td>
                         <td>
