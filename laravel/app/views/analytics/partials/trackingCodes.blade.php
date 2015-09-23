@@ -1,11 +1,9 @@
 @if(count($trackingCodes['data'])>0)
     @foreach($trackingCodes['data'] as $key => $code)
-        <li>
-            <a href="#">
+        <li class="clearfix">
                 <span>{{$key+1}}.</span>
-                <a href="{{url('dashboard/course/'. $code['course_id'] .'/trackingcode/'. $code['tracking_code'] .'/stats')}}">{{$code['tracking_code']}}</a>
+                <div><a href="{{url('dashboard/course/'. $code['course_id'] .'/trackingcode/'. $code['tracking_code'] .'/stats')}}">{{$code['tracking_code']}}</a></div>
                 <em>{{$code['count']}}</em>
-            </a>
         </li>
     @endforeach
     @if (count($trackingCodes['data']) == 10)

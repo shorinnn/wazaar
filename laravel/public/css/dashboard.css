@@ -55,16 +55,15 @@ h4.date-range-header{
 }
 
 .course-statistics .header h1{
-	font-size: 42px;
+	font-size: 36px;
 	color: #0099ff;
 	font-weight: 200;
 	margin: 35px 0;
-	line-height: 45px;
 }
 
 .course-statistics .header h1 p{
 	margin: 0;
-	font-size: 34px;
+	font-size: 26px;
 }
 
 .affiliate-dashboard .header ul{

@@ -36,7 +36,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <ul id="wrapper-tracking-codes">
+                        <ul id="wrapper-tracking-codes" class="top-courses-content">
                             {{$trackingCodesSalesView}}
                         </ul>
 
@@ -91,7 +91,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <ul id="wrapper-tracking-code-conversions">
+                        <ul id="wrapper-tracking-code-conversions" class="top-courses-content">
                             {{$trackingCodeConversionView}}
                         </ul>
                     </div>
@@ -147,7 +147,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <button class="btn btn-primary" id="btn-update-chart">Update Chart</button>
+                        <button class="large-button blue-button" id="btn-update-chart">Update Chart</button>
                     </div>
             </div>
 
