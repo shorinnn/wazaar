@@ -83,7 +83,7 @@ class TaskerCommand extends Command {
             
         }
         
-        public  function fix_70_30(){
+        public  function __fix_70_30(){
             DB::table('purchases')->where('instructor_earnings','<',0)->update( ['instructor_earnings' => 0 ] );
             $this->info( '***************************************************' );
             $this->info( '*********** FIX 70% 30% EARNINGS ISSUE ************' );
@@ -488,7 +488,7 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
                     $affiliate = User::find( $sale->ltc_affiliate_id );
                     $percentage = min( Config::get('custom.earnings.ltc_percentage') );
                     if( $affiliate->is_super_vip == 'yes' || $affiliate->is_vip=='yes' ) $percentage = max( Config::get('custom.earnings.ltc_percentage') );
-                    $sale->ltc_affiliate_earnings = $sale->site_earnings *( $percentage / 100 );
+                    $sale->ltc_affiliate_earnings = $sale->purchase_price *( $percentage / 100 );
                     $site_earnings -= $sale->ltc_affiliate_earnings;
                 }
                 
