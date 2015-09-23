@@ -94,10 +94,15 @@ return
     'selling_price' => '販売価格',
 	'affiliate_commission' => 'アフィリエイターへの報酬額',
 	'affiliate_two_tier_fee' => 'アフィリ２ティアへの報酬額',
+	'affiliate_revenue' => 'アフィリエイト報酬',
 	'wazaar_system_fee' => 'システムの利用料金',
 	'publisher_sales_revenue' => '販売収益',
+	'publisher_two_tier_commission' => '販売者２ティア収入',
     'date_time' => '日時',
     'second_tier_commission' => 'Second Tier Commission',
     'ltc_commission' => 'Ltc Commission'
+	'life_time_commission' => 'ライフタイムコミッション収入',
+	'affiliate_fee' => 'アフィリエイターへの報酬額',
+	'second_tier_sales_fee' => 'アフィリ２ティアへの報酬額',
 
 ];
