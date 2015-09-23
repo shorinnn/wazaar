@@ -214,9 +214,29 @@
                 @endif
 
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4">
-                <div class="sidebar">
-
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <div class="recommended-courses-container">
+					<h3 class="recommended-courses-maintitle">{{trans('courses/general.we_recommend_for_you') }}</h3>
+                    <div class="recommended-courses-block row">
+                    	<div class="col-xs-4 col-sm-2 col-md-4 col-lg-4 instructor-img">
+                        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-xs-8 col-sm-10 col-md-8 col-lg-8">
+                        	<h3 class="recommended-course-title">Some title here</h3>
+                            <h3 class="instructor-name">{{trans('courses/general.by') }} Instructor</h3>
+                            <span class="recommended-course-price">¥ 7,200</span>
+                        </div>
+                    </div>
+                    <div class="recommended-courses-block row">
+                    	<div class="col-xs-4 col-sm-2 col-md-4 col-lg-4 instructor-img">
+                        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-xs-8 col-sm-10 col-md-8 col-lg-8">
+                        	<h3 class="recommended-course-title">Some title here</h3>
+                            <h3 class="instructor-name">{{trans('courses/general.by') }} Instructor</h3>
+                            <span class="recommended-course-price">¥ 7,200</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

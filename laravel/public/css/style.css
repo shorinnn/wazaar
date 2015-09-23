@@ -3083,6 +3083,46 @@ h2, h3, h4, h5, h6{
 	cursor: pointer;
 	display: block;
 }
+/* Recommended courses */
+.recommended-courses-container{
+	background: #fff;
+	border: 1px solid #e0e1e2;
+	border-radius: 4px;
+	margin-bottom: 18px;
+	overflow: hidden;
+}
+.recommended-courses-container h3{
+	font-size: 15px;
+	line-height: 18px;
+	margin: 0;
+	text-transform: uppercase;
+	font-weight: 600;
+}
+.recommended-courses-maintitle{
+	padding: 29px 24px 27px;
+	color: #303941;
+}
+.recommended-courses-block{
+	margin: 0;
+	padding: 12px 9px;
+	border-top: solid 1px #e8e8e8;
+}
+.recommended-course-title{
+	color: #283947;
+}
+.recommended-courses-container .instructor-img{
+	padding-right: 0;
+}
+.recommended-courses-container .instructor-name{
+	color: #93a0ad;
+	font-weight: normal;
+}
+.recommended-course-price{
+	color: #0099ff;
+	display:inline-block;
+	font-size: 15px;
+	line-height: 20px;
+}
 /*********** Course Details main content *************/
 .main-content-container{
 	width: 100%;
