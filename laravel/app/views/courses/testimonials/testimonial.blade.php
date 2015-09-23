@@ -38,33 +38,70 @@
               {{ $testimonial->student->last_name }}
               {{ $testimonial->student->first_name }}
               </span>
-<!--             HIDE THIS FROM PRODUCTION
-<em class="recommendation recommends">
-              	<em class="recommended">{{ trans("courses/general.recommends") }}</em>
-              	<em class="unrecommended">{{ trans("courses/general.does_not_recommend") }}</em>
-              </em>-->
+             
+              
+            <em class="recommendation
+                @if($testimonial->rating=='positive')
+                 recommends">
+                    <em class="recommended">{{ trans("courses/general.recommends") }}</em>
+                @else
+                 not-recommend">
+                    <em class="unrecommended">{{ trans("courses/general.does_not_recommend") }}</em>
+                @endif
+            </em>
           </div>
           <div class="user-review col-xs-12 col-sm-10 col-md-10 col-lg-10">
               <p class="regular-paragraph expandable-content">
                 {{{ $testimonial->content }}}
               </p>
               <div class="fadeout-text"></div>
-              <span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }} 
-              </span>
-              <!--HIDE THIS FROM PRODUCTION
-              <form>
-                  <div class="helpful-button-wrap clearfix">
-                  	  <input type="checkbox" id="helpful-button" class="hide" name="helpful-button">
-                      <label for="helpful-button" class="">
-                      	  <i class="wa-like"></i>
-                          <span class="unclicked">{{ trans("courses/general.helpful") }}</span>
-                          <span class="clicked">{{ trans("courses/general.found_helpful") }}</span>                          
-                      </label>                      
-                      <span class="number-of-likes">4</span>
-                  </div>
-                  
-              </form>
-              -->
+             
+              
+              <!--<span class="view-more-reviews expandable-button show-more" data-less-text='Less' data-more-text='More'>{{ trans("courses/general.more") }}--> 
+              <!--</span>-->
+              @if( App::environment() != 'production' )
+                    @if(Auth::check())
+                          <form method='post' class=' ajax-form @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'positive' )
+                                helful-review-form
+                                @endif' action='{{action('TestimonialsController@rate')}}'
+                              data-callback='ratedTestimonial' 
+                              @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'positive' )
+                                  data-thumb='down' 
+                              @else
+                                  data-thumb='up' 
+                              @endif
+                              data-total='{{$testimonial->thumbs()}}' 
+                              data-up="{{$testimonial->thumbs_up}}" 
+                              data-down="{{$testimonial->thumbs_down}}" data-testimonial-id='{{$testimonial->id}}'
+                                    @if( $testimonial->ratedBy( Auth::user() ) )
+                                        data-rated='{{$testimonial->current_user_rating->rating}}'
+                                    @endif
+                                    >
+							<div class="helpful-button-wrap clearfix">
+                                <button type='submit' name="rate-yes" class="helpful-button"  data-testimonial-id='{{$testimonial->id}}'>
+                                    <i class="fa fa-thumbs-o-up"></i> 
+                                    @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'positive' )
+                                        {{ trans("courses/general.found_helpful") }}
+                                    @else
+                                        {{ trans("courses/general.helpful") }}
+                                    @endif
+                                </button>
+                                <input type="hidden" name="rating" 
+                                    @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'positive' )
+                                        value="negative" 
+                                    @else
+                                        value="positive"
+                                    @endif
+                                />
+                                <input type="hidden" name="testimonial_id" value="{{$testimonial->id}}" />
+                                <input type='hidden' name='_token' value='{{ csrf_token() }}' />
+                                <span class="number-of-likes number-of-likes-{{$testimonial->id}}">{{ $testimonial->thumbs_up }}</span>
+                            </div>
+                        </form>
+                    @endif
+                    
+              @endif
+              
           </div>
       </div>
   </div>

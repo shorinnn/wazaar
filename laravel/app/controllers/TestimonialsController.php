@@ -40,7 +40,11 @@ class TestimonialsController extends \BaseController {
                     ->skip( Input::get('skip') )->limit(5)->get() as $testimonial ){
                 $html.=  View::make('courses.testimonials.testimonial')->with( compact('testimonial') )->render();
             }
-            return $html;
+            $return['html'] = $html;
+            $skip = Input::get('skip') + 5;
+            $return['nextRows'] = Testimonial::where('course_id', Input::get('course') )->where('content','!=',"")->orderBy('id', 'desc')
+                    ->skip( $skip )->limit(5)->get()->count();
+            return json_encode($return);
         }
         
         public function rate(){

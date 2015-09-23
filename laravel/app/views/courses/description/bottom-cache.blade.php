@@ -193,7 +193,7 @@
 
                 @if($course->allTestimonials->count() > 0)
                     <div class="lesson-reviews">
-                        <h2>{{ $course->testimonials()->count() }} {{ trans("courses/general.reviews") }}</h2>
+                        <h2>{{ $course->testimonials()->where('content','!=','')->count() }} {{ trans("courses/general.reviews") }}</h2>
                         <div class='bottom-testimonials'>
                             @foreach($course->allTestimonials as $testimonial)
                                 <!--<div>-->
@@ -203,18 +203,40 @@
                         </div>
 
                         <!--<span class="read-all-reviews">Read all reviews</span>-->
-                        <a href='#' id="load-more-ajax-button" class="load-more-comments load-more-ajax read-all-reviews"
-                           data-url='{{ action('TestimonialsController@more') }}'
-                           data-target='.bottom-testimonials' data-skip='5' data-id='{{ $course->id }}' data-post-field="course">
-                            {{ trans('general.read-all-reviews') }}
-                        </a>
+                        @if( $course->testimonials()->where('content','!=','')->count() > $course->allTestimonials->count() )
+                            <a href='#' id="load-more-ajax-button" class="load-more-comments load-more-ajax read-all-reviews"
+                               data-url='{{ action('TestimonialsController@more') }}'
+                               data-target='.bottom-testimonials' data-skip='3' data-id='{{ $course->id }}' data-post-field="course">
+                                {{ trans( 'general.read-more' ) }}
+                            </a>
+                        @endif
                     </div>
                 @endif
 
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4">
-                <div class="sidebar">
-
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <div class="recommended-courses-container">
+					<h3 class="recommended-courses-maintitle">{{trans('courses/general.we_recommend_for_you') }}</h3>
+                    <div class="recommended-courses-block row">
+                    	<div class="col-xs-4 col-sm-2 col-md-4 col-lg-4 instructor-img">
+                        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-xs-8 col-sm-10 col-md-8 col-lg-8">
+                        	<h3 class="recommended-course-title">Some title here</h3>
+                            <h3 class="instructor-name">{{trans('courses/general.by') }} Instructor</h3>
+                            <span class="recommended-course-price">¥ 7,200</span>
+                        </div>
+                    </div>
+                    <div class="recommended-courses-block row">
+                    	<div class="col-xs-4 col-sm-2 col-md-4 col-lg-4 instructor-img">
+                        	<img src="https://s3-ap-northeast-1.amazonaws.com/wazaardev/profile_pictures/avatar.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-xs-8 col-sm-10 col-md-8 col-lg-8">
+                        	<h3 class="recommended-course-title">Some title here</h3>
+                            <h3 class="instructor-name">{{trans('courses/general.by') }} Instructor</h3>
+                            <span class="recommended-course-price">¥ 7,200</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

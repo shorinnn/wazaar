@@ -1,10 +1,9 @@
 @if(count($courseConversions['data'])>0)
     @foreach($courseConversions['data'] as $key => $course)
-        <li>
-            <a href="#">
+        <li class="clearfix">
                 <span>{{$key+1}}.</span>
 
-                <a href="{{url('dashboard/course/'. $course['product_id'] .'/stats')}}">{{$course['name']}}</a>
+                <div><a href="{{url('dashboard/course/'. $course['product_id'] .'/stats')}}">{{$course['name']}}</a></div>
 
                 <em>
                     @if ($course['purchases'] == 0 OR $course['hits'] == 0)
@@ -13,7 +12,6 @@
                         {{number_format($course['purchases'] / $course['hits'] * 100,2)}}
                     @endif
                         %</em>
-            </a>
         </li>
     @endforeach
 @else

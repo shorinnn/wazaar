@@ -43,7 +43,7 @@
     <section class="container-fluid discover-section">
         <div class="container">
             <div id='discover-courses-area' class="ajax-content">
-                {{ View::make('site.discover_courses_demo')->with( compact('category_groups', 'wishlisted', 'filter') ) }} 
+                {{ View::make('site.discover_courses_demo')->with( compact('hot_picks_courses', 'wazaar_picks_courses', 'top_paid_courses', 'top_free_courses', 'category_groups', 'wishlisted', 'filter') ) }} 
             </div>
         </div>
     </section>

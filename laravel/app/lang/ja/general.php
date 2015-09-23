@@ -139,4 +139,5 @@ return array(
     'resend-link' => 'メールを再送する',
     'today' => 'Today',
     'yesterday' => 'Yesterday',
+    'na' => '無',
 );

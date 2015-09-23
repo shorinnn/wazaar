@@ -165,6 +165,16 @@ class Course extends Ardent{
         return $amount;
     }
     
+    public function lessonSalesCount(){
+        $sales = 0;
+        foreach($this->modules as $module){
+            foreach($module->lessons as $lesson){
+                $sales += $lesson->sales()->where('free_product','no')->count();
+            }
+        }
+        return $sales;
+    }
+    
     public function videoBlocks(){
         $lesson_ids = [];
         $module_ids = $this->modules->lists('id');
@@ -475,6 +485,20 @@ class Course extends Ardent{
         $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
         if( count($lessons)==0 ) return null;
         return LessonDiscussion::whereIn('lesson_id', $lessons)->orderBy('updated_at','desc')->paginate($paginate);
+    }
+    
+    public function nonBuyerPreviews(){
+        $modules = $this->modules->lists('id');
+        if( count($modules)==0 ) return trans('general.na');
+        $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
+        if( count($lessons)==0 ) return trans('general.na');
+        if( Lesson::whereIn('module_id', $modules)->where('free_preview','yes')->count()==0 ) return trans('general.na');
+        
+        $buyers = Purchase::where('product_id',$this->id)->where('product_type','Course')->lists( 'student_id' );
+        if( count($buyers) ) $buyers[] = 0;
+        $lessonBuyers = Purchase::whereIn( 'product_id', $lessons )->where('product_type','Lesson')->where( 'free_product','no' )->lists( 'student_id' );
+        $buyers = $buyers + $lessonBuyers;
+        return Purchase::whereIn( 'product_id', $lessons )->whereNotIn( 'student_id', $buyers )->where( 'free_product','yes' )->count();
     }
 
 

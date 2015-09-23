@@ -308,6 +308,7 @@ class CoursesController extends \BaseController {
         
         public function category($slug=''){
             $difficultyLevel = Input::get('difficulty') ?: null;
+            $filter = Input::get('filter') ?: null;
             $sort = null;
             $wishlisted = [];
             if( Auth::check() ){
@@ -352,6 +353,14 @@ class CoursesController extends \BaseController {
 
                 if (!empty($difficultyLevel)){
                     $courses = $courses->where('course_difficulty_id', $difficultyLevel);
+                }
+
+                if (!empty($filter)){
+                    if($filter == 'free'){
+                        $courses = $courses->where('free', 'yes');
+                    } else if($filter == 'paid') {
+                        $courses = $courses->where('free', 'no');
+                    }
                 }
 
                 if ($sort == 'date'){
@@ -631,7 +640,7 @@ class CoursesController extends \BaseController {
             }
             $student = null;
             if(Auth::check()) $student = Student::find(Auth::user()->id);
-            $course->allTestimonials = $course->testimonials()->where('content','!=',"")->orderBy('id', 'desc')->limit(5)->get();
+            $course->allTestimonials = $course->testimonials()->where('content','!=',"")->orderBy('id', 'desc')->limit(3)->get();
             if(Input::has('aid')){
 //                Cookie::queue("aid-$course->id", Input::get('aid'), 60*24*30);
                 Cookie::queue("aid", Input::get('aid'), 60*24*30);

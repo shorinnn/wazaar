@@ -10,7 +10,7 @@
         <div class="clearfix">
             @if( $course->instructor_id == $reply->student_id || $course->assigned_instructor_id == $reply->student_id )
             <span class="name">{{ $reply->student->commentName('Instructor') }}</span>
-                <div class="role teacher">Teacher</div>
+                <div class="role teacher">{{ trans('conversations/general.teacher') }}</div>
             @else
             <span class="name">{{ $reply->student->fullName() }}</span>
             <div class="role others">

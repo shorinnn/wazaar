@@ -581,9 +581,13 @@ function loadMoreComments(e){
     json_data[post_field] = id;
     $.post(url, json_data, function(data) {
         $(e.target).attr('href','#');
-		clearInterval(animationInterval);
+        clearInterval(animationInterval);
         $(e.target).html( _('LOAD MORE') );
-        if($.trim(data)==''){
+        data = JSON.parse(data);
+        rows = data.nextRows;
+        data = data.html;
+        console.log('ROWS '+rows);
+        if( $.trim(data)=='' || rows==0 ){
             $(e.target).removeClass('load-more-ajax');
             $(e.target).html( _('Nothing more to load') );
             $(e.target).hide();
@@ -908,27 +912,32 @@ function ratedTestimonial(result, e){
     id = $(e.target).attr('data-testimonial-id');
     rate = $(e.target).attr('data-thumb');
     already_rated = typeof( $(e.target).attr('data-rated') ) == 'undefined' ? false : $(e.target).attr('data-rated');
- 
+    
     if( !already_rated ){
         thumbs++;
         if( rate=='up') ++thumbs_up;
         else ++thumbs_down;
+        
+        
     }
     else{
         if( rate=='up'){
              if( already_rated=='negative' ){
-                 --thumbs_down;
+//                 --thumbs_down;
                  ++thumbs_up;
+                 ++thumbs;
              }
         }
         else{
             if( already_rated=='positive' ){
-                ++thumbs_down;
+//                ++thumbs_down;
                 --thumbs_up;
+                --thumbs;
             }
         }
     }
     if(thumbs==1){
+        
         $('.testimonial-'+id+'-placeholder').hide();
         $('.testimonial-'+id).removeClass('hidden');
         if( rate=='up' ){
@@ -951,8 +960,26 @@ function ratedTestimonial(result, e){
     $('.testimonial-'+id).find('.thumbs-down-label').html(thumbs_down);
     $('.testimonial-'+id).find('.thumbs-total-label').html(thumbs);
 
-    $('[data-testimonial-id="'+id+'"]').prop('disabled', true);
-    $('[data-testimonial-id="'+id+'"]').prop('disabled', 'disabled');
+    $(e.target).attr('data-total', thumbs);
+    $(e.target).attr('data-up', thumbs_up);
+    $(e.target).attr('data-down', thumbs_down);
+    $('.number-of-likes-'+id).html(thumbs_up);
+    if(rate=='up'){
+        $(e.target).attr('data-thumb','down');
+        $(e.target).attr('data-rated','positive');
+//        $('[data-testimonial-id="'+id+'"]').prop('disabled', true);
+//        $('[data-testimonial-id="'+id+'"]').prop('disabled', 'disabled');
+        $('[data-testimonial-id="'+id+'"]').find('[type=submit]').html( '<i class="fa fa-thumbs-o-up"></i>'+_('You found this helpful') );
+        $('[data-testimonial-id="'+id+'"]').addClass('helful-review-form');
+        $('[data-testimonial-id="'+id+'"]').find('[name=rating]').val('negative');
+    }
+    else{
+        $(e.target).attr('data-thumb','up');
+        $(e.target).attr('data-rated','negative');
+        $('[data-testimonial-id="'+id+'"]').find('[type=submit]').html( '<i class="fa fa-thumbs-o-up"></i>'+_('Helpful') );
+        $('[data-testimonial-id="'+id+'"]').removeClass('helful-review-form');
+        $('[data-testimonial-id="'+id+'"]').find('[name=rating]').val('positive');
+    }
 }
 
 function fullScreen(){
