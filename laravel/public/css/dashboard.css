@@ -205,33 +205,33 @@ h4.date-range-header{
 .affiliate-dashboard ul{
 	margin: 0 !important;
 }
-.daily-stat-wrap ul li,
+.daily-stat-wrap li,
 .affiliate-dashboard  ul li{
 	color: #849598;
 	margin: 18px 0 0;
 	font-size: 12px;
 }
-.daily-stat-wrap ul li > span,
+.daily-stat-wrap li > span,
 .affiliate-dashboard  ul li > span{
 	display: inline-block;
 	width: 80px;
 	float: left;
 }
-.daily-stat-wrap ul li > div,
+.daily-stat-wrap li > div,
 .affiliate-dashboard ul li > div{
 	width: 120px;
 	float: left;
 	padding-top: 4px;
 	padding-left: 8px;
 }
-.daily-stat-wrap ul li > div span,
+.daily-stat-wrap li > div span,
 .affiliate-dashboard  ul li > div span{
 	display: block;
 	height: 8px;
 	border-radius: 4px;
 	background: #96cf2d;
 }
-.daily-stat-wrap ul li > div div.progress,
+.daily-stat-wrap li > div div.progress,
 .affiliate-dashboard ul li > div div.progress{
     display: block;
     height: 8px;
@@ -240,7 +240,7 @@ h4.date-range-header{
     margin-bottom: 0 !important;
 	margin-top: 0;
 }
-.daily-stat-wrap ul li > em,
+.daily-stat-wrap li > em,
 .affiliate-dashboard ul li > em{
 	font-style: normal;
 	width: auto;

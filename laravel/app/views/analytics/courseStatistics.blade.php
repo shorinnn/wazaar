@@ -121,7 +121,7 @@
 
 
 
-            <div class="row margin-bottom-20">
+            <div class="row margin-bottom-20 margin-top-10">
 
 					<div class="col-md-3">
                     	<h4 class="date-range-header">{{trans('analytics.dateRange')}}</h4>

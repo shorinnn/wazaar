@@ -106,7 +106,7 @@
 
 
 
-            <div class="row margin-bottom-20">
+            <div class="row margin-bottom-20 margin-top-10">
 
                 <div class="col-md-3">
                     <h4 class="date-range-header">{{trans('analytics.dateRange')}}</h4>
@@ -133,7 +133,7 @@
                 </div>
 
                 <div class="col-md-3">
-                    <button class="btn btn-primary" id="btn-update-chart">{{trans('analytics.updateChart')}}</button>
+                    <button class="large-button blue-button" id="btn-update-chart">{{trans('analytics.updateChart')}}</button>
                 </div>
             </div>
 
