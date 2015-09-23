@@ -212,29 +212,45 @@
                             </video>
                         @else
                             @if($lesson->external_video_url != '')
-                                <div class="videoContainer">
-                                    {{ externalVideoPreview($lesson->external_video_url, true, true) }}
-                                </div>
-<!--                                <div id="ytplayer"></div>
-                                <script>
-                                    // Load the IFrame Player API code asynchronously.
-                                    var tag = document.createElement('script');
-                                    tag.src = "https://www.youtube.com/player_api";
-                                    var firstScriptTag = document.getElementsByTagName('script')[0];
-                                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                                @if( externalVideoType($lesson->external_video_url)=='vimeo' )
+                                    <div class="videoContainer">
+                                        {{ externalVideoPreview($lesson->external_video_url, true, true) }}
+                                    </div>
+                                @else
+                                    <div id="ytplayer"></div>
+                                    <script>
+                                        // Load the IFrame Player API code asynchronously.
+                                        var tag = document.createElement('script');
+                                        tag.src = "https://www.youtube.com/player_api";
+                                        var firstScriptTag = document.getElementsByTagName('script')[0];
+                                        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-                                    // Replace the 'ytplayer' element with an <iframe> and
-                                    // YouTube player after the API code downloads.
-                                    var player;
-                                    function onYouTubePlayerAPIReady() {
-                                      player = new YT.Player('ytplayer', {
-                                        playerVars: {'rel': 0, 'showinfo': 0,  'modestbranding':1 },
-                                        height: '480',
-                                        width: '100%',
-                                        videoId: '{{ externalVideoPreview($lesson->external_video_url, true, true, true) }}'
-                                      });
-                                    }
-                              </script>-->
+                                        // Replace the 'ytplayer' element with an <iframe> and
+                                        // YouTube player after the API code downloads.
+                                        var player;
+                                        
+                                        function onYouTubePlayerAPIReady() {
+                                          player = new YT.Player('ytplayer', {
+                                            playerVars: {'rel': 0, 'showinfo': 0 },
+                                            height: '480',
+                                            width: '100%',
+                                            videoId: '{{ externalVideoPreview($lesson->external_video_url, true, true, true) }}',
+                                            events:{
+                                                'onStateChange': youtubeVideoDone,
+                                            }
+                                          });
+                                        }
+                                        if( isset(player) ){
+                                            onYouTubePlayerAPIReady();
+                                        }
+                                        
+                                        function youtubeVideoDone(event){
+                                            if( event.data == 0 ){
+                                                lessonComplete( lessonId );
+                                            }
+                                        }
+                                      </script>
+                                  @endif
                             @endif
                         @endif
                     </div>
@@ -409,9 +425,11 @@
     if(typeof($)=='function'){
         @if( $video == null && $reviewModal)
             @if($lesson->external_video_url != '')
-                setTimeout(function(){
-                    showReviewsModal()
-                }, {{ $lesson->video_duration * 1000 }} );
+                @if(externalVideoType($lesson->external_video_url)!='yt')
+                    setTimeout(function(){
+                        showReviewsModal()
+                    }, {{ $lesson->video_duration * 1000 }} );
+                @endif
             @else
                 showReviewsModal();
             @endif

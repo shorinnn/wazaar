@@ -710,3 +710,8 @@ function nonHttps($url){
 function percentage($val, $total){
     return $val * 100 / $total;
 }
+
+function externalVideoType($url){
+    if( $id = parse_yturl($url) ) return 'yt';
+    return 'vimeo';
+}

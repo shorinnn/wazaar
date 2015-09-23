@@ -64,9 +64,11 @@
                 
         @if( $video == null && $reviewModal)
             @if($lesson->external_video_url != '')
-                setTimeout(function(){
-                    showReviewsModal()
-                }, {{ $lesson->video_duration * 1000 }} );
+                @if(externalVideoType($lesson->external_video_url)!='yt')
+                    setTimeout(function(){
+                        showReviewsModal()
+                    }, {{ $lesson->video_duration * 1000 }} );
+                @endif
             @else
                 showReviewsModal();
             @endif
