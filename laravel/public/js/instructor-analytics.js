@@ -92,7 +92,7 @@ var Analytics = {
         $.get('/analytics/sales/get-count/' + $frequency + '/' + $courseId, function ($html){
             $('.sales-count-dropdown a').removeClass('active');
             $($elem).addClass('active');
-            if ($frequency == 'today'){
+            if ($frequency == 'today' || $frequency == 'daily'){
                 $('#header-sales-count-frequency').html(_("Today"));
                 $('.with-today').trigger('click');
             }

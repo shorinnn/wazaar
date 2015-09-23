@@ -5,7 +5,26 @@
 
 
             <h2 class="margin-top-10">Course: {{$course->name}}</h2>
+            <div class="row-fluid">
+                <div class="panel panel-default clearfix">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{trans('analytics.filters')}}</h3>
+                    </div>
+
+                    <div class="segmented-controls analytics-filter clearfix">
+                        <div class="panel-body buttons-container clearfix">
+                            <!--<a class="segmented-buttons button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('daily', '',this); return false;">{{trans('analytics.daily')}}</a>-->
+                            <a class="segmented-buttons button-filter button-filter-daily" href="#" onclick="Analytics.SalesCount('daily', {{$course->id}},this); return false;">{{trans('analytics.daily')}}</a>
+                            <a class="segmented-buttons button-filter button-filter-week" href="#" onclick="Analytics.SalesCount('week', {{$course->id}},this); return false;">{{trans('analytics.weekly')}}</a>
+                            <a class="segmented-buttons button-filter button-filter-month" href="#" onclick="Analytics.SalesCount('month', {{$course->id}},this); return false;">{{trans('analytics.monthly')}}</a>
+                            <a class="segmented-buttons button-filter button-filter-alltime" href="#" onclick="Analytics.SalesCount('alltime', {{$course->id}},this); return false;">{{trans('analytics.allTime')}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row top-activities">
+
+
                 {{-- Total Sales in Yen --}}
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div class="stat-block">
@@ -65,7 +84,7 @@
                 </div>
                 {{-- // Number of Sales (Count) --}}
 
-                {{-- Top Tracking Codes --}}
+                {{-- Top Tracking Codes
                 <div class="col-md-4 col-sm-6 sol-xs-12 hidden">
                     <div class="stat-block">
                         <div class="dropdown-wrapper">
@@ -92,7 +111,7 @@
 
 
                     </div>
-                </div>
+                </div> --}}
                 {{-- // Top Tracking Codes --}}
 
 
