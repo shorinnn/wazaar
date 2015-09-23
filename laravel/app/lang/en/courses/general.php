@@ -17,6 +17,7 @@ return array(
     'dashboard' => 'Dashboard',
     'by' => 'by',
 	'we_recommend_for_you' => 'We recommend for you',
+	'people_who_viewed_this_course' => 'People who viewed this course also viewed…',
     'purchase' => 'Purchase',
     'join_class' => 'Join Class',
     'enroll_for' => 'Enroll for',
