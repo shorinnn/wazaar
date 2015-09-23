@@ -2860,21 +2860,21 @@ h2, h3, h4, h5, h6{
 .user-review .helpful-button-wrap{
 	float: right;
 }
-.user-review .helpful-button-wrap label i{
+.user-review .helpful-button-wrap button i{
 	margin-right: 5px;
 }
-.user-review .helpful-button-wrap label{
+.user-review .helpful-button-wrap .helpful-button{
 	font-size: 12px;
 	font-weight: bold;
 	color: #7e8e9e;
 	margin: 14px 0 0;
 	cursor: pointer;
 	display: inline-block;
+	background: none;
+	border: none;
+	outline: none;
 }
-.user-review .helpful-button-wrap label .clicked{
-	display: none;
-}
-.user-review .helpful-button-wrap input[type='checkbox']:checked + label{
+.user-review .helpful-button-wrap .helpful-button[disabled]{
 	color: #0099ff;
 }
 .user-review .helpful-button-wrap input[type='checkbox']:checked + label .unclicked{

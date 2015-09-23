@@ -52,7 +52,13 @@
           </div>
           <div class="user-review col-xs-12 col-sm-10 col-md-10 col-lg-10">
               <p class="regular-paragraph expandable-content">
-                {{{ $testimonial->content }}}
+                {{{ $testimonial->content }}}dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
+                dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
+                dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
+                dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
+                dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
+                dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
+                dasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasddasasdasdasdasd asdasdas asd asd as dasdasda asdasdasd asdasdas asdasdas asdas dasdasd
               </p>
               <div class="fadeout-text"></div>
              
@@ -72,24 +78,25 @@
                                         data-rated='{{$testimonial->current_user_rating->rating}}'
                                     @endif
                                     >
-
-                            <button type='submit' name="rate-yes" class="btn btn-success"  data-testimonial-id='{{$testimonial->id}}'>
-                                <i class="fa fa-thumbs-o-up"></i> 
-                                @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'positive' )
-                                    {{ trans("courses/general.found_helpful") }}
-                                @else
-                                    {{ trans("courses/general.helpful") }}
-                                @endif
-                            </button>
-                            <input type="hidden" name="rating" value="positive" />
-                            <input type="hidden" name="testimonial_id" value="{{$testimonial->id}}" />
-                            <input type='hidden' name='_token' value='{{ csrf_token() }}' />
-                            <span class="number-of-likes number-of-likes-{{$testimonial->id}}">{{ $testimonial->thumbs_up }}</span>
+							<div class="helpful-button-wrap clearfix">
+                                <button type='submit' name="rate-yes" class="helpful-button"  data-testimonial-id='{{$testimonial->id}}'>
+                                    <i class="fa fa-thumbs-o-up"></i> 
+                                    @if( $testimonial->ratedBy( Auth::user() ) && $testimonial->current_user_rating->rating == 'positive' )
+                                        {{ trans("courses/general.found_helpful") }}
+                                    @else
+                                        {{ trans("courses/general.helpful") }}
+                                    @endif
+                                </button>
+                                <input type="hidden" name="rating" value="positive" />
+                                <input type="hidden" name="testimonial_id" value="{{$testimonial->id}}" />
+                                <input type='hidden' name='_token' value='{{ csrf_token() }}' />
+                                <span class="number-of-likes number-of-likes-{{$testimonial->id}}">{{ $testimonial->thumbs_up }}</span>
+                            </div>
                         </form>
                     @endif
                     
                     <!-- Max, remove this form after you skin the one above -->
-                    <form>
+                    <!--<form>
                         <div class="helpful-button-wrap clearfix">
                                 <input type="checkbox" id="helpful-button" class="hide" name="helpful-button">
                             <label for="helpful-button" class="">
@@ -100,7 +107,7 @@
                             <span class="number-of-likes">{{ $testimonial->thumbs_up }}</span>
                         </div>
 
-                    </form>
+                    </form>-->
               
               @endif
               
