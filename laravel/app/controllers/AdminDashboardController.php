@@ -177,13 +177,18 @@ class AdminDashboardController extends BaseController
     }
     
     public function usersCsv(){
-       $users = DB::table('users')->get();
-       $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
-       $csv->insertOne(\Schema::getColumnListing('users'));
-       foreach ($users as $user) {
-           $user = json_decode( json_encode($user), true);
-           $csv->insertOne( $user);
+        try{
+            $users = DB::table('users')->get();
+            $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
+            $csv->insertOne(\Schema::getColumnListing('users'));
+            foreach ($users as $user) {
+                $user = json_decode( json_encode($user), true);
+                $csv->insertOne( $user);
+             }
+            $csv->output('users.csv');
         }
-        $csv->output('users.csv');
+        catch(Exception $e){
+            echo $e->getMessage();
+        }
     }
 }
