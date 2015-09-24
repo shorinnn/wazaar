@@ -55,6 +55,7 @@ class SecondTierPublishersController extends \BaseController {
 	}
         
         public function stats(){
+//            if(1==2 && Cache::has('delivered-stpub-stats') ){
             if( Cache::has('delivered-stpub-stats') ){
                 $str = Cache::get('delivered-stpub-stats');
             }
@@ -65,21 +66,43 @@ class SecondTierPublishersController extends \BaseController {
                 foreach($stpi as $s){
                     $referred = User::where('second_tier_instructor_id', $s->id)->lists('email');
                     $count = count($referred);
+                    $st = User::where('email','yozawa@exraise-venture.asia')->first();
+                    $ltc = User::where('email','#waa#-yozawa@exraise-venture.asia')->first();
+                    if($st->id == $s->id){
+                        $emails_arr = User::where('second_tier_instructor_id', $s->id)->where( function($query) use ($ltc){
+                            $query->where( 'ltc_affiliate_id','!=', $ltc->id);
+                            $query->orWhere('ltc_affiliate_id' ,null);
+                        })->lists('email');
+                        $emails_arr = $emails_arr;
+                    }
+                    else{
+                       $emails_arr = $referred;
+                    }
                     $emails = implode(' | ', $referred);
 
                     $data = $delivered->getUsersByTags(['second-tier-publisher-id' => $s->id]);
                     if($data==null || $data['success']==false){
                         $lp_count = 0;
                         $lp_emails = '';
+                        $lp_emails_arr = [];
                     }
                     else{
                         $data = $data['data'];
                         $lp_count = count($data);
                         $lp_emails = array_column($data, 'email');
+                        $lp_emails_arr = $lp_emails;
                         $lp_emails = implode(' | ', $lp_emails);
                     }
+                    
+                    if( count($emails) > count($lp_emails_arr) ){
+                        $common = array_intersect($emails_arr, $lp_emails_arr);
+                    }
+                    else{
+                        $common = array_intersect($lp_emails_arr, $emails_arr );
+                    }
+                    $commonCount = count($common);
                     $str .= "<b>STPI $s->id - $s->last_name $s->first_name ( $s->email ) - 
-                        Referred Registered on Wazaar: $count. Registerd on LP: $lp_count</b><br />
+                        Referred Registered on Wazaar: $count. Registerd on LP: $lp_count. Registered on LP and Wazaar: $commonCount</b><br />
                         <div style='display:block; max-height:100px; overflow-y:scroll; border:1px solid black; padding:10px'>
                             <span style='font-weight:bold'>Registered On Wazaar</span><br />
                             $emails
@@ -89,6 +112,11 @@ class SecondTierPublishersController extends \BaseController {
                     $str .= " <div style='display:block; max-height:100px; overflow-y:scroll; border:1px solid black; padding:10px'>
                             <span style='font-weight:bold'>Registered On LP</span><br />
                             $lp_emails
+                        </div>";
+                    $common = implode(' | ', $common);
+                    $str .= " <div style='display:block; max-height:100px; overflow-y:scroll; border:1px solid black; padding:10px'>
+                            <span style='font-weight:bold'>Registered On LP AND Wazaar</span><br />
+                            $common
                         </div> <hr />";
                 }
                 Cache::put('delivered-stpub-stats', $str, 10);
