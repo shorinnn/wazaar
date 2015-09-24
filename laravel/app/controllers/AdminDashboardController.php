@@ -198,23 +198,28 @@ class AdminDashboardController extends BaseController
     
     public function usersCsv(){
 
-        header("Content-type: text/csv");
-        header("Content-Disposition: attachment; filename=users.csv");
-        header("Pragma: no-cache");
-        header("Expires: 0");
-        $table = DB::table('users')->get();
-        $table = json_decode( json_encode($table), true);
-//        $table = $table->toArray();
-        $out = fopen('php://output', 'w');
-        $header =  $table[0];
-        foreach($header as $k=>$val){
-            $header[$k] = $k;
+        try{
+            header("Content-type: text/csv");
+            header("Content-Disposition: attachment; filename=users.csv");
+            header("Pragma: no-cache");
+            header("Expires: 0");
+            $table = DB::table('users')->get();
+            $table = json_decode( json_encode($table), true);
+    //        $table = $table->toArray();
+            $out = fopen('php://output', 'w');
+            $header =  $table[0];
+            foreach($header as $k=>$val){
+                $header[$k] = $k;
+            }
+
+            fputcsv($out, $header);
+            foreach ($table as $row) {
+                fputcsv($out, $row);
+            }
+            fclose($out);
         }
-        
-        fputcsv($out, $header);
-        foreach ($table as $row) {
-            fputcsv($out, $row);
+        catch(Exception $e){
+            dd($e->getMessage());
         }
-        fclose($out);
     }
 }
