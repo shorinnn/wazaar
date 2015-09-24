@@ -243,7 +243,7 @@ class PaymentController extends BaseController
         try{
             if (Input::has('Result')){
                 if (Input::get('Result') == 'OK'){
-                    $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
+                    $paymentLog = PaymentLog::where('reference', 'gkCDAYJVerKx2PWD')->first();
 
                     if ($paymentLog){
                         return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
@@ -253,6 +253,29 @@ class PaymentController extends BaseController
             }
 
             return Redirect::home();
+        }
+        catch(Exception $ex){
+            echo $ex->getMessage();
+            echo $ex->getLine();
+        }
+
+    }
+
+    //Max Connect Completed payment callback
+    public function getSuccess()
+    {
+        try{
+            if (Input::has('Result')){
+                if (Input::get('Result') == 'OK'){
+                    $paymentLog = PaymentLog::where('reference', 'gkCDAYJVerKx2PWD')->first();
+
+                    if ($paymentLog){
+                        return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                    }
+                }
+            }
+
+            //return Redirect::home();
         }
         catch(Exception $ex){
             echo $ex->getMessage();
