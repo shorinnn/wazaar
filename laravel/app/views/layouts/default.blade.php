@@ -11,7 +11,7 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet">
     
     
-    @if( App::environment() == 'PPProduction' || Input::has('use-gulp') )
+    @if( App::environment() != 'production' || Input::has('use-gulp') )
         <link rel="stylesheet" href="{{ url('css-assets/'. asset_path('all.min.css') ) }}" />
     @else
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
@@ -280,7 +280,7 @@
 
     @include('payment.paymentModal')
 
-    @if( App::environment() == 'PPProduction' || Input::has('use-gulp') )
+    @if( App::environment() != 'production' || Input::has('use-gulp') )
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
@@ -289,8 +289,6 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
         <script src="{{url("js-assets/" . asset_path('core.min.js') ) }}"></script>
-        <script src="{{url("js/jquery.mousewheel.js")}}"></script>
-        <script src="{{url("js/jquery.jscrollpane.min.js")}}"></script>
     @else
         <!--<script src="{{ url("assets/js/". asset_path('core.min.js') )}}"></script>-->
     

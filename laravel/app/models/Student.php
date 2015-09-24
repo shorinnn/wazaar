@@ -686,11 +686,12 @@ class Student extends User{
      
      public function lastLessonInCourse($course){   
          $last = null;
-         $updated = '0000-00-00 00:00:00';
          foreach( $this->viewedLessons as $lesson ){
-             if( $lesson->course_id == $course->id && $lesson->updated_at > $updated ){
-                 $updated = $lesson->updated_at;
-                 $last = $lesson;
+             if( $lesson->course_id == $course->id  ){
+                $lesson = Lesson::find( $lesson->lesson_id );
+                if( $last == null || $last->lessonPosition() < $lesson->lessonPosition() ){
+                     $last = $lesson;
+                 }
              }
          }
          return $last;

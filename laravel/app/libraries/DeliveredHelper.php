@@ -257,7 +257,6 @@ class DeliveredHelper
             case 'put'  : $request = $curl->put($url, $params);break;
             case 'delete' : $request = $curl->delete($url);break;
         }
-
         if ($request){ 
             return json_decode($request->body,true);
         }
