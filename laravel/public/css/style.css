@@ -9073,6 +9073,18 @@ footer{
 		margin-left: 0;
 		margin-right: 0;
 	}
+	.category-heading-container .sort-options{
+		padding-right: 7px;
+		margin-right: 7px;
+	}
+	.category-heading-buttons .segmented-buttons-wrapper + .segmented-buttons-wrapper{
+		padding-left: 7px;
+		margin-left: 7px;
+	}
+	.segmented-controls .segmented-buttons{
+		padding: 0 8px;
+		font-size: 12px !important;
+	}
 }
 @media (max-width:900px){
 	.course-detail-top-section .centered-contents{
@@ -9374,7 +9386,7 @@ header .profile-name ul{
 	.category-heading-buttons{
 		display: inline-block;
 		float: none;
-		width: 100%;
+		width: 70%;
 	}
 	.category-heading .filters{
 		text-align: center;
@@ -9595,7 +9607,8 @@ header .top-menu .logged-out li{
 	}	
 	.student-messages .replies-box{
 		width: 80%;
-	}	.row-2 > div,
+	}	
+	.row-2 > div,
 	.row-1 > div {
 		border: none;
 		float: none;
@@ -9630,6 +9643,9 @@ header .top-menu .logged-out li{
 		display: inline-block;
 		float: none;
 		margin: 0;
+	}
+	.category-heading-buttons{
+		width: 100%;
 	}
 }
 
