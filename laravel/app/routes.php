@@ -169,6 +169,8 @@ $wwwRoutes = function(){
         Route::post('add-to-picks/{type}', 'PicksController@addPicks');
         Route::delete('delete-picks/{type}', 'PicksController@deletePicks');
         Route::post('order-picks/{type}', 'PicksController@orderPicks');
+        Route::get('manage-orders', 'OrdersController@index');
+        Route::get('load-orders', 'OrdersController@loadOrders');
     });
 //});
 };

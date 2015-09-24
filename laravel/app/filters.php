@@ -192,7 +192,12 @@ Route::filter('logCourseView', function($request){
     $viewed_course_data = array();
 
     if(Auth::guest()){
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+
         $viewed_course_data['user_id'] = $_SERVER['REMOTE_ADDR'];
+        
     } else {
         $user = Auth::user();
         $viewed_course_data['user_id'] = $user->id;

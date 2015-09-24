@@ -8,9 +8,9 @@
 			<tr>
 				<th style="width:50px; text-align:center"><input type="checkbox" class="course_checkbox toggleAll" name="toggleAll" onchange="toggleCheckboxes(this);" value=""></th>
 				<th style="width:50px; text-align:center">#</th>
-				<th style="width:auto;">Course Name</th>
+				<th style="width:auto;">{{ trans('administration.picks.course-name' )}}</th>
 				<th style="width:100px;">
-					<span class="pull-left">Order</span> <button type="button" onclick="saveOrder();" class="btn-link pull-right save-order"><i class="fa fa-floppy-o"></i></button>
+					<span class="pull-left">{{ trans('administration.picks.ordering' )}}</span> <button type="button" onclick="saveOrder();" class="btn-link pull-right save-order"><i class="fa fa-floppy-o"></i></button>
 					<div class="clearfix"></div>
 				</th>
 			</tr>

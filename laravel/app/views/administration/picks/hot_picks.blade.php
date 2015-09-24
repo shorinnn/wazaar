@@ -28,7 +28,7 @@
 <div class="container course-categories">
 	<div class="row">
     	<div class="col-md-12">
-            <h1 class='icon'>Hot Picks</h1>
+            <h1 class='icon'>{{ trans('administration.picks.hot-picks' )}}</h1>
         </div>
     </div>
 </div>
@@ -38,7 +38,7 @@
             <div class="search-course-container">
                 <div class="input-group">
                     <span class="input-group-btn">
-                        <button class="btn btn-primary" onclick="add_courses_to_list();">Add</button>
+                        <button class="btn btn-primary" onclick="add_courses_to_list();">{{ trans('administration.picks.add' )}}</button>
                     </span>
                     {{Form::select('search-course', $courses, null, ['id'=>'search-course', 'class'=>'form-control pretty-select', 'multiple'=> 'multiple'])}}
                 </div>
@@ -97,7 +97,7 @@
             });
 
         } else {
-            alert('Please select a course to delete');
+            alert("{{ trans('administration.picks.select-item-warning' )}}");
         }
     }
 
@@ -122,7 +122,7 @@
     jQuery(document).ready(function($){
         load_picked_courses();
         $('.pretty-select').select2({
-            placeholder: "Search a Course"            
+            placeholder: "{{ trans('administration.picks.search-a-course' )}}"            
         });
     });
 </script>
