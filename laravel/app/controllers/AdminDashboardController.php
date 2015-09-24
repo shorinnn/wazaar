@@ -189,6 +189,13 @@ class AdminDashboardController extends BaseController
         }
         catch(Exception $e){
             echo $e->getMessage();
+            $users = DB::table('users')->get();
+            $header = \Schema::getColumnListing('users');
+            echo implode(',', $header)."\n";
+            foreach ($users as $user) {
+                $user = json_decode( json_encode($user), true);
+                echo implode(',', $user)."\n";
+             }
         }
     }
 }
