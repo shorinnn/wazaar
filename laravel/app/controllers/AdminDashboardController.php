@@ -159,7 +159,7 @@ class AdminDashboardController extends BaseController
         header("Content-Disposition: attachment; filename=purchases.csv");
         header("Pragma: no-cache");
         header("Expires: 0");
-        $file = fopen('file.csv', 'w');
+        
         $table = Purchase::all();
         $table = $table->toArray();
         $out = fopen('php://output', 'w');
@@ -180,7 +180,7 @@ class AdminDashboardController extends BaseController
         header("Content-Disposition: attachment; filename=transactions.csv");
         header("Pragma: no-cache");
         header("Expires: 0");
-        $file = fopen('file.csv', 'w');
+        
         $table = Transaction::all();
         $table = $table->toArray();
         $out = fopen('php://output', 'w');
@@ -197,15 +197,16 @@ class AdminDashboardController extends BaseController
     }
     
     public function usersCsv(){
+
         header("Content-type: text/csv");
-        header("Content-Disposition: attachment; filename=transactions.csv");
+        header("Content-Disposition: attachment; filename=users.csv");
         header("Pragma: no-cache");
         header("Expires: 0");
-        $file = fopen('file.csv', 'w');
-        $table = User::all();
-        $table = $table->toArray();
+        $table = DB::table('users')->get();
+        $table = json_decode( json_encode($table), true);
+//        $table = $table->toArray();
         $out = fopen('php://output', 'w');
-        $header =  $table[1];
+        $header =  $table[0];
         foreach($header as $k=>$val){
             $header[$k] = $k;
         }
