@@ -118,7 +118,12 @@ class ClassroomController extends \BaseController {
                    $student->purchases()->where('product_id',$lesson->id)->where('product_type','Lesson')->count() > 0 ){
                 
                 $student->viewLesson( $lesson );
-                if( $video==null ) $student->viewLesson( $lesson, true );
+                if( $video==null ){
+                    if( $lesson->external_video_url == '') $student->viewLesson( $lesson, true );
+                    else{
+                         if(externalVideoType($lesson->external_video_url)!='yt') $student->viewLesson( $lesson, true );
+                    }
+                } 
             }
             
 //            $lesson->ask_teacher_messages = $lesson->privateMessages()->where('type','ask_teacher')->where(function($query){

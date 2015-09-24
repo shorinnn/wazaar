@@ -130,15 +130,31 @@ class SiteController extends \BaseController {
             }
         }
 
-        $top_paid_courses = array();
-        $top_paid_course_ids = DB::select("select a.product_id from purchases as a where a.product_type='Course' and a.purchase_price >= 1 ORDER BY (select SUM(b.purchase_price) from purchases as b where b.product_id = a.product_id) DESC");
 
+        $course_purchases = Purchase::where('product_type', '=', 'Course')->where('purchase_price', '>', '0')->get();
+        $top_paid_course_tally = array();
+        foreach ($course_purchases as $course_purchase) {
+            if(array_key_exists($course_purchase->product_id, $top_paid_course_tally)){
+                $tally_courses[$course_purchase->product_id] = $tally_courses[$course_purchase->product_id] + $course_purchase->purchase_price;
+            } else {
+                $tally_courses[$course_purchase->product_id] = $course_purchase->purchase_price;
+            }
+        }
+        arsort($tally_courses);
+        foreach($tally_courses as $course_id => $total_purchases){
+            $top_paid_course_ids[] = $course_id;
+        }
+        // $top_paid_course_ids = DB::select("select a.product_id from purchases as a where a.product_type='Course' and a.purchase_price >= 1 ORDER BY (select SUM(b.purchase_price) from purchases as b where b.product_id = a.product_id) DESC");
+        
+        $top_paid_courses = array();
+        
         if(count($top_paid_course_ids) >= 1){
             foreach($top_paid_course_ids as $top_paid_course_id){
-                $course = Course::where('id', '=', $top_paid_course_id->product_id)->first();
+                $course = Course::where('id', '=', $top_paid_course_id)->first();
                 $top_paid_courses[] = $course;
             }
         }
+        // dd($top_paid_courses);
 
         $top_free_courses = Course::where('free', '=', 'yes')->where('publish_status', '=', 'approved')->where('student_count', '>=', '1')->orderBy('student_count', 'desc')->get();
 
@@ -573,5 +589,60 @@ class SiteController extends \BaseController {
         }
 
         dd($viewed_data);
+    }
+
+    public function makeRecommended()
+    {
+
+        $courses = Course::where('publish_status', '=', 'approved')->get();
+
+        foreach($courses as $course){
+            // dd($course->id);
+            $logged = CourseLog::where('courses_viewed', 'like', '%"'.$course->id.'"%')->get();
+            $tally_courses = array();
+            foreach($logged as $log){
+                $viewd_courses = json_decode($log->courses_viewed);
+                foreach($viewd_courses as $viewd_course){
+                    if($viewd_course != $course->id){
+                        if(array_key_exists($viewd_course, $tally_courses)){
+                            $tally_courses[$viewd_course] = $tally_courses[$viewd_course] + 1;
+                        } else {
+                            $tally_courses[$viewd_course] = 1;
+                        }
+                    }
+                }
+            }
+            arsort($tally_courses);
+
+            $total_tallied = count($tally_courses);
+
+            $recommended_courses = array();
+
+            if($total_tallied >= 3){
+                $i = 0;
+                foreach($tally_courses as $course_id => $course_view_total){
+                    if($i <= 2){
+                        $recommended_courses[] = $course_id;
+                    }
+                    $i++;
+                }
+            } else {
+                foreach($tally_courses as $course_id => $course_view_total){
+                    $recommended_courses[] = $course_id;
+                }
+            }
+
+            $saved_recommended_courses = RecommendedCourses::where('course_id', '=', $course->id)->first();
+            if(count($saved_recommended_courses) >= 1){
+                $saved_recommended_courses->recommended_courses = json_encode($recommended_courses);
+                $saved_recommended_courses->save();
+            } else {
+                $new_recommended_course = [
+                    'course_id' => $course->id,
+                    'recommended_courses' => json_encode($recommended_courses)
+                ];
+                RecommendedCourses::create($new_recommended_course);
+            }
+        }
     }
 }

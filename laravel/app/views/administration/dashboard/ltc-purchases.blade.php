@@ -6,6 +6,7 @@
                 <h1>LTC Purchases</h1>
                 <table class='table table-striped table-bordered'>
                     <tr>
+                        <td>Purchase ID</td>
                         <td>Product</td>
                         <td>Cost</td>
                         <td>Instructor | Earnings</td>
@@ -18,6 +19,7 @@
                     </tr>
                     @foreach($purchases as $purchase)
                     <tr>
+                        <td>{{ $purchase->id }}</td>
                         <td>{{ $purchase->product->name.' ('.$purchase->product_type.')' }}</td>
                         <td>{{ $purchase->purchase_price }}</td>
                         <td>

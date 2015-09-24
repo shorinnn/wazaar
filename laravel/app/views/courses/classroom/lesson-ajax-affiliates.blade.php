@@ -196,7 +196,7 @@
                 <div class="row video-row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         @if( $video != null)
-                            <video controls preload="auto" style="width: 100%">
+                            <video oncontextmenu="return false" controls preload="auto" style="width: 100%">
                                 @if( Agent::isMobile() &&  $video->formats()->where('resolution', 'Low Resolution')
                                             ->first() != null)
                                     <source src="{{ $video->formats()->where('resolution', 'Low Resolution')

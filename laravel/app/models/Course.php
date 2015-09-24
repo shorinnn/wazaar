@@ -49,6 +49,7 @@ class Course extends Ardent{
         'gifts' => [self::HAS_MANY, 'Gift'],
         'affiliateCustomPercentages' => [self::HAS_MANY, 'CourseAffiliateCustomPercentage'],
         'descriptionVideo' => [self::BELONGS_TO, 'Video', 'foreignKey' => 'description_video_id'],
+        'recommendations' => [self::HAS_ONE, 'RecommendedCourses'],
     );
 
     public function getStudentsCountAttribute()

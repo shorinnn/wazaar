@@ -12,6 +12,10 @@ var COCORIUM_APP_PATH = '//'+document.location.hostname+'/';
 
 $(document).ready(function(){
     
+    $('body').delegate('video', "contextmenu",function(){
+            return false;
+        });
+    
 //    var canPopState = false;
 //    setTimeout(function(){
 //        canPopState = true;

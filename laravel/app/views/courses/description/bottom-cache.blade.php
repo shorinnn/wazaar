@@ -215,29 +215,52 @@
 
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                @if( $course->recommendations != null && $course->recommendations->recommended_courses != '[]' )
                 <div class="recommended-courses-container">
-					<h3 class="recommended-courses-maintitle">{{trans('courses/general.we_recommend_for_you') }}</h3>
-                    <div class="recommended-courses-block row">
-                    	<div class="col-xs-4 col-sm-2 col-md-4 col-lg-4 instructor-img">
-                        	<img src="//d1hgniicb7e6y2.cloudfront.net/course_preview/55f64bb382808.jpg" class="img-responsive">
+                    <h3 class="recommended-courses-maintitle">{{trans('courses/general.people_who_viewed_this_course') }}</h3>
+                    <?php $recs = json_decode($course->recommendations->recommended_courses, true);?>
+                    @foreach($recs as $rec)
+                        <?php
+                        $rec = Course::find($rec);
+                        $rec = courseApprovedVersion( $rec );
+                        ?>
+                    <a href='{{ action( 'CoursesController@show', $rec->slug ) }}'>
+                        <div class="recommended-courses-block row">
+                            <div class="col-xs-4 col-sm-2 col-md-4 col-lg-4 instructor-img">
+                                    <img 
+                                         @if($rec->course_preview_image_id == null)
+                                            src="http://placehold.it/350x150&text={{ trans('general.preview-unavailable') }}"
+                                        @else
+                                            src="{{ cloudfrontUrl( $rec->previewImage->url ) }}"
+                                        @endif
+                                        class="img-responsive">
+                            </div>
+                            <div class="col-xs-8 col-sm-10 col-md-8 col-lg-8">
+                                <div class="course-box-content">
+                                <h3 class="recommended-course-title">{{$rec->name }}</h3>
+                                </div>
+                                <h3 class="instructor-name">
+                                    
+                                @if($rec->instructor->profile == null)
+                                    {{ $rec->$instructor->last_name }} {{ $rec->instructor->first_name }} 
+                                @else
+                                    {{$rec->instructor->profile->last_name}} {{$rec->instructor->profile->first_name}} 
+                                @endif
+                                </h3>
+                                <span class="recommended-course-price">
+                                @if($rec->free=='yes' || $rec->cost() == 0)
+                                    {{ trans('courses/general.free') }}
+                                @else
+                                    ¥ {{ number_format($rec->cost(), Config::get('custom.currency_decimals')) }}
+                                @endif
+                                </span>
+                            </div>
                         </div>
-                        <div class="col-xs-8 col-sm-10 col-md-8 col-lg-8">
-                        	<h3 class="recommended-course-title">Some title here</h3>
-                            <h3 class="instructor-name">{{trans('courses/general.by') }} Instructor</h3>
-                            <span class="recommended-course-price">¥ 7,200</span>
-                        </div>
-                    </div>
-                    <div class="recommended-courses-block row">
-                    	<div class="col-xs-4 col-sm-2 col-md-4 col-lg-4 instructor-img">
-                        	<img src="//d1hgniicb7e6y2.cloudfront.net/course_preview/55f64bb382808.jpg" class="img-responsive">
-                        </div>
-                        <div class="col-xs-8 col-sm-10 col-md-8 col-lg-8">
-                        	<h3 class="recommended-course-title">Some title here</h3>
-                            <h3 class="instructor-name">{{trans('courses/general.by') }} Instructor</h3>
-                            <span class="recommended-course-price">¥ 7,200</span>
-                        </div>
-                    </div>
+                    </a>
+                    @endforeach
+                    
                 </div>
+                @endif
             </div>
         </div>
     </div>
