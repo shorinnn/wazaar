@@ -178,7 +178,9 @@ class AdminDashboardController extends BaseController
     
     public function usersCsv(){
         try{
+            echo 'getting users';
             $users = DB::table('users')->get();
+            echo $users->count();
             dd($users);
             $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
             $csv->insertOne(\Schema::getColumnListing('users'));
