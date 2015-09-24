@@ -178,12 +178,11 @@ class AdminDashboardController extends BaseController
     
     public function usersCsv(){
         try{
-            echo 'getting users';
-            $users = DB::table('users')->get();
-            echo $users->count();
-            dd($users);
+            
             $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
             $csv->insertOne(\Schema::getColumnListing('users'));
+            
+            $users = DB::table('users')->limit(100)->get();
             foreach ($users as $user) {
                 $user = json_decode( json_encode($user), true);
                 $csv->insertOne( $user);
