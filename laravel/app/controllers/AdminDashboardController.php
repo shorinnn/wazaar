@@ -155,13 +155,6 @@ class AdminDashboardController extends BaseController
     }
     
     public function purchasesCsv(){
-//                    DB::table('purchases')->insert([
-//                'student_id' => '550',
-//                'product_id' => '404',
-//                'product_type' => 'Course',
-//                'free_product' => 'yes',
-//                'payment_ref' => 'manually added, bank transfer'
-//            ]);
         header("Content-type: text/csv");
         header("Content-Disposition: attachment; filename=purchases.csv");
         header("Pragma: no-cache");
@@ -183,19 +176,33 @@ class AdminDashboardController extends BaseController
     }
     
     public function transactionsCsv(){
-//                    DB::table('purchases')->insert([
-//                'student_id' => '550',
-//                'product_id' => '404',
-//                'product_type' => 'Course',
-//                'free_product' => 'yes',
-//                'payment_ref' => 'manually added, bank transfer'
-//            ]);
         header("Content-type: text/csv");
         header("Content-Disposition: attachment; filename=transactions.csv");
         header("Pragma: no-cache");
         header("Expires: 0");
         $file = fopen('file.csv', 'w');
         $table = Transaction::all();
+        $table = $table->toArray();
+        $out = fopen('php://output', 'w');
+        $header =  $table[1];
+        foreach($header as $k=>$val){
+            $header[$k] = $k;
+        }
+        
+        fputcsv($out, $header);
+        foreach ($table as $row) {
+            fputcsv($out, $row);
+        }
+        fclose($out);
+    }
+    
+    public function usersCsv(){
+        header("Content-type: text/csv");
+        header("Content-Disposition: attachment; filename=transactions.csv");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        $file = fopen('file.csv', 'w');
+        $table = User::all();
         $table = $table->toArray();
         $out = fopen('php://output', 'w');
         $header =  $table[1];
