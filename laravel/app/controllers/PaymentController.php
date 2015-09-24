@@ -240,6 +240,7 @@ class PaymentController extends BaseController
     public function getCompleted()
     {
         try{
+            Logger::create(['object' => 'PaymentController', 'key' => Input::get('TransactionId'), 'details' => json_encode(Input::all())]);
             if (Input::has('Result')){
                 if (Input::get('Result') == 'OK'){
                     $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
@@ -287,10 +288,25 @@ class PaymentController extends BaseController
     //Max Connect Success payment callback
     public function postSuccess()
     {
-        echo '<pre>';
-        print_r(Input::all());
-        echo '</pre>';
-        die;
+        try{
+            Logger::create(['object' => 'PaymentController', 'key' => Input::get('TransactionId'), 'details' => json_encode(Input::all())]);
+            if (Input::has('Result')){
+                if (Input::get('Result') == 'OK'){
+                    $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
+
+                    if ($paymentLog){
+                        return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                    }
+                }
+            }
+
+            //return Redirect::home();
+        }
+        catch(Exception $ex){
+            Logger::create(['object' => 'PaymentController', 'key' => Input::get('TransactionId'), 'details' => $ex->getMessage()]);
+            //echo $ex->getMessage();
+            //echo $ex->getLine();
+        }
     }
 
     //Max Connect Failed payment callback
