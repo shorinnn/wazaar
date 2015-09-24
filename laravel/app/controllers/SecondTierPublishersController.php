@@ -71,6 +71,7 @@ class SecondTierPublishersController extends \BaseController {
                     if($st->id == $s->id){
                         $emails_arr = User::where('second_tier_instructor_id', $s->id)->whereNull('ltc_affiliate_id')->lists('email');
                         $emails_arr = $emails_arr;
+                         User::where('second_tier_instructor_id', 280)->whereNull('ltc_affiliate_id')->count();
                     }
                     else{
                        $emails_arr = $referred;
@@ -91,7 +92,7 @@ class SecondTierPublishersController extends \BaseController {
                         $lp_emails = implode(' | ', $lp_emails);
                     }
                     
-                    if( count($emails) > count($lp_emails_arr) ){
+                    if( count($emails_arr) > count($lp_emails_arr) ){
                         $common = array_intersect($emails_arr, $lp_emails_arr);
                     }
                     else{
