@@ -1,5 +1,5 @@
 <?php
-use \UnitTester;
+//use UnitTester;
 
 class BasicOrderCest{
     
@@ -834,5 +834,38 @@ class BasicOrderCest{
         
         $student = Student::where('username','student')->first();
         $I->assertEquals( 2, $student->ltc_affiliate_id);
+    }
+
+    public function manualStudentCourseEnrollment(UnitTester $I)
+    {
+        $student = Student::where('username','student')->first();
+        $course = Course::first();
+        $priceInput = 100;
+
+        //Calculate sale
+        $sale = $course->price - $priceInput;
+
+        //Set sale amount
+        $course->sale = $sale;
+
+        //Dummy payment data
+        $paymentData = [
+            'successData' => [
+                'balance_transaction_id' => 0,
+                'processor_fee'          => 0,
+                'tax'                    => 0,
+                'giftID'                 => 0,
+                'balance_used'           => 0,
+                'REF'                    => Str::random(),
+                'ORDERID'                => Str::random()
+            ]
+        ];
+
+        //Do Purchase
+        $purchase = $student->purchase($course,null,$paymentData);
+
+        $I->assertTrue(!$purchase);
+        $I->assertEquals($sale,$purchase->sale);
+
     }
 }

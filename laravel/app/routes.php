@@ -150,6 +150,10 @@ $wwwRoutes = function(){
         Route::get('frontpage/featured-courses', 'FrontpageController@featuredCourses');
         Route::post('frontpage/featured-courses', 'FrontpageController@doFeaturedCourses');
         Route::resource('email-templates', 'EmailTemplatesController');
+
+        Route::controller('manual-enroll','ManualEnrollController');
+
+
     });
 
     // Course Categories
@@ -521,7 +525,9 @@ Route::post('courses/{id}/video/set-description','CoursesController@setVideoDesc
 
 Route::get('test', function(){
 
-    Logger::create(['object' => 'PaymentController', 'key' => 'asdf', 'details' => 'test']);
+    $dh = new DeliveredHelper();
+
+    dd($dh->getUsersByTags(['second-tier-publisher-id' => 1]));
 
 });
 
