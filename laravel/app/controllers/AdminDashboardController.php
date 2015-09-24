@@ -197,30 +197,13 @@ class AdminDashboardController extends BaseController
     }
     
     public function usersCsv(){
-
-        try{
-            header("Content-type: text/csv");
-            header("Content-Disposition: attachment; filename=users.csv");
-            header("Pragma: no-cache");
-            header("Expires: 0");
-            $table = DB::table('users')->get();
-            $table = json_decode( json_encode($table), true);
-    //        $table = $table->toArray();
-            $out = fopen('users.csv', 'w');
-            $header =  $table[0];
-            foreach($header as $k=>$val){
-                $header[$k] = $k;
-            }
-
-            fputcsv($out, $header);
-            foreach ($table as $row) {
-                fputcsv($out, $row);
-            }
-            fclose($out);
-            echo readfile('users.csv');
+       $users = DB::table('users')->get();
+       $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
+       $csv->insertOne(\Schema::getColumnListing('people'));
+       foreach ($users as $user) {
+           $user = json_decode( json_encode($user), true);
+           $csv->insertOne( $user);
         }
-        catch(Exception $e){
-            dd($e->getMessage());
-        }
+        $csv->output('users.csv');
     }
 }

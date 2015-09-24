@@ -26,7 +26,8 @@
 		"vimeo/vimeo-api": "^1.2",
 		"anahkiasen/flatten": "^0.5.1",
 		"stripe/stripe-php": "^3.2",
-                "alaouy/youtube" : "dev-master"
+                "alaouy/youtube" : "dev-master",
+                "league/csv" : "*"
 	},
 	"autoload": {
 		"classmap": [
