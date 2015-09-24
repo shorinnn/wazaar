@@ -11,7 +11,7 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet">
     
     
-    @if( App::environment() != 'production' || Input::has('use-gulp') )
+    @if( App::environment() != 'PPproduction' || Input::has('use-gulp') )
         <link rel="stylesheet" href="{{ url('css-assets/'. asset_path('all.min.css') ) }}" />
     @else
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
@@ -280,7 +280,7 @@
 
     @include('payment.paymentModal')
 
-    @if( App::environment() != 'production' || Input::has('use-gulp') )
+    @if( App::environment() != 'PPproduction' || Input::has('use-gulp') )
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
