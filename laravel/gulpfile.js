@@ -30,6 +30,7 @@ gulp.task('js', function(){
         './public/js/lang/parsley/ja.js',
         './public/js/parsley.min.js',
         './public/js/forms.js',
+        './public/js/responsive-paginate.js',
         './public/js/validations.js',
         './public/js/courses.js',
         './public/js/cocoriumTracker.js',
@@ -37,6 +38,8 @@ gulp.task('js', function(){
         './public/js/pluralize.js',
         './public/js/jquery.mousewheel.js',
         './public/js/jquery.jscrollpane.min.js',
+        './public/js/autogrow.min.js',
+        './public/js/jquery.autogrowtextarea.js',
         './public/js/main.js',
         './public/js/messages.js',
         './public/js/slick.js',
@@ -48,7 +51,10 @@ gulp.task('js', function(){
         './public/js/jquery.videobackground.js',
         './public/js/bootstrap-datepicker.js',
         './public/js/mailcheck.min.js',
-        './public/js/bootbox.js'
+        './public/js/bootbox.js',
+        './public/js/jquery.countdown.min.js',
+        './public/js/jquery.maskedinput.min.js',
+        './public/js/moment.min.js'
         ] )
     .pipe(uglify())
     .pipe(concat('core.min.js'))
@@ -72,7 +78,7 @@ gulp.task('css', function(){
              merge:true
         }))
         .pipe(gulp.dest(''));
-//        .pipe(revDel( { dest:'./public/assets/css' } ) );
+
 });
 
 function cleaner() {
