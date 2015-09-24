@@ -686,7 +686,7 @@ class Student extends User{
      
      public function lastLessonInCourse($course){   
          $last = null;
-         foreach( $this->viewedLessons as $lesson ){
+         foreach( $this->viewedLessons()->where('state','completed')->get() as $lesson ){
              if( $lesson->course_id == $course->id  ){
                 $lesson = Lesson::find( $lesson->lesson_id );
                 if( $last == null || $last->lessonPosition() < $lesson->lessonPosition() ){
