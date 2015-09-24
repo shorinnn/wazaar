@@ -206,7 +206,7 @@ class AdminDashboardController extends BaseController
             $table = DB::table('users')->get();
             $table = json_decode( json_encode($table), true);
     //        $table = $table->toArray();
-            $out = fopen('php://output', 'w');
+            $out = fopen('users.csv', 'w');
             $header =  $table[0];
             foreach($header as $k=>$val){
                 $header[$k] = $k;
@@ -217,6 +217,7 @@ class AdminDashboardController extends BaseController
                 fputcsv($out, $row);
             }
             fclose($out);
+            echo readfile('users.csv');
         }
         catch(Exception $e){
             dd($e->getMessage());
