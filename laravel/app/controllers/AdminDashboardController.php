@@ -155,6 +155,7 @@ class AdminDashboardController extends BaseController
     }
     
     public function purchasesCsv(){
+       header('Content-Type: text/csv; charset=UTF-8');
        $rows = DB::table('purchases')->get();
        $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
        $csv->insertOne(\Schema::getColumnListing('purchases'));
@@ -166,6 +167,7 @@ class AdminDashboardController extends BaseController
     }
     
     public function transactionsCsv(){
+       header('Content-Type: text/csv; charset=UTF-8');
        $rows = DB::table('transactions')->get();
        $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
        $csv->insertOne(\Schema::getColumnListing('transactions'));
@@ -178,8 +180,9 @@ class AdminDashboardController extends BaseController
     
     public function usersCsv(){
         try{
-            
+            header('Content-Type: text/csv; charset=UTF-8');
             $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
+            $csv->setEncodingFrom('iso-8859-15');
             $csv->insertOne(\Schema::getColumnListing('users'));
             $skip = 0;
             while( $users = DB::table('users')->limit(1000)->skip($skip)->get() ){
