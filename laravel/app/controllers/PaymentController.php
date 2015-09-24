@@ -231,7 +231,7 @@ class PaymentController extends BaseController
             return Redirect::home();
         }
         catch(Exception $ex){
-            Logger::create(['object' => 'PaymentController', 'key' => Input::get('TransactionId'), 'details' => $ex->getMessage()]);
+            Logger::create(['object' => 'PaymentController', 'key' => 'postCompleted', 'details' => $ex->getMessage()]);
         }
 
     }
@@ -240,7 +240,7 @@ class PaymentController extends BaseController
     public function getCompleted()
     {
         try{
-            Logger::create(['object' => 'PaymentController', 'key' => Input::get('TransactionId'), 'details' => json_encode(Input::all())]);
+            Logger::create(['object' => 'PaymentController', 'key' => 'getCompleted', 'details' => json_encode(Input::all())]);
             if (Input::has('Result')){
                 if (Input::get('Result') == 'OK'){
                     $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
@@ -255,7 +255,7 @@ class PaymentController extends BaseController
             return Redirect::home();
         }
         catch(Exception $ex){
-            Logger::create(['object' => 'PaymentController', 'key' => Input::get('TransactionId'), 'details' => $ex->getMessage()]);
+            Logger::create(['object' => 'PaymentController', 'key' => 'getCompleted', 'details' => $ex->getMessage()]);
         }
 
     }
@@ -264,7 +264,7 @@ class PaymentController extends BaseController
     public function getSuccess()
     {
         try{
-            Logger::create(['object' => 'PaymentController', 'key' => Input::get('TransactionId'), 'details' => json_encode(Input::all())]);
+            Logger::create(['object' => 'PaymentController', 'key' => 'getSuccess', 'details' => json_encode(Input::all())]);
             if (Input::has('Result')){
                 if (Input::get('Result') == 'OK'){
                     $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
@@ -278,7 +278,7 @@ class PaymentController extends BaseController
             //return Redirect::home();
         }
         catch(Exception $ex){
-            Logger::create(['object' => 'PaymentController', 'key' => Input::get('TransactionId'), 'details' => $ex->getMessage()]);
+            Logger::create(['object' => 'PaymentController', 'key' => 'getSuccess', 'details' => $ex->getMessage()]);
             //echo $ex->getMessage();
             //echo $ex->getLine();
         }
@@ -289,7 +289,7 @@ class PaymentController extends BaseController
     public function postSuccess()
     {
         try{
-            Logger::create(['object' => 'PaymentController', 'key' => Input::get('TransactionId'), 'details' => json_encode(Input::all())]);
+            Logger::create(['object' => 'PaymentController', 'key' => 'postSuccess', 'details' => json_encode(Input::all())]);
             if (Input::has('Result')){
                 if (Input::get('Result') == 'OK'){
                     $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
@@ -303,7 +303,7 @@ class PaymentController extends BaseController
             //return Redirect::home();
         }
         catch(Exception $ex){
-            Logger::create(['object' => 'PaymentController', 'key' => Input::get('TransactionId'), 'details' => $ex->getMessage()]);
+            Logger::create(['object' => 'PaymentController', 'key' => 'postSuccess', 'details' => $ex->getMessage()]);
             //echo $ex->getMessage();
             //echo $ex->getLine();
         }
