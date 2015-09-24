@@ -69,7 +69,10 @@ class SecondTierPublishersController extends \BaseController {
                     $st = User::where('email','yozawa@exraise-venture.asia')->first();
                     $ltc = User::where('email','#waa#-yozawa@exraise-venture.asia')->first();
                     if($st->id == $s->id){
-                        $emails_arr = User::where('second_tier_instructor_id', $s->id)->where('ltc_affiliate_id','!=', $ltc->id)->lists('email');
+                        $emails_arr = User::where('second_tier_instructor_id', $s->id)->where( function($query) use ($ltc){
+                            $query->where( 'ltc_affiliate_id','!=', $ltc->id);
+                            $query->orWhere('ltc_affiliate_id' ,null);
+                        })->lists('email');
                         $emails_arr = $emails_arr;
                     }
                     else{
