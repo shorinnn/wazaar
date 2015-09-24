@@ -155,51 +155,31 @@ class AdminDashboardController extends BaseController
     }
     
     public function purchasesCsv(){
-        header("Content-type: text/csv");
-        header("Content-Disposition: attachment; filename=purchases.csv");
-        header("Pragma: no-cache");
-        header("Expires: 0");
-        
-        $table = Purchase::all();
-        $table = $table->toArray();
-        $out = fopen('php://output', 'w');
-        $header =  $table[1];
-        foreach($header as $k=>$val){
-            $header[$k] = $k;
+       $rows = DB::table('purchases')->get();
+       $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
+       $csv->insertOne(\Schema::getColumnListing('purchases'));
+       foreach ($rows as $row) {
+           $row = json_decode( json_encode($row), true);
+           $csv->insertOne( $row );
         }
-        
-        fputcsv($out, $header);
-        foreach ($table as $row) {
-            fputcsv($out, $row);
-        }
-        fclose($out);
+        $csv->output('purchases.csv');
     }
     
     public function transactionsCsv(){
-        header("Content-type: text/csv");
-        header("Content-Disposition: attachment; filename=transactions.csv");
-        header("Pragma: no-cache");
-        header("Expires: 0");
-        
-        $table = Transaction::all();
-        $table = $table->toArray();
-        $out = fopen('php://output', 'w');
-        $header =  $table[1];
-        foreach($header as $k=>$val){
-            $header[$k] = $k;
+       $rows = DB::table('transactions')->get();
+       $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
+       $csv->insertOne(\Schema::getColumnListing('transactions'));
+       foreach ($rows as $row) {
+           $row = json_decode( json_encode($row), true);
+           $csv->insertOne( $row );
         }
-        
-        fputcsv($out, $header);
-        foreach ($table as $row) {
-            fputcsv($out, $row);
-        }
-        fclose($out);
+        $csv->output('transactions.csv');
     }
     
     public function usersCsv(){
        $users = DB::table('users')->get();
        $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
-       $csv->insertOne(\Schema::getColumnListing('people'));
+       $csv->insertOne(\Schema::getColumnListing('users'));
        foreach ($users as $user) {
            $user = json_decode( json_encode($user), true);
            $csv->insertOne( $user);
