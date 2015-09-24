@@ -55,15 +55,43 @@ class SecondTierPublishersController extends \BaseController {
 	}
         
         public function stats(){
-            $str = '';
-            $stpi = User::where('is_second_tier_instructor','yes')->get();
-            foreach($stpi as $s){
-                $referred = User::where('second_tier_instructor_id', $s->id)->lists('email');
-                $count = count($referred);
-                $emails = implode(' | ', $referred);
-                $str .= "<b>STPI $s->id - $s->last_name $s->first_name ( $s->email ) - Referred: $count</b><br />
-                    <div style='display:block; max-height:100px; overflow-y:scroll; border:1px solid black; padding:10px'>$emails</div>
-                        <hr />";
+            if( Cache::has('delivered-stpub-stats') ){
+                $str = Cache::get('delivered-stpub-stats');
+            }
+            else{
+                $delivered = new DeliveredHelper();
+                $str = '<h1>Data updated every 10 minutes. Generated at '.date('Y-m-d H:i:s').'</h1>';
+                $stpi = User::where('is_second_tier_instructor','yes')->get();
+                foreach($stpi as $s){
+                    $referred = User::where('second_tier_instructor_id', $s->id)->lists('email');
+                    $count = count($referred);
+                    $emails = implode(' | ', $referred);
+
+                    $data = $delivered->getUsersByTags(['second-tier-publisher-id' => $s->id]);
+                    if($data==null || $data['success']==false){
+                        $lp_count = 0;
+                        $lp_emails = '';
+                    }
+                    else{
+                        $data = $data['data'];
+                        $lp_count = count($data);
+                        $lp_emails = array_column($data, 'email');
+                        $lp_emails = implode(' | ', $lp_emails);
+                    }
+                    $str .= "<b>STPI $s->id - $s->last_name $s->first_name ( $s->email ) - 
+                        Referred Registered on Wazaar: $count. Registerd on LP: $lp_count</b><br />
+                        <div style='display:block; max-height:100px; overflow-y:scroll; border:1px solid black; padding:10px'>
+                            <span style='font-weight:bold'>Registered On Wazaar</span><br />
+                            $emails
+                        </div>";
+
+
+                    $str .= " <div style='display:block; max-height:100px; overflow-y:scroll; border:1px solid black; padding:10px'>
+                            <span style='font-weight:bold'>Registered On LP</span><br />
+                            $lp_emails
+                        </div> <hr />";
+                }
+                Cache::put('delivered-stpub-stats', $str, 10);
             }
             
             return View::make('administration.second_tier_pub.stats')->withStats( $str );
