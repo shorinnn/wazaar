@@ -23,6 +23,7 @@ class DiscussionReplyCest{
         $discussion = new LessonDiscussion();
         $discussion->student_id = $student->id;
         $discussion->lesson_id = $lesson->id;
+        $discussion->course_id = $lesson->module->course->id;
         $discussion->title = $title;
         $discussion->save();
         $this->discussion = $discussion;
@@ -66,7 +67,7 @@ class DiscussionReplyCest{
     
     
     
-    public function passStudentOwnsLesson(UnitTester $I){
+    public function passStudentOwnsLesson(UnitTester $I){###
         DB::table('purchases')->delete();
         $lesson =  Lesson::first();
         $student = Student::where('username','student')->first();
@@ -84,7 +85,7 @@ class DiscussionReplyCest{
         $I->assertTrue( $reply->save() );
     }
     
-    public function passStudentOwnsCourse(UnitTester $I){
+    public function passStudentOwnsCourse(UnitTester $I){###
         $lesson =  Lesson::first();
         $student = Student::where('username','student')->first();
         $this->_createDiscussion();
@@ -100,7 +101,7 @@ class DiscussionReplyCest{
     }
     
         
-    public function noVoteUserDoesntOwnLesson(UnitTester $I){
+    public function noVoteUserDoesntOwnLesson(UnitTester $I){###
         DB::table('purchases')->delete();
         $lesson =  Lesson::first();
         $student = Student::where('username','student')->first();
@@ -120,7 +121,7 @@ class DiscussionReplyCest{
         $I->assertEquals( 0, $reply->upvotes );
     }
     
-    public function voteUserOwnsLesson(UnitTester $I){
+    public function voteUserOwnsLesson(UnitTester $I){###
         DB::table('purchases')->delete();
         $lesson =  Lesson::first();
         $student = Student::where('username','student')->first();
@@ -142,7 +143,7 @@ class DiscussionReplyCest{
     
 
     
-    public function voteOnlyOnce(UnitTester $I){
+    public function voteOnlyOnce(UnitTester $I){###
         DB::table('purchases')->delete();
         $lesson =  Lesson::first();
         $student = Student::where('username','student')->first();
