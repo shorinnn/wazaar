@@ -58,7 +58,7 @@ class ManualEnrollController extends BaseController {
         //Do Purchase
         $purchase = $student->purchase($course,null,$paymentData);
 
-//        dd($purchase);
+        dd($purchase);
     }
 
 }
