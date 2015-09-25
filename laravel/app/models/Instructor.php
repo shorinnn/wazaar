@@ -184,7 +184,7 @@ class Instructor extends User{
      }
      
      public function commentName($userType=null){
-        if( $this->profile ){
+        if( $this->profile != null ){
             return $this->profile->first_name.' '.$this->profile->last_name;
         }
         else{
