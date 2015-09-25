@@ -586,6 +586,10 @@ class CoursesController extends \BaseController {
         }
         
         public function show($slug){
+            if( Input::has('show-course-raw') ){
+                  $course = Course::where('slug', $slug)->first();
+                  dd($course);
+            }
             $course = Course::where('slug', $slug)->with('instructor')
                     ->with(['modules.lessons' => function($query){
                         $query->where('published', 'yes');
