@@ -65,5 +65,18 @@ return array(
     'add-group' => 'Add Group',
     'order' => 'Order',
     'error-updating-profile' => 'Error updating profile',
-    'verified' => 'Verified'
+    'verified' => 'Verified',
+    'picks' => [
+        'hot-picks' => 'Hot Picks',
+        'wazaar-picks' => 'Wazaar Picks',
+        'add' => 'Add',
+        'select-item-warning' => 'Please select a course to delete',
+        'search-a-course' => 'Search a Course',
+        'course-name' => 'Course Name',
+        'ordering' => 'Ordering',
+        'no-course' => 'No Courses Picked Yet',
+    ],
+    'orders' => [
+        'manage-orders' => 'Manage Orders'
+    ]
 );

@@ -9,6 +9,6 @@
 	@endforeach
 @else
 	<tr>
-		<td colspan="4" class="text-center">No Courses Picked Yet</td>
+		<td colspan="4" class="text-center">{{ trans('administration.picks.no-course' )}}</td>
 	</tr>
 @endif

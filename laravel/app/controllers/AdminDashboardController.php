@@ -153,4 +153,56 @@ class AdminDashboardController extends BaseController
         return View::make('administration.dashboard.yazawa')->withUsers($users);
         
     }
+    
+    public function purchasesCsv(){
+       header('Content-Type: text/csv; charset=UTF-8');
+       $rows = DB::table('purchases')->get();
+       $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
+       $csv->insertOne(\Schema::getColumnListing('purchases'));
+       foreach ($rows as $row) {
+           $row = json_decode( json_encode($row), true);
+           $csv->insertOne( $row );
+        }
+        $csv->output('purchases.csv');
+    }
+    
+    public function transactionsCsv(){
+       header('Content-Type: text/csv; charset=UTF-8');
+       $rows = DB::table('transactions')->get();
+       $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
+       $csv->insertOne(\Schema::getColumnListing('transactions'));
+       foreach ($rows as $row) {
+           $row = json_decode( json_encode($row), true);
+           $csv->insertOne( $row );
+        }
+        $csv->output('transactions.csv');
+    }
+    
+    public function usersCsv(){
+        try{
+            header('Content-Type: text/csv; charset=UTF-8');
+            $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
+            $csv->setEncodingFrom('iso-8859-15');
+            $csv->insertOne(\Schema::getColumnListing('users'));
+            $skip = 0;
+            while( $users = DB::table('users')->limit(1000)->skip($skip)->get() ){
+                foreach ($users as $user) {
+                    $user = json_decode( json_encode($user), true);
+                    $csv->insertOne( $user);
+                } 
+                $skip+= 1000;
+            }
+            $csv->output('users.csv');
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+            $users = DB::table('users')->get();
+            $header = \Schema::getColumnListing('users');
+            echo implode(',', $header)."\n";
+            foreach ($users as $user) {
+                $user = json_decode( json_encode($user), true);
+                echo implode(',', $user)."\n";
+             }
+        }
+    }
 }
