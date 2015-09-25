@@ -1,26 +1,26 @@
 @extends('layouts.default')
 @section('content')
-	<div class="container-fluid new-dashboard instructor-dashboard top-section">
+	<div class="container-fluid new-dashboard instructor-dashboard top-section hide">
     	<div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <div class="row activity-today">
-                    	<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    	<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 hide">
                         	<h2>{{trans('general.activity-today')}}<i class="wa-chevron-down"></i></h2>
                         </div>
-                    	<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    	<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 hide">
                         	<span class="count">-</span>
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/small-graph.png" class="small-graph">
                             <p>{{trans('general.new-users')}}</p>
                         </div>
-                    	<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    	<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 hide">
                         	<span class="count">-</span>
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/small-graph.png" class="small-graph">
                             <p>{{trans('general.new-questions')}}</p>
                         </div>
-                    	<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    	<div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 hide">
                         	<span class="count">-</span>
                             <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/small-graph.png" class="small-graph">
                             <p>{{trans('general.new-discussions')}}</p>
@@ -35,7 +35,7 @@
         	<div class="row">
             	<div class="hidden-xs hidden-sm col-md-3 col-lg-3">
                 </div>
-            	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 no-padding">
                     <ul class="nav nav-pills left" role="tablist">
                         <li role="presentation" class="active">
                         	<a href="#teaching" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">
