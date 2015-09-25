@@ -252,6 +252,24 @@ class PaymentController extends BaseController
                         if ($paymentLog !== 'processed'){
                             return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
                         }
+                        else{
+                            /*$redirectUrl = url('courses/' . $product->slug . '/purchased?purchaseId=' . $purchase->id);
+                            if (strtolower(get_class($product)) == 'lesson') {
+                                // if lesson was purchased, use the course slug
+                                $redirectUrl = url('courses/' . $product->module->course->slug . '/purchased?purchaseId=' . $purchase->id);
+                            }*/
+                            $purchase = Purchase::where('payment_ref', Input::get('TransactionId'))->first();
+
+                            if ($purchase){
+                                $redirectUrl = Input::get('URL') . '/purchased?purchaseId=' . $purchase->id;
+                            }
+                            else{
+                                $redirectUrl = Input::get('URL');
+                            }
+
+                            return Redirect::to($redirectUrl);
+
+                        }
                     }
 
                 }
@@ -627,6 +645,6 @@ class PaymentController extends BaseController
         $paymentLog->status = 'processed';
         $paymentLog->save();
 
-        return Redirect::to($redirectUrl);
+        //return Redirect::to($redirectUrl);
     }
 }
