@@ -187,7 +187,6 @@
 		margin: 4px 0;
 	    border-radius: 4px;
 		box-shadow: 1px 1px 4px 2px #d8dbdc;
-		overflow: hidden;
 		/*-webkit-transition: all .2s ease-in-out;
 		-moz-transition: all .2s ease-in-out;
 		-ms-transition: all .2s ease-in-out;
@@ -220,7 +219,6 @@
 		-o-box-shadow: 1px 1px 4px 2px #cfd8df;
 		-webkit-box-shadow: 1px 1px 4px 2px #cfd8df;
 		box-shadow: 1px 1px 4px 2px #cfd8df;
-		overflow: hidden;
 		position: relative;
 		z-index: 1;
 		margin: 4px 0;
