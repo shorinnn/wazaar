@@ -228,18 +228,20 @@ class PaymentController extends BaseController
                         }
                     }
 
+                    $purchase = Purchase::where('payment_ref', Input::get('TransactionId'))->first();
+
+                    if ($purchase){
+                        $redirectUrl = Input::get('URL') . '/purchased?purchaseId=' . $purchase->id;
+                    }
+                    else{
+                        $redirectUrl = Input::get('URL');
+                    }
+
+                    return Redirect::to($redirectUrl);
+
                 }
 
-                $purchase = Purchase::where('payment_ref', Input::get('TransactionId'))->first();
 
-                if ($purchase){
-                    $redirectUrl = Input::get('URL') . '/purchased?purchaseId=' . $purchase->id;
-                }
-                else{
-                    $redirectUrl = Input::get('URL');
-                }
-
-                return Redirect::to($redirectUrl);
             }
 
             return Redirect::home();
@@ -550,6 +552,7 @@ class PaymentController extends BaseController
         }
     }
 
+    //DEPRECATED
     public function process__()
     {
         if (Session::has('productType') AND Session::has('productID')) {
@@ -648,17 +651,17 @@ class PaymentController extends BaseController
 //                    $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $paymentData);
         $purchase = $student->purchase($product, @$paymentLog->request['aid'], $paymentData);
         if (!$purchase) {
-            $redirectUrl = url('payment', ['errors' => [trans('payment.cannotPurchase')]]);
+            //$redirectUrl = url('payment', ['errors' => [trans('payment.cannotPurchase')]]);
         }
-        Session::forget('productType');
-        Session::forget('productID');
-        Session::forget('giftID');
+        //Session::forget('productType');
+        //Session::forget('productID');
+        //Session::forget('giftID');
 
-        $redirectUrl = url('courses/' . $product->slug . '/purchased?purchaseId=' . $purchase->id);
-        if (strtolower(get_class($product)) == 'lesson') {
+        //$redirectUrl = url('courses/' . $product->slug . '/purchased?purchaseId=' . $purchase->id);
+        //if (strtolower(get_class($product)) == 'lesson') {
             // if lesson was purchased, use the course slug
-            $redirectUrl = url('courses/' . $product->module->course->slug . '/purchased?purchaseId=' . $purchase->id);
-        }
+          //  $redirectUrl = url('courses/' . $product->module->course->slug . '/purchased?purchaseId=' . $purchase->id);
+        //}
 
         //update paymentlog status
         $paymentLog->status = 'processed';
