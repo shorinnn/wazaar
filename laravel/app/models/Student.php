@@ -127,7 +127,6 @@ class Student extends User{
         }  
         
         
-       
         $purchase = new Purchase;
 
         $purchase->student_id = $this->id;

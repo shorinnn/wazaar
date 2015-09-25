@@ -848,8 +848,8 @@ class BasicOrderCest{
 
         //Set sale amount
         $course->sale = $sale;
-        $course->sale_start_on = date('Y-m-d H:i:s', time()-3600);
-        $course->sale_ends_on = date('Y-m-d H:i:s', time()+3600);
+        $course->sale_starts_on = date('Y-m-d H:i:s', time()- 24 * 60 *60);
+        $course->sale_ends_on = date('Y-m-d H:i:s', time()+ 24 * 60 *60);
         $course->approved_data = null;
 
         $I->assertGreaterThan(0, $course->price);
@@ -868,10 +868,10 @@ class BasicOrderCest{
         ];
 
         //Do Purchase
-        $purchase = $student->purchase($course,null,$paymentData);
+        $purchase = $student->purchase( $course,null,$paymentData );
 
-        $I->assertNotEquals(false, $purchase);
-        $I->assertEquals($sale,$purchase->sale);
+        $I->assertNotEquals( false, $purchase );
+        $I->assertEquals( $sale, $purchase->discount_value );
 
     }
 }
