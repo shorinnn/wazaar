@@ -836,44 +836,5 @@ class BasicOrderCest{
         $I->assertEquals( 2, $student->ltc_affiliate_id);
     }
 
-    public function manualStudentCourseEnrollment(UnitTester $I)
-    {
-        $student = Student::where('username','student')->first();
-        Purchase::where('student_id', $student->id)->delete();// delete purchases for this buyer
-        $course = Course::first();
-        $priceInput = 100;
-
-        //Calculate sale
-        $sale = $course->price - $priceInput;
-
-        //Set sale amount
-        $course->sale = $sale;
-        $course->sale_starts_on = date('Y-m-d H:i:s', time()- 24 * 60 *60);
-        $course->sale_ends_on = date('Y-m-d H:i:s', time()+ 24 * 60 *60);
-        $course->approved_data = null;
-
-        $I->assertGreaterThan(0, $course->price);
-        $I->assertGreaterThan(0, $course->sale);
-        //Dummy payment data
-        $paymentData = [
-            'successData' => [
-                'balance_transaction_id' => 0,
-                'processor_fee'          => 0,
-                'tax'                    => 0,
-                'giftID'                 => 0,
-                'balance_used'           => 0,
-                'REF'                    => Str::random(),
-                'ORDERID'                => Str::random()
-            ]
-        ];
-
-        //Do Purchase
-        $purchase = $student->purchase( $course,null,$paymentData );
-
-        $I->assertNotEquals( false, $purchase );
-        $I->assertEquals( $sale, $purchase->discount_value );
-        $I->assertEquals( $purchase->purchase_price, $priceInput );
-        $I->assertEquals( $purchase->original_price, $course->price );
-
-    }
+    
 }
