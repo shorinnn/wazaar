@@ -139,6 +139,7 @@ $wwwRoutes = function(){
         Route::resource('members', 'MembersController');
         
         Route::get('second-tier-publishers/stats', 'SecondTierPublishersController@stats');
+        Route::get('second-tier-publishers/fix', 'SecondTierPublishersController@fix');
         Route::resource('second-tier-publishers', 'SecondTierPublishersController');
         Route::get('submissions/all-courses', 'SubmissionsController@allCourses');
         Route::resource('submissions', 'SubmissionsController');
