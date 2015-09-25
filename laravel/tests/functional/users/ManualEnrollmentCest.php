@@ -4,6 +4,8 @@ class ManualEnrollmentCest{
     
     public function manualStudentCourseEnrollment(FunctionalTester $I)
     {
+        $admin = User::first();
+        $I->amLoggedAs($admin);
         $student = Student::where('username','student')->first();
         $course = Course::first();
         

@@ -174,7 +174,7 @@ class SecondTierPublishersController extends \BaseController {
                     $exclude = [];
                     foreach($lp_emails_arr as $k=>$email){
                         if( !in_array($email, $emails_arr)){
-                            $exclude[] = $email.' '.$lp_lName[$k].' '.$lp_fName[$k];
+                            $exclude[] = $email.','.$lp_lName[$k].','.$lp_fName[$k];
                         }
                     }
                     $count = count($exclude);
