@@ -453,6 +453,16 @@ header .top-menu .logged-out li.register-button a{
 header .top-menu .logged-out li.register-button a:hover{
 	background: #36d2ff;
 }
+.unauthenticated-home-header .navbar.navbar-default {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: 0 none;
+    float: right;
+    margin: 0;
+}
+#logged-out-header-menu{
+	border: none;
+	box-shadow: none;
+}
 /****************** Profile details and notifications inside the top blue bar **************************/
 header .top-profile-info{
 	float: right;
@@ -3312,6 +3322,9 @@ h2, h3, h4, h5, h6{
 .new-dashboard.top-section .lesson-description .img-wrap{
 	border-radius: 4px;
 }
+.new-dashboard.top-section .lesson-description .img-wrap img {
+    border-radius: 0;
+}
 .new-dashboard.top-section .lesson-description h2{
 	font-size: 20px;
 	color: #fff;
@@ -3347,6 +3360,9 @@ h2, h3, h4, h5, h6{
 	position: relative;
 	z-index: 6;
 	padding: 10px 12px;
+}
+.new-dashboard.dashboardTabs .progress-circle{
+	margin-top: 5px;
 }
 .new-dashboard.top-section .radial-progress .progress-radial{
 	margin-bottom: 23px;
@@ -3384,7 +3400,8 @@ h2, h3, h4, h5, h6{
 	color: #303941;
 	position: relative;
 	top: 11px;
-	margin-right: 6px;
+	margin-right: 14px;
+	float: left;
 }
 .new-dashboard.dashboardTabs .tab-content{
 	margin-top: 25px;
@@ -3396,35 +3413,39 @@ h2, h3, h4, h5, h6{
 	background: #fff;
 	border-top: solid 1px #ebeced !important;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson .finished,
-.new-dashboard.dashboardTabs .enrolled-lesson .review{
+.new-dashboard.dashboardTabs .finished,
+.new-dashboard.dashboardTabs .review{
 	display: none;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson .finished{
+.new-dashboard.dashboardTabs .finished{
 	font-size: 15px;
 	font-weight: 600;
 	color: #47bc23;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson .finished i{
+.new-dashboard.dashboardTabs .finished i{
 	font-size: 12px;
 	margin-right: 8px;
 	position: relative;
 	top: 1px;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson .review{
+.new-dashboard.dashboardTabs .review{
 	color: #657482;
 	text-indent: 25px;
 	margin-top: 3px;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .finished,
-.new-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .review{
+.new-dashboard.dashboardTabs .progress-column{
+	padding: 0;
+}
+.new-dashboard.dashboardTabs .finished-lesson .finished,
+.new-dashboard.dashboardTabs .finished-lesson .review{
 	display: block;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .enrolled-lessons-progress img,
-.new-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .progress-value{
+.new-dashboard.dashboardTabs .finished-lesson .enrolled-lessons-progress img,
+.new-dashboard.dashboardTabs .finished-lesson .radial-progress-wrap,
+.new-dashboard.dashboardTabs .finished-lesson .progress-value{
 	display: none;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson:hover{
+.new-dashboard.dashboardTabs .tab-content > div:hover{
 	background: #f7f9fa;
 }
 .new-dashboard.dashboardTabs .enrolled-lessons-progress{
@@ -3433,14 +3454,14 @@ h2, h3, h4, h5, h6{
 .new-dashboard.dashboardTabs h4{
 	font-size: 14px;
 	font-weight: 600;
-	margin: 8px 0 14px;
+	margin: 8px 0 10px;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson a{
+.new-dashboard.dashboardTabs .tab-content a{
 	color: #03a2ff;
 }
 .new-dashboard.dashboardTabs p{
 	color: #798794;
-	margin: 0 0 7px;
+	margin: 0;
 }
 .new-dashboard.dashboardTabs .teaching-lesson .image-wrap{
 	border-radius: 3px;
@@ -9085,6 +9106,55 @@ footer{
 		padding: 0 8px;
 		font-size: 12px !important;
 	}
+	#logged-out-header-menu::before {
+		border-bottom: 8px solid #fff;
+		border-left: 8px solid transparent;
+		border-right: 8px solid transparent;
+		content: "";
+		height: 0;
+		position: absolute;
+		right: 30px;
+		top: -8px;
+		width: 0;
+	}
+	#logged-out-header-menu {
+		background: #fff none repeat scroll 0 0;
+		border: 0 none;
+		border-radius: 4px;
+		left: -123px;
+		margin: -4px 0 0;
+		min-width: 186px;
+		padding: 0;
+		position: absolute;
+		top: 65px;
+		z-index: 1;
+	}
+	#logged-out-header-menu.in{
+		overflow: visible;
+	}
+	#logged-out-header-menu li:first-of-type{
+		margin-top: 5px;
+	}
+	#logged-out-header-menu li:last-of-type{
+		margin-bottom: 5px;
+	}
+	#logged-out-header-menu li a{
+		color: #657482 !important;
+		display: block;
+		font-size: 13px;
+		padding: 14px 12px 17px 24px;
+		position: relative;
+	}	
+	#logged-out-header-menu li a:hover {
+		background-color: #f7f9fa !important;
+		color: #657482 !important;
+	}
+	#logged-out-header-menu > li {
+		float: none;
+	}
+	button[data-target="#logged-out-header-menu"]{
+		margin: 15px 15px 15px 0;
+	}
 }
 @media (max-width:900px){
 	.course-detail-top-section .centered-contents{
@@ -9405,6 +9475,9 @@ header .profile-name ul{
 		width: 100%;
 	}
 
+	.new-dashboard.dashboardTabs .progress-column{
+		padding: 0 15px;
+	}
 
 }
 @media (max-width:752px){
@@ -9423,9 +9496,6 @@ header .profile-name ul{
 }
 }
 @media (max-width:722px){
-header .top-menu .logged-out li{ 
-	margin:0px 5px; 
-}
 .course-detail-top-section .centered-contents .video-player{
 	margin-right: 0;
 	position: relative;
@@ -9624,25 +9694,8 @@ header .top-menu .logged-out li{
 	header{
 		padding: 0 40px 18px !important;
 	}
-	.unauthenticated-home-header .main-logo {
-		margin: 10px 0 12px;
-		float: none;
-		text-align: center;
-	}
-	.unauthenticated-home-header .main-logo img{
-		display: inline-block;
-	}
 	.homepage-header-wrapper{
 		margin-top: -140px;
-	}
-	.unauthenticated-home-header.top-menu .logged-out {
-		text-align: center;
-		width: 100%;
-	}
-	.unauthenticated-home-header.top-menu .logged-out li {
-		display: inline-block;
-		float: none;
-		margin: 0;
 	}
 	.category-heading-buttons{
 		width: 100%;
@@ -9930,13 +9983,6 @@ header .top-menu .logged-out li{
 	.lesson-topics li .lesson-name{
 		width: 13%;
 	}
-	.unauthenticated-home-header.top-menu .logged-out li{
-		margin: 0;
-	}
-	header .top-menu .logged-out li a{
-		padding: 7px 8px !important;
-		font-size: 12px;
-	}
 	.homepage-header .extra-large-heading {
 		margin-top: 55px;
 	}
@@ -10036,9 +10082,6 @@ header .top-menu .logged-out li{
 	}
 	.homepage-header-wrapper{
 		margin-top: -170px;
-	}
-	.unauthenticated-home-header.top-menu .logged-out li a{
-		padding: 7px 8px 7px 0 !important;
 	}
 	.top-activities .stat-block{
 		width: 100% !important;

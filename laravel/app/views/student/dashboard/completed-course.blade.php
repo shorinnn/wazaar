@@ -23,13 +23,13 @@
                                                 
                                             </div>
                                             
-                                                <div class="col-xs-12 col-sm-8 col-md-7 col-lg-7">
+                                                <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
                                                   <h4><a href="{{ action('ClassroomController@dashboard', $course->slug) }}">{{ $course->name }}</a></h4>
                                                    <p class="regular-paragraph">{{ $course->lessonCount() }} / {{ $course->lessonCount() }} 
                                                         lessons completed</p>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-                                                  <div class="enrolled-lessons-progress">
+                                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 progress-column">
+                                                  <div class="enrolled-lessons-progress clearfix">
                                                       <span class="finished block"><i class="wa-check"></i>Finished</span>
                                                       <span class="review regular-paragraph">Review</span>
                                                       <span class="progress-value">{{ $student->courseProgress( $course ) }}%</span>

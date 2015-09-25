@@ -10,7 +10,7 @@
                 <thead>
                 <tr>
                     <th width="50%">{{trans('instructors/analytics.name')}}</th>
-                    <th width="20%" style="text-align: center">{{trans('instructors/analytics.students-enrolled')}}</th>
+                    <th width="20%" style="text-align: center">{{trans('analytics.salesCount')}}</th>
                     <th width="20%" style="text-align: center">{{trans('instructors/analytics.sales-revenue')}}</th>
                     <th width="10%" style="text-align: center">{{trans('instructors/analytics.price')}}</th>
                 </tr>
