@@ -9483,7 +9483,9 @@ header .profile-name ul{
 	.new-dashboard.dashboardTabs .progress-column{
 		padding: 0 15px;
 	}
-
+	.category-heading-title{
+		text-align: center;
+	}
 }
 @media (max-width:752px){
 .navbar-nav{ 

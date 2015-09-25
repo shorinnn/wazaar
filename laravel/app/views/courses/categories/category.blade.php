@@ -5,7 +5,7 @@
             <div class="container-fluid cat-row-{{$category->color_scheme}}">
             	<div class="row category-heading">
                     <form id="course-filter-form">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
                             @if($category->name!='')
                                 <p class="category-heading-title"> <a href="#">{{ $category->name }}</a> 
                                     @if(isset($subcategory))
@@ -15,8 +15,7 @@
                                 </p>
                             @endif
                         </div>
-
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 filters">
+                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 filters">
                         	<div class="clearfix category-heading-buttons">
                                 <div class="sort-options clearfix"><label>Sort by:</label>
                                     {{ Form::select('sort', CourseHelper::getCourseSortOptions(), Input::get('sort'), ['class' => 'form-control course-sort', 'onchange'=>"loadFilteredCourseCategory();"] ) }}

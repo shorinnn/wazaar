@@ -12,24 +12,32 @@
                         
                     </div>
                     <div class='col-lg-2'>
-                        <button class='btn btn-primary' type="submit">Filter</button>
+                        <button class='blue-button large-button' type="submit">Filter</button>
                     </div>
                 </form>
-                <table class='table table-striped table-bordered'>
-                    
-                    <tr>  <td>売上高（purchase_price）</td><td>&yen; {{  number_format( $stats->p_price, Config::get('custom.currency_decimals') ) }}</td></tr>
-                    <tr>    <td>原価（original_price)</td><td>&yen; {{  number_format( $stats->o_price, Config::get('custom.currency_decimals') ) }}</td></tr>
-                    <tr> <td>割引額（discount_value）</td><td>&yen; {{  number_format( $stats->d_value, Config::get('custom.currency_decimals') ) }}</td></tr>
-                    <tr>   <td>件数</td><td>{{ $stats->sales }}</td></tr>
-                    <tr>   <td>販売者収益（instructor_earnings)</td><td>&yen; {{  number_format( $stats->i_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
-                    <tr>  <td>販売2Tier（second_tier_instructor_earnings)</td><td>&yen; {{  number_format( $stats->sti_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
-                    <tr> <td>アフィリエイト収入（affiliate_earnings）</td><td>&yen; {{  number_format( $stats->a_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
-                    <tr> <td>2Tier アフィリエイト（second_tier_affiliate_earnings）</td><td>&yen; {{ number_format( $stats->sta_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
-                    <tr><td>LTC（ltc_affiliate_earnings）</td><td>&yen; {{  number_format( $stats->ltc_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
-                    <tr>  <td>Wazaar収入（site_earnings）</td><td>&yen; {{  number_format( $stats->site_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
-
-                   
-                </table>
+                <div class="container">
+                	<div class="table-responsive analytics-page">
+                    	<div class="top-affiliates-table table-wrapper">
+                        	<div class="table-responsive">
+                                <table class='table table-striped table-bordered clear'>
+                                    
+                                    <tr>  <td>売上高（purchase_price）</td><td>&yen; {{  number_format( $stats->p_price, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr>    <td>原価（original_price)</td><td>&yen; {{  number_format( $stats->o_price, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr> <td>割引額（discount_value）</td><td>&yen; {{  number_format( $stats->d_value, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr>   <td>件数</td><td>{{ $stats->sales }}</td></tr>
+                                    <tr>   <td>販売者収益（instructor_earnings)</td><td>&yen; {{  number_format( $stats->i_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr>  <td>販売2Tier（second_tier_instructor_earnings)</td><td>&yen; {{  number_format( $stats->sti_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr> <td>アフィリエイト収入（affiliate_earnings）</td><td>&yen; {{  number_format( $stats->a_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr> <td>2Tier アフィリエイト（second_tier_affiliate_earnings）</td><td>&yen; {{ number_format( $stats->sta_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr><td>LTC（ltc_affiliate_earnings）</td><td>&yen; {{  number_format( $stats->ltc_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr>  <td>Wazaar収入（site_earnings）</td><td>&yen; {{  number_format( $stats->site_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
+                
+                                   
+                                </table>
+                			</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
