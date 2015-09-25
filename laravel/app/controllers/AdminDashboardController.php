@@ -238,4 +238,32 @@ class AdminDashboardController extends BaseController
         for($i =$max; $i>$min; --$i) $years[$i] = $i;
         return View::make('administration.dashboard.monthly-stats')->with( compact('stats', 'months', 'years') );
     }
+    
+    public function coursesCsv(){
+        try{
+            header('Content-Type: text/csv; charset=UTF-8');
+            $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
+            $csv->setEncodingFrom('iso-8859-15');
+            $csv->insertOne(\Schema::getColumnListing('courses'));
+            $skip = 0;
+            while( $users = DB::table('courses')->limit(1000)->skip($skip)->get() ){
+                foreach ($users as $user) {
+                    $user = json_decode( json_encode($user), true);
+                    $csv->insertOne( $user);
+                } 
+                $skip+= 1000;
+            }
+            $csv->output('courses.csv');
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+            $users = DB::table('courses')->get();
+            $header = \Schema::getColumnListing('courses');
+            echo implode(',', $header)."\n";
+            foreach ($users as $user) {
+                $user = json_decode( json_encode($user), true);
+                echo implode(',', $user)."\n";
+             }
+        }
+    }
 }
