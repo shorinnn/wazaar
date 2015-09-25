@@ -258,21 +258,23 @@ class PaymentController extends BaseController
                                 // if lesson was purchased, use the course slug
                                 $redirectUrl = url('courses/' . $product->module->course->slug . '/purchased?purchaseId=' . $purchase->id);
                             }*/
-                            $purchase = Purchase::where('payment_ref', Input::get('TransactionId'))->first();
 
-                            if ($purchase){
-                                $redirectUrl = Input::get('URL') . '/purchased?purchaseId=' . $purchase->id;
-                            }
-                            else{
-                                $redirectUrl = Input::get('URL');
-                            }
-
-                            return Redirect::to($redirectUrl);
 
                         }
                     }
 
                 }
+
+                $purchase = Purchase::where('payment_ref', Input::get('TransactionId'))->first();
+
+                if ($purchase){
+                    $redirectUrl = Input::get('URL') . '/purchased?purchaseId=' . $purchase->id;
+                }
+                else{
+                    $redirectUrl = Input::get('URL');
+                }
+
+                return Redirect::to($redirectUrl);
             }
 
             return Redirect::home();
