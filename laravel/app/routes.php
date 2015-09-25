@@ -504,6 +504,7 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('admin/purchases-csv/','AdminDashboardController@purchasesCsv');
     Route::get('admin/transactions-csv/','AdminDashboardController@transactionsCsv');
     Route::get('admin/users-csv/','AdminDashboardController@usersCsv');
+    Route::get('admin/courses-csv/','AdminDashboardController@coursesCsv');
     Route::get('admin/monthly-stats/','AdminDashboardController@monthlyStats');
     
 });
