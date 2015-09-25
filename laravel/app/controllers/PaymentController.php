@@ -278,6 +278,9 @@ class PaymentController extends BaseController
             return Redirect::home();
         }
         catch(Exception $ex){
+            echo $ex->getMessage();
+            echo $ex->getFile();
+            echo $ex->getLine();
             Logger::create(['object' => 'PaymentController', 'key' => 'getCompleted', 'details' => $ex->getMessage()]);
         }
 
