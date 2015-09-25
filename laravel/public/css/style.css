@@ -3428,7 +3428,7 @@ h2, h3, h4, h5, h6{
 	position: relative;
 	top: 1px;
 }
-.new-dashboard.dashboardTabs .review{
+.new-dashboard.dashboardTabs .enrolled-lesson .review{
 	color: #657482;
 	text-indent: 25px;
 	margin-top: 3px;
@@ -3445,7 +3445,7 @@ h2, h3, h4, h5, h6{
 .new-dashboard.dashboardTabs .finished-lesson .progress-value{
 	display: none;
 }
-.new-dashboard.dashboardTabs .tab-content > div:hover{
+.new-dashboard.dashboardTabs .enrolled-lesson:hover{
 	background: #f7f9fa;
 }
 .new-dashboard.dashboardTabs .enrolled-lessons-progress{
