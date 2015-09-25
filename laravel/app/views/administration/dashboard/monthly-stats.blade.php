@@ -19,7 +19,7 @@
                 	<div class="table-responsive analytics-page">
                     	<div class="top-affiliates-table table-wrapper">
                         	<div class="table-responsive">
-                                <table class='table table-striped table-bordered clear'>
+                                <table class='table clear'>
                                     
                                     <tr>  <td>売上高（purchase_price）</td><td>&yen; {{  number_format( $stats->p_price, Config::get('custom.currency_decimals') ) }}</td></tr>
                                     <tr>    <td>原価（original_price)</td><td>&yen; {{  number_format( $stats->o_price, Config::get('custom.currency_decimals') ) }}</td></tr>
