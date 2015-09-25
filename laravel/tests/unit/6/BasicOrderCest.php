@@ -872,6 +872,8 @@ class BasicOrderCest{
 
         $I->assertNotEquals( false, $purchase );
         $I->assertEquals( $sale, $purchase->discount_value );
+        $I->assertEquals( $purchase->purchase_price, $priceInput );
+        $I->assertEquals( $purchase->original_price, $course->price );
 
     }
 }
