@@ -31,6 +31,9 @@ App::before(function($request)
     if(Auth::guest() && Input::has('stpi')){
         Cookie::queue('stpi', Input::get('stpi'), 60*24*30);
     }
+    if(Auth::guest() && Input::has('stpi2')){
+        Cookie::queue('stpi2', Input::get('stpi2'), 60*24*30);
+    }
     // record instructor agency
     if(Auth::guest() && Input::has('iai')){
         Cookie::queue('iai', Input::get('iai'), 60*24*30);

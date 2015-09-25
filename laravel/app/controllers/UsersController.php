@@ -68,7 +68,8 @@ class UsersController extends Controller
         $roles['instructor'] = Input::get('register_instructor');//Cookie::get('register_instructor');
         //$roles['affiliate'] = Input::get('register_affiliate');//Cookie::get('register_affiliate');
         $st = Input::get('st'); // Cookie::get('st')
-        $user = $this->users->signup( Input::all(), Cookie::get('ltc'), $roles, Cookie::get('stpi'), Cookie::get('iai'), $st );
+        $stpi = Cookie::get('stpi2');// disable this at one point
+        $user = $this->users->signup( Input::all(), Cookie::get('ltc'), $roles, $stpi, Cookie::get('iai'), $st );
         
         if ( $user!=null && $user->id) {
             try{

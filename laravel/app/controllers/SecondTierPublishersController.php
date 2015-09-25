@@ -179,7 +179,9 @@ class SecondTierPublishersController extends \BaseController {
                     }
                     $count = count($exclude);
                     $exclude = implode('<br />', $exclude);
-                    $str .= "<b>STPI $s->id - $s->last_name $s->first_name ( $s->email ) -  <div style='display:block; max-height:100px; overflow-y:scroll; border:1px solid black; padding:10px'>
+                    $link = action('UsersController@create');
+                    $link.='/account/instructor?stpi2='.$s->id;
+                    $str .= "<b>STPI $s->id - $s->last_name $s->first_name ( $s->email ) - $link <div style='display:block; max-height:100px; overflow-y:scroll; border:1px solid black; padding:10px'>
                             <span style='font-weight:bold'>Registered On LP But Not Wazaar: $count</span><br />
                             $exclude
                         </div> <hr />";
