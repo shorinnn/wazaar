@@ -80,11 +80,11 @@ class STPubAsLTCCest{
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * 0.08 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * 0.08 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 0 );
         // no second tier aff, wazaar cut goes up to 30%
-        $I->assertEquals( $purchase->site_earnings, 30 - 30 * 0.08);
+        $I->assertEquals( $purchase->site_earnings, 30 - 100 * 0.08);
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'complete'] );
@@ -218,11 +218,11 @@ class STPubAsLTCCest{
         $I->assertEquals( $purchase->tax, 10 );
         $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
-        $I->assertEquals( $purchase->ltc_affiliate_earnings, 30 * 0.08 );
+        $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * 0.08 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 0 );
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 0 );
         // no second tier aff, wazaar cut goes up to 30%
-        $I->assertEquals( $purchase->site_earnings, 30 - 30 * 0.08);
+        $I->assertEquals( $purchase->site_earnings, 30 - 100 * 0.08);
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 70,
             'product_id' => $course->id, 'status' => 'complete'] );
@@ -232,7 +232,7 @@ class STPubAsLTCCest{
         $student = Student::where('username','instructor')->first();
         $I->assertEquals(0, $student->student_balance);
         $secondTierPub = User::find(2);
-        $I->assertEquals( 30 * 0.08, $secondTierPub->instructor_balance );
+        $I->assertEquals( 100 * 0.08, $secondTierPub->instructor_balance );
         $instructor = User::find(11);
         $I->assertEquals( 70, $instructor->instructor_balance );
         

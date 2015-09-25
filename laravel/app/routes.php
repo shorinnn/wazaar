@@ -139,6 +139,7 @@ $wwwRoutes = function(){
         Route::resource('members', 'MembersController');
         
         Route::get('second-tier-publishers/stats', 'SecondTierPublishersController@stats');
+        Route::get('second-tier-publishers/fix', 'SecondTierPublishersController@fix');
         Route::resource('second-tier-publishers', 'SecondTierPublishersController');
         Route::get('submissions/all-courses', 'SubmissionsController@allCourses');
         Route::resource('submissions', 'SubmissionsController');
@@ -503,6 +504,7 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('admin/purchases-csv/','AdminDashboardController@purchasesCsv');
     Route::get('admin/transactions-csv/','AdminDashboardController@transactionsCsv');
     Route::get('admin/users-csv/','AdminDashboardController@usersCsv');
+    Route::get('admin/monthly-stats/','AdminDashboardController@monthlyStats');
     
 });
 

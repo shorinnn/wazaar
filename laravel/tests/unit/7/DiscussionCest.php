@@ -1,4 +1,4 @@
-<?php
+    <?php
 use \UnitTester;
 
 class DiscussionCest{
@@ -59,6 +59,7 @@ class DiscussionCest{
         $discussion = new LessonDiscussion();
         $discussion->student_id = $student->id;
         $discussion->lesson_id = $lesson->id;
+        $discussion->course_id = $lesson->module->course->id;
         $discussion->title = $title;
         $I->assertTrue( $student->purchased($lesson) );
         $I->assertFalse( $student->purchased($lesson->module->course) );
@@ -72,13 +73,14 @@ class DiscussionCest{
         $discussion = new LessonDiscussion();
         $discussion->student_id = $student->id;
         $discussion->lesson_id = $lesson->id;
+        $discussion->course_id = $lesson->module->course->id;
         $discussion->title = $title;
         $I->assertFalse( $student->purchased($lesson) );
         $I->assertTrue( $student->purchased($lesson->module->course) );
         $I->assertTrue( $discussion->save() );
     }
     
-    public function noVoteUserDoesntOwnLesson(UnitTester $I){
+    public function noVoteUserDoesntOwnLesson(UnitTester $I){ 
         DB::table('purchases')->delete();
         $lesson =  Lesson::first();
         $student = Student::where('username','student')->first();
@@ -87,6 +89,7 @@ class DiscussionCest{
         $discussion = new LessonDiscussion();
         $discussion->student_id = $student->id;
         $discussion->lesson_id = $lesson->id;
+        $discussion->course_id = $lesson->module->course->id;
         $discussion->title = $title;
         $I->assertTrue( $student->purchased($lesson) );
         $I->assertFalse( $student->purchased($lesson->module->course) );
@@ -107,6 +110,7 @@ class DiscussionCest{
         $discussion = new LessonDiscussion();
         $discussion->student_id = $student->id;
         $discussion->lesson_id = $lesson->id;
+        $discussion->course_id = $lesson->module->course->id;
         $discussion->title = $title;
         $I->assertTrue( $student->purchased($lesson) );
         $I->assertFalse( $student->purchased($lesson->module->course) );
@@ -128,6 +132,7 @@ class DiscussionCest{
         $discussion = new LessonDiscussion();
         $discussion->student_id = $student->id;
         $discussion->lesson_id = $lesson->id;
+        $discussion->course_id = $lesson->module->course->id;
         $discussion->title = $title;
         $I->assertTrue( $student->purchased($lesson) );
         $I->assertFalse( $student->purchased($lesson->module->course) );
