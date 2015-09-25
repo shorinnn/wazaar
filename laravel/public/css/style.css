@@ -3215,8 +3215,8 @@ h2, h3, h4, h5, h6{
 	margin-top: -282px;
 }
 .instructor-dashboard .sidebar{
-	/*margin-top: -157px;*/
-	margin-top: -68px;
+	margin-top: -157px;
+	/*margin-top: -68px;*/
 }
 .new-dashboard .sidebar .upload-picture-button,
 .new-dashboard .sidebar .read-message,
