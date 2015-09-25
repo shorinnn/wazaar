@@ -229,12 +229,26 @@ class PaymentController extends BaseController
                     }
 
                 }
+
+                $purchase = Purchase::where('payment_ref', Input::get('TransactionId'))->first();
+
+                if ($purchase){
+                    $redirectUrl = Input::get('URL') . '/purchased?purchaseId=' . $purchase->id;
+                }
+                else{
+                    $redirectUrl = Input::get('URL');
+                }
+
+                return Redirect::to($redirectUrl);
             }
 
             return Redirect::home();
         }
         catch(Exception $ex){
             Logger::create(['object' => 'PaymentController', 'key' => 'postCompleted', 'details' => $ex->getMessage()]);
+            echo $ex->getMessage();
+            echo $ex->getFile();
+            echo $ex->getLine();
         }
 
     }
