@@ -3312,6 +3312,9 @@ h2, h3, h4, h5, h6{
 .new-dashboard.top-section .lesson-description .img-wrap{
 	border-radius: 4px;
 }
+.new-dashboard.top-section .lesson-description .img-wrap img {
+    border-radius: 0;
+}
 .new-dashboard.top-section .lesson-description h2{
 	font-size: 20px;
 	color: #fff;
@@ -3347,6 +3350,9 @@ h2, h3, h4, h5, h6{
 	position: relative;
 	z-index: 6;
 	padding: 10px 12px;
+}
+.new-dashboard.dashboardTabs .progress-circle{
+	margin-top: 5px;
 }
 .new-dashboard.top-section .radial-progress .progress-radial{
 	margin-bottom: 23px;
@@ -3384,7 +3390,8 @@ h2, h3, h4, h5, h6{
 	color: #303941;
 	position: relative;
 	top: 11px;
-	margin-right: 6px;
+	margin-right: 14px;
+	float: left;
 }
 .new-dashboard.dashboardTabs .tab-content{
 	margin-top: 25px;
@@ -3396,35 +3403,39 @@ h2, h3, h4, h5, h6{
 	background: #fff;
 	border-top: solid 1px #ebeced !important;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson .finished,
-.new-dashboard.dashboardTabs .enrolled-lesson .review{
+.new-dashboard.dashboardTabs .finished,
+.new-dashboard.dashboardTabs .review{
 	display: none;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson .finished{
+.new-dashboard.dashboardTabs .finished{
 	font-size: 15px;
 	font-weight: 600;
 	color: #47bc23;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson .finished i{
+.new-dashboard.dashboardTabs .finished i{
 	font-size: 12px;
 	margin-right: 8px;
 	position: relative;
 	top: 1px;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson .review{
+.new-dashboard.dashboardTabs .review{
 	color: #657482;
 	text-indent: 25px;
 	margin-top: 3px;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .finished,
-.new-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .review{
+.new-dashboard.dashboardTabs .progress-column{
+	padding: 0;
+}
+.new-dashboard.dashboardTabs .finished-lesson .finished,
+.new-dashboard.dashboardTabs .finished-lesson .review{
 	display: block;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .enrolled-lessons-progress img,
-.new-dashboard.dashboardTabs .enrolled-lesson.finished-lesson .progress-value{
+.new-dashboard.dashboardTabs .finished-lesson .enrolled-lessons-progress img,
+.new-dashboard.dashboardTabs .finished-lesson .radial-progress-wrap,
+.new-dashboard.dashboardTabs .finished-lesson .progress-value{
 	display: none;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson:hover{
+.new-dashboard.dashboardTabs .tab-content > div:hover{
 	background: #f7f9fa;
 }
 .new-dashboard.dashboardTabs .enrolled-lessons-progress{
@@ -3433,14 +3444,14 @@ h2, h3, h4, h5, h6{
 .new-dashboard.dashboardTabs h4{
 	font-size: 14px;
 	font-weight: 600;
-	margin: 8px 0 14px;
+	margin: 8px 0 10px;
 }
-.new-dashboard.dashboardTabs .enrolled-lesson a{
+.new-dashboard.dashboardTabs .tab-content a{
 	color: #03a2ff;
 }
 .new-dashboard.dashboardTabs p{
 	color: #798794;
-	margin: 0 0 7px;
+	margin: 0;
 }
 .new-dashboard.dashboardTabs .teaching-lesson .image-wrap{
 	border-radius: 3px;
@@ -9405,6 +9416,9 @@ header .profile-name ul{
 		width: 100%;
 	}
 
+	.new-dashboard.dashboardTabs .progress-column{
+		padding: 0;
+	}
 
 }
 @media (max-width:752px){
