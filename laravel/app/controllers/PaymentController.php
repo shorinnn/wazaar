@@ -223,7 +223,9 @@ class PaymentController extends BaseController
                     $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
 
                     if ($paymentLog){
-                        return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        if ($paymentLog !== 'processed'){
+                            return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        }
                     }
 
                 }
@@ -247,7 +249,9 @@ class PaymentController extends BaseController
                     $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
 
                     if ($paymentLog){
-                        return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        if ($paymentLog !== 'processed'){
+                            return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        }
                     }
 
                 }
@@ -271,7 +275,9 @@ class PaymentController extends BaseController
                     $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
 
                     if ($paymentLog){
-                        return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        if ($paymentLog !== 'processed'){
+                            return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        }
                     }
                 }
             }
@@ -295,7 +301,9 @@ class PaymentController extends BaseController
                     $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
 
                     if ($paymentLog){
-                        return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        if ($paymentLog !== 'processed'){
+                            return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        }
                     }
                 }
             }
@@ -614,6 +622,10 @@ class PaymentController extends BaseController
             // if lesson was purchased, use the course slug
             $redirectUrl = url('courses/' . $product->module->course->slug . '/purchased?purchaseId=' . $purchase->id);
         }
+
+        //update paymentlog status
+        $paymentLog->status = 'processed';
+        $paymentLog->save();
 
         return Redirect::to($redirectUrl);
     }
