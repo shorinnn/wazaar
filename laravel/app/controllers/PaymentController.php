@@ -8,7 +8,7 @@ class PaymentController extends BaseController
 
     public function __construct(PaymentHelper $paymentHelper)
     {
-        $this->beforeFilter('auth');
+        $this->beforeFilter('auth',['except' => ['getSuccess','postSuccess']]);
         $this->paymentHelper = $paymentHelper;
 
     }
@@ -169,7 +169,7 @@ class PaymentController extends BaseController
         $request['giftID'] = 0;
         $request['balancedUsed'] = 0;
         $request['balanceTransactionID'] = 0;
-
+        $request['aid'] = Cookie::get('aid');
         $reference = Str::random();
         $giftId = Input::get('giftId');
 
@@ -223,16 +223,32 @@ class PaymentController extends BaseController
                     $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
 
                     if ($paymentLog){
-                        return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        if ($paymentLog !== 'processed'){
+                            //return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        }
                     }
 
                 }
+
+                $purchase = Purchase::where('payment_ref', Input::get('TransactionId'))->first();
+
+                if ($purchase){
+                    $redirectUrl = Input::get('URL') . '/purchased?purchaseId=' . $purchase->id;
+                }
+                else{
+                    $redirectUrl = Input::get('URL');
+                }
+
+                return Redirect::to($redirectUrl);
             }
 
             return Redirect::home();
         }
         catch(Exception $ex){
             Logger::create(['object' => 'PaymentController', 'key' => 'postCompleted', 'details' => $ex->getMessage()]);
+            echo $ex->getMessage();
+            echo $ex->getFile();
+            echo $ex->getLine();
         }
 
     }
@@ -247,15 +263,40 @@ class PaymentController extends BaseController
                     $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
 
                     if ($paymentLog){
-                        return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        if ($paymentLog !== 'processed'){
+                            return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        }
+                        else{
+                            /*$redirectUrl = url('courses/' . $product->slug . '/purchased?purchaseId=' . $purchase->id);
+                            if (strtolower(get_class($product)) == 'lesson') {
+                                // if lesson was purchased, use the course slug
+                                $redirectUrl = url('courses/' . $product->module->course->slug . '/purchased?purchaseId=' . $purchase->id);
+                            }*/
+
+
+                        }
                     }
 
                 }
+
+                $purchase = Purchase::where('payment_ref', Input::get('TransactionId'))->first();
+
+                if ($purchase){
+                    $redirectUrl = Input::get('URL') . '/purchased?purchaseId=' . $purchase->id;
+                }
+                else{
+                    $redirectUrl = Input::get('URL');
+                }
+
+                return Redirect::to($redirectUrl);
             }
 
             return Redirect::home();
         }
         catch(Exception $ex){
+            echo $ex->getMessage();
+            echo $ex->getFile();
+            echo $ex->getLine();
             Logger::create(['object' => 'PaymentController', 'key' => 'getCompleted', 'details' => $ex->getMessage()]);
         }
 
@@ -271,7 +312,9 @@ class PaymentController extends BaseController
                     $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
 
                     if ($paymentLog){
-                        return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        if ($paymentLog !== 'processed'){
+                            return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        }
                     }
                 }
             }
@@ -295,7 +338,9 @@ class PaymentController extends BaseController
                     $paymentLog = PaymentLog::where('reference', Input::get('TransactionId'))->first();
 
                     if ($paymentLog){
-                        return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        if ($paymentLog !== 'processed'){
+                            return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                        }
                     }
                 }
             }
@@ -584,7 +629,7 @@ class PaymentController extends BaseController
     }
 
     private function _successfulPayment($paymentLog,$transactionId){
-        $student = Student::current(Auth::user());
+        $student = Student::find($paymentLog->user_id);
 
         $product = $this->_getProductDetailsByTypeAndID($paymentLog->request['productType'],$paymentLog->request['productId']);//   Session::get('productType'), Session::get('productID'));
 
@@ -601,7 +646,7 @@ class PaymentController extends BaseController
             ]
         ];
 //                    $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $paymentData);
-        $purchase = $student->purchase($product, Cookie::get("aid"), $paymentData);
+        $purchase = $student->purchase($product, @$paymentLog->request['aid'], $paymentData);
         if (!$purchase) {
             $redirectUrl = url('payment', ['errors' => [trans('payment.cannotPurchase')]]);
         }
@@ -615,6 +660,10 @@ class PaymentController extends BaseController
             $redirectUrl = url('courses/' . $product->module->course->slug . '/purchased?purchaseId=' . $purchase->id);
         }
 
-        return Redirect::to($redirectUrl);
+        //update paymentlog status
+        $paymentLog->status = 'processed';
+        $paymentLog->save();
+
+        //return Redirect::to($redirectUrl);
     }
 }

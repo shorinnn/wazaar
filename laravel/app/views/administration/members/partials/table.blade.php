@@ -99,16 +99,28 @@
                                 	<span>{{trans('crud/labels.edit')}}</span>
                                 </a>
                             </td>
+
                             <td class="edit">
+                                @if ($member->hasRole('Student'))
+                                    <button onclick="window.location='{{url('administration/manual-enroll?studentId=' . $member->id)}}'" class="btn btn-primary btn-sm" href="">Purchase</button>
+                                @else
+                                    -
+                                @endif
+                            </td>
+
+                            <td class="edit">
+
+
+
                                 {{ Form::open( ['action' => ['MembersController@loginAs'] ]) }}
                                 
                                     <input type='hidden' name='id' value='{{$member->id}}' />
-                                    <button class='btn btn-primary'>Login</button>
+                                    <button class='btn btn-primary btn-sm'>Login</button>
                                 {{ Form::close() }}
                             </td>
                             <td class="delete">
                                 {{ Form::open(array('action' => array('MembersController@destroy', $member->id), 'method' => 'delete', 'id'=>'member-form-'.$member->id)) }}
-                                <button class="btn btn-danger delete-button" data-message="Are you sure you want to delete? (msg coming from btn)"
+                                <button class="btn btn-danger delete-button btn-sm" data-message="Are you sure you want to delete? (msg coming from btn)"
                                 type="submit">
                                 	<i class="fa fa-trash fa-4"></i>
                                 	<span>{{trans('crud/labels.delete')}}</span>

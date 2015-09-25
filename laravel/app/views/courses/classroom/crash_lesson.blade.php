@@ -18,7 +18,22 @@
 @stop
 
 @section('extra_js')
+<script src='{{url('js/Gibberish-AES.js')}}'></script>
 <script>
+        
+        function showReviewsModal(){
+            $('.review-modal').modal('show');
+        }
+        
+        function cancelReviewsModal(){
+            $('.review-modal').modal('hide');
+        }
+        
+        function courseReviewPosted(e,json){
+            $('.review-modal').modal('hide');
+            $.bootstrapGrowl( _('Thank you for your review.'),{align:'center', type:'success'} );
+        }
+        
 	function add_scroll_class_if_have_scrollbar(){
 		if($(document).height() > $(window).height()){
 			$('.course-question-sidebar').addClass('hasScroll');
@@ -29,6 +44,38 @@
 	
     var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';	
     $(function(){
+        
+        //Hide and show the positive and negative review textareas and labels
+		$('body').delegate('.yes-button','click',  function(){
+			$('.positive-review-wrap').removeClass('hide');
+			$('.negative-review-wrap').addClass('hide');
+			$(this).addClass('active');
+			$('.no-button').removeClass('active');
+			$('.long-later-button').hide();
+		});
+		$('body').delegate('.no-button','click',  function(){
+			$('.positive-review-wrap').addClass('hide');
+			$('.negative-review-wrap').removeClass('hide');
+			$(this).addClass('active');
+			$('.yes-button').removeClass('active');
+			$('.long-later-button').hide();
+		});
+                
+        @if( $video == null && $reviewModal)
+            @if($lesson->external_video_url != '')
+                @if(externalVideoType($lesson->external_video_url)!='yt')
+                    setTimeout(function(){
+                        showReviewsModal()
+                    }, {{ $lesson->video_duration * 1000 }} );
+                @endif
+            @else
+                showReviewsModal();
+            @endif
+        @endif
+        /** decrypt video url **/
+        //decryptVideoSrc();
+        /** /decrypt video url **/
+        
         add_scroll_class_if_have_scrollbar();
 
         if( $('#myVideo').length > 0 ){
@@ -74,7 +121,7 @@
 	}
 	
 	function resizeVideo(){
-		$("#myVideo").removeAttr('style');
+		/*$("#myVideo").removeAttr('style');
 		var screenHeight = $(window).height();
 		var screenWidth = $(window).width();
 		var videoControlHeight = $(".control-container").height();
@@ -85,14 +132,14 @@
 		var classroomHeaderHeight = $(".classroom-header").height(); 
 	
 	
-		$("#myVideo").innerHeight(screenHeight - videoControlHeight - 102);
+		$("#myVideo").innerHeight(screenHeight - videoControlHeight - 102);*/
 	 } 
 
 
 // By Chris Coyier & tweaked by Mathias Bynens
 
 $(function() {
-    makeYTfluid();
+//    makeYTfluid();
 });
 
 function makeYTfluid(){

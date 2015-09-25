@@ -150,6 +150,10 @@ $wwwRoutes = function(){
         Route::get('frontpage/featured-courses', 'FrontpageController@featuredCourses');
         Route::post('frontpage/featured-courses', 'FrontpageController@doFeaturedCourses');
         Route::resource('email-templates', 'EmailTemplatesController');
+
+        Route::controller('manual-enroll','ManualEnrollController');
+
+
     });
 
     // Course Categories
@@ -169,6 +173,8 @@ $wwwRoutes = function(){
         Route::post('add-to-picks/{type}', 'PicksController@addPicks');
         Route::delete('delete-picks/{type}', 'PicksController@deletePicks');
         Route::post('order-picks/{type}', 'PicksController@orderPicks');
+        Route::get('manage-orders', 'OrdersController@index');
+        Route::get('load-orders', 'OrdersController@loadOrders');
     });
 //});
 };
@@ -493,6 +499,11 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::get('admin/purchases/','AdminDashboardController@purchases');
     Route::get('admin/ltc-purchases/','AdminDashboardController@ltcPurchases');
     Route::get('admin/yozawa-list/','AdminDashboardController@yozawaList');
+    
+    Route::get('admin/purchases-csv/','AdminDashboardController@purchasesCsv');
+    Route::get('admin/transactions-csv/','AdminDashboardController@transactionsCsv');
+    Route::get('admin/users-csv/','AdminDashboardController@usersCsv');
+    
 });
 
 
@@ -521,7 +532,9 @@ Route::post('courses/{id}/video/set-description','CoursesController@setVideoDesc
 
 Route::get('test', function(){
 
-    Logger::create(['object' => 'PaymentController', 'key' => 'asdf', 'details' => 'test']);
+    $dh = new DeliveredHelper();
+
+    dd($dh->getUsersByTags(['second-tier-publisher-id' => 1]));
 
 });
 

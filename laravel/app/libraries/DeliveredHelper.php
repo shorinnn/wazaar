@@ -104,7 +104,7 @@ class DeliveredHelper
      */
     public function getUsersByTags($tags = [])
     {
-        $call = $this->_call('users/find-by-tags',compact('tags'));
+        $call = $this->_call('users/find-by-tags',compact('tags'),'post');
         return $call;
     }
 
