@@ -1435,9 +1435,8 @@ function searchFormFocusStyle(){
 }
 
 function dynamicLessonNameWidth(){
-    $(".expandable-button").each(function() {
-        var $link = $(this);
-        var $content = $link.parent().children('.expandable-content');
+    $(".module-box").each(function() {
+        var $content = $(this).children('.expandable-content');
     
         if($content.hasClass('lesson-topics')){
             $content.children('li').each(function(){
