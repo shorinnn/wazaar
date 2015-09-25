@@ -29,7 +29,13 @@
                                 {{ $purchase->product->module->course->instructor->fullName() }}
                             @endif
                         </td>
-                        <td>{{ $purchase->student->fullName() }}</td>
+                        <td>
+                            @if($purchase->student==null)
+                                ACCOUNT NO LONGER EXISTS
+                            @else
+                            {{ $purchase->student->fullName() }}
+                            @endif
+                        </td>
                         <td>{{ $purchase->created_at }}</td>
                     </tr>
                     @endforeach
