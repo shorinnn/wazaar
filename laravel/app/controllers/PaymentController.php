@@ -224,7 +224,7 @@ class PaymentController extends BaseController
 
                     if ($paymentLog){
                         if ($paymentLog !== 'processed'){
-                            return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
+                            //return $this->_successfulPayment($paymentLog,Input::get('TransactionId'));
                         }
                     }
 
