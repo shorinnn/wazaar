@@ -19,7 +19,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
                         <h4><a href="{{ action('CoursesController@show', $course->slug) }}">{{ $course->name }}</a></h4>
                     </div>
-                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 no-padding">
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 progress-column">
                         <div class="enrolled-lessons-progress clearfix">
                             <a href="{{ action('CoursesController@show', $course->slug) }}">View</a>                                                  
                         </div>

@@ -9417,7 +9417,7 @@ header .profile-name ul{
 	}
 
 	.new-dashboard.dashboardTabs .progress-column{
-		padding: 0;
+		padding: 0 15px;
 	}
 
 }
