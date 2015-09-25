@@ -124,10 +124,10 @@ class SecondTierPublishersController extends \BaseController {
         }
         
         public function fix(){
-//            if( Cache::has('delivered-stpub-stats') ){
-//                $str = Cache::get('delivered-stpub-stats');
-//            }
-//            else{
+            if( Cache::has('delivered-stpub-stats-fix') ){
+                $str = Cache::get('delivered-stpub-stats-fix');
+            }
+            else{
                 $delivered = new DeliveredHelper();
                 $str = '<h1>Data updated every 10 minutes. Generated at '.date('Y-m-d H:i:s').'</h1>';
                 $emails = ['kame.affili@gmail.com', 'yozawa@exraise-venture.asia', 'harada@ulj.co.jp', 'okazeri@agari.guru', 
@@ -184,8 +184,8 @@ class SecondTierPublishersController extends \BaseController {
                             $exclude
                         </div> <hr />";
                 }
-                Cache::put('delivered-stpub-stats', $str, 10);
-//            }
+                Cache::put('delivered-stpub-stats-fix', $str, 10);
+            }
             
             return View::make('administration.second_tier_pub.stats')->withStats( $str );
         }
