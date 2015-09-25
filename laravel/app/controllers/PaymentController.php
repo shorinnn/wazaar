@@ -169,7 +169,7 @@ class PaymentController extends BaseController
         $request['giftID'] = 0;
         $request['balancedUsed'] = 0;
         $request['balanceTransactionID'] = 0;
-
+        $request['aid'] = Cookie::get('aid');
         $reference = Str::random();
         $giftId = Input::get('giftId');
 
@@ -592,7 +592,7 @@ class PaymentController extends BaseController
     }
 
     private function _successfulPayment($paymentLog,$transactionId){
-        $student = Student::current(Auth::user());
+        $student = Student::find($paymentLog->user_id);
 
         $product = $this->_getProductDetailsByTypeAndID($paymentLog->request['productType'],$paymentLog->request['productId']);//   Session::get('productType'), Session::get('productID'));
 
@@ -609,7 +609,7 @@ class PaymentController extends BaseController
             ]
         ];
 //                    $purchase  = $student->purchase($product, Cookie::get("aid-$cookie_id"), $paymentData);
-        $purchase = $student->purchase($product, Cookie::get("aid"), $paymentData);
+        $purchase = $student->purchase($product, @$paymentLog->request['aid'], $paymentData);
         if (!$purchase) {
             $redirectUrl = url('payment', ['errors' => [trans('payment.cannotPurchase')]]);
         }
