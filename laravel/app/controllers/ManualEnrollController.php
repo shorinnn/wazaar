@@ -18,8 +18,9 @@ class ManualEnrollController extends BaseController {
 
     public function postIndex()
     {
+        
         //Backend Validation
-        $rules = ['studentId' => 'required','price' => 'required|numeric','courseId' => 'required|exists:courses,id'];
+        $rules = ['studentId' => 'required|exists:users,id','price' => 'required|numeric','courseId' => 'required|exists:courses,id'];
 
         $validation = Validator::make(Input::all(),$rules);
 
@@ -33,9 +34,14 @@ class ManualEnrollController extends BaseController {
 
         //Calculate sale
         $sale = $course->price - $priceInput;
-
+        
         //Set sale amount
         $course->sale = $sale;
+        $course->approved_data = null;
+        if($sale > 0){
+            $course->sale_starts_on = date('Y-m-d H:i:s', time()- 24 * 60 *60);
+            $course->sale_ends_on = date('Y-m-d H:i:s', time()+ 24 * 60 *60);
+        }
 
         //Dummy payment data
         $paymentData = [
@@ -49,11 +55,10 @@ class ManualEnrollController extends BaseController {
                 'ORDERID'                => Str::random()
             ]
         ];
-
         //Do Purchase
         $purchase = $student->purchase($course,null,$paymentData);
 
-        dd($purchase);
+//        dd($purchase);
     }
 
 }
