@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 //use UnitTester;
+=======
+//use \UnitTester;
+>>>>>>> d91e3e7223b7c8c3ebe9f61bf368aa23dcf23b71
 
 class BasicOrderCest{
     

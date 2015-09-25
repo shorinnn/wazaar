@@ -240,7 +240,7 @@
                                             }
                                           });
                                         }
-                                        if( isset(player) ){
+                                        if( typeof(player)!='undefined' ){
                                             onYouTubePlayerAPIReady();
                                         }
                                         
