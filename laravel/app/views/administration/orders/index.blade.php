@@ -10,7 +10,7 @@
 	<div class="row">
     	<div class="col-md-12">
             <div class="text-center alax-loader hide"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>
-            <div class="orders-listings-container ajax-container"></div>
+            <div class="orders-listings-container ajax-content"></div>
 		</div>
 	</div>
 </div>
@@ -23,7 +23,7 @@
     {
         $('.alax-loader').hide().removeClass('hide').show();
         $.ajax({
-            url: '/administration/load-orders',
+            url: '/administration/manage-orders',
             cache: false,
             success: function(result){
                 $('.alax-loader').hide();
