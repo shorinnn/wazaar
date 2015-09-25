@@ -223,20 +223,27 @@
                 }
             </style>
             @endif
-            <ul class="logged-out clearfix">
-                <li>
-                    <a href="{{url('/')}}/courses/category">{{trans('site/menus.homepage.browse')}}</a> 
-                </li>
-                <li>
-                    <a href="{{ action('UsersController@login') }}"> {{trans('site/menus.homepage.login')}}</a> 
-                    <!--<a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a>--> 
-                </li>
-                <li class="register-button">
-                    <a href="{{ action('UsersController@create') }}"> {{ trans('site/menus.homepage.register') }}</a>
-                    <!--<a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
-                </li>
-            </ul>
-            
+            <div class="navbar navbar-default">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#logged-out-header-menu" aria-expanded="false">
+                	<span class="sr-only">Toggle navigation</span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                </button>
+                <ul id="logged-out-header-menu" class="logged-out clearfix collapse navbar-collapse">
+                    <li>
+                        <a href="{{url('/')}}/courses/category">{{trans('site/menus.homepage.browse')}}</a> 
+                    </li>
+                    <li>
+                        <a href="{{ action('UsersController@login') }}"> {{trans('site/menus.homepage.login')}}</a> 
+                        <!--<a href="" data-toggle="modal" data-target="#loginModal"> {{trans('general.login')}}</a>--> 
+                    </li>
+                    <li class="register-button">
+                        <a href="{{ action('UsersController@create') }}"> {{ trans('site/menus.homepage.register') }}</a>
+                        <!--<a href="" data-toggle="modal" data-target="#registerModal"> {{ trans('general.register') }}</a>-->
+                    </li>
+                </ul>
+            </div>
             <!-- please check if the code below are still usable if not lets remove -->
             <ul class="logged-out clearfix visible-xs-block hidden-sm hidden-md hidden-lg hide">
                 <li>
