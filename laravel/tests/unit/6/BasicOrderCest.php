@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-//use UnitTester;
-=======
 //use \UnitTester;
->>>>>>> d91e3e7223b7c8c3ebe9f61bf368aa23dcf23b71
 
 class BasicOrderCest{
     
@@ -843,6 +839,7 @@ class BasicOrderCest{
     public function manualStudentCourseEnrollment(UnitTester $I)
     {
         $student = Student::where('username','student')->first();
+        Purchase::where('student_id', $student->id)->delete();// delete purchases for this buyer
         $course = Course::first();
         $priceInput = 100;
 
@@ -851,7 +848,12 @@ class BasicOrderCest{
 
         //Set sale amount
         $course->sale = $sale;
+        $course->sale_start_on = date('Y-m-d H:i:s', time()-3600);
+        $course->sale_ends_on = date('Y-m-d H:i:s', time()+3600);
+        $course->approved_data = null;
 
+        $I->assertGreaterThan(0, $course->price);
+        $I->assertGreaterThan(0, $course->sale);
         //Dummy payment data
         $paymentData = [
             'successData' => [
@@ -868,7 +870,7 @@ class BasicOrderCest{
         //Do Purchase
         $purchase = $student->purchase($course,null,$paymentData);
 
-        $I->assertTrue(!$purchase);
+        $I->assertNotEquals(false, $purchase);
         $I->assertEquals($sale,$purchase->sale);
 
     }
