@@ -8,7 +8,7 @@ class PaymentController extends BaseController
 
     public function __construct(PaymentHelper $paymentHelper)
     {
-        $this->beforeFilter('auth');
+        $this->beforeFilter('auth',['except' => ['getSuccess','postSuccess']]);
         $this->paymentHelper = $paymentHelper;
 
     }
