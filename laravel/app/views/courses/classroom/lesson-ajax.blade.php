@@ -437,7 +437,7 @@
             @endif
         @endif
         //decryptVideoSrc();
-//        makeYTfluid();
+        makeYTfluid();
         skinVideoControls();
         showMoreContent();
         if( $('myVideo').length > 0 ){
