@@ -217,7 +217,9 @@
                                         {{ externalVideoPreview($lesson->external_video_url, true, true) }}
                                     </div>
                                 @else
-                                    <div id="ytplayer"></div>
+                                    <div class="videoContainer">
+                                        <div id="ytplayer"></div>
+                                    </div>
                                     <script>
                                         // Load the IFrame Player API code asynchronously.
                                         var tag = document.createElement('script');
@@ -232,8 +234,8 @@
                                         function onYouTubePlayerAPIReady() {
                                           player = new YT.Player('ytplayer', {
                                             playerVars: {'rel': 0, 'showinfo': 0 },
-                                            height: '480',
-                                            width: '100%',
+//                                            height: '480',
+//                                            width: '100%',
                                             videoId: '{{ externalVideoPreview($lesson->external_video_url, true, true, true) }}',
                                             events:{
                                                 'onStateChange': youtubeVideoDone,
