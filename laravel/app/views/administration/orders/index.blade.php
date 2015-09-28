@@ -9,12 +9,23 @@
     </div>
 	<div class="row">
     	<div class="col-md-12">
-            <div class="text-center alax-loader hide"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>
             <form id="manage-order-form">
                 <input type="hidden" name="sort-by" id="sort-by" value="{{$sort_by}}">
                 <input type="hidden" name="sort" id="sort" value="{{$sort}}">
+                <div class="row col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search" id="search" placeholder="Search..." value="{{$search}}">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" style="height:38px;" onclick="searchOrder();"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>                
                 <div class="orders-listings-container ajax-content"></div>
             </form>
+            <div class="text-center alax-loader hide"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>
 		</div>
 	</div>
 </div>
@@ -25,27 +36,33 @@
 <script>
     function addSorterIndicator()
     {
-        if($('.orders-listings-container').find('.table').length >= 1){
-            $('a.sorter').each(function(){
-                if($(this).data('sort-by') == $('#sort-by').val())
-                {
-                    $(this).addClass('active')
-                    if($('#sort').val() == 'asc'){
-                        $(this).children('i.fa').removeClass('fa-caret-down').addClass('fa-caret-up')
-                    } else {
-                        $(this).children('i.fa').addClass('fa-caret-down').removeClass('fa-caret-up')
-                    }
+        console.log('asdasdasd')
+        $('a.sorter').each(function(){
+            if($(this).data('sort-by') == $('#sort-by').val())
+            {
+                $(this).addClass('active')
+                if($('#sort').val() == 'asc'){
+                    $(this).children('i.fa').removeClass('fa-caret-down').addClass('fa-caret-up')
                 } else {
-                    $(this).removeClass('active')
-                    $(this).children('i.fa').removeClass('fa-caret-down').removeClass('fa-caret-up')
+                    $(this).children('i.fa').addClass('fa-caret-down').removeClass('fa-caret-up')
                 }
-            })
-            triggerSorter();
-        } else {
-            setTimeout('addSorterIndicator()', 500);
-        }
+            } else {
+                $(this).removeClass('active')
+                $(this).children('i.fa').removeClass('fa-caret-down').removeClass('fa-caret-up')
+            }
+        })
+        triggerSorter();
     }
 
+    function searchOrder()
+    {
+        var url = '/administration/manage-orders?';
+        var data = Array('sort_by='+$('#sort-by').val(),'sort='+$('#sort').val(),'search='+$('#search').val());
+        url = url + data.join('&');
+
+        $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-callback-2="scrollToElement" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
+        $('.course-desc-ajax-link').click();
+    }
     function triggerSorter()
     {
         $('a.sorter').click(function(e){
@@ -65,19 +82,17 @@
             // loadOrders();
 
             var url = '/administration/manage-orders?';
-            var data = Array('sort_by='+$('#sort-by').val(),'sort='+$('#sort').val());
+            var data = Array('sort_by='+$('#sort-by').val(),'sort='+$('#sort').val(),'search='+$('#search').val());
             url = url + data.join('&');
 
             $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-callback-2="scrollToElement" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
             $('.course-desc-ajax-link').click();
-
-            setTimeout('addSorterIndicator()', 500);
         })
     }
     function loadOrders()
     {
         var url = '/administration/manage-orders?';
-        var data = Array('sort_by='+$('#sort-by').val(),'sort='+$('#sort').val())
+        var data = Array('sort_by='+$('#sort-by').val(),'sort='+$('#sort').val(),'search='+$('#search').val())
         // console.log(data);
 
         url = url + data.join('&');
