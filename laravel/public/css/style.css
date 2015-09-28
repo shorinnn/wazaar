@@ -435,7 +435,7 @@ header .top-menu .logged-out li a{
 	font-size: 13px;
 	color: #fff;
 	display: inline-block;
-	padding: 11px 20px;
+	padding: 6px 15px;
 	/*background: none !important;*/
 	font-weight: 600;
 	color: #a7b7c4 !important;
@@ -1174,7 +1174,7 @@ header .profile-name li:hover ul{
   	background-repeat:no-repeat;
   	position:relative;
   	margin-top:29px;
-	box-shadow: 0px 0px 0px 1px #fff;
+	box-shadow: 0px 0px 0px 1px #e0e1e2 ;
 	-webkit-transition: box-shadow 0.1s ;
 	-moz-transition: box-shadow 0.1s;
 	transition: box-shadow 0.1s;
@@ -1256,6 +1256,8 @@ header .profile-name li:hover ul{
 .small-box .img-container {
     position: relative;
     height: 177px;
+	overflow: hidden;
+	border-radius: 4px 4px 0 0;
 }
 .small-box img{
 	width: 100%;
@@ -3410,6 +3412,10 @@ h2, h3, h4, h5, h6{
 	border-radius: 4px;
 	border: solid 1px #e0e1e2;
 }
+.new-dashboard.dashboardTabs .tab-content > .tab-pane{
+	border-radius: 4px;
+	overflow: hidden;
+}
 .new-dashboard.dashboardTabs .enrolled-lesson{
 	padding: 10px;
 	background: #fff;
@@ -3423,6 +3429,7 @@ h2, h3, h4, h5, h6{
 	font-size: 15px;
 	font-weight: 600;
 	color: #47bc23;
+	line-height: 18px;
 }
 .new-dashboard.dashboardTabs .finished i{
 	font-size: 12px;
@@ -3433,10 +3440,14 @@ h2, h3, h4, h5, h6{
 .new-dashboard.dashboardTabs .enrolled-lesson .review{
 	color: #657482;
 	text-indent: 25px;
-	margin-top: 3px;
+	margin-top: 0;
 }
 .new-dashboard.dashboardTabs .progress-column{
 	padding: 0;
+  	position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0%, -50%);
 }
 .new-dashboard.dashboardTabs .finished-lesson .finished,
 .new-dashboard.dashboardTabs .finished-lesson .review{
@@ -3457,13 +3468,23 @@ h2, h3, h4, h5, h6{
 	font-size: 14px;
 	font-weight: 600;
 	margin: 8px 0 10px;
+	width: 100%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 .new-dashboard.dashboardTabs .tab-content a{
+	color: #283947;
+}
+.new-dashboard.dashboardTabs .enrolled-lesson:hover a{
 	color: #03a2ff;
 }
 .new-dashboard.dashboardTabs p{
 	color: #798794;
 	margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .new-dashboard.dashboardTabs .teaching-lesson .image-wrap{
 	border-radius: 3px;
@@ -9504,6 +9525,10 @@ header .profile-name ul{
 	}
 	.ask-question-fields-footer .buttons{
 		float: none;
+	}
+	.new-dashboard.dashboardTabs .progress-column{
+		position: relative;
+		transform: none;
 	}
 }
 @media (max-width:752px){
