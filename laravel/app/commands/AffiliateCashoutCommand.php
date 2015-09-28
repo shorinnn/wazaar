@@ -40,8 +40,29 @@ class AffiliateCashoutCommand extends ScheduledCommand {
 	 */
 	public function schedule(Schedulable $scheduler)
 	{
-		//return $scheduler->daysOfTheMonth( [15] )->hours( 3 );
-		return $scheduler;
+                $hour = Setting::firstOrCreate( [ 'name' => 'cashout-cron-hour' ] );
+                $setting = Setting::firstOrCreate( [ 'name' => 'cashout-cron-date' ] );
+                if($setting->value==''){
+                    return $scheduler->daysOfTheMonth( [28] )->hours( 3 );
+                }
+                else{
+                    if( !in_array($setting->value, ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY']) ){
+                        return $scheduler->daysOfTheMonth( [$setting->value] )->hours( $hour->value );
+                    }
+                    else{
+                        $day = strtoupper($setting->value);
+                        switch( $day ){
+                            case 'MONDAY': return $scheduler->daysOfTheWeek( [Scheduler::MONDAY ] )->hours( $hour->values ); break;
+                            case 'TUESDAY': return $scheduler->daysOfTheWeek( [Scheduler::TUESDAY ] )->hours( $hour->values ); break;
+                            case 'WEDNESDAY': return $scheduler->daysOfTheWeek( [Scheduler::WEDNESDAY ] )->hours( $hour->values ); break;
+                            case 'THURSDAY': return $scheduler->daysOfTheWeek( [Scheduler::THURSDAY ] )->hours( $hour->values ); break;
+                            case 'FRIDAY': return $scheduler->daysOfTheWeek( [Scheduler::FRIDAY ] )->hours( $hour->values ); break;
+                            case 'SATURDAY': return $scheduler->daysOfTheWeek( [Scheduler::SATURDAY ] )->hours( $hour->values ); break;
+                            case 'SUNDAY': return $scheduler->daysOfTheWeek( [Scheduler::SUNDAY ] )->hours( $hour->values ); break;
+                        }
+                    }
+                }
+		//return $scheduler;
 	}
 
 	/**
