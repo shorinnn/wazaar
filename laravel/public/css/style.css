@@ -436,7 +436,7 @@ header .top-menu .logged-out li a{
 	color: #fff;
 	display: inline-block;
 	padding: 11px 20px;
-	background: none !important;
+	/*background: none !important;*/
 	font-weight: 600;
 	color: #a7b7c4 !important;
 }
@@ -449,7 +449,7 @@ header .top-menu .logged-out li.log-in-button a{
 header .top-menu .logged-out li.register-button a{
 	border-radius: 5px;
 	background: #0099ff;
-	color: #0099ff !important;
+	color: #fff !important;
 }
 header .top-menu .logged-out li.register-button a:hover{
 	background: #36d2ff;
@@ -9056,10 +9056,14 @@ footer{
 		border-right: none;
 	}
 	.slide-to-left.in{
-		 width: -moz-calc(100% - 505px);
+		/*width: -moz-calc(100% - 505px);
 		width: -webkit-calc(100% - 505px);
-		width: calc(100% - 505px);
+		width: calc(100% - 505px);*/
+		width: 100%;
 	}	
+	.classroom-main.in {
+		height: auto;
+	}
 	.new-dashboard .sidebar,
 	.instructor-dashboard .sidebar{
 		margin-top: 25px !important;
@@ -9150,7 +9154,11 @@ footer{
 		font-size: 13px;
 		padding: 14px 12px 17px 24px;
 		position: relative;
-	}	
+	}
+	header .top-menu .logged-out li.register-button a{
+		background: none !important;
+		border-radius: 0 !important;
+	}
 	#logged-out-header-menu li a:hover {
 		background-color: #f7f9fa !important;
 		color: #657482 !important;
@@ -9486,6 +9494,16 @@ header .profile-name ul{
 	}
 	.category-heading-title{
 		text-align: center;
+	}
+	.classroom-view .right-slide-menu.in{
+		width: 100% !important;
+	}
+	.ask-question-fields-footer{
+		padding: 12px 15px;
+		text-align: center;
+	}
+	.ask-question-fields-footer .buttons{
+		float: none;
 	}
 }
 @media (max-width:752px){
@@ -10093,6 +10111,9 @@ header .profile-name ul{
 	}
 	.top-activities .stat-block{
 		width: 100% !important;
+	}
+	.ask-question-fields-footer .buttons .cancel{
+		margin-right: 10px;
 	}
 }
 @media (max-width:320px){
