@@ -227,4 +227,5 @@ jpeg, png',
         'what-is-bad-about-it' => 'この商品のどこが「イマイチ」ですか？',
     ],
     'non-buyer-previewers' => '視聴者数',
+    'buyers' => 'Buyers',
 );
