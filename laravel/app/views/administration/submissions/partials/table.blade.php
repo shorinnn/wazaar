@@ -97,7 +97,11 @@
                                             data-message="{{ trans('administration.sure-reject') }}?">{{ trans('administration.reject') }}</button>
                                     <div id='reason-box-{{$course->id}}' style='display:none;'>
                                         @if($course->instructor != null)
-                                            <h3>{{ $course->instructor->profile->email }}</h3>
+                                            @if( $course->instructor->profile!=null)
+                                                <h3>{{ $course->instructor->profile->email }}</h3>
+                                            @else
+                                                <h3>{{ $course->instructor->email }}</h3>
+                                            @endif
                                         @endif
                                         <textarea id='reason-{{$course->id}}' name='reject_reason' style='background:white; height:100px'></textarea>
                                     </div>

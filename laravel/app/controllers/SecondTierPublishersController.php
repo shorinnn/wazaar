@@ -122,5 +122,74 @@ class SecondTierPublishersController extends \BaseController {
             
             return View::make('administration.second_tier_pub.stats')->withStats( $str );
         }
+        
+        public function fix(){
+            if( Cache::has('delivered-stpub-stats-fix') ){
+                $str = Cache::get('delivered-stpub-stats-fix');
+            }
+            else{
+                $delivered = new DeliveredHelper();
+                $str = '<h1>Data updated every 10 minutes. Generated at '.date('Y-m-d H:i:s').'</h1>';
+                $emails = ['kame.affili@gmail.com', 'yozawa@exraise-venture.asia', 'harada@ulj.co.jp', 'okazeri@agari.guru', 
+                    'kotanigawa@leadconsulting.jp'];
+                $stpi = User::whereIn('email', $emails)->get();
+                foreach($stpi as $s){
+                    $referred = User::where('second_tier_instructor_id', $s->id)->lists('email');
+                    $count = count($referred);
+                    $st = User::where('email','yozawa@exraise-venture.asia')->first();
+                    $ltc = User::where('email','#waa#-yozawa@exraise-venture.asia')->first();
+                    if($st->id == $s->id){
+                        $emails_arr = User::where('second_tier_instructor_id', $s->id)->whereNull('ltc_affiliate_id')->lists('email');
+                        $emails_arr = $emails_arr;
+                        User::where('second_tier_instructor_id', 280)->whereNull('ltc_affiliate_id')->count();
+                    }
+                    else{
+                       $emails_arr = $referred;
+                    }
+                    $emails = implode(' | ', $referred);
+
+                    $data = $delivered->getUsersByTags(['second-tier-publisher-id' => $s->id]);
+                    if($data==null || $data['success']==false){
+                        $lp_count = 0;
+                        $lp_emails = '';
+                        $lp_emails_arr = [];
+                    }
+                    else{
+                        $data = $data['data'];
+                        $lp_count = count($data);
+                        $lp_emails = array_column($data, 'email');
+                        $lp_fName = array_column($data, 'firstName');
+                        $lp_lName = array_column($data, 'lastName');
+                        $lp_emails_arr = $lp_emails;
+                        $lp_emails = implode(' | ', $lp_emails);
+                    }
+                    
+                    if( count($emails_arr) > count($lp_emails_arr) ){
+                        $common = array_intersect($emails_arr, $lp_emails_arr);
+                    }
+                    else{
+                        $common = array_intersect($lp_emails_arr, $emails_arr );
+                    }
+                    $commonCount = count($common);
+                    $exclude = [];
+                    foreach($lp_emails_arr as $k=>$email){
+                        if( !in_array($email, $emails_arr)){
+                            $exclude[] = $email.','.$lp_lName[$k].','.$lp_fName[$k];
+                        }
+                    }
+                    $count = count($exclude);
+                    $exclude = implode('<br />', $exclude);
+                    $link = action('UsersController@create');
+                    $link.='/account/instructor?stpi2='.$s->id;
+                    $str .= "<b>STPI $s->id - $s->last_name $s->first_name ( $s->email ) - $link <div style='display:block; max-height:100px; overflow-y:scroll; border:1px solid black; padding:10px'>
+                            <span style='font-weight:bold'>Registered On LP But Not Wazaar: $count</span><br />
+                            $exclude
+                        </div> <hr />";
+                }
+                Cache::put('delivered-stpub-stats-fix', $str, 10);
+            }
+            
+            return View::make('administration.second_tier_pub.stats')->withStats( $str );
+        }
 
 }

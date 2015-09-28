@@ -61,11 +61,13 @@ class ManualEnrollController extends BaseController {
         $purchase = $student->purchase($course,null,$paymentData);
 
 
+
         if ($purchase){
             return Redirect::to('administration/members')->withSuccess('User enrolled successfully');
         }
 
         return Redirect::to('administration/members')->withError('User enrollment failed');
+
 
     }
 

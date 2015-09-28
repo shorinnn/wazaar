@@ -205,4 +205,65 @@ class AdminDashboardController extends BaseController
              }
         }
     }
+    
+    public function monthlyStats(){
+        if(Input::has('year')){
+            $start = date( Input::get('year').'-'. Input::get('month').'-01');
+        }
+        else{
+            $start = date('Y-m-01');
+        }
+        $end = date('Y-m-d', strtotime( $start.' + 1 month' ) );
+        $stats = DB::table('purchases')->select( DB::raw(" SUM(purchase_price) AS `p_price`,
+                                                            SUM(original_price) AS `o_price`,
+                                                            SUM(discount_value) AS `d_value`,
+                                                            COUNT(id) AS `sales`,
+                                                            SUM(instructor_earnings) AS `i_earnings`, 
+                                                            SUM(second_tier_instructor_earnings) AS `sti_earnings`,
+                                                            SUM(affiliate_earnings) AS `a_earnings`,
+                                                            SUM(second_tier_affiliate_earnings) AS `sta_earnings`,
+                                                            SUM(ltc_affiliate_earnings) AS `ltc_earnings`,
+                                                            SUM(site_earnings) AS `site_earnings` ") )
+                ->where('created_at','>=', $start)
+                ->where('created_at','<', $end)
+                ->where('free_product','no')->first();
+        $months= [];
+        for($i=1; $i< 13; ++$i){
+            $j = ($i<10) ? $j ="0$i" : $i;
+            $months[$j] = $i;
+        }
+        $years = [];
+        $max = date('Y');
+        $min = 2014;
+        for($i =$max; $i>$min; --$i) $years[$i] = $i;
+        return View::make('administration.dashboard.monthly-stats')->with( compact('stats', 'months', 'years') );
+    }
+    
+    public function coursesCsv(){
+        try{
+            header('Content-Type: text/csv; charset=UTF-8');
+            $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
+            $csv->setEncodingFrom('iso-8859-15');
+            $csv->insertOne(\Schema::getColumnListing('courses'));
+            $skip = 0;
+            while( $users = DB::table('courses')->limit(1000)->skip($skip)->get() ){
+                foreach ($users as $user) {
+                    $user = json_decode( json_encode($user), true);
+                    $csv->insertOne( $user);
+                } 
+                $skip+= 1000;
+            }
+            $csv->output('courses.csv');
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+            $users = DB::table('courses')->get();
+            $header = \Schema::getColumnListing('courses');
+            echo implode(',', $header)."\n";
+            foreach ($users as $user) {
+                $user = json_decode( json_encode($user), true);
+                echo implode(',', $user)."\n";
+             }
+        }
+    }
 }

@@ -3,44 +3,41 @@
     <div class="wrapper">
         <div class="container affiliate-dashboard dashboard  analytics-page">
             <div class="top-courses-purchased-wrapper">
-                <br />
-                <a class='btn btn-default' href='?filter=all'>All</a>
-                <a class='btn btn-default' href='?filter=paid'>Paid</a>
-                <a class='btn btn-default' href='?filter=free'>Free</a>
-                <br />
-                <table class='table table-striped table-bordered'>
-                    <tr>
-                        <td>Transaction ID</td>
-                        <td>Product</td>
-                        <td>Cost</td>
-                        <td>Instructor</td>
-                        <td>Customer</td>
-                        <td>DateTime</td>
-                    </tr>
-                    @foreach($purchases as $purchase)
-                    <tr>
-                        <td>{{ $purchase->id }}</td>
-                        <td>{{ $purchase->product->name.' ('.$purchase->product_type.')' }}</td>
-                        <td>{{ $purchase->purchase_price }}</td>
-                        <td>
-                            @if($purchase->product_type=='Course')
-                                {{ $purchase->product->instructor->fullName() }}
-                            @else
-                                {{ $purchase->product->module->course->instructor->fullName() }}
-                            @endif
-                        </td>
-                        <td>
-                            @if($purchase->student==null)
-                                ACCOUNT NO LONGER EXISTS
-                            @else
-                            {{ $purchase->student->fullName() }}
-                            @endif
-                        </td>
-                        <td>{{ $purchase->created_at }}</td>
-                    </tr>
-                    @endforeach
-                </table>
-                {{ $purchases->appends(['filter'=>Input::get('filter')])->links() }}
+                <form class='inline-form'>
+                    <div class='col-lg-4'>
+                        {{ Form::select('year', $years, Input::get('year') )}}
+                    </div>
+                    <div class='col-lg-4'>
+                        {{ Form::select('month', $months, Input::get('month') )}}
+                        
+                    </div>
+                    <div class='col-lg-2'>
+                        <button class='blue-button large-button' type="submit">Filter</button>
+                    </div>
+                </form>
+                <div class="container">
+                	<div class="table-responsive analytics-page">
+                    	<div class="top-affiliates-table table-wrapper">
+                        	<div class="table-responsive">
+                                <table class='table clear'>
+                                    
+                                    <tr>  <td>売上高（purchase_price）</td><td>&yen; {{  number_format( $stats->p_price, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr>    <td>原価（original_price)</td><td>&yen; {{  number_format( $stats->o_price, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr> <td>割引額（discount_value）</td><td>&yen; {{  number_format( $stats->d_value, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr>   <td>件数</td><td>{{ $stats->sales }}</td></tr>
+                                    <tr>   <td>販売者収益（instructor_earnings)</td><td>&yen; {{  number_format( $stats->i_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr>  <td>販売2Tier（second_tier_instructor_earnings)</td><td>&yen; {{  number_format( $stats->sti_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr> <td>アフィリエイト収入（affiliate_earnings）</td><td>&yen; {{  number_format( $stats->a_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr> <td>2Tier アフィリエイト（second_tier_affiliate_earnings）</td><td>&yen; {{ number_format( $stats->sta_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr><td>LTC（ltc_affiliate_earnings）</td><td>&yen; {{  number_format( $stats->ltc_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
+                                    <tr>  <td>Wazaar収入（site_earnings）</td><td>&yen; {{  number_format( $stats->site_earnings, Config::get('custom.currency_decimals') ) }}</td></tr>
+                
+                                   
+                                </table>
+                			</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

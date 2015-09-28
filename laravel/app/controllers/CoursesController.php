@@ -604,7 +604,9 @@ class CoursesController extends \BaseController {
             if( $course==null)   {
                 return View::make('site.error_encountered');
             }
+            $course = courseApprovedVersion($course);
             if($course->publish_status != 'approved' && ($course->publish_status!='pending') && trim($course->approved_data)!=''){
+               
                 if( Auth::guest() || ( !admin() && $course->instructor_id != Auth::user()->id ) ){
                     return View::make('site.error_encountered');
                 }

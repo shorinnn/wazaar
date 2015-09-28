@@ -140,7 +140,7 @@
 // By Chris Coyier & tweaked by Mathias Bynens
 
 $(function() {
-//    makeYTfluid();
+    makeYTfluid();
 });
 
 function makeYTfluid(){

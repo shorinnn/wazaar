@@ -147,7 +147,7 @@
                 $(this).find(".modal-body").css("max-height", height);
             });
 
-            $('.btn-select-course').on('click', function(){
+            $('body').delegate('.btn-select-course', 'click', function(){
                 var $courseId = $(this).attr('data-course-id');
                 var $courseName = $(this).attr('data-course-name');
                 var $coursePrice = $(this).attr('data-course-price');

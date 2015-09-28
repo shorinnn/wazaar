@@ -3216,6 +3216,7 @@ h2, h3, h4, h5, h6{
 }
 .instructor-dashboard .sidebar{
 	margin-top: -157px;
+	/*margin-top: -68px;*/
 }
 .new-dashboard .sidebar .upload-picture-button,
 .new-dashboard .sidebar .read-message,
@@ -6618,6 +6619,7 @@ a.load-remote > *{
 	padding: 28px 30px 31px;
 	background: #fff;
 	position: relative;
+	border-radius: 4px 4px 0 0;
 	border-bottom: solid 1px #e0e1e2;	
 }
 .step2 h2{
@@ -6693,6 +6695,7 @@ a.load-remote > *{
 .step2 .lesson-container .lesson-data{
 	padding: 28px 30px 31px;
 	background: #fff;
+	border-radius: 4px 4px 0 0;
 }
 .step2 .lesson-container .shr-lesson .lesson-name{
 	text-transform: uppercase;
@@ -7001,6 +7004,7 @@ a.load-remote > *{
 .step2 .module-container .footer-buttons{
 	padding: 16px 30px;
 	background: #fff;
+	border-radius: 0 0 4px 4px;
 }
 .step2 .lesson-container .footer-buttons .green-button,
 .step2 .module-container .footer-buttons .green-button{
@@ -9058,6 +9062,7 @@ footer{
 	.new-dashboard .sidebar,
 	.instructor-dashboard .sidebar{
 		margin-top: 25px !important;
+		margin-bottom: 20px;
 	}	
 	.new-dashboard .profile-picture-holder{
 		display: none;
@@ -9478,7 +9483,9 @@ header .profile-name ul{
 	.new-dashboard.dashboardTabs .progress-column{
 		padding: 0 15px;
 	}
-
+	.category-heading-title{
+		text-align: center;
+	}
 }
 @media (max-width:752px){
 .navbar-nav{ 
