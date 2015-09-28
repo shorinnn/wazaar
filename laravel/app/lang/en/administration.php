@@ -77,6 +77,22 @@ return array(
         'no-course' => 'No Courses Picked Yet',
     ],
     'orders' => [
-        'manage-orders' => 'Manage Orders'
+        'manage-orders' => 'Manage Orders',
+        'search-placeholder' => 'Search...',
+        'transaction-id' => 'Transaction ID',
+        'course-name' => 'Course Name',
+        'course-owner' => 'Course Owner',
+        'course-owner-email' => 'Course Owner Email',
+        'original-price' => 'Original Price',
+        'discounted-price' => 'Discounted Price',
+        'site-income' => 'Site Income',
+        'instructor-income' => 'Instructor Income',
+        'affiliate-income' => 'Affiliate Income',
+        'ltc-income' => 'LTC Income',
+        '2-tier-affiliate-income' => '2nd Tier Affiliate Income',
+        '2-tier-instructor-income' => '2nd Tier Instructor Income',
+        'buyer-name' => 'Buyer Name',
+        'buyer-email' => 'Buyer Email',
+        'transaction-date' => 'Transaction Date'
     ]
 );
