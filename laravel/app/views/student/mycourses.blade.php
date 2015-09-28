@@ -61,7 +61,7 @@
                         </div>
                         <div class="row current-lesson-row">
                             <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                                    <h6 class="current-lesson text-right">Current lesson 
+                                    <h6 class="current-lesson text-right">{{ trans('courses/dashboard.current_lesson') }} 
                                         ({{ $lastLesson->lesson->lessonPosition() }}/ {{$lastLesson->lesson->module->course->lessonCount(false) }}): </h6>
                             </div>
                             <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">

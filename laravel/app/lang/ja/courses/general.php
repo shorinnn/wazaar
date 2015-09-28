@@ -20,6 +20,7 @@ return array(
     'no_negative_discounts' =>'割引に負の値は入力できません',
     'edit_details' =>'詳細を編集',
     'edit' =>'編集',
+    'review' => 'レビューを残す',
 	'people_who_viewed_this_course' => 'このコースを見た人はこのコースも見ています！',
 	'we_recommend_for_you' => 'ワザールはこの商品を推薦します！',
     'manage_lessons' =>'レッスンの管理',

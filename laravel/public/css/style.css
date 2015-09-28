@@ -449,6 +449,7 @@ header .top-menu .logged-out li.log-in-button a{
 header .top-menu .logged-out li.register-button a{
 	border-radius: 5px;
 	background: #0099ff;
+	color: #0099ff !important;
 }
 header .top-menu .logged-out li.register-button a:hover{
 	background: #36d2ff;
