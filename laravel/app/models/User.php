@@ -53,6 +53,7 @@ class User extends Ardent implements ConfideUserInterface
              if( $this->id == $product->module->course->assigned_instructor_id ) return false;
              if( $student->purchased( $product->module->course ) ) return false;
         }
+
         if( $student->purchased($product) ) return false;
         return true;
     }

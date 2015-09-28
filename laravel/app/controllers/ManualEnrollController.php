@@ -37,11 +37,13 @@ class ManualEnrollController extends BaseController {
         
         //Set sale amount
         $course->sale = $sale;
+
         $course->approved_data = null;
         if($sale > 0){
             $course->sale_starts_on = date('Y-m-d H:i:s', time()- 24 * 60 *60);
             $course->sale_ends_on = date('Y-m-d H:i:s', time()+ 24 * 60 *60);
         }
+
 
         //Dummy payment data
         $paymentData = [
@@ -58,7 +60,15 @@ class ManualEnrollController extends BaseController {
         //Do Purchase
         $purchase = $student->purchase($course,null,$paymentData);
 
-        dd($purchase);
+
+
+        if ($purchase){
+            return Redirect::to('administration/members')->withSuccess('User enrolled successfully');
+        }
+
+        return Redirect::to('administration/members')->withError('User enrollment failed');
+
+
     }
 
 }
