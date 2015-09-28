@@ -15,7 +15,7 @@
                 <div class="row col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="search" id="search" placeholder="Search..." value="{{$search}}">
+                            <input type="text" class="form-control" name="search" id="search" placeholder="{{ trans('administration.orders.search-placeholder' )}}" value="{{$search}}">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button" style="height:38px;" onclick="searchOrder();"><i class="fa fa-search"></i></button>
                             </span>
