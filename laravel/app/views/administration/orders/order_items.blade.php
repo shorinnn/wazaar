@@ -9,14 +9,14 @@
 		<td>{{$order->course_name}}</td>
 		<td>{{$order->owner_name}}</td>
 		<td>{{$order->owner_email}}</td>
-		<td>{{$order->original_price}}</td>
-		<td>{{$order->purchase_price}}</td>
-		<td>{{$order->site_earnings}}</td>
-		<td>{{$order->instructor_earnings}}</td>
-		<td>{{$order->affiliate_earnings}}</td>
-		<td>{{$order->ltc_affiliate_earnings}}</td>
-		<td>{{$order->second_tier_affiliate_earnings}}</td>
-		<td>{{$order->second_tier_instructor_earnings}}</td>
+		<td>¥ {{number_format($order->original_price, '2', '.', ',')}}</td>
+		<td>¥ {{number_format($order->purchase_price, '2', '.', ',')}}</td>
+		<td>¥ {{number_format($order->site_earnings, '2', '.', ',')}}</td>
+		<td>¥ {{number_format($order->instructor_earnings, '2', '.', ',')}}</td>
+		<td>¥ {{number_format($order->affiliate_earnings, '2', '.', ',')}}</td>
+		<td>¥ {{number_format($order->ltc_affiliate_earnings, '2', '.', ',')}}</td>
+		<td>¥ {{number_format($order->second_tier_affiliate_earnings, '2', '.', ',')}}</td>
+		<td>¥ {{number_format($order->second_tier_instructor_earnings, '2', '.', ',')}}</td>
 		<td>{{$order->buyer_name}}</td>
 		<td>{{$order->buyer_email}}</td>
 		<td>{{$order->created_at->format('M d, Y h:i A \\(l\\)')}}</td>
