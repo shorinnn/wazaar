@@ -25,7 +25,7 @@
                 	<h1>{{ $course->name }}</h1>
                     <p>
                         @if($currentLesson != null)
-                            Current lesson {{$currentLesson->module->order}}.{{$currentLesson->order}}. {{ $currentLesson->name }}
+                            {{ trans('courses/dashboard.current_lesson') }} {{$currentLesson->module->order}}.{{$currentLesson->order}}. {{ $currentLesson->name }}
                         @endif
                     </p>
                 </div>

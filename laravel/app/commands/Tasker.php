@@ -39,7 +39,9 @@ class TaskerCommand extends Command {
        {
            return array(
                array('run', null, InputOption::VALUE_REQUIRED, 'What to run: fix_70_30, precalculate_ltc_stats, yozawa_fix, fix_ltc_stpub, 
-                   missing_delivered_fix, fix_botched_900, recalculateDiscountSaleMoney')
+                   missing_delivered_fix, fix_botched_900, recalculateDiscountSaleMoney'),
+               array('sale', null, InputOption::VALUE_OPTIONAL, ' recalculateDiscountSaleMoney sale ID'),
+               array('price', null, InputOption::VALUE_OPTIONAL, ' recalculateDiscountSaleMoney new price value'),
            );
        }
 
@@ -452,10 +454,12 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
             
             $this->info( '***************************************************' );
             $this->info( '*********** RECALCULATE SALE MONEY ************' );
-//            $sales = [ 6603 ,6920, 6921 ];
-            $sales = [ 6920 ];
+//            $sales = [ 5578 ];
+            $sales = $this->option('sale');
+            $sales = [ $sales ];
             $sales = Purchase::whereIn('id', $sales)->get();
-            $newPurchasePrice = 9800;
+//            $newPurchasePrice = 9800;
+            $newPurchasePrice = $this->option('price');
             $this->info( $sales->count().' sales found');
             foreach($sales as $sale){
                 $sale->purchase_price = $newPurchasePrice;

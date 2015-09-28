@@ -32,7 +32,7 @@
                     </div>
                     <div class="row current-lesson-row">
                     	<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                        	<h6 class="current-lesson text-right">Current lesson (32/60): </h6>
+                        	<h6 class="current-lesson text-right">{{ trans('courses/dashboard.current_lesson') }} (32/60): </h6>
                         </div>
                         <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
                         	<p class="regular-paragraph current-lesson-title">3.3. Understanding the importance of Marketing in Digital ...</p>
@@ -53,7 +53,7 @@
                         	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">Enrolled</a>
                         </li>
                         <li role="presentation">
-                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">Finished</a>
+                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">{{trans('general.finished')}}</a>
                         </li>
                         <li role="presentation" class="dropdown">
                           <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab" aria-controls="wishlist">Wishlist</a>
@@ -80,13 +80,13 @@
                                           </div>
                                           <div class="col-xs-12 col-sm-8 col-md-7 col-lg-7">
                                             <h4><a href="#">Learn To Code by Making Games</a></h4>
-                                            <p class="regular-paragraph">32 / 60 lessons completed</p>
-                                            <p class="regular-paragraph">Current lesson: <a href="#">3.3. Understand the importance of ...</a></p>
+                                            <p class="regular-paragraph">32 / 60 {{ trans('courses/dashboard.lessons_completed') }}</p>
+                                            <p class="regular-paragraph">{{ trans('courses/dashboard.current_lesson') }}: <a href="#">3.3. Understand the importance of ...</a></p>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
                                             <div class="enrolled-lessons-progress">
-                                                <span class="finished block"><i class="wa-check"></i>Finished</span>
-                                                <span class="review regular-paragraph">Review</span>
+                                                <span class="finished block"><i class="wa-check"></i>{{trans('general.finished')}}</span>
+                                                <span class="review regular-paragraph">{{ trans('courses/general.review') }}</span>
                                                 <span class="progress-value">52%</span>
                                                 <img src="../images/radial-progress.png">
                                             </div>
@@ -106,13 +106,13 @@
                                           </div>
                                           <div class="col-xs-12 col-sm-8 col-md-7 col-lg-7">
                                             <h4><a href="#">Learn To Code by Making Games</a></h4>
-                                            <p class="regular-paragraph">32 / 60 lessons completed</p>
-                                            <p class="regular-paragraph">Current lesson: <a href="#">3.3. Understand the importance of ...</a></p>
+                                            <p class="regular-paragraph">32 / 60 {{ trans('courses/dashboard.lessons_completed') }}</p>
+                                            <p class="regular-paragraph">{{ trans('courses/dashboard.current_lesson') }}: <a href="#">3.3. Understand the importance of ...</a></p>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
                                             <div class="enrolled-lessons-progress">
-                                                <span class="finished block"><i class="wa-check"></i>Finished</span>
-                                                <span class="review regular-paragraph">Review</span>
+                                                <span class="finished block"><i class="wa-check"></i>{{trans('general.finished')}}</span>
+                                                <span class="review regular-paragraph">{{ trans('courses/general.review') }}</span>
                                                 <span class="progress-value">52%</span>
                                                 <img src="../images/radial-progress.png">
                                             </div>
@@ -132,13 +132,13 @@
                                           </div>
                                           <div class="col-xs-12 col-sm-8 col-md-7 col-lg-7">
                                             <h4><a href="#">Learn To Code by Making Games</a></h4>
-                                            <p class="regular-paragraph">32 / 60 lessons completed</p>
-                                            <p class="regular-paragraph">Current lesson: <a href="#">3.3. Understand the importance of ...</a></p>
+                                            <p class="regular-paragraph">32 / 60 {{ trans('courses/dashboard.lessons_completed') }}</p>
+                                            <p class="regular-paragraph">{{ trans('courses/dashboard.current_lesson') }}: <a href="#">3.3. Understand the importance of ...</a></p>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
                                             <div class="enrolled-lessons-progress">
-                                                <span class="finished block"><i class="wa-check"></i>Finished</span>
-                                                <span class="review regular-paragraph">Review</span>
+                                                <span class="finished block"><i class="wa-check"></i>{{trans('general.finished')}}</span>
+                                                <span class="review regular-paragraph">{{ trans('courses/general.review') }}</span>
                                                 <span class="progress-value">52%</span>
                                                 <img src="../images/radial-progress.png">
                                             </div>
@@ -158,13 +158,13 @@
                                           </div>
                                           <div class="col-xs-12 col-sm-8 col-md-7 col-lg-7">
                                             <h4><a href="#">Learn To Code by Making Games</a></h4>
-                                            <p class="regular-paragraph">32 / 60 lessons completed</p>
-                                            <p class="regular-paragraph">Current lesson: <a href="#">3.3. Understand the importance of ...</a></p>
+                                            <p class="regular-paragraph">32 / 60 {{ trans('courses/dashboard.lessons_completed') }}</p>
+                                            <p class="regular-paragraph">{{ trans('courses/dashboard.current_lesson') }}: <a href="#">3.3. Understand the importance of ...</a></p>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
                                             <div class="enrolled-lessons-progress">
-                                                <span class="finished block"><i class="wa-check"></i>Finished</span>
-                                                <span class="review regular-paragraph">Review</span>
+                                                <span class="finished block"><i class="wa-check"></i>{{trans('general.finished')}}</span>
+                                                <span class="review regular-paragraph">{{ trans('courses/general.review') }}</span>
                                                 <span class="progress-value">52%</span>
                                                 <img src="../images/radial-progress.png">
                                             </div>
@@ -184,13 +184,13 @@
                                           </div>
                                           <div class="col-xs-12 col-sm-8 col-md-7 col-lg-7">
                                             <h4><a href="#">Learn To Code by Making Games</a></h4>
-                                            <p class="regular-paragraph">32 / 60 lessons completed</p>
-                                            <p class="regular-paragraph">Current lesson: <a href="#">3.3. Understand the importance of ...</a></p>
+                                            <p class="regular-paragraph">32 / 60 {{ trans('courses/dashboard.lessons_completed') }}</p>
+                                            <p class="regular-paragraph">{{ trans('courses/dashboard.current_lesson') }}: <a href="#">3.3. Understand the importance of ...</a></p>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
                                               <div class="enrolled-lessons-progress">
-                                                  <span class="finished block"><i class="wa-check"></i>Finished</span>
-                                                  <span class="review regular-paragraph">Review</span>
+                                                  <span class="finished block"><i class="wa-check"></i>{{trans('general.finished')}}</span>
+                                                  <span class="review regular-paragraph">{{ trans('courses/general.review') }}</span>
                                                   <span class="progress-value">52%</span>
                                                   <img src="../images/radial-progress.png">
                                               </div>
@@ -210,13 +210,13 @@
                                           </div>
                                           <div class="col-xs-12 col-sm-8 col-md-7 col-lg-7">
                                             <h4><a href="#">Learn To Code by Making Games</a></h4>
-                                            <p class="regular-paragraph">32 / 60 lessons completed</p>
-                                            <p class="regular-paragraph">Current lesson: <a href="#">3.3. Understand the importance of ...</a></p>
+                                            <p class="regular-paragraph">32 / 60 {{ trans('courses/dashboard.lessons_completed') }}</p>
+                                            <p class="regular-paragraph">{{ trans('courses/dashboard.current_lesson') }}: <a href="#">3.3. Understand the importance of ...</a></p>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
                                             <div class="enrolled-lessons-progress">
-                                                <span class="finished block"><i class="wa-check"></i>Finished</span>
-                                                <span class="review regular-paragraph">Review</span>
+                                                <span class="finished block"><i class="wa-check"></i>{{trans('general.finished')}}</span>
+                                                <span class="review regular-paragraph">{{ trans('courses/general.review') }}</span>
                                                 <span class="progress-value">52%</span>
                                                 <img src="../images/radial-progress.png">
                                             </div>
@@ -236,13 +236,13 @@
                                           </div>
                                           <div class="col-xs-12 col-sm-8 col-md-7 col-lg-7">
                                             <h4><a href="#">Learn To Code by Making Games</a></h4>
-                                            <p class="regular-paragraph">32 / 60 lessons completed</p>
-                                            <p class="regular-paragraph">Current lesson: <a href="#">3.3. Understand the importance of ...</a></p>
+                                            <p class="regular-paragraph">32 / 60 {{ trans('courses/dashboard.lessons_completed') }}</p>
+                                            <p class="regular-paragraph">{{ trans('courses/dashboard.current_lesson') }}: <a href="#">3.3. Understand the importance of ...</a></p>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
                                               <div class="enrolled-lessons-progress">
-                                                  <span class="finished block"><i class="wa-check"></i>Finished</span>
-                                                  <span class="review regular-paragraph">Review</span>
+                                                  <span class="finished block"><i class="wa-check"></i>{{trans('general.finished')}}</span>
+                                                  <span class="review regular-paragraph">{{ trans('courses/general.review') }}</span>
                                                   <span class="progress-value">52%</span>
                                                   <img src="../images/radial-progress.png">
                                               </div>

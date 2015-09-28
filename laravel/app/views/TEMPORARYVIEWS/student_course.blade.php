@@ -12,7 +12,7 @@
                 	<a href="#" class="back-to-courses"><i class="wa-chevron-left"></i>Back to courses</a>
                 	<h1>UX Design fundamentals</h1>
                     <p>
-                    Current lesson 3.3. Understanding the importance of Marketing in a Digital world
+                    {{ trans('courses/dashboard.current_lesson') }} 3.3. Understanding the importance of Marketing in a Digital world
                     </p>
                 </div>
             </div>
