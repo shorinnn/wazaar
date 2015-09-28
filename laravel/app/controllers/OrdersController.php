@@ -11,13 +11,18 @@ class OrdersController extends \BaseController {
 	{
 
 		$data = Request::all();
+		$sort_by = (isset($data['sort_by']))?$data['sort_by']:'created_at';
+		$sort = (isset($data['sort']))?$data['sort']:'desc';
+		$course_name = (isset($data['course_name']))?$data['course_name']:'';
+		$course_categories = [];
+		$course_category = '';
+		$course_statuses = [];
+		$course_status = '';
+
 		if(Request::ajax()){
 			$page = (isset($data['page']))?$data['page']:'';
 			$start = (isset($data['start']))?$data['start']:0;
 			$limit = (isset($data['limit']))?$data['limit']:15;
-			$sort_by = (isset($data['sort_by']))?$data['sort_by']:'created_at';
-			$sort = (isset($data['sort']))?$data['sort']:'desc';
-			$search = (isset($data['search']))?$data['search']:'';
 			
 			$orders = Purchase::leftJoin('courses', 'courses.id', '=', 'purchases.product_id')
 								->leftJoin('users as owner', 'owner.id', '=', 'courses.instructor_id')
@@ -38,13 +43,11 @@ class OrdersController extends \BaseController {
 			// dd(DB::getQueryLog());
 			$start = $start + $limit;
 
-			return View::make('administration.orders.listing', compact('orders', 'start', 'limit', 'sort_by', 'sort', 'page', 'search'));
+			return View::make('administration.orders.listing', compact('orders', 'start', 'limit', 'sort_by', 'sort', 'page', 'course_name'));
 		}
 
-		$sort_by = (isset($data['sort_by']))?$data['sort_by']:'created_at';
-		$sort = (isset($data['sort']))?$data['sort']:'desc';
-		$search = (isset($data['search']))?$data['search']:'';
-		return View::make('administration.orders.index', compact('sort_by', 'sort', 'search'));
+		
+		return View::make('administration.orders.index', compact('sort_by', 'sort', 'course_name', 'course_categories', 'course_category', 'course_statuses', 'course_status'));
 	}
 
 }

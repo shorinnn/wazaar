@@ -617,11 +617,12 @@ class SiteController extends \BaseController {
             $total_tallied = count($tally_courses);
 
             $recommended_courses = array();
+            $total_recommended = 5;
 
-            if($total_tallied >= 3){
+            if($total_tallied >= $total_recommended){
                 $i = 0;
                 foreach($tally_courses as $course_id => $course_view_total){
-                    if($i <= 2){
+                    if($i <= ($total_recommended - 1)){
                         $recommended_courses[] = $course_id;
                     }
                     $i++;
