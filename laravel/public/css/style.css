@@ -10044,7 +10044,8 @@ header .profile-name ul{
 		width: 13%;
 	}
 	.homepage-header .extra-large-heading {
-		margin-top: 55px;
+		margin-top: 0;
+		padding-top: 55px;
 	}
 }
 @media (min-width:320px) and (max-width: 480px) {
