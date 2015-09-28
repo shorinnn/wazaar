@@ -44,7 +44,7 @@
                         	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">Enrolled</a>
                         </li>
                         <li role="presentation">
-                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">Finished</a>
+                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">{{trans('general.finished')}}</a>
                         </li>
                         <li role="presentation" class="dropdown">
                           <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab" aria-controls="wishlist">Wishlist</a>

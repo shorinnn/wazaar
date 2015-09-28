@@ -15,6 +15,9 @@ return [
     'back-to-courses' => 'Back to Courses',
     'completed' => 'Completed',
     'search-discussion' => 'Search discussion',
-    'be-first-to-respond' => 'Be first to respond'
+    'be-first-to-respond' => 'Be first to respond',
+	'lessons_completed' => 'Lessons Completed',
+	'current_lesson' => 'Current Lesson',
+	'finished' => 'Finished'
     
 ];

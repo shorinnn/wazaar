@@ -15,6 +15,10 @@ return [
     'back-to-courses' => '学習中の教材に戻る',
     'completed' => '達成度',
     'search-discussion' => '質問を検索する',
-    'be-first-to-respond' => '回答する'
+    'be-first-to-respond' => '回答する',
+	'lessons_completed' => 'レッスン完了',
+	'current_lesson' => '現在のレッスン',
+	'leave_review' => 'レビューを残す',
+	'finished' => 'Finished'
     
 ];

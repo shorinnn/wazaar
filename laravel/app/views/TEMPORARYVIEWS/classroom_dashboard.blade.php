@@ -43,7 +43,7 @@
                     	<h2>Today
                         	<span>57</span>
                         </h2>
-                        <h4>LESSONS COMPLETED</h4>
+                        <h4>{{ trans('courses/dashboard.lessons_completed') }}</h4>
                         <ul>
                         	<li id="monday" class="clearfix">
                             	<span>Monday</span>

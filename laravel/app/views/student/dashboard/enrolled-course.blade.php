@@ -39,8 +39,8 @@
                                                     <?php echo Flatten::section('student-courses-lesson-count-'.$course->id, Config::get('custom.cache-expiry.student-dash-lesson-count'), function () use( $course )  { ?>
                                                     {{ $course->lessonCount() }} 
                                                     <?php }); ?>
-                                                    lessons completed</p>
-                                                <p class="regular-paragraph">Current lesson: 
+                                                    {{ trans('courses/dashboard.lessons_completed') }}</p>
+                                                <p class="regular-paragraph">{{ trans('courses/dashboard.current_lesson') }}: 
                                           
                                                     <a href="{{
                                                         action('ClassroomController@lesson', 
@@ -51,10 +51,10 @@
                                               @else
                                                 <?php echo Flatten::section('student-courses-first-lesson-'.$course->id, 
                                                         Config::get('custom.cache-expiry.student-dash-first-lesson'), function () use($course, $firstLesson)  { ?>
-                                                  <p class="regular-paragraph">0 / {{ $course->lessonCount() }} lessons completed</p>
+                                                  <p class="regular-paragraph">0 / {{ $course->lessonCount() }} {{ trans('courses/dashboard.lessons_completed') }}</p>
                                                         @if($firstLesson != null)
                                                         <?php $theLesson = $firstLesson;?>
-                                                        <p class="regular-paragraph">Current lesson: 
+                                                        <p class="regular-paragraph">{{ trans('courses/dashboard.current_lesson') }}: 
                                                             <a href="{{
                                                                action('ClassroomController@lesson', 
                                                 [ $firstLesson->module->course->slug,
@@ -68,8 +68,8 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 progress-column">
                                               <div class="enrolled-lessons-progress clearfix">
-                                                  <span class="finished block"><i class="wa-check"></i>Finished</span>
-                                                  <span class="review regular-paragraph">Review</span>
+                                                  <span class="finished block"><i class="wa-check"></i>{{trans('general.finished')}}</span>
+                                                  <span class="review regular-paragraph">{{ trans('courses/general.review') }}</span>
                                                   <span class="progress-value">{{ $student->courseProgress( $course ) }}%</span>
                                                   <!--<img src="../images/radial-progress.png">-->
                                                   <div class='pull-left radial-progress-wrap'>
