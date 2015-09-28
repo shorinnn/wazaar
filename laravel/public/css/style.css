@@ -245,6 +245,15 @@ header .main-logo{
 	float: left;
 	display: block;
 	margin: 10px 60px 10px 0;
+	position: relative;
+}
+header .main-logo .beta-wazaar{
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    right: -38px;
+    top: 3px;
 }
 header .top-menu .logged-in-top-menu{
 	padding: 0;

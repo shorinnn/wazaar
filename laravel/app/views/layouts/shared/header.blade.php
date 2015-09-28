@@ -6,7 +6,9 @@
      @endif
             <a href="{{ action('SiteController@index') }}" class="main-logo">
                 <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/logo/main-logo.png" 
-               class="img-responsive" alt=""></a>
+               class="img-responsive" alt="">
+               <span class="beta-wazaar">ベータ版</span>
+            </a>
             @if (!Request::segment(1))
                 <style>
                     header{
