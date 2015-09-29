@@ -112,19 +112,31 @@ class SiteController extends \BaseController {
             $wishlisted = $student->wishlistItems()->lists( 'course_id' );
         }
         // TEMPORARILY DISABLE THESE VARS BECAUSE THEY'RE NOT USED IN THE VIEW
+        $cssClasses = [ 'business', 'investment', 'web-and-it', 'fitness-and-sports', 'beauty-and-health', 'cooking', 'language',
+                            'personal-development', 'photo-and-video', 'music', 'handmade-craft', 'hobbies' ];
+       
         $categories = $groups = $topCourses = null;
-                    $categories = CourseCategory::limit(12);
+        $categories = CourseCategory::limit(12);
+
                     $groups = CategoryGroup::orderBy('order','asc')->get();
                     
                     if ( !Cache::has('topCourses') ){
                         $top = HomepageHelper::generateVariations(8);
                         Cache::add('topCourses', $top, 30);
                     }
-                    
+                    $top = HomepageHelper::generateVariations(8);
+                    Cache::add('topCourses', $top, 30);
                     $topCourses = Cache::get('topCourses');
     //                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
                     $topCourses = $topCourses[ 0 ];
-            
+                    $topCourses = Course::limit(11)->get()->toArray();
+                    foreach($topCourses as $key=>$val){
+                        $val['discounted'] = false;
+                        $val['preview'] = url('splash/logo.png');
+                        if( $val['course_preview_image_id'] >0 ) $val['preview'] = cloudfrontUrl(CoursePreviewImage::find($val['course_preview_image_id'])->url );
+                        $topCourses[$key] = $val;
+                    }
+       
         // $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
         $paginate = 12;
 
@@ -175,20 +187,20 @@ class SiteController extends \BaseController {
         }
         
         if(Auth::user()){
-            if( Request::ajax() ) return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter'));
+            if( Request::ajax() ) return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter', 'cssClasses'));
             return View::make('site.homepage_authenticated_CLONE')
-                    ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter'));
+                    ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter', 'cssClasses'));
         }
         else{
 
-            if( Request::ajax() ) return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter'));
+            if( Request::ajax() ) return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter', 'cssClasses'));
 
             // if(Input::has('old-page'))
             //     return View::make('site.homepage_unauthenticated_DEPR')
             //     ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'wishlisted') );
             // else
             return View::make('site.homepage_unauthenticated_CLONE')
-                ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter') );
+                ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter', 'cssClasses') );
         }
 	}
 

@@ -64,6 +64,7 @@ class HomepageHelper{
     
     private static function _prep($id, $manual=false){
         $course = Course::find( $id );
+        if($course ==null ) return null;
         $course->preview = url('splash/logo.png');
         if( $course->previewImage != null ) $course->preview = cloudfrontUrl( $course->previewImage->url );
         $course->discounted = 0;
