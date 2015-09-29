@@ -8,7 +8,7 @@ class SecondTierInstructor extends User{
 
 
     public static $relationsData = array(
-        'instructors' => array(self::HAS_MANY, 'User', 'table' => 'users', 'foreignKey' => 'second_tier_instructor_id'),
+        'instructors' => array(self::HAS_MANY, 'Instructor', 'table' => 'users', 'foreignKey' => 'second_tier_instructor_id'),
         'allTransactions' => [ self::HAS_MANY, 'Transaction', 'foreignKey'=>'user_id' ],
     );
     
