@@ -32,7 +32,7 @@
                                             <?php }); ?>
                                             </div>
                                             <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
-                                              <h4><a href="{{ action('ClassroomController@dashboard', $course->slug) }}">{{ $course->name }}</a></h4>
+                                              <h4 class="single-line-ellipsis"><a href="{{ action('ClassroomController@dashboard', $course->slug) }}">{{ $course->name }}</a></h4>
                                               @if( $lastLesson != null )
                                               <?php $theLesson = $lastLesson;?>
                                                 <p class="regular-paragraph">{{$lastLesson->lessonPosition() }} / 
@@ -40,7 +40,7 @@
                                                     {{ $course->lessonCount() }} 
                                                     <?php }); ?>
                                                     {{ trans('courses/dashboard.lessons_completed') }}</p>
-                                                <p class="regular-paragraph">{{ trans('courses/dashboard.current_lesson') }}: 
+                                                <p class="regular-paragraph single-line-ellipsis">{{ trans('courses/dashboard.current_lesson') }}: 
                                           
                                                     <a href="{{
                                                         action('ClassroomController@lesson', 

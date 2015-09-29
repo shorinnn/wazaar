@@ -3470,14 +3470,13 @@ h2, h3, h4, h5, h6{
 .new-dashboard.dashboardTabs .enrolled-lesson:hover{
 	background: #f7f9fa;
 }
-.new-dashboard.dashboardTabs .enrolled-lessons-progress{
-	margin-top: 21px;
-}
 .new-dashboard.dashboardTabs h4{
 	font-size: 14px;
 	font-weight: 600;
 	margin: 8px 0 10px;
 	width: 100%;
+}
+.single-line-ellipsis{
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -3491,9 +3490,6 @@ h2, h3, h4, h5, h6{
 .new-dashboard.dashboardTabs p{
 	color: #798794;
 	margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 .new-dashboard.dashboardTabs .teaching-lesson .image-wrap{
 	border-radius: 3px;
@@ -5401,6 +5397,7 @@ h2, h3, h4, h5, h6{
 	position: relative;
 	width: 84%;
 	left: 60px;
+	text-indent: -45px;
 }
 .questions-sidebar .ask-question span::before{
 	width: 0; 
