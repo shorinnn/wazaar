@@ -480,18 +480,19 @@ class SiteController extends \BaseController {
         
     public function discoverCourses($group=0){
         $wishlisted = [];
+        $filter = (isset($data['filter']) && $data['filter'] != '')? $data['filter']: '';
         if( Auth::check() ){
             $student = Student::find( Auth::user()->id );
             $wishlisted = $student->wishlistItems()->lists( 'course_id' );
         }
         if( $group == 0 ){
-            $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
+            $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->paginate(6);
         }
         else{
             $cats = CategoryGroup::find($group)->categories()->lists('id');
-            $discoverCourses = Course::where('publish_status','approved')->whereIn( 'course_category_id', $cats )->orderBy( DB::raw('RAND()') )->limit(6)->get();
+            $discoverCourses = Course::where('publish_status','approved')->whereIn( 'course_category_id', $cats )->orderBy( DB::raw('RAND()') )->paginate(6);
         }
-        if( Request::ajax() )        return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted') );
+        if( Request::ajax() )        return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter') );
         else{
                 $categories = CourseCategory::limit(12);
                 $groups = CategoryGroup::orderBy('order','asc')->get();
@@ -499,15 +500,15 @@ class SiteController extends \BaseController {
                 $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];                
                 
                 if(Auth::user()) Return View::make('site.homepage_authenticated')
-                    ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses', 'wishlisted'));
+                    ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter'));
                 else{
                     $selectedGroup = $group;
                     if(Input::has('old-page'))
                         Return View::make('site.homepage_unauthenticated_DEPR')
-                        ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'selectedGroup', 'wishlisted') );
+                        ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'selectedGroup', 'wishlisted', 'filter') );
                     else
                         Return View::make('site.homepage_unauthenticated')
-                            ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'selectedGroup', 'wishlisted') );
+                            ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'selectedGroup', 'wishlisted', 'filter') );
                 }
         }
     }
