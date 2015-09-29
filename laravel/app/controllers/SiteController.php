@@ -116,7 +116,6 @@ class SiteController extends \BaseController {
                             'personal-development', 'photo-and-video', 'music', 'handmade-craft', 'hobbies' ];
         foreach(CourseCategory::get() as $cat){
             $cat->graphics_url = $cssClasses[rand(0, 11)];
-            $cat->updateUniques();
         }
         $categories = $groups = $topCourses = null;
                     $categories = CourseCategory::limit(12);
