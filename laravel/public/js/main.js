@@ -1585,7 +1585,10 @@ function toggleRightBar(e, json){
     if( showingQuestionForm ){
         showingQuestionForm = false;
         $('.ask-question').addClass('active');
+        
     }
+    
+    
     if( isset(json) && typeof(e) !='undefined' && typeof( $(e.target).attr('data-property') ) !='undefined' && $('.right-slide-menu').hasClass('in') ){
         var target = $(e.target).attr('data-target');
         prop = $(e.target).attr('data-property');
@@ -1607,6 +1610,8 @@ function toggleRightBar(e, json){
     $('.slide-to-left').toggleClass('in');
     $('body').toggleClass('discussion-opened');
     setTimeout( skinVideoControls, 501 );
+    $(window).resize();
+        
     
     if( !isset(json) ) return false;
     
