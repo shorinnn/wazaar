@@ -459,6 +459,7 @@ header .top-menu .logged-out li.register-button a{
 	border-radius: 5px;
 	background: #0099ff;
 	text-indent: -2px;
+	font-weight: normal;
 	color: #fff !important;
 }
 header .top-menu .logged-out li.register-button a:hover{
@@ -4334,6 +4335,16 @@ h2, h3, h4, h5, h6{
 	margin: 0;
 	display: inline-block;
 }
+.affiliate-top-header .affiliate-link-label{
+    float: left;
+    font-size: 14px;
+    margin-right: 2%;
+    color: #798794;
+    margin-top: 4px;
+}
+.affiliate-top-header #affiliate-toolbar-link{
+	width: 57%;
+}
 .affiliate-top-header select{
     height: 28px;
     margin: 0 13px 0 0;
@@ -4344,7 +4355,7 @@ h2, h3, h4, h5, h6{
 .affiliate-top-header .add-tracking-id{
 	margin: 6px 0;
 	text-transform: uppercase;
-	font-weight: normal;
+	font-weight: bold;
 	font-size: 14px !important;
 	color: #798794 !important;
 	display: block;
@@ -9991,6 +10002,12 @@ header .profile-name ul{
 	.category-heading-buttons .segmented-buttons-wrapper + .segmented-buttons-wrapper{
 		margin-left: 0 !important;
 	}
+	.affiliate-top-header #affiliate-toolbar-link{
+		width: 47%;
+	}
+	.affiliate-top-header .affiliate-link-label{
+		font-size: 13px;
+	}
 }
 @media (max-width:402px){
 	.user-data-modal .orr span{
@@ -10052,6 +10069,9 @@ header .profile-name ul{
 	.homepage-header .extra-large-heading {
 		margin-top: 0;
 		padding-top: 55px;
+	}
+	.affiliate-top-header .add-gift, .affiliate-top-header .add-tracking-id{
+		font-size: 13px !important;
 	}
 }
 @media (min-width:320px) and (max-width: 480px) {

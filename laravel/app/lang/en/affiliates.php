@@ -27,4 +27,5 @@ return [
     'accept-affiliate-terms-to-promote' => 'Accept Affiliate Terms To Promote',
     'add-tracking-id' => 'Add tracking ID',
     'manage-gifts' => 'Manage gifts',
+	'your_affiliate_link' => 'Your Affiliate Link:',
 ];
