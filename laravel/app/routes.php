@@ -154,6 +154,8 @@ $wwwRoutes = function(){
 
         Route::controller('manual-enroll','ManualEnrollController');
 
+        Route::controller('analytics','AdminAnalyticsController');
+
 
     });
 
