@@ -112,6 +112,12 @@ class SiteController extends \BaseController {
             $wishlisted = $student->wishlistItems()->lists( 'course_id' );
         }
         // TEMPORARILY DISABLE THESE VARS BECAUSE THEY'RE NOT USED IN THE VIEW
+        $cssClasses = [ 'business', 'investment', 'web-and-it', 'fitness-and-sports', 'beauty-and-health', 'cooking', 'language',
+                            'personal-development', 'photo-and-video', 'music', 'handmade-craft', 'hobbies' ];
+        foreach(CourseCategory::get() as $cat){
+            $cat->graphics_url = $cssClasses[rand(0, 11)];
+            $cat->updateUniques();
+        }
         $categories = $groups = $topCourses = null;
                     $categories = CourseCategory::limit(12);
                     $groups = CategoryGroup::orderBy('order','asc')->get();
@@ -120,11 +126,19 @@ class SiteController extends \BaseController {
                         $top = HomepageHelper::generateVariations(8);
                         Cache::add('topCourses', $top, 30);
                     }
-                    
+                    $top = HomepageHelper::generateVariations(8);
+                    Cache::add('topCourses', $top, 30);
                     $topCourses = Cache::get('topCourses');
     //                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
                     $topCourses = $topCourses[ 0 ];
-            
+                    $topCourses = Course::limit(11)->get()->toArray();
+                    foreach($topCourses as $key=>$val){
+                        $val['discounted'] = false;
+                        $val['preview'] = url('splash/logo.png');
+                        if( $val['course_preview_image_id'] >0 ) $val['preview'] = cloudfrontUrl(CoursePreviewImage::find($val['course_preview_image_id'])->url );
+                        $topCourses[$key] = $val;
+                    }
+       
         // $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
         $paginate = 12;
 
