@@ -39,9 +39,9 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Status</label>
+                            <label class="col-sm-3 control-label">Filter</label>
                             <div class="col-sm-9">
-                                {{Form::select('course_status', $course_statuses, $course_status, ['id'=>'course_status', 'class'=>'form-control'])}}
+                                {{Form::select('filter', $filters, $filter, ['id'=>'filter', 'class'=>'form-control'])}}
                             </div>
                         </div>
                         <div class="form-group">
@@ -62,7 +62,6 @@
                                         <div class="input-group">
                                             <div class="input-group-addon">¥</div>
                                             <input type="text" class="form-control text-center" name="sale_amount_low" value="{{$sale_amount_low}}">
-                                            <div class="input-group-addon">.00</div>
                                         </div>
                                     </div>
                                     <span class="pull-left">-</span>
@@ -70,7 +69,6 @@
                                         <div class="input-group">
                                             <div class="input-group-addon">¥</div>
                                             <input type="text" class="form-control text-center" name="sale_amount_high" value="{{$sale_amount_high}}">
-                                            <div class="input-group-addon">.00</div>
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +82,6 @@
                                         <div class="input-group">
                                             <div class="input-group-addon">¥</div>
                                             <input type="text" class="form-control text-center" name="product_price_low" value="{{$product_price_low}}">
-                                            <div class="input-group-addon">.00</div>
                                         </div>
                                     </div>
                                     <span class="pull-left">-</span>
@@ -92,7 +89,6 @@
                                         <div class="input-group">
                                             <div class="input-group-addon">¥</div>
                                             <input type="text" class="form-control text-center" name="product_price_high" value="{{$product_price_high}}">
-                                            <div class="input-group-addon">.00</div>
                                         </div>
                                     </div>
                                 </div>
@@ -121,6 +117,9 @@
                                                 <button class="btn btn-default" id="end-date-btn" type="button"><i class="fa fa-calendar"></i></button>
                                             </span>
                                         </div>
+                                    </div>
+                                    <div class="col-xs-1 col-sm-1 hide clear_date_btn">
+                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-remove"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +179,7 @@
 
         url = url + data;
 
-        $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-callback-2="scrollToElement" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
+        $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
         $('.course-desc-ajax-link').click();
     }
     function triggerSorter()
@@ -205,7 +204,7 @@
             var data = Array('sort_by='+$('#sort_by').val(),'sort='+$('#sort').val(),'search='+$('#course_name').val());
             url = url + data.join('&');
 
-            $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-callback-2="scrollToElement" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
+            $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
             $('.course-desc-ajax-link').click();
         })
     }
@@ -242,6 +241,7 @@
             $('#start-date-btn').data('date', startDate)
             $('#end-date-btn').data('date', endDate)
         } else {
+            $('.clear_date_btn').hide().removeClass('hide').show();
             var startDate = startDateVal;
             var endDate = startDateVal;
             $('#start-date-btn').data('date', startDateVal)
@@ -263,6 +263,7 @@
                     $('#start-date').val($('#start-date-btn').data('date'));
                 }
                 $('#start-date-btn').datepicker('hide');
+                $('.clear_date_btn').hide().removeClass('hide').show();
                 $('.datepicker.dropdown-menu').is(':visible').remove();
             });
         $('#end-date-btn').datepicker({
@@ -280,8 +281,16 @@
                     $('#end-date').val($('#end-date-btn').data('date'));
                 }
                 $('#end-date-btn').datepicker('hide');
+                $('.clear_date_btn').hide().removeClass('hide').show();
                 $('.datepicker.dropdown-menu').is(':visible').remove();
             });
+
+        $('.clear_date_btn').click(function(e){
+            e.preventDefault();
+            $('#start-date').val('');
+            $('#end-date').val('');
+            $(this).hide();
+        })
         console.log($('#search_form').serialize())
     });
 </script>

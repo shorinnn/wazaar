@@ -28,7 +28,7 @@
 
 
 
-{{ $orders->appends(Input::only('start','limit', 'sort_by', 'sort', 'course_name', 'course_category', 'course_status', 'email', 'sale_amount_low', 'sale_amount_high', 'product_price_low', 'product_price_high', 'purchase_date_low', 'purchase_date_high', 'course_id'))->links() }}
+{{ $orders->appends(Input::only('start','limit', 'sort_by', 'sort', 'course_name', 'course_category', 'filter', 'email', 'sale_amount_low', 'sale_amount_high', 'product_price_low', 'product_price_high', 'purchase_date_low', 'purchase_date_high', 'course_id'))->links() }}
 </div>
 <script>
 addSorterIndicator();
