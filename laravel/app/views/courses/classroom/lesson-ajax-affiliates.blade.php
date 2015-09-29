@@ -258,7 +258,7 @@
                 </div>
                 
                 @if( trim($lesson->notes) != '')
-                    <div class="row classroom-content-row">
+                    <div class="row classroom-content-row lesson-content">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <h3>{{ trans('courses/dashboard.lesson-content') }}</h3>
                             <p class="regular-paragraph">{{ $lesson->notes }}</p>
@@ -396,6 +396,7 @@
 <script>
 
     if(typeof($)=='function'){
+        centerVidVertically()
         makeYTfluid();
         skinVideoControls();
         showMoreContent();

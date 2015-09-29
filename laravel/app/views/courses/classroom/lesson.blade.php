@@ -45,6 +45,7 @@
 	
     var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';	
     $(function(){
+        centerVidVertically();
         
         //Hide and show the positive and negative review textareas and labels
 		$('body').delegate('.yes-button','click',  function(){
@@ -182,6 +183,15 @@ function makeYTfluid(){
 
 	// Kick off one resize to fix all videos on page load
 	}).resize();
+}
+
+function centerVidVertically(){
+    if( $('.lesson-content').length > 0 ) return false;
+    $win = $(window);
+    $div = $('.video-row');
+    margin = ($win.height() - $div.height() ) /2;
+    $div.css('margin-top', margin+'px');
+    return margin;
 }
 </script>
 @stop
