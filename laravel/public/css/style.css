@@ -4341,6 +4341,7 @@ h2, h3, h4, h5, h6{
     margin-right: 2%;
     color: #798794;
     margin-top: 4px;
+	font-weight: normal;
 }
 .affiliate-top-header #affiliate-toolbar-link{
 	width: 57%;
@@ -9483,6 +9484,9 @@ header .profile-name ul{
 .homepage-header-wrapper{
 	margin-top: -90px;
 }
+#discover-courses-area center img {
+    margin-top: 50px;
+}
 #discover-courses-area > div {
     text-align: center;
 }
@@ -10007,6 +10011,9 @@ header .profile-name ul{
 	}
 	.affiliate-top-header .affiliate-link-label{
 		font-size: 13px;
+	}
+	.homepage-header .extra-large-heading{
+		font-size: 30px;
 	}
 }
 @media (max-width:402px){
