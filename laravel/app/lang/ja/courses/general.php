@@ -5,7 +5,7 @@ return array(
     'does_not_recommend' => 'オススメしない',
     'found_helpful' => 'このレビューは役に立った',
     'helpful' => '役に立った',
-    'sale' =>'月SALEせ',
+    'sale' =>'販売収入',
     'purchase' =>'購入',
     'join_class' =>'受講する',
     'enroll_for' =>'月Enroll forせ',

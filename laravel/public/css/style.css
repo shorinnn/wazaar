@@ -714,6 +714,7 @@ header .profile-name li:hover ul{
 .popular-courses-carousel{
 	padding: 0;
 	position: relative;
+	display: none;
 }
 .popular-courses-carousel .popular-courses{
 	margin-right: 20px;
@@ -3264,12 +3265,14 @@ h2, h3, h4, h5, h6{
 .new-dashboard .sidebar .name{
 	padding: 23px 24px 28px;
 	background: #f7f9fa;
+	text-align: center;
 }
 .new-dashboard .sidebar .name h2{
 	font-size: 18px;
 	font-weight: normal;
 	color: #18222b;
 	margin: 0 0 10px;
+	display: none;
 }
 .new-dashboard .sidebar .edit-profile{
 	font-size: 11px;
@@ -3841,7 +3844,7 @@ h2, h3, h4, h5, h6{
 	border-width: 0 0 2px;
 	background: none !important;
 	border-radius: 0;
-	font-weight: bold;
+	font-weight: normal;
 }
 .new-dashboard.dashboardTabs-header .add-new-course{
 	margin-top: 15px;
