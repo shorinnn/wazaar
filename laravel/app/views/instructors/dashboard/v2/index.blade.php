@@ -189,7 +189,7 @@
                           
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="enrolled">
-                           @if( $courses->count() == 0 )
+                           @if( $purchasedCourses->count() == 0 )
                                 @if(Auth::user()->_profile('Instructor') != null)
                                     @if( trim(Auth::user()->_profile('Instructor')->corporation_name) != '')
                                         学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
