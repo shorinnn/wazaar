@@ -103,10 +103,10 @@
 			.video-quality-wrap .dropdown-toggle{
 				padding: 6px 0;
 			}
-			.slide-to-left.in .navigate-lessons-buttons,
+			/*.slide-to-left.in .navigate-lessons-buttons,
 			.slide-to-left.in .control-container {
 			  display: none;
-			}
+			}*/
 			.full-height{
 				height: 100%;
 			}

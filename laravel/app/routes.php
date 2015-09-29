@@ -123,6 +123,8 @@ $wwwRoutes = function(){
         Route::get('withdrawals/bank-file/{time}', 'WithdrawalsController@bankFile');
         Route::get('withdrawals/bank-file/', 'WithdrawalsController@bankFile');
         Route::post('withdrawals/bank-file/', 'WithdrawalsController@downloadBankFile');
+        Route::get('withdrawals/process-date', 'WithdrawalsController@processDate');
+        Route::post('withdrawals/process-date', 'WithdrawalsController@doProcessDate');
         
         Route::resource('withdrawals', 'WithdrawalsController');
         

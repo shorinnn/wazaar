@@ -239,4 +239,5 @@ return array(
         'what-is-bad-about-it' => 'What is bad about it?',
     ],
     'non-buyer-previewers' => 'Non-buyer previewers',
+    'buyers' => 'Buyers',
 );

@@ -24,6 +24,6 @@
 	@endforeach
 @else
 	<tr>
-		<td colspan="4" class="text-center">no order found</td>
+		<td colspan="15" class="text-center">no order found</td>
 	</tr>
 @endif

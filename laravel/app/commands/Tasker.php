@@ -39,7 +39,7 @@ class TaskerCommand extends Command {
        {
            return array(
                array('run', null, InputOption::VALUE_REQUIRED, 'What to run: fix_70_30, precalculate_ltc_stats, yozawa_fix, fix_ltc_stpub, 
-                   missing_delivered_fix, fix_botched_900, recalculateDiscountSaleMoney'),
+                   missing_delivered_fix, fix_botched_900, recalculateDiscountSaleMoney, fix_student_count'),
                array('sale', null, InputOption::VALUE_OPTIONAL, ' recalculateDiscountSaleMoney sale ID'),
                array('price', null, InputOption::VALUE_OPTIONAL, ' recalculateDiscountSaleMoney new price value'),
            );
@@ -572,6 +572,20 @@ Instructor Percentage: $percentage% ($sale->instructor_earnings YEN). Site perce
                 else{
                     dd("FAILED UPDATING SALE $sale->id");
                 }
+            }
+        }
+        
+        public function fix_student_count(){
+            $this->info( '***************************************************' );
+            $this->info( '*********** FIX COURSE STUDENT COUNT **************' );
+            $statuses = ['pending', 'approved'];
+            $courses = Course::whereIn('publish_status', $statuses)->get();
+            $this->info($courses->count().' courses found');
+            foreach($courses as $course){
+                $updated = $course->enrolledStudents();
+                $this->info("Course $course->id. Student count: $course->student_count Updated count: $updated");
+                $course->student_count = $updated;
+                $course->updateUniques();
             }
         }
 

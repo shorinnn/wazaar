@@ -24,8 +24,8 @@
                                             </div>
                                             
                                                 <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
-                                                  <h4><a href="{{ action('ClassroomController@dashboard', $course->slug) }}">{{ $course->name }}</a></h4>
-                                                   <p class="regular-paragraph">{{ $course->lessonCount() }} / {{ $course->lessonCount() }} 
+                                                  <h4 class="single-line-ellipsis"><a href="{{ action('ClassroomController@dashboard', $course->slug) }}">{{ $course->name }}</a></h4>
+                                                   <p class="regular-paragraph ">{{ $course->lessonCount() }} / {{ $course->lessonCount() }} 
                                                         {{ trans('courses/dashboard.lesson_completed') }}</p>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 progress-column">

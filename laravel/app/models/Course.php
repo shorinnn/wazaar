@@ -499,7 +499,40 @@ class Course extends Ardent{
         if( count($buyers) ) $buyers[] = 0;
         $lessonBuyers = Purchase::whereIn( 'product_id', $lessons )->where('product_type','Lesson')->where( 'free_product','no' )->lists( 'student_id' );
         $buyers = $buyers + $lessonBuyers;
-        return Purchase::whereIn( 'product_id', $lessons )->whereNotIn( 'student_id', $buyers )->where( 'free_product','yes' )->count();
+        $count = Purchase::distinct()->select('student_id')->whereIn( 'product_id', $lessons )->whereNotIn( 'student_id', $buyers )
+                ->where( 'free_product','yes' )->get();
+        return $count->count();
+    }
+    
+    public function lessons(){
+        $modules = $this->modules()->lists('id');
+        if( count($modules) == 0 ) return null;
+        return Lesson::whereIn('module_id', $modules);
+    }
+    
+    public function enrolledStudents($paid=false){
+        $lessons = $this->lessons();
+        if( $lessons == null) $lessons = [0];
+        else{
+            $lessons = $lessons->lists('id');
+            if( count($lessons) ==0 ) $lessons = [0];
+        }
+        if( !$paid ){
+            $enrolled = Purchase::distinct()->select('student_id')->where('product_type', 'Course')->where('product_id', $this->id)
+                    ->orWhere(function($query) use ($lessons){
+                $query->where('product_type', 'Lesson');
+                $query->whereIn('product_id', $lessons);
+            })->get();
+        }
+        else{
+            $enrolled = Purchase::distinct()->select('student_id')->where('free_product','no')->where('product_type', 'Course')->where('product_id', $this->id)
+                    ->orWhere(function($query) use ($lessons){
+                $query->where('product_type', 'Lesson');
+                $query->where('free_product', 'no');
+                $query->whereIn('product_id', $lessons);
+            })->get();
+        }
+        return $enrolled->count();
     }
 
 

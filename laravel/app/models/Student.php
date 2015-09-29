@@ -202,7 +202,7 @@ class Student extends User{
             // if lesson - increment counter only if course hasn't already been purchased
             else{
                 $course = $product->module->course;
-                if( !$this->purchased( $course ) ){
+                if( !$this->purchased( $course ) && !$this->purchasedLessonFromCourse($course, $product) ){
                     $course->student_count += 1;
                     $course->updateUniques();
                 }
@@ -309,7 +309,7 @@ class Student extends User{
             // if lesson - increment counter only if course hasn't already been purchased
             else{
                 $course = $product->module->course;
-                if( !$this->purchased( $course ) ){
+                if( !$this->purchased( $course ) && !$this->purchasedLessonFromCourse($course, $product) ){
                     $course->student_count += 1;
                     $course->updateUniques();
                 }
@@ -326,10 +326,15 @@ class Student extends User{
      * @param Course $course
      * @return boolean
      */
-    public function purchasedLessonFromCourse(Course $course){
+    public function purchasedLessonFromCourse(Course $course, $currentLesson = null){
         foreach( $course->modules as $module){
             foreach($module->lessons as $lesson){
-                if( $this->purchased( $lesson ) ) return true;
+                if( $this->purchased( $lesson ) ){
+                    if($currentLesson==null) return true;
+                    else{
+                        if($currentLesson->id != $lesson->id) return true;
+                    }
+                }
             }
         }
         return false;

@@ -159,8 +159,14 @@
 
                                           </div>
                                           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                  <p><i class="fa fa-shopping-cart"></i>{{ trans('courses/general.purchases') }} <span class="count new">
-                                                          {{ $course->sales()->count() + $course->lessonSalesCount() }} </span></p>
+                                                  <p><i class="fa fa-shopping-cart"></i>
+                                                      {{ trans('courses/general.purchases') }}
+                                                      <span class="count new">
+                                                          {{ $course->enrolledStudents(true) }} 
+                                                      <!--
+                                                      {{ trans('courses/general.purchases') }} <span class="count new">
+                                                          {{ $course->sales()->count() + $course->lessonSalesCount() }} </span>
+                                                      --></p>
 
                                           </div>
                                         </div>
