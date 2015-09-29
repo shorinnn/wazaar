@@ -72,12 +72,14 @@
                     <div class="tab-content">
                       <div role="tabpanel" class="tab-pane fade in active margin-bottom-25" id="teaching">
                           @if( $courses->count() == 0 )
-                            {{ trans('courses/create.no-courses-yet-create-one') }}
+                            <p class="text-center">{{ trans('courses/create.no-courses-yet-create-one') }}</p>
                             
-                            <a href="{{action('CoursesController@create')}}" class="right add-new-course large-button blue-button">
+                            <div class="text-center clearfix">
+                            <a href="{{action('CoursesController@create')}}" class="margin-top-15 add-new-course large-button blue-button">
                                 <i class="fa fa-plus"></i> 
                                 {{ trans('courses/create.create-btn-instructor') }}
-                            </a>  
+                            </a> 
+                            </div>
                           @endif
                           
                           @foreach($courses as $course)

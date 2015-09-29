@@ -4344,8 +4344,8 @@ h2, h3, h4, h5, h6{
 .affiliate-top-header .add-tracking-id{
 	margin: 6px 0;
 	text-transform: uppercase;
-	font-weight: bold;
-	font-size: 11px !important;
+	font-weight: normal;
+	font-size: 14px !important;
 	color: #798794 !important;
 	display: block;
 	border: none;
@@ -7148,6 +7148,9 @@ ul.list-unstyled.video-list-thumbs.row li a h2 ~ .duration{
 	border-left: solid 1px #119bf8;
 }
 /************** Create a Course***********/
+.add-new-course{
+	color: #fff !important;
+}
 .create-course h1{
 	color: #0099ff;
 	font-size: 42px;

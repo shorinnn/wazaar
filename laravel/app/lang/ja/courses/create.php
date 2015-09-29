@@ -75,5 +75,5 @@ return array(
     'course-display-name-for' => '商品ページの販売者名の表記',
     'person' => '個人（担当者）名',
     'corporation' => '法人名',
-    'no-courses-yet-create-one' => 'You have no courses yet. Create One!'
+    'no-courses-yet-create-one' => 'コースを作成しましょう！'
 );
