@@ -918,7 +918,7 @@ header .profile-name li:hover ul{
 	padding-bottom: 100px;
 }
 .oldhomepage .home-page-filter{
-	display: none;
+	display: none !important;
 }
 .discover-section nav{
 	background: none;
@@ -8137,7 +8137,6 @@ select option.suspended{
 	padding-right: 10px;
 }
 .course-categories .options-div{
-	display:none;
 }	
 .course-categories .color-scheme-thumb{
 	height:40px; 
