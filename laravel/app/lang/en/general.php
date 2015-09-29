@@ -169,4 +169,10 @@ return array(
     'today' => 'Today',
     'yesterday' => 'Yesterday',
     'na' => 'N/A',
+    'dash' => [
+        'teaching' => 'Teaching',
+        'enrolled' => 'Enrolled',
+        'finished' => 'Finished',
+        'wishlist' => 'Wishlist',
+    ],
 );

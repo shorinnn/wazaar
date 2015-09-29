@@ -140,4 +140,10 @@ return array(
     'today' => 'Today',
     'yesterday' => 'Yesterday',
     'na' => '無',
+    'dash' => [
+        'teaching' => '講義中',
+        'enrolled' => '受講中',
+        'finished' => '修了',
+        'wishlist' => 'お気に入り',
+    ],
 );

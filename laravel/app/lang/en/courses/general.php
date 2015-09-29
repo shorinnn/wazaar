@@ -240,4 +240,5 @@ return array(
     ],
     'non-buyer-previewers' => 'Non-buyer previewers',
     'buyers' => 'Buyers',
+    'available-for-customers' => 'Available for customers'
 );

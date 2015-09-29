@@ -228,4 +228,5 @@ jpeg, png',
     ],
     'non-buyer-previewers' => '視聴者数',
     'buyers' => 'Buyers',
+    'available-for-customers' => '公開中'
 );
