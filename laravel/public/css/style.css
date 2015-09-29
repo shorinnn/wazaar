@@ -917,6 +917,9 @@ header .profile-name li:hover ul{
 	background-color: #ebeced;
 	padding-bottom: 100px;
 }
+.oldhomepage .home-page-filter{
+	display: none;
+}
 .discover-section nav{
 	background: none;
 	border: none;

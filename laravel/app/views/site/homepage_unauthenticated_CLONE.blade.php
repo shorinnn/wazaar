@@ -15,7 +15,12 @@
             height: 330px;
             position: relative;
         }
-
+		header{
+			background: none;
+		}
+		.logged-out-header-search{
+			display: none;
+		}
 
     </style>
     <section class="homepage-header-wrapper">
@@ -41,7 +46,7 @@
             </div>
         </section>
     </section>
-    <div class="homepage-carousel clearfix">
+    <div class="homepage-carousel clearfix show">
         <h1>{{trans('site/homepage.what_is_hot')}}
             <p class="lead">{{trans('site/homepage.our_most_popular_courses')}}</p>
         </h1>
@@ -98,7 +103,7 @@
         </div>
     </div>
     <section class="container-fluid">
-        <section class="container homepage explore-category">
+        <section class="container homepage explore-category show">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <h1 class="text-center">{{trans('site/homepage.explore_our_categories')}}
@@ -129,7 +134,7 @@
     </section>
     <section class="container-fluid discover-section">
         <div class="container">
-            <div class="row discover-header">
+            <div class="row discover-header show">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
                 	<div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -169,7 +174,7 @@
                     </div>
                 </div>
             </div>
-            <div id='discover-courses-area' class="ajax-content">
+            <div id='discover-courses-area' class="ajax-content oldhomepage">
                 {{ View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter') ) }} 
             </div>
         </div>
