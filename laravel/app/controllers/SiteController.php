@@ -114,11 +114,10 @@ class SiteController extends \BaseController {
         // TEMPORARILY DISABLE THESE VARS BECAUSE THEY'RE NOT USED IN THE VIEW
         $cssClasses = [ 'business', 'investment', 'web-and-it', 'fitness-and-sports', 'beauty-and-health', 'cooking', 'language',
                             'personal-development', 'photo-and-video', 'music', 'handmade-craft', 'hobbies' ];
-        foreach(CourseCategory::get() as $cat){
-            $cat->graphics_url = $cssClasses[rand(0, 11)];
-        }
+       
         $categories = $groups = $topCourses = null;
-                    $categories = CourseCategory::limit(12);
+        $categories = CourseCategory::limit(12);
+
                     $groups = CategoryGroup::orderBy('order','asc')->get();
                     
                     if ( !Cache::has('topCourses') ){
@@ -188,20 +187,20 @@ class SiteController extends \BaseController {
         }
         
         if(Auth::user()){
-            if( Request::ajax() ) return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter'));
+            if( Request::ajax() ) return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter', 'cssClasses'));
             return View::make('site.homepage_authenticated_CLONE')
-                    ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter'));
+                    ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter', 'cssClasses'));
         }
         else{
 
-            if( Request::ajax() ) return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter'));
+            if( Request::ajax() ) return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter', 'cssClasses'));
 
             // if(Input::has('old-page'))
             //     return View::make('site.homepage_unauthenticated_DEPR')
             //     ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'wishlisted') );
             // else
             return View::make('site.homepage_unauthenticated_CLONE')
-                ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter') );
+                ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter', 'cssClasses') );
         }
 	}
 
