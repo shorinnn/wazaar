@@ -71,5 +71,6 @@ return array(
     'no-uploaded-image' => 'No uploaded image',
     'course-display-name-for' => 'Course Display Name For',
     'person' => 'Person',
-    'corporation' => 'Corporation'
+    'corporation' => 'Corporation',
+    'no-courses-yet-create-one' => 'You have no courses yet. Create One!'
 );

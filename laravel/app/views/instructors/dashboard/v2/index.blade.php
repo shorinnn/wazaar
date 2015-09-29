@@ -39,26 +39,28 @@
                     <ul class="nav nav-pills left" role="tablist">
                         <li role="presentation" class="active">
                         	<a href="#teaching" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">
-                                    {{trans('general.teaching')}}
+                                    {{trans('general.dash.teaching')}}
                                 </a>
                         </li>
                         <li role="presentation" class="">
                         	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">
-                                {{trans('general.enrolled')}}</a>
+                                {{trans('general.dash.enrolled')}}</a>
                         </li>
                         <li role="presentation">
                         	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">
-                                 {{trans('general.finished')}}</a>
+                                 {{trans('general.dash.finished')}}</a>
                         </li>
                         <li role="presentation" class="dropdown">
                           <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab" aria-controls="wishlist">
-                           {{trans('general.wishlist')}}</a>
+                           {{trans('general.dash.wishlist')}}</a>
                         </li>
                     </ul> 
-                    <a href="{{action('CoursesController@create')}}" class="right add-new-course large-button blue-button">
-                        <i class="fa fa-plus"></i> 
-                        {{ trans('courses/create.create-btn-instructor') }}
-                    </a>              
+                    @if( $courses->count() > 0 )
+                        <a href="{{action('CoursesController@create')}}" class="right add-new-course add-new-from-header large-button blue-button">
+                            <i class="fa fa-plus"></i> 
+                            {{ trans('courses/create.create-btn-instructor') }}
+                        </a>    
+                    @endif
                 </div>
             </div>
         </div>
@@ -69,6 +71,14 @@
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 pull-right">
                     <div class="tab-content">
                       <div role="tabpanel" class="tab-pane fade in active margin-bottom-25" id="teaching">
+                          @if( $courses->count() == 0 )
+                            {{ trans('courses/create.no-courses-yet-create-one') }}
+                            
+                            <a href="{{action('CoursesController@create')}}" class="right add-new-course large-button blue-button">
+                                <i class="fa fa-plus"></i> 
+                                {{ trans('courses/create.create-btn-instructor') }}
+                            </a>  
+                          @endif
                           
                           @foreach($courses as $course)
                             <div class="row margin-bottom-25 course-row-{{$course->id}}">
@@ -179,11 +189,28 @@
                           
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="enrolled">
+                        @if(Auth::user()->_profile('Instructor') != null)
+                            @if( trim(Auth::user()->_profile('Instructor')->corporation_name) != '')
+                                学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                            @else
+                                {{ Auth::user()->_profile('Instructor')->last_name }}
+                                 さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                            @endif                          
+                        @elseif(Auth::user()->_profile('Student') != null)  
+                        
+                            {{ Auth::user()->_profile('Student')->last_name }}
+                                     さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                        @else
+                            さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                        @endif
+                        
                           @foreach($purchasedCourses as $course)
                                {{View::make('student.dashboard.enrolled-course')->with( compact( 'course', 'student' ) ) }}
                           @endforeach
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="finished">
+                          あなたはまだ修了したコースがありません。 さあ、コースを探してみよう！
+                          
                           @foreach($purchasedCourses as $course)
                               <?php
                               $course = $course->product;
@@ -193,6 +220,8 @@
                           @endforeach
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="wishlist">
+                          お気に入りのコースはありません。
+                          
                           @foreach($wishlist as $course)
                                {{View::make('student.dashboard.wishlist-course')->with( compact( 'course', 'student' ) ) }}
                           @endforeach
