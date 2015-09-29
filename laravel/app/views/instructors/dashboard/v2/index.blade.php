@@ -189,38 +189,47 @@
                           
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="enrolled">
-                        @if(Auth::user()->_profile('Instructor') != null)
-                            @if( trim(Auth::user()->_profile('Instructor')->corporation_name) != '')
-                                学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
-                            @else
-                                {{ Auth::user()->_profile('Instructor')->last_name }}
-                                 さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
-                            @endif                          
-                        @elseif(Auth::user()->_profile('Student') != null)  
-                        
-                            {{ Auth::user()->_profile('Student')->last_name }}
-                                     さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
-                        @else
-                            さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
-                        @endif
+                           @if( $courses->count() == 0 )
+                                @if(Auth::user()->_profile('Instructor') != null)
+                                    @if( trim(Auth::user()->_profile('Instructor')->corporation_name) != '')
+                                        学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                                    @else
+                                        {{ Auth::user()->_profile('Instructor')->last_name }}
+                                         さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                                    @endif                          
+                                @elseif(Auth::user()->_profile('Student') != null)  
+
+                                    {{ Auth::user()->_profile('Student')->last_name }}
+                                             さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                                @else
+                                    さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                                @endif
+                            @endif
                         
                           @foreach($purchasedCourses as $course)
                                {{View::make('student.dashboard.enrolled-course')->with( compact( 'course', 'student' ) ) }}
                           @endforeach
+                          
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="finished">
-                          あなたはまだ修了したコースがありません。 さあ、コースを探してみよう！
-                          
-                          @foreach($purchasedCourses as $course)
+             
+                          @foreach($purchasedCourses() as $course)
                               <?php
                               $course = $course->product;
                               if( $student->courseProgress( $course ) < 100 ) continue;
+                              $completedCourse = true;
                               ?>
                                {{View::make('student.dashboard.completed-course')->with( compact( 'course', 'student' ) ) }}
                           @endforeach
+                          
+                          @if( !isset($completedCourse) )
+                             あなたはまだ修了したコースがありません。 さあ、コースを探してみよう！
+                          @endif
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="wishlist">
-                          お気に入りのコースはありません。
+                          @if($wishlist->count() == 0 )
+                              お気に入りのコースはありません。
+                          @endif
                           
                           @foreach($wishlist as $course)
                                {{View::make('student.dashboard.wishlist-course')->with( compact( 'course', 'student' ) ) }}

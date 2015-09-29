@@ -91,4 +91,9 @@
     
     @endforeach
 </table>
+{{ Form::open(['action' => 'MembersController@doLtcMove']) }}
+<center>
+    <input class='btn btn-primary' type='submit' value='Change LTC' onclick='return confirm("Are you sure?")' />
+</center>
+{{ Form::close() }}
 @stop

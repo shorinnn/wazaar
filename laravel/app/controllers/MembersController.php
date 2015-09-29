@@ -239,6 +239,7 @@ class MembersController extends \BaseController {
         }
         
         public function ltcMover(){
+            set_time_limit(0);
             $stPubs = ['yiu72315@gmail.com', 'kame.affili@gmail.com', 'kfkd0123@gmail.com', 'kameoffice123@gmail.com',
                 'yozawa@exraise-venture.asia', 'info@otakeninc.com', 'rabbitkiss2000@yahoo.co.jp', 'harada@ulj.co.jp',
                 'okazeri@agari.guru', 'okazeri@wannabies.jp', 'kotanigawa@leadconsulting.jp', 'mm7732002@gmail.com',
@@ -248,6 +249,28 @@ class MembersController extends \BaseController {
             
             $stPubs = SecondTierInstructor::whereIn('email', $stPubs)->with('instructors')->get();
             return View::make('administration.members.ltc-mover')->with( compact('stPubs') );
+        }
+        
+        public function doLtcMove(){
+            set_time_limit(0);
+            $stPubs = ['yiu72315@gmail.com', 'kame.affili@gmail.com', 'kfkd0123@gmail.com', 'kameoffice123@gmail.com',
+                'yozawa@exraise-venture.asia', 'info@otakeninc.com', 'rabbitkiss2000@yahoo.co.jp', 'harada@ulj.co.jp',
+                'okazeri@agari.guru', 'okazeri@wannabies.jp', 'kotanigawa@leadconsulting.jp', 'mm7732002@gmail.com',
+                'support@e-motty.com', 'sub@mellidion.jp', 'numakura@mellidion.jp', 'tetsuoship@gmail.com', 'info@jmedia.asia',
+                'mori@it-partners.biz', 'info@dodo.co.jp', 'yu_ni123@yahoo.co.jp'
+            ];
+            
+            $stPubs = SecondTierInstructor::whereIn('email', $stPubs)->with('instructors')->get();
+            foreach($stPubs as $pub){
+                $ltc = LTCAffiliate::where('email', '#waa#-'.$pub->email)->first();
+                $instructors = $pub->instructors->lists('id');
+                if( count( $instructors ) == 0 ) $instructors = [0];
+                
+                if($ltc!=null){
+                    User::whereIn('id', $instructors)->update( [ 'ltc_affiliate_id' => $ltc->id ] );
+                }
+            }
+            return Redirect::action('MembersController@ltcMover');
         }
 
 
