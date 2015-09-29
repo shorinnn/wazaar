@@ -316,12 +316,14 @@
                                 {{ trans("courses/general.enter-classroom") }}
                             </a>
                         @else
-                            <button type='button' class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block"
+                            <button type='button'
                                     data-toggle="tooltip" data-placement="top" 
                                     @if( Auth::check() && Auth::user()->hasRole('Affiliate') )
                                         title="{{ trans('courses/general.log-in-student-to-purchase') }}"
+                                        class="clearfix default-button extra-large-button tooltipable btn-block"
                                         
                                     @else
+                                        class="clearfix enroll-button blue-button extra-large-button tooltipable btn-block"
                                         title="{{ trans('courses/general.available-for-customers') }}"
                                     @endif
                                         >
