@@ -62,7 +62,6 @@
                                         <div class="input-group">
                                             <div class="input-group-addon">¥</div>
                                             <input type="text" class="form-control text-center" name="sale_amount_low" value="{{$sale_amount_low}}">
-                                            <div class="input-group-addon">.00</div>
                                         </div>
                                     </div>
                                     <span class="pull-left">-</span>
@@ -70,7 +69,6 @@
                                         <div class="input-group">
                                             <div class="input-group-addon">¥</div>
                                             <input type="text" class="form-control text-center" name="sale_amount_high" value="{{$sale_amount_high}}">
-                                            <div class="input-group-addon">.00</div>
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +82,6 @@
                                         <div class="input-group">
                                             <div class="input-group-addon">¥</div>
                                             <input type="text" class="form-control text-center" name="product_price_low" value="{{$product_price_low}}">
-                                            <div class="input-group-addon">.00</div>
                                         </div>
                                     </div>
                                     <span class="pull-left">-</span>
@@ -92,7 +89,6 @@
                                         <div class="input-group">
                                             <div class="input-group-addon">¥</div>
                                             <input type="text" class="form-control text-center" name="product_price_high" value="{{$product_price_high}}">
-                                            <div class="input-group-addon">.00</div>
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +179,7 @@
 
         url = url + data;
 
-        $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-callback-2="scrollToElement" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
+        $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
         $('.course-desc-ajax-link').click();
     }
     function triggerSorter()
@@ -208,7 +204,7 @@
             var data = Array('sort_by='+$('#sort_by').val(),'sort='+$('#sort').val(),'search='+$('#course_name').val());
             url = url + data.join('&');
 
-            $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-callback-2="scrollToElement" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
+            $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
             $('.course-desc-ajax-link').click();
         })
     }
@@ -289,7 +285,8 @@
                 $('.datepicker.dropdown-menu').is(':visible').remove();
             });
 
-        $('.clear_date_btn').click(function(){
+        $('.clear_date_btn').click(function(e){
+            e.preventDefault();
             $('#start-date').val('');
             $('#end-date').val('');
             $(this).hide();
