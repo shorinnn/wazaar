@@ -113,17 +113,17 @@ class SiteController extends \BaseController {
         }
         // TEMPORARILY DISABLE THESE VARS BECAUSE THEY'RE NOT USED IN THE VIEW
         $categories = $groups = $topCourses = null;
-    //                $categories = CourseCategory::limit(12);
-    //                $groups = CategoryGroup::orderBy('order','asc')->get();
-    //                
-    //                if ( !Cache::has('topCourses') ){
-    //                    $top = HomepageHelper::generateVariations(8);
-    //                    Cache::add('topCourses', $top, 30);
-    //                }
-    //                
-    //                $topCourses = Cache::get('topCourses');
-    ////                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
-    //                $topCourses = $topCourses[ 0 ];
+                    $categories = CourseCategory::limit(12);
+                    $groups = CategoryGroup::orderBy('order','asc')->get();
+                    
+                    if ( !Cache::has('topCourses') ){
+                        $top = HomepageHelper::generateVariations(8);
+                        Cache::add('topCourses', $top, 30);
+                    }
+                    
+                    $topCourses = Cache::get('topCourses');
+    //                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
+                    $topCourses = $topCourses[ 0 ];
             
         // $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
         $paginate = 12;
@@ -176,7 +176,7 @@ class SiteController extends \BaseController {
         
         if(Auth::user()){
             if( Request::ajax() ) return View::make('site.discover_courses')->with( compact('discoverCourses', 'wishlisted', 'filter'));
-            return View::make('site.homepage_authenticated')
+            return View::make('site.homepage_authenticated_CLONE')
                     ->with(compact('categories', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter'));
         }
         else{
@@ -187,7 +187,7 @@ class SiteController extends \BaseController {
             //     return View::make('site.homepage_unauthenticated_DEPR')
             //     ->with( compact('categories', 'frontpageVideos', 'topCourses', 'discoverCourses', 'wishlisted') );
             // else
-            return View::make('site.homepage_unauthenticated')
+            return View::make('site.homepage_unauthenticated_CLONE')
                 ->with( compact('categories', 'frontpageVideos', 'topCourses', 'groups', 'discoverCourses', 'wishlisted', 'filter') );
         }
 	}
