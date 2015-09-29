@@ -162,7 +162,7 @@ class SiteController extends \BaseController {
             ->with( compact('hot_picks_courses', 'wazaar_picks_courses', 'top_paid_courses', 'top_free_courses', 'category_groups', 'wishlisted') ); 
     }
 
-    public function oldIndexDemo()
+    public function indexTest()
     {
         $data = Request::all();
 
@@ -221,7 +221,7 @@ class SiteController extends \BaseController {
             }
         }
         
-        return View::make('site.homepage_unauthenticated_demo')
+        return View::make('site.homepage_unauthenticated_test')
             ->with( compact('category_groups', 'wishlisted') ); 
     }
 
