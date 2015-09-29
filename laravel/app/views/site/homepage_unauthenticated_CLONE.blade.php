@@ -204,12 +204,12 @@
     <script>
         $(function(){
             $('.whats-hot-slider').smoothDivScroll({
-                autoScrollingMode: "onStart",
+                autoScrollingMode: "",
                 manualContinuousScrolling: true,
                 mousewheelScrolling: "",
             });
 
-            $('.whats-hot-slider .popular-courses').hover(function(){
+            /*$('.whats-hot-slider .popular-courses').hover(function(){
                         $(".whats-hot-slider").smoothDivScroll("stopAutoScrolling");
                     },
                     function(){
@@ -231,7 +231,7 @@
                     $(".whats-hot-slider").smoothDivScroll("startAutoScrolling");
                 }, 500);
 
-            });
+            });*/
         });
         ajaxifyPagination( null, '#discover-courses-area' );
         
