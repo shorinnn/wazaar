@@ -2,6 +2,8 @@
 class AdminHelper
 {
 
+    public $rolesFilter;
+
     public function userStats($frequency)
     {
         switch($frequency){
@@ -307,25 +309,25 @@ class AdminHelper
 
     private function _dailyUsers($date)
     {
-        $filter = " AND DATE(created_at) = '{$date}'";
+        $filter = " AND DATE(users.created_at) = '{$date}'";
         return $this->_userStatsData($filter);
     }
 
     private function _weeklyUsers($start, $end)
     {
-        $filter = " AND DATE(created_at) BETWEEN '{$start}' AND '{$end}'";
+        $filter = " AND DATE(users.created_at) BETWEEN '{$start}' AND '{$end}'";
         return $this->_userStatsData($filter);
     }
 
     private function _monthlyUsers($year, $month)
     {
-        $filter = " AND YEAR(created_at) = '{$year}' AND MONTH(created_at) = '{$month}'";
+        $filter = " AND YEAR(users.created_at) = '{$year}' AND MONTH(users.created_at) = '{$month}'";
         return $this->_userStatsData($filter);
     }
 
     private function _yearlyUsers($year)
     {
-        $filter = " AND YEAR(created_at) = '{$year}'";
+        $filter = " AND YEAR(users.created_at) = '{$year}'";
         return $this->_userStatsData($filter);
     }
 
@@ -346,7 +348,21 @@ class AdminHelper
 
     private function _userStatsData($filter = '')
     {
-        $sql = "SELECT count(id) as total_users, DATE(created_at) FROM users WHERE id <> 0 {$filter} group by DATE(created_at)";
+        $rolesCriteria = '';
+
+        if (count($this->rolesFilter) > 0){
+            $rolesStr = implode(',',$this->rolesFilter);
+            $rolesCriteria = "AND roles.id IN ({$rolesStr})";
+        }
+
+        //$sql = "SELECT count(id) as total_users, DATE(created_at) FROM users WHERE id <> 0 {$filter} group by DATE(created_at)";
+        $sql = "SELECT COUNT(users.id) as 'total_users', DATE(users.created_at)
+                FROM users
+                JOIN assigned_roles ON users.id = assigned_roles.user_id
+                JOIN roles ON roles.id = assigned_roles.role_id
+                WHERE users.id <> 0 {$rolesCriteria} {$filter}
+                GROUP BY users.id
+                ";
         $users = DB::select($sql);
 
         return $this->_transformUserCount($users);

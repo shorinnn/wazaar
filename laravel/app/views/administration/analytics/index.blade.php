@@ -10,10 +10,10 @@
                 </div>
                 <div class="segmented-controls analytics-filter clearfix">
                     <div class="panel-body buttons-container clearfix">
-                        <a class="segmented-buttons button-filter button-filter-daily" href="#" onclick="Analytics.sales('daily','','', this); return false;">{{trans('analytics.daily')}}</a>
-                        <a class="segmented-buttons button-filter button-filter-week" href="#" onclick="Analytics.sales('week','','', this); return false;">{{trans('analytics.weekly')}}</a>
-                        <a class="segmented-buttons button-filter button-filter-month" href="#" onclick="Analytics.sales('month','','', this); return false;">{{trans('analytics.monthly')}}</a>
-                        <a class="segmented-buttons button-filter button-filter-alltime" href="#" onclick="Analytics.sales('alltime','','', this); return false;">{{trans('analytics.allTime')}}</a>
+                        <a class="segmented-buttons button-filter button-filter-today btn-primary" href="#" onclick="Analytics.ApplyFilter('today'); return false;">{{trans('analytics.daily')}}</a>
+                        <a class="segmented-buttons button-filter button-filter-week" href="#" onclick="Analytics.ApplyFilter('week'); return false;">{{trans('analytics.weekly')}}</a>
+                        <a class="segmented-buttons button-filter button-filter-month" href="#" onclick="Analytics.ApplyFilter('month'); return false;">{{trans('analytics.monthly')}}</a>
+                        {{--<a class="segmented-buttons button-filter button-filter-alltime" href="#" onclick="Analytics.ApplyFilter('alltime'); return false;">{{trans('analytics.allTime')}}</a>--}}
                     </div>
                 </div>
             </div>
@@ -109,11 +109,36 @@
         </div>
         {{-- //Boxes --}}
 
+        <hr/>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Tables Filter</h3>
+          </div>
+          <div class="panel-body">
+              <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 50%">
+                  <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                  <span></span> <b class="caret"></b>
+              </div>
 
-
+              <button class="btn btn-success" style="margin-left: 10px">Apply Filter</button>
+          </div>
+        </div>
+        <div class="row">
+            @include('administration.analytics.tables')
+        </div>
     </div>
+
+
+
+
+    <div id="ajax-loader-wrapper" class="hidden"><div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div></div>
 @stop
 
+@section('extra_css')
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="{{url('plugins/daterangepicker/daterangepicker.css')}}"/>
+@stop
 @section('extra_js')
+    <script type="text/javascript" src="{{url('plugins/daterangepicker/daterangepicker.js')}}"></script>
     <script type="text/javascript" src="{{url('js/admin-analytics.js')}}"></script>
 @stop
