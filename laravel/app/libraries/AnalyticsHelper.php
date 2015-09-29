@@ -1409,6 +1409,11 @@ class AnalyticsHelper
             $countCriteria = "COUNT(purchases.id)";
             $criteria .= " AND (purchases.instructor_id = '{$this->userId}')";
         }
+        elseif($this->userType == 'admin'){
+            $sum = "sum(`purchase_price`)";
+            $countCriteria = "COUNT(purchases.id)";
+            //$criteria .= " AND (purchases.instructor_id = '{$this->userId}')";
+        }
 
         $sql = "SELECT created_at, {$sum} as 'total_purchase', {$countCriteria} as 'total_count'
                 FROM purchases WHERE id <> 0

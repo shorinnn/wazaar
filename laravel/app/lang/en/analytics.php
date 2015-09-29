@@ -112,4 +112,8 @@ return
 	'affiliate_fee' => 'Affiliate fee',
 	'second_tier_sales_fee' => '2nd Tier Sales fee',
 
+    'totalSignUps' => 'Total New Signups <br/> (Instructors & Students)',
+    'totalRevenues' => 'Total Revenues',
+    'totalSignUpsAffs' => 'Total New Signups <br/> (Affiliates)'
+
 ];
