@@ -426,6 +426,7 @@
 
     if(typeof($)=='function'){
         centerVidVertically();
+		centerVidLoadIcon();
         @if( $video == null && $reviewModal)
             @if($lesson->external_video_url != '')
                 @if(externalVideoType($lesson->external_video_url)!='yt')

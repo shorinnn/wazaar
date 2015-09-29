@@ -46,7 +46,10 @@
     var videoHash = '{{$lesson->module->course->slug}}-{{$lesson->module->slug}}-{{$lesson->slug}}';	
     $(function(){
         centerVidVertically();
-        
+		
+		$('body').delegate('.classroom-header .navigate-lessons-buttons a','click',  function(){
+        	centerVidLoadIcon();			
+		});
         //Hide and show the positive and negative review textareas and labels
 		$('body').delegate('.yes-button','click',  function(){
 			$('.positive-review-wrap').removeClass('hide');
@@ -105,6 +108,11 @@
 	var timeout = false;
 	var delta = 200;
 	$(window).resize(function() {
+		centerVidVertically();
+		$('body').delegate('.classroom-header .navigate-lessons-buttons a','click',  function(){
+        	centerVidLoadIcon();			
+		});
+		
 		add_scroll_class_if_have_scrollbar();
 		rtime = new Date();
 		if (timeout === false) {
@@ -193,5 +201,19 @@ function centerVidVertically(){
     $div.css('margin-top', margin+'px');
     return margin;
 }
+function centerVidLoadIcon(){
+	$win = $(window);
+	$div = $('.video-row');
+	$loadIcons = $('.classroom-view .small-overlay');
+	
+	vidMarginTop = ($win.height() - $div.height() ) /2;
+	
+	loadIconleftValue = ($div.width()) /2;
+	$loadIcons.css('left', loadIconleftValue+'px');
+	
+	loadIconTopValue = vidMarginTop - $div.height();
+	$loadIcons.css('top', loadIconTopValue+'px');
+}
+	
 </script>
 @stop
