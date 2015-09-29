@@ -19,15 +19,15 @@
 	<div class="row">
     	<div class="col-md-12">
             <h2 class="text-center">Search Course</h2>
-            <input type="hidden" name="sort-by" id="sort-by" value="{{$sort_by}}">
-            <input type="hidden" name="sort" id="sort" value="{{$sort}}">
             <div class="row">
-                <form class="form-horizontal" style="padding-bottom:20px;">
+                <form id="search_form" class="form-horizontal" style="padding-bottom:20px;">
+                    <input type="hidden" name="sort_by" id="sort_by" value="{{$sort_by}}">
+                    <input type="hidden" name="sort" id="sort" value="{{$sort}}">
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="course_name" value="{{$course_name}}">
+                                <input type="text" class="form-control" id="course_name" name="course_name" value="{{$course_name}}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -39,15 +39,15 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Status</label>
+                            <label class="col-sm-3 control-label">Filter</label>
                             <div class="col-sm-9">
-                                {{Form::select('course_status', $course_statuses, $course_status, ['id'=>'course_status', 'class'=>'form-control'])}}
+                                {{Form::select('filter', $filters, $filter, ['id'=>'filter', 'class'=>'form-control'])}}
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Email</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="email">
+                                <input type="text" class="form-control" id="email" name="email" value="{{$email}}">
                             </div>
                         </div>
                     </div>
@@ -61,16 +61,14 @@
                                     <div class="col-xs-5 col-sm-5">
                                         <div class="input-group">
                                             <div class="input-group-addon">¥</div>
-                                            <input type="text" class="form-control">
-                                            <div class="input-group-addon">.00</div>
+                                            <input type="text" class="form-control text-center" name="sale_amount_low" value="{{$sale_amount_low}}">
                                         </div>
                                     </div>
                                     <span class="pull-left">-</span>
                                     <div class="col-xs-5 col-sm-5">
                                         <div class="input-group">
                                             <div class="input-group-addon">¥</div>
-                                            <input type="text" class="form-control">
-                                            <div class="input-group-addon">.00</div>
+                                            <input type="text" class="form-control text-center" name="sale_amount_high" value="{{$sale_amount_high}}">
                                         </div>
                                     </div>
                                 </div>
@@ -83,16 +81,14 @@
                                     <div class="col-xs-5 col-sm-5">
                                         <div class="input-group">
                                             <div class="input-group-addon">¥</div>
-                                            <input type="text" class="form-control">
-                                            <div class="input-group-addon">.00</div>
+                                            <input type="text" class="form-control text-center" name="product_price_low" value="{{$product_price_low}}">
                                         </div>
                                     </div>
                                     <span class="pull-left">-</span>
                                     <div class="col-xs-5 col-sm-5">
                                         <div class="input-group">
                                             <div class="input-group-addon">¥</div>
-                                            <input type="text" class="form-control">
-                                            <div class="input-group-addon">.00</div>
+                                            <input type="text" class="form-control text-center" name="product_price_high" value="{{$product_price_high}}">
                                         </div>
                                     </div>
                                 </div>
@@ -104,22 +100,26 @@
                             <label class="col-sm-3 control-label">Date</label>
                             <div class="col-sm-9">
                                 <div class="row">
+                                    <div class="alert alert-danger hide date-warning"></div>
                                     <div class="col-xs-5 col-sm-5">
                                         <div class="input-group">
-                                            <input type="text" id="date_from" class="form-control">
+                                            <input type="text" id="start-date" class="form-control text-center" readonly="readonly" name="purchase_date_low" value="{{$purchase_date_low}}">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                <button class="btn btn-default" id="start-date-btn" type="button"><i class="fa fa-calendar"></i></button>
                                             </span>
                                         </div>
                                     </div>
                                     <span class="pull-left">-</span>
                                     <div class="col-xs-5 col-sm-5">
                                         <div class="input-group">
-                                            <input type="text" id="date_to" class="form-control">
+                                            <input type="text" id="end-date" class="form-control text-center" readonly="readonly" name="purchase_date_high" value="{{$purchase_date_high}}">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                <button class="btn btn-default" id="end-date-btn" type="button"><i class="fa fa-calendar"></i></button>
                                             </span>
                                         </div>
+                                    </div>
+                                    <div class="col-xs-1 col-sm-1 hide clear_date_btn">
+                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-remove"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -131,13 +131,13 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Course ID</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="course_id">
+                                <input type="text" class="form-control" id="course_id" name="course_id" value="{{$course_id}}">
                             </div>
                         </div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="col-xs-12 text-center">
-                        <button class="btn btn-primary btn-lg">Search <i class="fa fa-search"></i></button>
+                        <button type="button" class="btn btn-primary btn-lg" onclick="searchOrder();">Search <i class="fa fa-search"></i></button>
                     </div>
                     <div class="clearfix"></div>
                 </form>
@@ -155,9 +155,8 @@
 <script>
     function addSorterIndicator()
     {
-        console.log('asdasdasd')
         $('a.sorter').each(function(){
-            if($(this).data('sort-by') == $('#sort-by').val())
+            if($(this).data('sort-by') == $('#sort_by').val())
             {
                 $(this).addClass('active')
                 if($('#sort').val() == 'asc'){
@@ -176,10 +175,11 @@
     function searchOrder()
     {
         var url = '/administration/manage-orders?';
-        var data = Array('sort_by='+$('#sort-by').val(),'sort='+$('#sort').val(),'search='+$('#course_name').val());
-        url = url + data.join('&');
+        var data = $('#search_form').serialize()
 
-        $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-callback-2="scrollToElement" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
+        url = url + data;
+
+        $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
         $('.course-desc-ajax-link').click();
     }
     function triggerSorter()
@@ -197,24 +197,23 @@
                 $(this).addClass('active').data('sort', 'asc');
             }
             $('#sort').val($(this).data('sort'))
-            $('#sort-by').val($(this).data('sort-by'))
+            $('#sort_by').val($(this).data('sort-by'))
             // loadOrders();
 
             var url = '/administration/manage-orders?';
-            var data = Array('sort_by='+$('#sort-by').val(),'sort='+$('#sort').val(),'search='+$('#course_name').val());
+            var data = Array('sort_by='+$('#sort_by').val(),'sort='+$('#sort').val(),'search='+$('#course_name').val());
             url = url + data.join('&');
 
-            $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-callback-2="scrollToElement" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
+            $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
             $('.course-desc-ajax-link').click();
         })
     }
     function loadOrders()
     {
         var url = '/administration/manage-orders?';
-        var data = Array('sort_by='+$('#sort-by').val(),'sort='+$('#sort').val(),'search='+$('#course_name').val())
-        // console.log(data);
+        var data = $('#search_form').serialize()
 
-        url = url + data.join('&');
+        url = url + data;
 
         $('.alax-loader').hide().removeClass('hide').show();
         $.ajax({
@@ -231,6 +230,68 @@
     }
     jQuery(document).ready(function($){
         loadOrders();
+
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+        var startDateVal = $('#start-date').val();
+        var endDateVal = $('#end-date').val();
+        if(startDateVal == '' || endDateVal == ''){
+            var startDate = now;
+            var endDate = now;
+            $('#start-date-btn').data('date', startDate)
+            $('#end-date-btn').data('date', endDate)
+        } else {
+            $('.clear_date_btn').hide().removeClass('hide').show();
+            var startDate = startDateVal;
+            var endDate = startDateVal;
+            $('#start-date-btn').data('date', startDateVal)
+            $('#end-date-btn').data('date', endDateVal)
+        }
+
+        $('#start-date-btn').datepicker({
+            format: 'yyyy-mm-dd'
+        })
+            .on('changeDate', function(ev){
+                if (ev.date.valueOf() > endDate.valueOf()){
+                    $('.date-warning').hide().removeClass('hide').show().text('The start date can not be greater then the end date');
+                    setTimeout(function(){
+                        $('.date-warning').hide().text('');
+                    }, 2000);
+                } else {
+                    $('.date-warning').hide();
+                    startDate = new Date(ev.date);
+                    $('#start-date').val($('#start-date-btn').data('date'));
+                }
+                $('#start-date-btn').datepicker('hide');
+                $('.clear_date_btn').hide().removeClass('hide').show();
+                $('.datepicker.dropdown-menu').is(':visible').remove();
+            });
+        $('#end-date-btn').datepicker({
+            format: 'yyyy-mm-dd'
+        })
+            .on('changeDate', function(ev){
+                if (ev.date.valueOf() < startDate.valueOf()){
+                    $('.date-warning').hide().removeClass('hide').show().text('The end date can not be less then the start date');
+                    setTimeout(function(){
+                        $('.date-warning').hide().text('');
+                    }, 2000);
+                } else {
+                    $('.date-warning').hide();
+                    endDate = new Date(ev.date);
+                    $('#end-date').val($('#end-date-btn').data('date'));
+                }
+                $('#end-date-btn').datepicker('hide');
+                $('.clear_date_btn').hide().removeClass('hide').show();
+                $('.datepicker.dropdown-menu').is(':visible').remove();
+            });
+
+        $('.clear_date_btn').click(function(e){
+            e.preventDefault();
+            $('#start-date').val('');
+            $('#end-date').val('');
+            $(this).hide();
+        })
+        console.log($('#search_form').serialize())
     });
 </script>
 @stop

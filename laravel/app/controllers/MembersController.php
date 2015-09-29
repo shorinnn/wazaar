@@ -237,6 +237,18 @@ class MembersController extends \BaseController {
                 return Response::json(['success' => 0, 'errors'=> $user->errors()->all()]);
             }
         }
+        
+        public function ltcMover(){
+            $stPubs = ['yiu72315@gmail.com', 'kame.affili@gmail.com', 'kfkd0123@gmail.com', 'kameoffice123@gmail.com',
+                'yozawa@exraise-venture.asia', 'info@otakeninc.com', 'rabbitkiss2000@yahoo.co.jp', 'harada@ulj.co.jp',
+                'okazeri@agari.guru', 'okazeri@wannabies.jp', 'kotanigawa@leadconsulting.jp', 'mm7732002@gmail.com',
+                'support@e-motty.com', 'sub@mellidion.jp', 'numakura@mellidion.jp', 'tetsuoship@gmail.com', 'info@jmedia.asia',
+                'mori@it-partners.biz', 'info@dodo.co.jp', 'yu_ni123@yahoo.co.jp'
+            ];
+            
+            $stPubs = SecondTierInstructor::whereIn('email', $stPubs)->with('instructors')->get();
+            return View::make('administration.members.ltc-mover')->with( compact('stPubs') );
+        }
 
 
 }

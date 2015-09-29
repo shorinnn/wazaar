@@ -31,6 +31,7 @@ $wwwRoutes = function(){
     // Site routes
     Route::get('/', 'SiteController@index');
     Route::get('demo-homepage', 'SiteController@indexDemo');
+    Route::get('test-homepage', 'SiteController@indexTest');
     Route::get('views-analytics', 'SiteController@viewsAnalytics');
     Route::get('discover-courses/{group}', 'SiteController@discoverCourses');
     Route::get('privacy-policy', 'SiteController@privacyPolicy');
@@ -62,6 +63,7 @@ $wwwRoutes = function(){
 	Route::get('instructorcourse', 'SiteController@instructorcourse');
 	Route::get('instructorquestions', 'SiteController@instructorquestions');
 	Route::get('checkoutmodal', 'SiteController@checkoutmodal');
+	Route::get('oldindex', 'SiteController@oldindex');
 
     // temporary tracking route
     Route::post('action-tracker', 'ActionController@track');
@@ -136,6 +138,7 @@ $wwwRoutes = function(){
         Route::get('members/super-vip', 'MembersController@superVip');
         Route::get('members/vip', 'MembersController@vip');
         Route::get('members/ltc', 'MembersController@ltc');
+        Route::get('members/ltc-mover', 'MembersController@ltcMover');
 
         Route::post('members/login-as', 'MembersController@loginAs');
         Route::resource('members', 'MembersController');

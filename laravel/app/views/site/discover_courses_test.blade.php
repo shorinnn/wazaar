@@ -24,7 +24,6 @@
     @foreach( $category_group->discover_courses as $ii => $course )
      <?php 
      $course = courseApprovedVersion($course);
-     $course->count = $ii;
      echo Flatten::section('top-discover-course-'.$course->id, Config::get('custom.cache-expiry.course-box'), function () use ($course) { ?>
         <div class="col-xs-12 col-sm-6 col-md-4 course-box-wrap">
             <a href="{{ action('CoursesController@show', $course->slug) }}" class="small-box-link-wrapper">
@@ -104,14 +103,13 @@
                 </div>
             </a>
         </div>
-        @if($course->count == 2)
-        </div>
-        <div class="hidden_courses hide">
-        @endif
-    
     <?php
         });
     ?>
+    @if($ii == 2)
+    </div>
+    <div class="hidden_courses hide">
+    @endif
     @endforeach
     </div>
 </div>

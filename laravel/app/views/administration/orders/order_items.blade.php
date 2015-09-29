@@ -1,9 +1,5 @@
 @if(count($orders) >= 1)
 	@foreach($orders as $i => $order)
-	<?php
-		$user = User::where('id', '=', $order->student_id)->first();
-		$course = Course::where('id', '=', $order->product_id)->first();
-	?>
 	<tr>
 		<td>{{$order->payment_ref}}</td>
 		<td>{{$order->course_name}}</td>

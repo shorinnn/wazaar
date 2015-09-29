@@ -15,6 +15,7 @@ class Instructor extends User{
         'agency' => [self::BELONGS_TO, 'InstructorAgency', 'foreignKey' => 'instructor_agency_id'],
         'secondTierInstructor' => [self::BELONGS_TO, 'SecondTierInstructor', 'foreignKey' => 'second_tier_instructor_id'],
         'allTransactions' => [ self::HAS_MANY, 'Transaction', 'foreignKey'=>'user_id' ],
+        'ltcAffiliate' => [ self::BELONGS_TO, 'LTCAffiliate', 'table' => 'users', 'foreignKey' => 'ltc_affiliate_id', 'otherKey' => 'id' ],
       ];
     
     public function getTransactionsAttribute(){
