@@ -213,7 +213,7 @@
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="finished">
              
-                          @foreach($purchasedCourses() as $course)
+                          @foreach($purchasedCourses as $course)
                               <?php
                               $course = $course->product;
                               if( $student->courseProgress( $course ) < 100 ) continue;
