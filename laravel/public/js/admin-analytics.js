@@ -120,4 +120,5 @@ var Analytics = {
 $(function(){
     Analytics.ApplyFilter('today');
     Analytics.InitCalendarFilter();
+    Analytics.ApplyTableDateFilter();
 });
