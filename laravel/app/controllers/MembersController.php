@@ -247,7 +247,7 @@ class MembersController extends \BaseController {
                 'mori@it-partners.biz', 'info@dodo.co.jp', 'yu_ni123@yahoo.co.jp'
             ];
             
-            $stPubs = SecondTierInstructor::whereIn('email', $stPubs)->paginate(2);
+            $stPubs = SecondTierInstructor::whereIn('email', $stPubs)->paginate(3);
             return View::make('administration.members.ltc-mover')->with( compact('stPubs') );
         }
         
