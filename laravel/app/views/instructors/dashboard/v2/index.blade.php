@@ -1,5 +1,10 @@
 @extends('layouts.default')
 @section('content')
+	<style>
+            .instructor-dashboard .tab-content{
+                min-height: 300px;
+            }							
+    </style>
 	<div class="container-fluid new-dashboard instructor-dashboard top-section">
     	<div class="container">
             <div class="row">
@@ -72,11 +77,6 @@
                     <div class="tab-content">
                       <div role="tabpanel" class="tab-pane fade in active margin-bottom-25" id="teaching">
                           @if( $courses->count() == 0 )
-                           	<style>
-									.instructor-dashboard .tab-content{
-										min-height: 250px;
-									}							
-							</style>
                             <p class="text-center">{{ trans('courses/create.no-courses-yet-create-one') }}</p>
                             
                             <div class="text-center clearfix">
@@ -197,11 +197,6 @@
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="enrolled">
                            @if( $purchasedCourses->count() == 0 )
-                           	<style>
-									.instructor-dashboard .tab-content{
-										min-height: 300px;
-									}							
-							</style>
                                 @if(Auth::user()->_profile('Instructor') != null)
                                     @if( trim(Auth::user()->_profile('Instructor')->corporation_name) != '')
                                         <p class="text-center">でみたいことはありますか？</p> 
@@ -239,22 +234,12 @@
                           @endforeach
                           
                           @if( !isset($completedCourse) )
-                           	<style>
-									.instructor-dashboard .tab-content{
-										min-height: 300px;
-									}							
-							</style>
                              <p class="text-center">あなたはまだ修了したコースがありません。</p>
                              <p class="text-center margin-top-10"> さあ、コースを探してみよう！</p>
                           @endif
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="wishlist">
                           @if($wishlist->count() == 0 )
-								<style>
-                                        .instructor-dashboard .tab-content{
-                                            min-height: 300px;
-                                        }							
-                                </style>
                               <p class="text-center">お気に入りのコースはありません。</p>
                           @endif
                           

@@ -50,7 +50,7 @@
         {{ trans('administration.color-scheme') }}:
         <br />
         <form class="clearfix">
-            <div class="radio-buttons clearfix homepage explore-category">
+            <div class="radio-buttons clearfix homepage explore-category show">
                 <?php $i = 0;?>
             @foreach( $cssClasses as $css )
                 <?php

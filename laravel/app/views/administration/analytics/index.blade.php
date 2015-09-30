@@ -120,10 +120,10 @@
                   <span></span> <b class="caret"></b>
               </div>
 
-              <button class="btn btn-success" style="margin-left: 10px">Apply Filter</button>
+              <button class="btn btn-success" onclick="Analytics.ApplyTableDateFilter(); return false;" style="margin-left: 10px">Apply Filter</button>
           </div>
         </div>
-        <div class="row">
+        <div class="row-fluid">
             @include('administration.analytics.tables')
         </div>
     </div>

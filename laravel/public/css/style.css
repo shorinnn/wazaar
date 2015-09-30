@@ -914,6 +914,7 @@ header .profile-name li:hover ul{
 	font-size: 12px;
 	display: block;
 	font-weight: bold;
+	word-break: break-all;
 }
 .discover-section{
 	background-color: #ebeced;
