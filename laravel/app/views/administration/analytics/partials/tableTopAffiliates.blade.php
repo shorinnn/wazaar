@@ -1,23 +1,11 @@
-<div class="row-fluid">
-    <table class="table table-striped">
-        <thead>
-        <th>Rank</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Total Sales</th>
-        <th># Sales</th>
-        <th></th>
-        </thead>
 
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Top Affiliates</h3>
+    </div>
+    <div class="panel-body" id="table-top-affiliates">
+        <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+    </div>
 </div>
+
+

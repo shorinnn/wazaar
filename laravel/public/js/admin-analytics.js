@@ -26,9 +26,6 @@ var Analytics = {
         else if($frequency == 'alltime'){
             $('#header-total-signups-student-instructors-frequency').html(_("All Time"));
         }
-
-
-
     },
 
     'AffiliateSignups' : function ($frequency){
@@ -85,9 +82,11 @@ var Analytics = {
             $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         }
         cb(moment().subtract(29, 'days'), moment());
-
+        var $date = new Date();
         $('#reportrange').daterangepicker({
             locale: 'jp',
+            startDate: new Date($date.getFullYear(), $date.getMonth(), 1),
+            endDate: new Date($date.getFullYear(), $date.getMonth() + 1, 0),
             ranges: {
                 'Today': [moment(), moment()],
                 'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -97,10 +96,29 @@ var Analytics = {
                 'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
             }
         }, cb);
+
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+
+        });
+    },
+    'DateFilterStart' : '',
+    'DateFilterEnd' : '',
+    'ApplyTableDateFilter' : function (){
+
+        Analytics.DateFilterStart = $('#reportrange').data('daterangepicker').startDate.format('YYYY-MM-DD');
+        Analytics.DateFilterEnd = $('#reportrange').data('daterangepicker').endDate.format('YYYY-MM-DD');
+        Analytics.TableSiteStats();
+    },
+
+    'TableSiteStats' : function (){
+        $.get('/administration/analytics/site-statistics-table/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
+            $('#table-site-stats').html($table);
+        });
     }
 }
 
 $(function(){
     Analytics.ApplyFilter('today');
     Analytics.InitCalendarFilter();
+    Analytics.ApplyTableDateFilter();
 });
