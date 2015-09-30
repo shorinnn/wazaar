@@ -133,6 +133,7 @@ class Student extends User{
         $purchase->purchase_price = $product->cost();
         if( $this->ltc_affiliate !=null ) $purchase->ltc_affiliate_id = $this->ltc_affiliate_id;
 
+        // disable below
         $ltcSTPub = $this->LTCInstructor();
         if( $ltcSTPub !=false ){
             $purchase->ltc_affiliate_id = $ltcSTPub;
