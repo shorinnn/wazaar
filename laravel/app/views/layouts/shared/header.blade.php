@@ -110,11 +110,14 @@
                     @elseif( Auth::user()->_profile('Student') !=null )
                         <img style="height: 30px; width: 30px; border-radius: 30px;" 
                              src="{{ cloudfrontUrl( Auth::user()->_profile('Student')->photo ) }}" alt="">
+                    @elseif( trim(Auth::user()->photo) == '')
+                        <img style="height: 30px; width: 30px; border-radius: 30px;" 
+                             src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" alt="">                    
                     @else
                         <img style="height: 30px; width: 30px; border-radius: 30px;" 
                              src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" alt="">
                     @endif
-                   
+                    
                 </div>
                 <ul class="profile-name">
                     <li class="activate-dropdown">
