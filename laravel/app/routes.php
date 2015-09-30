@@ -119,6 +119,8 @@ $wwwRoutes = function(){
     Route::get('/verification-confirmation', 'UsersController@verificationConfirmation');
 
 
+    Route::when('administration/*', 'admin'); //uses admin filter for all url with administration
+    
     // Admin Controller
     Route::group(array('prefix'=>'administration'),function(){
         Route::post('withdrawals/update', 'WithdrawalsController@update');
@@ -165,6 +167,7 @@ $wwwRoutes = function(){
 
 
     });
+
 
     // Course Categories
     Route::get('coursecategories/subcategories', 'CoursesCategoriesController@subcategories');

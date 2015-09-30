@@ -93,6 +93,7 @@ return array(
         '2-tier-instructor-income' => '2nd Tier Instructor Income',
         'buyer-name' => 'Buyer Name',
         'buyer-email' => 'Buyer Email',
-        'transaction-date' => 'Transaction Date'
+        'transaction-date' => 'Transaction Date',
+        'total' => 'Total'
     ]
 );
