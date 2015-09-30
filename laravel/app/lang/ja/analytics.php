@@ -7,7 +7,7 @@ return
     'thisWeek' => '今週',
     'thisMonth' => '今月',
     'thisYear' => '今年',
-    'sales' => 'アフィリエイト収入',
+    'sales' => '販売収入',
     'trackingCodeConverting' => 'トラッキングコード（CV）',
     'trackingCode' => 'トラッキングコード',
     'trackingCodes' => 'トラッキング・コード',

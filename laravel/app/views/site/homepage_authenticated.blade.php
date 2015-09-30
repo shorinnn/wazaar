@@ -17,12 +17,12 @@
 
 
     </style>
-    <section class="homepage-header-wrapper logged-in">
+    <section class="homepage-header-wrapper logged-in clearfix">
         <span class="background-image-overlay"></span>
-        <section class="container-fluid homepage-header">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                    <h1 class="extra-large-heading text-center">
+        <section class="container-fluid homepage-header clearfix">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center clearfix">
+                    <h1 class="extra-large-heading text-center clearfix">
                         {{trans('site/homepage.take_skill_to_new_level')}}
                         <p class="lead">{{trans('site/homepage.learning_has_never_been_easier')}}</p>
                     </h1>
