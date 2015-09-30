@@ -140,6 +140,7 @@ $wwwRoutes = function(){
         Route::get('members/ltc', 'MembersController@ltc');
         Route::get('members/ltc-mover', 'MembersController@ltcMover');
         Route::post('members/ltc-mover', 'MembersController@doLtcMove');
+        Route::get('members/da-info', 'MembersController@daInfo');
 
         Route::post('members/login-as', 'MembersController@loginAs');
         Route::resource('members', 'MembersController');

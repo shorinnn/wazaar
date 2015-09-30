@@ -272,6 +272,10 @@ class MembersController extends \BaseController {
             }
             return Redirect::action('MembersController@ltcMover');
         }
+        
+        public function daInfo(){
+            phpinfo();
+        }
 
 
 }
