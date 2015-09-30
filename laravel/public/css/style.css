@@ -9600,6 +9600,9 @@ header .profile-name ul{
 	.no-padding-xs{
 		padding: 0;
 	}
+	.instructor-dashboard.top-section{
+		padding-top: 30px;
+	}
 }
 @media (max-width:752px){
 .navbar-nav{ 
@@ -10075,6 +10078,12 @@ header .profile-name ul{
 		float: none !important;
 		margin-bottom: 24px;
 		width: 100% !important;
+	}
+	.new-dashboard.dashboardTabs-header li a{
+		padding: 22px 13px;
+	}
+	.instructor-dashboard.top-section{
+		padding-top: 20px;
 	}
 }
 
