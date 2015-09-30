@@ -91,8 +91,12 @@
     
     @endforeach
 </table>
+{{ $stPubs->links() }}
 {{ Form::open(['action' => 'MembersController@doLtcMove']) }}
 <center>
+     @foreach($stPubs as $pub)
+         <input type="hidden" name="ids[]" value="{{$pub->id}}" />
+     @endforeach
     <input class='btn btn-primary' type='submit' value='Change LTC' onclick='return confirm("Are you sure?")' />
 </center>
 {{ Form::close() }}
