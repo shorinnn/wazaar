@@ -1,25 +1,11 @@
-<table class="table table-striped">
-    <thead>
-        <th>Rank</th>
-        <th>Course Name</th>
-        <th>Course Category</th>
-        <th># Sales</th>
-        <th>Revenue</th>
-        <th>Instructor Name</th>
-        <th>Instructor Email</th>
-        <th></th>
-    </thead>
 
-    <tbody>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    </tbody>
-</table>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Top Courses</h3>
+    </div>
+    <div class="panel-body" id="table-top-courses">
+        <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+    </div>
+</div>
+
+

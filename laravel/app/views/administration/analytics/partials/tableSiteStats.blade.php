@@ -1,19 +1,12 @@
-<table class="table table-striped">
-    <thead>
-    <th>Date</th>
-    <th>Revenue</th>
-    <th>Instructor/Student Signups</th>
-    <th>Affiliate Signups</th>
-    <th>Total Signups</th>
-    </thead>
 
-    <tbody>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    </tbody>
-</table>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Site Statistics</h3>
+        </div>
+        <div class="panel-body" id="table-site-stats">
+            <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+        </div>
+    </div>
+
+
+

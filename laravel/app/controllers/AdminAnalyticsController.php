@@ -62,6 +62,15 @@ class AdminAnalyticsController extends BaseController {
         }
     }
 
+    public function getSiteStatisticsTable($startDate, $endDate)
+    {
+        $start = Input::has('page') ? Input::get('page') : 1;
+        $siteStatsAll = $this->adminHelper->siteStats($startDate,$endDate,null);
+        $siteStats = $this->adminHelper->siteStats($startDate,$endDate,$start);
+        $paginator = Paginator::make($siteStats,count($siteStatsAll),10);
+        return View::make('administration.analytics.ajax.siteStats',compact('siteStats','paginator'));
+    }
+
 
 
 
