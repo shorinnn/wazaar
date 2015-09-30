@@ -50,6 +50,9 @@ return
 
     'course' => 'Course',
 
+	'profit' => 'Profit',
+	'revenue' => 'Revenue',
+	
     'Monday' => 'Monday',
     'Tuesday' => 'Tuesday',
     'Wednesday' => 'Wednesday',
