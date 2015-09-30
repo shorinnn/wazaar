@@ -18,9 +18,9 @@
 		<td>{{$order->created_at->format('M d, Y h:i A \\(l\\)')}}</td>
 		<td>
 			@if(!empty($order->payment_ref))
-				<button type="button" class="btn btn-danger btn-sm">REFUND</button>
+				<button type="button" class="btn btn-danger btn-sm">{{ trans('administration.orders.refund' )}}</button>
 			@else
-				<button type="button" class="btn btn-danger btn-sm" disabled="disabled">REFUND</button>
+				<button type="button" class="btn btn-danger btn-sm" disabled="disabled">{{ trans('administration.orders.refund' )}}</button>
 			@endif
 		</td>
 	</tr>
