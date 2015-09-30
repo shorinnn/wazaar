@@ -99,7 +99,7 @@
             <div class="top-profile-info">          
                 
                 <span class="profile-level">12</span>
-                <div class="profile-thumbnail">
+				<div class="profile-thumbnail">
           
                     @if( Auth::user()->_profile('Instructor') !=null && trim(Auth::user()->_profile('Instructor')->photo) !='' )
                     <img style="height: 30px; width: 30px; border-radius: 30px;" 
@@ -115,8 +115,7 @@
                              src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" alt="">
                     @endif
                     
-                </div>
-                <ul class="profile-name">
+                </div>                <ul class="profile-name">
                     <li class="activate-dropdown">
                         <button aria-expanded="false" data-toggle="dropdown" 
                                 class="btn btn-default dropdown-toggle" type="button" id="btnGroupDrop1">

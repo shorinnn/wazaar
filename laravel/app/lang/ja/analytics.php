@@ -41,6 +41,9 @@ return
 
     'course' => 'コース',
 
+	'profit' => '販売収益',
+	'revenue' => '総売上額',
+
     'Monday' => '月曜日',
     'Tuesday' => '火曜日',
     'Wednesday' => '水曜日',
