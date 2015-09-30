@@ -247,7 +247,7 @@ class MembersController extends \BaseController {
                 'mori@it-partners.biz', 'info@dodo.co.jp', 'yu_ni123@yahoo.co.jp'
             ];
             
-            $stPubs = SecondTierInstructor::whereIn('email', $stPubs)->with('instructors')->get();
+            $stPubs = SecondTierInstructor::whereIn('email', $stPubs)->get();
             return View::make('administration.members.ltc-mover')->with( compact('stPubs') );
         }
         
@@ -260,7 +260,7 @@ class MembersController extends \BaseController {
                 'mori@it-partners.biz', 'info@dodo.co.jp', 'yu_ni123@yahoo.co.jp'
             ];
             
-            $stPubs = SecondTierInstructor::whereIn('email', $stPubs)->with('instructors')->get();
+            $stPubs = SecondTierInstructor::whereIn('email', $stPubs)->get();
             foreach($stPubs as $pub){
                 $ltc = LTCAffiliate::where('email', '#waa#-'.$pub->email)->first();
                 $instructors = $pub->instructors->lists('id');
