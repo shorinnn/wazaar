@@ -186,6 +186,7 @@ function makeYTfluid(){
                                     .height(newWidth * $el.data('aspectRatio'));
 
                     });
+                    centerVidVertically();
                 }, 500);
 		
 
