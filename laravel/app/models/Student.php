@@ -134,10 +134,11 @@ class Student extends User{
         if( $this->ltc_affiliate !=null ) $purchase->ltc_affiliate_id = $this->ltc_affiliate_id;
 
         // disable below
-        $ltcSTPub = $this->LTCInstructor();
-        if( $ltcSTPub !=false ){
-            $purchase->ltc_affiliate_id = $ltcSTPub;
-        }
+//        $ltcSTPub = $this->LTCInstructor();
+        $ltcSTPub = false;
+//        if( $ltcSTPub !=false ){
+//            $purchase->ltc_affiliate_id = $ltcSTPub;
+//        }
 
         if($course->instructor->secondTierInstructor!=null) $purchase->second_tier_instructor_id = $course->instructor->second_tier_instructor_id;
         $purchase->instructor_id = $course->instructor_id;

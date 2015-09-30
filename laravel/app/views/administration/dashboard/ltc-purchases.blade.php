@@ -10,7 +10,7 @@
                         <td>Product</td>
                         <td>Cost</td>
                         <td>Instructor | Earnings</td>
-                        <td>LTC Affiliate | Earnings</td>
+                        <td>LTC Affiliate | Earnings | Email</td>
                         <td>Affiliate | Earnings</td>
                         <td>2Tier Pub | Earnings</td>
                         <td>2Tier Aff | Earnings</td>
@@ -38,8 +38,15 @@
                                     USER #{{ $purchase->ltc_affiliate_id }} MISSING!
                                 @else
                                     #{{ $purchase->ltc_affiliate->id }}
-                                    {{  $purchase->ltc_affiliate->fullName() }} |
+                                    {{ $purchase->ltc_affiliate->fullName() }} 
+                                   
+                                    |
                                     &yen;{{$purchase->ltc_affiliate_earnings}}
+                                    |
+                                     <a target='_blank' 
+                                       href='{{ action('MembersController@index') }}?search={{ urlencode($purchase->ltc_affiliate->email) }}'>
+                                        {{ $purchase->ltc_affiliate->email }}
+                                    </a>
                                 @endif
                             @endif
                         </td>
