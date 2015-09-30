@@ -5,6 +5,14 @@
 @stop
 
 @section('content')
+	<style>
+    	.student-dash .tab-content{
+			border: none !important;
+		}
+		.student-dash .tab-content .tab-pane{
+			border: 1px solid #e0e1e2;
+		}
+    </style>
 	<div class="container-fluid new-dashboard top-section" style="min-height: 200px;">
     	<div class="container">
             <div class="row">
@@ -99,26 +107,38 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid new-dashboard dashboardTabs padding-bottom-25">
+    <div class="container-fluid new-dashboard student-dash dashboardTabs padding-bottom-25">
     	<div class="container">
         	<div class="row">
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 pull-right">
                     <div class="tab-content">
                       <div role="tabpanel" class="tab-pane fade in active" id="enrolled">
                           @if($courses->count() == 0)
+                          		<style>
+									.student-dash .tab-content #enrolled{
+										border: none;
+									}
+									.student-dash .tab-content{
+										min-height: 200px;
+									}
+								</style>
                                 @if(Auth::user()->_profile('Instructor') != null)
                                     @if( trim(Auth::user()->_profile('Instructor')->corporation_name) != '')
-                                        学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                                        <p class="text-center">でみたいことはありますか？</p>
+                                        <p class="text-center margin-top-10"> Wazaarでコースを探してみましょう！</p>
                                     @else
                                         {{ Auth::user()->_profile('Instructor')->last_name }}
-                                         さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                                         <p class="text-center">でみたいことはありますか？</p>
+                                         <p class="text-center margin-top-10"> Wazaarでコースを探してみましょう！</p>
                                     @endif                          
                                 @elseif(Auth::user()->_profile('Student') != null)  
 
                                     {{ Auth::user()->_profile('Student')->last_name }}
-                                             さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                                            <p class="text-center">でみたいことはありますか？</p>
+                                            <p class="text-center margin-top-10"> Wazaarでコースを探してみましょう！</p>
                                 @else
-                                    さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                                    <p class="text-center">でみたいことはありますか？</p>
+                                    <p class="text-center margin-top-10"> Wazaarでコースを探してみましょう！</p>
                                 @endif
                             @endif
                         
@@ -142,13 +162,30 @@
                           @endforeach
                           
                           @if( !isset($completedCourse) )
-                             あなたはまだ修了したコースがありません。 さあ、コースを探してみよう！
+                          		<style>
+									.student-dash .tab-content #finished{
+										border: none;
+									}
+									.student-dash .tab-content{
+										min-height: 200px;
+									}
+								</style>
+                             <p class="text-center">あなたはまだ修了したコースがありません。</p>
+                             <p class="text-center margin-top-10"> さあ、コースを探してみよう！</p>
                           @endif
                       </div>
                         
                       <div role="tabpanel" class="tab-pane fade" id="wishlist">
                           @if($wishlist->count() == 0)
-                           お気に入りのコースはありません。
+                          		<style>
+									.student-dash .tab-content #wishlist{
+										border: none;
+									}
+									.student-dash .tab-content{
+										min-height: 200px;
+									}
+								</style>
+                           <p class="text-center">お気に入りのコースはありません。</p>
                           @endif
                            
                           @foreach($wishlist as $course)
@@ -177,7 +214,7 @@
                             @endif-->
                         </div>
                         <div href="#" class="name">
-                            <h4>{{ Auth::user()->commentName('student') }}</h4>
+                            <h4 class="hide">{{ Auth::user()->commentName('student') }}</h4>
                             <a href="{{action('ProfileController@index')}}" class="edit-profile"><i class="fa fa-cog"></i>{{ trans('general.edit-profile') }}</a>
                         </div>
                     </div>
