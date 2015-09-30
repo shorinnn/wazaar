@@ -13,15 +13,20 @@
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <div class="row activity-today">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <span class="sales-today">{{trans('analytics.sales')}} <em>{{trans('analytics.today')}}<i class="wa-chevron-down"></i></em></span>
+                            <span class="sales-today">{{trans('analytics.sales')}} <em>{{trans('analytics.today')}}
+                                    <!--<i class="wa-chevron-down"></i>--></em></span>
                         </div>
                     </div>
                     <div class="row activity-today">
                         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 no-margin">
-                            <h2 class="revenue">¥9,800, 759 <span class="">{{trans('analytics.revenue')}}</span></h2>
+                            <h2 class="revenue">
+                                 ¥ {{ number_format( $instructor->money('revenue','today') , Config::get('custom.currency_decimals')) }}
+                                 <span class="">{{trans('analytics.revenue')}}</span></h2>
                         </div>
                         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-5 no-margin">
-                            <h2 class="profit success">¥9,800, 759 <span class="">{{trans('analytics.profit')}}</span></h2>
+                            <h2 class="profit success">
+                                ¥ {{ number_format( $instructor->money('profit','today') , Config::get('custom.currency_decimals')) }}
+                                <span class="">{{trans('analytics.profit')}}</span></h2>
                         </div>
                     </div>
                     <div class="row activity-today">
