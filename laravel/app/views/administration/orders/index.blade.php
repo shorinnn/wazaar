@@ -143,6 +143,7 @@
                 </form>
             </div>
             <div class="clearfix"></div>                
+            <div class="orders-totals-container"></div>
             <div class="orders-listings-container ajax-content"></div>
             <div class="text-center alax-loader hide"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>
 		</div>
@@ -151,7 +152,7 @@
 
 @stop
 
-@section('extra_js')
+@section('extra_extra_js')
 <script>
     function addSorterIndicator()
     {
@@ -179,8 +180,12 @@
 
         url = url + data;
 
-        $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
-        $('.course-desc-ajax-link').click();
+        $('.orders-listings-container').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".orders-listings-container" data-url="'+url+'" class="load-remote orders-listings-ajax-link">loading</a>' );
+        $('.orders-listings-ajax-link').click();
+
+        url = url + '&total=true';
+        $('.orders-totals-container').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".orders-totals-container" data-url="'+url+'" class="load-remote orders-totals-ajax-link">loading</a>' );
+        $('.orders-totals-ajax-link').click();
     }
     function triggerSorter()
     {
@@ -201,8 +206,8 @@
             // loadOrders();
 
             var url = '/administration/manage-orders?';
-            var data = Array('sort_by='+$('#sort_by').val(),'sort='+$('#sort').val(),'search='+$('#course_name').val());
-            url = url + data.join('&');
+            var data = $('#search_form').serialize()
+            url = url + data;
 
             $('.ajax-content').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".ajax-content" data-url="'+url+'" class="load-remote course-desc-ajax-link">loading</a>' );
             $('.course-desc-ajax-link').click();
@@ -227,17 +232,26 @@
                 addSorterIndicator();
             }
         });
+
+        url = url + '&total=true';
+        $.ajax({
+            url: url,
+            cache: false,
+            success: function(result){
+                $('.orders-totals-container').html(result);
+            }
+        });
     }
     jQuery(document).ready(function($){
         loadOrders();
 
-        var nowTemp = new Date();
-        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+        var today = moment();
         var startDateVal = $('#start-date').val();
         var endDateVal = $('#end-date').val();
+        
         if(startDateVal == '' || endDateVal == ''){
-            var startDate = now;
-            var endDate = now;
+            var startDate = today.format('YYYY-MM-DD');
+            var endDate = today.add(1, 'day').format('YYYY-MM-DD');
             $('#start-date-btn').data('date', startDate)
             $('#end-date-btn').data('date', endDate)
         } else {
@@ -249,40 +263,49 @@
         }
 
         $('#start-date-btn').datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'yyyy-mm-dd',
+            onRender: function(){
+                console.log('asdasdasd')
+            }
         })
             .on('changeDate', function(ev){
-                if (ev.date.valueOf() > endDate.valueOf()){
-                    $('.date-warning').hide().removeClass('hide').show().text('The start date can not be greater then the end date');
-                    setTimeout(function(){
-                        $('.date-warning').hide().text('');
-                    }, 2000);
-                } else {
-                    $('.date-warning').hide();
-                    startDate = new Date(ev.date);
-                    $('#start-date').val($('#start-date-btn').data('date'));
+                startDate = new Date(ev.date);
+                $('#start-date').val($('#start-date-btn').data('date'));
+                
+                if($('#end-date').val() != ''){
+                    tomorrow = moment($('#start-date').val()).add(1, 'day');
+                    if (ev.date.valueOf() > endDate.valueOf()){
+                        $('.date-warning').hide().removeClass('hide').show().text('The start date can not be greater then the end date');
+                        setTimeout(function(){
+                            $('.date-warning').hide().text('');
+                        }, 2000);
+                        $('#end-date').val(tomorrow.format('YYYY-MM-DD'));
+                        $('#end-date-btn').datepicker('setValue', tomorrow.format('YYYY-MM-DD'))
+                    }
                 }
+
                 $('#start-date-btn').datepicker('hide');
                 $('.clear_date_btn').hide().removeClass('hide').show();
-                $('.datepicker.dropdown-menu').is(':visible').remove();
             });
         $('#end-date-btn').datepicker({
             format: 'yyyy-mm-dd'
         })
             .on('changeDate', function(ev){
-                if (ev.date.valueOf() < startDate.valueOf()){
-                    $('.date-warning').hide().removeClass('hide').show().text('The end date can not be less then the start date');
-                    setTimeout(function(){
-                        $('.date-warning').hide().text('');
-                    }, 2000);
-                } else {
-                    $('.date-warning').hide();
-                    endDate = new Date(ev.date);
-                    $('#end-date').val($('#end-date-btn').data('date'));
+                endDate = new Date(ev.date);
+                $('#end-date').val($('#end-date-btn').data('date'));
+                if($('#start-date').val() != ''){
+                    yesterday = moment($('#end-date').val()).subtract(1, 'day');
+                    if (ev.date.valueOf() < startDate.valueOf()){
+                        $('.date-warning').hide().removeClass('hide').show().text('The end date can not be less then the start date');
+                        setTimeout(function(){
+                            $('.date-warning').hide().text('');
+                        }, 2000);
+                        $('#start-date').val(yesterday.format('YYYY-MM-DD'));
+                        $('#start-date-btn').datepicker('setValue', yesterday.format('YYYY-MM-DD'))
+                    }
                 }
                 $('#end-date-btn').datepicker('hide');
                 $('.clear_date_btn').hide().removeClass('hide').show();
-                $('.datepicker.dropdown-menu').is(':visible').remove();
             });
 
         $('.clear_date_btn').click(function(e){
@@ -291,7 +314,7 @@
             $('#end-date').val('');
             $(this).hide();
         })
-        console.log($('#search_form').serialize())
+        // console.log($('#search_form').serialize())
     });
 </script>
 @stop

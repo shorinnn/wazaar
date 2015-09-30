@@ -429,7 +429,7 @@
 				});					
 			});
 		</script>
-    	
+    @yield('extra_extra_js')
             <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/delaunay.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/TweenMax.min.js"></script>
             

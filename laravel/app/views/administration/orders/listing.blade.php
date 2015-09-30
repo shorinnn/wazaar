@@ -17,6 +17,7 @@
 				<th><a href="#" class="sorter" data-sort-by="buyer_name" data-sort="{{$sort}}">{{ trans('administration.orders.buyer-name' )}} <i class="fa"></i></a></th>
 				<th><a href="#" class="sorter" data-sort-by="buyer_email" data-sort="{{$sort}}">{{ trans('administration.orders.buyer-email' )}} <i class="fa"></i></a></th>
 				<th><a href="#" class="sorter" data-sort-by="created_at" data-sort="{{$sort}}">{{ trans('administration.orders.transaction-date' )}} <i class="fa"></i></a></th>
+				<th>&nbsp;</th>
 			</tr>
 		</thead>
 		<tbody>

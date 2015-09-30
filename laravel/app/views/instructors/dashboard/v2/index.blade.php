@@ -1,5 +1,10 @@
 @extends('layouts.default')
 @section('content')
+	<style>
+            .instructor-dashboard .tab-content{
+                min-height: 300px;
+            }							
+    </style>
 	<div class="container-fluid new-dashboard instructor-dashboard top-section">
     	<div class="container">
             <div class="row">
@@ -194,17 +199,21 @@
                            @if( $purchasedCourses->count() == 0 )
                                 @if(Auth::user()->_profile('Instructor') != null)
                                     @if( trim(Auth::user()->_profile('Instructor')->corporation_name) != '')
-                                        学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                                        <p class="text-center">でみたいことはありますか？</p> 
+                                        <p class="text-center margin-top-10">Wazaarでコースを探してみましょう！</p>
                                     @else
                                         {{ Auth::user()->_profile('Instructor')->last_name }}
-                                         さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                                         <p class="text-center">でみたいことはありますか？</p>
+                                         <p class="text-center margin-top-10"> Wazaarでコースを探してみましょう！</p>
                                     @endif                          
                                 @elseif(Auth::user()->_profile('Student') != null)  
 
                                     {{ Auth::user()->_profile('Student')->last_name }}
-                                             さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                                             <p class="text-center">でみたいことはありますか？</p>
+                                             <p class="text-center margin-top-10"> Wazaarでコースを探してみましょう！</p>
                                 @else
-                                    さん、学んでみたいことはありますか？ Wazaarでコースを探してみましょう！
+                                    <p class="text-center">でみたいことはありますか？</p>
+                                    <p class="text-center margin-top-10"> Wazaarでコースを探してみましょう！</p>
                                 @endif
                             @endif
                         
@@ -225,12 +234,13 @@
                           @endforeach
                           
                           @if( !isset($completedCourse) )
-                             あなたはまだ修了したコースがありません。 さあ、コースを探してみよう！
+                             <p class="text-center">あなたはまだ修了したコースがありません。</p>
+                             <p class="text-center margin-top-10"> さあ、コースを探してみよう！</p>
                           @endif
                       </div>
                       <div role="tabpanel" class="tab-pane fade margin-bottom-25" id="wishlist">
                           @if($wishlist->count() == 0 )
-                              お気に入りのコースはありません。
+                              <p class="text-center">お気に入りのコースはありません。</p>
                           @endif
                           
                           @foreach($wishlist as $course)
