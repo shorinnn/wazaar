@@ -4311,7 +4311,9 @@ h2, h3, h4, h5, h6{
 	background: #e8eced;
 	padding: 12px 40px;
 }
-
+.affiliate-top-header .activate-dropdown{
+	float: right;
+}
 .affiliate-top-header #linkWithDD,
 .affiliate-top-header #affiliate-toolbar-link{
 	margin-bottom:10px;
@@ -4338,13 +4340,12 @@ h2, h3, h4, h5, h6{
 .affiliate-top-header .affiliate-link-label{
     float: left;
     font-size: 14px;
-    margin-right: 2%;
+    margin-right: 0;
     color: #798794;
     margin-top: 4px;
 	font-weight: normal;
 }
 .affiliate-top-header #affiliate-toolbar-link{
-	width: 57%;
 }
 .affiliate-top-header select{
     height: 28px;
@@ -6108,6 +6109,7 @@ h2, h3, h4, h5, h6{
 	color: #303941;
 	line-height: 18px;
 	padding: 11px 12px;
+	font-weight: normal;
 }
 .analytics-page .table tbody th{
 	margin-left: 12px;
@@ -9485,7 +9487,7 @@ header .profile-name ul{
 	margin-top: -90px;
 }
 #discover-courses-area center img {
-    margin-top: 50px;
+    margin-top: 50px !important;
 }
 #discover-courses-area > div {
     text-align: center;
@@ -9559,6 +9561,9 @@ header .profile-name ul{
 	.new-dashboard.dashboardTabs .progress-column{
 		position: relative;
 		transform: none;
+	}
+	.no-padding-xs{
+		padding: 0;
 	}
 }
 @media (max-width:752px){
@@ -10006,9 +10011,6 @@ header .profile-name ul{
 	.category-heading-buttons .segmented-buttons-wrapper + .segmented-buttons-wrapper{
 		margin-left: 0 !important;
 	}
-	.affiliate-top-header #affiliate-toolbar-link{
-		width: 47%;
-	}
 	.affiliate-top-header .affiliate-link-label{
 		font-size: 13px;
 	}
@@ -10234,7 +10236,7 @@ header .profile-name ul{
 }
 .margin-top-10
 {
-	margin-top: 10px;
+	margin-top: 10px !important;
 }
 .margin-top-15
 {
