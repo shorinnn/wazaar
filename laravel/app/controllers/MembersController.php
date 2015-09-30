@@ -270,7 +270,7 @@ class MembersController extends \BaseController {
                     User::whereIn('id', $instructors)->update( [ 'ltc_affiliate_id' => $ltc->id ] );
                 }
             }
-            return Redirect::action('MembersController@ltcMover');
+            return Redirect::to( Input::get('url') );
         }
         
         public function daInfo(){
