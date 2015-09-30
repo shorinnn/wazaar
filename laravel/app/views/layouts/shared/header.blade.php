@@ -101,18 +101,15 @@
                 <span class="profile-level">12</span>
                 <div class="profile-thumbnail">
           
-                    @if( Auth::user()->_profile('Instructor') !=null )
+                    @if( Auth::user()->_profile('Instructor') !=null && trim(Auth::user()->_profile('Instructor')->photo) !='' )
                     <img style="height: 30px; width: 30px; border-radius: 30px;" 
                              src="{{ cloudfrontUrl( Auth::user()->_profile('Instructor')->photo ) }}" alt="">
-                    @elseif( Auth::user()->_profile('Affiliate') != null)
+                    @elseif( Auth::user()->_profile('Affiliate') != null && trim(Auth::user()->_profile('Affiliate')->photo) !='' )
                     <img style="height: 30px; width: 30px; border-radius: 30px;" 
                              src="{{ cloudfrontUrl( Auth::user()->_profile('Affiliate')->photo ) }}" alt="">
-                    @elseif( Auth::user()->_profile('Student') !=null )
+                    @elseif( Auth::user()->_profile('Student') !=null && trim(Auth::user()->_profile('Student')->photo) !='' )
                         <img style="height: 30px; width: 30px; border-radius: 30px;" 
-                             src="{{ cloudfrontUrl( Auth::user()->_profile('Student')->photo ) }}" alt="">
-                    @elseif( trim(Auth::user()->photo) == '')
-                        <img style="height: 30px; width: 30px; border-radius: 30px;" 
-                             src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" alt="">                    
+                             src="{{ cloudfrontUrl( Auth::user()->_profile('Student')->photo ) }}" alt="">                
                     @else
                         <img style="height: 30px; width: 30px; border-radius: 30px;" 
                              src="{{cloudfrontUrl("//s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg")}}" alt="">
