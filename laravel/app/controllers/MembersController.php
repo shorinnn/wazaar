@@ -247,7 +247,7 @@ class MembersController extends \BaseController {
                 'mori@it-partners.biz', 'info@dodo.co.jp', 'yu_ni123@yahoo.co.jp'
             ];
             
-            $stPubs = SecondTierInstructor::whereIn('email', $stPubs)->with('instructors')->get();
+            $stPubs = SecondTierInstructor::whereIn('email', $stPubs)->paginate(2);
             return View::make('administration.members.ltc-mover')->with( compact('stPubs') );
         }
         
@@ -259,8 +259,8 @@ class MembersController extends \BaseController {
                 'support@e-motty.com', 'sub@mellidion.jp', 'numakura@mellidion.jp', 'tetsuoship@gmail.com', 'info@jmedia.asia',
                 'mori@it-partners.biz', 'info@dodo.co.jp', 'yu_ni123@yahoo.co.jp'
             ];
-            
-            $stPubs = SecondTierInstructor::whereIn('email', $stPubs)->with('instructors')->get();
+            $ids = Input::get('ids');
+            $stPubs = SecondTierInstructor::whereIn('id', $ids)->get();
             foreach($stPubs as $pub){
                 $ltc = LTCAffiliate::where('email', '#waa#-'.$pub->email)->first();
                 $instructors = $pub->instructors->lists('id');
@@ -270,7 +270,11 @@ class MembersController extends \BaseController {
                     User::whereIn('id', $instructors)->update( [ 'ltc_affiliate_id' => $ltc->id ] );
                 }
             }
-            return Redirect::action('MembersController@ltcMover');
+            return Redirect::to( Input::get('url') );
+        }
+        
+        public function daInfo(){
+            phpinfo();
         }
 
 

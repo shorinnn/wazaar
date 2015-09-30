@@ -286,3 +286,39 @@
         </div>    
     </div>
 @stop
+
+@section('extra_js')
+<script src='{{ url('js/progressbar.min.js')}}'></script>
+<script>
+    $(function(){
+            var hash = window.location.hash;
+            if( isset(hash) ){
+                $('[href="'+hash+'"]').click();
+            }
+            
+            $('.progress-circle').each(function(){
+                var $elem = $(this);
+                var text = $elem.attr('data-text');
+                var circle = new ProgressBar.Circle( '#'+$elem.attr('id'), {
+                    color: $elem.attr('data-color'),
+                    strokeWidth: 4,
+                    trailWidth: 4,
+                    trailColor: $elem.attr('data-trail-color'),
+                    duration: 1000,
+                    text: {
+                        value: '0'
+                    },
+                    step: function(state, bar) {
+                        if( typeof(text) == 'undefined') bar.setText((bar.value() * 100).toFixed(0));
+                        else {
+                            $elem.find('.progressbar-text').html( text );
+                        }
+                    }
+                });
+            progress = $elem.attr('data-progress') / 100;
+            circle.animate( progress );
+        });
+            
+    });
+</script>
+@stop
