@@ -8,6 +8,7 @@
 	<style>
     	.student-dash .tab-content{
 			border: none !important;
+			min-height: 200px;
 		}
 		.student-dash .tab-content .tab-pane{
 			border: 1px solid #e0e1e2;
@@ -118,9 +119,6 @@
 									.student-dash .tab-content #enrolled{
 										border: none;
 									}
-									.student-dash .tab-content{
-										min-height: 200px;
-									}
 								</style>
                                 @if(Auth::user()->_profile('Instructor') != null)
                                     @if( trim(Auth::user()->_profile('Instructor')->corporation_name) != '')
@@ -166,9 +164,6 @@
 									.student-dash .tab-content #finished{
 										border: none;
 									}
-									.student-dash .tab-content{
-										min-height: 200px;
-									}
 								</style>
                              <p class="text-center">あなたはまだ修了したコースがありません。</p>
                              <p class="text-center margin-top-10"> さあ、コースを探してみよう！</p>
@@ -180,9 +175,6 @@
                           		<style>
 									.student-dash .tab-content #wishlist{
 										border: none;
-									}
-									.student-dash .tab-content{
-										min-height: 200px;
 									}
 								</style>
                            <p class="text-center">お気に入りのコースはありません。</p>
