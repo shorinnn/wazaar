@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
     <div class="wrapper">
-        <div class="container affiliate-dashboard dashboard">
+        <div class="container affiliate-dashboard dashboard table-responsive analytics-page">
 
 
                     @if(Auth::user()->is_super_vip == 'yes')
@@ -421,6 +421,26 @@
                 
 
             </div>
+
+            <hr/>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Tables Filter</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="reportrange" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 50%">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                        <span></span> <b class="caret"></b>
+                    </div>
+
+                    <button class="btn btn-success" onclick="Analytics.ApplyTableDateFilter(); return false;" style="margin-left: 10px">Apply Filter</button>
+                </div>
+            </div>
+
+            <div id="wrapper-table-sales">
+
+            </div>
+
             <div id="ajax-loader-wrapper" class="hidden">
                 <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
             </div>
@@ -484,8 +504,11 @@
 
 
 @stop
-
+@section('extra_css')
+    <link rel="stylesheet" type="text/css" href="{{url('plugins/daterangepicker/daterangepicker.css')}}"/>
+@stop
 @section('extra_js')
+    <script type="text/javascript" src="{{url('plugins/daterangepicker/daterangepicker.js')}}"></script>
     <script type="text/javascript" src="{{url('js/analytics.js')}}"></script>
     <script>
         function hideLetter(){
@@ -493,7 +516,10 @@
         }
 
         $(function(){
-            Analytics.sales('daily','','', this);
+            Analytics.sales('month','','', this);
+            Analytics.InitCalendarFilter();
+            Analytics.ApplyTableDateFilter();
+            Analytics.Init();
         });
     </script>
 @stop
