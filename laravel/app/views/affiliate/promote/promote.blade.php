@@ -44,7 +44,7 @@ function enableRTE(selector) {
 }
 
 function addGift(json) {
-    $('#gifts').prepend(json.html);
+    $('#gifts').append(json.html);
     console.log('adding this gift'+json.html);
     enableRTE(json.id);
     enableClipboard();
