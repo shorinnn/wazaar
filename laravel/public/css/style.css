@@ -3624,7 +3624,7 @@ h2, h3, h4, h5, h6{
     content: '';
 }
 .instructor-dashboard .activity-today .sales-today{
-	font-size: 15px;
+	font-size: 16px;
 	color: #a7b7c4;
 	font-weight: 600;
 }
@@ -3650,8 +3650,8 @@ h2, h3, h4, h5, h6{
 .instructor-dashboard .activity-today .revenue span{
     color: #a7b7c4;
     display: block;
-    font-size: 11px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: normal;
     line-height: 20px;
     text-transform: uppercase;
 }
@@ -4347,7 +4347,7 @@ h2, h3, h4, h5, h6{
 	padding: 12px 40px;
 }
 .affiliate-top-header .activate-dropdown{
-	float: right;
+	float: left;
 }
 .affiliate-top-header #linkWithDD,
 .affiliate-top-header #affiliate-toolbar-link{
@@ -4373,9 +4373,9 @@ h2, h3, h4, h5, h6{
 	display: inline-block;
 }
 .affiliate-top-header .affiliate-link-label{
-    float: left;
+    float: right;
     font-size: 14px;
-    margin-right: 0;
+    margin-right: 5%;
     color: #798794;
     margin-top: 4px;
 	font-weight: normal;
@@ -4644,6 +4644,13 @@ h2, h3, h4, h5, h6{
 	border-bottom: solid 1px #e0e1e2;
 	color: #798794;
 	margin: 0;
+}
+.gift-modal h4{
+	color: #303941;
+}
+.gift-modal h4 i{
+	font-size: 12px;
+	margin-right: 3px;
 }
 .gift-modal h6{
 	color: #a7b7c4;

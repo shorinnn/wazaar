@@ -1,4 +1,5 @@
 <div class="wrap  gift-{{ $gift->id }}">
+	<h4><i class="wa-chevron-down"></i>{{ trans( 'affiliates.gift' ) }} {{ $gift->id }}</h4>
     <h6> {{trans('affiliates.gifts.title') }}
             {{ Form::open(array('action' => ['GiftsController@destroy', $gift->id], 'method' => 'delete', 
                         'class' => 'ajax-form inline-block pull-right', 'data-callback' => 'deleteItem', 'data-delete' => '.gift-'.$gift->id )) }}
@@ -10,7 +11,7 @@
             {{ Form::close() }}
     </h6>
     {{ Form::open( ['action' => ['GiftsController@update', $gift->id], 'method' => 'PUT', 'class' => 'ajax-form' ] ) }}
-    <input type="text" name='title' placeholder="{{ trans( 'affiliates.gifts.gift-number', ['number' => 1] ) }}" value='{{$gift->title}}'>
+    <input type="text" name='title' placeholder="タイトルを入力してください。" value='{{$gift->title}}'>
     <h6> {{trans('affiliates.gifts.message') }} 
         <!--<span class="characters-left">178 Characters left</span>-->
     </h6>
