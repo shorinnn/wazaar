@@ -30,7 +30,7 @@ class ManualEnrollController extends BaseController {
 
         $student = Student::find(Input::get('studentId'));
         $course = Course::find(Input::get('courseId'));
-        $priceInput = Input::get('price');
+        $priceInput = Input::get('price');// including tax
 
         //Calculate sale
         $sale = $course->price - $priceInput;

@@ -67,8 +67,12 @@ class Lesson extends Ardent {
         }
     }
     
-    public function cost(){
-        return $this->price;
+    public function cost( $include_tax = true){
+        if( !$include_tax ) return $this->price;
+        $cost = $this->price;
+        $tax = $cost * Config::get('wazaar.TAX');
+        $cost += $tax;
+        return $cost;
     }
     
     public function lessonAfter(){

@@ -38,6 +38,12 @@ class PaymentController extends BaseController
             json_encode($paymentData));//had to store it back to session just in case an error happens along the way
 
 
+        // @author sorinRyan
+        // tax is already added in the supplied amount - let's subtract the tax so the code in this controller which expects tax-free amounts works
+        $paymentData['finalCost'] = $paymentData['finalCost'] / ( 1+ Config::get('wazaar.TAX') );
+        $paymentData['originalCost'] = $paymentData['originalCost'] / ( 1+ Config::get('wazaar.TAX') );
+        // end of tax manipulation
+        
         $productType          = $paymentData['productType'];
         $productID            = $paymentData['productID'];
         $finalCost            = $paymentData['finalCost'];
@@ -170,6 +176,7 @@ class PaymentController extends BaseController
         $request['balancedUsed'] = 0;
         $request['balanceTransactionID'] = 0;
         $request['aid'] = Cookie::get('aid');
+        $request['tax'] = $request['amount'] * .08;
         $reference = Str::random();
         $giftId = Input::get('giftId');
 
@@ -641,7 +648,7 @@ class PaymentController extends BaseController
             'successData' => [
                 'balance_transaction_id' => $paymentLog->request['balanceTransactionID'],
                 'processor_fee'          => 0,
-                'tax'                    => 0,
+                'tax'                    => $paymentLog->request['tax'],
                 'giftID'                 => $paymentLog->request['giftID'],
                 'balance_used'           => $paymentLog->request['balancedUsed'],
                 'REF'                    => $paymentLog->reference,

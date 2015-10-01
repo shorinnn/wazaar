@@ -4,7 +4,7 @@ class ManualEnrollmentCest{
     
     public function _before() {
         $this->setupDatabase();
-    }
+  }
     public function __destruct()
     {
         \DB::disconnect();
@@ -15,15 +15,17 @@ class ManualEnrollmentCest{
         Artisan::call('db:seed');
     }
     
-    public function manualStudentCourseEnrollment(UnitTester $I)
+    public function manualStudentCourseEnrollment1(UnitTester $I)
     {
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();// delete purchases for this buyer
         $course = Course::first();
-        $priceInput = 100;
+//        $course->price = 100;
+//        $course->updateUniques();
+        $priceInput = 108;// including tax
 
         //Calculate sale
-        $sale = $course->price - $priceInput;
+        $sale = $course->price - $priceInput + ($priceInput / 1.08);
 
         //Set sale amount
         $course->sale = $sale;
@@ -38,7 +40,7 @@ class ManualEnrollmentCest{
             'successData' => [
                 'balance_transaction_id' => 0,
                 'processor_fee'          => 0,
-                'tax'                    => 0,
+                'tax'                    => 8,
                 'giftID'                 => 0,
                 'balance_used'           => 0,
                 'REF'                    => Str::random(),
@@ -53,6 +55,7 @@ class ManualEnrollmentCest{
         $I->assertEquals( $sale, $purchase->discount_value );
         $I->assertEquals( $purchase->purchase_price, $priceInput );
         $I->assertEquals( $purchase->original_price, $course->price );
+        $I->assertEquals( $purchase->tax, 8);
         
         $I->seeRecord('transactions',['purchase_id' => $purchase->id, 'user_id' => $course->instructor->id, 'transaction_type' => 'instructor_credit', 
             'amount' => $purchase->instructor_earnings]);
