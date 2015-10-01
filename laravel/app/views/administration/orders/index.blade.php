@@ -135,16 +135,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="clearfix"></div>
                     <div class="col-xs-12 text-center">
                         <button type="button" class="btn btn-primary btn-lg" onclick="searchOrder();">Search <i class="fa fa-search"></i></button>
                     </div>
+                    <button type="button" class="pull-right btn btn-sm btn-info clearfix" onclick="downloadCsv();"><i class="fa fa-download"></i> Download CSV</button>
                     <div class="clearfix"></div>
                 </form>
             </div>
             <div class="clearfix"></div>                
-            <div class="orders-totals-container"></div>
-            <div class="orders-listings-container ajax-content"></div>
+            <div class="orders-totals-container row"></div>
+            <div class="orders-listings-container ajax-content row"></div>
             <div class="text-center alax-loader hide"><img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" /></div>
 		</div>
 	</div>
@@ -154,6 +154,14 @@
 
 @section('extra_extra_js')
 <script>
+    function downloadCsv()
+    {
+        var url = '/administration/manage-orders?';
+        var data = $('#search_form').serialize();
+        url = url + data + '&download=true';
+        // console.log(url)
+        window.location.href = url;
+    }
     function addSorterIndicator()
     {
         $('a.sorter').each(function(){
@@ -263,10 +271,7 @@
         }
 
         $('#start-date-btn').datepicker({
-            format: 'yyyy-mm-dd',
-            onRender: function(){
-                console.log('asdasdasd')
-            }
+            format: 'yyyy-mm-dd'
         })
             .on('changeDate', function(ev){
                 startDate = new Date(ev.date);
