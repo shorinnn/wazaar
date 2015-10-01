@@ -45,6 +45,7 @@ function enableRTE(selector) {
 
 function addGift(json) {
     $('#gifts').prepend(json.html);
+    console.log('adding this gift'+json.html);
     enableRTE(json.id);
     enableClipboard();
     enableFileUploader($(json.id).parent().parent().find('[type=file]'));

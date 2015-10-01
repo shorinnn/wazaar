@@ -57,7 +57,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -75,12 +75,12 @@ class BasicOrderCest{
         $I->assertLessThan( 1, $purchase->second_tier_affiliate_id);
         $I->assertLessThan( 1, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 0 );
@@ -107,7 +107,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -125,12 +125,12 @@ class BasicOrderCest{
         $I->assertLessThan( 1, $purchase->second_tier_affiliate_id);
         $I->assertLessThan( 1, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 0 );
@@ -157,7 +157,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -174,12 +174,12 @@ class BasicOrderCest{
         $I->assertLessThan( 1, $purchase->second_tier_affiliate_id);
         $I->assertLessThan( 1, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 3 );
@@ -206,7 +206,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -223,12 +223,12 @@ class BasicOrderCest{
         $I->assertLessThan( 1, $purchase->second_tier_affiliate_id);
         $I->assertLessThan( 1, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 8 );
@@ -254,7 +254,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -271,12 +271,12 @@ class BasicOrderCest{
         $I->assertLessThan( 1, $purchase->second_tier_affiliate_id);
         $I->assertLessThan( 1, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 8 );
@@ -303,7 +303,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -323,12 +323,12 @@ class BasicOrderCest{
         $I->assertLessThan( 1, $purchase->second_tier_affiliate_id);
         $I->assertLessThan( 1, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
         $I->assertEquals( $purchase->instructor_earnings, 60 );     
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 0 );
@@ -355,7 +355,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -375,12 +375,12 @@ class BasicOrderCest{
         $I->assertEquals( 2, $purchase->second_tier_affiliate_id);
         $I->assertLessThan( 1, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
         $I->assertEquals( $purchase->instructor_earnings, 58);     
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 0 );
@@ -414,7 +414,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -431,12 +431,12 @@ class BasicOrderCest{
         $I->assertLessThan( 1, $purchase->second_tier_affiliate_id);
         $I->assertEquals( 2, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 0 );
@@ -473,7 +473,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -490,12 +490,12 @@ class BasicOrderCest{
         $I->assertEquals( 2, $purchase->second_tier_affiliate_id);
         $I->assertEquals( 2, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->instructor_earnings, 58 );     
         $I->assertEquals( $purchase->affiliate_earnings, 10 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 3 );
@@ -503,7 +503,8 @@ class BasicOrderCest{
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 2 );
         $I->assertEquals( $purchase->site_earnings, 30 - 2 - 3 );
         $sale = $purchase;
-        $total = $sale->processor_fee + $sale->instructor_earnings + $sale->second_tier_instructor_earnings + $sale->affiliate_earnings + $sale->second_tier_affiliate_earnings
+        $total = $sale->processor_fee + $sale->tax + $sale->instructor_earnings + $sale->second_tier_instructor_earnings
+                + $sale->affiliate_earnings + $sale->second_tier_affiliate_earnings
                         + $sale->ltc_affiliate_earnings + $sale->instructor_agency_earnings + $sale->site_earnings; 
         $I->assertEquals($purchase->purchase_price, $total);
     }   
@@ -535,7 +536,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -552,12 +553,12 @@ class BasicOrderCest{
         $I->assertEquals( 2, $purchase->second_tier_affiliate_id);
         $I->assertEquals( 2, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->affiliate_earnings, 68 );
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, 2 );
         $I->assertEquals( $purchase->instructor_earnings, 0 );     
@@ -587,7 +588,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -604,12 +605,12 @@ class BasicOrderCest{
         $I->assertLessThan( 1, $purchase->second_tier_affiliate_id);
         $I->assertLessThan( 1, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->instructor_earnings, 80 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 0 );
@@ -639,7 +640,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -656,12 +657,12 @@ class BasicOrderCest{
         $I->assertLessThan( 1, $purchase->second_tier_affiliate_id);
         $I->assertLessThan( 1, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->instructor_earnings, 80 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 3);
@@ -694,7 +695,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -711,12 +712,12 @@ class BasicOrderCest{
         $I->assertLessThan( 1, $purchase->second_tier_affiliate_id);
         $I->assertEquals( 14, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->instructor_earnings, 80 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 3 );
@@ -753,7 +754,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -770,11 +771,11 @@ class BasicOrderCest{
         $I->assertLessThan( 1, $purchase->second_tier_affiliate_id);
         $I->assertEquals( 14, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 110 );
         $I->assertEquals( $purchase->discount_value, 5 );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->instructor_earnings, 80 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 3 );
@@ -801,7 +802,7 @@ class BasicOrderCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '0';
@@ -818,12 +819,12 @@ class BasicOrderCest{
         $I->assertLessThan( 1, $purchase->second_tier_affiliate_id);
         $I->assertLessThan( 1, $purchase->second_tier_instructor_id);
                 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->instructor_earnings, 70 );     
         $I->assertEquals( $purchase->affiliate_earnings, 0 );
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 3 );

@@ -38,6 +38,12 @@ class PaymentController extends BaseController
             json_encode($paymentData));//had to store it back to session just in case an error happens along the way
 
 
+        // @author sorinRyan
+        // tax is already added in the supplied amount - let's subtract the tax so the code in this controller which expects tax-free amounts works
+        $paymentData['finalCost'] = $paymentData['finalCost'] / ( 1+ Config::get('wazaar.TAX') );
+        $paymentData['originalCost'] = $paymentData['originalCost'] / ( 1+ Config::get('wazaar.TAX') );
+        // end of tax manipulation
+        
         $productType          = $paymentData['productType'];
         $productID            = $paymentData['productID'];
         $finalCost            = $paymentData['finalCost'];
