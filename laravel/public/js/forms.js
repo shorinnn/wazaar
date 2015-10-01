@@ -42,7 +42,11 @@ function formAjaxSubmit(e){
             restoreSubmitLabel(form);
             if( typeof(form.attr('data-fail-callback'))!='undefined' ){
                 fn = form.attr('data-fail-callback').split('.');
-                if(fn.length == 1) window[ fn[0] ](result, e);
+                if(fn.length == 1){ 
+                    functionName = fn[0];
+                    console.log(functionName+' called');
+                    window[ functionName ](result, e);
+                }
                 else{
                     if(fn.length==2) window[ fn[0] ][ fn[1] ](result, e);
                     else if(fn.length==3) window[ fn[0] ][ fn[1] ][ fn[2] ](result, e);

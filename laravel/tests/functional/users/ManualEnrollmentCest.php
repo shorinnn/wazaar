@@ -13,7 +13,9 @@ class ManualEnrollmentCest{
         
         $I->dontSeeRecord('purchases',[ 'student_id' => $student->id, 'product_id' => $course->id]);
         
-        $priceInput = 100;
+        $priceInput = 108;
+        $preTax = ( ($priceInput ) - ($priceInput / (1 + Config::get('wazaar.TAX') ) * Config::get('wazaar.TAX') ) );
+        $tax = $preTax  * Config::get('wazaar.TAX');
         
         $I->sendAjaxPostRequest( action('ManualEnrollController@postIndex'), [
             'studentId' => $student->id,
@@ -23,7 +25,7 @@ class ManualEnrollmentCest{
         
         sleep(1);
         //Calculate sale
-        $sale = $course->price - $priceInput;
+        $sale = $course->price - $preTax;
         //Set sale amount
         $course->sale = $sale;
 
@@ -36,6 +38,7 @@ class ManualEnrollmentCest{
         $I->assertEquals( $sale, $purchase->discount_value );
         $I->assertEquals( $purchase->purchase_price, $priceInput );
         $I->assertEquals( $purchase->original_price, $course->price );
+        $I->assertEquals( $purchase->tax, $tax );
         
         $I->seeRecord('purchases',[ 'student_id' => $student->id, 'product_id' => $course->id]);
         $I->seeRecord('transactions',['purchase_id' => $purchase->id, 'user_id' => $course->instructor->id, 'transaction_type' => 'instructor_credit', 

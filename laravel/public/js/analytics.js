@@ -406,5 +406,58 @@ var Analytics = {
         //$.get('/analytics/course/' + $courseId + '/trackingcode/' + $code + '/stats/' + $frequency, function ($html){
         //    $('#wrapper-tracking-code-stats').html($html);
         //});
+    },
+
+    'Init' : function(){
+        $('#wrapper-table-sales').on('click','a', function ($e){
+            $e.preventDefault();
+            var $url = $(this).attr('href');
+            $.get($url, function ($table){
+                $('#wrapper-table-sales').html($table);
+            });
+        });
+    },
+    'InitCalendarFilter' : function(){
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            Analytics.DateFilterStart = start.format('YYYY-MM-DD');
+            Analytics.DateFilterEnd =end.format('YYYY-MM-DD');
+        }
+        cb(moment().subtract(29, 'days'), moment());
+        var $date = new Date();
+        var $startDate = new Date($date.getFullYear(), $date.getMonth(), 1);
+        var $endDate = new Date($date.getFullYear(), $date.getMonth() + 1, 0);
+
+        $('#reportrange').daterangepicker({
+            locale: 'jp',
+            startDate: $startDate,
+            endDate: $endDate,
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
+
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+            Analytics.DateFilterStart = $('#reportrange').data('daterangepicker').startDate.format('YYYY-MM-DD');
+            Analytics.DateFilterEnd = $('#reportrange').data('daterangepicker').endDate.format('YYYY-MM-DD');
+        });
+    },
+    'DateFilterStart' : '',
+    'DateFilterEnd' : '',
+    'ApplyTableDateFilter' : function (){
+
+
+        Analytics.TableSales();
+    },
+
+    'TableSales' : function (){
+        $.get('/analytics/affiliate/table/sales/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
+            $('#wrapper-table-sales').html($table);
+        });
     }
 };

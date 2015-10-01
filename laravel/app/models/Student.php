@@ -220,14 +220,15 @@ class Student extends User{
 
             // credit LTC affiliate
             if( $purchase->ltc_affiliate_earnings > 0){
-                $stInstructor = $this->LTCInstructor();
+                //$stInstructor = $this->LTCInstructor();
+                $stInstructor = false;
                 if(  $stInstructor == false ){
                     $this->ltcAffiliate->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref, 'ltc', 0, $purchase->id);
                 }
-                else{
-                    $stInstructor = SecondTierInstructor::find($stInstructor);
-                    $stInstructor->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref,  $purchase->id, 'ltc' );
-                }
+//                else{
+//                    $stInstructor = SecondTierInstructor::find($stInstructor);
+//                    $stInstructor->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref,  $purchase->id, 'ltc' );
+//                }
             }
 
             // credit second tier affiliate

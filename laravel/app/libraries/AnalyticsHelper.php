@@ -18,6 +18,58 @@ class AnalyticsHelper
         $this->user = User::find($userId);
     }
 
+    public function getAffiliateSalesByDateRange($startDate, $endDate)
+    {
+        $sales = DB::table('purchases')
+                ->select(
+                    DB::raw("count(id) as 'sales_count'"),
+                    DB::raw("sum(purchase_price) as 'sales_total'"),
+                    DB::raw("sum(affiliate_earnings) as 'revenue'"),
+                    DB::raw("CASE `ltc_affiliate_id`
+                            WHEN  '{$this->userId}' THEN sum(`ltc_affiliate_earnings`)
+                            ELSE 0
+                            END as
+                            'ltc_earnings'"
+                           ),
+                    DB::raw("CASE `second_tier_affiliate_id`
+                        WHEN '{$this->userId}' THEN sum(`second_tier_affiliate_earnings`)
+                        ELSE 0
+                        END
+                        as 'second_tier_earnings'"
+                           ),
+                    DB::raw("DATE(created_at) as 'date'")
+                )
+                ->where('product_affiliate_id',$this->userId)
+                ->where('free_product','no')
+                ->whereRaw("DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}'")
+                ->groupBy(DB::raw("DATE(created_at)"))
+
+            ;
+        /*$sql = "SELECT count(id) as 'sales_count',
+                       sum(purchase_price) as 'sales_total',
+                       sum(affiliate_earnings) as 'revenue',
+
+                        CASE `ltc_affiliate_id`
+                        WHEN  '{$this->userId}' THEN sum(`ltc_affiliate_earnings`)
+                        ELSE 0
+                        END as
+                        'ltc_earnings',
+
+                        CASE `second_tier_affiliate_id`
+                        WHEN '{$this->userId}' THEN sum(`second_tier_affiliate_earnings`)
+                        ELSE 0
+                        END
+                        as 'second_tier_earnings',
+
+                        DATE(created_at) as 'date'
+
+                FROM purchases
+                WHERE `product_affiliate_id` = '{$this->userId}'
+                AND free_product = 'no'
+                AND DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}'
+                GROUP BY 	DATE(created_at)";*/
+        return $sales->paginate(2);
+    }
 
     private function dailyLtcEarnings($affiliateId, $dateFilter = '')
     {

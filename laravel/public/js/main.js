@@ -1577,7 +1577,7 @@ function toggleSideMenu(){
 }
 
 function toggleRightBar(e, json){
-    
+    centerVidVertically();
 
     $('.ask-question').removeClass('active');
     $('.questions-box').removeClass('active');
@@ -1611,7 +1611,7 @@ function toggleRightBar(e, json){
     $('body').toggleClass('discussion-opened');
     setTimeout( skinVideoControls, 501 );
     $(window).resize();
-        
+    
     
     if( !isset(json) ) return false;
     

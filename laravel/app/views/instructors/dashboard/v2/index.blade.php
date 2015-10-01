@@ -13,15 +13,20 @@
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <div class="row activity-today">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <span class="sales-today">{{trans('analytics.sales')}} <em>{{trans('analytics.today')}}<i class="wa-chevron-down"></i></em></span>
+                            <span class="sales-today">{{trans('analytics.sales')}} <em>{{trans('analytics.today')}}
+                                    <!--<i class="wa-chevron-down"></i>--></em></span>
                         </div>
                     </div>
                     <div class="row activity-today">
                         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 no-margin">
-                            <h2 class="revenue">¥9,800, 759 <span class="">{{trans('analytics.revenue')}}</span></h2>
+                            <h2 class="revenue">
+                                 ¥ {{ number_format( $instructor->money('revenue','today') , Config::get('custom.currency_decimals')) }}
+                                 <span class="">{{trans('analytics.revenue')}}</span></h2>
                         </div>
                         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-5 no-margin">
-                            <h2 class="profit success">¥9,800, 759 <span class="">{{trans('analytics.profit')}}</span></h2>
+                            <h2 class="profit success">
+                                ¥ {{ number_format( $instructor->money('profit','today') , Config::get('custom.currency_decimals')) }}
+                                <span class="">{{trans('analytics.profit')}}</span></h2>
                         </div>
                     </div>
                     <div class="row activity-today">
@@ -56,20 +61,24 @@
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 no-padding">
                     <ul class="nav nav-pills left" role="tablist">
                         <li role="presentation" class="active">
-                        	<a href="#teaching" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">
+                        	<a href="#teaching" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="enrolled" onclick='toggleNumbers(1)'
+                                   aria-expanded="true">
                                     {{trans('general.dash.teaching')}}
                                 </a>
                         </li>
                         <li role="presentation" class="">
-                        	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">
+                        	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled"  onclick='toggleNumbers(0)'
+                                   aria-expanded="true">
                                 {{trans('general.dash.enrolled')}}</a>
                         </li>
                         <li role="presentation">
-                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">
+                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab"  onclick='toggleNumbers(0)'
+                                   aria-controls="finished">
                                  {{trans('general.dash.finished')}}</a>
                         </li>
                         <li role="presentation" class="dropdown">
-                          <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab" aria-controls="wishlist">
+                          <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab"  onclick='toggleNumbers(0)'
+                             aria-controls="wishlist">
                            {{trans('general.dash.wishlist')}}</a>
                         </li>
                     </ul> 
@@ -287,6 +296,14 @@
 @section('extra_js')
 <script src='{{ url('js/progressbar.min.js')}}'></script>
 <script>
+    function toggleNumbers(state){
+        if(state==1){
+            $('.activity-today').removeClass('invisible');
+        }
+        else{
+            $('.activity-today').addClass('invisible');
+        }
+    }
     $(function(){
             var hash = window.location.hash;
             if( isset(hash) ){

@@ -373,7 +373,7 @@ class Course extends Ardent{
         return true;
     }
     
-    public function cost(){
+    public function cost( $include_tax = true ){
         $cost = 0;
         if(!$this->isDiscounted()) $cost = $this->price;
         else{
@@ -381,6 +381,9 @@ class Course extends Ardent{
             else $cost = $this->price - ($this->price * ($this->sale/100));
         }
         if($cost < 0) $cost = 0;
+        if( !$include_tax ) return $cost;
+        $tax = $cost * Config::get('wazaar.TAX');
+        $cost += $tax;
         return $cost;
     }
     
@@ -397,11 +400,11 @@ class Course extends Ardent{
                 $this->discount_ends_in = $interval->format("%h:%i:%s");
             }
             if($this->sale_kind=='amount'){
-                $this->discount_original = $this->price;
+                $this->discount_original = $this->price  +  $this->price * Config::get('wazaar.TAX');
                 $this->discount_saved = $this->sale;
             }
             else {
-                $this->discount_original = $this->price;
+                $this->discount_original = $this->price +  $this->price * Config::get('wazaar.TAX');
                 $this->discount_saved = $this->price * ($this->sale/100);
             }
             return true;

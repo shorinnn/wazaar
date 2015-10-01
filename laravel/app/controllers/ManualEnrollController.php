@@ -30,10 +30,14 @@ class ManualEnrollController extends BaseController {
 
         $student = Student::find(Input::get('studentId'));
         $course = Course::find(Input::get('courseId'));
-        $priceInput = Input::get('price');
+        $priceInput = Input::get('price');// including tax
+        
+        $preTax = ( ($priceInput ) - ($priceInput / (1 + Config::get('wazaar.TAX') ) * Config::get('wazaar.TAX') ) );
+        $tax = $preTax  * Config::get('wazaar.TAX');
 
         //Calculate sale
-        $sale = $course->price - $priceInput;
+        //$sale = $course->price - $priceInput;
+        $sale = $course->price - $preTax;
         
         //Set sale amount
         $course->sale = $sale;
@@ -50,7 +54,7 @@ class ManualEnrollController extends BaseController {
             'successData' => [
                 'balance_transaction_id' => 0,
                 'processor_fee'          => 0,
-                'tax'                    => 0,
+                'tax'                    => $tax,
                 'giftID'                 => 0,
                 'balance_used'           => 0,
                 'REF'                    => Str::random(),

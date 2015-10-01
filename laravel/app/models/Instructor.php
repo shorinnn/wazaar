@@ -50,6 +50,28 @@ class Instructor extends User{
         return $amount;
     }
     
+    public function money($field = 'revenue', $timespan='today'){
+        $field = ($field=='revenue') ? 'purchase_price' : 'instructor_earnings';
+        $timespan = strtolower($timespan);
+        switch($timespan){
+            case 'today': $start = date('Y-m-d 00:00:00'); $stop = date('Y-m-d 23:59:59'); break;
+            default: $start = date('Y-m-d 00:00:00'); $stop = date('Y-m-d 23:59:59'); break;
+        }
+        
+        if($field=='instructor_earnings'){
+            return Purchase::where('instructor_id', $this->id)->where('created_at','>=', $start)->where('created_at','<=', $stop)
+                    ->sum($field);
+        }
+        else{
+            $purchases = Purchase::where('instructor_id', $this->id)->where('created_at','>=', $start)->where('created_at','<=', $stop)
+                    ->sum($field);
+            $tax = Purchase::where('instructor_id', $this->id)->where('created_at','>=', $start)->where('created_at','<=', $stop)
+                    ->sum('tax');
+            return $purchases;//-$tax;
+        }
+        
+    }
+    
     public function followed($student_id){
         
         if( in_array( $student_id, $this->followers()->lists('student_id') ) ) return true;
