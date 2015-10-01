@@ -546,4 +546,10 @@ class AffiliateDashboardController extends BaseController
         return Redirect::to('analytics');
     }
 
+    public function salesTableView($startDate, $endDate)
+    {
+        $sales = $this->analyticsHelper->getAffiliateSalesByDateRange($startDate,$endDate);
+        return View::make('affiliate.analytics.tableSales',compact('sales'))->render();
+    }
+
 }
