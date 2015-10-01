@@ -58,8 +58,17 @@ class Instructor extends User{
             default: $start = date('Y-m-d 00:00:00'); $stop = date('Y-m-d 23:59:59'); break;
         }
         
-        return Purchase::where('instructor_id', $this->id)->where('created_at','>=', $start)->where('created_at','<=', $stop)
-                ->sum($field);
+        if($field=='instructor_earnings'){
+            return Purchase::where('instructor_id', $this->id)->where('created_at','>=', $start)->where('created_at','<=', $stop)
+                    ->sum($field);
+        }
+        else{
+            $purchases = Purchase::where('instructor_id', $this->id)->where('created_at','>=', $start)->where('created_at','<=', $stop)
+                    ->sum($field);
+            $tax = Purchase::where('instructor_id', $this->id)->where('created_at','>=', $start)->where('created_at','<=', $stop)
+                    ->sum('tax');
+            return $purchases-$tax;
+        }
         
     }
     

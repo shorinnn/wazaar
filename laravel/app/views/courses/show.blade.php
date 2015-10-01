@@ -257,7 +257,7 @@
                                 <div class="original-price text-muted text-left"><del>¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
                                 <div class="text-warning">
                                     <div class="discounted-price pull-left">
-                                        ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                        ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }} (inc. tax)
                                         @if(Auth::check() && Auth::user()->hasRole('Affiliate') )
                                         @endif
                                     </div>
@@ -273,7 +273,7 @@
                             </p> -->
                         @else
                             <span class="price clearfix">
-                                ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }} (inc. tax)
                                 @if(Auth::check() && Auth::user()->hasRole('Affiliate') )
                                         
                                 @endif
@@ -331,7 +331,7 @@
                                     @if( Auth::check() && Auth::user()->hasRole('Affiliate') )
                                         {{ trans("courses/general.you-will-earn") }} {{ $course->affiliate_percentage }}%</span>
                                         <h2>¥ 
-                                            {{ $course->cost() * ($course->affiliate_percentage/100) }}
+                                            {{ $course->cost(false) * ($course->affiliate_percentage/100) }}
                                         </h2>
                                     @else
                                       {{ trans("courses/general.course-enroll") }}
@@ -387,7 +387,7 @@
                             <div class="price discount-box">
                                 <div class="original-price text-muted text-left"><del>¥{{ number_format($course->discount_original, Config::get('custom.currency_decimals')) }}</del></div>
                                 <div class="text-warning">
-                                    <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    <div class="discounted-price pull-left">¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }} (inc. tax)
                                     @if(Auth::check() && Auth::user()->hasRole('Affiliate') )
                                         ( アフィリエイト収入:{{ $course->affiliate_percentage }}% )
                                     @endif
@@ -405,7 +405,7 @@
                         @else
                             <span class="price clearfix">
                                 @if($course->cost()>0)
-                                    ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                    ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }} (inc. tax)
                                     @if(Auth::check() && Auth::user()->hasRole('Affiliate') )
                                         ( アフィリエイト収入:{{ $course->affiliate_percentage }}% )
                                     @endif

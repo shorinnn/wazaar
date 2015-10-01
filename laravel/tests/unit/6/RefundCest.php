@@ -53,7 +53,7 @@ class RefundCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
@@ -84,12 +84,12 @@ class RefundCest{
         
         $I->assertEquals( $purchase->instructor_id, $course->instructor_id );
         $I->assertNotEquals(0, $affiliate->second_tier_affiliate_id);
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->balance_transaction_id, $balance );
         $I->assertEquals( $purchase->instructor_earnings, 58 );
@@ -97,7 +97,7 @@ class RefundCest{
         $I->assertEquals( $purchase->ltc_affiliate_earnings, 100 * (3 / 100) );
         $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) )  );
         
-        $st = ($purchase->purchase_price - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );   
+        $st = ($purchase->purchase_price - 8.4 - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );   
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
@@ -187,7 +187,7 @@ class RefundCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
@@ -221,12 +221,12 @@ class RefundCest{
         
         
         $I->assertNotEquals(0, $affiliate->ltc_affiliate_id);
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->balance_transaction_id, $balance );
         $I->assertEquals( $purchase->instructor_earnings, 58 );
@@ -235,7 +235,7 @@ class RefundCest{
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 100 * .02 );
         $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) ) - (100 * .02)  );
         
-        $st = ($purchase->purchase_price - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );        
+        $st = ($purchase->purchase_price - 8.4 - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );        
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
@@ -307,7 +307,7 @@ class RefundCest{
         $I->assertEquals( 0, $stInstructor->instructor_balance);
         
         $sale = $purchase;
-        $total = $sale->processor_fee + $sale->instructor_earnings + $sale->second_tier_instructor_earnings + $sale->affiliate_earnings + $sale->second_tier_affiliate_earnings
+        $total = $sale->processor_fee + $sale->tax + $sale->instructor_earnings + $sale->second_tier_instructor_earnings + $sale->affiliate_earnings + $sale->second_tier_affiliate_earnings
                         + $sale->ltc_affiliate_earnings + $sale->instructor_agency_earnings + $sale->site_earnings; 
         $I->assertEquals($purchase->purchase_price, $total);
     }
@@ -335,7 +335,7 @@ class RefundCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
@@ -364,12 +364,12 @@ class RefundCest{
         
         
         $I->assertNotEquals(0, $affiliate->ltc_affiliate_id);
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->balance_used, 0 );
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
         $I->assertEquals( $purchase->instructor_earnings, 70);
@@ -457,7 +457,7 @@ class RefundCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
@@ -490,12 +490,12 @@ class RefundCest{
         
         
         $I->assertNotEquals(0, $affiliate->ltc_affiliate_id);
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->balance_transaction_id, $balance );
         $I->assertEquals( $purchase->instructor_earnings, 58 );
@@ -504,7 +504,7 @@ class RefundCest{
         $I->assertEquals( $purchase->second_tier_instructor_earnings, 100 * .02 );
         $I->assertEquals( $purchase->site_earnings, 30 - ( 100 * (3 / 100) ) - (100 * .02)  );
         
-        $st = ($purchase->purchase_price - $purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );        
+        $st = ($purchase->purchase_price - 8.4 -$purchase->processor_fee) *  ( Config::get('custom.earnings.second_tier_percentage') / 100 );        
         $I->assertEquals( $purchase->second_tier_affiliate_earnings, $st );
         
         $I->seeRecord('transactions', ['user_id' => $course->instructor_id, 'transaction_type' => 'instructor_credit', 'amount' => 58,
@@ -582,7 +582,7 @@ class RefundCest{
         $I->assertEquals( 0, $stInstructor->instructor_balance);
         
         $sale = $purchase;
-        $total = $sale->processor_fee + $sale->instructor_earnings + $sale->second_tier_instructor_earnings + $sale->affiliate_earnings + $sale->second_tier_affiliate_earnings
+        $total = $sale->processor_fee + $sale->tax + $sale->instructor_earnings + $sale->second_tier_instructor_earnings + $sale->affiliate_earnings + $sale->second_tier_affiliate_earnings
                         + $sale->ltc_affiliate_earnings + $sale->instructor_agency_earnings + $sale->site_earnings; 
         $I->assertEquals($purchase->purchase_price, $total);
         
@@ -610,7 +610,7 @@ class RefundCest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
@@ -627,12 +627,12 @@ class RefundCest{
         
         
         $I->assertLessThan( 1, $student->ltc_affiliate_id);
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->balance_used, 0 );
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
         $I->assertEquals( $purchase->instructor_earnings, 80 );

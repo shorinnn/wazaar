@@ -55,7 +55,7 @@ class Order2Cest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '10';
@@ -75,12 +75,12 @@ class Order2Cest{
         $I->assertNotEquals( false, $student->purchase($course, null, $data) );
         $purchase = Purchase::orderBy('id','desc')->first();
 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
         $I->assertEquals( $purchase->instructor_earnings, 70 ); 
@@ -128,7 +128,7 @@ class Order2Cest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '10';
@@ -147,12 +147,12 @@ class Order2Cest{
         $I->assertEquals( 0, $ltc->affiliate_balance );
         $I->assertNotEquals( false, $student->purchase($course, null, $data) );
         $purchase = Purchase::orderBy('id','desc')->first();
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
         $I->assertEquals( $purchase->instructor_earnings, 70 ); 
@@ -195,7 +195,7 @@ class Order2Cest{
         $data = [];
         $data['successData']['REF'] = '123';
         $data['successData']['processor_fee'] = '5';
-        $data['successData']['tax'] = '10';
+        $data['successData']['tax'] = '8.4';
         $data['successData']['giftID'] = null;
         $data['successData']['ORDERID'] = 1;
         $data['successData']['balance_used'] = '10';
@@ -213,12 +213,12 @@ class Order2Cest{
         $I->assertNotEquals( false, $student->purchase($course, null, $data) );
         $purchase = Purchase::orderBy('id','desc')->first();
 
-        $I->assertEquals( $purchase->purchase_price, 105 );
+        $I->assertEquals( $purchase->purchase_price, 113.4 );
         $I->assertEquals( $purchase->original_price, 105 );
         $I->assertEquals( $purchase->discount_value, 0 );
         $I->assertEquals( $purchase->discount, null );
         $I->assertEquals( $purchase->processor_fee, 5 );
-        $I->assertEquals( $purchase->tax, 10 );
+        $I->assertEquals( $purchase->tax, 8.4 );
         $I->assertEquals( $purchase->balance_used, 10 );
         $I->assertEquals( $purchase->balance_transaction_id, 0 );
         $I->assertEquals( $purchase->instructor_earnings, 70 ); 

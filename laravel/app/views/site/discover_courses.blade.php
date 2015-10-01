@@ -1,4 +1,9 @@
 <div class="col-md-12 clearfix no-padding">
+    <div class="pull-left clearfix home-page-filter segmented-controls" style="margin-top:16px; font-weight:bold">
+        <a href='//d1hgniicb7e6y2.cloudfront.net/20151001GST.pdf' target='_blank' class='alert' style='background-color:white'>
+           10月1日からの消費税課税関係の改正法適用に伴うお知らせ
+        </a>
+    </div>
     <div class="pull-right clearfix home-page-filter segmented-controls" style="margin-top:16px;">
         <div class="btn-group pagination-container buttons-container">
             <a href="/" class="segmented-buttons @if($filter == '') active @endif">{{ trans('courses/general.filter.all-paid-or-free') }}</a>
