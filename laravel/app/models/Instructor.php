@@ -1,4 +1,4 @@
-tion mone<?php
+<?php
 
 class Instructor extends User{
 
