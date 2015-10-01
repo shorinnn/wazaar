@@ -1,5 +1,5 @@
 <div class="wrap  gift-{{ $gift->id }}">
-	<h4><i class="wa-chevron-down"></i>{{ trans( 'affiliates.gift' ) }} {{ $gift->id }}</h4>
+	<h4><i class="fa fa-caret-down"></i>{{ trans( 'affiliates.gift' ) }} {{ $gift->id }}</h4>
     <h6> {{trans('affiliates.gifts.title') }}
             {{ Form::open(array('action' => ['GiftsController@destroy', $gift->id], 'method' => 'delete', 
                         'class' => 'ajax-form inline-block pull-right', 'data-callback' => 'deleteItem', 'data-delete' => '.gift-'.$gift->id )) }}
