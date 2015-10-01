@@ -1,7 +1,7 @@
 <div class="wrap  gift-{{ $gift->id }}">
 	<h4><i class="fa fa-caret-down"></i>
             {{ trans( 'affiliates.gift' ) }} 
-            {{ Gift::where('affiliate_id', $gift->affiliate_id)->where('course_id', $gift->course_id)->where('id','<', $gift->id)->count() + 1 }}</h4>
+            <!--{{ Gift::where('affiliate_id', $gift->affiliate_id)->where('course_id', $gift->course_id)->where('id','<', $gift->id)->count() + 1 }}--></h4>
     <h6> {{trans('affiliates.gifts.title') }}
             {{ Form::open(array('action' => ['GiftsController@destroy', $gift->id], 'method' => 'delete', 
                         'class' => 'ajax-form inline-block pull-right', 'data-callback' => 'deleteItem', 'data-delete' => '.gift-'.$gift->id )) }}
@@ -20,15 +20,7 @@
     <input type="text" name='text' placeholder="{{trans('affiliates.gifts.what-do-you-have-to-say') }}"  value='{{$gift->text}}'>
     <div class="text-center"><button type='submit' class='large-button blue-button'>{{trans('affiliates.gifts.save') }}</button></div>
     {{ Form::close() }}
-    <h6>{{trans('affiliates.gifts.gift-link') }}</h6>
-    <form class="relative">
-        <?php
-            $url  = action('CoursesController@show', $course->slug) .'?aid='.Auth::user()->affiliate_id.'&gid='.$gift->encryptedID();
-            if($tcode!='') $url.= '&tcode='.$tcode;
-        ?>
-        <input type="text" readonly="readonly" class="copy-link" value="{{ $url }}" />
-    </form>
-    <div class='row'>
+    <div class='row no-margin'>
         <div class="dropzone @if($gift->files->count() > 0) col-lg-3 @endif">
             <i class="fa fa-cloud-upload"></i>
             <p class="regular-paragraph dropzone-{{$gift->id}}">
@@ -71,10 +63,24 @@
         </div> 
         
     </div>
-    </div>
+    <h6>{{trans('affiliates.gifts.gift-link') }}</h6>
+    <form class="relative">
+        <?php
+            $url  = action('CoursesController@show', $course->slug) .'?aid='.Auth::user()->affiliate_id.'&gid='.$gift->encryptedID();
+            if($tcode!='') $url.= '&tcode='.$tcode;
+        ?>
+        <input type="text" readonly="readonly" class="copy-link" value="{{ $url }}" />
+    </form>
+  </div>
 </div>
 <script>
     $('#gift-ui-holder').parent().parent('.modal-body').css('padding', '0px');
     $('#gift-ui-holder').parents('.modal-dialog').addClass('gift-ui-modal');
+		
+	$('.gift-modal h4').each(function(index) {
+		var labelHolder = $('<span></span>').text(index + 1); 
+		$(labelHolder).appendTo($(this));
+        
+    })
 
 </script>
