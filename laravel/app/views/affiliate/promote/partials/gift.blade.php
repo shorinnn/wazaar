@@ -76,8 +76,5 @@
 <script>
     $('#gift-ui-holder').parent().parent('.modal-body').css('padding', '0px');
     $('#gift-ui-holder').parents('.modal-dialog').addClass('gift-ui-modal');
-	$( document ).ajaxComplete(function() {
-	 addGiftLabel();
-	});
 	addGiftLabel();
 </script>

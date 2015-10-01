@@ -536,6 +536,10 @@
 @section('extra_js')
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script>
+		$( document ).ajaxComplete(function() {
+		 addGiftLabel();
+		});
+
         function unauthenticatedEnrollAttempt(){
             if( $('.login-to-purchase-alert').length == 0 ){
                 $('#registerModal').find('h1').after('<p class="alert alert-danger login-to-purchase-alert">{{ trans('courses/general.login_to_purchase') }}</p>');
