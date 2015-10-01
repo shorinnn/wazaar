@@ -176,7 +176,9 @@ class PaymentController extends BaseController
         $request['balancedUsed'] = 0;
         $request['balanceTransactionID'] = 0;
         $request['aid'] = Cookie::get('aid');
-        $request['tax'] = $request['amount'] * .08;
+        $preTax = $request['amount'] / ( 1 + Config::get('wazaar.TAX') );
+//        $request['tax'] = $request['amount'] * .08;
+        $request['tax'] = $preTax *  Config::get('wazaar.TAX');
         $reference = Str::random();
         $giftId = Input::get('giftId');
 
