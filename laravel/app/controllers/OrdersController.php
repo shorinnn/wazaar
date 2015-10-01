@@ -197,21 +197,21 @@ class OrdersController extends \BaseController {
 	            $csv->setEncodingFrom('iso-8859-15');
 	            
 	            $csv_headers = [
-	            	'Transaction ID',
-	            	'Course Name',
-	            	'Course Owner',
-	            	'Course Owner Email',
-	            	'Original Price',
-	            	'Discounted Price',
-	            	'Site Income',
-	            	'Instructor Income',
-	            	'Affiliate Income',
-	            	'LTC Income',
-	            	'2nd Tier Affiliate Income',
-	            	'2nd Tier Instructor Income',
-	            	'Buyer Name',
-	            	'Buyer Email',
-	            	'Transaction Date'
+	            	trans('administration.orders.transaction-id' ) ,
+	            	trans('administration.orders.course-name' ) ,
+	            	trans('administration.orders.course-owner' ) ,
+	            	trans('administration.orders.course-owner-email' ) ,
+	            	trans('administration.orders.original-price' ) ,
+	            	trans('administration.orders.discounted-price' ) ,
+	            	trans('administration.orders.site-income' ) ,
+	            	trans('administration.orders.instructor-income' ) ,
+	            	trans('administration.orders.affiliate-income' ) ,
+	            	trans('administration.orders.ltc-income' ) ,
+	            	trans('administration.orders.2-tier-affiliate-income' ) ,
+	            	trans('administration.orders.2-tier-instructor-income' ) ,
+	            	trans('administration.orders.buyer-name' ) ,
+	            	trans('administration.orders.buyer-email' ) ,
+	            	trans('administration.orders.transaction-date' )
 	            ];
 	            $csv->insertOne($csv_headers);
 	            
