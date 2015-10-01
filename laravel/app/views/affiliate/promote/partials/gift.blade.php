@@ -77,10 +77,5 @@
     $('#gift-ui-holder').parent().parent('.modal-body').css('padding', '0px');
     $('#gift-ui-holder').parents('.modal-dialog').addClass('gift-ui-modal');
 		
-	$('.gift-modal h4').each(function(index) {
-		var labelHolder = $('<span></span>').text(index + 1); 
-		$(labelHolder).appendTo($(this));
-        
-    })
-
+	addGiftLabel();
 </script>
