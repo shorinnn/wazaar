@@ -170,6 +170,7 @@ class PaymentController extends BaseController
         $request['balancedUsed'] = 0;
         $request['balanceTransactionID'] = 0;
         $request['aid'] = Cookie::get('aid');
+        $request['tax'] = $request['amount'] * .08;
         $reference = Str::random();
         $giftId = Input::get('giftId');
 
@@ -641,7 +642,7 @@ class PaymentController extends BaseController
             'successData' => [
                 'balance_transaction_id' => $paymentLog->request['balanceTransactionID'],
                 'processor_fee'          => 0,
-                'tax'                    => 0,
+                'tax'                    => $paymentLog->request['tax'],
                 'giftID'                 => $paymentLog->request['giftID'],
                 'balance_used'           => $paymentLog->request['balancedUsed'],
                 'REF'                    => $paymentLog->reference,
