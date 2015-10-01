@@ -134,10 +134,11 @@ class Student extends User{
         if( $this->ltc_affiliate !=null ) $purchase->ltc_affiliate_id = $this->ltc_affiliate_id;
 
         // disable below
-        $ltcSTPub = $this->LTCInstructor();
-        if( $ltcSTPub !=false ){
-            $purchase->ltc_affiliate_id = $ltcSTPub;
-        }
+//        $ltcSTPub = $this->LTCInstructor();
+        $ltcSTPub = false;
+//        if( $ltcSTPub !=false ){
+//            $purchase->ltc_affiliate_id = $ltcSTPub;
+//        }
 
         if($course->instructor->secondTierInstructor!=null) $purchase->second_tier_instructor_id = $course->instructor->second_tier_instructor_id;
         $purchase->instructor_id = $course->instructor_id;
@@ -219,14 +220,15 @@ class Student extends User{
 
             // credit LTC affiliate
             if( $purchase->ltc_affiliate_earnings > 0){
-                $stInstructor = $this->LTCInstructor();
+                //$stInstructor = $this->LTCInstructor();
+                $stInstructor = false;
                 if(  $stInstructor == false ){
                     $this->ltcAffiliate->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref, 'ltc', 0, $purchase->id);
                 }
-                else{
-                    $stInstructor = SecondTierInstructor::find($stInstructor);
-                    $stInstructor->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref,  $purchase->id, 'ltc' );
-                }
+//                else{
+//                    $stInstructor = SecondTierInstructor::find($stInstructor);
+//                    $stInstructor->credit( $purchase->ltc_affiliate_earnings, $product, $purchase->payment_ref,  $purchase->id, 'ltc' );
+//                }
             }
 
             // credit second tier affiliate

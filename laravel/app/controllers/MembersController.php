@@ -267,6 +267,34 @@ class MembersController extends \BaseController {
                 if( count( $instructors ) == 0 ) $instructors = [0];
                 
                 if($ltc!=null){
+                    // assign a new user to the existing LTC
+                    $existing = User::whereIn('id', $instructors)
+                            ->where('ltc_affiliate_id','!=', $ltc->id)
+                            ->where('ltc_affiliate_id','>',0)->get();
+                    if( $existing->count() > 0 ){
+                            foreach($existing as $e){
+                                $start = date('Y-m-d 00:00:00', strtotime($e->created_at));
+                                $stop = date('Y-m-d 23:59:59', strtotime($e->created_at));
+                                $newUser = User::whereHas(
+                                    'roles', function($q){
+                                    $q->where('name', 'Student');
+                                })->whereNull('ltc_affiliate_id')
+                                ->where('created_at','>=', $start)
+                                ->where('created_at','<', $stop)
+                                ->first();
+                                if( $newUser==null ){
+                                    $newUser = User::whereHas(
+                                        'roles', function($q){
+                                        $q->where('name', 'Student');
+                                    })->whereNull('ltc_affiliate_id')
+                                    ->orderBy('created_date','desc')
+                                    ->first();
+                                    $newUser->created_at = $e->created_at;
+                                }
+                                $newUser->ltc_affiliate_id = $e->ltc_affiliate_id;
+                                $newUser->updateUniques();
+                            }
+                    }
                     User::whereIn('id', $instructors)->update( [ 'ltc_affiliate_id' => $ltc->id ] );
                 }
             }

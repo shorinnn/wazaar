@@ -73,7 +73,8 @@ class PurchaseHelper{
     
     public static function ltcAffiliateEarnings($product, $ltcAffiliateId,  $processor_fee, $prodAffiliate=null, $buyer=null){
         // see if this LTC is Second Tier Instructor
-        $stLTC = $buyer->LTCInstructor();//set this to false
+//        $stLTC = $buyer->LTCInstructor();//set this to false
+        $stLTC = false;
         // if null, no LTC earnings
         if( $ltcAffiliateId==null && $stLTC == false ) return 0;
         // if affiliate not LTC, no LTC earnings
