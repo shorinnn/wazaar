@@ -34,7 +34,7 @@ class AnalyticsHelper
             )
             ->where('product_type','Course')
             ->where('product_id',$courseId)
-            ->groupBy(DB::raw("DATE(created_at)"))
+           // ->groupBy(DB::raw("DATE(created_at)"))
         ;
 
         return $stats->paginate(10);

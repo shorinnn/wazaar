@@ -1,7 +1,7 @@
 <div class="row-fluid">
     <table class="table table-striped">
         <thead>
-        <th>{{trans('analytics.date')}}</th>
+        <!--<th>{{trans('analytics.date')}}</th>-->
         <th>{{trans('analytics.salesCount')}}</th>
         <th>{{trans('analytics.salesTotal')}}</th>
         <th>{{trans('analytics.instructor_commission')}}</th>
@@ -15,7 +15,7 @@
         <tbody>
         @foreach($stats as $stat)
             <tr>
-                <td>{{$stat->date}}</td>
+                <!--<td>{{$stat->date}}</td>-->
                 <td>{{$stat->sales_count}}</td>
                 <td>{{$stat->sales_total}}</td>
                 <td>{{$stat->instructor_earnings}}</td>
