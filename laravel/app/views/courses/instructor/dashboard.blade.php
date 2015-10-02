@@ -9,12 +9,12 @@
                             <h3>Messages</h3>
                         </div>
                         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                            <form>
+<!--                            <form>
                                 <div>
                                     <input type="search" placeholder="Search conversations ..." />
                                     <button><i class="wa-search"></i></button>
                                 </div>
-                            </form>
+                            </form>-->
                         </div>
                     </div>
                     @foreach($discussions as $discussion)
