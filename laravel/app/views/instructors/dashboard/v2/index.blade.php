@@ -237,7 +237,7 @@
                                                  </p>
                                                  
                                                  <p><i class="wa-like"></i>{{ trans('general.reviews') }}
-                                                     <span class="count">{{ $course->total_reviews }} <em> ( {{ $course->reviewsScore() }} )</em></span></p>
+                                                     <span class="count">{{ $course->total_reviews }} <em> ({{ $course->reviewsScore() }})</em></span></p>
                                             </div>
                                         </div>
                                     </div>
