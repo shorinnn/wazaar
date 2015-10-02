@@ -160,7 +160,7 @@
                                                                 </span>
                                                                 <!--{{trans('courses/general.sale')}}-->
                                                             @else
-                                                                ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                                                <span class="price">¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}</span>
                                                             @endif     
                                                         @endif
                                                       <!--/price -->
