@@ -20,12 +20,12 @@
                     <div class="row activity-today">
                         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 no-margin">
                             <h2 class="revenue">
-                                 ¥ {{ number_format( $instructor->money('revenue','today') , Config::get('custom.currency_decimals')) }}
+                                 ¥{{ number_format( $instructor->money('revenue','today') , Config::get('custom.currency_decimals')) }}
                                  <span class="">{{trans('analytics.revenue')}}</span></h2>
                         </div>
                         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-5 no-margin">
                             <h2 class="profit success">
-                                ¥ {{ number_format( $instructor->money('profit','today') , Config::get('custom.currency_decimals')) }}
+                                ¥{{ number_format( $instructor->money('profit','today') , Config::get('custom.currency_decimals')) }}
                                 <span class="">{{trans('analytics.profit')}}</span></h2>
                         </div>
                     </div>
@@ -156,11 +156,11 @@
                                                           @if($course->isDiscounted())
                                                                 <span class="prev-price"> ¥ {{ number_format( $course->discount_original, Config::get('custom.currency_decimals') ) }}</span>
                                                                 <span class="discounted-price">
-                                                                    ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                                                    ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
                                                                 </span>
                                                                 <!--{{trans('courses/general.sale')}}-->
                                                             @else
-                                                                ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                                                ¥{{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
                                                             @endif     
                                                         @endif
                                                       <!--/price -->
@@ -170,7 +170,7 @@
                                                 	<div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
                                                     <p class="revenue">{{trans('analytics.revenue')}} 
                                                     	<span>
-                                                    ¥ {{ number_format( $course->money('revenue') , Config::get('custom.currency_decimals')) }}
+                                                    ¥{{ number_format( $course->money('revenue') , Config::get('custom.currency_decimals')) }}
                                                     	</span>
                                                     </p>
                                                     </div>
@@ -228,11 +228,15 @@
                                                           {{ $course->sales()->count() + $course->lessonSalesCount() }}--></span>
                                                   </p>
                                                  <p><i class="fa fa-smile-o"></i>{{ trans('courses/general.previewers') }} 
-                                                     <span class="count new">{{ $course->nonBuyerPreviews(true) }} <em> ({{ $course->nonBuyerPreviews() }})</em></span>
+                                                     <span class="count new">
+                                                         @if( $course->nonBuyerPreviews(true) > 0)
+                                                             {{ $course->nonBuyerPreviews(true) }} NEW
+                                                         @endif
+                                                         <em> ({{ $course->nonBuyerPreviews() }})</em></span>
                                                  </p>
                                                  
                                                  <p><i class="wa-like"></i>{{ trans('general.reviews') }}
-                                                     <span class="count">{{ $course->total_reviews }} <em> ({{ $course->reviewsScore() }} )</em></span></p>
+                                                     <span class="count">{{ $course->total_reviews }} <em> ( {{ $course->reviewsScore() }} )</em></span></p>
                                             </div>
                                         </div>
                                     </div>
