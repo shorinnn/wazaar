@@ -4,7 +4,7 @@
         <div class="container affiliate-dashboard dashboard  analytics-page">
 
 
-            <h2 class="margin-top-10">Course: {{$course->name}}</h2>
+            <h2 class="margin-top-10">{{trans('analytics.course')}}: {{$course->name}}</h2>
             <div class="row-fluid">
                 <div class="panel panel-default clearfix">
                     <div class="panel-heading">
@@ -127,7 +127,7 @@
             <div class="row">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h3 class="panel-title">Course Statistics</h3>
+                    <h3 class="panel-title">{{trans('analytics.courseStats')}}</h3>
                   </div>
                   <div class="panel-body">
                       <div class="top-affiliates-table table-stats-wrapper">

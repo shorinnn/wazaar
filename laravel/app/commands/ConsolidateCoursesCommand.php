@@ -42,6 +42,8 @@ class ConsolidateCoursesCommand extends ScheduledCommand
     public function fire()
     {
         CourseConsolidatedPurchases::truncate();
+
+        CourseConsolidatedPurchases::unguard();
         $courses = Course::all();
 
         $consolidatedPurchases = [];
@@ -109,6 +111,8 @@ class ConsolidateCoursesCommand extends ScheduledCommand
                 $consolidatedPurchases[]                         = $consolidatedPurchase;
             }
 
+            CourseConsolidatedPurchases::create($consolidatedPurchase);
+
         }
 
         /*echo '<pre>';
@@ -117,8 +121,8 @@ class ConsolidateCoursesCommand extends ScheduledCommand
         die;*/
         //unset($consolidatedPurchases[65]);
 
-        CourseConsolidatedPurchases::unguard();
-        CourseConsolidatedPurchases::insert($consolidatedPurchases);
+
+
     }
 
 

@@ -551,9 +551,11 @@ Route::post('courses/{id}/video/set-description','CoursesController@setVideoDesc
 
 Route::get('test', function(){
 
-    $dh = new DeliveredHelper();
+    $ch = new CourseHelper();
 
-    dd($dh->getUsersByTags(['second-tier-publisher-id' => 1]));
+    $ts = $ch->bestSellers();
+
+    echo $ts->count();
 
 });
 

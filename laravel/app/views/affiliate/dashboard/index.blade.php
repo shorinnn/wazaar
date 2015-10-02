@@ -423,7 +423,7 @@
             </div>
 
             <hr/>
-            <div class="panel panel-default hidden">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Tables Filter</h3>
                 </div>
@@ -437,7 +437,11 @@
                 </div>
             </div>
 
-            <div id="wrapper-table-sales" class="hidden">
+            <div id="wrapper-table-sales">
+
+            </div>
+
+            <div id="wrapper-table-registrations">
 
             </div>
 

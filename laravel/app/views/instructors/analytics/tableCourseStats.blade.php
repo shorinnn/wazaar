@@ -1,15 +1,15 @@
 <div class="row-fluid">
     <table class="table table-striped">
         <thead>
-        <th>Date</th>
-        <th>No. of Sales</th>
-        <th>Total Sales</th>
-        <th>Instructor Revenue</th>
-        <th>Affiliate Revenue</th>
-        <th>LTC Commission</th>
-        <th>2nd Tier Affiliate Commission</th>
-        <th>Wazaar Revenue</th>
-        <th>Tax</th>
+        <th>{{trans('analytics.date')}}</th>
+        <th>{{trans('analytics.salesCount')}}</th>
+        <th>{{trans('analytics.salesTotal')}}</th>
+        <th>{{trans('analytics.instructor_commission')}}</th>
+        <th>{{trans('analytics.affiliate_revenue')}}</th>
+        <th>{{trans('analytics.ltc_commission')}}</th>
+        <th>{{trans('analytics.affiliate_two_tier_fee')}}</th>
+        <th>{{trans('analytics.wazaar_system_fee')}}</th>
+        <th>{{trans('analytics.tax')}}</th>
         </thead>
 
         <tbody>
