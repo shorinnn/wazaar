@@ -151,18 +151,33 @@
                                                           </em>
                                                           <em class="public"> {{ trans('courses/general.my-courses-privacy.'.$course->privacy_status) }}</em>
                                                       </p>
+                                                      <!-- price -->
+                                                      @if($course->free!='yes' && $course->cost() > 0)
+                                                          @if($course->isDiscounted())
+                                                                <span class="prev-price"> ¥ {{ number_format( $course->discount_original, Config::get('custom.currency_decimals') ) }}</span>
+                                                                <span class="discounted-price">
+                                                                    ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                                                </span>
+                                                                <!--{{trans('courses/general.sale')}}-->
+                                                            @else
+                                                                ¥ {{ number_format($course->cost(), Config::get('custom.currency_decimals')) }}
+                                                            @endif     
+                                                        @endif
+                                                      <!--/price -->
                                                     </div>
                                                 </div>
                                                 <div class="row column-1-row-2">
                                                 	<div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
                                                     <p class="revenue">{{trans('analytics.revenue')}} 
                                                     	<span>
-                                                    ¥ {{ number_format( $instructor->money('revenue','today') , Config::get('custom.currency_decimals')) }}
+                                                    ¥ {{ number_format( $course->money('revenue') , Config::get('custom.currency_decimals')) }}
                                                     	</span>
                                                     </p>
                                                     </div>
                                                 	<div class="col-xs-6 col-sm-6 col-md-7 col-lg-7 text-right">
-                                                    	<a href="#" class="default-button see-stat"><i class="fa fa-line-chart"></i><span class="hidden-xs">{{ trans('courses/general.see_statistics') }}</span></a>
+                                                    	<a href="{{ action('InstructorDashboardController@course', $course->slug)}}" class="default-button see-stat"><i class="fa fa-line-chart"></i>
+                                                            <span class="hidden-xs">{{ trans('courses/general.see_statistics') }}</span>
+                                                        </a>
                                                             <div class="settings activate-dropdown">
                                                             <button aria-expanded="false" data-toggle="dropdown" 
                                                             class="settings-button dropdown-toggle" type="button" id="btnGroupDrop2">
@@ -200,18 +215,24 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 column-2">
                                                   <p><i class="fa fa-comments-o"></i>{{ trans('courses/general.discussions') }} 
-                                                      <span class="count">{{ $course->newDiscussions($lastVisit) }} <em></em> <!--new--></span></p>
+                                                      <span class="count">
+                                                          {{-- $course->newDiscussions($lastVisit) --}} 
+                                                          {{ $course->totalDiscussions() }} 
+                                                          <em></em> <!--new--></span></p>
                                                   <p><i class="fa fa-shopping-cart"></i>
                                                       {{ trans('courses/general.purchases') }}
                                                       <span class="count">
                                                           {{ $course->enrolledStudents(true) }} <em></em> 
                                                       <!--
                                                       {{ trans('courses/general.purchases') }} <span class="count new">
-                                                          {{ $course->sales()->count() + $course->lessonSalesCount() }}--></span></p>
+                                                          {{ $course->sales()->count() + $course->lessonSalesCount() }}--></span>
+                                                  </p>
                                                  <p><i class="fa fa-smile-o"></i>{{ trans('courses/general.previewers') }} 
-                                                     <span class="count new">{{ $course->nonBuyerPreviews() }} <em> (22)</em></span></p>
-                                                 <p><i class="wa-like"></i>{{ trans('courses/general.reviews') }}
-                                                     <span class="count">22 <em> (65%)</em></span></p>
+                                                     <span class="count new">{{ $course->nonBuyerPreviews(true) }} <em> ({{ $course->nonBuyerPreviews() }})</em></span>
+                                                 </p>
+                                                 
+                                                 <p><i class="wa-like"></i>{{ trans('general.reviews') }}
+                                                     <span class="count">{{ $course->total_reviews }} <em> ({{ $course->reviewsScore() }} )</em></span></p>
                                             </div>
                                         </div>
                                     </div>
