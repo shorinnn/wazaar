@@ -103,7 +103,7 @@ return array(
     'search' => '検索',
     'affiliate-ref-link' => 'アフィリエイト 2ティアリンク',
     'update' => '更新する',
-    'upload_new_picture' => '新規写真を投稿',
+    'upload_new_picture' => '新しい写真を投稿する',
     'select-sort' => '検索オプション',
     'courses' => 'コース情報',
     'edit-profile' => 'プロフィールの編集',
