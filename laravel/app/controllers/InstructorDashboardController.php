@@ -29,8 +29,8 @@ class InstructorDashboardController extends BaseController
             $salesCountView     = $this->salesCountView('',  $course->id);
             $trackingCodesView  = $this->trackingCodesView('', $course->id);
             $topAffiliatesTable = $this->topAffiliatesTableView('', '', false);
-
-            return View::make('instructors.dashboard.course',compact('course', 'salesView', 'salesCountView', 'trackingCodesView', 'topAffiliatesTable'));
+            $courseStatsTableView     = $this->courseStatsTableView($course->id);
+            return View::make('instructors.dashboard.course',compact('course', 'salesView', 'salesCountView', 'trackingCodesView', 'topAffiliatesTable','courseStatsTableView'));
         }
 
         return Redirect::to('analytics');
@@ -262,5 +262,11 @@ class InstructorDashboardController extends BaseController
         }
 
         return Redirect::to('analytics');
+    }
+
+    public function courseStatsTableView($courseId)
+    {
+        $stats = $this->analyticsHelper->getCourseStats($courseId);
+        return View::make('instructors.analytics.tableCourseStats',compact('stats'))->render();
     }
 }
