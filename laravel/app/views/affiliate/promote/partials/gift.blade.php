@@ -77,4 +77,7 @@
     $('#gift-ui-holder').parent().parent('.modal-body').css('padding', '0px');
     $('#gift-ui-holder').parents('.modal-dialog').addClass('gift-ui-modal');
 	addGiftLabel();
+	$('.gift-modal .wrap .copy-link').focus(function(e) {
+        $(this).select();
+    });
 </script>
