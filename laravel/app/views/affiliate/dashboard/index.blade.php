@@ -155,7 +155,7 @@
                     <div id="sales-today" class="stat-block">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                {{trans('analytics.sales')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
+                                {{trans('analytics.today')}}{{trans('analytics.sales')}} <span id="header-sales-frequency"></span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
                                     <a class="active" href="#" onclick="Analytics.sales('daily','','', this); return false;">{{trans('analytics.today')}}</a>
@@ -215,7 +215,7 @@
                     <div class="with-progress-bar stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
-                                {{trans('analytics.twoTierSales')}} <span id="header-second-tier-earnings-frequency">{{trans('analytics.today')}}</span> </button>
+                                {{trans('analytics.today')}}{{trans('analytics.twoTierSales')}} <span id="header-second-tier-earnings-frequency"></span> </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu second-tier-earnings-dropdown">
                                 <li>
                                     <a class="active with-today" href="#" onclick="Analytics.secondTierEarnings('daily',this); return false;">{{trans('analytics.today')}}</a>

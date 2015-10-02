@@ -112,107 +112,104 @@
                           @foreach($courses as $course)
                             <div class="row margin-bottom-25 course-row-{{$course->id}}">
 
+
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="clearfix teaching-lesson no-border finished-lesson">
                                         <div class="row row-1">
-                                        	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 column-1">
-                                            	<div class="row column-1-row-1">
-                                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                                      <div class="image-wrap">
-                                                           @if($course->previewImage!=null)
-                                                            <a href="{{ $course->previewImage->url }}" target="_blank">
-                                                                <img src="{{ $course->previewImage->url }}" class="img-responsive" />
-                                                            </a>
-                                                            @else
-                                                                <p style="margin-top:35px;">{{ trans('courses/create.no-uploaded-image') }}</p>
-                                                            @endif 
-                                                      </div>
-        
-                                                    </div>
-                                                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                                      <h4>
-                                                              <span class="lesson-status {{$course->publish_status}}">
-                                                                   {{ trans('courses/general.my-courses-publish.'.$course->publish_status) }}
-                                                              </span>
-                                                          @if( !$course->publish_status=='approved' )
-                                                              {{$course->name}}
-                                                          @else
-                                                              <a href="{{ action('CoursesController@show', $course->slug) }}">{{$course->name}}</a>
-                                                          @endif
-                                                      </h4>
-                                                      <p class="regular-paragraph">
-                                                          <em class="">{{ date('m/d/Y', strtotime($course->created_at)) }}</em>
-                                                          <em class="paid"> 
-                                                                @if($course->free=='yes')
-                                                                    {{ trans('courses/create.free') }}
-                                                                @else
-                                                                    {{  trans('courses/create.paid') }}
-                                                                @endif
-                                                          </em>
-                                                          <em class="public"> {{ trans('courses/general.my-courses-privacy.'.$course->privacy_status) }}</em>
-                                                      </p>
-                                                    </div>
-                                                </div>
-                                                <div class="row column-1-row-2">
-                                                	<div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-                                                    <p class="revenue">{{trans('analytics.revenue')}} 
-                                                    	<span>
-                                                    ¥ {{ number_format( $instructor->money('revenue','today') , Config::get('custom.currency_decimals')) }}
-                                                    	</span>
-                                                    </p>
-                                                    </div>
-                                                	<div class="col-xs-6 col-sm-6 col-md-7 col-lg-7 text-right">
-                                                    	<a href="#" class="default-button see-stat"><i class="fa fa-line-chart"></i><span class="hidden-xs">{{ trans('courses/general.see_statistics') }}</span></a>
-                                                            <div class="settings activate-dropdown">
-                                                            <button aria-expanded="false" data-toggle="dropdown" 
-                                                            class="settings-button dropdown-toggle" type="button" id="btnGroupDrop2">
-                                                                <i class="fa fa-cog"></i>
-                                                                <i class="wa-chevron-down"></i>
-                                                            </button>
-                                                            <div id="" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
-                                                                    <ul>
-                                                                    <li>
-                                                                            <a target='_blank' href="{{ action('CoursesController@show', $course->slug) }}?preview=1">{{ trans('courses/general.preview_course') }}</a>
-                                                                    </li>
-                                                                    <li>
-                                                                            <a target='_blank' href="{{ action('ClassroomController@dashboard', $course->slug) }}">{{ trans('courses/general.go-to-dashboard') }}</a>
-                                                                    </li>
-                                                                    <li>
-                                                                            <a href="{{ action('CoursesController@edit', $course->slug) }}">{{ trans('courses/general.edit') }}</a>
-                                                                    </li>
-                                                                   
-                                                                   @if( $course->student_count == 0)
-                                                                      <li>
-                                                                          <a href="{{ action('CoursesController@destroy', [ $course->id ]) }}" 
-                                                                             class="delete link-to-remote-confirm"
-                                                                             data-url="{{ action('CoursesController@destroy', [ $course->id ]) }}" 
-                                                                             data-callback = 'deleteItem' 
-                                                                             data-delete = '.course-row-{{$course->id}}' 
-                                                                             data-message="{{ trans('crud/labels.you-sure-want-delete') }}">    
-                                                                          {{trans('crud/labels.delete')}}</a>
-                                                                      </li>
-                                                                  @endif
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                              <div class="image-wrap">
+                                                   @if($course->previewImage!=null)
+                                                    <a href="{{ $course->previewImage->url }}" target="_blank">
+                                                        <img src="{{ $course->previewImage->url }}" class="img-responsive" />
+                                                    </a>
+                                                    @else
+                                                        <p style="margin-top:35px;">{{ trans('courses/create.no-uploaded-image') }}</p>
+                                                    @endif 
+                                              </div>
+
                                             </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 column-2">
+                                            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                                              <h4>
+                                                  @if( !$course->publish_status=='approved' )
+                                                      {{$course->name}}
+                                                  @else
+                                                      <a href="{{ action('CoursesController@show', $course->slug) }}">{{$course->name}}</a>
+                                                  @endif
+                                                      <span class="lesson-status {{$course->publish_status}}">
+                                                           {{ trans('courses/general.my-courses-publish.'.$course->publish_status) }}
+                                                      </span>
+                                              </h4>
+                                              <p class="regular-paragraph"><span class="created-on">
+                                                      {{ trans('general.created-on') }}
+                                                      :</span> {{ date('m/d/Y', strtotime($course->created_at)) }}</p>
+                                              <p class="regular-paragraph">
+                                                  <span class="status">{{ trans('general.status') }}</span>
+                                                  <em class="paid"> 
+                                                        @if($course->free=='yes')
+                                                            {{ trans('courses/create.free') }}
+                                                        @else
+                                                            {{  trans('courses/create.paid') }}
+                                                        @endif
+                                                  </em>
+                                                  <em class="public"> {{ trans('courses/general.my-courses-privacy.'.$course->privacy_status) }}</em>
+                                              </p>
+                                            </div>
+                                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                                  <div class="settings activate-dropdown">
+                                                  <button aria-expanded="false" data-toggle="dropdown" 
+                                                  class="settings-button dropdown-toggle" type="button" id="btnGroupDrop2">
+                                                      <i class="fa fa-cog"></i>
+                                                      <i class="wa-chevron-down"></i>
+                                                  </button>
+                                                  <div id="" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu">
+                                                          <ul>
+                                                          <li>
+                                                                  <a target='_blank' href="{{ action('CoursesController@show', $course->slug) }}?preview=1">{{ trans('courses/general.preview_course') }}</a>
+                                                          </li>
+                                                          <li>
+                                                                  <a target='_blank' href="{{ action('ClassroomController@dashboard', $course->slug) }}">{{ trans('courses/general.go-to-dashboard') }}</a>
+                                                          </li>
+                                                          <li>
+                                                                  <a href="{{ action('CoursesController@edit', $course->slug) }}">{{ trans('courses/general.edit') }}</a>
+                                                          </li>
+                                                         
+                                                         @if( $course->student_count == 0)
+                                                            <li>
+                                                                <a href="{{ action('CoursesController@destroy', [ $course->id ]) }}" 
+                                                                   class="delete link-to-remote-confirm"
+                   data-url="{{ action('CoursesController@destroy', [ $course->id ]) }}" data-callback = 'deleteItem' 
+                   data-delete = '.course-row-{{$course->id}}' data-message="{{ trans('crud/labels.you-sure-want-delete') }}">    
+                                                                {{trans('crud/labels.delete')}}</a>
+                                                            </li>
+                                                        @endif
+                                                      </ul>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="row row-2">
+                                          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
                                                   <p><i class="fa fa-comments-o"></i>{{ trans('courses/general.discussions') }} 
-                                                      <span class="count">{{ $course->newDiscussions($lastVisit) }} <em></em> <!--new--></span></p>
+                                                      <span class="count new">{{ $course->newDiscussions($lastVisit) }} <!--new--></span></p>
+                                          </div>
+                                          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+                                                  <!--<p><i class="fa fa-comment-o"></i>questions <span class="count">24</span></p>-->
+                                                  <!--<p><i class="fa fa-comment-o"></i>questions <span class="count">24</span></p>-->
+                                                 <p><i class="fa fa-smile-o"></i>{{ trans('courses/general.non-buyer-previewers') }} 
+                                                     <span class="count new">{{ $course->nonBuyerPreviews() }}</span></p>
+
+                                          </div>
+                                          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
                                                   <p><i class="fa fa-shopping-cart"></i>
                                                       {{ trans('courses/general.purchases') }}
-                                                      <span class="count">
-                                                          {{ $course->enrolledStudents(true) }} <em></em> 
+                                                      <span class="count new">
+                                                          {{ $course->enrolledStudents(true) }} 
                                                       <!--
                                                       {{ trans('courses/general.purchases') }} <span class="count new">
-                                                          {{ $course->sales()->count() + $course->lessonSalesCount() }}--></span></p>
-                                                 <p><i class="fa fa-smile-o"></i>{{ trans('courses/general.previewers') }} 
-                                                     <span class="count new">{{ $course->nonBuyerPreviews() }} <em> (22)</em></span></p>
-                                                 <p><i class="wa-like"></i>{{ trans('general.reviews') }}
-                                                     <span class="count">22 <em> (65%)</em></span></p>
-                                            </div>
+                                                          {{ $course->sales()->count() + $course->lessonSalesCount() }}--> </span>
+                                                      </p>
+
+                                          </div>
                                         </div>
                                     </div>
                                 </div>
