@@ -250,7 +250,7 @@ function enableFileUploader($uploader){
                     return window[callback](e, data);
                 }
             }).on('fileuploadprogress', function (e, data) {
-                 $progressLabel = $(progressLabel);
+                $progressLabel = $(progressLabel);
                 var $progress = parseInt(data.loaded / data.total * 100, 10);
                 $(progressbar).css('width', $progress + '%');
                 if( $progressLabel.length > 0 ) $progressLabel.html($progress);
