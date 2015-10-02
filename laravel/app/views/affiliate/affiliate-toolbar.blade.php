@@ -11,10 +11,10 @@
                     </div>-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<div class="row">
-                        	<div class="col-xs-4 col-sm-3 col-md-4 col-lg-4 no-padding">
+                        	<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 no-padding">
                             	<label class="affiliate-link-label">{{ trans('affiliates.your_affiliate_link') }}</label>
                             </div>
-                            <div class="col-xs-8 col-sm-7 col-md-8 col-lg-8 no-padding">
+                            <div class="col-xs-6 col-sm-7 col-md-8 col-lg-8 no-padding">
                             	<input type="text" readonly="" id='affiliate-toolbar-link' value='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}' />
                             </div>
                         </div>
@@ -101,4 +101,6 @@
         }
          $('#linkWithDD').val(0);
     }
+	
+	
 </script>

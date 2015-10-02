@@ -224,15 +224,14 @@
                                         <p class="text-center">でみたいことはありますか？</p> 
                                         <p class="text-center margin-top-10">Wazaarでコースを探してみましょう！</p>
                                     @else
-                                        {{ Auth::user()->_profile('Instructor')->last_name }}
+                                        <!--{{ Auth::user()->_profile('Instructor')->last_name }}-->
                                          <p class="text-center">でみたいことはありますか？</p>
                                          <p class="text-center margin-top-10"> Wazaarでコースを探してみましょう！</p>
                                     @endif                          
                                 @elseif(Auth::user()->_profile('Student') != null)  
-
-                                    {{ Auth::user()->_profile('Student')->last_name }}
-                                             <p class="text-center">でみたいことはありますか？</p>
-                                             <p class="text-center margin-top-10"> Wazaarでコースを探してみましょう！</p>
+                                    <!--{{ Auth::user()->_profile('Student')->last_name }}-->
+                                         <p class="text-center">でみたいことはありますか？</p>
+                                         <p class="text-center margin-top-10"> Wazaarでコースを探してみましょう！</p>
                                 @else
                                     <p class="text-center">でみたいことはありますか？</p>
                                     <p class="text-center margin-top-10"> Wazaarでコースを探してみましょう！</p>

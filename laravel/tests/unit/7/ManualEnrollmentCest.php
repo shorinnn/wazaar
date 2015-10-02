@@ -15,18 +15,18 @@ class ManualEnrollmentCest{
         Artisan::call('db:seed');
     }
     
-    public function manualStudentCourseEnrollment1(UnitTester $I)
+    public function manualStudentCourseEnrollment(UnitTester $I)
     {
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();// delete purchases for this buyer
         $course = Course::first();
-//        $course->price = 100;
-//        $course->updateUniques();
+        
         $priceInput = 108;// including tax
-
+        $preTax = ( ($priceInput ) - ($priceInput / (1 + Config::get('wazaar.TAX') ) * Config::get('wazaar.TAX') ) );
+        $tax = $preTax  * Config::get('wazaar.TAX');
         //Calculate sale
-        $sale = $course->price - $priceInput + ($priceInput / 1.08);
-
+        $sale = $course->price - $preTax;
+ 
         //Set sale amount
         $course->sale = $sale;
         $course->sale_starts_on = date('Y-m-d H:i:s', time()- 24 * 60 *60);
@@ -40,7 +40,7 @@ class ManualEnrollmentCest{
             'successData' => [
                 'balance_transaction_id' => 0,
                 'processor_fee'          => 0,
-                'tax'                    => 8,
+                'tax'                    => $tax,
                 'giftID'                 => 0,
                 'balance_used'           => 0,
                 'REF'                    => Str::random(),
@@ -55,7 +55,7 @@ class ManualEnrollmentCest{
         $I->assertEquals( $sale, $purchase->discount_value );
         $I->assertEquals( $purchase->purchase_price, $priceInput );
         $I->assertEquals( $purchase->original_price, $course->price );
-        $I->assertEquals( $purchase->tax, 8);
+        $I->assertEquals( $purchase->tax, $tax);
         
         $I->seeRecord('transactions',['purchase_id' => $purchase->id, 'user_id' => $course->instructor->id, 'transaction_type' => 'instructor_credit', 
             'amount' => $purchase->instructor_earnings]);
@@ -72,10 +72,11 @@ class ManualEnrollmentCest{
         $student = Student::where('username','student')->first();
         Purchase::where('student_id', $student->id)->delete();// delete purchases for this buyer
         $course = Course::first();
-        $priceInput = 100;
-
+        $priceInput = 108;
+        $preTax = ( ($priceInput ) - ($priceInput / (1 + Config::get('wazaar.TAX') ) * Config::get('wazaar.TAX') ) );
+        $tax = $preTax  * Config::get('wazaar.TAX');
         //Calculate sale
-        $sale = $course->price - $priceInput;
+        $sale = $course->price - $preTax;
 
         //Set sale amount
         $course->sale = $sale;
@@ -90,7 +91,7 @@ class ManualEnrollmentCest{
             'successData' => [
                 'balance_transaction_id' => 0,
                 'processor_fee'          => 0,
-                'tax'                    => 0,
+                'tax'                    => $tax,
                 'giftID'                 => 0,
                 'balance_used'           => 0,
                 'REF'                    => Str::random(),
@@ -105,6 +106,7 @@ class ManualEnrollmentCest{
         $I->assertEquals( $sale, $purchase->discount_value );
         $I->assertEquals( $purchase->purchase_price, $priceInput );
         $I->assertEquals( $purchase->original_price, $course->price );
+        $I->assertEquals( $purchase->tax, $tax );
         
         $I->seeRecord('transactions',['purchase_id' => $purchase->id, 'user_id' => $course->instructor->id, 'transaction_type' => 'instructor_credit', 
             'amount' => $purchase->instructor_earnings]);

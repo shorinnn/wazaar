@@ -67,7 +67,7 @@ class Instructor extends User{
                     ->sum($field);
             $tax = Purchase::where('instructor_id', $this->id)->where('created_at','>=', $start)->where('created_at','<=', $stop)
                     ->sum('tax');
-            return $purchases-$tax;
+            return $purchases;//-$tax;
         }
         
     }

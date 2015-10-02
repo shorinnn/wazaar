@@ -67,6 +67,8 @@ $(document).ready(function(){
     $('body').delegate('#video-grid .boxes', 'mouseenter', videoGridBoxIn);
     $('body').delegate('#video-grid .boxes', 'mouseleave', videoGridBoxOut);
     $('body').delegate('.delayed-keyup', 'keyup', delayedKeyup);
+
+
 	$('button.join-class').mousedown(function(){
 		$(this).addClass('pushdown');
 	});
@@ -86,6 +88,7 @@ $(document).ready(function(){
 	showMoreContent();
     dynamicLessonNameWidth()
 	toggleSideMenu();
+	
 	//stickyFooter();
 	rescaleBckgrdOverlay();
     newHomepageToggleData();
@@ -138,6 +141,16 @@ function newHomepageToggleData(){
             return false;
         })
     }
+}
+
+function addGiftLabel(){
+	$('.gift-label').remove();
+	$('.gift-modal h4').each(function(index) {
+		var labelHolder = $('<span class="gift-label"></span>').text(index + 1); 
+		$(labelHolder).appendTo($(this));
+		
+	})
+	
 }
 
 function makeBoxesExpandable(){

@@ -428,7 +428,7 @@
                      <div class="column-3">
                         <div class="add-to-wishlist-container clearfix">
                             @if( !in_array($course->id, $wishlisted) )
-                            	<span class="tooltipable" title="{{ trans('courses/general.add_to_wishlist')}}" style="display:inline-block !important">
+                            	<span class="" title="{{ trans('courses/general.add_to_wishlist')}}" style="display:inline-block !important">
                                     <i class="wish-icon-holder fa fa-heart-o  wishlist-change-button" data-auth="{{ intval(Auth::check() )}}" 
                                       data-url="{{action('WishlistController@change', $course->slug)}}" data-state="0" style="display:inline"
                                       data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'></i>
@@ -437,7 +437,7 @@
                                       data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'>
                                         {{ trans('courses/general.add_to_wishlist')}}</span>
                                 @else
-                                <span class="tooltipable" title="{{ trans('courses/general.remove_from_wishlist')}}"  style="display:inline-block !important">
+                                <span class="" title="{{ trans('courses/general.remove_from_wishlist')}}"  style="display:inline-block !important">
                                     <i class="wish-icon-holder fa fa-heart wishlist-change-button" data-auth="{{ intval(Auth::check() )}}"
                                        data-url="{{action('WishlistController@change', $course->slug)}}" data-state="1" style="display:inline"
                                        data-icon-holder='.wish-icon-holder' data-text-holder='.wish-text-holder'></i>
@@ -536,6 +536,15 @@
 @section('extra_js')
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script>
+		$( document ).ajaxComplete(function() {
+		 addGiftLabel();
+		});
+		
+		$('#affiliate-toolbar-link').click(function() {
+			$(this).focus();
+			$(this).select();
+		});
+
         function unauthenticatedEnrollAttempt(){
             if( $('.login-to-purchase-alert').length == 0 ){
                 $('#registerModal').find('h1').after('<p class="alert alert-danger login-to-purchase-alert">{{ trans('courses/general.login_to_purchase') }}</p>');
