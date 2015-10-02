@@ -19,8 +19,9 @@ class StudentController extends \BaseController {
 
             $wishlist = $student->wishlistItems;
             if($wishlist !=null )$wishlist->load('course');
+            $profile = $student->profile;
             
-            return View::make('student.mycourses')->with( compact('student', 'lastLesson', 'courses', 'wishlist') );
+            return View::make('student.mycourses')->with( compact('student', 'lastLesson', 'courses', 'wishlist', 'profile') );
 	}
         
         

@@ -346,6 +346,7 @@
                             @endif
                             ) no-repeat center center; background-color:white; background-size:100%'
                              >
+                             
                             
 <!--                            @if( isset($profile->photo) && trim($profile->photo) !='' )
                                 <img src="{{@$profile->photo}}" alt="" id="img-profile-picture" class="img-responsive"/>
@@ -354,6 +355,13 @@
                             @endif-->
                         </div>
                         <div class="upload-picture-button text-center">
+                            <p class="label-progress-bar label-progress-bar-preview-img"></p>
+                                    <div class="progress hidden">
+                                        <div class="progress-bar progress-bar-striped active progress-bar-preview" role="progressbar" aria-valuenow="0" 
+                                             data-label=".label-progress-bar-preview-img" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                            <span></span>
+                                        </div>
+                                    </div>
                             <label for="upload-new-photo" class="default-button large-button">
                                 <span>{{ trans('general.upload_new_picture') }}</span>
                                 <input type="file" hidden="" class='' id="upload-new-photo" name="profilePicture"/>
@@ -455,13 +463,25 @@
             });
 
             $('#upload-new-photo').fileupload()
-                    .bind('fileuploadprogress', function ($e, $data){
-                        var $progress = parseInt($data.loaded / $data.total * 100, 10);
-                        console.log($progress);
+                    .bind('fileuploadprogress', function ($e, data){
+                        $progressLabel = $('.label-progress-bar');
+                        var $progress = parseInt(data.loaded / data.total * 100, 10);
+                        var progressbar = '.progress-bar';
+                        $(progressbar).css('width', $progress + '%');
+                        if( $progressLabel.length > 0 ) $progressLabel.html($progress);
+                        else $(progressbar).find('span').html($progress);
+                        if($progress=='100'){
+                            console.log( $progressLabel );
+                            if( $progressLabel.length > 0 ) $progressLabel.html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                            else $(progressbar).parent().find('span').html( _('Upload complete. Processing') + ' <img src="https://s3-ap-northeast-1.amazonaws.com/wazaar/assets/images/icons/ajax-loader.gif" />');
+                        }
                     })
                     .bind('fileuploaddone',function ($e,$data){
                         if ($data.result.success == 1){
+                            $('.label-progress-bar').hide();
+                            $('.progress-bar').hide();
                             $('#img-profile-picture').attr('src',$data.result.photo_url);
+                            $('.profile-picture-holder').css('background-image', 'url('+$data.result.photo_url+')') ;
                         }
             });
 
