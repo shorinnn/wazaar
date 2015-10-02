@@ -408,6 +408,10 @@ $wwwRoutes = function(){
 };
 Route::group(array('domain' => $domain), $wwwRoutes);
 Route::group(array('domain' => $wwwDomain), $wwwRoutes);
+Route::group( array('domain' => $instructorSubdomain ), function(){    
+    ## POST call to upload a profile picture
+    Route::post('profile/upload-profile-picture', 'ProfileController@uploadProfilePicture' );
+});
 
 
 Route::group( array('domain' => $affiliateSubdomain ), function(){    
