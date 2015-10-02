@@ -124,18 +124,18 @@ class SiteController extends \BaseController {
                         $top = HomepageHelper::generateVariations(8);
                         Cache::add('topCourses', $top, 30);
                     }
-                    $top = HomepageHelper::generateVariations(8);
-                    Cache::add('topCourses', $top, 30);
+//                    $top = HomepageHelper::generateVariations(8);
+//                    Cache::add('topCourses', $top, 30);
                     $topCourses = Cache::get('topCourses');
-    //                $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
-                    $topCourses = $topCourses[ 0 ];
-                    $topCourses = Course::limit(11)->get()->toArray();
-                    foreach($topCourses as $key=>$val){
-                        $val['discounted'] = false;
-                        $val['preview'] = url('splash/logo.png');
-                        if( $val['course_preview_image_id'] >0 ) $val['preview'] = cloudfrontUrl(CoursePreviewImage::find($val['course_preview_image_id'])->url );
-                        $topCourses[$key] = $val;
-                    }
+                    $topCourses = $topCourses[ rand(0, count($topCourses)-1 ) ];
+//                    $topCourses = $topCourses[ 0 ];
+//                    $topCourses = Course::limit(11)->get()->toArray();
+//                    foreach($topCourses as $key=>$val){
+//                        $val['discounted'] = false;
+//                        $val['preview'] = url('splash/logo.png');
+//                        if( $val['course_preview_image_id'] >0 ) $val['preview'] = cloudfrontUrl(CoursePreviewImage::find($val['course_preview_image_id'])->url );
+//                        $topCourses[$key] = $val;
+//                    }
        
         // $discoverCourses = Course::where('publish_status','approved')->orderBy( DB::raw('RAND()') )->limit(6)->get();
         $paginate = 12;
