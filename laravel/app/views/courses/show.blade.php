@@ -539,6 +539,11 @@
 		$( document ).ajaxComplete(function() {
 		 addGiftLabel();
 		});
+		
+		$('#affiliate-toolbar-link').click(function() {
+			$(this).focus();
+			$(this).select();
+		});
 
         function unauthenticatedEnrollAttempt(){
             if( $('.login-to-purchase-alert').length == 0 ){
