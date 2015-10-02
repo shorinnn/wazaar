@@ -19,7 +19,11 @@ class HomepageHelper{
         $ids = [];
         
         // add the manually selected courses for homepage
-        $featured = Course::where('featured','1')->get();
+        $picks = WazaarPicks::limit(11)->orderBy('order','ASC')->lists('course_id');
+        if( count($picks)==0 ) $picks = [0];
+        
+        $featured = Course::whereIn('id',$picks)->get();
+        
         foreach($featured as $course){
             $courses[] = self::_prep( $course->id, true );
             $ids[] = $course->id;

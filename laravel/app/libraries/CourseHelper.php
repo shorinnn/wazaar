@@ -20,6 +20,8 @@ class CourseHelper {
             default: $courses = $this->_rawCoursesObject();
         }
 
+
+
         if (!empty($subcategory)){
             if (is_string($subcategory)){
                 $courses = $courses->where('course_subcategory_slug', $subcategory);

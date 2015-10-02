@@ -408,6 +408,10 @@ $wwwRoutes = function(){
 };
 Route::group(array('domain' => $domain), $wwwRoutes);
 Route::group(array('domain' => $wwwDomain), $wwwRoutes);
+Route::group( array('domain' => $instructorSubdomain ), function(){    
+    ## POST call to upload a profile picture
+    Route::post('profile/upload-profile-picture', 'ProfileController@uploadProfilePicture' );
+});
 
 
 Route::group( array('domain' => $affiliateSubdomain ), function(){    
@@ -447,6 +451,7 @@ Route::group( array('domain' => $affiliateSubdomain ), function(){
         Route::get('affiliate/second-tier-sales/{frequency}','AffiliateDashboardController@detailedSecondTierSales');
 
         Route::get('affiliate/table/sales/{startDate}/{endDate}', 'AffiliateDashboardController@salesTableView');
+        Route::get('affiliate/table/registrations/{startDate}/{endDate}', 'AffiliateDashboardController@registrationsTableView');
     });
 });
 
@@ -472,12 +477,14 @@ Route::group( array('domain' => $instructorSubdomain ), function(){
     Route::group(['prefix' => 'analytics'], function(){
         Route::get('/', 'InstructorDashboardController@index');
         Route::get('/course/{slug?}', 'InstructorDashboardController@course');
+        Route::get('/course/stats/{courseId?}', 'InstructorDashboardController@courseStatsTableView');
         Route::get('sales/get-count/{frequency?}/{courseId?}','InstructorDashboardController@salesCountView');
         Route::get('sales/{frequency}/{courseId?}/{trackingCode?}', 'InstructorDashboardController@salesView');
         Route::any('affiliatestable','InstructorDashboardController@topAffiliatesTableView');
 
         Route::get('instructor/sales/{frequency}','InstructorDashboardController@detailedSales');
         Route::get('instructor/second-tier-sales/{frequency}','InstructorDashboardController@detailedSecondTierSales');
+
 
     });
 });
@@ -549,9 +556,11 @@ Route::post('courses/{id}/video/set-description','CoursesController@setVideoDesc
 
 Route::get('test', function(){
 
-    $dh = new DeliveredHelper();
+    $ch = new CourseHelper();
 
-    dd($dh->getUsersByTags(['second-tier-publisher-id' => 1]));
+    $ts = $ch->bestSellers();
+
+    echo $ts->count();
 
 });
 

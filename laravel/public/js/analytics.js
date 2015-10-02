@@ -412,8 +412,18 @@ var Analytics = {
         $('#wrapper-table-sales').on('click','a', function ($e){
             $e.preventDefault();
             var $url = $(this).attr('href');
+            $('#wrapper-table-sales').html($ajaxLoader);
             $.get($url, function ($table){
                 $('#wrapper-table-sales').html($table);
+            });
+        });
+
+        $('#wrapper-table-registrations').on('click','a', function ($e){
+            $e.preventDefault();
+            var $url = $(this).attr('href');
+            $('#wrapper-table-registrations').html($ajaxLoader);
+            $.get($url, function ($table){
+                $('#wrapper-table-registrations').html($table);
             });
         });
     },
@@ -451,13 +461,20 @@ var Analytics = {
     'DateFilterEnd' : '',
     'ApplyTableDateFilter' : function (){
 
-
+        $('#wrapper-table-sales').html($ajaxLoader);
+        $('#wrapper-table-registrations').html($ajaxLoader);
         Analytics.TableSales();
+        Analytics.TableRegistrations();
     },
 
     'TableSales' : function (){
         $.get('/analytics/affiliate/table/sales/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
             $('#wrapper-table-sales').html($table);
+        });
+    },
+    'TableRegistrations' : function (){
+        $.get('/analytics/affiliate/table/registrations/' + Analytics.DateFilterStart + '/' + Analytics.DateFilterEnd, function ($table){
+            $('#wrapper-table-registrations').html($table);
         });
     }
 };

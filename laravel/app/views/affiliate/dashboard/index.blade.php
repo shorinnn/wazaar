@@ -423,7 +423,7 @@
             </div>
 
             <hr/>
-            <div class="panel panel-default hidden">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Tables Filter</h3>
                 </div>
@@ -437,9 +437,32 @@
                 </div>
             </div>
 
-            <div id="wrapper-table-sales" class="hidden">
 
+            <div class="row-fluid">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">{{trans('analytics.salesStatistics')}}</h3>
+                  </div>
+                  <div class="panel-body">
+                      <div id="wrapper-table-sales">
+                          <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                      </div>
+                  </div>
+                </div>
             </div>
+
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">{{trans('analytics.registrationStatistics')}}</h3>
+              </div>
+              <div class="panel-body">
+                  <div id="wrapper-table-registrations">
+                      <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                  </div>
+              </div>
+            </div>
+
 
             <div id="ajax-loader-wrapper" class="hidden">
                 <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>

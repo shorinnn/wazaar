@@ -1,4 +1,6 @@
 @extends('layouts.default')
+@section('page_title')Wazaar - 技の動画フリーマーケット「ワザール」遂に始動@stop
+@section('meta_description')あなたの「好き」がお金になる。@stop
 @section('content')
 
     <style>
@@ -129,12 +131,6 @@
             </div>
             <div class="row">
                 @foreach($categories->skip(6)->take(6)->get() as $cat)
-                <?php 
-                $class = $i = rand(0, count($cssClasses)-1);
-                $class = $cssClasses[$i];
-                unset( $cssClasses[$i] );
-                $cssClasses = array_values($cssClasses);
-                $cat->graphics_url = $class; ?>
                     <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 category-box">
                         <a href="{{ action( 'CoursesController@category', $cat->slug ) }}" class="{{$cat->graphics_url}}">
                             <em></em><span> {{ $cat->name }}</span>
@@ -207,7 +203,7 @@
 				$('.popular-courses-carousel').css('display', 'block');
 			});
             $('.whats-hot-slider').smoothDivScroll({
-                autoScrollingMode: "",
+                autoScrollingMode: "onStart",
                 manualContinuousScrolling: true,
                 mousewheelScrolling: "",
             });

@@ -117,6 +117,13 @@ return
 
     'totalSignUps' => 'Total New Signups <br/> (Instructors & Students)',
     'totalRevenues' => 'Total Revenues',
-    'totalSignUpsAffs' => 'Total New Signups <br/> (Affiliates)'
+    'totalSignUpsAffs' => 'Total New Signups <br/> (Affiliates)',
+
+    'date' => 'Date',
+    'tax' => 'Tax',
+    'salesStatistics' => 'Sales Statistics',
+    'registrationStatistics' => 'Registration Statistics',
+    'affiliateRegistrations' => 'Affiliate Registrations'
+
 
 ];
