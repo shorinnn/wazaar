@@ -18,6 +18,23 @@ class AnalyticsHelper
         $this->user = User::find($userId);
     }
 
+    public function getRegistrationsCount($startDate, $endDate)
+    {
+        $users = DB::table('users')
+            ->select(
+                DB::raw("DATE(created_at) as date"),
+                DB::raw("sum(case `ltc_affiliate_id` when '{$this->userId}' then 1 else 0 end) as ltc_registrations"),
+                DB::raw("sum(case `second_tier_affiliate_id` when '{$this->userId}' then 1 else 0 end) as second_tier_affs")
+            )
+            //->whereRaw("DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}'")
+            ->where('ltc_affiliate_id', $this->userId)
+            ->orWhere('second_tier_affiliate_id', $this->userId)
+            ->groupBy(DB::raw("DATE(created_at)"));
+        ;
+
+        return $users->paginate(10);
+    }
+
     public function getCourseStats($courseId)
     {
         $stats = DB::table('purchases')

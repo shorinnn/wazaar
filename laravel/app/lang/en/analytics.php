@@ -121,7 +121,9 @@ return
 
     'date' => 'Date',
     'tax' => 'Tax',
-    ''
+    'salesStatistics' => 'Sales Statistics',
+    'registrationStatistics' => 'Registration Statistics',
+    'affiliateRegistrations' => 'Affiliate Registrations'
 
 
 ];

@@ -1,19 +1,20 @@
 <table class="table table-striped">
     <thead>
-    <th>Date</th>
-    <th>LTC Registrations</th>
-    <th>Affiliate Registrations</th>
+    <th>{{trans('analytics.date')}}</th>
+    <th>{{trans('analytics.ltcRegistrations')}}</th>
+    <th>{{trans('analytics.affiliateRegistrations')}}</th>
+
     </thead>
 
     <tbody>
-    @foreach($sales as $sale)
+    @foreach($users as $user)
         <tr>
-            <td>{{$sale->date}}</td>
-            <td>{{$sale->sales_count}}</td>
-            <td>{{$sale->sales_total}}</td>
+            <td>{{$user->date}}</td>
+            <td>{{$user->ltc_registrations}}</td>
+            <td>{{$user->second_tier_affs}}</td>
         </tr>
     @endforeach
     </tbody>
 </table>
 
-{{$sales->links()}}
+{{$users->links()}}

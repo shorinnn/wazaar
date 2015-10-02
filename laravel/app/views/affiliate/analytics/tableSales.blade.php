@@ -1,11 +1,11 @@
 <table class="table table-striped">
     <thead>
-        <th>Date</th>
-        <th>No. of Sales</th>
-        <th>Total Sales</th>
-        <th>Affiliate Revenue</th>
-        <th>LTC Commission</th>
-        <th>2nd Tier Affiliate Commission</th>
+        <th>{{trans('analytics.date')}}</th>
+        <th>{{trans('analytics.salesCount')}}</th>
+        <th>{{trans('analytics.salesTotal')}}</th>
+        <th>{{trans('analytics.affiliate_revenue')}}</th>
+        <th>{{trans('analytics.ltc_commission')}}</th>
+        <th>{{trans('analytics.affiliate_two_tier_fee')}}</th>
     </thead>
 
     <tbody>

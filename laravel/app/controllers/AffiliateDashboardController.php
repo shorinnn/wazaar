@@ -552,4 +552,10 @@ class AffiliateDashboardController extends BaseController
         return View::make('affiliate.analytics.tableSales',compact('sales'))->render();
     }
 
+    public function registrationsTableView($startDate, $endDate)
+    {
+        $users = $this->analyticsHelper->getRegistrationsCount($startDate, $endDate);
+        return View::make('affiliate.analytics.tableRegistrations',compact('users'))->render();
+    }
+
 }

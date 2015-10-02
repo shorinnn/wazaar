@@ -447,6 +447,7 @@ Route::group( array('domain' => $affiliateSubdomain ), function(){
         Route::get('affiliate/second-tier-sales/{frequency}','AffiliateDashboardController@detailedSecondTierSales');
 
         Route::get('affiliate/table/sales/{startDate}/{endDate}', 'AffiliateDashboardController@salesTableView');
+        Route::get('affiliate/table/registrations/{startDate}/{endDate}', 'AffiliateDashboardController@registrationsTableView');
     });
 });
 
