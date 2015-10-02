@@ -11,11 +11,12 @@
                     </div>-->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     	<div class="row">
-                        	<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 no-padding">
+                        	<div class="col-xs-12 col-sm-3 col-md-5 col-lg-5 no-padding">
                             	<label class="affiliate-link-label">{{ trans('affiliates.your_affiliate_link') }}</label>
+                                <input type="text" class="visible-xs-inline hidden-sm hidden-md hidden-lg" readonly="" id='affiliate-toolbar-link' value='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}' />
                             </div>
-                            <div class="col-xs-6 col-sm-7 col-md-8 col-lg-8 no-padding">
-                            	<input type="text" readonly="" id='affiliate-toolbar-link' value='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}' />
+                            <div class="col-xs-12 col-sm-9 col-md-7 col-lg-7 no-padding">
+                            	<input type="text" class="hidden-xs" readonly="" id='affiliate-toolbar-link' value='{{action('CoursesController@show', $course->slug)}}?aid={{Auth::user()->affiliate_id}}' />
                             </div>
                         </div>
                     </div>
