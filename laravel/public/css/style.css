@@ -3546,8 +3546,8 @@ h2, h3, h4, h5, h6{
 	min-width: 138px;
 	border-radius: 3px;
 	border: solid 1px #e0e1e2;
-	left: -10px;
-	top: 25px;
+	left: -52px;
+	top: 43px;
 	padding: 0;
 	margin: 0;
 	-webkit-box-shadow: 1px 1px 8px 1px #dfdfdf;
@@ -3555,6 +3555,17 @@ h2, h3, h4, h5, h6{
 	-o-box-shadow: 1px 1px 8px 1px #dfdfdf;
 	-ms-box-shadow: 1px 1px 8px 1px #dfdfdf;
 	box-shadow: 1px 1px 8px 1px #dfdfdf;
+}
+.new-dashboard.dashboardTabs .settings .dropdown-menu::before {
+    border-bottom: 8px solid #fff;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 38px;
+    top: -8px;
+    width: 0;
 }
 .new-dashboard.dashboardTabs .settings .dropdown-menu a{
 	padding: 14px 0 15px 24px;
@@ -9350,6 +9361,12 @@ footer{
 	.new-dashboard.dashboardTabs .settings .dropdown-menu{
 		left: -56px;
 	}
+	.affiliate-top-header .activate-dropdown{
+		float: right;
+	}
+	.affiliate-top-header .affiliate-link-label{
+		float: left;
+	}
 }
 @media (max-width:900px){
 	.course-detail-top-section .centered-contents{
@@ -9701,6 +9718,21 @@ header .profile-name ul{
 	}
 	.instructor-dashboard.dashboardTabs .row-1 .column-1-row-2 .see-stat i{
 		margin-right: 0;
+	}
+	.affiliate-top-header .activate-dropdown{
+		float: right;
+	}
+	.affiliate-top-header .affiliate-link-label{
+		float: left;
+		width: 150px;
+	}
+	.affiliate-top-header label ~ input[type="text"]{
+		left: 150px;
+		position: absolute;
+		top: 0;
+		width: calc(100% - 150px);
+		width: -moz-calc(100% - 150px);
+		width: -webkit-calc(100% - 150px);
 	}
 }
 @media (max-width:752px){
@@ -10163,6 +10195,10 @@ header .profile-name ul{
 	}
 	.new-dashboard.dashboardTabs .settings .dropdown-menu{
 		left: -73px;
+		top: 39px;
+	}
+	.new-dashboard.dashboardTabs .settings .dropdown-menu::before{
+		right: 27px;
 	}
 }
 @media (max-width:402px){
