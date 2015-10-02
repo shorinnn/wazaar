@@ -210,7 +210,7 @@
                                                           {{ $course->sales()->count() + $course->lessonSalesCount() }}--></span></p>
                                                  <p><i class="fa fa-smile-o"></i>{{ trans('courses/general.previewers') }} 
                                                      <span class="count new">{{ $course->nonBuyerPreviews() }} <em> (22)</em></span></p>
-                                                 <p><i class="wa-like"></i>{{ trans('general.reviews') }}
+                                                 <p><i class="wa-like"></i>{{ trans('courses/general.reviews') }}
                                                      <span class="count">22 <em> (65%)</em></span></p>
                                             </div>
                                         </div>

@@ -3436,6 +3436,9 @@ h2, h3, h4, h5, h6{
 	border-radius: 4px;
 	overflow: hidden;
 }
+.instructor-dashboard .tab-content > .tab-pane{
+	overflow: visible !important;
+}
 .new-dashboard.dashboardTabs .enrolled-lesson{
 	padding: 10px;
 	background: #fff;
@@ -3727,7 +3730,6 @@ h2, h3, h4, h5, h6{
 }
 .instructor-dashboard.dashboardTabs .teaching-lesson h4 a{
 	color: #303941;
-	display: inline-block;
 	margin-bottom: 7px;
 	margin-right: 15px;
 }
