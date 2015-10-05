@@ -21,20 +21,7 @@
 @section('extra_js')
 <script src='{{url('js/Gibberish-AES.js')}}'></script>
 <script>
-        
-        function showReviewsModal(){
-            $('.review-modal').modal('show');
-        }
-        
-        function cancelReviewsModal(){
-            $('.review-modal').modal('hide');
-        }
-        
-        function courseReviewPosted(e,json){
-            $('.review-modal').modal('hide');
-            $.bootstrapGrowl( _('Thank you for your review.'),{align:'center', type:'success'} );
-        }
-        
+
 	function add_scroll_class_if_have_scrollbar(){
 		if($(document).height() > $(window).height()){
 			$('.course-question-sidebar').addClass('hasScroll');

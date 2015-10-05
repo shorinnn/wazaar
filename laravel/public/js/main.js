@@ -1921,3 +1921,19 @@ function ajaxifyPagination(e){
         $(this).attr( 'data-target', '.ajax-content' );
     });
 }
+
+
+        
+function showReviewsModal() {
+    $('.review-modal').modal('show');
+}
+
+function cancelReviewsModal() {
+    $('.review-modal').modal('hide');
+}
+
+function courseReviewPosted(e, json) {
+    $('.review-modal').modal('hide');
+    $.bootstrapGrowl(_('Thank you for your review.'), {align: 'center', type: 'success'});
+}
+        
