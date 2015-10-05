@@ -95,7 +95,7 @@ return array(
         'buyer-email' => 'Buyer Email',
         'transaction-date' => 'Transaction Date',
         'total' => 'Total',
-        'refund' => 'REFUND'
+        'refund' => 'REFUND',
         'tax' => 'Tax'
     ]
 );
