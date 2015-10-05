@@ -3436,6 +3436,9 @@ h2, h3, h4, h5, h6{
 	border-radius: 4px;
 	overflow: hidden;
 }
+.instructor-dashboard .tab-content > .tab-pane{
+	overflow: visible !important;
+}
 .new-dashboard.dashboardTabs .enrolled-lesson{
 	padding: 10px;
 	background: #fff;
@@ -3517,7 +3520,16 @@ h2, h3, h4, h5, h6{
 }
 
 .new-dashboard.dashboardTabs .settings{
-	float: right;
+	padding: 7.5px 14px;
+	display: inline-block;
+	background: #f7f9fa;
+	position: relative;
+	top: 1px;
+	border: solid 1px #cfd1d3;
+	border-radius: 3px;
+}
+.new-dashboard.dashboardTabs .settings:hover{
+	background: #fff;
 }
 .new-dashboard.dashboardTabs .settings-button{
 	border: none;
@@ -3534,8 +3546,8 @@ h2, h3, h4, h5, h6{
 	min-width: 138px;
 	border-radius: 3px;
 	border: solid 1px #e0e1e2;
-	left: -10px;
-	top: 25px;
+	left: -52px;
+	top: 46px;
 	padding: 0;
 	margin: 0;
 	-webkit-box-shadow: 1px 1px 8px 1px #dfdfdf;
@@ -3544,12 +3556,24 @@ h2, h3, h4, h5, h6{
 	-ms-box-shadow: 1px 1px 8px 1px #dfdfdf;
 	box-shadow: 1px 1px 8px 1px #dfdfdf;
 }
+.new-dashboard.dashboardTabs .settings .dropdown-menu::before {
+    border-bottom: 8px solid #fff;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 38px;
+    top: -8px;
+    width: 0;
+}
 .new-dashboard.dashboardTabs .settings .dropdown-menu a{
 	padding: 14px 0 15px 24px;
 	font-size: 13px;
 	font-weight: normal;
 	color: #657482;
 	display: block;
+	text-align: left;
 }
 .new-dashboard.dashboardTabs .settings .dropdown-menu a:hover{
 	background: #f7f9fa;
@@ -3562,7 +3586,7 @@ h2, h3, h4, h5, h6{
 	background: #cfd8df;
 }
 .new-dashboard.dashboardTabs .lesson-status.approved{
-	background: #6fc423;
+	background: #7ec95f;
 }
 .new-dashboard.dashboardTabs .lesson-status.pending{
 	background: #0099ff;
@@ -3606,14 +3630,29 @@ h2, h3, h4, h5, h6{
 .instructor-dashboard.dashboardTabs .tab-content{
 	border: none;
 }
+.instructor-dashboard.dashboardTabs .teaching-lesson .price,
 .instructor-dashboard.dashboardTabs .teaching-lesson p em{
-	color: #657482;
-	font-style: normal;
+    color: #a7b7c4;
+    font-size: 13px;
+    font-style: normal;
+    text-transform: uppercase;
 }
+.instructor-dashboard.dashboardTabs .teaching-lesson .prev-price {
+    color: #a7b7c4;
+    font-size: 13px;
+    margin-right: 3px;
+    text-decoration: line-through;
+}
+.instructor-dashboard.dashboardTabs .teaching-lesson .discounted-price {
+    color: #ec4316;
+    font-size: 18px;
+}
+.instructor-dashboard.dashboardTabs .teaching-lesson p .paid,
 .instructor-dashboard.dashboardTabs .teaching-lesson p .public{
 	margin-left: 15px;
 	position: relative;
 }
+.instructor-dashboard.dashboardTabs .teaching-lesson p .paid::before,
 .instructor-dashboard.dashboardTabs .teaching-lesson p .public::before{
     height: 5px;
     width: 5px;
@@ -3657,32 +3696,75 @@ h2, h3, h4, h5, h6{
     text-transform: uppercase;
 }
 .instructor-dashboard.dashboardTabs .row-1{
-	padding: 24px;
-	background: #fff;
+	padding: 0;
+	margin: 0;
+	background: #f7f9fa;
+	border: solid 1px #cfd8df;
 	border-radius: 4px 4px 0 0;
 }
+.instructor-dashboard.dashboardTabs .row-1 .column-1{
+	padding: 12px;
+	border-right: solid 1px #e8eced;
+	background: #fff;
+	min-height: 159px;
+}
+.instructor-dashboard.dashboardTabs .row-1 .column-1-row-1{
+	padding-bottom: 12px;
+	border-bottom: solid 1px #e8eced;
+}
+.instructor-dashboard.dashboardTabs .row-1 .column-1-row-2{
+	padding-top: 12px;
+}
+.instructor-dashboard.dashboardTabs .row-1 .column-1-row-2 .revenue{
+	font-size: 13px;
+	color: #657482;
+	position: relative;
+	top: 9px;
+}
+.instructor-dashboard.dashboardTabs .row-1 .column-1-row-2 .revenue span{
+	font-size: 20px;
+	color: #7ec95f;
+	position: relative;
+	top: 3px;
+	margin-left: 15px;
+}
+.instructor-dashboard.dashboardTabs .row-1 .column-1-row-2 .see-stat{
+	padding: 10px 20px;
+	font-size: 12px;
+	font-weight: 600;
+	color: #798794;
+	margin-right: 10px;
+}
+.instructor-dashboard.dashboardTabs .row-1 .column-1-row-2 .see-stat i{
+	margin-right: 5px;
+}
+.instructor-dashboard.dashboardTabs .row-1 .column-2{
+	padding: 12px 24px;
+	min-height: 159px;
+}
 .instructor-dashboard.dashboardTabs .teaching-lesson h4{
-	margin: 0 0 17px;
+	margin: 0 0 6px;
+	line-height: 22px;
 }
 .instructor-dashboard.dashboardTabs .teaching-lesson p{
 	margin: 0;
+	line-height: 18px;
 }
 .instructor-dashboard.dashboardTabs .teaching-lesson h4 a{
 	color: #303941;
-	display: inline-block;
 	margin-bottom: 7px;
 	margin-right: 15px;
 }
 .instructor-dashboard.dashboardTabs .teaching-lesson h4 .lesson-status{
 	display: inline-block;
-	padding: 6px;
+	padding: 1px 5px;
 	border-radius: 2px;
 	font-size: 11px;
 	color: #fff;
 	font-weight: bold;
+	margin-right: 2px;
 	text-transform: uppercase;
 	position: relative;
-	top: -1px;
 }
 .instructor-dashboard.dashboardTabs .teaching-lesson h4 a:hover{
 	color: #03a2ff;
@@ -3702,22 +3784,31 @@ h2, h3, h4, h5, h6{
 .instructor-dashboard.dashboardTabs .row-2 > div + div{
 	border-left: solid 1px #e8eced;
 }
-.instructor-dashboard.dashboardTabs .row-2 p{
+.instructor-dashboard.dashboardTabs .column-2 p{
 	font-size: 11px;
 	font-weight: bold;
 	color: #a7b7c4;
 	text-transform: uppercase;
 }
-.instructor-dashboard.dashboardTabs .row-2 p i{
+.instructor-dashboard.dashboardTabs .column-2 p + p{
+	margin-top: 20px;
+}
+.instructor-dashboard.dashboardTabs .column-2 p i{
 	margin-right: 8px;
 	font-size: 16px;
 }
-.instructor-dashboard.dashboardTabs .row-2 p .count{
+.instructor-dashboard.dashboardTabs .column-2 p .count{
 	color: #657482;
 	margin-left: 14px;
+	float: right;
+	font-size: 12px;
 }
-.instructor-dashboard.dashboardTabs .row-2 p .count.new{
+.instructor-dashboard.dashboardTabs .column-2 p .count.new{
 	color: #e54b2d;
+}
+.instructor-dashboard.dashboardTabs .column-2 p .count em{
+	font-style: normal;
+	color: #a7b7c4 !important; 
 }
 /*Instructor Course*/
 .instructor-course .question-answer .question .replies-box{
@@ -5609,8 +5700,17 @@ h2, h3, h4, h5, h6{
 	color: #798794;
 	font-size: 13px;
 	padding: 5px 12px 0 !important;
-	height: 38px;
+	height: 38px !important;
+	overflow: auto !important;
+	width: 65%;
+	float: left;
 	resize: none;
+}
+.discussion-sidebar-footer form .submit-for-approval{
+	margin: 0 !important;
+	width: 30%;
+	float: right;
+	padding: 9px 25px !important;
 }
 /*Ask question sidebar*/
 .ask-question-fields{
@@ -9267,6 +9367,15 @@ footer{
 	button[data-target="#logged-out-header-menu"]{
 		margin: 15px 15px 15px 0;
 	}
+	.new-dashboard.dashboardTabs .settings .dropdown-menu{
+		left: -56px;
+	}
+	.affiliate-top-header .activate-dropdown{
+		float: right;
+	}
+	.affiliate-top-header .affiliate-link-label{
+		float: left;
+	}
 }
 @media (max-width:900px){
 	.course-detail-top-section .centered-contents{
@@ -9391,7 +9500,7 @@ header .top-menu .logged-out-header-search .catalogue-button em{
 	
 }
 header .main-logo{
-	margin: 10px 20px 0px 0;
+	margin: 10px 0 0px 0;
 }
 header .top-menu .logged-out-header-search{
 	margin: 25px 0;
@@ -9615,6 +9724,24 @@ header .profile-name ul{
 	}
 	.instructor-dashboard.top-section{
 		padding-top: 30px;
+	}
+	.instructor-dashboard.dashboardTabs .row-1 .column-1-row-2 .see-stat i{
+		margin-right: 0;
+	}
+	.affiliate-top-header .activate-dropdown{
+		float: right;
+	}
+	.affiliate-top-header .affiliate-link-label{
+		float: left;
+		width: 150px;
+	}
+	.affiliate-top-header label ~ input[type="text"]{
+		left: 150px;
+		position: absolute;
+		top: 0;
+		width: calc(100% - 150px);
+		width: -moz-calc(100% - 150px);
+		width: -webkit-calc(100% - 150px);
 	}
 }
 @media (max-width:752px){
@@ -9949,6 +10076,10 @@ header .profile-name ul{
 		right: 0;
 		top: 0;
 	}
+	.discussion-sidebar-footer form .submit-for-approval{
+		padding: 9px 10px;
+		width: 32%;
+	}
 }
 @media (max-width:460px){
 	.checkout-modal,
@@ -10067,6 +10198,20 @@ header .profile-name ul{
 	}
 	.homepage-header .extra-large-heading{
 		font-size: 30px;
+	}
+	.new-dashboard.dashboardTabs .settings{
+		padding: 2.5px 7px;
+		top: 2px;
+	}
+	.instructor-dashboard.dashboardTabs .row-1 .column-1-row-2 .see-stat{
+		padding: 5px 10px;
+	}
+	.new-dashboard.dashboardTabs .settings .dropdown-menu{
+		left: -73px;
+		top: 39px;
+	}
+	.new-dashboard.dashboardTabs .settings .dropdown-menu::before{
+		right: 27px;
 	}
 }
 @media (max-width:402px){

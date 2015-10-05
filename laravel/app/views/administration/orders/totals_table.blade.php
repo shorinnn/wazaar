@@ -5,6 +5,7 @@
 				<th>&nbsp;</th>
 				<th>{{ trans('administration.orders.original-price' )}}</th>
 				<th>{{ trans('administration.orders.discounted-price' )}}</th>
+				<th>{{ trans('administration.orders.tax' )}}</th>
 				<th>{{ trans('administration.orders.site-income' )}}</th>
 				<th>{{ trans('administration.orders.instructor-income' )}}</th>
 				<th>{{ trans('administration.orders.affiliate-income' )}}</th>
@@ -18,6 +19,7 @@
 				<td>{{ trans('administration.orders.total' )}}</td>
 				<td>¥ {{number_format($totals[0]->original_price_total)}}</td>
 				<td>¥ {{number_format($totals[0]->discounted_price_total)}}</td>
+				<td>¥ {{number_format($totals[0]->tax)}}</td>
 				<td>¥ {{number_format($totals[0]->site_earnings_total)}}</td>
 				<td>¥ {{number_format($totals[0]->instructor_earnings_total)}}</td>
 				<td>¥ {{number_format($totals[0]->affiliate_earnings_total)}}</td>

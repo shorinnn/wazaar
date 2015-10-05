@@ -64,7 +64,7 @@
                     <div class="with-progress-bar">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default" type="button">
-                                {{trans('analytics.newUsers')}} <span id="header-user-stats-frequency">{{trans('analytics.today')}}</span></button>
+                                <span id="header-user-stats-frequency">{{trans('analytics.today')}}</span>{{trans('analytics.newUsers')}} </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu top-courses-dropdown">
                                 <li>
                                     <a class="active with-today" href="#" onclick="AdminDashboard.UserStats('today', this); return false;">Today</a>
@@ -92,7 +92,7 @@
                     <div id="sales-today">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                {{trans('analytics.sales')}}(¥)  <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
+                                <span id="header-sales-frequency">{{trans('analytics.today')}}</span>{{trans('analytics.sales')}}(¥)  </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
                                     <a class="active" href="#" onclick="Analytics.sales('daily','','', this); return false;">{{trans('analytics.today')}}</a>
@@ -118,7 +118,7 @@
                 <div class="col-md-4 col-sm-6 sol-xs-12">
                     <div class="with-progress-bar">
                         <div class="dropdown-wrapper">
-                            <button class="btn btn-default">{{trans('analytics.salesCount')}} <span id="header-sales-count-frequency">{{trans('analytics.today')}}</span></button>
+                            <button class="btn btn-default"><span id="header-sales-count-frequency">{{trans('analytics.today')}}</span>{{trans('analytics.salesCount')}} </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu tracking-codes-dropdown">
                                 <li>
                                     <a class="active with-today" href="#" onclick="AdminDashboard.SalesCount('daily', this); return false;">Today</a>

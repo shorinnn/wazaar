@@ -14,7 +14,7 @@ return
     'stats' => '統計',
     'topCourses' => '売上トップコース',
     'topFreeCourses' => 'Top Courses(Free)',
-    'twoTierSales' => '2nd Tier Sales',
+    'twoTierSales' => 'のアフィリエイト２ティア報酬',
     'topConvertingCourses' => 'トップコース（CV）',
 
     'noCourseConversion' => 'トップコース（CV）はありません',

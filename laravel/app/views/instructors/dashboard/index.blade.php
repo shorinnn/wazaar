@@ -34,7 +34,7 @@
                     <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default" type="button">
-                                {{trans('instructors/analytics.sales-revenue')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
+                                <span id="header-sales-frequency">{{trans('analytics.today')}}</span>{{trans('instructors/analytics.sales-revenue')}} </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
                                     <a class="with-today" href="#" onclick="Analytics.Sales('daily','','',this); return false;">{{trans('analytics.today')}}</a>
@@ -63,7 +63,7 @@
                     <div id="sales-today" class="stat-block">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                {{trans('instructors/analytics.unit-sales')}} <span id="header-sales-count-frequency">{{trans('analytics.today')}}</span></button>
+                                <span id="header-sales-count-frequency">{{trans('analytics.today')}}</span>{{trans('instructors/analytics.unit-sales')}} </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-count-dropdown">
                                 <li>
                                     <a class="active" href="#" onclick="Analytics.SalesCount('daily', '',this); return false;">{{trans('analytics.today')}}</a>
@@ -95,7 +95,7 @@
                         <div class="stat-block">
                             <div class="dropdown-wrapper">
                                 <button class="btn btn-default" type="button">
-                                    {{trans('analytics.twoTierSales')}} <span id="header-two-tier-sales-frequency">{{trans('analytics.today')}}</span></button>
+                                    <span id="header-two-tier-sales-frequency">{{trans('analytics.today')}}</span>{{trans('analytics.twoTierSales')}} </button>
                                 <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu sales-dropdown">
                                     <li>
                                         <a class="with-today" href="#" onclick="Analytics.TwoTierSales('daily','','',this); return false;">{{trans('analytics.today')}}</a>

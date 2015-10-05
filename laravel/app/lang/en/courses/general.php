@@ -239,6 +239,8 @@ return array(
         'what-is-bad-about-it' => 'What is bad about it?',
     ],
     'non-buyer-previewers' => 'Non-buyer previewers',
+    'previewers' => 'Previewers',
+    'see_statistics' => 'See statistics',
     'buyers' => 'Buyers',
     'available-for-customers' => 'Available for customers'
 );

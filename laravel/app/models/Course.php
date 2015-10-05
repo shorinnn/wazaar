@@ -437,7 +437,7 @@ class Course extends Ardent{
     }
     
     public function reviewsScore(){
-        if( $this->total_reviews == 0 ) return '-';
+        if( $this->total_reviews == 0 ) return trans('general.na');
         return $this->reviews_positive_score.'%';
     }
     
@@ -466,6 +466,14 @@ class Course extends Ardent{
                 ->where('created_at', '> ', $sevenDaysAgo)->remember(60 * 24)->count();
     }
     
+    public function totalDiscussions(){
+        $modules = $this->modules->lists('id');
+        if(count($modules)==0) $modules = [0];
+        $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
+        if(count($lessons)==0) $lessons = [0];
+        return LessonDiscussion::whereIn('lesson_id', $lessons)->remember(10)->count();
+    }
+    
     public function newDiscussions($lastVisit){
         if (time() - $lastVisit > 7*24*60*60) $lastVisit = ('- 7 day');
         $modules = $this->modules->lists('id');
@@ -491,7 +499,7 @@ class Course extends Ardent{
         return LessonDiscussion::whereIn('lesson_id', $lessons)->orderBy('updated_at','desc')->paginate($paginate);
     }
     
-    public function nonBuyerPreviews(){
+    public function nonBuyerPreviews($new=false){
         $modules = $this->modules->lists('id');
         if( count($modules)==0 ) return trans('general.na');
         $lessons = Lesson::whereIn('module_id', $modules)->lists('id');
@@ -502,8 +510,15 @@ class Course extends Ardent{
         if( count($buyers) ) $buyers[] = 0;
         $lessonBuyers = Purchase::whereIn( 'product_id', $lessons )->where('product_type','Lesson')->where( 'free_product','no' )->lists( 'student_id' );
         $buyers = $buyers + $lessonBuyers;
-        $count = Purchase::distinct()->select('student_id')->whereIn( 'product_id', $lessons )->whereNotIn( 'student_id', $buyers )
+        if($new){
+            $sevenDaysAgo = date('Y-m-d H:i:s', strtotime('-7 day') );
+            $count = Purchase::distinct()->select('student_id')->whereIn( 'product_id', $lessons )->whereNotIn( 'student_id', $buyers )
+                    ->where( 'free_product','yes' )->where('created_at','>',$sevenDaysAgo)->get();
+        }
+        else{
+            $count = Purchase::distinct()->select('student_id')->whereIn( 'product_id', $lessons )->whereNotIn( 'student_id', $buyers )
                 ->where( 'free_product','yes' )->get();
+        }
         return $count->count();
     }
     
@@ -536,6 +551,26 @@ class Course extends Ardent{
             })->get();
         }
         return $enrolled->count();
+    }
+    
+    public function money($field = 'revenue' ){
+        $field = ($field=='revenue') ? 'purchase_price' : 'instructor_earnings';
+        
+        if($field=='instructor_earnings'){
+            return Purchase::where('instructor_id', $this->id)->where('created_at','>=', $start)->where('created_at','<=', $stop)
+                    ->sum($field);
+        }
+        else{
+            
+            $coursePurchases = Purchase::where('product_id', $this->id)->where('product_type','Course')->sum($field);
+            $lessonIds = $this->lessons();
+            if($lessonIds->count() > 0) $lessonIds = $lessonIds->lists('id');
+            else $lessonIds = [];
+            if( count($lessonIds)==0 ) $lessonIds = [0];
+            $lessonPurchase = Purchase::whereIn('product_id', $lessonIds)->where('product_type','Lesson')->sum($field);
+            return $coursePurchases + $lessonPurchase;
+        }
+        
     }
 
 

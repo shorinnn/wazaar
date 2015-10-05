@@ -96,5 +96,6 @@ return array(
         'transaction-date' => 'Transaction Date',
         'total' => 'Total',
         'refund' => 'REFUND'
+        'tax' => 'Tax'
     ]
 );

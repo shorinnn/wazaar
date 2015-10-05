@@ -1,4 +1,6 @@
 @extends('layouts.default')
+@section('page_title')Wazaar - 技の動画フリーマーケット「ワザール」遂に始動@stop
+@section('meta_description')あなたの「好き」がお金になる。@stop
 @section('content')
     <style>
         .popular-courses{
