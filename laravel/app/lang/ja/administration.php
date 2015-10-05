@@ -78,7 +78,10 @@ return array(
     ],
     'orders' => [
         'manage-orders' => 'Manage Orders',
+        'search-course' => 'Search Course',
         'search-placeholder' => 'Search...',
+        'search' => 'Search',
+        'download-csv' => 'Download CSV',
         'transaction-id' => 'Transaction ID',
         'course-name' => 'Course Name',
         'course-owner' => 'Course Owner',
@@ -95,6 +98,16 @@ return array(
         'buyer-email' => 'Buyer Email',
         'transaction-date' => 'Transaction Date',
         'total' => 'Total',
-        'refund' => 'REFUND'
+        'refund' => 'REFUND',
+        'label' => [
+            'name' => 'Name',
+            'email' => 'Email',
+            'category' => 'Category',
+            'filter' => 'Filter',
+            'sales-amount' => 'Sales Amount',
+            'product-price' => 'Product Price',
+            'date' => 'Date',
+            'course-id' => 'Course ID',
+        ]
     ]
 );

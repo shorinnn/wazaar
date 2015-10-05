@@ -187,7 +187,7 @@ $wwwRoutes = function(){
         Route::delete('delete-picks/{type}', 'PicksController@deletePicks');
         Route::post('order-picks/{type}', 'PicksController@orderPicks');
         Route::get('manage-orders', 'OrdersController@index');
-        Route::get('load-orders', 'OrdersController@loadOrders');
+        Route::get('manage-users', 'UsersController@adminManageUsers');
     });
 //});
 };

@@ -635,4 +635,66 @@ class UsersController extends Controller
         Session::flash('error', trans('general.incorrect-password' ) );
         return View::make('confide.confirm_password');
     }
+
+    public function adminManageUsers()
+    {
+        $data = Request::all();
+
+        $sort_by = (isset($data['sort_by']))?$data['sort_by']:'users.created_at';
+        $sort = (isset($data['sort']))?$data['sort']:'desc';
+        $name = (isset($data['name']))?$data['name']:'';
+        $email = (isset($data['email']))?$data['email']:'';
+        $join_date_low = (isset($data['join_date_low']))?$data['join_date_low']:'';
+        $join_date_high = (isset($data['join_date_high']))?$data['join_date_high']:'';
+        $total_purchased_low = (isset($data['total_purchased_low']))?$data['total_purchased_low']:'';
+        $total_purchased_high = (isset($data['total_purchased_high']))?$data['total_purchased_high']:'';
+        $email_verified = (isset($data['email_verified']))?$data['email_verified']:'';
+        $role = (isset($data['role']))?$data['role']:'2';
+        $user_filter = (isset($data['user_filter']))?$data['user_filter']:'';
+        $page = (isset($data['page']))?$data['page']:'';
+        $start = (isset($data['start']))?$data['start']:0;
+        $limit = (isset($data['limit']))?$data['limit']:15;
+        if(Request::ajax()){
+                $query = User::select(DB::raw('users.*'), DB::raw("CONCAT(users.last_name, ', ', users.first_name) as name"), DB::raw('roles.name as role_name'))
+                                ->leftJoin('assigned_roles', 'assigned_roles.user_id', '=', 'users.id')
+                                ->leftJoin('roles', 'roles.id', '=', 'assigned_roles.role_id')
+                                ->where('roles.id', '!=', '1')
+                                ->where(function ($query) use ($name, $email, $join_date_low, $join_date_high, $email_verified){
+
+                                    if($name){
+                                        $query->where(DB::raw("CONCAT(users.last_name, ', ', users.first_name)"), 'like', "%$name%");
+                                    }
+
+                                    if($email){
+                                        $query->where('users.email', 'like', "%$email%");
+                                    }
+
+                                    if($join_date_low && $join_date_high){
+                                        $query->orWhere(function ($query2) use ($join_date_low, $join_date_high) {
+                                            $join_date_low = \Carbon\Carbon::parse($join_date_low);
+                                            $join_date_low = $join_date_low->startOfDay();
+                                            $join_date_high = \Carbon\Carbon::parse($join_date_high);
+                                            $join_date_high = $join_date_high->endOfDay();
+                                            $query2->whereBetween('users.created_at', array($sale_amount_low, $sale_amount_high));
+                                        });
+                                    } else if($join_date_low && empty($join_date_high)){
+                                        $join_date_low = \Carbon\Carbon::parse($join_date_low);
+                                        $join_date_low = $join_date_low->startOfDay();
+                                        $query->where('users.created_at', '>=', $join_date_low);
+                                    } else if($join_date_high && empty($join_date_low)){
+                                        $join_date_high = \Carbon\Carbon::parse($join_date_high);
+                                        $join_date_high = $join_date_high->startOfDay();
+                                        $query->where('users.created_at', '<=', $join_date_high);
+                                    }
+                                });
+
+                $users = $query->orderBy($sort_by, $sort)->paginate($limit);
+                // dd(DB::getQueryLog());
+                $start = $start + $limit;
+
+                return View::make('administration.users.listing', compact('start', 'limit', 'page', 'users', 'name', 'email', 'join_date_low', 'join_date_high', 'total_purchased_low', 'total_purchased_high', 'email_verified', 'user_filter', 'sort', 'sort_by'));
+        }
+
+        return View::make('administration.users.index', compact('name', 'email', 'join_date_low', 'join_date_high', 'total_purchased_low', 'total_purchased_high', 'email_verified', 'user_filter', 'sort', 'sort_by'));
+    }
 }
