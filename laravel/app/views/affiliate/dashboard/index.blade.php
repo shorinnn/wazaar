@@ -155,7 +155,7 @@
                     <div id="sales-today" class="stat-block">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                {{trans('analytics.sales')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
+                                {{trans('analytics.today')}}{{trans('analytics.sales')}} <span id="header-sales-frequency"></span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
                                     <a class="active" href="#" onclick="Analytics.sales('daily','','', this); return false;">{{trans('analytics.today')}}</a>
@@ -215,7 +215,7 @@
                     <div class="with-progress-bar stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
-                                {{trans('analytics.twoTierSales')}} <span id="header-second-tier-earnings-frequency">{{trans('analytics.today')}}</span> </button>
+                                {{trans('analytics.today')}}{{trans('analytics.twoTierSales')}} <span id="header-second-tier-earnings-frequency"></span> </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu second-tier-earnings-dropdown">
                                 <li>
                                     <a class="active with-today" href="#" onclick="Analytics.secondTierEarnings('daily',this); return false;">{{trans('analytics.today')}}</a>
@@ -423,7 +423,7 @@
             </div>
 
             <hr/>
-            <div class="panel panel-default hidden">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Tables Filter</h3>
                 </div>
@@ -437,9 +437,32 @@
                 </div>
             </div>
 
-            <div id="wrapper-table-sales" class="hidden">
 
+            <div class="row-fluid">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">{{trans('analytics.salesStatistics')}}</h3>
+                  </div>
+                  <div class="panel-body">
+                      <div id="wrapper-table-sales">
+                          <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                      </div>
+                  </div>
+                </div>
             </div>
+
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">{{trans('analytics.registrationStatistics')}}</h3>
+              </div>
+              <div class="panel-body">
+                  <div id="wrapper-table-registrations">
+                      <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                  </div>
+              </div>
+            </div>
+
 
             <div id="ajax-loader-wrapper" class="hidden">
                 <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>

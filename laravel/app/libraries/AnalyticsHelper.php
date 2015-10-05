@@ -18,6 +18,45 @@ class AnalyticsHelper
         $this->user = User::find($userId);
     }
 
+    public function getRegistrationsCount($startDate, $endDate)
+    {
+        $users = DB::table('users')
+            ->select(
+                DB::raw("DATE(created_at) as date"),
+                DB::raw("sum(case `ltc_affiliate_id` when '{$this->userId}' then 1 else 0 end) as ltc_registrations"),
+                DB::raw("sum(case `second_tier_affiliate_id` when '{$this->userId}' then 1 else 0 end) as second_tier_affs")
+            )
+            //->whereRaw("DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}'")
+            ->where('ltc_affiliate_id', $this->userId)
+            ->orWhere('second_tier_affiliate_id', $this->userId)
+            ->groupBy(DB::raw("DATE(created_at)"));
+        ;
+
+        return $users->paginate(10);
+    }
+
+    public function getCourseStats($courseId)
+    {
+        $stats = DB::table('purchases')
+            ->select(
+              DB::raw("count(id) as 'sales_count'"),
+              DB::raw("sum(purchase_price) as 'sales_total'"),
+              DB::raw("sum(`instructor_earnings`) as 'instructor_earnings'"),
+              DB::raw("sum(`affiliate_earnings`) as 'affiliate_earnings'"),
+              DB::raw("sum(`ltc_affiliate_earnings`) as 'ltc_affiliate_earnings'"),
+              DB::raw("sum(`second_tier_affiliate_earnings`) as 'second_tier_affiliate_earnings'"),
+              DB::raw("sum(`site_earnings`) as 'site_earnings'"),
+              DB::raw("sum(`tax`) as 'tax'"),
+              DB::raw("DATE(created_at) as 'date'")
+            )
+            ->where('product_type','Course')
+            ->where('product_id',$courseId)
+           // ->groupBy(DB::raw("DATE(created_at)"))
+        ;
+
+        return $stats->paginate(10);
+    }
+
     public function getAffiliateSalesByDateRange($startDate, $endDate)
     {
         $sales = DB::table('purchases')
@@ -68,7 +107,7 @@ class AnalyticsHelper
                 AND free_product = 'no'
                 AND DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}'
                 GROUP BY 	DATE(created_at)";*/
-        return $sales->paginate(2);
+        return $sales->paginate(10);
     }
 
     private function dailyLtcEarnings($affiliateId, $dateFilter = '')

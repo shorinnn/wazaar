@@ -1,8 +1,6 @@
 @extends('layouts.default')
- 
-@section('page_title')
-    {{ $course->name }} -
-@stop
+@section('page_title'){{$course->name}} - Wazaar @stop
+@section('meta_description'){{ strip_tags($course->short_description) }}@stop
 
 <?php
     $date = new DateTime();

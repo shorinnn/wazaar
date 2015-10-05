@@ -95,7 +95,7 @@
                         <div class="stat-block">
                             <div class="dropdown-wrapper">
                                 <button class="btn btn-default" type="button">
-                                    {{trans('analytics.twoTierSales')}} <span id="header-two-tier-sales-frequency">{{trans('analytics.today')}}</span></button>
+                                    {{trans('analytics.today')}}{{trans('analytics.twoTierSales')}} <span id="header-two-tier-sales-frequency"></span></button>
                                 <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu sales-dropdown">
                                     <li>
                                         <a class="with-today" href="#" onclick="Analytics.TwoTierSales('daily','','',this); return false;">{{trans('analytics.today')}}</a>

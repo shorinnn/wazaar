@@ -4,7 +4,7 @@
         <div class="container affiliate-dashboard dashboard  analytics-page">
 
 
-            <h2 class="margin-top-10">Course: {{$course->name}}</h2>
+            <h2 class="margin-top-10">{{trans('analytics.course')}}: {{$course->name}}</h2>
             <div class="row-fluid">
                 <div class="panel panel-default clearfix">
                     <div class="panel-heading">
@@ -30,7 +30,7 @@
                     <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default" type="button">
-                                {{trans('analytics.sales')}} <span id="header-sales-frequency">{{trans('analytics.today')}}</span></button>
+                                {{trans('analytics.today')}}{{trans('analytics.sales')}} <span id="header-sales-frequency"></span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop2" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
                                     <a class="with-today" href="#" onclick="Analytics.Sales('daily',{{$course->id}},'',this); return false;">{{trans('analytics.today')}}</a>
@@ -59,7 +59,7 @@
                     <div id="sales-today" class="stat-block">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                {{trans('analytics.salesCount')}} <span id="header-sales-count-frequency">{{trans('analytics.today')}}</span></button>
+                                {{trans('analytics.today')}}{{trans('analytics.salesCount')}} <span id="header-sales-count-frequency"></span></button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-count-dropdown">
                                 <li>
                                     <a class="active" href="#" onclick="Analytics.SalesCount('daily',{{$course->id}}, this); return false;">{{trans('analytics.today')}}</a>
@@ -124,6 +124,19 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">{{trans('analytics.courseStats')}}</h3>
+                  </div>
+                  <div class="panel-body">
+                      <div class="top-affiliates-table table-stats-wrapper">
+                          <div align="center" class="margin-top-15"><img src="{{url('images/ajax-loader.gif')}}" alt=""/></div>
+                      </div>
+                  </div>
+                </div>
+
+            </div>
 
 
             <div id="ajax-loader-wrapper" class="hidden">
@@ -153,6 +166,19 @@
 
     <script type="text/javascript">
         $(function(){
+
+            $.get('/analytics/course/stats/{{$course->id}}', function ($table){
+                $('.table-stats-wrapper').html($table);
+            });
+
+            $('.table-stats-wrapper').on('click','a', function ($e){
+                $e.preventDefault();
+                var $url = $(this).attr('href');
+                $.get($url, function ($table){
+                    $('.table-stats-wrapper').html($table);
+                });
+            });
+
             $('#affiliateId').select2({
                 placeholder: "Select an Affiliate"
             });
