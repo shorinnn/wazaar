@@ -51,7 +51,11 @@
                                     @endif
                                 </div>
                                 <div class="highly-recommend">
-                                	<i class="wa-like"></i>{{ $course->reviewsScore() }} {{ $course->rating() }}
+                                	<i class="wa-like"></i>
+                                        {{ $course->reviewsScore() }} 
+                                        @if($course->likes()> 0)
+                                            {{ $course->rating() }}
+                                        @endif
                                 </div>
                             </div>
                             
