@@ -17,13 +17,13 @@
             <tr>
                 <!--<td>{{$stat->date}}</td>-->
                 <td>{{$stat->sales_count}}</td>
-                <td>{{$stat->sales_total}}</td>
-                <td>{{$stat->instructor_earnings}}</td>
-                <td>{{$stat->affiliate_earnings}}</td>
-                <td>{{$stat->ltc_affiliate_earnings}}</td>
-                <td>{{$stat->second_tier_affiliate_earnings}}</td>
-                <td>{{$stat->site_earnings}}</td>
-                <td>{{$stat->tax}}</td>
+                <td>¥{{$stat->sales_total}}</td>
+                <td>¥{{$stat->instructor_earnings}}</td>
+                <td>¥{{$stat->affiliate_earnings}}</td>
+                <td>¥{{$stat->ltc_affiliate_earnings}}</td>
+                <td>¥{{$stat->second_tier_affiliate_earnings}}</td>
+                <td>¥{{$stat->site_earnings}}</td>
+                <td>¥{{$stat->tax}}</td>
             </tr>
         @endforeach
         </tbody>
