@@ -24,6 +24,9 @@
                     <form id="search_form" class="form-horizontal" style="padding-bottom:20px;">
                         <input type="hidden" name="sort_by" id="sort_by" value="{{$sort_by}}">
                         <input type="hidden" name="sort" id="sort" value="{{$sort}}">
+                        <input type="hidden" name="start" id="start" value="{{$start}}">
+                        <input type="hidden" name="limit" id="limit" value="{{$limit}}">
+                        <input type="hidden" name="page" id="page" value="{{$page}}">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{ trans('administration.users.label.name' )}}</label>
                             <div class="col-sm-9">
@@ -120,7 +123,7 @@
                             <label class="col-sm-3 control-label">{{ trans('administration.users.label.roles' )}}</label>
                             <div class="col-sm-9">
                                 <div class="form-group col-sm-12">
-                                    <input type="text" class="form-control" id="course_name" name="course_name" value="">
+                                    {{Form::select('role', $roles, $role, ['id'=>'role', 'class'=>'form-control'])}}
                                 </div>
                                 <div class="form-group col-sm-12">
                                     <div class="btn-group buttons-container" data-toggle="buttons">
@@ -190,10 +193,6 @@
 
         $('.users-listings-container').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".users-listings-container" data-url="'+url+'" class="load-remote users-listings-ajax-link">loading</a>' );
         $('.users-listings-ajax-link').click();
-
-        // url = url + '&total=true';
-        // $('.orders-totals-container').html( '<a href="#" data-callback="ajaxifyPagination" data-target=".orders-totals-container" data-url="'+url+'" class="load-remote orders-totals-ajax-link">loading</a>' );
-        // $('.orders-totals-ajax-link').click();
     }
     function triggerSorter()
     {
@@ -231,7 +230,7 @@
         $('.alax-loader').hide().removeClass('hide').show();
         $.ajax({
             url: url,
-            cache: true,
+            cache: false,
             success: function(result){
                 $('.alax-loader').hide();
                 $('.users-listings-container').html(result);
@@ -240,15 +239,6 @@
                 addSorterIndicator();
             }
         });
-
-        // url = url + '&total=true';
-        // $.ajax({
-        //     url: url,
-        //     cache: true,
-        //     success: function(result){
-        //         $('.orders-totals-container').html(result);
-        //     }
-        // });
     }
     jQuery(document).ready(function($){
         loadUsers();
