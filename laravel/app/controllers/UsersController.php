@@ -662,6 +662,12 @@ class UsersController extends Controller
                                 ->leftJoin('roles', 'roles.id', '=', 'assigned_roles.role_id')
                                 ->join('purchases', 'purchases.student_id', '=', 'users.id')
                                 ->where('roles.id', '!=', '1')
+                        // GERRY -  ADD THE ROLE SEARCH HERE
+                                ->whereHas(
+                                    'roles', function($q){
+                                        $q->where('name', 'Instructor');
+                                    }
+                                )
                                 ->where(function ($query) use ($name, $email, $join_date_low, $join_date_high, $email_verified, $total_purchased_low, $total_purchased_high, $role, $user_filter){
 
                                     if($name){
@@ -674,26 +680,27 @@ class UsersController extends Controller
 
                                     $role_ids = array();
                                     if(!empty($role)){
-                                        for($i=2; $i<=4; $i++){
-                                            if($i != $role){
-                                                $role_ids[] = $i;
-                                            }
-                                        }
-
-                                        if($role != 4){
-                                            $next_role = ($role == 2)?3:2;
-                                            if($user_filter == 'only'){
-                                                $query->where('assigned_roles.role_id', '=', $role)->where('assigned_roles.user_id', '=', 'users.id')
-                                                        ->where(function ($query2) use ($role, $next_role){
-                                                            $query2->where('assigned_roles.role_id', '!=', $next_role)->where('assigned_roles.user_id', '=', 'users.id');
-                                                        });
-                                            } else {
-                                                $query->where('assigned_roles.role_id', '=', $role)->orWhere('assigned_roles.role_id', $next_role)->where('assigned_roles.user_id', '=', 'users.id');
-                                            }
-
-                                        } else {
-                                            $query->where('assigned_roles.role_id', '=', $role)->whereNotIn('assigned_roles.role_id', $role_ids)->where('assigned_roles.user_id', '=', 'users.id');
-                                        }
+                                        // GERRY - COMMENTING THIS BECAUSE THIS MAKES IT RETURN NOTHING
+//                                        for($i=2; $i<=4; $i++){
+//                                            if($i != $role){
+//                                                $role_ids[] = $i;
+//                                            }
+//                                        }
+//
+//                                        if($role != 4){
+//                                            $next_role = ($role == 2)?3:2;
+//                                            if($user_filter == 'only'){
+//                                                $query->where('assigned_roles.role_id', '=', $role)->where('assigned_roles.user_id', '=', 'users.id')
+//                                                        ->where(function ($query2) use ($role, $next_role){
+//                                                            $query2->where('assigned_roles.role_id', '!=', $next_role)->where('assigned_roles.user_id', '=', 'users.id');
+//                                                        });
+//                                            } else {
+//                                                $query->where('assigned_roles.role_id', '=', $role)->orWhere('assigned_roles.role_id', $next_role)->where('assigned_roles.user_id', '=', 'users.id');
+//                                            }
+//
+//                                        } else {
+//                                            $query->where('assigned_roles.role_id', '=', $role)->whereNotIn('assigned_roles.role_id', $role_ids)->where('assigned_roles.user_id', '=', 'users.id');
+//                                        }
                                     }
 
                                     if($join_date_low && $join_date_high){
