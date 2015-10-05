@@ -15,7 +15,7 @@ var Analytics = {
         });
 
         if ($frequency == 'today'){
-            $('#header-total-signups-student-instructors-frequency').html(_(""));
+            $('#header-total-signups-student-instructors-frequency').html(_("Today"));
         }
         else if($frequency == 'week'){
             $('#header-total-signups-student-instructors-frequency').html(_("This Week"));
@@ -31,7 +31,7 @@ var Analytics = {
     'AffiliateSignups' : function ($frequency){
 
         if ($frequency == 'today'){
-            $('#header-total-signups-affiliates-frequency').html(_(""));
+            $('#header-total-signups-affiliates-frequency').html(_("Today"));
         }
         else if($frequency == 'week'){
             $('#header-total-signups-affiliates-frequency').html(_("This Week"));
@@ -52,7 +52,7 @@ var Analytics = {
     'Revenues' : function ($frequency){
 
         if ($frequency == 'today'){
-            $('#header-total-revenues-frequency').html(_(""));
+            $('#header-total-revenues-frequency').html(_("Today"));
         }
         else if($frequency == 'week'){
             $('#header-total-revenues-frequency').html(_("This Week"));
