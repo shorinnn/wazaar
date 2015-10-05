@@ -10,8 +10,9 @@
                 <thead>
                 <tr>
                     <th width="50%">{{trans('instructors/analytics.name')}}</th>
-                    <th width="20%" style="text-align: center">{{trans('analytics.salesCount')}}</th>
-                    <th width="20%" style="text-align: center">{{trans('instructors/analytics.sales-revenue')}}</th>
+                    <th width="15%" style="text-align: center">{{trans('analytics.salesCount')}}</th>
+                    <th width="15%" style="text-align: center">{{trans('instructors/analytics.sales-revenue')}}</th>
+                    <th width="10%" style="text-align: center">{{trans('analytics.tax')}}</th>
                     <th width="10%" style="text-align: center">{{trans('instructors/analytics.price')}}</th>
                 </tr>
                 </thead>
@@ -36,6 +37,14 @@
                                         ¥ {{number_format($course->sales->sum('instructor_earnings'))}}
                                     @else
                                        N/A
+                                    @endif
+
+                                </td>
+                                <td align="center">
+                                    @if ($course->free == 'no')
+                                        ¥ {{number_format($course->sales->sum('tax'))}}
+                                    @else
+                                        N/A
                                     @endif
 
                                 </td>
