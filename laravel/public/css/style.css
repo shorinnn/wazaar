@@ -10077,7 +10077,7 @@ header .profile-name ul{
 		top: 0;
 	}
 	.discussion-sidebar-footer form .submit-for-approval{
-		padding: 9px 10px;
+		padding: 9px 5px !important;
 		width: 32%;
 	}
 }
