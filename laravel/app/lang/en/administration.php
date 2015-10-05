@@ -108,7 +108,8 @@ return array(
             'product-price' => 'Product Price',
             'date' => 'Date',
             'course-id' => 'Course ID',
-        ]
+        ],
+        'tax' => 'Tax'
     ],
     'users' => [
         'manage-users' => 'Manage Users',

@@ -7,6 +7,7 @@
 		<td>{{$order->owner_email}}</td>
 		<td>¥ {{number_format($order->original_price)}}</td>
 		<td>¥ {{number_format($order->purchase_price)}}</td>
+		<td>¥ {{number_format($order->tax)}}</td>
 		<td>¥ {{number_format($order->site_earnings)}}</td>
 		<td>¥ {{number_format($order->instructor_earnings)}}</td>
 		<td>¥ {{number_format($order->affiliate_earnings)}}</td>
