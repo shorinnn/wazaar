@@ -64,6 +64,7 @@ class AnalyticsHelper
                     DB::raw("count(id) as 'sales_count'"),
                     DB::raw("sum(purchase_price) as 'sales_total'"),
                     DB::raw("sum(affiliate_earnings) as 'revenue'"),
+                    DB::raw("sum(tax) as 'tax_total'"),
                     DB::raw("CASE `ltc_affiliate_id`
                             WHEN  '{$this->userId}' THEN sum(`ltc_affiliate_earnings`)
                             ELSE 0
