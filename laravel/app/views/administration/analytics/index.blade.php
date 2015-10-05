@@ -27,7 +27,7 @@
                 <div class="with-progress-bar stat-block">
                     <div class="dropdown-wrapper">
                         <button class="btn btn-default">
-                            {{trans('analytics.totalSignUps')}} <span id="header-total-signups-student-instructors-frequency">{{trans('analytics.today')}}</span> </button>
+                            {{trans('analytics.today')}}{{trans('analytics.totalSignUps')}} <span id="header-total-signups-student-instructors-frequency"></span> </button>
                         <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu tracking-code-conversions-dropdown">
                             <li>
                                 <a class="active with-today" href="#" onclick="Analytics.ltcRegistrations('daily',this); return false;">{{trans('analytics.today')}}</a>
@@ -56,7 +56,7 @@
                 <div class="with-progress-bar stat-block">
                     <div class="dropdown-wrapper">
                         <button class="btn btn-default">
-                            {{trans('analytics.totalRevenues')}} <span id="header-total-revenues-frequency">{{trans('analytics.today')}}</span> </button>
+                            {{trans('analytics.today')}}{{trans('analytics.totalRevenues')}} <span id="header-total-revenues-frequency"></span> </button>
                         <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu tracking-code-conversions-dropdown">
                             <li>
                                 <a class="active with-today" href="#" onclick="Analytics.ltcRegistrations('daily',this); return false;">{{trans('analytics.today')}}</a>
@@ -84,7 +84,7 @@
                 <div class="with-progress-bar stat-block">
                     <div class="dropdown-wrapper">
                         <button class="btn btn-default">
-                            {{trans('analytics.totalSignUpsAffs')}} <span id="header-total-signups-affiliates-frequency">{{trans('analytics.today')}}</span> </button>
+                            {{trans('analytics.today')}}{{trans('analytics.totalSignUpsAffs')}} <span id="header-total-signups-affiliates-frequency"></span> </button>
                         <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu tracking-code-conversions-dropdown">
                             <li>
                                 <a class="active with-today" href="#" onclick="Analytics.ltcRegistrations('daily',this); return false;">{{trans('analytics.today')}}</a>
