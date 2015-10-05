@@ -21,7 +21,7 @@
                 </style>        
             @endif
             @if(Auth::check())
-        <div class="clearfix left">
+        <div class="clearfix left hidden-xs">
             <div class="logged-out-header-search text-center hidden-xs">
                 <?php if('dont-show' == 'dont-show'):?>
                 <div class="clearfix inline-block">

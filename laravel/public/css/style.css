@@ -5700,8 +5700,17 @@ h2, h3, h4, h5, h6{
 	color: #798794;
 	font-size: 13px;
 	padding: 5px 12px 0 !important;
-	height: 38px;
+	height: 38px !important;
+	overflow: auto !important;
+	width: 65%;
+	float: left;
 	resize: none;
+}
+.discussion-sidebar-footer form .submit-for-approval{
+	margin: 0 !important;
+	width: 30%;
+	float: right;
+	padding: 9px 25px !important;
 }
 /*Ask question sidebar*/
 .ask-question-fields{
@@ -9491,7 +9500,7 @@ header .top-menu .logged-out-header-search .catalogue-button em{
 	
 }
 header .main-logo{
-	margin: 10px 20px 0px 0;
+	margin: 10px 0 0px 0;
 }
 header .top-menu .logged-out-header-search{
 	margin: 25px 0;
@@ -10066,6 +10075,10 @@ header .profile-name ul{
 		display: block;
 		right: 0;
 		top: 0;
+	}
+	.discussion-sidebar-footer form .submit-for-approval{
+		padding: 9px 10px;
+		width: 32%;
 	}
 }
 @media (max-width:460px){
