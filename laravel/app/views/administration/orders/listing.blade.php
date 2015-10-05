@@ -8,6 +8,7 @@
 				<th><a href="#" class="sorter" data-sort-by="owner_email" data-sort="{{$sort}}">{{ trans('administration.orders.course-owner-email' )}} <i class="fa"></i></a></th>
 				<th><a href="#" class="sorter" data-sort-by="original_price" data-sort="{{$sort}}">{{ trans('administration.orders.original-price' )}} <i class="fa"></i></a></th>
 				<th><a href="#" class="sorter" data-sort-by="purchase_price" data-sort="{{$sort}}">{{ trans('administration.orders.discounted-price' )}} <i class="fa"></i></a></th>
+				<th><a href="#" class="sorter" data-sort-by="tax" data-sort="{{$sort}}">{{ trans('administration.orders.tax' )}} <i class="fa"></i></a></th>
 				<th><a href="#" class="sorter" data-sort-by="site_earnings" data-sort="{{$sort}}">{{ trans('administration.orders.site-income' )}} <i class="fa"></i></a></th>
 				<th><a href="#" class="sorter" data-sort-by="instructor_earnings" data-sort="{{$sort}}">{{ trans('administration.orders.instructor-income' )}} <i class="fa"></i></a></th>
 				<th><a href="#" class="sorter" data-sort-by="affiliate_earnings" data-sort="{{$sort}}">{{ trans('administration.orders.affiliate-income' )}} <i class="fa"></i></a></th>
