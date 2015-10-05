@@ -43,7 +43,11 @@
                            
                     </div>
 					<div class="highly-recommend">
-                    	<i class="wa-like"></i> {{ $course->reviewsScore() }} {{ $course->rating() }}
+                    	<i class="wa-like"></i> 
+                                       {{ $course->reviewsScore() }} 
+                                        @if($course->likes()> 0)
+                                            {{ $course->rating() }}
+                                        @endif
                     </div> 
                 </div>
                 <?php echo Flatten::section('bottom-course-box-'.$course->id, Config::get('custom.cache-expiry.course-box'), function () use ($course) { ?>
