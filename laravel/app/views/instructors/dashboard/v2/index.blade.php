@@ -358,12 +358,13 @@
         }
     }
     
-
-    $(function(){
-        
         function showReview(cls){
             $(cls).modal('show');
         }
+        
+    $(function(){
+        
+
         //Hide and show the positive and negative review textareas and labels
         $('body').delegate('.yes-button','click',  function(){
                 $('.positive-review-wrap').removeClass('hide');
