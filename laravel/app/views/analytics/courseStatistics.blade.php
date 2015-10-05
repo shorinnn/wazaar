@@ -20,7 +20,7 @@
                     <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
-                                {{trans('analytics.topTrackingCodes')}} <span id="header-tracking-codes-frequency">{{trans('analytics.today')}}</span></button>
+                                <span id="header-tracking-codes-frequency">{{trans('analytics.today')}}</span>{{trans('analytics.topTrackingCodes')}} </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop4" role="menu" class="dropdown-menu tracking-codes-dropdown">
                                 <li>
                                     <a class="active with-today" href="#" onclick="Analytics.trackingSalesCodes('daily',{{$course['id']}}, this); return false;">{{trans('analytics.today')}}</a>
@@ -47,7 +47,7 @@
                     <div id="sales-today" class="stat-block">
                         <div class="dropdown-wrapper">
                             <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="btnGroupDrop3" type="button">
-                                {{trans('analytics.today')}}{{trans('analytics.sales')}} <span id="header-sales-frequency"></span></button>
+                                <span id="header-sales-frequency">{{trans('analytics.today')}}</span>{{trans('analytics.sales')}} </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop3" role="menu" class="dropdown-menu sales-dropdown">
                                 <li>
                                     <a class="active" href="#" onclick="Analytics.sales('daily',{{$course['id']}},'', this); return false;">{{trans('analytics.today')}}</a>
@@ -75,7 +75,7 @@
                     <div class="stat-block">
                         <div class="dropdown-wrapper">
                             <button class="btn btn-default">
-                                {{trans('analytics.trackingCodeConverting')}} <span id="header-tracking-code-conversions-frequency">{{trans('analytics.today')}}</span> </button>
+                                <span id="header-tracking-code-conversions-frequency">{{trans('analytics.today')}}</span>{{trans('analytics.trackingCodeConverting')}}  </button>
                             <ul id="activities-dropdown" aria-labelledby="btnGroupDrop6" role="menu" class="dropdown-menu tracking-code-conversions-dropdown">
                                 <li>
                                     <a class="active with-today" href="#" onclick="Analytics.trackingCodeConversions('daily',{{$course['id']}}, this); return false;">{{trans('analytics.today')}}</a>
