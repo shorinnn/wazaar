@@ -126,7 +126,7 @@
                                                                 <img src="{{ $course->previewImage->url }}" class="img-responsive" />
                                                             </a>
                                                             @else
-                                                            	<img src="http://placehold.it/350x150" class="img-responsive">
+                                                            	<img src="http://placehold.it/360x203" class="img-responsive">
                                                                 <!--<p style="margin-top:35px;">{{ trans('courses/create.no-uploaded-image') }}</p>-->
                                                             @endif 
                                                       </div>
