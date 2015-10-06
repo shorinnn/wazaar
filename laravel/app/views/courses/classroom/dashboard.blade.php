@@ -3,12 +3,12 @@
 	<div class="container-fluid student-dashboard student-course top-section">
     	<div class="container">
             <div class="row">
-                            @if( Session::has('message') )
-                                <h4 class="alert alert-success alert-dismissable" style="background-color:#88C95E; color:white; border:transparent; margin-bottom: 0px">
-                                    {{ Session::get('message') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                </h4>
-                            @endif
+                @if( Session::has('message') )
+                    <h4 class="alert alert-success alert-dismissable" style="background-color:#88C95E; color:white; border:transparent; margin-bottom: 0px">
+                        {{ Session::get('message') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </h4>
+                @endif
                 <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
                     <div class="profile-picture-holder">
                         <img 
@@ -146,7 +146,6 @@
                             </div>
                         </div>
                     @endif
-                        @if($nextLesson !=null && $currentLesson == null)
                             <style>
                                 .resume-button-container{
                                     padding: 24px;
@@ -161,17 +160,23 @@
                                     margin: 0 0 10px;
                                 }
                             </style>
+                            @if($nextLesson !=null)
                             <div class="resume-button-container">
                                 <!-- <h3>{{ trans('courses/general.continue-lesson') }}</h3> -->
-
                                     <a href="{{
                                         action('ClassroomController@lesson', 
                                                             [ $nextLesson->module->course->slug,
                                                             $nextLesson->module->slug,
                                                             $nextLesson->slug])
-                                       }}" class="resume-course large-button blue-button"><i class="wa-play"></i>{{ trans('affiliates.gifts.begin-course' )}}</a>
-                                
+                                       }}" class="resume-course large-button blue-button"><i class="wa-play"></i>
+                                        @if( $currentLesson == null )
+                                            {{ trans('affiliates.gifts.begin-course') }}
+                                        @else
+                                            {{ trans('affiliates.gifts.resume-course') }}
+                                        @endif
+                                    </a>
                             </div>
+                            @endif
                             	
                    
                         <div class="question-answer-wrap">
@@ -180,16 +185,49 @@
                                 <div class="row question no-margin">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <h3></h3>
-                                        <p class="regular-paragraph">
-                                        {{ trans('courses/general.dash-you-have-no-questions-yet') }}
-                                        </p>
+                                            @if($discussions->count() == 0)
+                                                <p class="regular-paragraph">
+                                                    {{ trans('courses/general.dash-you-have-no-questions-yet') }}
+                                                </p>
+                                            @else
+                                                <table class="table table-striped">
+                                                    @foreach($discussions as $discussion)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $discussion->title }}
+                                                            <br /><small> {{ $discussion->replies->count() }} Replies </small>
+                                                        </td>
+                                                        <td>
+                                                           @if( $discussion->replies->count() >0 )
+                                                                <?php
+                                                                    $lr = $discussion->replies()->orderBy('id','desc')->first();
+                                                                ?>
+                                                               {{ $lr->student->fullName('student') }}:
+                                                               <small>{{ Str::limit( $lr->content, 100) }}</small>
+                                                           @else
+                                                               NO REPLIES
+                                                           @endif
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{
+                                                                action('ClassroomController@lesson', 
+                                                            [ $discussion->lesson->module->course->slug,
+                                                            $discussion->lesson->module->slug,
+                                                            $discussion->lesson->slug]) }}">
+                                                                {{ Str::limit( $discussion->lesson->name, 5) }}
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </table>
+                                                    {{ $discussions->links() }}
+                                            @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    @endif
                 </div>
             </div>
         </div>    
