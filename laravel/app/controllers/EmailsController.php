@@ -9,7 +9,7 @@ class EmailsController extends \BaseController {
 	{
             $instructorSaleEmail = Setting::firstOrCreate( [ 'name' => 'instructor-email-sale-content' ] );
             $studentSaleEmail = Setting::firstOrCreate( [ 'name' => 'student-email-sale-content' ] );
-            $instructorNewDiscussionsUpdateEmail = Setting::firstOrCreate( [ 'name' => 'instructor-new-discussions-updatecontent' ] );
+            $instructorNewDiscussionsUpdateEmail = Setting::firstOrCreate( [ 'name' => 'instructor-new-discussions-update-content' ] );
             return View::make('administration.emails.index')->with( compact('instructorSaleEmail', 'studentSaleEmail', 'instructorNewDiscussionsUpdateEmail') );
 	}
         

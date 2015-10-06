@@ -44,7 +44,7 @@
             <p><b>Update Instructor On New Discussions</b></p>
             {{ Form::open(['action'=> 'EmailsController@update', 'method'=>'PUT', 'class'=>'ajax-form', 'data-callback'=>'formSaved' ] ) }}
                 <textarea name='content'>{{$instructorNewDiscussionsUpdateEmail->value}}</textarea>
-                <input type="hidden" name="name" value="instructor-new-discussions-updatecontent" />
+                <input type="hidden" name="name" value="instructor-new-discussions-update-content" />
                 <p class="text-center"><button type="submit" class="btn btn-primary">Update</button></p>
             {{ Form::close() }}
             <small>
