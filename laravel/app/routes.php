@@ -124,6 +124,9 @@ $wwwRoutes = function(){
     
     // Admin Controller
     Route::group(array('prefix'=>'administration'),function(){
+        Route::get('emails', 'EmailsController@index');
+        Route::put('emails', 'EmailsController@update');
+        
         Route::post('withdrawals/update', 'WithdrawalsController@update');
         Route::get('withdrawals/bank-file/{time}', 'WithdrawalsController@bankFile');
         Route::get('withdrawals/bank-file/', 'WithdrawalsController@bankFile');
