@@ -1,6 +1,7 @@
 <?php
 
 return array(
+	'view' => 'View',
     'you-have' => 'You have',
     'announcements' => 'announcement|announcements',
     'teacher-responses' => 'teacher response|teacher responses',

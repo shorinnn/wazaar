@@ -36,6 +36,7 @@ $wwwRoutes = function(){
     Route::get('discover-courses/{group}', 'SiteController@discoverCourses');
     Route::get('privacy-policy', 'SiteController@privacyPolicy');
     Route::get('about-the-company', 'SiteController@about');
+    Route::get('contact', 'SiteController@contact');
 	
     
     Route::get('/dash', 'SiteController@dashboard');
@@ -187,7 +188,7 @@ $wwwRoutes = function(){
         Route::delete('delete-picks/{type}', 'PicksController@deletePicks');
         Route::post('order-picks/{type}', 'PicksController@orderPicks');
         Route::get('manage-orders', 'OrdersController@index');
-        Route::get('load-orders', 'OrdersController@loadOrders');
+        Route::get('manage-users', 'UsersController@adminManageUsers');
     });
 //});
 };
@@ -226,6 +227,9 @@ $wwwRoutes = function(){
 //Route::group( array('domain' => $domain ), function(){
     // Students
     Route::group(['prefix' => 'student'], function (){
+        Route::get('mycourses/enrolled', 'StudentController@mycourses');
+        Route::get('mycourses/finished', 'StudentController@mycourses');
+        Route::get('mycourses/wishlist', 'StudentController@mycourses');
         Route::get('mycourses', 'StudentController@mycourses');
         Route::get('wishlist', 'StudentController@wishlist');
         Route::get('{email}/wishlist', 'StudentController@wishlist');
@@ -297,9 +301,14 @@ Route::group(array('domain' => $domain), $wwwRoutes);
 Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 
 Route::group( array('domain' => $instructorSubdomain ), function(){
+    Route::resource('testimonials', 'TestimonialsController');
     Route::put('courses/{id}/updateExternalVideo', 'CoursesController@updateExternalVideo');
     Route::post('courses/{id}/reorder', 'CoursesController@reorder');
     Route::post('courses/{id}/remove-promo', 'CoursesController@removePromo');
+    Route::get('courses/mycourses/enrolled', 'CoursesController@myCourses');
+    Route::get('courses/mycourses/finished', 'CoursesController@myCourses');
+    Route::get('courses/mycourses/wishlist', 'CoursesController@myCourses');
+    Route::get('courses/mycourses/teaching', 'CoursesController@myCourses');
     Route::get('courses/mycourses', 'CoursesController@myCourses');
     Route::get('courses/{slug}/curriculum', 'CoursesController@curriculum');
     Route::get('courses/{slug}/view-discussions', 'CoursesController@viewDiscussions');

@@ -705,18 +705,19 @@ class Student extends User{
         return $last;
     }
 
-    public function canAskForReview($course, $lesson){
+    public function canAskForReview($course, $lesson = null){
+        if( $this->testimonials()->where('course_id', $course->id)->count() > 0 ) return false;
         if( !$this->purchased($course) ) return false;
-        if( $this->testimonials()->where('course_id', $course->id)->count()==0 ){
-            // if last lesson, show modal
-            if( $lesson->next() == false ) return true;
-            // if completed 3 lessons, show modal
-            $position = $lesson->lessonPosition();
-            $total = $lesson->totalLessons();
-            if( $position==4 ) return true;
-            if( percentage($position, $total)>=50 && percentage($position-1, $total)<50 ) return true;
-            if( percentage($position, $total)>=75 && percentage($position-1, $total)<75 ) return true;
-        }
+        if( $this->courseProgress($course) == 100 ) return true;
+        if( $lesson==null ) return false;
+        // if last lesson, show modal
+        if( $lesson->next() == false ) return true;
+        // if completed 3 lessons, show modal
+        $position = $lesson->lessonPosition();
+        $total = $lesson->totalLessons();
+        if( $position==4 ) return true;
+        if( percentage($position, $total)>=50 && percentage($position-1, $total)<50 ) return true;
+        if( percentage($position, $total)>=75 && percentage($position-1, $total)<75 ) return true;
         return false;
     }
 

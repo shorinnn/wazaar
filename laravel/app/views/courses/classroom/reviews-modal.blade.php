@@ -1,5 +1,5 @@
 <!-- Lesson Review Modal -->
-<div class="modal fade review-modal" tabindex="-1" role="dialog" aria-labelledby="lessonReviewModal">
+<div class="modal fade review-modal review-modal-{{$course->id}}" tabindex="-1" role="dialog" aria-labelledby="lessonReviewModal">
   <div class="modal-dialog modal-sm">
     <div class="modal-content wazaar-modal">
         <div class="modal-header clearfix">
@@ -26,8 +26,9 @@
                                     	<button class="no-button"><i class="fa fa-thumbs-o-down"></i>{{ trans('courses/general.reviews-modal.no') }}</button>
                                     </div>
                                     <div class="positive-review-wrap clearfix hide">
-                                    	{{ Form::open(['action' => 'TestimonialsController@store', 'method' => 'POST',
-                                                'class' => 'ajax-form', 'data-callback' => 'courseReviewPosted'] ) }}
+                                            <form method="post" class='ajax-form' data-callback='courseReviewPosted'
+                                                  action='{{url('testimonials')}}'>
+                                                <input type='hidden' name='_token' value='{{csrf_token()}}' />
                                         	<div class="clearfix">
                                             	<label>{{ trans('courses/general.reviews-modal.what-do-you-like-about-it') }}</label>
                                                 <textarea name='content'></textarea>
@@ -38,11 +39,12 @@
                                                 <a class="later white-button button left" onclick="cancelReviewsModal()">{{ trans('courses/general.reviews-modal.later') }}</a>
                                                 <button type='submit' class="blue-button large-button button right no-margin">{{ trans('courses/general.reviews-modal.submit-review') }}</button>
                                             </div>
-                                        {{ Form::close() }}
+                                        </form>
                                     </div>
                                     <div class="negative-review-wrap clearfix hide">
-                                        {{ Form::open(['action' => 'TestimonialsController@store', 'method' => 'POST', 'class' => 'ajax-form', 
-                                                    'data-callback' => 'courseReviewPosted' ] ) }}
+                                        <form method="post" class='ajax-form' data-callback='courseReviewPosted'
+                                                  action='{{url('testimonials')}}' >
+                                            <input type='hidden' name='_token' value='{{csrf_token()}}' />
                                         	<div class="clearfix">
                                             	<label>{{ trans('courses/general.reviews-modal.what-is-bad-about-it') }}</label>
                                                 <textarea name='content'></textarea>
@@ -53,7 +55,7 @@
                                             	<a class="later white-button button left" onclick="cancelReviewsModal()">{{ trans('courses/general.reviews-modal.later') }}</a>
                                                 <button type='submit' class="blue-button large-button button right no-margin">{{ trans('courses/general.reviews-modal.submit-review') }}</button>
                                             </div>
-                                        {{ Form::close() }}
+                                        </form>
                                     </div>
                                     <div class="long-later-button">
                                     	<a class="white-button block full-width" onclick="cancelReviewsModal()">{{ trans('courses/general.reviews-modal.later') }}</a>

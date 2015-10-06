@@ -61,24 +61,26 @@
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 no-padding">
                     <ul class="nav nav-pills left" role="tablist">
                         <li role="presentation" class="active">
-                        	<a href="#teaching" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="enrolled" onclick='toggleNumbers(1)'
-                                   aria-expanded="true">
+                        	<a href="#teaching" role="tab" id="teaching-tab" data-toggle="tab" aria-controls="enrolled"  aria-expanded="true"
+                                   onclick='toggleNumbers(1); dashUrl("{{url("courses/mycourses/teaching") }}")'>
+                                  
                                     {{trans('general.dash.teaching')}}
                                 </a>
                         </li>
                         <li role="presentation" class="">
-                        	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled"  onclick='toggleNumbers(0)'
+                        	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled"  
+                                   onclick='toggleNumbers(0);dashUrl("{{url("courses/mycourses/enrolled")}}")'
                                    aria-expanded="true">
                                 {{trans('general.dash.enrolled')}}</a>
                         </li>
                         <li role="presentation">
-                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab"  onclick='toggleNumbers(0)'
-                                   aria-controls="finished">
+                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished"
+                                   onclick='toggleNumbers(0); dashUrl("{{url("courses/mycourses/finished") }}")'>
                                  {{trans('general.dash.finished')}}</a>
                         </li>
                         <li role="presentation" class="dropdown">
-                          <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab"  onclick='toggleNumbers(0)'
-                             aria-controls="wishlist">
+                          <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab"  aria-controls="wishlist"
+                             onclick='toggleNumbers(0);dashUrl("{{url("courses/mycourses/wishlist") }}")'>
                            {{trans('general.dash.wishlist')}}</a>
                         </li>
                     </ul> 
@@ -124,7 +126,8 @@
                                                                 <img src="{{ $course->previewImage->url }}" class="img-responsive" />
                                                             </a>
                                                             @else
-                                                                <p style="margin-top:35px;">{{ trans('courses/create.no-uploaded-image') }}</p>
+                                                            	<img src="http://s3-ap-northeast-1.amazonaws.com/wazaar/profile_pictures/avatar-placeholder.jpg" class="img-responsive">
+                                                                <!--<p style="margin-top:35px;">{{ trans('courses/create.no-uploaded-image') }}</p>-->
                                                             @endif 
                                                       </div>
         
@@ -357,7 +360,40 @@
             $('.activity-today').addClass('invisible');
         }
     }
+    
+        function showReview(cls){
+            $(cls).modal('show');
+        }
+        
+        function dashUrl(page){
+            history.pushState({}, '', page);
+        }
+        
     $(function(){
+        
+        @if( Request::segment(3) !='' )
+            $('[href="#{{Request::segment(3)}}"]').click();
+        @else
+            @if($purchasedCourses->count() > 0)
+                $('[href="#enrolled"]').click();
+            @endif
+        @endif
+
+        //Hide and show the positive and negative review textareas and labels
+        $('body').delegate('.yes-button','click',  function(){
+                $('.positive-review-wrap').removeClass('hide');
+                $('.negative-review-wrap').addClass('hide');
+                $(this).addClass('active');
+                $('.no-button').removeClass('active');
+                $('.long-later-button').hide();
+        });
+        $('body').delegate('.no-button','click',  function(){
+                $('.positive-review-wrap').addClass('hide');
+                $('.negative-review-wrap').removeClass('hide');
+                $(this).addClass('active');
+                $('.yes-button').removeClass('active');
+                $('.long-later-button').hide();
+        });
         
         $('#upload-new-photo').fileupload()
                 .bind('fileuploadprogress', function ($e, data){

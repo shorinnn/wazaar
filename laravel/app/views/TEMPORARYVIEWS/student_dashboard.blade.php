@@ -34,7 +34,7 @@
                     	<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
                         	<h6 class="current-lesson text-right">{{ trans('courses/dashboard.current_lesson') }} (32/60): </h6>
                         </div>
-                        <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+                        <div class="col-xs-12 col-sm-8 col-md-7 col-lg-9">
                         	<p class="regular-paragraph current-lesson-title">3.3. Understanding the importance of Marketing in Digital ...</p>
                         </div>
                     </div>

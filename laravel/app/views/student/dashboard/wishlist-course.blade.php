@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 progress-column">
                         <div class="enrolled-lessons-progress clearfix">
-                            <a href="{{ action('CoursesController@show', $course->slug) }}">View</a>                                                  
+                            <a href="{{ action('CoursesController@show', $course->slug) }}">{{ trans('courses/student_dash.view') }}</a>                                                  
                         </div>
                     </div>
                 </div>
