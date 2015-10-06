@@ -180,54 +180,26 @@
                             @endif
                             	
                    
+                        {{ $discussions->links() }}
                         <div class="question-answer-wrap">
-                        <div class="row question-answer">
-                            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
-                                <div class="row question no-margin">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <h3></h3>
-                                            @if($discussions->count() == 0)
+                            @if($discussions->count() == 0)
+                                <div class="row question-answer">
+                                    <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                                        <div class="row question no-margin">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                 <p class="regular-paragraph">
                                                     {{ trans('courses/general.dash-you-have-no-questions-yet') }}
                                                 </p>
-                                            @else
-                                                <table class="table table-striped">
-                                                    @foreach($discussions as $discussion)
-                                                    <tr>
-                                                        <td>
-                                                            {{ $discussion->title }}
-                                                            <br /><small> {{ $discussion->replies->count() }} Replies </small>
-                                                        </td>
-                                                        <td>
-                                                           @if( $discussion->replies->count() >0 )
-                                                                <?php
-                                                                    $lr = $discussion->replies()->orderBy('id','desc')->first();
-                                                                ?>
-                                                               {{ $lr->student->fullName('student') }}:
-                                                               <small>{{ Str::limit( $lr->content, 100) }}</small>
-                                                           @else
-                                                               NO REPLIES
-                                                           @endif
-                                                        </td>
-                                                        <td>
-                                                            <a href="{{
-                                                                action('ClassroomController@lesson', 
-                                                            [ $discussion->lesson->module->course->slug,
-                                                            $discussion->lesson->module->slug,
-                                                            $discussion->lesson->slug]) }}">
-                                                                {{ Str::limit( $discussion->lesson->name, 5) }}
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
-                                                </table>
-                                                    {{ $discussions->links() }}
-                                            @endif
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            @endif
+                            @foreach($discussions as $discussion)
+                                {{ View::make('courses.classroom.discussions.dashboard-replies')->with( compact('discussion', 'course') ) }}
+                            @endforeach
                     </div>
+                    {{ $discussions->links() }}
                     
                 </div>
             </div>

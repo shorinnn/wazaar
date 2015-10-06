@@ -62,7 +62,7 @@ class ClassroomController extends \BaseController {
             if(Request::ajax()){
                 return View::make('courses.classroom.course_comments_ajax')->with( compact('course') );
             }
-            $discussions = $student->discussions()->where('course_id', $course->id)->paginate(20);
+            $discussions = $student->discussions()->where('course_id', $course->id)->paginate(5);
             
             return View::make('courses.classroom.dashboard')->with( compact('course', 'student', 'video', 'nextLesson', 'currentLesson', 'gift', 'instructor', 'discussions') );
             return View::make('courses.classroom.new.index',compact('course', 'student', 'video', 'nextLesson', 'currentLesson', 'gift', 'instructor') );
