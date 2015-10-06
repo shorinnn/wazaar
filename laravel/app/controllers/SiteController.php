@@ -534,6 +534,9 @@ class SiteController extends \BaseController {
     public function about(){
         return View::make( 'site.about' );
     }
+    public function contact(){
+        return View::make( 'site.contact' );
+    }
     
     public function missing_sti_fix(){
         $emails = [

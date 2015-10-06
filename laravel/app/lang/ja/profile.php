@@ -7,7 +7,7 @@ return
         'tab'                  => 'プロフィール',
         'tabPassword'          => 'パスワード',
         'tabBankDetails'       => '銀行口座',
-        'tabOtherInfo'         => 'その他',
+        'tabOtherInfo'         => '登録住所',
         'yourAccount'          => 'アカウントの設定',
         'errorHeading'         => '以下のエラーがあります',
         'headerPhoto'          => '写真',
@@ -49,7 +49,7 @@ return
             'bankName'   => ' 銀行名',
             'branchCode'   => '支店コード',
             'branchName'   => '支店名',
-            'accountType'   => '普通口座',
+            'accountType'   => '口座の種類',
             'accountNumber'   => '口座番号',
             'beneficiaryName'   => '振込先口座名義',
             'accountTypes' =>
