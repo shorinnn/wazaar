@@ -73,7 +73,7 @@
                                     <h6 class="current-lesson text-right">{{ trans('courses/dashboard.current_lesson') }} 
                                         ({{ $lastLesson->lesson->lessonPosition() }}/ {{$lastLesson->lesson->module->course->lessonCount(false) }}): </h6>
                             </div>
-                            <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+                            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-9">
                                     <p class="regular-paragraph current-lesson-title">
                                         {{$lastLesson->lesson->module->order}}.{{$lastLesson->lesson->order}}. 
                                         {{ $lastLesson->lesson->name }}

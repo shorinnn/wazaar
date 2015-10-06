@@ -21,7 +21,7 @@
     <div class="text-center"><button type='submit' class='large-button blue-button'>{{trans('affiliates.gifts.save') }}</button></div>
     {{ Form::close() }}
     <div class='row no-margin'>
-        <div class="dropzone @if($gift->files->count() > 0) col-lg-3 @endif">
+        <div class="dropzone @if($gift->files->count() > 0) col-lg-3 no-padding @endif">
             <i class="fa fa-cloud-upload"></i>
             <p class="regular-paragraph dropzone-{{$gift->id}}">
                 <span class="semibold-text block">{{trans('affiliates.gifts.drag-and-drop') }} </span>

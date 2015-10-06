@@ -1,6 +1,7 @@
 <?php
 
 return array(
+	'view' => '表示する',
     'you-have' => '月You haveせThis may not work',
     'announcements' => '通知|通知',
     'teacher-responses' => '講師の回答|講師の回答',
