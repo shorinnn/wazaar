@@ -32,8 +32,11 @@ class AnalyticsHelper
             ->groupBy(DB::raw("DATE(created_at)"));
         ;
 
-        return $users->paginate(10);
+        return $users->paginate(Config::get('wazaar.PAGINATION'));
     }
+
+
+
 
     public function getCourseStats($courseId)
     {
@@ -54,7 +57,7 @@ class AnalyticsHelper
            // ->groupBy(DB::raw("DATE(created_at)"))
         ;
 
-        return $stats->paginate(10);
+        return $stats->paginate(Config::get('wazaar.PAGINATION'));
     }
 
     public function getAffiliateSalesByDateRange($startDate, $endDate)
@@ -108,7 +111,7 @@ class AnalyticsHelper
                 AND free_product = 'no'
                 AND DATE(created_at) BETWEEN '{$startDate}' AND '{$endDate}'
                 GROUP BY 	DATE(created_at)";*/
-        return $sales->paginate(10);
+        return $sales->paginate(Config::get('wazaar.PAGINATION'));
     }
 
     private function dailyLtcEarnings($affiliateId, $dateFilter = '')
