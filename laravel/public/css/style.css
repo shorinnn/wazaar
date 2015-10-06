@@ -5,7 +5,7 @@
 	font-family: 'Wazaar';
 	src:url('../fonts/Wazaar.eot?x1vl35');
 	src:url('../fonts/Wazaar.eot?#iefixx1vl35') format('embedded-opentype'),
-		url('../fonts/Wazaar.ttf?x1vl35') format('truetype'),
+		/*url('../fonts/Wazaar.ttf?x1vl35') format('truetype'),*/
 		url('../fonts/Wazaar.woff?x1vl35') format('woff'),
 		url('../fonts/Wazaar.svg?x1vl35#Wazaar') format('svg');
 	font-weight: normal;

@@ -93,15 +93,19 @@
             	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                     <ul class="nav nav-pills" role="tablist">
                         <li role="presentation" class="active">
-                        	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true">
+                        	<a href="#enrolled" role="tab" id="enrolled-tab" data-toggle="tab" aria-controls="enrolled" aria-expanded="true"
+                                    onclick='dashUrl("{{url("student/mycourses/enrolled") }}")'>
                                 {{trans('general.dash.enrolled')}}</a>
                         </li>
                         <li role="presentation">
-                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished">
+                        	<a href="#finished" role="tab" id="finished-tab" data-toggle="tab" aria-controls="finished"
+                                    onclick='dashUrl("{{url("student/mycourses/finished") }}")'>
                                 {{trans('general.dash.finished')}}</a>
                         </li>
                         <li role="presentation" class="dropdown">
-                          <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab" aria-controls="wishlist">{{trans('general.dash.wishlist')}}</a>
+                          <a href="#wishlist" role="tab" id="wishlist-tab" data-toggle="tab" aria-controls="wishlist"
+                              onclick='dashUrl("{{url("student/mycourses/wishlist") }}")'>
+                             {{trans('general.dash.wishlist')}}</a>
                         </li>
                     </ul>               
                 </div>
@@ -234,8 +238,15 @@
 <script>
     function showReview(cls){
         $(cls).modal('show');
+    }        
+    function dashUrl(page){
+        history.pushState({}, '', page);
     }
     $(function(){
+
+        @if( Request::segment(3) !='' )
+            $('[href="#{{Request::segment(3)}}"]').click();
+        @endif
 
         //Hide and show the positive and negative review textareas and labels
         $('body').delegate('.yes-button','click',  function(){
