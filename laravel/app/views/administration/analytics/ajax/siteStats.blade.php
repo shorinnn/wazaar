@@ -19,4 +19,7 @@
     @endforeach
     </tbody>
 </table>
+
+
 {{$paginator->links()}}
+

@@ -80,13 +80,18 @@ var Analytics = {
     'InitCalendarFilter' : function(){
         function cb(start, end) {
             $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            Analytics.DateFilterStart = start.format('YYYY-MM-DD');
+            Analytics.DateFilterEnd =end.format('YYYY-MM-DD');
         }
         cb(moment().subtract(29, 'days'), moment());
         var $date = new Date();
+        var $startDate = new Date($date.getFullYear(), $date.getMonth(), 1);
+        var $endDate = new Date($date.getFullYear(), $date.getMonth() + 1, 0);
+
         $('#reportrange').daterangepicker({
             locale: 'jp',
-            startDate: new Date($date.getFullYear(), $date.getMonth(), 1),
-            endDate: new Date($date.getFullYear(), $date.getMonth() + 1, 0),
+            startDate: $startDate,
+            endDate: $endDate,
             ranges: {
                 'Today': [moment(), moment()],
                 'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -98,15 +103,16 @@ var Analytics = {
         }, cb);
 
         $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-
+            Analytics.DateFilterStart = $('#reportrange').data('daterangepicker').startDate.format('YYYY-MM-DD');
+            Analytics.DateFilterEnd = $('#reportrange').data('daterangepicker').endDate.format('YYYY-MM-DD');
         });
     },
     'DateFilterStart' : '',
     'DateFilterEnd' : '',
     'ApplyTableDateFilter' : function (){
 
-        Analytics.DateFilterStart = $('#reportrange').data('daterangepicker').startDate.format('YYYY-MM-DD');
-        Analytics.DateFilterEnd = $('#reportrange').data('daterangepicker').endDate.format('YYYY-MM-DD');
+        //Analytics.DateFilterStart = $('#reportrange').data('daterangepicker').startDate.format('YYYY-MM-DD');
+        //Analytics.DateFilterEnd = $('#reportrange').data('daterangepicker').endDate.format('YYYY-MM-DD');
         Analytics.TableSiteStats();
     },
 
@@ -118,7 +124,18 @@ var Analytics = {
 }
 
 $(function(){
+
+    $('#table-site-stats').on('click','a', function ($e){
+        $e.preventDefault();
+        var $url = $(this).attr('href');
+        $.get($url, function ($table){
+            $('#table-site-stats').html($table);
+        });
+    });
+
     Analytics.ApplyFilter('today');
     Analytics.InitCalendarFilter();
     Analytics.ApplyTableDateFilter();
+
+
 });
