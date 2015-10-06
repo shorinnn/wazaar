@@ -51,7 +51,7 @@
                                 'data-destination' => '.replies-holder', 'data-prepend' => 'true' ] ) }}
                         <textarea name="content" class="form-control" placeholder="{{ trans('conversations/general.classroom.write-your-answer')}}"></textarea>
                         <input type="hidden" name="lesson_discussion_id" value="{{$discussion->id}}" />
-                        <button class="submit-for-approval blue-button extra-large-button">{{ trans('conversations/general.classroom.post')}}</button>
+                        <button type='submit' class="submit-for-approval blue-button extra-large-button">{{ trans('conversations/general.classroom.post')}}</button>
                     {{ Form::close() }}
 
                     </div>
