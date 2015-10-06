@@ -1,11 +1,14 @@
 @extends('layouts.default')
 @section('content')
+<section class="container-fluid privacy-policy header">
+	<div class="container">
+    	<h2>特定商取引法に基づく表記</h2>
+    </div>
+</section>
+
 <section class="container-fluid privacy-policy main">
     <div class="container extra-policy">
-    	<div class="header">
-        	<h3>特定商取引法に基づく表記</h3>
-        </div>
-    	<div class="row no-margin">
+    	<div class="row no-margin no-border">
         	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 left-column">
             	<p>事業者の名称及び連絡先</p>
            

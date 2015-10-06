@@ -11,15 +11,19 @@
     </thead>
 
     <tbody>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+    @foreach($courses as $key => $course)
+        <tr>
+            <td>{{$key + 1 + $addThisToRank}}</td>
+            <td>{{$course->course_name}}</td>
+            <td>{{$course->category_name}}</td>
+            <td>{{$course->total_sales}}</td>
+            <td>{{$course->sales_count}}</td>
+            <td>{{$course->instructor_first_name}} {{$course->instructor_last_name}}</td>
+            <td>{{$course->instructor_email}}</td>
+            <td></td>
+        </tr>
+    @endforeach
     </tbody>
 </table>
+
+{{$courses->links()}}

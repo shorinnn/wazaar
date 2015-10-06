@@ -65,13 +65,40 @@ class AdminAnalyticsController extends BaseController {
     public function getSiteStatisticsTable($startDate, $endDate)
     {
         $start = Input::has('page') ? Input::get('page') : 1;
-        $siteStatsAll = $this->adminHelper->siteStats($startDate,$endDate,null);
-        $siteStats = $this->adminHelper->siteStats($startDate,$endDate,$start);
+        $siteStatsAll = $this->adminHelper->getSiteStats($startDate,$endDate,null);
+        $siteStats = $this->adminHelper->getSiteStats($startDate,$endDate,$start);
         $paginator = Paginator::make($siteStats,count($siteStatsAll),10);
         return View::make('administration.analytics.ajax.siteStats',compact('siteStats','paginator'));
     }
 
+    public function getSalesStatisticsTable($startDate,$endDate)
+    {
+        $sales = $this->adminHelper->getSalesStats($startDate,$endDate);
+        return View::make('administration.analytics.ajax.salesStats',compact('sales'));
+    }
 
+    public function getTopCoursesTable($startDate,$endDate)
+    {
+        $page = 1;
+        if (Input::has('page')){
+            $page = Input::get('page');
+        }
+        $addThisToRank = ($page - 1) * Config::get('wazaar.PAGINATION');
+        $courses = $this->adminHelper->topCourses('no',0,$startDate,$endDate);
+        return View::make('administration.analytics.ajax.topCourses',compact('courses','addThisToRank'));
+    }
+
+    public function getTopAffiliatesTable($startDate,$endDate)
+    {
+        $page = 1;
+        if (Input::has('page')){
+            $page = Input::get('page');
+        }
+
+        $addThisToRank = ($page - 1) * Config::get('wazaar.PAGINATION');
+        $affiliates = $this->adminHelper->topAffiliates(0,$startDate,$endDate);
+        return View::make('administration.analytics.ajax.topAffiliates',compact('affiliates','addThisToRank'));
+    }
 
 
 
