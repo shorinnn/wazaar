@@ -14,7 +14,7 @@
         <tr>
             <td>{{$key + 1 + $addThisToRank}}</td>
             <td>{{$affiliate->full_name}}</td>
-            <td>{{$affiliate->email}}</td>
+            <td>{{ str_replace('#waa#-','', $affiliate->email) }}</td>
             <td>{{$affiliate->total_sales}}</td>
             <td>{{$affiliate->sales_count}}</td>
             <td></td>
