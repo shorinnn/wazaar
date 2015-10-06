@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page_title') {{$course->name}} - {{ trans('courses/student_dash.dashboard') }} - Wazaar @stop
 @section('content')
 	<div class="container-fluid student-dashboard student-course top-section">
     	<div class="container">
