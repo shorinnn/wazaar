@@ -4752,6 +4752,7 @@ h2, h3, h4, h5, h6{
 	color: #a7b7c4;
 	text-transform: uppercase;
 	margin: 20px 0 4px;
+	clear: both;
 }
 .gift-modal button[type='submit']{
 	padding: 5px 20px;
@@ -4771,7 +4772,11 @@ h2, h3, h4, h5, h6{
 }
 .gift-modal li .delete-button {
     position: relative;
-    top: 13px;
+    top: 8px;
+}
+.gift-modal h6 .delete-button {
+    top: -4px;
+    position: relative;
 }
 .gift-modal .characters-left{
 	color: #a7b7c4;
