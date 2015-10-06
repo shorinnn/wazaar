@@ -49,7 +49,7 @@
             {{ Form::close() }}
             <small>
             Available tags:<br />
-                @number-new-discussions@, @number-of-courses@ (maybe 3 discussions over 2 courses for example), @link-to-course-dashboard@
+                @number-new-discussions@, @number-of-courses@ (maybe 3 discussions over 2 courses for example), @dashboard-link@
             </small>
         </div>
     </div>
