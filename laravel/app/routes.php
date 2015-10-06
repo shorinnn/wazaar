@@ -188,7 +188,7 @@ $wwwRoutes = function(){
         Route::delete('delete-picks/{type}', 'PicksController@deletePicks');
         Route::post('order-picks/{type}', 'PicksController@orderPicks');
         Route::get('manage-orders', 'OrdersController@index');
-        Route::get('load-orders', 'OrdersController@loadOrders');
+        Route::get('manage-users', 'UsersController@adminManageUsers');
     });
 //});
 };
@@ -298,6 +298,7 @@ Route::group(array('domain' => $domain), $wwwRoutes);
 Route::group(array('domain' => $wwwDomain), $wwwRoutes);
 
 Route::group( array('domain' => $instructorSubdomain ), function(){
+    Route::resource('testimonials', 'TestimonialsController');
     Route::put('courses/{id}/updateExternalVideo', 'CoursesController@updateExternalVideo');
     Route::post('courses/{id}/reorder', 'CoursesController@reorder');
     Route::post('courses/{id}/remove-promo', 'CoursesController@removePromo');

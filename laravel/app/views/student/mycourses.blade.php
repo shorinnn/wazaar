@@ -232,7 +232,27 @@
 <script src='{{ url('js/progressbar.min.js')}}'></script>
 <script src="{{url('plugins/uploader/js/jquery.fileupload.js')}}"></script>
 <script>
+    function showReview(cls){
+        $(cls).modal('show');
+    }
     $(function(){
+
+        //Hide and show the positive and negative review textareas and labels
+        $('body').delegate('.yes-button','click',  function(){
+                $('.positive-review-wrap').removeClass('hide');
+                $('.negative-review-wrap').addClass('hide');
+                $(this).addClass('active');
+                $('.no-button').removeClass('active');
+                $('.long-later-button').hide();
+        });
+        $('body').delegate('.no-button','click',  function(){
+                $('.positive-review-wrap').addClass('hide');
+                $('.negative-review-wrap').removeClass('hide');
+                $(this).addClass('active');
+                $('.yes-button').removeClass('active');
+                $('.long-later-button').hide();
+        });
+        
         $('#upload-new-photo').fileupload()
                 .bind('fileuploadprogress', function ($e, data){
                     $progressLabel = $('.label-progress-bar');

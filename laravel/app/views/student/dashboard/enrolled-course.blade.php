@@ -69,8 +69,12 @@
                                             <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 progress-column">
                                               <div class="enrolled-lessons-progress clearfix">
                                                   <span class="finished block"><i class="wa-check"></i>{{trans('general.finished')}}</span>
-                                                  <span class="review regular-paragraph">{{ trans('courses/general.review') }}</span>
-                                                  <span class="progress-value">{{ $student->courseProgress( $course ) }}%</span>
+                                                  
+                                                  @if( $student->canAskForReview($course) )
+                                                    <span onclick="showReview('.review-modal-{{$course->id}}')" style='cursor:pointer'
+                                                          class="review regular-paragraph">{{ trans('courses/general.review') }}</span>
+                                                  @endif
+                                                      <span class="progress-value">{{ $student->courseProgress( $course ) }}%</span>
                                                   <!--<img src="../images/radial-progress.png">-->
                                                   <div class='pull-left radial-progress-wrap'>
                                                           <a 
@@ -100,3 +104,6 @@
                                     </div>
                                 </div>
                             </div>
+@if( $student->canAskForReview($course) )
+    {{ View::make('courses.classroom.reviews-modal')->withCourse($course) }}
+@endif

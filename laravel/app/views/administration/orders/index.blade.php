@@ -18,20 +18,20 @@
     </div>
 	<div class="row">
     	<div class="col-md-12">
-            <h2 class="text-center">Search Course</h2>
+            <h2 class="text-center">{{ trans('administration.orders.search-course' )}}</h2>
             <div class="row">
                 <form id="search_form" class="form-horizontal" style="padding-bottom:20px;">
                     <input type="hidden" name="sort_by" id="sort_by" value="{{$sort_by}}">
                     <input type="hidden" name="sort" id="sort" value="{{$sort}}">
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Name</label>
+                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.name' )}}</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="course_name" name="course_name" value="{{$course_name}}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Category</label>
+                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.category' )}}</label>
                             <div class="col-sm-9">
                                 {{Form::select('course_category', $course_categories, $course_category, ['id'=>'course_category', 'class'=>'form-control'])}}
                             </div>
@@ -39,13 +39,13 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Filter</label>
+                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.filter' )}}</label>
                             <div class="col-sm-9">
                                 {{Form::select('filter', $filters, $filter, ['id'=>'filter', 'class'=>'form-control'])}}
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Email</label>
+                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.email' )}}</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="email" name="email" value="{{$email}}">
                             </div>
@@ -55,7 +55,7 @@
                     <hr style="margin-top:0px;" />
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Sales Amount</label>
+                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.sales-amount' )}}</label>
                             <div class="col-sm-9">
                                 <div class="row">
                                     <div class="col-xs-5 col-sm-5">
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Product Price</label>
+                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.product-price' )}}</label>
                             <div class="col-sm-9">
                                 <div class="row">
                                     <div class="col-xs-5 col-sm-5">
@@ -97,7 +97,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Date</label>
+                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.date' )}}</label>
                             <div class="col-sm-9">
                                 <div class="row">
                                     <div class="alert alert-danger hide date-warning"></div>
@@ -129,16 +129,16 @@
                     <hr style="margin-top:0px;" />
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Course ID</label>
+                            <label class="col-sm-3 control-label">{{ trans('administration.orders.label.course-id' )}}</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="course_id" name="course_id" value="{{$course_id}}">
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 text-center">
-                        <button type="button" class="btn btn-primary btn-lg" onclick="searchOrder();">Search <i class="fa fa-search"></i></button>
+                        <button type="button" class="btn btn-primary btn-lg" onclick="searchOrder();">{{ trans('administration.orders.search' )}} <i class="fa fa-search"></i></button>
                     </div>
-                    <button type="button" class="pull-right btn btn-sm btn-info clearfix" onclick="downloadCsv();"><i class="fa fa-download"></i> Download CSV</button>
+                    <button type="button" class="pull-right btn btn-sm btn-info clearfix" onclick="downloadCsv();"><i class="fa fa-download"></i> {{ trans('administration.orders.download-csv' )}}</button>
                     <div class="clearfix"></div>
                 </form>
             </div>
