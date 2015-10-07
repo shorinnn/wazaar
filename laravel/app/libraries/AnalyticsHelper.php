@@ -1,5 +1,5 @@
 <?php
-
+use Carbon\Carbon;
 class AnalyticsHelper
 {
 
@@ -2235,6 +2235,20 @@ class AnalyticsHelper
         else{
             return 'date=' . $data['date'];
         }
+    }
+
+    public static function fillObjectWithDates($startDate, $endDate, $object, $dateField = 'created_at')
+    {
+        $sd = new Carbon($startDate);// Carbon($startDate);
+        $ed = new Carbon($endDate);
+
+        $diffInDays = $sd->diffInDays($ed);
+
+        $filledObject = [];
+        for ($i = 0; $i<$diffInDays; $i++){
+
+        }
+
     }
 
 

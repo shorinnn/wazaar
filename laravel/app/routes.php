@@ -565,11 +565,10 @@ Route::post('courses/{id}/video/set-description','CoursesController@setVideoDesc
 
 Route::get('test', function(){
 
-    $ch = new CourseHelper();
+    $sd = '2015-09-01';
+    $ed = '2015-09-13';
 
-    $ts = $ch->bestSellers();
-
-    echo $ts->count();
+    echo AnalyticsHelper::fillObjectWithDates($sd,$ed,[]);
 
 });
 

@@ -1,6 +1,6 @@
 <table class="table table-striped">
     <thead>
-    <th>Date</th>
+    <th width="10%">Date</th>
     <th>Total Revenue</th>
     <th># Sales</th>
     <th>Wazaar Revenue</th>
@@ -16,14 +16,14 @@
     @foreach($sales as $sale)
         <tr>
             <td>{{$sale->date}}</td>
-            <td>{{$sale->sales_total}}</td>
+            <td>¥{{$sale->sales_total}}</td>
             <td>{{$sale->sales_count}}</td>
-            <td>{{$sale->site_earnings}}</td>
-            <td>{{$sale->instructor_earnings}}</td>
-            <td>{{$sale->affiliate_earnings}}</td>
-            <td>{{$sale->ltc_affiliate_earnings}}</td>
-            <td>{{$sale->second_tier_affiliate_earnings}}</td>
-            <td>{{$sale->second_tier_instructor_earnings}}</td>
+            <td>¥{{$sale->site_earnings}}</td>
+            <td>¥{{$sale->instructor_earnings}}</td>
+            <td>¥{{$sale->affiliate_earnings}}</td>
+            <td>¥{{$sale->ltc_affiliate_earnings}}</td>
+            <td>¥{{$sale->second_tier_affiliate_earnings}}</td>
+            <td>¥{{$sale->second_tier_instructor_earnings}}</td>
             <td></td>
         </tr>
     @endforeach
